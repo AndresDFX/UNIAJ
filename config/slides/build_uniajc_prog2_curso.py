@@ -72,7 +72,7 @@ def build():
         [
             "**Sesión 0 (hoy)** = logística + acuerdo pedagógico + evaluación + CONTENIDO + **socialización del Proyecto Integrador**.",
             "**Clase 1** (material en archivo aparte) = diagnóstico de conocimientos previos + arranque temático — mismo bloque de hoy.",
-            "Cada miércoles (120 min): **Teoría Core** → **Taller Guiado** → **Quiz corto**. Modalidad: **presencialidad asistida** (dos semanas al mes la clase puede ser virtual).",
+            "Cada miércoles (120 min): **Teoría Core** → **Taller Guiado** → **cierre**. Modalidad: **Presencialidad asistida**: Clase 1 y parciales **presencial**; resto **virtual síncrona**; festivos = **clase autónoma**.",
             "Taller calificable: entrega máxima el **domingo 23:59**.",
             "Hilo conductor de todo el semestre: **Proyecto Integrador** continuo. Enfoque: aprender haciendo · aprendizaje invertido.",
         ],

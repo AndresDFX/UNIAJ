@@ -106,7 +106,7 @@ def build():
         [
             "**Sesión 0 (hoy)** = encuadre del curso + evaluación + **socialización del Proyecto Integrador CloudLite** + herramientas.",
             "**Clase 1** = diagnóstico + arranque del primer tema (introducción a arquitecturas cloud) — mismo bloque de hoy.",
-            "De la Clase 2 en adelante, cada sesión sigue la misma estructura: **Teoría Core breve** → **Taller PI CloudLite** → **Quiz / cierre**. Modalidad: Clase 1 y parciales (**5 / 9 / 14**) **presencial**; resto **virtual** síncrona; festivos = **autónoma**.",
+            "De la Clase 2 en adelante, cada sesión sigue la misma estructura: **Teoría Core breve** → **Taller PI CloudLite** → **cierre**. Modalidad: Clase 1 y parciales (**5 / 9 / 14**) **presencial**; resto **virtual síncrona**; festivos = **clase autónoma**.",
             "Herramientas **gratis + navegador** (sin cloud de pago ni Docker Desktop). Talleres y quices/parciales se entregan/presentan en @@ExamLab@@ (no es la plataforma oficial de la UNIAJC, la usamos solo para esto).",
             "Hilo conductor de todo el semestre: **Proyecto Integrador CloudLite**.",
         ],

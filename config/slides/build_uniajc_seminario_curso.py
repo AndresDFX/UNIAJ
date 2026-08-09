@@ -119,7 +119,7 @@ def build():
 
 
 
-        'Modalidad: **Presencialidad asistida** (jueves virtual síncrona · parciales presencial · festivos autónomos)',
+        'Modalidad: **Presencialidad asistida** (Clase 1 y parciales presencial · resto virtual síncrona)',
 
 
 
@@ -215,7 +215,7 @@ def build():
 
 
 
-        'Cada jueves (120 min): **Teoría Core** → **Taller / exposición** → **Quiz corto** cuando aplique. Modalidad: **Presencialidad asistida** (parciales presencial · resto virtual síncrona · festivos autónomos).',
+        'Cada jueves (120 min): **Teoría Core** → **Taller / exposición** → cierre. Modalidad: **Presencialidad asistida**: Clase 1 y parciales **presencial**; resto **virtual síncrona**; festivos = **clase autónoma**.',
 
 
 

@@ -115,7 +115,7 @@ def build():
 
 
 
-        'Horario: **Lunes 18:00 – 20:00** (120 min) · Modalidad: **Presencialidad asistida** (clases y parciales síncronos)',
+        'Horario: **Lunes 18:00 – 20:00** (120 min) · Modalidad: **Presencialidad asistida**',
 
 
 
@@ -215,7 +215,7 @@ def build():
 
 
 
-        'Cada lunes (120 min): **Teoría Core** → **Taller / laboratorio en la nube** → **Quiz corto**. Modalidad: **Presencialidad asistida** (parciales presenciales · resto virtual · festivos autónomos).',
+        'Cada lunes (120 min): **Teoría Core** → **Taller / laboratorio en la nube** → cierre. Modalidad: **Presencialidad asistida**: Clase 1 y parciales **presencial**; resto **virtual síncrona**; festivos = **clase autónoma**.',
 
 
 
@@ -409,7 +409,7 @@ def build():
 
 
 
-            ('info', 'Lunes 18:00 – 20:00 · Presencialidad asistida (clases y parciales síncronos) · Grupo 641A-2.'),
+            ('info', 'Lunes 18:00 – 20:00 · Presencialidad asistida: Clase 1 y parciales presencial · resto virtual síncrona · festivos autónoma · Grupo 641A-2.'),
 
 
 

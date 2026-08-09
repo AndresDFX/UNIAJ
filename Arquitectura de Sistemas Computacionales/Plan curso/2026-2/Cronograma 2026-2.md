@@ -6,7 +6,7 @@ Documento para estudiantes (carpeta compartida `Clases/`).
 - **Grupo:** **[PENDIENTE — grupo]**
 - **Horario:** **Lunes 10:00 – 12:00** (120 min)
 - **Periodo:** 2026-2 · 10/08/2026 – 22/11/2026
-- **Modalidad:** Presencialidad asistida (Clase 1 presencial · resto virtual · parciales presencial · festivos autónomos)
+- **Modalidad:** **Presencialidad asistida** (Clase 1 y parciales presencial síncrono · resto virtual síncrona · festivos = clase autónoma)
 
 > La **Clase 1** incluye la Presentación del curso (acuerdo, logística, Padlet, evaluación, cronograma) **y** el arranque temático.
 

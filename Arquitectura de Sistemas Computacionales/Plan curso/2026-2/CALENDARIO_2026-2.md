@@ -4,7 +4,7 @@
 - **Grupo:** 6303C
 - **Periodo:** 2026-2 · **10/08/2026 – 22/11/2026**
 - **Horario:** Lunes **10:00 – 12:00** (120 min)
-- **Modalidad:** Presencialidad asistida (Clase 1 presencial · resto virtual síncrona · parciales presencial · festivos autónomos)
+- **Modalidad:** **Presencialidad asistida** (Clase 1 y parciales presencial síncrono · resto virtual síncrona · festivos = clase autónoma)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
 - **Total clases:** 15 (festivos = **clase autónoma**, no se omiten)
 

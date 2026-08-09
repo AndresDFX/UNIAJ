@@ -50,11 +50,18 @@ Espejo canónico también en `.claude/agents/disenador-curricular-uniajc.md` —
    - c) Temario ya materializado en `Clases/Clase N - <Tema>` / `Kit docente/Clase N` (respétalo)
    - Si no hay fuente oficial → DETENTE y pídela.
 3. Duración/horario real del periodo (`uniajc.json` + calendario 2026-2). Todos los cursos activos = **120 min**. No asumas 60 min CUN.
-4. Lee `config/calendario/semestre_2026_2.json` y el CSV del curso (`tipo_clase` por sesión). Modalidad **por curso** (no genérica):
-   - **Prog II (mié):** Clase 1 + parciales 5/10/15 presencial; resto virtual; festivos autónoma.
-   - **Seminario (jue):** regulares (incl. Clase 1) virtual; parciales 5/10/15 presencial; festivos autónoma.
-   - **Arquitectura (lun 10:00):** Clase 1 + parciales 5/9/14 presencial; resto virtual; festivos autónoma.
-   - **BD II (lun 20:00):** según CSV/CALENDARIO — **Virtual** (regulares y parciales virtual síncronos; festivos autónoma). No inventar presencial.
+4. Modalidad — **regla única, idéntica en los 4 cursos** (`config/calendario/semestre_2026_2.json` → `regla_modalidad_sesion`; el CSV del curso trae el tipo por sesión):
+
+   | Sesión | Modalidad |
+   |---|---|
+   | **Clase 1** (encuadre) | **Presencial** síncrona |
+   | **Parciales** | **Presencial** síncrona |
+   | Resto de clases regulares | **Virtual** síncrona |
+   | Festivos | **Clase autónoma** (único caso asincrónico) |
+
+   Bajo la figura institucional **«Presencialidad asistida»**. No inventes variantes
+   por curso ni por día: si un documento dice otra cosa, está desactualizado.
+
 5. Marca: `#095292` · `#269CCB` · `#FFD000` · motor `uniajc_slides_engine.py`.
 6. Confirma breve:
    > ✅ Perfil: **UNIAJC** · Asignatura: […] · Grupo/periodo: […] · Fuente: […] · Evaluación: […] · N clases · duración […] min · modalidad por sesión: […].
@@ -229,7 +236,12 @@ Solo tema de hoy · {{DURACION}} min · Teoría Core · Taller · Quiz · Cierre
 7. No borrar material existente ni Acuerdos de semestres anteriores.
 8. Evaluación teórica 30/30/40. Parciales síncronos **nunca** en festivo/autónoma. **Día de parcial = solo evaluación**. Criterio: última regular del corte (mié/jue: 5/10/15; lun: **5/9/14**). Modalidad del parcial según curso (ver Paso 0).
 9. Pendientes ops (no en PPTX curso): URL Campus/Meet, listados/firmas. Padlet ya fijo.
-10. Quiz: estudiante sin claves; CLAVE DOCENTE solo en Kit docente. Soluciones de talleres solo Kit docente.
+10. **El QUIZ no va en el material del estudiante**: ni diapositiva con las preguntas,
+    ni anuncio en la agenda/timeline del bloque, ni mención en el taller. Vive SOLO en
+    `Kit docente/Clase N/` (versión sin claves + `CLAVE DOCENTE` aparte), y el docente lo
+    aplica por el canal que decida. Anticiparlo en la proyección le quita sentido como
+    comprobación. Única excepción: el desglose oficial de evaluación del Acuerdo
+    («Talleres/Quiz 10%»), que sí se enuncia porque define cómo se califica.
 11. **Acuerdo pedagógico**: horario/modalidad DEBEN coincidir con Calendario + Plan de curso + Parciales. Si hay contradicción, **preguntar al docente cuál es el real** — no elegir por mayoría. Rellenar «Objetivos del curso» con objetivo + RAA del **Microcurrículo** (existe en `Plan curso/`); dejarlo en `[PENDIENTE]` es un error, no un pendiente administrativo.
 12. **Nada de placeholders vacíos que el pipeline pueda resolver**: si el dato existe en otra fuente del curso, cruzarlo. `[PENDIENTE]` solo para datos que únicamente se obtienen en clase (listado de estudiantes, resultados del diagnóstico).
 13. **Scripts de demo (`Codigo/*.sql`, YAML, Dockerfile) deben ser EJECUTABLES**, no un plan comentado. Si el playground no permite algo (ej. `CREATE ROLE` en Live SQL), entregar dos partes: (A) lo que sí corre ahí, (B) la versión completa documentada como plan.
@@ -283,4 +295,4 @@ importar CSV, colas IA): eso es operación, no diseño pedagógico.
 
 ---
 
-*v1.8 — UNIAJC · 2026-2 · Sesión 0 ≠ Clase 1 (y Sesión 0 socializa el PI) · densidad máx. 5 bullets · evaluación en tarjetas · CONTENIDO en 1 slide · diagramas reales · logos verificados · scripts ejecutables · un dominio narrativo por curso · verificación final obligatoria · capturas de salida esperada (mockups.py) · helpers before_after/pseudo_code · Motor `uniajc_slides_engine.py`.*
+*v1.9 — UNIAJC · 2026-2 · Sesión 0 ≠ Clase 1 (y Sesión 0 socializa el PI) · densidad máx. 5 bullets · evaluación en tarjetas · CONTENIDO en 1 slide · diagramas reales · logos verificados · scripts ejecutables · un dominio narrativo por curso · verificación final obligatoria · capturas de salida esperada (mockups.py) · helpers before_after/pseudo_code · modalidad regla unica (Clase 1 y parciales presencial · resto virtual · festivos autonoma) · quiz SOLO en Kit docente · Motor `uniajc_slides_engine.py`.*

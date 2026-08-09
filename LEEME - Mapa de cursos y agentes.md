@@ -10,11 +10,24 @@ Workspace docente: Institución Universitaria Antonio José Camacho.
 
 | Carpeta | Oferta 2026-2 | Notas |
 |---|---|---|
-| `Programacion II/` | FI303204 · **341C** · mié **18:00–20:00** (120 min) | 15 clases · Acuerdo 2026-2 prellenado · material previo 2026-1 conservado |
-| `Seminario de Sistemas/` | FI303301 · **341C** · jue **18:00–20:00** (120 min) | 15 clases · Acuerdo 2026-2 prellenado |
+| `Programacion II/` | FI303204 · **341C** · mié **18:00–20:00** · Presencialidad asistida (120 min) | 15 clases · Acuerdo 2026-2 prellenado · material previo 2026-1 conservado |
+| `Seminario de Sistemas/` | FI303301 · **341C** · jue **18:00–20:00** · Presencialidad asistida (120 min) | 15 clases · Acuerdo 2026-2 prellenado |
 | `Bases de Datos II/` | **641A-2** · lun **18:00–20:00** · Presencialidad asistida (120 min) | Curso nuevo · código oficial pendiente · 4 clases autónomas (festivos) |
 | `Arquitectura de Sistemas Computacionales/` | lun **10:00–12:00** · Presencialidad asistida (120 min) | Curso nuevo · grupo/código pendientes · 4 clases autónomas |
 | `0. Base/` | — | Plantillas institucionales (Ing. Software 1) |
+
+## Modalidad (regla única, 4 cursos)
+
+**Presencialidad asistida**, idéntica en los 4 cursos:
+
+| Sesión | Modalidad |
+|---|---|
+| **Clase 1** (encuadre) | **Presencial** síncrona |
+| **Parciales** (5/10/15 mié-jue · 5/9/14 lun) | **Presencial** síncrona |
+| Resto de clases regulares | **Virtual** síncrona |
+| Festivos | **Clase autónoma** (único caso asincrónico) |
+
+Fuente de verdad: `config/calendario/semestre_2026_2.json` → `regla_modalidad_sesion`.
 
 ## Evaluación teórica 2026-2 (todos los cursos activos)
 

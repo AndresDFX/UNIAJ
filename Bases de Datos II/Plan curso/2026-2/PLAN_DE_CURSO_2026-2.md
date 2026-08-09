@@ -5,7 +5,7 @@
 - **Grupo:** **641A-2**
 - **Periodo:** **2026-2** · 10/08/2026 – 22/11/2026
 - **Horario:** **Lunes 18:00 – 20:00** (120 min)
-- **Modalidad:** **Presencialidad asistida** (ver tipo por sesión en CSV · parciales presencial síncronos · festivos autónomos)
+- **Modalidad:** **Presencialidad asistida** (Clase 1 y parciales presencial síncrono · resto virtual síncrona · festivos = clase autónoma)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
 - **Fuente oficial:** Microcurrículo FI303215 + Plan_de_curso FI303215
 - **Calendario:** `Plan curso/2026-2/CALENDARIO_2026-2.md` · `.config/calendario/semestre_2026_2.json`

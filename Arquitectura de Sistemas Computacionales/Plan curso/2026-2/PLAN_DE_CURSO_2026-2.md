@@ -5,7 +5,7 @@
 - **Grupo:** **6303C**
 - **Periodo:** **2026-2** · 10/08/2026 – 22/11/2026
 - **Horario:** **Lunes 10:00 – 12:00** (120 min)
-- **Modalidad:** **Presencialidad asistida** (Clase 1 presencial · resto virtual síncrona · parciales presencial · festivos autónomos)
+- **Modalidad:** **Presencialidad asistida** (Clase 1 y parciales presencial síncrono · resto virtual síncrona · festivos = clase autónoma)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
 - **Fuente oficial:** Microcurrículo FI303380 (Enfoque Cloud) + Plan_de_curso FI303380
 - **Calendario:** `Plan curso/2026-2/CALENDARIO_2026-2.md` · `.config/calendario/semestre_2026_2.json`

@@ -186,7 +186,7 @@
         }
       },
       "calendario_csv": "Programacion II/Plan curso/2026-1/calendario_eventos_2026-1.csv",
-      "regla_modalidad_sesion": "Clase 1 presencial; demás regulares virtual (síncrona); parciales presencial síncrono; festivos autónoma."
+      "regla_modalidad_sesion": "Uniforme en los 4 cursos (Presencialidad asistida): Clase 1 PRESENCIAL (encuadre) · parciales PRESENCIAL sincrono · resto de clases regulares VIRTUAL SINCRONA · festivos = clase AUTONOMA. No hay sesiones asincronas fuera de los festivos."
     },
     "seminario": {
       "folder": "Seminario de Sistemas",
@@ -202,7 +202,7 @@
         {
           "n": 1,
           "fecha": "2026-08-13",
-          "tipo": "virtual",
+          "tipo": "presencial",
           "festivo": null,
           "parcial": false
         },
@@ -328,7 +328,8 @@
           "tipo": "presencial"
         }
       },
-      "calendario_csv": "Seminario de Sistemas/Plan curso/2026-1/calendario_eventos_2026-1.csv"
+      "calendario_csv": "Seminario de Sistemas/Plan curso/2026-1/calendario_eventos_2026-1.csv",
+      "regla_modalidad_sesion": "Uniforme en los 4 cursos (Presencialidad asistida): Clase 1 PRESENCIAL (encuadre) · parciales PRESENCIAL sincrono · resto de clases regulares VIRTUAL SINCRONA · festivos = clase AUTONOMA. No hay sesiones asincronas fuera de los festivos."
     },
     "bases_datos_ii": {
       "folder": "Bases de Datos II",
@@ -344,7 +345,7 @@
         {
           "n": 1,
           "fecha": "2026-08-10",
-          "tipo": "virtual",
+          "tipo": "presencial",
           "festivo": null,
           "parcial": false
         },
@@ -470,7 +471,8 @@
           "tipo": "presencial"
         }
       },
-      "calendario_csv": "Bases de Datos II/Plan curso/2026-2/calendario_eventos_2026-2.csv"
+      "calendario_csv": "Bases de Datos II/Plan curso/2026-2/calendario_eventos_2026-2.csv",
+      "regla_modalidad_sesion": "Uniforme en los 4 cursos (Presencialidad asistida): Clase 1 PRESENCIAL (encuadre) · parciales PRESENCIAL sincrono · resto de clases regulares VIRTUAL SINCRONA · festivos = clase AUTONOMA. No hay sesiones asincronas fuera de los festivos."
     },
     "arquitectura": {
       "folder": "Arquitectura de Sistemas Computacionales",
@@ -481,7 +483,7 @@
       "horario": "10:00 – 12:00",
       "duracion_min": 120,
       "modalidad": "Presencialidad asistida",
-      "regla_modalidad_sesion": "Clase 1 presencial; demás regulares virtual (síncrona); parciales presencial síncrono; festivos autónoma.",
+      "regla_modalidad_sesion": "Uniforme en los 4 cursos (Presencialidad asistida): Clase 1 PRESENCIAL (encuadre) · parciales PRESENCIAL sincrono · resto de clases regulares VIRTUAL SINCRONA · festivos = clase AUTONOMA. No hay sesiones asincronas fuera de los festivos.",
       "n_clases": 15,
       "clases": [
         {
@@ -616,13 +618,13 @@
       "calendario_csv": "Arquitectura de Sistemas Computacionales/Plan curso/2026-2/calendario_eventos_2026-2.csv"
     }
   },
-  "modalidad_cursos": "Presencialidad asistida (ver tipo por sesión / día de la semana)",
+  "modalidad_cursos": "Presencialidad asistida (Clase 1 y parciales presencial · resto virtual sincrona · festivos autonoma)",
   "tipos_clase": [
     "presencial",
     "virtual",
     "autonoma"
   ],
   "regla_parciales": "Criterio de modalidad por sesión (fijo 2026-2): modalidad del curso = Presencialidad asistida. Prog II (miércoles): Clase 1 presencial · clases regulares 2–15 virtual síncrona · parciales presencial síncrono. Seminario (jueves): clases regulares virtual síncrona · parciales presencial síncrono. BD II / Arquitectura: ver tipo por sesión en CSV · parciales presencial síncrono. Festivos = clase autónoma (sin parcial). Los parciales NUNCA se programan en día festivo ni en clase autónoma. Si el cierre teórico del corte cae en festivo/autónoma, el parcial se mueve a la última clase regular anterior del mismo corte.",
-  "regla_modalidad_sesion": "Prog II (miércoles): Clase 1 presencial · resto regulares virtual síncrona · parciales presencial · festivos autónoma. Seminario (jueves): regulares virtual síncrona · parciales presencial · festivos autónoma. BD II (lun 18:00–20:00): Presencialidad asistida · ver CSV · parciales presencial · festivos autónoma. Arquitectura: ver tipo por sesión en su curso.",
+  "regla_modalidad_sesion": "Uniforme en los 4 cursos (Presencialidad asistida): Clase 1 PRESENCIAL (encuadre) · parciales PRESENCIAL sincrono · resto de clases regulares VIRTUAL SINCRONA · festivos = clase AUTONOMA. No hay sesiones asincronas fuera de los festivos.",
   "regla_parcial_solo_eval": "Día de parcial = solo evaluación; sin tema de trabajo dirigido nuevo. No mezclar tema técnico · Parcial N. La prep del PI va en la clase regular anterior."
 }

@@ -740,7 +740,7 @@ def cover_slide(prs, n: int, tema: str, sub: str, pi_hoy: str):
     tm = textbox(s, MARGIN, 3.5, CONTENT_W, 2.8)
     for i, ln in enumerate([
         f"**Hoy avanzamos el PI en:** {pi_hoy}",
-        "Bloque **120 min** · Teoría breve · Taller PI · Quiz/cierre.",
+        "Bloque **120 min** · Teoría breve · Taller PI · cierre.",
         "Herramientas gratis + navegador · sin AWS/GCP/Oracle Cloud.",
     ]):
         p = tm.paragraphs[0] if i == 0 else tm.add_paragraph()
@@ -951,7 +951,7 @@ def build_pptx(c: dict) -> Path:
         "**0–10** Encuadre: hoy avanzamos el PI en… + entregable concreto.",
         "**10–40** Teoría Core breve (solo lo necesario para el taller PI).",
         "**40–100** Taller guiado PI (demo en vivo + trabajo de equipo).",
-        "**100–115** Quiz corto / revisión de evidencias.",
+        "**100–115** Revisión de evidencias del PI.",
         "**115–120** Cierre: criterio de éxito + plazo domingo 23:59.",
     ], idx=idx)
     idx += 1

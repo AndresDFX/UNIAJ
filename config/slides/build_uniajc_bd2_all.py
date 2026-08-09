@@ -976,7 +976,7 @@ def build_pptx(c):
         ("10-35", "Teoría Core breve (al servicio del PI)"),
         ("35-55", "Demo con la herramienta del día"),
         ("55-105", "Taller guiado = tarea del PI"),
-        ("105-120", "Criterios · quiz/cierre · duda PI"),
+        ("105-120", "Criterios de exito · cierre · dudas del PI"),
     ], idx=idx); idx += 1
     content_slide(prs, "Teoria Core (breve)", _slide_summary(c['teoria']), idx=idx, size=15); idx += 1
     dg = DIAGRAMAS_BD2.get(c['n'])
@@ -1036,16 +1036,10 @@ def build_pptx(c):
         ("aclaracion", "Enunciado completo: Clases/Proyecto Integrador/ (VetCare DB)."),
         ("advertencia", "Taller de la semana en ExamLab: domingo 23:59 (regla del Acuerdo) cuando aplique."),
     ], idx=idx); idx += 1
-    # Quiz proyectable: solo enunciados/opciones (NUNCA claves)
-    if c.get("quiz") and c["n"] in QUIZ:
-        for ci, lines in enumerate(pptx_chunks(QUIZ[c["n"]], per_slide=4)):
-            title = "Quiz rapido (cierre)" if ci == 0 else f"Quiz rapido (cierre) · cont. {ci + 1}"
-            content_slide(
-                prs, title, lines,
-                sub="Individual · 8–10 min",
-                idx=idx, size=12,
-            )
-            idx += 1
+    # El QUIZ no va en el material del estudiante: ni proyectado ni anunciado.
+    # Vive solo en Kit docente/Clase N/ (enunciados + CLAVE DOCENTE aparte), que
+    # el docente aplica por el canal que decida. Anticiparlo en la diapositiva le
+    # quita sentido como comprobacion.
     closing_slide(prs, f"Clase {c['n']} · VetCare avanza", [
         c['hito_pi'],
         f"Entregable: {c['entregable']}",
