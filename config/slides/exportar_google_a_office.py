@@ -22,20 +22,34 @@ El ID de Drive se saca de la base de metadatos local de Google Drive for Desktop
 (`metadata_sqlite_db`), cruzando el nombre exacto del archivo + su tipo MIME.
 No hace falta pedirle nada a Drive para eso.
 
-Autenticacion
--------------
-Requiere UNA autorizacion interactiva del dueno de los archivos (abre el
-navegador). El token queda en `config/slides/.drive_token.json` (ignorado por
-git) y se reutiliza en corridas siguientes. Scope de SOLO LECTURA.
+Autenticacion — dos modos
+-------------------------
+**Modo gcloud (recomendado, es el que funciona).** Google BLOQUEA el uso de sus
+propios client_id del SDK desde una app de terceros: el navegador muestra
+"aplicacion bloqueada". La salida es dejar que autentique el propio gcloud, que
+si es una app verificada de Google:
 
-NO usa la cuenta de servicio corporativa de gcloud: esa identidad no tiene acceso
-a este Drive personal y no corresponde usarla para datos personales.
+    gcloud config configurations create drive-export --no-activate
+    gcloud --configuration=drive-export auth login --enable-gdrive-access
+    python config/slides/exportar_google_a_office.py --gcloud
+
+Se usa una CONFIGURACION APARTE a proposito: asi la cuenta activa por defecto
+(la cuenta de servicio corporativa) queda intacta. El token dura ~1 h; si expira
+a mitad, se vuelve a correr el script y continua donde quedo.
+
+**Modo OAuth propio.** Solo sirve con un client_id creado por el usuario en su
+propio proyecto de Google Cloud (APIs y servicios > Credenciales > ID de cliente
+de OAuth > App de escritorio) exportado en DRIVE_CLIENT_ID / DRIVE_CLIENT_SECRET.
+El token queda en `config/slides/.drive_token.json` (ignorado por git).
+
+En ambos casos el scope es de SOLO LECTURA. NO se usa la cuenta de servicio
+corporativa: no tiene acceso a este Drive personal y no corresponde usarla.
 
 Uso
 ---
-    python config/slides/exportar_google_a_office.py            # exporta lo que falte
-    python config/slides/exportar_google_a_office.py --dry-run  # solo lista
-    python config/slides/exportar_google_a_office.py --force    # re-exporta todo
+    python config/slides/exportar_google_a_office.py --gcloud    # token de gcloud
+    python config/slides/exportar_google_a_office.py --dry-run   # solo lista
+    python config/slides/exportar_google_a_office.py --force     # re-exporta todo
 """
 from __future__ import annotations
 
@@ -55,17 +69,7 @@ TOKEN_PATH = SLIDES / ".drive_token.json"
 
 SCOPES = ["https://www.googleapis.com/auth/drive.readonly"]
 
-# Cliente de escritorio PUBLICO del SDK de Google (no es un secreto de aplicacion:
-# los clientes "installed" no pueden guardar secretos y Google lo publica).
-CLIENT_CONFIG = {
-    "installed": {
-        "client_id": "764086051850-6qr4p6gpi6hn506pt8ejuq83di341hur.apps.googleusercontent.com",
-        "client_secret": "d-FL95Q19q7MQmFpd7hHV2B",
-        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-        "token_uri": "https://oauth2.googleapis.com/token",
-        "redirect_uris": ["http://localhost"],
-    }
-}
+GCLOUD_CONFIG = "drive-export"  # configuracion aislada: no toca la cuenta activa por defecto
 
 EXPORT = {
     ".gdoc": ("application/vnd.google-apps.document",
@@ -137,12 +141,44 @@ def mapear_ids(tmp_dir: Path) -> tuple[list[dict], list[dict]]:
     return mapeados, ambiguos
 
 
-def get_service():
-    from google.auth.transport.requests import Request
+def _token_de_gcloud() -> str:
+    """Access token de la configuracion aislada de gcloud (no la corporativa)."""
+    import subprocess
+
+    # En Windows gcloud es gcloud.cmd: subprocess sin shell NO aplica PATHEXT,
+    # asi que hay que resolver la ruta real con which().
+    exe = shutil.which("gcloud") or shutil.which("gcloud.cmd")
+    if not exe:
+        sys.exit("No se encontro 'gcloud' en el PATH.")
+    cmd = [exe, f"--configuration={GCLOUD_CONFIG}", "auth", "print-access-token"]
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+    except OSError as e:
+        sys.exit(f"No se pudo ejecutar gcloud: {e}")
+    tok = (r.stdout or "").strip()
+    if r.returncode != 0 or not tok:
+        sys.exit(
+            "No hay sesion de Drive en gcloud. Corre primero:\n\n"
+            f"  gcloud config configurations create {GCLOUD_CONFIG} --no-activate\n"
+            f"  gcloud --configuration={GCLOUD_CONFIG} auth login --enable-gdrive-access\n\n"
+            f"Detalle: {(r.stderr or '').strip()[:300]}"
+        )
+    return tok
+
+
+def get_service(usar_gcloud: bool):
     from google.oauth2.credentials import Credentials
-    from google_auth_oauthlib.flow import InstalledAppFlow
     from googleapiclient.discovery import build
 
+    if usar_gcloud:
+        creds = Credentials(token=_token_de_gcloud())
+        return build("drive", "v3", credentials=creds, cache_discovery=False)
+
+    from google.auth.transport.requests import Request
+    from google_auth_oauthlib.flow import InstalledAppFlow
+
+    cid = os.environ.get("DRIVE_CLIENT_ID")
+    csec = os.environ.get("DRIVE_CLIENT_SECRET")
     creds = None
     if TOKEN_PATH.exists():
         try:
@@ -155,9 +191,23 @@ def get_service():
         except Exception:
             creds = None
     if not creds or not creds.valid:
-        print("\n>> Se abrira el navegador para autorizar acceso de SOLO LECTURA a tu Drive.")
-        print(">> Inicia sesion con la cuenta dueña de los archivos del curso.\n")
-        flow = InstalledAppFlow.from_client_config(CLIENT_CONFIG, SCOPES)
+        if not (cid and csec):
+            sys.exit(
+                "Sin credenciales OAuth propias.\n\n"
+                "Google bloquea sus client_id del SDK usados desde otra app\n"
+                "(pantalla 'aplicacion bloqueada'). Usa el modo gcloud:\n\n"
+                f"  gcloud config configurations create {GCLOUD_CONFIG} --no-activate\n"
+                f"  gcloud --configuration={GCLOUD_CONFIG} auth login --enable-gdrive-access\n"
+                "  python config/slides/exportar_google_a_office.py --gcloud\n\n"
+                "O define DRIVE_CLIENT_ID / DRIVE_CLIENT_SECRET de un cliente de\n"
+                "escritorio creado en tu propio proyecto de Google Cloud."
+            )
+        cfg = {"installed": {
+            "client_id": cid, "client_secret": csec,
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://oauth2.googleapis.com/token",
+            "redirect_uris": ["http://localhost"]}}
+        flow = InstalledAppFlow.from_client_config(cfg, SCOPES)
         creds = flow.run_local_server(port=0)
         TOKEN_PATH.write_text(creds.to_json(), encoding="utf-8")
         print(f">> Token guardado en {TOKEN_PATH.name} (reutilizable).\n")
@@ -185,6 +235,8 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="solo listar, no descargar")
     ap.add_argument("--force", action="store_true", help="re-exportar aunque ya exista")
+    ap.add_argument("--gcloud", action="store_true",
+                    help="usar el access token de la configuracion gcloud aislada (recomendado)")
     args = ap.parse_args()
 
     tmp = SLIDES / "_tmp_drivemeta"
@@ -207,7 +259,7 @@ def main() -> None:
         print("Nada que exportar.")
         return
 
-    svc = get_service()
+    svc = get_service(args.gcloud)
     ok = fail = 0
     fallidos = []
     for i, m in enumerate(pend, 1):
