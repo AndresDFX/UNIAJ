@@ -267,8 +267,8 @@ def build():
         prs, "Sistema de evaluación (Acuerdo pedagógico)",
         ["Corte", "Ventana", "Desglose", "%"],
         [
-            ["1", "10/08 – 13/09/2026", "Parcial 1 (Clase 5) 10% · Talleres/Quiz 10% · Asistencia 10%", "30%"],
-            ["2", "14/09 – 18/10/2026", "Parcial 2 (Clase 10) 10% · Talleres/Quiz 10% · Asistencia 10%", "30%"],
+            ["1", "10/08 – 13/09/2026", "Parcial 1 (Clase 5) 10% · Talleres o Quiz 10% · Asistencia 10%", "30%"],
+            ["2", "14/09 – 18/10/2026", "Parcial 2 (Clase 10) 10% · Talleres o Quiz 10% · Asistencia 10%", "30%"],
             ["3", "19/10 – 22/11/2026", "Parcial 3 (Clase 15) 15% · Proyecto Integrador 20% · Asistencia 5%", "40%"],
         ],
         note="Lógica Acuerdos 2026-2. Parcial al cierre de cada corte. Listado: [PENDIENTE listado].",

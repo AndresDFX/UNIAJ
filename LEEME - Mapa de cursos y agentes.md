@@ -35,8 +35,8 @@ Misma lógica que Acuerdos de Prog. II / Seminario: **30% / 30% / 40%** con **pa
 
 | Corte | % | Ventana | Clases | Parcial | Desglose |
 |---|---|---|---|---|---|
-| 1 | 30% | 10/08–13/09 | 1–5 | Parcial 1 (Clase 5) | 10% Parcial · 10% Talleres/Quiz · 10% Asistencia |
-| 2 | 30% | 14/09–18/10 | 6–10 | Parcial 2 (Clase 10) | 10% Parcial · 10% Talleres/Quiz · 10% Asistencia |
+| 1 | 30% | 10/08–13/09 | 1–5 | Parcial 1 (Clase 5) | 10% Parcial · 10% Talleres o Quiz · 10% Asistencia |
+| 2 | 30% | 14/09–18/10 | 6–10 | Parcial 2 (Clase 10) | 10% Parcial · 10% Talleres o Quiz · 10% Asistencia |
 | 3 | 40% | 19/10–22/11 | 11–15 | Parcial 3 (Clase 15) | 15% Parcial · 20% Proyecto Integrador · 5% Asistencia |
 
 Festivos = **clase autónoma** (no se omiten). Si el cierre de corte cae en festivo, el parcial va en esa ventana autónoma / Campus Virtual.

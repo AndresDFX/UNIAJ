@@ -231,9 +231,9 @@ def build():
         prs, "Sistema de evaluación (Acuerdo pedagógico)",
         [
             {"corte": 1, "pct": "30%", "ventana": "13/08 – 13/09/2026",
-             "desglose": ["**Parcial 1** (10/09 · Clase 5) · 10%", "Talleres / Quiz · 10%", "Asistencia · 10%"]},
+             "desglose": ["**Parcial 1** (10/09 · Clase 5) · 10%", "Talleres o Quiz · 10%", "Asistencia · 10%"]},
             {"corte": 2, "pct": "30%", "ventana": "14/09 – 18/10/2026",
-             "desglose": ["**Parcial 2** (15/10 · Clase 10) · 10%", "Talleres / Quiz · 10%", "Asistencia · 10%"]},
+             "desglose": ["**Parcial 2** (15/10 · Clase 10) · 10%", "Talleres o Quiz · 10%", "Asistencia · 10%"]},
             {"corte": 3, "pct": "40%", "ventana": "19/10 – 22/11/2026",
              "desglose": ["**Parcial 3** (19/11 · Clase 15) · 15%", "**Proyecto Integrador** · 20%", "Asistencia · 5%"]},
         ],
