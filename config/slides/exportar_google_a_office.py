@@ -163,7 +163,43 @@ def _token_de_gcloud() -> str:
             f"  gcloud --configuration={GCLOUD_CONFIG} auth login --enable-gdrive-access\n\n"
             f"Detalle: {(r.stderr or '').strip()[:300]}"
         )
+    _verificar_token(tok)
     return tok
+
+
+def _verificar_token(tok: str) -> None:
+    """Salvaguarda: en una VM de GCE, gcloud devuelve el token de la CUENTA DE
+    SERVICIO del metadata server aunque se pida otra configuracion. Ese token es
+    corporativo, no tiene scope de Drive y no debe usarse contra un Drive
+    personal. Se verifica identidad y scope ANTES de tocar ningun archivo."""
+    import urllib.request
+
+    try:
+        with urllib.request.urlopen(
+            "https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=" + tok, timeout=30
+        ) as resp:
+            info = json.loads(resp.read().decode("utf-8"))
+    except Exception as e:
+        sys.exit(f"No se pudo verificar el token ({e}). Se aborta por seguridad.")
+
+    email = info.get("email", "")
+    scopes = info.get("scope", "")
+    if "drive" not in scopes:
+        sys.exit(
+            "El token de gcloud NO tiene permiso de Drive.\n"
+            f"  identidad: {email or '(cuenta de servicio / metadata de GCE)'}\n"
+            f"  scopes   : {scopes[:120]}\n\n"
+            "Esto pasa porque en esta VM gcloud devuelve la credencial corporativa\n"
+            "del metadata server. Autentica TU cuenta con acceso a Drive:\n\n"
+            f"  gcloud --configuration={GCLOUD_CONFIG} auth login --enable-gdrive-access\n"
+        )
+    if email.endswith(".gserviceaccount.com"):
+        sys.exit(
+            f"El token pertenece a una CUENTA DE SERVICIO ({email}).\n"
+            "No se usara una identidad corporativa para leer un Drive personal.\n"
+            f"Autentica tu cuenta: gcloud --configuration={GCLOUD_CONFIG} auth login --enable-gdrive-access"
+        )
+    print(f">> Exportando como: {email}\n")
 
 
 def get_service(usar_gcloud: bool):
