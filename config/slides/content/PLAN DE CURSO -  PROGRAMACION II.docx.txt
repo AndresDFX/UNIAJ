@@ -1,0 +1,71 @@
+
+Sesión
+Trabajo Dirigido
+Trabajo Independiente Dirigido
+Trabajo Independiente
+1
+Introducción a POO
+Configuración del entorno
+Lectura conceptos previos
+2
+Colecciones dinámicas ArrayList
+Desarrollo CRUD básico
+Práctica con ArrayList
+3
+Pilas y colas
+Simulación flujo atención
+Resolución problemas lógicos
+4
+Mapas y conjuntos
+Refactorización base datos
+Optimización de búsquedas
+5
+Interfaces gráficas GUI
+Construcción menú principal
+Diseño de bocetos
+6
+Eventos y controladores
+Evaluación Primer Corte
+Ajustes del código
+7
+Patrones de diseño
+Refactorización arquitectónica
+Lectura patrones creacionales
+8
+Documentación y QA
+Pruebas automatizadas JUnit
+Desarrollo de aserciones
+9
+Refactorización con IA
+Optimización de métodos
+Auditoría código propio
+10
+Persistencia de archivos
+Módulo de guardado
+Verificación de integridad
+11
+Revisión código cruzada
+Evaluación Segundo Corte
+Corrección de fallos
+12
+Integración de módulos
+Rastreo con depurador
+Cacería de bugs
+13
+Control de excepciones
+Reparación bugs críticos
+Excepciones de negocio
+14
+Preparación presentación final
+Script inicialización datos
+Ensayo de sustentación
+15
+Evaluación de proyectos
+Demostración en vivo
+Empaquetado del proyecto
+16
+Entrega informe final
+Evaluación Tercer Corte
+Autoevaluación y cierre
+
+VoBo_______________________________________  Fecha_____________________________________

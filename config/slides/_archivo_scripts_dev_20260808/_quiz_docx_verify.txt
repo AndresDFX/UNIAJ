@@ -1,0 +1,7 @@
+Pregunta 5
+5. ¿Cuál NO es un entregable típico del PI CloudLite?
+A) Diagramas C4
+B) Lab en navegador con evidencia
+C) Pipeline CI (Actions) simulado/validación
+D) Compra de instancias reserved
+Pregunta 6

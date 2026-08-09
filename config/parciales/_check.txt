@@ -1,0 +1,6 @@
+Fecha: 05/10/2026  ·  Clase 9  ·  Modalidad: Presencial (síncrono)
+Corte 2 · Únicamente clases con fecha <= 05/10/2026 (Clases 6-9). NO incluye Clase 10 (concurrencia, 12/10):
+Clase 6 · 14/09 · Optimización de consultas
+Clase 7 · 21/09 · Índices y particionamiento
+Clase 8 · 28/09 · Tuning de bases de datos
+Clase 9 · 05/10 · Gestión de transacciones

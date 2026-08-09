@@ -1,0 +1,16 @@
+﻿curso,codigo_fi,grupo,clase_n,fecha,dia,hora_inicio,hora_fin,tipo_clase,es_parcial,parcial_n,sesion_etiqueta,tema,notas
+Seminario de Sistemas,FI303301,341C,1,2026-08-13,Jueves,18:00,20:00,presencial,no,,Clase 1,Presentación del curso · Conceptos iniciales,pendiente listado
+Seminario de Sistemas,FI303301,341C,2,2026-08-20,Jueves,18:00,20:00,virtual,no,,Clase 2,Ciclos de vida,pendiente listado
+Seminario de Sistemas,FI303301,341C,3,2026-08-27,Jueves,18:00,20:00,virtual,no,,Clase 3,Metodologías tradicionales,pendiente listado
+Seminario de Sistemas,FI303301,341C,4,2026-09-03,Jueves,18:00,20:00,virtual,no,,Clase 4,Metodologías ágiles,pendiente listado
+Seminario de Sistemas,FI303301,341C,5,2026-09-10,Jueves,18:00,20:00,presencial,si,1,Clase 5 · Parcial 1,Caso estudio evaluativo ·,parcial presencial sincrono; pendiente listado
+Seminario de Sistemas,FI303301,341C,6,2026-09-17,Jueves,18:00,20:00,virtual,no,,Clase 6,Requerimientos de software,pendiente listado
+Seminario de Sistemas,FI303301,341C,7,2026-09-24,Jueves,18:00,20:00,virtual,no,,Clase 7,Historias de usuario,pendiente listado
+Seminario de Sistemas,FI303301,341C,8,2026-10-01,Jueves,18:00,20:00,virtual,no,,Clase 8,Introducción a UML,pendiente listado
+Seminario de Sistemas,FI303301,341C,9,2026-10-08,Jueves,18:00,20:00,virtual,no,,Clase 9,Casos de uso,pendiente listado
+Seminario de Sistemas,FI303301,341C,10,2026-10-15,Jueves,18:00,20:00,presencial,si,2,Clase 10 · Parcial 2,Caso estudio evaluativo ·,parcial presencial sincrono; pendiente listado
+Seminario de Sistemas,FI303301,341C,11,2026-10-22,Jueves,18:00,20:00,virtual,no,,Clase 11,Avance proyecto integrador,pendiente listado
+Seminario de Sistemas,FI303301,341C,12,2026-10-29,Jueves,18:00,20:00,virtual,no,,Clase 12,Diagramas UML avanzados,pendiente listado
+Seminario de Sistemas,FI303301,341C,13,2026-11-05,Jueves,18:00,20:00,virtual,no,,Clase 13,Diseño de interfaces,pendiente listado
+Seminario de Sistemas,FI303301,341C,14,2026-11-12,Jueves,18:00,20:00,virtual,no,,Clase 14,Evaluación final (prep. sustentación),pendiente listado
+Seminario de Sistemas,FI303301,341C,15,2026-11-19,Jueves,18:00,20:00,presencial,si,3,Clase 15 · Parcial 3,Sustentación de proyectos + cierre ·,parcial presencial sincrono; pendiente listado

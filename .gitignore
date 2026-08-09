@@ -1,0 +1,41 @@
+# ── Grabaciones de clase ─────────────────────────────────────────────
+# 2.8 GB de video. Git no versiona bien binarios de ese tamano y Google
+# Drive ya los respalda y versiona. Se quedan en disco, fuera del repo.
+Clases grabadas/
+*.mp4
+*.mkv
+*.mov
+*.webm
+
+# ── Incidente de recuperacion de Drive (2026-08-08, ya resuelto) ─────
+# Scripts operativos de una sola vez (lectura de cookies del navegador,
+# IDs de archivos de Drive, logs). Sin credenciales reales, pero es
+# basura operativa que no aporta al material del curso.
+_archivo_incidente_recuperacion_20260808/
+
+# ── Punteros virtuales de Google Drive ───────────────────────────────
+# .gslides/.gdoc/.gsheet NO son archivos: son punteros a documentos que
+# viven en la nube. El sistema de archivos no los puede leer
+# ("Invalid request code") y git falla al indexarlos. El contenido real
+# esta en Drive; aqui solo se versiona el material exportado (.pptx/.docx).
+*.gslides
+*.gdoc
+*.gsheet
+*.gdraw
+*.gform
+*.glink
+
+# ── Metadatos de Windows / Google Drive ──────────────────────────────
+desktop.ini
+Thumbs.db
+.DS_Store
+
+# ── Archivos temporales de Office ────────────────────────────────────
+~$*
+*.tmp
+
+# ── Python ───────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/

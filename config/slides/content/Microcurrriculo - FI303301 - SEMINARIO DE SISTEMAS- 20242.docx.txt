@@ -1,0 +1,87 @@
+
+INFORMACIÓN GENERAL DE LA ASIGNATURA
+Facultad o Departamento
+Facultad de ingeniería
+Programa Académico
+Ingeniería de sistemas.
+Perfil de egreso
+El Ingeniero de Sistemas de la UNIAJC, será un profesional que autogestiona el conocimiento, demuestra compromiso social y es comprometido con el avance tecnológico y la implementación de soluciones innovadoras que promuevan el desarrollo regional nacional y global. El perfil estará centrado en los siguientes aspectos: 
+
+Construcción de software y sistemas de información en ambientes de redes, comunicaciones, dispositivos móviles, integrando diferentes tecnologías y componentes de TI. 
+Gestión de tecnología de procesos, recursos, equipos, componentes y sistemas de información en empresas e instituciones de producción y servicios.  
+Análisis de información y de problemas que describe, representa y modela los procedimientos, los procesos y los controles bajo criterios tecnológicos, económicos, de riesgo y de seguridad.  
+Desarrollo de Software aplicando normas técnicas, de calidad y seguridad en las empresas.
+Competencia Profesional
+Desarrolla soluciones de software en respuesta a las necesidades y problemas del área de procesamiento de la información y tecnologías de la información, a través de la utilización eficiente de recursos, estándares y plataformas que permiten reconocer y adaptarse a su entorno de manera responsable para contribuir al desarrollo regional, nacional y global.
+Nombre de la asignatura
+Seminario de Sistemas
+Nivel de desarrollo de la competencia
+Complementación
+Componente de la Competencia
+Específico
+
+Semestre o período académico: Tercer Semestre
+Modalidad: Presencial () b-learning () e-learning ()
+Habilitable (Si) 
+Homologable (Si)
+Teórica () Teórica / Práctica (X) Práctica ()
+Pregrado:TP () TN () UN (X)
+
+Posgrado: Especialización () Maestría ()
+No. de Créditos
+2
+No. HORAS TD
+(Trabajo Dirigido) 
+16
+No. HORAS TID-(Trabajo Independiente Dirigido) 
+16
+No. HORAS TI
+(Trabajo Independiente)
+32
+
+PRESENTACIÓN Y JUSTIFICACIÓN
+La asignatura Seminario de Sistemas permite a los estudiantes consolidar conocimientos adquiridos en Programación II mediante el análisis, diseño, desarrollo y exposición de proyectos integradores de software orientados a objetos. A través de metodologías activas, se fortalece la aplicación de patrones de diseño, documentación técnica, pruebas funcionales y despliegue básico de aplicaciones, promoviendo el trabajo colaborativo y la comunicación efectiva de soluciones tecnológicas.
+
+OBJETO DE ESTUDIO
+Integración de conocimientos para el desarrollo y presentación de proyectos de software orientados a objetos.
+
+OBJETIVO DE APRENDIZAJE
+Desarrollar un proyecto de software aplicando técnicas avanzadas de programación orientada a objetos, fortaleciendo la documentación, validación y comunicación efectiva de soluciones.
+
+RESULTADOS DE APRENDIZAJE (RA)
+RAP (Resultado de Aprendizaje del Programa): Desarrolla soluciones de software para necesidades tecnológicas mediante el uso eficiente de recursos y adaptación responsable al entorno.
+RAA (Resultado de Aprendizaje de la Asignatura): 
+RAA1: Aplica patrones de diseño y principios de modularidad en proyectos de software.
+RAA2: Documenta y valida aplicaciones mediante pruebas básicas.
+RAA3: Presenta y sustenta proyectos de software de manera clara y estructurada.
+
+SABERES DE LA ASIGNATURA
+1726503194426CONCEPTUALES
+1798185190802PROCEDIMENTALES
+ACTITUDINALES Y AXIOLÓGICO
+Patrones de diseño, Modularidad
+Desarrolla proyectos aplicando POO avanzada
+Fomenta la responsabilidad en el trabajo colaborativo
+Documentación técnica, Pruebas funcionales
+Realiza pruebas y validaciones básicas
+Valora la comunicación efectiva
+Presentación de proyectos
+Elabora documentación técnica
+Demuestra compromiso con la calidad del software
+
+ENFOQUE DE APRENDIZAJE
+Aprendizaje basado en el desarrollo de la competencia y Aprendizaje Invertido. 
+ESTRATEGIA DIDÁCTICA
+Aprendizaje Basado en Proyectos (ABPr), mediante el diseño, desarrollo y presentación de un proyecto integrador de software que resuelva una problemática real del entorno.
+AMBIENTE DE APRENDIZAJE
+Ambiente híbrido, combinando plataformas de desarrollo, laboratorios de programación y espacios colaborativos para la presentación y evaluación de proyectos.
+ESTRATEGIA DE EVALUACIÓN
+Evaluación continua mediante avances del proyecto, entregas parciales, revisiones de código, pruebas funcionales y sustentación final del proyecto integrador.
+
+REFERENCIAS BIBLIOGRAFICAS
+- Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). Design Patterns. Addison-Wesley.- Freeman, E., & Robson, E. (2004). Head First Design Patterns. O'Reilly Media.- Sommerville, I. (2011). Software Engineering. Pearson.- Oracle (2021). Java Documentation.
+
+ELABORADO POR:
+REVISADO POR:
+APROBADO POR:
+

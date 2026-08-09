@@ -1,0 +1,67 @@
+==== build_uniajc_bd2_curso.py
+  94| 8|        idx_start=9,
+  95| 4|    )
+  96| 4|    content_slide(prs, "Proyecto Integrador", [
+  97| 8|        '**VetCare DB** — BD avanzada para clínica veterinaria (ABPr).',
+  98| 8|        'Integra seguridad/respaldo, procs/triggers, optimización e integración app↔BD.',
+  99| 8|        'Hitos: avance **Clase 11** (19/10) · prep. **Clase 14** (09/11) · cierre **Clase 15** (16/11, autónoma).',
+ 100| 8|        'Pesa **20%** del Corte 3. Enunciado: carpeta `Clases/Proyecto Integrador/`.',
+ 101| 4|    ], idx=10)
+ 102| 0|
+ 103| 0|content_slide(prs, "Recursos", [
+ 104| 8|        'Herramientas **gratis en navegador** (sin instalacion de SGBD local) — detalle en Plan de curso (pendiente aprobacion docente).',
+ 105| 8|        'SQL: **DB Fiddle** / SQLTest.online · PL/SQL: **Oracle Live SQL**.',
+ 106| 8|        'Modelos ER: **draw.io / diagrams.net** · bocetos: **Excalidraw**.',
+ 107| 8|        'Bibliografia: Coronel & Morris · Date · Oracle PL/SQL Docs.',
+ 108| 4|    ], idx=11)
+ 109| 4|    box_note_slide(prs, "Acuerdos importantes", [
+ 110|12|            ('info', 'Lunes 18:00-20:00 · Presencialidad asistida (Clase 1 presencial · resto virtual · parciales presencial) · Grupo 641A-2.'),
+ 111|12|            ('aclaracion', 'Clase 1: Presentación del curso + diagnóstico de conocimientos previos + arranque del tema (revisión BD I). Festivos = autónoma en Campus Virtual.'),
+ 112|12|            ('advertencia', 'Parciales NUNCA en autonoma: P1=Clase 5 (07/09), P2=Clase 9 (05/10), P3=Clase 14 (09/11).'),
+ 113| 8|        ], idx=12)
+ 114| 4|    closing_slide(prs, "¡Empezamos!", [
+ 115| 8|        'Bases de Datos II · Grupo **641A-2** · 2026-2',
+ 116| 8|        'Lunes **18:00 – 20:00** · Presencialidad asistida',
+ 117| 8|        'UNIAJC · Ingeniería de Sistemas',
+ 118| 4|    ], accent='Datos seguros, consultas rapidas, proyecto real')
+ 119| 4|    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+ 120| 4|    prs.save(OUT)
+ 121| 4|    print("OK ->", OUT)
+ 122| 0|
+ 123| 0|
+ 124| 0|if __name__ == "__main__":
+ 125| 4|    build()
+
+==== build_uniajc_arq_curso.py
+ 184| 4|    )
+ 185| 0|
+ 186| 4|    content_slide(prs, "Proyecto Integrador", [
+ 187| 8|        '**CloudLite App** — diseño/despliegue de arquitectura cloud (diagramas + labs).',
+ 188| 8|        'Contenedores (Killercoda / Play with Docker) · CI/CD conceptual (GitHub Actions) · **sin** cloud con tarjeta.',
+ 189| 8|        'Hitos: avance **Clase 11** (19/10) · prep. **Clase 14** (09/11) · cierre **Clase 15** (16/11, autónoma).',
+ 190| 8|        'Pesa **20%** del Corte 3. Enunciado: carpeta `Clases/Proyecto Integrador/`.',
+ 191| 4|    ], idx=10)
+ 192| 0|
+ 193| 0|content_slide(prs, "Recursos", [
+ 194| 8|        'Herramientas **gratis en navegador**, **sin tarjeta** — lista ajustada; pendiente OK docente para Clase N.',
+ 195| 8|        'Diagramas: **draw.io / diagrams.net**; bocetos: **Excalidraw**.',
+ 196| 8|        'Labs contenedores: **Killercoda** / **Play with Docker** · CI opcional: **GitHub Actions** (cuenta free).',
+ 197| 8|        'Entregas: **Google Docs / Word Online** · Rompe-hielo: **Padlet** del curso.',
+ 198| 8|        'Bibliografía: Erl · Buyya · Hwang · docs oficiales de contenedores/CI (sin IaaS con tarjeta).',
+ 199| 4|    ], idx=11)
+ 200| 0|
+ 201| 4|    box_note_slide(prs, "Acuerdos importantes", [
+ 202| 0|
+ 203|12|            ('info', 'Lunes 10:00-12:00 (120 min). Modalidad: Presencialidad asistida (Clase 1 presencial / resto virtual / parciales presencial). Grupo: **6303C**.'),
+ 204| 0|
+ 205|12|            ('aclaracion', 'Clase 1: Presentación del curso + diagnóstico de conocimientos previos + arranque del tema (intro arquitecturas cloud). Festivos = autónoma en Campus Virtual.'),
+ 206| 0|
+ 207|12|            ('advertencia', 'Parciales NUNCA en autonoma: P1=Clase 5 (07/09), P2=Clase 9 (05/10), P3=Clase 14 (09/11).'),
+ 208| 0|
+ 209| 8|        ], idx=12)
+ 210| 0|
+ 211| 4|    closing_slide(prs, "¡Empezamos!", [
+ 212| 0|
+ 213| 8|        'Arquitectura de Sistemas Computacionales · **FI303380** · 2026-2',
+ 214| 0|
+ 215| 8|        'Lunes **10:00 – 12:00**',

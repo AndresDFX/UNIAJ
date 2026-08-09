@@ -1,0 +1,45 @@
+quiz slides: 2
+=== SLIDE 30 ===
+Quiz rapido (cierre)
+Individual · 8–10 min
+–   1. En CloudLite, ¿qué diferencia clave hay entre nube y un servidor local siempre encendido?
+●   A) La nube siempre es más barata
+●   B) Elasticidad y automatización vs capacidad fija
+●   C) On-prem no puede usar contenedores
+●   D) Solo la nube permite HTTP
+–   2. Política de herramientas del curso / PI CloudLite:
+●   A) AWS con tarjeta del estudiante
+●   B) Solo Oracle Cloud siempre-on
+●   C) Gratis + navegador (sin cloud de pago obligatorio)
+●   D) Docker Desktop obligatorio
+–   3. El diagrama C4 Context forma parte de las evidencias esperadas del PI CloudLite.
+●   ( ) Verdadero    ( ) Falso
+–   4. Arquitectura cloud = solo elegir un proveedor (AWS/GCP/Azure).
+●   ( ) Verdadero    ( ) Falso
+30
+
+=== SLIDE 31 ===
+Quiz rapido (cierre) · cont. 2
+Individual · 8–10 min
+–   5. ¿Cuál NO es un entregable típico del PI CloudLite?
+●   A) Diagramas C4
+●   B) Lab en navegador con evidencia
+●   C) Pipeline CI (Actions) simulado/validación
+●   D) Compra de instancias reserved
+–   6. El diagnóstico de Clase 1 evalúa el temario nuevo de cloud avanzado, no saberes previos.
+●   ( ) Verdadero    ( ) Falso
+–   7. Nombre dos componentes lógicos que pondría en el Context de CloudLite (app de citas/servicios).
+●   Respuesta corta: ____________________________
+–   8. En una frase: ¿por qué CloudLite se diseña para labs temporales y no para un cluster siempre-on?
+●   Respuesta corta: ____________________________
+31
+
+--- CHECKS cont.2 ---
+Q5 chunk:
+–   5. ¿Cuál NO es un entregable típico del PI CloudLite?
+●   A) Diagramas C4
+●   B) Lab en navegador con evidencia
+●   C) Pipeline CI (Actions) simulado/validación
+●   D) Compra de instancias reserved
+–   6. El diagnóstico de Clase 1 evalúa el temario nuevo de cloud avanzado, no saberes previos.
+VERIFICATION OK

@@ -1,0 +1,628 @@
+{
+  "_nota_periodos_por_curso": "Prog II y Seminario usan Plan curso/2026-1/ (etiqueta periodo 2026-1). BD II y Arquitectura usan Plan curso/2026-2/. Este archivo se llama semestre_2026_2.json por el calendario compartido ago-nov 2026; las rutas por curso indican la carpeta de periodo correcta.",
+  "_comentario": "Calendario académico docente UNIAJC 2026-2. Fuente de verdad para generación de material.",
+  "_actualizado": "2026-08-07",
+  "periodo": "2026-2",
+  "inicio": "2026-08-10",
+  "fin": "2026-11-22",
+  "docente": {
+    "nombre": "Julian Andres Castaño",
+    "nombre_completo": "Julian Andres Castaño Espinosa",
+    "correo": "julianacastano@profesores.uniajc.edu.co"
+  },
+  "regla_festivos": "No omitir. Marcar como clase autónoma. Los parciales NUNCA van en festivo/autónoma.",
+  "festivos_en_rango": {
+    "2026-08-17": "Asunción de la Virgen",
+    "2026-10-12": "Día de la Diversidad Étnica y Cultural",
+    "2026-11-02": "Todos los Santos",
+    "2026-11-16": "Independencia de Cartagena"
+  },
+  "logica_evaluacion": "Modalidad POR CURSO (2026-2). Prog II (mié): Clase 1 + parciales 5/10/15 presencial · resto virtual · festivos autónoma. Seminario (jue): regulares (incl. Clase 1) virtual · parciales 5/10/15 presencial · festivos autónoma. Arquitectura (lun 10:00): Clase 1 + parciales 5/9/14 presencial · resto virtual · festivos autónoma. BD II (lun 18:00–20:00 · 641A-2): Presencialidad asistida · ver tipo por sesión en CSV · parciales 5/9/14 presencial síncronos · festivos autónoma. Día de parcial = solo evaluación. Parciales NUNCA en festivo/autónoma; si el cierre del corte es autónoma → última regular anterior. Sesión 0 = Presentación del Curso; Clase 1 = diagnóstico + tema intro (15 clases temáticas).",
+  "cortes_teoricos": {
+    "corte_1": {
+      "pct": "30%",
+      "inicio": "2026-08-10",
+      "fin": "2026-09-13",
+      "clases": "1-5",
+      "parcial_cierre_regla": "Última clase regular del corte (típicamente Clase 5 si es regular)",
+      "desglose": "10% Parcial 1 (cierre de corte) · 10% Talleres y Quiz · 10% Asistencia"
+    },
+    "corte_2": {
+      "pct": "30%",
+      "inicio": "2026-09-14",
+      "fin": "2026-10-18",
+      "clases": "6-10",
+      "parcial_cierre_regla": "Última clase regular del corte (si Clase 10 es autónoma → Clase 9)",
+      "desglose": "10% Parcial 2 (cierre de corte) · 10% Talleres y Quiz · 10% Asistencia"
+    },
+    "corte_3": {
+      "pct": "40%",
+      "inicio": "2026-10-19",
+      "fin": "2026-11-22",
+      "clases": "11-15",
+      "parcial_cierre_regla": "Última clase regular del corte (si Clase 15 es autónoma → Clase 14)",
+      "desglose": "15% Parcial 3 (cierre de corte) · 20% Proyecto Integrador · 5% Asistencia"
+    }
+  },
+  "cursos": {
+    "programacion_ii": {
+      "folder": "Programacion II",
+      "nombre": "Programación II",
+      "codigo": "FI303204",
+      "grupo": "341C",
+      "dia": "Miércoles",
+      "horario": "18:00 – 20:00",
+      "duracion_min": 120,
+      "modalidad": "Presencialidad asistida",
+      "n_clases": 15,
+      "clases": [
+        {
+          "n": 1,
+          "fecha": "2026-08-12",
+          "tipo": "presencial",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 2,
+          "fecha": "2026-08-19",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 3,
+          "fecha": "2026-08-26",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 4,
+          "fecha": "2026-09-02",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 5,
+          "fecha": "2026-09-09",
+          "tipo": "presencial",
+          "festivo": null,
+          "parcial": true,
+          "parcial_n": 1
+        },
+        {
+          "n": 6,
+          "fecha": "2026-09-16",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 7,
+          "fecha": "2026-09-23",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 8,
+          "fecha": "2026-09-30",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 9,
+          "fecha": "2026-10-07",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 10,
+          "fecha": "2026-10-14",
+          "tipo": "presencial",
+          "festivo": null,
+          "parcial": true,
+          "parcial_n": 2
+        },
+        {
+          "n": 11,
+          "fecha": "2026-10-21",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 12,
+          "fecha": "2026-10-28",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 13,
+          "fecha": "2026-11-04",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 14,
+          "fecha": "2026-11-11",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 15,
+          "fecha": "2026-11-18",
+          "tipo": "presencial",
+          "festivo": null,
+          "parcial": true,
+          "parcial_n": 3
+        }
+      ],
+      "acuerdo_prellenado": "Programacion II/Entregas docente/2026-2/ACUERDO PEDAGOGICO - Programación II - 2026-2.docx",
+      "calendario": "Programacion II/Plan curso/2026-1/CALENDARIO_2026-1.md",
+      "parciales": {
+        "criterio": "Última clase regular del corte; nunca festivo/autónoma",
+        "parcial_1": {
+          "clase": 5,
+          "fecha": "2026-09-09",
+          "tipo": "presencial"
+        },
+        "parcial_2": {
+          "clase": 10,
+          "fecha": "2026-10-14",
+          "tipo": "presencial"
+        },
+        "parcial_3": {
+          "clase": 15,
+          "fecha": "2026-11-18",
+          "tipo": "presencial"
+        }
+      },
+      "calendario_csv": "Programacion II/Plan curso/2026-1/calendario_eventos_2026-1.csv",
+      "regla_modalidad_sesion": "Clase 1 presencial; demás regulares virtual (síncrona); parciales presencial síncrono; festivos autónoma."
+    },
+    "seminario": {
+      "folder": "Seminario de Sistemas",
+      "nombre": "Seminario de Sistemas",
+      "codigo": "FI303301",
+      "grupo": "341C",
+      "dia": "Jueves",
+      "horario": "18:00 – 20:00",
+      "duracion_min": 120,
+      "modalidad": "Presencialidad asistida",
+      "n_clases": 15,
+      "clases": [
+        {
+          "n": 1,
+          "fecha": "2026-08-13",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 2,
+          "fecha": "2026-08-20",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 3,
+          "fecha": "2026-08-27",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 4,
+          "fecha": "2026-09-03",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 5,
+          "fecha": "2026-09-10",
+          "tipo": "presencial",
+          "festivo": null,
+          "parcial": true,
+          "parcial_n": 1
+        },
+        {
+          "n": 6,
+          "fecha": "2026-09-17",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 7,
+          "fecha": "2026-09-24",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 8,
+          "fecha": "2026-10-01",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 9,
+          "fecha": "2026-10-08",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 10,
+          "fecha": "2026-10-15",
+          "tipo": "presencial",
+          "festivo": null,
+          "parcial": true,
+          "parcial_n": 2
+        },
+        {
+          "n": 11,
+          "fecha": "2026-10-22",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 12,
+          "fecha": "2026-10-29",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 13,
+          "fecha": "2026-11-05",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 14,
+          "fecha": "2026-11-12",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 15,
+          "fecha": "2026-11-19",
+          "tipo": "presencial",
+          "festivo": null,
+          "parcial": true,
+          "parcial_n": 3
+        }
+      ],
+      "acuerdo_prellenado": "Seminario de Sistemas/Entregas docente/2026-2/ACUERDO PEDAGOGICO - Seminario de Sistemas - 2026-2.docx",
+      "calendario": "Seminario de Sistemas/Plan curso/2026-1/CALENDARIO_2026-1.md",
+      "parciales": {
+        "criterio": "Última clase regular del corte; nunca festivo/autónoma",
+        "parcial_1": {
+          "clase": 5,
+          "fecha": "2026-09-10",
+          "tipo": "presencial"
+        },
+        "parcial_2": {
+          "clase": 10,
+          "fecha": "2026-10-15",
+          "tipo": "presencial"
+        },
+        "parcial_3": {
+          "clase": 15,
+          "fecha": "2026-11-19",
+          "tipo": "presencial"
+        }
+      },
+      "calendario_csv": "Seminario de Sistemas/Plan curso/2026-1/calendario_eventos_2026-1.csv"
+    },
+    "bases_datos_ii": {
+      "folder": "Bases de Datos II",
+      "nombre": "Bases de Datos II",
+      "codigo": "FI303215",
+      "grupo": "641A-2",
+      "dia": "Lunes",
+      "horario": "18:00 – 20:00",
+      "duracion_min": 120,
+      "modalidad": "Presencialidad asistida",
+      "n_clases": 15,
+      "clases": [
+        {
+          "n": 1,
+          "fecha": "2026-08-10",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 2,
+          "fecha": "2026-08-17",
+          "tipo": "autonoma",
+          "festivo": "Asunción de la Virgen",
+          "parcial": false
+        },
+        {
+          "n": 3,
+          "fecha": "2026-08-24",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 4,
+          "fecha": "2026-08-31",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 5,
+          "fecha": "2026-09-07",
+          "tipo": "presencial",
+          "festivo": null,
+          "parcial": true,
+          "parcial_n": 1
+        },
+        {
+          "n": 6,
+          "fecha": "2026-09-14",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 7,
+          "fecha": "2026-09-21",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 8,
+          "fecha": "2026-09-28",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 9,
+          "fecha": "2026-10-05",
+          "tipo": "presencial",
+          "festivo": null,
+          "parcial": true,
+          "parcial_n": 2
+        },
+        {
+          "n": 10,
+          "fecha": "2026-10-12",
+          "tipo": "autonoma",
+          "festivo": "Día de la Diversidad Étnica y Cultural",
+          "parcial": false
+        },
+        {
+          "n": 11,
+          "fecha": "2026-10-19",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 12,
+          "fecha": "2026-10-26",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 13,
+          "fecha": "2026-11-02",
+          "tipo": "autonoma",
+          "festivo": "Todos los Santos",
+          "parcial": false
+        },
+        {
+          "n": 14,
+          "fecha": "2026-11-09",
+          "tipo": "presencial",
+          "festivo": null,
+          "parcial": true,
+          "parcial_n": 3
+        },
+        {
+          "n": 15,
+          "fecha": "2026-11-16",
+          "tipo": "autonoma",
+          "festivo": "Independencia de Cartagena",
+          "parcial": false
+        }
+      ],
+      "acuerdo_prellenado": "Bases de Datos II/Entregas docente/2026-2/ACUERDO PEDAGOGICO - Bases de Datos II - 2026-2.docx",
+      "calendario": "Bases de Datos II/Plan curso/2026-2/CALENDARIO_2026-2.md",
+      "parciales": {
+        "criterio": "Última clase regular del corte; nunca festivo/autónoma",
+        "parcial_1": {
+          "clase": 5,
+          "fecha": "2026-09-07",
+          "tipo": "presencial"
+        },
+        "parcial_2": {
+          "clase": 9,
+          "fecha": "2026-10-05",
+          "tipo": "presencial"
+        },
+        "parcial_3": {
+          "clase": 14,
+          "fecha": "2026-11-09",
+          "tipo": "presencial"
+        }
+      },
+      "calendario_csv": "Bases de Datos II/Plan curso/2026-2/calendario_eventos_2026-2.csv"
+    },
+    "arquitectura": {
+      "folder": "Arquitectura de Sistemas Computacionales",
+      "nombre": "Arquitectura de Sistemas Computacionales",
+      "codigo": "FI303380",
+      "grupo": "6303C",
+      "dia": "Lunes",
+      "horario": "10:00 – 12:00",
+      "duracion_min": 120,
+      "modalidad": "Presencialidad asistida",
+      "regla_modalidad_sesion": "Clase 1 presencial; demás regulares virtual (síncrona); parciales presencial síncrono; festivos autónoma.",
+      "n_clases": 15,
+      "clases": [
+        {
+          "n": 1,
+          "fecha": "2026-08-10",
+          "tipo": "presencial",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 2,
+          "fecha": "2026-08-17",
+          "tipo": "autonoma",
+          "festivo": "Asunción de la Virgen",
+          "parcial": false
+        },
+        {
+          "n": 3,
+          "fecha": "2026-08-24",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 4,
+          "fecha": "2026-08-31",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 5,
+          "fecha": "2026-09-07",
+          "tipo": "presencial",
+          "festivo": null,
+          "parcial": true,
+          "parcial_n": 1
+        },
+        {
+          "n": 6,
+          "fecha": "2026-09-14",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 7,
+          "fecha": "2026-09-21",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 8,
+          "fecha": "2026-09-28",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 9,
+          "fecha": "2026-10-05",
+          "tipo": "presencial",
+          "festivo": null,
+          "parcial": true,
+          "parcial_n": 2
+        },
+        {
+          "n": 10,
+          "fecha": "2026-10-12",
+          "tipo": "autonoma",
+          "festivo": "Día de la Diversidad Étnica y Cultural",
+          "parcial": false
+        },
+        {
+          "n": 11,
+          "fecha": "2026-10-19",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 12,
+          "fecha": "2026-10-26",
+          "tipo": "virtual",
+          "festivo": null,
+          "parcial": false
+        },
+        {
+          "n": 13,
+          "fecha": "2026-11-02",
+          "tipo": "autonoma",
+          "festivo": "Todos los Santos",
+          "parcial": false
+        },
+        {
+          "n": 14,
+          "fecha": "2026-11-09",
+          "tipo": "presencial",
+          "festivo": null,
+          "parcial": true,
+          "parcial_n": 3
+        },
+        {
+          "n": 15,
+          "fecha": "2026-11-16",
+          "tipo": "autonoma",
+          "festivo": "Independencia de Cartagena",
+          "parcial": false
+        }
+      ],
+      "acuerdo_prellenado": "Arquitectura de Sistemas Computacionales/Entregas docente/2026-2/ACUERDO PEDAGOGICO - Arquitectura de Sistemas Computacionales - 2026-2.docx",
+      "calendario": "Arquitectura de Sistemas Computacionales/Plan curso/2026-2/CALENDARIO_2026-2.md",
+      "parciales": {
+        "criterio": "Última clase regular del corte; nunca festivo/autónoma; presencial síncrono",
+        "parcial_1": {
+          "clase": 5,
+          "fecha": "2026-09-07",
+          "tipo": "presencial"
+        },
+        "parcial_2": {
+          "clase": 9,
+          "fecha": "2026-10-05",
+          "tipo": "presencial"
+        },
+        "parcial_3": {
+          "clase": 14,
+          "fecha": "2026-11-09",
+          "tipo": "presencial"
+        }
+      },
+      "calendario_csv": "Arquitectura de Sistemas Computacionales/Plan curso/2026-2/calendario_eventos_2026-2.csv"
+    }
+  },
+  "modalidad_cursos": "Presencialidad asistida (ver tipo por sesión / día de la semana)",
+  "tipos_clase": [
+    "presencial",
+    "virtual",
+    "autonoma"
+  ],
+  "regla_parciales": "Criterio de modalidad por sesión (fijo 2026-2): modalidad del curso = Presencialidad asistida. Prog II (miércoles): Clase 1 presencial · clases regulares 2–15 virtual síncrona · parciales presencial síncrono. Seminario (jueves): clases regulares virtual síncrona · parciales presencial síncrono. BD II / Arquitectura: ver tipo por sesión en CSV · parciales presencial síncrono. Festivos = clase autónoma (sin parcial). Los parciales NUNCA se programan en día festivo ni en clase autónoma. Si el cierre teórico del corte cae en festivo/autónoma, el parcial se mueve a la última clase regular anterior del mismo corte.",
+  "regla_modalidad_sesion": "Prog II (miércoles): Clase 1 presencial · resto regulares virtual síncrona · parciales presencial · festivos autónoma. Seminario (jueves): regulares virtual síncrona · parciales presencial · festivos autónoma. BD II (lun 18:00–20:00): Presencialidad asistida · ver CSV · parciales presencial · festivos autónoma. Arquitectura: ver tipo por sesión en su curso.",
+  "regla_parcial_solo_eval": "Día de parcial = solo evaluación; sin tema de trabajo dirigido nuevo. No mezclar tema técnico · Parcial N. La prep del PI va en la clase regular anterior."
+}

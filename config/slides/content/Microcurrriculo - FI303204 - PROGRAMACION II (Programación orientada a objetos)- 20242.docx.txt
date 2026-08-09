@@ -1,0 +1,84 @@
+
+INFORMACIÓN GENERAL DE LA ASIGNATURA
+Facultad o Departamento
+Facultad de ingeniería
+Programa Académico
+Ingeniería de sistemas.
+Perfil de egreso
+El Ingeniero de Sistemas de la UNIAJC, será un profesional que autogestiona el conocimiento, demuestra compromiso social y es comprometido con el avance tecnológico y la implementación de soluciones innovadoras que promuevan el desarrollo regional nacional y global. El perfil estará centrado en los siguientes aspectos: 
+
+Construcción de software y sistemas de información en ambientes de redes, comunicaciones, dispositivos móviles, integrando diferentes tecnologías y componentes de TI. 
+Gestión de tecnología de procesos, recursos, equipos, componentes y sistemas de información en empresas e instituciones de producción y servicios.  
+Análisis de información y de problemas que describe, representa y modela los procedimientos, los procesos y los controles bajo criterios tecnológicos, económicos, de riesgo y de seguridad.  
+Desarrollo de Software aplicando normas técnicas, de calidad y seguridad en las empresas.
+Competencia Profesional
+Desarrolla soluciones de software en respuesta a las necesidades y problemas del área de procesamiento de la información y tecnologías de la información, a través de la utilización eficiente de recursos, estándares y plataformas que permiten reconocer y adaptarse a su entorno de manera responsable para contribuir al desarrollo regional, nacional y global.
+Nombre de la asignatura
+Programación II (Programación Orientada a Objetos)
+Nivel de desarrollo de la competencia
+Complementación
+Componente de la Competencia
+Específico
+
+Semestre o período académico: Tercer Semestre
+Modalidad: Presencial () b-learning () e-learning ()
+Habilitable (Si) 
+Homologable (Si)
+Teórica () Teórica / Práctica (X) Práctica ()
+Pregrado:TP () TN () UN (X)
+Posgrado: Especialización () Maestría ()
+No. de Créditos
+3
+No. HORAS TD
+(Trabajo Dirigido) 
+32
+No. HORAS TID-(Trabajo Independiente Dirigido) 
+32
+No. HORAS TI
+(Trabajo Independiente)
+64
+
+PRESENTACIÓN Y JUSTIFICACIÓN
+La asignatura Programación II profundiza en el paradigma de programación orientada a objetos (POO), enfocándose en el desarrollo de aplicaciones avanzadas, manejo de eventos, estructuras de datos y patrones de diseño básicos. Mediante la metodología activa basada en proyectos, los estudiantes fortalecerán habilidades para la construcción de soluciones tecnológicas sostenibles, integrando principios éticos y buenas prácticas de desarrollo. Esta asignatura complementa conocimientos adquiridos en Programación I y prepara al estudiante para cursos como Ingeniería de Software.
+
+OBJETO DE ESTUDIO
+Desarrollo avanzado de aplicaciones orientadas a objetos.
+
+OBJETIVO DE APRENDIZAJE
+Diseñar e implementar aplicaciones avanzadas utilizando programación orientada a objetos, garantizando eficiencia, mantenibilidad y escalabilidad mediante el uso adecuado de estructuras de datos y patrones de diseño básicos.
+
+RESULTADOS DE APRENDIZAJE (RA)
+RAP (Resultado de Aprendizaje del Programa): Desarrolla soluciones de software para necesidades tecnológicas mediante el uso eficiente de recursos y adaptación responsable al entorno.
+RAA (Resultado de Aprendizaje de la Asignatura): 
+RAA1: Implementa estructuras de datos aplicadas a la resolución de problemas.RAA2: Desarrolla aplicaciones con manejo de eventos y componentes gráficos.RAA3: Aplica patrones de diseño básicos para optimizar la arquitectura del software.
+
+SABERES DE LA ASIGNATURA
+1726503194426CONCEPTUALES
+1798185190802PROCEDIMENTALES
+ACTITUDINALES Y AXIOLÓGICO
+Estructuras de datos (listas, pilas, colas)
+Desarrolla aplicaciones que integren estructuras de datos, Implementa interfaces gráficas con manejo de eventos, Aplica patrones de diseño en proyectos.
+Promueve la calidad y ética en el desarrollo de software
+Programación orientada a eventos
+Implementa interfaces gráficas con manejo de eventos
+Fomenta la colaboración en proyectos de programación
+Patrones de diseño básicos (Singleton, Factory)
+Aplica patrones de diseño en proyectos.
+Valora la sostenibilidad en soluciones tecnológicas.
+
+ENFOQUE DE APRENDIZAJE
+Aprendizaje basado en el desarrollo de la competencia y Aprendizaje Invertido. 
+ESTRATEGIA DIDÁCTICA
+Aprendizaje Basado en Proyectos (ABPr), mediante la creación de una aplicación completa que integre estructuras de datos, interfaces gráficas y patrones de diseño, orientada a resolver una necesidad real del entorno.
+AMBIENTE DE APRENDIZAJE
+Ambiente híbrido, utilizando plataformas virtuales, laboratorios de programación y entornos de desarrollo integrados (IDE).
+ESTRATEGIA DE EVALUACIÓN
+Evaluación continua y formativa mediante avances del proyecto, laboratorios prácticos y análisis de casos, asegurando el logro de los resultados de aprendizaje.
+
+REFERENCIAS BIBLIOGRAFICAS
+Deitel, P., & Deitel, H. (2016). Java How to Program. Pearson.- Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). Design Patterns. Addison-Wesley.- Sierra, K., & Bates, B. (2005). Head First Design Patterns. O'Reilly Media.- Oracle (2021). JavaFX Documentation.
+
+ELABORADO POR:
+REVISADO POR:
+APROBADO POR:
+

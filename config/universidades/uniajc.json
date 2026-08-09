@@ -1,0 +1,42 @@
+{
+  "universidad": "UNIAJC",
+  "nombre": "Institución Universitaria Antonio José Camacho",
+  "web": "https://www.uniajc.edu.co/",
+  "colores": {
+    "navy": "#095292",
+    "cian": "#269CCB",
+    "amarillo": "#FFD000",
+    "blanco": "#FFFFFF",
+    "gris": "#333333",
+    "alt": "#F2F2F2"
+  },
+  "tipografia": "Calibri",
+  "padlet": {
+    "url": "https://padlet.com/andres_dfx/uniaj-l77e9uu16trgdvcp",
+    "qr": "qr_padlet_uniajc.png"
+  },
+  "docente": {
+    "nombre": "Julian Andres Castaño Espinosa",
+    "nombre_corto": "Julian Andres Castaño",
+    "correo": "julianacastano@profesores.uniajc.edu.co",
+    "perfil": [
+      "Ingeniero de Sistemas",
+      "Candidato a MsC en IA",
+      "Líder Técnico",
+      "Speaker Tecnológico"
+    ]
+  },
+  "periodo": "2026-2",
+  "ventana_academica": "10/08/2026 – 22/11/2026",
+  "plataforma": "Campus Virtual UNIAJC",
+  "cursos": {
+    "arquitectura": {
+      "codigo": "FI303380",
+      "grupo": "6303C",
+      "horario": "Lunes 10:00 – 12:00",
+      "inicio_clase": "10:10",
+      "modalidad": "Presencialidad asistida",
+      "pi": "CloudLite"
+    }
+  }
+}

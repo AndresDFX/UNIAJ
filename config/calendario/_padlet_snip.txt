@@ -1,0 +1,219 @@
+def padlet_slide(prs, idx=None, url=None):
+    """Rompe-hielo Padlet (Presentación del Curso). Mismo QR/URL para todos los cursos UNIAJC.
+
+    El QR en assets/qr_padlet_uniajc.png es la fuente visual oficial. Si no hay URL textual,
+    se muestra PADLET_URL (URL oficial + QR).
+    """
+    s = blank(prs); bg_white(s)
+    top = title_block(s, "Rompe-hielo · Padlet del grupo")
+    url = url or PADLET_URL
+    left_w = 7.2
+    y = top + 0.12
+    rounded(s, MARGIN, y, left_w, 4.55, INFO)
+    rect(s, MARGIN, y, 0.14, 4.55, CIAN)
+    tf = textbox(s, MARGIN + 0.35, y + 0.2, left_w - 0.55, 4.2)
+    lines = [
+        ("Escanea el **QR** o abre el enlace del tablero colaborativo.", 15),
+        ("Deja **1 nota** en cada columna:", 15),
+        ("**1.** ¿Quién soy? (nombre + una habilidad o hobby)", 14),
+        ("**2.** Expectativa del curso (1 frase)", 14),
+        ("**3.** Pregunta al docente / al grupo", 14),
+        ("5–8 min · sin instalar · solo navegador.", 14),
+        ("Enlace: **" + url + "**", 13),
+    ]
+    for i, (txt, sz) in enumerate(lines):
+        p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+        p.space_after = Pt(8)
+        _rich(p, ("–   " if i < 2 or i >= 5 else "●   ") + txt if i not in (2, 3, 4) else txt, sz, GRAY)
+    # QR a la derecha
+    qr_box_x = MARGIN + left_w + 0.25
+    qr_box_w = CONTENT_W - left_w - 0.25
+    rounded(s, qr_box_x, y, qr_box_w, 4.55, ALT)
+    if os.path.exists(QR_PADLET):
+        try:
+            from PIL import Image as _PILImage
+            iw, ih = _PILImage.open(QR_PADLET).size
+        except Exception:
+            iw, ih = (1, 1)
+        side = min(qr_box_w - 0.5, 3.5)
+        h = side * ih / iw if iw else side
+        left = Inches(qr_box_x + (qr_box_w - side) / 2)
+        top_img = Inches(y + 0.35)
+        s.shapes.add_picture(QR_PADLET, left, top_img, width=Inches(side), height=Inches(h))
+        cap = textbox(s, qr_box_x + 0.1, y + 4.05, qr_box_w - 0.2, 0.4)
+        p = cap.paragraphs[0]; p.alignment = PP_ALIGN.CENTER
+        _run(p.add_run(), "QR oficial Padlet UNIAJC", 11, SOFT, bold=True)
+    else:
+        tf = textbox(s, qr_box_x + 0.2, y + 1.8, qr_box_w - 0.4, 1.0)
+        p = tf.paragraphs[0]; p.alignment = PP_ALIGN.CENTER
+        _rich(p, "QR pendiente: `qr_padlet_uniajc.png`", 14, RED, bold=True)
+    # Sin nota operativa docente (Clear posts): solo en agente/config/regla, no en PPTX estudiante.
+    footer_num(s, idx)
+    return s
+
+# ---------- CRONOGRAMA EN TARJETAS INICIO / CIERRE (preferido: más legible) ----------
+def fechas_inicio_fin_slide(prs, title, blocks, holiday_marks=None, note=None, sub=None, idx=None):
+    """Cronograma en tarjetas grandes: cada bloque muestra INICIO y CIERRE con fecha completa.
+      - blocks: lista de dicts {label, start(date), end(date), pct(str opc.)}
+      - holiday_marks: lista de (date, label) — se listan debajo como 'sin clase'
+      - note: texto inferior (p. ej. link de registro de tutorías)
+    """
+    s = blank(prs); bg_white(s)
+    top = title_block(s, title, sub)
+    n = max(1, len(blocks))
+    gap = 0.22
+    card_w = (CONTENT_W - gap * (n - 1)) / n
+    card_h = 3.15
+    y = top + 0.15
+    palette = [NAVY, SLATE, RGBColor(0x4A, 0x7F, 0xB5), RGBColor(0x2E, 0x7D, 0x5B)]
+    for i, b in enumerate(blocks):
+        x = MARGIN + i * (card_w + gap)
+        color = b.get("color") or palette[i % len(palette)]
+        # cabecera de color
+        rect(s, x, y, card_w, 0.72, color)
+        tf = textbox(s, x + 0.08, y + 0.08, card_w - 0.16, 0.56, anchor=MSO_ANCHOR.MIDDLE)
+        p = tf.paragraphs[0]; p.alignment = PP_ALIGN.CENTER
+        label = b["label"] + (f"  ·  {b['pct']}" if b.get("pct") else "")
+        _run(p.add_run(), label, 14, WHITE, bold=True)
+        # cuerpo blanco
+        rect(s, x, y + 0.72, card_w, card_h - 0.72, ALT)
+        # INICIO
+        tf = textbox(s, x + 0.12, y + 0.95, card_w - 0.24, 0.9)
+        p = tf.paragraphs[0]; p.alignment = PP_ALIGN.CENTER
+        _run(p.add_run(), "INICIO", 11, SOFT, bold=True)
+        p2 = tf.add_paragraph(); p2.alignment = PP_ALIGN.CENTER; p2.space_before = Pt(4)
+        _run(p2.add_run(), b["start"].strftime("%d/%m/%Y"), 20, VERDE, bold=True)
+        # separador
+        rect(s, x + 0.35, y + 1.95, card_w - 0.7, 0.03, RGBColor(0xD0, 0xD0, 0xD0))
+        # CIERRE
+        tf = textbox(s, x + 0.12, y + 2.15, card_w - 0.24, 0.9)
+        p = tf.paragraphs[0]; p.alignment = PP_ALIGN.CENTER
+        _run(p.add_run(), "CIERRE", 11, SOFT, bold=True)
+        p2 = tf.add_paragraph(); p2.alignment = PP_ALIGN.CENTER; p2.space_before = Pt(4)
+        _run(p2.add_run(), b["end"].strftime("%d/%m/%Y"), 20, NAVY, bold=True)
+
+    # festivos
+    y2 = y + card_h + 0.18
+    if holiday_marks:
+        fest = "  ·  ".join(d.strftime("%d/%m") + " " + lab.replace("\n", " ") for d, lab in holiday_marks)
+        tf = textbox(s, MARGIN, y2, CONTENT_W, 0.35)
+        _rich(tf.paragraphs[0], "🚫 **Sin clase (festivos):** " + fest, 12, RED)
+        y2 += 0.38
+    if note:
+        rounded(s, MARGIN, y2, CONTENT_W, 0.7, ACLAR)
+        tf = textbox(s, MARGIN + 0.2, y2 + 0.12, CONTENT_W - 0.4, 0.5, anchor=MSO_ANCHOR.MIDDLE)
+        _rich(tf.paragraphs[0], note, 12, GRAY)
+    footer_num(s, idx)
+    return s
+
+# ---------- LÍNEA DE TIEMPO (legacy — preferir fechas_inicio_fin_slide) ----------
+def timeline_slide(prs, title, start_date, end_date, blocks, holiday_marks=None,
+                    session_dots=None, sub=None, idx=None):
+    """Línea de tiempo horizontal, con INICIO y CIERRE del curso resaltados en grande en los
+    extremos, bloques con su rango de fechas bien separado y legible, y festivos con una guía
+    vertical propia (fila separada, sin cruzarse con las fechas de los bloques).
+      - blocks: lista de dicts {label, start(date), end(date), pct(str opc.), color(RGBColor opc.)}
+      - holiday_marks: lista de (date, label) -> franja roja + línea guía + etiqueta.
+      - session_dots: lista de date -> punto verde sobre la barra (sesión de clase real).
+    """
+    s = blank(prs); bg_white(s)
+    top = title_block(s, title, sub)
+    bar_y = top + 1.15
+    bar_h = 0.5
+    x0, x1 = MARGIN + 1.35, SW - MARGIN - 1.35   # deja espacio a los lados para las banderas INICIO/CIERRE
+    total_days = (end_date - start_date).days or 1
+
+    def xpos(d):
+        frac = max(0.0, min(1.0, (d - start_date).days / total_days))
+        return x0 + frac * (x1 - x0)
+
+    # eje base
+    rect(s, x0, bar_y, x1 - x0, bar_h, ALT)
+
+    # ---- banderas grandes de INICIO / CIERRE en los extremos ----
+    for d, label, align, tx in [
+        (start_date, "INICIO", PP_ALIGN.RIGHT, x0 - 1.3),
+        (end_date, "CIERRE", PP_ALIGN.LEFT, x1 + 0.08),
+    ]:
+        tf = textbox(s, tx, bar_y - 0.08, 1.25, bar_h + 0.16, anchor=MSO_ANCHOR.MIDDLE)
+        p = tf.paragraphs[0]; p.alignment = align
+        _run(p.add_run(), label, 12, NAVY, bold=True)
+        p2 = tf.add_paragraph(); p2.alignment = align
+        _run(p2.add_run(), d.strftime("%d/%m/%Y"), 12, VERDE, bold=True)
+        # marca vertical gruesa en el extremo de la barra
+        mx = x0 if label == "INICIO" else x1
+        rect(s, mx - 0.02, bar_y - 0.12, 0.04, bar_h + 0.24, NAVY)
+
+    # ---- bloques (ACA1/ACA2/ACA3/coev/autoev…) ----
+    palette = [NAVY, SLATE, RGBColor(0x4A, 0x7F, 0xB5), RGBColor(0x7A, 0xA6, 0xCF), SOFT]
+    for i, b in enumerate(blocks):
+        bx0, bx1 = xpos(b["start"]), xpos(b["end"])
+        bw = max(bx1 - bx0, 0.05)
+        color = b.get("color") or palette[i % len(palette)]
+        rect(s, bx0, bar_y, bw, bar_h, color)
+        # etiqueta (nombre + %) ENCIMA del bloque
+        label = b["label"] + (f" ({b['pct']})" if b.get("pct") else "")
+        tf = textbox(s, bx0 - 0.3, bar_y - 0.42, max(bw, 1.6) + 0.6, 0.36)
+        tf.paragraphs[0].alignment = PP_ALIGN.CENTER
+        _rich(tf.paragraphs[0], label, 12.5, NAVY, bold=True)
+        # fechas de inicio-fin del bloque, GRANDES y bien separadas, DEBAJO
+        df = textbox(s, bx0 - 0.35, bar_y + bar_h + 0.12, max(bw, 1.7) + 0.7, 0.32)
+        p = df.paragraphs[0]; p.alignment = PP_ALIGN.CENTER
+        _rich(p, b["start"].strftime("%d/%m") + "  →  " + b["end"].strftime("%d/%m"), 12, VERDE, bold=True)
+
+    # ---- festivos: fila SEPARADA (más abajo) con línea guía propia, sin chocar con las fechas ----
+    fy_line_top = bar_y + bar_h + 0.55   # inicio de la línea guía (deja aire tras la fila de fechas)
+    fy_label = fy_line_top + 0.28
+    for d, label in (holiday_marks or []):
+        fx = xpos(d)
+        # línea guía vertical delgada desde la barra hasta la etiqueta
+        rect(s, fx - 0.012, bar_y + bar_h, 0.024, fy_line_top - (bar_y + bar_h), RED)
+        # marca corta sobre la barra
+        rect(s, fx - 0.02, bar_y - 0.04, 0.04, bar_h + 0.08, RED)
+        tf = textbox(s, fx - 0.6, fy_label, 1.3, 0.55)
+        p = tf.paragraphs[0]; p.alignment = PP_ALIGN.CENTER
+        _rich(p, "🚫 " + d.strftime("%d/%m"), 9.5, RED, bold=True)
+        p2 = tf.add_paragraph(); p2.alignment = PP_ALIGN.CENTER
+        _rich(p2, label, 8.5, RED)
+
+    # ---- sesiones de clase reales: punto verde sobre la barra ----
+    for item in (session_dots or []):
+        d, label = item if isinstance(item, tuple) else (item, "")
+        dx = xpos(d)
+        dot = s.shapes.add_shape(MSO_SHAPE.OVAL, Inches(dx - 0.055), Inches(bar_y + bar_h / 2 - 0.055),
+                                  Inches(0.11), Inches(0.11))
+        dot.fill.solid(); dot.fill.fore_color.rgb = VERDE; dot.line.color.rgb = WHITE
+        dot.line.width = Pt(1); dot.shadow.inherit = False
+
+    # ---- leyenda ----
+    ly = SH - 0.5
+    lx = MARGIN
+    for color, text in [(VERDE, "Sesión de clase"), (RED, "Festivo (sin clase)"), (NAVY, "Inicio / cierre del bloque")]:
+        dot = s.shapes.add_shape(MSO_SHAPE.OVAL, Inches(lx), Inches(ly), Inches(0.13), Inches(0.13))
+        dot.fill.solid(); dot.fill.fore_color.rgb = color; dot.line.fill.background(); dot.shadow.inherit = False
+        _rich(textbox(s, lx + 0.20, ly - 0.03, 2.6, 0.25).paragraphs[0], text, 10, GRAY)
+        lx += 2.7
+
+    footer_num(s, idx)
+    return s
+
+# ---------- Portadas ----------
+def course_cover(prs, materia, subtitulo, meta_lines):
+    """Portada del curso: banda azul institucional + filete amarillo + logo blanco."""
+    s = blank(prs); bg_white(s)
+    rect(s, 0, 0, SW, 3.2, NAVY)
+    rect(s, 0, 3.2, SW, 0.08, AMARILLO)
+    tf = textbox(s, MARGIN, 1.0, CONTENT_W, 1.6, anchor=MSO_ANCHOR.MIDDLE)
+    p = tf.paragraphs[0]; p.alignment = PP_ALIGN.CENTER
+    _run(p.add_run(), materia, 34, WHITE, bold=True)
+    if subtitulo:
+        ps = tf.add_paragraph(); ps.alignment = PP_ALIGN.CENTER; ps.space_before = Pt(10)
+        _run(ps.add_run(), subtitulo, 18, RGBColor(0xB8, 0xD8, 0xEE))
+    add_logo(s, width=2.1, corner="left-top", mt=0.35, mr=0.5, variant="white")
+    tm = textbox(s, MARGIN, 3.65, CONTENT_W, 3.2)
+    for i, ln in enumerate(meta_lines or []):
+        p = tm.paragraphs[0] if i == 0 else tm.add_paragraph()
+        p.space_after = Pt(8); _rich(p, ln, 15, GRAY)
+    return s
+
+def 

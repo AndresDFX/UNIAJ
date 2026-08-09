@@ -1,0 +1,11 @@
+e pago obligatorio).',
+        'Hilo conductor: **Proyecto Integrador** de sistema avanzado de BD.',
+        'Festivos del lunes = **clase autónoma** (no se omiten).',
+    ], idx=7)
+    table_content(
+        prs, "Sistema de evaluación (Acuerdo pedagógico)",
+        ["Corte", "Ventana", "Desglose", "%"],
+        [
+            ["1", "10/08–13/09", "Parcial 10% (07/09 · Clase 5) · Talleres/Quiz 10% · Asistencia 10%", "30%"],
+            ["2", "14/09–18/10", "Parcial 10% (05/10 · Clase 9) · Talleres/Quiz 10% · Asistencia 10%", "30%"],
+           

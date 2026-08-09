@@ -1,0 +1,154 @@
+---
+description: Docente UNIAJC, estructura de carpetas, marca y estándar de material
+alwaysApply: true
+---
+
+# Docente UNIAJC (dato fijo)
+
+- **Nombre del docente en las asignaturas de este workspace:** Julian Andres Castaño (completo en documentos: Julian Andres Castaño Espinosa).
+- En presentaciones, guiones, portadas y cierres usa ese nombre (no dejes `[Nombre del docente]`).
+- Credenciales habituales: Ingeniero de Sistemas · Candidato a MsC en IA · Líder Técnico · Speaker Tecnológico.
+- **Correo institucional:** `julianacastano@profesores.uniajc.edu.co`.
+- **NO uses** correos CUN (`julian_castanoe@cun.edu.co`) ni FESNA en material UNIAJC.
+
+## Periodo vigente: 2026-2
+
+- **Ventana académica:** **10/08/2026 – 22/11/2026**.
+- Fuente de calendario/cortes: `config/calendario/semestre_2026_2.json` (Prog II / Seminario: `Plan curso/2026-1/`; BD II / Arquitectura: `Plan curso/2026-2/`).
+- Festivos en rango: **17/08**, **12/10**, **02/11**, **16/11** de 2026.
+- **Regla de festivos:** no omitir clases; marcarlas como **clase autónoma**.
+- **Regla de parciales:** síncronos; **NUNCA** en festivo ni clase autónoma. Si el cierre del corte es autónoma → parcial en la **última clase regular anterior** del corte. Modalidad del parcial (presencial/virtual) = según curso (ver abajo).
+- **Día de parcial = solo evaluación:** sin tema técnico mezclado (no «Tema · Parcial N»). Temas reasignados a la clase regular anterior. Prep PI / sustentación en clase regular anterior; el día del parcial es solo el parcial.
+
+### Modalidad por curso (fuente: calendario / CSV)
+
+| Curso | Oferta | Por sesión |
+|---|---|---|
+| **Programación II** (mié 18:00–20:00) | Presencialidad asistida | Clase 1 + parciales (5/10/15) **presencial**; resto **virtual** síncrona; festivos **autónoma** |
+| **Seminario** (jue 18:00–20:00) | Presencialidad asistida | Clases regulares (incl. Clase 1) **virtual** síncrona; parciales (5/10/15) **presencial**; festivos **autónoma** |
+| **Arquitectura** (lun 10:00–12:00 · 6303C) | Presencialidad asistida | Clase 1 + parciales (5/9/14) **presencial**; resto **virtual** síncrona; festivos **autónoma** |
+| **BD II** (lun **20:00–22:00** · 641A-2) | **Virtual** (según `CALENDARIO_2026-2` / CSV) | Regulares y parciales (5/9/14) **virtual** síncronos; festivos **autónoma**. No inventar presencial si el CSV no lo marca |
+
+Cortes teóricos (validar en Acuerdo): **30% / 30% / 40%**
+
+- Corte 1: 10/08–13/09 · clases 1–5 · Parcial 1 en última regular (mié/jue: Clase 5; lun: Clase 5)
+- Corte 2: 14/09–18/10 · clases 6–10 · Parcial 2 en última regular (mié/jue: Clase 10; lun: **Clase 9**, no 10 festivo)
+- Corte 3: 19/10–22/11 · clases 11–15 · Parcial 3 en última regular (mié/jue: Clase 15; lun: **Clase 14**, no 15 festivo)
+- Desglose: C1/C2 = 10% Parcial + 10% Talleres/Quiz + 10% Asistencia; C3 = 15% Parcial + 20% PI + 5% Asistencia
+
+## Cursos activos 2026-2
+
+1. **Programación II** (FI303204 · grupo **341C** · mié **18:00–20:00** · **120 min**)
+2. **Seminario de Sistemas** (FI303301 · grupo **341C** · jue **18:00–20:00** · **120 min**)
+3. **Bases de Datos II** (FI303215 · grupo **641A-2** · lun **20:00–22:00** · **120 min** · Virtual)
+4. **Arquitectura de Sistemas Computacionales** (FI303380 · grupo **6303C** · lun **10:00–12:00** · **120 min**)
+5. **0. Base** — plantillas institucionales / Ingeniería de Software 1 (referencia)
+
+Cualquier ajuste general de marca/diseño/nomenclatura UNIAJC se aplica a los cursos activos (no copiar estándares CUN: CDigital, Sesión NN, 60 min, etc.).
+
+**Enfoque BD II / Arquitectura:** material **orientado al PI** (práctica); teoría breve al servicio del entregable.
+
+## Sesión 0 vs Clase 1 (fija)
+
+- **Sesión 0** = `Clases/Presentacion del Curso - ….pptx` (logística: acuerdo, Padlet, evaluación, CONTENIDO, herramientas, cierre). **No es tema de unidad.**
+- **Clase 1** = **Diagnóstico de conocimientos previos** + arranque del tema intro del plan. **Sin** repetir bio/evaluación/cronograma global (eso es Sesión 0).
+- En el **día 1** del calendario: Sesión 0 + Clase 1 dentro del mismo bloque de 120 min. Se mantienen **15 clases** temáticas (1–15). CONTENIDO lista Sesión 0 + Clases 1–15.
+- Wording CONTENIDO: celda Clase 1 = `Diagnóstico · [tema intro]`; Sesión 0 como ítem aparte (`n: 0` / `kind: sesion0`).
+- Instrumento: `Kit docente/Clase 1/Prueba Diagnostica…` · Registro: `Entregas docente/<periodo>/DIAGNOSTICO…`.
+
+## Estándar vigente de slides
+
+1. **Portada Presentación del Curso** (`course_cover`): pie solo en esa portada con `Inicio de clase: horario+10min` (Prog/Sem/BD II → `18:10` o `20:10` según horario oficial; Arquitectura → `10:10`). Sin otros pies con nombre del curso. El nº de slide (idx) puede quedarse.
+2. **Portada de clase** (`class_cover`): hero limpio (marca + título + subtítulo corto / badge Clase N). **SIN** bloque inferior «Hoy avanzamos el PI / 120 min / gratis» (eso va en slide 2).
+3. `tutor_slide`: nombre + perfil + correo. Sin subtítulo «Docente · &lt;curso&gt;».
+4. Timeline «Mapa del bloque de hoy» (`block_timeline_slide`): barra proporcional + cards verticales (NO la raya con cuadraditos vieja).
+5. Slide **Herramientas del curso** (`herramientas_slide`): **3–4 principales**, logos **grandes** (~2×); no saturar.
+6. Quizzes proyectables: **sin** «no proyectar claves» en subtítulo estudiante; subtítulo tipo `Individual · 8–10 min`. Opciones OM **una por línea**. Helpers: `config/slides/uniajc_quiz_helpers.py`.
+7. Plataforma = **Campus Virtual UNIAJC** (nunca “LMS” como nombre; nunca «CDigital»). Placeholder ops: `[URL Campus Virtual UNIAJC — pendiente]` (no en PPTX del curso).
+8. Presentación del curso (estudiantes): grupo(s), docente, recursos, evaluación, CONTENIDO (Sesión 0 + Clases 1–15 en **una** diapositiva vía `contenido_clases_slides`), Padlet, herramientas, cierre. **Sin** checklist docente ni Clear posts. **Sin** placeholder Campus Virtual ni listado.
+9. Datos de oferta del periodo en **negrita** (grupo, periodo, horario). **No** forzar negrita en docente/correo, temario ni textos pedagógicos.
+10. Marca: `#095292` / `#269CCB` / `#FFD000` — ver `config/universidades/uniajc.json`.
+
+## Padlet institucional
+
+- **URL:** https://padlet.com/andres_dfx/uniaj-l77e9uu16trgdvcp
+- **QR:** `config/slides/assets/qr_padlet_uniajc.png` (misma slide + URL).
+- En Presentación del Curso: solo rompe-hielo para estudiantes (sin Clear posts ni checklist docente).
+- **Post-clase (docente):** ⋯ → Clear posts → código → Delete (reusar los 3 padlets gratis).
+
+## Dónde va (y no va) bio, fechas y mapa
+
+- **PPTX de clase** (`Clases/Clase N…/Presentacion.pptx`): **NO** bio/correo; solo tema + «Clase N»; **sin** fechas de periodo; **sin** mapa completo del curso; quiz **sin** respuestas.
+- **Presentación del curso** (`Clases/Presentacion del Curso - ….pptx`): **SÍ** docente + correo + logística (horario, grupo(s), periodo, evaluación, CONTENIDO). Cierre: día/hora semanal.
+- **Soluciones de talleres** y **CLAVE DOCENTE** de quizzes: solo `Kit docente/`. Nunca en `Clases/`.
+
+## Guiones / guías docentes
+
+- Ubicación: **`Kit docente/Clase N/`** (privado). **NO** usar carpeta `Guiones/`.
+- Cubren todo el bloque (**120 min**), minuto a minuto, teórico-práctico; solo el tema de ESA clase.
+- **Sin** mapa del curso, políticas largas, desglose global de evaluación, bio ni fechas de periodo.
+- Plataforma = **Campus Virtual UNIAJC**. Capturas: `Kit docente/Clase N/Capturas/`.
+- Builds de referencia: `config/slides/build_uniajc_prog2_clase01.py` + `guion_md_a_docx.py`.
+
+## Práctica de clase = gratis + nube
+
+- Talleres/demos con **herramientas gratis + en la nube** (browser / free tier). Sin software de escritorio de pago ni instalaciones obligatorias.
+
+## Acuerdo pedagógico
+
+- Uno por semestre. No borrar acuerdos de periodos anteriores.
+- Plantilla base: `Programacion II/Entregas docente/ACUERDO PEDAGOGICO ACTUALIZADO.docx`.
+- Prefills 2026-2: `Entregas docente/2026-2/ACUERDO PEDAGOGICO - <Curso> - 2026-2.docx`.
+- Listado / vocero / firmas = `[PENDIENTE]` hasta nómina.
+
+# Estructura de carpetas (respetar la existente)
+
+```text
+<Curso>/
+  Plan curso/                 Raíz = info general (Microcurrículo + Plan oficial)
+  Plan curso/<periodo>/       Periodo puntual (PLAN_DE_CURSO, CALENDARIO, CSV, herramientas)
+  Entregas docente/           Raíz = README + plantillas genéricas
+  Entregas docente/<periodo>/ Acuerdo + Diagnóstico del periodo
+  Kit docente/Clase N/        Guion, Quiz (+ CLAVE DOCENTE), Código, Capturas (SIN Guiones/)
+  Clases/Clase N/             Presentación (.pptx) + taller/enunciado estudiante (.docx; NUNCA .md)
+  Clases/Proyecto Integrador/ Enunciado PI estudiante (.docx)
+  Kit docente/Proyecto Integrador/  Guía docente + rúbrica (privado)
+  Clases/Presentacion del Curso - ….pptx
+  Parciales/ · Clases grabadas/
+```
+
+- Nomenclatura: **Clase N**. No renombrar a «Sesión» salvo pedido explícito.
+- **No borrar** atajos Google (`.gslides` / `.gdoc`); generar `.pptx`/`.docx` en paralelo.
+
+## Carpeta compartida con estudiantes
+
+- Solo se comparte `Clases/` de cada curso.
+- Ahí: Presentación del Curso `.pptx`, `Clase N - Tema/` (`.pptx` + taller `.docx`) y `Clases/Proyecto Integrador/` (enunciado PI `.docx`).
+- **Material estudiante: nunca `.md`** — solo `.pptx` / `.docx`.
+- **Parciales** (enunciado + solución) solo en `Parciales/` — **nunca** en `Clases/`.
+- Cronograma / CSV van en `Plan curso/` (docente), no en `Clases/`.
+- Regla fija: `Clases/` = estudiantes · `Kit docente/` = privado · `Entregas docente/<periodo>/` = Acuerdo+Diagnóstico · **sin carpeta `Guiones/`**.
+
+## Proyecto Integrador
+
+- Peso Acuerdo: **20% Corte 3**.
+- Estudiante: `Clases/Proyecto Integrador/` · Docente: `Kit docente/Proyecto Integrador/`.
+- Build: `config/slides/build_uniajc_pi_2026_2.py`.
+
+# Builds y marca
+
+- Motor: `config/slides/uniajc_slides_engine.py` (`class_cover`, `course_cover`, `block_timeline_slide`, `herramientas_slide`, …)
+- Quiz helpers: `config/slides/uniajc_quiz_helpers.py`
+- Perfil: `config/universidades/uniajc.json`
+- Calendario: `config/calendario/semestre_2026_2.json`
+- Builds curso: `build_uniajc_prog2_curso.py`, `build_uniajc_seminario_curso.py`, `build_uniajc_bd2_curso.py`, `build_uniajc_arq_curso.py`
+- Builds batch/clase: `build_uniajc_prog2_clase01.py`, `build_uniajc_bd2_all.py`, `build_uniajc_arq_clases_batch.py`, `build_uniajc_pi_2026_2.py`
+- Agentes: `.claude/agents/disenador-curricular-uniajc.md`, `uniajc-dudas-material.md` (espejo en `.cursor/agents/`)
+- Marca web: [uniajc.edu.co](https://www.uniajc.edu.co/)
+
+# Pendientes conocidos (no inventar)
+
+- URL Campus Virtual por curso — placeholder ops: `[URL Campus Virtual UNIAJC — pendiente]`
+- URL Meet (si aplica)
+- Tipografía oficial del Manual de Identidad (hoy Calibri)
+- Listados de estudiantes / voceros / firmas de Acuerdos 2026-2

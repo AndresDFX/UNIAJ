@@ -1,0 +1,569 @@
+# -*- coding: utf-8 -*-
+"""Genera Proyecto Integrador 2026-2 (BD II + Arquitectura).
+
+Estudiante (compartible):
+  <Curso>/Clases/Proyecto Integrador/Enunciado Proyecto Integrador - <Curso> - 2026-2.docx
+
+Docente (privado):
+  <Curso>/Kit docente/Proyecto Integrador/Guia Docente PI - <Curso> - 2026-2.docx
+  <Curso>/Kit docente/Proyecto Integrador/Guia Docente PI - <Curso> - 2026-2.md
+"""
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+from docx import Document
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
+from docx.shared import Inches, Pt, RGBColor
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+AZUL = RGBColor(0x09, 0x52, 0x92)
+CIAN = RGBColor(0x26, 0x9C, 0xCB)
+GRIS = RGBColor(0x2B, 0x2B, 0x2B)
+BLANCO = RGBColor(0xFF, 0xFF, 0xFF)
+ROJO = RGBColor(0xA0, 0x20, 0x30)
+FONT = "Calibri"
+
+DOCENTE = "Julian Andres Castaño Espinosa"
+CORREO = "julianacastano@profesores.uniajc.edu.co"
+
+
+def _shade(paragraph, fill: str) -> None:
+    pPr = paragraph._p.get_or_add_pPr()
+    shd = OxmlElement("w:shd")
+    shd.set(qn("w:val"), "clear")
+    shd.set(qn("w:fill"), fill)
+    pPr.append(shd)
+
+
+def _run(run, *, size=11, bold=False, color=GRIS, name=FONT):
+    run.font.name = name
+    run._element.rPr.rFonts.set(qn("w:eastAsia"), name)
+    run.font.size = Pt(size)
+    run.bold = bold
+    run.font.color.rgb = color
+
+
+def para(doc, text, *, size=11, bold=False, color=GRIS, align=WD_ALIGN_PARAGRAPH.LEFT,
+         space_after=6, space_before=0, shade=None):
+    p = doc.add_paragraph()
+    p.alignment = align
+    p.paragraph_format.space_after = Pt(space_after)
+    p.paragraph_format.space_before = Pt(space_before)
+    if shade:
+        _shade(p, shade)
+    r = p.add_run(text)
+    _run(r, size=size, bold=bold, color=color)
+    return p
+
+
+def banda(doc, text):
+    return para(doc, f"  {text}", size=13, bold=True, color=BLANCO, shade="095292",
+                space_before=10, space_after=8)
+
+
+def h2(doc, text):
+    return para(doc, text, size=12, bold=True, color=AZUL, space_before=12, space_after=6)
+
+
+def h3(doc, text):
+    return para(doc, text, size=11, bold=True, color=CIAN, space_before=8, space_after=4)
+
+
+def bullets(doc, items):
+    for it in items:
+        p = doc.add_paragraph(style="List Bullet")
+        p.paragraph_format.space_after = Pt(2)
+        r = p.add_run(it)
+        _run(r, size=11, color=GRIS)
+
+
+def table(doc, headers, rows):
+    t = doc.add_table(rows=1 + len(rows), cols=len(headers))
+    t.style = "Table Grid"
+    for i, h in enumerate(headers):
+        cell = t.rows[0].cells[i]
+        cell.text = ""
+        p = cell.paragraphs[0]
+        r = p.add_run(h)
+        _run(r, size=10, bold=True, color=BLANCO)
+        shd = OxmlElement("w:shd")
+        shd.set(qn("w:val"), "clear")
+        shd.set(qn("w:fill"), "095292")
+        cell._tc.get_or_add_tcPr().append(shd)
+    for ri, row in enumerate(rows):
+        for ci, val in enumerate(row):
+            cell = t.rows[ri + 1].cells[ci]
+            cell.text = ""
+            p = cell.paragraphs[0]
+            r = p.add_run(val)
+            _run(r, size=10, color=GRIS)
+            if ri % 2 == 1:
+                shd = OxmlElement("w:shd")
+                shd.set(qn("w:val"), "clear")
+                shd.set(qn("w:fill"), "F2F2F2")
+                cell._tc.get_or_add_tcPr().append(shd)
+    para(doc, "", space_after=4)
+
+
+def margins(doc):
+    for s in doc.sections:
+        s.top_margin = Inches(0.7)
+        s.bottom_margin = Inches(0.7)
+        s.left_margin = Inches(0.85)
+        s.right_margin = Inches(0.85)
+
+
+def portada_estudiante(doc, meta):
+    para(doc, "Institución Universitaria Antonio José Camacho — UNIAJC",
+         size=10, bold=True, color=AZUL, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=2)
+    para(doc, "Facultad de Ingenierías · Programa de Ingeniería de Sistemas",
+         size=10, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=10)
+    banda(doc, meta["titulo"])
+    para(doc, meta["asignatura"], size=14, bold=True, color=AZUL,
+         align=WD_ALIGN_PARAGRAPH.CENTER, space_before=8)
+    para(doc, f"Código {meta['codigo']}  ·  Grupo {meta['grupo']}  ·  Periodo {meta['periodo']}",
+         size=11, bold=True, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER)
+    para(doc, f"Horario: {meta['horario']}  ·  Modalidad: Presencialidad asistida",
+         size=11, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER)
+    para(doc, f"Docente: {DOCENTE}  ·  {CORREO}",
+         size=10, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
+    para(doc, "Versión estudiante — Entrega en Campus Virtual UNIAJC según hitos del plan.",
+         size=10, bold=True, color=AZUL, align=WD_ALIGN_PARAGRAPH.CENTER,
+         shade="E8F4FA", space_after=10)
+
+
+def portada_docente(doc, meta):
+    para(doc, "Institución Universitaria Antonio José Camacho — UNIAJC",
+         size=10, bold=True, color=AZUL, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=2)
+    banda(doc, meta["titulo_docente"])
+    para(doc, meta["asignatura"], size=13, bold=True, color=AZUL,
+         align=WD_ALIGN_PARAGRAPH.CENTER, space_before=8)
+    para(doc, f"{meta['codigo']} · Grupo {meta['grupo']} · {meta['periodo']}",
+         size=11, bold=True, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER)
+    para(doc, "DOCUMENTO DOCENTE — No distribuir a estudiantes. Incluye rúbrica e hitos.",
+         size=10, bold=True, color=ROJO, align=WD_ALIGN_PARAGRAPH.CENTER,
+         shade="FBE4E4", space_after=10)
+
+
+# ---------------------------------------------------------------------------
+# BD II — VetCare DB
+# ---------------------------------------------------------------------------
+
+BD2_META = {
+    "titulo": "Proyecto Integrador 2026-2 — VetCare DB",
+    "titulo_docente": "Guía docente · Proyecto Integrador — Bases de Datos II",
+    "asignatura": "Bases de Datos II",
+    "codigo": "FI303215",
+    "grupo": "641A-2",
+    "periodo": "2026-2",
+    "horario": "Lunes 18:00–20:00 (120 min)",
+    "dominio": "VetCare DB",
+}
+
+
+def enunciado_bd2(doc):
+    portada_estudiante(doc, BD2_META)
+
+    h2(doc, "1. Propósito")
+    para(doc,
+         "Diseñar, administrar y optimizar una base de datos relacional avanzada para "
+         "VetCare DB (clínica veterinaria), integrando seguridad/respaldo, objetos "
+         "programables (procedimientos, funciones y disparadores), optimización e "
+         "integración conceptual con una aplicación externa. Hilo conductor ABPr del curso.")
+    para(doc,
+         "Peso: 20% del Corte 3 (Acuerdo pedagógico). El Parcial 3 (15%) y la asistencia "
+         "(5%) se evalúan por separado.")
+
+    h2(doc, "2. Dominio — VetCare DB")
+    para(doc,
+         "Una clínica veterinaria necesita gestionar mascotas, dueños, veterinarios, "
+         "citas, historial clínico, insumos/medicamentos y facturación básica. Usted "
+         "modela y opera la capa de datos avanzada (no se exige una app de escritorio).")
+    bullets(doc, [
+        "Entidades mínimas sugeridas: Dueño, Mascota, Veterinario, Cita, Consulta/Historial, "
+        "Insumo/Medicamento, DetalleFactura (ajuste el modelo con justificación).",
+        "Reglas de negocio: no citar mascotas inactivas; stock de insumos no negativo; "
+        "auditoría de cambios sensibles (precios, cancelaciones).",
+        "Puede ampliar el dominio con 1–2 módulos propios si mantiene coherencia.",
+    ])
+
+    h2(doc, "3. Entregables obligatorios")
+    bullets(doc, [
+        "Modelo de datos: diagrama ER (draw.io / diagrams.net o Excalidraw) + script DDL.",
+        "Administración y seguridad: roles/usuarios (o plan de privilegios), política de "
+        "respaldo/recuperación documentada.",
+        "Objetos programables: ≥2 procedimientos, ≥1 función, ≥2 disparadores con casos de prueba.",
+        "Optimización: ≥2 consultas «antes/después» con justificación de índices o reescritura.",
+        "Integración: propuesta de cómo una app (API/cliente) consumiría la BD "
+        "(contrato de operaciones + ejemplo SQL o pseudocódigo de llamada a procedimientos).",
+        "Informe breve (PDF o DOCX) + carpeta de scripts SQL + diagrama exportado (PNG/SVG).",
+        "Sustentación / presentación (5–8 min) en el cierre del PI.",
+    ])
+
+    h2(doc, "4. Hitos y fechas orientativas (Plan 2026-2)")
+    table(doc,
+          ["Hito", "Clase", "Fecha", "Qué entregar / hacer"],
+          [
+              ["Arranque (opcional)", "Clases 1–5", "ago–sep",
+               "Definir dominio, borrador ER y alcance"],
+              ["Construcción", "Clases 6–10", "sep–oct",
+               "DDL, seguridad, procs/triggers, tuning"],
+              ["Avance PI", "Clase 11", "19/10/2026",
+               "Demo parcial + checklist de avance"],
+              ["Integración", "Clase 12", "26/10/2026",
+               "Contrato app ↔ BD y pruebas"],
+              ["Prep. presentación", "Clase 14", "09/11/2026",
+               "Ensayo + entrega final en Campus Virtual "
+               "(mismo día: Parcial 3 presencial)"],
+              ["Cierre / sustentación", "Clase 15", "16/11/2026",
+               "Presentación + cierre (clase autónoma — festivo)"],
+          ])
+    para(doc,
+         "Nota: Clase 15 es autónoma (festivo). La sustentación se coordina vía Campus "
+         "Virtual / reunión síncrona según indiquen el docente. El Parcial 3 es el "
+         "09/11 (Clase 14), no en autónoma.")
+
+    h2(doc, "5. Herramientas (gratis + navegador)")
+    bullets(doc, [
+        "SQL: DB Fiddle, OneCompiler SQL, SQLTest.online o RunSQL.",
+        "Procedimientos / PL-SQL: Oracle Live SQL (cuenta free, sin tarjeta).",
+        "Diagramas: draw.io / diagrams.net · Excalidraw.",
+        "Entregas: Google Docs/Drive o Word Online → subir a Campus Virtual UNIAJC.",
+    ])
+    para(doc,
+         "No se exige instalar Oracle/MySQL/PostgreSQL/SQL Server ni Docker en el PC. "
+         "No se pide cloud IaaS con tarjeta.",
+         shade="FFF8D6", space_after=8)
+
+    h2(doc, "6. Criterios de evaluación (rúbrica resumida — 100 pts → 20% del corte)")
+    table(doc,
+          ["Criterio", "Pts", "Evidencia"],
+          [
+              ["Modelo + DDL coherente", "20", "ER + scripts ejecutables"],
+              ["Seguridad y respaldo", "15", "Roles/privilegios + plan backup"],
+              ["Procs / funciones / triggers", "25", "Código + pruebas"],
+              ["Optimización", "15", "Antes/después + justificación"],
+              ["Integración app ↔ BD", "10", "Contrato + ejemplos"],
+              ["Informe + sustentación", "15", "Claridad, demo, respuestas"],
+          ])
+
+    h2(doc, "7. Trabajo en equipo")
+    bullets(doc, [
+        "Equipos de 2–3 (o individual si el docente lo autoriza).",
+        "Todos deben poder explicar cualquier parte en la sustentación.",
+        "Entrega única por equipo en Campus Virtual UNIAJC.",
+    ])
+
+    h2(doc, "8. Qué NO es este proyecto")
+    bullets(doc, [
+        "No sustituye el Parcial 3 (evaluación síncrona presencial del 09/11).",
+        "No es una app GUI completa: el foco es la capa de datos avanzada.",
+        "No se copia un enunciado de otra institución: el dominio es VetCare DB UNIAJC.",
+    ])
+
+
+def guia_bd2(doc):
+    portada_docente(doc, BD2_META)
+    h2(doc, "Contexto")
+    para(doc,
+         "Patrón heredado de Prog. II / Seminario: PI continuo ABPr, 20% Corte 3. "
+         "Enunciados viejos viven como .gdoc en Clase 1; aquí se materializa en "
+         "Clases/Proyecto Integrador/ (estudiante) + Kit docente/Proyecto Integrador/.")
+    h2(doc, "Alineación RAA")
+    bullets(doc, [
+        "RAA1 Seguridad y respaldo → roles, privilegios, plan de backup/restore.",
+        "RAA2 Procedimientos y disparadores → procs, funciones, triggers con pruebas.",
+        "RAA3 Optimización → índices, reescritura, evidencia antes/después.",
+    ])
+    h2(doc, "Hitos docentes (clases del plan)")
+    table(doc,
+          ["Clase", "Fecha", "Rol docente"],
+          [
+              ["11", "19/10", "Revisión de avance: checklist viva, feedback en vivo"],
+              ["12", "26/10", "Empujar integración app↔BD y casos de prueba"],
+              ["14", "09/11", "Parcial 3 presencial + ensayo de presentación PI"],
+              ["15", "16/11", "Sustentación/cierre (autónoma): recibir demos asíncronas "
+                             "o Meet corto"],
+          ])
+    h2(doc, "Rúbrica detallada (calificar sobre 100 → escala a 20% del corte)")
+    bullets(doc, [
+        "Modelo/DDL (20): normalización razonable, FK, constraints, nombres claros.",
+        "Seguridad/respaldo (15): al menos 2 roles con privilegios distintos; RPO/RTO "
+        "en lenguaje simple; procedimiento de restore descrito.",
+        "Programables (25): triggers de auditoría o integridad; procs de negocio "
+        "(agendar cita, registrar consulta, descontar stock).",
+        "Optimización (15): EXPLAIN o narrativa equivalente en playground; índices justificados.",
+        "Integración (10): operaciones CRUD vía procs; no hace falta desplegar API real.",
+        "Informe+sustentación (15): 5–8 min; preguntas cruzadas al azar a miembros del equipo.",
+    ])
+    h2(doc, "Evidencias a pedir")
+    bullets(doc, [
+        "Enlace o ZIP: scripts .sql, diagrama, informe.",
+        "Capturas de ejecución en Live SQL / DB Fiddle.",
+        "Lista de integrantes y quién presentó qué.",
+    ])
+    h2(doc, "Post-clase Padlet")
+    para(doc, "Si usó Padlet en Clase 1: ⋯ → Clear posts → código → Delete (reutilizar cupo gratis).")
+
+
+# ---------------------------------------------------------------------------
+# Arquitectura — CloudLite App
+# ---------------------------------------------------------------------------
+
+ARQ_META = {
+    "titulo": "Proyecto Integrador 2026-2 — CloudLite App",
+    "titulo_docente": "Guía docente · Proyecto Integrador — Arquitectura de Sistemas",
+    "asignatura": "Arquitectura de Sistemas Computacionales",
+    "codigo": "FI303380",
+    "grupo": "6303C",
+    "periodo": "2026-2",
+    "horario": "Lunes 10:00–12:00 (120 min)",
+    "dominio": "CloudLite App",
+}
+
+
+def enunciado_arq(doc):
+    portada_estudiante(doc, ARQ_META)
+
+    h2(doc, "1. Propósito")
+    para(doc,
+         "Diseñar y simular el despliegue de una arquitectura cloud para CloudLite App "
+         "(aplicación web/API de un dominio realista a su elección: citas, academia, "
+         "inventario liviano, etc.). Integra diagramas, contenedores en lab de navegador "
+         "y CI/CD conceptual con GitHub Actions — sin cloud de pago ni tarjeta.")
+    para(doc,
+         "Peso: 20% del Corte 3 (Acuerdo pedagógico). El Parcial 3 (15%) y la asistencia "
+         "(5%) se evalúan por separado.")
+
+    h2(doc, "2. Alcance de CloudLite App")
+    bullets(doc, [
+        "Elegir un dominio concreto y justificar 3–5 capacidades funcionales.",
+        "Decidir modelo de servicio dominante (IaaS / PaaS / SaaS) y por qué.",
+        "Arquitectura lógica + de despliegue (capas, componentes, red, almacenamiento).",
+        "Contenedorización de al menos un servicio (demo en Killercoda o Play with Docker).",
+        "Pipeline CI/CD conceptual (GitHub Actions): build + test + artefactos (sin runner de pago).",
+        "Seguridad, monitoreo, costos/sostenibilidad y escalabilidad (al menos un escenario).",
+    ])
+
+    h2(doc, "3. Entregables obligatorios")
+    bullets(doc, [
+        "Documento de arquitectura (PDF/DOCX): contexto, ADRs breves, riesgos, costos estimados "
+        "en lenguaje cualitativo (bajo/medio — sin factura real).",
+        "Diagramas (draw.io / diagrams.net): al menos (a) componentes/C4-lite, (b) despliegue, "
+        "(c) flujo CI/CD.",
+        "Lab de contenedores: Dockerfile o compose mínimo + captura/enlace de sesión "
+        "Killercoda o Play with Docker.",
+        "Repo o carpeta con workflow GitHub Actions (.yml) que compile/pruebe un stub "
+        "(aunque el «deploy» sea simulado).",
+        "Presentación de sustentación (5–8 min) con demo de diagrama + lab.",
+    ])
+
+    h2(doc, "4. Hitos y fechas orientativas (Plan 2026-2)")
+    table(doc,
+          ["Hito", "Clase", "Fecha", "Qué entregar / hacer"],
+          [
+              ["Fundamentos", "Clases 1–5", "ago–sep",
+               "Dominio, IaaS/PaaS/SaaS, boceto C4"],
+              ["Profundización", "Clases 6–10", "sep–oct",
+               "Seguridad, redes, monitoreo, CI/CD"],
+              ["Avance PI", "Clase 11", "19/10/2026",
+               "Diagramas v1 + checklist de avance"],
+              ["Rendimiento", "Clase 12", "26/10/2026",
+               "Escenario de prueba / métricas objetivo"],
+              ["Prep. presentación", "Clase 14", "09/11/2026",
+               "Ensayo + entrega final (mismo día: Parcial 3)"],
+              ["Cierre / sustentación", "Clase 15", "16/11/2026",
+               "Presentación + cierre (clase autónoma — festivo)"],
+          ])
+    para(doc,
+         "Nota: Clase 15 es autónoma (festivo). Coordine la sustentación con el docente. "
+         "Parcial 3 = 09/11 (Clase 14), nunca en autónoma.")
+
+    h2(doc, "5. Herramientas (gratis + navegador)")
+    bullets(doc, [
+        "Diagramas: draw.io / diagrams.net · Excalidraw.",
+        "Contenedores: Killercoda · Play with Docker (sin Docker Desktop obligatorio).",
+        "CI/CD: GitHub Actions (cuenta free) — pipelines simples.",
+        "Entregas: Google Docs/Drive o Word Online → Campus Virtual UNIAJC.",
+    ])
+    para(doc,
+         "Prohibido como requisito: AWS/GCP/Oracle Cloud/Azure Free Tier con tarjeta; "
+         "instalar VirtualBox/VMware/Docker Desktop/WSL; software de modelado de pago.",
+         shade="FBE4E4", space_after=8)
+
+    h2(doc, "6. Criterios de evaluación (rúbrica resumida — 100 pts → 20% del corte)")
+    table(doc,
+          ["Criterio", "Pts", "Evidencia"],
+          [
+              ["Dominio + decisión IaaS/PaaS/SaaS", "15", "Justificación clara"],
+              ["Diagramas de arquitectura", "25", "Componentes + despliegue"],
+              ["Contenedores (lab navegador)", "20", "Dockerfile/compose + captura"],
+              ["CI/CD conceptual", "15", "Workflow .yml + explicación"],
+              ["Seguridad / costos / escalabilidad", "10", "Sección en informe"],
+              ["Informe + sustentación", "15", "Claridad, demo, respuestas"],
+          ])
+
+    h2(doc, "7. Trabajo en equipo")
+    bullets(doc, [
+        "Equipos de 2–3 (o individual autorizado).",
+        "Todos deben poder explicar diagramas y el workflow CI/CD.",
+        "Entrega única por equipo en Campus Virtual UNIAJC.",
+    ])
+
+    h2(doc, "8. Qué NO es este proyecto")
+    bullets(doc, [
+        "No sustituye el Parcial 3 (09/11, presencial).",
+        "No exige cuenta cloud de pago ni gastos del estudiante.",
+        "No se pide producción real en Internet: el foco es diseño + simulación en labs gratis.",
+    ])
+
+
+def guia_arq(doc):
+    portada_docente(doc, ARQ_META)
+    h2(doc, "Contexto")
+    para(doc,
+         "Mismo patrón de peso (20% Corte 3) que Prog. II / Seminario. Enfoque microcurrículo: "
+         "arquitecturas cloud, virtualización/contenedores, seguridad, rendimiento y sostenibilidad.")
+    h2(doc, "Alineación RAA")
+    bullets(doc, [
+        "RAA1 IaaS/PaaS/SaaS → decisión de modelo de servicio en el informe.",
+        "RAA2 Virtualización y distribuidos → contenedores + diagrama de despliegue.",
+        "RAA3 Seguridad, rendimiento y sostenibilidad → secciones explícitas + escenario de escala.",
+    ])
+    h2(doc, "Hitos docentes")
+    table(doc,
+          ["Clase", "Fecha", "Rol docente"],
+          [
+              ["11", "19/10", "Revisión diagramas v1; bloquear dominios demasiado amplios"],
+              ["12", "26/10", "Métricas/pruebas de rendimiento (objetivos cualitativos OK)"],
+              ["14", "09/11", "Parcial 3 + ensayo de pitch (5–8 min)"],
+              ["15", "16/11", "Sustentación/cierre autónoma (Meet corto o video + Q&A)"],
+          ])
+    h2(doc, "Rúbrica detallada")
+    bullets(doc, [
+        "Dominio/servicio (15): problema real, límites claros, no «todo AWS».",
+        "Diagramas (25): legibles, convenciones, separación de concerns.",
+        "Contenedores (20): lab reproducible; si el lab caduca, capturas + Dockerfile bastan.",
+        "CI/CD (15): stages claros; deploy puede ser «echo/simulate».",
+        "Seguridad/costos/escala (10): amenazas básicas, estimación cualitativa, autoescalado conceptual.",
+        "Sustentación (15): preguntas al azar; penalizar si solo un integrante habla.",
+    ])
+    h2(doc, "Evidencias")
+    bullets(doc, [
+        "Repo GitHub o ZIP con .yml, Dockerfile, diagramas PNG, informe.",
+        "Enlace Killercoda/PWD o capturas con timestamp.",
+    ])
+
+
+# ---------------------------------------------------------------------------
+# Markdown kits (fuente editable docente)
+# ---------------------------------------------------------------------------
+
+MD_BD2 = """# Guía docente — Proyecto Integrador · Bases de Datos II · 2026-2
+
+**Privado docente** · No compartir en `Clases/`.
+
+- **Curso:** Bases de Datos II (FI303215 · 641A-2)
+- **Peso:** 20% Corte 3 (Acuerdo)
+- **Dominio estudiante:** VetCare DB
+- **Enunciado:** `Clases/Proyecto Integrador/Enunciado Proyecto Integrador - Bases de Datos II - 2026-2.docx`
+
+## Hitos (Plan 2026-2)
+
+| Clase | Fecha | Foco |
+|---|---|---|
+| 11 | 19/10/2026 | Avance PI — checklist |
+| 12 | 26/10/2026 | Integración app ↔ BD |
+| 14 | 09/11/2026 | Prep. presentación + Parcial 3 |
+| 15 | 16/11/2026 | Sustentación/cierre (autónoma) |
+
+## Rúbrica (100 pts)
+
+Modelo/DDL 20 · Seguridad/respaldo 15 · Programables 25 · Optimización 15 · Integración 10 · Informe+sustentación 15.
+
+## Evidencias
+
+Scripts SQL · ER · capturas Live SQL/DB Fiddle · informe · presentación 5–8 min.
+"""
+
+MD_ARQ = """# Guía docente — Proyecto Integrador · Arquitectura · 2026-2
+
+**Privado docente** · No compartir en `Clases/`.
+
+- **Curso:** Arquitectura de Sistemas Computacionales (FI303380 · 6303C)
+- **Peso:** 20% Corte 3 (Acuerdo)
+- **Dominio estudiante:** CloudLite App
+- **Enunciado:** `Clases/Proyecto Integrador/Enunciado Proyecto Integrador - Arquitectura de Sistemas Computacionales - 2026-2.docx`
+
+## Hitos (Plan 2026-2)
+
+| Clase | Fecha | Foco |
+|---|---|---|
+| 11 | 19/10/2026 | Avance PI — diagramas v1 |
+| 12 | 26/10/2026 | Pruebas de rendimiento |
+| 14 | 09/11/2026 | Prep. presentación + Parcial 3 |
+| 15 | 16/11/2026 | Sustentación/cierre (autónoma) |
+
+## Rúbrica (100 pts)
+
+Dominio/servicio 15 · Diagramas 25 · Contenedores 20 · CI/CD 15 · Seg/costos/escala 10 · Informe+sustentación 15.
+
+## Herramientas
+
+draw.io · Killercoda / Play with Docker · GitHub Actions · **sin** AWS/GCP/Oracle Cloud con tarjeta.
+"""
+
+
+def build_one(curso_dir: Path, meta: dict, build_est, build_doc, md_text: str, slug: str):
+    est_dir = curso_dir / "Clases" / "Proyecto Integrador"
+    kit_dir = curso_dir / "Kit docente" / "Proyecto Integrador"
+    est_dir.mkdir(parents=True, exist_ok=True)
+    kit_dir.mkdir(parents=True, exist_ok=True)
+
+    est_path = est_dir / f"Enunciado Proyecto Integrador - {slug} - 2026-2.docx"
+    doc_path = kit_dir / f"Guia Docente PI - {slug} - 2026-2.docx"
+    md_path = kit_dir / f"Guia Docente PI - {slug} - 2026-2.md"
+
+    d1 = Document()
+    margins(d1)
+    build_est(d1)
+    d1.save(est_path)
+
+    d2 = Document()
+    margins(d2)
+    build_doc(d2)
+    d2.save(doc_path)
+
+    md_path.write_text(md_text, encoding="utf-8")
+    print("OK ->", est_path)
+    print("OK ->", doc_path)
+    print("OK ->", md_path)
+
+
+def build():
+    build_one(
+        ROOT / "Bases de Datos II",
+        BD2_META,
+        enunciado_bd2,
+        guia_bd2,
+        MD_BD2,
+        "Bases de Datos II",
+    )
+    build_one(
+        ROOT / "Arquitectura de Sistemas Computacionales",
+        ARQ_META,
+        enunciado_arq,
+        guia_arq,
+        MD_ARQ,
+        "Arquitectura de Sistemas Computacionales",
+    )
+
+
+if __name__ == "__main__":
+    build()

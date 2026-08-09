@@ -1,0 +1,688 @@
+Contenido de los 12 parciales UNIAJC 2026-2 (4 cursos x 3 cortes).
+Temas exclusivamente desde PLAN_DE_CURSO_2026-2.md de cada curso.
+
+---
+G:\Mi unidad\Trabajos\Empleo\UNIAJ\Cursos
+---
+titulo
+---
+pts
+---
+items
+---
+intro
+---
+curso_dir
+---
+Programacion II
+---
+asignatura
+---
+Programación II
+---
+codigo
+---
+FI303204
+---
+grupo
+---
+341C
+---
+periodo
+---
+2026-2
+---
+horario
+---
+Miércoles 18:00 – 20:00
+---
+meta
+---
+n
+---
+corte
+---
+valor_corte
+---
+10% del Corte 1 (30%)
+---
+fecha
+---
+09/09/2026
+---
+clase
+---
+tiempo
+---
+90–100 minutos
+---
+titulo_parcial
+---
+Parcial 1 — POO, colecciones e interfaces GUI
+---
+cobertura
+---
+Corte 1 · Clases 1 a 5 del Plan de curso 2026-2:
+---
+temas
+---
+secciones_resumen
+---
+archivo
+---
+Parcial 1 - POO colecciones e interfaces GUI
+---
+secciones
+---
+SECCIÓN A — Selección múltiple
+---
+tipo
+---
+mcq
+---
+id
+---
+A1
+---
+pts
+---
+pregunta
+---
+En POO, ¿qué principio permite que una misma operación se comporte de forma distinta según el tipo concreto del objeto?
+---
+opciones
+---
+clave
+---
+c
+---
+nota
+---
+Polimorfismo: misma interfaz, comportamientos distintos.
+---
+A2
+---
+¿Cuál es una característica correcta de ArrayList en Java?
+---
+b
+---
+A3
+---
+Una pila (Stack) opera preferentemente con la política:
+---
+A4
+---
+En una interfaz gráfica Swing/JavaFX típica de clase, el componente más adecuado para capturar un texto corto del usuario es:
+---
+SECCIÓN B — Verdadero / Falso
+---
+vf
+---
+B1
+---
+enunciado
+---
+Un HashSet garantiza el orden de inserción de sus elementos.
+---
+F
+---
+justificacion
+---
+HashSet no garantiza orden; LinkedHashSet sí mantiene orden de inserción.
+---
+B2
+---
+Una cola (Queue) procesa primero el elemento que llegó primero (FIFO).
+---
+V
+---
+Definición estándar de cola.
+---
+B3
+---
+En un Map, cada clave puede asociarse a lo sumo a un valor (en un instante dado).
+---
+Modelo clave→valor; la clave es única.
+---
+B4
+---
+El encapsulamiento consiste en exponer todos los atributos como public para facilitar el acceso.
+---
+Encapsulamiento oculta estado interno y expone acceso controlado.
+---
+Indique V o F y justifique en una línea.
+---
+SECCIÓN C — Desarrollo conceptual
+---
+desarrollo
+---
+C1
+---
+Compare ArrayList, HashMap y HashSet. Indique para cada uno: (1) qué almacena, (2) si permite duplicados y (3) un caso de uso del Proyecto Integrador / dominio académico.
+---
+lineas
+---
+solucion
+---
+C2
+---
+Explique con un ejemplo breve cuándo usaría una pila y cuándo una cola en una aplicación con interfaz gráfica (por ejemplo, deshacer acciones vs. atención de turnos).
+---
+SECCIÓN D — Práctica (Java / GUI)
+---
+practica
+---
+D1
+---
+Diseñe (en código o pseudocódigo Java claro) una clase Producto con atributos encapsulados (codigo, nombre, precio) y un ArrayList<Producto> que permita: agregar, buscar por código y listar.
+---
+requerimientos
+---
+D2
+---
+Dado el siguiente fragmento incompleto, complete la lógica para contar cuántas claves de un Map<String,Integer> tienen valor mayor que 10:
+---
+Map<String,Integer> stock = ...;
+int contador = 0;
+// complete aquí
+System.out.println(contador);
+---
+for (Integer v : stock.values()) if (v != null && v > 10) contador++;
+---
+o entrySet/stream filter. 15 pts si correcto; 8 si idea parcial.
+---
+10% del Corte 2 (30%)
+---
+14/10/2026
+---
+Parcial 2 — Eventos, patrones, QA y persistencia
+---
+Corte 2 · Clases 6 a 10 del Plan de curso 2026-2:
+---
+Parcial 2 - Eventos patrones QA y persistencia
+---
+En una GUI, el patrón de separación típico donde la vista dispara acciones y un controlador responde se relaciona con:
+---
+El patrón Singleton busca:
+---
+Una buena práctica de QA / documentación de código incluye:
+---
+Para persistir una lista de objetos en un archivo de texto/CSV en Java, una opción válida del corte es:
+---
+SECCIÓN B — Emparejamiento
+---
+match
+---
+instruccion
+---
+Empareje el concepto (Columna A) con su descripción (Columna B).
+---
+col_a
+---
+col_b
+---
+1-c, 2-b, 3-a, 4-d (5 pts c/u)
+---
+SECCIÓN C — Desarrollo
+---
+Describa un flujo de evento en GUI: componente → evento → listener/controlador → actualización de modelo/vista. Use un ejemplo (botón Guardar).
+---
+Botón genera ActionEvent; listener ejecuta guardar(); valida modelo; persiste; refresca vista.
+---
+Rúbrica: secuencia completa 8 pts + ejemplo coherente 4 pts.
+---
+Indique 3 criterios para aceptar una refactorización asistida por IA (qué revisar antes de fusionar el cambio).
+---
+Compila/pruebas pasan; comportamiento preservado; estilo legible; sin secretos; cambios mínimos justificados.
+---
+Rúbrica: 4 pts por criterio válido (máx 12) + 1 pt claridad.
+---
+SECCIÓN D — Práctica
+---
+Escriba un método Java (o pseudocódigo estricto) guardarProductos(List<Producto> lista, Path archivo) que escriba codigo;nombre;precio por línea, y otro cargarProductos que reconstruya la lista.
+---
+Manejo básico de IOException (try/catch o throws).
+---
+Indique qué validaciones mínimas haría al cargar (línea mal formada).
+---
+Proponga (texto + bosquejo) cómo conectaría un botón «Exportar» de la GUI con el método de persistencia, sin bloquear indefinidamente la idea de controlador.
+---
+Listener del botón llama al servicio/controlador exportar(); este invoca guardarProductos; muestra mensaje éxito/error.
+---
+Rúbrica: separación vista/control 8 pts + manejo error 7 pts.
+---
+15% del Corte 3 (40%)
+---
+18/11/2026
+---
+Parcial 3 — Integración, excepciones y cierre de proyecto
+---
+Corte 3 · Clases 11 a 15 del Plan de curso 2026-2:
+---
+Parcial 3 - Integracion excepciones y cierre de proyecto
+---
+Una revisión de código cruzada (peer review) busca principalmente:
+---
+Al integrar módulos, un riesgo frecuente es:
+---
+a
+---
+checked vs unchecked en Java (idea del corte): IOException es típicamente:
+---
+En la preparación de la presentación/evaluación del proyecto, un elemento esencial es:
+---
+try/catch permite manejar errores recuperables sin terminar abruptamente toda la aplicación.
+---
+Manejo controlado de excepciones.
+---
+Integrar módulos solo consiste en copiar/pegar clases en un único archivo .java.
+---
+Implica contratos, dependencias, pruebas de integración y estructura de paquetes.
+---
+finally se ejecuta (salvo casos extremos de aborto de JVM) tanto si hubo excepción como si no.
+---
+Bloque de limpieza típico.
+---
+Una buena checklist de code review incluye legibilidad, nombres, manejo de errores y cobertura de casos límite.
+---
+Práctica estándar de revisión cruzada.
+---
+SECCIÓN C — Caso de integración
+---
+Su Proyecto Integrador tiene módulos: (1) dominio/modelo, (2) persistencia en archivo, (3) GUI. Describa un plan de integración de 4 pasos y 2 pruebas de integración que ejecutaría antes de la sustentación.
+---
+Complete un manejo de excepciones adecuado para lectura de archivo. Indique qué mensaje mostraría al usuario y qué registraría para depuración.
+---
+public List<Producto> cargar(Path p) {
+  // proponga try/catch/finally o try-with-resources
+}
+---
+try-with-resources; capturar IOException; mensaje amigable; log/print stack en consola docente.
+---
+No tragar excepción vacía. 20 pts completo; 10 parcial.
+---
+Redacte 5 ítems de una checklist de revisión de código cruzada aplicables a un PR/módulo Java del curso.
+---
+Compila; nombres claros; sin código muerto; excepciones manejadas; pruebas/manual smoke; encapsulamiento; sin secretos.
+---
+3 pts por ítem válido (máx 15).
+---
+Seminario de Sistemas
+---
+FI303301
+---
+Jueves 18:00 – 20:00
+---
+10/09/2026
+---
+Parcial 1 — Ciclos de vida y metodologías
+---
+Parcial 1 - Ciclos de vida y metodologias
+---
+El ciclo de vida del software describe:
+---
+El modelo en cascada se caracteriza por:
+---
+Una diferencia clave de las metodologías ágiles frente a las tradicionales es:
+---
+Scrum, como marco ágil, organiza el trabajo típicamente en:
+---
+Empareje metodología/modelo con su rasgo distintivo.
+---
+1-c, 2-b, 3-a, 4-d
+---
+Defina ciclo de vida del software y nombre al menos 4 fases típicas, explicando el propósito de cada una en una línea.
+---
+Definición + fases: requisitos, diseño, implementación, pruebas, despliegue, mantenimiento.
+---
+Rúbrica: 4 definición + 8 fases (2 c/u).
+---
+Compare en una tabla mental (texto) metodologías tradicionales vs ágiles en: cambio de requisitos, documentación y frecuencia de entrega.
+---
+SECCIÓN D — Caso de estudio
+---
+Caso: una clínica veterinaria necesita un sistema de citas. Los requisitos aún son inciertos y el cliente quiere ver avances cada 2 semanas.
+---
+contexto
+---
+Justifique con argumentos del Corte 1 (ciclos de vida y metodologías).
+---
+15/10/2026
+---
+Parcial 2 — Requerimientos, UML y casos de uso
+---
+Parcial 2 - Requerimientos UML y casos de uso
+---
+Un requerimiento funcional describe:
+---
+El formato típico de historia de usuario es:
+---
+UML es:
+---
+En un diagrama de casos de uso, un actor representa:
+---
+Los requerimientos no funcionales incluyen aspectos como rendimiento, seguridad y usabilidad.
+---
+Calidad del servicio / restricciones.
+---
+Una historia de usuario no necesita criterios de aceptación.
+---
+Los criterios de aceptación definen «terminado».
+---
+include en casos de uso indica comportamiento común reutilizado por otros casos.
+---
+Relación include de UML.
+---
+UML solo sirve para dibujar pantallas (wireframes) y no modela comportamiento.
+---
+UML cubre estructura y comportamiento (casos de uso, secuencia, etc.).
+---
+SECCIÓN C — Historias y requerimientos
+---
+Escriba 2 requerimientos funcionales y 2 no funcionales para un sistema de préstamo de equipos en la universidad.
+---
+Redacte 2 historias de usuario con criterios de aceptación (al menos 2 criterios por historia).
+---
+Formato rol/quiero/para + criterios Given/When/Then o lista verificable.
+---
+Rúbrica: 6 y 7 pts por historia completa.
+---
+SECCIÓN D — Caso UML / casos de uso
+---
+Para un sistema de inscripción a electivas:
+---
+19/11/2026
+---
+Parcial 3 — UML avanzado, interfaces y proyecto
+---
+Parcial 3 - UML avanzado interfaces y proyecto
+---
+Un diagrama de secuencia UML enfatiza:
+---
+En un diagrama de clases, la multiplicidad 1..* en una asociación indica:
+---
+Una buena práctica de diseño de interfaces (UI) es:
+---
+En la sustentación del proyecto integrador se espera principalmente:
+---
+Relacione el artefacto con su propósito.
+---
+1-a, 2-b, 3-c, 4-d
+---
+SECCIÓN C — Diseño UML / UI
+---
+Proponga 3 clases del dominio de su proyecto (nombre + 2 atributos + 1 relación entre ellas).
+---
+Clases coherentes al dominio + relación (asociación/composición) justificada.
+---
+4 pts por clase/relación bien planteada (máx 12).
+---
+Liste 4 principios o heurísticas de UI aplicables a la pantalla principal de su sistema y explique cada una en una línea.
+---
+Visibilidad de estado; correspondencia con mundo real; consistencia; prevención de errores; feedback.
+---
+Rúbrica: ~3 pts c/u.
+---
+SECCIÓN D — Caso de sustentación
+---
+Elabore un guion breve de sustentación (máx. estructura pedida) para el Proyecto Integrador del Seminario:
+---
+Coherencia problema-objetivo-alcance; UML con propósito; UI navegable; riesgos realistas.
+---
+Asignar pts según rúbrica del enunciado.
+---
+Bases de Datos II
+---
+FI303215
+---
+641A-2
+---
+Lunes 18:00 – 20:00
+---
+07/09/2026
+---
+Parcial 1 — Administración, procedimientos y seguridad
+---
+Parcial 1 - Administracion procedimientos y seguridad
+---
+Un procedimiento almacenado es:
+---
+Un trigger (disparador) se ejecuta:
+---
+Una función almacenada, a diferencia típica de un procedimiento, suele:
+---
+Una práctica de seguridad en BD es:
+---
+Un respaldo (backup) completo permite recuperar la BD ante pérdida o corrupción, según la política definida.
+---
+Objetivo del backup/restore.
+---
+GRANT y REVOKE no tienen relación con el control de acceso en SQL.
+---
+Son el mecanismo estándar de privilegios.
+---
+Los disparadores pueden usarse para auditar cambios (registrar quién modificó qué).
+---
+Caso típico de auditoría.
+---
+La administración de BD incluye usuarios, espacios, mantenimiento y monitoreo, no solo escribir SELECT.
+---
+Alcance DBA alineado al plan.
+---
+SECCIÓN C — SQL / objetos programables
+---
+Escriba un procedimiento almacenado (sintaxis MySQL/PostgreSQL o SQL claro) sp_registrar_prestamo que reciba id_usuario, id_equipo y valide que el equipo esté disponible antes de insertar.
+---
+Parámetros IN; SELECT estado; IF disponible THEN INSERT; ELSE señal/error.
+---
+Rúbrica: firma 4 + validación 6 + insert/error 5.
+---
+Proponga un trigger AFTER UPDATE sobre una tabla Prestamo que inserte un registro en Auditoria_Prestamo con fecha y valores relevantes.
+---
+AFTER UPDATE ON Prestamo FOR EACH ROW INSERT INTO Auditoria… NEW/OLD.
+---
+Rúbrica: evento correcto 4 + cuerpo 6.
+---
+SECCIÓN D — Caso seguridad y respaldo
+---
+Una pyme pierde datos por borrado accidental. Diseñe una política mínima de seguridad y respaldo:
+---
+Roles app_readonly/app_write/dba; backups diarios + semanal completo; restore drill; SP con validaciones.
+---
+Asignar según rúbrica del enunciado.
+---
+05/10/2026
+---
+Parcial 2 — Optimización, índices y transacciones
+---
+Corte 2 · Clases 6 a 9 del Plan (Parcial en Clase 9; Clase 10 autónoma de refuerzo sin parcial):
+---
+Parcial 2 - Optimizacion indices y transacciones
+---
+Un índice B-Tree típico ayuda principalmente a:
+---
+EXPLAIN / plan de ejecución se usa para:
+---
+ACID: la «A» (Atomicity) significa:
+---
+El particionamiento de tablas busca, entre otros:
+---
+Empareje concepto de transacciones/tuning.
+---
+SECCIÓN C — Optimización SQL
+---
+Dada la consulta: SELECT * FROM Pedido WHERE fecha >= '2026-01-01' AND cliente_id = 45; proponga 3 mejoras de optimización (índices, proyección de columnas, etc.) y justifique.
+---
+Evitar SELECT *; índice (cliente_id, fecha); estadísticas actualizadas; evitar funciones sobre columna filtrada.
+---
+5 pts por mejora válida justificada (máx 15).
+---
+Explique una ventaja y un costo/riesgo de crear muchos índices en una tabla de alta escritura.
+---
+Ventaja: lecturas más rápidas. Costo: más espacio y escrituras más lentas (mantenimiento de índices).
+---
+SECCIÓN D — Caso transacciones / tuning
+---
+Transferencia entre cuentas: debitar A y acreditar B debe ser atómica.
+---
+09/11/2026
+---
+Parcial 3 — Integración, casos y cierre de proyecto
+---
+Corte 3 · Clases 11 a 14 del Plan (Parcial en Clase 14; Clase 15 autónoma sin parcial):
+---
+Parcial 3 - Integracion casos y cierre de proyecto
+---
+Integrar una aplicación externa con la BD típicamente requiere:
+---
+Un anti-patrón al integrar apps con BD es:
+---
+En el análisis de casos reales de BD se busca:
+---
+Para la presentación final del proyecto de BD II es clave mostrar:
+---
+Una API que consume la BD debe validar entradas para reducir inyección SQL y datos inválidos.
+---
+Seguridad en integración.
+---
+La integración externa nunca necesita considerar transacciones o consistencia.
+---
+La consistencia sigue siendo crítica en integraciones.
+---
+Documentar supuestos y limitaciones fortalece la sustentación del proyecto.
+---
+Transparencia académica/profesional.
+---
+Un avance de proyecto final debería alinear entregables con los RAA del microcurrículo (seguridad, procedimientos, optimización).
+---
+Trazabilidad curricular.
+---
+SECCIÓN C — Integración
+---
+Diseñe la integración de una app web/móvil con su BD del proyecto: componentes, flujo de autenticación a BD (o vía API), y 3 fallos a manejar (timeout, dato duplicado, permiso denegado).
+---
+App → API → BD; pool conexiones; errores mapeados a mensajes.
+---
+Rúbrica: arquitectura 10 + auth/acceso 7 + fallos 8.
+---
+SECCIÓN D — Caso / sustentación
+---
+Prepare un esquema de presentación final (guion) de su proyecto de BD II:
+---
+Evaluar completitud y coherencia con RAA del curso; pts según rúbrica.
+---
+Arquitectura de Sistemas Computacionales
+---
+FI303380
+---
+[PENDIENTE — grupo]
+---
+Lunes 10:00 – 12:00
+---
+Parcial 1 — Cloud, virtualización y distribuidos
+---
+Parcial 1 - Cloud virtualizacion y distribuidos
+---
+IaaS se caracteriza por ofrecer principalmente:
+---
+Respecto a máquinas virtuales y contenedores:
+---
+Una ventaja de microservicios frente a un monolito es:
+---
+En arquitecturas distribuidas, un desafío típico es:
+---
+Empareje modelo/concepto con ejemplo o rasgo.
+---
+Compare IaaS, PaaS y SaaS indicando qué gestiona el proveedor vs el cliente en cada uno (visión de responsabilidad).
+---
+IaaS: cliente gestiona SO/runtime/app; PaaS: cliente app/datos; SaaS: cliente solo uso/configuración.
+---
+Rúbrica: 4 pts por modelo bien contrastado.
+---
+Explique 2 beneficios y 2 retos de adoptar microservicios en un sistema académico pequeño.
+---
+Beneficios: escalado selectivo, despliegues independientes.
+---
+Retos: observabilidad, latencia de red, consistencia, DevOps.
+---
+SECCIÓN D — Caso de diseño
+---
+Diseñe una arquitectura cloud inicial para un sistema de gestión de laboratorios con módulos: autenticación, reservas y notificaciones.
+---
+Auth/reservas en contenedores PaaS; email SaaS; riesgos: latencia, fallos parciales, secretos.
+---
+Pts según rúbrica del enunciado.
+---
+Parcial 2 — Seguridad, redes, monitoreo y CI/CD
+---
+Parcial 2 - Seguridad redes monitoreo y CI-CD
+---
+El modelo de responsabilidad compartida en cloud implica:
+---
+Object storage (p. ej. buckets) se usa típicamente para:
+---
+CI (Integración Continua) busca principalmente:
+---
+Una métrica útil de monitoreo de un servicio cloud es:
+---
+Exponer puertos innecesarios en un grupo de seguridad/firewall aumenta la superficie de ataque.
+---
+Principio de mínimo acceso de red.
+---
+CD (Continuous Delivery/Deployment) automatiza la ruta hacia entornos (con controles) tras CI.
+---
+Pipeline de entrega.
+---
+El monitoreo solo sirve después de un incidente grave, no de forma continua.
+---
+Monitoreo proactivo y alertas.
+---
+VPC/redes virtuales permiten aislar recursos y controlar tráfico entre subredes.
+---
+Aislamiento de red cloud.
+---
+SECCIÓN C — Seguridad y operaciones
+---
+Liste 4 controles de seguridad cloud aplicables a un API de microservicios (identidad, red, secretos, logs).
+---
+IAM/roles; TLS; secret manager; WAF/SG; logging/auditoría.
+---
+3 pts por control válido (máx 12).
+---
+Explique la diferencia entre almacenamiento de bloques, archivos y objetos con un ejemplo de uso cloud para cada uno.
+---
+Block: discos de VM; File: NFS compartido; Object: backups/media en bucket.
+---
+SECCIÓN D — Caso CI/CD + monitoreo
+---
+Diseñe un pipeline CI/CD sencillo (etapas) para un microservicio containerizado y defina 3 alertas de monitoreo post-despliegue.
+---
+CI: lint/test/build image; CD: staging→prod con aprobación; alertas: 5xx, latencia p95, CPU.
+---
+Parcial 3 — Rendimiento, escalabilidad y cierre de proyecto
+---
+Parcial 3 - Rendimiento escalabilidad y cierre de proyecto
+---
+Una prueba de carga (load test) busca:
+---
+Escalabilidad horizontal significa típicamente:
+---
+El autoescalado (autoscaling) reacciona generalmente a:
+---
+En la preparación de la presentación final arquitectónica conviene incluir:
+---
+Empareje tipo de prueba/escalado con su definición.
+---
+SECCIÓN C — Rendimiento y escalabilidad
+---
+Defina 3 métricas de rendimiento que mediría en su API y un umbral de aceptación ejemplo para cada una.
+---
+p95 latencia, error rate, throughput; umbrales realistas justificados.
+---
+Explique cuándo preferiría escalado vertical vs horizontal y un límite de cada enfoque.
+---
+Vertical: simple hasta techo de máquina; horizontal: más nodos, necesita stateless/balanceo.
+---
+Elabore el guion de sustentación de su proyecto de Arquitectura (enfoque cloud):
+---
+Coherencia arquitectura-pruebas-escalado; trade-offs claros; sin secretos en láminas.

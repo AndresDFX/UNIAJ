@@ -1,0 +1,30 @@
+Imagen 4
+Fuente de p
+rrafo predeter.
+Tabla normal
+Sin lista
+Encabezado
+Pie de p
+Texto nota pie
+Ref. de nota al pie
+Texto independiente
+Texto independiente 2
+Texto independiente 3
+mero de p
+Tabla con cuadr
+Estilo TDC 1 + Antes:  4 pto
+Estilo TDC 1 + Antes:  4 pto1
+Times New Roman
+Aptos Display
+Courier New
+Wingdings
+Cambria Math
+PAGP-001!CONTROL DE DOCUMENTOS Y REGISTROS
+Documento Registro
+Diana Carolina Rodr
+guez Ordo
+'GUSTAVO ADOLFO OVIEDO BAYAN'
+Root Entry
+WordDocument
+SummaryInformation
+DocumentSummaryInformation

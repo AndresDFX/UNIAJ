@@ -1,0 +1,71 @@
+
+Sesión
+Trabajo Dirigido
+Trabajo Independiente Dirigido
+Trabajo Independiente
+1
+Acuerdo y conceptos
+Reconocimiento del estudiante
+Diagnóstico y lectura
+2
+Ciclos de vida
+Taller proyecto SWEBOK
+Lecturas sobre SWEBOK
+3
+Metodologías tradicionales
+Exposiciones de estudiantes
+Plan de proyecto
+4
+Metodologías ágiles
+Exposiciones de estudiantes
+Plan de proyecto
+5
+Caso estudio evaluativo
+Desarrollo del caso
+Estudio y repaso
+6
+Requerimientos de software
+Identificación de requerimientos
+Ejercicios de requerimientos
+7
+Historias de usuario
+Taller creación historias
+Búsqueda ejemplos reales
+8
+Introducción a UML
+Diagramas UML básicos
+Investigación mejores prácticas
+9
+Casos de uso
+Aplicación en proyecto
+Diseño casos uso
+10
+Caso estudio evaluativo
+Desarrollo del caso
+Estudio y repaso
+11
+Avance proyecto integrador
+Revisión de avance
+Actualización de aportes
+12
+Diagramas UML avanzados
+Exposiciones de estudiantes
+Práctica diagramas proyecto
+13
+Diseño de interfaces
+Análisis interfaces reales
+Creación de mockups
+14
+Evaluación final
+Desarrollo caso estudio
+Preparación de sustentación
+15
+Sustentación de proyectos
+Pitch por grupos
+Ajustes documento final
+16
+Reflexión y balance
+Cierre de curso
+Autoevaluación del proceso
+
+VoBo_______________________________________  Fecha_____________________________________
