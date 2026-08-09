@@ -34,6 +34,16 @@ Thumbs.db
 ~$*
 *.tmp
 
+# ── Credenciales ─────────────────────────────────────────────────────
+# Token OAuth de Drive (lo crea exportar_google_a_office.py). NUNCA se commitea.
+config/slides/.drive_token.json
+*token*.json
+credentials*.json
+
+# Copia temporal de la base de metadatos de Drive
+config/slides/_tmp_drivemeta/
+config/slides/_export_fallidos.json
+
 # ── Python ───────────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
