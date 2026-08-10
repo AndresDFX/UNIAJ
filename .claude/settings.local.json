@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /tmp/micro_extract)",
+      "Read(//tmp/**)",
+      "Bash(rm -rf *)",
+      "Bash(unzip -o \"/g/My Drive/Trabajos/Empleo/UNIAJ/Cursos/Arquitectura de Sistemas Computacionales/Plan curso/Microcurrriculo - FI303380- ARQUITECTURA DE SISTEMAS COMPUTACIONALES \\(Enfoque Cloud\\) - 20242.docx\" -d .)",
+      "Bash(python -c ' *)"
+    ]
+  }
+}
