@@ -7,6 +7,14 @@ Clases grabadas/
 *.mov
 *.webm
 
+# ── Informacion privada de estudiantes ───────────────────────────────
+# Listados de grupo (nombre, cedula, correo) exportados por Secretaria,
+# con nombre "<grupo> - <CURSO>.xlsx/.xls" en la raiz de cada curso.
+# Nunca van al repo: es informacion privada del estudiante, no material
+# de curso. Se quedan en Drive, fuera de git. Ver memory/uniajc-sin-campus-virtual.md.
+[0-9]*[A-Z] - *.xls
+[0-9]*[A-Z] - *.xlsx
+
 # ── Incidente de recuperacion de Drive (2026-08-08, ya resuelto) ─────
 # Scripts operativos de una sola vez (lectura de cookies del navegador,
 # IDs de archivos de Drive, logs). Sin credenciales reales, pero es

@@ -2,7 +2,7 @@
 
 
 
-"""Presentacion del Curso — Seminario de Sistemas (UNIAJC · 2026-1)."""
+"""Presentacion del Curso — Seminario de Sistemas (UNIAJC · 2026-2)."""
 
 
 
@@ -107,7 +107,7 @@ def build():
 
 
 
-        'Código: **FI303301** · Grupo: **341C** · Periodo: **2026-1**',
+        'Código: **FI303301** · Grupo: **341C** · Periodo: **2026-2**',
 
 
 
@@ -127,7 +127,7 @@ def build():
 
 
 
-    ], inicio_clase='20:10')
+    ], inicio_clase='18:10')
 
 
 
@@ -373,6 +373,10 @@ def build():
 
 
 
+        '@@ExamLab@@ (https://examlab.lovable.app/): entrega de talleres + quices/parciales del curso.',
+
+
+
         'Material: carpeta compartida `Clases/` (Presentación del Curso y Clase N).',
 
 
@@ -389,7 +393,7 @@ def build():
 
 
 
-            ('aclaracion', 'Día 1: Sesión 0 (Presentación del curso, archivo aparte) + Clase 1 (diagnóstico + Conceptos iniciales). Material estudiante solo en carpeta Clases/.'),
+            ('aclaracion', 'Día 1: Sesión 0 (Presentación del curso, archivo aparte) + Clase 1 (diagnóstico + Conceptos iniciales). Material estudiante solo en carpeta Clases/. Talleres y quices/parciales en ExamLab (https://examlab.lovable.app/).'),
 
 
 
@@ -411,6 +415,7 @@ def build():
             {"name": "draw.io", "logo": "drawio.png", "note": "Diagramas UML"},
             {"name": "Mermaid", "logo": "mermaid.png", "note": "Docs as Code"},
             {"name": "Padlet", "logo": "padlet.png", "note": "Rompe-hielo"},
+            {"name": "ExamLab", "logo": "examlab.png", "note": "Talleres + quices/parciales"},
         ],
         title="Herramientas del curso",
         sub="Gratis en navegador · Draw.io / Mermaid",
@@ -427,7 +432,7 @@ def build():
 
 
 
-        'Seminario de Sistemas · Grupo **341C** · 2026-1',
+        'Seminario de Sistemas · Grupo **341C** · 2026-2',
 
 
 

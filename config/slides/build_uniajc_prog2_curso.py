@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from uniajc_slides_engine import (
     new_prs, course_cover, tutor_slide, padlet_slide, content_slide, table_content,
     evaluacion_cortes_slide, contenido_clases_slide,
-    box_note_slide, closing_slide,
+    box_note_slide, herramientas_slide, closing_slide,
 )
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -71,7 +71,7 @@ def build():
             "**Sesión 0 (hoy)** = logística + acuerdo pedagógico + evaluación + CONTENIDO + **socialización del Proyecto Integrador**.",
             "**Clase 1** (material en archivo aparte) = diagnóstico de conocimientos previos + arranque temático — mismo bloque de hoy.",
             "Cada miércoles (120 min): **Teoría Core** → **Taller Guiado** → **cierre**. Modalidad: **Presencialidad asistida**: Clase 1 y parciales **presencial**; resto **virtual síncrona**; festivos = **clase autónoma**.",
-            "Taller calificable: entrega máxima el **domingo 23:59**.",
+            "Talleres y quices/parciales se entregan/presentan en @@ExamLab@@ (https://examlab.lovable.app/) — no es la plataforma oficial de la UNIAJC, la usamos solo para esto. Taller calificable: entrega máxima el **domingo 23:59**.",
             "Hilo conductor de todo el semestre: **Proyecto Integrador** continuo. Enfoque: aprender haciendo · aprendizaje invertido.",
         ],
         idx=6,
@@ -98,8 +98,8 @@ def build():
             {"n": 1, "tema": "Diagnóstico · Introducción a POO", "fecha": "12/08"},
             {"n": 2, "tema": "Colecciones dinámicas ArrayList", "fecha": "19/08"},
             {"n": 3, "tema": "Pilas y colas", "fecha": "26/08"},
-            {"n": 4, "tema": "Mapas y conjuntos", "fecha": "02/09"},
-            {"n": 5, "tema": "Interfaces gráficas GUI · Parcial 1", "fecha": "09/09"},
+            {"n": 4, "tema": "Mapas, conjuntos e interfaces gráficas GUI", "fecha": "02/09"},
+            {"n": 5, "tema": "Parcial 1", "fecha": "09/09"},
             {"n": 6, "tema": "Eventos y controladores", "fecha": "16/09"},
             {"n": 7, "tema": "Patrones de diseño", "fecha": "23/09"},
             {"n": 8, "tema": "Documentación y QA", "fecha": "30/09"},
@@ -109,7 +109,7 @@ def build():
             {"n": 12, "tema": "Integración de módulos", "fecha": "28/10"},
             {"n": 13, "tema": "Control de excepciones", "fecha": "04/11"},
             {"n": 14, "tema": "Preparación presentación final", "fecha": "11/11"},
-            {"n": 15, "tema": "Parcial 3 · Cierre", "fecha": "18/11"},
+            {"n": 15, "tema": "Parcial 3", "fecha": "18/11"},
         ],
         title="CONTENIDO",
         sub="Día 1: Sesión 0 (Presentación del curso) + Clase 1 (diagnóstico · tema)",
@@ -131,6 +131,7 @@ def build():
         prs, "Recursos",
         [
             "IDE recomendado: IntelliJ IDEA / VS Code / NetBeans (Java 17+).",
+            "@@ExamLab@@ (https://examlab.lovable.app/): entrega de talleres + quices/parciales del curso.",
             "Bibliografía (microcurrículo): Deitel & Deitel · Design Patterns (GoF) · Head First Design Patterns · JavaFX Docs.",
             "Material de clase: carpeta `Clases/Clase N` + talleres; guiones en `Guiones/` / `Kit docente/`.",
         ],
@@ -141,10 +142,24 @@ def build():
         prs, "Acuerdos importantes",
         [
             ("info", "Horario fijo del grupo 341C: miércoles 18:00–20:00 · Norte-Noche."),
-            ("aclaracion", "Los talleres guiados se entregan a más tardar el domingo 23:59 de la semana correspondiente."),
+            ("aclaracion", "Los talleres guiados se entregan en ExamLab (https://examlab.lovable.app/) a más tardar el domingo 23:59 de la semana correspondiente."),
             ("advertencia", "La asistencia tiene peso en cada corte (10% / 10% / 5%). Llega a tiempo y participa."),
         ],
         idx=11,
+    )
+
+    herramientas_slide(
+        prs,
+        [
+            {"name": "IntelliJ IDEA", "logo": "intellij.png", "note": "IDE recomendado"},
+            {"name": "VS Code", "logo": "vscode.png", "note": "IDE alterno"},
+            {"name": "NetBeans", "logo": "netbeans.png", "note": "IDE alterno"},
+            {"name": "Java", "logo": "java.png", "note": "JDK 17+"},
+            {"name": "ExamLab", "logo": "examlab.png", "note": "Talleres + quices/parciales"},
+        ],
+        title="Herramientas del curso",
+        sub="Gratis · IDE a elección · entrega/evaluación",
+        idx=12,
     )
 
     closing_slide(

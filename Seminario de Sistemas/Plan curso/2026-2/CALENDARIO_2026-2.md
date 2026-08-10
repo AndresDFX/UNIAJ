@@ -4,15 +4,13 @@
 - **Grupo:** 341C
 - **Periodo:** 2026-2 · **10/08/2026 – 22/11/2026**
 - **Horario:** Jueves **18:00 – 20:00** (120 min)
-- **Modalidad:** Presencialidad asistida (encuentros de jueves **virtuales síncronos** · parciales presencial · festivos autónomos)
+- **Modalidad:** Presencialidad asistida (**Clase 1 presencial** · resto de jueves **virtuales síncronos** · parciales presencial · festivos autónomos)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
 - **Total clases:** 15 (festivos = **clase autónoma**, no se omiten)
 
 ## Cortes teóricos (30% / 30% / 40%)
 
-Criterio de modalidad por sesión (fijo 2026-2 · pedido docente): modalidad del curso = **Presencialidad asistida**. Clases regulares de **jueves = virtual síncrona** (incluye Clase 1); parciales = siempre **presencial síncrono** (aunque el día habitual sea virtual); festivos = clase autónoma (sin parcial). Los parciales NUNCA se programan en día festivo ni en clase autónoma.
-
-> **Conflicto resuelto (prioridad pedido docente):** builds previos podían sugerir «Clase 1 presencial» genérico; el docente indicó que **la del jueves es virtual**. Se aplica: Seminario Clase 1 = **virtual síncrona**; parciales = **presencial**.
+Criterio de modalidad por sesión (fijo 2026-2): modalidad del curso = **Presencialidad asistida**. **Clase 1 = presencial**; clases regulares **2-15 = virtual síncrona**; parciales = siempre **presencial síncrono**; festivos = clase autónoma (sin parcial). Los parciales NUNCA se programan en día festivo ni en clase autónoma.
 
 | Corte | % | Ventana | Clases | Parcial de cierre | Desglose teórico |
 |---|---|---|---|---|---|
@@ -28,7 +26,7 @@ Criterio de modalidad por sesión (fijo 2026-2 · pedido docente): modalidad del
 
 | Clase | Fecha | Tipo | Nota |
 |---|---|---|---|
-| 1 | 13/08/2026 | Virtual (síncrona) | — |
+| 1 | 13/08/2026 | Presencial | — |
 | 2 | 20/08/2026 | Virtual (síncrona) | — |
 | 3 | 27/08/2026 | Virtual (síncrona) | — |
 | 4 | 03/09/2026 | Virtual (síncrona) | — |

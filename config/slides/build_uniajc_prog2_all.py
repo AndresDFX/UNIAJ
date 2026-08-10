@@ -69,7 +69,7 @@ GRIS = RGBColor(0x2B, 0x2B, 0x2B)
 BLANCO = RGBColor(0xFF, 0xFF, 0xFF)
 ROJO = RGBColor(0xA0, 0x20, 0x30)
 FONT = "Calibri"
-EXAMLAB = "ExamLab (examlab.lovable.app/app)"
+EXAMLAB = "ExamLab (https://examlab.lovable.app/)"
 
 PARCIALES = {
     5: ("Parcial 1", "Parcial 1 - POO colecciones e interfaces GUI.docx"),

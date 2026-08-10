@@ -959,7 +959,23 @@ def cover_pptx(prs, c):
 
 def build_pptx(c):
     if c['tipo'] == 'parcial':
-        return None
+        prs = new_prs()
+        class_cover(prs, c['titulo'], subtitulo="Solo evaluacion", clase_n=c['n'], idx=1)
+        content_slide(prs, "Indicaciones", [
+            "Hoy es **solo Parcial** (presencial sincrono).",
+            "No hay tema nuevo ni taller del PI en esta sesion.",
+            "Duracion sugerida: **90-100 min** dentro del bloque de 120.",
+            "El avance del PI VetCare DB continua en la siguiente clase regular.",
+        ], idx=2)
+        closing_slide(prs, f"{c['titulo']} · Clase {c['n']}",
+                      ["Enfocados en la evaluacion del corte",
+                       "El PI VetCare DB continua la proxima clase"],
+                      accent="Solo evaluacion")
+        out_dir = CLASES_DIR / f"Clase {c['n']} - {c['titulo']}"
+        out_dir.mkdir(parents=True, exist_ok=True)
+        out = out_dir / "Presentacion.pptx"
+        prs.save(str(out)); print("PPTX", out)
+        return out
     prs = new_prs(); cover_pptx(prs, c); idx = 2
     tipo_lbl = "autonoma (festivo)" if c['tipo']=='autonoma' else "regular"
     # 2ª slide: encuadre / objetivos (contenido que salió de la portada)
@@ -1029,12 +1045,12 @@ def build_pptx(c):
         f"**Entregable:** {c['entregable']}",
         "Evidencia en playground (enlace) o archivo SQL/PNG del equipo.",
         "Actualizar checklist PI (que criterio de rubrica avanzo).",
-        "@@Entrega en ExamLab@@ (Talleres) — domingo 23:59 cuando aplique taller.",
+        "@@Entrega en ExamLab@@ (https://examlab.lovable.app/) — domingo 23:59 cuando aplique taller.",
     ], idx=idx); idx += 1
     box_note_slide(prs, "Para el PI esta semana", [
         ("info", f"Hito: {c['hito_pi']}"),
         ("aclaracion", "Enunciado completo: Clases/Proyecto Integrador/ (VetCare DB)."),
-        ("advertencia", "Taller de la semana en ExamLab: domingo 23:59 (regla del Acuerdo) cuando aplique."),
+        ("advertencia", "Taller de la semana en ExamLab (https://examlab.lovable.app/): domingo 23:59 (regla del Acuerdo) cuando aplique."),
     ], idx=idx); idx += 1
     # El QUIZ no va en el material del estudiante: ni proyectado ni anunciado.
     # Vive solo en Kit docente/Clase N/ (enunciados + CLAVE DOCENTE aparte), que

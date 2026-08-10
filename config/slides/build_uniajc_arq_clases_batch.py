@@ -42,6 +42,7 @@ from uniajc_slides_engine import (  # noqa: E402
     PP_ALIGN,
     Pt as EPt,
     SW,
+    SH,
     WHITE,
     _rich,
     _run,
@@ -57,6 +58,45 @@ from uniajc_slides_engine import (  # noqa: E402
 ROOT = Path(__file__).resolve().parents[2]
 CURSO = ROOT / "Arquitectura de Sistemas Computacionales"
 SLIDES_DIR = Path(__file__).resolve().parent
+
+# Marcador interno "[CAP: token] descripcion" en las bullets de slides_extra: le
+# recuerda al docente que tome esa captura antes de clase (ver Kit docente/Capturas/
+# README.txt). NUNCA debe llegar literal a la diapositiva del estudiante. Donde ya
+# existe la captura real (o su ilustracion "salida esperada"), se inserta la imagen
+# y se limpia el texto; donde todavia no existe, solo se limpia el texto.
+_CAP_RE = re.compile(r"📸?\s*\[CAP:\s*([\w-]+)\]\s*")
+CAPTURAS_REALES = {
+    "docker-ps": CURSO / "Kit docente" / "Clase 3" / "Capturas" / "salida-docker-ps.png",
+    "actions-yml": CURSO / "Kit docente" / "Clase 8" / "Capturas" / "salida-actions-run.png",
+}
+
+
+def _limpiar_y_capturar(bullets_):
+    """Quita el marcador [CAP:] de las bullets y devuelve la ruta de imagen real
+    a insertar en la diapositiva, si existe alguna para los tokens presentes."""
+    limpias, imagen = [], None
+    for b in bullets_:
+        tokens = _CAP_RE.findall(b)
+        b2 = _CAP_RE.sub("", b).strip()
+        b2 = re.sub(r"\s*·\s*$", "", b2).strip()
+        limpias.append(b2)
+        for t in tokens:
+            ruta = CAPTURAS_REALES.get(t)
+            if ruta and ruta.exists():
+                imagen = ruta
+    return limpias, imagen
+
+
+def _add_captura(slide, ruta_png):
+    """Inserta la captura real en la esquina inferior derecha de una content_slide,
+    sin tapar las vinetas (ancho fijo moderado, alto proporcional real)."""
+    from PIL import Image as _PILImage
+    iw, ih = _PILImage.open(str(ruta_png)).size
+    w = 3.4
+    h = w * ih / iw
+    x = SW - MARGIN - w
+    y = SH - MARGIN - h
+    slide.shapes.add_picture(str(ruta_png), Inches(x), Inches(y), width=Inches(w), height=Inches(h))
 
 AZUL = RGBColor(0x09, 0x52, 0x92)
 CIAN_D = RGBColor(0x26, 0x9C, 0xCB)
@@ -965,7 +1005,10 @@ def build_pptx(c: dict) -> Path:
     ], idx=idx)
     idx += 1
     for title, bullets_ in c["slides_extra"]:
-        content_slide(prs, title, bullets_, idx=idx)
+        bullets_limpias, imagen = _limpiar_y_capturar(bullets_)
+        slide = content_slide(prs, title, bullets_limpias, idx=idx)
+        if imagen:
+            _add_captura(slide, imagen)
         idx += 1
     dg = DIAGRAMAS.get(n)
     if dg:
@@ -986,7 +1029,7 @@ def build_pptx(c: dict) -> Path:
     idx += 1
     box_note_slide(prs, "Para continuar (PI)", [
         ("info", f"Entregable: {c['entregable']}"),
-        ("aclaracion", "Subir evidencias al paquete CloudLite (Drive/repo) y a ExamLab domingo 23:59."),
+        ("aclaracion", "Subir evidencias al paquete CloudLite (Drive/repo) y a ExamLab (https://examlab.lovable.app/) domingo 23:59."),
         ("advertencia", "Sin cloud de pago ni instalaciones obligatorias de hipervisores/Docker Desktop."),
     ], idx=idx)
     idx += 1

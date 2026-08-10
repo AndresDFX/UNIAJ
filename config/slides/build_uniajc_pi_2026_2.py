@@ -10,6 +10,7 @@ Docente (privado):
 """
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 
@@ -49,6 +50,21 @@ def _run(run, *, size=11, bold=False, color=GRIS, name=FONT):
     run.font.color.rgb = color
 
 
+def _run_inline(p, text, *, size=11, bold=False, color=GRIS):
+    """Soporta el marcador @@negrita@@ (convencion del workspace): parte el texto
+    en runs y fuerza negrita solo en los tramos marcados."""
+    for part in re.split(r'(@@.*?@@)', text):
+        if not part:
+            continue
+        r = p.add_run()
+        if part.startswith('@@') and part.endswith('@@'):
+            r.text = part[2:-2]
+            _run(r, size=size, bold=True, color=color)
+        else:
+            r.text = part
+            _run(r, size=size, bold=bold, color=color)
+
+
 def para(doc, text, *, size=11, bold=False, color=GRIS, align=WD_ALIGN_PARAGRAPH.LEFT,
          space_after=6, space_before=0, shade=None):
     p = doc.add_paragraph()
@@ -57,8 +73,7 @@ def para(doc, text, *, size=11, bold=False, color=GRIS, align=WD_ALIGN_PARAGRAPH
     p.paragraph_format.space_before = Pt(space_before)
     if shade:
         _shade(p, shade)
-    r = p.add_run(text)
-    _run(r, size=size, bold=bold, color=color)
+    _run_inline(p, text, size=size, bold=bold, color=color)
     return p
 
 
@@ -79,8 +94,7 @@ def bullets(doc, items):
     for it in items:
         p = doc.add_paragraph(style="List Bullet")
         p.paragraph_format.space_after = Pt(2)
-        r = p.add_run(it)
-        _run(r, size=11, color=GRIS)
+        _run_inline(p, it, size=11, color=GRIS)
 
 
 def table(doc, headers, rows):

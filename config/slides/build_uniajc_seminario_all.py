@@ -68,7 +68,7 @@ GRIS = RGBColor(0x2B, 0x2B, 0x2B)
 BLANCO = RGBColor(0xFF, 0xFF, 0xFF)
 ROJO = RGBColor(0xA0, 0x20, 0x30)
 FONT = "Calibri"
-EXAMLAB = "ExamLab (examlab.lovable.app/app)"
+EXAMLAB = "ExamLab (https://examlab.lovable.app/)"
 
 # Logo + para que sirve, por herramienta. El campo `herramienta` de cada clase es
 # texto libre separado por "·", asi que se mapea por subcadena. Figma y Penpot van
