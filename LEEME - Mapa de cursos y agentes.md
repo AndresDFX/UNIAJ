@@ -10,7 +10,7 @@ Workspace docente: Institución Universitaria Antonio José Camacho.
 
 | Carpeta | Oferta 2026-2 | Notas |
 |---|---|---|
-| `Programacion II/` | FI303204 · **341C** · mié **18:00–20:00** · Presencialidad asistida (120 min) | 15 clases · Acuerdo 2026-2 prellenado · material previo 2026-1 conservado |
+| `Programacion II/` | FI303204 · **341C** · mié **18:00–20:00** · Presencialidad asistida (120 min) | 15 clases · **reconstruido 2026-2** con `build_uniajc_prog2_all.py` · PI VetCare (Java) |
 | `Seminario de Sistemas/` | FI303301 · **341C** · jue **18:00–20:00** · Presencialidad asistida (120 min) | 15 clases · Acuerdo 2026-2 prellenado |
 | `Bases de Datos II/` | **641A-2** · lun **18:00–20:00** · Presencialidad asistida (120 min) | Curso nuevo · **FI303215** · 4 clases autónomas (festivos) · falta confirmación oficial de secretaría |
 | `Arquitectura de Sistemas Computacionales/` | lun **10:00–12:00** · Presencialidad asistida (120 min) | Curso nuevo · **FI303380 · 6303C** · 4 clases autónomas · falta confirmación oficial de secretaría |
@@ -81,9 +81,11 @@ python config/slides/build_uniajc_seminario_curso.py
 python config/slides/build_uniajc_bd2_curso.py
 python config/slides/build_uniajc_arq_curso.py
 
-# Material de clase (solo BD II y Arquitectura tienen build de las 15 clases)
+# Material de clase (las 15 clases del curso)
+python config/slides/build_uniajc_prog2_all.py        # datos en prog2_clases_data.py
 python config/slides/build_uniajc_bd2_all.py
 python config/slides/build_uniajc_arq_clases_batch.py
+# (Seminario aun no tiene build de sus 15 clases)
 
 # Clase 1 de Prog II / Seminario (guion) y slides de Clase 1 de Seminario
 python config/slides/build_uniajc_prog2_clase01.py

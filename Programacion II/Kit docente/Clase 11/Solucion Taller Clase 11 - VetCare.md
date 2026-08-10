@@ -1,0 +1,23 @@
+# Solucion Taller · Clase 11 · Revisión de código cruzada
+
+> DOCUMENTO DOCENTE — PRIVADO. No publicar en Clases/.
+
+## Solucion paso a paso
+1. Paso 1. Ejecutar antes de opinar. Al correr VetCareParaRevisar.java la salida imprime cuatro líneas 'ok' (una por cada llamada a proceso), dice 'Registros en memoria: 4', imprime la ficha de M002, luego 'Busqueda 1 no encontro nada' y termina con un NullPointerException. Ese solo hecho ya produce dos hallazgos bloqueantes sin haber leído una línea: la búsqueda no encuentra un registro que sí existe, y el programa se cae al buscar un ID inexistente. Un revisor que no ejecuta se pierde justamente los dos más graves.
+2. Paso 2. Localizar la causa de la búsqueda que falla. En buscarPorId() la comparación es datos.get(i)[0] == id, que compara referencias y no contenido; como los IDs se arman en tiempo de ejecución con "M00" + consecutivo, no son los mismos objetos que el literal "M002" y la comparación siempre da falso. El hallazgo se escribe así: Evidencia, VetCareParaRevisar.java línea de buscarPorId; Impacto, ningún expediente se encuentra desde ese botón aunque la mascota esté registrada; Sugerencia, usar equals o equalsIgnoreCase, como ya lo hacen correctamente buscarDeNuevo() e imprimirFicha() en el mismo archivo. Note que el propio proyecto tiene la versión correcta a pocas líneas: eso es duplicación inconsistente y es otro hallazgo.
+3. Paso 3. El NullPointerException final. buscarDeNuevo("M009") devuelve null porque ese ID no existe, y el llamador usa fantasma[1] sin validar. Hallazgo bloqueante: Evidencia, última línea de main; Impacto, la aplicación se cierra con excepción cuando la recepcionista escribe mal un ID, que es el escenario más común del mostrador; Sugerencia, validar null y mostrar 'No existe expediente con ID ...' en un JOptionPane. Aquí se aprovecha para mostrar cómo se prioriza: esto va antes que cualquier comentario de nombres.
+4. Paso 4. Barrer los hallazgos de calidad con el checklist. El catch (Exception ex) vacío convierte la edad "dos" en 0 y guarda el registro como si nada, lo que corrompe el dato en silencio; el if (x > 25) es un número mágico sin nombre y además no rechaza la edad -3, que entra derecho; los datos se guardan en String[] en vez de una clase Mascota, así que no hay encapsulamiento ni tipos; el atributo public static ArrayList<String[]> datos permite que cualquier clase lo modifique; el método proceso(a, b, c, d, e) no dice qué hace ni qué recibe; y los avisos salen por System.out.println, o sea que el usuario de la ventana nunca se entera. Cada uno se marca como mayor o menor según su impacto en el usuario.
+5. Paso 5. Reescribir el tono y priorizar. Se toma un comentario real y agresivo, por ejemplo 'este código es un desastre, no se entiende nada', y se convierte en un hallazgo concreto: 'Evidencia: el método proceso() de VetCareParaRevisar.java recibe cinco parámetros llamados a, b, c, d, e. Impacto: quien lo llame no sabe cuál es la especie y cuál la cédula, y basta invertir dos argumentos para registrar a Firulais como especie 1144556677. Sugerencia: recibir un objeto Mascota o renombrar los parámetros a nombre, especie, edad y cedulaDueno'. Finalmente se ordena el informe: primero los dos bloqueantes, después los mayores (catch vacío y validación de edad) y de últimos los menores; se entrega en una página y el equipo autor responde con su plan de corrección.
+
+## Rubrica corta
+- [ ] Ejecucion del proyecto ajeno y reporte de los cuatro casos borde con evidencia textual (3)
+- [ ] Checklist completo con evidencia archivo:linea en cada 'no cumple' (2)
+- [ ] Cinco hallazgos priorizados y redactados con Evidencia + Impacto + Sugerencia (3)
+- [ ] Plan de corrección del equipo autor con decisión y responsable por hallazgo (2)
+
+## Errores frecuentes
+- Revisar sin ejecutar: el informe se llena de comentarios de estilo y se le escapan el NullPointerException y la búsqueda que nunca encuentra, que son los dos hallazgos que de verdad importan.
+- Redactar sobre la persona ('no saben programar', 'les quedó muy mal hecho') en vez de sobre el código, con lo cual el equipo autor se pone a la defensiva y no corrige nada.
+- Entregar treinta comentarios sin priorizar y todos del mismo peso, mezclando un catch vacío que pierde datos con una línea en blanco de más; el equipo autor no sabe por dónde empezar y termina no atendiendo ninguno.
+
+Codigo de apoyo: `Kit docente/Clase 11/Codigo/VetCareParaRevisar.java`

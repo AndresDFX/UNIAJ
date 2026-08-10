@@ -1,0 +1,23 @@
+# Solucion Taller · Clase 4 · Mapas, conjuntos e interfaces graficas · HashMap, HashSet y Swing
+
+> DOCUMENTO DOCENTE — PRIVADO. No publicar en Clases/.
+
+## Solucion paso a paso
+1. Paso 1 resuelto: se declara private final Map<String, Expediente> expedientes = new HashMap<>(); con String como clave porque el ID es texto unico e inmutable, que es la condicion ideal para una clave (si la clave cambia despues de guardarla, el mapa ya no la encuentra). El metodo guardar hace primero if (expedientes.containsKey(e.getId())) { System.out.println("Atencion: el ID " + e.getId() + " ya existia y sera reemplazado"); } y luego ejecuta expedientes.put(e.getId(), e). Sin ese containsKey, put pisa el expediente anterior sin decir nada y el tamano del mapa no cambia, que es justo lo que hace invisible el error.
+2. Paso 2 resuelto: buscar queda asi: String clave = id.trim().toUpperCase(); Expediente e = expedientes.get(clave); if (e == null) { avisar que no existe; } else { mostrar e; } La normalizacion es obligatoria porque el HashMap compara las claves de forma exacta: m-001, " M-001 " y M-001 producen hashCode distintos y por tanto son tres claves diferentes, aunque para la recepcionista sean la misma mascota. Para demostrar la ganancia en velocidad se construye un archivo historico con 5.000 Expediente y se cronometra con System.nanoTime() la busqueda lineal (for sobre el ArrayList comparando getId) contra indice.get("H-5000"): la primera recorre las 5.000 fichas, la segunda salta directo a la casilla.
+3. Paso 3 resuelto: el conjunto se declara private final Set<String> razas = new HashSet<>(); y dentro de guardar se escribe boolean razaNueva = razas.add(e.getRaza()); if (!razaNueva) { System.out.println("Raza ya registrada: " + e.getRaza()); } Ese boolean es la joya del HashSet: dice si el elemento entro o si ya estaba, sin recorrer nada y sin necesidad de un if previo con contains. Con los datos del escenario, al guardar a Toby (labrador, igual que Firulais) aparece el aviso y razas.size() responde 4, que es el numero de razas distintas que atiende la clinica.
+4. Paso 4 resuelto: la ventana extiende JFrame y en el constructor llama a super("VetCare - Buscar expediente"). Se crea un JPanel superior (que trae FlowLayout por defecto) y se le agregan el JLabel del rotulo, el JTextField de 12 columnas y el JButton. Sobre el frame se llama setLayout(new BorderLayout(10, 10)) y se agregan add(panelSuperior, BorderLayout.NORTH), add(lblResultado, BorderLayout.CENTER) y add(pie, BorderLayout.SOUTH). Se cierra la configuracion con setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE) para que cerrar la ventana termine el proceso, setSize(600, 230) para darle tamano y setLocationRelativeTo(null) para centrarla en pantalla; el setVisible(true) se llama desde el main.
+5. Paso 5 resuelto: el evento se conecta con btnBuscar.addActionListener(e -> buscar()); y ademas con txtId.addActionListener(e -> buscar()); para que la tecla Enter tambien busque. El metodo buscar hace todo dentro de try-catch: toma el texto con txtId.getText().trim().toUpperCase(), lanza IllegalArgumentException si quedo vacio, consulta expedientes.get(id), y si el resultado es null actualiza el JLabel y muestra JOptionPane.showMessageDialog(this, mensaje, "Sin resultados", JOptionPane.WARNING_MESSAGE); si existe, pinta los datos con lblResultado.setText("<html>...</html>"), que permite varias lineas dentro de un JLabel. El main arranca con SwingUtilities.invokeLater(() -> new VetCareBuscarExpediente().setVisible(true)) para construir la interfaz en el hilo de eventos (EDT), que es el unico autorizado a tocar componentes Swing.
+
+## Rubrica corta
+- [ ] RegistroExpedientes con HashMap, busqueda por clave y control de ID duplicado (3)
+- [ ] HashSet de razas aprovechando el boolean de add y reportando razas distintas (2)
+- [ ] Ventana Swing escrita a mano con JFrame, JPanel, JLabel, JTextField, JButton y layout correcto (3)
+- [ ] Evento del boton conectado, try-catch con JOptionPane y evidencia subida a ExamLab (2)
+
+## Errores frecuentes
+- Usar put sin verificar containsKey y quedarse sin entender por que el expediente anterior desaparecio: put reemplaza en silencio cuando la clave ya existe.
+- Construir el JFrame completo y olvidar setVisible(true) o setDefaultCloseOperation, con lo cual la ventana no aparece o el programa sigue corriendo despues de cerrarla.
+- Escribir la busqueda, la coleccion de expedientes y las validaciones dentro del ActionListener del boton, dejando la clase de negocio vacia y haciendo imposible reutilizar la logica en la persistencia.
+
+Codigo de apoyo: `Kit docente/Clase 4/Codigo/VetCareBuscarExpediente.java`

@@ -1,0 +1,23 @@
+# Solucion Taller · Clase 2 · Colecciones dinamicas · ArrayList
+
+> DOCUMENTO DOCENTE — PRIVADO. No publicar en Clases/.
+
+## Solucion paso a paso
+1. Paso 1 resuelto: en Mascota se declaran los cinco atributos como private final String id, nombre, especie, dueno y private final int edad, y se genera el constructor con Alt+Insert en NetBeans. Los getters se generan igual (Alt+Insert > Getter). El toString queda asi: return id + " | " + nombre + " (" + especie + ", " + edad + " anios) - dueno: " + dueno; con eso cualquier System.out.println(mascota) o cualquier impresion de la lista completa muestra texto legible, porque println llama automaticamente a toString sobre el objeto.
+2. Paso 2 resuelto: en RegistroMascotas se escribe private final List<Mascota> mascotas = new ArrayList<>(); El final protege la referencia (nadie puede reemplazar la lista entera) pero el contenido si cambia. El metodo agregar queda: if (m == null) { avisa y devuelve false; } if (buscarPorId(m.getId()) != null) { System.out.println("ID repetido, se rechaza: " + m.getId()); return false; } mascotas.add(m); return true; Como la validacion vive dentro de la clase y no en el main, cualquier interfaz futura (consola, ventana Swing, carga de CSV) hereda la misma regla sin repetir codigo.
+3. Paso 3 resuelto: listar recorre con for (int i = 0; i < mascotas.size(); i++) e imprime (i + 1) + ". " + mascotas.get(i), usando el indice solo porque necesita el numero de renglon; antes valida if (mascotas.isEmpty()) para no imprimir un listado vacio. buscarPorId recorre con for (Mascota m : mascotas) y compara con m.getId().equalsIgnoreCase(id), no con ==, porque == compara referencias de memoria y no el contenido del texto; equalsIgnoreCase ademas tolera que la recepcionista escriba m-003. Si el ciclo termina sin encontrar nada devuelve null, y quien llama debe validarlo: System.out.println(encontrada != null ? encontrada : "No existe esa mascota").
+4. Paso 4 resuelto: eliminarPorId(String id) primero hace Mascota m = buscarPorId(id); si m es null imprime que no existe y devuelve false; si no, llama a mascotas.remove(m), que es remove(Object) y no remove(int), diferencia clave porque remove(2) borraria por posicion. pasarAGeriatria(int edadMinima) obtiene Iterator<Mascota> it = mascotas.iterator(); y dentro de un while (it.hasNext()) toma Mascota m = it.next(); si m.getEdad() >= edadMinima llama a it.remove(). El Iterator es el unico que puede borrar mientras recorre porque el mismo actualiza su contador interno; hacer mascotas.remove(m) dentro del ciclo produce ConcurrentModificationException. La version corta equivalente es mascotas.removeIf(m -> m.getEdad() >= edadMinima).
+5. Paso 5 resuelto: el menu se arma con Scanner sc = new Scanner(System.in); dentro de un while (opcion != 5). La opcion se lee con Integer.parseInt(sc.nextLine().trim()) envuelto en try-catch de NumberFormatException, para que escribir una letra no tumbe el programa sino que imprima "Escriba un numero del 1 al 5" y vuelva a preguntar. Cada case llama al metodo correspondiente del registro: case 1 pide los cinco datos y hace registro.agregar(new Mascota(...)); case 2 llama registro.listar(); case 3 pide el ID y valida el null antes de imprimir; case 4 llama registro.eliminarPorId(id). El main nunca toca la lista directamente: solo conversa con RegistroMascotas, que es justo lo que permitira cambiar la consola por una ventana en la Clase 4.
+
+## Rubrica corta
+- [ ] Clase Mascota con atributos privados, constructor, getters y toString (2)
+- [ ] RegistroMascotas con List<Mascota> encapsulada y agregar que rechaza IDs repetidos (3)
+- [ ] buscarPorId y eliminarPorId funcionando, incluido el caso no encontrado (3)
+- [ ] Menu de consola ejecutable, sin excepciones, con evidencia subida a ExamLab (2)
+
+## Errores frecuentes
+- Escribir mascotas.length en vez de mascotas.size(): length es de arreglos, length() es de String y size() es de colecciones; el proyecto ni siquiera compila.
+- Recorrer con for (int i = 0; i <= mascotas.size(); i++), lo que siempre lanza IndexOutOfBoundsException en la ultima vuelta porque el indice valido llega hasta size()-1.
+- Borrar con mascotas.remove(m) dentro de un for-each y recibir ConcurrentModificationException, en vez de usar Iterator.remove() o removeIf.
+
+Codigo de apoyo: `Kit docente/Clase 2/Codigo/VetCareRegistroMascotas.java`
