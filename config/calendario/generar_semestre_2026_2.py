@@ -104,8 +104,8 @@ CURSOS = {
         ),
         "metodologia": (
             "Acuerdo sobre los aspectos metodológicos\n"
-            "Periodo 2026-2 · Grupo 341C · Miércoles 20:00–22:00 (120 min).\n"
-            "Modalidad: Virtual (confirmar semanas virtuales en Campus Virtual).\n"
+            "Periodo 2026-2 · Grupo 341C · Miércoles 18:00–20:00 (120 min).\n"
+            "Modalidad: Presencialidad asistida (Clase 1 y parciales presencial sincrono · resto virtual sincrona · festivos = clase autonoma).\n"
             "Estructura de clase: Teoría Core · Taller Guiado calificable "
             "(entrega máx. domingo 23:59) · Quiz corto.\n"
             "Enfoque: aprendizaje activo / ABPr con Proyecto Integrador.\n"
@@ -140,8 +140,8 @@ CURSOS = {
         ),
         "metodologia": (
             "Acuerdo sobre los aspectos metodológicos\n"
-            "Periodo 2026-2 · Grupo 341C · Jueves 20:00–22:00 (120 min).\n"
-            "Modalidad: Virtual (confirmar semanas virtuales en Campus Virtual).\n"
+            "Periodo 2026-2 · Grupo 341C · Jueves 18:00–20:00 (120 min).\n"
+            "Modalidad: Presencialidad asistida (Clase 1 y parciales presencial sincrono · resto virtual sincrona · festivos = clase autonoma).\n"
             "Metodología orientada a Role-Playing (Arquitectos / Analistas QA), "
             "talleres con Draw.io/Mermaid, peer review.\n"
             "Calendario: 15 clases (13/08/2026–19/11/2026). "
@@ -168,7 +168,7 @@ CURSOS = {
         ),
         "metodologia": (
             "Acuerdo sobre los aspectos metodológicos\n"
-            "Periodo 2026-2 · Grupo 641A-2 · Lunes 18:00–20:00 (120 min) · Modalidad: Presencialidad asistida.\n"
+            "Periodo 2026-2 · Grupo 641A-2 · Lunes 18:00–20:00 (120 min) · Modalidad: Presencialidad asistida (Clase 1 y parciales presencial sincrono · resto virtual sincrona · festivos = clase autonoma).\n"
             "Estructura sugerida (ajustar al Acuerdo/Plan): "
             "Teoría Core · Taller Guiado · Quiz/comprobación.\n"
             "Calendario: 15 clases (10/08/2026–16/11/2026). Festivos = clase autónoma:\n"
@@ -182,7 +182,7 @@ CURSOS = {
         "nombre": "Arquitectura de Sistemas Computacionales",
         "codigo": "FI303380",
         "grupo": "6303C",
-        "grupo_acuerdo": "[PENDIENTE]",
+        "grupo_acuerdo": "6303C",
         "semestre": "[PENDIENTE]",
         "programa": "Ingeniería de Sistemas",
         "dia": "Lunes",
@@ -197,8 +197,8 @@ CURSOS = {
         ),
         "metodologia": (
             "Acuerdo sobre los aspectos metodológicos\n"
-            "Periodo 2026-2 · Lunes 10:00–13:00 (180 min).\n"
-            "Grupo: [PENDIENTE]. Modalidad: [PENDIENTE].\n"
+            "Periodo 2026-2 · Lunes 10:00–12:00 (120 min).\n"
+            "Grupo: 6303C. Modalidad: Presencialidad asistida (Clase 1 y parciales presencial sincrono · resto virtual sincrona · festivos = clase autonoma).\n"
             "Calendario: 15 clases (10/08/2026–16/11/2026). Festivos = clase autónoma:\n"
             "17/08 (Asunción), 12/10 (Diversidad Étnica), "
             "02/11 (Todos los Santos), 16/11 (Independencia de Cartagena).\n"
@@ -209,7 +209,7 @@ CURSOS = {
 def class_dates(
     weekday: int,
     tipo_regular: str = "virtual",
-    clase1_presencial: bool = False,
+    clase1_presencial: bool = True,
 ) -> list[dict]:
     out: list[dict] = []
     d = START

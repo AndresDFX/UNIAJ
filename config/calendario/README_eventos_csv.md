@@ -1,6 +1,6 @@
 # Calendario de eventos CSV 2026-2
 
-Archivos `eventos_*_2026-1.csv` / `eventos_*_2026-2.csv` (copia en `.config/calendario/`) y `<Curso>/Plan curso/2026-1|2026-2/calendario_eventos_….csv`: 15 filas/clase por curso, UTF-8 con BOM. Notas: `[PENDIENTE listado]` hasta tener nómina.
+Archivos `eventos_*_2026-1.csv` / `eventos_*_2026-2.csv` (copia en `.config/calendario/`) y `<Curso>/Plan curso/2026-1|2026-2/calendario_eventos_….csv`: 15 filas/clase por curso, UTF-8 con BOM. La columna de notas NO lleva nómina de estudiantes (informacion privada).
 
 Cuando tengas el listado de estudiantes, importa el CSV a Excel/Google Sheets o genera invitaciones (una fila = una clase; `es_parcial=si` marca parciales síncronos; `tipo_clase` = `presencial` | `virtual` | `autonoma`).
 

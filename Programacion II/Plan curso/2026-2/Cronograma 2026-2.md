@@ -3,7 +3,6 @@
 Documento para estudiantes (carpeta compartida `Clases/`).
 
 - **Código:** FI303204 · **Grupo:** **341C**
-- **Grupo:** **341C**
 - **Horario:** **Miércoles 18:00 – 20:00** (120 min)
 - **Periodo:** 2026-2 · 10/08/2026 – 22/11/2026
 - **Modalidad:** Presencialidad asistida (Clase 1 presencial · resto virtual · parciales presencial · festivos autónomos)

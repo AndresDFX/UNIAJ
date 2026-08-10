@@ -3,7 +3,7 @@
 Documento para estudiantes (carpeta compartida `Clases/`).
 
 - **Código:** FI303380
-- **Grupo:** **[PENDIENTE — grupo]**
+- **Grupo:** **6303C**
 - **Horario:** **Lunes 10:00 – 12:00** (120 min)
 - **Periodo:** 2026-2 · 10/08/2026 – 22/11/2026
 - **Modalidad:** **Presencialidad asistida** (Clase 1 y parciales presencial síncrono · resto virtual síncrona · festivos = clase autónoma)

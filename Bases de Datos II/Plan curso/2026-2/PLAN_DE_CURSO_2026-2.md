@@ -8,8 +8,7 @@
 - **Modalidad:** **Presencialidad asistida** (Clase 1 y parciales presencial síncrono · resto virtual síncrona · festivos = clase autónoma)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
 - **Fuente oficial:** Microcurrículo FI303215 + Plan_de_curso FI303215
-- **Calendario:** `Plan curso/2026-2/CALENDARIO_2026-2.md` · `.config/calendario/semestre_2026_2.json`
-- **Listado de estudiantes:** `[PENDIENTE listado]`
+- **Calendario:** `Plan curso/2026-2/CALENDARIO_2026-2.md` · `config/calendario/semestre_2026_2.json`
 
 ## Ajuste 16 → 15 clases
 

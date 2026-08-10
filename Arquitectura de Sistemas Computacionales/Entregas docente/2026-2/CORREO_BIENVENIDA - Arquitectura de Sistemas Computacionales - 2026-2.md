@@ -14,12 +14,12 @@ Les doy la bienvenida al curso **Arquitectura de Sistemas Computacionales** (có
 - **Modalidad por sesión:** Clase 1 presencial; resto de clases regulares virtual síncrona; parciales presencial; festivos clase autónoma.
 - **Horario:** lunes **10:00 – 12:00** (inicio práctico de clase: **10:10**)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
-- **Campus Virtual UNIAJC:** [URL Campus Virtual UNIAJC — pendiente]
+- **Entrega de talleres y evaluaciones:** ExamLab · https://examlab.lovable.app/app
 
 **Contenido de las clases** (Presentación del Curso, diapositivas y talleres — carpeta compartida):  
 [PEGAR AQUÍ LINK DE LA CARPETA CLASES]
 
-Por favor **revisen en su calendario institucional / Campus Virtual** los eventos del curso (fechas de clase, parciales y demás hitos del cronograma). Es importante que los tengan visibles para organizar el semestre.
+Por favor **revisen en su calendario institucional** los eventos del curso (fechas de clase, parciales y demás hitos del cronograma). Es importante que los tengan visibles para organizar el semestre.
 
 En el **día 1**: **Sesión 0** (Presentación del curso: logística, acuerdo, Padlet, evaluación) y **Clase 1** (diagnóstico de conocimientos previos + arranque temático).
 

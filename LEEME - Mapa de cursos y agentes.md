@@ -12,8 +12,8 @@ Workspace docente: Institución Universitaria Antonio José Camacho.
 |---|---|---|
 | `Programacion II/` | FI303204 · **341C** · mié **18:00–20:00** · Presencialidad asistida (120 min) | 15 clases · Acuerdo 2026-2 prellenado · material previo 2026-1 conservado |
 | `Seminario de Sistemas/` | FI303301 · **341C** · jue **18:00–20:00** · Presencialidad asistida (120 min) | 15 clases · Acuerdo 2026-2 prellenado |
-| `Bases de Datos II/` | **641A-2** · lun **18:00–20:00** · Presencialidad asistida (120 min) | Curso nuevo · código oficial pendiente · 4 clases autónomas (festivos) |
-| `Arquitectura de Sistemas Computacionales/` | lun **10:00–12:00** · Presencialidad asistida (120 min) | Curso nuevo · grupo/código pendientes · 4 clases autónomas |
+| `Bases de Datos II/` | **641A-2** · lun **18:00–20:00** · Presencialidad asistida (120 min) | Curso nuevo · **FI303215** · 4 clases autónomas (festivos) · falta confirmación oficial de secretaría |
+| `Arquitectura de Sistemas Computacionales/` | lun **10:00–12:00** · Presencialidad asistida (120 min) | Curso nuevo · **FI303380 · 6303C** · 4 clases autónomas · falta confirmación oficial de secretaría |
 | `0. Base/` | — | Plantillas institucionales (Ing. Software 1) |
 
 ## Modalidad (regla única, 4 cursos)
@@ -41,6 +41,25 @@ Misma lógica que Acuerdos de Prog. II / Seminario: **30% / 30% / 40%** con **pa
 
 Festivos = **clase autónoma** (no se omiten). Si el cierre de corte cae en festivo, el parcial se mueve a la última clase regular anterior (nunca en festivo).
 
+## Estructura de carpetas por curso
+
+```text
+<Curso>/
+  Clases/                         ← lo UNICO que se comparte con estudiantes
+    Presentacion del Curso - ….pptx        (Sesion 0)
+    Clase NN - <Tema>/Presentacion.pptx     (+ taller .docx)
+    Proyecto Integrador/Enunciado ….docx
+  Kit docente/                    ← privado
+    Clase N/  guion (.md+.docx) · Quiz + CLAVE DOCENTE · Codigo/ · Capturas/
+    Proyecto Integrador/Guia Docente PI ….docx|.md
+  Parciales/                      ← enunciado + SOLUCION (nunca en Clases/)
+  Plan curso/2026-2/              ← plan, calendario, cronograma, CSV
+  Entregas docente/2026-2/        ← acuerdo, diagnostico, correo de bienvenida
+```
+
+Regla del dia de parcial: **solo evaluacion**, sin tema tecnico nuevo. El material del
+parcial vive en `Parciales/`, nunca en `Clases/`.
+
 ## Stack de agente
 
 | Pieza | Ruta |
@@ -56,9 +75,32 @@ Festivos = **clase autónoma** (no se omiten). Si el cierre de corte cae en fest
 ## Builds / regeneración
 
 ```bash
+# Presentacion del Curso (Sesion 0) — uno por curso
 python config/slides/build_uniajc_prog2_curso.py
+python config/slides/build_uniajc_seminario_curso.py
+python config/slides/build_uniajc_bd2_curso.py
+python config/slides/build_uniajc_arq_curso.py
+
+# Material de clase (solo BD II y Arquitectura tienen build de las 15 clases)
+python config/slides/build_uniajc_bd2_all.py
+python config/slides/build_uniajc_arq_clases_batch.py
+
+# Clase 1 de Prog II / Seminario (guion) y slides de Clase 1 de Seminario
 python config/slides/build_uniajc_prog2_clase01.py
-python config/slides/guion_md_a_docx.py "Programacion II/Kit docente/Clase 1/Guion Docente Clase 1 - Introduccion a POO.md"
+python config/slides/build_uniajc_clase01_prog2_seminario.py
+python config/slides/build_uniajc_seminario_clase01.py
+
+# Proyecto Integrador (los 4 cursos) y parciales
+python config/slides/build_uniajc_pi_2026_2.py
+python config/parciales/build_parciales_2026_2.py
+
+# Capturas de "salida esperada" de los guiones
+python config/slides/mockups.py
+
+# Guion suelto .md -> .docx
+python config/slides/guion_md_a_docx.py "<ruta al guion>.md"
+
+# Calendario del periodo  (OJO: regenera los 4 Acuerdos Pedagogicos)
 python config/calendario/generar_semestre_2026_2.py
 ```
 

@@ -135,10 +135,10 @@ courses = [
     "subtitle": "Enfoque Cloud",
     "out": "Arquitectura de Sistemas Computacionales/Clases/Presentacion del Curso - Arquitectura de Sistemas Computacionales.pptx",
     "meta": [
-      "Codigo: **FI303380** · Grupo: **[PENDIENTE — grupo]** · Periodo: **2026-2**",
+      "Codigo: **FI303380** · Grupo: **6303C** · Periodo: **2026-2**",
       "Programa: Ingenieria de Sistemas · Facultad de Ingenieria · UNIAJC",
-      "Horario: **Lunes 10:00 – 13:00** (180 min)",
-      "Modalidad: **[PENDIENTE — modalidad]**",
+      "Horario: **Lunes 10:00 – 12:00** (120 min)",
+      "Modalidad: **Presencialidad asistida** (Clase 1 y parciales presencial · resto virtual síncrona · festivos = clase autónoma)",
       "Docente: Julian Andres Castano",
     ],
     "purpose": [
@@ -153,7 +153,7 @@ courses = [
       "**RAA3** — Evalua seguridad, rendimiento y sostenibilidad de arquitecturas en la nube.",
     ],
     "how": [
-      "Bloque de **180 min** (lunes 10:00–13:00).",
+      "Bloque de **120 min** (lunes 10:00–12:00).",
       "Estructura: **Teoria Core** → **Taller / laboratorio cloud (free tier)** → **Quiz / avance PI**.",
       "Practica con herramientas **gratis + en la nube** (AWS/Azure/GCP free tier o simuladores).",
       "Hilo conductor: **Proyecto Integrador** — arquitectura cloud para una aplicacion.",
@@ -181,11 +181,11 @@ courses = [
       "Plan propio: `Plan curso/PLAN_DE_CURSO_2026-2.md`.",
     ],
     "boxes": [
-      ("info", "Lunes 10:00–13:00 (180 min). Grupo y modalidad: [PENDIENTE]."),
+      ("info", "Lunes 10:00–12:00 (120 min) · Grupo 6303C · Presencialidad asistida."),
       ("aclaracion", "Clases en festivo = autonomas con actividad en ExamLab."),
       ("advertencia", "Parciales 2 y 3 en clase autonoma."),
     ],
-    "close": ["Arquitectura de Sistemas Computacionales · **FI303380** · 2026-2", "Lunes **10:00 – 13:00**", "UNIAJC · Ingenieria de Sistemas"],
+    "close": ["Arquitectura de Sistemas Computacionales · **FI303380** · 2026-2", "Lunes **10:00 – 12:00**", "UNIAJC · Ingenieria de Sistemas"],
     "accent": "Cloud con criterio: escalable, seguro y sostenible",
   },
 ]

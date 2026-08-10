@@ -1,12 +1,11 @@
 # Plan de curso propio — Seminario de Sistemas · 2026-2
-> **CSV eventos:** `Plan curso/2026-1/calendario_eventos_2026-1.csv` (UTF-8 BOM). Importar en hoja/calendario cuando exista el listado de estudiantes (una fila = una clase; filtrar `es_parcial=si` para parciales síncronos).
+> **CSV eventos:** `Plan curso/2026-2/calendario_eventos_2026-2.csv` (UTF-8 BOM). Importar en hoja/calendario cuando exista el listado de estudiantes (una fila = una clase; filtrar `es_parcial=si` para parciales síncronos).
 
-- **Calendario:** CALENDARIO_2026-1.md · .config/calendario/semestre_2026_2.json
+- **Calendario:** CALENDARIO_2026-2.md · config/calendario/semestre_2026_2.json
 
 - **Código:** FI303301 · **Grupo:** **341C**
 - **Periodo:** **2026-1** · **Horario:** **Jueves 20:00 – 22:00** (120 min)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
-- **Listado de estudiantes:** `[PENDIENTE listado]`
 > Criterio de modalidad por sesión (fijo 2026-2): modalidad del curso = Virtual. Clases regulares = virtual (síncrona); parciales = siempre síncronos (virtual); festivos = clase autónoma (sin parcial). Los parciales NUNCA se programan en día festivo ni en clase autónoma. Si el cierre teórico del corte cae en festivo/autónoma, el parcial se mueve a la última clase regular anterior del mismo corte; la clase autónoma de cierre queda como refuerzo sin parcial. En este curso (sin festivos en jueves) los parciales quedan en Clases **5 / 10 / 15** (todas regulares).
 
 > **Día de parcial = solo evaluación:** sin tema de trabajo dirigido nuevo. Si un tema técnico estaba mezclado con el parcial, se reasigna a la última clase regular anterior del mismo corte.

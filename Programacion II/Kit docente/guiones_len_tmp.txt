@@ -1,0 +1,47 @@
+   4024 chars   104 lines  Clase 10\Codigo Clase 10 - Optimizaciones de Código (Clean Code & Refactoring).docx
+   4456 chars    57 lines  Clase 10\Guion Docente Clase 10 - Optimizaciones de Código.md.docx
+   2351 chars    26 lines  Clase 10\Quiz Clase 10 - Optimizaciones de Código.md.docx
+   2430 chars    23 lines  Clase 10\Taller Estudiante Clase 10 - Optimizaciones de Código.md.docx
+   4270 chars   101 lines  Clase 11\Codigo Clase 11 - Persistencia Básica (I O, CSV).docx
+   5114 chars    79 lines  Clase 11\Guion Docente Clase 11 - Persistencia Básica.docx
+   2005 chars    26 lines  Clase 11\Quiz Clase 11 - Persistencia Básica.docx
+   3658 chars    92 lines  Clase 12\Codigo Clase 12 - Excepciones Avanzadas (Try-Catch-Finally y Throw).docx
+   5032 chars    70 lines  Clase 12\Guion Docente Clase 12 - Control de Excepciones Avanzado.md.docx
+   1854 chars    26 lines  Clase 12\Quiz Clase 12 - Control de Excepciones Avanzado.md.docx
+   2993 chars    63 lines  Clase 13\Codigo Clase 13 - Integración de Módulos (Ensamblaje Principal).docx
+   4200 chars    40 lines  Clase 13\Guion Docente Clase 13 - Integración de Módulos.md.docx
+   2412 chars    26 lines  Clase 13\Quiz Clase 13 - Integración de Módulos.md.docx
+   4889 chars   129 lines  Clase 14\Codigo Clase 14 - Taller de Resolución de Bugs.docx
+   3755 chars    26 lines  Clase 14\Guion Docente Clase 14 - Resolución de Bugs.docx
+   2322 chars    26 lines  Clase 14\Quiz Clase 14 - Resolución de Bugs.docx
+   1884 chars    43 lines  Clase 15\Codigo Clase 15 - Herramienta de Preparación de Entorno (Data Seeding).docx
+   4211 chars    50 lines  Clase 15\Guion Docente Clase 15 - Ensayo Tecnico.md.docx
+   2309 chars    26 lines  Clase 15\Quiz Clase 15 - Ensayo Tecnico.md.docx
+   2256 chars    22 lines  Clase 15\Taller Estudiante Clase 15 - Ensayo Tecnico.md.docx
+   2299 chars    44 lines  Clase 1\Prueba Diagnóstica - Programacion II.docx
+   2826 chars    87 lines  Clase 2\Codigo Clase 2 - Repaso POO  Clases, Objetos y Herencia.docx
+   4510 chars    72 lines  Clase 2\Guion Docente Clase 2 - Repaso Java y POO.docx
+   1893 chars    26 lines  Clase 2\Quiz Clase 2 - Repaso Java y POO.docx
+   5729 chars   140 lines  Clase 3\Codigo Clase 3 - Arreglos y Listas en Java.docx
+   4827 chars    62 lines  Clase 3\Guion Docente Clase 3 - Arreglos y Listas en Java.docx
+   1874 chars    26 lines  Clase 3\Quiz Clase 3 - Arreglos y Listas en Java.docx
+   6000 chars   144 lines  Clase 4\Codigo Clase 4 - Pilas y Colas.docx
+   4060 chars    52 lines  Clase 4\Guion Docente Clase 4 - Pilas y Colas.docx
+   1257 chars    26 lines  Clase 4\Quiz Clase 4 - Pilas y Colas.docx
+   5312 chars   133 lines  Clase 5\Codigo Clase 5 - Mapas y Conjuntos (HashMap y HashSet).docx
+   4034 chars    50 lines  Clase 5\Guion Docente Clase 5 - Mapas y Conjuntos.docx
+   1845 chars    26 lines  Clase 5\Quiz Clase 5 - Mapas y Conjuntos.docx
+   2192 chars    23 lines  Clase 5\Taller Estudiante Clase 5 - Mapas y Conjuntos.docx
+   2220 chars    52 lines  Clase 6\Codigo Clase 6 - Interfaces Gráficas (GUI) Básicas.docx
+   4040 chars    59 lines  Clase 6\Guion Docente Clase 6 - Interfaces Gráficas (GUI) Básicas.docx
+   1581 chars    26 lines  Clase 6\Quiz Clase 6 - Interfaces Gráficas (GUI) Básicas.docx
+   3447 chars    84 lines  Clase 7\Codigo Clase 7 - Eventos y Controladores (ActionListeners).docx
+   4223 chars    58 lines  Clase 7\Guion Docente Clase 7 - Eventos y Controladores.docx
+   1755 chars    26 lines  Clase 7\Quiz Clase 7 - Eventos y Controladores.docx
+   4192 chars   117 lines  Clase 8\Codigo Clase 8 - Patrones de Diseño (Singleton y Factory).docx
+   4273 chars    61 lines  Clase 8\Guion Docente Clase 8 - Patrones de Diseño.docx
+   1926 chars    26 lines  Clase 8\Quiz Clase 8 - Patrones de Diseño.docx
+   2752 chars    72 lines  Clase 9\Codigo Clase 9 - Pruebas Unitarias (JUnit).docx
+   4087 chars    49 lines  Clase 9\Guion Docente Clase 9 - Pruebas Unitarias.docx
+   1803 chars    26 lines  Clase 9\Quiz Clase 9 - Pruebas Unitarias.docx
+   2067 chars    31 lines  Proyecto Integrador\Guia Docente PI - Programacion II - 2026-2.docx
