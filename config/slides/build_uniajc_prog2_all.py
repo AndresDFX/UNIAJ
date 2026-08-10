@@ -131,16 +131,25 @@ def bullets(doc, items):
         add_inline_docx(p, str(it))
 
 
-def _resumen(bullets_, max_chars=115):
-    """La teoria del guion es larga a proposito; la slide lleva solo la idea central."""
+def _resumen(bullets_, max_chars=115, max_items=5):
+    """La teoria del guion es larga a proposito; la slide lleva solo la idea central.
+
+    Dos filtros que la slide del ESTUDIANTE necesita y el guion no:
+    - Se descarta el parrafo «Error tipico del docente...»: es material de preparacion
+      del docente y no tiene ningun sentido proyectado al grupo. Se estaba filtrando.
+    - Se corta a `max_items` vinetas (regla del workspace: maximo 5 por diapositiva);
+      el desarrollo completo sigue estando en el guion.
+    """
     out = []
     for b in bullets_:
+        if re.match(r"\s*Error\s+(tipico|típico|de)\s+d(el|e)\s+docente", b, re.I):
+            continue
         first = re.split(r"(?<=[a-záéíóúü0-9\)])\.\s", b, maxsplit=1)[0].strip()
         if len(first) > max_chars or len(first) < 12:
             base = b if len(first) < 12 else first
             first = base[:max_chars].rsplit(" ", 1)[0].rstrip(":,;") + "…"
         out.append(first)
-    return out
+    return out[:max_items]
 
 
 def _quiz_items(c):
@@ -378,6 +387,11 @@ def build_guion_md(c):
         return path
 
     teoria = "\n\n".join(c["teoria"])
+    # `fundamento` es desarrollo adicional SOLO para el guion (no entra a la slide,
+    # que resume `teoria` via _resumen). Se usa donde la teoria por si sola no
+    # alcanza para dictar la clase sin consultar otra fuente.
+    if c.get("fundamento"):
+        teoria += "\n\n" + c["fundamento"].strip()
     pasos = "\n".join(f"{i}. {t}" for i, t in enumerate(c["taller"], 1))
     md = f"""# Guion docente · Clase {n} · {c['titulo']}
 

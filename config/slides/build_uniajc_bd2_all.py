@@ -954,19 +954,26 @@ def _fundamento_md(c):
     return "\n\n### Desarrollo del tema (para dictar sin consultar otra fuente)\n\n" + fund + "\n"
 
 
-def _slide_summary(bullets_, max_chars=110):
+def _slide_summary(bullets_, max_chars=110, max_items=5):
     """Resume cada viñeta de teoria (pensada para el guion, muy detallada) a su
     idea central para que la diapositiva de estudiante no quede sobrecargada de texto.
-    El guion docente conserva el texto completo; solo la slide usa esta versión corta."""
+    El guion docente conserva el texto completo; solo la slide usa esta versión corta.
+
+    Dos filtros que la slide del ESTUDIANTE necesita y el guion no:
+    - Se descarta la viñeta «Error de docente que no domina el tema...»: es material
+      de preparación del docente y no tiene sentido proyectado al grupo.
+    - Se corta a `max_items` viñetas (regla del workspace: máximo 5 por diapositiva)."""
     out = []
     for b in bullets_:
+        if re.match(r"\s*Error\s+(tipico|típico|de)\s+d(el|e)\s+docente", b, re.I):
+            continue
         first = re.split(r"(?<=[a-záéíóúü0-9\)])\.\s", b, maxsplit=1)[0].strip()
         if len(first) > max_chars or len(first) < 12:
             # colon-only label (ej. "Control pesimista:") o frase larga: usa un corte por longitud
             base = b if len(first) < 12 else first
             first = base[:max_chars].rsplit(" ", 1)[0].rstrip(":,;") + "…"
         out.append(first)
-    return out
+    return out[:max_items]
 
 
 def cover_pptx(prs, c):
