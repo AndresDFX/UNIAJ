@@ -1,0 +1,23 @@
+# Solucion Taller · Clase 14 · Preparacion de la sustentacion y cierre
+
+> DOCUMENTO DOCENTE — PRIVADO. No publicar en Clases/.
+
+## Solucion paso a paso
+1. Paso 1 resuelto. El guion queda repartido asi. Minuto 0 a 1:30, Problema, expone el integrante 1, con la frase de apertura Huellitas extravia fichas, tarda ocho minutos en hallar un historial y no tiene una sola metrica de atencion. Minuto 1:30 a 5:00, Alcance y requisitos, integrante 2, mostrando la tabla RF-01 a RF-08 con prioridad y los dos RNF que si se van a demostrar. Minuto 5:00 a 7:00, Modelos, integrante 3, con casos de uso y clases. Minuto 7:00 a 9:00, Interfaz en vivo, integrante 4, recorriendo registrar mascota y buscar expediente. Minuto 9:00 a 11:30, Decisiones y riesgos, integrante 5. Minuto 11:30 a 12:00, cierre con la frase de valor para la clinica.
+2. Paso 2 resuelto. La tabla de decisiones queda asi. Decision uno, separar Historia_Clinica de Mascota; alternativa, guardar diagnosticos como campos dentro de Mascota; criterio, una mascota tiene muchas consultas y la relacion es uno a muchos; consecuencia, una entidad mas y una consulta adicional al abrir la ficha. Decision dos, RNF-02 de busqueda de expediente en menos de tres segundos con hasta cinco mil fichas; alternativa, no fijar tiempo; criterio, el dolor declarado por la clinica es la demora, asi que sin numero no hay como demostrar mejora; consecuencia, obliga a definir indice por documento del dueño y por codigo. Decision tres, fecha de nacimiento opcional; alternativa, obligatoria; criterio, muchos dueños de mascotas rescatadas no la conocen y la obligatoriedad genera datos inventados; consecuencia, la edad se muestra como aproximada cuando el dato falta.
+3. Paso 3 resuelto. Entre las diez preguntas quedan resueltas al menos estas tres. Que pasa si dos recepcionistas registran la misma mascota al tiempo: se define regla de unicidad por documento del dueño mas nombre de la mascota y la interfaz avisa Esta mascota ya tiene ficha en la clinica antes de guardar. Como mide su RNF de tiempo: se cronometra la busqueda por documento con una base de prueba de cinco mil fichas y se exige que el promedio de diez intentos sea menor a tres segundos. Que quedo fuera del alcance: facturacion, inventario de medicamentos y agenda automatica de vacunacion, porque los tres problemas declarados por Huellitas son extravio, demora y falta de metricas.
+4. Paso 4 resuelto. El primer ensayo tipicamente da diecisiete minutos en vez de doce, con el bloque de requisitos desbordado porque el expositor lee toda la tabla. La correccion documentada es no leer la tabla completa sino mostrar solo los tres RF criticos y decir que los demas estan en el documento, y practicar la transicion entre modelo e interfaz, que es donde el equipo suele quedarse callado buscando la pestaña del prototipo. Se anota el tiempo antes y despues por bloque.
+5. Paso 5 resuelto. Al consolidar aparece al menos una inconsistencia clasica, por ejemplo que en el diagrama de clases el atributo se llama fechaNacimiento, en el diccionario de datos aparece como fecha_nac y en la pantalla el rotulo dice Fecha de nacimiento aproximada. Se unifica a fecha_nacimiento en modelo y diccionario, se deja el rotulo humano en la pantalla y se anota la correccion en la bitacora de la version 1.0. El indice del documento final queda con nueve secciones, desde problema y alcance hasta acta de entrega.
+
+## Rubrica corta
+- [ ] Guion cronometrado en el orden correcto y con reparto real de todo el equipo (3)
+- [ ] Tabla de tres decisiones con alternativa, criterio y consecuencia (3)
+- [ ] Banco de diez preguntas con respuestas de dos frases, incluyendo concurrencia, RNF y alcance (2)
+- [ ] Documento final consolidado con indice, version e inconsistencia corregida documentada (2)
+
+## Errores frecuentes
+- Contar la historia al reves, empezando por las pantallas bonitas, de modo que el jurado interrumpe preguntando que problema resuelve eso y el equipo pierde el hilo y el tiempo.
+- Justificar decisiones con frases vacias como asi lo vimos en clase o porque quedaba mas ordenado, sin alternativa descartada ni criterio, lo cual delata que el equipo copio una plantilla en vez de diseñar.
+- Que un solo integrante hable el ochenta por ciento del tiempo y los demas digan una frase, con el agravante de que ninguno puede responder preguntas fuera de su parte porque nunca leyeron el paquete completo.
+
+Plantilla de apoyo: `Kit docente/Clase 14/Plantillas/Guion-y-Decisiones-Sustentacion-VetCare.md`

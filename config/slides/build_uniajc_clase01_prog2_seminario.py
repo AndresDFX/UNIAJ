@@ -15,12 +15,25 @@ vive en la Presentacion del Curso).
 
 Salida: `<Curso>/Kit docente/Clase 1/Guion Docente Clase 1 - <tema>.md` (+ .docx
 via guion_md_a_docx.py).
+
+SUPERSEDIDO (2026-2)
+--------------------
+Los dos cursos ya tienen build propio de las 15 clases —`build_uniajc_prog2_all.py` y
+`build_uniajc_seminario_all.py`— y la Clase 1 sale de ahi, desde su modulo de datos.
+Correr este script sobrescribiria ambos guiones con la version vieja, asi que se
+bloquea a proposito. Se conserva por historia.
 """
 from __future__ import annotations
 
 import subprocess
 import sys
 from pathlib import Path
+
+sys.exit(
+    "SUPERSEDIDO: la Clase 1 la generan build_uniajc_prog2_all.py y\n"
+    "build_uniajc_seminario_all.py desde sus modulos de datos. Correr esto\n"
+    "revertiria la reconstruccion 2026-2 de ambos cursos."
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 SLIDES = Path(__file__).resolve().parent

@@ -3,9 +3,21 @@
 
 Solo tema de esta clase + nº discreto. Sin fechas de periodo, sin mapa del curso,
 sin bio docente (eso va en Presentación del Curso).
+
+SUPERSEDIDO (2026-2)
+--------------------
+Escribe en `Clase 1 - Introduccion a POO`, carpeta que ya no existe: tras la
+reconstruccion la Clase 1 la genera `build_uniajc_prog2_all.py` desde
+`prog2_clases_data.py`. Correr esto crearia una carpeta huerfana y duplicaria la
+clase. Se conserva por historia.
 """
 import os
 import sys
+
+sys.exit(
+    "SUPERSEDIDO: la Clase 1 de Prog II la genera build_uniajc_prog2_all.py\n"
+    "desde prog2_clases_data.py. Correr esto crearia una carpeta duplicada."
+)
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from uniajc_slides_engine import (

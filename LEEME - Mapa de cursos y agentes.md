@@ -11,7 +11,7 @@ Workspace docente: Institución Universitaria Antonio José Camacho.
 | Carpeta | Oferta 2026-2 | Notas |
 |---|---|---|
 | `Programacion II/` | FI303204 · **341C** · mié **18:00–20:00** · Presencialidad asistida (120 min) | 15 clases · **reconstruido 2026-2** con `build_uniajc_prog2_all.py` · PI VetCare (Java) |
-| `Seminario de Sistemas/` | FI303301 · **341C** · jue **18:00–20:00** · Presencialidad asistida (120 min) | 15 clases · Acuerdo 2026-2 prellenado |
+| `Seminario de Sistemas/` | FI303301 · **341C** · jue **18:00–20:00** · Presencialidad asistida (120 min) | 15 clases · **reconstruido 2026-2** con `build_uniajc_seminario_all.py` · PI VetCare (diseño: requisitos, UML, wireframes) |
 | `Bases de Datos II/` | **641A-2** · lun **18:00–20:00** · Presencialidad asistida (120 min) | Curso nuevo · **FI303215** · 4 clases autónomas (festivos) · falta confirmación oficial de secretaría |
 | `Arquitectura de Sistemas Computacionales/` | lun **10:00–12:00** · Presencialidad asistida (120 min) | Curso nuevo · **FI303380 · 6303C** · 4 clases autónomas · falta confirmación oficial de secretaría |
 | `0. Base/` | — | Plantillas institucionales (Ing. Software 1) |
@@ -82,15 +82,14 @@ python config/slides/build_uniajc_bd2_curso.py
 python config/slides/build_uniajc_arq_curso.py
 
 # Material de clase (las 15 clases del curso)
-python config/slides/build_uniajc_prog2_all.py        # datos en prog2_clases_data.py
+python config/slides/build_uniajc_prog2_all.py         # datos en prog2_clases_data.py
+python config/slides/build_uniajc_seminario_all.py     # datos en seminario_clases_data.py
 python config/slides/build_uniajc_bd2_all.py
 python config/slides/build_uniajc_arq_clases_batch.py
-# (Seminario aun no tiene build de sus 15 clases)
 
-# Clase 1 de Prog II / Seminario (guion) y slides de Clase 1 de Seminario
-python config/slides/build_uniajc_prog2_clase01.py
-python config/slides/build_uniajc_clase01_prog2_seminario.py
-python config/slides/build_uniajc_seminario_clase01.py
+# (build_uniajc_prog2_clase01.py, build_uniajc_clase01_prog2_seminario.py y
+#  build_uniajc_seminario_clase01.py estan SUPERSEDIDOS: la Clase 1 sale de los
+#  builds *_all.py. Se conservan por historia y abortan si se ejecutan.)
 
 # Proyecto Integrador (los 4 cursos) y parciales
 python config/slides/build_uniajc_pi_2026_2.py

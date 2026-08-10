@@ -11,11 +11,23 @@ estudiante para su tema.
 Acompaña al guion `Kit docente/Clase 1/Guion Docente Clase 1 - Conceptos iniciales.md`.
 Solo el tema de ESTA clase: nada de logistica del semestre (eso vive en la Sesion 0),
 sin bio del docente, sin fechas de periodo y sin anunciar el quiz.
+
+SUPERSEDIDO (2026-2)
+--------------------
+Desde la reconstruccion del curso, la Clase 1 la genera `build_uniajc_seminario_all.py`
+a partir de `seminario_clases_data.py`, igual que las otras 14. Correr este script
+sobrescribiria esa salida con la version vieja, asi que se bloquea a proposito. Se
+conserva por historia; para cambiar la Clase 1 se edita el modulo de datos.
 """
 from __future__ import annotations
 
 import sys
 from pathlib import Path
+
+sys.exit(
+    "SUPERSEDIDO: la Clase 1 de Seminario la genera build_uniajc_seminario_all.py\n"
+    "desde seminario_clases_data.py. Correr esto revertiria la reconstruccion 2026-2."
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 SLIDES = Path(__file__).resolve().parent
