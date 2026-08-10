@@ -22,6 +22,7 @@ from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from arq_fundamentos import FUNDAMENTOS  # noqa: E402
 from uniajc_slides_engine import (  # noqa: E402
     before_after_slide,
     box_note_slide,
@@ -1284,7 +1285,7 @@ def build_taller_docx(c: dict) -> Path | None:
         h2(doc, "8. Pistas (checklist vacío — sin solución)")
         bullets(doc, [f"☐ {p}" for p in tb["pistas"]])
     h2(doc, "9. Entrega")
-    para(doc, "Entrega en ExamLab (examlab.lovable.app/app · módulo Talleres) · domingo 23:59 (regla del Acuerdo). Un envío por equipo.")
+    para(doc, "Entrega en ExamLab (https://examlab.lovable.app/ · módulo Talleres) · domingo 23:59 (regla del Acuerdo). Un envío por equipo.")
     doc.save(str(path))
     print("OK taller ->", path)
     return path
@@ -1352,6 +1353,184 @@ def _capturas_md(n: int) -> str:
     return "".join(f"📸 {cap} [[captura: {fn}]]\n" for cap, fn in items)
 
 
+# ---------------------------------------------------------------------------
+# Guion docente: material que el docente necesita ADEMAS del fundamento teorico.
+# Antes el plan minuto a minuto era una plantilla generica ("recorre las slides
+# de conceptos") que no le decia al docente que hacer ni que decir. Estos tres
+# diccionarios son lo que convierte el guion en algo dictable sin preparacion:
+#   DEMO_ARQ      -> la demo concreta, paso a paso, que el docente debe repetir
+#   ERRORES_ARQ   -> lo que el estudiante hace mal y como corregirlo en el momento
+#   PREGUNTAS_ARQ -> preguntas de comprobacion oral (no del quiz) para el cierre
+# ---------------------------------------------------------------------------
+
+DEMO_ARQ = {
+    1: ("Dibujar en vivo el C4 Context de un CloudLite de ejemplo", [
+        "Abra draw.io en blanco y dibuje UNA caja al centro rotulada «CloudLite App».",
+        "Agregue 2 monigotes a la izquierda (Usuario final, Administrador) con flechas rotuladas «consulta», «administra».",
+        "Agregue 1 caja gris a la derecha rotulada «Pasarela de pagos (externo)» y una flecha «cobra».",
+        "Diga en voz alta: «no dibuje que hay ADENTRO de la caja; eso es Clase 4».",
+    ]),
+    2: ("Llenar un ADR-001 delante del grupo, en 6 lineas", [
+        "Abra un Google Doc y escriba los 4 encabezados del ADR: Contexto, Opciones, Decision, Consecuencias.",
+        "Contexto: «CloudLite necesita correr una API y una base de datos; el equipo tiene 3 personas y cero presupuesto».",
+        "Opciones: IaaS (control total, mas trabajo operativo) · PaaS (menos control, menos operacion) · SaaS (no aplica, no compramos software hecho).",
+        "Decision: PaaS conceptual + contenedores. Consecuencias: se acepta menos control del sistema operativo a cambio de no administrar servidores.",
+        "Diga: «un ADR de media pagina que se entiende vale mas que 5 paginas que nadie lee».",
+    ]),
+    3: ("Construir y correr el stub en Play with Docker", [
+        "Abra labs.play-with-docker.com y cree una instancia (advierta en voz alta: la sesion dura 4 horas y se autodestruye).",
+        "Escriba un Dockerfile minimo en vivo: FROM nginx:alpine y COPY de un index.html de una linea.",
+        "Ejecute docker build -t cloudlite-stub . y luego docker run -d -p 80:80 cloudlite-stub.",
+        "Ejecute docker ps y senale las columnas IMAGE, STATUS y PORTS: «esta es la evidencia que entregan».",
+        "Si la red falla, proyecte las capturas de `Kit docente/Clase 3/Capturas/`.",
+    ]),
+    4: ("Convertir el Context de la Clase 1 en Containers", [
+        "Abra el diagrama C4 Context de la demo de Clase 1 y haga zoom a la caja «CloudLite App».",
+        "Reemplace esa caja por 3 cajas internas: «API (REST)», «Base de datos» y «Worker de notificaciones».",
+        "Rotule CADA flecha con protocolo y formato: «HTTPS/JSON», «TCP/SQL». Sin flechas sin etiqueta.",
+        "Pregunte al grupo por que el worker esta separado; si nadie da una razon de negocio, borrelo en vivo: «eso es microservicios teatro».",
+    ]),
+    6: ("De amenaza STRIDE a control verificable, en vivo", [
+        "Escriba en el tablero: «Tampering: alguien cambia el precio de un item via la API sin permiso».",
+        "Pregunte al grupo cual seria el control; guie hasta «autenticacion + validacion de rol antes de aceptar el cambio».",
+        "Agregue la columna Evidencia: «en que archivo o diagrama se ve ese control» — sin evidencia, el control no cuenta.",
+        "Demo de 1 minuto del anti-patron: muestre un Dockerfile con una API key escrita en texto plano y explique que queda en el historial de la imagen para siempre.",
+    ]),
+    7: ("Dibujar zonas de confianza sobre el diagrama de despliegue", [
+        "En draw.io dibuje dos rectangulos grandes rotulados «Subred publica» y «Subred privada».",
+        "Ponga el balanceador en la publica y la base de datos en la privada; dibuje la flecha API -> BD cruzando de una a otra.",
+        "Pregunte: «si un atacante llega desde internet, con que se topa primero?» — eso es superficie de exposicion.",
+        "Verifique en voz alta que los nombres de los servicios son LOS MISMOS del C4 Containers de la Clase 4.",
+    ]),
+    8: ("Un workflow de GitHub Actions que corra de verdad", [
+        "Cree `.github/workflows/ci.yml` con on: push, un job y 3 steps: checkout, setup, y un comando de prueba real.",
+        "Haga commit y push, y abra la pestana Actions del repositorio para ver el run.",
+        "Espere el check verde y senale el log del step: «esto es evidencia, no una diapositiva que dice que tenemos CI».",
+        "Aclare la frontera: el pipeline llega hasta «listo para desplegar»; no despliega a ningun servidor real en este curso.",
+    ]),
+    10: ("Tabla de costo cualitativo en 5 minutos", [
+        "Dibuje 3 columnas: Componente | Costo (Bajo/Medio/Alto) | Driver del costo.",
+        "Llene 3 filas de CloudLite: base de datos gestionada (Alto, computo+almacenamiento constante 24/7), API en contenedor (Medio, numero de instancias), object storage de imagenes (Bajo, volumen de datos).",
+        "Pregunte cual bajaria primero si el presupuesto se corta a la mitad, y exija que justifiquen con el driver, no con intuicion.",
+    ]),
+    11: ("Auditar en vivo el paquete de un equipo voluntario", [
+        "Pida a un equipo que proyecte su C4 Containers y su diagrama de despliegue lado a lado.",
+        "Compare nombre por nombre: todo servicio del Containers debe existir en el despliegue y viceversa.",
+        "Senale en voz alta el primer gap concreto que encuentre y escribalo como accion con responsable y fecha.",
+        "Modele el tono: el hallazgo es sobre el artefacto, nunca sobre la persona.",
+    ]),
+    12: ("Definir un objetivo de rendimiento que si se puede verificar", [
+        "Escriba la frase mala: «la app debe ser rapida». Pregunte al grupo como la comprobarian; deje que fallen.",
+        "Reescribala en vivo: «el p95 del endpoint de consulta responde en menos de 300 ms con 50 peticiones por segundo».",
+        "Explique el p95 con 20 numeros en el tablero: ordene y marque el que deja 95% por debajo.",
+        "Cierre pidiendo el bottleneck sospechado: «cual pieza creen que revienta primero, y por que esa».",
+    ]),
+    13: ("Vertical vs horizontal, y lo que NO escala", [
+        "Dibuje una caja «API» y agrandela: eso es vertical (mas CPU/RAM a la misma maquina, con techo fisico).",
+        "Borre y dibuje 3 cajas «API» iguales con un balanceador arriba: eso es horizontal.",
+        "Agregue la base de datos abajo, conectada a las 3, y encierrela en rojo: «esta no se multiplica igual; aqui esta el limite real».",
+        "Escriba el trigger y el limite: «CPU > 70% por 5 min -> +1 instancia, maximo 4» y amarre con el costo de la Clase 10.",
+    ]),
+    15: ("Modelar una sustentacion de 6 minutos y un Q&A", [
+        "Presente usted mismo un CloudLite de ejemplo en 6 minutos cronometrados, con la estructura: problema, decision clave, evidencia, limite conocido.",
+        "Hagase una pregunta dificil en voz alta y respondala: «por que no usaron microservicios? Porque con 3 personas la frontera no se justificaba».",
+        "Muestre la rubrica proyectada y senale donde habria perdido puntos su propia demo.",
+        "Recuerde la regla de los 60 segundos: cualquier integrante debe poder explicar cualquier parte.",
+    ]),
+}
+
+ERRORES_ARQ = {
+    1: ["Dominio vago tipo «una red social» o «un e-commerce»: sin problema concreto no hay decisiones que tomar. Exija sector, usuario y dolor observable.",
+        "Dibujar lo que hay DENTRO del sistema en el nivel Context (base de datos, API). Se corrige recordando que eso es el nivel Containers de la Clase 4.",
+        "Confundir capacidad con pantalla: «tener un login» no es capacidad; «autenticar usuarios» si."],
+    2: ["Elegir el modelo de servicio por moda y no por trade-off. Pida la frase «aceptamos perder X para ganar Y» escrita en el ADR.",
+        "ADR sin alternativas descartadas: un ADR con una sola opcion no documenta una decision, documenta un hecho.",
+        "Nombrar productos de marca en vez del modelo conceptual; el modelo aplica a cualquier proveedor."],
+    3: ["Decir que el contenedor «es una VM ligera». Insista en la diferencia real: kernel propio vs kernel compartido.",
+        "Confundir imagen con contenedor al hablar. Corrija en el momento: la imagen es el molde, el contenedor la instancia corriendo.",
+        "Perder el trabajo porque la sesion de Play with Docker expiro a las 4 horas. Recuerdeles guardar el Dockerfile y las capturas ANTES."],
+    4: ["Inventar 6 u 8 servicios para verse sofisticados. Pregunte por cada uno: que responsabilidad de negocio propia tiene y quien lo despliega por separado.",
+        "Flechas sin etiqueta entre servicios. Toda flecha lleva protocolo y formato de datos.",
+        "Olvidar que distribuir agrega fallos parciales: exija al menos 2 riesgos de red en la tabla."],
+    6: ["Entregar una lista generica de buenas practicas en vez de amenaza -> control -> evidencia. Devuelva la tabla si no tiene las 3 columnas.",
+        "Escribir credenciales en el Dockerfile o en el repositorio. Es el error mas costoso y hay que cortarlo el mismo dia.",
+        "Cubrir las 6 categorias STRIDE de forma superficial en vez de 3 bien argumentadas para su dominio."],
+    7: ["Dibujar «la nube» como una caja difusa. Exija las dos zonas, publica y privada, explicitas.",
+        "Poner la base de datos en la subred publica «para que sea mas facil probar». Es exactamente lo que la Clase 6 acaba de prohibir.",
+        "Renombrar servicios respecto al C4 Containers, con lo que los dos diagramas dejan de ser el mismo sistema."],
+    8: ["Un workflow que solo hace `echo ok`: es un pipeline decorativo. Exija que corra algo que pueda fallar de verdad.",
+        "Decir que ya tienen CD porque el YAML dice deploy. En este curso el despliegue se simula; que lo digan asi.",
+        "Golden signals sin umbral: «medimos latencia» no sirve; falta a partir de que valor se considera un problema."],
+    10: ["Pedir precios exactos de un proveedor. No es el objetivo: el analisis es cualitativo y por driver.",
+         "Marcar todo como costo «Medio» para no pensar. Fuerce al menos un Alto y un Bajo con justificacion.",
+         "Olvidar el trafico de red saliente, que es el driver que mas sorprende en facturas reales."],
+    11: ["Traer el paquete de la Clase 1 sin actualizar y presentarlo como avance. Compare contra la version anterior.",
+         "Un solo integrante conoce el paquete completo. Pregunte al azar; si solo uno responde, ese es el hallazgo principal.",
+         "Confundir este checkpoint con la sustentacion final o con el Parcial 3. Aclarelo al abrir la sesion."],
+    12: ["Objetivo de rendimiento sin numero, sin escenario de carga o sin bottleneck. Falta cualquiera de los tres y no es un analisis.",
+         "Usar el promedio en vez del p95 y concluir que todo esta bien. Muestre por que el promedio esconde los casos malos.",
+         "Ensayar el pitch leyendo las diapositivas. Cronometre y corte a los 8 minutos."],
+    13: ["Prometer autoescalado infinito sin limite maximo ni control de costo (Clase 10).",
+         "Escalar horizontalmente un servicio que guarda la sesion en memoria local: al repartir la carga, el usuario pierde su sesion.",
+         "No documentar QUE NO escala. La base de datos relacional es casi siempre la respuesta y hay que decirlo."],
+    15: ["Describir el diagrama en vez de justificar la decision. Reoriente con «por que asi y no de la otra forma».",
+         "Un integrante presenta y el resto observa. Distribuya el Q&A a proposito.",
+         "Presentar sin mencionar ningun limite del diseno. Un equipo que no reconoce limites no entendio el trade-off."],
+}
+
+PREGUNTAS_ARQ = {
+    1: ["Cual es la diferencia entre arquitectura y stack tecnologico?",
+        "Que va DENTRO y que va FUERA de la caja en un diagrama C4 Context?",
+        "Digan una capacidad de su CloudLite que NO sea una pantalla."],
+    2: ["Quien administra el sistema operativo en IaaS, en PaaS y en SaaS?",
+        "Que perdieron y que ganaron con el modelo que eligieron?",
+        "Por que un ADR necesita las alternativas que descartaron?"],
+    3: ["Que comparten los contenedores de una misma maquina que las VM no comparten?",
+        "Cual es la diferencia entre imagen y contenedor?",
+        "Que pasa con su trabajo cuando expira la sesion de Play with Docker?"],
+    4: ["Que justifica que dos funciones vivan en servicios separados?",
+        "Que cambia cuando una llamada de funcion se vuelve una llamada de red?",
+        "Como se llama en su C4 Containers el servicio que expone la API?"],
+    6: ["Que significa la T de STRIDE y una amenaza concreta de su CloudLite?",
+        "Donde guardan una API key y por que NO dentro de la imagen?",
+        "Que evidencia demuestra que su control existe de verdad?"],
+    7: ["Que va en la subred publica y que en la privada, y por que?",
+        "Que hace un balanceador de carga en una frase?",
+        "Cuando conviene object storage y cuando la base de datos?"],
+    8: ["Que valida CI y que hace CD, y cual de los dos construyeron hoy?",
+        "Digan las 4 golden signals y el umbral de una de ellas.",
+        "Que pasaria en su pipeline si alguien sube codigo que no compila?"],
+    10: ["Cual es el componente mas caro de su CloudLite y cual es su driver?",
+         "Que es right-sizing en una frase?",
+         "Como se conecta el autoescalado con el costo?"],
+    11: ["Que gap concreto identificaron hoy y quien lo cierra?",
+         "Su diagrama de despliegue usa los mismos nombres que su C4 Containers?",
+         "Que evidencia de la rubrica les falta todavia?"],
+    12: ["Que es el p95 y por que no usamos el promedio?",
+         "Cual es su bottleneck sospechado y en que se basan?",
+         "Diferencia entre stress test y spike test?"],
+    13: ["Vertical u horizontal: cual eligieron y por que?",
+         "Cual es su trigger y cual su limite maximo?",
+         "Que pieza de su sistema NO escala, y que harian al respecto?"],
+    15: ["Justifiquen su decision de arquitectura mas importante en 60 segundos.",
+         "Cual es el limite conocido de su diseno actual?",
+         "Si tuvieran un mes mas, que cambiarian primero y por que?"],
+}
+
+
+def _lista_md(items, bullet="- "):
+    return "\n".join(f"{bullet}{x}" for x in items) if items else ""
+
+
+def _demo_md(n: int) -> str:
+    d = DEMO_ARQ.get(n)
+    if not d:
+        return "Muestre en vivo la herramienta del dia con un mini-ejemplo de CloudLite.\n"
+    titulo, pasos = d
+    cuerpo = "\n".join(f"{i + 1}. {p}" for i, p in enumerate(pasos))
+    return f"**Demo que usted debe poder repetir:** {titulo}\n\n{cuerpo}\n"
+
+
 def guion_md(c: dict) -> str:
     n = c["n"]
     if c["tipo"] == "parcial":
@@ -1386,145 +1565,100 @@ Di: «Gracias. El PI CloudLite continúa en la siguiente clase regular o autóno
 - Prep de pitch/PI fue en la clase regular anterior.
 """
 
-    # Fundamento por tipo de tema (breve pero útil al docente)
-    fundamentos = {
-        1: """Arquitectura de software = las decisiones estructurales dificiles de cambiar despues: como se dividen los componentes, como se comunican, donde se despliegan, y que atributos de calidad priorizan (rendimiento, seguridad, disponibilidad, costo). No es "el diagrama bonito": es el conjunto de decisiones que ese diagrama documenta.
+    # El desarrollo completo del tema vive en arq_fundamentos.py (modulo de datos,
+    # misma convencion que prog2_clases_data / seminario_clases_data). Antes estaba
+    # inline y en 4-5 parrafos, insuficiente para la regla de oro del workspace:
+    # el guion debe permitir dictar la clase sin consultar otra fuente.
+    fund = FUNDAMENTOS.get(
+        n, "Teoria al servicio del entregable PI de hoy. Ver diapositivas de la clase."
+    )
 
-El modelo C4 (Context, Containers, Components, Code) da niveles de zoom consistentes. Hoy se usa SOLO el nivel Context: un diagrama con el sistema como una caja, las personas que lo usan (actores) y los sistemas externos con los que se conecta (ej. pasarela de pagos, servicio de correo) — sin entrar todavia a que hay DENTRO del sistema (eso es Clase 4, nivel Containers).
-
-El estudiante no necesita una cuenta cloud real de pago: CloudLite App se modela y simula con herramientas gratuitas (draw.io, Excalidraw, Play with Docker). La arquitectura se aprende razonando sobre decisiones y trade-offs, no memorizando la consola de un proveedor especifico.
-
-Error de docente que no domina el tema: confundir "arquitectura" con "el stack tecnologico" (ej. "usamos React y Node, esa es la arquitectura") — el stack es una decision DENTRO de la arquitectura, no la arquitectura completa. Lo que se evalua hoy es si el diagrama Context responde con claridad quien usa el sistema y que toca hacia afuera.""",
-        2: """IaaS, PaaS y SaaS son niveles de abstraccion sobre la infraestructura, y cada uno mueve la linea de responsabilidad compartida (shared responsibility model): en IaaS (Infrastructure as a Service) el proveedor da solo maquinas/red/almacenamiento y el cliente administra sistema operativo, runtime y aplicacion; en PaaS (Platform as a Service) el proveedor tambien administra el sistema operativo y el runtime, el cliente solo sube su codigo; en SaaS (Software as a Service) el proveedor entrega la aplicacion completa y el cliente solo la usa (ej. Gmail).
-
-Regla practica: mientras mas alto el nivel de abstraccion (SaaS > PaaS > IaaS), menos control tiene el cliente pero menos trabajo operativo asume. Para un MVP academico como CloudLite, un enfoque PaaS conceptual + contenedores suele ser el punto dulce: control suficiente para aprender arquitectura, sin la carga operativa de administrar servidores completos.
-
-Un ADR (Architecture Decision Record) es un documento corto que registra UNA decision arquitectonica: el contexto/problema, las opciones consideradas, la decision tomada y las consecuencias (trade-offs aceptados). Obliga a hacer explicito el trade-off control-vs-velocidad en vez de elegir "porque si".
-
-Error de docente que no domina el tema: presentar IaaS/PaaS/SaaS como si fueran productos especificos de una marca en vez de un modelo conceptual de responsabilidad — el modelo aplica igual a cualquier proveedor, la pregunta siempre es "quien administra que capa".""",
-        3: """Virtualizacion (maquinas virtuales): un hipervisor crea varias maquinas virtuales sobre un mismo hardware fisico, y cada VM tiene su PROPIO sistema operativo completo (kernel incluido), aislado de las demas. Es aislamiento fuerte, pero cada VM carga el peso completo de un SO.
-
-Contenedores: en cambio, todos los contenedores de una maquina COMPARTEN el kernel del sistema operativo anfitrion; cada contenedor solo empaqueta la aplicacion y sus dependencias (librerias, configuracion), no un SO completo. Por eso arrancan en segundos (no minutos) y pesan megabytes (no gigabytes) comparado con una VM.
-
-Distincion clave que se confunde seguido: una IMAGEN es la plantilla inmutable (el "molde": codigo + dependencias + configuracion); un CONTENEDOR es una instancia en ejecucion de esa imagen (el "objeto" corriendo). De una misma imagen se pueden lanzar muchos contenedores identicos.
-
-Para evitar depender de Docker Desktop (que requiere licencia/recursos en equipos institucionales), se usa Play with Docker (labs.play-with-docker.com, sesiones de 4h) como lab principal en el navegador — da una terminal Linux real con Docker instalado, sin instalar nada localmente. Killercoda queda como alterna si PWD no esta disponible.
-
-Error de docente que no domina el tema: decir que un contenedor "es una VM ligera" sin mas — la diferencia arquitectonica real es el aislamiento (kernel propio vs kernel compartido), no solo el tamano.""",
-        4: """Un microservicio es una unidad de despliegue independiente: se construye, se despliega y se escala por separado de los demas servicios, con su propia frontera de responsabilidad (ej. servicio de citas, servicio de notificaciones). La frontera correcta se define por responsabilidad de negocio, no por capricho tecnico.
-
-Con equipos de 2-3 estudiantes, 2-5 contenedores logicos es un tamano realista para CloudLite (ej. API, base de datos, un servicio de notificaciones) — mas que eso se vuelve "microservicios teatro": servicios separados solo de nombre, sin razon de negocio real que justifique la separacion.
-
-C4 Containers (nivel 2 del modelo visto en Clase 1) muestra que aplicaciones/servicios/bases de datos componen el sistema y COMO se comunican entre si (protocolo, formato de datos) — un contrato explicito, no flechas sin etiqueta.
-
-Consecuencia inevitable de distribuir: lo que antes era una llamada de funcion local ahora es una llamada de red, que puede fallar, tardar, o llegar fuera de orden. Un sistema distribuido no es "el mismo sistema pero en varias partes" — introduce latencia real y fallos parciales (un servicio cae, los demas deben seguir funcionando o degradarse con gracia) que un monolito no tiene.
-
-Error de docente que no domina el tema: aplaudir un diagrama con 8 microservicios sin preguntar por que cada uno existe — el numero de servicios no es una medida de calidad arquitectonica; la justificacion de cada frontera si lo es.""",
-        6: """Seguridad en la nube no es "poner un firewall": es identificar amenazas especificas del sistema y mapear cada una a un control verificable. STRIDE (metodologia de modelado de amenazas) da 6 categorias en una frase cada una: Spoofing (alguien se hace pasar por otro), Tampering (alguien modifica datos sin autorizacion), Repudiation (alguien niega haber hecho una accion sin evidencia que lo contradiga), Information disclosure (datos sensibles expuestos a quien no debe verlos), Denial of service (el sistema deja de responder), Elevation of privilege (alguien obtiene mas permisos de los que deberia tener).
-
-Aplicado a CloudLite: por cada categoria relevante al dominio del equipo, se identifica una amenaza concreta (ej. Tampering: alguien modifica el precio de un producto via la API sin autorizacion) y un control que la mitiga (ej. autenticacion + validacion de rol antes de aceptar el cambio).
-
-Gestion de secretos: una credencial (API key, contraseña de BD) NUNCA se escribe dentro de la imagen del contenedor ni se sube al repositorio en texto plano — eso queda expuesto a quien tenga acceso a la imagen o al historial de Git. Se usan mecanismos de secretos del propio pipeline (ej. GitHub Actions Secrets), inyectados en tiempo de ejecucion, nunca guardados en el codigo.
-
-Error de docente que no domina el tema: tratar "seguridad" como una sola diapositiva generica de buenas practicas — el entregable de hoy exige amenaza especifica -> control especifico -> evidencia en el diagrama o repo, no una lista generica de consejos.""",
-        7: """El diagrama de despliegue (deployment) muestra DONDE corre cada pieza del sistema y como se conectan a traves de la red, distinguiendo zonas de confianza: una subred publica (expuesta a internet, ej. balanceador de carga) y una subred privada (solo accesible desde dentro, ej. base de datos) — sin necesidad de una VPC real de pago, el concepto se dibuja igual con draw.io.
-
-Balanceo de carga y DNS en una frase cada uno: el DNS traduce un nombre humano (miapp.com) a una direccion de red; un balanceador de carga reparte las peticiones entrantes entre varias instancias del mismo servicio para que ninguna se sature sola.
-
-Almacenamiento: Object storage (ej. tipo S3) guarda archivos/blobs con acceso via URL, ideal para imagenes o backups; storage de base de datos guarda registros estructurados con consultas complejas. La eleccion depende del tipo de dato: un PDF de factura va a object storage, el registro de la factura en si va a la base de datos.
-
-Coherencia con Clase 4: los nombres de servicios en este diagrama de despliegue deben ser LOS MISMOS que los contenedores definidos en el C4 Containers — es el mismo sistema visto desde otro angulo, no un sistema nuevo.
-
-Error de docente que no domina el tema: dibujar "la nube" como una sola caja difusa sin distinguir zona publica de zona privada — esa distincion es precisamente lo que demuestra que el equipo entiende superficie de exposicion, tema central de la clase de seguridad anterior.""",
-        8: """CI (Integracion Continua) automatiza la VALIDACION del codigo cada vez que alguien sube un cambio: correr pruebas, verificar que compila/construye, revisar estilo — sin que un humano lo haga manualmente cada vez. CD (Entrega/Despliegue Continuo) automatiza el PASO SIGUIENTE, llevar ese cambio validado a produccion; en este curso, sin infraestructura real de pago, CD se SIMULA (el pipeline llega hasta "listo para desplegar", no despliega a un servidor real).
-
-Un archivo YAML de GitHub Actions es evidencia real y verificable de CI: define triggers (cuando correr, ej. en cada push), jobs (que tareas ejecutar) y steps (comandos concretos). Aunque sea minimo (ej. solo correr un linter), es un pipeline real, no una simulacion en papel.
-
-Monitoreo con golden signals (los 4 indicadores clasicos de observabilidad): latencia (cuanto tarda en responder), errores (que porcentaje de peticiones falla), saturacion (que tan cerca esta el sistema de su limite de capacidad), trafico (cuantas peticiones recibe). Aplicados a CloudLite de forma conceptual: aunque no haya trafico real, se documenta QUE se mediria y COMO se detectaria un problema con cada señal.
-
-Error de docente que no domina el tema: presentar CI/CD como sinonimos intercambiables — CI valida, CD despliega; un pipeline puede tener CI sin CD (validar sin desplegar automaticamente), y eso es exactamente lo que se construye hoy.""",
-        10: """Costo en la nube se analiza aunque no haya facturacion real: cualitativamente en niveles Bajo/Medio/Alto por componente (ej. una base de datos gestionada = costo medio-alto por almacenamiento+computo constante; una funcion serverless que casi no se usa = costo bajo), identificando los DRIVERS de costo (que factor especifico hace subir el gasto: numero de instancias, volumen de datos, trafico de red saliente).
-
-Sostenibilidad tecnica (no ambiental en este contexto) = right-sizing: no sobre-aprovisionar recursos "por si acaso" (una maquina grande corriendo al 5% de uso es desperdicio puro), usar labs/entornos temporales que se apagan cuando no se usan en vez de dejar todo corriendo 24/7, e imagenes de contenedor "slim" (minimas, sin paquetes innecesarios) que consumen menos storage y arrancan mas rapido.
-
-Conexion directa con Clase 13 (escalabilidad): escalar automaticamente HACIA ARRIBA sin un limite o politica de apagado tambien escala el costo sin control — el diseño de autoescalado y el analisis de costo son la misma decision vista desde dos angulos.
-
-Error de docente que no domina el tema: tratar el costo como un tema "de negocio, no tecnico" — las decisiones que mas impactan el costo (tipo de instancia, almacenamiento elegido, arquitectura con o sin colas/cache) son decisiones de arquitectura, tomadas por quien diseña el sistema.""",
-        11: """Esta clase no introduce teoria nueva a proposito: es un checkpoint donde el equipo demuestra que las piezas ya vistas (C4 Context/Containers, seguridad, despliegue, CI) forman un sistema coherente, no fragmentos sueltos de distintas clases.
-
-El rol del docente hoy es de auditor critico, no de instructor: bloquear dominios que crecieron sin limite desde la Clase 1 original (scope creep), y senalar "microservicios teatro" — servicios separados en el diagrama que en la practica no tienen frontera de responsabilidad real ni justificacion de por que estan separados.
-
-Diferencia importante que evita confusion: esto NO es la sustentacion final (Clase 15) ni el Parcial 3 (Clase 14evaluacion escrita) — es un punto de control intermedio para corregir rumbo a tiempo, con retroalimentacion entre pares ademas de la del docente.
-
-Error de docente que no domina el tema: dejar pasar un checkpoint sin retroalimentacion especifica por equipo ("todo bien, sigan asi") — el valor de un checkpoint es identificar el gap concreto que cada equipo debe cerrar antes de la sustentacion.""",
-        12: """Rendimiento en arquitectura se analiza con tres piezas: objetivo medible (ej. "p95 de tiempo de respuesta menor a 300ms" — el percentil 95 indica que el 95% de las peticiones responden en ese tiempo o menos, una medida mas honesta que el promedio porque no la distorsionan casos extremos), escenario de carga (cuantas peticiones por segundo, RPS, se simulan) y bottleneck (el componente especifico que limita el rendimiento del sistema completo — nunca "todo es lento", siempre hay una pieza que limita primero).
-
-Diferencia entre stress test (aumentar la carga progresivamente hasta encontrar el punto de quiebre del sistema) y spike test (una subida SUBITA y grande de trafico, simulando un pico real como una promocion o una noticia viral) — evaluan cosas distintas: capacidad maxima vs capacidad de reaccion ante lo inesperado.
-
-El pitch de 5-8 minutos se ensaya HOY como preparacion, distinto del Parcial 3 (Clase 14) que es la evaluacion escrita formal — no deben confundirse ni mezclar contenido de uno con el otro en esta clase.
-
-Error de docente que no domina el tema: pedir "que la app sea rapida" sin definir p95, RPS objetivo ni el bottleneck sospechado — sin esas tres piezas, "rendimiento" es una palabra vacia, no un analisis.""",
-        13: """Escalar verticalmente = darle mas recursos a la MISMA maquina (mas CPU, mas RAM) — simple pero tiene un techo fisico y usualmente requiere reiniciar el servicio. Escalar horizontalmente = agregar MAS instancias iguales corriendo en paralelo, repartiendo la carga entre ellas (requiere que el sistema soporte multiples instancias sin pisarse, ej. no guardar estado de sesion solo en memoria local).
-
-Autoescalado (mencion conceptual): un trigger (ej. uso de CPU sobre 70% durante 5 minutos) dispara automaticamente el arranque de una instancia adicional; y un limite maximo evita que el sistema escale sin control (y sin control de costo, conexion directa con Clase 10).
-
-Punto que suele generar "magia" en las sustentaciones: los datos NO escalan igual que la capa de API. Agregar mas instancias de la aplicacion es relativamente simple; escalar una base de datos relacional (que necesita mantener consistencia) es fundamentalmente mas dificil — por eso el entregable de hoy exige documentar explicitamente QUE NO se escala en el diseño actual de CloudLite, no solo lo que si.
-
-Error de docente que no domina el tema: presentar el autoescalado como si resolviera cualquier problema de rendimiento automaticamente — sin identificar primero el bottleneck (Clase 12), escalar la pieza equivocada no mejora nada y aumenta el costo sin razon.""",
-        15: """Esta clase de cierre tampoco introduce teoria nueva: consolida evidencia completa de las 14 clases anteriores (C4 Context/Containers, seguridad, despliegue, CI/monitoreo, costos, rendimiento, escalabilidad) en una sustentacion coherente, no una lista de diapositivas sueltas por tema.
-
-Criterio de calidad de la sustentacion: CUALQUIER integrante del equipo debe poder explicar cualquier parte del sistema en 60 segundos — si solo una persona entiende el diagrama completo, el trabajo en equipo fallo aunque el diagrama este bien hecho.
-
-Recordatorio explicito que evita confusion de pesos: el Proyecto Integrador (20% del Corte 3) es una evaluacion DISTINTA e independiente del Parcial 3 (Clase 14, evaluacion escrita) — uno no sustituye ni compensa al otro en el calculo de la nota.
-
-Error de docente que no domina el tema: permitir que un solo integrante presente todo mientras los demas observan — el Q&A de cierre debe distribuirse entre todo el equipo precisamente para verificar el criterio de los 60 segundos.""",
-    }
-    fund = fundamentos.get(n, "Teoría al servicio del entregable PI de hoy. Ver diapositivas de la clase.")
+    # Conceptos reales de esta clase (titulos de las slides de teoria), para que el
+    # plan diga QUE cubrir en cada tramo en vez de "recorre las slides".
+    conceptos = [t for t, _ in c.get("slides_extra", [])]
+    conceptos_md = _lista_md(conceptos) or "- Ver diapositivas de la clase."
+    minutos_por_concepto = max(5, 30 // max(1, len(conceptos)))
 
     plan_blocks = f"""### 0–10 · Encuadre PI
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **{c['pi_hoy']}**.
 Entregable concreto: {c['entregable']}.
 Teoría breve y luego taller; no es un lab suelto.»
-Pasa diapositiva de agenda y objetivos. Abre el enunciado PI si alguien aún no lo tiene.
+Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
+Pregunta de arranque (1 min): «¿en qué quedó su CloudLite la clase pasada?» — sirve para detectar equipos rezagados antes de avanzar.
 
 ### 10–40 · Teoría Core (al servicio del taller)
-Recorre las slides de conceptos. Cada 7–8 min amarra al artefacto del PI:
-«Esto lo van a dejar hoy en el informe/diagrama/repo.»
-Usa ejemplos del dominio de los equipos (pide 1 voluntario).
-Capturas sugeridas: ver marcadores [CAP:] en las slides.
+Cubre estos conceptos, en este orden, ~{minutos_por_concepto} min cada uno (son los títulos de las diapositivas de teoría):
+{conceptos_md}
+
+El desarrollo completo de cada uno está arriba, en «Fundamento teórico para el docente»:
+esa sección está escrita para que puedas dictarla sin consultar otra fuente.
+Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
+Pide un equipo voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
 ### 40–55 · Demo en vivo
-Demuestra la herramienta del día (**{c['herramienta']}**) con un mini-ejemplo CloudLite.
-Narra clics. Si falla la red, usa capturas en `Kit docente/Clase {n}/Capturas/`.
-Di: «Copien la estructura, no el dominio de mi demo.»
+Herramienta del día: **{c['herramienta']}**.
+{_demo_md(n)}
+Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase {n}/Capturas/`.
+Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 {_capturas_md(n)}
 
 ### 55–100 · Taller guiado PI (equipos)
-Proyecta la lista de pasos del taller estudiante.
-Recorre mesas/Meet: bloquea dominios vagos; exige nombres consistentes.
-A los 80 min: «Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
+Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
+Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
+A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
 
-### 100–115 · Quiz / evidencias
-Aplica quiz corto (Kit). Mientras, revisa que el entregable esté en Drive/repo.
-Retroalimenta 2–3 equipos en voz alta (errores frecuentes).
+### 100–115 · Comprobación y evidencias
+Haz 3–4 de las preguntas de comprobación oral de abajo, a personas distintas y al azar
+(no al que levanta la mano). Es el mecanismo para verificar la regla de los 60 segundos.
+Aplica el quiz corto de `Kit docente/Clase {n}/Quiz Clase {n} - {c['slug']}.docx`
+(la clave va en archivo aparte y **no se proyecta**).
+Mientras responden, verifica que el entregable esté realmente subido.
+Retroalimenta 2–3 equipos en voz alta, nombrando el error y la corrección concreta.
 
 ### 115–120 · Cierre
-Di: «Criterio de éxito: cualquier integrante explica el artefacto en 60 s.
+Di: «Queda avanzado: {c['pi_hoy']}.
+Criterio de éxito: cualquier integrante explica el artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 """
 
     if c["tipo"] == "autonoma":
         plan_blocks = f"""### Modalidad autónoma (festivo)
-No hay encuentro síncrono obligatorio. El estudiante trabaja con Presentacion.pptx + Taller.docx.
+Esta clase cae en festivo: no hay encuentro síncrono obligatorio. El estudiante trabaja solo,
+con `Presentacion.pptx` + el taller de la carpeta `Clases/`. Por eso el material publicado
+tiene que ser **autosuficiente**: lo que no quede escrito, nadie lo va a explicar en vivo.
 
-### Guion del docente (asíncrono)
-1. Publica en ExamLab: diapositivas + taller + recordatorio del PI.
-2. Mensaje sugerido: «Clase {n} autónoma. Hoy avanzamos el PI en: {c['pi_hoy']}.
-   Entregable: {c['entregable']}. Duda por foro/correo institucional.»
-3. Revisa entregas domingo 23:59; deja feedback breve orientado a la rúbrica PI.
+### Qué publicar (antes del día de la clase)
+1. En ExamLab: las diapositivas, el taller y el recordatorio del hito del PI.
+2. La sección «Fundamento teórico para el docente» de este guion, adaptada como **lectura guía**
+   del estudiante — es el reemplazo de la explicación en vivo, no un anexo opcional.
+3. La **salida esperada** del ejercicio (ver la demo de abajo), para que el estudiante autónomo
+   pueda comparar y saber si le quedó bien sin preguntarte.
+4. Mensaje sugerido: «Clase {n} autónoma (festivo). Hoy avanzamos el PI en: {c['pi_hoy']}.
+   Entregable: {c['entregable']}. Fecha límite: domingo 23:59. Dudas por foro/correo institucional.»
+
+### Cómo debería repartir su tiempo el estudiante (120 min equivalentes)
+- **0–15** Leer el encuadre y el objetivo del día; ubicar en qué quedó su CloudLite.
+- **15–45** Leer la teoría (lectura guía) y tomar notas directamente en el informe del PI.
+- **45–60** Revisar la salida esperada del ejercicio resuelto.
+- **60–105** Desarrollar el taller sobre su propio CloudLite.
+- **105–120** Empaquetar la evidencia y subirla a ExamLab.
+
+### La demo, en versión asíncrona
+{_demo_md(n)}
+Publica esto como pasos escritos o como un video corto (3–5 min) grabado con estos mismos pasos.
+Sin uno de los dos, el estudiante autónomo no tiene con qué comparar su resultado.
+{_capturas_md(n)}
+
+### Seguimiento (lo que sí es tu trabajo esa semana)
+1. Revisa las entregas del domingo 23:59 con la lista de errores frecuentes de abajo:
+   en modalidad autónoma esos errores aparecen más, porque nadie los corrigió en el momento.
+2. Deja feedback breve orientado a la rúbrica del PI, nombrando el error y la corrección.
+3. En la siguiente clase regular, dedica los primeros 10 min a los 2 errores más repetidos.
+   Es el sustituto de la retroalimentación en vivo que esta clase no tuvo.
 
 ### Si ofreces office hours voluntario (opcional, 20–30 min)
-Resuelve bloqueos de diagrama/ADR; no adelantes Parcial.
+Resuelve bloqueos concretos de diagrama/ADR/lab. Usa las preguntas de comprobación de abajo
+para detectar quién entendió y quién solo copió la plantilla. No adelantes contenido de Parcial.
 """
 
     pasos = "\n".join(f"{i+1}. {p}" for i, p in enumerate(c["taller_pasos"]))
@@ -1564,16 +1698,28 @@ Referencia de slides: `Clases/Clase {n} - {c['slug']}/Presentacion.pptx` (solo t
 - Evidencia adjunta.
 - Explicación oral de 60 s por integrante (muestreo).
 
+## Errores frecuentes del estudiante (y cómo corregirlos en el momento)
+{_lista_md(ERRORES_ARQ.get(n, [])) or "- Sin errores catalogados para esta clase."}
+
+## Preguntas de comprobación oral (no son del quiz)
+Úsalas en el tramo 100–115, a personas distintas y al azar.
+{_lista_md(PREGUNTAS_ARQ.get(n, []), bullet="1. ") or "- Sin preguntas catalogadas para esta clase."}
+
+## Solución del taller (privada)
+`Kit docente/Clase {n}/Solucion Taller Clase {n} - CloudLite.docx` — es la referencia con la que
+comparas lo que entregan los equipos. **No proyectarla completa** antes de que trabajen.
+
 ## Quiz
-Ver `Kit docente/Clase {n}/Quiz Clase {n} - {c['slug']}.docx` (con respuestas).
+`Kit docente/Clase {n}/Quiz Clase {n} - {c['slug']}.docx` (versión estudiante, sin respuestas)
+y `Kit docente/Clase {n}/Quiz Clase {n} - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
 - 📸 Pantallazo: herramienta del día en uso con artefacto CloudLite [[captura: demo-clase{n:02d}.png]]
 - 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (examlab.lovable.app/app). La UNIAJC no tiene campus virtual propio.
-- Prohibido pedir cloud con tarjeta.
+- Plataforma de entrega: ExamLab (https://examlab.lovable.app/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
+- Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).
 """
 

@@ -23,6 +23,7 @@ from uniajc_slides_engine import (
 )
 from uniajc_quiz_helpers import clave_text, pptx_chunks, q_abierta, q_om, q_vf, student_lines
 from bd2_taller_data import HERRAMIENTAS_DIA, TALLER_BLOQUE, SOLUCION
+from bd2_fundamentos import FUNDAMENTOS
 from docx import Document
 from docx.shared import Pt as DocPt, RGBColor, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -938,6 +939,21 @@ ANTES_DESPUES = {
 }
 
 
+def _fundamento_md(c):
+    """Desarrollo en prosa del tema, SOLO para el guion docente.
+
+    Va aparte de `teoria` a proposito: `teoria` son vinetas que alimentan tambien la
+    diapositiva del estudiante (via _slide_summary, que toma la primera frase de cada
+    una), asi que no se puede engordar sin romper la slide. La regla de oro del
+    workspace pide que el docente pueda dictar sin consultar otra fuente, y para eso
+    hacen falta parrafos desarrollados: eso vive aqui.
+    """
+    fund = (c.get("fundamento") or FUNDAMENTOS.get(c["n"]) or "").strip()
+    if not fund:
+        return ""
+    return "\n\n### Desarrollo del tema (para dictar sin consultar otra fuente)\n\n" + fund + "\n"
+
+
 def _slide_summary(bullets_, max_chars=110):
     """Resume cada viñeta de teoria (pensada para el guion, muy detallada) a su
     idea central para que la diapositiva de estudiante no quede sobrecargada de texto.
@@ -1310,7 +1326,7 @@ Slide cierre. Dudas finales.
 El objetivo de la clase no es «cubrir un capitulo» aislado, sino producir evidencia
 del PI VetCare. La teoria se limita a desbloquear el taller.
 
-""" + "\n".join(f"- {t}" for t in c['teoria']) + f"""
+""" + "\n".join(f"- {t}" for t in c['teoria']) + _fundamento_md(c) + f"""
 
 **Demo que usted debe poder repetir:** {c['demo']}
 

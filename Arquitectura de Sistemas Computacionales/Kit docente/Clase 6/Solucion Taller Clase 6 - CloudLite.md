@@ -32,4 +32,6 @@
 - Lista generica.
 - Keys en imagen/README.
 
-Campus Virtual UNIAJC. Politica: gratis + navegador.
+## Entrega / politica
+Entrega en ExamLab (https://examlab.lovable.app/) · gratis + navegador · sin cloud con tarjeta.
+La UNIAJC no tiene campus virtual propio.

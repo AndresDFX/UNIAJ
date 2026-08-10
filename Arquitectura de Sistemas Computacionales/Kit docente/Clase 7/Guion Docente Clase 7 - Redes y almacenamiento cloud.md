@@ -20,15 +20,23 @@
 **Herramienta:** draw.io
 
 ## Fundamento teórico para el docente
-El diagrama de despliegue (deployment) muestra DONDE corre cada pieza del sistema y como se conectan a traves de la red, distinguiendo zonas de confianza: una subred publica (expuesta a internet, ej. balanceador de carga) y una subred privada (solo accesible desde dentro, ej. base de datos) — sin necesidad de una VPC real de pago, el concepto se dibuja igual con draw.io.
+El diagrama de despliegue responde una pregunta que los diagramas anteriores no responden: donde corre cada pieza y por que camino de red se hablan entre si. Conviene tener claro el mapa de los tres diagramas del curso, porque el estudiante cree que dibuja lo mismo tres veces. En la Clase 1 se hizo C4 Context: el sistema como una caja, quien lo usa y con que sistemas externos habla; responde QUIEN. En la Clase 4 se hizo C4 Containers: que aplicaciones, servicios y bases de datos lo componen por dentro y con que contratos se comunican; responde QUE. Hoy se hace el diagrama de despliegue: en que nodos se ejecutan esos contenedores, en que zona de red esta cada nodo, por que puerto y con que protocolo pasa cada flecha, y donde quedan los datos; responde DONDE. Un nodo es cualquier lugar de ejecucion: una maquina virtual, un host de contenedores, un servicio gestionado. Es el mismo sistema visto desde un tercer angulo, no un sistema nuevo, y por eso los nombres deben coincidir con los de la Clase 4.
 
-Balanceo de carga y DNS en una frase cada uno: el DNS traduce un nombre humano (miapp.com) a una direccion de red; un balanceador de carga reparte las peticiones entrantes entre varias instancias del mismo servicio para que ninguna se sature sola.
+Para etiquetar ese diagrama hacen falta tres conceptos de red que el docente debe poder definir en una frase. Una direccion IP identifica una maquina dentro de una red. Un puerto es un numero entre 1 y 65535 que identifica a que proceso dentro de esa maquina se entrega el trafico: la direccion lleva el paquete al edificio, el puerto lo lleva a la oficina. Un protocolo es el idioma de esa conexion: HTTP o HTTPS para la API, el protocolo propio del motor para la base de datos. Hay puertos fijados por convencion registrada, no por ley fisica: 80 para HTTP, 443 para HTTPS, 5432 para PostgreSQL, 3306 para MySQL, 6379 para Redis, 27017 para MongoDB, 8080 para aplicaciones en desarrollo. Nada impide correr una base de datos en el 9999, pero cambiar la convencion sin motivo confunde a quien opera. Esto conecta con la Clase 3: cuando en Play with Docker se ejecuta un contenedor publicando un puerto, esa linea es literalmente la decision de que superficie queda expuesta, tema central de la Clase 6.
 
-Almacenamiento: Object storage (ej. tipo S3) guarda archivos/blobs con acceso via URL, ideal para imagenes o backups; storage de base de datos guarda registros estructurados con consultas complejas. La eleccion depende del tipo de dato: un PDF de factura va a object storage, el registro de la factura en si va a la base de datos.
+Una subred es una subdivision de una red, y lo que la hace publica o privada no es su nombre sino sus rutas. Una subred publica tiene camino de entrada y de salida hacia internet: alguien de afuera puede iniciar una conexion hacia lo que vive ahi. Una subred privada no tiene camino de entrada desde internet; solo se alcanza desde dentro, aunque normalmente si puede salir a traves de una pasarela de traduccion para descargar actualizaciones. Sobre esa distincion se construye la regla que se evalua hoy: en la zona publica va unicamente el punto de entrada, es decir el balanceador o proxy inverso; la aplicacion va en la zona privada; los datos van en una tercera zona que solo acepta conexiones desde la aplicacion. Aqui llega la primera pregunta previsible: «si la base de datos es privada, como se conecta la API?». Privado significa inalcanzable desde internet, no inalcanzable en absoluto: la API esta dentro de la misma red y llega por el nombre interno y el puerto del motor; quien no puede llegar es el usuario final ni un atacante externo. Si un desarrollador necesita entrar, se hace por un unico host intermedio controlado, llamado bastion.
 
-Coherencia con Clase 4: los nombres de servicios en este diagrama de despliegue deben ser LOS MISMOS que los contenedores definidos en el C4 Containers — es el mismo sistema visto desde otro angulo, no un sistema nuevo.
+Dos piezas mas hay que explicar sin titubear. El DNS es el directorio distribuido que traduce un nombre legible por humanos, como cloudlite.example, en la direccion IP donde atiende el servicio; el registro tipo A apunta un nombre a una IP y el CNAME apunta un nombre a otro nombre. Cada registro tiene un TTL, los segundos que los demas pueden guardar la respuesta en cache antes de volver a preguntar; los valores tipicos van de 300 a 3600 segundos y su consecuencia practica es que un cambio de direccion no es instantaneo para todo el mundo. El balanceador de carga recibe todas las peticiones y las reparte entre varias instancias iguales del mismo servicio, con algoritmos como round robin (por turnos) o menor numero de conexiones activas. Su funcion menos obvia y mas importante es el chequeo de salud: consulta un endpoint como /health, por convencion cada 10 a 30 segundos, y si falla dos o tres veces seguidas retira esa instancia de la rotacion hasta que vuelva a responder. Es tambien el lugar natural donde termina el TLS, es decir donde se descifra HTTPS.
 
-Error de docente que no domina el tema: dibujar "la nube" como una sola caja difusa sin distinguir zona publica de zona privada — esa distincion es precisamente lo que demuestra que el equipo entiende superficie de exposicion, tema central de la clase de seguridad anterior.
+Primer ejemplo concreto, y la mejor forma de dictar la clase: seguir una peticion de CloudLite de punta a punta. Un usuario final abre cloudlite.example en su telefono; el DNS resuelve el nombre a la IP publica del balanceador; el navegador abre una conexion HTTPS al puerto 443 de ese balanceador, que vive en la zona publica; el balanceador elige una de las dos instancias del contenedor de la API, que viven en la zona privada, y le reenvia la peticion por HTTP al puerto 8080; la API consulta el motor de base de datos en la zona de datos por el puerto 5432 y devuelve JSON por el mismo camino. Ese recorrido dibujado en draw.io, con cada flecha etiquetada con protocolo y puerto y cada caja dentro de su zona, ES el entregable. Sirve tambien para citar numeros de referencia: una consulta simple bien indexada responde en unidades de milisegundos, del orden de 1 a 20, y el objetivo de respuesta que se formalizara en la Clase 12 suele fijarse por convencion en menos de 300 milisegundos para el 95 por ciento de las peticiones de una API web. Con eso el grupo ve que si una pantalla dispara veinte consultas encadenadas el problema esta en el diseno, no en el hardware.
+
+El almacenamiento se decide por tipo de dato, y hay cuatro categorias que el docente debe distinguir con un ejemplo cada una. El almacenamiento de bloque es un disco crudo que el sistema operativo formatea y monta; se conecta normalmente a una sola instancia a la vez y es lo que hay debajo del volumen de un contenedor o del disco de una maquina virtual; se mide en gigabytes y en IOPS, operaciones de lectura y escritura por segundo. El almacenamiento de archivos es un sistema de archivos compartido que varias instancias montan por red, util cuando varias aplicaciones necesitan la misma carpeta. El almacenamiento de objetos no tiene carpetas reales: es un espacio plano de contenedores llamados buckets donde cada objeto se guarda bajo una clave, se lee y escribe por HTTP, lleva metadatos y se reemplaza completo en vez de editarse por partes; es practicamente ilimitado, muy barato y accesible por URL. Y el almacenamiento de la base de datos guarda registros estructurados con consultas y transacciones. El numero que ordena la decision es el precio relativo: un gigabyte al mes en objetos cuesta del orden de dos a tres centavos de dolar, en disco de bloque cerca de cuatro veces mas, y en base de datos gestionada aun mas porque se paga tambien computo. Son referencias de mercado, no reglas fijas, y aqui no se aprovisiona nada de pago: el valor esta en justificar la eleccion.
+
+Segundo ejemplo concreto, y el error de diseno que conviene provocar: CloudLite permite subir una foto de perfil o adjuntar un PDF. La solucion ingenua es guardar el archivo en una columna binaria de la base de datos. Hay que dejar que el estudiante la proponga y luego cuantificarla: dos megabytes por usuario y cinco mil usuarios son diez gigabytes de binarios dentro de una base cuyos datos utiles podrian ser doscientos megabytes; cada respaldo y cada restauracion arrastra esos diez gigabytes, la cache del motor se llena de bytes que ninguna consulta filtra, y la base se vuelve lenta por una razon ajena a su trabajo. El diseno correcto separa: el archivo va a almacenamiento de objetos y la base guarda una fila con la clave o URL del objeto, el dueno, el tamano, el tipo de contenido y la fecha. Eso es el almacenamiento primario mas secundario que pide el entregable. Hay una razon adicional: un contenedor es efimero, lo que se escriba en su sistema de archivos desaparece cuando se reemplaza, y si hay dos instancias detras del balanceador el archivo subido a una no existe en la otra. Mantener los contenedores sin estado es la condicion del escalado horizontal de la Clase 13.
+
+Queda la exigencia de trazabilidad, donde mas puntos se pierden: los nombres de las cajas del despliegue deben ser los mismos que los contenedores del C4 Containers de la Clase 4. Si alli el servicio se llamaba api-citas, hoy no puede aparecer como backend ni como servidor principal, ni puede aparecer una caja nueva que nadie declaro. Segunda pregunta previsible: «esto no esta mal por no ser una VPC real de un proveedor?». Lo que se evalua es el razonamiento sobre zonas, puertos y ubicacion de los datos, no la sintaxis de una marca; el curso usa herramientas gratis en navegador y no pide cuenta de pago ni tarjeta, y por eso las slides indican zonas Publica, Privada y Datos en lugar de inventar nombres de subredes de un proveedor. Ubicacion en el curso: la Clase 6 identifico amenazas y fronteras de confianza en texto y hoy esas fronteras se vuelven zonas dibujadas; la Clase 8 tomara cada flecha para definir que se mide en ella, porque no se puede monitorear un camino que no esta dibujado; la Clase 10 costeara estas mismas cajas, asi que la eleccion de almacenamiento es tambien decision de costo; y la Clase 13 discutira cual caja se replica y cual no. El bloque se evalua en el Parcial 2 de la Clase 9.
+
+Error tipico del docente que no domina el tema: dejar pasar el dibujo de la nube como una caja difusa con flechas sin etiqueta, donde no se distingue zona publica de privada, no hay puertos y no se sabe donde viven los datos. La consecuencia aguas abajo es acumulativa: sin zonas, los controles de red de la Clase 6 no tienen donde mostrarse; sin flechas etiquetadas, la Clase 8 no tiene sobre que definir latencia ni saturacion; y en la sustentacion de la Clase 15 el equipo describe su sistema con gestos en vez de senalar componentes. El segundo tropiezo es permitir que el despliegue introduzca nombres y servicios que no existian en el C4 Containers, o dejar la eleccion de almacenamiento sin justificar («usamos base de datos porque es lo normal»). Cuando eso ocurre, el informe describe dos sistemas distintos que se contradicen entre secciones y el equipo pierde la trazabilidad, que es precisamente el criterio con el que se calificara el paquete integrado de la Clase 11.
 
 Referencia de slides: `Clases/Clase 7 - Redes y almacenamiento cloud/Presentacion.pptx` (solo tema de esta clase).
 
@@ -38,31 +46,49 @@ Referencia de slides: `Clases/Clase 7 - Redes y almacenamiento cloud/Presentacio
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Diagrama de despliegue: red, zonas, almacenamiento**.
 Entregable concreto: Diagrama Deployment (draw.io) + elección de storage (objeto/bloque/relacional conceptual).
 Teoría breve y luego taller; no es un lab suelto.»
-Pasa diapositiva de agenda y objetivos. Abre el enunciado PI si alguien aún no lo tiene.
+Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
+Pregunta de arranque (1 min): «¿en qué quedó su CloudLite la clase pasada?» — sirve para detectar equipos rezagados antes de avanzar.
 
 ### 10–40 · Teoría Core (al servicio del taller)
-Recorre las slides de conceptos. Cada 7–8 min amarra al artefacto del PI:
-«Esto lo van a dejar hoy en el informe/diagrama/repo.»
-Usa ejemplos del dominio de los equipos (pide 1 voluntario).
-Capturas sugeridas: ver marcadores [CAP:] en las slides.
+Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las diapositivas de teoría):
+- Red lógica para el diagrama
+- Almacenamiento
+- Checklist del diagrama Deployment
+
+El desarrollo completo de cada uno está arriba, en «Fundamento teórico para el docente»:
+esa sección está escrita para que puedas dictarla sin consultar otra fuente.
+Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
+Pide un equipo voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
 ### 40–55 · Demo en vivo
-Demuestra la herramienta del día (**draw.io**) con un mini-ejemplo CloudLite.
-Narra clics. Si falla la red, usa capturas en `Kit docente/Clase 7/Capturas/`.
-Di: «Copien la estructura, no el dominio de mi demo.»
+Herramienta del día: **draw.io**.
+**Demo que usted debe poder repetir:** Dibujar zonas de confianza sobre el diagrama de despliegue
+
+1. En draw.io dibuje dos rectangulos grandes rotulados «Subred publica» y «Subred privada».
+2. Ponga el balanceador en la publica y la base de datos en la privada; dibuje la flecha API -> BD cruzando de una a otra.
+3. Pregunte: «si un atacante llega desde internet, con que se topa primero?» — eso es superficie de exposicion.
+4. Verifique en voz alta que los nombres de los servicios son LOS MISMOS del C4 Containers de la Clase 4.
+
+Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase 7/Capturas/`.
+Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
 
 ### 55–100 · Taller guiado PI (equipos)
-Proyecta la lista de pasos del taller estudiante.
-Recorre mesas/Meet: bloquea dominios vagos; exige nombres consistentes.
-A los 80 min: «Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
+Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
+Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
+A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
 
-### 100–115 · Quiz / evidencias
-Aplica quiz corto (Kit). Mientras, revisa que el entregable esté en Drive/repo.
-Retroalimenta 2–3 equipos en voz alta (errores frecuentes).
+### 100–115 · Comprobación y evidencias
+Haz 3–4 de las preguntas de comprobación oral de abajo, a personas distintas y al azar
+(no al que levanta la mano). Es el mecanismo para verificar la regla de los 60 segundos.
+Aplica el quiz corto de `Kit docente/Clase 7/Quiz Clase 7 - Redes y almacenamiento cloud.docx`
+(la clave va en archivo aparte y **no se proyecta**).
+Mientras responden, verifica que el entregable esté realmente subido.
+Retroalimenta 2–3 equipos en voz alta, nombrando el error y la corrección concreta.
 
 ### 115–120 · Cierre
-Di: «Criterio de éxito: cualquier integrante explica el artefacto en 60 s.
+Di: «Queda avanzado: Diagrama de despliegue: red, zonas, almacenamiento.
+Criterio de éxito: cualquier integrante explica el artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
@@ -78,14 +104,30 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 - Evidencia adjunta.
 - Explicación oral de 60 s por integrante (muestreo).
 
+## Errores frecuentes del estudiante (y cómo corregirlos en el momento)
+- Dibujar «la nube» como una caja difusa. Exija las dos zonas, publica y privada, explicitas.
+- Poner la base de datos en la subred publica «para que sea mas facil probar». Es exactamente lo que la Clase 6 acaba de prohibir.
+- Renombrar servicios respecto al C4 Containers, con lo que los dos diagramas dejan de ser el mismo sistema.
+
+## Preguntas de comprobación oral (no son del quiz)
+Úsalas en el tramo 100–115, a personas distintas y al azar.
+1. Que va en la subred publica y que en la privada, y por que?
+1. Que hace un balanceador de carga en una frase?
+1. Cuando conviene object storage y cuando la base de datos?
+
+## Solución del taller (privada)
+`Kit docente/Clase 7/Solucion Taller Clase 7 - CloudLite.docx` — es la referencia con la que
+comparas lo que entregan los equipos. **No proyectarla completa** antes de que trabajen.
+
 ## Quiz
-Ver `Kit docente/Clase 7/Quiz Clase 7 - Redes y almacenamiento cloud.docx` (con respuestas).
+`Kit docente/Clase 7/Quiz Clase 7 - Redes y almacenamiento cloud.docx` (versión estudiante, sin respuestas)
+y `Kit docente/Clase 7/Quiz Clase 7 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
 - 📸 Pantallazo: herramienta del día en uso con artefacto CloudLite [[captura: demo-clase07.png]]
 - 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (examlab.lovable.app/app). La UNIAJC no tiene campus virtual propio.
-- Prohibido pedir cloud con tarjeta.
+- Plataforma de entrega: ExamLab (https://examlab.lovable.app/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
+- Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).

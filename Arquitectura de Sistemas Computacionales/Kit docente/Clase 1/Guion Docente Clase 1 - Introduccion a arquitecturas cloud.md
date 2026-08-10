@@ -20,13 +20,25 @@
 **Herramienta:** Padlet · Excalidraw / draw.io
 
 ## Fundamento teórico para el docente
-Arquitectura de software = las decisiones estructurales dificiles de cambiar despues: como se dividen los componentes, como se comunican, donde se despliegan, y que atributos de calidad priorizan (rendimiento, seguridad, disponibilidad, costo). No es "el diagrama bonito": es el conjunto de decisiones que ese diagrama documenta.
+Arquitectura de software es el conjunto de decisiones estructurales que resultan costosas o imposibles de cambiar despues: como se dividen los componentes, como se comunican, donde se despliegan y que atributos de calidad se priorizan cuando entran en conflicto. La prueba practica para saber si una decision es arquitectonica consiste en preguntar cuanto costaria revertirla en tres meses. Cambiar el color de un boton no es arquitectura; cambiar de base de datos relacional a documental si lo es, porque arrastra el modelo de datos, las consultas, el codigo de acceso y las pruebas. Esa asimetria de costo es la razon de existir de la materia: si el docente no la instala el primer dia, el curso se percibe como una coleccion de diagramas decorativos y el estudiante concluye que la arquitectura es documentacion que se produce para la nota.
 
-El modelo C4 (Context, Containers, Components, Code) da niveles de zoom consistentes. Hoy se usa SOLO el nivel Context: un diagrama con el sistema como una caja, las personas que lo usan (actores) y los sistemas externos con los que se conecta (ej. pasarela de pagos, servicio de correo) — sin entrar todavia a que hay DENTRO del sistema (eso es Clase 4, nivel Containers).
+Conviene separar de entrada dos cosas que el estudiante confunde siempre: el stack tecnologico y la arquitectura. El stack es la lista de tecnologias concretas; la arquitectura es la estructura y las razones. Dos equipos pueden usar el mismo stack y tener arquitecturas opuestas: uno con un solo proceso que hace todo, otro con tres servicios que se comunican por red. Una forma rapida de demostrarlo es escribir en el tablero «React + Node + PostgreSQL» y preguntar al grupo cuantos usuarios simultaneos soporta eso, o que ocurre si la base de datos deja de responder. Nadie puede contestar, porque el stack no contiene esa informacion; las respuestas viven en la arquitectura. Hacer visible ese vacio en los primeros veinte minutos ahorra tres semanas de malentendidos.
 
-El estudiante no necesita una cuenta cloud real de pago: CloudLite App se modela y simula con herramientas gratuitas (draw.io, Excalidraw, Play with Docker). La arquitectura se aprende razonando sobre decisiones y trade-offs, no memorizando la consola de un proveedor especifico.
+Los atributos de calidad son las propiedades medibles que el sistema debe exhibir, y son el vocabulario con el que se justifica cualquier decision. Los cuatro que este curso usa de forma permanente son rendimiento, disponibilidad, seguridad y costo. Rendimiento se expresa en tiempo de respuesta: una convencion de usabilidad ampliamente aceptada dice que una interaccion web se siente inmediata por debajo de 100 milisegundos, aceptable hasta unos 300 y claramente lenta por encima de 1 segundo; son convenciones, no leyes fisicas, y conviene decirlo asi. Disponibilidad se expresa como porcentaje de tiempo en que el sistema responde, y ahi el numero si es aritmetica exacta: 99 % permite unas 7 horas de caida al mes, 99,9 % (los llamados tres nueves) alrededor de 43 minutos, y 99,99 % poco mas de 4 minutos. Vale hacer ese calculo en el tablero, porque 43 minutos al mes es un dato que el estudiante recuerda, mientras que la expresion «alta disponibilidad» no significa nada. El punto central es que estos atributos compiten entre si: mas disponibilidad exige redundancia, la redundancia cuesta dinero, y por eso la arquitectura es sobre todo el oficio de elegir que se sacrifica.
 
-Error de docente que no domina el tema: confundir "arquitectura" con "el stack tecnologico" (ej. "usamos React y Node, esa es la arquitectura") — el stack es una decision DENTRO de la arquitectura, no la arquitectura completa. Lo que se evalua hoy es si el diagrama Context responde con claridad quien usa el sistema y que toca hacia afuera.
+Nube no significa internet ni «el servidor de otra persona». Es un modelo operativo con cinco rasgos que conviene enunciar tal cual, porque son el estandar con el que se define el termino: autoservicio bajo demanda, es decir que quien necesita recursos los aprovisiona sin pedir permiso ni esperar dias; acceso amplio por red; agrupacion de recursos, donde el proveedor comparte hardware fisico entre muchos clientes mediante virtualizacion, tema de la Clase 3; elasticidad rapida, con capacidad que sube y baja en minutos y no en semanas; y medicion del servicio, o pago por lo consumido. El cambio economico que esto produce es lo relevante para la arquitectura, porque la infraestructura deja de ser una compra que se hace por adelantado y se amortiza a largo plazo, y pasa a ser un gasto operativo que cambia con cada decision de diseno. Por eso en la nube el costo se convierte en un atributo de calidad tecnico y no solo administrativo, idea que el curso retoma de forma explicita en la Clase 10.
+
+El modelo C4 es la notacion que este curso usa para dibujar arquitectura, y su virtud es ofrecer cuatro niveles de zoom con reglas claras sobre que se muestra en cada uno, en lugar de un unico diagrama que mezcla todo. Nivel 1, Contexto: el sistema es una sola caja negra y alrededor aparecen unicamente las personas que lo usan y los sistemas externos con los que intercambia informacion. Nivel 2, Contenedores: se abre esa caja y se ven las aplicaciones, servicios y bases de datos que la componen. Nivel 3, Componentes: se abre un contenedor y se ven sus modulos internos. Nivel 4, Codigo: clases y funciones, que en la practica casi nunca se dibuja porque el codigo mismo ya lo documenta. Hoy se trabaja unicamente el nivel 1, y la regla es estricta: si en el diagrama de contexto aparecen las palabras PostgreSQL, Docker o Redis, el diagrama esta mal, porque eso es interior del sistema y corresponde al nivel 2 de la Clase 4.
+
+Aterricemos en CloudLite App, el proyecto integrador que atraviesa las quince clases. Supongamos que un equipo elige como dominio la gestion de turnos de una barberia. El diagrama de contexto correcto tiene una sola caja llamada CloudLite Turnos, tres actores alrededor (el cliente que reserva, el barbero que consulta su agenda del dia y el administrador que configura horarios y precios) y dos o tres sistemas externos con la flecha etiquetada: una pasarela de pagos, con la etiqueta «envia solicitud de cobro y recibe confirmacion»; un proveedor de correo, con la etiqueta «envia recordatorio de turno»; y quizas un servicio de mapas. Nada mas: la API, la base de datos y el almacenamiento de fotos no aparecen todavia porque son interiores. Ese diagrama de cinco o seis elementos es el entregable de hoy, y su valor esta en que obliga a responder dos preguntas que el estudiante no se habia hecho: quien exactamente usa esto y de que terceros depende para funcionar. Un sistema que depende de una pasarela de pagos hereda su disponibilidad, y esa herencia es una decision arquitectonica aunque nadie la haya escrito.
+
+El segundo artefacto de hoy es la ficha con tres a cinco capacidades y el problema en dos o tres frases. Una capacidad se escribe como un verbo de negocio que el usuario puede ejecutar, no como una pieza tecnica: «reservar un turno disponible», «cancelar o reprogramar hasta dos horas antes», «consultar la agenda del dia» y «cobrar un anticipo» son capacidades; «tener login con JWT», «usar cache» o «tener panel administrativo» no lo son, porque son medios y no fines. El limite de tres a cinco es una decision pedagogica deliberada y no una regla de la industria: con equipos de dos o tres estudiantes y doce semanas, un alcance de ocho capacidades garantiza que el proyecto no llegue a ninguna parte. El enunciado del problema debe nombrar a quien le duele y que pierde hoy, con alguna cifra aunque sea estimada: «la barberia agenda por mensajeria instantanea, pierde alrededor de tres turnos diarios por doble reserva y no tiene registro de cuantos clientes no se presentaron». Un problema sin afectado concreto y sin magnitud produce arquitecturas que nadie puede evaluar, porque no hay contra que comparar.
+
+Tres preguntas aparecen casi siempre en esta primera clase y conviene tener la respuesta lista. La primera: cual es la diferencia entre arquitectura y diseno. Respuesta: es una diferencia de alcance y de reversibilidad, no de naturaleza; arquitectura son las decisiones que afectan a todo el sistema y son caras de revertir, diseno son las decisiones internas de un componente que se pueden cambiar sin tocar a los demas. La segunda: por que no usamos una cuenta real de un proveedor de nube. Respuesta, y hay que darla sin disculparse: porque este curso evalua razonamiento arquitectonico y no el manejo de una consola que cambia de aspecto cada semestre; ninguna actividad exigira tarjeta de credito ni cuenta de pago, todo se hace con draw.io, Excalidraw, Play with Docker y el nivel gratuito de GitHub Actions, y quien aprende a justificar un trade-off lo aplica luego en cualquier proveedor en una tarde. La tercera: cuantas cajas debe tener mi diagrama. Respuesta: en el nivel de contexto, entre cuatro y ocho elementos en total; si hay veinte, es casi seguro que se colaron piezas internas.
+
+Vale ubicar al docente en el mapa del curso, porque la Clase 1 no es una introduccion suelta sino el cimiento de una cadena. Lo que se decida hoy (dominio, actores, capacidades, problema) es la entrada obligatoria de la Clase 2, que es autonoma por festivo y pide elegir entre IaaS, PaaS y SaaS registrando la decision; de la Clase 3, donde se contenerizara uno de los servicios de este mismo sistema; y sobre todo de la Clase 4, que abre la caja negra dibujada hoy para mostrar de dos a cinco contenedores logicos. La Clase 5 es el primer parcial y evalua justamente este vocabulario. Conviene decirlo en voz alta al cerrar: el equipo que salga hoy sin dominio definido no tiene sobre que trabajar en las siguientes cuatro sesiones, y el docente debe negarse a dejar el tema abierto para la proxima semana.
+
+Error tipico del docente que no domina el tema: confundir arquitectura con stack tecnologico y permitir que el estudiante presente una lista de tecnologias como si fuera una arquitectura. La consecuencia aguas abajo es directa: en la Clase 2 ese equipo no podra sustentar su registro de decision, porque nunca hizo explicito un atributo de calidad que la justifique, y en la Clase 4 producira un diagrama de contenedores que es un inventario de herramientas sin fronteras de responsabilidad. El segundo error es aceptar diagramas de contexto contaminados con piezas internas (base de datos, cache, balanceador) porque «se ven mas completos»; si eso se aprueba hoy, el nivel de contenedores de la Clase 4 pierde todo sentido, ya que no habra nada nuevo que revelar, y la sustentacion final de la Clase 15 terminara siendo un unico diagrama ilegible en el que el estudiante no sabe a que nivel de zoom esta hablando.
 
 Referencia de slides: `Clases/Clase 1 - Introduccion a arquitecturas cloud/Presentacion.pptx` (solo tema de esta clase).
 
@@ -36,31 +48,49 @@ Referencia de slides: `Clases/Clase 1 - Introduccion a arquitecturas cloud/Prese
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases**.
 Entregable concreto: Ficha PI: dominio, capacidades, actores y boceto C4 Context (Excalidraw/draw.io).
 Teoría breve y luego taller; no es un lab suelto.»
-Pasa diapositiva de agenda y objetivos. Abre el enunciado PI si alguien aún no lo tiene.
+Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
+Pregunta de arranque (1 min): «¿en qué quedó su CloudLite la clase pasada?» — sirve para detectar equipos rezagados antes de avanzar.
 
 ### 10–40 · Teoría Core (al servicio del taller)
-Recorre las slides de conceptos. Cada 7–8 min amarra al artefacto del PI:
-«Esto lo van a dejar hoy en el informe/diagrama/repo.»
-Usa ejemplos del dominio de los equipos (pide 1 voluntario).
-Capturas sugeridas: ver marcadores [CAP:] en las slides.
+Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las diapositivas de teoría):
+- Qué es arquitectura cloud (mapa mental)
+- CloudLite App — el hilo conductor
+- De dominio a arquitectura (mini-método)
+
+El desarrollo completo de cada uno está arriba, en «Fundamento teórico para el docente»:
+esa sección está escrita para que puedas dictarla sin consultar otra fuente.
+Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
+Pide un equipo voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
 ### 40–55 · Demo en vivo
-Demuestra la herramienta del día (**Padlet · Excalidraw / draw.io**) con un mini-ejemplo CloudLite.
-Narra clics. Si falla la red, usa capturas en `Kit docente/Clase 1/Capturas/`.
-Di: «Copien la estructura, no el dominio de mi demo.»
+Herramienta del día: **Padlet · Excalidraw / draw.io**.
+**Demo que usted debe poder repetir:** Dibujar en vivo el C4 Context de un CloudLite de ejemplo
+
+1. Abra draw.io en blanco y dibuje UNA caja al centro rotulada «CloudLite App».
+2. Agregue 2 monigotes a la izquierda (Usuario final, Administrador) con flechas rotuladas «consulta», «administra».
+3. Agregue 1 caja gris a la derecha rotulada «Pasarela de pagos (externo)» y una flecha «cobra».
+4. Diga en voz alta: «no dibuje que hay ADENTRO de la caja; eso es Clase 4».
+
+Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase 1/Capturas/`.
+Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
 
 ### 55–100 · Taller guiado PI (equipos)
-Proyecta la lista de pasos del taller estudiante.
-Recorre mesas/Meet: bloquea dominios vagos; exige nombres consistentes.
-A los 80 min: «Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
+Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
+Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
+A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
 
-### 100–115 · Quiz / evidencias
-Aplica quiz corto (Kit). Mientras, revisa que el entregable esté en Drive/repo.
-Retroalimenta 2–3 equipos en voz alta (errores frecuentes).
+### 100–115 · Comprobación y evidencias
+Haz 3–4 de las preguntas de comprobación oral de abajo, a personas distintas y al azar
+(no al que levanta la mano). Es el mecanismo para verificar la regla de los 60 segundos.
+Aplica el quiz corto de `Kit docente/Clase 1/Quiz Clase 1 - Introduccion a arquitecturas cloud.docx`
+(la clave va en archivo aparte y **no se proyecta**).
+Mientras responden, verifica que el entregable esté realmente subido.
+Retroalimenta 2–3 equipos en voz alta, nombrando el error y la corrección concreta.
 
 ### 115–120 · Cierre
-Di: «Criterio de éxito: cualquier integrante explica el artefacto en 60 s.
+Di: «Queda avanzado: Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases.
+Criterio de éxito: cualquier integrante explica el artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
@@ -76,14 +106,30 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 - Evidencia adjunta.
 - Explicación oral de 60 s por integrante (muestreo).
 
+## Errores frecuentes del estudiante (y cómo corregirlos en el momento)
+- Dominio vago tipo «una red social» o «un e-commerce»: sin problema concreto no hay decisiones que tomar. Exija sector, usuario y dolor observable.
+- Dibujar lo que hay DENTRO del sistema en el nivel Context (base de datos, API). Se corrige recordando que eso es el nivel Containers de la Clase 4.
+- Confundir capacidad con pantalla: «tener un login» no es capacidad; «autenticar usuarios» si.
+
+## Preguntas de comprobación oral (no son del quiz)
+Úsalas en el tramo 100–115, a personas distintas y al azar.
+1. Cual es la diferencia entre arquitectura y stack tecnologico?
+1. Que va DENTRO y que va FUERA de la caja en un diagrama C4 Context?
+1. Digan una capacidad de su CloudLite que NO sea una pantalla.
+
+## Solución del taller (privada)
+`Kit docente/Clase 1/Solucion Taller Clase 1 - CloudLite.docx` — es la referencia con la que
+comparas lo que entregan los equipos. **No proyectarla completa** antes de que trabajen.
+
 ## Quiz
-Ver `Kit docente/Clase 1/Quiz Clase 1 - Introduccion a arquitecturas cloud.docx` (con respuestas).
+`Kit docente/Clase 1/Quiz Clase 1 - Introduccion a arquitecturas cloud.docx` (versión estudiante, sin respuestas)
+y `Kit docente/Clase 1/Quiz Clase 1 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
 - 📸 Pantallazo: herramienta del día en uso con artefacto CloudLite [[captura: demo-clase01.png]]
 - 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (examlab.lovable.app/app). La UNIAJC no tiene campus virtual propio.
-- Prohibido pedir cloud con tarjeta.
+- Plataforma de entrega: ExamLab (https://examlab.lovable.app/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
+- Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).

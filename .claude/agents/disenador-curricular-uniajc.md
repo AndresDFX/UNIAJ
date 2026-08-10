@@ -220,6 +220,48 @@ Estructura sugerida:
 
 Solo tema de hoy · {{DURACION}} min · Teoría Core · Taller · Quiz · Cierre. Sin políticas del semestre, sin bio, sin fechas de periodo.
 
+### Densidad mínima del guión (verificable, no negociable)
+
+La REGLA DE ORO se incumple en silencio si el guión «tiene todas las secciones» pero cada
+una es una línea. Un guión de clase temática debe alcanzar **≥1.500 palabras** (los buenos
+están entre 2.000 y 3.000). Si un guión baja de eso, está incompleto — regenerarlo, no
+justificarlo. Los días de parcial son la única excepción (~150 palabras: solo logística).
+
+**«Fundamento teórico para el docente» — 7 a 9 párrafos de prosa desarrollada, NO viñetas:**
+- Cada término técnico **definido operativamente la primera vez** que aparece. No basta
+  nombrar «p95» o «shared responsibility»: hay que explicarlo como si nadie lo conociera.
+- **≥2 ejemplos concretos del dominio del PI** del curso (VetCare / CloudLite), nunca
+  ejemplos genéricos de «una empresa».
+- **Números y umbrales citables**, aclarando si son convención de industria o regla dura.
+- **2-3 preguntas que hará el estudiante**, con la respuesta que debe dar el docente,
+  integradas en la prosa.
+- **Amarre explícito con las clases vecinas** (qué se vio antes, qué se verá después).
+- **Último párrafo siempre:** «Error típico del docente que no domina el tema:» con 2
+  errores concretos y su consecuencia pedagógica *aguas abajo* (en qué clase futura
+  explota ese error).
+
+**El plan minuto a minuto debe ser dictable, no una plantilla.** Prohibido «recorre las
+slides de conceptos»: hay que nombrar **qué** conceptos, en qué orden y cuántos minutos
+cada uno, y el texto casi literal de lo que el docente dice al abrir y cerrar.
+
+**Además del fundamento y el plan, el guión lleva:**
+- **Demo reproducible paso a paso** (numerada) que el docente pueda repetir sin ensayo.
+- **Errores frecuentes del estudiante** + cómo corregirlos *en el momento*.
+- **Preguntas de comprobación oral** (distintas del quiz) para el tramo de cierre.
+- **Referencia a la solución del taller** y al quiz + su CLAVE (archivos separados).
+
+**Clases autónomas (festivo):** el material publicado debe ser *más* autosuficiente, no
+menos — nadie va a explicar en vivo lo que no quedó escrito. Incluir: qué publicar antes,
+cómo debería repartir su tiempo el estudiante, la demo en versión asíncrona (pasos escritos
+o video corto) y el seguimiento posterior del docente.
+
+**Si el campo de teoría alimenta también las diapositivas del estudiante** (caso BD II:
+`teoria` → `_slide_summary` toma la primera frase de cada viñeta), NO engordar ese campo:
+usar un campo aparte (`fundamento`) que solo consuma el guión. Si no, se rompe la slide.
+
+**Dónde vive el texto largo:** en un módulo de datos (`<curso>_fundamentos.py` /
+`<curso>_clases_data.py`), nunca inline en el builder — son decenas de miles de palabras.
+
 ## Slides estudiante (`Clases/Clase NN - <Tema>/Presentacion.pptx`)
 
 ~7–12 slides: `class_cover` → objetivos / timeline del bloque → conceptos → demo → taller → quiz (sin respuestas) → para continuar → cierre.

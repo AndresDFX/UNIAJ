@@ -20,13 +20,23 @@
 **Herramienta:** GitHub Actions · Google Docs
 
 ## Fundamento teórico para el docente
-CI (Integracion Continua) automatiza la VALIDACION del codigo cada vez que alguien sube un cambio: correr pruebas, verificar que compila/construye, revisar estilo — sin que un humano lo haga manualmente cada vez. CD (Entrega/Despliegue Continuo) automatiza el PASO SIGUIENTE, llevar ese cambio validado a produccion; en este curso, sin infraestructura real de pago, CD se SIMULA (el pipeline llega hasta "listo para desplegar", no despliega a un servidor real).
+Esta clase junta dos temas que parecen distintos y son el mismo asunto en dos momentos: automatizar la verificacion antes de que un cambio llegue a los usuarios, y observar el sistema despues de que llego. El problema que resuelve la integracion continua tiene nombre historico, infierno de integracion: varios desarrolladores trabajan semanas por separado, cada uno con su copia del codigo, y al juntarlo aparecen conflictos y fallas que nadie sabe de donde vienen. Su version cotidiana en un equipo de estudiantes es la frase «en mi maquina funciona». Integracion continua, definida operativamente, es esto: cada vez que alguien sube un cambio al repositorio, un servidor automatico toma el codigo en un entorno limpio, lo construye, le corre las pruebas y avisa en minutos si algo se rompio. El valor no esta en la automatizacion por si misma sino en el intervalo de retroalimentacion: encontrar el error tres minutos despues de escribirlo, cuando el autor recuerda que hizo, cuesta una fraccion de lo que cuesta hallarlo tres semanas despues en el computador de otra persona.
 
-Un archivo YAML de GitHub Actions es evidencia real y verificable de CI: define triggers (cuando correr, ej. en cada push), jobs (que tareas ejecutar) y steps (comandos concretos). Aunque sea minimo (ej. solo correr un linter), es un pipeline real, no una simulacion en papel.
+La sigla CD es ambigua y ahi esta la confusion que hay que desarmar en el primer minuto. Entrega continua significa que cada cambio que pasa la validacion queda listo para desplegarse, empaquetado y probado, pero un humano decide cuando se aprieta el boton. Despliegue continuo significa que ese ultimo paso tambien es automatico y el cambio llega a produccion sin intervencion. Las dos comparten la sigla CD, no son lo mismo entre si, y ninguna es sinonimo de integracion continua: CI valida, CD entrega o despliega. Se puede tener CI sin nada de CD y es legitimo; de hecho es lo que se construye hoy, porque el curso no usa infraestructura de pago ni pide tarjeta de credito. El pipeline llega hasta el estado «listo para desplegar» y la etapa final imprime un mensaje y publica un artefacto en lugar de subir a un servidor real. Hay que decirlo explicito: lo simulado es el ultimo paso, no el pipeline; todo lo anterior es real y ejecutable.
 
-Monitoreo con golden signals (los 4 indicadores clasicos de observabilidad): latencia (cuanto tarda en responder), errores (que porcentaje de peticiones falla), saturacion (que tan cerca esta el sistema de su limite de capacidad), trafico (cuantas peticiones recibe). Aplicados a CloudLite de forma conceptual: aunque no haya trafico real, se documenta QUE se mediria y COMO se detectaria un problema con cada señal.
+GitHub Actions es la herramienta del dia porque es gratis, corre en el navegador y produce evidencia verificable. Su vocabulario tiene cinco palabras. Un workflow es un archivo YAML en la carpeta .github/workflows del repositorio; el nombre es libre y ci.yml es la convencion. El evento o disparador declara cuando corre: on push para cada subida, on pull_request para cada propuesta de cambio, workflow_dispatch para un boton manual, schedule para una hora fija. Un job es un conjunto de pasos que corre en un runner, una maquina virtual limpia que se crea para esa ejecucion y se destruye al terminar; los jobs corren en paralelo salvo que se declare dependencia. Un step es un comando o el uso de una action, unidad reutilizable publicada por otros, como la que descarga el codigo. Que el runner sea limpio y efimero es el punto pedagogico central: demuestra que la construccion no depende de nada instalado a mano en el portatil de nadie. Dos advertencias practicas: el YAML se indenta con espacios y nunca con tabulaciones, causa numero uno de un pipeline que no arranca; y en el nivel gratuito los repositorios publicos tienen minutos ilimitados mientras los privados tienen una cuota mensual del orden de 2000 minutos, cifra de plataforma que conviene confirmar en la pagina de facturacion del repositorio porque el proveedor la cambia.
 
-Error de docente que no domina el tema: presentar CI/CD como sinonimos intercambiables — CI valida, CD despliega; un pipeline puede tener CI sin CD (validar sin desplegar automaticamente), y eso es exactamente lo que se construye hoy.
+Primer ejemplo concreto: el pipeline del stub de CloudLite, que ya existe desde la Clase 3 como Dockerfile y contenedor. El workflow se dispara en push a la rama principal y en pull_request. Un solo job llamado validar hace cinco pasos: descargar el codigo, instalar el runtime del lenguaje elegido, instalar dependencias, correr las pruebas y construir la imagen con docker build para comprobar que el Dockerfile de la Clase 3 sigue siendo valido. Un sexto paso simula el despliegue: imprime la etiqueta de version y publica un artefacto, un archivo que queda guardado junto a la corrida y se puede descargar despues. Aparece la primera pregunta previsible: «para que escribir pruebas de un stub que casi no hace nada?». Incluso una sola prueba que verifique que el endpoint /health responde 200 detecta una clase entera de errores, la mas costosa en operacion: que la aplicacion ya no arranca. Con dos o tres pruebas de ese tipo el pipeline deja de ser decorativo. La evidencia es doble: el archivo ci.yml en el repositorio y la captura de una corrida en verde; si Actions falla por cuota o por red se acepta el YAML mas la explicacion paso por paso, pero eso es plan B, no la meta.
+
+El pipeline es tambien donde se ejecuta de verdad la politica de secretos escrita en la Clase 6. Los valores sensibles se guardan en el repositorio bajo Settings, Secrets and variables, Actions; el workflow los referencia por nombre y la plataforma los inyecta como variables de entorno solo durante la corrida. Dos detalles evitan sustos. Primero, la plataforma enmascara los secretos en el registro de salida, pero enmascarar no es impedir la fuga: si un paso imprime el valor transformado, por ejemplo codificado, sale en claro; la regla operativa es no imprimir secretos nunca. Segundo, por diseno los secretos no se entregan a las corridas disparadas por un pull_request que viene de un fork, para que un extrano no pueda proponer un cambio que los imprima. La consecuencia practica es que la validacion de un cambio externo no puede depender de credenciales, y por eso las pruebas del stub deben correr sin acceso a servicios reales, con valores ficticios o con un doble simulado. Esa es la razon tecnica por la que un stub bien hecho resulta tan util en este curso.
+
+La segunda mitad de la clase cambia de lado: ya no se trata de validar antes, sino de saber que pasa despues. Monitorear es vigilar indicadores decididos de antemano; observabilidad es la capacidad de responder preguntas nuevas sobre el sistema a partir de lo que el sistema emite, sin agregar codigo por cada duda. Se apoya en tres tipos de senal. Las metricas son numeros medidos en el tiempo, baratas porque se agregan, y sirven para detectar que algo cambio. Los registros o logs son eventos discretos con contexto, caros en volumen, y sirven para entender por que cambio. Las trazas siguen el recorrido de una sola peticion a traves de varios servicios y son necesarias porque la Clase 4 convirtio el sistema en distribuido: cuando la peticion pasa por la API y por el servicio de notificaciones, saber cual de los dos tardo es imposible con metricas agregadas. La practica minima que el equipo si puede documentar es el log estructurado: en lugar de texto libre, cada linea es un objeto con campos fijos como fecha, nivel, identificador de peticion, ruta, codigo de estado y duracion en milisegundos. Con ese identificador propagado entre servicios se reconstruye el recorrido: una traza pobre, pero real.
+
+Las cuatro senales de oro son latencia, trafico, errores y saturacion, y cada una necesita definicion operativa. Trafico es cuanta demanda llega, en peticiones por segundo o por minuto. Errores es la proporcion de peticiones que fallan, tipicamente el porcentaje de respuestas 5xx; conviene expresar el objetivo como disponibilidad, y aqui hay aritmetica que el docente debe citar: 99,9 por ciento de disponibilidad equivale a unos 43 minutos de indisponibilidad al mes y 99,99 por ciento a unos 4 minutos, lo cual no es convencion sino calculo directo sobre los 43.200 minutos de un mes de treinta dias. Saturacion es que tan cerca esta el recurso mas escaso de su limite: CPU, memoria, disco o, en la mayoria de las APIs reales, las conexiones libres del pool de la base de datos; la convencion de industria es alertar cuando un recurso pasa del 70 u 80 por ciento sostenido, y es convencion, no ley. Latencia merece explicacion aparte porque introduce el percentil. Un percentil es el valor por debajo del cual cae un porcentaje dado de las mediciones: si el p95 de la API es 300 milisegundos, 95 de cada 100 peticiones respondieron en 300 milisegundos o menos y 5 tardaron mas. Es mas honesto que el promedio, y el ejemplo lo prueba: 99 peticiones de 50 milisegundos y una de 5 segundos dan un promedio de 99 milisegundos, que parece excelente, mientras el p99 es 5 segundos y corresponde a un usuario real mirando una pantalla congelada. Regla adicional: la latencia de las respuestas con error se mide aparte, porque un error devuelto rapido mejora el promedio y empeora el servicio.
+
+Segundo ejemplo concreto: la tabla de cuatro a seis senales de CloudLite, con umbral y accion. Latencia p95 del inicio de sesion y del listado principal, con objetivo bajo 300 milisegundos; peticiones por minuto; porcentaje de respuestas 5xx, con alerta sobre el 1 por ciento sostenido; uso del pool de conexiones, con alerta sobre el 80 por ciento; crecimiento mensual del almacenamiento de objetos donde viven los adjuntos decididos en la Clase 7; y, si el equipo modelo notificaciones, los mensajes pendientes en la cola. La columna que convierte una lista de metricas en un plan de operacion es la ultima: que se hace cuando se cruza el umbral. Ahi entra la optimizacion, que son cuatro movimientos concretos. Paginar: un endpoint que devuelve cincuenta mil registros es a la vez problema de latencia y de memoria, y la convencion son paginas de veinte a cincuenta elementos. Indexar la columna por la que se filtra, porque sin indice el motor recorre la tabla completa y una consulta de milisegundos pasa a segundos. Cachear lecturas repetidas midiendo la tasa de acierto: un 90 por ciento significa que nueve de cada diez lecturas no llegan a la base. Y limitar la tasa de peticiones, que ademas es el control de denegacion de servicio de la Clase 6. Aparece la segunda pregunta previsible: «si no tenemos usuarios reales, que monitoreamos?». El entregable es el plan, no los datos: se documenta que se mediria, con que umbral y con que accion, y el chequeo de salud del contenedor que consulta el balanceador de la Clase 7 ya es monitoreo real funcionando. Con esto cierra el bloque de operacion que evalua el Parcial 2 de la Clase 9: los umbrales de hoy se prueban con carga en la Clase 12, la saturacion sera el disparador del autoescalado de la Clase 13 y el consumo medido es el que se costea en la Clase 10.
+
+Error tipico del docente que no domina el tema: presentar CI y CD como sinonimos intercambiables y hablar de «hacer CI/CD» sin separar que valida, que entrega y que despliega. La consecuencia aguas abajo es que el estudiante cree que su workflow puso la aplicacion en produccion, describe en el informe un despliegue que no existe y en la sustentacion de la Clase 15 defiende una capacidad operativa que no puede demostrar. El segundo tropiezo es dejar la tabla de monitoreo como una lista de palabras sueltas (latencia, errores, CPU) sin umbral, sin unidad y sin accion asociada; cuando eso pasa, la seccion de monitoreo no dice nada, la Clase 12 no tiene contra que comparar los resultados de la prueba de carga y la politica de autoescalado de la Clase 13 se inventa un disparador sin ninguna medida que lo sustente.
 
 Referencia de slides: `Clases/Clase 8 - Monitoreo optimizacion y CI-CD/Presentacion.pptx` (solo tema de esta clase).
 
@@ -36,32 +46,50 @@ Referencia de slides: `Clases/Clase 8 - Monitoreo optimizacion y CI-CD/Presentac
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Workflow Actions (build/test/simulate) + métricas de monitoreo del PI**.
 Entregable concreto: .github/workflows/ci.yml + sección Monitoreo/CI del informe.
 Teoría breve y luego taller; no es un lab suelto.»
-Pasa diapositiva de agenda y objetivos. Abre el enunciado PI si alguien aún no lo tiene.
+Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
+Pregunta de arranque (1 min): «¿en qué quedó su CloudLite la clase pasada?» — sirve para detectar equipos rezagados antes de avanzar.
 
 ### 10–40 · Teoría Core (al servicio del taller)
-Recorre las slides de conceptos. Cada 7–8 min amarra al artefacto del PI:
-«Esto lo van a dejar hoy en el informe/diagrama/repo.»
-Usa ejemplos del dominio de los equipos (pide 1 voluntario).
-Capturas sugeridas: ver marcadores [CAP:] en las slides.
+Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las diapositivas de teoría):
+- CI/CD sin tarjeta
+- YAML mínimo
+- Monitoreo y optimización
+
+El desarrollo completo de cada uno está arriba, en «Fundamento teórico para el docente»:
+esa sección está escrita para que puedas dictarla sin consultar otra fuente.
+Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
+Pide un equipo voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
 ### 40–55 · Demo en vivo
-Demuestra la herramienta del día (**GitHub Actions · Google Docs**) con un mini-ejemplo CloudLite.
-Narra clics. Si falla la red, usa capturas en `Kit docente/Clase 8/Capturas/`.
-Di: «Copien la estructura, no el dominio de mi demo.»
+Herramienta del día: **GitHub Actions · Google Docs**.
+**Demo que usted debe poder repetir:** Un workflow de GitHub Actions que corra de verdad
+
+1. Cree `.github/workflows/ci.yml` con on: push, un job y 3 steps: checkout, setup, y un comando de prueba real.
+2. Haga commit y push, y abra la pestana Actions del repositorio para ver el run.
+3. Espere el check verde y senale el log del step: «esto es evidencia, no una diapositiva que dice que tenemos CI».
+4. Aclare la frontera: el pipeline llega hasta «listo para desplegar»; no despliega a ningun servidor real en este curso.
+
+Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase 8/Capturas/`.
+Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 📸 Run verde del workflow: build + test reales, no un `echo ok` [[captura: salida-actions-run.png]]
 
 
 ### 55–100 · Taller guiado PI (equipos)
-Proyecta la lista de pasos del taller estudiante.
-Recorre mesas/Meet: bloquea dominios vagos; exige nombres consistentes.
-A los 80 min: «Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
+Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
+Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
+A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
 
-### 100–115 · Quiz / evidencias
-Aplica quiz corto (Kit). Mientras, revisa que el entregable esté en Drive/repo.
-Retroalimenta 2–3 equipos en voz alta (errores frecuentes).
+### 100–115 · Comprobación y evidencias
+Haz 3–4 de las preguntas de comprobación oral de abajo, a personas distintas y al azar
+(no al que levanta la mano). Es el mecanismo para verificar la regla de los 60 segundos.
+Aplica el quiz corto de `Kit docente/Clase 8/Quiz Clase 8 - Monitoreo optimizacion y CI-CD.docx`
+(la clave va en archivo aparte y **no se proyecta**).
+Mientras responden, verifica que el entregable esté realmente subido.
+Retroalimenta 2–3 equipos en voz alta, nombrando el error y la corrección concreta.
 
 ### 115–120 · Cierre
-Di: «Criterio de éxito: cualquier integrante explica el artefacto en 60 s.
+Di: «Queda avanzado: Workflow Actions (build/test/simulate) + métricas de monitoreo del PI.
+Criterio de éxito: cualquier integrante explica el artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
@@ -77,14 +105,30 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 - Evidencia adjunta.
 - Explicación oral de 60 s por integrante (muestreo).
 
+## Errores frecuentes del estudiante (y cómo corregirlos en el momento)
+- Un workflow que solo hace `echo ok`: es un pipeline decorativo. Exija que corra algo que pueda fallar de verdad.
+- Decir que ya tienen CD porque el YAML dice deploy. En este curso el despliegue se simula; que lo digan asi.
+- Golden signals sin umbral: «medimos latencia» no sirve; falta a partir de que valor se considera un problema.
+
+## Preguntas de comprobación oral (no son del quiz)
+Úsalas en el tramo 100–115, a personas distintas y al azar.
+1. Que valida CI y que hace CD, y cual de los dos construyeron hoy?
+1. Digan las 4 golden signals y el umbral de una de ellas.
+1. Que pasaria en su pipeline si alguien sube codigo que no compila?
+
+## Solución del taller (privada)
+`Kit docente/Clase 8/Solucion Taller Clase 8 - CloudLite.docx` — es la referencia con la que
+comparas lo que entregan los equipos. **No proyectarla completa** antes de que trabajen.
+
 ## Quiz
-Ver `Kit docente/Clase 8/Quiz Clase 8 - Monitoreo optimizacion y CI-CD.docx` (con respuestas).
+`Kit docente/Clase 8/Quiz Clase 8 - Monitoreo optimizacion y CI-CD.docx` (versión estudiante, sin respuestas)
+y `Kit docente/Clase 8/Quiz Clase 8 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
 - 📸 Pantallazo: herramienta del día en uso con artefacto CloudLite [[captura: demo-clase08.png]]
 - 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (examlab.lovable.app/app). La UNIAJC no tiene campus virtual propio.
-- Prohibido pedir cloud con tarjeta.
+- Plataforma de entrega: ExamLab (https://examlab.lovable.app/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
+- Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).
