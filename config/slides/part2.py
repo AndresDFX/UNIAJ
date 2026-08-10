@@ -129,7 +129,7 @@ EXTRA = {
 
 PASOS = {
 1: ["Equipo 2-3 (o individual).","Dominio concreto.","Problema 2-3 frases + 3-5 capacidades + actores.",
-    "C4 Context en Excalidraw/draw.io.","Entrega Doc+PNG → Campus Virtual domingo 23:59."],
+    "C4 Context en Excalidraw/draw.io.","Entrega Doc+PNG → ExamLab domingo 23:59."],
 2: ["Leer slides + enunciado PI.","Matriz IaaS/PaaS/SaaS vs dominio.","ADR-001 con 2 alternativas.",
     "Actualizar informe (Modelo de servicio).","Entrega domingo 23:59."],
 3: ["Elegir servicio a contenerizar.","Build/run en Killercoda o PWD.","Dockerfile en repo/ZIP.",

@@ -133,7 +133,7 @@ def portada_estudiante(doc, meta):
          size=11, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER)
     para(doc, f"Docente: {DOCENTE}  ·  {CORREO}",
          size=10, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
-    para(doc, "Versión estudiante — Entrega en Campus Virtual UNIAJC según hitos del plan.",
+    para(doc, "Versión estudiante — Entrega en ExamLab según hitos del plan.",
          size=10, bold=True, color=AZUL, align=WD_ALIGN_PARAGRAPH.CENTER,
          shade="E8F4FA", space_after=10)
 
@@ -219,13 +219,13 @@ def enunciado_bd2(doc):
               ["Integración", "Clase 12", "26/10/2026",
                "Contrato app ↔ BD y pruebas"],
               ["Prep. presentación", "Clase 14", "09/11/2026",
-               "Ensayo + entrega final en Campus Virtual "
+               "Ensayo + entrega final en ExamLab "
                "(mismo día: Parcial 3 presencial)"],
               ["Cierre / sustentación", "Clase 15", "16/11/2026",
                "Presentación + cierre (clase autónoma — festivo)"],
           ])
     para(doc,
-         "Nota: Clase 15 es autónoma (festivo). La sustentación se coordina vía Campus "
+         "Nota: Clase 15 es autónoma (festivo). La sustentación se coordina vía "
          "Virtual / reunión síncrona según indiquen el docente. El Parcial 3 es el "
          "09/11 (Clase 14), no en autónoma.")
 
@@ -234,7 +234,7 @@ def enunciado_bd2(doc):
         "SQL: DB Fiddle, OneCompiler SQL, SQLTest.online o RunSQL.",
         "Procedimientos / PL-SQL: Oracle Live SQL (cuenta free, sin tarjeta).",
         "Diagramas: draw.io / diagrams.net · Excalidraw.",
-        "Entregas: Google Docs/Drive o Word Online → subir a Campus Virtual UNIAJC.",
+        "Entregas: Google Docs/Drive o Word Online → subir a ExamLab.",
     ])
     para(doc,
          "No se exige instalar Oracle/MySQL/PostgreSQL/SQL Server ni Docker en el PC. "
@@ -257,7 +257,7 @@ def enunciado_bd2(doc):
     bullets(doc, [
         "Equipos de 2–3 (o individual si el docente lo autoriza).",
         "Todos deben poder explicar cualquier parte en la sustentación.",
-        "Entrega única por equipo en Campus Virtual UNIAJC.",
+        "Entrega única por equipo en ExamLab.",
     ])
 
     h2(doc, "8. Qué NO es este proyecto")
@@ -390,7 +390,7 @@ def enunciado_arq(doc):
         "Diagramas: draw.io / diagrams.net · Excalidraw.",
         "Contenedores: Killercoda · Play with Docker (sin Docker Desktop obligatorio).",
         "CI/CD: GitHub Actions (cuenta free) — pipelines simples.",
-        "Entregas: Google Docs/Drive o Word Online → Campus Virtual UNIAJC.",
+        "Entregas: Google Docs/Drive o Word Online → subir a ExamLab.",
     ])
     para(doc,
          "Prohibido como requisito: AWS/GCP/Oracle Cloud/Azure Free Tier con tarjeta; "
@@ -413,7 +413,7 @@ def enunciado_arq(doc):
     bullets(doc, [
         "Equipos de 2–3 (o individual autorizado).",
         "Todos deben poder explicar diagramas y el workflow CI/CD.",
-        "Entrega única por equipo en Campus Virtual UNIAJC.",
+        "Entrega única por equipo en ExamLab.",
     ])
 
     h2(doc, "8. Qué NO es este proyecto")
@@ -458,6 +458,324 @@ def guia_arq(doc):
     bullets(doc, [
         "Repo GitHub o ZIP con .yml, Dockerfile, diagramas PNG, informe.",
         "Enlace Killercoda/PWD o capturas con timestamp.",
+    ])
+
+
+# ---------------------------------------------------------------------------
+# Programacion II y Seminario de Sistemas — VetCare (PI COMPARTIDO)
+#
+# Los dos cursos trabajan el MISMO producto: el sistema de la Clinica Veterinaria
+# "Huellitas". Prog II construye el software; Seminario disena los planos. Por eso
+# el enunciado contempla tres casos segun la matricula del estudiante (A/B/C):
+# un estudiante puede estar en ambos cursos, o en uno solo, y no puede quedar
+# bloqueado por lo que se hace en el otro.
+#
+# Contenido heredado de los enunciados originales del docente (que vivian sueltos
+# como .gdoc: el de Prog II en Kit docente y el de Seminario dentro de Clase 1).
+# ---------------------------------------------------------------------------
+
+CASOS_MATRICULA = [
+    "@@Caso A — cursa AMBAS materias (modo full stack):@@ trabaja en equipo sobre un unico "
+    "VetCare. En Programacion II se califica la calidad del codigo Java; en Seminario, la "
+    "calidad de los diagramas y la documentacion de ESE mismo sistema.",
+    "@@Caso B — solo Programacion II (modo developer):@@ el docente le entrega los diagramas "
+    "UML ya hechos. Su mision es traducir esos planos a codigo Java funcional.",
+    "@@Caso C — solo Seminario (modo arquitecto/QA):@@ se encarga del diseno y el plan de "
+    "pruebas. Para validar su diseno entrega un prototipo navegable (mockup) o un prototipo "
+    "minimo en consola; no se le exige software con interfaz grafica.",
+]
+
+CONTEXTO_VETCARE = (
+    "La Clinica Veterinaria «Huellitas» atiende un alto volumen de pacientes y hoy lleva "
+    "toda su gestion en carpetas de papel. La administracion reporta tres problemas: se "
+    "extravian fichas de pacientes, buscar un historial en el archivo fisico genera filas "
+    "en la sala de espera, y no hay metricas (no saben cuantas especies atienden al mes). "
+    "Ustedes fueron contratados para resolverlo con un sistema llamado @@VetCare@@."
+)
+
+PROG2_META = {
+    "titulo": "Proyecto Integrador 2026-2 — VetCare (aplicacion Java)",
+    "titulo_docente": "Guia docente · Proyecto Integrador — Programacion II",
+    "asignatura": "Programacion II",
+    "codigo": "FI303204",
+    "grupo": "341C",
+    "periodo": "2026-2",
+    "horario": "Miercoles 18:00–20:00 (120 min)",
+    "dominio": "VetCare",
+}
+
+SEMIN_META = {
+    "titulo": "Proyecto Integrador 2026-2 — VetCare (arquitectura y diseno)",
+    "titulo_docente": "Guia docente · Proyecto Integrador — Seminario de Sistemas",
+    "asignatura": "Seminario de Sistemas",
+    "codigo": "FI303301",
+    "grupo": "341C",
+    "periodo": "2026-2",
+    "horario": "Jueves 18:00–20:00 (120 min)",
+    "dominio": "VetCare",
+}
+
+
+def enunciado_prog2(doc):
+    portada_estudiante(doc, PROG2_META)
+
+    h2(doc, "1. Proposito")
+    para(doc,
+         "Construir en Java la aplicacion de escritorio VetCare para la clinica veterinaria "
+         "«Huellitas», aplicando los pilares de la POO, estructuras de datos, interfaz grafica, "
+         "manejo de errores y persistencia. Es el hilo conductor ABPr del curso: cada clase "
+         "aporta una pieza del mismo producto, no ejercicios sueltos.")
+    para(doc,
+         "Peso: 20% del Corte 3 (Acuerdo pedagogico). El Parcial 3 (15%) y la asistencia (5%) "
+         "se evaluan por separado.")
+
+    h2(doc, "2. Contexto del cliente")
+    para(doc, CONTEXTO_VETCARE)
+    h3(doc, "El sistema debe permitir, como minimo")
+    bullets(doc, [
+        "Registrar duenos (clientes) y sus mascotas (pacientes).",
+        "Agendar citas medicas.",
+        "Guardar un historial clinico basico por mascota.",
+        "Buscar rapidamente el expediente de un animal por su identificador.",
+        "Conservar la informacion aunque se cierre el programa.",
+    ])
+
+    h2(doc, "3. Requisitos tecnicos obligatorios")
+    bullets(doc, [
+        "@@Pilares de POO:@@ clases del dominio (Mascota, Dueno, Cita), objetos, "
+        "encapsulamiento y herencia usados con criterio, no decorativos.",
+        "@@Estructuras de datos:@@ colecciones de Java (List / Map) para gestionar los "
+        "registros en memoria.",
+        "@@Interfaz grafica:@@ ventanas funcionales con Swing o JavaFX.",
+        "@@Manejo de errores:@@ bloques try-catch que eviten que el programa se cierre "
+        "(ej.: el usuario escribe texto donde va la edad de la mascota).",
+        "@@Persistencia:@@ guardar y leer desde archivos .txt o .csv para no perder datos "
+        "al cerrar la aplicacion.",
+    ])
+
+    h2(doc, "4. Como se conecta con Seminario de Sistemas")
+    para(doc,
+         "VetCare es el MISMO producto en las dos asignaturas: aqui se construye el software, "
+         "en Seminario se disenan los planos (requisitos, UML, pruebas, manuales). Su "
+         "situacion depende de su matricula:")
+    bullets(doc, CASOS_MATRICULA)
+
+    h2(doc, "5. Hitos de entrega")
+    table(doc,
+          ["Clase", "Fecha", "Que se entrega"],
+          [
+              ["11", "21/10", "Avance de codigo + revision cruzada entre equipos"],
+              ["12", "28/10", "Integracion de modulos: la aplicacion corre de punta a punta"],
+              ["13", "04/11", "Manejo de excepciones y validaciones incorporado"],
+              ["14", "11/11", "Version final + ensayo de la presentacion"],
+              ["15", "18/11", "Sustentacion final (mismo dia del Parcial 3)"],
+          ])
+
+    h2(doc, "6. Entregables finales")
+    bullets(doc, [
+        "Codigo fuente del proyecto (ZIP o enlace al repositorio).",
+        "Archivo de datos de ejemplo (.txt o .csv) con registros de prueba.",
+        "Manual de usuario breve (1-2 paginas) con capturas de la interfaz.",
+        "Sustentacion de 5-8 minutos donde participen todos los integrantes.",
+    ])
+
+    h2(doc, "7. Criterios de evaluacion (100 puntos)")
+    table(doc,
+          ["Criterio", "Pts", "Que se mira"],
+          [
+              ["POO", "20", "Clases del dominio bien modeladas; encapsulamiento y herencia con proposito"],
+              ["Estructuras de datos", "15", "Coleccion adecuada al caso y justificada"],
+              ["Interfaz grafica", "20", "Ventanas funcionales; el usuario puede completar las tareas"],
+              ["Manejo de errores", "15", "La aplicacion no se cae ante entradas invalidas"],
+              ["Persistencia", "15", "Los datos sobreviven al cierre del programa"],
+              ["Sustentacion", "15", "Todos explican; se pregunta al azar a cualquier integrante"],
+          ])
+
+    h2(doc, "8. Entrega")
+    para(doc, "Entrega en @@ExamLab@@ segun los hitos del plan. Un envio por equipo.")
+
+
+def guia_prog2(doc):
+    portada_docente(doc, PROG2_META)
+    h2(doc, "Contexto")
+    para(doc,
+         "PI compartido con Seminario de Sistemas: mismo producto VetCare, distinto entregable. "
+         "El enunciado original vivia suelto como .gdoc en Kit docente; ahora el documento del "
+         "estudiante vive en Clases/Proyecto Integrador/ y esta guia en Kit docente/.")
+    h2(doc, "Alineacion RAA")
+    bullets(doc, [
+        "RAA1 Estructuras de datos → colecciones para registros de VetCare.",
+        "RAA2 Eventos y componentes graficos → interfaz Swing/JavaFX funcional.",
+        "RAA3 Patrones de diseno → organizacion del codigo, separacion de responsabilidades.",
+    ])
+    h2(doc, "Los tres casos de matricula (lo que mas dudas genera)")
+    bullets(doc, [
+        "Caso A (ambas materias): NO calificar dos veces lo mismo. Aqui se califica el codigo; "
+        "los diagramas se califican en Seminario.",
+        "Caso B (solo Prog II): usted les entrega los diagramas UML ya hechos. Tenga listo un "
+        "juego de diagramas base de VetCare para repartir en Clase 11.",
+        "Caso C (solo Seminario): no aparece en este curso, pero si un estudiante pregunta, "
+        "sepa que alla entrega mockup/prototipo, no codigo con interfaz.",
+    ])
+    h2(doc, "Hitos docentes")
+    table(doc,
+          ["Clase", "Fecha", "Rol docente"],
+          [
+              ["11", "21/10", "Revision cruzada: que cada equipo lea el codigo de otro"],
+              ["12", "28/10", "Empujar la integracion; detectar equipos con modulos sueltos"],
+              ["13", "04/11", "Verificar que las validaciones existan de verdad, no en el papel"],
+              ["14", "11/11", "Ensayo cronometrado de la sustentacion"],
+              ["15", "18/11", "Parcial 3 + sustentacion final"],
+          ])
+    h2(doc, "Errores frecuentes a vigilar")
+    bullets(doc, [
+        "Herencia forzada solo para «cumplir el requisito» (una clase Animal que nadie usa).",
+        "GUI que se ve bien pero no guarda nada: pedir siempre la prueba de cerrar y reabrir.",
+        "try-catch vacio que se traga el error sin avisar al usuario.",
+        "Un solo integrante que programo todo: por eso las preguntas al azar en la sustentacion.",
+    ])
+    h2(doc, "Evidencias a pedir")
+    bullets(doc, [
+        "ZIP o repositorio con el codigo fuente compilable.",
+        "Archivo .csv/.txt con datos de prueba.",
+        "Captura de la aplicacion corriendo + manual breve.",
+    ])
+
+
+def enunciado_seminario(doc):
+    portada_estudiante(doc, SEMIN_META)
+
+    h2(doc, "1. Proposito")
+    para(doc,
+         "Disenar la arquitectura, los requisitos y la interfaz del sistema VetCare para la "
+         "clinica veterinaria «Huellitas». Su rol en esta asignatura es de @@analista funcional "
+         "y arquitecto de software@@: aqui no se construye la casa, se dibujan los planos para "
+         "que cualquier equipo pueda construirla.")
+    para(doc,
+         "Peso: 20% del Corte 3 (Acuerdo pedagogico). El Parcial 3 (15%) y la asistencia (5%) "
+         "se evaluan por separado.")
+
+    h2(doc, "2. Contexto del cliente")
+    para(doc, CONTEXTO_VETCARE)
+    h3(doc, "Requerimientos que el veterinario jefe pidio en la primera entrevista")
+    bullets(doc, [
+        "«Necesito registrar el ID, el nombre y la especie del animal que llega.»",
+        "«Necesito buscar rapido el expediente de un animal usando solo su ID.»",
+        "«Quiero ver una lista de quienes estan en la sala de espera.»",
+        "«Tiene que ser muy facil de usar: no somos expertos en computadoras.»",
+        "«La informacion no puede borrarse si se va la luz o apagamos el computador.»",
+    ])
+    para(doc,
+         "Esas cinco frases son material crudo de entrevista, no requisitos formales. "
+         "Convertirlas en RF/RNF bien escritos es parte del trabajo.")
+
+    h2(doc, "3. Fases de entrega")
+    table(doc,
+          ["Fase", "Que produce"],
+          [
+              ["1. Ingenieria de requisitos",
+               "Requisitos funcionales (RF) y no funcionales (RNF) formales y trazables"],
+              ["2. Modelado UML",
+               "Casos de uso, diagrama de clases del dominio y un diagrama dinamico "
+               "(actividad o secuencia)"],
+              ["3. Diseno de interfaz (UX/UI)",
+               "Wireframes y mockup navegable de las pantallas (Figma, Penpot o Balsamiq)"],
+              ["4. Arquitectura de datos",
+               "Diccionario de datos y formato de almacenamiento (estructura del CSV o "
+               "modelo entidad-relacion basico)"],
+          ])
+
+    h2(doc, "4. Como se conecta con Programacion II")
+    para(doc,
+         "VetCare es el MISMO producto en las dos asignaturas: aqui se disenan los planos y "
+         "en Programacion II se construye el software. Su situacion depende de su matricula:")
+    bullets(doc, CASOS_MATRICULA)
+    para(doc,
+         "@@Independencia curricular:@@ si NO cursa Programacion II, su proyecto termina con el "
+         "documento de diseno y el prototipo visual navegable. No necesita escribir ni compilar "
+         "codigo: su nota depende de la calidad, coherencia y profesionalismo de sus planos.",
+         shade="E8F4FA")
+
+    h2(doc, "5. Hitos de entrega")
+    table(doc,
+          ["Clase", "Fecha", "Que se entrega"],
+          [
+              ["11", "22/10", "Avance: requisitos (RF/RNF) + casos de uso"],
+              ["12", "29/10", "Diagramas UML avanzados (clases + dinamico)"],
+              ["13", "05/11", "Diseno de interfaz: wireframes y mockup navegable"],
+              ["14", "12/11", "Documento consolidado + ensayo de la sustentacion"],
+              ["15", "19/11", "Sustentacion final (mismo dia del Parcial 3)"],
+          ])
+
+    h2(doc, "6. Entregables finales")
+    bullets(doc, [
+        "Documento de diseno de arquitectura con RF/RNF, UML y diccionario de datos.",
+        "Mockup navegable (enlace o PDF exportado).",
+        "Plan de pruebas: casos de prueba documentados sobre los requisitos.",
+        "Sustentacion de 5-8 minutos donde participen todos los integrantes.",
+    ])
+
+    h2(doc, "7. Criterios de evaluacion (100 puntos)")
+    table(doc,
+          ["Criterio", "Pts", "Que se mira"],
+          [
+              ["Requisitos", "20", "RF/RNF verificables y trazables al pedido del cliente"],
+              ["Modelado UML", "25", "Diagramas coherentes entre si y con los requisitos"],
+              ["Diseno de interfaz", "20", "Wireframes usables; el flujo se entiende sin explicacion"],
+              ["Arquitectura de datos", "15", "Diccionario de datos completo y formato justificado"],
+              ["Plan de pruebas", "10", "Casos de prueba que cubren los requisitos criticos"],
+              ["Sustentacion", "10", "Todos explican; se pregunta al azar a cualquier integrante"],
+          ])
+
+    h2(doc, "8. Entrega")
+    para(doc, "Entrega en @@ExamLab@@ segun los hitos del plan. Un envio por equipo.")
+
+
+def guia_seminario(doc):
+    portada_docente(doc, SEMIN_META)
+    h2(doc, "Contexto")
+    para(doc,
+         "PI compartido con Programacion II: mismo producto VetCare, distinto entregable. "
+         "El enunciado original vivia suelto como .gdoc dentro de la carpeta de Clase 1; ahora "
+         "el documento del estudiante vive en Clases/Proyecto Integrador/ y esta guia en Kit docente/.")
+    h2(doc, "Alineacion RAA")
+    bullets(doc, [
+        "RAA1 Patrones y modularidad → organizacion del diseno, separacion de responsabilidades.",
+        "RAA2 Documentacion y validacion → SDD, diccionario de datos, plan de pruebas.",
+        "RAA3 Presentacion y sustentacion → defensa clara de las decisiones de diseno.",
+    ])
+    h2(doc, "Los tres casos de matricula (lo que mas dudas genera)")
+    bullets(doc, [
+        "Caso A (ambas materias): aqui se califican los planos; el codigo se califica en Prog II. "
+        "No exigir codigo compilable en esta asignatura.",
+        "Caso C (solo Seminario): cierra con SDD + mockup navegable. Es una ruta completa y "
+        "valida, no una version reducida: dejarlo claro desde Clase 1 para que nadie se sienta "
+        "en desventaja.",
+        "Caso B (solo Prog II): no aparece aca; sus diagramas base los provee el docente en el "
+        "otro curso. Mantener un juego de diagramas VetCare listo para repartir alla.",
+    ])
+    h2(doc, "Hitos docentes")
+    table(doc,
+          ["Clase", "Fecha", "Rol docente"],
+          [
+              ["11", "22/10", "Revisar que los RF sean verificables, no deseos vagos"],
+              ["12", "29/10", "Coherencia entre casos de uso y diagrama de clases"],
+              ["13", "05/11", "Wireframes: exigir flujo completo de una tarea real"],
+              ["14", "12/11", "Consolidacion del documento + ensayo cronometrado"],
+              ["15", "19/11", "Parcial 3 + sustentacion final"],
+          ])
+    h2(doc, "Errores frecuentes a vigilar")
+    bullets(doc, [
+        "Requisitos no verificables («el sistema debe ser rapido») sin criterio medible.",
+        "Diagrama de clases que no corresponde a los casos de uso entregados.",
+        "Mockup bonito que no cubre el flujo critico (registrar → buscar → ver historial).",
+        "Diccionario de datos sin tipos ni restricciones: queda inservible para quien programe.",
+    ])
+    h2(doc, "Evidencias a pedir")
+    bullets(doc, [
+        "Documento de diseno (PDF o DOCX) con RF/RNF, UML y diccionario de datos.",
+        "Enlace al mockup navegable (Figma/Penpot) o PDF exportado.",
+        "Plan de pruebas con casos trazados a requisitos.",
     ])
 
 
@@ -545,6 +863,83 @@ def build_one(curso_dir: Path, meta: dict, build_est, build_doc, md_text: str, s
     print("OK ->", doc_path)
     print("OK ->", md_path)
 
+MD_PROG2 = """# Guía docente — Proyecto Integrador · Programación II · 2026-2
+
+**Privado docente** · No compartir en `Clases/`.
+
+## Producto
+**VetCare** — aplicación de escritorio en Java para la Clínica Veterinaria «Huellitas».
+PI **compartido con Seminario de Sistemas**: mismo producto, distinto entregable
+(aquí el software, allá los planos).
+
+## Casos de matrícula
+- **A** (ambas materias): aquí se califica el código; los diagramas se califican en Seminario.
+- **B** (solo Prog II): el docente entrega los diagramas UML ya hechos; el estudiante programa.
+- **C** (solo Seminario): no aplica en este curso.
+
+## Hitos
+| Clase | Fecha | Entrega |
+|---|---|---|
+| 11 | 21/10 | Avance de código + revisión cruzada |
+| 12 | 28/10 | Integración de módulos |
+| 13 | 04/11 | Excepciones y validaciones |
+| 14 | 11/11 | Versión final + ensayo |
+| 15 | 18/11 | Sustentación (mismo día del Parcial 3) |
+
+## Rúbrica (100 pts → 20% del Corte 3)
+POO 20 · Estructuras de datos 15 · GUI 20 · Manejo de errores 15 · Persistencia 15 · Sustentación 15
+
+## Errores frecuentes
+- Herencia forzada solo para cumplir el requisito.
+- GUI que no persiste: pedir siempre la prueba de cerrar y reabrir.
+- `try-catch` vacío que oculta el error.
+- Un solo integrante programó todo → preguntas al azar en la sustentación.
+
+Entrega en **ExamLab**. Enunciado del estudiante en `Clases/Proyecto Integrador/`.
+"""
+
+MD_SEMIN = """# Guía docente — Proyecto Integrador · Seminario de Sistemas · 2026-2
+
+**Privado docente** · No compartir en `Clases/`.
+
+## Producto
+**VetCare** — arquitectura y diseño del sistema para la Clínica Veterinaria «Huellitas».
+PI **compartido con Programación II**: mismo producto, distinto entregable
+(aquí los planos, allá el software).
+
+## Casos de matrícula
+- **A** (ambas materias): aquí se califican los planos; el código se califica en Prog II.
+- **C** (solo Seminario): cierra con SDD + mockup navegable. Ruta completa y válida,
+  **no** una versión reducida — decirlo desde Clase 1.
+- **B** (solo Prog II): no aplica aquí.
+
+## Fases
+1. Ingeniería de requisitos (RF/RNF)
+2. Modelado UML (casos de uso, clases, dinámico)
+3. Diseño de interfaz (wireframes + mockup navegable)
+4. Arquitectura de datos (diccionario de datos)
+
+## Hitos
+| Clase | Fecha | Entrega |
+|---|---|---|
+| 11 | 22/10 | Requisitos + casos de uso |
+| 12 | 29/10 | UML avanzado |
+| 13 | 05/11 | Wireframes y mockup |
+| 14 | 12/11 | Documento consolidado + ensayo |
+| 15 | 19/11 | Sustentación (mismo día del Parcial 3) |
+
+## Rúbrica (100 pts → 20% del Corte 3)
+Requisitos 20 · UML 25 · Interfaz 20 · Arquitectura de datos 15 · Plan de pruebas 10 · Sustentación 10
+
+## Errores frecuentes
+- Requisitos no verificables («debe ser rápido») sin criterio medible.
+- Diagrama de clases que no corresponde a los casos de uso.
+- Mockup que no cubre el flujo crítico (registrar → buscar → ver historial).
+- Diccionario de datos sin tipos ni restricciones.
+
+Entrega en **ExamLab**. Enunciado del estudiante en `Clases/Proyecto Integrador/`.
+"""
+
 
 def build():
     build_one(
@@ -562,6 +957,22 @@ def build():
         guia_arq,
         MD_ARQ,
         "Arquitectura de Sistemas Computacionales",
+    )
+    build_one(
+        ROOT / "Programacion II",
+        PROG2_META,
+        enunciado_prog2,
+        guia_prog2,
+        MD_PROG2,
+        "Programacion II",
+    )
+    build_one(
+        ROOT / "Seminario de Sistemas",
+        SEMIN_META,
+        enunciado_seminario,
+        guia_seminario,
+        MD_SEMIN,
+        "Seminario de Sistemas",
     )
 
 

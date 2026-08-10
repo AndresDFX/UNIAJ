@@ -177,7 +177,7 @@ def build_pptx(c):
         idx += 1
         box_note_slide(prs, "Para continuar (PI)", [
             ("info", f"Entregable: {c['entregable']}"),
-            ("aclaracion", "Campus Virtual domingo 23:59."),
+            ("aclaracion", "ExamLab domingo 23:59."),
             ("advertencia", "Sin cloud de pago ni Docker Desktop obligatorio."),
         ], idx=idx)
         closing_slide(prs, f"Clase {n} · PI en movimiento", [
@@ -217,7 +217,7 @@ def build_taller(c):
         "Evidencia adjunta.",
     ])
     h2(doc, "6. Entrega")
-    para(doc, "Campus Virtual UNIAJC · domingo 23:59 · un envio por equipo.")
+    para(doc, "Entrega en ExamLab · domingo 23:59 · un envio por equipo.")
     doc.save(str(path))
     print("OK taller", path)
 
@@ -260,7 +260,7 @@ def guion_md(c):
     if c["tipo"] == "autonoma":
         plan = (
             f"### Autonoma (festivo)\n"
-            f"Publica Presentacion.pptx + Taller.docx en Campus Virtual.\n"
+            f"Publica Presentacion.pptx + Taller.docx en ExamLab.\n"
             f"Mensaje: «Clase {n} autonoma. Hoy avanzamos el PI en: {c['pi_hoy']}. "
             f"Entregable: {c['entregable']}.»\n"
             f"Revisa domingo 23:59 con feedback a rubrica PI.\n"
@@ -299,7 +299,7 @@ def guion_md(c):
         f"## Quiz\n`Kit docente/Clase {n}/Quiz Clase {n} - {c['slug']}.docx`\n\n"
         f"## Capturas\n- Pantallazo herramienta del dia con artefacto CloudLite\n"
         f"- Pantallazo evidencia del entregable\n\n"
-        f"Campus Virtual UNIAJC. Sin cloud con tarjeta.\n"
+        f"Entrega en ExamLab. Sin cloud con tarjeta.\n"
     )
 
 

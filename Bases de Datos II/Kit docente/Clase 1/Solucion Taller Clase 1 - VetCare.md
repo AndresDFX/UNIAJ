@@ -33,4 +33,4 @@
 - Sin FK.
 - Scope infinito.
 
-Campus Virtual UNIAJC.
+Entrega en ExamLab.

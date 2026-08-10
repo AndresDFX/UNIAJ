@@ -63,7 +63,7 @@ Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 Demo: CREATE INDEX idx_cita_fecha; consulta que lo usaria.
 Herramienta: DB Fiddle + draw.io (opcional)
 📸 Pantallazo: [CAP: demo VetCare Clase 7]
-Dejar script/enlace en el chat o Campus.
+Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Taller guiado = tarea del PI
 **Decir:** «Equipos: abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»

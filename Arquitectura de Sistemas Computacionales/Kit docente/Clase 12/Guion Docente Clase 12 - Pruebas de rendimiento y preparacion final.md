@@ -84,6 +84,6 @@ Ver `Kit docente/Clase 12/Quiz Clase 12 - Pruebas de rendimiento y preparacion f
 - 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (examlab.lovable.app/app). Campus Virtual sigue siendo el canal institucional.
+- Plataforma de entrega: ExamLab (examlab.lovable.app/app). La UNIAJC no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta.
 - Día de parcial = solo evaluación (no aplica a esta clase).

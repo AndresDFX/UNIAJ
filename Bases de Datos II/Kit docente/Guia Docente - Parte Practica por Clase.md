@@ -616,7 +616,7 @@ END;
 
 **Entregable:** ZIP/PDF final + video o Meet segun indique docente
 **Criterios de exito:**
-- ZIP/PDF Campus.
+- ZIP/PDF en ExamLab.
 - Sustentacion 5-8 min.
 - Autoevaluacion.
 - Cierre.

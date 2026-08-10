@@ -28,4 +28,4 @@
 - Mejoras genericas.
 - Sin conexión PI.
 
-Campus Virtual UNIAJC.
+Entrega en ExamLab.

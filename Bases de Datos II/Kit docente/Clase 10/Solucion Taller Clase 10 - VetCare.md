@@ -29,4 +29,4 @@
 - Sin T1/T2.
 - Mitigacion vaga.
 
-Campus Virtual UNIAJC.
+Entrega en ExamLab.

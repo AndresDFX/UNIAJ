@@ -467,7 +467,7 @@ TALLER_BLOQUE = {
         ],
         'objetivo': 'Paquete final + sustentacion 5-8 min.',
         'criterios': [
-            'ZIP/PDF Campus.',
+            'ZIP/PDF en ExamLab.',
             'Sustentacion 5-8 min.',
             'Autoevaluacion.',
             'Cierre.',
@@ -682,7 +682,7 @@ SOLUCION = {
             'Completar el checklist marcando SI/NO/PARCIAL en cada evidencia exigida: ER actualizado, DDL ejecutable, roles definidos, minimo 2 procedimientos, minimo 1 funcion, minimo 2 triggers, minimo 1 optimizacion documentada.',
             'Preparar y ejecutar una demo de 3-5 minutos que muestre en vivo: el ER, un procedimiento ejecutandose con un caso real, y un trigger disparandose (ej. cancelar una cita y mostrar la fila de auditoria creada).',
             'Listar explicitamente los gaps (huecos) que quedan pendientes, cada uno con un responsable del equipo asignado — no dejar gaps sin dueño.',
-            'Subir el avance intermedio (enlace o ZIP con DDL + procs + ER) a Campus Virtual UNIAJC si el docente lo solicita, como respaldo verificable del progreso a mitad de corte.',
+            'Subir el avance intermedio (enlace o ZIP con DDL + procs + ER) a ExamLab si el docente lo solicita, como respaldo verificable del progreso a mitad de corte.',
         ],
         'ejemplo': [
             'Codigo/11_checklist_seed.sql',
@@ -751,7 +751,7 @@ SOLUCION = {
             'Verificar el ZIP/paquete final linea por linea contra la rubrica de 100 pts (ER, DDL, roles, procs, funciones/triggers, optimizacion, indices, transacciones, concurrencia, contrato de integracion, informe) antes de subirlo, no despues.',
             'Sustentar 5-8 minutos siguiendo el outline preparado en Clase 12, con evidencia en vivo (no solo diapositivas) de al menos un procedimiento y un trigger ejecutandose.',
             'Completar la autoevaluacion del equipo respondiendo con honestidad que harian distinto si empezaran de nuevo — esto pesa en la nota y demuestra criterio, no solo ejecucion.',
-            'Cerrar formalmente el curso confirmando que la entrega quedo registrada en Campus Virtual UNIAJC dentro del plazo, con el enlace o archivo accesible para el docente.',
+            'Cerrar formalmente el curso confirmando que la entrega quedo registrada en ExamLab dentro del plazo, con el enlace o archivo accesible para el docente.',
         ],
         'ejemplo': [
             'Estructura: ER, DDL, roles, procs, fn/triggers, opt, indices, tx, concurrencia, contrato, informe.',

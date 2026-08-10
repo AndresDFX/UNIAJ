@@ -29,4 +29,4 @@
 - Trigger vacio.
 - Backup sin restore.
 
-Campus Virtual UNIAJC.
+Entrega en ExamLab.

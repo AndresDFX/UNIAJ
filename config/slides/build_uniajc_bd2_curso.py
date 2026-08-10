@@ -413,7 +413,7 @@ def build():
 
 
 
-            ('aclaracion', 'Día 1: Sesión 0 (Presentación del curso, archivo aparte) + Clase 1 (diagnóstico + revisión BD I). Festivos = autónoma en Campus Virtual.'),
+            ('aclaracion', 'Día 1: Sesión 0 (Presentación del curso, archivo aparte) + Clase 1 (diagnóstico + revisión BD I). Festivos = autónoma con actividad en ExamLab.'),
 
 
 

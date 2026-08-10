@@ -29,4 +29,4 @@
 - Sin errores.
 - Outline logos.
 
-Campus Virtual UNIAJC.
+Entrega en ExamLab.

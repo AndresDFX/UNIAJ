@@ -139,13 +139,20 @@ confirmar que la slide de Herramientas muestra logos y NO las iniciales de
 respaldo (`DF`, `OL`, …). Si aparece la inicial, el asset no existe o el nombre no
 resuelve. `add_picture` requiere `str(path)`, no `Path`.
 
-Plataforma institucional = **Campus Virtual UNIAJC**. Nunca “LMS” como nombre ni “CDigital”.
+## Plataforma: la UNIAJC NO tiene Campus Virtual
 
-**ExamLab** (`https://examlab.lovable.app/app`) — NO es la plataforma oficial de la
-UNIAJC, pero es donde los estudiantes **suben talleres** y **presentan quices/parciales**
-en los cursos que lo adopten. Al mencionarlo en material, decir esa distinción
-explícitamente para no confundir al estudiante. El registro oficial de notas sigue
-el canal institucional.
+**No existe** un Campus Virtual ni LMS institucional en la UNIAJC (confirmado por el
+docente, 2026-08-09). Era una suposición heredada de otras universidades (la CUN sí
+tiene CDigital). **Nunca** escribir “Campus Virtual”, “LMS” ni una URL de plataforma
+institucional: manda al estudiante a un sitio que no existe.
+
+El canal real de entrega es **ExamLab** (`https://examlab.lovable.app/app`): ahí se
+**suben talleres** y se **presentan quices/parciales**. No es oficial de la
+universidad — al mencionarlo, decir esa distinción para no confundir.
+
+**Nunca incluir el listado de estudiantes** en presentaciones ni documentos
+generados: es información privada. Tampoco dejar el placeholder
+`[PENDIENTE listado]` en la portada.
 
 ```text
 <Curso>/
@@ -171,7 +178,7 @@ Docente: **Julian Andres Castaño** · `julianacastano@profesores.uniajc.edu.co`
 - Helper: `padlet_slide()` — después de `tutor_slide`.
 - Clear posts = rutina docente **NO** en PPTX estudiante.
 
-Datos de oferta (grupo, periodo, horario) en **negrita**. **Sin** placeholder Campus Virtual ni listado.
+Datos de oferta (grupo, periodo, horario) en **negrita**. **Sin** placeholder de campus (no existe) ni listado de estudiantes (privado).
 
 Estructura sugerida:
 
@@ -235,7 +242,7 @@ Solo tema de hoy · {{DURACION}} min · Teoría Core · Taller · Quiz · Cierre
 6. Nomenclatura **Clase N**; no migrar a «Sesión» salvo pedido.
 7. No borrar material existente ni Acuerdos de semestres anteriores.
 8. Evaluación teórica 30/30/40. Parciales síncronos **nunca** en festivo/autónoma. **Día de parcial = solo evaluación**. Criterio: última regular del corte (mié/jue: 5/10/15; lun: **5/9/14**). Modalidad del parcial según curso (ver Paso 0).
-9. Pendientes ops (no en PPTX curso): URL Campus/Meet, listados/firmas. Padlet ya fijo.
+9. Pendientes ops (no en PPTX curso): enlace de Meet, firmas. **Nunca** URL de campus (no existe) ni listado de estudiantes (privado). Padlet ya fijo.
 10. **El QUIZ no va en el material del estudiante**: ni diapositiva con las preguntas,
     ni anuncio en la agenda/timeline del bloque, ni mención en el taller. Vive SOLO en
     `Kit docente/Clase N/` (versión sin claves + `CLAVE DOCENTE` aparte), y el docente lo
@@ -295,4 +302,4 @@ importar CSV, colas IA): eso es operación, no diseño pedagógico.
 
 ---
 
-*v1.9 — UNIAJC · 2026-2 · Sesión 0 ≠ Clase 1 (y Sesión 0 socializa el PI) · densidad máx. 5 bullets · evaluación en tarjetas · CONTENIDO en 1 slide · diagramas reales · logos verificados · scripts ejecutables · un dominio narrativo por curso · verificación final obligatoria · capturas de salida esperada (mockups.py) · helpers before_after/pseudo_code · modalidad regla unica (Clase 1 y parciales presencial · resto virtual · festivos autonoma) · quiz SOLO en Kit docente · Motor `uniajc_slides_engine.py`.*
+*v2.0 — UNIAJC · 2026-2 · Sesión 0 ≠ Clase 1 (y Sesión 0 socializa el PI) · densidad máx. 5 bullets · evaluación en tarjetas · CONTENIDO en 1 slide · diagramas reales · logos verificados · scripts ejecutables · un dominio narrativo por curso · verificación final obligatoria · capturas de salida esperada (mockups.py) · helpers before_after/pseudo_code · modalidad regla unica (Clase 1 y parciales presencial · resto virtual · festivos autonoma) · quiz SOLO en Kit docente · SIN Campus Virtual (no existe; entrega en ExamLab) · sin listado de estudiantes · PI en los 4 cursos · Motor `uniajc_slides_engine.py`.*

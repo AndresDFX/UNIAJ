@@ -86,6 +86,6 @@ Ver `Kit docente/Clase 4/Quiz Clase 4 - Microservicios y arquitecturas distribui
 - 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (examlab.lovable.app/app). Campus Virtual sigue siendo el canal institucional.
+- Plataforma de entrega: ExamLab (examlab.lovable.app/app). La UNIAJC no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta.
 - Día de parcial = solo evaluación (no aplica a esta clase).

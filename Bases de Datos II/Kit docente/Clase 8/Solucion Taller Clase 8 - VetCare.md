@@ -29,4 +29,4 @@
 - Sin prueba fallo.
 - Updates sueltos.
 
-Campus Virtual UNIAJC.
+Entrega en ExamLab.

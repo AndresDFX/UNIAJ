@@ -37,8 +37,6 @@ def build():
             "Programa: Ingeniería de Sistemas · Facultad de Ingeniería · UNIAJC",
             "Horario: **Miércoles 18:00 – 20:00** (120 min) · Franja Norte-Noche",
             "Docente: Julian Andres Castaño",
-            "Campus Virtual: **[URL Campus Virtual UNIAJC — pendiente]**",
-            "Listado de estudiantes: **[PENDIENTE listado]**",
         ],
     )
 
@@ -132,7 +130,6 @@ def build():
     content_slide(
         prs, "Recursos",
         [
-            "Campus Virtual UNIAJC: **[URL Campus Virtual UNIAJC — pendiente]**",
             "IDE recomendado: IntelliJ IDEA / VS Code / NetBeans (Java 17+).",
             "Bibliografía (microcurrículo): Deitel & Deitel · Design Patterns (GoF) · Head First Design Patterns · JavaFX Docs.",
             "Material de clase: carpeta `Clases/Clase N` + talleres; guiones en `Guiones/` / `Kit docente/`.",
@@ -145,7 +142,7 @@ def build():
         [
             ("info", "Horario fijo del grupo 341C: miércoles 18:00–20:00 · Norte-Noche."),
             ("aclaracion", "Los talleres guiados se entregan a más tardar el domingo 23:59 de la semana correspondiente."),
-            ("advertencia", "La asistencia tiene peso en cada corte (10% / 10% / 5%). Llega a tiempo y participa. Listado: [PENDIENTE listado]."),
+            ("advertencia", "La asistencia tiene peso en cada corte (10% / 10% / 5%). Llega a tiempo y participa."),
         ],
         idx=11,
     )

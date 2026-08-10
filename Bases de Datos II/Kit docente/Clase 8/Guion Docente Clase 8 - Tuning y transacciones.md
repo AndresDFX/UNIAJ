@@ -63,7 +63,7 @@ Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 Demo: BEGIN... INSERT factura/detalle... UPDATE stock... COMMIT/ROLLBACK.
 Herramienta: Oracle Live SQL / DB Fiddle
 📸 Transaccion con stock insuficiente: el ROLLBACK deja todo como estaba [[captura: salida-rollback-stock.png]]
-Dejar script/enlace en el chat o Campus.
+Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Taller guiado = tarea del PI
 **Decir:** «Equipos: abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»

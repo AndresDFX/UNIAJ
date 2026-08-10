@@ -30,4 +30,4 @@
 - Todos DBA.
 - Sin justificar.
 
-Campus Virtual UNIAJC.
+Entrega en ExamLab.

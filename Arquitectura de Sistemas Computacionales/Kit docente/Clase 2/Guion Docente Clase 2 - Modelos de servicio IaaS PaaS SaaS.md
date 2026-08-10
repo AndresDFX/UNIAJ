@@ -36,7 +36,7 @@ Referencia de slides: `Clases/Clase 2 - Modelos de servicio IaaS PaaS SaaS/Prese
 No hay encuentro síncrono obligatorio. El estudiante trabaja con Presentacion.pptx + Taller.docx.
 
 ### Guion del docente (asíncrono)
-1. Publica en ExamLab (y Campus Virtual si aplica): diapositivas + taller + recordatorio del PI.
+1. Publica en ExamLab: diapositivas + taller + recordatorio del PI.
 2. Mensaje sugerido: «Clase 2 autónoma. Hoy avanzamos el PI en: Decidir modelo dominante (IaaS/PaaS/SaaS) para CloudLite + ADR breve.
    Entregable: ADR-001: decisión de modelo de servicio + matriz de comparación aplicada al dominio. Duda por foro/correo institucional.»
 3. Revisa entregas domingo 23:59; deja feedback breve orientado a la rúbrica PI.
@@ -65,6 +65,6 @@ Ver `Kit docente/Clase 2/Quiz Clase 2 - Modelos de servicio IaaS PaaS SaaS.docx`
 - 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (examlab.lovable.app/app). Campus Virtual sigue siendo el canal institucional.
+- Plataforma de entrega: ExamLab (examlab.lovable.app/app). La UNIAJC no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta.
 - Día de parcial = solo evaluación (no aplica a esta clase).

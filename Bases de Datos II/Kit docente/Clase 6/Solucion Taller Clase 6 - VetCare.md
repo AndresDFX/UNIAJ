@@ -30,4 +30,4 @@
 - Caso genérico.
 - Sin diferencia real.
 
-Campus Virtual UNIAJC.
+Entrega en ExamLab.

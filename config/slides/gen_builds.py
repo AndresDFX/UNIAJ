@@ -23,8 +23,6 @@ courses = [
       "Programa: Ingenieria de Sistemas · Facultad de Ingenieria · UNIAJC",
       "Horario: **Jueves 18:00 – 20:00** (120 min)",
       "Docente: Julian Andres Castano",
-      "Campus Virtual: **[URL Campus Virtual UNIAJC — pendiente]**",
-      "Listado de estudiantes: **[PENDIENTE listado]**",
     ],
     "purpose": [
       "Consolidar conocimientos de Programacion II mediante **analisis, diseno, desarrollo y exposicion** de proyectos integradores.",
@@ -38,7 +36,7 @@ courses = [
       "**RAA3** — Presenta y sustenta proyectos de forma clara y estructurada.",
     ],
     "how": [
-      "Modalidad: **presencialidad asistida** (confirmar virtuales del mes en Campus Virtual).",
+      "Modalidad: **presencialidad asistida**.",
       "Cada jueves (120 min): **Teoria Core** → **Taller / exposicion** → **Quiz corto** cuando aplique.",
       "Hilo conductor: **Proyecto Integrador** con avances y sustentacion final.",
       "Enfoque: ABPr · aprendizaje invertido (microcurriculo).",
@@ -60,14 +58,13 @@ courses = [
       "Pesa **20%** en el tercer corte (ademas del Parcial 3).",
     ],
     "resources": [
-      "Campus Virtual UNIAJC: **[URL Campus Virtual UNIAJC — pendiente]**",
       "Bibliografia (microcurriculo): GoF · Head First Design Patterns · Sommerville · Java Docs.",
       "Material: `Clases/Clase N` · `Guiones/` · `Kit docente/`.",
     ],
     "boxes": [
       ("info", "Horario fijo del grupo 341C: jueves 18:00–20:00."),
       ("aclaracion", "Entregas y avances del Proyecto Integrador segun calendario de cortes."),
-      ("advertencia", "Asistencia con peso en cada corte. Listado: [PENDIENTE listado]."),
+      ("advertencia", "Asistencia con peso en cada corte."),
     ],
     "close": ["Seminario de Sistemas · Grupo **341C** · 2026-2", "Jueves **18:00 – 20:00**", "UNIAJC · Ingenieria de Sistemas"],
     "accent": "Proyecto + documentacion + sustentacion",
@@ -82,9 +79,7 @@ courses = [
       "Programa: Ingenieria de Sistemas · Facultad de Ingenieria · UNIAJC",
       "Horario: **Lunes 18:00 – 20:00** (120 min) · Modalidad: **Virtual**",
       "Docente: Julian Andres Castano",
-      "Campus Virtual: **[URL Campus Virtual UNIAJC — pendiente]**",
       "Meet / enlace de clase: **[URL Meet — pendiente]**",
-      "Listado de estudiantes: **[PENDIENTE listado]**",
     ],
     "purpose": [
       "Profundizar la **gestion avanzada** de bases de datos: optimizacion, seguridad, procedimientos y administracion.",
@@ -122,15 +117,14 @@ courses = [
       "Pesa **20%** en el tercer corte.",
     ],
     "resources": [
-      "Campus Virtual UNIAJC: **[URL Campus Virtual UNIAJC — pendiente]**",
       "Practica en la nube (free tier / browser) — sin instalacion de pago obligatoria.",
       "Bibliografia: Coronel & Morris · Date · Oracle PL/SQL Docs.",
       "Plan propio: `Plan curso/PLAN_DE_CURSO_2026-2.md`.",
     ],
     "boxes": [
       ("info", "Lunes 18:00–20:00 · Virtual · Grupo 641A-2."),
-      ("aclaracion", "Clases en festivo (17/08, 12/10, 02/11, 16/11) = autonomas con actividad en Campus Virtual."),
-      ("advertencia", "Parciales 2 y 3 caen en clase autonoma: entrega asincrona. Listado: [PENDIENTE listado]."),
+      ("aclaracion", "Clases en festivo (17/08, 12/10, 02/11, 16/11) = autonomas con actividad en ExamLab."),
+      ("advertencia", "Parciales 2 y 3 caen en clase autonoma: entrega asincrona."),
     ],
     "close": ["Bases de Datos II · Grupo **641A-2** · 2026-2", "Lunes **18:00 – 20:00** · Virtual", "UNIAJC · Ingenieria de Sistemas"],
     "accent": "Datos seguros, consultas rapidas, proyecto real",
@@ -146,8 +140,6 @@ courses = [
       "Horario: **Lunes 10:00 – 13:00** (180 min)",
       "Modalidad: **[PENDIENTE — modalidad]**",
       "Docente: Julian Andres Castano",
-      "Campus Virtual: **[URL Campus Virtual UNIAJC — pendiente]**",
-      "Listado de estudiantes: **[PENDIENTE listado]**",
     ],
     "purpose": [
       "Comprender y aplicar modelos de **infraestructura moderna** con enfoque en arquitecturas en la nube.",
@@ -184,15 +176,14 @@ courses = [
       "Pesa **20%** en el tercer corte; cierre con sustentacion.",
     ],
     "resources": [
-      "Campus Virtual UNIAJC: **[URL Campus Virtual UNIAJC — pendiente]**",
       "Cloud free tier / simuladores (sin software de pago obligatorio en el PC).",
       "Bibliografia: Erl · Buyya · Hwang · docs AWS/Azure/GCP.",
       "Plan propio: `Plan curso/PLAN_DE_CURSO_2026-2.md`.",
     ],
     "boxes": [
       ("info", "Lunes 10:00–13:00 (180 min). Grupo y modalidad: [PENDIENTE]."),
-      ("aclaracion", "Clases en festivo = autonomas con actividad en Campus Virtual."),
-      ("advertencia", "Parciales 2 y 3 en clase autonoma. Listado: [PENDIENTE listado]."),
+      ("aclaracion", "Clases en festivo = autonomas con actividad en ExamLab."),
+      ("advertencia", "Parciales 2 y 3 en clase autonoma."),
     ],
     "close": ["Arquitectura de Sistemas Computacionales · **FI303380** · 2026-2", "Lunes **10:00 – 13:00**", "UNIAJC · Ingenieria de Sistemas"],
     "accent": "Cloud con criterio: escalable, seguro y sostenible",
@@ -271,7 +262,7 @@ def build():
             ["2", "14/09 – 18/10/2026", "Parcial 2 (Clase 10) 10% · Talleres o Quiz 10% · Asistencia 10%", "30%"],
             ["3", "19/10 – 22/11/2026", "Parcial 3 (Clase 15) 15% · Proyecto Integrador 20% · Asistencia 5%", "40%"],
         ],
-        note="Lógica Acuerdos 2026-2. Parcial al cierre de cada corte. Listado: [PENDIENTE listado].",
+        note="Lógica Acuerdos 2026-2. Parcial al cierre de cada corte.",
         col_w=[1.2, 2.4, 6.5, 1.2],
         idx=7,
     )

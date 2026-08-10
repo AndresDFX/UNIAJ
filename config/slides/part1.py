@@ -68,7 +68,7 @@ RAW = [
 (15,"autonoma","Presentacion del proyecto y cierre","Presentacion del proyecto + cierre",
  "Sustentacion PI CloudLite (autonoma)",
  "Sustentacion / entrega final del PI CloudLite App",
- "Paquete final + presentacion 5-8 min (Campus Virtual)",
+ "Paquete final + presentacion 5-8 min (ExamLab)",
  "Google Docs/Slides · diagramas · capturas"),
 ]
 

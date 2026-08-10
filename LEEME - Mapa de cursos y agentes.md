@@ -39,7 +39,7 @@ Misma lógica que Acuerdos de Prog. II / Seminario: **30% / 30% / 40%** con **pa
 | 2 | 30% | 14/09–18/10 | 6–10 | Parcial 2 (Clase 10) | 10% Parcial · 10% Talleres o Quiz · 10% Asistencia |
 | 3 | 40% | 19/10–22/11 | 11–15 | Parcial 3 (Clase 15) | 15% Parcial · 20% Proyecto Integrador · 5% Asistencia |
 
-Festivos = **clase autónoma** (no se omiten). Si el cierre de corte cae en festivo, el parcial va en esa ventana autónoma / Campus Virtual.
+Festivos = **clase autónoma** (no se omiten). Si el cierre de corte cae en festivo, el parcial se mueve a la última clase regular anterior (nunca en festivo).
 
 ## Stack de agente
 
@@ -65,7 +65,7 @@ python config/calendario/generar_semestre_2026_2.py
 ## Convención de material
 
 - Nomenclatura **Clase N** (no «Sesión» CUN).
-- Plataforma = **Campus Virtual UNIAJC** (nunca “LMS” como nombre · nunca CDigital).
+- **La UNIAJC no tiene Campus Virtual/LMS.** Canal de entrega = **ExamLab** (`examlab.lovable.app/app`), que no es oficial de la universidad. Nunca escribir “Campus Virtual” ni incluir listado de estudiantes (privado).
 - **Presentación del curso:** docente + oferta (grupo/periodo/horario/URL en **negrita**) + evaluación + cronograma.
 - **PPTX de clase:** solo tema de esa clase + nº discreto («Clase N»). Sin fechas de periodo, sin mapa completo del curso, sin bio.
 - **Guion de clase:** en `Kit docente/Clase N/` (privado docente). Fundamento + minuto a minuto + práctica + entregable de hoy. Sin carpeta `Guiones/`.

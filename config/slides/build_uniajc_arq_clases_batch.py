@@ -536,7 +536,7 @@ CLASSES = [
             ]),
             ("Paquete de entrega", [
                 "Informe + diagramas + Dockerfile + YAML + capturas.",
-                "Fecha/canal: Campus Virtual (coordinación del periodo).",
+                "Fecha/canal: coordinación del periodo.",
             ]),
         ],
         "taller_titulo": "Taller Clase 12 — Rendimiento y ensayo CloudLite",
@@ -1475,7 +1475,7 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 No hay encuentro síncrono obligatorio. El estudiante trabaja con Presentacion.pptx + Taller.docx.
 
 ### Guion del docente (asíncrono)
-1. Publica en ExamLab (y Campus Virtual si aplica): diapositivas + taller + recordatorio del PI.
+1. Publica en ExamLab: diapositivas + taller + recordatorio del PI.
 2. Mensaje sugerido: «Clase {n} autónoma. Hoy avanzamos el PI en: {c['pi_hoy']}.
    Entregable: {c['entregable']}. Duda por foro/correo institucional.»
 3. Revisa entregas domingo 23:59; deja feedback breve orientado a la rúbrica PI.
@@ -1529,7 +1529,7 @@ Ver `Kit docente/Clase {n}/Quiz Clase {n} - {c['slug']}.docx` (con respuestas).
 - 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (examlab.lovable.app/app). Campus Virtual sigue siendo el canal institucional.
+- Plataforma de entrega: ExamLab (examlab.lovable.app/app). La UNIAJC no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta.
 - Día de parcial = solo evaluación (no aplica a esta clase).
 """

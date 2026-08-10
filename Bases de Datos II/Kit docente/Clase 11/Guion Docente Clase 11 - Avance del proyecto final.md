@@ -57,7 +57,7 @@ Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 Demo: Recorrido de checklist + ejemplo demo de 3 min.
 Herramienta: Live SQL / DB Fiddle + draw.io + ExamLab
 📸 Pantallazo: [CAP: demo VetCare Clase 11]
-Dejar script/enlace en el chat o Campus.
+Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Taller guiado = tarea del PI
 **Decir:** «Equipos: abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»

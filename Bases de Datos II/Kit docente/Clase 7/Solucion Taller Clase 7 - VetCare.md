@@ -29,4 +29,4 @@
 - Sin consulta.
 - Indexar todo.
 
-Campus Virtual UNIAJC.
+Entrega en ExamLab.

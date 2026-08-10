@@ -63,7 +63,7 @@ Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 Demo: fn_precio_consulta + trg_audit_cancelacion_cita + outline backup.
 Herramienta: Oracle Live SQL + Google Docs
 📸 Pantallazo: [CAP: demo VetCare Clase 4]
-Dejar script/enlace en el chat o Campus.
+Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Taller guiado = tarea del PI
 **Decir:** «Equipos: abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»

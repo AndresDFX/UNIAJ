@@ -36,7 +36,7 @@ Referencia de slides: `Clases/Clase 13 - Escalabilidad automatica/Presentacion.p
 No hay encuentro síncrono obligatorio. El estudiante trabaja con Presentacion.pptx + Taller.docx.
 
 ### Guion del docente (asíncrono)
-1. Publica en ExamLab (y Campus Virtual si aplica): diapositivas + taller + recordatorio del PI.
+1. Publica en ExamLab: diapositivas + taller + recordatorio del PI.
 2. Mensaje sugerido: «Clase 13 autónoma. Hoy avanzamos el PI en: Documentar política de autoescalado conceptual de CloudLite.
    Entregable: Sección Escalabilidad: triggers, límites, qué escala y qué no. Duda por foro/correo institucional.»
 3. Revisa entregas domingo 23:59; deja feedback breve orientado a la rúbrica PI.
@@ -65,6 +65,6 @@ Ver `Kit docente/Clase 13/Quiz Clase 13 - Escalabilidad automatica.docx` (con re
 - 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (examlab.lovable.app/app). Campus Virtual sigue siendo el canal institucional.
+- Plataforma de entrega: ExamLab (examlab.lovable.app/app). La UNIAJC no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta.
 - Día de parcial = solo evaluación (no aplica a esta clase).

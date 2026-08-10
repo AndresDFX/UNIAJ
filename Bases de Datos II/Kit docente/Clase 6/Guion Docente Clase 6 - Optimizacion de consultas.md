@@ -63,7 +63,7 @@ Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 Demo: Consulta pesada citas+mascotas+duenos -> version filtrada y proyectada.
 Herramienta: DB Fiddle / SQLTest.online
 📸 Plan de ejecucion ANTES vs DESPUES (FULL SCAN -> INDEX RANGE SCAN) [[captura: salida-explain-antes-despues.png]]
-Dejar script/enlace en el chat o Campus.
+Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Taller guiado = tarea del PI
 **Decir:** «Equipos: abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»

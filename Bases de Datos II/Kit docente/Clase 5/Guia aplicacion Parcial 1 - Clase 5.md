@@ -8,7 +8,7 @@
 | Min | Accion |
 |---|---|
 | 0-10 | Ingreso, asistencia, normas (sin material abierto no autorizado). |
-| 10-15 | Entregar enunciado (Campus / PDF). Aclarar tiempo y canal de dudas de forma. |
+| 10-15 | Entregar enunciado (impreso / PDF). Aclarar tiempo y canal de dudas de forma. |
 | 15-100 | Desarrollo del parcial (silencio de trabajo). |
 | 100-110 | Aviso 10 min; revisiones de integridad. |
 | 110-120 | Cierre, recoleccion, recordatorio: PI se prepara en clases regulares (no hoy). |

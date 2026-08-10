@@ -548,7 +548,7 @@ QUIZ = {
     q_om("Regla de negocio típica VetCare:",
          ["A) Mascota inactiva puede agendar sin control", "B) Stock puede ser negativo sin auditar",
           "C) Mascota inactiva no agenda; stock ≥ 0; auditoría sensible", "D) Sin reglas"], "C"),
-    q_vf("El diagnóstico de Clase 1 evalúa logística del Campus Virtual, no saberes previos de BD I.", "F"),
+    q_vf("El diagnóstico de Clase 1 evalúa la plataforma de entrega, no saberes previos de BD I.", "F"),
     q_abierta("Nombre 3 entidades de su ER VetCare y una FK entre dos de ellas.",
               "Ej. Mascota.id_dueno → Dueño.id; Cita.id_mascota → Mascota.id."),
     q_abierta("Escriba en una frase el alcance SI / NO de su PI esta semana.",
@@ -735,7 +735,7 @@ QUIZ = {
 15: [
     q_om("En la sustentación VetCare, lo mínimo a demostrar es:",
          ["A) Solo hablar sin demo", "B) Modelo + operaciones clave + evidencias de rúbrica",
-          "C) Solo el Campus Virtual", "D) AWS de pago"], "B"),
+          "C) Solo un repositorio de archivos", "D) AWS de pago"], "B"),
     q_om("El PI (20% Corte 3):",
          ["A) Reemplaza el Parcial 3", "B) No sustituye el Parcial 3",
           "C) Elimina asistencia", "D) Es sin rúbrica"], "B"),
@@ -1113,7 +1113,7 @@ def build_solucion_docx(c):
     lines += ["", "## Errores frecuentes"]
     for e in sol.get('errores', []):
         lines.append(f"- {e}")
-    lines += ["", "Campus Virtual UNIAJC.", ""]
+    lines += ["", "Entrega en ExamLab.", ""]
     (kit / f"{stem}.md").write_text("\n".join(lines), encoding="utf-8")
     doc = Document(); banda(doc, sol['titulo'])
     para(doc, "DOCUMENTO DOCENTE — PRIVADO (no va en Clases/)", bold=True, color=RGBColor(0xA0,0x20,0x30), shade_fill="FBE4E4")
@@ -1179,7 +1179,7 @@ def build_guion_md(c):
 | Min | Accion |
 |---|---|
 | 0-10 | Ingreso, asistencia, normas (sin material abierto no autorizado). |
-| 10-15 | Entregar enunciado (Campus / PDF). Aclarar tiempo y canal de dudas de forma. |
+| 10-15 | Entregar enunciado (impreso / PDF). Aclarar tiempo y canal de dudas de forma. |
 | 15-100 | Desarrollo del parcial (silencio de trabajo). |
 | 100-110 | Aviso 10 min; revisiones de integridad. |
 | 110-120 | Cierre, recoleccion, recordatorio: PI se prepara en clases regulares (no hoy). |
@@ -1213,7 +1213,7 @@ def build_guion_md(c):
     if c['tipo']=='autonoma':
         plan = """## Plan minuto a minuto (120 min equivalentes — trabajo autonomo)
 
-> El estudiante trabaja sin encuentro sincrono. Usted publica este guion resumido + taller en Campus.
+> El estudiante trabaja sin encuentro sincrono. Usted publica este guion resumido + taller en ExamLab.
 
 ### Bloque A (0-20) · Encuadre PI
 **Decir/publicar:** «Hoy avanzamos el PI en: {hito}. No es un taller suelto.»
@@ -1250,7 +1250,7 @@ Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: {c['demo']}
 Herramienta: {c['herramienta']}
-""" + _capturas_md(c['n']) + f"""Dejar script/enlace en el chat o Campus.
+""" + _capturas_md(c['n']) + f"""Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Taller guiado = tarea del PI
 **Decir:** «Equipos: abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»

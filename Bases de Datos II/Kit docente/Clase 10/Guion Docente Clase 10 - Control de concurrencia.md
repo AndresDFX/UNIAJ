@@ -40,7 +40,7 @@ del PI VetCare. La teoria se limita a desbloquear el taller.
 
 ## Plan minuto a minuto (120 min equivalentes — trabajo autonomo)
 
-> El estudiante trabaja sin encuentro sincrono. Usted publica este guion resumido + taller en Campus.
+> El estudiante trabaja sin encuentro sincrono. Usted publica este guion resumido + taller en ExamLab.
 
 ### Bloque A (0-20) · Encuadre PI
 **Decir/publicar:** «Hoy avanzamos el PI en: Escenarios de concurrencia del PI documentados. No es un taller suelto.»

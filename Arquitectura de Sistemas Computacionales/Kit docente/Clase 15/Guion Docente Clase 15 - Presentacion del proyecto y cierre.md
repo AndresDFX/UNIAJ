@@ -36,7 +36,7 @@ Referencia de slides: `Clases/Clase 15 - Presentacion del proyecto y cierre/Pres
 No hay encuentro síncrono obligatorio. El estudiante trabaja con Presentacion.pptx + Taller.docx.
 
 ### Guion del docente (asíncrono)
-1. Publica en ExamLab (y Campus Virtual si aplica): diapositivas + taller + recordatorio del PI.
+1. Publica en ExamLab: diapositivas + taller + recordatorio del PI.
 2. Mensaje sugerido: «Clase 15 autónoma. Hoy avanzamos el PI en: Sustentación / entrega final del PI CloudLite App.
    Entregable: Paquete final + presentación 5–8 min (entrega en ExamLab · módulo Proyectos). Duda por foro/correo institucional.»
 3. Revisa entregas domingo 23:59; deja feedback breve orientado a la rúbrica PI.
@@ -64,6 +64,6 @@ Ver `Kit docente/Clase 15/Quiz Clase 15 - Presentacion del proyecto y cierre.doc
 - 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (examlab.lovable.app/app). Campus Virtual sigue siendo el canal institucional.
+- Plataforma de entrega: ExamLab (examlab.lovable.app/app). La UNIAJC no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta.
 - Día de parcial = solo evaluación (no aplica a esta clase).

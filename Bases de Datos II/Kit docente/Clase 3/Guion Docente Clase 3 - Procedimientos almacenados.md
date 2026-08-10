@@ -63,7 +63,7 @@ Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 Demo: CREATE PROCEDURE sp_agendar_cita(...) con validacion de mascota activa.
 Herramienta: Oracle Live SQL
 📸 sp_agendar_cita: caso OK vs caso rechazado por mascota inactiva [[captura: salida-proc-ok-y-error.png]]
-Dejar script/enlace en el chat o Campus.
+Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Taller guiado = tarea del PI
 **Decir:** «Equipos: abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»

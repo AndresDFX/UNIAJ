@@ -30,4 +30,4 @@
 - Sin validación.
 - Solo captura.
 
-Campus Virtual UNIAJC.
+Entrega en ExamLab.
