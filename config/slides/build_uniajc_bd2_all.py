@@ -24,6 +24,8 @@ from uniajc_slides_engine import (
 from uniajc_quiz_helpers import clave_text, pptx_chunks, q_abierta, q_om, q_vf, student_lines
 from bd2_taller_data import HERRAMIENTAS_DIA, TALLER_BLOQUE, SOLUCION
 from bd2_fundamentos import FUNDAMENTOS
+from bd2_examlab_data import EXAMLAB as TALLERES_EXAMLAB
+import examlab_talleres
 from docx import Document
 from docx.shared import Pt as DocPt, RGBColor, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -1118,7 +1120,17 @@ def build_taller_docx(c):
     bullets(doc, tb.get('pistas') or ["Revisar evidencia antes de subir."])
     para(doc, "8. Entrega", size=12, bold=True, color=AZUL)
     _p_entrega = doc.add_paragraph(); _p_entrega.paragraph_format.space_after = DocPt(6)
-    add_inline_docx(_p_entrega, "@@Sube tu taller en ExamLab@@ (examlab.lovable.app/app · módulo Talleres) — domingo 23:59 cuando aplique.")
+    add_inline_docx(_p_entrega, "@@Sube tu taller en ExamLab@@ (https://examlab.lovable.app/ · módulo Talleres) — domingo 23:59 cuando aplique.")
+    # 9. Que encuentra en la plataforma. Antes el taller terminaba en «sube esto a
+    # ExamLab» sin decir en que forma se responde cada cosa; con esto el estudiante
+    # sabe de antemano que hay editor de SQL con PostgreSQL real, cuadro de texto, etc.
+    _taller_el = TALLERES_EXAMLAB.get(c["n"])
+    if _taller_el:
+        examlab_talleres.render_estudiante(
+            doc, _taller_el, para=para, bullets=bullets,
+            add_inline=add_inline_docx, color_titulo=AZUL,
+            titulo="9. Que vas a resolver en ExamLab",
+        )
     out_dir = CLASES_DIR / f"Clase {c['n']} - {c['slug']}"
     out_dir.mkdir(parents=True, exist_ok=True)
     out = out_dir / f"Taller PI - Clase {c['n']} - VetCare.docx"
@@ -1551,6 +1563,28 @@ def build_guia_practica():
     return md_path
 
 
+def build_examlab_guia(c):
+    """Guia para armar el taller de esta clase dentro de ExamLab.
+
+    Va en el Kit docente porque la plataforma no importa preguntas desde archivo:
+    el docente las crea en la UI y necesita el texto exacto de cada campo (incluido
+    el SQL de partida, que aqui es PostgreSQL y no Oracle).
+    """
+    taller = TALLERES_EXAMLAB.get(c["n"])
+    if not taller:
+        return None
+    d = KIT_DIR / f"Clase {c['n']}"
+    d.mkdir(parents=True, exist_ok=True)
+    md = examlab_talleres.guia_docente_md(
+        c["n"], taller, "Bases de Datos II (FI303215)",
+        hito=c.get("hito_pi"), entregable=c.get("entregable"),
+    )
+    out = d / f"Taller en ExamLab - Clase {c['n']} (configuracion).md"
+    out.write_text(md, encoding="utf-8")
+    print("EXAMLAB", out)
+    return out
+
+
 def main():
     KIT_DIR.mkdir(parents=True, exist_ok=True)
     CLASES_DIR.mkdir(parents=True, exist_ok=True)
@@ -1563,6 +1597,7 @@ def main():
         md = build_guion_md(c)
         if md: convert_guion(md)
         build_quiz(c)
+        build_examlab_guia(c)
     build_guia_practica()
     print("DONE")
 

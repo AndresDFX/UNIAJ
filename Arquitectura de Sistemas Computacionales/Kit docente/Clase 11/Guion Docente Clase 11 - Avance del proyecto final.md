@@ -91,11 +91,11 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
-1. Completen el checklist en el informe (sí/no + enlace evidencia).
-2. Unifiquen nombres entre C4 y Deployment.
-3. Empaqueten ZIP/repo: diagramas PNG, Dockerfile, YAML, informe.
-4. Feedback docente 1:1 corto (cola).
-5. Backlog escrito: 5 ítems para Clase 12.
+1. Paso 1: completen el checklist de 10 filas del paquete v1 marcando cada evidencia como si, no o parcial y pegando la ruta o el enlace exacto de cada una, verificando que ninguna fila marcada como si quede sin ruta verificable, porque una fila sin enlace se califica como no.
+2. Paso 2: hagan la reconciliacion de nombres llenando la tabla de 5 filas que compara como se llama cada elemento en el C4Container, en el C4Deployment, en el Dockerfile o el ci.yml y en el informe, verificando que la columna de nombre canonico sea identica en las cuatro y aplicando la correccion en el artefacto que este desalineado.
+3. Paso 3: escriban en ExamLab el diagrama C4Component del interior de la API con 5 componentes y sus relaciones hacia la base de datos, la cola y el proveedor de identidad, verificando al renderizar que ningun componente sea un contenedor de la Clase 4 disfrazado y que el contenedor contenedor de la frontera se llame igual que en el C4Container.
+4. Paso 4: escriban el backlog de 5 items priorizados hacia la Clase 12 con hueco detectado, accion, responsable y fecha, verificando que cada item se pueda cerrar en una semana y que al menos uno provenga del feedback del docente recibido hoy en la cola de revision.
+5. Paso 5: empaqueten el ZIP o el repositorio con los diagramas, el Dockerfile, el ci.yml y el informe al 60 por ciento, y suban las 5 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que el paquete se pueda abrir en otra maquina y que el informe enlace cada evidencia por su ruta dentro del paquete.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

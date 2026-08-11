@@ -88,11 +88,11 @@ para detectar quién entendió y quién solo copió la plantilla. No adelantes c
 
 
 ## Actividad / taller (detalle)
-1. Describan qué componente escala y por qué.
-2. Definan 2 triggers + min/max + qué NO se escala.
-3. Anoten impacto en costos/sostenibilidad.
-4. Opcional: marca «ASG/replicas» en diagrama Deployment.
-5. Entrega domingo 23:59 (sección Escalabilidad).
+1. Paso 1: tome los 5 componentes de su C4Deployment de la Clase 7 y clasifique cada uno como escala horizontal, escala vertical o no escala, verificando que al menos uno quede en no escala con justificacion tecnica, porque una politica donde todo escala no es una politica; el resultado abre la seccion Escalabilidad del informe.
+2. Paso 2: complete la tabla de politica de escalado con 6 columnas y 5 filas (componente, tipo de escala, disparador de subida, disparador de bajada, minimo y maximo, tiempo de enfriamiento), verificando que cada disparador tenga metrica, umbral numerico y ventana de tiempo, y que ningun maximo quede en infinito o sin definir.
+3. Paso 3: escriba en ExamLab el diagrama Mermaid de la maquina de decision del autoescalado con el nodo de observacion, los dos rombos de decision, las acciones de subida y bajada, el enfriamiento y el nodo de lo que no escala, verificando al renderizar que el ciclo se cierre sobre el nodo de observacion y que los umbrales del diagrama sean los mismos numeros de la tabla.
+4. Paso 4: escriba los 3 componentes que NO escalan con su justificacion tecnica y su plan alterno, y la tabla de impacto en costos que enlaza con la Clase 10, verificando que cada plan alterno sea ejecutable sin cloud de pago y que el impacto de costo use los mismos niveles bajo, medio o alto de la seccion de costos.
+5. Paso 5: integre la politica en la seccion Escalabilidad del informe, anote la marca de replicas en el diagrama de despliegue si aplica y suba las 5 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que la politica no prometa nada que la arquitectura dibujada no pueda cumplir.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

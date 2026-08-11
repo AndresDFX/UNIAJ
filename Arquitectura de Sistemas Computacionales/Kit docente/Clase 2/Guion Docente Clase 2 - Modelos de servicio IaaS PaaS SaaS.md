@@ -89,11 +89,11 @@ para detectar quién entendió y quién solo copió la plantilla. No adelantes c
 
 
 ## Actividad / taller (detalle)
-1. Lea las diapositivas y el enunciado del PI (Clases/Proyecto Integrador).
-2. Complete una matriz IaaS/PaaS/SaaS vs su dominio (control, costo cualitativo, operación, time-to-demo).
-3. Redacte ADR-001 (decisión dominante + 2 alternativas descartadas).
-4. Actualice el informe PI (sección «Modelo de servicio»).
-5. Entrega domingo 23:59 en **ExamLab** (Talleres) — mismo doc del PI o anexo.
+1. Paso 1: relea la ficha y el C4 Context de la Clase 1 y copie en el encabezado del ADR el nombre del dominio y las 4 capacidades ya aprobadas, verificando que sean literalmente las mismas 4 y que no cambia de dominio a mitad de camino, porque al ser clase autonoma nadie corregira la inconsistencia antes de la entrega.
+2. Paso 2: complete la matriz de 4 columnas y 5 filas (control del sistema operativo, esfuerzo de operacion, tiempo hasta la primera demo, costo cualitativo con su driver, portabilidad) puntuando cada celda de 1 a 3 y sumando por columna, verificando que los tres totales de IaaS, PaaS y SaaS sean distintos: si dos empatan, vuelva a puntuar porque el criterio esta mal aplicado; la matriz queda en la seccion Modelo de servicio del informe del PI.
+3. Paso 3: redacte el ADR-001 con las 7 secciones obligatorias (titulo, estado, contexto en 3 frases, decision en 1 frase, 2 alternativas descartadas con motivo, 2 consecuencias positivas y 2 negativas, impacto en el PI), verificando que la decision nombre un unico modelo dominante y no un poco de todo, y que cada alternativa descartada explique el motivo en terminos de este dominio y no en teoria.
+4. Paso 4: escriba en ExamLab el diagrama Mermaid de responsabilidad compartida con 3 subgrafos (IaaS, PaaS, SaaS), 4 capas por subgrafo y un nodo final de decision, verificando al renderizar que se cuentan 12 nodos de capa, que los nodos gestionados por el equipo y por el proveedor quedan pintados distinto y que la caja de decision cita el mismo modelo del ADR-001.
+5. Paso 5: pegue matriz, ADR-001 y diagrama en las 5 preguntas del taller, actualice la seccion Modelo de servicio del informe con el mismo texto del ADR y suba todo a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que el modelo elegido se pueda demostrar sin tarjeta de credito ni cloud de pago.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

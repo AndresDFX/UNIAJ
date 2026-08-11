@@ -23,6 +23,8 @@ from docx.shared import Inches, Pt, RGBColor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from arq_fundamentos import FUNDAMENTOS  # noqa: E402
+from arq_examlab_data import EXAMLAB as TALLERES_EXAMLAB  # noqa: E402
+import examlab_talleres  # noqa: E402
 from uniajc_slides_engine import (  # noqa: E402
     before_after_slide,
     box_note_slide,
@@ -962,6 +964,19 @@ ANTES_DESPUES_ARQ = {
 }
 
 
+def _pasos(c):
+    """Pasos del taller de esta clase.
+
+    Los pasos originales eran one-liners vagos ("creen diagrama Containers") sin
+    cantidad ni criterio de verificacion, asi que el estudiante no sabia cuando
+    habia terminado. La version reescrita vive en
+    `arq_examlab_data.EXAMLAB[n]["pasos"]`; si falta, se cae a los originales
+    para no romper el build.
+    """
+    t = TALLERES_EXAMLAB.get(c["n"]) or {}
+    return t.get("pasos") or c["taller_pasos"]
+
+
 def build_pptx(c: dict) -> Path:
     n = c["n"]
     folder = CURSO / "Clases" / f"Clase {n} - {c['slug']}"
@@ -1026,7 +1041,7 @@ def build_pptx(c: dict) -> Path:
     if cs:
         pseudo_code_slide(prs, cs[0], cs[1], caption=cs[2], idx=idx)
         idx += 1
-    content_slide(prs, "Taller PI (paso a paso)", [f"**{i+1}.** {p}" for i, p in enumerate(c["taller_pasos"])], idx=idx)
+    content_slide(prs, "Taller PI (paso a paso)", [f"**{i+1}.** {p}" for i, p in enumerate(_pasos(c))], idx=idx)
     idx += 1
     box_note_slide(prs, "Para continuar (PI)", [
         ("info", f"Entregable: {c['entregable']}"),
@@ -1274,7 +1289,7 @@ def build_taller_docx(c: dict) -> Path | None:
     para(doc, "Prohibido como requisito: AWS/GCP/Oracle/Azure con tarjeta; VirtualBox/VMware/Docker Desktop obligatorio.",
          shade="FBE4E4")
     h2(doc, "6. Pasos guiados")
-    bullets(doc, c["taller_pasos"])
+    bullets(doc, _pasos(c))
     h2(doc, "7. Criterio de éxito")
     bullets(doc, [
         "El artefacto queda en el paquete PI (informe y/o repo) con nombres consistentes.",
@@ -1286,6 +1301,16 @@ def build_taller_docx(c: dict) -> Path | None:
         bullets(doc, [f"☐ {p}" for p in tb["pistas"]])
     h2(doc, "9. Entrega")
     para(doc, "Entrega en ExamLab (https://examlab.lovable.app/ · módulo Talleres) · domingo 23:59 (regla del Acuerdo). Un envío por equipo.")
+    # 10. Que encuentra en la plataforma. Antes el taller decia «suba el PNG a ExamLab»
+    # sin explicar en que forma se responde; ademas pedia exportar de draw.io cuando la
+    # plataforma dibuja Mermaid nativo (incluido C4). Esto lo hace explicito.
+    _taller_el = TALLERES_EXAMLAB.get(c["n"])
+    if _taller_el:
+        examlab_talleres.render_estudiante(
+            doc, _taller_el, para=para, bullets=bullets,
+            add_inline=add_inline_docx, color_titulo=AZUL,
+            titulo="10. Que vas a resolver en ExamLab",
+        )
     doc.save(str(path))
     print("OK taller ->", path)
     return path
@@ -1661,7 +1686,7 @@ Resuelve bloqueos concretos de diagrama/ADR/lab. Usa las preguntas de comprobaci
 para detectar quién entendió y quién solo copió la plantilla. No adelantes contenido de Parcial.
 """
 
-    pasos = "\n".join(f"{i+1}. {p}" for i, p in enumerate(c["taller_pasos"]))
+    pasos = "\n".join(f"{i+1}. {p}" for i, p in enumerate(_pasos(c)))
     return f"""# Guion docente — Clase {n}: {c['tema']}
 
 ## Información de la clase
@@ -1776,6 +1801,27 @@ def convert_guiones(paths: list[Path]) -> None:
         os.system(f'python "{conv}" "{md}"')
 
 
+def build_examlab_guia(c):
+    """Guia para armar el taller de esta clase dentro de ExamLab.
+
+    Va en el Kit docente porque la plataforma no importa preguntas desde archivo:
+    el docente las crea en la UI y necesita el texto exacto de cada campo.
+    """
+    taller = TALLERES_EXAMLAB.get(c["n"])
+    if not taller:
+        return None
+    d = CURSO / "Kit docente" / f"Clase {c['n']}"
+    d.mkdir(parents=True, exist_ok=True)
+    md = examlab_talleres.guia_docente_md(
+        c["n"], taller, "Arquitectura de Sistemas Computacionales (FI303380)",
+        hito=c.get("pi_hoy"), entregable=c.get("entregable"),
+    )
+    out = d / f"Taller en ExamLab - Clase {c['n']} (configuracion).md"
+    out.write_text(md, encoding="utf-8")
+    print("OK examlab ->", out)
+    return out
+
+
 def build_all():
     guiones = []
     for c in CLASSES:
@@ -1791,6 +1837,7 @@ def build_all():
         build_pptx(c)
         build_taller_docx(c)
         build_quiz_docx(c)
+        build_examlab_guia(c)
         g = build_guion(c)
         guiones.append(g)
     convert_guiones(guiones)

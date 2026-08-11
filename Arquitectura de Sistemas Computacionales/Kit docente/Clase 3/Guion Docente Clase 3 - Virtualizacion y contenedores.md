@@ -96,11 +96,11 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
-1. Definan qué servicio contenerizan hoy (API stub o front estático del dominio).
-2. En Play with Docker: construyan y corran el contenedor (si no carga, Killercoda como alterna).
-3. Documenten Dockerfile (y compose si aplica) en el repo/ZIP del PI.
-4. Capturen evidencia (PNG) o enlace de sesión + nota de caducidad.
-5. Actualicen informe: sección Contenedores + enlace a diagrama de despliegue futuro.
+1. Paso 1: decidan cual de los contenedores de CloudLite se contenerizara hoy (la API stub o el front estatico) y escriban en la seccion Contenedores del informe el nombre exacto del servicio, el puerto que expondra y la ruta de salud que responderan (por ejemplo api-citas, puerto 8080, ruta /health), verificando que ese nombre sea el mismo que usaran en el C4 de la Clase 4 y en el despliegue de la Clase 7.
+2. Paso 2: en la consola Linux de ExamLab arme el contexto de build con 5 archivos (app/main.py, requirements.txt con 2 dependencias fijadas por version, Dockerfile, .dockerignore con 4 entradas) y verifique con ls -la que los 5 existen y con un grep de PASSWORD, SECRET, TOKEN y api_key que la salida sea vacia, confirmando que no hay ningun secreto en el contexto.
+3. Paso 3: escriba el Dockerfile con exactamente 7 instrucciones (FROM con tag fijo y variante slim, WORKDIR, COPY de requirements, RUN pip install --no-cache-dir, COPY del codigo, EXPOSE del puerto declarado en el paso 1, CMD) y verifique que el puerto de EXPOSE, el del CMD y el documentado en el informe sean el mismo numero; el Dockerfile se pega completo en la pregunta 2 de ExamLab.
+4. Paso 4: abra Play with Docker (o Killercoda si no carga), ejecute docker build -t cloudlite-api:v1 . y docker run -d -p 8080:8080 cloudlite-api:v1, compruebe con curl que la ruta de salud devuelve 200 y llene la bitacora de 5 filas comando / que esperaba / que salio / evidencia, verificando que la captura muestre a la vez el prompt del lab, la salida del docker ps y la hora del sistema.
+5. Paso 5: complete el diagrama Mermaid del ciclo Dockerfile a contenedor, adjunte la captura del lab con su nota de caducidad y suba las 5 preguntas del taller a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que la seccion Contenedores del informe cite el mismo tag de imagen cloudlite-api:v1 que aparece en la captura.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

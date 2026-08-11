@@ -58,6 +58,8 @@ from docx.oxml.ns import qn  # noqa: E402
 from docx.shared import Pt as DocPt, RGBColor  # noqa: E402
 
 from prog2_clases_data import CLASES  # noqa: E402
+from prog2_examlab_data import EXAMLAB as TALLERES_EXAMLAB  # noqa: E402
+import examlab_talleres  # noqa: E402
 
 CURSO = ROOT / "Programacion II"
 CLASES_DIR = CURSO / "Clases"
@@ -269,6 +271,13 @@ def build_taller_docx(c):
     para(doc, "7. Entrega", size=12, bold=True, color=AZUL)
     p = doc.add_paragraph()
     add_inline_docx(p, f"@@Sube tu taller en {EXAMLAB}@@ — domingo 23:59. Un envio por equipo.")
+    _taller_el = TALLERES_EXAMLAB.get(n)
+    if _taller_el:
+        examlab_talleres.render_estudiante(
+            doc, _taller_el, para=para, bullets=bullets,
+            add_inline=add_inline_docx, color_titulo=AZUL,
+            titulo="8. Que vas a resolver en ExamLab",
+        )
     out_dir = CLASES_DIR / f"Clase {n} - {c['slug']}"
     out_dir.mkdir(parents=True, exist_ok=True)
     doc.save(str(out_dir / f"Taller PI - Clase {n} - VetCare.docx"))
@@ -483,6 +492,28 @@ python config/slides/build_uniajc_prog2_all.py
 """, encoding="utf-8")
 
 
+
+def build_examlab_guia(c):
+    """Guia para armar el taller de esta clase dentro de ExamLab.
+
+    Va en el Kit docente porque la plataforma no importa preguntas desde archivo:
+    el docente las crea en la UI y necesita el texto exacto de cada campo.
+    """
+    taller = TALLERES_EXAMLAB.get(c["n"])
+    if not taller:
+        return None
+    d = KIT_DIR / f"Clase {c['n']}"
+    d.mkdir(parents=True, exist_ok=True)
+    md = examlab_talleres.guia_docente_md(
+        c["n"], taller, "Programacion II (FI303204)",
+        hito=c.get("hito_pi"), entregable=c.get("entregable"),
+    )
+    out = d / f"Taller en ExamLab - Clase {c['n']} (configuracion).md"
+    out.write_text(md, encoding="utf-8")
+    print("EXAMLAB", out)
+    return out
+
+
 def main():
     KIT_DIR.mkdir(parents=True, exist_ok=True)
     CLASES_DIR.mkdir(parents=True, exist_ok=True)
@@ -494,6 +525,7 @@ def main():
         build_solucion_docx(c)
         build_quiz(c)
         build_codigo(c)
+        build_examlab_guia(c)
         md = build_guion_md(c)
         if md:
             convert_guion(md)

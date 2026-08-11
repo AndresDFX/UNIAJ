@@ -87,10 +87,11 @@ para detectar quién entendió y quién solo copió la plantilla. No adelantes c
 
 
 ## Actividad / taller (detalle)
-1. Tabla componente → driver de costo → nivel (B/M/A) → apalancamiento.
-2. 3 acciones de sostenibilidad aplicables al diseño.
-3. Integre en el informe PI (1 página).
-4. Entrega domingo 23:59.
+1. Paso 1: liste los 6 elementos de costo de su diseno tomandolos del C4Deployment de la Clase 7 (edge, API, worker, base de datos, almacen de objetos y minutos de integracion continua), verificando que no aparezca ningun componente que no exista en su diagrama y que ninguno quede sin fila, porque al ser clase autonoma nadie va a completar la tabla por usted.
+2. Paso 2: complete la tabla de 5 columnas asignando a cada elemento su driver de costo, el nivel bajo, medio o alto, un apalancamiento y el riesgo de aplicarlo, verificando que ningun driver se repita entre filas y que la palabra caro no aparezca sola como explicacion.
+3. Paso 3: escriba en ExamLab el mindmap Mermaid con las 5 ramas de drivers (computo, datos, transferencia, ocioso e integracion continua) y 2 hojas concretas por rama, verificando al renderizar que las 10 hojas mencionen elementos reales de su despliegue y no categorias abstractas.
+4. Paso 4: desarrolle 3 apalancamientos de ahorro con su estado antes y despues y 3 acciones de sostenibilidad verificables, verificando que cada accion tenga una evidencia que un tercero pueda revisar (tamano de la imagen en megabytes, hora de apagado del lab, numero de replicas en la noche) y que ninguna rompa un requisito del PI.
+5. Paso 5: integre la tabla, el mindmap y las acciones en la seccion Costos y sostenibilidad del informe (1 pagina) y suba las 5 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que no haya inventado ninguna factura en dolares de un proveedor de pago.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

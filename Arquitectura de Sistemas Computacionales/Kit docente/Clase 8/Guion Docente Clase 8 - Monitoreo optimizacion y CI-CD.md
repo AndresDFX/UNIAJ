@@ -94,11 +94,11 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
-1. Creen repo free (o usen el del equipo) con stub mínimo.
-2. Agreguen `.github/workflows/ci.yml` (build/test + deploy simulado).
-3. Listen 4–6 métricas/logs a observar en producción hipotética.
-4. Peguen captura del run verde (o YAML + explicación si Actions falla por cuota).
-5. Actualicen informe secciones CI/CD y Monitoreo.
+1. Paso 1: creen o reutilicen el repositorio gratuito del equipo con el stub de la Clase 3 y al menos 3 pruebas automatizadas que verifiquen la ruta de salud, un caso valido y un caso de error de negocio, verificando con una ejecucion local o en el lab que las 3 pruebas pasan antes de tocar el pipeline; el enlace del repositorio queda en la portada del informe.
+2. Paso 2: agreguen el archivo .github/workflows/ci.yml con 4 jobs encadenados (build, test, package y deploy simulado), disparadores en push y pull_request sobre la rama principal, y publicacion de artefacto, verificando que ningun paso imprima secretos y que el job de deploy diga explicitamente en su log que es un despliegue simulado.
+3. Paso 3: ejecuten el workflow con un push real, esperen el run completo y capturen el enlace del run verde mas el nombre del artefacto descargable, verificando que los 4 jobs aparezcan en verde y que el artefacto pese mas de 0 bytes; si Actions falla por cuota, dejen registrado el mensaje textual del error y la explicacion, que es el plan B aceptado.
+4. Paso 4: escriban en ExamLab el diagrama Mermaid del pipeline con los 4 jobs dentro de un subgrafo, la compuerta de decision y las dos salidas (despliegue simulado y bloqueo del pull request), verificando al renderizar que los nombres de los jobs sean exactamente los del ci.yml.
+5. Paso 5: completen la tabla de 5 senales de monitoreo con umbral y accion, actualicen las secciones CI/CD y Monitoreo del informe y suban las 5 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que el enlace del run verde abra sin pedir permisos y que cada senal se pueda medir en el diseno que ya dibujaron.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

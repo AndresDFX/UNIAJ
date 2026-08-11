@@ -93,11 +93,11 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
-1. Abran draw.io y creen diagrama Containers/Componentes de CloudLite.
-2. Limiten a 2–5 servicios/contenedores lógicos justificados.
-3. Listen 3 contratos (quién llama a quién, verbo HTTP o evento).
-4. Exporten PNG + archivo .drawio al Drive/repo del PI.
-5. En el informe: sección «Arquitectura lógica» + riesgos de distribución.
+1. Paso 1: abran el C4 Context de la Clase 1 y escriban la lista canonica de nombres de CloudLite: exactamente 5 contenedores con nombre, responsabilidad en una frase y tecnologia tentativa (por ejemplo SPA Web, API CloudLite, Worker Notificaciones, Base de datos Citas, Cola Notificaciones), verificando que ninguno de los 5 sea un modulo interno de otro y que ningun nombre se repita; esa lista se congela y la reutilizan las clases 7, 11 y 15.
+2. Paso 2: escriban en ExamLab el diagrama C4Container en Mermaid con los 5 contenedores dentro de un Container_Boundary, los 2 Person y los 2 System_Ext de la Clase 1, y 8 relaciones etiquetadas con protocolo y puerto, verificando al renderizar que la base de datos usa ContainerDb, la cola usa ContainerQueue y que ningun actor habla directamente con la base de datos.
+3. Paso 3: definan los 3 contratos entre partes en una tabla de 6 columnas (ID, consumidor a proveedor, verbo y ruta, request, respuesta 2xx, error de negocio), verificando que al menos un contrato sea asincrono por evento y que cada fila declare un codigo de error de negocio real como 409 CUPO_OCUPADO o 401 TOKEN_INVALIDO, no solo 500.
+4. Paso 4: escriban el sequenceDiagram del contrato principal con 5 participantes y un bloque alt que cubra el camino feliz y el camino de error 409, verificando que los nombres de los participantes sean identicos a los 5 contenedores del paso 1 y que el mensaje de error muestre el mismo codigo declarado en la tabla de contratos.
+5. Paso 5: redacten los 3 riesgos de distribucion con su mitigacion, actualicen la seccion Arquitectura logica del informe con el diagrama y la tabla de contratos, y suban las 5 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que la lista canonica de 5 nombres aparezca identica en el diagrama, en los contratos y en el informe.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

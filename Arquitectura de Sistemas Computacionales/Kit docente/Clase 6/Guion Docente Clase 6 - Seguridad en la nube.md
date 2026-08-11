@@ -94,11 +94,11 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
-1. Listen 5 amenazas STRIDE-lite aplicadas a su dominio.
-2. Para cada una: control + dónde se ve en el diagrama.
-3. Definan política de secretos del repo/Actions.
-4. Redacten sección Seguridad del informe PI (1–1.5 páginas).
-5. Entrega domingo 23:59 (avance PI).
+1. Paso 1: liste 5 amenazas concretas de su dominio, una por cada categoria de STRIDE-lite (suplantacion, manipulacion, divulgacion de informacion, denegacion de servicio y elevacion de privilegios), verificando que cada amenaza nombre el activo afectado de su propio C4 (por ejemplo la Base de datos Citas o el token del estudiante) y que ninguna sea copiada como frase generica de internet.
+2. Paso 2: asigne a cada amenaza un control tecnico y la flecha o zona exacta del diagrama donde se ve ese control, verificando que los 5 controles sean distintos entre si y que al menos uno sea preventivo, uno detectivo y uno de contencion; la tabla completa queda en la seccion Seguridad del informe del PI.
+3. Paso 3: escriban en ExamLab el diagrama Mermaid de fronteras de confianza con 3 zonas (publica, privada y de datos), los 5 contenedores de la Clase 4 ubicados en su zona, las aristas rotuladas con protocolo y puerto, y una arista punteada de trafico bloqueado, verificando al renderizar que la base de datos y la cola quedan en la zona de datos y que el usuario no tiene ninguna arista solida hacia ellas.
+4. Paso 4: redacten la politica de secretos con los 6 puntos obligatorios (inventario de 4 secretos, donde vive cada uno, quien accede, rotacion, plan si se filtra, prohibiciones), verificando que ningun secreto quede en el Dockerfile, en el repositorio ni en el YAML en claro y que el plan de filtracion incluya rotar e invalidar la credencial anterior.
+5. Paso 5: integren la tabla STRIDE, el diagrama y la politica de secretos en la seccion Seguridad del informe (1 a 1.5 paginas) y suban las 5 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que cada amenaza de la tabla se pueda senalar con el dedo en el diagrama renderizado.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

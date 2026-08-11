@@ -93,11 +93,11 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
-1. Formen equipo de 2–3 (o individual autorizado).
-2. Elijan dominio concreto (no «red social genérica»).
-3. Escriban: problema (2–3 frases), 3–5 capacidades, 2–3 actores.
-4. En Excalidraw o draw.io: diagrama **C4 Context** (CloudLite + actores + sistemas externos).
-5. Entrega en **ExamLab** (Talleres): Doc/enlace con ficha + PNG del diagrama (domingo 23:59).
+1. Paso 1: conforme el equipo de 2 o 3 integrantes y registre en la ficha del PI el nombre del equipo mas un rol unico por integrante (responsable de diagramas, responsable de informe, responsable de laboratorio), verificando que ningun integrante tenga dos roles y que el nombre del equipo quede escrito igual en la ficha y en la pregunta 1 del taller de ExamLab.
+2. Paso 2: elija un dominio concreto entre AgendaU, BiblioLite, InventarioLab, TurnosClinica o EventosCampus (o uno propio del mismo tamano) y escriba el problema en exactamente 3 frases: quien sufre el problema, como se resuelve hoy sin CloudLite y una cifra medible del dolor (por ejemplo 40 correos por semana para cuadrar 12 asesorias), verificando que en ninguna de las 3 frases aparezca una expresion generica como app de la universidad o red social; el resultado queda en la seccion 1 Dominio y problema del informe del PI.
+3. Paso 3: liste exactamente 4 capacidades con la forma verbo mas objeto de negocio (reservar cita, publicar cupo, cancelar reserva, notificar recordatorio), 3 actores humanos con lo que espera cada uno y 3 elementos de fuera de alcance, verificando que ninguna capacidad nombre tecnologia (nada de usar PostgreSQL ni desplegar en Docker) y que las 4 capacidades se lean como frases del negocio; queda en la seccion 1 del informe y se pega tal cual en la pregunta 1 de ExamLab.
+4. Paso 4: escriba en la pregunta de tipo diagrama de ExamLab el C4 Context en Mermaid con exactamente 1 System para CloudLite, 2 Person, 2 System_Ext y 5 relaciones etiquetadas con verbo de negocio y protocolo, verificando al renderizar dentro de la plataforma que no aparezca ninguna caja interna (ni base de datos ni API ni worker, eso es Clase 4) y que cada flecha se lea en voz alta como una frase completa.
+5. Paso 5: resuelva la tabla comparativa de 4 filas nube frente a on-premise, cierre con el veredicto de 2 frases que sera la entrada del ADR-001 de la Clase 2, y suba a ExamLab (modulo Talleres) las 5 preguntas resueltas antes del domingo 23:59, verificando que la ficha, el diagrama renderizado y el veredicto usen exactamente los mismos nombres de actores y de sistemas externos.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

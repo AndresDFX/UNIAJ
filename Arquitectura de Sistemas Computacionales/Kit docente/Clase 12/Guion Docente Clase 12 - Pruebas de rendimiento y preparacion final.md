@@ -93,11 +93,11 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
-1. Escriban escenario de carga + 3 métricas objetivo + bottleneck esperado.
-2. Ensayen pitch 5–8 min (cronómetro); feedback entre equipos.
-3. Cierren backlog de Clase 11.
-4. Dejen paquete casi-final en Drive/repo.
-5. Entrega de avance domingo 23:59.
+1. Paso 1: describan el escenario de carga del pico real de su dominio con los 6 datos obligatorios (evento del pico, usuarios concurrentes, peticiones por segundo, mezcla de operaciones en porcentajes que sumen 100, duracion de la ventana y volumen de datos de partida), verificando que la mezcla sume exactamente 100 por ciento y que el pico corresponda a una fecha real del calendario de su dominio.
+2. Paso 2: definan las 3 metricas objetivo en una tabla de 4 columnas con numero, ventana de medicion, forma de medirla y consecuencia de incumplirla, verificando que cada objetivo tenga un numero y una ventana (por ejemplo p95 por debajo de 800 ms en 5 minutos) y que ninguna diga rapido o aceptable sin cifra.
+3. Paso 3: escriban en ExamLab el sequenceDiagram del camino critico con el presupuesto de latencia repartido por salto, verificando que la suma de los tramos sea menor o igual al objetivo de p95 y que la nota final muestre el margen restante en milisegundos.
+4. Paso 4: ensayen el pitch de 5 a 8 minutos con cronometro y llenen la tabla de guion de 6 filas con minuto, seccion, quien habla, mensaje clave y evidencia en pantalla, verificando que la suma de los minutos quede entre 5 y 8, que los 3 integrantes hablen y que cada seccion tenga una evidencia concreta que se pueda mostrar.
+5. Paso 5: cierren los 5 items del backlog de la Clase 11 dejando registro de los residuales, dejen el paquete casi final ordenado en el repositorio o el Drive y suban las 6 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que el cuello de botella declarado en el analisis sea el mismo que muestra el diagrama de secuencia.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

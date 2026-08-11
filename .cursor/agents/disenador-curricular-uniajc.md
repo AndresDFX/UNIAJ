@@ -146,9 +146,48 @@ docente, 2026-08-09). Era una suposición heredada de otras universidades (la CU
 tiene CDigital). **Nunca** escribir “Campus Virtual”, “LMS” ni una URL de plataforma
 institucional: manda al estudiante a un sitio que no existe.
 
-El canal real de entrega es **ExamLab** (`https://examlab.lovable.app/app`): ahí se
+El canal real de entrega es **ExamLab** (`https://examlab.lovable.app/`): ahí se
 **suben talleres** y se **presentan quices/parciales**. No es oficial de la
 universidad — al mencionarlo, decir esa distinción para no confundir.
+
+### El taller se RESUELVE dentro de ExamLab (no es solo un buzón)
+
+Decir «suba el resultado a ExamLab» y nada más es una instrucción incompleta: el
+estudiante no sabe en qué forma responde. Y peor, hace que el taller pida exportar
+un PNG de draw.io o correr SQL en DB Fiddle cuando **la plataforma ya hace eso
+nativo**. Tipos de pregunta reales (verificados en el código de ExamLab,
+`src/modules/workshops/WorkshopQuestions.tsx` — no inventar otros):
+
+`abierta` · `cerrada` · `cerrada_multi` · `codigo` · `diagrama` · `java_gui` ·
+`python_gui` · `codigo_zip` · `red_consola` · `red_gui` · `so_consola` · `bd_sql`
+
+Lo que hay que explotar en vez de mandar al estudiante afuera:
+- **`bd_sql` = PostgreSQL REAL en el navegador (PGlite/WASM).** El docente carga
+  esquema + datos en `options.db.setupSql`, que corre antes del SQL del alumno sobre
+  base limpia. **⚠️ Es PostgreSQL, NO Oracle**: `VARCHAR2`, `NUMBER`, `DUAL`,
+  `RAISE_APPLICATION_ERROR`, `SQL%ROWCOUNT` y `MERGE` **no corren**. Si el material
+  del curso está en Oracle/PL-SQL, el SQL para ExamLab se escribe aparte en
+  PL/pgSQL.
+- **`diagrama` = Mermaid renderizado en la plataforma**, con soporte C4
+  (`C4Context`, `C4Container`, `C4Component`, `C4Deployment`). El estudiante escribe
+  el diagrama como texto y lo ve dibujado: no exporta imágenes.
+- **`java_gui` ejecuta ventanas Swing/JavaFX en el navegador**; `codigo` compila y
+  corre de verdad. No exigir instalación local si el ejercicio cabe ahí.
+- **`so_consola` es Linux real pero SIN red ni Docker** — los labs de contenedores
+  siguen necesitando Play with Docker por fuera. Decirlo, no fingir que se puede.
+- Enunciado y rúbrica se renderizan como **markdown**; hay calificación por IA que
+  usa la rúbrica, así que la rúbrica tiene que ser verificable, no genérica.
+
+**ExamLab no importa preguntas desde archivo** (el banco exporta CSV pero no
+importa: `options`/`starter_code`/`expected_rubric` no caben en CSV plano). Así que
+«dejar listo» un taller significa generar en el Kit docente un documento con el
+**texto exacto de cada campo** para pegar en la UI —incluidos `setupSql` y el
+starter code—, no un archivo importable. Eso lo hace
+`config/slides/examlab_talleres.py` a partir de `<curso>_examlab_data.py`.
+
+Y el taller del estudiante debe cerrar con una sección **«Qué vas a resolver en
+ExamLab»**: cuántas preguntas, cuántos puntos, y de qué tipo es cada una, para que
+llegue sabiendo la forma de la respuesta.
 
 **Nunca incluir el listado de estudiantes** en presentaciones ni documentos
 generados: es información privada. Tampoco dejar el placeholder

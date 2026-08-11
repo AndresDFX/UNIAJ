@@ -88,10 +88,11 @@ para detectar quién entendió y quién solo copió la plantilla. No adelantes c
 
 
 ## Actividad / taller (detalle)
-1. Suban paquete final a **ExamLab** (módulo Proyectos): informe + evidencias.
-2. Graben o presenten pitch 5–8 min según instrucción del docente.
-3. Incluyan Q&A escrito (3 preguntas que se harían a sí mismos + respuestas).
-4. Reflexión final (½ página): qué trade-off fue el más difícil.
+1. Paso 1: armen el paquete final y llenen el indice de 8 filas con entregable, nombre de archivo, ruta dentro del paquete y estado, verificando que los 8 archivos abran desde una maquina distinta a la del autor y que ningun nombre de archivo tenga espacios ni tildes que rompan la descarga.
+2. Paso 2: escriban en ExamLab la lamina unica de arquitectura en Mermaid con las 3 zonas, los 5 contenedores, el edge, la cadena de entrega y los sistemas externos, verificando al renderizar que sea legible en una sola pantalla sin desplazamiento y que use los mismos nombres canonicos del paquete, porque esta es la lamina que van a proyectar en la sustentacion.
+3. Paso 3: redacten el Q and A escrito con 3 preguntas duras que el jurado podria hacer, una de decision de arquitectura, una de seguridad y una de escala o rendimiento, cada una con respuesta de maximo 4 lineas que cite la evidencia del paquete, verificando que ninguna respuesta sea no lo alcanzamos a hacer sin nombrar la decision consciente que tomaron.
+4. Paso 4: graben o presenten el pitch de 5 a 8 minutos segun la instruccion del docente y registren la tabla de tiempos reales por seccion con el integrante que hablo, verificando que el tiempo total quede entre 5 y 8 minutos y que el enlace del video, si lo graban, se abra sin pedir permisos.
+5. Paso 5: escriban la reflexion de media pagina sobre el trade-off mas difícil y suban el paquete final completo mas las 5 preguntas a ExamLab (modulo Proyectos) en la fecha acordada, verificando que el informe, los diagramas, la evidencia del lab, el ci.yml y la presentacion esten los cinco dentro del mismo paquete.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

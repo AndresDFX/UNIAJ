@@ -93,11 +93,11 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
-1. Dibujen Deployment en draw.io (zonas pública/privada/datos).
-2. Etiqueten puertos y tipo de storage por componente.
-3. Alineen nombres con el diagrama C4 de Clase 4.
-4. Actualicen informe: sección Redes y almacenamiento.
-5. Entrega domingo 23:59.
+1. Paso 1: copien la lista canonica de 5 contenedores de la Clase 4 y asignen cada uno a una de 3 zonas con su subred (zona publica 10.10.1.0/24, zona privada 10.10.2.0/24, zona de datos 10.10.3.0/24), verificando que ningun contenedor quede sin zona y que la base de datos y la cola no queden en la zona publica.
+2. Paso 2: escriban en ExamLab el diagrama C4Deployment en Mermaid con 4 Deployment_Node (dispositivo del usuario, zona publica, zona privada y zona de datos), el tamano de cada nodo y los mismos nombres de contenedores, verificando al renderizar que cada relacion lleve puerto y que el nombre de cada contenedor sea identico letra por letra al del C4Container de la Clase 4.
+3. Paso 3: en el editor de topologia de red arme la red con 5 dispositivos (equipo del usuario, edge o proxy reverso, dos nodos de aplicacion y un nodo de datos) y las 3 subredes del paso 1, verificando que cada interfaz tenga una direccion valida dentro de su subred y que el nodo de datos no tenga ruta hacia la subred del usuario.
+4. Paso 4: en la consola de red ejecuten las 4 comprobaciones (direcciones de las interfaces, alcance del usuario al edge, alcance del edge a la aplicacion y alcance del usuario a la base de datos) y peguen las salidas, verificando que las 3 primeras tengan exito y que la cuarta falle, porque un exito ahi significa que la zona de datos quedo expuesta.
+5. Paso 5: completen la tabla de almacenamiento de 5 filas y la matriz de puertos de 6 filas, actualicen la seccion Redes y almacenamiento del informe y suban las 5 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que los puertos del diagrama, de la matriz y de la topologia sean los mismos numeros.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

@@ -87,6 +87,15 @@ python config/slides/build_uniajc_seminario_all.py     # datos en seminario_clas
 python config/slides/build_uniajc_bd2_all.py
 python config/slides/build_uniajc_arq_clases_batch.py
 
+# Cada build *_all/batch genera ademas, por clase:
+#   Kit docente/Clase N/Taller en ExamLab - Clase N (configuracion).md
+# con el texto exacto de cada campo para crear el taller en la plataforma
+# (tipo, enunciado, puntos, rubrica, setupSql, starter code). ExamLab NO importa
+# preguntas desde archivo, por eso el entregable es un documento para pegar.
+# Especificacion por clase: config/slides/<curso>_examlab_data.py
+# Renderizador compartido:  config/slides/examlab_talleres.py
+# OJO BD II: el SQL de ExamLab es PostgreSQL (PGlite), no Oracle.
+
 # (build_uniajc_prog2_clase01.py, build_uniajc_clase01_prog2_seminario.py y
 #  build_uniajc_seminario_clase01.py estan SUPERSEDIDOS: la Clase 1 sale de los
 #  builds *_all.py. Se conservan por historia y abortan si se ejecutan.)
