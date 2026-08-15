@@ -22,6 +22,7 @@ from uniajc_slides_engine import (
     RED as PPTX_RED,
 )
 from uniajc_quiz_helpers import clave_text, pptx_chunks, q_abierta, q_om, q_vf, student_lines
+import calendario_2026_2 as cal
 from bd2_taller_data import HERRAMIENTAS_DIA, TALLER_BLOQUE, SOLUCION
 from bd2_fundamentos import FUNDAMENTOS
 from bd2_examlab_data import EXAMLAB as TALLERES_EXAMLAB
@@ -42,8 +43,47 @@ GRIS = RGBColor(0x2B, 0x2B, 0x2B)
 BLANCO = RGBColor(0xFF, 0xFF, 0xFF)
 FONT = "Calibri"
 
+# ---------------------------------------------------------------------------
+# Tipo de bloque: SE DERIVA DEL CALENDARIO, no se escribe a mano por clase
+# ---------------------------------------------------------------------------
+# El material se genero con el calendario viejo, donde el festivo del 17/08 caia
+# en la Clase 2 y el del 16/11 cerraba el curso. Al acortarse el semestre
+# (24/08-22/11, 13 sesiones para 15 temas) el 17/08 quedo FUERA del rango y la
+# Sesion 13 (16/11) se destino a las sustentaciones del PI en vivo; como el tipo
+# estaba escrito a mano, el material siguio anunciando «clase autonoma» para dos
+# clases que si tienen encuentro sincrono. Leerlo del calendario en cada build
+# impide que una regeneracion futura reintroduzca el defecto.
+CAL_KEY = "bases_datos_ii"
+
+
+def tipo_de_clase(n_clase):
+    """'parcial' | 'autonoma' | 'sustentacion' | 'regular' para una Clase de material.
+
+    'presencial' y 'virtual' colapsan a 'regular': las dos son sincronas y no
+    cambian la estructura del bloque (lo que cambia es el aula vs Meet).
+    """
+    s = cal.sesion_de_clase(CAL_KEY, n_clase)
+    if s is None:
+        raise SystemExit(
+            "Clase %d no aparece en 'clases_material' de ninguna sesion de '%s' en %s. "
+            "Corrija el calendario, no este build." % (n_clase, CAL_KEY, cal.JSON_PATH)
+        )
+    if s.get("parcial"):
+        return "parcial"
+    t = (s.get("tipo") or "").lower()
+    return t if t in ("autonoma", "sustentacion") else "regular"
+
+
+TIPO_LABEL = {
+    "regular": "REGULAR (sincrona)",
+    "autonoma": "AUTONOMA (festivo, sin encuentro sincrono)",
+    "sustentacion": "SUSTENTACION DEL PI **EN VIVO** (sincrona)",
+    "parcial": "PARCIAL (solo evaluacion)",
+}
+
+# Sin clave "tipo": se inyecta desde el calendario justo despues de esta lista.
 CLASES = [
-  dict(n=1, tipo="regular", slug="Revision BD I y arranque VetCare",
+  dict(n=1, slug="Revision BD I y arranque VetCare",
     titulo="Revision BD I · Arranque VetCare DB",
     subtitulo="Diagnostico · dominio PI · primer modelo",
     herramienta="draw.io + DB Fiddle",
@@ -61,9 +101,9 @@ CLASES = [
             "Dibujar ER borrador en draw.io/Excalidraw y exportar PNG.",
             "Escribir 5-8 lineas de alcance (que SI / que NO hara el PI)."],
     quiz=True, sql="01_arranque_vetcare.sql"),
-  dict(n=2, tipo="autonoma", slug="Administracion de bases de datos",
+  dict(n=2, slug="Administracion de bases de datos",
     titulo="Administracion de BD · Roles VetCare",
-    subtitulo="Clase autonoma · privilegios y usuarios del PI",
+    subtitulo="Privilegios y usuarios del PI",
     herramienta="Oracle Live SQL / DB Fiddle + Google Docs",
     hito_pi="Plan de roles/privilegios de VetCare",
     entregable="Documento Roles_VetCare + script GRANT/REVOKE (o plan equivalente)",
@@ -79,7 +119,7 @@ CLASES = [
             "Justificar privilegio minimo (least privilege).",
             "Redactar 1 pagina: politica de altas/bajas de usuarios."],
     quiz=True, sql="02_roles_vetcare.sql"),
-  dict(n=3, tipo="regular", slug="Procedimientos almacenados",
+  dict(n=3, slug="Procedimientos almacenados",
     titulo="Procedimientos almacenados · VetCare",
     subtitulo="Logica de negocio en la BD del PI",
     herramienta="Oracle Live SQL",
@@ -97,7 +137,7 @@ CLASES = [
             "Ejecutar 2 pruebas: caso OK + caso error.",
             "Documentar firma del proc (contrato para la futura app)."],
     quiz=True, sql="03_procs_vetcare.sql"),
-  dict(n=4, tipo="regular", slug="Funciones disparadores seguridad respaldo",
+  dict(n=4, slug="Funciones disparadores seguridad respaldo",
     titulo="Funciones · Triggers · Seguridad y respaldo",
     subtitulo="Integridad + RAA1 del PI VetCare",
     herramienta="Oracle Live SQL + Google Docs",
@@ -115,10 +155,10 @@ CLASES = [
             "Redactar plan de respaldo: frecuencia, retencion, restore de prueba.",
             "Actualizar checklist PI: seguridad/respaldo en progreso."],
     quiz=True, sql="04_func_trigger_backup.sql"),
-  dict(n=5, tipo="parcial", slug=None, titulo="Parcial 1", subtitulo="Solo evaluacion — Corte 1",
+  dict(n=5, slug=None, titulo="Parcial 1", subtitulo="Solo evaluacion — Corte 1",
     herramienta=None, hito_pi="No avanza PI", entregable=None, teoria=[], demo=None, taller=[],
     quiz=False, sql=None, parcial="Parcial 1 - Administracion procedimientos y seguridad.docx"),
-  dict(n=6, tipo="regular", slug="Optimizacion de consultas",
+  dict(n=6, slug="Optimizacion de consultas",
     titulo="Optimizacion de consultas · VetCare",
     subtitulo="Antes/despues sobre el DDL del PI",
     herramienta="DB Fiddle / SQLTest.online",
@@ -136,7 +176,7 @@ CLASES = [
             "Reescribir despues y justificar 3 cambios.",
             "Guardar 06_opt_antes.sql / 06_opt_despues.sql en la carpeta del PI."],
     quiz=True, sql="06_opt_consultas.sql"),
-  dict(n=7, tipo="regular", slug="Indices y particionamiento",
+  dict(n=7, slug="Indices y particionamiento",
     titulo="Indices y particionamiento · VetCare",
     subtitulo="Diseno fisico al servicio del PI",
     herramienta="DB Fiddle + draw.io (opcional)",
@@ -154,7 +194,7 @@ CLASES = [
             "Justificar columna, cardinalidad y riesgo de sobre-indexar.",
             "Opcional: diagrama tabla caliente -> indices en Excalidraw."],
     quiz=True, sql="07_indices_vetcare.sql"),
-  dict(n=8, tipo="regular", slug="Tuning y transacciones",
+  dict(n=8, slug="Tuning y transacciones",
     titulo="Tuning · Transacciones · VetCare",
     subtitulo="Atomicidad en facturacion e insumos",
     herramienta="Oracle Live SQL / DB Fiddle",
@@ -172,10 +212,10 @@ CLASES = [
             "Completar checklist tuning del PI.",
             "Actualizar informe PI: seccion transacciones."],
     quiz=True, sql="08_transacciones_vetcare.sql"),
-  dict(n=9, tipo="parcial", slug=None, titulo="Parcial 2", subtitulo="Solo evaluacion — Corte 2",
+  dict(n=9, slug=None, titulo="Parcial 2", subtitulo="Solo evaluacion — Corte 2",
     herramienta=None, hito_pi="No avanza PI", entregable=None, teoria=[], demo=None, taller=[],
     quiz=False, sql=None, parcial="Parcial 2 - Optimizacion indices y transacciones.docx"),
-  dict(n=10, tipo="autonoma", slug="Control de concurrencia",
+  dict(n=10, slug="Control de concurrencia",
     titulo="Control de concurrencia · VetCare",
     subtitulo="Clase autonoma · refuerzo sin parcial",
     herramienta="Google Docs + Live SQL",
@@ -193,7 +233,7 @@ CLASES = [
             "Proponer mitigacion SQL.",
             "Anadir seccion al informe PI."],
     quiz=True, sql="10_concurrencia_vetcare.sql"),
-  dict(n=11, tipo="regular", slug="Avance del proyecto final",
+  dict(n=11, slug="Avance del proyecto final",
     titulo="Avance PI · VetCare DB",
     subtitulo="Checklist viva + demo parcial",
     herramienta="Live SQL / DB Fiddle + draw.io + ExamLab",
@@ -208,7 +248,7 @@ CLASES = [
             "Lista de gaps con responsable.",
             "Subir avance intermedio a ExamLab (Talleres) si se pide."],
     quiz=True, sql="11_checklist_seed.sql"),
-  dict(n=12, tipo="regular", slug="Integracion y preparacion final",
+  dict(n=12, slug="Integracion y preparacion final",
     titulo="Integracion app <-> BD · Prep. presentacion",
     subtitulo="Contrato de operaciones + ensayo PI",
     herramienta="Google Docs + Live SQL + Excalidraw",
@@ -226,7 +266,7 @@ CLASES = [
             "Outline presentacion 5-8 min + quien habla que.",
             "Empaquetar borrador entrega final."],
     quiz=True, sql="12_contrato_ops.sql"),
-  dict(n=13, tipo="autonoma", slug="Analisis de casos reales",
+  dict(n=13, slug="Analisis de casos reales",
     titulo="Analisis de casos reales · VetCare",
     subtitulo="Clase autonoma · lecciones para el PI",
     herramienta="Google Docs",
@@ -244,26 +284,31 @@ CLASES = [
             "Proponer 3 mejoras concretas a su VetCare.",
             "Actualizar informe PI con lecciones de casos."],
     quiz=True, sql=None),
-  dict(n=14, tipo="parcial", slug=None, titulo="Parcial 3", subtitulo="Solo evaluacion — Corte 3",
+  dict(n=14, slug=None, titulo="Parcial 3", subtitulo="Solo evaluacion — Corte 3",
     herramienta=None, hito_pi="Prep PI fue Clase 12; cierre en Clase 15", entregable=None,
     teoria=[], demo=None, taller=[], quiz=False, sql=None,
     parcial="Parcial 3 - Integracion casos y cierre de proyecto.docx"),
-  dict(n=15, tipo="autonoma", slug="Presentacion del proyecto y cierre",
+  dict(n=15, slug="Presentacion del proyecto y cierre",
     titulo="Presentacion PI · Cierre VetCare",
-    subtitulo="Clase autonoma · sustentacion y cierre",
+    subtitulo="Sustentacion en vivo del PI · cierre del curso",
     herramienta="ExamLab (Proyectos) + slides propias",
-    hito_pi="Sustentacion / entrega final del PI (20% Corte 3)",
-    entregable="ZIP/PDF final + video o Meet segun indique docente",
+    hito_pi="Sustentacion en vivo y entrega final del PI (20% Corte 3)",
+    entregable="ZIP/PDF final subido antes del turno + sustentacion en vivo 5-8 min + Q&A",
     teoria=["Cierre: evidencias completas segun rubrica (100 pts -> 20%).",
             "Sustentacion breve alineada a criterios del enunciado.",
             "Autoevaluacion del propio proceso de trabajo."],
     demo="Checklist final de empaquetado del ZIP.",
-    taller=["Entregar paquete final en ExamLab (modulo Proyectos).",
-            "Sustentar 5-8 min (sincrono o asincrono).",
+    taller=["Subir el paquete final a ExamLab (modulo Proyectos) ANTES de su turno.",
+            "Sustentar en vivo 5-8 min con el ER y una ejecucion real en pantalla.",
+            "Responder el Q&A en vivo del docente (preguntas al azar sobre su modelo).",
             "Autoevaluacion: que harian distinto.",
             "Cierre del curso."],
     quiz=True, sql=None),
 ]
+
+# Fuente de verdad del tipo de bloque: el calendario del periodo (ver tipo_de_clase).
+for _c in CLASES:
+    _c["tipo"] = tipo_de_clase(_c["n"])
 
 SQL_BODIES = {
 "01_arranque_vetcare.sql": """-- VetCare DB · Clase 1 · DDL minimo demo (DB Fiddle / PostgreSQL o MySQL)
@@ -1002,23 +1047,41 @@ def build_pptx(c):
         prs.save(str(out)); print("PPTX", out)
         return out
     prs = new_prs(); cover_pptx(prs, c); idx = 2
-    tipo_lbl = "autonoma (festivo)" if c['tipo']=='autonoma' else "regular"
+    tipo_lbl = {"autonoma": "autonoma (festivo)",
+                "sustentacion": "sustentacion en vivo"}.get(c['tipo'], "regular")
     # 2ª slide: encuadre / objetivos (contenido que salió de la portada)
-    content_slide(prs, "Encuadre de hoy · Objetivo PI", [
-        f"**Hoy avanzamos el PI en:** {c['hito_pi']}",
-        f"Herramienta: **{c['herramienta']}** · Bloque **120 min** · Teoría breve · Taller PI",
-        f"**Entregable de hoy:** {c['entregable']}",
-        "Gratis + navegador · free tier · sin software de pago obligatorio.",
-        "La teoría no es un tema aislado: alimenta evidencias de la rúbrica del PI.",
-        "Al salir: avance concreto en su paquete VetCare.",
-    ], idx=idx); idx += 1
-    block_timeline_slide(prs, "Mapa del bloque de hoy (120 min)", [
-        ("0-10", f"Encuadre · clase {tipo_lbl} · VetCare"),
-        ("10-35", "Teoría Core breve (al servicio del PI)"),
-        ("35-55", "Demo con la herramienta del día"),
-        ("55-105", "Taller guiado = tarea del PI"),
-        ("105-120", "Criterios de exito · cierre · dudas del PI"),
-    ], idx=idx); idx += 1
+    if c['tipo'] == 'sustentacion':
+        content_slide(prs, "Encuadre de hoy · Objetivo PI", [
+            f"**Hoy cerramos el PI:** {c['hito_pi']}",
+            "Sesión **síncrona** de sustentaciones · Bloque **120 min** · turnos consecutivos.",
+            f"**Entregable de hoy:** {c['entregable']}",
+            "Sube el paquete a ExamLab **antes** de tu turno: presentando no se sube nada.",
+            "La sustentación es **en vivo** y con preguntas: no se reemplaza por video grabado.",
+        ], idx=idx); idx += 1
+    else:
+        content_slide(prs, "Encuadre de hoy · Objetivo PI", [
+            f"**Hoy avanzamos el PI en:** {c['hito_pi']}",
+            f"Herramienta: **{c['herramienta']}** · Bloque **120 min** · Teoría breve · Taller PI",
+            f"**Entregable de hoy:** {c['entregable']}",
+            "Gratis + navegador · free tier · sin software de pago obligatorio.",
+            "La teoría no es un tema aislado: alimenta evidencias de la rúbrica del PI.",
+            "Al salir: avance concreto en su paquete VetCare.",
+        ], idx=idx); idx += 1
+    if c['tipo'] == 'sustentacion':
+        # El bloque no se reparte en teoría + taller: son turnos de sustentación.
+        block_timeline_slide(prs, "Mapa del bloque de hoy (120 min)", [
+            ("0-10", "Encuadre · sorteo del orden de turnos"),
+            ("10-110", "Sustentaciones: 5-8 min de pitch + Q&A por turno"),
+            ("110-120", "Cierre del curso · autoevaluacion"),
+        ], idx=idx); idx += 1
+    else:
+        block_timeline_slide(prs, "Mapa del bloque de hoy (120 min)", [
+            ("0-10", f"Encuadre · clase {tipo_lbl} · VetCare"),
+            ("10-35", "Teoría Core breve (al servicio del PI)"),
+            ("35-55", "Demo con la herramienta del día"),
+            ("55-105", "Taller guiado = tarea del PI"),
+            ("105-120", "Criterios de exito · cierre · dudas del PI"),
+        ], idx=idx); idx += 1
     content_slide(prs, "Teoria Core (breve)", _slide_summary(c['teoria']), idx=idx, size=15); idx += 1
     dg = DIAGRAMAS_BD2.get(c['n'])
     if dg:
@@ -1035,19 +1098,30 @@ def build_pptx(c):
     if cs:
         pseudo_code_slide(prs, cs[0], cs[1], caption=cs[2], idx=idx)
         idx += 1
-    content_slide(prs, "Demo del dia", [
-        f"**Herramienta:** {c['herramienta']}",
-        f"**Demo:** {c['demo']}",
-        "Sigan el mismo dominio VetCare (no inventen otro caso).",
-        "Al final de la demo: dejar enlace/script compartible al grupo.",
-    ], idx=idx); idx += 1
+    if c['tipo'] == 'sustentacion':
+        # Hoy no hay demo del docente: el que demuestra es el estudiante, en su turno.
+        content_slide(prs, "Como se ordena la sesion de hoy", [
+            "Sustentación **en vivo**, en este bloque: no se reemplaza por video grabado.",
+            "Turnos de **5–8 min de pitch + Q&A**; el orden se sortea al empezar.",
+            f"Ten listo: **{c['entregable']}**",
+            "En tu turno muestra una **ejecución real** (procedimiento OK + caso rechazado), no solo capturas.",
+            "Mientras otros presentan, escuchas: el cierre del curso se hace con todo el grupo.",
+        ], idx=idx); idx += 1
+    else:
+        content_slide(prs, "Demo del dia", [
+            f"**Herramienta:** {c['herramienta']}",
+            f"**Demo:** {c['demo']}",
+            "Sigan el mismo dominio VetCare (no inventen otro caso).",
+            "Al final de la demo: dejar enlace/script compartible al grupo.",
+        ], idx=idx); idx += 1
     tools = HERRAMIENTAS_DIA.get(c["n"])
     if tools:
         herramientas_slide(prs, tools, title="Herramientas de hoy",
                            sub="Gratis · navegador o free tier", idx=idx)
         idx += 1
     tb = TALLER_BLOQUE.get(c["n"], {})
-    label = "Actividad autonoma" if c["tipo"] == "autonoma" else "Taller PI VetCare"
+    label = {"autonoma": "Actividad autonoma",
+             "sustentacion": "Sustentacion del PI"}.get(c["tipo"], "Taller PI VetCare")
     if tb.get("contexto"):
         content_slide(prs, f"{label} — contexto / por que importa", tb["contexto"], idx=idx, size=16)
         idx += 1
@@ -1066,26 +1140,46 @@ def build_pptx(c):
     if tb.get("pistas"):
         checklist_slide(prs, f"{label} — pistas (checklist vacio)", tb["pistas"], idx=idx)
         idx += 1
-    content_slide(prs, "Criterios de exito / entregable", [
-        f"**Entregable:** {c['entregable']}",
-        "Evidencia en playground (enlace) o archivo SQL/PNG propio.",
-        "Actualizar checklist PI (que criterio de rubrica avanzo).",
-        "@@Entrega en ExamLab@@ (https://examlab.lovable.app/) — domingo 23:59 cuando aplique taller.",
-    ], idx=idx); idx += 1
-    box_note_slide(prs, "Para el PI esta semana", [
-        ("info", f"Hito: {c['hito_pi']}"),
-        ("aclaracion", "Enunciado completo: Clases/Proyecto Integrador/ (VetCare DB)."),
-        ("advertencia", "Taller de la semana en ExamLab (https://examlab.lovable.app/): domingo 23:59 (regla del Acuerdo) cuando aplique."),
-    ], idx=idx); idx += 1
+    if c['tipo'] == 'sustentacion':
+        content_slide(prs, "Criterios de exito / entregable", [
+            f"**Entregable:** {c['entregable']}",
+            "Evidencia ejecutable en pantalla durante tu turno (no solo capturas).",
+            "Puedes explicar **cualquier** parte de tu modelo en 60 segundos.",
+            "@@Entrega en ExamLab@@ (https://examlab.lovable.app/ · módulo Proyectos) — **antes** de tu turno.",
+        ], idx=idx); idx += 1
+        box_note_slide(prs, "Cierre del PI", [
+            ("info", f"Hito: {c['hito_pi']}"),
+            ("aclaracion", "Enunciado completo y rubrica: Clases/Proyecto Integrador/ (VetCare DB)."),
+            ("advertencia", "El PI vale 20% del Corte 3 y NO reemplaza el Parcial 3, que ya se aplico en su propia sesion."),
+        ], idx=idx); idx += 1
+    else:
+        content_slide(prs, "Criterios de exito / entregable", [
+            f"**Entregable:** {c['entregable']}",
+            "Evidencia en playground (enlace) o archivo SQL/PNG propio.",
+            "Actualizar checklist PI (que criterio de rubrica avanzo).",
+            "@@Entrega en ExamLab@@ (https://examlab.lovable.app/) — domingo 23:59 cuando aplique taller.",
+        ], idx=idx); idx += 1
+        box_note_slide(prs, "Para el PI esta semana", [
+            ("info", f"Hito: {c['hito_pi']}"),
+            ("aclaracion", "Enunciado completo: Clases/Proyecto Integrador/ (VetCare DB)."),
+            ("advertencia", "Taller de la semana en ExamLab (https://examlab.lovable.app/): domingo 23:59 (regla del Acuerdo) cuando aplique."),
+        ], idx=idx); idx += 1
     # El QUIZ no va en el material del estudiante: ni proyectado ni anunciado.
     # Vive solo en Kit docente/Clase N/ (enunciados + CLAVE DOCENTE aparte), que
     # el docente aplica por el canal que decida. Anticiparlo en la diapositiva le
     # quita sentido como comprobacion.
-    closing_slide(prs, f"Clase {c['n']} · VetCare avanza", [
-        c['hito_pi'],
-        f"Entregable: {c['entregable']}",
-        "Siguiente clase: continuar el hilo del PI segun plan",
-    ], accent="Teoria breve · practica = PI")
+    if c['tipo'] == 'sustentacion':
+        closing_slide(prs, f"Clase {c['n']} · cierre de VetCare DB", [
+            c['hito_pi'],
+            f"Entregable: {c['entregable']}",
+            "Conserva el paquete (ER, DDL, roles, procs, triggers, optimizacion) como portafolio",
+        ], accent="Sustentar es justificar decisiones, no describir tablas")
+    else:
+        closing_slide(prs, f"Clase {c['n']} · VetCare avanza", [
+            c['hito_pi'],
+            f"Entregable: {c['entregable']}",
+            "Siguiente clase: continuar el hilo del PI segun plan",
+        ], accent="Teoria breve · practica = PI")
     out_dir = CLASES_DIR / f"Clase {c['n']} - {c['slug']}"
     out_dir.mkdir(parents=True, exist_ok=True)
     out = out_dir / "Presentacion.pptx"
@@ -1095,7 +1189,11 @@ def build_pptx(c):
 def build_taller_docx(c):
     if c['tipo']=='parcial': return None
     tb = TALLER_BLOQUE.get(c['n'], {})
-    doc = Document(); banda(doc, f"Taller PI · Clase {c['n']} · Bases de Datos II")
+    doc = Document()
+    _titulo_banda = ("Guia de sustentacion PI · Clase %d · Bases de Datos II" % c['n']
+                     if c['tipo'] == 'sustentacion'
+                     else "Taller PI · Clase %d · Bases de Datos II" % c['n'])
+    banda(doc, _titulo_banda)
     para(doc, c['titulo'], size=14, bold=True, color=AZUL)
     para(doc, "Hilo conductor: Proyecto Integrador VetCare DB (no es un ejercicio desconectado).", size=11, bold=True)
     para(doc, f"Herramienta: {c['herramienta']}")
@@ -1120,7 +1218,14 @@ def build_taller_docx(c):
     bullets(doc, tb.get('pistas') or ["Revisar evidencia antes de subir."])
     para(doc, "8. Entrega", size=12, bold=True, color=AZUL)
     _p_entrega = doc.add_paragraph(); _p_entrega.paragraph_format.space_after = DocPt(6)
-    add_inline_docx(_p_entrega, "@@Sube tu taller en ExamLab@@ (https://examlab.lovable.app/ · módulo Talleres) — domingo 23:59 cuando aplique.")
+    if c['tipo'] == 'sustentacion':
+        # No es un taller con plazo del domingo: la sesion es la sustentacion en vivo,
+        # asi que el paquete tiene que estar arriba ANTES del bloque.
+        add_inline_docx(_p_entrega, "@@Sube el paquete final en ExamLab@@ (https://examlab.lovable.app/ · módulo Proyectos) "
+                                    "ANTES de tu turno: presentando no se sube nada. La sustentación es EN VIVO en la sesión "
+                                    "de clase (5-8 min + Q&A del docente); no se reemplaza por un video grabado.")
+    else:
+        add_inline_docx(_p_entrega, "@@Sube tu taller en ExamLab@@ (https://examlab.lovable.app/ · módulo Talleres) — domingo 23:59 cuando aplique.")
     # 9. Que encuentra en la plataforma. Antes el taller terminaba en «sube esto a
     # ExamLab» sin decir en que forma se responde cada cosa; con esto el estudiante
     # sabe de antemano que hay editor de SQL con PostgreSQL real, cuadro de texto, etc.
@@ -1259,9 +1364,55 @@ def build_guion_md(c):
         "Slide Cierre",
         "Solucion PRIVADA: Kit docente/Clase N/Solucion Taller Clase N - VetCare.docx",
     ]
-    tipo = "AUTONOMA (festivo)" if c['tipo']=='autonoma' else "REGULAR"
+    tipo = TIPO_LABEL[c['tipo']]
     bloques = ""
-    if c['tipo']=='autonoma':
+    if c['tipo'] == 'sustentacion':
+        plan = """## Plan minuto a minuto (120 min) — sesion de SUSTENTACIONES EN VIVO
+
+> Este bloque es sincrono y se dedica completo a las sustentaciones del PI VetCare DB.
+> **No es clase autonoma y no es parcial.** No autorice reemplazar la defensa por un video
+> grabado: el Q&A dirigido al azar es el unico instrumento con el que verifica que el modelo,
+> los procedimientos y la optimizacion son de quien los presenta. El dia cae en festivo de
+> calendario, pero la sesion esta destinada por decision docente a sustentar: anunciela por
+> escrito la semana anterior para que nadie asuma que no hay clase.
+
+### Antes de la sesion (semana previa)
+1. Publique el orden y la duracion del turno: **5-8 min de pitch + 2-4 min de Q&A**. Con 12
+   sustentaciones son ~110 min; si el grupo es mas grande, baje a 5 + 2 y avisele antes.
+2. Exija el paquete subido a ExamLab (modulo Proyectos) **antes** del bloque, y abra usted
+   mismo dos o tres ZIP en un playground limpio: quien llega a subir archivos consume su turno.
+3. Tenga la rubrica impresa por estudiante y las preguntas de Q&A ya escogidas por tipo
+   (verificacion, profundizacion, hipotetica), para no preguntar lo mismo a todos.
+
+### 0-10 · Encuadre y orden de turnos
+**Decir:** «Hoy sustentamos. De 5 a 8 minutos de pitch y hasta 4 de preguntas. Corto a los 8
+minutos: si no llegaron a optimizacion, esa parte no se califica. El orden lo sorteo ahora.»
+Sortee el orden delante del grupo, proyecte el cronometro y pida que el resto escuche.
+
+### 10-110 · Sustentaciones (turnos consecutivos)
+Por cada turno:
+1. **5-8 min de pitch.** No interrumpa ni para corregir: anote y pregunte despues. Exija que se
+   vea al menos **una ejecucion real** (procedimiento con caso valido e invalido, o el plan de
+   ejecucion antes/despues), no solo capturas fijas.
+2. **2-4 min de Q&A.** Una pregunta de verificacion («muestreme el DDL de esa tabla»), una de
+   profundizacion («por que esa regla esta en un disparador y no en la aplicacion») y, si hay
+   tiempo, una hipotetica («si manana entran cien mil citas, que consulta se cae primero»). Si
+   autorizo equipo, dirija cada pregunta a un integrante distinto.
+3. **Cierre el turno con la nota puesta**, no al final del dia.
+
+### 110-120 · Cierre del curso
+**Decir:** «Lo que entregaron —ER justificado, DDL con restricciones, matriz de privilegios,
+procedimientos con manejo de errores, disparadores y analisis de plan— es el contenido real de
+las tareas de un desarrollador de base de datos junior. Conserven el repositorio.»
+Recuerde los pesos sin abrir discusion de notas: el PI vale **20% del Corte 3** y el Parcial 3
+ya se aplico en su propia sesion; el proyecto no lo reemplaza ni lo compensa.
+
+### Si alguien no se presenta o falla la conexion
+Deje constancia escrita en el momento (hora, motivo) y reprograme dentro de la misma semana por
+Meet, sustentando igualmente en vivo. Aceptar un video «por esta vez» elimina el Q&A, que es la
+mitad de lo que se evalua, y vuelve regla la excepcion el semestre siguiente.
+"""
+    elif c['tipo']=='autonoma':
         plan = """## Plan minuto a minuto (120 min equivalentes — trabajo autonomo)
 
 > El estudiante trabaja sin encuentro sincrono. Usted publica este guion resumido + taller en ExamLab.
@@ -1332,7 +1483,7 @@ Slide cierre. Dudas finales.
 - **Curso:** Bases de Datos II (FI303215) · 120 min
 - **Tipo:** {tipo}
 - **Hilo:** Proyecto Integrador **VetCare DB**
-- **Hoy avanzamos el PI en:** {c['hito_pi']}
+- **{"Hoy cerramos el PI" if c['tipo'] == 'sustentacion' else "Hoy avanzamos el PI en"}:** {c['hito_pi']}
 - **Entregable de hoy:** {c['entregable']}
 - **Herramienta:** {c['herramienta']}
 - **Slides:** Clases/Clase {c['n']} - {c['slug']}/Presentacion.pptx
@@ -1585,11 +1736,28 @@ def build_examlab_guia(c):
     return out
 
 
-def main():
+def main(solo_clases=None):
+    """Regenera todo el curso, o solo un subconjunto de clases.
+
+    ``solo_clases`` (iterable de numeros) o la variable de entorno
+    SOLO_CLASES="2,15" limitan la regeneracion: las clases no incluidas no se
+    tocan, para poder aislar una correccion sin reescribir el curso completo.
+    Los archivos globales (README, Guia Docente - Parte Practica) se regeneran
+    solo en la corrida completa, porque agregan las 15 clases.
+    """
+    if solo_clases is None:
+        env_val = os.environ.get("SOLO_CLASES")
+        if env_val:
+            solo_clases = {int(x.strip()) for x in env_val.split(",") if x.strip()}
+    else:
+        solo_clases = set(solo_clases)
     KIT_DIR.mkdir(parents=True, exist_ok=True)
     CLASES_DIR.mkdir(parents=True, exist_ok=True)
-    build_readme()
+    if solo_clases is None:
+        build_readme()
     for c in CLASES:
+        if solo_clases is not None and c['n'] not in solo_clases:
+            continue
         print("=== Clase", c['n'], c['tipo'], "===")
         build_pptx(c)
         build_taller_docx(c)

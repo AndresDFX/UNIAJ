@@ -5,7 +5,7 @@
 **Resumen:** Ejemplo 3 contenedores: web, api, db.
 
 ## Alineacion al enunciado estudiante
-- Taller: `Clases/Clase 4 - Microservicios y arquitecturas distribuidas/Taller Clase 4 - CloudLite.docx`
+- Taller: `Clases/Clase 4 - Microservicios y arquitecturas distribuidas/Taller Clase 4 — C4 componentes CloudLite.docx`
 - Hito PI: Diagramar componentes/servicios CloudLite y sus contratos
 - Entregable: Diagrama C4 Container/Componentes v0.9 + 3 contratos API
 

@@ -1734,7 +1734,7 @@ CLASES = [
             "El documento final consolidado tiene indice, version y al menos una inconsistencia entre artefactos detectada y corregida, dejando registro de cual era."
         ],
         "pistas": [
-            "Si el jurado le pregunta a un integrante sobre una parte que no expuso, esa persona puede responder sin mirar a los demas.",
+            "Si el jurado le pregunta por una parte que no alcanzo a mostrar, puede responderla sin buscar ayuda (y si hay equipo autorizado, cualquier integrante puede responder por cualquier bloque).",
             "De sus tres decisiones de diseño, cual podria haberse tomado al reves sin que el proyecto se cayera, y que perderia la clinica si se hubiera tomado asi.",
             "Si el internet falla justo antes de mostrar el prototipo, que hace el equipo en los siguientes quince segundos para no perder el bloque de interfaz."
         ],
@@ -1746,7 +1746,7 @@ CLASES = [
             "Paso 5 resuelto. Al consolidar aparece al menos una inconsistencia clasica, por ejemplo que en el diagrama de clases el atributo se llama fechaNacimiento, en el diccionario de datos aparece como fecha_nac y en la pantalla el rotulo dice Fecha de nacimiento aproximada. Se unifica a fecha_nacimiento en modelo y diccionario, se deja el rotulo humano en la pantalla y se anota la correccion en la bitacora de la version 1.0. El indice del documento final queda con nueve secciones, desde problema y alcance hasta acta de entrega."
         ],
         "solucion_rubrica": [
-            "Guion cronometrado en el orden correcto y con reparto real de todo el equipo (3)",
+            "Guion cronometrado en el orden correcto, con los 5 bloques con minutos y evidencia y sin bloques huerfanos (si hay equipo autorizado, todos los integrantes con minimo 2 minutos) (3)",
             "Tabla de tres decisiones con alternativa, criterio y consecuencia (3)",
             "Banco de diez preguntas con respuestas de dos frases, incluyendo concurrencia, RNF y alcance (2)",
             "Documento final consolidado con indice, version e inconsistencia corregida documentada (2)"

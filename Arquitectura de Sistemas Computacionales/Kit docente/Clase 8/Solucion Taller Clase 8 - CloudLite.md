@@ -5,7 +5,7 @@
 **Resumen:** ci.yml build/test + deploy simulado + 4 métricas.
 
 ## Alineacion al enunciado estudiante
-- Taller: `Clases/Clase 8 - Monitoreo optimizacion y CI-CD/Taller Clase 8 - CloudLite.docx`
+- Taller: `Clases/Clase 8 - Monitoreo optimizacion y CI-CD/Taller Clase 8 — Actions + monitoreo CloudLite.docx`
 - Hito PI: Workflow Actions build/test/simulate + metricas de monitoreo
 - Entregable: .github/workflows/ci.yml + seccion Monitoreo/CI del informe
 

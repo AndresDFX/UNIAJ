@@ -5,7 +5,7 @@
 **Resumen:** Checklist empaquetado + orden pitch.
 
 ## Alineacion al enunciado estudiante
-- Taller: `Clases/Clase 15 - Presentacion del proyecto y cierre/Actividad autonoma Clase 15 - CloudLite.docx`
+- Taller: `Clases/Clase 15 - Presentacion del proyecto y cierre/Guía de sustentación Clase 15 — PI CloudLite.docx`
 - Hito PI: Sustentacion / entrega final del PI CloudLite App
 - Entregable: Paquete final + presentacion 5-8 min (Campus Virtual)
 

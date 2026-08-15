@@ -5,7 +5,7 @@
 **Resumen:** Dockerfile mínimo + evidencia lab navegador.
 
 ## Alineacion al enunciado estudiante
-- Taller: `Clases/Clase 3 - Virtualizacion y contenedores/Taller Clase 3 - CloudLite.docx`
+- Taller: `Clases/Clase 3 - Virtualizacion y contenedores/Taller Clase 3 — Contenedor stub CloudLite.docx`
 - Hito PI: Contenerizar un stub del servicio principal de CloudLite
 - Entregable: Dockerfile (+ compose opcional) + captura/enlace lab navegador
 

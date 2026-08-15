@@ -99,7 +99,7 @@ No se tocan. Un ejemplo concreto de cómo conviven: si se aprueba el piloto de F
 | Modelo de pesos/cortes | `CLAUDE.md` § "Modelo de pesos / cortes" (repo ExamLab) |
 | Proyectos: sustentación + grupos | `CLAUDE.md` § "Proyectos: sustentación + link al repo" y "Trabajo en grupo" |
 | Los 3 parciales (contenido fuente de §4) | `../../Parciales/*.docx` |
-| Actividades autónomas (contenido fuente de §5) | `../../Clases/Clase 13 - .../Actividad autonoma...docx`, `../../Clases/Clase 15 - .../Actividad autonoma...docx` |
+| Actividades autónomas (contenido fuente de §5) | `../../Clases/Clase 10 - .../Actividad autonoma...docx`, `../../Clases/Clase 13 - .../Actividad autonoma...docx` (las únicas dos autónomas del periodo; la Clase 15 es sustentación **en vivo**: `Guía de sustentación Clase 15 — PI CloudLite.docx`) |
 | Plan de viabilidad Floci (complementario) | `PLAN_VIABILIDAD_FLOCI_2026-2.md` (misma carpeta) |
 
 ---

@@ -5,7 +5,7 @@
 **Resumen:** Checklist con enlaces + backlog 5.
 
 ## Alineacion al enunciado estudiante
-- Taller: `Clases/Clase 11 - Avance del proyecto final/Taller Clase 11 - CloudLite.docx`
+- Taller: `Clases/Clase 11 - Avance del proyecto final/Taller Clase 11 — Checkpoint PI CloudLite v1.docx`
 - Hito PI: Integrar diagramas v1 + checklist de avance PI
 - Entregable: Paquete v1: C4 + Deployment + Dockerfile + Actions + informe 60%+
 

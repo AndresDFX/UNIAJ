@@ -177,7 +177,7 @@ Lo que hay que explotar en vez de mandar al estudiante afuera:
 - **`java_gui` ejecuta ventanas Swing/JavaFX en el navegador**; `codigo` compila y
   corre de verdad. No exigir instalación local si el ejercicio cabe ahí.
 - **`so_consola` es Linux real pero SIN red ni Docker** — los labs de contenedores
-  siguen necesitando Play with Docker por fuera. Decirlo, no fingir que se puede.
+  siguen necesitando LabEx Docker Playground (labex.io, login con Google/Microsoft) por fuera. Decirlo, no fingir que se puede.
 - Enunciado y rúbrica se renderizan como **markdown**; hay calificación por IA que
   usa la rúbrica, así que la rúbrica tiene que ser verificable, no genérica.
 

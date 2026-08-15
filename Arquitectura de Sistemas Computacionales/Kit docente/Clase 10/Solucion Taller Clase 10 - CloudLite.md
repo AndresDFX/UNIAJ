@@ -5,7 +5,7 @@
 **Resumen:** Tabla cualitativa + 3 acciones sostenibilidad.
 
 ## Alineacion al enunciado estudiante
-- Taller: `Clases/Clase 10 - Costos y sostenibilidad cloud/Actividad autonoma Clase 10 - CloudLite.docx`
+- Taller: `Clases/Clase 10 - Costos y sostenibilidad cloud/Actividad autónoma Clase 10 — Costos CloudLite.docx`
 - Hito PI: Estimacion cualitativa de costos + sostenibilidad
 - Entregable: Seccion Costos/Sostenibilidad (B/M/A + drivers)
 

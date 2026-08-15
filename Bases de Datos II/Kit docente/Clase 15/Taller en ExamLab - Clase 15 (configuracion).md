@@ -1,11 +1,11 @@
 # Taller de la Clase 15 en ExamLab - configuracion
 
 - **Curso:** Bases de Datos II (FI303215)
-- **Taller:** Taller Clase 15 en ExamLab - Entrega final y cierre de VetCare DB (clase autonoma)
+- **Taller:** Taller Clase 15 en ExamLab - Entrega final y cierre de VetCare DB (previo a la sustentacion en vivo)
 - **Preguntas:** 5 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
-- **Hito del PI:** Sustentacion / entrega final del PI (20% Corte 3)
-- **Entregable de la clase:** ZIP/PDF final + video o Meet segun indique docente
+- **Hito del PI:** Sustentacion en vivo y entrega final del PI (20% Corte 3)
+- **Entregable de la clase:** ZIP/PDF final subido antes del turno + sustentacion en vivo 5-8 min + Q&A
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
@@ -23,7 +23,7 @@
 
 ## 1. Script maestro de entrega: VetCare DB de cero, en una sola corrida
 
-**Clase autonoma y evaluacion final del PI (20 % del Corte 3). Lee el enunciado completo antes de escribir.**
+**Evaluacion final del PI (20 % del Corte 3). Debe quedar entregado ANTES de tu turno de sustentacion en vivo. Lee el enunciado completo antes de escribir.**
 
 Esta base esta **vacia**: solo existe la tabla `entrega_final` donde registras tu paquete. Debes entregar aqui el **script maestro** de VetCare DB, el mismo que va en el ZIP: se ejecuta **una sola vez, de arriba abajo, sobre una base limpia**, y debe correr **sin un solo error**.
 

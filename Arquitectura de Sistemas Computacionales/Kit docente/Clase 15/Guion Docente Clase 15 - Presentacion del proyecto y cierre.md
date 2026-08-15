@@ -3,19 +3,19 @@
 ## Información de la clase
 - Asignatura: Arquitectura de Sistemas Computacionales (FI303380)
 - Duración del bloque: **120 min**
-- Tipo: Actividad autónoma
+- Tipo: Sustentación del Proyecto Integrador · **en vivo** (síncrona)
 - Enfoque: **Proyecto Integrador CloudLite App** (parte práctica)
 - Sin fechas de periodo · sin bio · sin mapa completo del curso
 
 ## Objetivos de la clase
-- Entregar y sustentar CloudLite App con evidencias completas.
-- Responder preguntas de arquitectura (ADRs, amenazas, escala).
+- Sustentar en vivo CloudLite App con evidencias completas.
+- Responder en vivo preguntas de arquitectura (ADRs, amenazas, escala).
 - Cerrar el curso con reflexión de aprendizaje.
 
 ## Hoy avanzamos el PI en…
-**Sustentación / entrega final del PI CloudLite App**
+**Sustentar en vivo el PI CloudLite App y entregar el paquete final**
 
-**Entregable concreto:** Paquete final + presentación 5–8 min (entrega en ExamLab · módulo Proyectos)
+**Entregable concreto:** Paquete final en ExamLab (módulo Proyectos) + pitch de 5–8 min sustentado hoy en clase + Q&A
 
 **Herramienta:** Google Docs/Slides · diagramas · capturas lab
 
@@ -28,9 +28,9 @@ El artefacto que sostiene esa tercera capa es el ADR, o Architecture Decision Re
 
 Un pitch tecnico de 5 a 8 minutos no se improvisa ni se llena de diapositivas. El reparto que funciona, y que es convencion de industria y no regla dura, es el siguiente: 45 a 60 segundos para el problema y el dominio, es decir que hace CloudLite y para quien, sin nombrar una sola tecnologia todavia; 90 segundos para la arquitectura, apoyandose en el diagrama de contexto y el de contenedores; 90 segundos para la decision principal con su trade-off, citando el ADR; 60 a 90 segundos para la evidencia ejecutable, o sea la captura de la sesion de LabEx Docker Playground con el contenedor corriendo y el workflow de GitHub Actions en verde; 45 segundos para el punto debil declarado, lo que no escala o lo que no se midio; y 30 segundos de cierre. La suma queda entre 6 y 7 minutos, con margen para tropiezos. La regla practica de diapositivas es una idea por diapositiva y un maximo de ocho diapositivas para ocho minutos. La razon es concreta y el docente debe decirla: si el estudiante trae veinte diapositivas, no termina, corre las ultimas, y las ultimas suelen ser justamente las de seguridad, costos y escalabilidad, donde estan los puntos de la rubrica que menos se defienden solos.
 
-El criterio de calidad que se anuncio desde el checkpoint de la Clase 11 es la regla de los 60 segundos: quien sustenta debe poder explicar CUALQUIER parte del sistema en 60 segundos, sin buscar en el informe. El trabajo es individual por defecto, asi que en la mayoria de los casos ese "quien" es el propio autor y la regla se comprueba sola; cuando el docente autorizo un equipo de dos o tres, la regla se vuelve exigente y se lee asi: CUALQUIER integrante debe poder explicar CUALQUIER parte. Esto casi siempre genera la primera pregunta real del estudiante: «podemos repartirnos los temas y que cada uno prepare solo el suyo?». La respuesta del docente debe ser: en equipo se puede repartir quien HABLA de cada tema, pero no quien ENTIENDE cada tema, porque el Q&A se dirige al azar; y en modo individual no hay reparto posible, de modo que la pregunta pierde sentido y lo que queda es preparar el sistema completo. La razon no es castigar. En un equipo profesional, cuando el sistema falla a las once de la noche, contesta quien esta disponible, no el autor del diagrama; un sistema que solo una persona entiende es un riesgo operativo con nombre propio. El segundo motivo es de evaluacion: si el estudiante no puede explicar su propio diagrama de despliegue, el evaluador no tiene forma de saber si el artefacto es suyo o copiado, y ese es exactamente el vacio que la sustentacion existe para cerrar. En los equipos autorizados el mismo riesgo se multiplica: si solo un integrante puede explicar el despliegue, no hay evidencia de que los demas participaran, y por eso la rubrica exige que todos hablen y descuenta cuando presenta uno solo. La practica concreta que se recomienda antes de grabar o presentar es un ensayo cruzado con otro estudiante: cada uno explica en 60 segundos una parte del sistema del otro y devuelve los huecos que encontro (en equipo, cada integrante explica una parte que NO le toco preparar). Ese ejercicio suele revelar en cinco minutos lo que la nota habria revelado demasiado tarde.
+El criterio de calidad que se anuncio desde el checkpoint de la Clase 11 es la regla de los 60 segundos: quien sustenta debe poder explicar CUALQUIER parte del sistema en 60 segundos, sin buscar en el informe. El trabajo es individual por defecto, asi que en la mayoria de los casos ese "quien" es el propio autor y la regla se comprueba sola; cuando el docente autorizo un equipo de dos o tres, la regla se vuelve exigente y se lee asi: CUALQUIER integrante debe poder explicar CUALQUIER parte. Esto casi siempre genera la primera pregunta real del estudiante: «podemos repartirnos los temas y que cada uno prepare solo el suyo?». La respuesta del docente debe ser: en equipo se puede repartir quien HABLA de cada tema, pero no quien ENTIENDE cada tema, porque el Q&A se dirige al azar; y en modo individual no hay reparto posible, de modo que la pregunta pierde sentido y lo que queda es preparar el sistema completo. La razon no es castigar. En un equipo profesional, cuando el sistema falla a las once de la noche, contesta quien esta disponible, no el autor del diagrama; un sistema que solo una persona entiende es un riesgo operativo con nombre propio. El segundo motivo es de evaluacion: si el estudiante no puede explicar su propio diagrama de despliegue, el evaluador no tiene forma de saber si el artefacto es suyo o copiado, y ese es exactamente el vacio que la sustentacion existe para cerrar. En los equipos autorizados el mismo riesgo se multiplica: si solo un integrante puede explicar el despliegue, no hay evidencia de que los demas participaran, y por eso la rubrica exige que todos hablen y descuenta cuando presenta uno solo. La practica concreta que se recomienda antes de presentar es un ensayo cruzado con otro estudiante: cada uno explica en 60 segundos una parte del sistema del otro y devuelve los huecos que encontro (en equipo, cada integrante explica una parte que NO le toco preparar). Ese ejercicio suele revelar en cinco minutos lo que la nota habria revelado demasiado tarde.
 
-El Q&A tecnico tiene tres tipos de pregunta y conviene que el docente los reconozca para dosificarlos. La pregunta de verificacion comprueba que el estudiante hizo lo que dice: «muestreme el archivo .yml del workflow» o «en que linea del Dockerfile esta la imagen base y por que eligieron una variante alpine». La pregunta de profundizacion empuja un nivel mas alla de lo presentado: «por que la base de datos no esta en el mismo contenedor que la API». La pregunta hipotetica, o what-if, evalua si el diseno se entiende como sistema y no como dibujo: «si el trafico se multiplica por diez el lunes, que pieza de CloudLite se rompe primero y como se darian cuenta». Aqui aparece la segunda pregunta previsible del estudiante: «y si no sabemos la respuesta?». La respuesta correcta es que decir «no lo medimos» no penaliza si va acompanado de como se mediria: «no medimos el p95 porque no hay trafico real, pero el plan es simular 50 peticiones por segundo y observar la latencia de la API, que es el cuello de botella que sospechamos por lo que vimos en la Clase 12». Improvisar un dato falso, en cambio, se detecta con una sola pregunta de seguimiento y cuesta mucho mas que admitir el limite. Como la Clase 15 es autonoma por festivo (16 de noviembre), la sustentacion puede ser un video grabado; en ese caso el Q&A en vivo se sustituye por el Q&A escrito que exige el taller, es decir tres preguntas que el propio estudiante se haria con su respuesta, lo cual mide exactamente la misma capacidad de anticipar objeciones.
+El Q&A tecnico tiene tres tipos de pregunta y conviene que el docente los reconozca para dosificarlos. La pregunta de verificacion comprueba que el estudiante hizo lo que dice: «muestreme el archivo .yml del workflow» o «en que linea del Dockerfile esta la imagen base y por que eligieron una variante alpine». La pregunta de profundizacion empuja un nivel mas alla de lo presentado: «por que la base de datos no esta en el mismo contenedor que la API». La pregunta hipotetica, o what-if, evalua si el diseno se entiende como sistema y no como dibujo: «si el trafico se multiplica por diez el lunes, que pieza de CloudLite se rompe primero y como se darian cuenta». Aqui aparece la segunda pregunta previsible del estudiante: «y si no sabemos la respuesta?». La respuesta correcta es que decir «no lo medimos» no penaliza si va acompanado de como se mediria: «no medimos el p95 porque no hay trafico real, pero el plan es simular 50 peticiones por segundo y observar la latencia de la API, que es el cuello de botella que sospechamos por lo que vimos en la Clase 12». Improvisar un dato falso, en cambio, se detecta con una sola pregunta de seguimiento y cuesta mucho mas que admitir el limite. Y conviene ser explicito sobre el formato de la sesion, porque es lo que decide como se prepara el estudiante: la Clase 15 se dicta en la ultima sesion del semestre (16 de noviembre) como sustentacion EN VIVO, sincrona, con turnos de unos 6 minutos de pitch y 2 a 4 de preguntas. No es clase autonoma y la defensa no se reemplaza por un video grabado, porque el Q&A dirigido al azar es justamente el instrumento que verifica autoria y no tiene sustituto asincronico. El Q&A escrito que pide el taller (tres preguntas duras que el propio estudiante se haria, con su respuesta) no reemplaza nada: es la preparacion del Q&A en vivo, y en la practica el estudiante que lo escribio en serio responde mucho mejor cuando la pregunta llega de verdad.
 
 Evaluar con rubrica significa asignar puntos a evidencia observable y no a impresion general, y por eso conviene leer el reparto en voz alta al abrir la clase. Los 100 puntos del PI CloudLite App se distribuyen asi: 15 puntos por dominio y decision IaaS/PaaS/SaaS justificada, 25 por los diagramas de arquitectura (componentes y despliegue), 20 por el lab de contenedores con Dockerfile o compose mas la captura de la sesion, 15 por el CI/CD conceptual con el workflow .yml explicado, 10 por las secciones de seguridad, costos y escalabilidad del informe, y 15 por informe y sustentacion. Ese reparto responde la tercera pregunta previsible: «si el diagrama esta perfecto pero presentamos mal, cuanto pierdo?». Directamente, hasta 15 puntos. Indirectamente mucho mas, porque la sustentacion es el mecanismo con el que el evaluador verifica que los otros 85 puntos son de quien sustenta: un diagrama excelente que nadie puede explicar levanta una duda de autoria que ninguna diapositiva resuelve. Y va el recordatorio de pesos que evita reclamos posteriores: estos 100 puntos valen 20% del Corte 3, el Parcial 3 de la Clase 14 (9 de noviembre, presencial y escrito) vale 15%, y la asistencia 5%. El proyecto no reemplaza ni compensa el parcial; son evaluaciones distintas del mismo corte, y decirlo una vez hoy ahorra tres correos la semana siguiente.
 
@@ -42,57 +42,77 @@ Referencia de slides: `Clases/Clase 15 - Presentacion del proyecto y cierre/Pres
 
 ## Plan de clase minuto a minuto (120 min)
 
-### Modalidad autónoma (festivo)
-Esta clase cae en festivo: no hay encuentro síncrono obligatorio. El estudiante trabaja solo,
-con `Presentacion.pptx` + el taller de la carpeta `Clases/`. Por eso el material publicado
-tiene que ser **autosuficiente**: lo que no quede escrito, nadie lo va a explicar en vivo.
+### Modalidad de la sesión: sustentaciones EN VIVO
+Este bloque de 120 min se dedica íntegramente a las sustentaciones del Proyecto Integrador,
+con encuentro síncrono. **No es clase autónoma y no es parcial.** No autorices reemplazar la
+defensa por un video grabado: la sustentación es el único instrumento con el que verificas
+autoría de los otros puntos del PI, y el Q&A en vivo no se puede sustituir por un documento.
+El día cae en festivo de calendario, pero la sesión está destinada por decisión docente a
+sustentar: anúncialo por escrito una semana antes para que nadie asuma que no hay clase.
 
-### Qué publicar (antes del día de la clase)
-1. En ExamLab: las diapositivas, el taller y el recordatorio del hito del PI.
-2. La sección «Fundamento teórico para el docente» de este guion, adaptada como **lectura guía**
-   del estudiante — es el reemplazo de la explicación en vivo, no un anexo opcional.
-3. La **salida esperada** del ejercicio (ver la demo de abajo), para que el estudiante autónomo
-   pueda comparar y saber si le quedó bien sin preguntarte.
-4. Mensaje sugerido: «Clase 15 autónoma (festivo). Hoy avanzamos el PI en: Sustentación / entrega final del PI CloudLite App.
-   Entregable: Paquete final + presentación 5–8 min (entrega en ExamLab · módulo Proyectos). Fecha límite: domingo 23:59. Dudas por foro/correo institucional.»
+### Antes de la sesión (semana previa)
+1. Publica el orden y la duración exacta del turno: **6 min de pitch + 2–4 min de Q&A**.
+   Con 12 sustentaciones eso es ~110 min; si el grupo es más grande, baja a 5 + 2 y avísalo
+   antes, nunca el mismo día.
+2. Exige el paquete subido a ExamLab (módulo Proyectos) **antes** del bloque: quien llega a
+   subir archivos consume el tiempo de otro. Verifica tú mismo que los enlaces abren.
+3. Ten a mano la rúbrica impresa por estudiante y la lista de preguntas de comprobación de
+   abajo, para no improvisar el Q&A ni preguntar lo mismo a todos.
+4. Si en la clase anterior no alcanzaron a ensayar, modela tú el formato antes de abrir turnos
+   (no dentro de este bloque: no hay tiempo para eso y una sustentación menos):
 
-### Cómo debería repartir su tiempo el estudiante (120 min equivalentes)
-- **0–15** Leer el encuadre y el objetivo del día; ubicar en qué quedó su CloudLite.
-- **15–45** Leer la teoría (lectura guía) y tomar notas directamente en el informe del PI.
-- **45–60** Revisar la salida esperada del ejercicio resuelto.
-- **60–105** Desarrollar el taller sobre su propio CloudLite.
-- **105–120** Empaquetar la evidencia y subirla a ExamLab.
-
-### La demo, en versión asíncrona
 **Demo que usted debe poder repetir:** Modelar una sustentacion de 6 minutos y un Q&A
 
 1. Presente usted mismo un CloudLite de ejemplo en 6 minutos cronometrados, con la estructura: problema, decision clave, evidencia, limite conocido.
-2. Hagase una pregunta dificil en voz alta y respondala: «por que no usaron microservicios? Porque con 3 personas la frontera no se justificaba».
+2. Hagase una pregunta dificil en voz alta y respondala: «por que no uso microservicios? Porque el proyecto lo sostiene una sola persona y la frontera no se justificaba».
 3. Muestre la rubrica proyectada y senale donde habria perdido puntos su propia demo.
 4. Recuerde la regla de los 60 segundos: quien sustenta debe poder explicar cualquier parte del paquete, y si hubo equipo autorizado, cualquier integrante.
 
-Publica esto como pasos escritos o como un video corto (3–5 min) grabado con estos mismos pasos.
-Sin uno de los dos, el estudiante autónomo no tiene con qué comparar su resultado.
 
+### 0–10 · Encuadre y orden de turnos
+Di casi literal:
+> "Hoy sustentamos. 6 minutos de pitch y hasta 4 de preguntas. Yo corto a los 6 minutos: si no
+> llegaron a seguridad, costos y escala, esa parte no se califica. El orden lo sorteo ahora."
 
-### Seguimiento (lo que sí es tu trabajo esa semana)
-1. Revisa las entregas del domingo 23:59 con la lista de errores frecuentes de abajo:
-   en modalidad autónoma esos errores aparecen más, porque nadie los corrigió en el momento.
-2. Deja feedback breve orientado a la rúbrica del PI, nombrando el error y la corrección.
-3. En la siguiente clase regular, dedica los primeros 10 min a los 2 errores más repetidos.
-   Es el sustituto de la retroalimentación en vivo que esta clase no tuvo.
+**[Nota docente]:** sortea el orden delante del grupo (evita el reclamo de «me tocó primero»),
+proyecta el cronómetro y pide que el resto escuche: cerramos el curso entre todos.
 
-### Si ofreces office hours voluntario (opcional, 20–30 min)
-Resuelve bloqueos concretos de diagrama/ADR/lab. Usa las preguntas de comprobación de abajo
-para detectar quién entendió y quién solo copió la plantilla. No adelantes contenido de Parcial.
+### 10–110 · Sustentaciones (turnos consecutivos)
+Por cada turno, en este orden:
+1. **6 min de pitch.** No interrumpas ni siquiera para corregir un error: se anota y se pregunta
+   después. Corta seco a los 6 min.
+2. **2–4 min de Q&A.** Haz siempre una pregunta de verificación («muéstrame el .yml del
+   workflow»), una de profundización («¿por qué la base de datos no está en el mismo contenedor
+   que la API?») y, si queda tiempo, una hipotética («si el tráfico se multiplica por diez el
+   lunes, ¿qué pieza se rompe primero?»). En equipo autorizado, dirige cada pregunta a un
+   integrante distinto y **no** dejes que responda siempre el mismo.
+3. **Cierra el turno con la nota puesta**, no al final del día: la rúbrica se llena en caliente
+   mientras recuerdas la respuesta exacta.
+
+**[Nota docente]:** frase de rescate cuando el estudiante se bloquea, para no perder el turno:
+> "Déjame la respuesta pendiente y sigue con el siguiente bloque; vuelvo a preguntar al final."
+
+### 110–120 · Cierre del curso
+Di casi literal:
+> "Lo que entregaron —diagramas, Dockerfile, workflow, informe— es un portafolio real: no lo
+> borren al terminar el semestre. Arquitectura no es una lista de logos de proveedores, es un
+> conjunto de decisiones documentadas con sus consecuencias."
+
+Recuerda los pesos sin abrir discusión de notas: el PI vale **20% del Corte 3** y el Parcial 3
+ya se aplicó en su propia sesión; el proyecto no reemplaza ni compensa el parcial.
+
+### Si un estudiante no se presenta o falla la conexión
+Deja constancia escrita en el momento (hora, motivo) y reprograma dentro de la misma semana con
+Meet, sustentando igualmente en vivo. Aceptar un video grabado «por esta vez» convierte la
+excepción en la regla del semestre siguiente y elimina el Q&A, que es la mitad de lo que evalúas.
 
 
 ## Actividad / taller (detalle)
 1. Paso 1: armen el paquete final y llenen el indice de 8 filas con entregable, nombre de archivo, ruta dentro del paquete y estado, verificando que los 8 archivos abran desde una maquina distinta a la del autor y que ningun nombre de archivo tenga espacios ni tildes que rompan la descarga.
 2. Paso 2: escriban en ExamLab la lamina unica de arquitectura en Mermaid con las 3 zonas, los 5 contenedores, el edge, la cadena de entrega y los sistemas externos, verificando al renderizar que sea legible en una sola pantalla sin desplazamiento y que use los mismos nombres canonicos del paquete, porque esta es la lamina que van a proyectar en la sustentacion.
 3. Paso 3: redacten el Q and A escrito con 3 preguntas duras que el jurado podria hacer, una de decision de arquitectura, una de seguridad y una de escala o rendimiento, cada una con respuesta de maximo 4 lineas que cite la evidencia del paquete, verificando que ninguna respuesta sea no lo alcanzamos a hacer sin nombrar la decision consciente que tomaron.
-4. Paso 4: graben o presenten el pitch de 5 a 8 minutos segun la instruccion del docente y registren la tabla de tiempos reales por seccion con quien hablo en cada una, verificando que el tiempo total quede entre 5 y 8 minutos y que el enlace del video, si lo graban, se abra sin pedir permisos.
-5. Paso 5: escriban la reflexion de media pagina sobre el trade-off mas difícil y suban el paquete final completo mas las 5 preguntas a ExamLab (modulo Proyectos) en la fecha acordada, verificando que el informe, los diagramas, la evidencia del lab, el ci.yml y la presentacion esten los cinco dentro del mismo paquete.
+4. Paso 4: ensayen el pitch con cronometro ANTES de la sesion y registren la tabla de tiempos reales por seccion con quien hablo en cada una, verificando que el tiempo total quede entre 5 y 8 minutos; la sustentacion se hace EN VIVO en la sesion de clase, con preguntas del docente al cierre, no con un video grabado.
+5. Paso 5: escriban la reflexion de media pagina sobre el trade-off mas difícil y suban el paquete final completo mas las 5 preguntas a ExamLab (modulo Proyectos) ANTES de su turno de sustentacion, verificando que el informe, los diagramas, la evidencia del lab, el ci.yml y la presentacion esten los cinco dentro del mismo paquete.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).
@@ -105,7 +125,7 @@ para detectar quién entendió y quién solo copió la plantilla. No adelantes c
 - Presentar sin mencionar ningun limite del diseno. Quien no reconoce limites no entendio el trade-off.
 
 ## Preguntas de comprobación oral (no son del quiz)
-Úsalas en el tramo 100–115, a personas distintas y al azar.
+Úsalas como Q&A al cerrar cada turno de sustentación, variándolas entre estudiantes.
 1. Justifiquen su decision de arquitectura mas importante en 60 segundos.
 1. Cual es el limite conocido de su diseno actual?
 1. Si tuvieran un mes mas, que cambiarian primero y por que?

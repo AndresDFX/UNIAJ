@@ -233,9 +233,10 @@ def enunciado_bd2(doc):
                "(cierre: domingo 01/11 23:59)"],
               ["Casos reales", "Sesión 11 (autónoma · Clase 13)", "02/11/2026",
                "Aplicar el análisis de casos al PI (cierre: domingo 08/11 23:59)"],
-              ["Prep. presentación", "Sesión 12 (Clase 14)", "09/11/2026",
-               "Ensayo + paquete final en ExamLab, domingo 15/11 23:59 "
-               "(mismo día: Parcial 3 presencial)"],
+              ["Parcial 3 · paquete final", "Sesión 12 (Clase 14)", "09/11/2026",
+               "Día de parcial = solo evaluación (presencial). El paquete final "
+               "cierra el domingo 15/11 23:59; el ensayo y la preparación fueron "
+               "en la Sesión 10 (Clase 12)"],
               ["Sustentación / cierre", "Sesión 13 (Clase 15)", "16/11/2026",
                "Defensa en vivo del PI + cierre del curso"],
           ])
@@ -398,9 +399,10 @@ def enunciado_arq(doc):
                "(cierre: domingo 01/11 23:59)"],
               ["Escalabilidad", "Sesión 11 (autónoma · Clase 13)", "02/11/2026",
                "Sección de autoescalado del informe (cierre: domingo 08/11 23:59)"],
-              ["Prep. presentación", "Sesión 12 (Clase 14)", "09/11/2026",
-               "Ensayo + paquete final en ExamLab, domingo 15/11 23:59 "
-               "(mismo día: Parcial 3 presencial)"],
+              ["Parcial 3 · paquete final", "Sesión 12 (Clase 14)", "09/11/2026",
+               "Día de parcial = solo evaluación (presencial). El paquete final "
+               "cierra el domingo 15/11 23:59; el ensayo y la preparación fueron "
+               "en la Sesión 10 (Clase 12)"],
               ["Sustentación / cierre", "Sesión 13 (Clase 15)", "16/11/2026",
                "Defensa en vivo del PI CloudLite + cierre del curso"],
           ])
@@ -832,9 +834,9 @@ Toda entrega intermedia cierra el **domingo 23:59 siguiente** a la sesión corre
 
 | Sesión | Fecha | Material | Foco | Cierre de entrega |
 |---|---|---|---|---|
-| S10 (doble) | 26/10/2026 | Clases 11 + 12 | Avance PI — checklist · Integración app ↔ BD | dom 01/11/2026 23:59 |
+| S10 (doble) | 26/10/2026 | Clases 11 + 12 | Avance PI — checklist · Integración app ↔ BD · **preparación de la sustentación** | dom 01/11/2026 23:59 |
 | S11 (autónoma) | 02/11/2026 | Clase 13 | Análisis de casos reales aplicado al PI | dom 08/11/2026 23:59 |
-| S12 | 09/11/2026 | Clase 14 | Prep. presentación + **Parcial 3** (presencial) | **paquete final:** dom 15/11/2026 23:59 |
+| S12 | 09/11/2026 | Clase 14 | **Parcial 3** (presencial · solo evaluación) | **paquete final:** dom 15/11/2026 23:59 |
 | S13 | 16/11/2026 | Clase 15 | **Sustentación en vivo del PI** + cierre (sesión síncrona) | — (el paquete ya está entregado) |
 
 > S13 cae en festivo (Independencia de Cartagena), pero por decisión docente es sesión de
@@ -866,9 +868,9 @@ Toda entrega intermedia cierra el **domingo 23:59 siguiente** a la sesión corre
 
 | Sesión | Fecha | Material | Foco | Cierre de entrega |
 |---|---|---|---|---|
-| S10 (doble) | 26/10/2026 | Clases 11 + 12 | Avance PI — diagramas v1 · Pruebas de rendimiento | dom 01/11/2026 23:59 |
+| S10 (doble) | 26/10/2026 | Clases 11 + 12 | Avance PI — diagramas v1 · Pruebas de rendimiento · **preparación de la sustentación** | dom 01/11/2026 23:59 |
 | S11 (autónoma) | 02/11/2026 | Clase 13 | Escalabilidad automática aplicada al PI | dom 08/11/2026 23:59 |
-| S12 | 09/11/2026 | Clase 14 | Prep. presentación + **Parcial 3** (presencial) | **paquete final:** dom 15/11/2026 23:59 |
+| S12 | 09/11/2026 | Clase 14 | **Parcial 3** (presencial · solo evaluación) | **paquete final:** dom 15/11/2026 23:59 |
 | S13 | 16/11/2026 | Clase 15 | **Sustentación en vivo del PI** + cierre (sesión síncrona) | — (el paquete ya está entregado) |
 
 > S13 cae en festivo (Independencia de Cartagena), pero por decisión docente es sesión de

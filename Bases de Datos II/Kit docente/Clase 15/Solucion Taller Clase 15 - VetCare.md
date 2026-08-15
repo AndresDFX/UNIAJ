@@ -6,8 +6,8 @@
 
 ## Alineacion
 - Taller: `Clases/Clase 15 - Presentacion del proyecto y cierre/Taller PI - Clase 15 - VetCare.docx`
-- Hito: Sustentacion / entrega final del PI (20% Corte 3)
-- Entregable: ZIP/PDF final + video o Meet segun indique docente
+- Hito: Sustentacion en vivo y entrega final del PI (20% Corte 3)
+- Entregable: ZIP/PDF final subido antes del turno + sustentacion en vivo 5-8 min + Q&A
 
 ## Solucion paso a paso
 1. Verificar el ZIP/paquete final linea por linea contra la rubrica de 100 pts (ER, DDL, roles, procs, funciones/triggers, optimizacion, indices, transacciones, concurrencia, contrato de integracion, informe) antes de subirlo, no despues.

@@ -5,7 +5,7 @@
 **Resumen:** 5 amenazas del dominio + política secretos.
 
 ## Alineacion al enunciado estudiante
-- Taller: `Clases/Clase 6 - Seguridad en la nube/Taller Clase 6 - CloudLite.docx`
+- Taller: `Clases/Clase 6 - Seguridad en la nube/Taller Clase 6 — Seguridad CloudLite.docx`
 - Hito PI: Modelo de amenazas minimo + controles para CloudLite
 - Entregable: Seccion Seguridad: 5 amenazas STRIDE-lite + controles + secretos
 

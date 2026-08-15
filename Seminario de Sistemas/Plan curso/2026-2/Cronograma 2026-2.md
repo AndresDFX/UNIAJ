@@ -24,7 +24,7 @@ Documento para estudiantes (carpeta compartida `Clases/`).
 | 10 | 29/10/2026 | Virtual (síncrona) | **Sesión doble** · Avance proyecto integrador + Diagramas UML avanzados | Clase 11 + Clase 12 | no |
 | 11 | 05/11/2026 | Virtual (síncrona) | Diseño de interfaces | Clase 13 | no |
 | 12 | 12/11/2026 | Virtual (síncrona) | Preparación de la sustentación y cierre | Clase 14 | no |
-| 13 | 19/11/2026 | Presencial (síncrona) | PARCIAL 3 + sustentación de proyectos y cierre | Clase 15 | sí |
+| 13 | 19/11/2026 | Presencial (síncrona) | PARCIAL 3 (solo evaluación) | Clase 15 | sí |
 
 ## Evaluación por cortes
 

@@ -22,6 +22,7 @@ from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import calendario_2026_2 as cal  # noqa: E402
 from arq_fundamentos import FUNDAMENTOS  # noqa: E402
 from arq_examlab_data import EXAMLAB as TALLERES_EXAMLAB  # noqa: E402
 import examlab_talleres  # noqa: E402
@@ -150,13 +151,56 @@ def mod(c: dict, key: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Tipo de bloque: SE DERIVA DEL CALENDARIO, no se escribe a mano por clase
+# ---------------------------------------------------------------------------
+# Historia del defecto que esto previene: el material se genero con el calendario
+# viejo, donde el festivo del 17/08 caia en la Clase 2 y el del 16/11 cerraba el
+# curso. Al acortarse el semestre (24/08-22/11, 13 sesiones para 15 temas) el
+# 17/08 quedo FUERA del rango y la Sesion 13 (16/11) se destino a las
+# sustentaciones del PI en vivo. Como el tipo estaba escrito a mano en cada dict,
+# el material siguio anunciando «actividad autonoma» para dos clases que si
+# tienen encuentro sincrono. Leyendolo del calendario en cada build, un cambio de
+# fechas no puede volver a desincronizar el material.
+CAL_KEY = "arquitectura"
+
+
+def tipo_de_clase(n_clase: int) -> str:
+    """'parcial' | 'autonoma' | 'sustentacion' | 'regular' para una Clase de material.
+
+    'presencial' y 'virtual' colapsan a 'regular': la diferencia entre ellas es de
+    modalidad (aula vs Meet) y no cambia la estructura del bloque, porque las dos
+    son sincronas. Lo que si cambia la estructura es que no haya encuentro
+    (autonoma), que el bloque sea solo evaluacion (parcial) o que se dedique a
+    sustentar el PI (sustentacion).
+    """
+    s = cal.sesion_de_clase(CAL_KEY, n_clase)
+    if s is None:
+        raise SystemExit(
+            "Clase %d no aparece en 'clases_material' de ninguna sesion de '%s' en %s. "
+            "Corrija el calendario, no este build." % (n_clase, CAL_KEY, cal.JSON_PATH)
+        )
+    if s.get("parcial"):
+        return "parcial"
+    t = (s.get("tipo") or "").lower()
+    return t if t in ("autonoma", "sustentacion") else "regular"
+
+
+TIPO_LABEL = {
+    "regular": "Clase regular (teoría + taller PI) · encuentro síncrono",
+    "autonoma": "Actividad autónoma (festivo, sin encuentro síncrono)",
+    "sustentacion": "Sustentación del Proyecto Integrador · **en vivo** (síncrona)",
+    "parcial": "Solo evaluación (Parcial)",
+}
+
+
+# ---------------------------------------------------------------------------
 # Catálogo de clases (Plan 2026-2) — PI-first
 # ---------------------------------------------------------------------------
+# Sin clave "tipo": se inyecta desde el calendario justo despues de esta lista.
 
 CLASSES = [
     {
         "n": 1,
-        "tipo": "regular",
         "slug": "Introduccion a arquitecturas cloud",
         "tema": "Introducción a arquitecturas cloud",
         "sub": "Diagnóstico · CloudLite App · primer boceto",
@@ -225,10 +269,9 @@ CLASSES = [
     },
     {
         "n": 2,
-        "tipo": "autonoma",
         "slug": "Modelos de servicio IaaS PaaS SaaS",
         "tema": "Modelos de servicio: IaaS, PaaS, SaaS",
-        "sub": "Actividad autónoma · ADR del PI",
+        "sub": "ADR del PI · elección del modelo de servicio",
         "pi_hoy": "Decidir modelo dominante (IaaS/PaaS/SaaS) para CloudLite + ADR breve",
         "entregable": "ADR-001: decisión de modelo de servicio + matriz de comparación aplicada al dominio",
         "herramienta": "Google Docs · draw.io (opcional)",
@@ -256,9 +299,9 @@ CLASSES = [
                 "Debe citar 2 trade-offs (ej.: control vs velocidad de entrega).",
             ]),
         ],
-        "taller_titulo": "Actividad autónoma Clase 2 — ADR modelo de servicio CloudLite",
+        "taller_titulo": "Taller Clase 2 — ADR modelo de servicio CloudLite",
         "taller_pasos": [
-            "Lea las diapositivas y el enunciado del PI (Clases/Proyecto Integrador).",
+            "Retome su ficha y su C4 Context de la Clase 1: dominio, capacidades y actores (no cambie de dominio).",
             "Complete una matriz IaaS/PaaS/SaaS vs su dominio (control, costo cualitativo, operación, time-to-demo).",
             "Redacte ADR-001 (decisión dominante + 2 alternativas descartadas).",
             "Actualice el informe PI (sección «Modelo de servicio»).",
@@ -273,7 +316,6 @@ CLASSES = [
     },
     {
         "n": 3,
-        "tipo": "regular",
         "slug": "Virtualizacion y contenedores",
         "tema": "Virtualización y contenedores",
         "sub": "Lab LabEx Docker Playground → stub CloudLite",
@@ -320,7 +362,6 @@ CLASSES = [
     },
     {
         "n": 4,
-        "tipo": "regular",
         "slug": "Microservicios y arquitecturas distribuidas",
         "tema": "Microservicios · Arquitecturas distribuidas",
         "sub": "C4 Componentes CloudLite",
@@ -368,7 +409,6 @@ CLASSES = [
     },
     {
         "n": 5,
-        "tipo": "parcial",
         "slug": "Parcial 1",
         "tema": "Parcial 1",
         "sub": "Solo evaluación",
@@ -383,7 +423,6 @@ CLASSES = [
     },
     {
         "n": 6,
-        "tipo": "regular",
         "slug": "Seguridad en la nube",
         "tema": "Seguridad en la nube",
         "sub": "Amenazas y controles → sección PI",
@@ -427,7 +466,6 @@ CLASSES = [
     },
     {
         "n": 7,
-        "tipo": "regular",
         "slug": "Redes y almacenamiento cloud",
         "tema": "Redes y almacenamiento cloud",
         "sub": "Diagrama de despliegue CloudLite",
@@ -472,7 +510,6 @@ CLASSES = [
     },
     {
         "n": 8,
-        "tipo": "regular",
         "slug": "Monitoreo optimizacion y CI-CD",
         "tema": "Monitoreo y optimización · CI/CD",
         "sub": "GitHub Actions + plan de observabilidad",
@@ -517,7 +554,6 @@ CLASSES = [
     },
     {
         "n": 9,
-        "tipo": "parcial",
         "slug": "Parcial 2",
         "tema": "Parcial 2",
         "sub": "Solo evaluación",
@@ -532,7 +568,6 @@ CLASSES = [
     },
     {
         "n": 10,
-        "tipo": "autonoma",
         "slug": "Costos y sostenibilidad cloud",
         "tema": "Costos y sostenibilidad cloud",
         "sub": "Actividad autónoma · sección PI",
@@ -570,7 +605,6 @@ CLASSES = [
     },
     {
         "n": 11,
-        "tipo": "regular",
         "slug": "Avance del proyecto final",
         "tema": "Avance del proyecto final",
         "sub": "Checkpoint diagramas v1 CloudLite",
@@ -613,7 +647,6 @@ CLASSES = [
     },
     {
         "n": 12,
-        "tipo": "regular",
         "slug": "Pruebas de rendimiento y preparacion final",
         "tema": "Pruebas de rendimiento · Preparación de presentación final",
         "sub": "Métricas objetivo + ensayo de pitch PI",
@@ -657,7 +690,6 @@ CLASSES = [
     },
     {
         "n": 13,
-        "tipo": "autonoma",
         "slug": "Escalabilidad automatica",
         "tema": "Escalabilidad automática",
         "sub": "Actividad autónoma · escenario de escala PI",
@@ -696,7 +728,6 @@ CLASSES = [
     },
     {
         "n": 14,
-        "tipo": "parcial",
         "slug": "Parcial 3",
         "tema": "Parcial 3",
         "sub": "Solo evaluación",
@@ -711,19 +742,24 @@ CLASSES = [
     },
     {
         "n": 15,
-        "tipo": "autonoma",
         "slug": "Presentacion del proyecto y cierre",
         "tema": "Presentación del proyecto + cierre",
-        "sub": "Sustentación PI CloudLite (autónoma)",
-        "pi_hoy": "Sustentación / entrega final del PI CloudLite App",
-        "entregable": "Paquete final + presentación 5–8 min (entrega en ExamLab · módulo Proyectos)",
+        "sub": "Sustentación en vivo del PI CloudLite · cierre del curso",
+        "pi_hoy": "Sustentar en vivo el PI CloudLite App y entregar el paquete final",
+        "entregable": "Paquete final en ExamLab (módulo Proyectos) + pitch de 5–8 min sustentado hoy en clase + Q&A",
         "herramienta": "Google Docs/Slides · diagramas · capturas lab",
         "objetivos": [
-            "Entregar y sustentar CloudLite App con evidencias completas.",
-            "Responder preguntas de arquitectura (ADRs, amenazas, escala).",
+            "Sustentar **en vivo** CloudLite App con evidencias completas.",
+            "Responder **en vivo** preguntas de arquitectura (ADRs, amenazas, escala).",
             "Cerrar el curso con reflexión de aprendizaje.",
         ],
         "slides_extra": [
+            ("Cómo se ordena la sesión de hoy", [
+                "Sustentación **en vivo**, en este bloque: no se reemplaza por video grabado.",
+                "Turnos de **6 min de pitch + 2–4 min de Q&A**; el orden se sortea al empezar.",
+                "Ten el paquete ya subido a ExamLab **antes** de tu turno (no se sube presentando).",
+                "Mientras otros presentan, escuchas: el cierre del curso se hace con todo el grupo.",
+            ]),
             ("Rúbrica de sustentación (recordatorio)", [
                 "Claridad del problema · calidad de diagramas · demo lab/CI · respuestas.",
                 "Cubres los 5 bloques del guion; en equipo autorizado hablan todos (penalización si solo uno presenta).",
@@ -737,11 +773,12 @@ CLASSES = [
                 "Gracias — arquitectura es trade-offs documentados, no logos de proveedores.",
             ]),
         ],
-        "taller_titulo": "Actividad autónoma Clase 15 — Sustentación CloudLite",
+        "taller_titulo": "Guía de sustentación Clase 15 — PI CloudLite",
         "taller_pasos": [
-            "Suban paquete final a **ExamLab** (módulo Proyectos): informe + evidencias.",
-            "Graben o presenten pitch 5–8 min según instrucción del docente.",
-            "Incluyan Q&A escrito (3 preguntas que se harían a sí mismos + respuestas).",
+            "Sube el paquete final a **ExamLab** (módulo Proyectos) **antes** de tu turno: informe + evidencias.",
+            "Sustenta **en vivo** el pitch de 5–8 min con la lámina de arquitectura en pantalla.",
+            "Responde el **Q&A en vivo** (3–4 preguntas del docente, dirigidas al azar).",
+            "Entrega el Q&A escrito (3 preguntas duras que te harías + respuestas) como preparación del anterior.",
             "Reflexión final (½ página): qué trade-off fue el más difícil.",
         ],
         "quiz": [
@@ -752,6 +789,10 @@ CLASSES = [
         ],
     },
 ]
+
+# Fuente de verdad del tipo de bloque: el calendario del periodo (ver tipo_de_clase).
+for _c in CLASSES:
+    _c["tipo"] = tipo_de_clase(_c["n"])
 
 
 def _shade(paragraph, fill: str) -> None:
@@ -821,7 +862,7 @@ def margins(doc):
         s.right_margin = Inches(0.85)
 
 
-def cover_slide(prs, n: int, tema: str, sub: str, pi_hoy: str):
+def cover_slide(prs, n: int, tema: str, sub: str, pi_hoy: str, *, tipo: str = "regular"):
     s = blank(prs)
     bg_white(s)
     rect(s, 0, 0, SW, 3.0, NAVY)
@@ -840,11 +881,20 @@ def cover_slide(prs, n: int, tema: str, sub: str, pi_hoy: str):
     ps.space_before = EPt(8)
     _run(ps.add_run(), sub, 15, CIAN)
     tm = textbox(s, MARGIN, 3.5, CONTENT_W, 2.8)
-    for i, ln in enumerate([
-        f"**Hoy avanzamos el PI en:** {pi_hoy}",
-        "Bloque **120 min** · Teoría breve · Taller PI · cierre.",
-        "Herramientas gratis + navegador · sin AWS/GCP/Oracle Cloud.",
-    ]):
+    if tipo == "sustentacion":
+        # El bloque no se reparte en teoría + taller: son turnos de sustentación.
+        lineas_cover = [
+            f"**Hoy cerramos el PI:** {pi_hoy}",
+            "Bloque **120 min** · sesión **síncrona** de sustentaciones · turnos consecutivos.",
+            "Paquete subido a ExamLab **antes** de tu turno · defensa **en vivo**, no video grabado.",
+        ]
+    else:
+        lineas_cover = [
+            f"**Hoy avanzamos el PI en:** {pi_hoy}",
+            "Bloque **120 min** · Teoría breve · Taller PI · cierre.",
+            "Herramientas gratis + navegador · sin AWS/GCP/Oracle Cloud.",
+        ]
+    for i, ln in enumerate(lineas_cover):
         p = tm.paragraphs[0] if i == 0 else tm.add_paragraph()
         p.space_after = EPt(8)
         _rich(p, ln, 15, GRAY)
@@ -928,7 +978,7 @@ CODIGO_SLIDE = {
         "# ADR-001: Modelo de servicio de CloudLite",
         "",
         "## Contexto",
-        "MVP academico, equipo de 3, sin presupuesto cloud.",
+        "MVP academico, un desarrollador (2 o 3 si el docente autorizo equipo), sin presupuesto cloud.",
         "",
         "## Decision",
         "PaaS conceptual + contenedores (portable).",
@@ -1060,22 +1110,37 @@ def build_pptx(c: dict) -> Path:
         return out
 
     prs = new_prs()
-    cover_slide(prs, n, c["tema"], c["sub"], c["pi_hoy"])
+    cover_slide(prs, n, c["tema"], c["sub"], c["pi_hoy"], tipo=c["tipo"])
     idx = 2
-    content_slide(prs, "Agenda de hoy (120 min)", [
-        "**0–10** Encuadre: hoy avanzamos el PI en… + entregable concreto.",
-        "**10–40** Teoría Core breve (solo lo necesario para el taller PI).",
-        f"**40–100** Taller guiado PI (demo en vivo + {mod(c, 'agenda_taller_nota')}).",
-        "**100–115** Revisión de evidencias del PI.",
-        "**115–120** Cierre: criterio de éxito + plazo domingo 23:59.",
-    ], idx=idx)
+    if c["tipo"] == "sustentacion":
+        # El bloque no se reparte en teoría + taller: son turnos de sustentación
+        # en vivo. Proyectar la agenda genérica aquí haría creer que todavía queda
+        # tiempo de trabajo en clase, y el estudiante llegaría a subir archivos.
+        agenda = [
+            "**0–10** Encuadre + sorteo del orden de turnos.",
+            "**10–110** Sustentaciones: **6 min de pitch + 2–4 min de Q&A** por turno.",
+            "**110–120** Cierre del curso.",
+            "El paquete debe estar **subido a ExamLab antes** de tu turno.",
+            "Sesión **síncrona**: la defensa no se reemplaza por video grabado.",
+        ]
+    else:
+        agenda = [
+            "**0–10** Encuadre: hoy avanzamos el PI en… + entregable concreto.",
+            "**10–40** Teoría Core breve (solo lo necesario para el taller PI).",
+            f"**40–100** Taller guiado PI (demo en vivo + {mod(c, 'agenda_taller_nota')}).",
+            "**100–115** Revisión de evidencias del PI.",
+            "**115–120** Cierre: criterio de éxito + plazo domingo 23:59.",
+        ]
+    content_slide(prs, "Agenda de hoy (120 min)", agenda, idx=idx)
     idx += 1
     content_slide(prs, "Objetivos de la clase", c["objetivos"], idx=idx)
     idx += 1
     entregable_bullets = [
         f"@@Entregable:@@ {c['entregable']}",
         f"Herramienta: **{c['herramienta']}**",
-        "Todo lo que construyan hoy entra al **informe/repo del PI** (no es lab suelto).",
+        ("Hoy no se construye: se **defiende** lo que ya está en el paquete del PI."
+         if c["tipo"] == "sustentacion"
+         else "Todo lo que construyan hoy entra al **informe/repo del PI** (no es lab suelto)."),
         mod(c, "equipo_note"),
     ]
     if c.get("ficha_bloques_note"):
@@ -1103,24 +1168,45 @@ def build_pptx(c: dict) -> Path:
     if cs:
         pseudo_code_slide(prs, cs[0], cs[1], caption=cs[2], idx=idx)
         idx += 1
-    content_slide(prs, "Taller PI (paso a paso)", [f"**{i+1}.** {p}" for i, p in enumerate(_pasos(c))], idx=idx)
+    pasos_titulo = ("Sustentación (paso a paso)" if c["tipo"] == "sustentacion"
+                    else "Taller PI (paso a paso)")
+    content_slide(prs, pasos_titulo, [f"**{i+1}.** {p}" for i, p in enumerate(_pasos(c))], idx=idx)
     idx += 1
-    box_note_slide(prs, "Para continuar (PI)", [
-        ("info", f"Entregable: {c['entregable']}"),
-        ("aclaracion", "Subir evidencias al paquete CloudLite (Drive/repo) y a ExamLab (https://examlab.lovable.app/) domingo 23:59."),
-        ("advertencia", "Sin cloud de pago ni instalaciones obligatorias de hipervisores/Docker Desktop."),
-    ], idx=idx)
+    if c["tipo"] == "sustentacion":
+        box_note_slide(prs, "Para continuar (PI)", [
+            ("info", f"Entregable: {c['entregable']}"),
+            ("aclaracion", "El paquete se sube a ExamLab (https://examlab.lovable.app/ · módulo Proyectos) **antes** del bloque de sustentaciones."),
+            ("advertencia", "La sustentación es **en vivo** y con Q&A: no se acepta video grabado en su lugar."),
+        ], idx=idx)
+    else:
+        box_note_slide(prs, "Para continuar (PI)", [
+            ("info", f"Entregable: {c['entregable']}"),
+            ("aclaracion", "Subir evidencias al paquete CloudLite (Drive/repo) y a ExamLab (https://examlab.lovable.app/) domingo 23:59."),
+            ("advertencia", "Sin cloud de pago ni instalaciones obligatorias de hipervisores/Docker Desktop."),
+        ], idx=idx)
     idx += 1
-    closing_slide(
-        prs,
-        f"Clase {n} · PI en movimiento",
-        [
-            c["pi_hoy"],
-            f"Evidencia: {c['entregable']}",
-            "Siguiente paso = siguiente hito del PI CloudLite",
-        ],
-        accent="Teoría al servicio del proyecto",
-    )
+    if c["tipo"] == "sustentacion":
+        closing_slide(
+            prs,
+            f"Clase {n} · cierre del PI CloudLite",
+            [
+                c["pi_hoy"],
+                f"Evidencia: {c['entregable']}",
+                "Conserva el repo (informe, diagramas, Dockerfile, ci.yml) como portafolio",
+            ],
+            accent="Arquitectura = decisiones documentadas con sus consecuencias",
+        )
+    else:
+        closing_slide(
+            prs,
+            f"Clase {n} · PI en movimiento",
+            [
+                c["pi_hoy"],
+                f"Evidencia: {c['entregable']}",
+                "Siguiente paso = siguiente hito del PI CloudLite",
+            ],
+            accent="Teoría al servicio del proyecto",
+        )
     prs.save(str(out))
     print("OK pptx ->", out)
     return out
@@ -1363,8 +1449,16 @@ def build_taller_docx(c: dict) -> Path | None:
         h2(doc, "8. Pistas (checklist vacío — sin solución)")
         bullets(doc, [f"☐ {p}" for p in tb["pistas"]])
     h2(doc, "9. Entrega")
-    para(doc, "Entrega en ExamLab (https://examlab.lovable.app/ · módulo Talleres) · domingo 23:59 (regla del Acuerdo). "
-              + mod(c, "entrega_unidad_note"))
+    if c["tipo"] == "sustentacion":
+        # No es un taller con plazo del domingo: la sesión es la sustentación en vivo,
+        # así que el paquete tiene que estar arriba ANTES del bloque.
+        para(doc, "El paquete final se sube a ExamLab (https://examlab.lovable.app/ · módulo Proyectos) "
+                  "ANTES del bloque de sustentaciones: quien llega a subir archivos consume su propio "
+                  "turno. La sustentación es en vivo (5–8 min de pitch + Q&A) en la sesión de clase; no "
+                  "se reemplaza por un video grabado. " + mod(c, "entrega_unidad_note"))
+    else:
+        para(doc, "Entrega en ExamLab (https://examlab.lovable.app/ · módulo Talleres) · domingo 23:59 (regla del Acuerdo). "
+                  + mod(c, "entrega_unidad_note"))
     if c.get("entrega_oficial_nota"):
         para(doc, c["entrega_oficial_nota"], shade="E8F4FA")
     # 10. Que encuentra en la plataforma. Antes el taller decia «suba el PNG a ExamLab»
@@ -1524,7 +1618,7 @@ DEMO_ARQ = {
     ]),
     15: ("Modelar una sustentacion de 6 minutos y un Q&A", [
         "Presente usted mismo un CloudLite de ejemplo en 6 minutos cronometrados, con la estructura: problema, decision clave, evidencia, limite conocido.",
-        "Hagase una pregunta dificil en voz alta y respondala: «por que no usaron microservicios? Porque con 3 personas la frontera no se justificaba».",
+        "Hagase una pregunta dificil en voz alta y respondala: «por que no uso microservicios? Porque el proyecto lo sostiene una sola persona y la frontera no se justificaba».",
         "Muestre la rubrica proyectada y senale donde habria perdido puntos su propia demo.",
         "Recuerde la regla de los 60 segundos: quien sustenta debe poder explicar cualquier parte del paquete, y si hubo equipo autorizado, cualquier integrante.",
     ]),
@@ -1816,13 +1910,73 @@ Resuelve bloqueos concretos de diagrama/ADR/lab. Usa las preguntas de comprobaci
 para detectar quién entendió y quién solo copió la plantilla. No adelantes contenido de Parcial.
 """
 
+    if c["tipo"] == "sustentacion":
+        plan_blocks = f"""### Modalidad de la sesión: sustentaciones EN VIVO
+Este bloque de 120 min se dedica íntegramente a las sustentaciones del Proyecto Integrador,
+con encuentro síncrono. **No es clase autónoma y no es parcial.** No autorices reemplazar la
+defensa por un video grabado: la sustentación es el único instrumento con el que verificas
+autoría de los otros puntos del PI, y el Q&A en vivo no se puede sustituir por un documento.
+El día cae en festivo de calendario, pero la sesión está destinada por decisión docente a
+sustentar: anúncialo por escrito una semana antes para que nadie asuma que no hay clase.
+
+### Antes de la sesión (semana previa)
+1. Publica el orden y la duración exacta del turno: **6 min de pitch + 2–4 min de Q&A**.
+   Con 12 sustentaciones eso es ~110 min; si el grupo es más grande, baja a 5 + 2 y avísalo
+   antes, nunca el mismo día.
+2. Exige el paquete subido a ExamLab (módulo Proyectos) **antes** del bloque: quien llega a
+   subir archivos consume el tiempo de otro. Verifica tú mismo que los enlaces abren.
+3. Ten a mano la rúbrica impresa por estudiante y la lista de preguntas de comprobación de
+   abajo, para no improvisar el Q&A ni preguntar lo mismo a todos.
+4. Si en la clase anterior no alcanzaron a ensayar, modela tú el formato antes de abrir turnos
+   (no dentro de este bloque: no hay tiempo para eso y una sustentación menos):
+
+{_demo_md(n)}
+
+### 0–10 · Encuadre y orden de turnos
+Di casi literal:
+> "Hoy sustentamos. 6 minutos de pitch y hasta 4 de preguntas. Yo corto a los 6 minutos: si no
+> llegaron a seguridad, costos y escala, esa parte no se califica. El orden lo sorteo ahora."
+
+**[Nota docente]:** sortea el orden delante del grupo (evita el reclamo de «me tocó primero»),
+proyecta el cronómetro y pide que el resto escuche: cerramos el curso entre todos.
+
+### 10–110 · Sustentaciones (turnos consecutivos)
+Por cada turno, en este orden:
+1. **6 min de pitch.** No interrumpas ni siquiera para corregir un error: se anota y se pregunta
+   después. Corta seco a los 6 min.
+2. **2–4 min de Q&A.** Haz siempre una pregunta de verificación («muéstrame el .yml del
+   workflow»), una de profundización («¿por qué la base de datos no está en el mismo contenedor
+   que la API?») y, si queda tiempo, una hipotética («si el tráfico se multiplica por diez el
+   lunes, ¿qué pieza se rompe primero?»). En equipo autorizado, dirige cada pregunta a un
+   integrante distinto y **no** dejes que responda siempre el mismo.
+3. **Cierra el turno con la nota puesta**, no al final del día: la rúbrica se llena en caliente
+   mientras recuerdas la respuesta exacta.
+
+**[Nota docente]:** frase de rescate cuando el estudiante se bloquea, para no perder el turno:
+> "Déjame la respuesta pendiente y sigue con el siguiente bloque; vuelvo a preguntar al final."
+
+### 110–120 · Cierre del curso
+Di casi literal:
+> "Lo que entregaron —diagramas, Dockerfile, workflow, informe— es un portafolio real: no lo
+> borren al terminar el semestre. Arquitectura no es una lista de logos de proveedores, es un
+> conjunto de decisiones documentadas con sus consecuencias."
+
+Recuerda los pesos sin abrir discusión de notas: el PI vale **20% del Corte 3** y el Parcial 3
+ya se aplicó en su propia sesión; el proyecto no reemplaza ni compensa el parcial.
+
+### Si un estudiante no se presenta o falla la conexión
+Deja constancia escrita en el momento (hora, motivo) y reprograma dentro de la misma semana con
+Meet, sustentando igualmente en vivo. Aceptar un video grabado «por esta vez» convierte la
+excepción en la regla del semestre siguiente y elimina el Q&A, que es la mitad de lo que evalúas.
+"""
+
     pasos = "\n".join(f"{i+1}. {p}" for i, p in enumerate(_pasos(c)))
     return f"""# Guion docente — Clase {n}: {c['tema']}
 
 ## Información de la clase
 - Asignatura: Arquitectura de Sistemas Computacionales (FI303380)
 - Duración del bloque: **120 min**
-- Tipo: {"Actividad autónoma" if c["tipo"] == "autonoma" else "Clase regular (teoría + taller PI)"}
+- Tipo: {TIPO_LABEL[c["tipo"]]}
 - Enfoque: **Proyecto Integrador CloudLite App** (parte práctica)
 - Sin fechas de periodo · sin bio · sin mapa completo del curso
 
@@ -1857,7 +2011,7 @@ Referencia de slides: `Clases/Clase {n} - {c['slug']}/Presentacion.pptx` (solo t
 {_lista_md(ERRORES_ARQ.get(n, [])) or "- Sin errores catalogados para esta clase."}
 
 ## Preguntas de comprobación oral (no son del quiz)
-Úsalas en el tramo 100–115, a personas distintas y al azar.
+{"Úsalas como Q&A al cerrar cada turno de sustentación, variándolas entre estudiantes." if c["tipo"] == "sustentacion" else "Úsalas en el tramo 100–115, a personas distintas y al azar."}
 {_lista_md(PREGUNTAS_ARQ.get(n, []), bullet="1. ") or "- Sin preguntas catalogadas para esta clase."}
 
 ## Solución del taller (privada)

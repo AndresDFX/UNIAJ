@@ -5,7 +5,7 @@
 **Resumen:** Pública/Privada/Datos; DB no pública.
 
 ## Alineacion al enunciado estudiante
-- Taller: `Clases/Clase 7 - Redes y almacenamiento cloud/Taller Clase 7 - CloudLite.docx`
+- Taller: `Clases/Clase 7 - Redes y almacenamiento cloud/Taller Clase 7 — Despliegue y storage CloudLite.docx`
 - Hito PI: Diagrama de despliegue: red, zonas, almacenamiento
 - Entregable: Deployment draw.io + eleccion de storage conceptual
 

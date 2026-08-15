@@ -10,7 +10,7 @@
 5. Paso 5 resuelto. Al consolidar aparece al menos una inconsistencia clasica, por ejemplo que en el diagrama de clases el atributo se llama fechaNacimiento, en el diccionario de datos aparece como fecha_nac y en la pantalla el rotulo dice Fecha de nacimiento aproximada. Se unifica a fecha_nacimiento en modelo y diccionario, se deja el rotulo humano en la pantalla y se anota la correccion en la bitacora de la version 1.0. El indice del documento final queda con nueve secciones, desde problema y alcance hasta acta de entrega.
 
 ## Rubrica corta
-- [ ] Guion cronometrado en el orden correcto y con reparto real de todo el equipo (3)
+- [ ] Guion cronometrado en el orden correcto, con los 5 bloques con minutos y evidencia y sin bloques huerfanos (si hay equipo autorizado, todos los integrantes con minimo 2 minutos) (3)
 - [ ] Tabla de tres decisiones con alternativa, criterio y consecuencia (3)
 - [ ] Banco de diez preguntas con respuestas de dos frases, incluyendo concurrencia, RNF y alcance (2)
 - [ ] Documento final consolidado con indice, version e inconsistencia corregida documentada (2)

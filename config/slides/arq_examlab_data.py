@@ -224,8 +224,8 @@ EXAMLAB = {1: {'pasos': ['Paso 1: elija un dominio concreto entre AgendaU, Bibli
      'titulo': 'Taller Clase 1 en ExamLab - Ficha y C4 Context de CloudLite App'},
  2: {'pasos': ['Paso 1: relea la ficha y el C4 Context de la Clase 1 y copie en el encabezado del '
                'ADR el nombre del dominio y las 4 capacidades ya aprobadas, verificando que sean '
-               'literalmente las mismas 4 y que no cambia de dominio a mitad de camino, porque al '
-               'ser clase autonoma nadie corregira la inconsistencia antes de la entrega.',
+               'literalmente las mismas 4 y que no cambia de dominio a mitad de camino, porque una '
+               'inconsistencia aqui arrastra error en todos los diagramas que siguen.',
                'Paso 2: complete la matriz de 4 columnas y 5 filas (control del sistema operativo, '
                'esfuerzo de operacion, tiempo hasta la primera demo, costo cualitativo con su '
                'driver, portabilidad) puntuando cada celda de 1 a 3 y sumando por columna, '
@@ -2337,13 +2337,13 @@ EXAMLAB = {1: {'pasos': ['Paso 1: elija un dominio concreto entre AgendaU, Bibli
                 'rendimiento, cada una con respuesta de maximo 4 lineas que cite la evidencia del '
                 'paquete, verificando que ninguna respuesta sea no lo alcanzamos a hacer sin '
                 'nombrar la decision consciente que tomaron.',
-                'Paso 4: graben o presenten el pitch de 5 a 8 minutos segun la instruccion del '
-                'docente y registren la tabla de tiempos reales por seccion con quien '
-                'hablo en cada una, verificando que el tiempo total quede entre 5 y 8 minutos y que el enlace '
-                'del video, si lo graban, se abra sin pedir permisos.',
+                'Paso 4: ensayen el pitch con cronometro ANTES de la sesion y registren la tabla de '
+                'tiempos reales por seccion con quien hablo en cada una, verificando que el tiempo '
+                'total quede entre 5 y 8 minutos; la sustentacion se hace EN VIVO en la sesion de '
+                'clase, con preguntas del docente al cierre, no con un video grabado.',
                 'Paso 5: escriban la reflexion de media pagina sobre el trade-off mas difícil y '
                 'suban el paquete final completo mas las 5 preguntas a ExamLab (modulo Proyectos) '
-                'en la fecha acordada, verificando que el informe, los diagramas, la evidencia del '
+                'ANTES de su turno de sustentacion, verificando que el informe, los diagramas, la evidencia del '
                 'lab, el ci.yml y la presentacion esten los cinco dentro del mismo paquete.'],
       'preguntas': [{'enunciado': '## Indice del paquete final\n'
                                   '\n'
@@ -2362,8 +2362,8 @@ EXAMLAB = {1: {'pasos': ['Paso 1: elija un dominio concreto entre AgendaU, Bibli
                                   '6. Seccion de seguridad con tabla STRIDE y politica de '
                                   'secretos.\n'
                                   '7. Secciones de costos, sostenibilidad y escalabilidad.\n'
-                                  '8. Presentacion de sustentacion (diapositivas o guion) y enlace '
-                                  'al video si aplica.\n'
+                                  '8. Presentacion de sustentacion (diapositivas o guion del pitch '
+                                  'que va a defender en vivo).\n'
                                   '\n'
                                   'Reglas de verificacion:\n'
                                   '- `Estado` usa **solo** `completo` o `parcial`; si es '
@@ -2510,11 +2510,11 @@ EXAMLAB = {1: {'pasos': ['Paso 1: elija un dominio concreto entre AgendaU, Bibli
                      'tipo': 'abierta'},
                     {'enunciado': '## Evidencia del pitch y tiempos reales\n'
                                   '\n'
-                                  '**Parte A.** Segun la instruccion del docente, pegue el '
-                                  '**enlace al video del pitch** (5 a 8 minutos) o la **fecha y '
-                                  'hora de la presentacion en vivo**. Si es enlace, escriba la '
-                                  'linea `verificado en ventana privada el <fecha>` confirmando '
-                                  'que abre sin pedir permisos.\n'
+                                  '**Parte A.** Escriba la **fecha y hora de su turno de '
+                                  'sustentacion en vivo** (la sesion de cierre del curso) y '
+                                  'confirme en una linea que el paquete final ya quedo subido '
+                                  '**antes** de ese turno: `paquete subido el <fecha>, verificado '
+                                  'en ventana privada`.\n'
                                   '\n'
                                   '**Parte B.** Construya una tabla de **4 columnas** con '
                                   'encabezados exactos:\n'
@@ -2538,8 +2538,9 @@ EXAMLAB = {1: {'pasos': ['Paso 1: elija un dominio concreto entre AgendaU, Bibli
                                   'segunda linea con la nota al trabajo del equipo y su hecho '
                                   'concreto.',
                      'puntos': 15,
-                     'rubrica': '5 pts el enlace o la fecha del pitch con la verificacion de '
-                                'acceso. 6 pts la tabla de 6 secciones con tiempo real, quien hablo '
+                     'rubrica': '5 pts la fecha y hora del turno de sustentacion con la '
+                                'confirmacion de paquete subido antes. 6 pts la tabla de 6 '
+                                'secciones con tiempo real, quien hablo '
                                 'y evidencia. 3 pts el total entre 5:00 y 8:00 o el recorte '
                                 'propuesto si se paso. 1 pt la autoevaluacion con hecho concreto.',
                      'tipo': 'abierta'}],

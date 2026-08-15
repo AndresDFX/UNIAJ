@@ -40,7 +40,7 @@
 | 10 | 29/10/2026 | Virtual (síncrona) | Clase 11 + Clase 12 **(doble)** | Avance proyecto integrador + Diagramas UML avanzados | sesión doble: cubre Clase 11 + Clase 12 del material en un bloque de 120 min |
 | 11 | 05/11/2026 | Virtual (síncrona) | Clase 13 | Diseño de interfaces | — |
 | 12 | 12/11/2026 | Virtual (síncrona) | Clase 14 | Preparación de la sustentación y cierre | — |
-| 13 | 19/11/2026 | Presencial (síncrona) | Clase 15 | PARCIAL 3 + sustentación de proyectos y cierre | parcial presencial síncrono |
+| 13 | 19/11/2026 | Presencial (síncrona) | Clase 15 | PARCIAL 3 (solo evaluación) | parcial presencial síncrono |
 
 ## Sesiones dobles
 

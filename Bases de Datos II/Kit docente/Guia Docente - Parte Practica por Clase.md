@@ -600,7 +600,7 @@ END;
 
 ## Clase 15 — Presentacion PI · Cierre VetCare
 
-**Objetivo practico:** Sustentacion / entrega final del PI (20% Corte 3)
+**Objetivo practico:** Sustentacion en vivo y entrega final del PI (20% Corte 3)
 **Por que importa:** cierre segun rúbrica 20% Corte 3.
 
 **Demo en vivo:**
@@ -609,15 +609,17 @@ END;
 - Esta clase no requiere script SQL nuevo: es analisis/discusion sobre lo ya construido.
 
 **Pasos guiados del taller:**
-1. Entregar paquete final en ExamLab (modulo Proyectos).
-2. Sustentar 5-8 min (sincrono o asincrono).
-3. Autoevaluacion: que harian distinto.
-4. Cierre del curso.
+1. Subir el paquete final a ExamLab (modulo Proyectos) ANTES de su turno.
+2. Sustentar en vivo 5-8 min con el ER y una ejecucion real en pantalla.
+3. Responder el Q&A en vivo del docente (preguntas al azar sobre su modelo).
+4. Autoevaluacion: que harian distinto.
+5. Cierre del curso.
 
-**Entregable:** ZIP/PDF final + video o Meet segun indique docente
+**Entregable:** ZIP/PDF final subido antes del turno + sustentacion en vivo 5-8 min + Q&A
 **Criterios de exito:**
-- ZIP/PDF en ExamLab.
-- Sustentacion 5-8 min.
+- ZIP/PDF en ExamLab ANTES del turno.
+- Sustentacion en vivo de 5-8 min.
+- Q&A respondido en vivo (preguntas al azar).
 - Autoevaluacion.
 - Cierre.
 

@@ -13,11 +13,11 @@
 - [ ] Ejecucion del proyecto ajeno y reporte de los cuatro casos borde con evidencia textual (3)
 - [ ] Checklist completo con evidencia archivo:linea en cada 'no cumple' (2)
 - [ ] Cinco hallazgos priorizados y redactados con Evidencia + Impacto + Sugerencia (3)
-- [ ] Plan de corrección del equipo autor con decisión y responsable por hallazgo (2)
+- [ ] Plan de corrección del autor del proyecto con decisión y responsable por hallazgo (2)
 
 ## Errores frecuentes
 - Revisar sin ejecutar: el informe se llena de comentarios de estilo y se le escapan el NullPointerException y la búsqueda que nunca encuentra, que son los dos hallazgos que de verdad importan.
-- Redactar sobre la persona ('no saben programar', 'les quedó muy mal hecho') en vez de sobre el código, con lo cual el equipo autor se pone a la defensiva y no corrige nada.
-- Entregar treinta comentarios sin priorizar y todos del mismo peso, mezclando un catch vacío que pierde datos con una línea en blanco de más; el equipo autor no sabe por dónde empezar y termina no atendiendo ninguno.
+- Redactar sobre la persona ('no sabe programar', 'le quedó muy mal hecho') en vez de sobre el código, con lo cual el autor se pone a la defensiva y no corrige nada.
+- Entregar treinta comentarios sin priorizar y todos del mismo peso, mezclando un catch vacío que pierde datos con una línea en blanco de más; el autor no sabe por dónde empezar y termina no atendiendo ninguno.
 
 Codigo de apoyo: `Kit docente/Clase 11/Codigo/VetCareParaRevisar.java`

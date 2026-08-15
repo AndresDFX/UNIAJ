@@ -1,7 +1,7 @@
 # Guion docente · Clase 2 · Administracion de BD · Roles VetCare
 
 - **Curso:** Bases de Datos II (FI303215) · 120 min
-- **Tipo:** AUTONOMA (festivo)
+- **Tipo:** REGULAR (sincrona)
 - **Hilo:** Proyecto Integrador **VetCare DB**
 - **Hoy avanzamos el PI en:** Plan de roles/privilegios de VetCare
 - **Entregable de hoy:** Documento Roles_VetCare + script GRANT/REVOKE (o plan equivalente)
@@ -25,7 +25,7 @@ del PI VetCare. La teoria se limita a desbloquear el taller.
 
 ### Desarrollo del tema (para dictar sin consultar otra fuente)
 
-Administrar una base de datos es decidir y hacer cumplir quien puede hacer que sobre cada objeto, y dejar rastro de quien lo hizo. Antes de llegar a la sintaxis conviene fijar cuatro terminos que se usan sueltos y se confunden todo el tiempo. Un objeto de base de datos es cualquier cosa que el motor guarda y a la que se le puede poner nombre: una tabla como Mascota, una vista, un procedimiento, una secuencia. Un esquema es el conjunto de objetos que pertenecen a un mismo propietario; en Oracle, esquema y usuario son practicamente lo mismo, y por eso VETCARE.MASCOTA se lee como «la tabla Mascota del esquema VETCARE». Autenticacion es probar quien es usted, con usuario y clave o con un certificado. Autorizacion es decidir que puede hacer una vez que ya esta dentro. Son etapas distintas, se controlan con mecanismos distintos, y un usuario puede autenticarse perfectamente y no tener permiso para leer ni una sola fila. Esta clase es autonoma, sin encuentro sincrono, asi que este texto debe alcanzar para que el estudiante trabaje solo y para que el docente responda por escrito con el mismo material cuando alguien pregunte.
+Administrar una base de datos es decidir y hacer cumplir quien puede hacer que sobre cada objeto, y dejar rastro de quien lo hizo. Antes de llegar a la sintaxis conviene fijar cuatro terminos que se usan sueltos y se confunden todo el tiempo. Un objeto de base de datos es cualquier cosa que el motor guarda y a la que se le puede poner nombre: una tabla como Mascota, una vista, un procedimiento, una secuencia. Un esquema es el conjunto de objetos que pertenecen a un mismo propietario; en Oracle, esquema y usuario son practicamente lo mismo, y por eso VETCARE.MASCOTA se lee como «la tabla Mascota del esquema VETCARE». Autenticacion es probar quien es usted, con usuario y clave o con un certificado. Autorizacion es decidir que puede hacer una vez que ya esta dentro. Son etapas distintas, se controlan con mecanismos distintos, y un usuario puede autenticarse perfectamente y no tener permiso para leer ni una sola fila. Esta clase se dicta en sesion virtual sincrona, en el bloque normal de 120 minutos: hay explicacion en vivo, taller acompanado y espacio para preguntar, asi que este texto es el material con el que el docente dicta y no una lectura que sustituya la clase. Conviene aprovechar precisamente eso, porque los permisos son el tema del curso donde el estudiante mas necesita que alguien le diga en el momento por que su GRANT no surtio efecto.
 
 Un privilegio es un permiso atomico: la unidad mas pequena de autorizacion que el motor sabe otorgar o quitar. Se dividen en dos familias que los estudiantes mezclan constantemente. Los privilegios de sistema habilitan acciones sobre el motor en general: CREATE SESSION para poder conectarse, CREATE TABLE, CREATE PROCEDURE, CREATE ROLE. Los privilegios de objeto habilitan acciones sobre un objeto concreto: SELECT, INSERT, UPDATE y DELETE sobre una tabla, EXECUTE sobre un procedimiento o una funcion, y REFERENCES para poder crear una clave foranea que apunte a esa tabla. La distincion practica que hay que dejar clara es la que separa DDL de DML. DDL, Data Definition Language, son las sentencias que cambian la estructura: CREATE, ALTER, DROP, TRUNCATE. DML, Data Manipulation Language, son las que leen o cambian los datos sin tocar la estructura: SELECT, INSERT, UPDATE, DELETE. Un recepcionista de la clinica Huellitas necesita DML sobre unas pocas tablas y nunca necesita DDL. Si su cuenta puede ejecutar DROP TABLE cita, un error de copiar y pegar borra la agenda completa, y ningun respaldo de la noche anterior devuelve las citas que se agendaron hoy.
 
@@ -59,25 +59,52 @@ Error tipico del docente que no domina el tema: el primero es crear un unico usu
 10. Slide Cierre
 11. Solucion PRIVADA: Kit docente/Clase N/Solucion Taller Clase N - VetCare.docx
 
-## Plan minuto a minuto (120 min equivalentes — trabajo autonomo)
+## Plan minuto a minuto (120 min) — texto casi literal
 
-> El estudiante trabaja sin encuentro sincrono. Usted publica este guion resumido + taller en ExamLab.
+### 0-10 · Encuadre
+**Decir:** «Buenas. Hoy el hilo es VetCare DB. Avanzamos el PI en: Plan de roles/privilegios de VetCare.
+La teoria sera corta; el peso esta en el taller del proyecto.»
+Mostrar slide Agenda + Objetivo PI.
+Pasar asistencia. Recordar herramientas gratis+nube.
 
-### Bloque A (0-20) · Encuadre PI
-**Decir/publicar:** «Hoy avanzamos el PI en: Plan de roles/privilegios de VetCare. No es un taller suelto.»
-Referencia slides: Agenda + Objetivo PI.
+### 10-35 · Teoria Core (breve)
+**Decir:** «Solo lo necesario para el entregable de hoy.»
+Cubrir:
+- Administracion de BD = gestionar QUIEN puede hacer QUE sobre CADA objeto. Tres piezas: usuario (identidad que se conecta), rol (paquete de privilegios con nombre, ej. RECEPCION), privilegio (permiso atomico: SELECT, INSERT, UPDATE, DELETE, EXECUTE sobre un objeto concreto).
+- Principio de minimo privilegio: cada rol recibe solo lo que necesita para su funcion, ni un privilegio mas. No es paranoia, es reduccion de superficie de dano: si roban la sesion de un recepcionista, no debe poder borrar el historial clinico ni ver nomina.
+- Separacion de funciones (segregation of duties): quien disena/modifica el esquema (DDL: CREATE/ALTER/DROP) no deberia ser la misma cuenta que opera datos del dia a dia (DML: INSERT/UPDATE/DELETE), y quien audita solo deberia leer (SELECT), nunca escribir.
+- GRANT otorga un privilegio a un rol o usuario; REVOKE lo retira. Un rol se puede asignar a varios usuarios (todos los recepcionistas heredan el rol RECEPCION) y modificar en un solo lugar en vez de uno por uno.
+- Error de docente que no domina el tema: crear un unico usuario 'admin' que todos comparten (rompe la trazabilidad de auditoria) o dar DBA/ALL PRIVILEGES a todo el mundo 'para que no falle nada' — exactamente lo opuesto a minimo privilegio.
+- En el playground (Live SQL / DB Fiddle) el motor puede restringir CREATE ROLE o GRANT reales: cuando eso pase, el estudiante redacta la matriz rol x objeto x privilegio como documento/plan, y ejecuta lo que el playground SI permita como evidencia parcial — no es escusa para omitir el analisis.
+Referencia: slide Teoria Core.
+Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### Bloque B (20-45) · Teoria minima
-Leer Teoria Core. Tomar notas en el informe del PI.
-
-### Bloque C (45-100) · Practica = entregable PI
-Seguir el taller estudiante. Herramienta: Oracle Live SQL / DB Fiddle + Google Docs.
-Salida esperada de la practica (publiquela junto al enunciado para que el
-estudiante autonomo sepa si le quedo bien):
+### 35-55 · Demo paso a paso
+**Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
+Demo: Matriz rol x objeto x privilegio sobre tablas VetCare.
+Herramienta: Oracle Live SQL / DB Fiddle + Google Docs
 📸 Pantallazo: [CAP: demo VetCare Clase 2]
+Dejar script/enlace en el chat o en ExamLab.
 
-### Bloque D (100-120) · Empaquetado y cierre
-Subir entregable a ExamLab. Actualizar el checklist PI del proyecto.
+### 55-105 · Taller guiado = tarea del PI
+**Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
+Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
+Actividades:
+1. Definir >=4 roles (ADMIN_BD, RECEPCION, VETERINARIO, AUDITOR).
+2. Matriz SELECT/INSERT/UPDATE/DELETE/EXECUTE por objeto clave.
+3. Justificar privilegio minimo (least privilege).
+4. Redactar 1 pagina: politica de altas/bajas de usuarios.
+Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
+Entregable: Documento Roles_VetCare + script GRANT/REVOKE (o plan equivalente)
+📸 Pantallazo: [CAP: avance del estudiante / playground Clase 2]
+
+### 105-115 · Criterios de exito + quiz corto
+Repasar checklist del dia (slide Criterios).
+Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 2 - VetCare.docx`. Clave para usted: `Quiz Clase 2 - CLAVE DOCENTE.docx` (**no proyectar**).
+
+### 115-120 · Cierre
+**Decir:** «Queda avanzado: Plan de roles/privilegios de VetCare. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
+Slide cierre. Dudas finales.
 
 
 ## Codigo / scripts

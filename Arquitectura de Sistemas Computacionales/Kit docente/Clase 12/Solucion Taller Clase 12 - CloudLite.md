@@ -5,7 +5,7 @@
 **Resumen:** Escenario pico + guion pitch 5-8 min.
 
 ## Alineacion al enunciado estudiante
-- Taller: `Clases/Clase 12 - Pruebas de rendimiento y preparacion final/Taller Clase 12 - CloudLite.docx`
+- Taller: `Clases/Clase 12 - Pruebas de rendimiento y preparacion final/Taller Clase 12 — Rendimiento y ensayo CloudLite.docx`
 - Hito PI: Escenario de rendimiento + ensayo pitch 5-8 min
 - Entregable: Seccion Rendimiento + guion de pitch + paquete casi-final
 

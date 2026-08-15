@@ -1,7 +1,7 @@
 # Taller de la Clase 2 en ExamLab - configuracion
 
 - **Curso:** Bases de Datos II (FI303215)
-- **Taller:** Taller Clase 2 en ExamLab - Administracion de BD y roles de VetCare (clase autonoma)
+- **Taller:** Taller Clase 2 en ExamLab - Administracion de BD y roles de VetCare
 - **Preguntas:** 5 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
 - **Hito del PI:** Plan de roles/privilegios de VetCare
@@ -23,7 +23,7 @@
 
 ## 1. Crear los roles de VetCare y otorgar privilegios
 
-**Esta es una clase autonoma: lee con calma, todo lo que necesitas esta aqui.**
+**Todo lo que necesitas esta aqui; si algo no te corre, preguntalo en clase antes de irte.**
 
 El esquema de VetCare (`dueno`, `mascota`, `veterinario`, `cita`, `consulta`, `insumo`, `factura`, `detalle_factura`) ya esta creado y poblado.
 

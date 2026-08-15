@@ -5,7 +5,7 @@
 **Resumen:** API horizontal; DB no escala igual.
 
 ## Alineacion al enunciado estudiante
-- Taller: `Clases/Clase 13 - Escalabilidad automatica/Actividad autonoma Clase 13 - CloudLite.docx`
+- Taller: `Clases/Clase 13 - Escalabilidad automatica/Actividad autónoma Clase 13 — Autoescalado CloudLite.docx`
 - Hito PI: Documentar politica de autoescalado conceptual CloudLite
 - Entregable: Seccion Escalabilidad: triggers, limites, que escala y que no
 

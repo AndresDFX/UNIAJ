@@ -5,7 +5,7 @@
 **Resumen:** Decisión tipica: PaaS conceptual + SaaS satélite.
 
 ## Alineacion al enunciado estudiante
-- Taller: `Clases/Clase 2 - Modelos de servicio IaaS PaaS SaaS/Actividad autonoma Clase 2 - CloudLite.docx`
+- Taller: `Clases/Clase 2 - Modelos de servicio IaaS PaaS SaaS/Taller Clase 2 — ADR modelo de servicio CloudLite.docx`
 - Hito PI: Decidir modelo dominante IaaS/PaaS/SaaS para CloudLite + ADR
 - Entregable: ADR-001 decision de modelo de servicio + matriz del dominio
 

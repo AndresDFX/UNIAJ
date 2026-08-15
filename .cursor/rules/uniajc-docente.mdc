@@ -13,9 +13,9 @@ alwaysApply: true
 
 ## Periodo vigente: 2026-2
 
-- **Ventana académica:** **10/08/2026 – 22/11/2026**.
-- Fuente de calendario/cortes: `config/calendario/semestre_2026_2.json` (Prog II / Seminario: `Plan curso/2026-1/`; BD II / Arquitectura: `Plan curso/2026-2/`).
-- Festivos en rango: **17/08**, **12/10**, **02/11**, **16/11** de 2026.
+- **Ventana académica:** **24/08/2026 – 22/11/2026** (semestre acortado: 13 sesiones que cubren los 15 temas; 2 sesiones dobles por curso).
+- Fuente de calendario/cortes: `config/calendario/semestre_2026_2.json` (los 4 cursos: `Plan curso/2026-2/`).
+- Festivos en rango: **12/10**, **02/11**, **16/11** de 2026 (el **17/08** quedó fuera al mover el inicio al 24/08). Solo afectan a los cursos de lunes (BD II y Arquitectura): sesiones 8 y 11 autónomas, y la sesión 13 (16/11) dedicada a sustentaciones del PI.
 - **Regla de festivos:** no omitir clases; marcarlas como **clase autónoma**.
 - **Regla de parciales:** síncronos; **NUNCA** en festivo ni clase autónoma. Si el cierre del corte es autónoma → parcial en la **última clase regular anterior** del corte. Modalidad del parcial (presencial/virtual) = según curso (ver abajo).
 - **Día de parcial = solo evaluación:** sin tema técnico mezclado (no «Tema · Parcial N»). Temas reasignados a la clase regular anterior. Prep PI / sustentación en clase regular anterior; el día del parcial es solo el parcial.

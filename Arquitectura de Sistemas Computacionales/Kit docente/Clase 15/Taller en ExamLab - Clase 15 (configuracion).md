@@ -4,8 +4,8 @@
 - **Taller:** Taller Clase 15 en ExamLab - Entrega final y sustentacion de CloudLite
 - **Preguntas:** 5 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
-- **Hito del PI:** Sustentación / entrega final del PI CloudLite App
-- **Entregable de la clase:** Paquete final + presentación 5–8 min (entrega en ExamLab · módulo Proyectos)
+- **Hito del PI:** Sustentar en vivo el PI CloudLite App y entregar el paquete final
+- **Entregable de la clase:** Paquete final en ExamLab (módulo Proyectos) + pitch de 5–8 min sustentado hoy en clase + Q&A
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
@@ -36,7 +36,7 @@ con **exactamente 8 filas**, en este orden:
 5. Workflow `ci.yml` y enlace al run verde.
 6. Seccion de seguridad con tabla STRIDE y politica de secretos.
 7. Secciones de costos, sostenibilidad y escalabilidad.
-8. Presentacion de sustentacion (diapositivas o guion) y enlace al video si aplica.
+8. Presentacion de sustentacion (diapositivas o guion del pitch que va a defender en vivo).
 
 Reglas de verificacion:
 - `Estado` usa **solo** `completo` o `parcial`; si es `parcial`, agregue entre parentesis **que falta**.
@@ -175,7 +175,7 @@ Es una reflexion tecnica, no una carta de agradecimiento: cada bloque debe poder
 
 ## Evidencia del pitch y tiempos reales
 
-**Parte A.** Segun la instruccion del docente, pegue el **enlace al video del pitch** (5 a 8 minutos) o la **fecha y hora de la presentacion en vivo**. Si es enlace, escriba la linea `verificado en ventana privada el <fecha>` confirmando que abre sin pedir permisos.
+**Parte A.** Escriba la **fecha y hora de su turno de sustentacion en vivo** (la sesion de cierre del curso) y confirme en una linea que el paquete final ya quedo subido **antes** de ese turno: `paquete subido el <fecha>, verificado en ventana privada`.
 
 **Parte B.** Construya una tabla de **4 columnas** con encabezados exactos:
 
@@ -189,7 +189,7 @@ Escriba debajo el **total real en minutos y segundos** y verifique que quede **e
 
 **Rubrica esperada (campo Rubrica):**
 
-5 pts el enlace o la fecha del pitch con la verificacion de acceso. 6 pts la tabla de 6 secciones con tiempo real, quien hablo y evidencia. 3 pts el total entre 5:00 y 8:00 o el recorte propuesto si se paso. 1 pt la autoevaluacion con hecho concreto.
+5 pts la fecha y hora del turno de sustentacion con la confirmacion de paquete subido antes. 6 pts la tabla de 6 secciones con tiempo real, quien hablo y evidencia. 3 pts el total entre 5:00 y 8:00 o el recorte propuesto si se paso. 1 pt la autoevaluacion con hecho concreto.
 
 ---
 

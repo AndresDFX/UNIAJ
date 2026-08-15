@@ -248,7 +248,7 @@ TALLER_BLOQUE = {
         'contexto': [
             '@@Por qué importa al PI:@@ roles son evidencia de administración.',
             'Least privilege evita que Recepción borre historial.',
-            'Autónoma: documentar matriz aunque el playground no persista usuarios.',
+            'Si el playground no persiste usuarios, la matriz igual se documenta: es el entregable.',
         ],
         'objetivo': 'Plan de roles/privilegios VetCare (>=4 roles).',
         'criterios': [
@@ -465,15 +465,17 @@ TALLER_BLOQUE = {
             '@@Por qué importa al PI:@@ cierre segun rúbrica 20% Corte 3.',
             'No confundir con Parcial 3 (Clase 14).',
         ],
-        'objetivo': 'Paquete final + sustentacion 5-8 min.',
+        'objetivo': 'Paquete final entregado + sustentacion en vivo de 5-8 min con Q&A.',
         'criterios': [
-            'ZIP/PDF en ExamLab.',
-            'Sustentacion 5-8 min.',
+            'ZIP/PDF en ExamLab ANTES del turno.',
+            'Sustentacion en vivo de 5-8 min.',
+            'Q&A respondido en vivo (preguntas al azar).',
             'Autoevaluacion.',
             'Cierre.',
         ],
         'escenario': [
             'Checklist empaquetado del enunciado PI.',
+            'Turnos consecutivos en el bloque; el orden se sortea al abrir la sesion.',
         ],
         'pistas': [
             '□ Falta evidencia?',
