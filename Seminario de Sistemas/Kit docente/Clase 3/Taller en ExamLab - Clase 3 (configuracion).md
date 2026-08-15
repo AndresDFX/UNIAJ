@@ -157,7 +157,7 @@ El ERS de VetCare v1.0 esta aprobado como linea base. Segun una metodologia trad
 **Opciones:**
 
 - [ ] El documento queda congelado y ningun requisito puede cambiar hasta que termine el proyecto.
-- [ ] Cualquier integrante puede editar el documento siempre que avise por el grupo de WhatsApp del equipo.
+- [ ] Cualquiera puede editar el documento siempre que avise por WhatsApp.
 - [x] Todo cambio posterior debe entrar por una solicitud formal, ser evaluado en su impacto sobre diseno y pruebas, aprobarse o rechazarse con justificacion y generar una nueva version del documento.
 - [ ] La linea base solo aplica a los requisitos funcionales; los requisitos no funcionales se pueden ajustar libremente porque no afectan el diseno.
 

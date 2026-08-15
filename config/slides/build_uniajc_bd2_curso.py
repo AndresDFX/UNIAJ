@@ -37,6 +37,33 @@ from uniajc_slides_engine import (
 
 )
 
+import calendario_2026_2 as cal
+
+CURSO_KEY = "bases_datos_ii"
+
+# Temas del material ya construido (carpetas «Clase N», que NO se renumeran).
+# El calendario 2026-2 (13 sesiones) decide en qué sesión se dicta cada uno; dos
+# sesiones son dobles y la sesión 13 (16/11) es de sustentaciones del PI VetCare.
+TEMAS_MATERIAL = {
+    1: "Diagnóstico · Revisión de Bases de Datos I",
+    2: "Administración de bases de datos",
+    3: "Procedimientos almacenados",
+    4: "Funciones y disparadores · Seguridad y respaldo",
+    5: "Repaso y evaluación del corte 1",
+    6: "Optimización de consultas",
+    7: "Índices y particionamiento",
+    8: "Tuning y gestión de transacciones",
+    9: "Repaso y evaluación del corte 2",
+    10: "Control de concurrencia",
+    11: "Avance del proyecto final",
+    12: "Integración de apps externas · Preparación final",
+    13: "Análisis de casos reales",
+    14: "Repaso y evaluación del corte 3",
+    15: "Presentación del proyecto + cierre",
+}
+
+CT = cal.cortes(CURSO_KEY)
+
 
 
 
@@ -211,11 +238,11 @@ def build():
 
 
 
-        '**Clase 1** (material en archivo aparte) = diagnóstico de conocimientos previos + arranque temático — mismo bloque de hoy.',
+        '**Sesión 1** (material «Clase 1», archivo aparte) = diagnóstico de conocimientos previos + arranque temático — mismo bloque de hoy.',
 
 
 
-        'Cada lunes (120 min): **Teoría Core** → **Taller / laboratorio en la nube** → cierre. Modalidad: **Presencialidad asistida**: Clase 1 y parciales **presencial**; resto **virtual síncrona**; festivos = **clase autónoma**.',
+        'Cada lunes (120 min): **Teoría Core** → **Taller / laboratorio en la nube** → cierre. **13 sesiones**: sesión 1 y parciales (**5 / 9 / 12**) **presencial**; resto **virtual síncrona**; festivos = **clase autónoma**; dos sesiones **dobles** y sustentación en la **sesión 13**.',
 
 
 
@@ -234,12 +261,15 @@ def build():
     evaluacion_cortes_slide(
         prs, "Sistema de evaluación (Acuerdo pedagógico)",
         [
-            {"corte": 1, "pct": "30%", "ventana": "10/08 – 13/09/2026",
-             "desglose": ["**Parcial 1** (07/09 · Clase 5) · 10%", "Talleres o Quiz · 10%", "Asistencia · 10%"]},
-            {"corte": 2, "pct": "30%", "ventana": "14/09 – 18/10/2026",
-             "desglose": ["**Parcial 2** (05/10 · Clase 9) · 10%", "Talleres o Quiz · 10%", "Asistencia · 10%"]},
-            {"corte": 3, "pct": "40%", "ventana": "19/10 – 22/11/2026",
-             "desglose": ["**Parcial 3** (09/11 · Clase 14) · 15%", "**PI VetCare** · 20%", "Asistencia · 5%"]},
+            {"corte": 1, "pct": CT[0]["pct"], "ventana": CT[0]["ventana"],
+             "desglose": [f"**Parcial 1** ({CT[0]['parcial_fecha']} · sesión {CT[0]['parcial_sesion']}) · 10%",
+                          "Talleres o Quiz · 10%", "Asistencia · 10%"]},
+            {"corte": 2, "pct": CT[1]["pct"], "ventana": CT[1]["ventana"],
+             "desglose": [f"**Parcial 2** ({CT[1]['parcial_fecha']} · sesión {CT[1]['parcial_sesion']}) · 10%",
+                          "Talleres o Quiz · 10%", "Asistencia · 10%"]},
+            {"corte": 3, "pct": CT[2]["pct"], "ventana": CT[2]["ventana"],
+             "desglose": [f"**Parcial 3** ({CT[2]['parcial_fecha']} · sesión {CT[2]['parcial_sesion']}) · 15%",
+                          "**PI VetCare** · 20%", "Asistencia · 5%"]},
         ],
         note="Parciales síncronos presenciales · nunca en festivo/autónoma. Día de parcial = solo evaluación.",
         idx=8,
@@ -263,72 +293,10 @@ def build():
 
 
 
-        [
-
-
-
-            {"n": 0, "kind": "sesion0", "tema": "Presentación del curso (logística)", "fecha": "10/08"},
-            {"n": 1, "tema": "Diagnóstico · Revisión de Bases de Datos I", "fecha": "10/08"},
-
-
-
-            {"n": 2, "tema": "Administración de bases de datos", "fecha": "17/08", "tag": "Autónoma"},
-
-
-
-            {"n": 3, "tema": "Procedimientos almacenados", "fecha": "24/08"},
-
-
-
-            {"n": 4, "tema": "Funciones y disparadores · Seguridad y respaldo", "fecha": "31/08"},
-
-
-
-            {"n": 5, "tema": "Parcial 1", "fecha": "07/09"},
-
-
-
-            {"n": 6, "tema": "Optimización de consultas", "fecha": "14/09"},
-
-
-
-            {"n": 7, "tema": "Índices y particionamiento", "fecha": "21/09"},
-
-
-
-            {"n": 8, "tema": "Tuning de bases de datos · Gestión de transacciones", "fecha": "28/09"},
-
-
-
-            {"n": 9, "tema": "Parcial 2", "fecha": "05/10"},
-
-
-
-            {"n": 10, "tema": "Control de concurrencia", "fecha": "12/10", "tag": "Autónoma"},
-
-
-
-            {"n": 11, "tema": "Avance del proyecto final", "fecha": "19/10"},
-
-
-
-            {"n": 12, "tema": "Integración de aplicaciones externas · Preparación de presentación final", "fecha": "26/10"},
-
-
-
-            {"n": 13, "tema": "Análisis de casos reales", "fecha": "02/11", "tag": "Autónoma"},
-
-
-
-            {"n": 14, "tema": "Parcial 3", "fecha": "09/11"},
-
-
-
-            {"n": 15, "tema": "Presentación del proyecto + cierre", "fecha": "16/11", "tag": "Autónoma"},
-
-
-
-        ],
+        cal.contenido_items(
+            CURSO_KEY, TEMAS_MATERIAL,
+            "Presentación del curso (logística) + socialización del PI VetCare",
+        ),
 
 
 
@@ -337,7 +305,7 @@ def build():
 
 
         idx_start=9,
-        sub="Día 1: Sesión 0 (Presentación del curso, archivo aparte) + Clase 1 (diagnóstico · tema)",
+        sub=("13 sesiones · los 15 temas se conservan: dos sesiones son **dobles** (dos temas en un bloque). Día 1: Sesión 0 (archivo aparte) + Sesión 1 (diagnóstico · tema)"),
 
 
 
@@ -361,7 +329,7 @@ def build():
 
 
 
-        'Hitos: avance **Clase 11** (19/10) · prep. **Clase 12** (26/10) · Parcial 3 **Clase 14** (09/11) · cierre **Clase 15** (16/11, autónoma).',
+        'Hitos: avance + preparación final en la **sesión 10** (26/10, sesión doble Clases 11+12) · **Parcial 3** sesión 12 (09/11) · **sustentación** sesión 13 (16/11).',
 
 
 
@@ -417,7 +385,7 @@ def build():
 
 
 
-            ('advertencia', 'Parciales NUNCA en autonoma: P1=Clase 5 (07/09), P2=Clase 9 (05/10), P3=Clase 14 (09/11).'),
+            ('advertencia', 'Parciales NUNCA en autonoma: P1=sesión 5 (21/09), P2=sesión 9 (19/10), P3=sesión 12 (09/11). La sesión 13 (16/11) es de sustentación del PI VetCare.'),
 
 
 

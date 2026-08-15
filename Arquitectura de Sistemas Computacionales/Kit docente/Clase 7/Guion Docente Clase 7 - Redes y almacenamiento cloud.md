@@ -22,7 +22,7 @@
 ## Fundamento teórico para el docente
 El diagrama de despliegue responde una pregunta que los anteriores no responden: donde corre cada pieza y por que camino de red se hablan entre si. Conviene tener claro el mapa de los tres diagramas del curso, porque el estudiante cree que dibuja lo mismo tres veces. En la Clase 1 se hizo C4 Context: el sistema como una caja, quien lo usa y con que sistemas externos habla; responde QUIEN. En la Clase 4 se hizo C4 Containers: que aplicaciones, servicios y bases de datos lo componen por dentro y con que contratos se comunican; responde QUE. Hoy se hace el despliegue: en que nodos se ejecutan esos contenedores, en que zona de red esta cada nodo, por que puerto y protocolo pasa cada flecha, y donde quedan los datos; responde DONDE. Un nodo es cualquier lugar de ejecucion: una maquina virtual, un host de contenedores, un servicio gestionado. Es el mismo sistema desde un tercer angulo, no un sistema nuevo, y por eso los nombres deben coincidir con los de la Clase 4.
 
-Para etiquetar ese diagrama hacen falta tres conceptos de red que el docente debe definir en una frase. Una direccion IP identifica una maquina dentro de una red. Un puerto es un numero entre 1 y 65535 que identifica a que proceso de esa maquina se entrega el trafico: la direccion lleva el paquete al edificio, el puerto lo lleva a la oficina. Un protocolo es el idioma de esa conexion: HTTP o HTTPS para la API, el protocolo propio del motor para la base de datos. Hay puertos fijados por convencion registrada, no por ley fisica: 80 para HTTP, 443 para HTTPS, 5432 para PostgreSQL, 3306 para MySQL, 8080 para desarrollo. Nada impide correr una base de datos en el 9999, pero cambiar la convencion confunde a quien opera. Esto conecta con la Clase 3: cuando en Play with Docker se ejecuta un contenedor publicando un puerto, esa linea es la decision de que superficie queda expuesta, tema de la Clase 6.
+Para etiquetar ese diagrama hacen falta tres conceptos de red que el docente debe definir en una frase. Una direccion IP identifica una maquina dentro de una red. Un puerto es un numero entre 1 y 65535 que identifica a que proceso de esa maquina se entrega el trafico: la direccion lleva el paquete al edificio, el puerto lo lleva a la oficina. Un protocolo es el idioma de esa conexion: HTTP o HTTPS para la API, el protocolo propio del motor para la base de datos. Hay puertos fijados por convencion registrada, no por ley fisica: 80 para HTTP, 443 para HTTPS, 5432 para PostgreSQL, 3306 para MySQL, 8080 para desarrollo. Nada impide correr una base de datos en el 9999, pero cambiar la convencion confunde a quien opera. Esto conecta con la Clase 3: cuando en LabEx Docker Playground se ejecuta un contenedor publicando un puerto, esa linea es la decision de que superficie queda expuesta, tema de la Clase 6.
 
 Una subred es una subdivision de una red, y lo que la hace publica o privada no es su nombre sino sus rutas. Una subred publica tiene camino de entrada desde internet: alguien de afuera puede iniciar una conexion hacia lo que vive ahi. Una privada no lo tiene; solo se alcanza desde dentro, aunque normalmente si puede salir para descargar actualizaciones. Sobre esa distincion se construye la regla que se evalua hoy: en la zona publica va unicamente el punto de entrada, el balanceador o proxy inverso; la aplicacion va en la zona privada; los datos van en una tercera zona que solo acepta conexiones desde la aplicacion. Llega la primera pregunta previsible: «si la base de datos es privada, como se conecta la API?». Privado significa inalcanzable desde internet, no inalcanzable en absoluto: la API esta en la misma red y llega por el nombre interno y el puerto del motor; quien no puede llegar es el usuario final ni un atacante externo. Si un desarrollador necesita entrar, se hace por un unico host intermedio controlado, llamado bastion.
 
@@ -36,7 +36,7 @@ Segundo ejemplo concreto, y el error de diseno que conviene provocar: CloudLite 
 
 Queda la trazabilidad, donde mas puntos se pierden: los nombres de las cajas del despliegue deben ser los mismos que los contenedores del C4 Containers de la Clase 4. Si alli el servicio se llamaba api-citas, hoy no puede aparecer como backend, ni puede aparecer una caja nueva que nadie declaro. Segunda pregunta previsible: «esto no esta mal por no ser una VPC real de un proveedor?». Lo que se evalua es el razonamiento sobre zonas, puertos y ubicacion de los datos, no la sintaxis de una marca; el curso usa herramientas gratis en navegador y no pide cuenta de pago ni tarjeta, y por eso las slides indican zonas Publica, Privada y Datos. La Clase 6 identifico amenazas y fronteras de confianza en texto y hoy esas fronteras se vuelven zonas dibujadas; la Clase 8 tomara cada flecha para definir que se mide en ella, porque no se puede monitorear un camino que no esta dibujado; la Clase 10 costeara estas mismas cajas, asi que la eleccion de almacenamiento es tambien decision de costo; y la Clase 13 discutira cual caja se replica y cual no. Todo el bloque se evalua en el Parcial 2 de la Clase 9.
 
-Error tipico del docente que no domina el tema: dejar pasar el dibujo de la nube como una caja difusa con flechas sin etiqueta, donde no se distingue zona publica de privada, no hay puertos y no se sabe donde viven los datos. La consecuencia aguas abajo es acumulativa: sin zonas, los controles de red de la Clase 6 no tienen donde mostrarse; sin flechas etiquetadas, la Clase 8 no tiene sobre que definir latencia ni saturacion; y en la sustentacion de la Clase 15 el equipo describe su sistema con gestos en vez de senalar componentes. El segundo tropiezo es permitir que el despliegue introduzca nombres y servicios que no existian en el C4 Containers, o dejar la eleccion de almacenamiento sin justificar («usamos base de datos porque es lo normal»). Cuando eso ocurre, el informe describe dos sistemas distintos que se contradicen entre secciones y el equipo pierde la trazabilidad, que es el criterio con el que se calificara el paquete integrado de la Clase 11.
+Error tipico del docente que no domina el tema: dejar pasar el dibujo de la nube como una caja difusa con flechas sin etiqueta, donde no se distingue zona publica de privada, no hay puertos y no se sabe donde viven los datos. La consecuencia aguas abajo es acumulativa: sin zonas, los controles de red de la Clase 6 no tienen donde mostrarse; sin flechas etiquetadas, la Clase 8 no tiene sobre que definir latencia ni saturacion; y en la sustentacion de la Clase 15 el estudiante describe su sistema con gestos en vez de senalar componentes. El segundo tropiezo es permitir que el despliegue introduzca nombres y servicios que no existian en el C4 Containers, o dejar la eleccion de almacenamiento sin justificar («usamos base de datos porque es lo normal»). Cuando eso ocurre, el informe describe dos sistemas distintos que se contradicen entre secciones y se pierde la trazabilidad, que es el criterio con el que se calificara el paquete integrado de la Clase 11.
 
 Referencia de slides: `Clases/Clase 7 - Redes y almacenamiento cloud/Presentacion.pptx` (solo tema de esta clase).
 
@@ -47,7 +47,7 @@ Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Diagrama de despliegu
 Entregable concreto: Diagrama Deployment (draw.io) + elección de storage (objeto/bloque/relacional conceptual).
 Teoría breve y luego taller; no es un lab suelto.»
 Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
-Pregunta de arranque (1 min): «¿en qué quedó su CloudLite la clase pasada?» — sirve para detectar equipos rezagados antes de avanzar.
+Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
 
 ### 10–40 · Teoría Core (al servicio del taller)
 Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las diapositivas de teoría):
@@ -58,7 +58,7 @@ Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las 
 El desarrollo completo de cada uno está arriba, en «Fundamento teórico para el docente»:
 esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
-Pide un equipo voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
+Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
 ### 40–55 · Demo en vivo
 Herramienta del día: **draw.io**.
@@ -73,7 +73,7 @@ Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit doce
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
 
-### 55–100 · Taller guiado PI (equipos)
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste)
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -84,11 +84,11 @@ Haz 3–4 de las preguntas de comprobación oral de abajo, a personas distintas 
 Aplica el quiz corto de `Kit docente/Clase 7/Quiz Clase 7 - Redes y almacenamiento cloud.docx`
 (la clave va en archivo aparte y **no se proyecta**).
 Mientras responden, verifica que el entregable esté realmente subido.
-Retroalimenta 2–3 equipos en voz alta, nombrando el error y la corrección concreta.
+Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
 ### 115–120 · Cierre
 Di: «Queda avanzado: Diagrama de despliegue: red, zonas, almacenamiento.
-Criterio de éxito: cualquier integrante explica el artefacto en 60 s.
+Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
@@ -102,7 +102,7 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).
 - Evidencia adjunta.
-- Explicación oral de 60 s por integrante (muestreo).
+- Explicación oral de 60 s por estudiante (muestreo; si autorizaste equipos, pregunta a cualquier integrante).
 
 ## Errores frecuentes del estudiante (y cómo corregirlos en el momento)
 - Dibujar «la nube» como una caja difusa. Exija las dos zonas, publica y privada, explicitas.
@@ -117,7 +117,7 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 ## Solución del taller (privada)
 `Kit docente/Clase 7/Solucion Taller Clase 7 - CloudLite.docx` — es la referencia con la que
-comparas lo que entregan los equipos. **No proyectarla completa** antes de que trabajen.
+comparas lo que entregan los estudiantes. **No proyectarla completa** antes de que trabajen.
 
 ## Quiz
 `Kit docente/Clase 7/Quiz Clase 7 - Redes y almacenamiento cloud.docx` (versión estudiante, sin respuestas)

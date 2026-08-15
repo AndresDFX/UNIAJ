@@ -79,7 +79,7 @@ Seis filas con los 6 elementos numerados igual que en el archivo de diseno, cada
 
 ## Pantalla Buscar expediente y el caso de resultados multiples
 
-Diseñe la segunda pantalla resolviendo por escrito el caso que casi todos los equipos olvidan: **que pasa cuando la busqueda devuelve varias mascotas**. En la clinica Huellitas hay **cuatro mascotas llamadas Luna**.
+Diseñe la segunda pantalla resolviendo por escrito el caso que casi todo el mundo olvida: **que pasa cuando la busqueda devuelve varias mascotas**. En la clinica Huellitas hay **cuatro mascotas llamadas Luna**.
 
 **Entregue estos 5 bloques rotulados:**
 
@@ -149,10 +149,10 @@ Flowchart con minimo 5 pantallas y minimo 5 transiciones, incluyendo las 3 oblig
 
 ## Prueba de pasillo y evidencia de los cuatro principios
 
-**Parte A - Bitacora de la prueba de pasillo.** Consiga a un integrante de **otro equipo**, no le explique nada y deje su prototipo abierto. Tarea que debe darle textualmente: «registre la mascota Luna de la señora Perez y luego encuentre su ficha». Registre:
+**Parte A - Bitacora de la prueba de pasillo.** Consiga a **otro compañero del curso** que no haya trabajado en su diseno, no le explique nada y deje su prototipo abierto. Tarea que debe darle textualmente: «registre la mascota Luna de la señora Perez y luego encuentre su ficha». Registre:
 
 ```
-Nombre del probador y equipo al que pertenece:
+Nombre del probador (y su equipo, si trabaja en equipo):
 Tiempo total cronometrado:
 Cantidad de clics realizados:
 Punto de duda 1: <en que pantalla y que estaba buscando>

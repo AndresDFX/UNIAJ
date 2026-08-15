@@ -167,7 +167,9 @@ def portada(doc, meta: dict[str, Any], *, es_solucion: bool):
     )
     add_para(
         doc,
-        f"Fecha: {meta['fecha']}  ·  Clase {meta['clase']}  ·  Modalidad: Presencial (síncrono)",
+        # meta['clase'] = numero de SESION del calendario 2026-2 (13 sesiones).
+        # Las «Clase N» del material (1..15) se listan en meta['temas'].
+        f"Fecha: {meta['fecha']}  ·  Sesión {meta['clase']} de 13  ·  Modalidad: Presencial (síncrono)",
         size=11,
         color=GRIS,
         align=WD_ALIGN_PARAGRAPH.CENTER,

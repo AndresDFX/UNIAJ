@@ -562,7 +562,7 @@ Los 3 reportes corren y devuelven datos coherentes con la base. R1 filtra por ra
 
 ## 4. Checklist de avance del PI (firmada)
 
-Entrega el checklist del hito con el estado real de tu equipo. Para **cada** item indica `SI` / `NO` / `PARCIAL`, la **evidencia** (nombre de archivo, de objeto de base de datos o numero de pregunta de ExamLab donde quedo) y una linea de observacion:
+Entrega el checklist del hito con el estado real de tu PI. Para **cada** item indica `SI` / `NO` / `PARCIAL`, la **evidencia** (nombre de archivo, de objeto de base de datos o numero de pregunta de ExamLab donde quedo) y una linea de observacion:
 
 1. Modelo ER actualizado y coherente con el DDL real.
 2. DDL completo de las 8 tablas con PK, FK y restricciones de dominio (`CHECK`).
@@ -577,13 +577,13 @@ Entrega el checklist del hito con el estado real de tu equipo. Para **cada** ite
 11. Al menos dos indices justificados.
 12. Plan de respaldo con procedimiento de restore de prueba.
 13. Escenarios de concurrencia documentados con su mitigacion.
-14. Scripts organizados y ejecutables en orden en la carpeta del equipo.
+14. Scripts organizados y ejecutables en orden en tu carpeta del PI.
 
-Cierra con: **porcentaje de avance** que declara el equipo (cuenta los `SI` como 1, los `PARCIAL` como 0,5), **el item mas debil** y una frase de compromiso firmada con los nombres de los integrantes y la fecha.
+Cierra con: **porcentaje de avance** que declaras (cuenta los `SI` como 1, los `PARCIAL` como 0,5), **el item mas debil** y una frase de compromiso firmada con tu nombre y la fecha (y los de los demas integrantes, si trabajas en equipo autorizado).
 
 **Rubrica esperada (campo Rubrica):**
 
-Los 14 items tienen estado, evidencia nombrada (archivo u objeto concreto) y observacion. La evidencia es rastreable, no generica. El porcentaje declarado es aritmeticamente coherente con los estados marcados. Se identifica el item mas debil y aparece la firma con nombres y fecha. Se descuenta por items sin evidencia o por porcentajes que no cuadran con el checklist.
+Los 14 items tienen estado, evidencia nombrada (archivo u objeto concreto) y observacion. La evidencia es rastreable, no generica. El porcentaje declarado es aritmeticamente coherente con los estados marcados. Se identifica el item mas debil y aparece la firma con nombre y fecha. Se descuenta por items sin evidencia o por porcentajes que no cuadran con el checklist.
 
 ---
 
@@ -603,7 +603,7 @@ Convierte los `NO` y `PARCIAL` de tu checklist en un **plan de cierre**. Entrega
 Reglas:
 
 - El gap debe estar redactado como una tarea **verificable** ("crear el trigger `trg_stock_no_negativo` y probarlo con dos casos"), no como un deseo ("mejorar los triggers").
-- Cada gap debe tener **un** responsable con nombre, no "el equipo".
+- Cada gap debe tener **un** responsable con nombre real (si trabajas solo, seras tu en todas las filas; si hay equipo autorizado, reparte, pero nunca escribas "el equipo").
 - Las fechas deben ser anteriores a la sustentacion final del PI.
 - La columna de verificacion debe nombrar la **evidencia concreta** (una consulta, un script, una captura de `EXPLAIN`, una fila en `audit_cita`).
 

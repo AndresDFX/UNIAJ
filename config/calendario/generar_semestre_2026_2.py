@@ -1,100 +1,236 @@
 # -*- coding: utf-8 -*-
-"""Genera calendario 2026-2 + Acuerdos pedagógicos prellenados (sin listado de estudiantes)."""
+"""Genera calendario 2026-2 + Acuerdos pedagógicos prellenados (sin listado de estudiantes).
+
+FUENTE DE VERDAD: `config/calendario/semestre_2026_2.json` (este script lo LEE, no lo
+recalcula ni lo reescribe). El JSON trae, por curso, el array `clases` con las 13
+sesiones del semestre acortado (inicio 2026-08-24 · fin fijo 2026-11-22) y, en cada
+sesión, `clases_material` = los "Clase N" del material ya construido que se dictan ahí
+(las carpetas `Clases/Clase N - …` y `Kit docente/Clase N/` NO se renumeran).
+
+Salidas por curso:
+  <Curso>/Plan curso/2026-2/CALENDARIO_2026-2.md
+  <Curso>/Plan curso/2026-2/calendario_eventos_2026-2.csv   (14 columnas · UTF-8 BOM)
+  <Curso>/Plan curso/2026-2/Cronograma 2026-2.md            (documento del estudiante)
+  <Curso>/Plan curso/2026-2/PLAN_DE_CURSO_2026-2.md         (cabecera regenerada · secciones propias preservadas)
+  <Curso>/Entregas docente/2026-2/ACUERDO PEDAGOGICO - <Curso> - 2026-2.docx
+  <Curso>/Entregas docente/2026-2/CORREO_BIENVENIDA - <Curso> - 2026-2.md (fechas actualizadas)
+  config/calendario/eventos_<curso>_*.csv + eventos_todos_cursos_2026-2.csv
+"""
 from __future__ import annotations
+
+import csv
+import io
 import json
-from datetime import date, timedelta
+import re
 from pathlib import Path
+
 from docx import Document
+
 ROOT = Path(__file__).resolve().parents[2]
+JSON_PATH = Path(__file__).with_name("semestre_2026_2.json")
 TEMPLATE = (
     ROOT
     / "Programacion II"
     / "Entregas docente"
     / "ACUERDO PEDAGOGICO ACTUALIZADO.docx"
 )
-FESTIVOS = {
-    "2026-08-17": "Asunción de la Virgen",
-    "2026-10-12": "Día de la Diversidad Étnica y Cultural",
-    "2026-11-02": "Todos los Santos",
-    "2026-11-16": "Independencia de Cartagena",
+
+DATA = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+
+START = DATA["inicio"]          # 2026-08-24 (semestre acortado)
+END = DATA["fin"]               # 2026-11-22 (NO se mueve)
+FESTIVOS = DATA["festivos_en_rango"]
+CORTES = DATA["cortes_teoricos"]
+DOCENTE = DATA["docente"]["nombre_completo"]
+CORREO = DATA["docente"]["correo"]
+N_TEMAS = 15
+
+LOGICA_EVALUACION = DATA["logica_evaluacion"]
+
+# ---------------------------------------------------------------- utilidades
+
+
+def dmy(iso: str) -> str:
+    y, m, d = iso.split("-")
+    return f"{d}/{m}/{y}"
+
+
+def dm(iso: str) -> str:
+    y, m, d = iso.split("-")
+    return f"{d}/{m}"
+
+
+def festivos_en_rango() -> dict[str, str]:
+    return {k: v for k, v in FESTIVOS.items() if START <= k <= END}
+
+
+# Los `tema` del JSON vienen sin tildes (ASCII). Estos documentos se comparten con
+# estudiantes, así que se restituye la ortografía palabra por palabra (sin tocar el JSON).
+ACENTOS = {
+    "Presentacion": "Presentación",
+    "presentacion": "presentación",
+    "Introduccion": "Introducción",
+    "introduccion": "introducción",
+    "Diagnostico": "Diagnóstico",
+    "diagnostico": "diagnóstico",
+    "dinamicas": "dinámicas",
+    "graficas": "gráficas",
+    "Evaluacion": "Evaluación",
+    "evaluacion": "evaluación",
+    "Documentacion": "Documentación",
+    "documentacion": "documentación",
+    "Refactorizacion": "Refactorización",
+    "Revision": "Revisión",
+    "revision": "revisión",
+    "Integracion": "Integración",
+    "integracion": "integración",
+    "codigo": "código",
+    "modulos": "módulos",
+    "Diseno": "Diseño",
+    "diseno": "diseño",
+    "Sustentacion": "Sustentación",
+    "sustentacion": "sustentación",
+    "sustentaciones": "sustentaciones",
+    "Metodologias": "Metodologías",
+    "agiles": "ágiles",
+    "Analisis": "Análisis",
+    "Optimizacion": "Optimización",
+    "optimizacion": "optimización",
+    "Administracion": "Administración",
+    "Indices": "Índices",
+    "gestion": "gestión",
+    "automatica": "automática",
+    "Virtualizacion": "Virtualización",
+    "Preparacion": "Preparación",
+    "preparacion": "preparación",
+    "Escalabilidad": "Escalabilidad",
 }
-START = date(2026, 8, 10)
-END = date(2026, 11, 22)
-CORTES = {
-    "corte_1": {
-        "pct": "30%",
-        "inicio": "2026-08-10",
-        "fin": "2026-09-13",
-        "clases": "1-5",
-        "parcial_cierre": "Parcial 1 al cerrar el Corte 1 (Clase 5)",
-        "desglose": "10% Parcial 1 (cierre de corte) · 10% Talleres y Quiz · 10% Asistencia",
-    },
-    "corte_2": {
-        "pct": "30%",
-        "inicio": "2026-09-14",
-        "fin": "2026-10-18",
-        "clases": "6-10",
-        "parcial_cierre": "Parcial 2 al cerrar el Corte 2 (Clase 10)",
-        "desglose": "10% Parcial 2 (cierre de corte) · 10% Talleres y Quiz · 10% Asistencia",
-    },
-    "corte_3": {
-        "pct": "40%",
-        "inicio": "2026-10-19",
-        "fin": "2026-11-22",
-        "clases": "11-15",
-        "parcial_cierre": "Parcial 3 al cerrar el Corte 3 (Clase 15)",
-        "desglose": (
-            "15% Parcial 3 (cierre de corte) · 20% Proyecto Integrador · 5% Asistencia"
-        ),
-    },
+_ACENTOS_RE = re.compile(r"\b(" + "|".join(sorted(ACENTOS, key=len, reverse=True)) + r")\b")
+
+
+def tema_txt(cl: dict) -> str:
+    # El prefijo "DOBLE: " del JSON es redundante: las sesiones dobles ya se marcan
+    # aparte (columna de material y etiqueta «Sesión doble»).
+    tema = re.sub(r"^DOBLE:\s*", "", cl["tema"])
+    return _ACENTOS_RE.sub(lambda m: ACENTOS[m.group(1)], tema)
+
+
+TIPO_LABEL = {
+    "presencial": "Presencial (síncrona)",
+    "virtual": "Virtual (síncrona)",
+    "autonoma": "Autónoma (festivo)",
+    "sustentacion": "Sustentación PI (festivo)",
 }
-# Misma lógica de evaluación que Acuerdos 2026-1 de Prog. II / Seminario:
-# 30/30/40 con parcial en cada finalización de corte + talleres/quiz + asistencia;
-# en Corte 3 el Proyecto Integrador sustituye parte del peso de talleres.
-LOGICA_EVALUACION = (
-    "Criterio de modalidad por sesion (fijo 2026-2): modalidad del curso = Presencialidad asistida. "
-    "Prog II (miercoles): Clase 1 presencial · clases regulares 2-15 virtual sincrona · parciales presencial sincrono. "
-    "Seminario (jueves): clases regulares virtual sincrona · parciales presencial sincrono. "
-    "Festivos = clase autonoma (sin parcial). Los parciales NUNCA se programan en dia festivo ni en clase autonoma. "
-    "Si el cierre teorico del corte cae en festivo/autonoma, el parcial se mueve a la ultima clase regular anterior del mismo corte."
-)
-DOCENTE = "Julian Andres Castaño Espinosa"
-CORREO = "julianacastano@profesores.uniajc.edu.co"
-EVAL_TEXT = (
-    "Acuerdo sobre los aspectos de evaluación\n"
-    "(Cálculo teórico 2026-2 · 30% / 30% / 40% — validar en socialización con el grupo)\n"
-    "Parciales: Parcial 1 al cerrar Corte 1 · Parcial 2 al cerrar Corte 2 · "
-    "Parcial 3 al cerrar Corte 3 (misma lógica que Acuerdos Prog. II / Seminario).\n\n"
-    "Primer corte (30%) — [10/08/2026 al 13/09/2026] · Clases 1–5:\n"
-    "* 10% Parcial 1 (cierre de corte, Clase 5) | 10% Talleres y Quiz | 10% Asistencia\n\n"
-    "Segundo corte (30%) — [14/09/2026 al 18/10/2026] · Clases 6–10:\n"
-    "* 10% Parcial 2 (cierre de corte, Clase 10) | 10% Talleres y Quiz | 10% Asistencia\n\n"
-    "Tercer corte (40%) — [19/10/2026 al 22/11/2026] · Clases 11–15:\n"
-    "* 15% Parcial 3 (cierre de corte, Clase 15) | 20% Proyecto Integrador | 5% Asistencia\n\n"
-    "Nota: parciales NUNCA en festivo/autonoma; se mueven a la ultima clase regular del corte."
-)
-APROBACION = (
-    "[PRELLENADO 2026-2 — pendiente socialización con el grupo]\n"
-    "Periodo académico: 10/08/2026 al 22/11/2026.\n"
-    "Pendiente: aprobación/ajustes con estudiantes, listado oficial, vocero y firmas.\n"
-    "No se inventan nombres ni códigos de estudiantes."
-)
-CURSOS = {
+
+
+def corte_rangos() -> list[tuple[int, int, int]]:
+    """[(sesion_ini, sesion_fin, n_corte)] leído del JSON (no hardcodeado a 15)."""
+    out: list[tuple[int, int, int]] = []
+    for i, key in enumerate(sorted(CORTES), start=1):
+        a, b = CORTES[key]["clases"].split("-")
+        out.append((int(a), int(b), i))
+    return out
+
+
+def corte_de(n: int) -> int:
+    for a, b, pn in corte_rangos():
+        if a <= n <= b:
+            return pn
+    return corte_rangos()[-1][2]
+
+
+def parcial_de_corte(meta: dict, pn: int) -> dict | None:
+    return meta.get("parciales", {}).get(f"parcial_{pn}")
+
+
+def material(cl: dict) -> str:
+    ms = cl.get("clases_material") or []
+    if not ms:
+        return "—"
+    if len(ms) == 1:
+        return f"Clase {ms[0]}"
+    return " + ".join(f"Clase {m}" for m in ms)
+
+
+def etiqueta_sesion(cl: dict) -> str:
+    base = f"Sesión {cl['n']}"
+    if cl.get("parcial"):
+        base += f" · Parcial {cl['parcial_n']}"
+    elif cl.get("tipo") == "sustentacion":
+        base += " · Sustentación PI"
+    base += f" · {material(cl)}"
+    if cl.get("sesion_doble"):
+        base += " (doble)"
+    return base
+
+
+def nota_sesion(cl: dict) -> str:
+    notas: list[str] = []
+    if cl.get("festivo"):
+        notas.append(f"festivo: {cl['festivo']}")
+    if cl.get("tipo") == "autonoma":
+        notas.append("clase autónoma (trabajo independiente guiado)")
+    if cl.get("tipo") == "sustentacion":
+        notas.append("sesión de sustentaciones del Proyecto Integrador (no es parcial)")
+    if cl.get("parcial"):
+        notas.append("parcial presencial síncrono")
+    if cl.get("sesion_doble"):
+        notas.append(f"sesión doble: cubre {material(cl)} del material en un bloque de 120 min")
+    return "; ".join(notas)
+
+
+def resumen_compresion() -> str:
+    return (
+        f"Semestre 2026-2 acortado: inicio **{dmy(START)}** (fin fijo **{dmy(END)}**) = "
+        f"**13 sesiones**. Se conservan los **{N_TEMAS} temas** del microcurrículo: "
+        "**2 sesiones son dobles** (dos temas afines en el mismo bloque de 120 min). "
+        "El material existente (`Clases/Clase N - …`, `Kit docente/Clase N/`) **no se renumera**: "
+        "cambia solo el mapeo Sesión → Clase(s) de material."
+    )
+
+
+def logica_curso(meta: dict) -> str:
+    """Lógica de evaluación de ESTE curso.
+
+    Se prefiere sobre DATA["logica_evaluacion"], que describe los 4 cursos a la vez
+    y no corresponde a un documento de un solo curso.
+    """
+    clases = meta["clases"]
+    parciales = [cl for cl in clases if cl.get("parcial")]
+    nums = "/".join(str(cl["n"]) for cl in parciales)
+    partes = [
+        f'**{meta["nombre"]}** ({meta["dia"]} {meta["horario"]}) · '
+        f'Modalidad: {meta["modalidad"]}.',
+        f"Sesión 1 presencial (encuadre) · parciales en las sesiones **{nums}**, "
+        "presencial síncrono · resto de sesiones regulares virtual síncrona.",
+    ]
+    autonomas = [cl for cl in clases if cl["tipo"] == "autonoma"]
+    if autonomas:
+        det = " · ".join(f'Sesión {cl["n"]} ({dmy(cl["fecha"])}, {cl["festivo"]})' for cl in autonomas)
+        partes.append(f"Festivos = clase autónoma, no se omiten: {det}.")
+    else:
+        partes.append(f'No hay festivos en {meta["dia"].lower()}: todas las sesiones son regulares.')
+    sust = [cl for cl in clases if cl.get("sustentacion_pi")]
+    if sust:
+        cl = sust[0]
+        partes.append(
+            f'Sesión {cl["n"]} ({dmy(cl["fecha"])}) se dedica a las **sustentaciones del '
+            "Proyecto Integrador** (no es parcial)."
+        )
+    partes.append(
+        "Día de parcial = solo evaluación. Los parciales NUNCA se programan en festivo ni "
+        "en clase autónoma. Sesión 0 = Presentación del Curso (no es sesión temática)."
+    )
+    return " ".join(partes)
+
+
+# ---------------------------------------------------------------- metadatos de acuerdo
+# Campos que NO viven en el JSON (objetivos/RAA del microcurrículo, semestre, etc.).
+ACUERDO_EXTRA = {
     "programacion_ii": {
-        "folder": "Programacion II",
-        "nombre": "Programación II",
-        "codigo": "FI303204",
-        "grupo": "341C",
         "grupo_acuerdo": "341-C",
         "semestre": "4",
         "programa": "Ingeniería de Sistemas",
-        "dia": "Miércoles",
-        "weekday": 2,
-        "horario": "18:00 – 20:00",
-        "duracion_min": 120,
-        "modalidad": "Presencialidad asistida (Clase 1 presencial · resto virtual · parciales presencial · festivos autonomos)",
-        "tipo_regular": "virtual",
-        "clase1_presencial": True,
         "objetivos": (
             "Comprender y aplicar los pilares de la Programación Orientada a Objetos (POO) en Java.\n"
             "Implementar y manipular Estructuras de Datos dinámicas en memoria.\n"
@@ -102,32 +238,16 @@ CURSOS = {
             "Aplicar patrones de diseño y refactorización con apoyo de IA.\n"
             "Construir persistencia básica integrando lectura y escritura de archivos."
         ),
-        "metodologia": (
-            "Acuerdo sobre los aspectos metodológicos\n"
-            "Periodo 2026-2 · Grupo 341C · Miércoles 18:00–20:00 (120 min).\n"
-            "Modalidad: Presencialidad asistida (Clase 1 y parciales presencial sincrono · resto virtual sincrona · festivos = clase autonoma).\n"
+        "metodologia_base": (
             "Estructura de clase: Teoría Core · Taller Guiado calificable "
             "(entrega máx. domingo 23:59) · Quiz corto.\n"
-            "Enfoque: aprendizaje activo / ABPr con Proyecto Integrador.\n"
-            "Calendario: 15 clases (12/08/2026–18/11/2026). "
-            "No hay festivos en miércoles; todas regulares.\n"
-            "[Detalle en Plan curso/CALENDARIO_2026-2.md.]"
+            "Enfoque: aprendizaje activo / ABPr con Proyecto Integrador."
         ),
     },
     "seminario": {
-        "folder": "Seminario de Sistemas",
-        "nombre": "Seminario de Sistemas",
-        "codigo": "FI303301",
-        "grupo": "341C",
         "grupo_acuerdo": "341-C",
         "semestre": "4",
         "programa": "Ingeniería de Sistemas",
-        "dia": "Jueves",
-        "weekday": 3,
-        "horario": "18:00 – 20:00",
-        "duracion_min": 120,
-        "modalidad": "Presencialidad asistida (jueves virtual sincrona / parciales presencial / festivos autonomos)",
-        "tipo_regular": "virtual",
         "objetivos": (
             "Levantar, analizar y documentar requerimientos funcionales y no funcionales "
             "de sistemas de información.\n"
@@ -138,117 +258,176 @@ CURSOS = {
             "Desarrollar habilidades de comunicación asertiva para el Storytelling "
             "y sustentación de proyectos tecnológicos."
         ),
-        "metodologia": (
-            "Acuerdo sobre los aspectos metodológicos\n"
-            "Periodo 2026-2 · Grupo 341C · Jueves 18:00–20:00 (120 min).\n"
-            "Modalidad: Presencialidad asistida (Clase 1 y parciales presencial sincrono · resto virtual sincrona · festivos = clase autonoma).\n"
+        "metodologia_base": (
             "Metodología orientada a Role-Playing (Arquitectos / Analistas QA), "
-            "talleres con Draw.io/Mermaid, peer review.\n"
-            "Calendario: 15 clases (13/08/2026–19/11/2026). "
-            "No hay festivos en jueves; todas regulares.\n"
-            "[Detalle en Plan curso/CALENDARIO_2026-2.md.]"
+            "talleres con Draw.io/Mermaid, peer review."
         ),
     },
     "bases_datos_ii": {
-        "folder": "Bases de Datos II",
-        "nombre": "Bases de Datos II",
-        "codigo": "FI303215",
-        "grupo": "641A-2",
         "grupo_acuerdo": "641A-2",
-        "semestre": "[PENDIENTE]",
+        "semestre": "Sexto Semestre",
         "programa": "Ingeniería de Sistemas",
-        "dia": "Lunes",
-        "weekday": 0,
-        "horario": "18:00 – 20:00",
-        "duracion_min": 120,
-        "modalidad": "Presencialidad asistida (ver tipo por sesión en CSV · parciales presencial · festivos autónomos)",
         "objetivos": (
-            "[PENDIENTE — completar con Microcurrículo / Plan de curso de Bases de Datos II]\n"
-            "Objetivos oficiales aún no cargados en el workspace."
+            "Objetivo de aprendizaje: Diseñar, administrar y optimizar bases de datos "
+            "relacionales avanzadas, garantizando seguridad, integridad y eficiencia en el "
+            "manejo de grandes volúmenes de información.\n\n"
+            "Resultados de Aprendizaje de la Asignatura (RAA):\n"
+            "RAA1: Administra bases de datos aplicando estrategias de seguridad y respaldo.\n"
+            "RAA2: Implementa procedimientos almacenados y disparadores para la automatización "
+            "de procesos.\n"
+            "RAA3: Optimiza consultas y estructuras de bases de datos para mejorar el "
+            "rendimiento del sistema.\n\n"
+            "Fuente: Microcurrículo FI303215 — Bases de Datos II (Plan curso/)."
         ),
-        "metodologia": (
-            "Acuerdo sobre los aspectos metodológicos\n"
-            "Periodo 2026-2 · Grupo 641A-2 · Lunes 18:00–20:00 (120 min) · Modalidad: Presencialidad asistida (Clase 1 y parciales presencial sincrono · resto virtual sincrona · festivos = clase autonoma).\n"
+        "metodologia_base": (
             "Estructura sugerida (ajustar al Acuerdo/Plan): "
-            "Teoría Core · Taller Guiado · Quiz/comprobación.\n"
-            "Calendario: 15 clases (10/08/2026–16/11/2026). Festivos = clase autónoma:\n"
-            "17/08 (Asunción), 12/10 (Diversidad Étnica), "
-            "02/11 (Todos los Santos), 16/11 (Independencia de Cartagena).\n"
-            "[Detalle en Plan curso/CALENDARIO_2026-2.md.]"
+            "Teoría Core · Taller Guiado · Quiz/comprobación."
         ),
     },
     "arquitectura": {
-        "folder": "Arquitectura de Sistemas Computacionales",
-        "nombre": "Arquitectura de Sistemas Computacionales",
-        "codigo": "FI303380",
-        "grupo": "6303C",
         "grupo_acuerdo": "6303C",
-        "semestre": "[PENDIENTE]",
+        "semestre": "Sexto Semestre",
         "programa": "Ingeniería de Sistemas",
-        "dia": "Lunes",
-        "weekday": 0,
-        "horario": "10:00 – 12:00",
-        "duracion_min": 120,
-        "modalidad": "Virtual (clases y parciales sincronos / festivos autonomos)",
         "objetivos": (
-            "[PENDIENTE — completar con Microcurrículo / Plan de curso de "
-            "Arquitectura de Sistemas Computacionales]\n"
-            "Objetivos oficiales aún no cargados en el workspace."
+            "Objetivo de aprendizaje: Diseñar e implementar arquitecturas de sistemas "
+            "computacionales aplicando principios de computación en la nube, virtualización y "
+            "escalabilidad, asegurando eficiencia y sostenibilidad.\n\n"
+            "Resultados de Aprendizaje de la Asignatura (RAA):\n"
+            "RAA1: Comprende y aplica modelos de servicio cloud (IaaS, PaaS, SaaS).\n"
+            "RAA2: Configura entornos virtualizados y despliega sistemas distribuidos.\n"
+            "RAA3: Evalúa la seguridad, rendimiento y sostenibilidad de arquitecturas en la nube.\n\n"
+            "Fuente: Microcurrículo FI303380 — Arquitectura de Sistemas Computacionales "
+            "(Enfoque Cloud) (Plan curso/)."
         ),
-        "metodologia": (
-            "Acuerdo sobre los aspectos metodológicos\n"
-            "Periodo 2026-2 · Lunes 10:00–12:00 (120 min).\n"
-            "Grupo: 6303C. Modalidad: Presencialidad asistida (Clase 1 y parciales presencial sincrono · resto virtual sincrona · festivos = clase autonoma).\n"
-            "Calendario: 15 clases (10/08/2026–16/11/2026). Festivos = clase autónoma:\n"
-            "17/08 (Asunción), 12/10 (Diversidad Étnica), "
-            "02/11 (Todos los Santos), 16/11 (Independencia de Cartagena).\n"
-            "[Detalle en Plan curso/CALENDARIO_2026-2.md.]"
+        "metodologia_base": (
+            "Estructura sugerida: Teoría Core · Taller Guiado sobre el Proyecto Integrador "
+            "CloudLite · Quiz/comprobación."
         ),
     },
 }
-def class_dates(
-    weekday: int,
-    tipo_regular: str = "virtual",
-    clase1_presencial: bool = True,
-) -> list[dict]:
-    out: list[dict] = []
-    d = START
-    n = 0
-    while d <= END:
-        if d.weekday() == weekday:
-            n += 1
-            iso = d.isoformat()
-            festivo = FESTIVOS.get(iso)
-            if festivo:
-                tipo = "autonoma"
-            elif n == 1 and clase1_presencial:
-                tipo = "presencial"
-            else:
-                tipo = tipo_regular
+
+# Nombre del CSV consolidado por curso en config/calendario/ (nombres históricos:
+# programacion_ii y seminario quedaron etiquetados 2026-1 aunque su contenido es 2026-2).
+CSV_CONFIG_NAME = {
+    "programacion_ii": "eventos_programacion_ii_2026-1.csv",
+    "seminario": "eventos_seminario_2026-1.csv",
+    "bases_datos_ii": "eventos_bases_datos_ii_2026-2.csv",
+    "arquitectura": "eventos_arquitectura_2026-2.csv",
+}
+
+CSV_HEADER = [
+    "curso",
+    "codigo_fi",
+    "grupo",
+    "clase_n",
+    "fecha",
+    "dia",
+    "hora_inicio",
+    "hora_fin",
+    "tipo_clase",
+    "es_parcial",
+    "parcial_n",
+    "sesion_etiqueta",
+    "tema",
+    "notas",
+]
+
+
+# ---------------------------------------------------------------- textos del acuerdo
+
+
+def metodologia_text(key: str, meta: dict) -> str:
+    extra = ACUERDO_EXTRA[key]
+    clases = meta["clases"]
+    fest = [cl for cl in clases if cl.get("festivo")]
+    if fest:
+        fest_line = "Festivos = clase autónoma:\n" + ", ".join(
+            f"{dm(cl['fecha'])} ({cl['festivo']})" for cl in fest
+        ) + "."
+    else:
+        fest_line = f"No hay festivos en {meta['dia'].lower()}; todas las sesiones son regulares."
+    dobles = [cl["n"] for cl in clases if cl.get("sesion_doble")]
+    sust = meta.get("sustentacion_pi")
+    lines = [
+        "Acuerdo sobre los aspectos metodológicos",
+        f"Periodo 2026-2 · Grupo {meta['grupo']} · {meta['dia']} {meta['horario']} "
+        f"({meta['duracion_min']} min).",
+        "Modalidad: Presencialidad asistida (Sesión 1 y parciales presencial síncrono · "
+        "resto de sesiones regulares virtual síncrona · festivos = clase autónoma).",
+        extra["metodologia_base"],
+        f"Calendario: 13 sesiones ({N_TEMAS} temas del microcurrículo) "
+        f"({dmy(clases[0]['fecha'])}–{dmy(clases[-1]['fecha'])}). "
+        f"Semestre acortado: inicio {dmy(START)}, fin {dmy(END)}; se conservan los "
+        f"{N_TEMAS} temas porque las sesiones "
+        + " y ".join(str(n) for n in dobles)
+        + " son dobles (dos temas afines en un bloque de 120 min).",
+        fest_line,
+    ]
+    if sust:
+        lines.append(
+            f"Sesión {sust['clase']} ({dmy(sust['fecha'])}): sustentaciones del proyecto final."
+        )
+    lines.append("[Detalle en Plan curso/2026-2/CALENDARIO_2026-2.md del curso.]")
+    return "\n".join(lines)
+
+
+def eval_text(meta: dict) -> str:
+    clases = meta["clases"]
+    by_n = {cl["n"]: cl for cl in clases}
+    ordinal = {1: "Primer", 2: "Segundo", 3: "Tercer"}
+    detalle = {
+        1: "10% Talleres o Quiz | 10% Asistencia",
+        2: "10% Talleres o Quiz | 10% Asistencia",
+        3: "20% Proyecto Integrador | 5% Asistencia",
+    }
+    peso = {1: "10%", 2: "10%", 3: "15%"}
+    out = [
+        "Acuerdo sobre los aspectos de evaluación",
+        "(Cálculo teórico 2026-2 · 30% / 30% / 40% — validar en socialización con el grupo)",
+        "Parciales: presenciales y síncronos; NUNCA en festivo ni en clase autónoma. "
+        "Criterio: última sesión regular del corte.",
+        "",
+    ]
+    for a, b, pn in corte_rangos():
+        c = CORTES[f"corte_{pn}"]
+        p = parcial_de_corte(meta, pn)
+        out.append(
+            f"{ordinal[pn]} corte ({c['pct']}) — [{dmy(c['inicio'])} al {dmy(c['fin'])}] · "
+            f"Sesiones {a}–{b}:"
+        )
+        if p:
             out.append(
-                {
-                    "n": n,
-                    "fecha": iso,
-                    "tipo": tipo,
-                    "festivo": festivo,
-                    "parcial": False,
-                }
+                f"* {peso[pn]} Parcial {pn} (cierre de corte, Sesión {p['clase']} — "
+                f"{dmy(p['fecha'])}, presencial) | {detalle[pn]}"
             )
-        d += timedelta(days=1)
-    return out
+        out.append("")
+    sust = meta.get("sustentacion_pi")
+    nota = (
+        f"Nota: semestre 2026-2 acortado (inicio {dmy(START)} · fin {dmy(END)}) = 13 sesiones que "
+        f"cubren los {N_TEMAS} temas del microcurrículo (2 sesiones dobles). Los porcentajes "
+        "30/30/40 y su desglose NO cambian. Los parciales nunca caen en festivo ni en clase "
+        "autónoma."
+    )
+    if sust:
+        s = by_n.get(sust["clase"], {})
+        nota += (
+            f" La Sesión {sust['clase']} ({dmy(sust['fecha'])}"
+            + (f", {s.get('festivo')}" if s.get("festivo") else "")
+            + ") se dedica a las sustentaciones del Proyecto Integrador (no es parcial)."
+        )
+    out.append(nota)
+    return "\n".join(out)
 
 
-def apply_parciales(clases: list[dict]) -> list[dict]:
-    ranges = [(1, 5, 1), (6, 10, 2), (11, 15, 3)]
-    for a, b, pn in ranges:
-        regs = [cl for cl in clases if a <= cl["n"] <= b and cl["tipo"] != "autonoma"]
-        if not regs:
-            continue
-        target = regs[-1]
-        target["parcial"] = True
-        target["parcial_n"] = pn
-        target["tipo"] = "presencial"  # parciales siempre presencial sincrono
-    return clases
+APROBACION = (
+    "[PRELLENADO 2026-2 — pendiente socialización con el grupo]\n"
+    f"Periodo académico: {dmy(START)} al {dmy(END)}.\n"
+    "Pendiente: aprobación/ajustes con estudiantes, listado oficial, vocero y firmas.\n"
+    "No se inventan nombres ni códigos de estudiantes."
+)
+
+
+# ---------------------------------------------------------------- docx helpers
 
 
 def set_cell_text(cell, text: str) -> None:
@@ -269,24 +448,29 @@ def set_cell_text(cell, text: str) -> None:
         else:
             for r in p.runs:
                 r.text = ""
+
+
 def set_merged_row_value(row, start_col: int, text: str, end_col: int | None = None) -> None:
     end = end_col if end_col is not None else len(row.cells)
     for i in range(start_col, end):
         set_cell_text(row.cells[i], text)
-def fill_acuerdo(meta: dict) -> Path:
+
+
+def fill_acuerdo(key: str, meta: dict) -> Path:
+    extra = ACUERDO_EXTRA[key]
     doc = Document(str(TEMPLATE))
     t0 = doc.tables[0]
-    set_merged_row_value(t0.rows[0], 1, meta["programa"])
+    set_merged_row_value(t0.rows[0], 1, extra["programa"])
     set_merged_row_value(t0.rows[1], 1, meta["nombre"])
-    set_cell_text(t0.rows[2].cells[1], meta["grupo_acuerdo"])
-    set_cell_text(t0.rows[2].cells[3], meta["semestre"])
+    set_cell_text(t0.rows[2].cells[1], extra["grupo_acuerdo"])
+    set_cell_text(t0.rows[2].cells[3], extra["semestre"])
     set_cell_text(t0.rows[3].cells[1], "2026-2")
     set_cell_text(t0.rows[3].cells[3], "[PENDIENTE — fecha socialización]")
     set_merged_row_value(t0.rows[4], 1, DOCENTE)
-    set_cell_text(doc.tables[1].rows[1].cells[0], meta["objetivos"])
+    set_cell_text(doc.tables[1].rows[1].cells[0], extra["objetivos"])
     set_cell_text(doc.tables[2].rows[1].cells[0], APROBACION)
-    set_cell_text(doc.tables[3].rows[0].cells[0], meta["metodologia"])
-    set_cell_text(doc.tables[3].rows[1].cells[0], EVAL_TEXT)
+    set_cell_text(doc.tables[3].rows[0].cells[0], metodologia_text(key, meta))
+    set_cell_text(doc.tables[3].rows[1].cells[0], eval_text(meta))
     t4 = doc.tables[4]
     for c in t4.rows[0].cells[3:]:
         set_cell_text(c, "[PENDIENTE — listado]")
@@ -309,7 +493,10 @@ def fill_acuerdo(meta: dict) -> Path:
     note.add_run(
         f"Docente: {DOCENTE} · Correo: {CORREO} · "
         f'Horario: {meta["dia"]} {meta["horario"]} ({meta["duracion_min"]} min) · '
-        f'Modalidad: {meta["modalidad"]} · Código: {meta["codigo"]} · '
+        f'Modalidad: {meta["modalidad"]} (Sesión 1 y parciales presencial síncrono · '
+        "resto virtual síncrona · festivos = clase autónoma) · "
+        f'Código: {meta["codigo"]} · '
+        f"Periodo: {dmy(START)}–{dmy(END)} · 13 sesiones / {N_TEMAS} temas · "
         "PRELLENADO 2026-2 — campos de estudiantes pendientes."
     )
     out = (
@@ -322,99 +509,370 @@ def fill_acuerdo(meta: dict) -> Path:
     out.parent.mkdir(parents=True, exist_ok=True)
     doc.save(str(out))
     return out
-def calendario_md(meta: dict, clases: list[dict]) -> str:
+
+
+# ---------------------------------------------------------------- markdown
+
+
+def cortes_table(meta: dict) -> list[str]:
+    lines = [
+        "| Corte | % | Ventana | Sesiones | Parcial de cierre | Desglose teórico |",
+        "|---|---|---|---|---|---|",
+    ]
+    for a, b, pn in corte_rangos():
+        c = CORTES[f"corte_{pn}"]
+        p = parcial_de_corte(meta, pn)
+        parcial = (
+            f"Parcial {pn} · Sesión {p['clase']} ({dmy(p['fecha'])}) · Presencial (síncrona)"
+            if p
+            else "—"
+        )
+        lines.append(
+            f"| Corte {pn} | {c['pct']} | {dmy(c['inicio'])} → {dmy(c['fin'])} | {a}-{b} | "
+            f"{parcial} | {c['desglose']} |"
+        )
+    return lines
+
+
+def calendario_md(meta: dict) -> str:
+    clases = meta["clases"]
+    fest = festivos_en_rango()
+    dobles = [cl for cl in clases if cl.get("sesion_doble")]
     lines = [
         f'# Calendario 2026-2 — {meta["nombre"]}',
         "",
         f'- **Código:** {meta["codigo"]}',
         f'- **Grupo:** {meta["grupo"]}',
-        f"- **Periodo:** 2026-2 · **10/08/2026 – 22/11/2026**",
+        f"- **Periodo:** 2026-2 · **{dmy(START)} – {dmy(END)}**",
         f'- **Horario:** {meta["dia"]} **{meta["horario"]}** ({meta["duracion_min"]} min)',
-        f'- **Modalidad:** {meta["modalidad"]}',
+        f'- **Modalidad:** **{meta["modalidad"]}** (Sesión 1 y parciales presencial síncrono · '
+        "resto virtual síncrona · festivos = clase autónoma)",
         f"- **Docente:** {DOCENTE} · `{CORREO}`",
-        f"- **Total clases:** {len(clases)} (festivos = **clase autónoma**, no se omiten)",
+        f"- **Total sesiones:** {len(clases)} · **temas del microcurrículo:** {N_TEMAS} "
+        f"({len(dobles)} sesiones dobles) — festivos = **clase autónoma**, no se omiten",
+        "",
+        f"> {resumen_compresion()}",
         "",
         "## Cortes teóricos (30% / 30% / 40%)",
         "",
-        LOGICA_EVALUACION,
+        logica_curso(meta),
         "",
-        "| Corte | % | Ventana | Clases | Parcial de cierre | Desglose teórico |",
+        *cortes_table(meta),
+        "",
+        "> **Día de parcial = solo evaluación** (sin tema de trabajo dirigido nuevo). "
+        "Detalle temático en PLAN_DE_CURSO_2026-2.md.",
+        "",
+        "## Sesiones (mapeo Sesión → Clase de material)",
+        "",
+        "> La columna **Clase(s) de material** indica qué carpeta `Clases/Clase N - …` y "
+        "`Kit docente/Clase N/` se usa en esa sesión. **No se renumeró nada**: las sesiones "
+        "marcadas *(doble)* dictan dos clases de material en el mismo bloque de 120 min.",
+        "",
+        "| Sesión | Fecha | Tipo | Clase(s) de material | Tema | Nota |",
         "|---|---|---|---|---|---|",
     ]
-    for key, c in CORTES.items():
-        title = key.replace("_", " ").title()
-        lines.append(
-            f'| {title} | {c["pct"]} | {c["inicio"]} → {c["fin"]} | '
-            f'{c["clases"]} | {c["parcial_cierre"]} | {c["desglose"]} |'
-        )
-    lines += [
-        "",
-        "> Cálculo teórico por tercios del periodo. Validar en Acuerdo pedagógico / socialización.",
-        "",
-        "## Clases",
-        "",
-        "| Clase | Fecha | Tipo | Nota |",
-        "|---|---|---|---|",
-    ]
-    # Parciales en ultima clase regular de cada corte (nunca autonoma)
-    ranges = [(1, 5, 1), (6, 10, 2), (11, 15, 3)]
-    cierre_parcial = {}
-    for a, b, pn in ranges:
-        regs = [cl for cl in clases if a <= cl["n"] <= b and cl["tipo"] != "autonoma"]
-        if regs:
-            cierre_parcial[regs[-1]["n"]] = f"Parcial {pn} (cierre Corte {pn})"
     for cl in clases:
-        tipo = {
-            "autonoma": "Autónoma (festivo)",
-            "presencial": "Presencial",
-            "virtual": "Virtual (síncrona)",
-        }.get(cl["tipo"], cl["tipo"])
-        notas = []
-        if cl["festivo"]:
-            notas.append(cl["festivo"])
-            if cl["n"] not in cierre_parcial:
-                notas.append("refuerzo sin parcial")
-        if cl["n"] in cierre_parcial:
-            notas.append(cierre_parcial[cl["n"]])
-        nota = " · ".join(notas) if notas else "—"
-        y, m, d = cl["fecha"].split("-")
-        lines.append(f'| {cl["n"]} | {d}/{m}/{y} | {tipo} | {nota} |')
+        mat = material(cl) + (" **(doble)**" if cl.get("sesion_doble") else "")
+        nota = nota_sesion(cl) or "—"
+        lines.append(
+            f'| {cl["n"]} | {dmy(cl["fecha"])} | {TIPO_LABEL.get(cl["tipo"], cl["tipo"])} | '
+            f'{mat} | {tema_txt(cl)} | {nota} |'
+        )
+    lines += ["", "## Sesiones dobles", ""]
+    for cl in dobles:
+        lines.append(f'- **Sesión {cl["n"]}** ({dmy(cl["fecha"])}) — {material(cl)}: {tema_txt(cl)}')
     lines += [
         "",
         "## Festivos Colombia 2026 (rango del periodo)",
         "",
-        "- 17/08/2026 — Asunción de la Virgen",
-        "- 12/10/2026 — Día de la Diversidad Étnica y Cultural",
-        "- 02/11/2026 — Todos los Santos",
-        "- 16/11/2026 — Independencia de Cartagena",
+    ]
+    for iso, nombre in sorted(fest.items()):
+        cl = next((c for c in clases if c["fecha"] == iso), None)
+        extra = ""
+        if cl:
+            extra = (
+                f" — Sesión {cl['n']}: "
+                + ("sustentaciones del PI" if cl["tipo"] == "sustentacion" else "clase autónoma")
+            )
+        lines.append(f"- {dmy(iso)} — {nombre}{extra}")
+    lines += [
+        "",
+        f"> Fuera de rango tras el nuevo inicio ({dmy(START)}): 17/08/2026 (Asunción de la Virgen) "
+        "ya no cae en el periodo.",
+        "",
+        "Fuente: `config/calendario/semestre_2026_2.json` (generado por "
+        "`config/calendario/generar_semestre_2026_2.py`).",
         "",
     ]
     return "\n".join(lines)
+
+
+def cronograma_md(meta: dict) -> str:
+    clases = meta["clases"]
+    lines = [
+        f'# Cronograma 2026-2 — {meta["nombre"]}',
+        "",
+        "Documento para estudiantes (carpeta compartida `Clases/`).",
+        "",
+        f'- **Código:** {meta["codigo"]} · **Grupo:** **{meta["grupo"]}**',
+        f'- **Horario:** **{meta["dia"]} {meta["horario"]}** ({meta["duracion_min"]} min)',
+        f"- **Periodo:** 2026-2 · **{dmy(START)} – {dmy(END)}**",
+        f'- **Modalidad:** **{meta["modalidad"]}** (Sesión 1 y parciales presencial síncrono · '
+        "resto virtual síncrona · festivos = clase autónoma)",
+        f"- **Sesiones:** **{len(clases)}** (cubren los **{N_TEMAS} temas** del curso; "
+        "2 sesiones son dobles)",
+        "",
+        "> El **día 1** incluye la **Sesión 0** (Presentación del curso: acuerdo, logística, "
+        "Padlet, evaluación, socialización del Proyecto Integrador) **y** el arranque temático.",
+        "",
+        "| Sesión | Fecha | Tipo | Tema | Material | Parcial |",
+        "|---|---|---|---|---|---|",
+    ]
+    for cl in clases:
+        tema = tema_txt(cl)
+        if cl.get("sesion_doble"):
+            tema = f"**Sesión doble** · {tema}"
+        mat = material(cl)
+        lines.append(
+            f'| {cl["n"]} | {dmy(cl["fecha"])} | {TIPO_LABEL.get(cl["tipo"], cl["tipo"])} | '
+            f'{tema} | {mat} | {"sí" if cl.get("parcial") else "no"} |'
+        )
+    lines += [
+        "",
+        "## Evaluación por cortes",
+        "",
+        "| Corte | % | Ventana | Detalle |",
+        "|---|---|---|---|",
+    ]
+    for a, b, pn in corte_rangos():
+        c = CORTES[f"corte_{pn}"]
+        p = parcial_de_corte(meta, pn)
+        det = (
+            f"Parcial {pn} en Sesión {p['clase']} ({dmy(p['fecha'])}) · {c['desglose']}"
+            if p
+            else c["desglose"]
+        )
+        lines.append(f"| {pn} | {c['pct']} | {dmy(c['inicio'])} – {dmy(c['fin'])} | {det} |")
+    sust = meta.get("sustentacion_pi")
+    if sust:
+        lines += [
+            "",
+            f"> **Sustentación del Proyecto Integrador:** Sesión {sust['clase']} — "
+            f"{dmy(sust['fecha'])}.",
+        ]
+    lines += [
+        "",
+        "Fuente derivada del Plan de curso 2026-2. Detalle docente interno no se comparte aquí.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def plan_head(meta: dict) -> str:
+    clases = meta["clases"]
+    parc = meta.get("parciales", {})
+    nums = [str(parc[f"parcial_{i}"]["clase"]) for i in (1, 2, 3) if f"parcial_{i}" in parc]
+    fechas = [dmy(parc[f"parcial_{i}"]["fecha"]) for i in (1, 2, 3) if f"parcial_{i}" in parc]
+    dobles = [cl for cl in clases if cl.get("sesion_doble")]
+    lines = [
+        f'# Plan de curso — {meta["nombre"]} · 2026-2',
+        "> **CSV eventos:** `Plan curso/2026-2/calendario_eventos_2026-2.csv` (UTF-8 BOM). "
+        "Importar en hoja/calendario cuando exista el listado de estudiantes "
+        "(una fila = una sesión; filtrar `es_parcial=si` para parciales síncronos).",
+        "",
+        f'- **Código:** {meta["codigo"]} · **Grupo:** **{meta["grupo"]}**',
+        f"- **Periodo:** **2026-2** · **{dmy(START)} – {dmy(END)}**",
+        f'- **Horario:** **{meta["dia"]} {meta["horario"]}** ({meta["duracion_min"]} min)',
+        f'- **Modalidad:** **{meta["modalidad"]}** (Sesión 1 y parciales presencial síncrono · '
+        "resto virtual síncrona · festivos = clase autónoma)",
+        f"- **Docente:** {DOCENTE} · `{CORREO}`",
+        "- **Calendario:** `Plan curso/2026-2/CALENDARIO_2026-2.md` · "
+        "`config/calendario/semestre_2026_2.json`",
+        "",
+        f"## Ajuste 2026-2: 13 sesiones para {N_TEMAS} temas",
+        "",
+        resumen_compresion(),
+        "",
+        "Sesiones dobles de este curso: "
+        + " · ".join(
+            f'**Sesión {cl["n"]}** ({dmy(cl["fecha"])}) = {material(cl)}' for cl in dobles
+        )
+        + ".",
+        "",
+        logica_curso(meta),
+        "",
+        f"Parciales de este curso: Sesiones **{' / '.join(nums)}** "
+        f"({', '.join(fechas)}) — presencial síncrono.",
+        "",
+        "> **Día de parcial = solo evaluación:** sin tema de trabajo dirigido nuevo.",
+        "",
+        "> **Sesión 0 (no es sesión temática):** `Clases/Presentacion del Curso - ….pptx` "
+        "(logística, acuerdo, Padlet, evaluación, CONTENIDO, socialización del Proyecto "
+        "Integrador). En el **día 1** va Sesión 0 + Sesión 1 en el bloque de 120 min.",
+        "",
+    ]
+    sust = meta.get("sustentacion_pi")
+    if sust:
+        lines += [
+            f"> **Sesión {sust['clase']} ({dmy(sust['fecha'])}) = sustentaciones del Proyecto "
+            f"Integrador** ({sust['nota']})",
+            "",
+        ]
+    lines += [
+        "## Tabla Sesión · Fecha · Tipo · Clase(s) de material · Tema",
+        "",
+        "| Sesión | Fecha | Tipo | Clase(s) de material | Tema (Trabajo dirigido) |",
+        "|---|---|---|---|---|",
+    ]
+    for cl in clases:
+        mat = material(cl) + (" **(doble)**" if cl.get("sesion_doble") else "")
+        tema = tema_txt(cl)
+        if cl.get("parcial"):
+            tema = f"**Parcial {cl['parcial_n']}** (solo evaluación)"
+        lines.append(
+            f'| {cl["n"]} | {dmy(cl["fecha"])} | {TIPO_LABEL.get(cl["tipo"], cl["tipo"])} | '
+            f"{mat} | {tema} |"
+        )
+    lines += [
+        "",
+        "## Evaluación teórica (Acuerdo 2026-2)",
+        "",
+        "| Corte | % | Ventana | Parcial de cierre |",
+        "|---|---|---|---|",
+    ]
+    for a, b, pn in corte_rangos():
+        c = CORTES[f"corte_{pn}"]
+        p = parcial_de_corte(meta, pn)
+        det = (
+            f"Parcial {pn} en Sesión {p['clase']} ({dmy(p['fecha'])}) · {c['desglose']}"
+            if p
+            else c["desglose"]
+        )
+        lines.append(f"| {pn} | {c['pct']} | {dmy(c['inicio'])} – {dmy(c['fin'])} | {det} |")
+    lines.append("")
+    return "\n".join(lines)
+
+
+PRESERVE_FROM = "## Herramientas del curso"
+
+
+def plan_de_curso_md(meta: dict, existing: str | None) -> str:
+    """Cabecera + tabla regeneradas; secciones propias del curso preservadas."""
+    tail_parts: list[str] = []
+    if existing and PRESERVE_FROM in existing:
+        tail = existing[existing.index(PRESERVE_FROM):]
+        for chunk in re.split(r"\n(?=## )", tail):
+            title = chunk.lstrip("# ").splitlines()[0].strip() if chunk.strip() else ""
+            if title.lower().startswith("evaluación teórica"):
+                continue  # se regenera arriba
+            if title.lower().startswith("ajuste"):
+                continue
+            tail_parts.append(chunk.rstrip())
+    head = plan_head(meta)
+    if tail_parts:
+        return head + "\n" + "\n\n".join(tail_parts) + "\n"
+    return head
+
+
+# ---------------------------------------------------------------- csv
+
+
+def csv_rows(meta: dict) -> list[list[str]]:
+    rows: list[list[str]] = []
+    for cl in meta["clases"]:
+        hora_i, hora_f = [h.strip() for h in meta["horario"].replace("–", "-").split("-")]
+        rows.append(
+            [
+                meta["nombre"],
+                meta["codigo"],
+                meta["grupo"],
+                str(cl["n"]),
+                cl["fecha"],
+                meta["dia"],
+                hora_i,
+                hora_f,
+                cl["tipo"],
+                "si" if cl.get("parcial") else "no",
+                str(cl["parcial_n"]) if cl.get("parcial") else "",
+                etiqueta_sesion(cl),
+                tema_txt(cl),
+                nota_sesion(cl),
+            ]
+        )
+    return rows
+
+
+def write_csv(path: Path, rows: list[list[str]]) -> None:
+    buf = io.StringIO(newline="")
+    w = csv.writer(buf, lineterminator="\n")
+    w.writerow(CSV_HEADER)
+    w.writerows(rows)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(buf.getvalue(), encoding="utf-8-sig")
+
+
+# ---------------------------------------------------------------- correo bienvenida
+
+
+def patch_correo(meta: dict, path: Path) -> bool:
+    if not path.exists():
+        return False
+    txt = path.read_text(encoding="utf-8")
+    orig = txt
+    txt = txt.replace("10/08/2026 – 22/11/2026", f"{dmy(START)} – {dmy(END)}")
+    parc = meta.get("parciales", {})
+    nums = [str(parc[f"parcial_{i}"]["clase"]) for i in (1, 2, 3) if f"parcial_{i}" in parc]
+    dobles = [cl["n"] for cl in meta["clases"] if cl.get("sesion_doble")]
+    dia = meta["dia"].lower()
+    bullets = [
+        f"- **Modalidad por sesión:** **Sesión 1 presencial**; resto de sesiones regulares "
+        f"**virtual síncrona**; **parciales presencial** síncrono "
+        f"(Sesiones {', '.join(nums[:-1])} y {nums[-1]}). Festivo → **clase autónoma**.",
+        f"- **Calendario:** **13 sesiones de {dia}** ({dmy(START)} – {dmy(END)}) que cubren los "
+        f"{N_TEMAS} temas del curso; las Sesiones "
+        + " y ".join(str(n) for n in dobles)
+        + " son **dobles** (dos temas en el mismo bloque de 120 min).",
+    ]
+    sust = meta.get("sustentacion_pi")
+    if sust:
+        bullets.append(
+            f"- **Sustentación del proyecto final:** Sesión {sust['clase']} — "
+            f"{dmy(sust['fecha'])}."
+        )
+    # elimina bullets previos de modalidad/calendario/encuentros y reinserta los nuevos
+    lines = [
+        ln
+        for ln in txt.splitlines()
+        if not re.match(
+            r"^- \*\*(Encuentros de|Modalidad por sesión:|Calendario:|Sustentación del proyecto)",
+            ln,
+        )
+    ]
+    out: list[str] = []
+    inserted = False
+    for ln in lines:
+        out.append(ln)
+        if not inserted and ln.startswith("- **Modalidad:**"):
+            out.extend(bullets)
+            inserted = True
+    if not inserted:
+        return False
+    txt = "\n".join(out)
+    if txt != orig:
+        path.write_text(txt, encoding="utf-8")
+    return True
+
+
+# ---------------------------------------------------------------- main
+
+
 def main() -> None:
-    master = {
-        "_comentario": (
-            "Calendario académico docente UNIAJC 2026-2. "
-            "Fuente de verdad para generación de material."
-        ),
-        "_actualizado": "2026-08-07",
-        "periodo": "2026-2",
-        "inicio": "2026-08-10",
-        "fin": "2026-11-22",
-        "docente": {
-            "nombre": "Julian Andres Castaño",
-            "nombre_completo": DOCENTE,
-            "correo": CORREO,
-        },
-        "regla_festivos": "No omitir. Marcar como clase autónoma.",
-        "festivos_en_rango": FESTIVOS,
-        "logica_evaluacion": LOGICA_EVALUACION,
-        "cortes_teoricos": CORTES,
-        "cursos": {},
-    }
-    for key, meta in CURSOS.items():
+    todos: list[list[str]] = []
+    for key, meta in DATA["cursos"].items():
         folder = ROOT / meta["folder"]
+        periodo_dir = folder / "Plan curso" / "2026-2"
         for sub in [
-            "Plan curso",
+            "Plan curso/2026-2",
             "Entregas docente/2026-2",
             "Kit docente",
             "Clases",
@@ -422,43 +880,48 @@ def main() -> None:
             "Clases grabadas",
         ]:
             (folder / sub).mkdir(parents=True, exist_ok=True)
-        clases = apply_parciales(
-            class_dates(
-                meta["weekday"],
-                meta.get("tipo_regular", "virtual"),
-                meta.get("clase1_presencial", False),
-            )
+
+        cal_path = periodo_dir / "CALENDARIO_2026-2.md"
+        cal_path.write_text(calendario_md(meta), encoding="utf-8")
+
+        crono_path = periodo_dir / "Cronograma 2026-2.md"
+        crono_path.write_text(cronograma_md(meta), encoding="utf-8")
+
+        plan_path = periodo_dir / "PLAN_DE_CURSO_2026-2.md"
+        prev = plan_path.read_text(encoding="utf-8") if plan_path.exists() else None
+        plan_path.write_text(plan_de_curso_md(meta, prev), encoding="utf-8")
+
+        rows = csv_rows(meta)
+        write_csv(periodo_dir / "calendario_eventos_2026-2.csv", rows)
+        write_csv(Path(__file__).with_name(CSV_CONFIG_NAME[key]), rows)
+        todos.extend(rows)
+
+        acuerdo = fill_acuerdo(key, meta)
+        correo = (
+            folder
+            / "Entregas docente"
+            / "2026-2"
+            / f'CORREO_BIENVENIDA - {meta["folder"]} - 2026-2.md'
         )
-        cal_path = folder / "Plan curso" / "CALENDARIO_2026-2.md"
-        cal_path.write_text(calendario_md(meta, clases), encoding="utf-8")
-        acuerdo = fill_acuerdo(meta)
-        master["cursos"][key] = {
-            k: meta[k]
-            for k in [
-                "folder",
-                "nombre",
-                "codigo",
-                "grupo",
-                "dia",
-                "horario",
-                "duracion_min",
-                "modalidad",
-            ]
-        }
-        master["cursos"][key].update(
-            {
-                "n_clases": len(clases),
-                "clases": clases,
-                "acuerdo_prellenado": str(acuerdo.relative_to(ROOT)).replace("\\", "/"),
-                "calendario": str(cal_path.relative_to(ROOT)).replace("\\", "/"),
-            }
+        if not correo.exists():
+            cand = list((folder / "Entregas docente" / "2026-2").glob("CORREO_BIENVENIDA*.md"))
+            correo = cand[0] if cand else correo
+        ok_correo = patch_correo(meta, correo)
+
+        auton = sum(1 for c in meta["clases"] if c["tipo"] == "autonoma")
+        dobles = sum(1 for c in meta["clases"] if c.get("sesion_doble"))
+        print(
+            f"OK {meta['nombre']}: {len(meta['clases'])} sesiones "
+            f"({auton} autónomas · {dobles} dobles · {N_TEMAS} temas)"
         )
-        auton = sum(1 for c in clases if c["tipo"] == "autonoma")
-        print(f"OK {meta['nombre']}: {len(clases)} clases ({auton} autónomas)")
-        print(f"  - {cal_path.relative_to(ROOT)}")
-        print(f"  - {acuerdo.relative_to(ROOT)}")
-    json_path = Path(__file__).with_name("semestre_2026_2.json")
-    json_path.write_text(json.dumps(master, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"OK {json_path.relative_to(ROOT)}")
+        for p in (cal_path, crono_path, plan_path, acuerdo):
+            print(f"  - {p.relative_to(ROOT)}")
+        print(f"  - {'correo actualizado' if ok_correo else 'CORREO NO ENCONTRADO'}: {correo.name}")
+
+    write_csv(Path(__file__).with_name("eventos_todos_cursos_2026-2.csv"), todos)
+    print(f"OK consolidado: {len(todos)} filas (4 cursos × 13 sesiones)")
+    print("NOTA: semestre_2026_2.json es ENTRADA de este script; no se sobreescribe.")
+
+
 if __name__ == "__main__":
     main()

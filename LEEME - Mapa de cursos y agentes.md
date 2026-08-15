@@ -3,17 +3,18 @@
 Workspace docente: Institución Universitaria Antonio José Camacho.
 
 **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`  
-**Periodo vigente:** 2026-2 · **10/08/2026 – 22/11/2026**  
+**Periodo vigente:** 2026-2 · **24/08/2026 – 22/11/2026** (semestre acortado por decisión institucional; la fecha fin no se movió)  
+**Sesiones:** **13 sesiones** por curso que cubren los **15 temas** del microcurrículo — **2 sesiones son dobles** (dos temas afines en un bloque de 120 min). Las carpetas `Clases/Clase N - …` y `Kit docente/Clase N/` **no se renumeraron**: el mapeo Sesión → Clase(s) de material está en `<Curso>/Plan curso/2026-2/CALENDARIO_2026-2.md`.  
 **Calendario maestro:** `config/calendario/semestre_2026_2.json`
 
 ## Cursos
 
 | Carpeta | Oferta 2026-2 | Notas |
 |---|---|---|
-| `Programacion II/` | FI303204 · **341C** · mié **18:00–20:00** · Presencialidad asistida (120 min) | 15 clases · **reconstruido 2026-2** con `build_uniajc_prog2_all.py` · PI VetCare (Java) |
-| `Seminario de Sistemas/` | FI303301 · **341C** · jue **18:00–20:00** · Presencialidad asistida (120 min) | 15 clases · **reconstruido 2026-2** con `build_uniajc_seminario_all.py` · PI VetCare (diseño: requisitos, UML, wireframes) |
-| `Bases de Datos II/` | **641A-2** · lun **18:00–20:00** · Presencialidad asistida (120 min) | Curso nuevo · **FI303215** · 4 clases autónomas (festivos) · falta confirmación oficial de secretaría |
-| `Arquitectura de Sistemas Computacionales/` | lun **10:00–12:00** · Presencialidad asistida (120 min) | Curso nuevo · **FI303380 · 6303C** · 4 clases autónomas · falta confirmación oficial de secretaría |
+| `Programacion II/` | FI303204 · **341C** · mié **18:00–20:00** · Presencialidad asistida (120 min) | 13 sesiones / 15 temas (sesiones 8 y 10 dobles) · sin festivos · **reconstruido 2026-2** con `build_uniajc_prog2_all.py` · PI VetCare (Java) |
+| `Seminario de Sistemas/` | FI303301 · **341C** · jue **18:00–20:00** · Presencialidad asistida (120 min) | 13 sesiones / 15 temas (sesiones 8 y 10 dobles) · sin festivos · **reconstruido 2026-2** con `build_uniajc_seminario_all.py` · PI VetCare (diseño: requisitos, UML, wireframes) |
+| `Bases de Datos II/` | **641A-2** · lun **18:00–20:00** · Presencialidad asistida (120 min) | Curso nuevo · **FI303215** · 13 sesiones / 15 temas (sesiones 7 y 10 dobles) · 2 sesiones autónomas (12/10 y 02/11) · sesión 13 (16/11) = sustentaciones del PI · falta confirmación oficial de secretaría |
+| `Arquitectura de Sistemas Computacionales/` | lun **10:00–12:00** · Presencialidad asistida (120 min) | Curso nuevo · **FI303380 · 6303C** · 13 sesiones / 15 temas (sesiones 7 y 10 dobles) · 2 sesiones autónomas (12/10 y 02/11) · sesión 13 (16/11) = sustentaciones del PI · falta confirmación oficial de secretaría |
 | `0. Base/` | — | Plantillas institucionales (Ing. Software 1) |
 
 ## Modalidad (regla única, 4 cursos)
@@ -22,10 +23,11 @@ Workspace docente: Institución Universitaria Antonio José Camacho.
 
 | Sesión | Modalidad |
 |---|---|
-| **Clase 1** (encuadre) | **Presencial** síncrona |
-| **Parciales** (5/10/15 mié-jue · 5/9/14 lun) | **Presencial** síncrona |
+| **Sesión 1** (encuadre) | **Presencial** síncrona |
+| **Parciales** (mié-jue: **5/9/13** · lun: **5/9/12**) | **Presencial** síncrona |
 | Resto de clases regulares | **Virtual** síncrona |
 | Festivos | **Clase autónoma** (único caso asincrónico) |
+| **Sesión 13 de lunes** (16/11, BD II y Arquitectura) | **Sustentaciones del Proyecto Integrador** (no es parcial) |
 
 Fuente de verdad: `config/calendario/semestre_2026_2.json` → `regla_modalidad_sesion`.
 
@@ -33,11 +35,11 @@ Fuente de verdad: `config/calendario/semestre_2026_2.json` → `regla_modalidad_
 
 Misma lógica que Acuerdos de Prog. II / Seminario: **30% / 30% / 40%** con **parcial al cierre de cada corte**.
 
-| Corte | % | Ventana | Clases | Parcial | Desglose |
+| Corte | % | Ventana | Sesiones | Parcial | Desglose |
 |---|---|---|---|---|---|
-| 1 | 30% | 10/08–13/09 | 1–5 | Parcial 1 (Clase 5) | 10% Parcial · 10% Talleres o Quiz · 10% Asistencia |
-| 2 | 30% | 14/09–18/10 | 6–10 | Parcial 2 (Clase 10) | 10% Parcial · 10% Talleres o Quiz · 10% Asistencia |
-| 3 | 40% | 19/10–22/11 | 11–15 | Parcial 3 (Clase 15) | 15% Parcial · 20% Proyecto Integrador · 5% Asistencia |
+| 1 | 30% | 24/08–27/09 | 1–5 | Parcial 1 (Sesión 5) | 10% Parcial · 10% Talleres o Quiz · 10% Asistencia |
+| 2 | 30% | 28/09–25/10 | 6–9 | Parcial 2 (Sesión 9) | 10% Parcial · 10% Talleres o Quiz · 10% Asistencia |
+| 3 | 40% | 26/10–22/11 | 10–13 | Parcial 3 (Sesión 13 mié-jue · Sesión 12 lun) | 15% Parcial · 20% Proyecto Integrador · 5% Asistencia |
 
 Festivos = **clase autónoma** (no se omiten). Si el cierre de corte cae en festivo, el parcial se mueve a la última clase regular anterior (nunca en festivo).
 
@@ -81,7 +83,7 @@ python config/slides/build_uniajc_seminario_curso.py
 python config/slides/build_uniajc_bd2_curso.py
 python config/slides/build_uniajc_arq_curso.py
 
-# Material de clase (las 15 clases del curso)
+# Material de clase (las 15 clases de material · se dictan en 13 sesiones)
 python config/slides/build_uniajc_prog2_all.py         # datos en prog2_clases_data.py
 python config/slides/build_uniajc_seminario_all.py     # datos en seminario_clases_data.py
 python config/slides/build_uniajc_bd2_all.py

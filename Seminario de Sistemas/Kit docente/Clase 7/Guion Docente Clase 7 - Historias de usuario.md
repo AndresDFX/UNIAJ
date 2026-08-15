@@ -35,7 +35,7 @@ Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 ### 10-40 · Teoria Core
 Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
 proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
-Pregunta al aire (2 min): ¿donde encaja esto en el VetCare de su equipo?
+Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
@@ -44,14 +44,14 @@ Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 7/Plantillas/Backlog-Historias-VetCare.md`
 
 ### 60-105 · Taller guiado = avance del PI
-**Decir:** «Equipos: abran su proyecto VetCare. Esto suma a la rubrica del PI.»
+**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Paso 1: agrupe los RF del catalogo de la clase 6 en dos epicas de VetCare (por ejemplo Gestion de pacientes e Historial y agenda) y escriba el nombre y el objetivo de cada epica en una linea.
 2. Paso 2: descomponga las dos epicas en 8 historias con el formato Como <rol de la clinica Huellitas> quiero <accion> para <beneficio>, usando roles concretos (auxiliar, veterinario, administrador) y nunca la palabra usuario.
 3. Paso 3: escriba 2 o 3 criterios de aceptacion por historia en Dado-Cuando-Entonces, e incluya obligatoriamente un criterio de camino alterno o de error en al menos cuatro de las ocho historias.
 4. Paso 4: revise cada historia contra INVEST marcando las seis letras con si o no; toda historia que falle dos o mas letras debe reescribirse o partirse antes de continuar.
 5. Paso 5: estime en puntos con la escala 1, 2, 3, 5, 8 tomando 'registrar un dueno = 3' como referencia, ordene el backlog de mayor a menor prioridad, agregue la columna de trazabilidad al RF de origen y suba el tablero a ExamLab.
-Circular por los equipos. Empujar evidencia funcionando, no perfeccionismo.
+Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Tablero de backlog con 8 historias en formato Como/quiero/para, cada una con 2 o 3 criterios de aceptacion en Dado-Cuando-Entonces, estimacion en puntos y trazabilidad al RF de la clase 6, subido a ExamLab.
 
 ### 105-120 · Criterios de exito y cierre

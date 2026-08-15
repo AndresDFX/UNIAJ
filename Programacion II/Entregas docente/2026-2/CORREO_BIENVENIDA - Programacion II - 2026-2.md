@@ -8,10 +8,11 @@
 
 Estimados estudiantes:
 
-Les doy la bienvenida al curso **Programación II** (código **FI303204**, grupo **341C**) del periodo **2026-2** (ventana académica: **10/08/2026 – 22/11/2026**).
+Les doy la bienvenida al curso **Programación II** (código **FI303204**, grupo **341C**) del periodo **2026-2** (ventana académica: **24/08/2026 – 22/11/2026**).
 
 - **Modalidad:** Presencialidad asistida (clases presencial / virtual síncrona / autónoma)
-- **Encuentros de miércoles:** **Clase 1 presencial**; clases regulares **2–15 virtuales síncronas**; **parciales presencial** síncrono (Clases 5, 10 y 15). Festivo → clase autónoma.
+- **Modalidad por sesión:** **Sesión 1 presencial**; resto de sesiones regulares **virtual síncrona**; **parciales presencial** síncrono (Sesiones 5, 9 y 13). Festivo → **clase autónoma**.
+- **Calendario:** **13 sesiones de miércoles** (24/08/2026 – 22/11/2026) que cubren los 15 temas del curso; las Sesiones 8 y 10 son **dobles** (dos temas en el mismo bloque de 120 min).
 - **Horario:** miércoles **18:00 – 20:00** (inicio práctico de clase: **18:10**)
 - **Docente:** Julian Andres Castaño Espinosa · julianacastano@profesores.uniajc.edu.co
 - **Entrega de talleres y evaluaciones:** ExamLab · `https://examlab.lovable.app/app`

@@ -77,9 +77,9 @@ Minimo 8 conceptos con nombre canonico, definicion de una linea y sinonimos proh
 
 **Enunciado (campo Contenido):**
 
-## Acta de auditoria del paquete del equipo Patitas
+## Acta de auditoria del paquete de otro proyecto (Patitas)
 
-Audite el paquete que entrego otro equipo. Este es su material completo, tal como lo subieron:
+Audite el paquete que entrego otro proyecto del curso. Este es su material completo, tal como lo subieron:
 
 **Catalogo de requisitos del equipo Patitas**
 - RF-01: El sistema debe permitir a la recepcionista registrar un dueno con documento, nombre y telefono.
@@ -210,7 +210,7 @@ El diagrama corregido no tiene clases tecnicas, usa los nombres canonicos Dueno 
 
 ## Respuesta a los hallazgos y backlog de correcciones
 
-**Parte A - Respuesta a los hallazgos recibidos.** Otro equipo audito **su** paquete. Escriba una tabla con **minimo 4 filas** y **estas 4 columnas**:
+**Parte A - Respuesta a los hallazgos recibidos.** Otro estudiante audito **su** paquete. Escriba una tabla con **minimo 4 filas** y **estas 4 columnas**:
 
 `| # del hallazgo | Severidad | Decision: Aceptado / Rechazado con justificacion / Aplazado por acuerdo | Argumento en una linea |`
 
@@ -218,7 +218,7 @@ Regla: **ningun hallazgo se borra del acta**, ni siquiera los que rechazan. Si r
 
 **Parte B - Backlog priorizado de correcciones.** Tabla con **minimo 5 filas** y **estas 5 columnas**:
 
-`| Prioridad | Correccion a aplicar | Artefacto afectado | Responsable (nombre del integrante) | Criterio de cierre verificable |`
+`| Prioridad | Correccion a aplicar | Artefacto afectado | Responsable (su nombre; si hay equipo, el del integrante) | Criterio de cierre verificable |`
 
 Reglas:
 - Ordenado por **severidad**: primero los Bloqueantes, luego Mayores, luego Menores.

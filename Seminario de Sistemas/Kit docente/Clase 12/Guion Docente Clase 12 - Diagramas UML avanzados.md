@@ -35,7 +35,7 @@ Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 ### 10-40 · Teoria Core
 Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
 proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
-Pregunta al aire (2 min): ¿donde encaja esto en el VetCare de su equipo?
+Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
@@ -44,14 +44,14 @@ Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 12/Plantillas/Secuencia-Actividad-VetCare.md`
 
 ### 60-105 · Taller guiado = avance del PI
-**Decir:** «Equipos: abran su proyecto VetCare. Esto suma a la rubrica del PI.»
+**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Tomar el flujo principal escrito de CU-04 Agendar cita, y si todavia no esta especificado diligenciar primero la plantilla de la clase nueve, para luego numerar en el documento cual paso genera cual mensaje, de manera que quede una lista de entre seis y ocho mensajes antes de dibujar cualquier cosa.
 2. Dibujar el diagrama de secuencia en Mermaid Live Editor o draw.io con la recepcionista como actor y minimo tres participantes que correspondan a clases reales del diagrama de clases de VetCare, incluyendo las flechas de retorno con el dato que devuelven.
 3. Agregar un fragmento alt que modele el horario ocupado con sus dos condiciones de guarda escritas, y verificar que el camino del else corresponda a un flujo alterno documentado en la especificacion del caso de uso.
 4. Construir la tabla de mapeo mensaje a operacion con tres columnas, mensaje, clase destinataria y operacion que debe existir, y agregar al diagrama de clases toda operacion que hoy falte; ninguna fila puede quedar con la clase en blanco.
 5. Dibujar el diagrama de actividad del proceso de atencion en el consultorio con cuatro calles (Propietario, Recepcionista, Veterinario y Sistema VetCare), con minimo dos nodos de decision y una bifurcacion en paralelo, y exportar todo a PDF para subirlo a ExamLab.
-Circular por los equipos. Empujar evidencia funcionando, no perfeccionismo.
+Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Un PDF con el diagrama de secuencia de Agendar cita incluyendo el fragmento alt para horario ocupado, el diagrama de actividad del proceso de atencion con calles por rol, y la tabla que mapea cada mensaje del diagrama de secuencia a una operacion del diagrama de clases, subido a ExamLab.
 
 ### 105-120 · Criterios de exito y cierre

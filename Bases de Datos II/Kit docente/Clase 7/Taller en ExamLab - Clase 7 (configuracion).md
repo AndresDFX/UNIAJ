@@ -455,7 +455,7 @@ cita_hist se crea con PARTITION BY RANGE (fecha_hora) y PRIMARY KEY que incluye 
 
 ## 4. Riesgos de sobre-indexar VetCare
 
-El equipo propone crear un indice sobre **cada** columna de `cita`, `mascota` y `factura` "por si acaso". Selecciona **todas** las afirmaciones correctas.
+Alguien propone crear un indice sobre **cada** columna de `cita`, `mascota` y `factura` "por si acaso". Selecciona **todas** las afirmaciones correctas.
 
 **Opciones:**
 
@@ -494,7 +494,7 @@ Para cada indice explica:
 
 Cierra con dos parrafos cortos:
 
-1. **Regla de sobre-indexacion** que adopta tu equipo (por ejemplo: ningun indice sin consulta documentada y sin evidencia de `EXPLAIN`).
+1. **Regla de sobre-indexacion** que adoptas tu (por ejemplo: ningun indice sin consulta documentada y sin evidencia de `EXPLAIN`).
 2. **Particionamiento: veredicto para VetCare.** Con el volumen real que espera Huellitas, tiene sentido particionar `cita`? Justifica con numeros aproximados (citas por dia x dias de operacion) y reconoce que en ExamLab lo demostraste sintacticamente con 5.010 filas, volumen en el que la ganancia de rendimiento **no** es apreciable: el beneficio comprobado fue la **poda de particiones** en el plan y la facilidad de archivado, no la velocidad.
 
 **Rubrica esperada (campo Rubrica):**

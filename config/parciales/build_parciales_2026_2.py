@@ -34,7 +34,7 @@ def main() -> int:
         build_docx(meta, parcial["secciones"], est, es_solucion=False)
         build_docx(meta, parcial["secciones"], sol, es_solucion=True)
         generados.append((est, sol, meta))
-        print(f"OK  {curso} · Parcial {meta['n']} · {meta['fecha']} · Clase {meta['clase']}")
+        print(f"OK  {curso} · Parcial {meta['n']} · {meta['fecha']} · Sesión {meta['clase']}")
         print(f"    EST: {est}")
         print(f"    SOL: {sol}")
         print("    Temas evaluados:")

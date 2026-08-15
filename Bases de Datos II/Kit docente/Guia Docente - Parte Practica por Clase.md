@@ -50,14 +50,14 @@ JOIN dueno d ON d.id_dueno=m.id_dueno;
 ```
 
 **Pasos guiados del taller:**
-1. Formar equipo (2-3) y nombrar el proyecto VetCare DB.
+1. Nombrar y registrar su proyecto VetCare DB (trabajo individual por defecto; equipo de 2-3 solo si el docente lo autoriza).
 2. Listar entidades minimas + 3 reglas de negocio propias.
 3. Dibujar ER borrador en draw.io/Excalidraw y exportar PNG.
 4. Escribir 5-8 lineas de alcance (que SI / que NO hara el PI).
 
-**Entregable:** Ficha de equipo + ER borrador (PNG) + lista de entidades/reglas
+**Entregable:** Ficha del proyecto + ER borrador (PNG) + lista de entidades/reglas
 **Criterios de exito:**
-- Equipo 2-3 nombrado.
+- Proyecto nombrado y registrado.
 - ER PNG con entidades mínimas.
 - 3 reglas de negocio propias.
 - Alcance SI/NO 5-8 lineas.
@@ -154,7 +154,7 @@ GRANT SELECT ON dueno TO auditor;
 - Script SQL completo para correr en vivo (con datos de ejemplo):
 ```sql
 -- VetCare DB · Clase 3 · Procedimiento agendar cita (Oracle Live SQL)
--- Ajustar tipos segun el schema creado por el equipo.
+-- Ajustar tipos segun el schema creado por el estudiante.
 
 CREATE OR REPLACE PROCEDURE sp_agendar_cita (
   p_id_cita IN NUMBER,
@@ -292,7 +292,7 @@ WHERE c.fecha_hora >= TIMESTAMP '2026-09-01 00:00:00'
 1. Tomar 1 consulta real del PI (citas del dia / historial).
 2. Escribir version antes e ineficiente o real.
 3. Reescribir despues y justificar 3 cambios.
-4. Guardar 06_opt_antes.sql / 06_opt_despues.sql en carpeta del equipo.
+4. Guardar 06_opt_antes.sql / 06_opt_despues.sql en la carpeta del PI.
 
 **Entregable:** 2 consultas (antes/despues) + justificacion (media pag.)
 **Criterios de exito:**
@@ -460,12 +460,12 @@ INSERT INTO cita_demo VALUES (3, 35, 5, TIMESTAMP '2026-10-12 09:00:00', 'PROGRA
 **Por que importa:** checkpoint vs rúbrica.
 
 **Demo en vivo:**
-- Pizarra: Checklist en 2 columnas: Evidencia (ER, DDL, roles, procs, fn, triggers, opt) | Si/No/Parcial — llenar con el equipo en vivo.
+- Pizarra: Checklist en 2 columnas: Evidencia (ER, DDL, roles, procs, fn, triggers, opt) | Si/No/Parcial — llenar en vivo con el curso.
 - Prompt de apoyo (IA, opcional si le falta tiempo de preparar): "Actua como docente de Bases de Datos II. Usando el dominio VetCare (Dueño, Mascota, Cita, Veterinario, Insumo, Factura), dame un ejemplo minimo en SQL (Oracle/PostgreSQL) sobre «Avance PI»: (1) el DDL de las tablas que necesito, (2) datos de ejemplo realistas de una clinica veterinaria (INSERT), (3) el codigo que ilustra «Avance PI» paso a paso, (4) en 3 lineas, que debe notar el estudiante cuando lo vea ejecutar."
 - Script SQL completo para correr en vivo (con datos de ejemplo):
 ```sql
 -- VetCare DB · Clase 11 · Seed ejecutable para la demo de checklist
--- Autocontenido: cree estas tablas minimas si el equipo aun no las tiene, o
+-- Autocontenido: cree estas tablas minimas si aun no las tiene, o
 -- adapte los nombres a su propio DDL (Clases 1-8) antes de correr los INSERT.
 
 CREATE TABLE dueno_demo (id_dueno INT PRIMARY KEY, nombre VARCHAR(80));
@@ -582,7 +582,7 @@ END;
 **Pasos guiados del taller:**
 1. Elegir 1 caso (backup, rendimiento o seguridad).
 2. Resumir en media pagina que paso.
-3. Proponer 3 mejoras concretas al VetCare del equipo.
+3. Proponer 3 mejoras concretas a su VetCare.
 4. Actualizar informe PI con lecciones de casos.
 
 **Entregable:** Informe 1-2 pag.: caso + 3 mejoras aplicables a VetCare
@@ -636,4 +636,4 @@ presencial); duracion 90-100 min dentro del bloque de 120.
 
 Hilo conductor de todas las clases regulares/autonomas. Avance formal en
 Clase 11 (checkpoint) y entrega/sustentacion en Clase 15. Se sube a ExamLab
-como Proyecto (grupal); pesa 20% del Corte 3.
+como Proyecto (individual por defecto; equipo de 2-3 solo si el docente lo autoriza); pesa 20% del Corte 3.

@@ -64,9 +64,9 @@ La clave de solución de cada parcial (`... - SOLUCION.docx`) ya trae la respues
 
 ## 5. Actividades autónomas del PI (Clases 13 y 15) → ExamLab
 
-Ambas ya tienen guion completo (contexto, objetivo, entregable, herramientas, pasos, criterios de éxito, checklist, entrega). Hoy se entregan por Campus Virtual UNIAJC como documento de equipo. Mapeo directo:
+Ambas ya tienen guion completo (contexto, objetivo, entregable, herramientas, pasos, criterios de éxito, checklist, entrega). Mapeo directo:
 
-- **Clase 13 — Política de autoescalado**: entregable = documento con triggers/límites. → Pregunta `abierta` de proyecto (o `diagrama` si se pide el esquema de triggers), un envío por grupo (el group_mode de proyectos ya soporta "un envío por equipo, cualquier miembro edita").
+- **Clase 13 — Política de autoescalado**: entregable = documento con triggers/límites. → Pregunta `abierta` de proyecto (o `diagrama` si se pide el esquema de triggers), con **envío individual**: la modalidad del curso es individual por defecto y la entrega en ExamLab siempre es individual, incluso si el docente autorizó trabajar el artefacto en equipo. (ExamLab tiene un `group_mode` de proyectos con "un envío por equipo, cualquier miembro edita"; **no se usa**, porque se evalúa la respuesta escrita de cada estudiante.)
 - **Clase 15 — Sustentación final**: paquete + pitch 5-8 min + Q&A escrito. → `codigo_zip` (o adjuntos) para el paquete, más el `DefensePanel` del docente para registrar la sustentación (nota entrega × factor) — es exactamente para esto que existe ese componente.
 
 Los criterios de éxito de cada actividad (ya escritos, ej. ">=2 triggers + min/max + cooldown narrado") se trasladan directo como rúbrica de la pregunta — de nuevo, no hay que redactar contenido nuevo, solo trasladarlo.

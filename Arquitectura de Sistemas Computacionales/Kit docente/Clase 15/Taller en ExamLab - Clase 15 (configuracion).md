@@ -154,7 +154,7 @@ Cada respuesta:
 Escriba media pagina (entre 200 y 300 palabras) con **estos 5 bloques rotulados**:
 
 1. **La decision**: cual fue el trade-off mas dificil del semestre, en una frase.
-2. **La alternativa que descarto**: que era y quien del equipo la defendia.
+2. **La alternativa que descarto**: que era y quien la defendia (usted mismo al principio, o un companero si trabajo en equipo).
 3. **Que sacrifico**: lo concreto que se perdio al decidir asi (velocidad, simplicidad, seguridad, costo, aprendizaje).
 4. **Como se ve hoy en el paquete**: en cual artefacto quedo escrita esa decision (ADR, diagrama, seccion del informe).
 5. **Que haria distinto**: una accion concreta si volviera a empezar CloudLite manana.
@@ -179,17 +179,17 @@ Es una reflexion tecnica, no una carta de agradecimiento: cada bloque debe poder
 
 **Parte B.** Construya una tabla de **4 columnas** con encabezados exactos:
 
-`Seccion | Tiempo real | Integrante que hablo | Evidencia mostrada`
+`Seccion | Tiempo real | Quien hablo | Evidencia mostrada`
 
 con **exactamente 6 filas**, las mismas 6 secciones del guion de la Clase 12 (problema y dominio, arquitectura logica, contenedor y pipeline, seguridad, costos y escalabilidad, cierre y preguntas).
 
 Escriba debajo el **total real en minutos y segundos** y verifique que quede **entre 5:00 y 8:00**; si se paso, agregue una linea de que recortaria.
 
-**Parte C.** Una linea de autoevaluacion del equipo: nota de 1 a 5 al trabajo del equipo y **el hecho concreto** que la sustenta.
+**Parte C.** Una linea de autoevaluacion de **su propio trabajo** en CloudLite: nota de 1 a 5 y **el hecho concreto** que la sustenta (no una intencion). Si el docente autorizo equipo, agregue una segunda linea con la nota al trabajo del equipo y su hecho concreto.
 
 **Rubrica esperada (campo Rubrica):**
 
-5 pts el enlace o la fecha del pitch con la verificacion de acceso. 6 pts la tabla de 6 secciones con tiempo real integrante y evidencia. 3 pts el total entre 5:00 y 8:00 o el recorte propuesto si se paso. 1 pt la autoevaluacion con hecho concreto.
+5 pts el enlace o la fecha del pitch con la verificacion de acceso. 6 pts la tabla de 6 secciones con tiempo real, quien hablo y evidencia. 3 pts el total entre 5:00 y 8:00 o el recorte propuesto si se paso. 1 pt la autoevaluacion con hecho concreto.
 
 ---
 

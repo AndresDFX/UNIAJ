@@ -35,7 +35,7 @@ Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 ### 10-40 · Teoria Core
 Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
 proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
-Pregunta al aire (2 min): ¿donde encaja esto en el VetCare de su equipo?
+Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
@@ -44,14 +44,14 @@ Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 7/Codigo/VetCarePatronesDemo.java`
 
 ### 60-105 · Taller guiado = avance del PI
-**Decir:** «Equipos: abran su proyecto VetCare. Esto suma a la rubrica del PI.»
+**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Convierta RepositorioVetCare en Singleton: atributo private static instancia, constructor private con un System.out.println que avise cuando se crea, y metodo public static synchronized getInstancia(); ejecute el programa y verifique que el mensaje de creacion aparece una sola vez aunque llame getInstancia() tres veces.
 2. Elimine todos los 'new RepositorioVetCare()' que queden en las ventanas y reemplacelos por RepositorioVetCare.getInstancia(); use Ctrl+F en el proyecto para confirmar que no queda ni uno solo fuera del propio metodo getInstancia.
 3. Cree la jerarquia Consulta (abstracta) con ConsultaVacunacion, ConsultaControl y ConsultaUrgencia, cada una con su duracionMinutos() y tarifaBase(), y la clase FabricaConsultas con el metodo estatico crear(String tipo, String idMascota) que normalice el texto y lance IllegalArgumentException si el tipo no existe.
 4. Ejecute el demo y compruebe dos cosas: en la consola, que el mensaje del constructor sale una sola vez y que los dos identityHashCode coinciden; en pantalla, que al registrar M-002 Michi en la ventana Recepcion y oprimir Refrescar en la ventana Consultorio, Michi aparece junto a M-001 Kira, que fue registrada desde el main.
 5. Escriba al final del archivo un comentario de tres lineas justificando por que el repositorio SI es Singleton, por que Mascota NO debe serlo y que problema tendria el Singleton cuando lleguemos a las pruebas; suba el proyecto y el comentario a ExamLab.
-Circular por los equipos. Empujar evidencia funcionando, no perfeccionismo.
+Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Clase RepositorioVetCare convertida en Singleton, FabricaConsultas con tres tipos y evidencia de que dos ventanas ven la misma lista, subido a ExamLab.
 
 ### 105-120 · Criterios de exito y cierre

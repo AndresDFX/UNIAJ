@@ -9,6 +9,30 @@ from uniajc_slides_engine import (
     evaluacion_cortes_slide, contenido_clases_slide,
     box_note_slide, herramientas_slide, closing_slide,
 )
+import calendario_2026_2 as cal
+
+CURSO_KEY = "programacion_ii"
+
+# Temas del material ya construido (carpetas «Clase N», que NO se renumeran).
+# El calendario 2026-2 (13 sesiones) decide en qué sesión se dicta cada uno;
+# las sesiones dobles juntan dos de estos temas en un bloque de 120 min.
+TEMAS_MATERIAL = {
+    1: "Diagnóstico · Introducción a POO",
+    2: "Colecciones dinámicas ArrayList",
+    3: "Pilas y colas",
+    4: "Mapas, conjuntos e interfaces gráficas GUI",
+    5: "Repaso y evaluación del corte 1",
+    6: "Eventos y controladores",
+    7: "Patrones de diseño (Singleton y Factory)",
+    8: "Documentación y QA (Javadoc y pruebas)",
+    9: "Refactorización con IA y persistencia",
+    10: "Repaso y evaluación del corte 2",
+    11: "Revisión de código cruzada",
+    12: "Integración de módulos",
+    13: "Control de excepciones",
+    14: "Preparación presentación final",
+    15: "Cierre y evaluación del corte 3",
+}
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 OUT = os.path.join(
@@ -77,15 +101,19 @@ def build():
         idx=6,
     )
 
+    ct = cal.cortes(CURSO_KEY)
     evaluacion_cortes_slide(
         prs, "Sistema de evaluación (Acuerdo pedagógico)",
         [
-            {"corte": 1, "pct": "30%", "ventana": "10/08 – 13/09/2026",
-             "desglose": ["**Parcial 1** (Clase 5) · 10%", "Talleres o Quiz · 10%", "Asistencia · 10%"]},
-            {"corte": 2, "pct": "30%", "ventana": "14/09 – 18/10/2026",
-             "desglose": ["**Parcial 2** (Clase 10) · 10%", "Talleres o Quiz · 10%", "Asistencia · 10%"]},
-            {"corte": 3, "pct": "40%", "ventana": "19/10 – 22/11/2026",
-             "desglose": ["**Parcial 3** (Clase 15) · 15%", "**Proyecto Integrador** · 20%", "Asistencia · 5%"]},
+            {"corte": 1, "pct": ct[0]["pct"], "ventana": ct[0]["ventana"],
+             "desglose": [f"**Parcial 1** ({ct[0]['parcial_fecha']} · sesión {ct[0]['parcial_sesion']}) · 10%",
+                          "Talleres o Quiz · 10%", "Asistencia · 10%"]},
+            {"corte": 2, "pct": ct[1]["pct"], "ventana": ct[1]["ventana"],
+             "desglose": [f"**Parcial 2** ({ct[1]['parcial_fecha']} · sesión {ct[1]['parcial_sesion']}) · 10%",
+                          "Talleres o Quiz · 10%", "Asistencia · 10%"]},
+            {"corte": 3, "pct": ct[2]["pct"], "ventana": ct[2]["ventana"],
+             "desglose": [f"**Parcial 3** ({ct[2]['parcial_fecha']} · sesión {ct[2]['parcial_sesion']}) · 15%",
+                          "**Proyecto Integrador** · 20%", "Asistencia · 5%"]},
         ],
         note="Parcial al cierre de cada corte · nunca en festivo/autónoma. Día de parcial = solo evaluación.",
         idx=7,
@@ -93,26 +121,13 @@ def build():
 
     contenido_clases_slide(
         prs,
-        [
-            {"n": 0, "kind": "sesion0", "tema": "Presentación del curso (logística) + socialización del PI", "fecha": "12/08"},
-            {"n": 1, "tema": "Diagnóstico · Introducción a POO", "fecha": "12/08"},
-            {"n": 2, "tema": "Colecciones dinámicas ArrayList", "fecha": "19/08"},
-            {"n": 3, "tema": "Pilas y colas", "fecha": "26/08"},
-            {"n": 4, "tema": "Mapas, conjuntos e interfaces gráficas GUI", "fecha": "02/09"},
-            {"n": 5, "tema": "Parcial 1", "fecha": "09/09"},
-            {"n": 6, "tema": "Eventos y controladores", "fecha": "16/09"},
-            {"n": 7, "tema": "Patrones de diseño", "fecha": "23/09"},
-            {"n": 8, "tema": "Documentación y QA", "fecha": "30/09"},
-            {"n": 9, "tema": "Refactorización con IA y persistencia", "fecha": "07/10"},
-            {"n": 10, "tema": "Parcial 2", "fecha": "14/10"},
-            {"n": 11, "tema": "Revisión de código cruzada", "fecha": "21/10"},
-            {"n": 12, "tema": "Integración de módulos", "fecha": "28/10"},
-            {"n": 13, "tema": "Control de excepciones", "fecha": "04/11"},
-            {"n": 14, "tema": "Preparación presentación final", "fecha": "11/11"},
-            {"n": 15, "tema": "Parcial 3", "fecha": "18/11"},
-        ],
+        cal.contenido_items(
+            CURSO_KEY, TEMAS_MATERIAL,
+            "Presentación del curso (logística) + socialización del PI",
+        ),
         title="CONTENIDO",
-        sub="Día 1: Sesión 0 (Presentación del curso) + Clase 1 (diagnóstico · tema)",
+        sub=("13 sesiones · los 15 temas del microcurrículo se conservan: dos sesiones son "
+             "**dobles** (dos temas en un bloque). Día 1: Sesión 0 + Clase 1 (diagnóstico · tema)."),
         idx=8,
     )
 

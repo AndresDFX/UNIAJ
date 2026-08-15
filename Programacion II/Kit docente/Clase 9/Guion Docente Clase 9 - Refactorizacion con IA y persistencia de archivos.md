@@ -35,7 +35,7 @@ Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 ### 10-40 · Teoria Core
 Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
 proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
-Pregunta al aire (2 min): ¿donde encaja esto en el VetCare de su equipo?
+Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
@@ -44,14 +44,14 @@ Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 9/Codigo/VetCarePersistencia.java`
 
 ### 60-105 · Taller guiado = avance del PI
-**Decir:** «Equipos: abran su proyecto VetCare. Esto suma a la rubrica del PI.»
+**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Cree el paquete vetcare.datos y dentro la clase RepositorioMascotasCSV con la constante private static final String SEPARADOR = ";", la constante ENCABEZADO con el texto id;nombre;especie;edad;cedula_dueno y un atributo Path ruta construido con Paths.get("mascotas.csv"); compile el proyecto y verifique que no hay errores rojos antes de seguir.
 2. Implemente guardar(List<Mascota>) usando try-with-resources: escriba el encabezado, recorra la lista y escriba una línea por mascota; ejecute, abra mascotas.csv en el Bloc de notas y verifique que tiene exactamente tantas líneas como mascotas más una, y el mismo número de punto y coma en todas.
 3. Implemente cargar() de forma defensiva: si el archivo no existe devuelve una lista vacía, descarta la línea de encabezado, ignora las líneas que no tengan cinco campos e ignora las que traigan una edad no numérica, avisando por consola el número de la línea; compruébelo dañando a propósito una línea del archivo y volviendo a ejecutar.
 4. Conecte el repositorio al ciclo de vida de la aplicación: cargar() al arrancar antes de mostrar la ventana y guardar() al cerrar; cierre la aplicación, vuelva a abrirla y verifique que el conteo de mascotas en la tabla es el mismo que había antes de cerrar.
 5. Haga una revisión asistida por IA de su método guardar(): pídale a la herramienta que señale problemas, aplique como máximo dos mejoras que usted pueda explicar en voz alta, rechace por escrito al menos una sugerencia y registre todo en REFACTOR.md con el formato 'sugerencia / la acepté o no / por qué'; vuelva a correr el flujo completo y confirme que el comportamiento es idéntico.
-Circular por los equipos. Empujar evidencia funcionando, no perfeccionismo.
+Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: La clase RepositorioMascotasCSV con guardar() y cargar() funcionando, el archivo mascotas.csv generado por la propia aplicación y la bitácora REFACTOR.md, subidos a ExamLab.
 
 ### 105-120 · Criterios de exito y cierre

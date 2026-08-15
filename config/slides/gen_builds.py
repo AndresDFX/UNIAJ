@@ -1,4 +1,15 @@
-﻿from pathlib import Path
+﻿"""SCAFFOLDER LEGADO — genera desde cero los build_uniajc_*_curso.py.
+
+⚠️  Los builds de Presentación del Curso YA se mantienen a mano (usan
+`evaluacion_cortes_slide` / `contenido_clases_slide` y leen el calendario desde
+`calendario_2026_2.py`). Correr este script los SOBREESCRIBE y se pierde ese
+trabajo. Por eso exige `--force` explícito.
+
+Fechas: NO se hardcodean aquí. El código generado lee
+`config/calendario/semestre_2026_2.json` (13 sesiones en 2026-2).
+"""
+from pathlib import Path
+import sys
 import textwrap
 
 slides = Path(r"G:\Mi unidad\Trabajos\Empleo\UNIAJ\Cursos\config\slides")
@@ -10,11 +21,13 @@ from uniajc_slides_engine import (
     new_prs, course_cover, tutor_slide, padlet_slide, content_slide, table_content,
     box_note_slide, closing_slide,
 )
+import calendario_2026_2 as cal
 """
 
 courses = [
   {
     "file": "build_uniajc_seminario_curso.py",
+    "cal_key": 'seminario',
     "title": "Seminario de Sistemas",
     "subtitle": "Proyecto integrador de software",
     "out": "Seminario de Sistemas/Clases/Presentacion del Curso - Seminario de Sistemas.pptx",
@@ -42,16 +55,16 @@ courses = [
       "Enfoque: ABPr · aprendizaje invertido (microcurriculo).",
     ],
     "crono": [
-      ["1", "13/08", "Regular", "Acuerdo y conceptos"],
-      ["2", "20/08", "Regular", "Ciclos de vida"],
-      ["3", "27/08", "Regular", "Metodologias tradicionales"],
-      ["4", "03/09", "Regular", "Metodologias agiles"],
-      ["5", "10/09", "Regular", "Caso estudio evaluativo · Parcial 1"],
-      ["6", "17/09", "Regular", "Requerimientos de software"],
-      ["7", "24/09", "Regular", "Historias de usuario"],
-      ["8", "01/10", "Regular", "Introduccion a UML"],
+      ["S1", "27/08", "Presencial", "Acuerdo y conceptos iniciales"],
+      ["S2", "03/09", "Virtual", "Ciclos de vida"],
+      ["S3", "10/09", "Virtual", "Metodologias tradicionales"],
+      ["S4", "17/09", "Virtual", "Metodologias agiles"],
+      ["S5", "24/09", "Presencial", "Parcial 1 (solo evaluacion)"],
+      ["S6", "01/10", "Virtual", "Requerimientos de software"],
+      ["S7", "08/10", "Virtual", "Historias de usuario"],
+      ["S8", "15/10", "Virtual", "Introduccion a UML + Casos de uso (sesion doble)"],
     ],
-    "crono_note": "Clases 9–15: casos de uso, caso evaluativo (Parcial 2), avance PI, UML avanzado, interfaces, evaluacion y sustentacion (Parcial 3). Ver PLAN_DE_CURSO_2026-2.md.",
+    "crono_note": "Sesiones 9–13: Parcial 2 (22/10) · sesion doble avance PI + UML avanzado (29/10) · diseno de interfaces (05/11) · preparacion de la sustentacion (12/11) · Parcial 3 + sustentacion (19/11). 13 sesiones cubren los 15 temas: 2 sesiones dobles. Ver CALENDARIO del curso.",
     "pi": [
       "Diseno, desarrollo y **sustentacion** de un proyecto de software orientado a objetos.",
       "Incluye documentacion tecnica, pruebas basicas y comunicacion clara de la solucion.",
@@ -71,6 +84,7 @@ courses = [
   },
   {
     "file": "build_uniajc_bd2_curso.py",
+    "cal_key": 'bases_datos_ii',
     "title": "Bases de Datos II",
     "subtitle": "Gestion avanzada y optimizacion",
     "out": "Bases de Datos II/Clases/Presentacion del Curso - Bases de Datos II.pptx",
@@ -101,16 +115,16 @@ courses = [
       "Festivos del lunes = **clase autonoma** (no se omiten).",
     ],
     "crono": [
-      ["1", "10/08", "Regular", "Presentacion · Revision BD I"],
-      ["2", "17/08", "Autonoma", "Administracion de BD (festivo)"],
-      ["3", "24/08", "Regular", "Procedimientos almacenados"],
-      ["4", "31/08", "Regular", "Funciones y disparadores"],
-      ["5", "07/09", "Regular", "Seguridad y respaldo · Parcial 1"],
-      ["6", "14/09", "Regular", "Optimizacion de consultas"],
-      ["7", "21/09", "Regular", "Indices y particionamiento"],
-      ["8", "28/09", "Regular", "Tuning de bases de datos"],
+      ["S1", "24/08", "Presencial", "Presentacion · Revision BD I"],
+      ["S2", "31/08", "Virtual", "Administracion de BD"],
+      ["S3", "07/09", "Virtual", "Procedimientos almacenados"],
+      ["S4", "14/09", "Virtual", "Funciones y disparadores · Seguridad y respaldo"],
+      ["S5", "21/09", "Presencial", "Parcial 1 (solo evaluacion)"],
+      ["S6", "28/09", "Virtual", "Optimizacion de consultas"],
+      ["S7", "05/10", "Virtual", "Indices y particionamiento + Tuning y transacciones (sesion doble)"],
+      ["S8", "12/10", "Autonoma", "Control de concurrencia (festivo)"],
     ],
-    "crono_note": "Clases 9–15: transacciones, concurrencia (Parcial 2 · 12/10 autonoma), avance PI, integracion, casos, prep. y cierre (Parcial 3 · 16/11 autonoma). Ver PLAN_DE_CURSO_2026-2.md.",
+    "crono_note": "Sesiones 9–13: Parcial 2 (19/10) · sesion doble avance PI + integracion y preparacion final (26/10) · casos reales (02/11, autonoma) · Parcial 3 (09/11) · sustentacion del PI (16/11). 13 sesiones cubren los 15 temas: 2 sesiones dobles. Ver CALENDARIO del curso.",
     "pi": [
       "Sistema avanzado de BD para gestion segura y optimizada de informacion empresarial (ABPr).",
       "Incluye administracion, automatizacion (procedimientos/triggers) y tuning.",
@@ -123,14 +137,15 @@ courses = [
     ],
     "boxes": [
       ("info", "Lunes 18:00–20:00 · Virtual · Grupo 641A-2."),
-      ("aclaracion", "Clases en festivo (17/08, 12/10, 02/11, 16/11) = autonomas con actividad en ExamLab."),
-      ("advertencia", "Parciales 2 y 3 caen en clase autonoma: entrega asincrona."),
+      ("aclaracion", "Clases en festivo (12/10, 02/11) = autonomas con actividad en ExamLab; el 16/11 (festivo) se usa para las sustentaciones del PI."),
+      ("advertencia", "Parciales SIEMPRE presenciales y nunca en autonoma: sesiones 5 (21/09), 9 (19/10) y 12 (09/11)."),
     ],
     "close": ["Bases de Datos II · Grupo **641A-2** · 2026-2", "Lunes **18:00 – 20:00** · Virtual", "UNIAJC · Ingenieria de Sistemas"],
     "accent": "Datos seguros, consultas rapidas, proyecto real",
   },
   {
     "file": "build_uniajc_arq_curso.py",
+    "cal_key": 'arquitectura',
     "title": "Arquitectura de Sistemas Computacionales",
     "subtitle": "Enfoque Cloud",
     "out": "Arquitectura de Sistemas Computacionales/Clases/Presentacion del Curso - Arquitectura de Sistemas Computacionales.pptx",
@@ -160,16 +175,16 @@ courses = [
       "Festivos del lunes = **clase autonoma** (no se omiten).",
     ],
     "crono": [
-      ["1", "10/08", "Regular", "Presentacion · Intro arquitecturas cloud"],
-      ["2", "17/08", "Autonoma", "IaaS / PaaS / SaaS (festivo)"],
-      ["3", "24/08", "Regular", "Virtualizacion y contenedores"],
-      ["4", "31/08", "Regular", "Microservicios"],
-      ["5", "07/09", "Regular", "Arquitecturas distribuidas · Parcial 1"],
-      ["6", "14/09", "Regular", "Seguridad en la nube"],
-      ["7", "21/09", "Regular", "Redes y almacenamiento cloud"],
-      ["8", "28/09", "Regular", "Monitoreo y optimizacion"],
+      ["S1", "24/08", "Presencial", "Presentacion · Intro arquitecturas cloud"],
+      ["S2", "31/08", "Virtual", "IaaS / PaaS / SaaS"],
+      ["S3", "07/09", "Virtual", "Virtualizacion y contenedores"],
+      ["S4", "14/09", "Virtual", "Microservicios y arquitecturas distribuidas"],
+      ["S5", "21/09", "Presencial", "Parcial 1 (solo evaluacion)"],
+      ["S6", "28/09", "Virtual", "Seguridad en la nube"],
+      ["S7", "05/10", "Virtual", "Redes y almacenamiento + Monitoreo y CI/CD (sesion doble)"],
+      ["S8", "12/10", "Autonoma", "Costos y sostenibilidad cloud (festivo)"],
     ],
-    "crono_note": "Clases 9–15: CI/CD, costos/sostenibilidad (Parcial 2 · 12/10), avance PI, rendimiento, autoescalado, prep. y cierre (Parcial 3 · 16/11). Ver PLAN_DE_CURSO_2026-2.md.",
+    "crono_note": "Sesiones 9–13: Parcial 2 (19/10) · sesion doble avance PI + pruebas de rendimiento (26/10) · autoescalado (02/11, autonoma) · Parcial 3 (09/11) · sustentacion del PI (16/11). 13 sesiones cubren los 15 temas: 2 sesiones dobles. Ver CALENDARIO del curso.",
     "pi": [
       "Diseno y simulacion de una **arquitectura cloud** para una aplicacion web o empresarial.",
       "Aplica escalabilidad, seguridad y sostenibilidad.",
@@ -182,8 +197,8 @@ courses = [
     ],
     "boxes": [
       ("info", "Lunes 10:00–12:00 (120 min) · Grupo 6303C · Presencialidad asistida."),
-      ("aclaracion", "Clases en festivo = autonomas con actividad en ExamLab."),
-      ("advertencia", "Parciales 2 y 3 en clase autonoma."),
+      ("aclaracion", "Clases en festivo (12/10, 02/11) = autonomas con actividad en ExamLab; el 16/11 (festivo) se usa para las sustentaciones del PI CloudLite."),
+      ("advertencia", "Parciales SIEMPRE presenciales y nunca en autonoma: sesiones 5 (21/09), 9 (19/10) y 12 (09/11)."),
     ],
     "close": ["Arquitectura de Sistemas Computacionales · **FI303380** · 2026-2", "Lunes **10:00 – 12:00**", "UNIAJC · Ingenieria de Sistemas"],
     "accent": "Cloud con criterio: escalable, seguro y sostenible",
@@ -198,6 +213,12 @@ def py_rows(rows):
 
 def py_boxes(boxes):
     return "[\n" + ",\n".join("            " + repr(b) for b in boxes) + ",\n        ]"
+
+if "--force" not in sys.argv:
+    raise SystemExit(
+        "gen_builds.py sobreescribiria los build_uniajc_*_curso.py mantenidos a mano. "
+        "Si de verdad quieres regenerarlos desde cero, corre: python gen_builds.py --force"
+    )
 
 for c in courses:
     # Fix accents for Spanish display in PPTX
@@ -254,15 +275,24 @@ def build():
     content_slide(prs, "¿Para qué existe este curso?", {py_list(c["purpose"])}, idx=4)
     content_slide(prs, "Objetivo y resultados de aprendizaje", {py_list(c["raa"])}, idx=5)
     content_slide(prs, "Cómo trabajamos en clase", {py_list(c["how"])}, idx=6)
+    _ct = cal.cortes({c['cal_key']!r})
+    _resto = [
+        "Talleres o Quiz 10% · Asistencia 10%",
+        "Talleres o Quiz 10% · Asistencia 10%",
+        "Proyecto Integrador 20% · Asistencia 5%",
+    ]
+    _peso_parcial = ["10%", "10%", "15%"]
     table_content(
         prs, "Sistema de evaluación (Acuerdo pedagógico)",
         ["Corte", "Ventana", "Desglose", "%"],
         [
-            ["1", "10/08 – 13/09/2026", "Parcial 1 (Clase 5) 10% · Talleres o Quiz 10% · Asistencia 10%", "30%"],
-            ["2", "14/09 – 18/10/2026", "Parcial 2 (Clase 10) 10% · Talleres o Quiz 10% · Asistencia 10%", "30%"],
-            ["3", "19/10 – 22/11/2026", "Parcial 3 (Clase 15) 15% · Proyecto Integrador 20% · Asistencia 5%", "40%"],
+            [str(x["corte"]), x["ventana"],
+             f"Parcial {{x['parcial_n']}} (sesión {{x['parcial_sesion']}} · {{x['parcial_fecha']}}) "
+             f"{{_peso_parcial[i]}} · {{_resto[i]}}",
+             x["pct"]]
+            for i, x in enumerate(_ct)
         ],
-        note="Lógica Acuerdos 2026-2. Parcial al cierre de cada corte.",
+        note="Lógica Acuerdos 2026-2 (13 sesiones · 15 temas · 2 sesiones dobles). Parcial al cierre de cada corte.",
         col_w=[1.2, 2.4, 6.5, 1.2],
         idx=7,
     )

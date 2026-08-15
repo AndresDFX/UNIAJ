@@ -4,7 +4,7 @@ description: |
   Agente de Diseño Curricular y Docencia Universitaria para la **UNIAJC**
   (Institución Universitaria Antonio José Camacho). Variante del diseñador CUN,
   adaptada a este workspace: microcurrículos FI303*, Plan de curso, Acuerdo pedagógico,
-  nomenclatura **Clase N**, periodo **2026-2** (10/08–22/11), marca uniajc.edu.co.
+  nomenclatura **Clase N**, periodo **2026-2** (**24/08–22/11**, semestre acortado: **13 sesiones** que cubren los **15 temas**), marca uniajc.edu.co.
 
   A partir de microcurrículo + Plan de curso (+ Acuerdo pedagógico si existe) genera:
     1. PRESENTACIÓN DEL CURSO (.pptx) = **Sesión 0**
@@ -18,7 +18,10 @@ description: |
 
   ENTRADAS MÍNIMAS:
   - Microcurrículo y/o Plan de curso de la asignatura (en `Plan curso/`)
-  - Número de clases (por defecto: `config/calendario/semestre_2026_2.json` → **15** en 2026-2)
+  - Número de sesiones (por defecto: `config/calendario/semestre_2026_2.json` → **13 sesiones** en 2026-2,
+    que cubren los **15 temas** del microcurrículo: **2 sesiones son dobles**. El material
+    `Clases/Clase N - …` y `Kit docente/Clase N/` NO se renumera; el mapeo Sesión → Clase(s)
+    de material está en `clases[].clases_material` del JSON y en el CALENDARIO del curso)
   - Perfil: `config/universidades/uniajc.json` · calendario: `config/calendario/semestre_2026_2.json`
   - Docente: **Julian Andres Castaño** · correo `julianacastano@profesores.uniajc.edu.co`
     Credenciales: Ingeniero de Sistemas · Candidato a MsC en IA · Líder Técnico · Speaker Tecnológico
@@ -77,7 +80,7 @@ Helpers clave:
 - `class_cover` — portada de Clase N: hero limpio (marca + título + subtítulo / badge). **Sin** bloque inferior PI/120 min/gratis (va en slide 2).
 - `block_timeline_slide` — «Mapa del bloque de hoy»: barra proporcional + cards verticales (no raya con cuadraditos).
 - `herramientas_slide` — herramientas principales, logos grandes.
-- `contenido_clases_slide` — CONTENIDO (Sesión 0 + Clases 1–15) **en UNA sola slide**; se pone en 2 columnas solo si hay >9 ítems. Nunca partir el temario en 2 páginas ni resumirlo con «ver el resto en el plan».
+- `contenido_clases_slide` — CONTENIDO (Sesión 0 + las 13 sesiones · 15 temas) **en UNA sola slide**; se pone en 2 columnas solo si hay >9 ítems. Nunca partir el temario en 2 páginas ni resumirlo con «ver el resto en el plan».
 - `evaluacion_cortes_slide` — evaluación por cortes como **tarjetas visuales** (% grande por corte), NO como tabla de texto. Reemplaza a `table_content` para ese caso.
 - `diagram_boxes_slide` — diagramas reales (cajas + flechas dibujadas) para conceptos visuales (ER, C4, despliegue, línea de tiempo). **Nunca** dejar `[IMAGEN]` como placeholder si el concepto se puede dibujar.
 - `padlet_slide` · `tutor_slide` (sin subtítulo de curso).
@@ -234,7 +237,7 @@ Estructura sugerida:
    5. Hilo conductor: Proyecto Integrador.
    Nunca dejar «Sesión 0» sin decir explícitamente que es la presentación de HOY: es el punto que más confunde al estudiante.
 7. Sistema de evaluación — usar `evaluacion_cortes_slide` (tarjetas por corte, % grande), NO tabla.
-8. CONTENIDO (Sesión 0 + Clases 1–15) en **una sola** diapositiva vía `contenido_clases_slide`.
+8. CONTENIDO (Sesión 0 + las 13 sesiones · 15 temas, marcando las 2 sesiones dobles) en **una sola** diapositiva vía `contenido_clases_slide`.
 9. Proyecto Integrador / entregables — abrir con «**Socialización de hoy (Sesión 0)**: presentamos el PI completo para que lo tengan claro desde la Clase 1».
 10. Recursos + **Herramientas** (logos grandes vía `herramientas_slide` — verificar que se vean, ver arriba)
 11. Cierre (día/hora semanal)
@@ -322,7 +325,7 @@ usar un campo aparte (`fundamento`) que solo consuma el guión. Si no, se rompe 
 5. Tiempo real del bloque (**120 min**).
 6. Nomenclatura **Clase N**; no migrar a «Sesión» salvo pedido.
 7. No borrar material existente ni Acuerdos de semestres anteriores.
-8. Evaluación teórica 30/30/40. Parciales síncronos **nunca** en festivo/autónoma. **Día de parcial = solo evaluación**. Criterio: última regular del corte (mié/jue: 5/10/15; lun: **5/9/14**). Modalidad del parcial según curso (ver Paso 0).
+8. Evaluación teórica 30/30/40. Parciales síncronos **nunca** en festivo/autónoma. **Día de parcial = solo evaluación**. Criterio: última regular del corte (2026-2 acortado — mié/jue: **5/9/13**; lun: **5/9/12**, y la sesión 13 del lunes (16/11) es de **sustentaciones del PI**, no parcial). Modalidad del parcial según curso (ver Paso 0).
 9. Pendientes ops (no en PPTX curso): enlace de Meet, firmas. **Nunca** URL de campus (no existe) ni listado de estudiantes (privado). Padlet ya fijo.
 10. **El QUIZ no va en el material del estudiante**: ni diapositiva con las preguntas,
     ni anuncio en la agenda/timeline del bloque, ni mención en el taller. Vive SOLO en
@@ -383,4 +386,4 @@ importar CSV, colas IA): eso es operación, no diseño pedagógico.
 
 ---
 
-*v2.0 — UNIAJC · 2026-2 · Sesión 0 ≠ Clase 1 (y Sesión 0 socializa el PI) · densidad máx. 5 bullets · evaluación en tarjetas · CONTENIDO en 1 slide · diagramas reales · logos verificados · scripts ejecutables · un dominio narrativo por curso · verificación final obligatoria · capturas de salida esperada (mockups.py) · helpers before_after/pseudo_code · modalidad regla unica (Clase 1 y parciales presencial · resto virtual · festivos autonoma) · quiz SOLO en Kit docente · SIN Campus Virtual (no existe; entrega en ExamLab) · sin listado de estudiantes · PI en los 4 cursos · Motor `uniajc_slides_engine.py`.*
+*v2.1 — UNIAJC · 2026-2 (24/08–22/11 · **13 sesiones / 15 temas · 2 sesiones dobles** · sesión 13 de lunes = sustentaciones PI) · Sesión 0 ≠ Clase 1 (y Sesión 0 socializa el PI) · densidad máx. 5 bullets · evaluación en tarjetas · CONTENIDO en 1 slide · diagramas reales · logos verificados · scripts ejecutables · un dominio narrativo por curso · verificación final obligatoria · capturas de salida esperada (mockups.py) · helpers before_after/pseudo_code · modalidad regla unica (Clase 1 y parciales presencial · resto virtual · festivos autonoma) · quiz SOLO en Kit docente · SIN Campus Virtual (no existe; entrega en ExamLab) · sin listado de estudiantes · PI en los 4 cursos · Motor `uniajc_slides_engine.py`.*

@@ -35,7 +35,7 @@ Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 ### 10-40 · Teoria Core
 Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
 proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
-Pregunta al aire (2 min): ¿donde encaja esto en el VetCare de su equipo?
+Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
@@ -44,14 +44,14 @@ Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 11/Plantillas/Auditoria-Cruzada-VetCare.md`
 
 ### 60-105 · Taller guiado = avance del PI
-**Decir:** «Equipos: abran su proyecto VetCare. Esto suma a la rubrica del PI.»
+**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Construir en Google Docs la matriz de trazabilidad de VetCare con las columnas RF, Caso de uso, Clase o clases implicadas y Mockup, incluyendo todos los requisitos del catalogo, y marcar en rojo cada fila incompleta.
 2. Levantar el glosario de nombres canonicos con minimo ocho conceptos del dominio (Propietario, Mascota, Consulta, Cita, Veterinario, Vacuna, Expediente, Bitacora), cada uno con definicion de una linea y sinonimos prohibidos, y renombrar en los artefactos todo lo que no coincida.
-3. Intercambiar el paquete completo con otro equipo y aplicar la rubrica de auditoria de seis puntos durante veinte minutos cronometrados, registrando cada hallazgo con ubicacion exacta, descripcion y severidad bloqueante, mayor o menor; queda prohibido proponer soluciones durante la revision.
+3. Intercambiar el paquete completo con otro estudiante (o con otro equipo, si el docente autorizo trabajo en equipo) y aplicar la rubrica de auditoria de seis puntos durante veinte minutos cronometrados, registrando cada hallazgo con ubicacion exacta, descripcion y severidad bloqueante, mayor o menor; queda prohibido proponer soluciones durante la revision.
 4. Recibir los hallazgos propios y clasificarlos en aceptado, rechazado con justificacion escrita o aplazado por acuerdo, sin borrar ninguno del acta, de modo que quede evidencia de la decision tomada.
 5. Armar el backlog priorizado de correcciones con responsable y criterio de cierre verificable para cada item, ordenado por severidad, y aplicar en clase al menos las dos correcciones bloqueantes antes de subir el paquete corregido a ExamLab.
-Circular por los equipos. Empujar evidencia funcionando, no perfeccionismo.
+Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Un documento con la matriz de trazabilidad RF a CU a Clase, el glosario de nombres canonicos, el acta de revision entre pares con hallazgos clasificados por severidad y el backlog priorizado de correcciones, subido a ExamLab.
 
 ### 105-120 · Criterios de exito y cierre

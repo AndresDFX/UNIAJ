@@ -116,9 +116,9 @@ Tres subgraphs con los nombres exactos de los incrementos, cada uno con las mism
 
 **Enunciado (campo Contenido):**
 
-## En que fase esta parado su equipo hoy
+## En que fase esta parado su proyecto hoy
 
-Declare en que fase del ciclo esta su equipo **hoy** y sustentelo. Formato exacto de la respuesta:
+Declare en que fase del ciclo esta su proyecto **hoy** y sustentelo. Formato exacto de la respuesta:
 
 ```
 FASE ACTUAL: <nombre de una de las 5 fases>

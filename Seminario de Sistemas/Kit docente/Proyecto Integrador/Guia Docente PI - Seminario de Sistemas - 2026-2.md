@@ -20,13 +20,15 @@ PI **compartido con Programación II**: mismo producto, distinto entregable
 4. Arquitectura de datos (diccionario de datos)
 
 ## Hitos
-| Clase | Fecha | Entrega |
-|---|---|---|
-| 11 | 22/10 | Requisitos + casos de uso |
-| 12 | 29/10 | UML avanzado |
-| 13 | 05/11 | Wireframes y mockup |
-| 14 | 12/11 | Documento consolidado + ensayo |
-| 15 | 19/11 | Sustentación (mismo día del Parcial 3) |
+Semestre acortado a **13 sesiones**; las carpetas de material siguen numeradas 1–15.
+Toda entrega intermedia cierra el **domingo 23:59 siguiente** a la sesión.
+
+| Sesión | Fecha | Material | Entrega | Cierre |
+|---|---|---|---|---|
+| S10 (doble) | 29/10 | Clases 11 + 12 | Requisitos + casos de uso y UML avanzado | dom 01/11/2026 23:59 |
+| S11 | 05/11 | Clase 13 | Wireframes y mockup | dom 08/11/2026 23:59 |
+| S12 | 12/11 | Clase 14 | Documento consolidado + ensayo | **paquete final:** dom 15/11/2026 23:59 |
+| S13 | 19/11 | Clase 15 | Sustentación (mismo día del Parcial 3) | — |
 
 ## Rúbrica (100 pts → 20% del Corte 3)
 Requisitos 20 · UML 25 · Interfaz 20 · Arquitectura de datos 15 · Plan de pruebas 10 · Sustentación 10

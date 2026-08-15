@@ -35,7 +35,7 @@ Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 ### 10-40 · Teoria Core
 Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
 proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
-Pregunta al aire (2 min): ¿donde encaja esto en el VetCare de su equipo?
+Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
@@ -44,14 +44,14 @@ Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 2/Plantillas/Mapa-Ciclo-de-Vida-VetCare.md`
 
 ### 60-105 · Taller guiado = avance del PI
-**Decir:** «Equipos: abran su proyecto VetCare. Esto suma a la rubrica del PI.»
+**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. En Google Docs cree la tabla de cuatro columnas (Fase / Pregunta que responde / Artefacto concreto de VetCare / Quien lo aprueba) y llenela con las cinco fases; en la columna del artefacto esta prohibido escribir generalidades: debe decir cosas como 'Lista RF-01 a RF-12 de Huellitas' o 'Mockup de la ficha del paciente'.
 2. Marque con relleno amarillo la fila de la fase donde esta el equipo hoy y escriba debajo dos evidencias verificables que lo demuestren (por ejemplo: 'existe la entrevista transcrita' y 'no existe ningun diagrama aprobado').
 3. En draw.io dibuje el recorrido lineal de VetCare: cinco cajas en fila, y sobre cada flecha escriba el artefacto que se entrega para poder pasar a la siguiente fase.
 4. Duplique la pagina en draw.io y dibuje el recorrido en tres vueltas: las mismas cinco cajas, pero con las vueltas rotuladas Incremento 1 (ficha del paciente), Incremento 2 (historia clinica y busqueda) e Incremento 3 (reportes y metricas), y una flecha de retroalimentacion desde la clinica hacia requisitos.
 5. Escriba al final del documento un parrafo de tres renglones titulado 'Producto vs proyecto en VetCare' que responda: cuando termina el proyecto, cuando terminaria el producto y un ejemplo concreto de una solicitud de mantenimiento; exporte a PDF y suba el archivo a ExamLab.
-Circular por los equipos. Empujar evidencia funcionando, no perfeccionismo.
+Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Un documento de una pagina en Google Docs con la tabla Fase / Pregunta que responde / Artefacto de VetCare / Quien lo aprueba, mas dos diagramas en draw.io (recorrido lineal y recorrido en tres vueltas) exportados a PDF y subidos a ExamLab.
 
 ### 105-120 · Criterios de exito y cierre

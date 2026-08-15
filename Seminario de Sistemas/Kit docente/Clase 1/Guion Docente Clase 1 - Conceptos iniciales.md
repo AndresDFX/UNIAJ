@@ -2,8 +2,8 @@
 
 - **Curso:** Seminario de Sistemas (FI303301) · 120 min
 - **Hilo:** Proyecto Integrador **VetCare** — planos del sistema de la clinica «Huellitas»
-- **Hoy avanzamos el PI en:** Equipo conformado y dominio del proyecto acotado
-- **Entregable de hoy:** Ficha del equipo: problema en 2-3 frases, 3-5 capacidades, 2-3 actores y lo que queda fuera de alcance
+- **Hoy avanzamos el PI en:** Dominio del proyecto acotado (trabajo individual por defecto)
+- **Entregable de hoy:** Ficha de dominio: problema en 2-3 frases, 3-5 capacidades, 2-3 actores y lo que queda fuera de alcance
 - **Herramienta:** Google Docs · draw.io
 - **Slides:** `Clases/Clase 1 - Conceptos iniciales/Presentacion.pptx`
 
@@ -33,7 +33,7 @@ En un curso de diseno la deuda toma una forma particular y peligrosa: el artefac
 
 El segundo concepto de fondo es la palabra modelo, que se usa todo el semestre sin definirla. Un modelo es una representacion simplificada de algo real, construida para responder un conjunto acotado de preguntas. La parte que sorprende al estudiante es que un modelo util es necesariamente incompleto, y la razon es aritmetica y no filosofica: un modelo que incluyera todo seria del tamano del territorio que representa y por lo tanto no serviria para nada, porque un mapa a escala uno a uno pesa lo mismo que la ciudad y no cabe en el bolsillo. La formula que se cita habitualmente es que el mapa no es el territorio. Consecuencia operativa, y este es el criterio que el estudiante debe llevarse: para cada diagrama que va a dibujar hay que poder nombrar dos cosas, cual pregunta responde y quien es la persona que la hace. Si no se pueden nombrar, el diagrama no va. En VetCare, un diagrama de casos de uso responde quien hace que y con que finalidad, y le sirve al dueno de la clinica para confirmar que no falta ningun tramite; no responde en cuanto tiempo se busca un expediente ni como se guardan los datos, y quien busque eso ahi va a leer mal. Esas otras preguntas tienen sus propios modelos, y el curso los introduce en las Clases 8, 9 y 12. Reconocer que cada diagrama es parcial es lo que permite tener varios sin contradecirse.
 
-De ahi se sigue que un modelo puede estar mal de dos maneras opuestas, y conviene decirlas juntas porque los equipos suelen corregir una cayendo en la otra. Puede omitir algo que si importaba para la pregunta que promete responder, y entonces es incompleto donde no debia. O puede incluir tanto detalle que nadie lo lee, y entonces es ruido con apariencia de rigor. La segunda falla es la mas comun en trabajos de curso, porque el estudiante asume que mas paginas equivalen a mas nota. Sirven algunas magnitudes de referencia, todas convenciones de este curso y no reglas del lenguaje: un diagrama de casos de uso legible rara vez pasa de quince o veinte casos; un diagrama con cuarenta elementos ya no se puede discutir en una reunion; una historia de usuario cabe en dos o tres lineas. Y hay una prueba empirica que reemplaza cualquier lista de verificacion: entregue el artefacto a alguien de otro equipo, sin explicarle nada, y pidale que lo explique en tres minutos. Lo que no pueda explicar, no comunica, y hay que arreglarlo. La pregunta previsible aqui es cuantos diagramas hay que hacer entonces, y la respuesta que hay que sostener todo el semestre es que se hacen los que responden preguntas que alguien tiene, y que un diagrama sin lector es trabajo perdido aunque este perfecto.
+De ahi se sigue que un modelo puede estar mal de dos maneras opuestas, y conviene decirlas juntas porque los equipos suelen corregir una cayendo en la otra. Puede omitir algo que si importaba para la pregunta que promete responder, y entonces es incompleto donde no debia. O puede incluir tanto detalle que nadie lo lee, y entonces es ruido con apariencia de rigor. La segunda falla es la mas comun en trabajos de curso, porque el estudiante asume que mas paginas equivalen a mas nota. Sirven algunas magnitudes de referencia, todas convenciones de este curso y no reglas del lenguaje: un diagrama de casos de uso legible rara vez pasa de quince o veinte casos; un diagrama con cuarenta elementos ya no se puede discutir en una reunion; una historia de usuario cabe en dos o tres lineas. Y hay una prueba empirica que reemplaza cualquier lista de verificacion: entregue el artefacto a un compañero que no haya trabajado en su documento, sin explicarle nada, y pidale que lo explique en tres minutos. Lo que no pueda explicar, no comunica, y hay que arreglarlo. La pregunta previsible aqui es cuantos diagramas hay que hacer entonces, y la respuesta que hay que sostener todo el semestre es que se hacen los que responden preguntas que alguien tiene, y que un diagrama sin lector es trabajo perdido aunque este perfecto.
 
 Lo anterior conduce al criterio que gobierna todas las entregas de este curso: la diferencia entre un documento que alguien puede usar y uno que solo existe para la nota. Son cinco rasgos y todos son verificables desde afuera. Uno, tiene un lector nombrado y una pregunta que responde. Dos, es verificable: sus afirmaciones se pueden confirmar o refutar, lo que en requisitos significa criterios de aceptacion. Tres, es trazable: cada requisito tiene identificador y se puede seguir hasta el artefacto donde se resuelve. Cuatro, esta fechado y versionado. Cinco, es accionable: alguien puede tomar una decision o construir algo con el. Comparemos en VetCare. Version para la nota: el sistema debe ser amigable e intuitivo y permitir gestionar la informacion de las mascotas de manera eficiente. Nadie puede construir eso ni puede decir si se cumplio. Version usable: RF-012, el sistema permite registrar una mascota con identificador, nombre, especie, fecha de nacimiento y dueno asociado; criterio de aceptacion, dado un dueno ya registrado, cuando la recepcionista guarda la mascota con esos cinco datos, entonces la mascota aparece en el listado de ese dueno, y si el dueno no existe el registro se rechaza con un mensaje; origen, entrevista con la recepcionista; prioridad, alta. La segunda version se puede programar, se puede probar y se puede discutir con el dueno de la clinica. Los tres rellenos que hay que prohibir desde hoy son la definicion copiada de un libro, la historia del origen de la ingenieria de software y las promesas sin sujeto del tipo se garantizara la calidad.
 
@@ -50,14 +50,14 @@ Error tipico del docente que no domina el tema: el primero es tratar el curso co
 ## Plan minuto a minuto (120 min)
 
 ### 0-10 · Encuadre
-**Decir:** «Hoy avanzamos VetCare en: Equipo conformado y dominio del proyecto acotado. La teoria es corta; el peso esta en
+**Decir:** «Hoy avanzamos VetCare en: Dominio del proyecto acotado (trabajo individual por defecto). La teoria es corta; el peso esta en
 el taller del proyecto.»
 Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 
 ### 10-40 · Teoria Core
 Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
 proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
-Pregunta al aire (2 min): ¿donde encaja esto en el VetCare de su equipo?
+Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
@@ -66,21 +66,21 @@ Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 1/Plantillas/Ficha de dominio - VetCare.md`
 
 ### 60-105 · Taller guiado = avance del PI
-**Decir:** «Equipos: abran su proyecto VetCare. Esto suma a la rubrica del PI.»
+**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
-1. Formen equipo de 2-3 personas y definan quien sera el vocero tecnico del grupo ante el docente.
+1. Modalidad de trabajo: individual por defecto. Abra su ficha de dominio y escriba su nombre. Si el docente autoriza equipos de 2 o 3 integrantes, la ficha puede ser compartida, pero la entrega en ExamLab siempre es individual y con sus propias palabras.
 2. Escriban el problema en 2-3 frases: quien sufre que, y como se nota hoy ese dolor en la operacion diaria de la clinica.
 3. Listen 3-5 capacidades del sistema, escritas como verbos de negocio (registrar, agendar, consultar), no como pantallas.
 4. Identifiquen 2-3 actores y, para cada uno, que espera obtener del sistema.
 5. Escriban explicitamente que NO hara el sistema este semestre (fuera de alcance): sin esa lista, el proyecto crece sin control.
-Circular por los equipos. Empujar evidencia funcionando, no perfeccionismo.
-Entregable: Ficha del equipo: problema en 2-3 frases, 3-5 capacidades, 2-3 actores y lo que queda fuera de alcance
+Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
+Entregable: Ficha de dominio: problema en 2-3 frases, 3-5 capacidades, 2-3 actores y lo que queda fuera de alcance
 
 ### 105-120 · Criterios de exito y cierre
 Repasar el checklist de la slide de criterios.
 Aplicar el quiz corto de `Kit docente/Clase 1/Quiz Clase 1 - VetCare.docx`
 (la clave va aparte y **no se proyecta**).
-**Decir:** «Queda avanzado: Equipo conformado y dominio del proyecto acotado. Entrega en ExamLab, domingo 23:59.»
+**Decir:** «Queda avanzado: Dominio del proyecto acotado (trabajo individual por defecto). Entrega en ExamLab, domingo 23:59.»
 
 ## Solucion del taller (privada)
 `Kit docente/Clase 1/Solucion Taller Clase 1 - VetCare.docx` — no proyectar completa.

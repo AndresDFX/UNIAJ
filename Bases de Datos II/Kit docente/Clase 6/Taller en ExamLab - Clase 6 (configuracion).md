@@ -25,7 +25,7 @@
 
 Esta base tiene **volumen real**: 2.006 duenos, 5.008 mascotas, 16 veterinarios y **30.010 citas** repartidas entre el 2026-01-05 y el 2026-07-23 (unas 150 citas por dia). Las estadisticas ya estan actualizadas con `ANALYZE` y **no hay ningun indice** mas alla de las llaves primarias.
 
-La recepcion de Huellitas usa esta consulta para imprimir la agenda del dia. Es la version **ANTES**, tal como la escribio el equipo:
+La recepcion de Huellitas usa esta consulta para imprimir la agenda del dia. Es la version **ANTES**, tal como la escribio quien la programo:
 
 ```sql
 SELECT *
@@ -507,7 +507,7 @@ Escribe la justificacion que ira al informe del PI, con esta estructura:
 4. **Que sigue**: que indice propondrias en la Clase 7 para esta misma consulta y por que crees que ayudaria.
 5. **Limites de la medicion**: reconoce que mediste sobre PostgreSQL en el navegador con 30.010 filas y sin concurrencia, y di que cambiaria en un servidor real con millones de citas y varios usuarios.
 
-Recuerda guardar tus scripts como `06_opt_antes.sql` y `06_opt_despues.sql` en la carpeta del equipo.
+Recuerda guardar tus scripts como `06_opt_antes.sql` y `06_opt_despues.sql` en tu carpeta del PI.
 
 **Rubrica esperada (campo Rubrica):**
 

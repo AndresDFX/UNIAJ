@@ -12,7 +12,7 @@
 ## Solucion paso a paso
 1. Verificar el ZIP/paquete final linea por linea contra la rubrica de 100 pts (ER, DDL, roles, procs, funciones/triggers, optimizacion, indices, transacciones, concurrencia, contrato de integracion, informe) antes de subirlo, no despues.
 2. Sustentar 5-8 minutos siguiendo el outline preparado en Clase 12, con evidencia en vivo (no solo diapositivas) de al menos un procedimiento y un trigger ejecutandose.
-3. Completar la autoevaluacion del equipo respondiendo con honestidad que harian distinto si empezaran de nuevo — esto pesa en la nota y demuestra criterio, no solo ejecucion.
+3. Completar la autoevaluacion de tu propio trabajo respondiendo con honestidad que harias distinto si empezaras de nuevo (si hubo equipo autorizado, agrega una linea por integrante) — esto pesa en la nota y demuestra criterio, no solo ejecucion.
 4. Cerrar formalmente el curso confirmando que la entrega quedo registrada en ExamLab dentro del plazo, con el enlace o archivo accesible para el docente.
 
 ## Ejemplo / SQL / artefactos

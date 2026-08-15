@@ -1,13 +1,41 @@
 # -*- coding: utf-8 -*-
 """Contenido de los 12 parciales UNIAJC 2026-2 (4 cursos x 3 cortes).
 
-Regla de cobertura (obligatoria):
-  - Solo clases con fecha en la ventana del corte Y fecha_clase <= fecha_parcial.
-  - En BD II / Arquitectura: P2 = clases 6-9 (NO 10); P3 = clases 11-14 (NO 15).
+SEMESTRE ACORTADO 2026-2 (inicio 24/08/2026, fin 22/11/2026) = 13 SESIONES por curso.
+Los 15 temas del microcurriculo se conservan: 2 sesiones son DOBLES. Por eso hay que
+distinguir dos numeraciones (fuente de verdad: config/calendario/semestre_2026_2.json):
+
+  - SESION (1..13): la clase real del calendario. Es el numero que se muestra al
+    estudiante en la portada del parcial (`meta['clase']` = numero de sesion).
+  - CLASE DE MATERIAL (1..15): la carpeta «Clase N» del material, que NO se renumera.
+    Es lo que se lista en `temas=[_tema(n, dd/mm, ...)]`; la fecha dd/mm es la fecha de
+    la SESION en la que esa Clase de material se dicta.
+
+Mapeo sesion -> clase(s) de material:
+  - Prog II (mie) y Seminario (jue): S1-S4 = C1-C4 · S5 PARCIAL 1 (C5) · S6 = C6 ·
+    S7 = C7 · S8 DOBLE = C8+C9 · S9 PARCIAL 2 (C10) · S10 DOBLE = C11+C12 ·
+    S11 = C13 · S12 = C14 · S13 PARCIAL 3 (C15).
+  - BD II y Arquitectura (lun): S1-S4 = C1-C4 · S5 PARCIAL 1 (C5) · S6 = C6 ·
+    S7 DOBLE = C7+C8 · S8 autonoma (festivo 12/10) = C10 · S9 PARCIAL 2 (C9) ·
+    S10 DOBLE = C11+C12 · S11 autonoma (festivo 02/11) = C13 · S12 PARCIAL 3 (C14) ·
+    S13 sustentaciones del PI (C15).
+
+Regla de cobertura (obligatoria): solo Clases de material efectivamente dictadas antes
+del parcial (fecha de su sesion < fecha del parcial). Resultado:
+  - Parcial 1 (los 4 cursos): Clases 1-4 (la C5 es el parcial mismo).
+  - Parcial 2: Prog II / Seminario -> Clases 6, 7, 8, 9 (la sesion doble S8 dio C8+C9).
+               BD II / Arquitectura -> Clases 6, 7, 8, 10 (la autonoma S8 del 12/10 fue
+               la C10; la C9 es el parcial mismo).
+  - Parcial 3: Prog II / Seminario -> Clases 11, 12, 13, 14 (C14 se dicta en S12).
+               BD II / Arquitectura -> Clases 11, 12, 13 (la C14 es el parcial mismo y la
+               C15 es la sustentacion del PI, posterior).
+
+Otras reglas:
   - Clase 1: se evalua el arranque tematico (no la logistica de Presentacion del curso).
-  - Formato en portada: «Clase N · DD/MM · Tema».
+  - Formato en portada: «Clase N · DD/MM · Tema» (N = Clase de material).
   - Día de parcial = solo evaluación: la cobertura lista los temas en la clase
     donde se impartieron (no inventa tema técnico en la fila del parcial).
+  - Dominio narrativo unico por curso: BD II = VetCare · Arquitectura = CloudLite.
 """
 from __future__ import annotations
 
@@ -33,12 +61,12 @@ PROG2_P1 = {
         codigo='FI303204',
         grupo='341C',
         periodo='2026-2',
-        horario='Miércoles 20:00 – 22:00',
+        horario='Miércoles 18:00 – 20:00',
         n=1,
         corte=1,
         valor_corte='10% del Corte 1 (30%)',
-        fecha='09/09/2026',
-        clase=5,
+        fecha='23/09/2026',
+        clase=5,  # Sesion 5 del calendario (material: Clase 5 = dia del parcial)
         tiempo='90–100 minutos',
         titulo_parcial='Parcial 1 — POO, colecciones e interfaces GUI',
         secciones_resumen=['A. Selección múltiple — 20 pts',
@@ -46,12 +74,13 @@ PROG2_P1 = {
  'C. Desarrollo conceptual — 25 pts',
  'D. Práctica (Java / GUI) — 35 pts'],
         archivo='Parcial 1 - POO colecciones e interfaces GUI',
-        cobertura='Corte 1 · Únicamente clases con fecha <= 09/09/2026 (Clases 1-5):',
+        cobertura=('Corte 1 (Sesiones 1-5) · Únicamente clases dictadas antes del 23/09/2026 '
+ '(Clases 1, 2, 3 y 4 del material). La Clase 5 es la sesión del parcial:'),
         temas=[
-            _tema(1, '12/08', 'Introducción a POO'),
-            _tema(2, '19/08', 'Colecciones dinámicas ArrayList'),
-            _tema(3, '26/08', 'Pilas y colas'),
-            _tema(4, '02/09', 'Mapas y conjuntos · Interfaces gráficas GUI'),
+            _tema(1, '26/08', 'Introducción a POO'),
+            _tema(2, '02/09', 'Colecciones dinámicas ArrayList'),
+            _tema(3, '09/09', 'Pilas y colas'),
+            _tema(4, '16/09', 'Mapas y conjuntos · Interfaces gráficas GUI'),
         ],
     ),
     "secciones": [{'intro': '',
@@ -188,12 +217,12 @@ PROG2_P2 = {
         codigo='FI303204',
         grupo='341C',
         periodo='2026-2',
-        horario='Miércoles 20:00 – 22:00',
+        horario='Miércoles 18:00 – 20:00',
         n=2,
         corte=2,
         valor_corte='10% del Corte 2 (30%)',
-        fecha='14/10/2026',
-        clase=10,
+        fecha='21/10/2026',
+        clase=9,  # Sesion 9 del calendario (material: Clase 10 = dia del parcial)
         tiempo='90–100 minutos',
         titulo_parcial='Parcial 2 — Eventos, patrones, QA y persistencia',
         secciones_resumen=['A. Selección múltiple — 20 pts',
@@ -201,13 +230,14 @@ PROG2_P2 = {
  'C. Desarrollo — 25 pts',
  'D. Práctica (eventos / archivos) — 35 pts'],
         archivo='Parcial 2 - Eventos patrones QA y persistencia',
-        cobertura=('Corte 2 · Únicamente clases con fecha <= 14/10/2026 en la ventana del corte '
- '(Clases 6-10). No evalúa POO/ArrayList/GUI del Corte 1:'),
+        cobertura=('Corte 2 (Sesiones 6-9) · Únicamente clases dictadas antes del 21/10/2026 '
+ '(Clases 6, 7, 8 y 9 del material; la sesión doble del 14/10 cubrió las Clases 8 y 9). '
+ 'No evalúa POO/ArrayList/GUI del Corte 1:'),
         temas=[
-            _tema(6, '16/09', 'Eventos y controladores'),
-            _tema(7, '23/09', 'Patrones de diseño'),
-            _tema(8, '30/09', 'Documentación y QA'),
-            _tema(9, '07/10', 'Refactorización con IA · Persistencia de archivos'),
+            _tema(6, '30/09', 'Eventos y controladores'),
+            _tema(7, '07/10', 'Patrones de diseño'),
+            _tema(8, '14/10', 'Documentación y QA (sesión doble)'),
+            _tema(9, '14/10', 'Refactorización con IA · Persistencia de archivos (sesión doble)'),
         ],
     ),
     "secciones": [{'intro': '',
@@ -327,12 +357,12 @@ PROG2_P3 = {
         codigo='FI303204',
         grupo='341C',
         periodo='2026-2',
-        horario='Miércoles 20:00 – 22:00',
+        horario='Miércoles 18:00 – 20:00',
         n=3,
         corte=3,
         valor_corte='15% del Corte 3 (40%)',
         fecha='18/11/2026',
-        clase=15,
+        clase=13,  # Sesion 13 del calendario (material: Clase 15 = dia del parcial)
         tiempo='90–100 minutos',
         titulo_parcial='Parcial 3 — Integración, excepciones y cierre de proyecto',
         secciones_resumen=['A. Selección múltiple — 20 pts',
@@ -340,13 +370,14 @@ PROG2_P3 = {
  'C. Caso de integración — 25 pts',
  'D. Práctica (excepciones / revisión) — 35 pts'],
         archivo='Parcial 3 - Integracion excepciones y cierre de proyecto',
-        cobertura=('Corte 3 · Únicamente clases con fecha <= 18/11/2026 en la ventana del corte '
- '(Clases 11-15):'),
+        cobertura=('Corte 3 (Sesiones 10-13) · Únicamente clases dictadas antes del 18/11/2026 '
+ '(Clases 11, 12, 13 y 14 del material; la sesión doble del 28/10 cubrió las Clases 11 y 12). '
+ 'La Clase 15 es la sesión del parcial:'),
         temas=[
-            _tema(11, '21/10', 'Revisión de código cruzada'),
-            _tema(12, '28/10', 'Integración de módulos'),
+            _tema(11, '28/10', 'Revisión de código cruzada (sesión doble)'),
+            _tema(12, '28/10', 'Integración de módulos (sesión doble)'),
             _tema(13, '04/11', 'Control de excepciones'),
-            _tema(14, '11/11', 'Preparación presentación final · Evaluación de proyectos + cierre'),
+            _tema(14, '11/11', 'Preparación de la presentación final'),
         ],
     ),
     "secciones": [{'intro': '',
@@ -473,12 +504,12 @@ SEM_P1 = {
         codigo='FI303301',
         grupo='341C',
         periodo='2026-2',
-        horario='Jueves 20:00 – 22:00',
+        horario='Jueves 18:00 – 20:00',
         n=1,
         corte=1,
         valor_corte='10% del Corte 1 (30%)',
-        fecha='10/09/2026',
-        clase=5,
+        fecha='24/09/2026',
+        clase=5,  # Sesion 5 del calendario (material: Clase 5 = dia del parcial)
         tiempo='90–100 minutos',
         titulo_parcial='Parcial 1 — Ciclos de vida y metodologías',
         secciones_resumen=['A. Selección múltiple — 20 pts',
@@ -486,12 +517,13 @@ SEM_P1 = {
  'C. Desarrollo — 25 pts',
  'D. Caso de estudio — 35 pts'],
         archivo='Parcial 1 - Ciclos de vida y metodologias',
-        cobertura='Corte 1 · Únicamente clases con fecha <= 10/09/2026 (Clases 1-5):',
+        cobertura=('Corte 1 (Sesiones 1-5) · Únicamente clases dictadas antes del 24/09/2026 '
+ '(Clases 1, 2, 3 y 4 del material). La Clase 5 es la sesión del parcial:'),
         temas=[
-            _tema(1, '13/08', 'Conceptos iniciales'),
-            _tema(2, '20/08', 'Ciclos de vida'),
-            _tema(3, '27/08', 'Metodologías tradicionales'),
-            _tema(4, '03/09', 'Metodologías ágiles'),
+            _tema(1, '27/08', 'Conceptos iniciales'),
+            _tema(2, '03/09', 'Ciclos de vida'),
+            _tema(3, '10/09', 'Metodologías tradicionales'),
+            _tema(4, '17/09', 'Metodologías ágiles'),
         ],
     ),
     "secciones": [{'intro': '',
@@ -599,12 +631,12 @@ SEM_P2 = {
         codigo='FI303301',
         grupo='341C',
         periodo='2026-2',
-        horario='Jueves 20:00 – 22:00',
+        horario='Jueves 18:00 – 20:00',
         n=2,
         corte=2,
         valor_corte='10% del Corte 2 (30%)',
-        fecha='15/10/2026',
-        clase=10,
+        fecha='22/10/2026',
+        clase=9,  # Sesion 9 del calendario (material: Clase 10 = dia del parcial)
         tiempo='90–100 minutos',
         titulo_parcial='Parcial 2 — Requerimientos, UML y casos de uso',
         secciones_resumen=['A. Selección múltiple — 20 pts',
@@ -612,13 +644,14 @@ SEM_P2 = {
  'C. Historias y requerimientos — 25 pts',
  'D. Caso UML / casos de uso — 35 pts'],
         archivo='Parcial 2 - Requerimientos UML y casos de uso',
-        cobertura=('Corte 2 · Únicamente clases con fecha <= 15/10/2026 en la ventana del corte '
- '(Clases 6-10). No evalúa ciclos de vida/metodologías del Corte 1:'),
+        cobertura=('Corte 2 (Sesiones 6-9) · Únicamente clases dictadas antes del 22/10/2026 '
+ '(Clases 6, 7, 8 y 9 del material; la sesión doble del 15/10 cubrió las Clases 8 y 9). '
+ 'No evalúa ciclos de vida/metodologías del Corte 1:'),
         temas=[
-            _tema(6, '17/09', 'Requerimientos de software'),
-            _tema(7, '24/09', 'Historias de usuario'),
-            _tema(8, '01/10', 'Introducción a UML'),
-            _tema(9, '08/10', 'Casos de uso'),
+            _tema(6, '01/10', 'Requerimientos de software'),
+            _tema(7, '08/10', 'Historias de usuario'),
+            _tema(8, '15/10', 'Introducción a UML (sesión doble)'),
+            _tema(9, '15/10', 'Casos de uso (sesión doble)'),
         ],
     ),
     "secciones": [{'intro': '',
@@ -736,12 +769,12 @@ SEM_P3 = {
         codigo='FI303301',
         grupo='341C',
         periodo='2026-2',
-        horario='Jueves 20:00 – 22:00',
+        horario='Jueves 18:00 – 20:00',
         n=3,
         corte=3,
         valor_corte='15% del Corte 3 (40%)',
         fecha='19/11/2026',
-        clase=15,
+        clase=13,  # Sesion 13 del calendario (material: Clase 15 = dia del parcial + sustentacion)
         tiempo='90–100 minutos',
         titulo_parcial='Parcial 3 — UML avanzado, interfaces y proyecto',
         secciones_resumen=['A. Selección múltiple — 20 pts',
@@ -749,13 +782,14 @@ SEM_P3 = {
  'C. Diseño UML / UI — 25 pts',
  'D. Caso de sustentación de proyecto — 35 pts'],
         archivo='Parcial 3 - UML avanzado interfaces y proyecto',
-        cobertura=('Corte 3 · Únicamente clases con fecha <= 19/11/2026 en la ventana del corte '
- '(Clases 11-15):'),
+        cobertura=('Corte 3 (Sesiones 10-13) · Únicamente clases dictadas antes del 19/11/2026 '
+ '(Clases 11, 12, 13 y 14 del material; la sesión doble del 29/10 cubrió las Clases 11 y 12). '
+ 'La Clase 15 es la sesión del parcial + sustentación:'),
         temas=[
-            _tema(11, '22/10', 'Avance proyecto integrador'),
-            _tema(12, '29/10', 'Diagramas UML avanzados'),
+            _tema(11, '29/10', 'Avance proyecto integrador (sesión doble)'),
+            _tema(12, '29/10', 'Diagramas UML avanzados (sesión doble)'),
             _tema(13, '05/11', 'Diseño de interfaces'),
-            _tema(14, '12/11', 'Evaluación final (prep. sustentación) · Sustentación de proyectos + cierre'),
+            _tema(14, '12/11', 'Preparación de la sustentación y cierre'),
         ],
     ),
     "secciones": [{'intro': '',
@@ -866,8 +900,8 @@ BD2_P1 = {
         n=1,
         corte=1,
         valor_corte='10% del Corte 1 (30%)',
-        fecha='07/09/2026',
-        clase=5,
+        fecha='21/09/2026',
+        clase=5,  # Sesion 5 del calendario (material: Clase 5 = dia del parcial)
         tiempo='90–100 minutos',
         titulo_parcial='Parcial 1 — Administración, procedimientos y seguridad',
         secciones_resumen=['A. Selección múltiple — 20 pts',
@@ -875,12 +909,13 @@ BD2_P1 = {
  'C. SQL / objetos programables — 25 pts',
  'D. Caso seguridad y respaldo — 35 pts'],
         archivo='Parcial 1 - Administracion procedimientos y seguridad',
-        cobertura='Corte 1 · Únicamente clases con fecha <= 07/09/2026 (Clases 1-5):',
+        cobertura=('Corte 1 (Sesiones 1-5) · Únicamente clases dictadas antes del 21/09/2026 '
+ '(Clases 1, 2, 3 y 4 del material). La Clase 5 es la sesión del parcial:'),
         temas=[
-            _tema(1, '10/08', 'Revisión de Bases de Datos I'),
-            _tema(2, '17/08', 'Administración de bases de datos (autónoma)'),
-            _tema(3, '24/08', 'Procedimientos almacenados'),
-            _tema(4, '31/08', 'Funciones y disparadores · Seguridad y respaldo'),
+            _tema(1, '24/08', 'Revisión de Bases de Datos I (VetCare)'),
+            _tema(2, '31/08', 'Administración de bases de datos'),
+            _tema(3, '07/09', 'Procedimientos almacenados'),
+            _tema(4, '14/09', 'Funciones y disparadores · Seguridad y respaldo'),
         ],
     ),
     "secciones": [{'intro': '',
@@ -1005,21 +1040,23 @@ BD2_P2 = {
         n=2,
         corte=2,
         valor_corte='10% del Corte 2 (30%)',
-        fecha='05/10/2026',
-        clase=9,
+        fecha='19/10/2026',
+        clase=9,  # Sesion 9 del calendario (material: Clase 9 = dia del parcial)
         tiempo='90–100 minutos',
-        titulo_parcial='Parcial 2 — Optimización, índices y transacciones',
+        titulo_parcial='Parcial 2 — Optimización, índices, transacciones y concurrencia',
         secciones_resumen=['A. Selección múltiple — 20 pts',
  'B. Emparejamiento — 20 pts',
  'C. Optimización SQL — 25 pts',
- 'D. Caso transacciones / tuning — 35 pts'],
+ 'D. Caso transacciones, tuning y concurrencia — 35 pts'],
         archivo='Parcial 2 - Optimizacion indices y transacciones',
-        cobertura=('Corte 2 · Únicamente clases con fecha <= 05/10/2026 (Clases 6-9). NO incluye '
- 'Clase 10 (concurrencia, 12/10):'),
+        cobertura=('Corte 2 (Sesiones 6-9) · Únicamente clases dictadas antes del 19/10/2026 '
+ '(Clases 6, 7, 8 y 10 del material; la sesión doble del 05/10 cubrió las Clases 7 y 8 y la '
+ 'sesión autónoma del 12/10 fue la Clase 10). La Clase 9 es la sesión del parcial:'),
         temas=[
-            _tema(6, '14/09', 'Optimización de consultas'),
-            _tema(7, '21/09', 'Índices y particionamiento'),
-            _tema(8, '28/09', 'Tuning de bases de datos · Gestión de transacciones'),
+            _tema(6, '28/09', 'Optimización de consultas'),
+            _tema(7, '05/10', 'Índices y particionamiento (sesión doble)'),
+            _tema(8, '05/10', 'Tuning de bases de datos · Gestión de transacciones (sesión doble)'),
+            _tema(10, '12/10', 'Control de concurrencia (sesión autónoma)'),
         ],
     ),
     "secciones": [{'intro': '',
@@ -1030,7 +1067,7 @@ BD2_P2 = {
                           'c) Reemplazar las transacciones',
                           'd) Garantizar normalización 5FN'],
              'pregunta': 'Un índice B-Tree típico ayuda principalmente a:',
-             'pts': 5,
+             'pts': 4,
              'tipo': 'mcq'},
             {'clave': 'b',
              'id': 'A2',
@@ -1039,7 +1076,7 @@ BD2_P2 = {
                           'c) Crear usuarios',
                           'd) Compactar el sistema operativo'],
              'pregunta': 'EXPLAIN / plan de ejecución se usa para:',
-             'pts': 5,
+             'pts': 4,
              'tipo': 'mcq'},
             {'clave': 'b',
              'id': 'A3',
@@ -1048,7 +1085,7 @@ BD2_P2 = {
                           'c) Que no hay aislamiento',
                           'd) Que el disco no puede fallar'],
              'pregunta': 'ACID: la «A» (Atomicity) significa:',
-             'pts': 5,
+             'pts': 4,
              'tipo': 'mcq'},
             {'clave': 'a',
              'id': 'A4',
@@ -1057,19 +1094,38 @@ BD2_P2 = {
                           'c) Prohibir índices',
                           'd) Convertir SQL en NoSQL automáticamente'],
              'pregunta': 'El particionamiento de tablas busca, entre otros:',
-             'pts': 5,
+             'pts': 4,
+             'tipo': 'mcq'},
+            {'clave': 'c',
+             'id': 'A5',
+             'nota': 'Clase 10 — Control de concurrencia: solo SERIALIZABLE evita lecturas '
+                     'fantasma; READ COMMITTED las permite.',
+             'opciones': ['a) READ UNCOMMITTED',
+                          'b) READ COMMITTED',
+                          'c) SERIALIZABLE',
+                          'd) Ninguno: el nivel de aislamiento no influye en las lecturas'],
+             'pregunta': 'En VetCare, un reporte de facturación mensual no debe ver consultas '
+                         'veterinarias insertadas por otras transacciones mientras se ejecuta '
+                         '(lectura fantasma). El nivel de aislamiento que lo garantiza es:',
+             'pts': 4,
              'tipo': 'mcq'}],
   'pts': 20,
   'titulo': 'SECCIÓN A — Selección múltiple'},
  {'intro': '',
-  'items': [{'clave': '1-a, 2-b, 3-c, 4-d',
-             'col_a': ['1) COMMIT', '2) ROLLBACK', '3) Índice compuesto', '4) Full table scan'],
+  'items': [{'clave': '1-a, 2-b, 3-c, 4-d, 5-e, 6-f',
+             'col_a': ['1) COMMIT', '2) ROLLBACK', '3) Índice compuesto', '4) Full table scan',
+                       '5) Deadlock', '6) MVCC'],
              'col_b': ['a) Confirma definitivamente los cambios de la transacción',
                        'b) Deshace cambios no confirmados',
                        'c) Índice sobre varias columnas',
-                       'd) Lectura completa de la tabla; a menudo costosa en tablas grandes'],
+                       'd) Lectura completa de la tabla; a menudo costosa en tablas grandes',
+                       'e) Dos transacciones se bloquean mutuamente esperando recursos que la otra '
+                       'retiene',
+                       'f) Cada lectura ve una versión consistente de la fila sin bloquear a los '
+                       'escritores'],
              'id': 'B1',
-             'instruccion': 'Empareje concepto de transacciones/tuning.',
+             'instruccion': 'Empareje concepto de transacciones, tuning y control de concurrencia '
+                            '(1-4: Clases 7-8 · 5-6: Clase 10). Cada pareja vale 3,33 pts.',
              'pts': 20,
              'tipo': 'match'}],
   'pts': 20,
@@ -1096,22 +1152,52 @@ BD2_P2 = {
   'pts': 25,
   'titulo': 'SECCIÓN C — Optimización SQL'},
  {'intro': '',
-  'items': [{'enunciado': 'Transferencia entre cuentas: debitar A y acreditar B debe ser atómica.',
+  'items': [{'enunciado': 'VetCare: al facturar una consulta se debe descontar el lote de vacuna '
+                          'del inventario y registrar el movimiento contable. Las dos escrituras '
+                          'deben ser atómicas.',
              'id': 'D1',
-             'lineas': 9,
-             'pts': 35,
+             'lineas': 8,
+             'pts': 25,
              'requerimientos': ['a) Escriba pseudocódigo/SQL transaccional (BEGIN/COMMIT/ROLLBACK) '
-                                '(15 pts)',
-                                'b) Indique qué pasa si falla el crédito tras el débito sin '
-                                'transacción (10 pts)',
-                                'c) Mencione 2 acciones de tuning si el sistema reporta lentitud '
-                                'en reportes mensuales (10 pts)'],
-             'solucion': ['BEGIN; UPDATE A; UPDATE B; COMMIT; ROLLBACK on error.',
-                          'Inconsistencia de saldos sin atomicidad.',
-                          'Índices en fecha; agregados/particiones; materializar resumen.'],
+                                '(10 pts)',
+                                'b) Indique qué pasa si falla el movimiento contable tras '
+                                'descontar el inventario, sin transacción (8 pts)',
+                                'c) Mencione 2 acciones de tuning si el reporte mensual de '
+                                'facturación se vuelve lento (7 pts)'],
+             'solucion': ['BEGIN; UPDATE inventario_lote SET cantidad = cantidad - 1 …; INSERT INTO '
+                          'movimiento_contable …; COMMIT; ROLLBACK ante error.',
+                          'Inventario descontado sin respaldo contable: descuadre permanente '
+                          '(pérdida de atomicidad).',
+                          'Índices en (fecha, sede); particionar por mes; tabla/vista materializada '
+                          'de resumen.'],
+             'tipo': 'practica'},
+            {'enunciado': 'Control de concurrencia en VetCare (Clase 10): dos recepcionistas '
+                          'facturan al mismo tiempo y cada transacción actualiza el lote de vacuna '
+                          'y la ficha del paciente, pero en orden inverso. El motor aborta una con '
+                          'error de deadlock.',
+             'id': 'D2',
+             'lineas': 6,
+             'pts': 10,
+             'requerimientos': ['a) Explique por qué se produce el deadlock en este escenario '
+                                '(4 pts)',
+                                'b) Proponga 2 medidas para evitarlo (orden fijo de acceso a los '
+                                'recursos, transacciones cortas, bloqueo explícito con FOR UPDATE, '
+                                'reintento controlado) (4 pts)',
+                                'c) Diga qué nivel de aislamiento usaría y qué anomalía evita '
+                                '(2 pts)'],
+             'solucion': ['Espera circular: T1 retiene el bloqueo del lote y pide la ficha; T2 '
+                          'retiene la ficha y pide el lote. Ninguna puede avanzar y el motor '
+                          'sacrifica una (víctima del deadlock).',
+                          '2 pts por medida válida: ordenar siempre los UPDATE por el mismo '
+                          'recurso, mantener las transacciones cortas (no esperar entrada del '
+                          'usuario dentro de la transacción), SELECT … FOR UPDATE sobre el lote, '
+                          'reintento con backoff en la aplicación.',
+                          'READ COMMITTED evita lecturas sucias; SERIALIZABLE (o SELECT FOR UPDATE '
+                          'sobre el lote) evita la actualización perdida del inventario. Se acepta '
+                          'cualquiera de las dos con justificación coherente.'],
              'tipo': 'practica'}],
   'pts': 35,
-  'titulo': 'SECCIÓN D — Caso transacciones / tuning'}],
+  'titulo': 'SECCIÓN D — Caso transacciones, tuning y concurrencia'}],
 }
 
 BD2_P3 = {
@@ -1126,7 +1212,7 @@ BD2_P3 = {
         corte=3,
         valor_corte='15% del Corte 3 (40%)',
         fecha='09/11/2026',
-        clase=14,
+        clase=12,  # Sesion 12 del calendario (material: Clase 14 = dia del parcial)
         tiempo='90–100 minutos',
         titulo_parcial='Parcial 3 — Integración, casos y cierre de proyecto',
         secciones_resumen=['A. Selección múltiple — 20 pts',
@@ -1134,12 +1220,14 @@ BD2_P3 = {
  'C. Integración de aplicaciones — 25 pts',
  'D. Caso / preparación de sustentación BD — 35 pts'],
         archivo='Parcial 3 - Integracion casos y cierre de proyecto',
-        cobertura=('Corte 3 · Únicamente clases con fecha <= 09/11/2026 (Clases 11-14). NO '
- 'incluye Clase 15 (16/11):'),
+        cobertura=('Corte 3 (Sesiones 10-13) · Únicamente clases dictadas antes del 09/11/2026 '
+ '(Clases 11, 12 y 13 del material; la sesión doble del 26/10 cubrió las Clases 11 y 12 y la '
+ 'sesión autónoma del 02/11 fue la Clase 13). La Clase 14 es la sesión del parcial y la Clase 15 '
+ '(16/11) es la sustentación del Proyecto Integrador, posterior:'),
         temas=[
-            _tema(11, '19/10', 'Avance del proyecto final'),
-            _tema(12, '26/10', 'Integración de aplicaciones externas · Preparación de presentación final'),
-            _tema(13, '02/11', 'Análisis de casos reales (autónoma)'),
+            _tema(11, '26/10', 'Avance del proyecto final (sesión doble)'),
+            _tema(12, '26/10', 'Integración de aplicaciones externas · Preparación de presentación final (sesión doble)'),
+            _tema(13, '02/11', 'Análisis de casos reales (sesión autónoma)'),
         ],
     ),
     "secciones": [{'intro': '',
@@ -1211,7 +1299,7 @@ BD2_P3 = {
                           'integración, análisis de casos y la preparación de la sustentación del '
                           'corte.',
              'id': 'B4',
-             'justificacion': 'Trazabilidad con Clases 11–14 del Corte 3.',
+             'justificacion': 'Trazabilidad con Clases 11–13 del Corte 3.',
              'pts': 5,
              'tipo': 'vf'}],
   'pts': 20,
@@ -1258,8 +1346,8 @@ ARQ_P1 = {
         n=1,
         corte=1,
         valor_corte='10% del Corte 1 (30%)',
-        fecha='07/09/2026',
-        clase=5,
+        fecha='21/09/2026',
+        clase=5,  # Sesion 5 del calendario (material: Clase 5 = dia del parcial)
         tiempo='90–100 minutos',
         titulo_parcial='Parcial 1 — Cloud, virtualización y distribuidos',
         secciones_resumen=['A. Selección múltiple — 20 pts',
@@ -1267,12 +1355,13 @@ ARQ_P1 = {
  'C. Desarrollo arquitectónico — 25 pts',
  'D. Caso de diseño — 35 pts'],
         archivo='Parcial 1 - Cloud virtualizacion y distribuidos',
-        cobertura='Corte 1 · Únicamente clases con fecha <= 07/09/2026 (Clases 1-5):',
+        cobertura=('Corte 1 (Sesiones 1-5) · Únicamente clases dictadas antes del 21/09/2026 '
+ '(Clases 1, 2, 3 y 4 del material). La Clase 5 es la sesión del parcial:'),
         temas=[
-            _tema(1, '10/08', 'Introducción a arquitecturas cloud'),
-            _tema(2, '17/08', 'Modelos de servicio IaaS, PaaS, SaaS (autónoma)'),
-            _tema(3, '24/08', 'Virtualización y contenedores'),
-            _tema(4, '31/08', 'Microservicios · Arquitecturas distribuidas'),
+            _tema(1, '24/08', 'Introducción a arquitecturas cloud (CloudLite)'),
+            _tema(2, '31/08', 'Modelos de servicio IaaS, PaaS, SaaS'),
+            _tema(3, '07/09', 'Virtualización y contenedores'),
+            _tema(4, '14/09', 'Microservicios · Arquitecturas distribuidas'),
         ],
     ),
     "secciones": [{'intro': '',
@@ -1380,21 +1469,23 @@ ARQ_P2 = {
         n=2,
         corte=2,
         valor_corte='10% del Corte 2 (30%)',
-        fecha='05/10/2026',
-        clase=9,
+        fecha='19/10/2026',
+        clase=9,  # Sesion 9 del calendario (material: Clase 9 = dia del parcial)
         tiempo='90–100 minutos',
-        titulo_parcial='Parcial 2 — Seguridad, redes, monitoreo y CI/CD',
+        titulo_parcial='Parcial 2 — Seguridad, redes, monitoreo, CI/CD y costos',
         secciones_resumen=['A. Selección múltiple — 20 pts',
  'B. Verdadero / Falso — 20 pts',
  'C. Seguridad y operaciones — 25 pts',
- 'D. Caso CI/CD + monitoreo — 35 pts'],
+ 'D. Caso CI/CD, monitoreo y costos — 35 pts'],
         archivo='Parcial 2 - Seguridad redes monitoreo y CI-CD',
-        cobertura=('Corte 2 · Únicamente clases con fecha <= 05/10/2026 (Clases 6-9). NO incluye '
- 'Clase 10 (costos, 12/10):'),
+        cobertura=('Corte 2 (Sesiones 6-9) · Únicamente clases dictadas antes del 19/10/2026 '
+ '(Clases 6, 7, 8 y 10 del material; la sesión doble del 05/10 cubrió las Clases 7 y 8 y la '
+ 'sesión autónoma del 12/10 fue la Clase 10). La Clase 9 es la sesión del parcial:'),
         temas=[
-            _tema(6, '14/09', 'Seguridad en la nube'),
-            _tema(7, '21/09', 'Redes y almacenamiento cloud'),
-            _tema(8, '28/09', 'Monitoreo y optimización · Integración continua y despliegue (CI/CD)'),
+            _tema(6, '28/09', 'Seguridad en la nube'),
+            _tema(7, '05/10', 'Redes y almacenamiento cloud (sesión doble)'),
+            _tema(8, '05/10', 'Monitoreo y optimización · Integración continua y despliegue (CI/CD) (sesión doble)'),
+            _tema(10, '12/10', 'Costos y sostenibilidad cloud (sesión autónoma)'),
         ],
     ),
     "secciones": [{'intro': '',
@@ -1406,7 +1497,7 @@ ARQ_P2 = {
                           'c) Que no hay cifrado posible',
                           'd) Que las redes públicas no existen'],
              'pregunta': 'El modelo de responsabilidad compartida en cloud implica:',
-             'pts': 5,
+             'pts': 4,
              'tipo': 'mcq'},
             {'clave': 'b',
              'id': 'A2',
@@ -1415,7 +1506,7 @@ ARQ_P2 = {
                           'c) Reemplazar CPU',
                           'd) Ejecutar el navegador web'],
              'pregunta': 'Object storage (p. ej. buckets) se usa típicamente para:',
-             'pts': 5,
+             'pts': 4,
              'tipo': 'mcq'},
             {'clave': 'a',
              'id': 'A3',
@@ -1425,7 +1516,7 @@ ARQ_P2 = {
                           'c) Desplegar a producción sin pruebas siempre',
                           'd) Eliminar el monitoreo'],
              'pregunta': 'CI (Integración Continua) busca principalmente:',
-             'pts': 5,
+             'pts': 4,
              'tipo': 'mcq'},
             {'clave': 'a',
              'id': 'A4',
@@ -1434,7 +1525,19 @@ ARQ_P2 = {
                           'c) El número de diapositivas del proyecto',
                           'd) La versión de Word del docente'],
              'pregunta': 'Una métrica útil de monitoreo de un servicio cloud es:',
-             'pts': 5,
+             'pts': 4,
+             'tipo': 'mcq'},
+            {'clave': 'b',
+             'id': 'A5',
+             'nota': 'Clase 10 — Costos: right-sizing busca una utilización sostenida del 40-70 %; '
+                     'por debajo se paga capacidad ociosa, por encima no queda margen de picos.',
+             'opciones': ['a) Mantenerla por debajo del 10 % para tener margen',
+                          'b) Entre 40 % y 70 % de utilización sostenida',
+                          'c) Al 100 % de forma permanente',
+                          'd) La utilización no se tiene en cuenta al dimensionar'],
+             'pregunta': 'La instancia de la API de CloudLite lleva semanas al 8 % de CPU. Al hacer '
+                         'right-sizing, ¿cuál es la banda de utilización objetivo recomendada?',
+             'pts': 4,
              'tipo': 'mcq'}],
   'pts': 20,
   'titulo': 'SECCIÓN A — Selección múltiple'},
@@ -1444,28 +1547,38 @@ ARQ_P2 = {
                           'la superficie de ataque.',
              'id': 'B1',
              'justificacion': 'Principio de mínimo acceso de red.',
-             'pts': 5,
+             'pts': 4,
              'tipo': 'vf'},
             {'clave': 'V',
              'enunciado': 'CD (Continuous Delivery/Deployment) automatiza la ruta hacia entornos '
                           '(con controles) tras CI.',
              'id': 'B2',
              'justificacion': 'Pipeline de entrega.',
-             'pts': 5,
+             'pts': 4,
              'tipo': 'vf'},
             {'clave': 'F',
              'enunciado': 'El monitoreo solo sirve después de un incidente grave, no de forma '
                           'continua.',
              'id': 'B3',
              'justificacion': 'Monitoreo proactivo y alertas.',
-             'pts': 5,
+             'pts': 4,
              'tipo': 'vf'},
             {'clave': 'V',
              'enunciado': 'VPC/redes virtuales permiten aislar recursos y controlar tráfico entre '
                           'subredes.',
              'id': 'B4',
              'justificacion': 'Aislamiento de red cloud.',
-             'pts': 5,
+             'pts': 4,
+             'tipo': 'vf'},
+            {'clave': 'V',
+             'enunciado': 'Apagar por horario los entornos de desarrollo y pruebas de CloudLite '
+                          'fuera de la jornada laboral reduce el costo mensual sin afectar la '
+                          'disponibilidad de producción.',
+             'id': 'B5',
+             'justificacion': 'Clase 10 — Costos: los entornos no productivos no necesitan estar '
+                              'encendidos 24/7; apagarlos ~12 h diarias y fines de semana recorta '
+                              'buena parte de su factura de cómputo.',
+             'pts': 4,
              'tipo': 'vf'}],
   'pts': 20,
   'titulo': 'SECCIÓN B — Verdadero / Falso'},
@@ -1489,19 +1602,46 @@ ARQ_P2 = {
   'pts': 25,
   'titulo': 'SECCIÓN C — Seguridad y operaciones'},
  {'intro': '',
-  'items': [{'enunciado': 'Diseñe un pipeline CI/CD sencillo (etapas) para un servicio '
-                          'containerizado y defina 3 alertas de monitoreo post-despliegue.',
+  'items': [{'enunciado': 'Diseñe un pipeline CI/CD sencillo (etapas) para el servicio '
+                          'containerizado de CloudLite y defina 3 alertas de monitoreo '
+                          'post-despliegue.',
              'id': 'D1',
-             'lineas': 9,
-             'pts': 35,
-             'requerimientos': ['a) Etapas del pipeline (build, test, scan, deploy…) (15 pts)',
-                                'b) Entornos (dev/staging/prod) y criterio de promoción (10 pts)',
-                                'c) 3 alertas con umbral o condición (10 pts)'],
+             'lineas': 8,
+             'pts': 25,
+             'requerimientos': ['a) Etapas del pipeline (build, test, scan, deploy…) (10 pts)',
+                                'b) Entornos (dev/staging/prod) y criterio de promoción (8 pts)',
+                                'c) 3 alertas con umbral o condición (7 pts)'],
              'solucion': ['CI: lint/test/build image; CD: staging→prod con aprobación; alertas: '
                           '5xx, latencia p95, CPU.'],
+             'tipo': 'practica'},
+            {'enunciado': 'Costos y sostenibilidad de CloudLite (Clase 10): la factura mensual '
+                          'subió y el equipo detecta 3 instancias al 8 % de CPU encendidas 24/7, '
+                          'una imagen de contenedor de 1,2 GB y logs guardados sin límite de '
+                          'retención.',
+             'id': 'D2',
+             'lineas': 6,
+             'pts': 10,
+             'requerimientos': ['a) Proponga 3 medidas concretas de reducción de costo para este '
+                                'escenario e indique qué componente de la factura ataca cada una '
+                                '(6 pts)',
+                                'b) Explique por qué el costo se trata como atributo de calidad de '
+                                'la arquitectura y qué otro atributo puede sacrificarse al '
+                                'recortar (4 pts)'],
+             'solucion': ['2 pts por medida válida y bien atribuida: right-sizing de las 3 '
+                          'instancias a una banda de 40-70 % de utilización (cómputo); apagado por '
+                          'horario de los entornos no productivos (cómputo); adelgazar la imagen '
+                          'con multi-stage / base slim (almacenamiento de registro y tiempo de '
+                          'despliegue); política de retención y archivado de logs a '
+                          'almacenamiento frío (almacenamiento e ingesta de observabilidad).',
+                          'El costo condiciona el diseño igual que rendimiento o disponibilidad: '
+                          'es un requisito no funcional medible (TCO, costo por transacción) y '
+                          'nube vs on-premise se compara por TCO, no por precio de lista. Al '
+                          'recortar se sacrifica típicamente disponibilidad/redundancia o margen '
+                          'de rendimiento ante picos; se acepta también observabilidad si se '
+                          'justifica el trade-off.'],
              'tipo': 'practica'}],
   'pts': 35,
-  'titulo': 'SECCIÓN D — Caso CI/CD + monitoreo'}],
+  'titulo': 'SECCIÓN D — Caso CI/CD, monitoreo y costos'}],
 }
 
 ARQ_P3 = {
@@ -1516,7 +1656,7 @@ ARQ_P3 = {
         corte=3,
         valor_corte='15% del Corte 3 (40%)',
         fecha='09/11/2026',
-        clase=14,
+        clase=12,  # Sesion 12 del calendario (material: Clase 14 = dia del parcial)
         tiempo='90–100 minutos',
         titulo_parcial='Parcial 3 — Rendimiento, escalabilidad y cierre de proyecto',
         secciones_resumen=['A. Selección múltiple — 20 pts',
@@ -1524,12 +1664,14 @@ ARQ_P3 = {
  'C. Rendimiento y escalabilidad — 25 pts',
  'D. Caso de sustentación arquitectónica — 35 pts'],
         archivo='Parcial 3 - Rendimiento escalabilidad y cierre de proyecto',
-        cobertura=('Corte 3 · Únicamente clases con fecha <= 09/11/2026 (Clases 11-14). NO '
- 'incluye Clase 15 (16/11):'),
+        cobertura=('Corte 3 (Sesiones 10-13) · Únicamente clases dictadas antes del 09/11/2026 '
+ '(Clases 11, 12 y 13 del material; la sesión doble del 26/10 cubrió las Clases 11 y 12 y la '
+ 'sesión autónoma del 02/11 fue la Clase 13). La Clase 14 es la sesión del parcial y la Clase 15 '
+ '(16/11) es la sustentación del Proyecto Integrador, posterior:'),
         temas=[
-            _tema(11, '19/10', 'Avance del proyecto final'),
-            _tema(12, '26/10', 'Pruebas de rendimiento · Preparación de presentación final'),
-            _tema(13, '02/11', 'Escalabilidad automática (autónoma)'),
+            _tema(11, '26/10', 'Avance del proyecto final (sesión doble)'),
+            _tema(12, '26/10', 'Pruebas de rendimiento · Preparación de presentación final (sesión doble)'),
+            _tema(13, '02/11', 'Escalabilidad automática (sesión autónoma)'),
         ],
     ),
     "secciones": [{'intro': '',

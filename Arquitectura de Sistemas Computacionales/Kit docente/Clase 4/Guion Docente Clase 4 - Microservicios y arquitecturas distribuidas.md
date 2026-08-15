@@ -30,13 +30,13 @@ El segundo bloque de contenido es el mas importante del dia: que se paga al dist
 
 De ahi salen cuatro mecanismos que el diagrama y la tabla deben poder mencionar. Un timeout es el tiempo maximo que un servicio espera respuesta antes de darse por vencido; sin timeout explicito, un servicio lento no falla sino que deja colgado a quien lo llamo, y el bloqueo se propaga hacia arriba hasta tumbar el sistema completo. Los valores tipicos para llamadas internas estan entre 2 y 5 segundos, y son convencion, no ley. Un reintento es volver a intentar la llamada fallida, y trae una trampa: si todos los clientes reintentan de inmediato contra un servicio ya saturado, lo hunden mas, por lo que se limita a dos o tres reintentos con espera creciente entre uno y otro. Los reintentos exigen idempotencia, que significa que ejecutar la misma operacion dos veces produzca el mismo resultado que ejecutarla una vez. En CloudLite eso es literal: si el reintento de crear turno no es idempotente, el cliente termina con dos reservas para el mismo horario, y la solucion habitual es que la peticion lleve un identificador unico que el servidor reconozca como repetido. El cuarto mecanismo es el interruptor de circuito, o circuit breaker, que tras varias fallas consecutivas deja de intentar por un rato y responde de inmediato con un error controlado, para no gastar recursos golpeando algo que esta caido.
 
-El punto donde los proyectos academicos se rompen es el de los datos. La regla ortodoxa de los microservicios dice que cada servicio es dueno exclusivo de su base de datos y que nadie mas la consulta directamente; si dos servicios comparten tablas, estan acoplados y no pueden desplegarse por separado, lo que contradice la definicion. Pero cumplir esa regla tiene un precio real: una consulta que antes era un join deja de existir y hay que resolverla llamando a otro servicio, y una operacion que abarca dos servicios ya no puede ser una transaccion unica sino una secuencia de pasos con compensaciones. Eso introduce consistencia eventual, es decir un lapso durante el cual dos partes del sistema tienen versiones distintas de la verdad, con consecuencias visibles para el usuario. La postura honesta para este curso, y hay que enunciarla en voz alta, es que un CloudLite con una base de datos compartida y propiedad de tablas claramente documentada resulta aceptable, siempre que el equipo lo registre como un trade-off consciente en su informe y no lo presente como microservicios puros. Fingir ortodoxia es peor que documentar una concesion.
+El punto donde los proyectos academicos se rompen es el de los datos. La regla ortodoxa de los microservicios dice que cada servicio es dueno exclusivo de su base de datos y que nadie mas la consulta directamente; si dos servicios comparten tablas, estan acoplados y no pueden desplegarse por separado, lo que contradice la definicion. Pero cumplir esa regla tiene un precio real: una consulta que antes era un join deja de existir y hay que resolverla llamando a otro servicio, y una operacion que abarca dos servicios ya no puede ser una transaccion unica sino una secuencia de pasos con compensaciones. Eso introduce consistencia eventual, es decir un lapso durante el cual dos partes del sistema tienen versiones distintas de la verdad, con consecuencias visibles para el usuario. La postura honesta para este curso, y hay que enunciarla en voz alta, es que un CloudLite con una base de datos compartida y propiedad de tablas claramente documentada resulta aceptable, siempre que el estudiante lo registre como un trade-off consciente en su informe y no lo presente como microservicios puros. Fingir ortodoxia es peor que documentar una concesion.
 
-El segundo entregable, la tabla de riesgos de distribucion, es lo que impide que la clase quede en pura teoria. Debe tener cinco columnas y entre cuatro y seis filas, no mas: riesgo enunciado como frase de falla, componente afectado, impacto en el usuario, mitigacion concreta y donde queda la evidencia. Filas esperables en CloudLite Turnos: «el proveedor de correo no responde» afecta al trabajador de notificaciones, el usuario reserva pero no recibe confirmacion, y se mitiga con cola mas reintentos con espera creciente y un aviso en pantalla de que el correo puede tardar; «la base de datos alcanza su limite de conexiones» afecta a la API, todos los usuarios ven errores, y se mitiga con un pool de conexiones acotado; «el reintento duplica la reserva» se mitiga con un identificador de operacion idempotente. Si un equipo dice que no encuentra riesgos, casi siempre es porque su diagrama tiene flechas sin protocolo: no sabe por donde puede romperse porque nunca definio como se comunican las piezas.
+El segundo entregable, la tabla de riesgos de distribucion, es lo que impide que la clase quede en pura teoria. Debe tener cinco columnas y entre cuatro y seis filas, no mas: riesgo enunciado como frase de falla, componente afectado, impacto en el usuario, mitigacion concreta y donde queda la evidencia. Filas esperables en CloudLite Turnos: «el proveedor de correo no responde» afecta al trabajador de notificaciones, el usuario reserva pero no recibe confirmacion, y se mitiga con cola mas reintentos con espera creciente y un aviso en pantalla de que el correo puede tardar; «la base de datos alcanza su limite de conexiones» afecta a la API, todos los usuarios ven errores, y se mitiga con un pool de conexiones acotado; «el reintento duplica la reserva» se mitiga con un identificador de operacion idempotente. Si un estudiante dice que no encuentra riesgos, casi siempre es porque su diagrama tiene flechas sin protocolo: no sabe por donde puede romperse porque nunca definio como se comunican las piezas.
 
-Las preguntas de esta clase son predecibles y conviene responderlas con firmeza. Cuantos microservicios son los correctos: no hay numero correcto, hay justificacion por frontera, y el rango de dos a cinco contenedores que exige el curso es una restriccion pedagogica pensada para equipos de dos o tres personas en doce semanas, no un hallazgo de la ingenieria. Si las empresas grandes tienen cientos de servicios, por que nosotros solo tres: porque el numero de servicios que una organizacion puede sostener es funcion del numero de equipos autonomos y de la madurez de su automatizacion de despliegue y observabilidad, condiciones que un equipo de tres no tiene, y copiar la forma sin las condiciones produce lo que aqui se llama microservicios teatro. Y la tercera, que hay que responder sin ambiguedad: esta mal hacer un monolito. No; esta mal hacerlo sin saber que se eligio, y un monolito modular bien argumentado recibe mejor calificacion que cinco servicios sin razon. Conviene cerrar ubicando el curso: este diagrama es el ultimo insumo del Parcial 1 de la Clase 5; en la Clase 6 cada flecha se convertira en una superficie de ataque que hay que proteger; en la Clase 7 estas mismas cajas se reubicaran en un diagrama de despliegue con zonas publicas y privadas, conservando exactamente los mismos nombres; en la Clase 8 cada contenedor implicara su propio pipeline de integracion continua; y en las Clases 12 y 13 se preguntara cual de estas piezas es el cuello de botella y cual se puede replicar.
+Las preguntas de esta clase son predecibles y conviene responderlas con firmeza. Cuantos microservicios son los correctos: no hay numero correcto, hay justificacion por frontera, y el rango de dos a cinco contenedores que exige el curso es una restriccion pedagogica pensada para proyectos de una a tres personas en doce semanas, no un hallazgo de la ingenieria. Si las empresas grandes tienen cientos de servicios, por que nosotros solo tres: porque el numero de servicios que una organizacion puede sostener es funcion del numero de equipos autonomos y de la madurez de su automatizacion de despliegue y observabilidad, condiciones que un equipo de tres no tiene, y copiar la forma sin las condiciones produce lo que aqui se llama microservicios teatro. Y la tercera, que hay que responder sin ambiguedad: esta mal hacer un monolito. No; esta mal hacerlo sin saber que se eligio, y un monolito modular bien argumentado recibe mejor calificacion que cinco servicios sin razon. Conviene cerrar ubicando el curso: este diagrama es el ultimo insumo del Parcial 1 de la Clase 5; en la Clase 6 cada flecha se convertira en una superficie de ataque que hay que proteger; en la Clase 7 estas mismas cajas se reubicaran en un diagrama de despliegue con zonas publicas y privadas, conservando exactamente los mismos nombres; en la Clase 8 cada contenedor implicara su propio pipeline de integracion continua; y en las Clases 12 y 13 se preguntara cual de estas piezas es el cuello de botella y cual se puede replicar.
 
-Error tipico del docente que no domina el tema: aplaudir un diagrama con ocho microservicios sin preguntar por que existe cada uno. El numero de servicios no mide calidad arquitectonica; la justificacion de cada frontera si. La consecuencia aguas abajo es que ese equipo llega a la Clase 7 con ocho cajas que no puede ubicar en zonas de red, a la Clase 8 con ocho pipelines que nunca construira y a la Clase 12 sin poder identificar un cuello de botella, porque no entiende el flujo de su propio sistema. El segundo error es tratar la latencia y los fallos parciales como un detalle de implementacion que se vera despues: si hoy no se dice que una flecha en el diagrama es una llamada de red que puede fallar, el estudiante disenara como si distribuir fuera gratis, no incluira timeouts ni idempotencia en su tabla de riesgos, y en la Clase 13 pedira autoescalado como solucion magica a un problema de diseno originado precisamente en esta clase.
+Error tipico del docente que no domina el tema: aplaudir un diagrama con ocho microservicios sin preguntar por que existe cada uno. El numero de servicios no mide calidad arquitectonica; la justificacion de cada frontera si. La consecuencia aguas abajo es que ese estudiante llega a la Clase 7 con ocho cajas que no puede ubicar en zonas de red, a la Clase 8 con ocho pipelines que nunca construira y a la Clase 12 sin poder identificar un cuello de botella, porque no entiende el flujo de su propio sistema. El segundo error es tratar la latencia y los fallos parciales como un detalle de implementacion que se vera despues: si hoy no se dice que una flecha en el diagrama es una llamada de red que puede fallar, el estudiante disenara como si distribuir fuera gratis, no incluira timeouts ni idempotencia en su tabla de riesgos, y en la Clase 13 pedira autoescalado como solucion magica a un problema de diseno originado precisamente en esta clase.
 
 Referencia de slides: `Clases/Clase 4 - Microservicios y arquitecturas distribuidas/Presentacion.pptx` (solo tema de esta clase).
 
@@ -47,7 +47,7 @@ Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Diagramar componentes
 Entregable concreto: Diagrama C4 Container/Componentes v0.9 + lista de APIs entre servicios.
 Teoría breve y luego taller; no es un lab suelto.»
 Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
-Pregunta de arranque (1 min): «¿en qué quedó su CloudLite la clase pasada?» — sirve para detectar equipos rezagados antes de avanzar.
+Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
 
 ### 10–40 · Teoría Core (al servicio del taller)
 Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las diapositivas de teoría):
@@ -58,7 +58,7 @@ Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las 
 El desarrollo completo de cada uno está arriba, en «Fundamento teórico para el docente»:
 esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
-Pide un equipo voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
+Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
 ### 40–55 · Demo en vivo
 Herramienta del día: **draw.io / diagrams.net**.
@@ -73,7 +73,7 @@ Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit doce
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
 
-### 55–100 · Taller guiado PI (equipos)
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste)
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -84,11 +84,11 @@ Haz 3–4 de las preguntas de comprobación oral de abajo, a personas distintas 
 Aplica el quiz corto de `Kit docente/Clase 4/Quiz Clase 4 - Microservicios y arquitecturas distribuidas.docx`
 (la clave va en archivo aparte y **no se proyecta**).
 Mientras responden, verifica que el entregable esté realmente subido.
-Retroalimenta 2–3 equipos en voz alta, nombrando el error y la corrección concreta.
+Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
 ### 115–120 · Cierre
 Di: «Queda avanzado: Diagramar componentes/servicios de CloudLite y sus contratos.
-Criterio de éxito: cualquier integrante explica el artefacto en 60 s.
+Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
@@ -102,7 +102,7 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).
 - Evidencia adjunta.
-- Explicación oral de 60 s por integrante (muestreo).
+- Explicación oral de 60 s por estudiante (muestreo; si autorizaste equipos, pregunta a cualquier integrante).
 
 ## Errores frecuentes del estudiante (y cómo corregirlos en el momento)
 - Inventar 6 u 8 servicios para verse sofisticados. Pregunte por cada uno: que responsabilidad de negocio propia tiene y quien lo despliega por separado.
@@ -117,7 +117,7 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 ## Solución del taller (privada)
 `Kit docente/Clase 4/Solucion Taller Clase 4 - CloudLite.docx` — es la referencia con la que
-comparas lo que entregan los equipos. **No proyectarla completa** antes de que trabajen.
+comparas lo que entregan los estudiantes. **No proyectarla completa** antes de que trabajen.
 
 ## Quiz
 `Kit docente/Clase 4/Quiz Clase 4 - Microservicios y arquitecturas distribuidas.docx` (versión estudiante, sin respuestas)

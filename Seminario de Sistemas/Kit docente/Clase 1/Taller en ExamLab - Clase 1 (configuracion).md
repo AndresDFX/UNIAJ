@@ -4,8 +4,8 @@
 - **Taller:** Taller Clase 1 en ExamLab - Acotar el dominio de VetCare
 - **Preguntas:** 5 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
-- **Hito del PI:** Equipo conformado y dominio del proyecto acotado
-- **Entregable de la clase:** Ficha del equipo: problema en 2-3 frases, 3-5 capacidades, 2-3 actores y lo que queda fuera de alcance
+- **Hito del PI:** Dominio del proyecto acotado (trabajo individual por defecto)
+- **Entregable de la clase:** Ficha de dominio: problema en 2-3 frases, 3-5 capacidades, 2-3 actores y lo que queda fuera de alcance
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
@@ -21,13 +21,13 @@
 
 **Enunciado (campo Contenido):**
 
-## Ficha del equipo y problema de la clinica Huellitas
+## Ficha de dominio y problema de la clinica Huellitas
 
-La clinica veterinaria «Huellitas» atiende unas 25 mascotas al dia. Hoy los expedientes estan en carpetas fisicas, las citas se anotan en un cuaderno y los datos del dueno se vuelven a copiar en cada visita. Ustedes son el equipo de analistas que va a dibujar los planos del sistema VetCare (recuerde: aqui no se construye la casa, se dibujan los planos; el codigo lo hara Programacion II).
+La clinica veterinaria «Huellitas» atiende unas 25 mascotas al dia. Hoy los expedientes estan en carpetas fisicas, las citas se anotan en un cuaderno y los datos del dueno se vuelven a copiar en cada visita. Usted es el analista que va a dibujar los planos del sistema VetCare (recuerde: aqui no se construye la casa, se dibujan los planos; el codigo lo hara Programacion II).
 
 **Escriba su respuesta con estos cuatro bloques rotulados, en este orden:**
 
-1. **EQUIPO**: nombres completos de los 2 o 3 integrantes y quien sera el vocero tecnico ante el docente.
+1. **AUTOR**: su nombre completo. El trabajo es **individual por defecto**; si el docente autorizo equipo de 2 o 3 integrantes, liste tambien a los demas, pero esta entrega la responde cada uno con sus propias palabras.
 2. **PROBLEMA (exactamente 2 o 3 frases)**: cada frase debe nombrar **un actor concreto** de la clinica (recepcionista, veterinario, administrador; no «los usuarios») y **un dolor observable** (algo que se pueda ver o medir hoy: tiempo perdido, carpeta extraviada, cita cruzada, dato recapturado).
 3. **EVIDENCIA DEL DOLOR (3 renglones)**: para cada frase del problema, como se nota hoy ese dolor en la operacion diaria. Use al menos un numero estimado (minutos, veces por semana, cantidad de carpetas).
 4. **NO ES**: una frase que diga que problema NO va a resolver este sistema, para que quede claro el foco.

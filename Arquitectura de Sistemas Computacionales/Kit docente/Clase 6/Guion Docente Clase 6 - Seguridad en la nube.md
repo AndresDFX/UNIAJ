@@ -20,7 +20,7 @@
 **Herramienta:** Excalidraw · Google Docs
 
 ## Fundamento teórico para el docente
-Seguridad no es un componente que se agrega al final ni una casilla que se marca poniendo un firewall: es una propiedad del diseno que se gana o se pierde en cada decision arquitectonica. Asegurar un sistema es preservar tres propiedades, la triada CIA: confidencialidad (solo quien debe ver un dato lo ve), integridad (nadie lo modifica sin autorizacion) y disponibilidad (el sistema responde cuando se lo necesita). La justificacion es economica: un control disenado antes de escribir codigo cuesta una reunion; agregado despues de una fuga cuesta reescritura, notificacion a los usuarios y perdida de confianza. La primera pregunta del estudiante sera «no es el proveedor de nube el que ya se encarga de la seguridad?», y la respuesta sale del modelo de responsabilidad compartida de la Clase 2: el proveedor asegura la nube (hardware, hipervisor, red fisica) y el equipo asegura lo que pone DENTRO de ella (identidades, permisos, configuracion, codigo y datos). Casi todos los incidentes reales ocurren del lado del cliente.
+Seguridad no es un componente que se agrega al final ni una casilla que se marca poniendo un firewall: es una propiedad del diseno que se gana o se pierde en cada decision arquitectonica. Asegurar un sistema es preservar tres propiedades, la triada CIA: confidencialidad (solo quien debe ver un dato lo ve), integridad (nadie lo modifica sin autorizacion) y disponibilidad (el sistema responde cuando se lo necesita). La justificacion es economica: un control disenado antes de escribir codigo cuesta una reunion; agregado despues de una fuga cuesta reescritura, notificacion a los usuarios y perdida de confianza. La primera pregunta del estudiante sera «no es el proveedor de nube el que ya se encarga de la seguridad?», y la respuesta sale del modelo de responsabilidad compartida de la Clase 2: el proveedor asegura la nube (hardware, hipervisor, red fisica) y quien construye CloudLite asegura lo que pone DENTRO de ella (identidades, permisos, configuracion, codigo y datos). Casi todos los incidentes reales ocurren del lado del cliente.
 
 Modelar amenazas es responder en orden cuatro preguntas: que estamos construyendo, que puede salir mal, que hacemos al respecto y si lo hicimos bien. Hace falta vocabulario preciso, porque el estudiante usa estas palabras como sinonimos. Un activo es algo que vale la pena proteger: los datos personales de los usuarios de CloudLite, el token de administrador, la disponibilidad de la API. Una amenaza es el evento indeseado: que un tercero lea la tabla de usuarios. Una vulnerabilidad es la debilidad que lo hace posible: la base de datos acepta conexiones desde internet. Un control reduce probabilidad o impacto: mover esa base a una zona privada. Y la superficie de ataque son los puntos por donde alguien externo puede interactuar con el sistema: cada endpoint publico, cada puerto publicado del contenedor, cada formulario, cada dependencia de terceros. Reducir superficie es el control mas barato que existe: lo que no esta expuesto no se puede atacar.
 
@@ -32,11 +32,11 @@ Segundo ejemplo concreto. CloudLite guarda datos personales, lo que se llama PII
 
 La gestion de secretos es el error que mas se repite y el mas facil de verificar. Un secreto es cualquier valor que otorga acceso: contrasena de base de datos, llave de API, token de despliegue. Regla sin excepciones: no va en el codigo, ni en el Dockerfile, ni en el repositorio. Dos razones tecnicas hay que saber explicar. Una imagen de contenedor esta hecha de capas y cualquiera que la tenga puede extraer los archivos de cada capa: borrar el archivo en un paso posterior no lo elimina, solo lo oculta. Y Git guarda historia: si la llave se subio en un commit y se borro en el siguiente, sigue en el repositorio y en cada clon, y un buscador automatizado la encuentra en minutos. Un secreto filtrado no se arregla borrandolo: se rota, es decir se genera uno nuevo y se invalida el anterior. Con herramientas gratis, el valor real vive en los secretos del repositorio y se inyecta como variable de entorno en ejecucion, versionando solo un archivo de ejemplo con los nombres de las variables. Esto se materializa en la Clase 8.
 
-Los controles que el equipo puede citar sin pagar nada se ordenan en tres familias. Identidad: autenticacion con token y autorizacion por rol con minimo privilegio, que es dar solo los permisos necesarios; el ejemplo es que la API de CloudLite use un usuario de base de datos que lee y escribe en sus tablas pero no borra tablas ni crea usuarios. Red: publicar solo el punto de entrada y dejar la base de datos sin acceso desde internet, que es el diagrama de la Clase 7. Aplicacion: validar toda entrada en el servidor y limitar la tasa de peticiones. Aparece la segunda pregunta previsible: «si ya valido en el formulario, para que validar otra vez en la API?». El cliente esta bajo control del atacante: cualquiera llama la API con curl y se salta el formulario, asi que la validacion del navegador es experiencia de usuario y la del servidor es seguridad. El limite de tasa, del orden de decenas o cientos de peticiones por minuto por identidad o por IP, mitiga la denegacion de servicio y los intentos de adivinar contrasenas; el numero exacto es decision de diseno, no estandar.
+Los controles que el estudiante puede citar sin pagar nada se ordenan en tres familias. Identidad: autenticacion con token y autorizacion por rol con minimo privilegio, que es dar solo los permisos necesarios; el ejemplo es que la API de CloudLite use un usuario de base de datos que lee y escribe en sus tablas pero no borra tablas ni crea usuarios. Red: publicar solo el punto de entrada y dejar la base de datos sin acceso desde internet, que es el diagrama de la Clase 7. Aplicacion: validar toda entrada en el servidor y limitar la tasa de peticiones. Aparece la segunda pregunta previsible: «si ya valido en el formulario, para que validar otra vez en la API?». El cliente esta bajo control del atacante: cualquiera llama la API con curl y se salta el formulario, asi que la validacion del navegador es experiencia de usuario y la del servidor es seguridad. El limite de tasa, del orden de decenas o cientos de peticiones por minuto por identidad o por IP, mitiga la denegacion de servicio y los intentos de adivinar contrasenas; el numero exacto es decision de diseno, no estandar.
 
 El entregable exige cuatro columnas por fila: amenaza especifica del dominio, activo afectado, control y evidencia. La palabra que hay que defender es evidencia: un control es verificable cuando otra persona puede senalar un artefacto y decir si esta o no esta, sin discutir. «Usamos buenas practicas» no es evidencia; «la flecha cliente-balanceador esta etiquetada HTTPS» o «el workflow lee la clave desde los secretos del repositorio» si lo son. Tercera pregunta previsible: «cuantas amenazas hay que poner?». Cinco bien desarrolladas valen mas que veinte genericas copiadas de internet: se califica especificidad, no cantidad. La Clase 5 cerro con el Parcial 1 el bloque de arquitectura y esta clase abre el de operacion. Las fronteras de confianza que hoy se nombran en texto se dibujan como zonas publica, privada y de datos en la Clase 7; la politica de secretos se ejecuta en el pipeline de la Clase 8, donde la denegacion de servicio se vuelve una senal medible; y todo el bloque se evalua en el Parcial 2 de la Clase 9.
 
-Error tipico del docente que no domina el tema: convertir la clase en una diapositiva generica de buenas practicas («usen contrasenas fuertes, actualicen sus sistemas») en lugar de recorrer amenaza, activo, control y evidencia sobre el dominio real de cada equipo. La consecuencia aguas abajo es inmediata: la seccion de seguridad queda como relleno intercambiable entre proyectos y, en la sustentacion de la Clase 15, el estudiante no puede senalar en su propio diagrama donde vive un solo control porque nunca los ubico. El segundo tropiezo es aceptar controles no verificables, del tipo «ciframos todo» o «tenemos un firewall», sin preguntar que dato, en que momento y donde se ve. Si eso pasa hoy, el diagrama de la Clase 7 nace sin distinguir zona publica de privada, el pipeline de la Clase 8 termina con la contrasena de la base de datos escrita en el YAML, y el equipo llega al Parcial 2 repitiendo definiciones de memoria sin poder aplicarlas a un caso.
+Error tipico del docente que no domina el tema: convertir la clase en una diapositiva generica de buenas practicas («usen contrasenas fuertes, actualicen sus sistemas») en lugar de recorrer amenaza, activo, control y evidencia sobre el dominio real de cada estudiante. La consecuencia aguas abajo es inmediata: la seccion de seguridad queda como relleno intercambiable entre proyectos y, en la sustentacion de la Clase 15, el estudiante no puede senalar en su propio diagrama donde vive un solo control porque nunca los ubico. El segundo tropiezo es aceptar controles no verificables, del tipo «ciframos todo» o «tenemos un firewall», sin preguntar que dato, en que momento y donde se ve. Si eso pasa hoy, el diagrama de la Clase 7 nace sin distinguir zona publica de privada, el pipeline de la Clase 8 termina con la contrasena de la base de datos escrita en el YAML, y el estudiante llega al Parcial 2 repitiendo definiciones de memoria sin poder aplicarlas a un caso.
 
 Referencia de slides: `Clases/Clase 6 - Seguridad en la nube/Presentacion.pptx` (solo tema de esta clase).
 
@@ -47,7 +47,7 @@ Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Modelo de amenazas m�
 Entregable concreto: Sección Seguridad PI: 5 amenazas STRIDE-lite + controles + secretos/CI.
 Teoría breve y luego taller; no es un lab suelto.»
 Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
-Pregunta de arranque (1 min): «¿en qué quedó su CloudLite la clase pasada?» — sirve para detectar equipos rezagados antes de avanzar.
+Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
 
 ### 10–40 · Teoría Core (al servicio del taller)
 Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las diapositivas de teoría):
@@ -58,7 +58,7 @@ Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las 
 El desarrollo completo de cada uno está arriba, en «Fundamento teórico para el docente»:
 esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
-Pide un equipo voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
+Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
 ### 40–55 · Demo en vivo
 Herramienta del día: **Excalidraw · Google Docs**.
@@ -74,7 +74,7 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 📸 Por que un secreto NUNCA va dentro de la imagen (demo de 1 minuto) [[captura: salida-secreto-en-imagen.png]]
 
 
-### 55–100 · Taller guiado PI (equipos)
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste)
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -85,11 +85,11 @@ Haz 3–4 de las preguntas de comprobación oral de abajo, a personas distintas 
 Aplica el quiz corto de `Kit docente/Clase 6/Quiz Clase 6 - Seguridad en la nube.docx`
 (la clave va en archivo aparte y **no se proyecta**).
 Mientras responden, verifica que el entregable esté realmente subido.
-Retroalimenta 2–3 equipos en voz alta, nombrando el error y la corrección concreta.
+Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
 ### 115–120 · Cierre
 Di: «Queda avanzado: Modelo de amenazas mínimo + controles para CloudLite.
-Criterio de éxito: cualquier integrante explica el artefacto en 60 s.
+Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
@@ -103,7 +103,7 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).
 - Evidencia adjunta.
-- Explicación oral de 60 s por integrante (muestreo).
+- Explicación oral de 60 s por estudiante (muestreo; si autorizaste equipos, pregunta a cualquier integrante).
 
 ## Errores frecuentes del estudiante (y cómo corregirlos en el momento)
 - Entregar una lista generica de buenas practicas en vez de amenaza -> control -> evidencia. Devuelva la tabla si no tiene las 3 columnas.
@@ -118,7 +118,7 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 ## Solución del taller (privada)
 `Kit docente/Clase 6/Solucion Taller Clase 6 - CloudLite.docx` — es la referencia con la que
-comparas lo que entregan los equipos. **No proyectarla completa** antes de que trabajen.
+comparas lo que entregan los estudiantes. **No proyectarla completa** antes de que trabajen.
 
 ## Quiz
 `Kit docente/Clase 6/Quiz Clase 6 - Seguridad en la nube.docx` (versión estudiante, sin respuestas)

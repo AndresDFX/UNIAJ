@@ -109,6 +109,47 @@ ROJO = RGBColor(0xA0, 0x20, 0x30)
 FONT = "Calibri"
 
 # ---------------------------------------------------------------------------
+# Modalidad de trabajo — decision docente 2026-2
+# ---------------------------------------------------------------------------
+# El curso paso de «equipos de 2-3, individual si el docente lo autoriza» a lo
+# contrario: INDIVIDUAL POR DEFECTO, y el docente puede autorizar equipos de 2 o 3.
+# Cuando hay equipo autorizado el artefacto puede ser compartido, pero la entrega en
+# ExamLab SIEMPRE es individual (cada estudiante responde con sus propias palabras) y
+# cualquier integrante debe poder explicar cualquier parte en 60 segundos.
+#
+# Estos son los textos por DEFECTO de las 15 clases. Una clase puede sobreescribir
+# cualquiera de estas claves en su dict de CLASSES (p. ej. la Clase 1, donde el trabajo
+# es estrictamente individual porque cada estudiante define su propio dominio).
+MODALIDAD_DEFAULTS = {
+    # Slides
+    "agenda_taller_nota": "avance individual",
+    "equipo_note": "Individual por defecto · el docente puede autorizar equipos de 2–3; "
+                   "la entrega en ExamLab siempre es individual.",
+    # Taller del estudiante
+    "explica_60s_note": "Puedes explicar tu decisión en 60 segundos "
+                        "(si trabajas en equipo autorizado, cualquier integrante debe poder hacerlo).",
+    "entrega_unidad_note": "Modalidad de trabajo: individual por defecto; el docente puede autorizar "
+                           "equipos de 2 o 3 y en ese caso el artefacto puede ser compartido, pero el "
+                           "envío en ExamLab es siempre individual (responde con tus propias palabras).",
+    # Guion docente
+    "arranque_cita": "¿En qué quedó tu CloudLite la clase pasada?",
+    "arranque_nota": "pregunta de arranque (1 min) para detectar estudiantes rezagados antes de avanzar:",
+    "voluntario_word": "estudiante",
+    "taller_modalidad_word": "individual · equipos de 2–3 solo si tú los autorizaste",
+    "retro_word": "estudiantes",
+    "criterio_60s_note": "el estudiante explica su artefacto en 60 s",
+    "criterio_oral_note": "Explicación oral de 60 s por estudiante (muestreo; si autorizaste equipos, "
+                          "pregunta a cualquier integrante).",
+    "entregan_word": "los estudiantes",
+}
+
+
+def mod(c: dict, key: str) -> str:
+    """Texto de modalidad de trabajo: override de la clase o default individual."""
+    return c.get(key, MODALIDAD_DEFAULTS[key])
+
+
+# ---------------------------------------------------------------------------
 # Catálogo de clases (Plan 2026-2) — PI-first
 # ---------------------------------------------------------------------------
 
@@ -122,6 +163,25 @@ CLASSES = [
         "pi_hoy": "Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases",
         "entregable": "Ficha PI: dominio, capacidades, actores y boceto C4 Context (Excalidraw/draw.io)",
         "herramienta": "Padlet · Excalidraw / draw.io",
+        # Modalidad individual por defecto: desde 2026-2 los textos por defecto del
+        # curso ya estan escritos en modo individual (ver MODALIDAD_DEFAULTS abajo),
+        # asi que esta clase solo necesita el matiz propio de la Clase 1: aqui el
+        # trabajo es estrictamente individual porque cada estudiante define SU dominio.
+        "agenda_taller_nota": "avance individual",
+        "equipo_note": "Actividad individual: cada estudiante define su propio dominio CloudLite.",
+        "ficha_bloques_note": "Ficha de 6 bloques: DOMINIO · PROBLEMA · CAPACIDADES · ACTORES · SISTEMAS EXTERNOS · FUERA DE ALCANCE.",
+        "explica_60s_note": "El estudiante puede explicar su decisión en 60 segundos.",
+        "entrega_unidad_note": "Un envío por estudiante.",
+        "entrega_oficial_nota": "La entrega oficial se hace respondiendo las preguntas abiertas del taller dentro de ExamLab (https://examlab.lovable.app/). El documento/ficha en Word o Google Docs es opcional, solo para que el estudiante conserve sus respuestas; lo que califica es lo que quede escrito en las preguntas de ExamLab.",
+        "separar_notas_docente": True,
+        "arranque_cita": "¿En qué quedó tu CloudLite la clase pasada?",
+        "arranque_nota": "pregunta de arranque (1 min) para detectar estudiantes rezagados antes de avanzar:",
+        "voluntario_word": "estudiante",
+        "taller_modalidad_word": "individual",
+        "retro_word": "estudiantes",
+        "criterio_60s_note": "el estudiante explica su artefacto en 60 s",
+        "criterio_oral_note": "Explicación oral de 60 s por el estudiante (muestreo).",
+        "entregan_word": "los estudiantes",
         "objetivos": [
             "Ubicar el curso como diseño de arquitecturas cloud al servicio del **PI CloudLite App**.",
             "Distinguir nube vs on-prem y los bloques de una arquitectura cloud simple.",
@@ -138,7 +198,7 @@ CLASSES = [
                 "Aplicación web/API de un dominio realista (citas, academia, inventario liviano…).",
                 "Entregables del semestre: diagramas + contenedor (lab) + CI/CD conceptual + informe.",
                 "Hoy solo: **problema + capacidades + boceto de contexto**.",
-                "Sin AWS/GCP/Oracle: draw.io, Play with Docker, GitHub Actions.",
+                "Sin AWS/GCP/Oracle: draw.io, LabEx Docker Playground, GitHub Actions.",
             ]),
             ("De dominio a arquitectura (mini-método)", [
                 "1) Actor y problema. 2) Capacidades. 3) Contenedores lógicos. 4) Datos. 5) Riesgos.",
@@ -149,11 +209,10 @@ CLASSES = [
         ],
         "taller_titulo": "Taller Clase 1 — Ficha y boceto CloudLite App",
         "taller_pasos": [
-            "Formen equipo de 2–3 (o individual autorizado).",
-            "Elijan dominio concreto (no «red social genérica»).",
-            "Escriban: problema (2–3 frases), 3–5 capacidades, 2–3 actores.",
+            "Elija dominio concreto (no «red social genérica») y escriba: problema (2–3 frases), 4 capacidades.",
+            "Escriba actores, sistemas externos (2–3) y fuera de alcance.",
             "En Excalidraw o draw.io: diagrama **C4 Context** (CloudLite + actores + sistemas externos).",
-            "Entrega en **ExamLab** (Talleres): Doc/enlace con ficha + PNG del diagrama (domingo 23:59).",
+            "Tabla nube vs on-prem + veredicto. Entregue en **ExamLab** (Talleres) las preguntas resueltas (domingo 23:59).",
         ],
         "quiz": [
             ("¿Qué diferencia principal hay entre «tener un servidor en un cuarto» y un diseño cloud?",
@@ -217,10 +276,10 @@ CLASSES = [
         "tipo": "regular",
         "slug": "Virtualizacion y contenedores",
         "tema": "Virtualización y contenedores",
-        "sub": "Lab Play with Docker → stub CloudLite",
+        "sub": "Lab LabEx Docker Playground → stub CloudLite",
         "pi_hoy": "Contenerizar un stub del servicio principal de CloudLite",
         "entregable": "Dockerfile (+ compose opcional) + captura/enlace lab navegador",
-        "herramienta": "Play with Docker (PWD) · alterna si no carga: Killercoda",
+        "herramienta": "LabEx Docker Playground · alterna si no carga: Killercoda",
         "objetivos": [
             "Diferenciar VM vs contenedor y el rol de la imagen.",
             "Ejecutar un contenedor en lab de **navegador** (sin Docker Desktop obligatorio).",
@@ -234,10 +293,10 @@ CLASSES = [
                 "CloudLite: contenerizamos al menos **un** servicio (API stub o front estático).",
             ]),
             ("Lab en navegador (pasos demo)", [
-                "Abrir Play with Docker (labs.play-with-docker.com) → Add new instance.",
+                "Abrir LabEx Docker Playground (labex.io, inicie sesión con su cuenta de Google o Microsoft).",
                 "`docker run` de un nginx/hello y luego **su** imagen stub.",
-                "📸 [CAP: pwd-home] Home del lab · 📸 [CAP: docker-ps] `docker ps`.",
-                "Sesion de PWD dura 4h y se autodestruye: guardar Dockerfile + capturas con timestamp antes de que expire. Si PWD esta caido: Killercoda (ubuntu/docker) como alterna.",
+                "📸 [CAP: labex-home] Home del lab · 📸 [CAP: docker-ps] `docker ps`.",
+                "La sesión de LabEx es temporal: guardar Dockerfile + capturas con timestamp antes de cerrarla. Si LabEx está caído: Killercoda (ubuntu/docker) como alterna.",
             ]),
             ("Dockerfile mínimo para el stub", [
                 "FROM imagen base ligera → COPY → EXPOSE → CMD.",
@@ -248,14 +307,14 @@ CLASSES = [
         "taller_titulo": "Taller Clase 3 — Contenedor stub CloudLite",
         "taller_pasos": [
             "Definan qué servicio contenerizan hoy (API stub o front estático del dominio).",
-            "En Play with Docker: construyan y corran el contenedor (si no carga, Killercoda como alterna).",
+            "En LabEx Docker Playground: construyan y corran el contenedor (si no carga, Killercoda como alterna).",
             "Documenten Dockerfile (y compose si aplica) en el repo/ZIP del PI.",
             "Capturen evidencia (PNG) o enlace de sesión + nota de caducidad.",
             "Actualicen informe: sección Contenedores + enlace a diagrama de despliegue futuro.",
         ],
         "quiz": [
             ("¿Qué comparte un contenedor con el host que una VM típicamente no comparte?", "El kernel del SO."),
-            ("Nombre la herramienta de lab principal del curso para contenedores.", "Play with Docker (alterna: Killercoda)."),
+            ("Nombre la herramienta de lab principal del curso para contenedores.", "LabEx Docker Playground (alterna: Killercoda)."),
             ("¿Por qué no poner secretos en el Dockerfile?", "Quedan en capas/historial de la imagen."),
         ],
     },
@@ -444,7 +503,7 @@ CLASSES = [
         ],
         "taller_titulo": "Taller Clase 8 — Actions + monitoreo CloudLite",
         "taller_pasos": [
-            "Creen repo free (o usen el del equipo) con stub mínimo.",
+            "Crea un repo free (o usa el que ya tengas del PI) con stub mínimo.",
             "Agreguen `.github/workflows/ci.yml` (build/test + deploy simulado).",
             "Listen 4–6 métricas/logs a observar en producción hipotética.",
             "Peguen captura del run verde (o YAML + explicación si Actions falla por cuota).",
@@ -575,7 +634,7 @@ CLASSES = [
             ("Preparación de presentación (5–8 min)", [
                 "1 min problema · 2 min arquitectura · 1 min contenedor · 1 min CI · 1 min seguridad/costos · Q&A.",
                 "Demo: diagrama + captura lab/Actions (no improvisar login cloud).",
-                "Todos los integrantes hablan.",
+                "Sustentas tú los 5 bloques; si hay equipo autorizado, hablan todos.",
             ]),
             ("Paquete de entrega", [
                 "Informe + diagramas + Dockerfile + YAML + capturas.",
@@ -585,7 +644,7 @@ CLASSES = [
         "taller_titulo": "Taller Clase 12 — Rendimiento y ensayo CloudLite",
         "taller_pasos": [
             "Escriban escenario de carga + 3 métricas objetivo + bottleneck esperado.",
-            "Ensayen pitch 5–8 min (cronómetro); feedback entre equipos.",
+            "Ensaya el pitch 5–8 min (cronómetro) y da feedback cruzado a otro estudiante (o a otro equipo, si el docente los autorizó).",
             "Cierren backlog de Clase 11.",
             "Dejen paquete casi-final en Drive/repo.",
             "Entrega de avance domingo 23:59.",
@@ -667,7 +726,7 @@ CLASSES = [
         "slides_extra": [
             ("Rúbrica de sustentación (recordatorio)", [
                 "Claridad del problema · calidad de diagramas · demo lab/CI · respuestas.",
-                "Todos hablan. Penalización si solo un integrante presenta.",
+                "Cubres los 5 bloques del guion; en equipo autorizado hablan todos (penalización si solo uno presenta).",
             ]),
             ("Checklist final", [
                 "Informe completo · 3 diagramas · Dockerfile+captura · Actions · pitch.",
@@ -946,7 +1005,7 @@ ANTES_DESPUES_ARQ = {
         "a": ["2-5 contenedores logicos, cada uno con su razon",
               "Frontera = responsabilidad de negocio",
               "Cada flecha: protocolo + verbo (HTTP/JSON, 'reserva')",
-              "Cualquiera del equipo lo explica en 60 s"],
+              "Se explica en 60 s sin leer notas"],
     },
     12: {
         "titulo": "«Que sea rapido» no es un requisito",
@@ -1006,19 +1065,22 @@ def build_pptx(c: dict) -> Path:
     content_slide(prs, "Agenda de hoy (120 min)", [
         "**0–10** Encuadre: hoy avanzamos el PI en… + entregable concreto.",
         "**10–40** Teoría Core breve (solo lo necesario para el taller PI).",
-        "**40–100** Taller guiado PI (demo en vivo + trabajo de equipo).",
+        f"**40–100** Taller guiado PI (demo en vivo + {mod(c, 'agenda_taller_nota')}).",
         "**100–115** Revisión de evidencias del PI.",
         "**115–120** Cierre: criterio de éxito + plazo domingo 23:59.",
     ], idx=idx)
     idx += 1
     content_slide(prs, "Objetivos de la clase", c["objetivos"], idx=idx)
     idx += 1
-    content_slide(prs, "PI CloudLite — entregable de hoy", [
+    entregable_bullets = [
         f"@@Entregable:@@ {c['entregable']}",
         f"Herramienta: **{c['herramienta']}**",
         "Todo lo que construyan hoy entra al **informe/repo del PI** (no es lab suelto).",
-        "Equipos 2–3 · todos deben poder explicar el artefacto.",
-    ], idx=idx)
+        mod(c, "equipo_note"),
+    ]
+    if c.get("ficha_bloques_note"):
+        entregable_bullets[-1:-1] = [c["ficha_bloques_note"]]
+    content_slide(prs, "PI CloudLite — entregable de hoy", entregable_bullets, idx=idx)
     idx += 1
     for title, bullets_ in c["slides_extra"]:
         bullets_limpias, imagen = _limpiar_y_capturar(bullets_)
@@ -1075,14 +1137,15 @@ TALLER_BLOQUE = {
             "Si el problema es vago (app de la universidad), el resto del PI se vuelve teatro.",
         ],
         "escenario": [
-            "Equipo 2-3 (o individual). Elegir un dominio concreto.",
+            "Actividad individual. Elegir un dominio concreto.",
             "Sugeridos: AgendaU · BiblioLite · InventarioLab · TurnosClinica · EventosCampus.",
-            "Plantilla ficha: DOMINIO · PROBLEMA · ACTORES · CAPACIDADES · FUERA DE ALCANCE.",
+            "Plantilla ficha: DOMINIO · PROBLEMA · CAPACIDADES · ACTORES · SISTEMAS EXTERNOS · FUERA DE ALCANCE.",
         ],
         "pistas": [
             "¿Quién sufre el problema y como lo miden?",
             "¿La caja grande es el sistema CloudLite (no un módulo interno)?",
             "¿Las flechas tienen verbo (reservar, notificar, autenticar)?",
+            "¿Los 2-3 sistemas externos coinciden con los System_Ext del diagrama C4?",
             "¿Fuera de alcance está escrito (que NO haran hoy)?",
         ],
     },
@@ -1105,11 +1168,11 @@ TALLER_BLOQUE = {
         "contexto": [
             "@@Por qué importa al PI:@@ CloudLite debe mostrar al menos un servicio contenerizado con evidencia.",
             "El contenedor es el puente entre el diagrama C4 y el despliegue realista (sin cloud de pago).",
-            "Lab en navegador Play with Docker: sin Docker Desktop obligatorio.",
+            "Lab en navegador LabEx Docker Playground: sin Docker Desktop obligatorio.",
         ],
         "escenario": [
             "Elegir el servicio principal del C4 (API o web).",
-            "Abrir Play with Docker (labs.play-with-docker.com); sesión temporal de 4h.",
+            "Abrir LabEx Docker Playground (labex.io, login con Google/Microsoft); sesión temporal.",
             "Prohibido: copiar .env / API keys a la imagen.",
         ],
         "pistas": [
@@ -1204,7 +1267,7 @@ TALLER_BLOQUE = {
         ],
         "escenario": [
             "Revisar: dominio, ADR, C4, Deployment, Dockerfile, Actions, Seguridad, Costos.",
-            "Demo corta por equipo si el tiempo alcanza.",
+            "Demo corta por estudiante (o por equipo, si el docente los autorizó) si el tiempo alcanza.",
         ],
         "pistas": [
             "¿Cada \"sí\" tiene enlace o ruta de archivo?",
@@ -1293,14 +1356,17 @@ def build_taller_docx(c: dict) -> Path | None:
     h2(doc, "7. Criterio de éxito")
     bullets(doc, [
         "El artefacto queda en el paquete PI (informe y/o repo) con nombres consistentes.",
-        "Cualquier integrante puede explicar la decisión en 60 segundos.",
+        mod(c, "explica_60s_note"),
         "Evidencia adjunta (PNG, enlace lab, YAML, etc.).",
     ])
     if tb.get("pistas"):
         h2(doc, "8. Pistas (checklist vacío — sin solución)")
         bullets(doc, [f"☐ {p}" for p in tb["pistas"]])
     h2(doc, "9. Entrega")
-    para(doc, "Entrega en ExamLab (https://examlab.lovable.app/ · módulo Talleres) · domingo 23:59 (regla del Acuerdo). Un envío por equipo.")
+    para(doc, "Entrega en ExamLab (https://examlab.lovable.app/ · módulo Talleres) · domingo 23:59 (regla del Acuerdo). "
+              + mod(c, "entrega_unidad_note"))
+    if c.get("entrega_oficial_nota"):
+        para(doc, c["entrega_oficial_nota"], shade="E8F4FA")
     # 10. Que encuentra en la plataforma. Antes el taller decia «suba el PNG a ExamLab»
     # sin explicar en que forma se responde; ademas pedia exportar de draw.io cuando la
     # plataforma dibuja Mermaid nativo (incluido C4). Esto lo hace explicito.
@@ -1360,7 +1426,7 @@ def build_quiz_docx(c: dict) -> Path | None:
 # El guion las embebe con [[captura: archivo.png]]; si falta el archivo,
 # guion_md_a_docx.py deja la caja "inserta aqui la captura" sin romper el build.
 CAPTURAS_CLASE = {
-    3: [("Build y run del stub en Play with Docker (lo que debe verse en pantalla)",
+    3: [("Build y run del stub en LabEx Docker Playground (lo que debe verse en pantalla)",
          "salida-docker-build-run.png"),
         ("Evidencia del entregable: el contenedor corriendo (`docker ps`)",
          "salida-docker-ps.png")],
@@ -1397,13 +1463,13 @@ DEMO_ARQ = {
     ]),
     2: ("Llenar un ADR-001 delante del grupo, en 6 lineas", [
         "Abra un Google Doc y escriba los 4 encabezados del ADR: Contexto, Opciones, Decision, Consecuencias.",
-        "Contexto: «CloudLite necesita correr una API y una base de datos; el equipo tiene 3 personas y cero presupuesto».",
+        "Contexto: «CloudLite necesita correr una API y una base de datos; lo desarrolla una persona en un semestre y con cero presupuesto».",
         "Opciones: IaaS (control total, mas trabajo operativo) · PaaS (menos control, menos operacion) · SaaS (no aplica, no compramos software hecho).",
         "Decision: PaaS conceptual + contenedores. Consecuencias: se acepta menos control del sistema operativo a cambio de no administrar servidores.",
         "Diga: «un ADR de media pagina que se entiende vale mas que 5 paginas que nadie lee».",
     ]),
-    3: ("Construir y correr el stub en Play with Docker", [
-        "Abra labs.play-with-docker.com y cree una instancia (advierta en voz alta: la sesion dura 4 horas y se autodestruye).",
+    3: ("Construir y correr el stub en LabEx Docker Playground", [
+        "Abra labex.io e inicie sesion con su cuenta de Google o Microsoft (advierta en voz alta: la sesion es temporal, guarden capturas antes de cerrarla).",
         "Escriba un Dockerfile minimo en vivo: FROM nginx:alpine y COPY de un index.html de una linea.",
         "Ejecute docker build -t cloudlite-stub . y luego docker run -d -p 80:80 cloudlite-stub.",
         "Ejecute docker ps y senale las columnas IMAGE, STATUS y PORTS: «esta es la evidencia que entregan».",
@@ -1438,8 +1504,8 @@ DEMO_ARQ = {
         "Llene 3 filas de CloudLite: base de datos gestionada (Alto, computo+almacenamiento constante 24/7), API en contenedor (Medio, numero de instancias), object storage de imagenes (Bajo, volumen de datos).",
         "Pregunte cual bajaria primero si el presupuesto se corta a la mitad, y exija que justifiquen con el driver, no con intuicion.",
     ]),
-    11: ("Auditar en vivo el paquete de un equipo voluntario", [
-        "Pida a un equipo que proyecte su C4 Containers y su diagrama de despliegue lado a lado.",
+    11: ("Auditar en vivo el paquete de un voluntario", [
+        "Pida a un estudiante voluntario (o a un equipo, si autorizo equipos) que proyecte su C4 Containers y su diagrama de despliegue lado a lado.",
         "Compare nombre por nombre: todo servicio del Containers debe existir en el despliegue y viceversa.",
         "Senale en voz alta el primer gap concreto que encuentre y escribalo como accion con responsable y fecha.",
         "Modele el tono: el hallazgo es sobre el artefacto, nunca sobre la persona.",
@@ -1460,7 +1526,7 @@ DEMO_ARQ = {
         "Presente usted mismo un CloudLite de ejemplo en 6 minutos cronometrados, con la estructura: problema, decision clave, evidencia, limite conocido.",
         "Hagase una pregunta dificil en voz alta y respondala: «por que no usaron microservicios? Porque con 3 personas la frontera no se justificaba».",
         "Muestre la rubrica proyectada y senale donde habria perdido puntos su propia demo.",
-        "Recuerde la regla de los 60 segundos: cualquier integrante debe poder explicar cualquier parte.",
+        "Recuerde la regla de los 60 segundos: quien sustenta debe poder explicar cualquier parte del paquete, y si hubo equipo autorizado, cualquier integrante.",
     ]),
 }
 
@@ -1473,7 +1539,7 @@ ERRORES_ARQ = {
         "Nombrar productos de marca en vez del modelo conceptual; el modelo aplica a cualquier proveedor."],
     3: ["Decir que el contenedor «es una VM ligera». Insista en la diferencia real: kernel propio vs kernel compartido.",
         "Confundir imagen con contenedor al hablar. Corrija en el momento: la imagen es el molde, el contenedor la instancia corriendo.",
-        "Perder el trabajo porque la sesion de Play with Docker expiro a las 4 horas. Recuerdeles guardar el Dockerfile y las capturas ANTES."],
+        "Perder el trabajo porque la sesion de LabEx Docker Playground se cerro. Recuerdeles guardar el Dockerfile y las capturas ANTES."],
     4: ["Inventar 6 u 8 servicios para verse sofisticados. Pregunte por cada uno: que responsabilidad de negocio propia tiene y quien lo despliega por separado.",
         "Flechas sin etiqueta entre servicios. Toda flecha lleva protocolo y formato de datos.",
         "Olvidar que distribuir agrega fallos parciales: exija al menos 2 riesgos de red en la tabla."],
@@ -1490,7 +1556,7 @@ ERRORES_ARQ = {
          "Marcar todo como costo «Medio» para no pensar. Fuerce al menos un Alto y un Bajo con justificacion.",
          "Olvidar el trafico de red saliente, que es el driver que mas sorprende en facturas reales."],
     11: ["Traer el paquete de la Clase 1 sin actualizar y presentarlo como avance. Compare contra la version anterior.",
-         "Un solo integrante conoce el paquete completo. Pregunte al azar; si solo uno responde, ese es el hallazgo principal.",
+         "Conocer solo la parte que se copio de una plantilla y no el paquete completo. Pregunte al azar por cualquier seccion; si hubo equipo autorizado, pregunte a un integrante distinto del que presenta y si solo uno responde, ese es el hallazgo principal.",
          "Confundir este checkpoint con la sustentacion final o con el Parcial 3. Aclarelo al abrir la sesion."],
     12: ["Objetivo de rendimiento sin numero, sin escenario de carga o sin bottleneck. Falta cualquiera de los tres y no es un analisis.",
          "Usar el promedio en vez del p95 y concluir que todo esta bien. Muestre por que el promedio esconde los casos malos.",
@@ -1499,8 +1565,8 @@ ERRORES_ARQ = {
          "Escalar horizontalmente un servicio que guarda la sesion en memoria local: al repartir la carga, el usuario pierde su sesion.",
          "No documentar QUE NO escala. La base de datos relacional es casi siempre la respuesta y hay que decirlo."],
     15: ["Describir el diagrama en vez de justificar la decision. Reoriente con «por que asi y no de la otra forma».",
-         "Un integrante presenta y el resto observa. Distribuya el Q&A a proposito.",
-         "Presentar sin mencionar ningun limite del diseno. Un equipo que no reconoce limites no entendio el trade-off."],
+         "En equipos autorizados, que un integrante presente y el resto observe. Distribuya el Q&A a proposito entre todos.",
+         "Presentar sin mencionar ningun limite del diseno. Quien no reconoce limites no entendio el trade-off."],
 }
 
 PREGUNTAS_ARQ = {
@@ -1512,7 +1578,7 @@ PREGUNTAS_ARQ = {
         "Por que un ADR necesita las alternativas que descartaron?"],
     3: ["Que comparten los contenedores de una misma maquina que las VM no comparten?",
         "Cual es la diferencia entre imagen y contenedor?",
-        "Que pasa con su trabajo cuando expira la sesion de Play with Docker?"],
+        "Que pasa con su trabajo cuando se cierra la sesion de LabEx Docker Playground?"],
     4: ["Que justifica que dos funciones vivan en servicios separados?",
         "Que cambia cuando una llamada de funcion se vuelve una llamada de red?",
         "Como se llama en su C4 Containers el servicio que expone la API?"],
@@ -1604,12 +1670,26 @@ Di: «Gracias. El PI CloudLite continúa en la siguiente clase regular o autóno
     conceptos_md = _lista_md(conceptos) or "- Ver diapositivas de la clase."
     minutos_por_concepto = max(5, 30 // max(1, len(conceptos)))
 
-    plan_blocks = f"""### 0–10 · Encuadre PI
+    # Modalidad de trabajo (individual por defecto, equipos si el docente los autoriza).
+    # Las dos ramas de abajo usan las MISMAS variables para no volver a divergir.
+    arranque_cita = mod(c, "arranque_cita")
+    arranque_nota = mod(c, "arranque_nota")
+    voluntario_word = mod(c, "voluntario_word")
+    taller_modalidad_word = mod(c, "taller_modalidad_word")
+    retro_word = mod(c, "retro_word")
+    criterio_60s_note = mod(c, "criterio_60s_note")
+
+    if not c.get("separar_notas_docente"):
+        # Plantilla compartida por las clases que no separan «lo que el docente dice»
+        # de «las notas para el docente». Cualquier cambio aqui se propaga a esas
+        # clases en su proximo build; las frases de modalidad de trabajo estan
+        # parametrizadas arriba, no las vuelvas a escribir a mano.
+        plan_blocks = f"""### 0–10 · Encuadre PI
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **{c['pi_hoy']}**.
 Entregable concreto: {c['entregable']}.
 Teoría breve y luego taller; no es un lab suelto.»
 Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
-Pregunta de arranque (1 min): «¿en qué quedó su CloudLite la clase pasada?» — sirve para detectar equipos rezagados antes de avanzar.
+Pregunta de arranque (1 min): «{arranque_cita}» — sirve para detectar estudiantes rezagados antes de avanzar.
 
 ### 10–40 · Teoría Core (al servicio del taller)
 Cubre estos conceptos, en este orden, ~{minutos_por_concepto} min cada uno (son los títulos de las diapositivas de teoría):
@@ -1618,7 +1698,7 @@ Cubre estos conceptos, en este orden, ~{minutos_por_concepto} min cada uno (son 
 El desarrollo completo de cada uno está arriba, en «Fundamento teórico para el docente»:
 esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
-Pide un equipo voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
+Pide un {voluntario_word} voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
 ### 40–55 · Demo en vivo
 Herramienta del día: **{c['herramienta']}**.
@@ -1627,7 +1707,7 @@ Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit doce
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 {_capturas_md(n)}
 
-### 55–100 · Taller guiado PI (equipos)
+### 55–100 · Taller guiado PI ({taller_modalidad_word})
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -1638,12 +1718,62 @@ Haz 3–4 de las preguntas de comprobación oral de abajo, a personas distintas 
 Aplica el quiz corto de `Kit docente/Clase {n}/Quiz Clase {n} - {c['slug']}.docx`
 (la clave va en archivo aparte y **no se proyecta**).
 Mientras responden, verifica que el entregable esté realmente subido.
-Retroalimenta 2–3 equipos en voz alta, nombrando el error y la corrección concreta.
+Retroalimenta 2–3 {retro_word} en voz alta, nombrando el error y la corrección concreta.
 
 ### 115–120 · Cierre
 Di: «Queda avanzado: {c['pi_hoy']}.
-Criterio de éxito: cualquier integrante explica el artefacto en 60 s.
+Criterio de éxito: {criterio_60s_note}.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
+"""
+    else:
+        # Rama exclusiva para clases con actividad individual (hoy: Clase 1), donde se
+        # separa explicitamente lo que el docente DICE (bloques "> ...") de las
+        # instrucciones PARA el docente (bloques "**[Nota docente]:**").
+        plan_blocks = f"""### 0–10 · Encuadre PI
+Di casi literal:
+> "Hoy avanzamos el PI CloudLite App en: {c['pi_hoy']}. Entregable concreto: {c['entregable']}. Teoría breve y luego taller; no es un lab suelto."
+
+**[Nota docente]:** pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
+
+**[Nota docente]:** {arranque_nota}
+> "{arranque_cita}"
+
+### 10–40 · Teoría Core (al servicio del taller)
+Cubre estos conceptos, en este orden, ~{minutos_por_concepto} min cada uno (son los títulos de las diapositivas de teoría):
+{conceptos_md}
+
+El desarrollo completo de cada uno está arriba, en «Fundamento teórico para el docente», ya dividido
+por diapositiva: esa sección está escrita para que puedas dictarla sin consultar otra fuente.
+
+**[Nota docente]:** cada 8–10 min amarra al artefacto («esto es lo que van a dejar hoy en su informe/diagrama/repo»)
+y pide un {voluntario_word} voluntario para usar SU dominio como ejemplo en vivo (no el de la demo).
+
+### 40–55 · Demo en vivo
+Herramienta del día: **{c['herramienta']}**.
+{_demo_md(n)}
+
+**[Nota docente]:** narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase {n}/Capturas/`.
+Cierra la demo diciendo:
+> "Copien la estructura, no el dominio de mi ejemplo."
+{_capturas_md(n)}
+
+### 55–100 · Taller guiado PI ({taller_modalidad_word})
+**[Nota docente]:** proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller»
+de este guion). Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas
+a ver hoy. A los 80 min anuncia:
+> "Faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador."
+
+### 100–115 · Comprobación y evidencias
+**[Nota docente]:** haz 3–4 de las preguntas de comprobación oral de abajo, a personas distintas y al azar
+(no al que levanta la mano). Es el mecanismo para verificar la regla de los 60 segundos.
+Aplica el quiz corto de `Kit docente/Clase {n}/Quiz Clase {n} - {c['slug']}.docx`
+(la clave va en archivo aparte y **no se proyecta**).
+Mientras responden, verifica que el entregable esté realmente subido.
+Retroalimenta 2–3 {retro_word} en voz alta, nombrando el error y la corrección concreta.
+
+### 115–120 · Cierre
+Di:
+> "Queda avanzado: {c['pi_hoy']}. Criterio de éxito: {criterio_60s_note}. Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan."
 """
 
     if c["tipo"] == "autonoma":
@@ -1721,7 +1851,7 @@ Referencia de slides: `Clases/Clase {n} - {c['slug']}/Presentacion.pptx` (solo t
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).
 - Evidencia adjunta.
-- Explicación oral de 60 s por integrante (muestreo).
+- {mod(c, "criterio_oral_note")}
 
 ## Errores frecuentes del estudiante (y cómo corregirlos en el momento)
 {_lista_md(ERRORES_ARQ.get(n, [])) or "- Sin errores catalogados para esta clase."}
@@ -1732,7 +1862,7 @@ Referencia de slides: `Clases/Clase {n} - {c['slug']}/Presentacion.pptx` (solo t
 
 ## Solución del taller (privada)
 `Kit docente/Clase {n}/Solucion Taller Clase {n} - CloudLite.docx` — es la referencia con la que
-comparas lo que entregan los equipos. **No proyectarla completa** antes de que trabajen.
+comparas lo que entregan {mod(c, "entregan_word")}. **No proyectarla completa** antes de que trabajen.
 
 ## Quiz
 `Kit docente/Clase {n}/Quiz Clase {n} - {c['slug']}.docx` (versión estudiante, sin respuestas)
@@ -1743,7 +1873,7 @@ y `Kit docente/Clase {n}/Quiz Clase {n} - CLAVE DOCENTE.docx` (clave, privada).
 - 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (https://examlab.lovable.app/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
+- Plataforma de entrega: ExamLab (https://examlab.lovable.app/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.{chr(10) + "- " + c["entrega_oficial_nota"] if c.get("entrega_oficial_nota") else ""}
 - Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).
 """
@@ -1822,10 +1952,24 @@ def build_examlab_guia(c):
     return out
 
 
-def build_all():
+def build_all(solo_clases=None):
+    """Regenera el batch completo, o solo un subconjunto de clases si se pasa
+    ``solo_clases`` (iterable de numeros de clase) o se define la variable de
+    entorno SOLO_CLASES="1,3,7" (coma-separada). Las clases no incluidas no se
+    tocan, para poder aislar un cambio (p.ej. reemplazo de una herramienta de
+    lab) a las clases afectadas sin regenerar el resto del curso.
+    """
+    if solo_clases is None:
+        env_val = os.environ.get("SOLO_CLASES")
+        if env_val:
+            solo_clases = {int(x.strip()) for x in env_val.split(",") if x.strip()}
+    else:
+        solo_clases = set(solo_clases)
     guiones = []
     for c in CLASSES:
         n = c["n"]
+        if solo_clases is not None and n not in solo_clases:
+            continue
         print(f"\n=== Clase {n} ({c['tipo']}) ===")
         if c["tipo"] == "parcial":
             build_parcial_kit_note(c)

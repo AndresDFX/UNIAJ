@@ -8,9 +8,12 @@
 
 Estimados estudiantes:
 
-Les doy la bienvenida al curso **Bases de Datos II** (código **FI303215**, grupo **641A-2**) del periodo **2026-2** (ventana académica: **10/08/2026 – 22/11/2026**).
+Les doy la bienvenida al curso **Bases de Datos II** (código **FI303215**, grupo **641A-2**) del periodo **2026-2** (ventana académica: **24/08/2026 – 22/11/2026**).
 
 - **Modalidad:** Presencialidad asistida (clases presencial / virtual síncrona / autónoma)
+- **Modalidad por sesión:** **Sesión 1 presencial**; resto de sesiones regulares **virtual síncrona**; **parciales presencial** síncrono (Sesiones 5, 9 y 12). Festivo → **clase autónoma**.
+- **Calendario:** **13 sesiones de lunes** (24/08/2026 – 22/11/2026) que cubren los 15 temas del curso; las Sesiones 7 y 10 son **dobles** (dos temas en el mismo bloque de 120 min).
+- **Sustentación del proyecto final:** Sesión 13 — 16/11/2026.
 - **Horario:** lunes **18:00 – 20:00** (inicio práctico de clase: **18:10**)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
 - **Entrega de talleres y evaluaciones:** ExamLab · https://examlab.lovable.app/app

@@ -35,7 +35,7 @@ Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 ### 10-40 · Teoria Core
 Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
 proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
-Pregunta al aire (2 min): ¿donde encaja esto en el VetCare de su equipo?
+Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
@@ -44,14 +44,14 @@ Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 3/Plantillas/ERS-y-Matriz-en-V-VetCare.md`
 
 ### 60-105 · Taller guiado = avance del PI
-**Decir:** «Equipos: abran su proyecto VetCare. Esto suma a la rubrica del PI.»
+**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. En Google Docs escriba el indice del ERS de VetCare con al menos estas secciones numeradas: 1. Proposito y alcance, 2. Glosario del dominio veterinario, 3. Requisitos funcionales, 4. Requisitos no funcionales, 5. Reglas de negocio, 6. Matriz de trazabilidad, 7. Control de versiones y aprobaciones.
 2. Escriba cuatro requisitos de VetCare en formato de ficha completa (ID, nombre, fuente, prioridad, estabilidad, descripcion, precondicion, criterio de aceptacion, version y estado); al menos uno debe ser no funcional y al menos uno debe declarar dependencia de otro.
 3. Construya la matriz en V en una tabla de cuatro columnas: Fase de la izquierda / Artefacto / Nivel de prueba emparejado / Caso de prueba de VetCare que lo verifica, y asegurese de que cada uno de sus cuatro requisitos aparezca con su codigo de prueba.
 4. En draw.io dibuje el modelo en V de VetCare con las fases de bajada y de subida, y trace lineas punteadas horizontales que unan cada fase con su nivel de prueba; rotule al menos dos de esas lineas con el ID del requisito y el ID del caso de prueba.
 5. Diligencie el formato de solicitud de cambio con este caso real: la clinica pide, ya aprobada la linea base, que la busqueda tambien funcione por numero de microchip; describa el requisito afectado, el impacto en diseño y pruebas, y la decision (aprobar, aplazar o rechazar) con su justificacion. Exporte todo a PDF y suba a ExamLab.
-Circular por los equipos. Empujar evidencia funcionando, no perfeccionismo.
+Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Un documento en Google Docs con el indice del ERS de VetCare, cuatro requisitos escritos en formato de ficha con version y linea base, la matriz en V (requisito - nivel de prueba - criterio de aceptacion) y un formato de solicitud de cambio diligenciado; mas el diagrama en V dibujado en draw.io y subido a ExamLab.
 
 ### 105-120 · Criterios de exito y cierre

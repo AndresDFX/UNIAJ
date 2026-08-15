@@ -106,7 +106,7 @@ Redacte la politica con **estos 6 puntos numerados**, en este orden:
 
 1. **Inventario**: tabla de **4 secretos** con 3 columnas (`Secreto | Para que sirve | Que pasa si se filtra`). Incluya al menos la credencial de la base de datos y la clave del servicio de correo.
 2. **Donde vive cada secreto**: una linea por secreto indicando el lugar exacto (`Settings > Secrets and variables > Actions`, variable de entorno del contenedor, gestor local). Prohibido: Dockerfile, repositorio, YAML en claro, captura de pantalla en el informe.
-3. **Quien accede**: quien de los 3 integrantes puede ver o rotar cada secreto y con que criterio de minimo privilegio.
+3. **Quien accede**: quien puede ver o rotar cada secreto (usted, y cada integrante si el docente autorizo equipo) y con que criterio de minimo privilegio.
 4. **Rotacion**: cada cuanto se rota y **el evento que fuerza rotacion inmediata**.
 5. **Plan si se filtra**: exactamente **4 pasos numerados**, y el primero debe ser rotar e invalidar la credencial anterior (borrar el commit **no** es suficiente y debe decirlo explicitamente).
 6. **Prohibiciones**: 3 practicas prohibidas en este proyecto, cada una con una frase de por que.

@@ -17,7 +17,7 @@
 
 Floci **no es** un free tier de AWS/GCP/Azure/OCI con tarjeta. Es una familia de **emuladores locales** (MIT, $0) que reproducen APIs cloud en el PC o en un lab con Docker, **sin cuenta cloud y sin tarjeta**.
 
-Eso **alinea mejor** con la política UNIAJC “sin costos / sin tarjeta” que Oracle/GCP/AWS Free Tier (retirados del plan por pedir tarjeta). El trade-off es otro: **rompe el criterio “solo navegador / sin instalación”**, porque hace falta **Docker** (local o en Killercoda / Play with Docker).
+Eso **alinea mejor** con la política UNIAJC “sin costos / sin tarjeta” que Oracle/GCP/AWS Free Tier (retirados del plan por pedir tarjeta). El trade-off es otro: **rompe el criterio “solo navegador / sin instalación”**, porque hace falta **Docker** (local o en Killercoda / LabEx Docker Playground).
 
 | Criterio | Resultado |
 |---|---|
@@ -27,7 +27,7 @@ Eso **alinea mejor** con la política UNIAJC “sin costos / sin tarjeta” que 
 | Clase 120 min usable | **Sí, si** la imagen se pre-descarga o se usa lab en navegador |
 | Apto para CloudLite | **Sí** (storage, colas, funciones, IAM local) |
 
-**Recomendación:** piloto en **Clase 7 (Redes y almacenamiento cloud)** con `floci` (AWS/S3) vía script; mantener Killercoda / Play with Docker / draw.io como camino principal hasta aprobar el piloto. No reescribir el semestre todavía.
+**Recomendación:** piloto en **Clase 7 (Redes y almacenamiento cloud)** con `floci` (AWS/S3) vía script; mantener Killercoda / LabEx Docker Playground / draw.io como camino principal hasta aprobar el piloto. No reescribir el semestre todavía.
 
 ---
 
@@ -67,7 +67,7 @@ Practicar **APIs y CLIs cloud reales** (aws / az / gcloud / oci) apuntando a `lo
 | OS | Linux, macOS, **Windows** (`install.ps1`) |
 | CLI cloud (opcional pero útil) | AWS CLI / Azure CLI / gcloud / OCI CLI según variante |
 | Red | Primera vez: pull de imagen (~90 MB floci nativo; más si hay sidecars) |
-| Alternativa sin PC local | Play with Docker / Killercoda con `docker run …` |
+| Alternativa sin PC local | LabEx Docker Playground / Killercoda con `docker run …` |
 
 ---
 
@@ -76,7 +76,7 @@ Practicar **APIs y CLIs cloud reales** (aws / az / gcloud / oci) apuntando a `lo
 ### Política actual (post-limpieza docente)
 - **Gratis + navegador / free tier sin tarjeta.**
 - Regla previa: **quitar AWS / GCP / Oracle Cloud** de herramientas “de tarjeta”.
-- Stack vigente propuesto: **draw.io**, **Excalidraw**, **Killercoda / Play with Docker**, **GitHub Actions** (opcional), Docs/Padlet.
+- Stack vigente propuesto: **draw.io**, **Excalidraw**, **Killercoda / LabEx Docker Playground**, **GitHub Actions** (opcional), Docs/Padlet.
 - **No** exigir VirtualBox/VMware/Docker Desktop como requisito del curso.
 
 ### Trade-off honesto con Floci
@@ -86,7 +86,7 @@ Practicar **APIs y CLIs cloud reales** (aws / az / gcloud / oci) apuntando a `lo
 | ¿Sigue sin tarjeta? | **Sí.** Floci no cobra ni pide tarjeta. |
 | ¿Es OCI Always Free / Azure for Students / AWS Free Tier? | **No.** No usa esos programas. Emula APIs en local. |
 | ¿Rompe “solo navegador”? | **Sí, en el camino local** (Docker Desktop/Engine). |
-| ¿Se puede usar sin instalar en el PC? | **Parcialmente:** lab en **Play with Docker** o escenario **Killercoda** con el mismo `docker run`. |
+| ¿Se puede usar sin instalar en el PC? | **Parcialmente:** lab en **LabEx Docker Playground** o escenario **Killercoda** con el mismo `docker run`. |
 | ¿Cambia la regla “sin AWS/GCP/Oracle”? | **Sí, con matices:** se puede enseñar *forma* de esas nubes **sin cuentas reales**. No reintroduce riesgo de facturación. Hay que **decir en clase** “esto es emulador, no producción”. |
 | ¿Mejor que free tier con tarjeta? | **Para UNIAJC, sí** en seguridad de costos. Peor en “cero instalación”. |
 
@@ -103,7 +103,7 @@ Practicar **APIs y CLIs cloud reales** (aws / az / gcloud / oci) apuntando a `lo
 4. Opcional: AWS CLI v2 para el lab S3 (o usar `curl` al health endpoint).
 
 ### Camino B — Solo navegador (alineado a política)
-1. Cuenta gratuita Killercoda o sesión Play with Docker.
+1. Cuenta gratuita Killercoda o sesión LabEx Docker Playground.
 2. Pegar el one-liner del README de scripts.
 3. Entregar capturas / enlace según taller.
 
@@ -114,7 +114,7 @@ Docente proyecta Floci; estudiantes hacen diagrama en draw.io + cuestionario. Ce
 
 ## 5. Pros / contras vs herramientas actuales
 
-| Criterio | Floci | Killercoda | Play with Docker | draw.io |
+| Criterio | Floci | Killercoda | LabEx Docker Playground | draw.io |
 |---|---|---|---|---|
 | Costo / tarjeta | Excelente ($0) | Excelente | Excelente | Excelente |
 | Solo navegador | Débil (local) / Medio (si va embebido en lab) | Excelente | Excelente | Excelente |
@@ -125,7 +125,7 @@ Docente proyecta Floci; estudiantes hacen diagrama en draw.io + cuestionario. Ce
 | Madurez / riesgo proyecto | Medio (org joven, 2026; AWS más maduro que az/gcp/oci) | Alto | Alto | Alto |
 | Encaje CloudLite | Alto (object storage + colas + funciones) | Medio | Medio | Alto (C4/diagramas) |
 
-**Lectura:** Floci **complementa** Killercoda/PWD y draw.io; **no los reemplaza** en 2026-2 hasta que el piloto salga bien.
+**Lectura:** Floci **complementa** Killercoda/LabEx y draw.io; **no los reemplaza** en 2026-2 hasta que el piloto salga bien.
 
 ---
 
@@ -133,7 +133,7 @@ Docente proyecta Floci; estudiantes hacen diagrama en draw.io + cuestionario. Ce
 
 | Riesgo | Impacto | Mitigación |
 |---|---|---|
-| Docker Desktop no instalado / permisos admin | Alto en aula | Camino B (Killercoda/PWD) + demo docente |
+| Docker Desktop no instalado / permisos admin | Alto en aula | Camino B (Killercoda/LabEx) + demo docente |
 | Pull lento en WiFi del salón | Alto (come 20–40 min) | Pre-cargar imagen en PCs / USB / mirror; o usar lab remoto |
 | Confusión “esto es AWS de verdad” | Medio | Slide explícita: emulador local · $0 · sin cuenta |
 | Cobertura incompleta az/gcp/oci | Medio | Piloto solo con **floci (AWS/S3)**; otras variantes demo docente |
@@ -160,7 +160,7 @@ Docente proyecta Floci; estudiantes hacen diagrama en draw.io + cuestionario. Ce
 **No usar** Floci en días de parcial (5 / 9 / 14) ni como dependencia de la presentación final (15) en el primer ciclo.
 
 ### Diseño del laboratorio piloto (Clase 7 · ~40–50 min)
-1. Arranque one-command (`lab-floci.ps1 -Cloud aws` o one-liner PWD).
+1. Arranque one-command (`lab-floci.ps1 -Cloud aws` o one-liner LabEx).
 2. Crear bucket / subir objeto / listar / descargar.
 3. Captura + nota: “endpoint local · sin cuenta · sin tarjeta”.
 4. Diagrama draw.io del flujo CloudLite (cliente → API → object storage).
@@ -173,7 +173,7 @@ Ubicación:
 
 ```text
 Plan curso/2026-2/scripts/
-  README.md          ← uso previsto (local + Killercoda/PWD)
+  README.md          ← uso previsto (local + Killercoda/LabEx)
   lab-floci.ps1      ← Windows (aula típica)
   lab-floci.sh       ← Linux/macOS / Git Bash
 ```
@@ -183,7 +183,7 @@ Plan curso/2026-2/scripts/
 2. **Comando único:** `.\lab-floci.ps1 -Cloud aws` (o `az` / `gcp` / `oci`).
 3. **Resultado:** contenedor healthy + variables de entorno impresas + smoke test.
 
-Si no hay Docker → mensaje claro con enlace al camino B (Play with Docker).
+Si no hay Docker → mensaje claro con enlace al camino B (LabEx Docker Playground).
 
 Esqueleto listo en `scripts/` (no depende de un “repo lab UNIAJC” externo; clona/arranca imagen oficial Floci).
 
@@ -201,7 +201,7 @@ Esqueleto listo en `scripts/` (no depende de un “repo lab UNIAJC” externo; c
 ### Siguientes pasos (checklist)
 - [ ] Docente aprueba este plan (veredicto + piloto Clase 7).
 - [ ] Probar `lab-floci.ps1 -Cloud aws` en un PC Windows del salón (medir tiempo de pull).
-- [ ] Decidir camino oficial del piloto: Local Docker **o** Play with Docker.
+- [ ] Decidir camino oficial del piloto: Local Docker **o** LabEx Docker Playground.
 - [ ] Redactar taller CloudLite Clase 7 (estudiante) apuntando al script.
 - [ ] Si el piloto OK → mencionar Floci en Presentación del Curso / Recursos (sin regenerar todas las PPTX ahora).
 - [ ] Si falla por Docker en aula → archivar como “demo docente” y seguir con Killercoda.

@@ -4269,7 +4269,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                   'candidatos reales, eligalos con criterio.\n'
                                   '- Prioridad ordenada: los bloqueantes primero.\n'
                                   '- **Ninguno puede referirse a la persona, a su esfuerzo ni a '
-                                  '"el equipo no estudio"**. Se revisa codigo, no gente.\n'
+                                  '"no estudio"**. Se revisa codigo, no gente.\n'
                                   '- Cada hallazgo debe ser distinto: no repita el mismo defecto '
                                   'con dos redacciones.\n'
                                   '- Al menos uno debe apoyarse en los **casos borde** que ejecuto '
@@ -4435,9 +4435,9 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                 '    }\n'
                                 '}\n',
                      'tipo': 'codigo'},
-                    {'enunciado': '## Plan de correccion del equipo autor\n'
+                    {'enunciado': '## Plan de correccion del autor del proyecto\n'
                                   '\n'
-                                  'Ahora cambie de silla: usted es el **equipo autor** que recibio '
+                                  'Ahora cambie de silla: usted es el **autor** del proyecto que recibio '
                                   'la revision. Para cada uno de los cinco hallazgos escriba una '
                                   'linea con las tres decisiones posibles y un **responsable con '
                                   'nombre y apellido**:\n'
@@ -5579,7 +5579,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                   'la **demo en vivo debe ocupar por lo menos la mitad** del '
                                   'tiempo.\n'
                                   '\n'
-                                  '| # | Bloque | Responsable (nombre y apellido) | Minutos '
+                                  '| # | Bloque | Responsable (su nombre; si hay equipo, el del integrante) | Minutos '
                                   'planeados | Que se dice o se muestra exactamente |\n'
                                   '|---|--------|--------------------------------|-------------------|--------------------------------------|\n'
                                   '| 1 | Problema de la clinica «Huellitas» y que resuelve VetCare '
@@ -5590,8 +5590,11 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                   '| 5 | Aprendizajes y siguiente paso | | | |\n'
                                   '\n'
                                   'Requisitos:\n'
-                                  '- **Todos los integrantes** deben tener al menos un bloque. '
-                                  'Nadie sin intervencion.\n'
+                                  '- **Ningun bloque puede quedar sin responsable ni sin evidencia.** '
+                                  'El trabajo es individual por defecto: si sustenta solo, los '
+                                  'cinco bloques son suyos. Si el docente autorizo equipo de 2 o '
+                                  '3, todos los integrantes deben tener al menos un bloque y nadie '
+                                  'queda sin intervencion.\n'
                                   '- En el bloque 3 escriba los pasos exactos que va a ejecutar: '
                                   'registrar dueño, registrar mascota, agendar cita, buscar por '
                                   'ID, cerrar y volver a abrir mostrando que los datos siguen '
@@ -5606,7 +5609,8 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                   'la demo en vivo (bloques 3 y 4) sobre el total.',
                      'puntos': 25,
                      'rubrica': 'La tabla tiene los cinco bloques con responsable identificado por '
-                                'nombre y minutos, todos los integrantes con al menos un bloque, y '
+                                'nombre y minutos, sin ningun bloque huerfano (y, si hay equipo, '
+                                'todos los integrantes con al menos un bloque), y '
                                 'el total entre 5 y 7 minutos con la demo (bloques 3 y 4) ocupando '
                                 'la mitad o mas. El bloque 3 detalla los pasos de la ruta feliz y '
                                 'el 4 nombra el error que se provocara y el mensaje esperado. '
@@ -5778,8 +5782,9 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                      'tipo': 'codigo'},
                     {'enunciado': '## Planilla de tiempos de los dos ensayos\n'
                                   '\n'
-                                  'Haga el **ensayo 1** de pie, cada integrante hablando su bloque '
-                                  'completo, con cronometro. Ajuste el guion. Haga el **ensayo '
+                                  'Haga el **ensayo 1** de pie, hablando cada bloque completo sin '
+                                  'saltarse ninguno (si trabaja en equipo, cada integrante el '
+                                  'suyo), con cronometro. Ajuste el guion. Haga el **ensayo '
                                   '2**. Reporte:\n'
                                   '\n'
                                   '| Bloque | Minutos planeados | Ensayo 1 (real) | Ensayo 2 '
@@ -5868,8 +5873,9 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                   'No tener plan B y depender de que el proyector, el wifi y '
                                   'NetBeans funcionen a la primera.',
                                   'Ensayar de pie y con cronometro antes de sustentar.',
-                                  'Que un integrante del equipo no tenga ningun bloque asignado y '
-                                  'solo aparezca a responder preguntas.'],
+                                  'Dejar un bloque del guion sin responsable ni evidencia (o, en '
+                                  'trabajo en equipo, un integrante sin ningun bloque asignado que '
+                                  'solo aparece a responder preguntas).'],
                      'puntos': 5,
                      'rubrica': 'Correctas: opciones 0, 2, 3 y 5. Se califica por acertadas menos '
                                 'las marcadas por error.',
@@ -5877,11 +5883,13 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                     {'enunciado': '## Ronda de jurado: cinco preguntas y respuestas de 30 '
                                   'segundos\n'
                                   '\n'
-                                  'Intercambien con otro equipo una ronda de **cinco preguntas de '
+                                  'Intercambien con otro estudiante -o con otro equipo, si el docente '
+                                  'lo autorizo- una ronda de **cinco preguntas de '
                                   'jurado** sobre VetCare. Escriba las cinco preguntas que '
                                   '**recibio** (textuales) y, para cada una, su respuesta en '
-                                  '**maximo 30 segundos** (tres o cuatro lineas), diciendo **quien '
-                                  'del equipo la responde**.\n'
+                                  '**maximo 30 segundos** (tres o cuatro lineas), diciendo **con que '
+                                  'evidencia en pantalla la sustenta** (y, si hay equipo, quien la '
+                                  'responde).\n'
                                   '\n'
                                   'Al menos dos de las cinco deben ser preguntas tecnicas '
                                   'incomodas del estilo:\n'
@@ -5914,7 +5922,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                 'mostraria como evidencia. Cierra identificando la pregunta que '
                                 'los dejo sin respuesta y la accion correctiva tomada.',
                      'tipo': 'abierta'}],
-      'resumen': 'El equipo deja el guion de sustentacion con bloques y minutos, el sembrador de '
+      'resumen': 'Cada estudiante deja el guion de sustentacion con bloques y minutos, el sembrador de '
                  'datos de demostracion en [OK], dos ensayos cronometrados dentro de la ventana de '
                  '5 a 8 minutos y el plan B grabado.',
       'titulo': 'Taller Clase 14 en ExamLab - Preparacion de la sustentacion de VetCare'}}

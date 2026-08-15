@@ -1,16 +1,14 @@
 ﻿curso,codigo_fi,grupo,clase_n,fecha,dia,hora_inicio,hora_fin,tipo_clase,es_parcial,parcial_n,sesion_etiqueta,tema,notas
-Programación II,FI303204,341C,1,2026-08-12,Miércoles,18:00,20:00,presencial,no,,Clase 1,Presentación del curso · Introducción a POO,
-Programación II,FI303204,341C,2,2026-08-19,Miércoles,18:00,20:00,virtual,no,,Clase 2,Colecciones dinámicas ArrayList,
-Programación II,FI303204,341C,3,2026-08-26,Miércoles,18:00,20:00,virtual,no,,Clase 3,Pilas y colas,
-Programación II,FI303204,341C,4,2026-09-02,Miércoles,18:00,20:00,virtual,no,,Clase 4,Mapas y conjuntos · interfaces gráficas GUI,
-Programación II,FI303204,341C,5,2026-09-09,Miércoles,18:00,20:00,presencial,si,1,Clase 5 · Parcial 1,Parcial 1 (solo evaluacion),parcial presencial sincrono
-Programación II,FI303204,341C,6,2026-09-16,Miércoles,18:00,20:00,virtual,no,,Clase 6,Eventos y controladores,
-Programación II,FI303204,341C,7,2026-09-23,Miércoles,18:00,20:00,virtual,no,,Clase 7,Patrones de diseño,
-Programación II,FI303204,341C,8,2026-09-30,Miércoles,18:00,20:00,virtual,no,,Clase 8,Documentación y QA,
-Programación II,FI303204,341C,9,2026-10-07,Miércoles,18:00,20:00,virtual,no,,Clase 9,Refactorización con IA · persistencia de archivos,
-Programación II,FI303204,341C,10,2026-10-14,Miércoles,18:00,20:00,presencial,si,2,Clase 10 · Parcial 2,Parcial 2 (solo evaluacion),parcial presencial sincrono
-Programación II,FI303204,341C,11,2026-10-21,Miércoles,18:00,20:00,virtual,no,,Clase 11,Revisión de código cruzada,
-Programación II,FI303204,341C,12,2026-10-28,Miércoles,18:00,20:00,virtual,no,,Clase 12,Integración de módulos,
-Programación II,FI303204,341C,13,2026-11-04,Miércoles,18:00,20:00,virtual,no,,Clase 13,Control de excepciones,
-Programación II,FI303204,341C,14,2026-11-11,Miércoles,18:00,20:00,virtual,no,,Clase 14,Preparación presentación final,
-Programación II,FI303204,341C,15,2026-11-18,Miércoles,18:00,20:00,presencial,si,3,Clase 15 · Parcial 3,Parcial 3 (solo evaluacion),parcial presencial sincrono
+Programación II,FI303204,341C,1,2026-08-26,Miércoles,18:00,20:00,presencial,no,,Sesión 1 · Clase 1,Presentación del curso · Introducción a POO (+ diagnóstico),
+Programación II,FI303204,341C,2,2026-09-02,Miércoles,18:00,20:00,virtual,no,,Sesión 2 · Clase 2,Colecciones dinámicas ArrayList,
+Programación II,FI303204,341C,3,2026-09-09,Miércoles,18:00,20:00,virtual,no,,Sesión 3 · Clase 3,Pilas y colas,
+Programación II,FI303204,341C,4,2026-09-16,Miércoles,18:00,20:00,virtual,no,,Sesión 4 · Clase 4,Mapas y conjuntos · Interfaces gráficas GUI,
+Programación II,FI303204,341C,5,2026-09-23,Miércoles,18:00,20:00,presencial,si,1,Sesión 5 · Parcial 1 · Clase 5,PARCIAL 1 (solo evaluación),parcial presencial síncrono
+Programación II,FI303204,341C,6,2026-09-30,Miércoles,18:00,20:00,virtual,no,,Sesión 6 · Clase 6,Eventos y controladores (ActionListener),
+Programación II,FI303204,341C,7,2026-10-07,Miércoles,18:00,20:00,virtual,no,,Sesión 7 · Clase 7,Patrones de diseño (Singleton y Factory),
+Programación II,FI303204,341C,8,2026-10-14,Miércoles,18:00,20:00,virtual,no,,Sesión 8 · Clase 8 + Clase 9 (doble),Documentación y QA (Javadoc y pruebas) + Refactorización con IA y persistencia de archivos,sesión doble: cubre Clase 8 + Clase 9 del material en un bloque de 120 min
+Programación II,FI303204,341C,9,2026-10-21,Miércoles,18:00,20:00,presencial,si,2,Sesión 9 · Parcial 2 · Clase 10,PARCIAL 2 (solo evaluación),parcial presencial síncrono
+Programación II,FI303204,341C,10,2026-10-28,Miércoles,18:00,20:00,virtual,no,,Sesión 10 · Clase 11 + Clase 12 (doble),Revisión de código cruzada + Integración de módulos,sesión doble: cubre Clase 11 + Clase 12 del material en un bloque de 120 min
+Programación II,FI303204,341C,11,2026-11-04,Miércoles,18:00,20:00,virtual,no,,Sesión 11 · Clase 13,Control de excepciones,
+Programación II,FI303204,341C,12,2026-11-11,Miércoles,18:00,20:00,virtual,no,,Sesión 12 · Clase 14,Preparación presentación final,
+Programación II,FI303204,341C,13,2026-11-18,Miércoles,18:00,20:00,presencial,si,3,Sesión 13 · Parcial 3 · Clase 15,PARCIAL 3 (solo evaluación),parcial presencial síncrono

@@ -13,7 +13,7 @@ EXTRA = {
 "Web/API de dominio realista (citas, academia, inventario).",
 "Entregables: diagramas + contenedor + CI/CD conceptual + informe.",
 "Hoy: problema + capacidades + C4 Context.",
-"Stack: draw.io, Killercoda, Play with Docker, GitHub Actions.",
+"Stack: draw.io, LabEx Docker Playground, Killercoda, GitHub Actions.",
 ]),
 ("De dominio a arquitectura", [
 "Actor/problema → capacidades → contenedores logicos → datos → riesgos.",
@@ -41,7 +41,7 @@ EXTRA = {
 "CloudLite: al menos un servicio contenerizado.",
 ]),
 ("Lab en navegador", [
-"Killercoda o Play with Docker: build/run del stub.",
+"LabEx Docker Playground o Killercoda: build/run del stub.",
 "Si el lab caduca: Dockerfile + capturas con timestamp.",
 "Sin secretos en la imagen.",
 ]),
@@ -128,11 +128,11 @@ EXTRA = {
 }
 
 PASOS = {
-1: ["Equipo 2-3 (o individual).","Dominio concreto.","Problema 2-3 frases + 3-5 capacidades + actores.",
+1: ["Individual (o equipo de 2-3 si el docente lo autoriza).","Dominio concreto.","Problema 2-3 frases + 3-5 capacidades + actores.",
     "C4 Context en Excalidraw/draw.io.","Entrega Doc+PNG → ExamLab domingo 23:59."],
 2: ["Leer slides + enunciado PI.","Matriz IaaS/PaaS/SaaS vs dominio.","ADR-001 con 2 alternativas.",
     "Actualizar informe (Modelo de servicio).","Entrega domingo 23:59."],
-3: ["Elegir servicio a contenerizar.","Build/run en Killercoda o PWD.","Dockerfile en repo/ZIP.",
+3: ["Elegir servicio a contenerizar.","Build/run en LabEx Docker Playground o Killercoda.","Dockerfile en repo/ZIP.",
     "Captura o enlace de sesion.","Seccion Contenedores en informe."],
 4: ["C4 Containers 2-5 servicios.","3 contratos API.","Export PNG+.drawio.",
     "Seccion Arquitectura logica + riesgos."],
@@ -160,7 +160,7 @@ QUIZ = {
     ("Por que no AWS con tarjeta?","Politica gratis+navegador.")],
 2: [("Runtime gestionado por proveedor?","PaaS."),("Que es ADR?","Decision + trade-offs."),
     ("SaaS dominante en CloudLite?","Rara vez; si como satelite.")],
-3: [("Que comparte el contenedor?","Kernel."),("Lab permitido?","Killercoda o PWD."),
+3: [("Que comparte el contenedor?","Kernel."),("Lab permitido?","LabEx Docker Playground o Killercoda."),
     ("Secretos en Dockerfile?","No; quedan en la imagen.")],
 4: [("Cuando monolito?","Equipo pequeno/dominio acotado."),("Etiqueta de flecha C4?","Protocolo."),
     ("Riesgo distribuido?","Latencia/particion/reintentos.")],

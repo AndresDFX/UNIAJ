@@ -1,5 +1,5 @@
 # Backlog agil y plan de sprints - Proyecto Integrador VetCare
-**Clinica Veterinaria Huellitas** | Equipo: ______________
+**Clinica Veterinaria Huellitas** | Estudiante: ______________
 
 > Agil NO es trabajar sin documentacion. Aqui el incremento de cada sprint ES un artefacto de diseno.
 
@@ -42,7 +42,7 @@ Regla: si no hay al menos un criterio de error, la historia esta incompleta.
 
 ---
 
-## 3. Definicion de Terminado (DoD) del equipo
+## 3. Definicion de Terminado (DoD)
 
 Una tarjeta pasa a **Aprobado** solo si cumple TODO:
 

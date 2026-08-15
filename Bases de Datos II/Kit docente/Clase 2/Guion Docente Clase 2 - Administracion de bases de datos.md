@@ -20,8 +20,8 @@ del PI VetCare. La teoria se limita a desbloquear el taller.
 - Principio de minimo privilegio: cada rol recibe solo lo que necesita para su funcion, ni un privilegio mas. No es paranoia, es reduccion de superficie de dano: si roban la sesion de un recepcionista, no debe poder borrar el historial clinico ni ver nomina.
 - Separacion de funciones (segregation of duties): quien disena/modifica el esquema (DDL: CREATE/ALTER/DROP) no deberia ser la misma cuenta que opera datos del dia a dia (DML: INSERT/UPDATE/DELETE), y quien audita solo deberia leer (SELECT), nunca escribir.
 - GRANT otorga un privilegio a un rol o usuario; REVOKE lo retira. Un rol se puede asignar a varios usuarios (todos los recepcionistas heredan el rol RECEPCION) y modificar en un solo lugar en vez de uno por uno.
-- Error de docente que no domina el tema: crear un unico usuario 'admin' que todos comparten (rompe la trazabilidad de auditoria) o dar DBA/ALL PRIVILEGES a todo el equipo 'para que no falle nada' — exactamente lo opuesto a minimo privilegio.
-- En el playground (Live SQL / DB Fiddle) el motor puede restringir CREATE ROLE o GRANT reales: cuando eso pase, el equipo redacta la matriz rol x objeto x privilegio como documento/plan, y ejecuta lo que el playground SI permita como evidencia parcial — no es escusa para omitir el analisis.
+- Error de docente que no domina el tema: crear un unico usuario 'admin' que todos comparten (rompe la trazabilidad de auditoria) o dar DBA/ALL PRIVILEGES a todo el mundo 'para que no falle nada' — exactamente lo opuesto a minimo privilegio.
+- En el playground (Live SQL / DB Fiddle) el motor puede restringir CREATE ROLE o GRANT reales: cuando eso pase, el estudiante redacta la matriz rol x objeto x privilegio como documento/plan, y ejecuta lo que el playground SI permita como evidencia parcial — no es escusa para omitir el analisis.
 
 ### Desarrollo del tema (para dictar sin consultar otra fuente)
 
@@ -41,7 +41,7 @@ El entregable central de hoy no es el script sino la matriz rol por objeto por p
 
 La segunda pagina del entregable es la politica de altas y bajas, que documenta el ciclo de vida de una cuenta: quien autoriza que se cree, con que rol nace, que pasa cuando alguien cambia de funcion, y en cuanto tiempo se desactiva cuando se va de la clinica. El plazo que se compromete habitualmente en la industria es el mismo dia del retiro, y por convencion se revisan las cuentas activas cada tres o seis meses; ninguno de esos dos numeros es una regla dura del motor, son practicas de gobierno. El problema que resuelve la politica es la cuenta huerfana: la del pasante que se fue hace un ano y cuya clave sigue funcionando. Dos reglas la cierran. Una, nunca cuentas compartidas: si tres recepcionistas entran con la cuenta recepcion1, la tabla de auditoria dira que recepcion1 cancelo la cita y no habra forma de saber quien fue; la trazabilidad se pierde de manera irrecuperable y con ella cualquier investigacion posterior. Dos, los permisos no se acumulan: al cambiar de rol se revoca el anterior, porque quien pasa de recepcion a auditoria y conserva ambos roles termina pudiendo modificar justamente lo que audita. Esto amarra con las clases vecinas de forma directa. La Clase 1 dejo el modelo y las claves primarias que hoy se protegen. La Clase 3 introduce procedimientos almacenados y con ellos el patron mas fino de todos: no dar INSERT sobre Cita al rol RECEPCION, sino EXECUTE sobre sp_agendar_cita, de modo que el usuario solo pueda escribir a traves de la regla de negocio. La Clase 4 agrega disparadores de auditoria y el plan de respaldo, que son el otro componente de este mismo criterio de rubrica. Y la Clase 12 reutiliza estos roles para definir la cuenta de servicio con la que la aplicacion se conecta. En la rubrica del PI, seguridad y respaldo valen 15 de los 100 puntos.
 
-Error tipico del docente que no domina el tema: el primero es crear un unico usuario admin que todo el equipo comparte «para que no falle nada». La consecuencia aguas abajo es doble. Rompe la trazabilidad, porque ninguna auditoria posterior puede atribuir un cambio a una persona y los disparadores de auditoria de la Clase 4 quedan registrando siempre el mismo nombre, es decir sirviendo para nada. Y deja al estudiante convencido de que los permisos son un tramite administrativo y no una decision de diseno. El segundo error es otorgar DBA o ALL PRIVILEGES a todos los roles para que ningun taller se bloquee en el playground. La consecuencia es que la matriz del entregable queda con todas las celdas en si, de modo que no hay ninguna decision que evaluar, y en la sustentacion de la Clase 15 el equipo no puede responder por que RECEPCION no ve el historial clinico, que es exactamente la pregunta que se hace ahi. Un tercer tropiezo, pequeno pero delator: confundir rol con usuario al explicar, y decir «le doy el rol a la tabla» o «creo un privilegio». Los privilegios no se crean, vienen definidos por el motor; lo unico que se crea son usuarios y roles, y los privilegios solo se otorgan o se retiran.
+Error tipico del docente que no domina el tema: el primero es crear un unico usuario admin que todos comparten «para que no falle nada». La consecuencia aguas abajo es doble. Rompe la trazabilidad, porque ninguna auditoria posterior puede atribuir un cambio a una persona y los disparadores de auditoria de la Clase 4 quedan registrando siempre el mismo nombre, es decir sirviendo para nada. Y deja al estudiante convencido de que los permisos son un tramite administrativo y no una decision de diseno. El segundo error es otorgar DBA o ALL PRIVILEGES a todos los roles para que ningun taller se bloquee en el playground. La consecuencia es que la matriz del entregable queda con todas las celdas en si, de modo que no hay ninguna decision que evaluar, y en la sustentacion de la Clase 15 el estudiante no puede responder por que RECEPCION no ve el historial clinico, que es exactamente la pregunta que se hace ahi. Un tercer tropiezo, pequeno pero delator: confundir rol con usuario al explicar, y decir «le doy el rol a la tabla» o «creo un privilegio». Los privilegios no se crean, vienen definidos por el motor; lo unico que se crea son usuarios y roles, y los privilegios solo se otorgan o se retiran.
 
 
 **Demo que usted debe poder repetir:** Matriz rol x objeto x privilegio sobre tablas VetCare.
@@ -77,7 +77,7 @@ estudiante autonomo sepa si le quedo bien):
 📸 Pantallazo: [CAP: demo VetCare Clase 2]
 
 ### Bloque D (100-120) · Empaquetado y cierre
-Subir entregable a ExamLab. Actualizar checklist PI del equipo.
+Subir entregable a ExamLab. Actualizar el checklist PI del proyecto.
 
 
 ## Codigo / scripts
@@ -88,5 +88,5 @@ Carpeta Capturas/. Placeholders [CAP: ...] arriba; reemplazar por PNG reales cua
 (Playwright/manual en DB Fiddle, draw.io, Live SQL).
 
 ## Criterios de exito del dia
-- Equipos tienen el entregable o gaps escritos.
+- Cada estudiante tiene el entregable o sus gaps escritos.
 - Queda claro el vinculo con la rubrica del PI (modelo, seguridad, procs, opt, integracion).

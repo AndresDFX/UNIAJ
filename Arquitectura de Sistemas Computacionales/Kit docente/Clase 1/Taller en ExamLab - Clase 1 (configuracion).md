@@ -23,20 +23,22 @@
 
 ## Ficha del PI CloudLite App
 
-Escriba la ficha de su equipo respetando **exactamente** esta estructura de 6 bloques rotulados:
+Esta es una actividad **individual**: cada estudiante entrega su propia ficha y su propio diagrama. Escriba su ficha respetando **exactamente** esta estructura de 6 bloques rotulados:
 
-1. **EQUIPO**: nombre del equipo y los 2 o 3 integrantes, con un rol unico cada uno (diagramas / informe / laboratorio).
-2. **DOMINIO**: una linea. Elija uno concreto: AgendaU (asesorias academicas), BiblioLite (prestamos), InventarioLab (equipos de laboratorio), TurnosClinica (citas) o EventosCampus (inscripciones). Puede proponer uno propio del mismo tamano.
-3. **PROBLEMA**: exactamente 3 frases, en este orden: (a) quien sufre el problema, (b) como se resuelve hoy sin CloudLite, (c) una cifra medible del dolor. Ejemplo de (c): `hoy se cruzan 40 correos por semana para cuadrar 12 asesorias`.
+1. **DOMINIO**: una linea. Elija uno concreto: AgendaU (asesorias academicas), BiblioLite (prestamos), InventarioLab (equipos de laboratorio), TurnosClinica (citas) o EventosCampus (inscripciones). Puede proponer uno propio del mismo tamano.
+2. **PROBLEMA**: exactamente 3 frases, en este orden: (a) quien sufre el problema, (b) como se resuelve hoy sin CloudLite, (c) una cifra medible del dolor. Ejemplo de (c): `hoy se cruzan 40 correos por semana para cuadrar 12 asesorias`.
+3. **CAPACIDADES**: exactamente 4 capacidades en formato verbo + objeto de negocio (reservar cita, publicar cupo, cancelar reserva, notificar recordatorio). **Prohibido nombrar tecnologia.**
 4. **ACTORES**: exactamente 3 actores humanos, cada uno con una frase de que espera del sistema.
-5. **CAPACIDADES**: exactamente 4 capacidades en formato verbo + objeto de negocio (reservar cita, publicar cupo, cancelar reserva, notificar recordatorio). **Prohibido nombrar tecnologia.**
+5. **SISTEMAS EXTERNOS**: 2 o 3 sistemas de terceros con los que CloudLite intercambia informacion (por ejemplo un proveedor de identidad institucional, un servicio de correo transaccional o una pasarela de pagos). Estos mismos nombres son los que despues aparecen como `System_Ext` en el diagrama de la pregunta 2.
 6. **FUERA DE ALCANCE**: exactamente 3 cosas que CloudLite NO hara este semestre.
 
 Esta ficha es la seccion 1 del informe del PI y el dominio **no vuelve a cambiar** en el resto del curso: las clases 4, 7, 11 y 15 reutilizan estos mismos nombres.
 
+> **La entrega oficial es esta respuesta dentro de ExamLab.** El documento o ficha en Word/Google Docs que use para preparar sus ideas es opcional y solo sirve para conservar sus respuestas; lo que se califica es lo que quede escrito aqui.
+
 **Rubrica esperada (campo Rubrica):**
 
-4 pts los 6 bloques rotulados y completos. 4 pts el problema con las 3 frases exigidas y una cifra medible. 4 pts los 3 actores con expectativa explicita. 5 pts las 4 capacidades en verbo + objeto sin mencionar tecnologia. 3 pts las 3 exclusiones. Si el dominio es generico (app de la universidad, red social), los bloques 2 y 3 valen cero.
+3 pts los 6 bloques rotulados y completos. 4 pts el problema con las 3 frases exigidas y una cifra medible. 4 pts las 4 capacidades en verbo + objeto sin mencionar tecnologia. 3 pts los 3 actores con expectativa explicita. 3 pts los 2 o 3 sistemas externos coherentes con los System_Ext del diagrama de la pregunta 2. 3 pts las 3 exclusiones. Si el dominio es generico (app de la universidad, red social), los bloques 1 y 2 valen cero.
 
 ---
 

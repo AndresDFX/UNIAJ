@@ -37,6 +37,34 @@ from uniajc_slides_engine import (
 
 )
 
+import calendario_2026_2 as cal
+
+CURSO_KEY = "seminario"
+
+# Temas del material ya construido (carpetas «Clase N», que NO se renumeran).
+# El calendario 2026-2 (13 sesiones) decide en qué sesión se dicta cada uno;
+# dos sesiones son dobles (dos temas afines en un bloque de 120 min).
+TEMAS_MATERIAL = {
+    1: "Diagnóstico · Conceptos iniciales",
+    2: "Ciclos de vida del software",
+    3: "Metodologías tradicionales",
+    4: "Metodologías ágiles",
+    5: "Repaso y evaluación del corte 1",
+    6: "Requerimientos de software",
+    7: "Historias de usuario",
+    8: "Introducción a UML",
+    9: "Casos de uso",
+    10: "Repaso y evaluación del corte 2",
+    11: "Avance del proyecto integrador",
+    12: "Diagramas UML avanzados",
+    13: "Diseño de interfaces",
+    14: "Preparación de la sustentación y cierre",
+    15: "Cierre y evaluación del corte 3",
+}
+
+CT = cal.cortes(CURSO_KEY)
+
+
 
 
 
@@ -211,11 +239,11 @@ def build():
 
 
 
-        '**Clase 1** (material en archivo aparte) = diagnóstico de conocimientos previos + arranque temático — mismo bloque de hoy.',
+        '**Sesión 1** (material «Clase 1», archivo aparte) = diagnóstico de conocimientos previos + arranque temático — mismo bloque de hoy.',
 
 
 
-        'Cada jueves (120 min): **Teoría Core** → **Taller / exposición** → cierre. Modalidad: **Presencialidad asistida**: Clase 1 y parciales **presencial**; resto **virtual síncrona**; festivos = **clase autónoma**.',
+        'Cada jueves (120 min): **Teoría Core** → **Taller / exposición** → cierre. **13 sesiones**: sesión 1 y parciales (**5 / 9 / 13**) **presencial**; resto **virtual síncrona**; dos sesiones son **dobles** (dos temas en un bloque).',
 
 
 
@@ -230,12 +258,15 @@ def build():
     evaluacion_cortes_slide(
         prs, "Sistema de evaluación (Acuerdo pedagógico)",
         [
-            {"corte": 1, "pct": "30%", "ventana": "13/08 – 13/09/2026",
-             "desglose": ["**Parcial 1** (10/09 · Clase 5) · 10%", "Talleres o Quiz · 10%", "Asistencia · 10%"]},
-            {"corte": 2, "pct": "30%", "ventana": "14/09 – 18/10/2026",
-             "desglose": ["**Parcial 2** (15/10 · Clase 10) · 10%", "Talleres o Quiz · 10%", "Asistencia · 10%"]},
-            {"corte": 3, "pct": "40%", "ventana": "19/10 – 22/11/2026",
-             "desglose": ["**Parcial 3** (19/11 · Clase 15) · 15%", "**Proyecto Integrador** · 20%", "Asistencia · 5%"]},
+            {"corte": 1, "pct": CT[0]["pct"], "ventana": CT[0]["ventana"],
+             "desglose": [f"**Parcial 1** ({CT[0]['parcial_fecha']} · sesión {CT[0]['parcial_sesion']}) · 10%",
+                          "Talleres o Quiz · 10%", "Asistencia · 10%"]},
+            {"corte": 2, "pct": CT[1]["pct"], "ventana": CT[1]["ventana"],
+             "desglose": [f"**Parcial 2** ({CT[1]['parcial_fecha']} · sesión {CT[1]['parcial_sesion']}) · 10%",
+                          "Talleres o Quiz · 10%", "Asistencia · 10%"]},
+            {"corte": 3, "pct": CT[2]["pct"], "ventana": CT[2]["ventana"],
+             "desglose": [f"**Parcial 3** ({CT[2]['parcial_fecha']} · sesión {CT[2]['parcial_sesion']}) · 15%",
+                          "**Proyecto Integrador** · 20%", "Asistencia · 5%"]},
         ],
         note="Parciales presencial síncrono · nunca en festivo/autónoma. Día de parcial = solo evaluación.",
         idx=8,
@@ -259,72 +290,10 @@ def build():
 
 
 
-        [
-
-
-
-            {"n": 0, "kind": "sesion0", "tema": "Presentación del curso (logística)", "fecha": "13/08"},
-            {"n": 1, "tema": "Diagnóstico · Conceptos iniciales", "fecha": "13/08"},
-
-
-
-            {"n": 2, "tema": "Ciclos de vida", "fecha": "20/08"},
-
-
-
-            {"n": 3, "tema": "Metodologías tradicionales", "fecha": "27/08"},
-
-
-
-            {"n": 4, "tema": "Metodologías ágiles", "fecha": "03/09"},
-
-
-
-            {"n": 5, "tema": "Parcial 1", "fecha": "10/09"},
-
-
-
-            {"n": 6, "tema": "Requerimientos de software", "fecha": "17/09"},
-
-
-
-            {"n": 7, "tema": "Historias de usuario", "fecha": "24/09"},
-
-
-
-            {"n": 8, "tema": "Introducción a UML", "fecha": "01/10"},
-
-
-
-            {"n": 9, "tema": "Casos de uso", "fecha": "08/10"},
-
-
-
-            {"n": 10, "tema": "Parcial 2", "fecha": "15/10"},
-
-
-
-            {"n": 11, "tema": "Avance proyecto integrador", "fecha": "22/10"},
-
-
-
-            {"n": 12, "tema": "Diagramas UML avanzados", "fecha": "29/10"},
-
-
-
-            {"n": 13, "tema": "Diseño de interfaces", "fecha": "05/11"},
-
-
-
-            {"n": 14, "tema": "Evaluación final (prep. sustentación) · Sustentación de proyectos + cierre", "fecha": "12/11"},
-
-
-
-            {"n": 15, "tema": "Parcial 3", "fecha": "19/11"},
-
-
-
-        ],
+        cal.contenido_items(
+            CURSO_KEY, TEMAS_MATERIAL,
+            "Presentación del curso (logística) + socialización del PI",
+        ),
 
 
 
@@ -333,7 +302,7 @@ def build():
 
 
         idx_start=9,
-        sub="Día 1: Sesión 0 (Presentación del curso, archivo aparte) + Clase 1 (diagnóstico · tema)",
+        sub=("13 sesiones · los 15 temas se conservan: dos sesiones son **dobles** (dos temas en un bloque). Día 1: Sesión 0 (archivo aparte) + Sesión 1 (diagnóstico · tema)"),
 
 
 
@@ -397,7 +366,7 @@ def build():
 
 
 
-            ('advertencia', 'Parciales NUNCA en autónoma: P1=Clase 5 (10/09), P2=Clase 10 (15/10), P3=Clase 15 (19/11).'),
+            ('advertencia', 'Parciales NUNCA en autónoma: P1=sesión 5 (24/09), P2=sesión 9 (22/10), P3=sesión 13 (19/11, con sustentación final).'),
 
 
 

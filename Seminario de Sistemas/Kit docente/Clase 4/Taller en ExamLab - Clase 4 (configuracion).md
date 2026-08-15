@@ -5,7 +5,7 @@
 - **Preguntas:** 5 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
 - **Hito del PI:** Queda listo el backlog priorizado de VetCare repartido en sprints del semestre, con las primeras historias de usuario escritas con criterios de aceptacion.
-- **Entregable de la clase:** Un tablero en draw.io o Excalidraw con el Product Backlog priorizado de VetCare y las columnas de flujo con limite de trabajo en curso, mas un documento con el plan de tres sprints (objetivo y entregable de diseño de cada uno), la Definicion de Terminado del equipo y tres historias de usuario con criterios en formato Dado/Cuando/Entonces.
+- **Entregable de la clase:** Un tablero en draw.io o Excalidraw con el Product Backlog priorizado de VetCare y las columnas de flujo con limite de trabajo en curso, mas un documento con el plan de tres sprints (objetivo y entregable de diseño de cada uno), la Definicion de Terminado y tres historias de usuario con criterios en formato Dado/Cuando/Entonces.
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
@@ -136,7 +136,7 @@ Reglas:
 - Distribuya **8 tarjetas** (las 8 historias de su backlog, con su codigo HU-0x) entre las 4 columnas.
 - Las dos columnas del medio **no pueden tener mas de 2 tarjetas cada una**: ese es el limite de trabajo en curso y el diagrama debe respetarlo.
 - Conecte las columnas con flechas que muestren el flujo de izquierda a derecha.
-- Agregue **1 subgraph adicional al final** rotulado `Definicion de Terminado` con **3 nodos**, cada uno una condicion verificable para dar por terminado un artefacto de diseno (por ejemplo: tiene diagrama en Mermaid renderizando, esta revisado por un compañero de otro equipo, tiene visto bueno del cliente).
+- Agregue **1 subgraph adicional al final** rotulado `Definicion de Terminado` con **3 nodos**, cada uno una condicion verificable para dar por terminado un artefacto de diseno (por ejemplo: tiene diagrama en Mermaid renderizando, esta revisado por otro compañero del curso, tiene visto bueno del cliente).
 
 **Diagrama de referencia (Mermaid):**
 
@@ -160,7 +160,7 @@ flowchart LR
     end
     subgraph DT[Definicion de Terminado]
         D1[Tiene diagrama en Mermaid que renderiza sin error]
-        D2[Fue revisado por un integrante de otro equipo]
+        D2[Fue revisado por otro compañero del curso]
         D3[Tiene visto bueno escrito del Dr Ramirez]
     end
     PH --> MO --> RC --> AP
@@ -186,8 +186,8 @@ En este curso no se entrega codigo: se entregan planos. Marque **todas** las con
 
 - [x] El diagrama esta hecho en Mermaid, renderiza sin errores y todos sus elementos aparecen en la matriz de trazabilidad.
 - [ ] El modulo compila sin errores y pasa las pruebas unitarias en Java.
-- [x] Un integrante de otro equipo lo reviso con la rubrica y sus hallazgos bloqueantes fueron corregidos.
-- [ ] El equipo siente que el artefacto ya quedo bien.
+- [x] Otro compañero del curso lo reviso con la rubrica y sus hallazgos bloqueantes fueron corregidos.
+- [ ] Usted siente que el artefacto ya quedo bien.
 - [x] Cada campo o elemento del artefacto se puede rastrear a un RF o a una historia de usuario.
 - [ ] El artefacto fue subido a ExamLab antes de la fecha limite.
 

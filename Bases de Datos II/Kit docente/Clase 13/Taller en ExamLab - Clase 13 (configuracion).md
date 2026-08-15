@@ -56,7 +56,7 @@ Las 6 secciones estan presentes. La causa raiz se distingue explicitamente de la
 
 ## 2. Mejora implementada 1: cerrar la inyeccion de SQL en VetCare
 
-El esquema `dueno`, `mascota`, `veterinario`, `cita` esta creado y poblado (8 mascotas; **Rocky** y **Kiara** inactivas). La base trae, a proposito, una funcion **vulnerable** que el equipo escribio en su momento para el buscador de mascotas:
+El esquema `dueno`, `mascota`, `veterinario`, `cita` esta creado y poblado (8 mascotas; **Rocky** y **Kiara** inactivas). La base trae, a proposito, una funcion **vulnerable** que el desarrollador de turno escribio en su momento para el buscador de mascotas:
 
 ```sql
 CREATE FUNCTION buscar_mascota_insegura(p_nombre TEXT)
@@ -84,7 +84,7 @@ Escribe el SQL que:
    (Mejor aun: como aqui no hace falta SQL dinamico, escribe **tambien** una variante `buscar_mascota_directa(p_nombre TEXT)` que use una consulta estatica `SELECT ... WHERE nombre = p_nombre`, sin `EXECUTE`.)
 5. **Pruebe que el agujero quedo cerrado**: repite el ataque contra la version segura,
    `SELECT * FROM buscar_mascota_segura('Firulais'' OR ''1''=''1');` -> debe devolver **0 filas**, porque ahora esa cadena completa se compara como un **valor**, no como codigo.
-6. **Elimine la funcion vulnerable** con `DROP FUNCTION buscar_mascota_insegura(TEXT);` y deje un comentario `--` con la regla que adopta el equipo sobre SQL dinamico y parametros ligados.
+6. **Elimine la funcion vulnerable** con `DROP FUNCTION buscar_mascota_insegura(TEXT);` y deje un comentario `--` con la regla que adoptas sobre SQL dinamico y parametros ligados.
 
 **SQL de partida (`options.db.setupSql`)** - corre antes del SQL del
 estudiante, sobre una base limpia. PostgreSQL, no Oracle:
@@ -177,7 +177,7 @@ $fn$;
 
 **Rubrica esperada (campo Rubrica):**
 
-Se demuestra el uso normal y el ataque, evidenciando con COUNT que la funcion insegura devuelve todas las mascotas. Se crea la version segura con EXECUTE ... USING (y opcionalmente la variante estatica) manteniendo la firma de retorno. El mismo ataque contra la version segura devuelve 0 filas. Se hace DROP de la funcion vulnerable y se enuncia la regla del equipo. Se descuenta si no se muestra el contraste cuantitativo antes/despues.
+Se demuestra el uso normal y el ataque, evidenciando con COUNT que la funcion insegura devuelve todas las mascotas. Se crea la version segura con EXECUTE ... USING (y opcionalmente la variante estatica) manteniendo la firma de retorno. El mismo ataque contra la version segura devuelve 0 filas. Se hace DROP de la funcion vulnerable y se enuncia la regla propia. Se descuenta si no se muestra el contraste cuantitativo antes/despues.
 
 ---
 
@@ -317,7 +317,7 @@ Selecciona **todas** las afirmaciones correctas sobre los controles que previene
 
 ## 5. Tres mejoras priorizadas para VetCare
 
-Cierra el informe con el plan de mejoras que tu equipo adopta a partir del caso. Entrega una tabla de **exactamente tres** filas:
+Cierra el informe con el plan de mejoras que adoptas a partir del caso. Entrega una tabla de **exactamente tres** filas:
 
 | # | Mejora concreta | Objeto de VetCare que cambia | Riesgo que mitiga | Esfuerzo (bajo/medio/alto) | Impacto (bajo/medio/alto) | Como se verifica | Estado |
 |---|---|---|---|---|---|---|---|

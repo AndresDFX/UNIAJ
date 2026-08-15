@@ -1,7 +1,7 @@
 # Wireframes anotados y prototipo navegable - VetCare
 **Clinica Veterinaria Huellitas | Clase 13 - Diseño de interfaces**
 
-Equipo: ______________________  Fecha: ____________  Version: 1.0
+Estudiante: ______________________  Fecha: ____________  Version: 1.0
 
 ---
 
@@ -51,7 +51,7 @@ Pegar aqui la imagen del wireframe con numeros de 1 a N.
 
 ## 4. Pantalla 2: Buscar expediente
 
-| Decision de diseño | Definicion del equipo |
+| Decision de diseño | Su definicion |
 |---|---|
 | Criterios de busqueda | Documento del dueño / Nombre de la mascota / Codigo de ficha |
 | Columnas de la lista de resultados | Codigo, Nombre, Especie, Edad, Dueño |
@@ -96,7 +96,7 @@ Enlace del prototipo (Figma o Penpot, con permiso de lectura): _________________
 
 ## 8. Bitacora de prueba de pasillo
 
-| Probador (otro equipo) | Tarea asignada | Tiempo | Clics | Donde dudo | Donde se equivoco |
+| Probador (otro compañero) | Tarea asignada | Tiempo | Clics | Donde dudo | Donde se equivoco |
 |---|---|---|---|---|---|
 | 1 | Registrar a Luna de la señora Perez y hallar su ficha |  |  |  |  |
 | 2 |  |  |  |  |  |

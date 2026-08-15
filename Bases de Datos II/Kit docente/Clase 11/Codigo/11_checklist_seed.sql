@@ -1,5 +1,5 @@
 -- VetCare DB · Clase 11 · Seed ejecutable para la demo de checklist
--- Autocontenido: cree estas tablas minimas si el equipo aun no las tiene, o
+-- Autocontenido: cree estas tablas minimas si aun no las tiene, o
 -- adapte los nombres a su propio DDL (Clases 1-8) antes de correr los INSERT.
 
 CREATE TABLE dueno_demo (id_dueno INT PRIMARY KEY, nombre VARCHAR(80));

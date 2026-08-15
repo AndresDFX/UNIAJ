@@ -163,14 +163,14 @@ con **exactamente 6 filas**, en este orden de secciones: **problema y dominio**,
 
 Reglas:
 - La columna `Minuto` usa rangos (`0:00 a 1:00`) y la **suma total debe quedar entre 5 y 8 minutos**.
-- **Los integrantes del equipo deben aparecer todos** en la columna `Quien habla`; ninguno puede llevar mas de 3 filas.
+- La columna `Quien habla` lleva **su nombre** en modo individual; si el docente autorizo equipo, **deben aparecer todos los integrantes** en la columna y ninguno puede llevar mas de 3 filas. En los dos casos **ninguna seccion puede pasar de 2:00**: el guion se reparte por bloques tematicos, no en un solo tramo largo.
 - `Evidencia en pantalla` cita el **artefacto concreto** que se muestra (`diagrama C4 Container renderizado`, `captura del run verde de Actions`, `tabla STRIDE`).
 
 Debajo de la tabla escriba el **tiempo real cronometrado del ensayo** (`ensayo 1: 9:12`, `ensayo 2: 7:35`) con al menos **2 ensayos**, y **una linea** con lo que recortaron para entrar en el tiempo.
 
 **Rubrica esperada (campo Rubrica):**
 
-7 pts las 6 filas con las 6 secciones en orden y las 5 columnas. 4 pts que los minutos sumen entre 5 y 8 y que todos los integrantes hablen. 4 pts que cada fila cite un artefacto concreto como evidencia. 2 pts los 2 tiempos de ensayo cronometrados y el recorte declarado.
+7 pts las 6 filas con las 6 secciones en orden y las 5 columnas. 4 pts que los minutos sumen entre 5 y 8 y que el guion quede repartido por bloques tematicos sin ninguna seccion de mas de 2:00 (en equipo autorizado, que ademas hablen todos los integrantes). 4 pts que cada fila cite un artefacto concreto como evidencia. 2 pts los 2 tiempos de ensayo cronometrados y el recorte declarado.
 
 ---
 

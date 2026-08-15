@@ -61,14 +61,14 @@ def build() -> Path:
         "Distinguir **programar** de **hacer ingenieria de software**.",
         "Diferenciar **requisito funcional** y **no funcional**, y escribirlos de forma verificable.",
         "Identificar a los **interesados** de un sistema y sus intereses en conflicto.",
-        "Conformar equipo y **acotar el dominio** del proyecto del semestre.",
+        "**Acotar el dominio** del proyecto del semestre (trabajo individual).",
     ], idx=2)
 
     block_timeline_slide(prs, "Mapa del bloque de hoy (120 min)", [
         ("0-15", "Encuadre del tema"),
         ("15-35", "Prueba diagnostica (sin nota)"),
         ("35-70", "Teoria: conceptos iniciales"),
-        ("70-100", "Taller: equipo y dominio"),
+        ("70-100", "Taller: acotar el dominio"),
         ("100-120", "Puesta en comun y cierre"),
     ], idx=3)
 
@@ -135,8 +135,8 @@ def build() -> Path:
         "Las comparamos a fondo en las Clases 2, 3 y 4.",
     ], idx=8)
 
-    content_slide(prs, "Taller de hoy — conformar equipo y acotar el dominio", [
-        "**1.** Formen equipo de 2-3 personas.",
+    content_slide(prs, "Taller de hoy — acotar el dominio", [
+        "**1.** Trabajo **individual**: cada uno llena su propia ficha de dominio.",
         "**2.** Escriban el **problema** en 2-3 frases (quien sufre que).",
         "**3.** Listen **3-5 capacidades** del sistema.",
         "**4.** Identifiquen **2-3 actores**.",
@@ -152,7 +152,7 @@ def build() -> Path:
 
     closing_slide(prs, "Clase 1 lista", [
         "Ya distinguen programar de diseñar",
-        "Equipo conformado y dominio acotado",
+        "Dominio acotado en su ficha",
         "Siguiente clase: ciclos de vida del software",
     ], accent="En esta materia ustedes son los arquitectos")
 

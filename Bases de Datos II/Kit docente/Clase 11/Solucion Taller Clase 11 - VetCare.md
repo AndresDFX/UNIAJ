@@ -12,7 +12,7 @@
 ## Solucion paso a paso
 1. Completar el checklist marcando SI/NO/PARCIAL en cada evidencia exigida: ER actualizado, DDL ejecutable, roles definidos, minimo 2 procedimientos, minimo 1 funcion, minimo 2 triggers, minimo 1 optimizacion documentada.
 2. Preparar y ejecutar una demo de 3-5 minutos que muestre en vivo: el ER, un procedimiento ejecutandose con un caso real, y un trigger disparandose (ej. cancelar una cita y mostrar la fila de auditoria creada).
-3. Listar explicitamente los gaps (huecos) que quedan pendientes, cada uno con un responsable del equipo asignado — no dejar gaps sin dueño.
+3. Listar explicitamente los gaps (huecos) que quedan pendientes, cada uno con un responsable con nombre (tu mismo si trabajas solo; repartido si hay equipo autorizado) — no dejar gaps sin dueño.
 4. Subir el avance intermedio (enlace o ZIP con DDL + procs + ER) a ExamLab si el docente lo solicita, como respaldo verificable del progreso a mitad de corte.
 
 ## Ejemplo / SQL / artefactos

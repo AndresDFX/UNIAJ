@@ -40,7 +40,7 @@ def classes():
             objetivos=[
                 f"Avanzar el PI CloudLite: {pi}.",
                 "Aplicar el concepto del dia solo en funcion del entregable.",
-                "Dejar evidencia integrable al informe/repo del equipo.",
+                "Dejar evidencia integrable a tu informe/repo del PI.",
             ],
             slides_extra=EXTRA.get(n, []),
             taller_pasos=PASOS.get(n, []),
@@ -213,11 +213,11 @@ def build_taller(c):
     h2(doc, "5. Criterio de exito")
     bullets(doc, [
         "Artefacto en paquete PI.",
-        "Explicacion 60 s por integrante.",
+        "Explicacion oral de 60 s (si hay equipo, cualquier integrante).",
         "Evidencia adjunta.",
     ])
     h2(doc, "6. Entrega")
-    para(doc, "Entrega en ExamLab · domingo 23:59 · un envio por equipo.")
+    para(doc, "Entrega en ExamLab · domingo 23:59 · envio individual.")
     doc.save(str(path))
     print("OK taller", path)
 

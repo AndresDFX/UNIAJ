@@ -160,7 +160,7 @@ SEMINARIO = """# Guion docente · Clase 1 · Conceptos iniciales de ingenieria d
 - **Tipo:** REGULAR · **presencial** (Clase 1 siempre es presencial)
 - **Dia 1:** este bloque comparte espacio con la **Sesion 0** (Presentacion del Curso,
   archivo aparte). Sesion 0 = logistica y encuadre; esta Clase 1 = diagnostico + primer tema.
-- **Entregable de hoy:** equipo conformado + dominio del proyecto elegido y acotado
+- **Entregable de hoy:** dominio del proyecto elegido y acotado (ficha individual)
 - **Slides:** `Clases/Clase 1 - Conceptos iniciales/Presentacion.pptx`
 
 > Sin mapa completo del curso, sin bio del docente, sin fechas de periodo:
@@ -239,19 +239,24 @@ Apoyarse en el fundamento de arriba, en este orden:
 Ejercicio corto en el tablero (5 min): dar la frase cruda «necesito buscar rapido el
 expediente de un animal» y convertirla entre todos en un RF y un RNF bien escritos.
 
-### 70-100 · Taller: conformar equipo y acotar el dominio
-En equipos de 2-3:
+### 70-100 · Taller: acotar el dominio (individual)
+Trabajo **individual por defecto** — cada estudiante llena su propia ficha:
 - elegir el dominio del proyecto (por defecto, la clinica veterinaria del PI),
 - escribir el problema en 2-3 frases,
 - listar 3-5 capacidades del sistema,
 - identificar 2-3 actores.
 
-Circular por los equipos con un solo criterio: **bloquear dominios vagos**. Si el
-equipo dice «una app para la universidad», no hay problema concreto y todo el semestre
+Circular por los puestos con un solo criterio: **bloquear dominios vagos**. Si la ficha
+dice «una app para la universidad», no hay problema concreto y todo el semestre
 se les vuelve humo. Exigir un actor con un dolor medible.
 
+> **Nota para el docente (opcional):** el trabajo es individual por defecto. Si decide
+> autorizar equipos de 2 o 3, la ficha puede ser compartida, pero la entrega en ExamLab
+> sigue siendo individual y cualquier integrante debe poder explicar cualquier parte en
+> 60 segundos. Anuncielo hoy para que nadie lo asuma.
+
 ### 100-115 · Puesta en comun
-Dos o tres equipos leen su ficha. El grupo señala que capacidad no se entiende.
+Dos o tres estudiantes leen su ficha. El grupo señala que capacidad no se entiende.
 **Decir:** «Si nosotros no entendemos su sistema en 30 segundos, un programador
 tampoco va a poder construirlo.»
 
@@ -264,7 +269,7 @@ navegable, **sin escribir codigo**: es una ruta completa, no una version reducid
 ## Cierre docente (despues de clase)
 
 - Revisar el diagnostico y anotar el consolidado en `Entregas docente/<periodo>/DIAGNOSTICO…`.
-- Anotar que equipos quedaron con el dominio aun sin acotar: hay que cerrarlo en la Clase 2.
+- Anotar quien quedo con el dominio aun sin acotar: hay que cerrarlo en la Clase 2.
 """
 
 

@@ -241,7 +241,7 @@ def build_arq():
     out = []
     out.append(terminal(
         ARQ / "Clase 3" / "Capturas" / "salida-docker-build-run.png",
-        "Clase 3 · Play with Docker — build y run del stub CloudLite",
+        "Clase 3 · LabEx Docker Playground — build y run del stub CloudLite",
         [
             ("cmd", "docker build -t cloudlite-api ."),
             ("dim", "[+] Building 12.4s (8/8) FINISHED"),
@@ -266,7 +266,7 @@ def build_arq():
             ("out", "9f3c1e7a2b48   cloudlite-api   Up 2 minutes   0.0.0.0:8080->8080/tcp"),
             ("blank", ""),
             ("dim", "# Esta salida + el Dockerfile son la evidencia del entregable de hoy."),
-            ("dim", "# La sesion de PWD caduca a las 4h: capturar ANTES de que expire."),
+            ("dim", "# La sesion de LabEx es temporal: capturar ANTES de cerrarla."),
         ],
     ))
     out.append(terminal(

@@ -1,5 +1,5 @@
 # Mapa de ciclo de vida - Proyecto Integrador VetCare
-**Clinica Veterinaria Huellitas** | Seminario de Sistemas | Equipo: ______________
+**Clinica Veterinaria Huellitas** | Seminario de Sistemas | Estudiante: ______________
 
 > Recuerde: en esta asignatura se dibujan los planos. Nada de codigo.
 

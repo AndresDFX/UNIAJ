@@ -283,8 +283,9 @@ def build_taller_docx(c):
          size=11, bold=True)
     para(doc, f"Herramienta: {c['herramienta']}")
     para(doc, f"Hoy avanzamos el PI en: {c['hito_pi']}", shade_fill="FFF8D6")
+    para(doc, "Modalidad de trabajo: individual por defecto. El docente puede autorizar equipos de 2 o 3 integrantes; en ese caso el artefacto puede ser compartido, pero la entrega en ExamLab siempre es individual (cada estudiante responde las preguntas abiertas con sus propias palabras) y cualquier integrante debe poder explicar cualquier parte en 60 segundos.", size=10, shade_fill="EDEDED")
     para(doc, "1. Contexto / por que importa al PI", size=12, bold=True, color=AZUL)
-    bullets(doc, c.get("contexto") or ["Trabaje sobre el VetCare de su equipo."])
+    bullets(doc, c.get("contexto") or ["Trabaje sobre su propio VetCare."])
     para(doc, "2. Punto de partida", size=12, bold=True, color=AZUL)
     bullets(doc, c.get("escenario") or ["Use el codigo que ya tiene del avance anterior."])
     para(doc, "3. Pasos guiados", size=12, bold=True, color=AZUL)
@@ -292,12 +293,12 @@ def build_taller_docx(c):
     para(doc, "4. Entregable", size=12, bold=True, color=AZUL)
     para(doc, c["entregable"], shade_fill="E8F4FA")
     para(doc, "5. Criterios de exito", size=12, bold=True, color=AZUL)
-    bullets(doc, c.get("criterios") or ["Avance real y verificable del VetCare del equipo."])
+    bullets(doc, c.get("criterios") or ["Avance real y verificable de su VetCare."])
     para(doc, "6. Antes de entregar (autochequeo)", size=12, bold=True, color=AZUL)
     bullets(doc, [f"☐ {p}" for p in c.get("pistas", [])])
     para(doc, "7. Entrega", size=12, bold=True, color=AZUL)
     p = doc.add_paragraph()
-    add_inline_docx(p, f"@@Sube tu taller en {EXAMLAB}@@ — domingo 23:59. Un envio por equipo.")
+    add_inline_docx(p, f"@@Sube tu taller en {EXAMLAB}@@ — domingo 23:59. Un envio por estudiante.")
     _taller_el = TALLERES_EXAMLAB.get(n)
     if _taller_el:
         examlab_talleres.render_estudiante(
@@ -459,7 +460,7 @@ Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 ### 10-40 · Teoria Core
 Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
 proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
-Pregunta al aire (2 min): ¿donde encaja esto en el VetCare de su equipo?
+Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
@@ -468,10 +469,10 @@ Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase {n}/Plantillas/{c.get('artefacto_archivo', '(sin plantilla)')}`
 
 ### 60-105 · Taller guiado = avance del PI
-**Decir:** «Equipos: abran su proyecto VetCare. Esto suma a la rubrica del PI.»
+**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 {pasos}
-Circular por los equipos. Empujar evidencia funcionando, no perfeccionismo.
+Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: {c['entregable']}
 
 ### 105-120 · Criterios de exito y cierre

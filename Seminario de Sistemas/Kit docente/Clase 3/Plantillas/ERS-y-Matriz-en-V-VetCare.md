@@ -1,6 +1,6 @@
 # ERS + Matriz en V - Proyecto Integrador VetCare
 **Clinica Veterinaria Huellitas** | Enfoque tradicional (cascada / modelo en V)
-Equipo: ______________  Version del documento: 1.0  Fecha: __________
+Estudiante: ______________  Version del documento: 1.0  Fecha: __________
 
 ---
 

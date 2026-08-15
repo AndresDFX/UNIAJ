@@ -5,13 +5,13 @@
 - **Preguntas:** 6 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
 - **Hito del PI:** VetCare queda con guion de sustentacion, juego de datos de demostracion sembrado y ensayo cronometrado dentro de la ventana de 5 a 8 minutos.
-- **Entregable de la clase:** Guion de sustentacion con bloques, responsable y minutos, mas la planilla de tiempos de dos ensayos y el video de respaldo de la ruta feliz, subido a ExamLab.
+- **Entregable de la clase:** Guion de sustentacion con bloques, minutos y evidencia que se muestra (mas el responsable nominal solo si el docente autorizo equipo), mas la planilla de tiempos de dos ensayos y el video de respaldo de la ruta feliz, subido a ExamLab.
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
 > campo para copiar y pegar, incluidos el SQL de partida y el codigo base.
 
-**Que produce el estudiante:** El equipo deja el guion de sustentacion con bloques y minutos, el sembrador de datos de demostracion en [OK], dos ensayos cronometrados dentro de la ventana de 5 a 8 minutos y el plan B grabado.
+**Que produce el estudiante:** Cada estudiante deja el guion de sustentacion con bloques y minutos, el sembrador de datos de demostracion en [OK], dos ensayos cronometrados dentro de la ventana de 5 a 8 minutos y el plan B grabado.
 
 ---
 
@@ -25,7 +25,7 @@
 
 Escriba el guion de la sustentacion de VetCare como una tabla de **cinco bloques**. El total planeado debe quedar entre **5 y 7 minutos** (dejando margen para llegar a los 8 sin pasarse) y la **demo en vivo debe ocupar por lo menos la mitad** del tiempo.
 
-| # | Bloque | Responsable (nombre y apellido) | Minutos planeados | Que se dice o se muestra exactamente |
+| # | Bloque | Responsable (su nombre; si hay equipo, el del integrante) | Minutos planeados | Que se dice o se muestra exactamente |
 |---|--------|--------------------------------|-------------------|--------------------------------------|
 | 1 | Problema de la clinica «Huellitas» y que resuelve VetCare | | | |
 | 2 | Arquitectura: modelo, datos, logica, ui | | | |
@@ -34,7 +34,7 @@ Escriba el guion de la sustentacion de VetCare como una tabla de **cinco bloques
 | 5 | Aprendizajes y siguiente paso | | | |
 
 Requisitos:
-- **Todos los integrantes** deben tener al menos un bloque. Nadie sin intervencion.
+- **Ningun bloque puede quedar sin responsable ni sin evidencia.** El trabajo es individual por defecto: si sustenta solo, los cinco bloques son suyos. Si el docente autorizo equipo de 2 o 3, todos los integrantes deben tener al menos un bloque y nadie queda sin intervencion.
 - En el bloque 3 escriba los pasos exactos que va a ejecutar: registrar dueño, registrar mascota, agendar cita, buscar por ID, cerrar y volver a abrir mostrando que los datos siguen ahi.
 - En el bloque 4 diga **cual error va a provocar a proposito** (por ejemplo escribir `tres` en el campo edad) y **que mensaje debe salir textualmente**.
 - Escriba la **primera frase literal** con la que arranca el bloque 1 y la **frase de cierre** del bloque 5. Esas dos son las que mas se olvidan cuando hay nervios.
@@ -42,7 +42,7 @@ Requisitos:
 
 **Rubrica esperada (campo Rubrica):**
 
-La tabla tiene los cinco bloques con responsable identificado por nombre y minutos, todos los integrantes con al menos un bloque, y el total entre 5 y 7 minutos con la demo (bloques 3 y 4) ocupando la mitad o mas. El bloque 3 detalla los pasos de la ruta feliz y el 4 nombra el error que se provocara y el mensaje esperado. Incluye frase de apertura y de cierre literales y el calculo de porcentaje.
+La tabla tiene los cinco bloques con responsable identificado por nombre y minutos, sin ningun bloque huerfano (y, si hay equipo, todos los integrantes con al menos un bloque), y el total entre 5 y 7 minutos con la demo (bloques 3 y 4) ocupando la mitad o mas. El bloque 3 detalla los pasos de la ruta feliz y el 4 nombra el error que se provocara y el mensaje esperado. Incluye frase de apertura y de cierre literales y el calculo de porcentaje.
 
 ---
 
@@ -188,7 +188,7 @@ sembrar crea la carpeta y escribe los tres archivos con try-with-resources y los
 
 ## Planilla de tiempos de los dos ensayos
 
-Haga el **ensayo 1** de pie, cada integrante hablando su bloque completo, con cronometro. Ajuste el guion. Haga el **ensayo 2**. Reporte:
+Haga el **ensayo 1** de pie, hablando cada bloque completo sin saltarse ninguno (si trabaja en equipo, cada integrante el suyo), con cronometro. Ajuste el guion. Haga el **ensayo 2**. Reporte:
 
 | Bloque | Minutos planeados | Ensayo 1 (real) | Ensayo 2 (real) | Diferencia | Que ajusto entre los dos ensayos |
 |--------|-------------------|-----------------|-----------------|------------|----------------------------------|
@@ -263,7 +263,7 @@ Marque **todas** las situaciones que, segun lo visto en clase, hacen fracasar un
 - [x] Dedicar cinco de los ocho minutos a explicar la teoria de POO y dejar la demo para el final, sin tiempo.
 - [x] No tener plan B y depender de que el proyector, el wifi y NetBeans funcionen a la primera.
 - [ ] Ensayar de pie y con cronometro antes de sustentar.
-- [x] Que un integrante del equipo no tenga ningun bloque asignado y solo aparezca a responder preguntas.
+- [x] Dejar un bloque del guion sin responsable ni evidencia (o, en trabajo en equipo, un integrante sin ningun bloque asignado que solo aparece a responder preguntas).
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -279,7 +279,7 @@ Correctas: opciones 0, 2, 3 y 5. Se califica por acertadas menos las marcadas po
 
 ## Ronda de jurado: cinco preguntas y respuestas de 30 segundos
 
-Intercambien con otro equipo una ronda de **cinco preguntas de jurado** sobre VetCare. Escriba las cinco preguntas que **recibio** (textuales) y, para cada una, su respuesta en **maximo 30 segundos** (tres o cuatro lineas), diciendo **quien del equipo la responde**.
+Intercambien con otro estudiante -o con otro equipo, si el docente lo autorizo- una ronda de **cinco preguntas de jurado** sobre VetCare. Escriba las cinco preguntas que **recibio** (textuales) y, para cada una, su respuesta en **maximo 30 segundos** (tres o cuatro lineas), diciendo **con que evidencia en pantalla la sustenta** (y, si hay equipo, quien la responde).
 
 Al menos dos de las cinco deben ser preguntas tecnicas incomodas del estilo:
 - ¿Por que usaron `HashMap` y no `ArrayList` para los expedientes?

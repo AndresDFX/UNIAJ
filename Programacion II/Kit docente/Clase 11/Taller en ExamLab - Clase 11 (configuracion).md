@@ -4,8 +4,8 @@
 - **Taller:** Taller Clase 11 en ExamLab - Revision de codigo cruzada sobre VetCare
 - **Preguntas:** 6 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
-- **Hito del PI:** Cada equipo recibe un informe externo con hallazgos priorizados y deja escrito su plan de corrección de VetCare antes de la integración final.
-- **Entregable de la clase:** Informe de revisión de una página sobre el proyecto del equipo asignado: checklist diligenciado con evidencia archivo:línea y cinco hallazgos priorizados con formato Evidencia + Impacto + Sugerencia, subido a ExamLab.
+- **Hito del PI:** Cada estudiante recibe un informe externo con hallazgos priorizados y deja escrito su plan de corrección de VetCare antes de la integración final.
+- **Entregable de la clase:** Informe de revisión de una página sobre el proyecto asignado (el de otro estudiante; si el docente autorizó equipos, el de otro equipo): checklist diligenciado con evidencia archivo:línea y cinco hallazgos priorizados con formato Evidencia + Impacto + Sugerencia, subido a ExamLab.
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
@@ -227,7 +227,7 @@ Sugerencia: <el cambio concreto propuesto, con nombres de metodos o constantes>
 Reglas de la revision:
 - **Al menos uno debe ser BLOQUEANTE** (algo que tumba la aplicacion o hace perder datos): en este codigo existen varios candidatos reales, eligalos con criterio.
 - Prioridad ordenada: los bloqueantes primero.
-- **Ninguno puede referirse a la persona, a su esfuerzo ni a "el equipo no estudio"**. Se revisa codigo, no gente.
+- **Ninguno puede referirse a la persona, a su esfuerzo ni a "no estudio"**. Se revisa codigo, no gente.
 - Cada hallazgo debe ser distinto: no repita el mismo defecto con dos redacciones.
 - Al menos uno debe apoyarse en los **casos borde** que ejecuto en la pregunta 1, citando el mensaje textual que observo.
 
@@ -377,9 +377,9 @@ registrar protege parseInt y valida el nombre vacio, y en ambos casos no agrega 
 
 **Enunciado (campo Contenido):**
 
-## Plan de correccion del equipo autor
+## Plan de correccion del autor del proyecto
 
-Ahora cambie de silla: usted es el **equipo autor** que recibio la revision. Para cada uno de los cinco hallazgos escriba una linea con las tres decisiones posibles y un **responsable con nombre y apellido**:
+Ahora cambie de silla: usted es el **autor** del proyecto que recibio la revision. Para cada uno de los cinco hallazgos escriba una linea con las tres decisiones posibles y un **responsable con nombre y apellido**:
 
 ```
 HALLAZGO N - ACEPTO Y CORRIJO: <que va a cambiar exactamente> - Responsable: <nombre> - Antes del: <fecha>

@@ -1,7 +1,7 @@
 # Guion de sustentacion y decisiones de diseño - VetCare
 **Clinica Veterinaria Huellitas | Clase 14 - Preparacion de la sustentacion**
 
-Equipo: ______________________  Fecha: ____________  Duracion objetivo: 12 minutos
+Estudiante: ______________________  Fecha: ____________  Duracion objetivo: 12 minutos
 
 ---
 
@@ -15,18 +15,18 @@ Nuestra frase: ______________________________________________
 
 ## 2. Guion cronometrado y reparto
 
-| Bloque | Minutos | Contenido exacto que se muestra | Integrante |
-|---|---|---|---|
-| Problema | 00:00-01:30 | Los 3 dolores de Huellitas |  |
-| Alcance | 01:30-03:00 | Que entra y que NO entra, con razon |  |
-| Requisitos | 03:00-05:00 | 3 RF criticos y 2 RNF medibles |  |
-| Modelo | 05:00-07:00 | Casos de uso y diagrama de clases |  |
-| Interfaz | 07:00-09:00 | Prototipo en vivo, 1 flujo completo |  |
-| Decisiones | 09:00-11:00 | Tabla de 3 decisiones |  |
-| Riesgos y siguiente paso | 11:00-11:30 | Lo abierto y el handoff |  |
-| Cierre | 11:30-12:00 | Frase de valor |  |
+| Bloque | Minutos | Contenido exacto que se muestra | Evidencia en pantalla | Responsable (solo si hay equipo) |
+|---|---|---|---|---|
+| Problema | 00:00-01:30 | Los 3 dolores de Huellitas |  |  |
+| Alcance | 01:30-03:00 | Que entra y que NO entra, con razon |  |  |
+| Requisitos | 03:00-05:00 | 3 RF criticos y 2 RNF medibles |  |  |
+| Modelo | 05:00-07:00 | Casos de uso y diagrama de clases |  |  |
+| Interfaz | 07:00-09:00 | Prototipo en vivo, 1 flujo completo |  |  |
+| Decisiones | 09:00-11:00 | Tabla de 3 decisiones |  |  |
+| Riesgos y siguiente paso | 11:00-11:30 | Lo abierto y el handoff |  |  |
+| Cierre | 11:30-12:00 | Frase de valor |  |  |
 
-> Regla: ningun integrante habla menos de 2 minutos y todos deben poder responder sobre cualquier parte.
+> Regla: todos los bloques llevan su rango de minutos y su evidencia en pantalla, y quien sustenta debe poder responder sobre cualquier parte. Si el docente autorizo equipo, ademas ningun integrante habla menos de 2 minutos.
 
 ---
 
@@ -64,7 +64,7 @@ Nuestra frase: ______________________________________________
 
 ## 5. Checklist de consolidacion del documento final
 
-- [ ] Portada con nombre del proyecto, equipo y version
+- [ ] Portada con nombre del proyecto, autor o autores y version
 - [ ] Indice con numeracion
 - [ ] Problema y alcance (que entra / que no entra)
 - [ ] Tabla RF y RNF con prioridad

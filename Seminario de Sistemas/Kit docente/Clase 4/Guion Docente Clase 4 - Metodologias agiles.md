@@ -3,7 +3,7 @@
 - **Curso:** Seminario de Sistemas (FI303301) · 120 min
 - **Hilo:** Proyecto Integrador **VetCare** — planos del sistema de la clinica «Huellitas»
 - **Hoy avanzamos el PI en:** Queda listo el backlog priorizado de VetCare repartido en sprints del semestre, con las primeras historias de usuario escritas con criterios de aceptacion.
-- **Entregable de hoy:** Un tablero en draw.io o Excalidraw con el Product Backlog priorizado de VetCare y las columnas de flujo con limite de trabajo en curso, mas un documento con el plan de tres sprints (objetivo y entregable de diseño de cada uno), la Definicion de Terminado del equipo y tres historias de usuario con criterios en formato Dado/Cuando/Entonces.
+- **Entregable de hoy:** Un tablero en draw.io o Excalidraw con el Product Backlog priorizado de VetCare y las columnas de flujo con limite de trabajo en curso, mas un documento con el plan de tres sprints (objetivo y entregable de diseño de cada uno), la Definicion de Terminado y tres historias de usuario con criterios en formato Dado/Cuando/Entonces.
 - **Herramienta:** draw.io · Excalidraw · Google Docs
 - **Slides:** `Clases/Clase 4 - Metodologias agiles/Presentacion.pptx`
 
@@ -13,7 +13,7 @@
 
 El manifiesto agil se firmo en 2001 por diecisiete personas cansadas de proyectos que entregaban documentos perfectos y sistemas inservibles. Tiene cuatro valores y la clave esta en la palabra que los une: 'sobre'. Individuos e interacciones SOBRE procesos y herramientas; software funcionando SOBRE documentacion exhaustiva; colaboracion con el cliente SOBRE negociacion contractual; respuesta ante el cambio SOBRE seguir un plan. Dice sobre, no 'en vez de': lo de la derecha sigue teniendo valor, solo que lo de la izquierda tiene mas. Ademas hay doce principios, y tres son muy utiles aqui: entregar valor pronto y con frecuencia, aceptar el cambio incluso tarde, y mantener un ritmo sostenible. En VetCare esto se traduce en algo muy concreto: es mejor mostrarle a Huellitas un mockup imperfecto de la ficha en la semana tres que un documento de ochenta paginas en la semana quince.
 
-Scrum es un marco de trabajo, no una metodologia completa: define lo minimo y deja que cada equipo llene el resto. Tiene tres roles: el Product Owner, que decide QUE se hace y en que orden, y es el dueño del Product Backlog; el Scrum Master, que facilita, protege al equipo y quita impedimentos, y que no es el jefe; y el equipo de desarrollo, que decide COMO hacerlo y se autoorganiza. Tiene cinco eventos: el Sprint, que es el contenedor de duracion fija (una a cuatro semanas), la Planificacion, la Reunion diaria de quince minutos para sincronizarse, la Revision donde se le muestra el incremento al cliente, y la Retrospectiva donde se mejora la forma de trabajar. Y tiene tres artefactos: Product Backlog, Sprint Backlog e Incremento, este ultimo gobernado por la Definicion de Terminado. En VetCare el docente actua como vocero de Huellitas en el rol de Product Owner, y cada equipo es el equipo de desarrollo que se compromete con un objetivo de sprint.
+Scrum es un marco de trabajo, no una metodologia completa: define lo minimo y deja que cada equipo llene el resto. Tiene tres roles: el Product Owner, que decide QUE se hace y en que orden, y es el dueño del Product Backlog; el Scrum Master, que facilita, protege al equipo y quita impedimentos, y que no es el jefe; y el equipo de desarrollo, que decide COMO hacerlo y se autoorganiza. Tiene cinco eventos: el Sprint, que es el contenedor de duracion fija (una a cuatro semanas), la Planificacion, la Reunion diaria de quince minutos para sincronizarse, la Revision donde se le muestra el incremento al cliente, y la Retrospectiva donde se mejora la forma de trabajar. Y tiene tres artefactos: Product Backlog, Sprint Backlog e Incremento, este ultimo gobernado por la Definicion de Terminado. En VetCare el docente actua como vocero de Huellitas en el rol de Product Owner, y cada estudiante -o cada equipo, si el docente lo autoriza- hace de equipo de desarrollo que se compromete con un objetivo de sprint.
 
 Kanban viene de otra tradicion y su promesa es distinta: no impone iteraciones ni roles, sino que hace visible el flujo del trabajo. Sus practicas centrales son visualizar el trabajo en un tablero, limitar el trabajo en curso, gestionar el flujo detectando donde se acumulan las tarjetas, hacer explicitas las politicas de cada columna y mejorar de forma continua. El limite de trabajo en curso es la parte que mas cuesta y la que mas sirve: si el equipo pone limite dos en la columna 'Modelando', nadie puede empezar una tercera tarea sin terminar alguna. En VetCare el tablero seria Por hacer / Modelando / En revision del cliente / Aprobado, y la politica de la ultima columna podria ser 'solo pasa a Aprobado si tiene diagrama, mockup y visto bueno de la clinica'. El estudiante que abre cinco diagramas al tiempo y no termina ninguno es exactamente el problema que el limite de trabajo en curso resuelve.
 
@@ -35,7 +35,7 @@ Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 ### 10-40 · Teoria Core
 Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
 proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
-Pregunta al aire (2 min): ¿donde encaja esto en el VetCare de su equipo?
+Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
@@ -44,15 +44,15 @@ Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 4/Plantillas/Backlog-y-Sprints-VetCare.md`
 
 ### 60-105 · Taller guiado = avance del PI
-**Decir:** «Equipos: abran su proyecto VetCare. Esto suma a la rubrica del PI.»
+**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. En Google Docs escriba el Product Backlog de VetCare con al menos ocho items redactados como historias de usuario cortas, cada uno con prioridad (Alta/Media/Baja) y una justificacion de valor para Huellitas en una linea.
 2. Priorice el backlog en orden de arriba hacia abajo y explique por escrito, en dos renglones, por que el primer item es el primero (pista: resuelve uno de los tres dolores de la clinica).
 3. Escriba tres historias completas con criterios de aceptacion en formato Dado/Cuando/Entonces, y asegurese de que cada historia tenga al menos un escenario alternativo o de error, no solo el camino feliz.
-4. Redacte la Definicion de Terminado del equipo para artefactos de diseño (por ejemplo: tiene diagrama en draw.io, tiene mockup, esta revisado por un compañero y tiene el visto bueno del cliente) y escribala en la cabecera del tablero.
+4. Redacte la Definicion de Terminado para artefactos de diseño (por ejemplo: tiene diagrama en draw.io, tiene mockup, esta revisado por un compañero y tiene el visto bueno del cliente) y escribala en la cabecera del tablero.
 5. En draw.io o Excalidraw arme el tablero con las columnas Por hacer / Modelando / En revision del cliente / Aprobado, ponga el limite de trabajo en curso en dos para las columnas del medio, distribuya las tarjetas en tres sprints con su objetivo y entregable de diseño, exporte a PDF y suba a ExamLab.
-Circular por los equipos. Empujar evidencia funcionando, no perfeccionismo.
-Entregable: Un tablero en draw.io o Excalidraw con el Product Backlog priorizado de VetCare y las columnas de flujo con limite de trabajo en curso, mas un documento con el plan de tres sprints (objetivo y entregable de diseño de cada uno), la Definicion de Terminado del equipo y tres historias de usuario con criterios en formato Dado/Cuando/Entonces.
+Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
+Entregable: Un tablero en draw.io o Excalidraw con el Product Backlog priorizado de VetCare y las columnas de flujo con limite de trabajo en curso, mas un documento con el plan de tres sprints (objetivo y entregable de diseño de cada uno), la Definicion de Terminado y tres historias de usuario con criterios en formato Dado/Cuando/Entonces.
 
 ### 105-120 · Criterios de exito y cierre
 Repasar el checklist de la slide de criterios.

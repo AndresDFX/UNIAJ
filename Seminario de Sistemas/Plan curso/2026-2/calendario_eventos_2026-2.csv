@@ -1,16 +1,14 @@
 ﻿curso,codigo_fi,grupo,clase_n,fecha,dia,hora_inicio,hora_fin,tipo_clase,es_parcial,parcial_n,sesion_etiqueta,tema,notas
-Seminario de Sistemas,FI303301,341C,1,2026-08-13,Jueves,18:00,20:00,presencial,no,,Clase 1,Presentación del curso · Conceptos iniciales,
-Seminario de Sistemas,FI303301,341C,2,2026-08-20,Jueves,18:00,20:00,virtual,no,,Clase 2,Ciclos de vida,
-Seminario de Sistemas,FI303301,341C,3,2026-08-27,Jueves,18:00,20:00,virtual,no,,Clase 3,Metodologías tradicionales,
-Seminario de Sistemas,FI303301,341C,4,2026-09-03,Jueves,18:00,20:00,virtual,no,,Clase 4,Metodologías ágiles,
-Seminario de Sistemas,FI303301,341C,5,2026-09-10,Jueves,18:00,20:00,presencial,si,1,Clase 5 · Parcial 1,Caso estudio evaluativo ·,parcial presencial sincrono
-Seminario de Sistemas,FI303301,341C,6,2026-09-17,Jueves,18:00,20:00,virtual,no,,Clase 6,Requerimientos de software,
-Seminario de Sistemas,FI303301,341C,7,2026-09-24,Jueves,18:00,20:00,virtual,no,,Clase 7,Historias de usuario,
-Seminario de Sistemas,FI303301,341C,8,2026-10-01,Jueves,18:00,20:00,virtual,no,,Clase 8,Introducción a UML,
-Seminario de Sistemas,FI303301,341C,9,2026-10-08,Jueves,18:00,20:00,virtual,no,,Clase 9,Casos de uso,
-Seminario de Sistemas,FI303301,341C,10,2026-10-15,Jueves,18:00,20:00,presencial,si,2,Clase 10 · Parcial 2,Caso estudio evaluativo ·,parcial presencial sincrono
-Seminario de Sistemas,FI303301,341C,11,2026-10-22,Jueves,18:00,20:00,virtual,no,,Clase 11,Avance proyecto integrador,
-Seminario de Sistemas,FI303301,341C,12,2026-10-29,Jueves,18:00,20:00,virtual,no,,Clase 12,Diagramas UML avanzados,
-Seminario de Sistemas,FI303301,341C,13,2026-11-05,Jueves,18:00,20:00,virtual,no,,Clase 13,Diseño de interfaces,
-Seminario de Sistemas,FI303301,341C,14,2026-11-12,Jueves,18:00,20:00,virtual,no,,Clase 14,Evaluación final (prep. sustentación),
-Seminario de Sistemas,FI303301,341C,15,2026-11-19,Jueves,18:00,20:00,presencial,si,3,Clase 15 · Parcial 3,Sustentación de proyectos + cierre ·,parcial presencial sincrono
+Seminario de Sistemas,FI303301,341C,1,2026-08-27,Jueves,18:00,20:00,presencial,no,,Sesión 1 · Clase 1,Presentación del curso · Conceptos iniciales,
+Seminario de Sistemas,FI303301,341C,2,2026-09-03,Jueves,18:00,20:00,virtual,no,,Sesión 2 · Clase 2,Ciclos de vida del software,
+Seminario de Sistemas,FI303301,341C,3,2026-09-10,Jueves,18:00,20:00,virtual,no,,Sesión 3 · Clase 3,Metodologías tradicionales,
+Seminario de Sistemas,FI303301,341C,4,2026-09-17,Jueves,18:00,20:00,virtual,no,,Sesión 4 · Clase 4,Metodologías ágiles,
+Seminario de Sistemas,FI303301,341C,5,2026-09-24,Jueves,18:00,20:00,presencial,si,1,Sesión 5 · Parcial 1 · Clase 5,PARCIAL 1 (solo evaluación),parcial presencial síncrono
+Seminario de Sistemas,FI303301,341C,6,2026-10-01,Jueves,18:00,20:00,virtual,no,,Sesión 6 · Clase 6,Requerimientos de software,
+Seminario de Sistemas,FI303301,341C,7,2026-10-08,Jueves,18:00,20:00,virtual,no,,Sesión 7 · Clase 7,Historias de usuario,
+Seminario de Sistemas,FI303301,341C,8,2026-10-15,Jueves,18:00,20:00,virtual,no,,Sesión 8 · Clase 8 + Clase 9 (doble),Introducción a UML + Casos de uso,sesión doble: cubre Clase 8 + Clase 9 del material en un bloque de 120 min
+Seminario de Sistemas,FI303301,341C,9,2026-10-22,Jueves,18:00,20:00,presencial,si,2,Sesión 9 · Parcial 2 · Clase 10,PARCIAL 2 (solo evaluación),parcial presencial síncrono
+Seminario de Sistemas,FI303301,341C,10,2026-10-29,Jueves,18:00,20:00,virtual,no,,Sesión 10 · Clase 11 + Clase 12 (doble),Avance proyecto integrador + Diagramas UML avanzados,sesión doble: cubre Clase 11 + Clase 12 del material en un bloque de 120 min
+Seminario de Sistemas,FI303301,341C,11,2026-11-05,Jueves,18:00,20:00,virtual,no,,Sesión 11 · Clase 13,Diseño de interfaces,
+Seminario de Sistemas,FI303301,341C,12,2026-11-12,Jueves,18:00,20:00,virtual,no,,Sesión 12 · Clase 14,Preparación de la sustentación y cierre,
+Seminario de Sistemas,FI303301,341C,13,2026-11-19,Jueves,18:00,20:00,presencial,si,3,Sesión 13 · Parcial 3 · Clase 15,PARCIAL 3 + sustentación de proyectos y cierre,parcial presencial síncrono

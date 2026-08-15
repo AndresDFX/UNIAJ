@@ -47,7 +47,7 @@ if (-not (Test-Docker)) {
     Write-Host "ERROR: Docker no responde." -ForegroundColor Red
     Write-Host "Opciones:" -ForegroundColor Yellow
     Write-Host "  1) Abre Docker Desktop y vuelve a ejecutar este script."
-    Write-Host "  2) Camino navegador: Play with Docker / Killercoda (ver README.md)."
+    Write-Host "  2) Camino navegador: LabEx Docker Playground / Killercoda (ver README.md)."
     exit 1
 }
 

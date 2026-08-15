@@ -5,7 +5,7 @@
 - **Preguntas:** 6 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
 - **Hito del PI:** Queda armado el guion cronometrado de sustentacion de VetCare y consolidado el documento final de diseño en una sola pieza coherente.
-- **Entregable de la clase:** Un documento en Google Docs con el guion minuto a minuto, el reparto nominal por integrante, la tabla de tres decisiones de diseño defendidas y el banco de diez preguntas con su respuesta, mas el indice del documento final consolidado, subido a ExamLab.
+- **Entregable de la clase:** Un documento en Google Docs con el guion minuto a minuto repartido en bloques con tiempos y evidencia (con responsable nominal solo si el docente autorizo equipo), la tabla de tres decisiones de diseño defendidas y el banco de diez preguntas con su respuesta, mas el indice del documento final consolidado, subido a ExamLab.
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
@@ -28,8 +28,8 @@ Represente el guion de la sustentacion de VetCare con un **diagrama de Gantt de 
 **Obligatorio:**
 1. `dateFormat HH:mm` y `axisFormat %H:%M`. Cada bloque se declara con **hora de inicio y hora de fin** en formato `mm` de minutos: por ejemplo `00:00, 00:02`.
 2. **Exactamente 5 secciones** (`section`), en **este orden**: `1 Problema`, `2 Requisitos`, `3 Modelo`, `4 Interfaz`, `5 Decisiones`. Ese orden no se negocia: es el orden en que un jurado entiende un sistema.
-3. El **nombre del integrante responsable** va en el titulo de la seccion (por ejemplo `section 3 Modelo - Carlos`).
-4. Los bloques deben **sumar exactamente 12 minutos** y **ningun integrante puede quedar con menos de 2 minutos** de tiempo total sumado.
+3. El titulo de la seccion lleva el numero y el nombre del bloque (`section 3 Modelo`). Si el docente autorizo equipo, agregue el **nombre del integrante responsable** (`section 3 Modelo - Carlos`).
+4. Los bloques deben **sumar exactamente 12 minutos** y **ninguna seccion puede quedar con menos de 2 minutos**. Si el docente autorizo equipo, ademas **ningun integrante puede quedar con menos de 2 minutos** de tiempo total sumado.
 5. En el nombre de cada tarea escriba **que se muestra en pantalla** en ese bloque (el diagrama de clases, el prototipo navegable, la matriz de trazabilidad), no un titulo vacio como «explicacion».
 
 Regla de sintaxis: los nombres de tarea **no pueden contener el caracter dos puntos**, porque rompe el Gantt. Escriba sin tildes.
@@ -41,21 +41,21 @@ gantt
     title Guion cronometrado de sustentacion VetCare - 12 minutos
     dateFormat HH:mm
     axisFormat %H:%M
-    section 1 Problema - Ana
+    section 1 Problema
     Dolor de Huellitas y fuera de alcance en una lamina :b1, 00:00, 00:02
-    section 2 Requisitos - Ana
+    section 2 Requisitos
     Catalogo RF-01 a RF-08 y los 4 RNF cuantificados en pantalla :b2, 00:02, 00:05
-    section 3 Modelo - Carlos
+    section 3 Modelo
     Diagrama de clases casos de uso y secuencia de CU-04 :b3, 00:05, 00:08
-    section 4 Interfaz - Diana
+    section 4 Interfaz
     Prototipo navegable en vivo y resultado de la prueba de pasillo :b4, 00:08, 00:10
-    section 5 Decisiones - Diana
+    section 5 Decisiones
     Tabla de tres decisiones y matriz de trazabilidad final :b5, 00:10, 00:12
 ```
 
 **Rubrica esperada (campo Rubrica):**
 
-Gantt valido con las 5 secciones en el orden problema, requisitos, modelo, interfaz y decisiones, cada una con el nombre del integrante responsable. Los bloques suman exactamente 12 minutos y ningun integrante baja de 2 minutos sumados. Cada tarea dice que artefacto se muestra en pantalla.
+Gantt valido con las 5 secciones en el orden problema, requisitos, modelo, interfaz y decisiones. Los bloques suman exactamente 12 minutos y ninguna seccion baja de 2 minutos (si hay equipo, ningun integrante baja de 2 minutos sumados y su nombre aparece en el titulo de la seccion). Cada tarea dice que artefacto se muestra en pantalla.
 
 ---
 
@@ -65,15 +65,15 @@ Gantt valido con las 5 secciones en el orden problema, requisitos, modelo, inter
 
 **Enunciado (campo Contenido):**
 
-## Reparto nominal y ensayo cronometrado
+## Reparto del guion por bloques y ensayo cronometrado
 
 **Parte A - Reparto.** Tabla markdown con **una fila por bloque del guion (5 filas)** y **estas 5 columnas**:
 
-`| Bloque | Minutos asignados | Integrante responsable (nombre real) | Artefacto que proyecta en pantalla | Frase de apertura del bloque (una sola frase) |`
+`| Bloque | Minutos asignados | Responsable (su nombre; si hay equipo, el del integrante) | Artefacto que proyecta en pantalla | Frase de apertura del bloque (una sola frase) |`
 
-Reglas: los minutos deben sumar **12**; **cada integrante** del equipo debe aparecer con **minimo 2 minutos** sumados; la frase de apertura debe ser la que de verdad va a decir, no un titulo.
+Reglas: los minutos deben sumar **12**; **ningun bloque** puede quedar sin responsable, sin artefacto proyectado ni con menos de **2 minutos**; si el docente autorizo equipo, **cada integrante** debe aparecer con **minimo 2 minutos** sumados; la frase de apertura debe ser la que de verdad va a decir, no un titulo.
 
-**Parte B - Ensayo cronometrado.** Hagan el ensayo **de pie y con el prototipo abierto**, y registre:
+**Parte B - Ensayo cronometrado.** Haga el ensayo **de pie y con el prototipo abierto**, y registre:
 
 ```
 Tiempo real bloque 1: <mm:ss>   | Diferencia con lo planeado: <+/- ss>
@@ -83,16 +83,16 @@ Tiempo real bloque 4: ...
 Tiempo real bloque 5: ...
 TIEMPO TOTAL REAL: <mm:ss>
 QUE SE RECORTO PARA CABER EN 12 MINUTOS: <que contenido se elimino o se resumio, sea concreto>
-PUNTO DONDE EL EQUIPO SE ENREDO 1: <en que bloque y por que>
-PUNTO DONDE EL EQUIPO SE ENREDO 2: <en que bloque y por que>
-ACCION PARA CADA ENREDO: <que van a hacer distinto>
+PUNTO DONDE SE ENREDO 1: <en que bloque y por que>
+PUNTO DONDE SE ENREDO 2: <en que bloque y por que>
+ACCION PARA CADA ENREDO: <que va a hacer distinto>
 ```
 
 Si el tiempo total real fue mayor a 12 minutos y no recortaron nada, la respuesta esta incompleta.
 
 **Rubrica esperada (campo Rubrica):**
 
-Tabla de reparto con 5 bloques que suman 12 minutos, todos los integrantes con minimo 2 minutos, artefacto proyectado y frase de apertura real por bloque. Bitacora del ensayo con tiempo real y diferencia por bloque, total, contenido recortado concreto y los dos puntos de enredo con su accion correctiva.
+Tabla de reparto con 5 bloques que suman 12 minutos, ninguno por debajo de 2 minutos ni sin responsable (si hay equipo, todos los integrantes con minimo 2 minutos), artefacto proyectado y frase de apertura real por bloque. Bitacora del ensayo con tiempo real y diferencia por bloque, total, contenido recortado concreto y los dos puntos de enredo con su accion correctiva.
 
 ---
 

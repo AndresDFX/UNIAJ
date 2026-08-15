@@ -29,14 +29,14 @@ Cambia a `Clases/Clase 1 - Introduccion a arquitecturas cloud/Presentacion.pptx`
 Mapa mental arquitectura cloud. Presenta CloudLite como hilo del semestre.
 
 ### 70-110 Taller PI ficha + C4 Context
-Equipos. Entregable: ficha dominio + C4 Context. Recorre mesas. Bloquea dominios vagos.
+Individual por defecto (equipo de 2-3 solo si el docente lo autoriza). Entregable: ficha dominio + C4 Context. Recorre puestos. Bloquea dominios vagos.
 
 ### 110-120 Cierre
 Quiz corto opcional / dudas. «Domingo 23:59 ficha+diagrama. Siguiente: IaaS/PaaS/SaaS (autonoma).»
 """,
 3: """
-## Demo Killercoda / Play with Docker (guion casi literal)
-1. Abre killercoda.com o labs.play-with-docker.com.
+## Demo Killercoda / LabEx Docker Playground (guion casi literal)
+1. Abre killercoda.com o labex.io (inicia sesion con Google o Microsoft).
 2. Di: «No instalamos Docker Desktop. Lab temporal en navegador.»
 3. `docker run --rm -p 8080:80 nginx:alpine` (o equivalente del lab).
 4. Muestra respuesta HTTP / puerto.
@@ -63,7 +63,7 @@ Quiz corto opcional / dudas. «Domingo 23:59 ficha+diagrama. Siguiente: IaaS/Paa
 """,
 11: """
 ## Checklist oral de revision (docente)
-Por equipo (3-5 min): dominio claro? ADR? C4=Deployment nombres? Dockerfile? Actions? Seguridad? Costos?
+Por estudiante o equipo autorizado (3-5 min): dominio claro? ADR? C4=Deployment nombres? Dockerfile? Actions? Seguridad? Costos?
 Marca ROJO/AMARILLO/VERDE. Backlog escrito 5 items para Clase 12.
 """,
 12: """

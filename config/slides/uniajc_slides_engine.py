@@ -733,7 +733,12 @@ def _contenido_line(raw):
     fecha = it.get("fecha")
     tag = it.get("tag")
     kind = (it.get("kind") or "").lower()
-    if kind == "sesion0" or str(n) == "0":
+    label = it.get("label")
+    if label:
+        # 2026-2: «Sesión N» != «Clase N» (13 sesiones / 15 clases de material),
+        # asi que el rotulo puede venir dado explicitamente.
+        line = f"–   **{label} –** {tema}"
+    elif kind == "sesion0" or str(n) == "0":
         line = f"–   **Sesión 0 –** {tema}"
     else:
         line = f"–   **Clase {n} –** {tema}"

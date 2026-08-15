@@ -35,7 +35,7 @@ Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 ### 10-40 · Teoria Core
 Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
 proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
-Pregunta al aire (2 min): ¿donde encaja esto en el VetCare de su equipo?
+Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
@@ -44,14 +44,14 @@ Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 2/Codigo/VetCareRegistroMascotas.java`
 
 ### 60-105 · Taller guiado = avance del PI
-**Decir:** «Equipos: abran su proyecto VetCare. Esto suma a la rubrica del PI.»
+**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Cree en NetBeans el proyecto Java Application llamado VetCare con paquete vetcare, y dentro de el la clase Mascota con los atributos privados id, nombre, especie, edad y dueno, su constructor completo, sus getters y el metodo toString(); verifique imprimiendo una mascota de prueba y confirmando que en consola sale el texto legible y no vetcare.Mascota@1a2b3c.
 2. Cree la clase RegistroMascotas con el atributo private final List<Mascota> mascotas = new ArrayList<>(); y el metodo agregar(Mascota m) que rechace un ID ya existente; verifique agregando dos veces la mascota M-001 y comprobando que la consola muestra el aviso de ID repetido y que cantidad() sigue devolviendo 1.
 3. Implemente listar(), que recorra con for indexado e imprima cada ficha numerada, y buscarPorId(String id), que recorra con for-each y devuelva la Mascota o null; verifique que buscarPorId("M-003") imprime la ficha de Rocky y que buscarPorId("M-099") imprime que no existe, sin lanzar NullPointerException.
 4. Implemente eliminarPorId(String id) usando remove(objeto) y el metodo pasarAGeriatria(int edadMinima) usando Iterator con it.remove(); verifique que despues de eliminar M-002 y de pasar a geriatria a las mascotas de 9 anios o mas, size() bajo exactamente en la cantidad de fichas retiradas y el programa no lanza ConcurrentModificationException.
 5. Arme un menu de consola con Scanner y opciones 1-Agregar, 2-Listar, 3-Buscar por ID, 4-Eliminar, 5-Salir dentro de un ciclo while; ejecute el programa cargando las seis fichas del escenario, tome captura de la consola con el listado final y suba el proyecto comprimido mas la captura a ExamLab.
-Circular por los equipos. Empujar evidencia funcionando, no perfeccionismo.
+Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Proyecto NetBeans con las clases Mascota y RegistroMascotas y un menu de consola que agrega, lista, busca por ID y elimina mascotas, comprimido y subido a ExamLab.
 
 ### 105-120 · Criterios de exito y cierre

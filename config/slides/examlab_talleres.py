@@ -135,7 +135,8 @@ def bloque_estudiante(taller):
         "p",
         "Cada pregunta trae su propio enunciado completo dentro de la plataforma: "
         "puedes resolver el taller leyendo solo ExamLab. Este documento sirve para "
-        "prepararte y para trabajar en equipo antes de responder.",
+        "prepararte y conservar tus respuestas. La actividad es individual; si el "
+        "docente autoriza trabajo en equipo, la entrega en ExamLab sigue siendo individual.",
     ))
     return out
 

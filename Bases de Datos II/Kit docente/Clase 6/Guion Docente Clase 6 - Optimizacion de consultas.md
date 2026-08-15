@@ -87,16 +87,16 @@ Herramienta: DB Fiddle / SQLTest.online
 Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Taller guiado = tarea del PI
-**Decir:** «Equipos: abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
+**Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
 1. Tomar 1 consulta real del PI (citas del dia / historial).
 2. Escribir version antes e ineficiente o real.
 3. Reescribir despues y justificar 3 cambios.
-4. Guardar 06_opt_antes.sql / 06_opt_despues.sql en carpeta del equipo.
-Circular por equipos (o salas). Empujar evidencia, no perfectionismo.
+4. Guardar 06_opt_antes.sql / 06_opt_despues.sql en la carpeta del PI.
+Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: 2 consultas (antes/despues) + justificacion (media pag.)
-📸 Pantallazo: [CAP: avance equipo / playground Clase 6]
+📸 Pantallazo: [CAP: avance del estudiante / playground Clase 6]
 
 ### 105-115 · Criterios de exito + quiz corto
 Repasar checklist del dia (slide Criterios).
@@ -115,5 +115,5 @@ Carpeta Capturas/. Placeholders [CAP: ...] arriba; reemplazar por PNG reales cua
 (Playwright/manual en DB Fiddle, draw.io, Live SQL).
 
 ## Criterios de exito del dia
-- Equipos tienen el entregable o gaps escritos.
+- Cada estudiante tiene el entregable o sus gaps escritos.
 - Queda claro el vinculo con la rubrica del PI (modelo, seguridad, procs, opt, integracion).

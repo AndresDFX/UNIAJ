@@ -48,7 +48,7 @@ CLASES = [
     subtitulo="Diagnostico · dominio PI · primer modelo",
     herramienta="draw.io + DB Fiddle",
     hito_pi="Arranque PI: dominio, alcance y borrador ER de VetCare DB",
-    entregable="Ficha de equipo + ER borrador (PNG) + lista de entidades/reglas",
+    entregable="Ficha del proyecto + ER borrador (PNG) + lista de entidades/reglas",
     teoria=["Modelo entidad-relacion: una tabla = conjunto de entidades del mismo tipo; cada fila es una instancia, cada columna un atributo. La clave primaria (PK) identifica sin ambiguedad cada fila: nunca se repite, nunca es nula.",
             "Clave foranea (FK): columna que apunta a la PK de otra tabla y materializa una relacion (1-N o N-N via tabla intermedia). Garantiza integridad referencial: la BD rechaza una Cita con id_mascota que no existe.",
             "Normalizacion 1FN-3FN en una frase cada una: 1FN = nada de listas dentro de una celda (una fila = una mascota, no varias); 2FN = ningun atributo depende solo de una parte de una PK compuesta; 3FN = ningun atributo depende de otro atributo que no sea la PK. Sub-normalizar genera anomalias de insercion/actualizacion/borrado (ej.: cambiar el telefono de un dueno en 5 filas distintas); sobre-normalizar multiplica JOINs sin necesidad real.",
@@ -56,7 +56,7 @@ CLASES = [
             "Dominio VetCare y sus relaciones: Dueno 1-N Mascota, Mascota 1-N Cita, Veterinario 1-N Cita, Consulta 1-1 Cita (una consulta documenta una cita atendida), Factura 1-N DetalleFactura N-1 Insumo.",
             "Reglas de negocio del PI que ya anticipan clases futuras: mascota inactiva no puede tener cita nueva (se validara con un procedimiento en Clase 3), stock de insumo nunca queda negativo (transacciones, Clase 8), cambios sensibles quedan auditados (triggers, Clase 4)."],
     demo="Boceto ER en draw.io (Dueno-Mascota-Cita) + CREATE TABLE minimo en DB Fiddle.",
-    taller=["Formar equipo (2-3) y nombrar el proyecto VetCare DB.",
+    taller=["Nombrar y registrar su proyecto VetCare DB (trabajo individual por defecto; equipo de 2-3 solo si el docente lo autoriza).",
             "Listar entidades minimas + 3 reglas de negocio propias.",
             "Dibujar ER borrador en draw.io/Excalidraw y exportar PNG.",
             "Escribir 5-8 lineas de alcance (que SI / que NO hara el PI)."],
@@ -71,8 +71,8 @@ CLASES = [
             "Principio de minimo privilegio: cada rol recibe solo lo que necesita para su funcion, ni un privilegio mas. No es paranoia, es reduccion de superficie de dano: si roban la sesion de un recepcionista, no debe poder borrar el historial clinico ni ver nomina.",
             "Separacion de funciones (segregation of duties): quien disena/modifica el esquema (DDL: CREATE/ALTER/DROP) no deberia ser la misma cuenta que opera datos del dia a dia (DML: INSERT/UPDATE/DELETE), y quien audita solo deberia leer (SELECT), nunca escribir.",
             "GRANT otorga un privilegio a un rol o usuario; REVOKE lo retira. Un rol se puede asignar a varios usuarios (todos los recepcionistas heredan el rol RECEPCION) y modificar en un solo lugar en vez de uno por uno.",
-            "Error de docente que no domina el tema: crear un unico usuario 'admin' que todos comparten (rompe la trazabilidad de auditoria) o dar DBA/ALL PRIVILEGES a todo el equipo 'para que no falle nada' — exactamente lo opuesto a minimo privilegio.",
-            "En el playground (Live SQL / DB Fiddle) el motor puede restringir CREATE ROLE o GRANT reales: cuando eso pase, el equipo redacta la matriz rol x objeto x privilegio como documento/plan, y ejecuta lo que el playground SI permita como evidencia parcial — no es escusa para omitir el analisis."],
+            "Error de docente que no domina el tema: crear un unico usuario 'admin' que todos comparten (rompe la trazabilidad de auditoria) o dar DBA/ALL PRIVILEGES a todo el mundo 'para que no falle nada' — exactamente lo opuesto a minimo privilegio.",
+            "En el playground (Live SQL / DB Fiddle) el motor puede restringir CREATE ROLE o GRANT reales: cuando eso pase, el estudiante redacta la matriz rol x objeto x privilegio como documento/plan, y ejecuta lo que el playground SI permita como evidencia parcial — no es escusa para omitir el analisis."],
     demo="Matriz rol x objeto x privilegio sobre tablas VetCare.",
     taller=["Definir >=4 roles (ADMIN_BD, RECEPCION, VETERINARIO, AUDITOR).",
             "Matriz SELECT/INSERT/UPDATE/DELETE/EXECUTE por objeto clave.",
@@ -87,7 +87,7 @@ CLASES = [
     entregable="Script proc + casos de prueba (captura o enlace Live SQL)",
     teoria=["Un procedimiento almacenado (stored procedure) es un bloque de codigo SQL/PLSQL con nombre propio, guardado y compilado DENTRO de la base de datos, que se invoca con CALL o EXECUTE en vez de reescribir la logica cada vez.",
             "Parametros: IN (entra un valor, ej. p_id_mascota), OUT (el proc devuelve un valor al que lo llamo, ej. p_msg con el resultado), IN OUT (ambos). A diferencia de una consulta suelta, un proc puede recibir varios parametros y ejecutar varias sentencias como una sola unidad logica.",
-            "Ventaja central para el PI: sin proc, cada pantalla de la futura app (o cada integrante del equipo) reescribiria la regla 'mascota inactiva no agenda' con su propio SQL, y tarde o temprano alguien la escribe distinto o la olvida. Con el proc, la regla vive UNA vez dentro de la BD; toda la app la respeta sin excepcion.",
+            "Ventaja central para el PI: sin proc, cada pantalla de la futura app (o cada persona que toque el codigo) reescribiria la regla 'mascota inactiva no agenda' con su propio SQL, y tarde o temprano alguien la escribe distinto o la olvida. Con el proc, la regla vive UNA vez dentro de la BD; toda la app la respeta sin excepcion.",
             "Manejo de errores controlado: en vez de dejar que la insercion falle con un error crudo de motor, el proc valida primero (SELECT activa FROM mascota) y responde con un mensaje de negocio claro ('ERROR: mascota inactiva; no se agenda'), y usa EXCEPTION/TRY-CATCH segun el motor para capturar fallos inesperados sin tumbar la transaccion completa.",
             "Diferencia con una funcion (se vera en Clase 4): el procedimiento se ejecuta como una accion (CALL sp_algo), la funcion se invoca dentro de una expresion SQL y retorna un valor (SELECT fn_algo(x) FROM ...).",
             "Error de docente que no domina el tema: escribir el proc sin validar nada (solo el INSERT) y llamarlo 'logica de negocio' — un proc sin reglas de validacion es solo una consulta con nombre, no resuelve el problema que motiva usar procedimientos."],
@@ -108,7 +108,7 @@ CLASES = [
             "Riesgo real de los triggers: son invisibles en el codigo de la app (un desarrollador que solo mira el INSERT no ve que ademas se dispara una auditoria), y pueden encadenarse (un trigger que dispara otro trigger) generando efectos dificiles de rastrear. Se usan para pocas reglas criticas, no para toda la logica de negocio.",
             "Seguridad y respaldo van juntos: seguridad evita que datos se corrompan o se filtren; respaldo (backup) asume que igual algo saldra mal y prepara la recuperacion. Full backup (copia completa), incremental (solo lo que cambio desde el ultimo backup) y diferencial (todo lo que cambio desde el ultimo FULL) son las tres estrategias base.",
             "RPO (Recovery Point Objective) = cuantos datos se puede permitir perder, medido en tiempo ('maximo 1 hora de citas perdidas'). RTO (Recovery Time Objective) = cuanto tiempo puede estar caida la BD antes de restaurar. Un backup diario sin probar el restore no cumple ningun RPO/RTO real: un plan de respaldo sin prueba de restauracion es solo una promesa.",
-            "Error de docente que no domina el tema: presentar el backup como 'copiar el archivo de vez en cuando' sin frecuencia, retencion (cuantas copias se guardan) ni prueba de restore — eso es lo que el taller de esta clase pide explicitamente que el equipo defina."],
+            "Error de docente que no domina el tema: presentar el backup como 'copiar el archivo de vez en cuando' sin frecuencia, retencion (cuantas copias se guardan) ni prueba de restore — eso es lo que el taller de esta clase pide explicitamente que el estudiante defina."],
     demo="fn_precio_consulta + trg_audit_cancelacion_cita + outline backup.",
     taller=["Crear >=1 funcion util al PI.",
             "Crear >=1 trigger (auditoria o stock no negativo).",
@@ -134,7 +134,7 @@ CLASES = [
     taller=["Tomar 1 consulta real del PI (citas del dia / historial).",
             "Escribir version antes e ineficiente o real.",
             "Reescribir despues y justificar 3 cambios.",
-            "Guardar 06_opt_antes.sql / 06_opt_despues.sql en carpeta del equipo."],
+            "Guardar 06_opt_antes.sql / 06_opt_despues.sql en la carpeta del PI."],
     quiz=True, sql="06_opt_consultas.sql"),
   dict(n=7, tipo="regular", slug="Indices y particionamiento",
     titulo="Indices y particionamiento · VetCare",
@@ -201,7 +201,7 @@ CLASES = [
     entregable="Checklist firmada + enlace/ZIP avance (DDL+procs+ER)",
     teoria=["Hoy no hay tema nuevo: se cierran huecos del PI con rubrica.",
             "Evidencias: ER, DDL, roles, >=2 procs, >=1 fn, >=2 triggers, 1 opt.",
-            "Feedback entre pares: 10 min por equipo."],
+            "Revision cruzada entre estudiantes: 10 min por persona."],
     demo="Recorrido de checklist + ejemplo demo de 3 min.",
     taller=["Completar checklist de avance (si/no/parcial).",
             "Demo 3-5 min: ER + 1 proc + 1 trigger.",
@@ -235,13 +235,13 @@ CLASES = [
     teoria=["Caso 1 — falta de backup real: una organizacion que 'hacia backup' copiando el archivo de datos una vez al mes sin probar nunca el restore. Cuando el disco fallo, el archivo copiado estaba corrupto (nunca se verifico) y perdieron meses de informacion. Leccion para VetCare: un backup que nunca se restauro de prueba no cuenta como backup funcional (conecta con Clase 4: RPO/RTO y prueba de restore).",
             "Caso 2 — indices mal disenados: un sistema con un indice sobre CADA columna 'por si acaso', que volvia cada INSERT/UPDATE mas lento de lo aceptable, sin que nadie hubiera medido si esos indices realmente se usaban en consultas reales. Leccion: indexar sin justificar la consulta que lo aprovecha (conecta con Clase 7) desperdicia recursos y no mejora nada.",
             "Caso 3 — inyeccion SQL: una aplicacion que concatenaba directamente el texto escrito por el usuario dentro de una consulta (ej. \"SELECT * FROM usuarios WHERE nombre='\" + input + \"'\"), permitiendo que alguien escribiera un valor que alterara la consulta completa y expusiera o borrara datos ajenos. Leccion: por eso la app llama procedimientos con parametros tipados (Clase 3 y Clase 12) en vez de armar SQL con texto libre.",
-            "Estructura para analizar cualquier caso real: (1) contexto — que sistema era y que se suponia que hacia bien; (2) fallo — que paso exactamente y por que la causa raiz no era 'mala suerte' sino una decision tecnica evitable; (3) leccion — que principio general se puede extraer; (4) cambio concreto — que se ajusta HOY en el VetCare del equipo, no en abstracto.",
+            "Estructura para analizar cualquier caso real: (1) contexto — que sistema era y que se suponia que hacia bien; (2) fallo — que paso exactamente y por que la causa raiz no era 'mala suerte' sino una decision tecnica evitable; (3) leccion — que principio general se puede extraer; (4) cambio concreto — que se ajusta HOY en su propio VetCare, no en abstracto.",
             "Esta clase es autonoma (sin encuentro sincrono) precisamente porque no introduce tecnica nueva: aplica en modo reflexivo/critico todo lo visto en Clases 1-10 sobre un caso real, cerrando el ciclo antes de entrar a integracion y cierre del PI.",
             "Error de docente que no domina el tema: dejar que el informe describa el caso ajeno sin conectar ninguna leccion con una accion verificable en VetCare — el entregable exige 3 mejoras concretas aplicadas al proyecto propio, no un resumen de noticia."],
     demo="Plantilla: contexto -> fallo -> leccion -> cambio en VetCare.",
     taller=["Elegir 1 caso (backup, rendimiento o seguridad).",
             "Resumir en media pagina que paso.",
-            "Proponer 3 mejoras concretas al VetCare del equipo.",
+            "Proponer 3 mejoras concretas a su VetCare.",
             "Actualizar informe PI con lecciones de casos."],
     quiz=True, sql=None),
   dict(n=14, tipo="parcial", slug=None, titulo="Parcial 3", subtitulo="Solo evaluacion — Corte 3",
@@ -251,12 +251,12 @@ CLASES = [
   dict(n=15, tipo="autonoma", slug="Presentacion del proyecto y cierre",
     titulo="Presentacion PI · Cierre VetCare",
     subtitulo="Clase autonoma · sustentacion y cierre",
-    herramienta="ExamLab (Proyectos) + slides del equipo",
+    herramienta="ExamLab (Proyectos) + slides propias",
     hito_pi="Sustentacion / entrega final del PI (20% Corte 3)",
     entregable="ZIP/PDF final + video o Meet segun indique docente",
     teoria=["Cierre: evidencias completas segun rubrica (100 pts -> 20%).",
             "Sustentacion breve alineada a criterios del enunciado.",
-            "Autoevaluacion del proceso del equipo."],
+            "Autoevaluacion del propio proceso de trabajo."],
     demo="Checklist final de empaquetado del ZIP.",
     taller=["Entregar paquete final en ExamLab (modulo Proyectos).",
             "Sustentar 5-8 min (sincrono o asincrono).",
@@ -344,7 +344,7 @@ GRANT SELECT ON dueno TO auditor;
 -- ADMIN_BD:    DDL completo + capacidad de otorgar/revocar roles
 """,
 "03_procs_vetcare.sql": """-- VetCare DB · Clase 3 · Procedimiento agendar cita (Oracle Live SQL)
--- Ajustar tipos segun el schema creado por el equipo.
+-- Ajustar tipos segun el schema creado por el estudiante.
 
 CREATE OR REPLACE PROCEDURE sp_agendar_cita (
   p_id_cita IN NUMBER,
@@ -480,7 +480,7 @@ INSERT INTO cita_demo VALUES (3, 35, 5, TIMESTAMP '2026-10-12 09:00:00', 'PROGRA
 -- Esperado: error de restriccion unica (ORA-00001 en Oracle) -> la BD rechaza la doble reserva.
 """,
 "11_checklist_seed.sql": """-- VetCare DB · Clase 11 · Seed ejecutable para la demo de checklist
--- Autocontenido: cree estas tablas minimas si el equipo aun no las tiene, o
+-- Autocontenido: cree estas tablas minimas si aun no las tiene, o
 -- adapte los nombres a su propio DDL (Clases 1-8) antes de correr los INSERT.
 
 CREATE TABLE dueno_demo (id_dueno INT PRIMARY KEY, nombre VARCHAR(80));
@@ -555,7 +555,7 @@ QUIZ = {
     q_abierta("Nombre 3 entidades de su ER VetCare y una FK entre dos de ellas.",
               "Ej. Mascota.id_dueno → Dueño.id; Cita.id_mascota → Mascota.id."),
     q_abierta("Escriba en una frase el alcance SI / NO de su PI esta semana.",
-              "Respuesta de equipo alineada a ficha (qué sí modelan / qué queda fuera)."),
+              "Respuesta alineada a su ficha (qué sí modela / qué queda fuera)."),
 ],
 2: [
     q_om("Un rol con privilegios mínimos en VetCare sirve para:",
@@ -607,7 +607,7 @@ QUIZ = {
     q_vf("La seguridad del PI termina al crear un usuario; no hace falta auditar cambios sensibles.", "F"),
     q_abierta("Proponga un trigger VetCare (evento + tabla + qué registra).",
               "Ej. AFTER UPDATE cita → auditar cancelación (quién/cuándo/estado)."),
-    q_abierta("Indique RPO y RTO objetivo cualitativos para VetCare del equipo.",
+    q_abierta("Indique RPO y RTO objetivo cualitativos para su VetCare.",
               "Ej. RPO ≤ 24h (export diario); RTO ≤ 4h (restaurar playground/script)."),
 ],
 6: [
@@ -694,7 +694,7 @@ QUIZ = {
          ["A) Improvisar sin script", "B) Mostrar flujo real (agendar/facturar) con datos seed",
           "C) Leer el microcurrículo completo", "D) Ocultar errores siempre"], "B"),
     q_vf("Anti-patrón: SQL suelto en la app que bypasea procs y auditoría.", "V"),
-    q_abierta("Liste 3 ítems del checklist PI que YA tienen evidencia en su equipo.",
+    q_abierta("Liste 3 ítems del checklist PI que YA tienen evidencia en su proyecto.",
               "Respuesta concreta: ER PNG, sp_*, trigger, TX, índices, etc."),
     q_abierta("Nombre el mayor hueco actual y la clase/hito donde lo cerrarán.",
               "Ej. contrato ops → Clase 12; concurrencia → ya/ajustes."),
@@ -731,7 +731,7 @@ QUIZ = {
           "C) Solo emojis", "D) Borrar scripts"], "B"),
     q_vf("Incidentes de datos (fugas, inconsistencias) motivan controles que ya vieron en el curso.", "V"),
     q_abierta("Nombre el caso analizado y 1 riesgo que también tiene VetCare.",
-              "Respuesta de equipo: caso + riesgo (privilegios, backup, TX…)."),
+              "Respuesta propia: caso + riesgo (privilegios, backup, TX…)."),
     q_abierta("¿Qué cambio harán en su PI por esa lección (artefacto concreto)?",
               "Ej. añadir trigger auditoría / endurecer rol / documentar RPO."),
 ],
@@ -743,7 +743,7 @@ QUIZ = {
          ["A) Reemplaza el Parcial 3", "B) No sustituye el Parcial 3",
           "C) Elimina asistencia", "D) Es sin rúbrica"], "B"),
     q_vf("Mostrar secretos/credenciales en pantalla durante la demo es aceptable.", "F"),
-    q_vf("La demo debe usar el dominio VetCare del equipo (no otro caso improvisado).", "V"),
+    q_vf("La demo debe usar su propio dominio VetCare (no otro caso improvisado).", "V"),
     q_om("Orden razonable de pitch:",
          ["A) Problema → modelo → ops/demo → decisiones → cierre", "B) Solo memes",
           "C) Leer 40 diapositivas de teoría", "D) Empezar por la factura AWS"], "A"),
@@ -751,7 +751,7 @@ QUIZ = {
     q_abierta("Liste las evidencias que proyectarán (archivos/URLs) en la sustentación.",
               "ER, scripts procs/TX, contrato, capturas playground, checklist."),
     q_abierta("Trade-off principal que defenderán (1–2 frases).",
-              "Respuesta alineada a decisiones del equipo (procs vs app, índices, etc.)."),
+              "Respuesta alineada a sus propias decisiones (procs vs app, índices, etc.)."),
 ],
 }
 
@@ -1010,7 +1010,7 @@ def build_pptx(c):
         f"**Entregable de hoy:** {c['entregable']}",
         "Gratis + navegador · free tier · sin software de pago obligatorio.",
         "La teoría no es un tema aislado: alimenta evidencias de la rúbrica del PI.",
-        "Al salir: avance concreto en el paquete VetCare del equipo.",
+        "Al salir: avance concreto en su paquete VetCare.",
     ], idx=idx); idx += 1
     block_timeline_slide(prs, "Mapa del bloque de hoy (120 min)", [
         ("0-10", f"Encuadre · clase {tipo_lbl} · VetCare"),
@@ -1039,7 +1039,7 @@ def build_pptx(c):
         f"**Herramienta:** {c['herramienta']}",
         f"**Demo:** {c['demo']}",
         "Sigan el mismo dominio VetCare (no inventen otro caso).",
-        "Al final de la demo: dejar enlace/script compartible al equipo.",
+        "Al final de la demo: dejar enlace/script compartible al grupo.",
     ], idx=idx); idx += 1
     tools = HERRAMIENTAS_DIA.get(c["n"])
     if tools:
@@ -1054,7 +1054,7 @@ def build_pptx(c):
     obj = tb.get("objetivo") or c["hito_pi"]
     crit = [f"@@Exito:@@ {x}" for x in tb.get("criterios", [])] or [
         f"@@Entregable:@@ {c['entregable']}",
-        "Evidencia en playground o archivos del equipo.",
+        "Evidencia en playground o archivos propios del estudiante.",
     ]
     content_slide(prs, f"{label} — objetivo y criterios", [f"@@Objetivo:@@ {obj}", *crit], idx=idx, size=15)
     idx += 1
@@ -1068,7 +1068,7 @@ def build_pptx(c):
         idx += 1
     content_slide(prs, "Criterios de exito / entregable", [
         f"**Entregable:** {c['entregable']}",
-        "Evidencia en playground (enlace) o archivo SQL/PNG del equipo.",
+        "Evidencia en playground (enlace) o archivo SQL/PNG propio.",
         "Actualizar checklist PI (que criterio de rubrica avanzo).",
         "@@Entrega en ExamLab@@ (https://examlab.lovable.app/) — domingo 23:59 cuando aplique taller.",
     ], idx=idx); idx += 1
@@ -1101,18 +1101,18 @@ def build_taller_docx(c):
     para(doc, f"Herramienta: {c['herramienta']}")
     para(doc, f"Hoy avanzamos el PI en: {c['hito_pi']}", shade_fill="FFF8D6")
     para(doc, "1. Contexto / por que importa al PI", size=12, bold=True, color=AZUL)
-    bullets(doc, tb.get('contexto') or ["Trabaje sobre el dominio VetCare del equipo."])
+    bullets(doc, tb.get('contexto') or ["Trabaje sobre su propio dominio VetCare."])
     para(doc, "2. Objetivo", size=12, bold=True, color=AZUL)
     para(doc, tb.get('objetivo', c['hito_pi']))
     para(doc, "3. Escenario / datos de partida", size=12, bold=True, color=AZUL)
-    bullets(doc, tb.get('escenario') or ["Usar el DDL/ER VetCare del equipo."])
+    bullets(doc, tb.get('escenario') or ["Usar su propio DDL/ER de VetCare."])
     para(doc, "4. Actividades (pasos guiados)", size=12, bold=True, color=AZUL)
     bullets(doc, c['taller'])
     para(doc, "5. Entregable", size=12, bold=True, color=AZUL)
     para(doc, c['entregable'], shade_fill="E8F4FA")
     para(doc, "6. Criterios de exito", size=12, bold=True, color=AZUL)
     bullets(doc, tb.get('criterios') or [
-        "Avance real del VetCare del equipo.",
+        "Avance real de su propio VetCare.",
         "Evidencia ejecutable o diagrama exportado.",
         "Criterio de rubrica del PI movido hoy.",
     ])
@@ -1279,7 +1279,7 @@ Salida esperada de la practica (publiquela junto al enunciado para que el
 estudiante autonomo sepa si le quedo bien):
 {caps}
 ### Bloque D (100-120) · Empaquetado y cierre
-Subir entregable a ExamLab. Actualizar checklist PI del equipo.
+Subir entregable a ExamLab. Actualizar el checklist PI del proyecto.
 """.format(hito=c['hito_pi'], herr=c['herramienta'], caps=_capturas_md(c['n']))
     else:
         plan = f"""## Plan minuto a minuto (120 min) — texto casi literal
@@ -1304,13 +1304,13 @@ Herramienta: {c['herramienta']}
 """ + _capturas_md(c['n']) + f"""Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Taller guiado = tarea del PI
-**Decir:** «Equipos: abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
+**Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
 """ + "\n".join(f"{i+1}. {t}" for i,t in enumerate(c['taller'])) + f"""
-Circular por equipos (o salas). Empujar evidencia, no perfectionismo.
+Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: {c['entregable']}
-📸 Pantallazo: [CAP: avance equipo / playground Clase {c['n']}]
+📸 Pantallazo: [CAP: avance del estudiante / playground Clase {c['n']}]
 
 ### 105-115 · Criterios de exito + quiz corto
 Repasar checklist del dia (slide Criterios).
@@ -1360,7 +1360,7 @@ Carpeta Capturas/. Placeholders [CAP: ...] arriba; reemplazar por PNG reales cua
 (Playwright/manual en DB Fiddle, draw.io, Live SQL).
 
 ## Criterios de exito del dia
-- Equipos tienen el entregable o gaps escritos.
+- Cada estudiante tiene el entregable o sus gaps escritos.
 - Queda claro el vinculo con la rubrica del PI (modelo, seguridad, procs, opt, integracion).
 """
     path = kit / f"Guion Docente Clase {c['n']} - {c['slug']}.md"
@@ -1369,7 +1369,7 @@ Carpeta Capturas/. Placeholders [CAP: ...] arriba; reemplazar por PNG reales cua
     (kit/"Capturas"/"README_capturas.txt").write_text(
         f"Placeholders pendientes Clase {c['n']}:\n"
         f"- [CAP: demo {c['herramienta']} VetCare Clase {c['n']}]\n"
-        f"- [CAP: avance equipo / playground Clase {c['n']}]\n"
+        f"- [CAP: avance del estudiante / playground Clase {c['n']}]\n"
         "Nombre sugerido: cap01_demo.png, cap02_taller.png\n", encoding='utf-8')
     if c['sql'] and c['sql'] in SQL_BODIES:
         (kit/"Codigo"/c['sql']).write_text(SQL_BODIES[c['sql']], encoding='utf-8')
@@ -1457,7 +1457,7 @@ PIZARRA = {
     7: "Tabla caliente (ej. Cita) con una flecha grande hacia un rectangulo 'INDICE idx_cita_fecha' y la palabra 'acelera lectura / cuesta escritura'.",
     8: "Linea de tiempo horizontal: BEGIN → INSERT factura → INSERT detalle → UPDATE stock → COMMIT/ROLLBACK con una bifurcacion visual en el ROLLBACK.",
     10: "La MISMA linea de tiempo T1/T2 de la diapositiva de Clase 10, pero redibujada en vivo con los IDs reales que use el script de demo.",
-    11: "Checklist en 2 columnas: Evidencia (ER, DDL, roles, procs, fn, triggers, opt) | Si/No/Parcial — llenar con el equipo en vivo.",
+    11: "Checklist en 2 columnas: Evidencia (ER, DDL, roles, procs, fn, triggers, opt) | Si/No/Parcial — llenar en vivo con el curso.",
     12: "Caja 'App' — flecha rotulada con el nombre del proc (ej. sp_agendar_cita) — caja 'Base de datos'. Sin flecha directa App→tablas.",
     13: "Tabla 4 columnas: Contexto | Fallo | Leccion | Cambio en VetCare — una fila por caso discutido.",
     15: "Checklist final de empaquetado: ER, DDL, roles, procs, triggers, optimizacion, transacciones, concurrencia, contrato, informe — marcar completos.",
@@ -1552,7 +1552,7 @@ def build_guia_practica():
         "",
         "Hilo conductor de todas las clases regulares/autonomas. Avance formal en",
         "Clase 11 (checkpoint) y entrega/sustentacion en Clase 15. Se sube a ExamLab",
-        "como Proyecto (grupal); pesa 20% del Corte 3.",
+        "como Proyecto (individual por defecto; equipo de 2-3 solo si el docente lo autoriza); pesa 20% del Corte 3.",
         "",
     ]
     KIT_DIR.mkdir(parents=True, exist_ok=True)

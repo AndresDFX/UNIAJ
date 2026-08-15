@@ -319,7 +319,7 @@ def diagram_cloudlite_stack():
         ("draw.io", "C4 / Deployment"),
         ("Excalidraw", "Bocetos rápidos"),
         ("Killercoda", "Labs contenedor"),
-        ("Play with Docker", "Build/run stub"),
+        ("LabEx Docker Playground", "Build/run stub"),
         ("GitHub Actions", "CI/CD simulado"),
         ("Google Docs", "Informe PI"),
     ]

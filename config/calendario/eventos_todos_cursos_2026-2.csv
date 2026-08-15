@@ -1,61 +1,53 @@
 ﻿curso,codigo_fi,grupo,clase_n,fecha,dia,hora_inicio,hora_fin,tipo_clase,es_parcial,parcial_n,sesion_etiqueta,tema,notas
-Programación II,FI303204,341C,1,2026-08-12,Miércoles,18:00,20:00,presencial,no,,Clase 1,Presentación del curso · Introducción a POO,
-Programación II,FI303204,341C,2,2026-08-19,Miércoles,18:00,20:00,virtual,no,,Clase 2,Colecciones dinámicas ArrayList,
-Programación II,FI303204,341C,3,2026-08-26,Miércoles,18:00,20:00,virtual,no,,Clase 3,Pilas y colas,
-Programación II,FI303204,341C,4,2026-09-02,Miércoles,18:00,20:00,virtual,no,,Clase 4,Mapas y conjuntos · Interfaces gráficas GUI,
-Programación II,FI303204,341C,5,2026-09-09,Miércoles,18:00,20:00,presencial,si,1,Clase 5 · Parcial 1,Parcial 1,parcial presencial sincrono
-Programación II,FI303204,341C,6,2026-09-16,Miércoles,18:00,20:00,virtual,no,,Clase 6,Eventos y controladores,
-Programación II,FI303204,341C,7,2026-09-23,Miércoles,18:00,20:00,virtual,no,,Clase 7,Patrones de diseño,
-Programación II,FI303204,341C,8,2026-09-30,Miércoles,18:00,20:00,virtual,no,,Clase 8,Documentación y QA,
-Programación II,FI303204,341C,9,2026-10-07,Miércoles,18:00,20:00,virtual,no,,Clase 9,Refactorización con IA · Persistencia de archivos,
-Programación II,FI303204,341C,10,2026-10-14,Miércoles,18:00,20:00,presencial,si,2,Clase 10 · Parcial 2,Parcial 2,parcial presencial sincrono
-Programación II,FI303204,341C,11,2026-10-21,Miércoles,18:00,20:00,virtual,no,,Clase 11,Revisión de código cruzada,
-Programación II,FI303204,341C,12,2026-10-28,Miércoles,18:00,20:00,virtual,no,,Clase 12,Integración de módulos,
-Programación II,FI303204,341C,13,2026-11-04,Miércoles,18:00,20:00,virtual,no,,Clase 13,Control de excepciones,
-Programación II,FI303204,341C,14,2026-11-11,Miércoles,18:00,20:00,virtual,no,,Clase 14,Preparación presentación final · Evaluación de proyectos + cierre,
-Programación II,FI303204,341C,15,2026-11-18,Miércoles,18:00,20:00,presencial,si,3,Clase 15 · Parcial 3,Parcial 3,parcial presencial sincrono
-Seminario de Sistemas,FI303301,341C,1,2026-08-13,Jueves,18:00,20:00,presencial,no,,Clase 1,Presentación del curso · Conceptos iniciales,
-Seminario de Sistemas,FI303301,341C,2,2026-08-20,Jueves,18:00,20:00,virtual,no,,Clase 2,Ciclos de vida,
-Seminario de Sistemas,FI303301,341C,3,2026-08-27,Jueves,18:00,20:00,virtual,no,,Clase 3,Metodologías tradicionales,
-Seminario de Sistemas,FI303301,341C,4,2026-09-03,Jueves,18:00,20:00,virtual,no,,Clase 4,Metodologías ágiles,
-Seminario de Sistemas,FI303301,341C,5,2026-09-10,Jueves,18:00,20:00,presencial,si,1,Clase 5 · Parcial 1,Parcial 1,parcial presencial sincrono
-Seminario de Sistemas,FI303301,341C,6,2026-09-17,Jueves,18:00,20:00,virtual,no,,Clase 6,Requerimientos de software,
-Seminario de Sistemas,FI303301,341C,7,2026-09-24,Jueves,18:00,20:00,virtual,no,,Clase 7,Historias de usuario,
-Seminario de Sistemas,FI303301,341C,8,2026-10-01,Jueves,18:00,20:00,virtual,no,,Clase 8,Introducción a UML,
-Seminario de Sistemas,FI303301,341C,9,2026-10-08,Jueves,18:00,20:00,virtual,no,,Clase 9,Casos de uso,
-Seminario de Sistemas,FI303301,341C,10,2026-10-15,Jueves,18:00,20:00,presencial,si,2,Clase 10 · Parcial 2,Parcial 2,parcial presencial sincrono
-Seminario de Sistemas,FI303301,341C,11,2026-10-22,Jueves,18:00,20:00,virtual,no,,Clase 11,Avance proyecto integrador,
-Seminario de Sistemas,FI303301,341C,12,2026-10-29,Jueves,18:00,20:00,virtual,no,,Clase 12,Diagramas UML avanzados,
-Seminario de Sistemas,FI303301,341C,13,2026-11-05,Jueves,18:00,20:00,virtual,no,,Clase 13,Diseño de interfaces,
-Seminario de Sistemas,FI303301,341C,14,2026-11-12,Jueves,18:00,20:00,virtual,no,,Clase 14,Evaluación final (prep. sustentación) · Sustentación de proyectos + cierre,
-Seminario de Sistemas,FI303301,341C,15,2026-11-19,Jueves,18:00,20:00,presencial,si,3,Clase 15 · Parcial 3,Parcial 3,parcial presencial sincrono
-Bases de Datos II,FI303215,641A-2,1,2026-08-10,Lunes,18:00,20:00,presencial,no,,Clase 1,Presentación del curso · Diagnóstico · Revisión de Bases de Datos I,
-Bases de Datos II,FI303215,641A-2,2,2026-08-17,Lunes,18:00,20:00,autonoma,no,,Clase 2,Administración de bases de datos,festivo: Asunción de la Virgen; clase autonoma / refuerzo sin parcial
-Bases de Datos II,FI303215,641A-2,3,2026-08-24,Lunes,18:00,20:00,virtual,no,,Clase 3,Procedimientos almacenados,
-Bases de Datos II,FI303215,641A-2,4,2026-08-31,Lunes,18:00,20:00,virtual,no,,Clase 4,Funciones y disparadores · Seguridad y respaldo,
-Bases de Datos II,FI303215,641A-2,5,2026-09-07,Lunes,18:00,20:00,presencial,si,1,Clase 5 · Parcial 1,Parcial 1,parcial presencial sincrono
-Bases de Datos II,FI303215,641A-2,6,2026-09-14,Lunes,18:00,20:00,virtual,no,,Clase 6,Optimización de consultas,
-Bases de Datos II,FI303215,641A-2,7,2026-09-21,Lunes,18:00,20:00,virtual,no,,Clase 7,Índices y particionamiento,
-Bases de Datos II,FI303215,641A-2,8,2026-09-28,Lunes,18:00,20:00,virtual,no,,Clase 8,Tuning de bases de datos · Gestión de transacciones,
-Bases de Datos II,FI303215,641A-2,9,2026-10-05,Lunes,18:00,20:00,presencial,si,2,Clase 9 · Parcial 2,Parcial 2,parcial presencial sincrono
-Bases de Datos II,FI303215,641A-2,10,2026-10-12,Lunes,18:00,20:00,autonoma,no,,Clase 10,Control de concurrencia,festivo: Día de la Diversidad Étnica y Cultural; clase autonoma / refuerzo sin parcial
-Bases de Datos II,FI303215,641A-2,11,2026-10-19,Lunes,18:00,20:00,virtual,no,,Clase 11,Avance del proyecto final,
-Bases de Datos II,FI303215,641A-2,12,2026-10-26,Lunes,18:00,20:00,virtual,no,,Clase 12,Integración de aplicaciones externas · Preparación de presentación final,
-Bases de Datos II,FI303215,641A-2,13,2026-11-02,Lunes,18:00,20:00,autonoma,no,,Clase 13,Análisis de casos reales (Todos los Santos),festivo: Todos los Santos; clase autonoma / refuerzo sin parcial
-Bases de Datos II,FI303215,641A-2,14,2026-11-09,Lunes,18:00,20:00,presencial,si,3,Clase 14 · Parcial 3,Parcial 3,parcial presencial sincrono
-Bases de Datos II,FI303215,641A-2,15,2026-11-16,Lunes,18:00,20:00,autonoma,no,,Clase 15,Presentación del proyecto + cierre,festivo: Independencia de Cartagena; clase autonoma / refuerzo sin parcial
-Arquitectura de Sistemas Computacionales,FI303380,6303C,1,2026-08-10,Lunes,10:00,12:00,presencial,no,,Clase 1,Presentación del curso · Diagnóstico · Introducción a arquitecturas cloud,
-Arquitectura de Sistemas Computacionales,FI303380,6303C,2,2026-08-17,Lunes,10:00,12:00,autonoma,no,,Clase 2,Modelos de servicio: IaaS / PaaS / SaaS,festivo: Asunción de la Virgen; clase autonoma / refuerzo sin parcial
-Arquitectura de Sistemas Computacionales,FI303380,6303C,3,2026-08-24,Lunes,10:00,12:00,virtual,no,,Clase 3,Virtualización y contenedores,
-Arquitectura de Sistemas Computacionales,FI303380,6303C,4,2026-08-31,Lunes,10:00,12:00,virtual,no,,Clase 4,Microservicios · Arquitecturas distribuidas,
-Arquitectura de Sistemas Computacionales,FI303380,6303C,5,2026-09-07,Lunes,10:00,12:00,presencial,si,1,Clase 5 · Parcial 1,Parcial 1,parcial presencial sincrono
-Arquitectura de Sistemas Computacionales,FI303380,6303C,6,2026-09-14,Lunes,10:00,12:00,virtual,no,,Clase 6,Seguridad en la nube,
-Arquitectura de Sistemas Computacionales,FI303380,6303C,7,2026-09-21,Lunes,10:00,12:00,virtual,no,,Clase 7,Redes y almacenamiento cloud,
-Arquitectura de Sistemas Computacionales,FI303380,6303C,8,2026-09-28,Lunes,10:00,12:00,virtual,no,,Clase 8,Monitoreo y optimización · Integración continua y despliegue (CI/CD),
-Arquitectura de Sistemas Computacionales,FI303380,6303C,9,2026-10-05,Lunes,10:00,12:00,presencial,si,2,Clase 9 · Parcial 2,Parcial 2,parcial presencial sincrono
-Arquitectura de Sistemas Computacionales,FI303380,6303C,10,2026-10-12,Lunes,10:00,12:00,autonoma,no,,Clase 10,Costos y sostenibilidad cloud,festivo: Día de la Diversidad Étnica y Cultural; clase autonoma / refuerzo sin parcial
-Arquitectura de Sistemas Computacionales,FI303380,6303C,11,2026-10-19,Lunes,10:00,12:00,virtual,no,,Clase 11,Avance del proyecto final,
-Arquitectura de Sistemas Computacionales,FI303380,6303C,12,2026-10-26,Lunes,10:00,12:00,virtual,no,,Clase 12,Pruebas de rendimiento · Preparación de presentación final,
-Arquitectura de Sistemas Computacionales,FI303380,6303C,13,2026-11-02,Lunes,10:00,12:00,autonoma,no,,Clase 13,Escalabilidad automática (Todos los Santos),festivo: Todos los Santos; clase autonoma / refuerzo sin parcial
-Arquitectura de Sistemas Computacionales,FI303380,6303C,14,2026-11-09,Lunes,10:00,12:00,presencial,si,3,Clase 14 · Parcial 3,Parcial 3,parcial presencial sincrono
-Arquitectura de Sistemas Computacionales,FI303380,6303C,15,2026-11-16,Lunes,10:00,12:00,autonoma,no,,Clase 15,Presentación del proyecto + cierre,festivo: Independencia de Cartagena; clase autonoma / refuerzo sin parcial
+Programación II,FI303204,341C,1,2026-08-26,Miércoles,18:00,20:00,presencial,no,,Sesión 1 · Clase 1,Presentación del curso · Introducción a POO (+ diagnóstico),
+Programación II,FI303204,341C,2,2026-09-02,Miércoles,18:00,20:00,virtual,no,,Sesión 2 · Clase 2,Colecciones dinámicas ArrayList,
+Programación II,FI303204,341C,3,2026-09-09,Miércoles,18:00,20:00,virtual,no,,Sesión 3 · Clase 3,Pilas y colas,
+Programación II,FI303204,341C,4,2026-09-16,Miércoles,18:00,20:00,virtual,no,,Sesión 4 · Clase 4,Mapas y conjuntos · Interfaces gráficas GUI,
+Programación II,FI303204,341C,5,2026-09-23,Miércoles,18:00,20:00,presencial,si,1,Sesión 5 · Parcial 1 · Clase 5,PARCIAL 1 (solo evaluación),parcial presencial síncrono
+Programación II,FI303204,341C,6,2026-09-30,Miércoles,18:00,20:00,virtual,no,,Sesión 6 · Clase 6,Eventos y controladores (ActionListener),
+Programación II,FI303204,341C,7,2026-10-07,Miércoles,18:00,20:00,virtual,no,,Sesión 7 · Clase 7,Patrones de diseño (Singleton y Factory),
+Programación II,FI303204,341C,8,2026-10-14,Miércoles,18:00,20:00,virtual,no,,Sesión 8 · Clase 8 + Clase 9 (doble),Documentación y QA (Javadoc y pruebas) + Refactorización con IA y persistencia de archivos,sesión doble: cubre Clase 8 + Clase 9 del material en un bloque de 120 min
+Programación II,FI303204,341C,9,2026-10-21,Miércoles,18:00,20:00,presencial,si,2,Sesión 9 · Parcial 2 · Clase 10,PARCIAL 2 (solo evaluación),parcial presencial síncrono
+Programación II,FI303204,341C,10,2026-10-28,Miércoles,18:00,20:00,virtual,no,,Sesión 10 · Clase 11 + Clase 12 (doble),Revisión de código cruzada + Integración de módulos,sesión doble: cubre Clase 11 + Clase 12 del material en un bloque de 120 min
+Programación II,FI303204,341C,11,2026-11-04,Miércoles,18:00,20:00,virtual,no,,Sesión 11 · Clase 13,Control de excepciones,
+Programación II,FI303204,341C,12,2026-11-11,Miércoles,18:00,20:00,virtual,no,,Sesión 12 · Clase 14,Preparación presentación final,
+Programación II,FI303204,341C,13,2026-11-18,Miércoles,18:00,20:00,presencial,si,3,Sesión 13 · Parcial 3 · Clase 15,PARCIAL 3 (solo evaluación),parcial presencial síncrono
+Seminario de Sistemas,FI303301,341C,1,2026-08-27,Jueves,18:00,20:00,presencial,no,,Sesión 1 · Clase 1,Presentación del curso · Conceptos iniciales,
+Seminario de Sistemas,FI303301,341C,2,2026-09-03,Jueves,18:00,20:00,virtual,no,,Sesión 2 · Clase 2,Ciclos de vida del software,
+Seminario de Sistemas,FI303301,341C,3,2026-09-10,Jueves,18:00,20:00,virtual,no,,Sesión 3 · Clase 3,Metodologías tradicionales,
+Seminario de Sistemas,FI303301,341C,4,2026-09-17,Jueves,18:00,20:00,virtual,no,,Sesión 4 · Clase 4,Metodologías ágiles,
+Seminario de Sistemas,FI303301,341C,5,2026-09-24,Jueves,18:00,20:00,presencial,si,1,Sesión 5 · Parcial 1 · Clase 5,PARCIAL 1 (solo evaluación),parcial presencial síncrono
+Seminario de Sistemas,FI303301,341C,6,2026-10-01,Jueves,18:00,20:00,virtual,no,,Sesión 6 · Clase 6,Requerimientos de software,
+Seminario de Sistemas,FI303301,341C,7,2026-10-08,Jueves,18:00,20:00,virtual,no,,Sesión 7 · Clase 7,Historias de usuario,
+Seminario de Sistemas,FI303301,341C,8,2026-10-15,Jueves,18:00,20:00,virtual,no,,Sesión 8 · Clase 8 + Clase 9 (doble),Introducción a UML + Casos de uso,sesión doble: cubre Clase 8 + Clase 9 del material en un bloque de 120 min
+Seminario de Sistemas,FI303301,341C,9,2026-10-22,Jueves,18:00,20:00,presencial,si,2,Sesión 9 · Parcial 2 · Clase 10,PARCIAL 2 (solo evaluación),parcial presencial síncrono
+Seminario de Sistemas,FI303301,341C,10,2026-10-29,Jueves,18:00,20:00,virtual,no,,Sesión 10 · Clase 11 + Clase 12 (doble),Avance proyecto integrador + Diagramas UML avanzados,sesión doble: cubre Clase 11 + Clase 12 del material en un bloque de 120 min
+Seminario de Sistemas,FI303301,341C,11,2026-11-05,Jueves,18:00,20:00,virtual,no,,Sesión 11 · Clase 13,Diseño de interfaces,
+Seminario de Sistemas,FI303301,341C,12,2026-11-12,Jueves,18:00,20:00,virtual,no,,Sesión 12 · Clase 14,Preparación de la sustentación y cierre,
+Seminario de Sistemas,FI303301,341C,13,2026-11-19,Jueves,18:00,20:00,presencial,si,3,Sesión 13 · Parcial 3 · Clase 15,PARCIAL 3 + sustentación de proyectos y cierre,parcial presencial síncrono
+Bases de Datos II,FI303215,641A-2,1,2026-08-24,Lunes,18:00,20:00,presencial,no,,Sesión 1 · Clase 1,Diagnóstico · Revisión de Bases de Datos I (VetCare),
+Bases de Datos II,FI303215,641A-2,2,2026-08-31,Lunes,18:00,20:00,virtual,no,,Sesión 2 · Clase 2,Administración de bases de datos,
+Bases de Datos II,FI303215,641A-2,3,2026-09-07,Lunes,18:00,20:00,virtual,no,,Sesión 3 · Clase 3,Procedimientos almacenados,
+Bases de Datos II,FI303215,641A-2,4,2026-09-14,Lunes,18:00,20:00,virtual,no,,Sesión 4 · Clase 4,Funciones y disparadores · Seguridad y respaldo,
+Bases de Datos II,FI303215,641A-2,5,2026-09-21,Lunes,18:00,20:00,presencial,si,1,Sesión 5 · Parcial 1 · Clase 5,PARCIAL 1 (solo evaluación),parcial presencial síncrono
+Bases de Datos II,FI303215,641A-2,6,2026-09-28,Lunes,18:00,20:00,virtual,no,,Sesión 6 · Clase 6,Optimización de consultas,
+Bases de Datos II,FI303215,641A-2,7,2026-10-05,Lunes,18:00,20:00,virtual,no,,Sesión 7 · Clase 7 + Clase 8 (doble),Índices y particionamiento + Tuning y gestión de transacciones,sesión doble: cubre Clase 7 + Clase 8 del material en un bloque de 120 min
+Bases de Datos II,FI303215,641A-2,8,2026-10-12,Lunes,18:00,20:00,autonoma,no,,Sesión 8 · Clase 10,Control de concurrencia,festivo: Día de la Diversidad Étnica y Cultural; clase autónoma (trabajo independiente guiado)
+Bases de Datos II,FI303215,641A-2,9,2026-10-19,Lunes,18:00,20:00,presencial,si,2,Sesión 9 · Parcial 2 · Clase 9,PARCIAL 2 (solo evaluación),parcial presencial síncrono
+Bases de Datos II,FI303215,641A-2,10,2026-10-26,Lunes,18:00,20:00,virtual,no,,Sesión 10 · Clase 11 + Clase 12 (doble),Avance del proyecto final + Integración de apps externas y preparación final,sesión doble: cubre Clase 11 + Clase 12 del material en un bloque de 120 min
+Bases de Datos II,FI303215,641A-2,11,2026-11-02,Lunes,18:00,20:00,autonoma,no,,Sesión 11 · Clase 13,Análisis de casos reales,festivo: Todos los Santos; clase autónoma (trabajo independiente guiado)
+Bases de Datos II,FI303215,641A-2,12,2026-11-09,Lunes,18:00,20:00,presencial,si,3,Sesión 12 · Parcial 3 · Clase 14,PARCIAL 3 (solo evaluación),parcial presencial síncrono
+Bases de Datos II,FI303215,641A-2,13,2026-11-16,Lunes,18:00,20:00,sustentacion,no,,Sesión 13 · Sustentación PI · Clase 15,Presentación del proyecto y cierre (sustentaciones PI),festivo: Independencia de Cartagena; sesión de sustentaciones del Proyecto Integrador (no es parcial)
+Arquitectura de Sistemas Computacionales,FI303380,6303C,1,2026-08-24,Lunes,10:00,12:00,presencial,no,,Sesión 1 · Clase 1,Introducción a arquitecturas cloud (+ diagnóstico),
+Arquitectura de Sistemas Computacionales,FI303380,6303C,2,2026-08-31,Lunes,10:00,12:00,virtual,no,,Sesión 2 · Clase 2,Modelos de servicio IaaS / PaaS / SaaS,
+Arquitectura de Sistemas Computacionales,FI303380,6303C,3,2026-09-07,Lunes,10:00,12:00,virtual,no,,Sesión 3 · Clase 3,Virtualización y contenedores,
+Arquitectura de Sistemas Computacionales,FI303380,6303C,4,2026-09-14,Lunes,10:00,12:00,virtual,no,,Sesión 4 · Clase 4,Microservicios y arquitecturas distribuidas,
+Arquitectura de Sistemas Computacionales,FI303380,6303C,5,2026-09-21,Lunes,10:00,12:00,presencial,si,1,Sesión 5 · Parcial 1 · Clase 5,PARCIAL 1 (solo evaluación),parcial presencial síncrono
+Arquitectura de Sistemas Computacionales,FI303380,6303C,6,2026-09-28,Lunes,10:00,12:00,virtual,no,,Sesión 6 · Clase 6,Seguridad en la nube,
+Arquitectura de Sistemas Computacionales,FI303380,6303C,7,2026-10-05,Lunes,10:00,12:00,virtual,no,,Sesión 7 · Clase 7 + Clase 8 (doble),"Redes y almacenamiento cloud + Monitoreo, optimización y CI/CD",sesión doble: cubre Clase 7 + Clase 8 del material en un bloque de 120 min
+Arquitectura de Sistemas Computacionales,FI303380,6303C,8,2026-10-12,Lunes,10:00,12:00,autonoma,no,,Sesión 8 · Clase 10,Costos y sostenibilidad cloud,festivo: Día de la Diversidad Étnica y Cultural; clase autónoma (trabajo independiente guiado)
+Arquitectura de Sistemas Computacionales,FI303380,6303C,9,2026-10-19,Lunes,10:00,12:00,presencial,si,2,Sesión 9 · Parcial 2 · Clase 9,PARCIAL 2 (solo evaluación),parcial presencial síncrono
+Arquitectura de Sistemas Computacionales,FI303380,6303C,10,2026-10-26,Lunes,10:00,12:00,virtual,no,,Sesión 10 · Clase 11 + Clase 12 (doble),Avance del proyecto final + Pruebas de rendimiento y preparación final,sesión doble: cubre Clase 11 + Clase 12 del material en un bloque de 120 min
+Arquitectura de Sistemas Computacionales,FI303380,6303C,11,2026-11-02,Lunes,10:00,12:00,autonoma,no,,Sesión 11 · Clase 13,Escalabilidad automática,festivo: Todos los Santos; clase autónoma (trabajo independiente guiado)
+Arquitectura de Sistemas Computacionales,FI303380,6303C,12,2026-11-09,Lunes,10:00,12:00,presencial,si,3,Sesión 12 · Parcial 3 · Clase 14,PARCIAL 3 (solo evaluación),parcial presencial síncrono
+Arquitectura de Sistemas Computacionales,FI303380,6303C,13,2026-11-16,Lunes,10:00,12:00,sustentacion,no,,Sesión 13 · Sustentación PI · Clase 15,Presentación del proyecto y cierre (sustentaciones PI),festivo: Independencia de Cartagena; sesión de sustentaciones del Proyecto Integrador (no es parcial)

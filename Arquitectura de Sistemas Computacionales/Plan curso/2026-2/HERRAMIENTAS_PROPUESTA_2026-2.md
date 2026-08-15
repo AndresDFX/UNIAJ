@@ -11,7 +11,7 @@ PI: **CloudLite**
 |---|---|---|---|
 | Arquitectura / C4 / diagramas | **draw.io / diagrams.net** (https://app.diagrams.net) | Navegador | Componentes, despliegue, redes |
 | Bocetos y talleres colaborativos | **Excalidraw** (https://excalidraw.com) | Navegador | Bajo roce, sin cuenta |
-| Contenedores conceptuales (sin Docker local) | **Play with Docker** o **Killercoda** | Navegador | Labs temporales en la nube |
+| Contenedores conceptuales (sin Docker local) | **LabEx Docker Playground** o **Killercoda** | Navegador | Labs temporales en la nube |
 | Kubernetes intro (opcional) | **Killercoda** | Navegador | Solo demos guiadas |
 | CI/CD conceptual | **GitHub Actions** (cuenta free) | Navegador | Pipelines simples; sin runner local |
 | Documentación / entregas | **Google Docs / Drive** o Word Online | Navegador | Talleres en `.docx` en `Clases/` |
@@ -29,7 +29,7 @@ PI: **CloudLite**
 - **En evaluación / piloto** (no reescribe el semestre hasta OK docente).
 - Plan: `PLAN_VIABILIDAD_FLOCI_2026-2.md`
 - Script MVP: `scripts/lab-floci.ps1` · `scripts/lab-floci.sh` · `scripts/README.md`
-- Idea: APIs cloud **sin cuenta ni tarjeta**; trade-off = necesita Docker (local o Killercoda/PWD).
+- Idea: APIs cloud **sin cuenta ni tarjeta**; trade-off = necesita Docker (local o Killercoda/LabEx).
 - Piloto sugerido: **Clase 7** (almacenamiento) con variante `floci` (AWS/S3).
 
 ### ExamLab — estado

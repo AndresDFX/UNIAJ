@@ -34,7 +34,7 @@ La segunda mitad de la clase cambia de lado: ya no se trata de validar antes, si
 
 Las cuatro senales de oro son latencia, trafico, errores y saturacion, y cada una necesita definicion operativa. Trafico es cuanta demanda llega, en peticiones por segundo o por minuto. Errores es la proporcion de peticiones que fallan, tipicamente el porcentaje de respuestas 5xx; conviene expresarlo como disponibilidad, y aqui hay aritmetica que el docente debe citar: 99,9 por ciento equivale a unos 43 minutos de indisponibilidad al mes y 99,99 por ciento a unos 4 minutos, lo cual no es convencion sino calculo sobre los 43.200 minutos de un mes de treinta dias. Saturacion es que tan cerca esta el recurso mas escaso de su limite: CPU, memoria, disco o, en la mayoria de las APIs reales, las conexiones libres del pool de la base de datos; la convencion es alertar cuando un recurso pasa del 70 u 80 por ciento sostenido, y es convencion, no ley. Latencia merece explicacion aparte porque introduce el percentil, el valor por debajo del cual cae un porcentaje dado de las mediciones: si el p95 de la API es 300 milisegundos, 95 de cada 100 peticiones respondieron en 300 milisegundos o menos y 5 tardaron mas. Es mas honesto que el promedio, y el ejemplo lo prueba: 99 peticiones de 50 milisegundos y una de 5 segundos dan un promedio de 99 milisegundos, que parece excelente, mientras el p99 es 5 segundos y corresponde a un usuario mirando una pantalla congelada.
 
-Segundo ejemplo concreto: la tabla de cuatro a seis senales de CloudLite, con umbral y accion. Latencia p95 del inicio de sesion y del listado principal, con objetivo bajo 300 milisegundos; peticiones por minuto; porcentaje de respuestas 5xx, con alerta sobre el 1 por ciento sostenido; uso del pool de conexiones, con alerta sobre el 80 por ciento; crecimiento del almacenamiento de objetos donde viven los adjuntos de la Clase 7; y, si el equipo modelo notificaciones, los mensajes pendientes en la cola. La columna que convierte una lista de metricas en un plan de operacion es la ultima: que se hace cuando se cruza el umbral. Ahi entra la optimizacion: paginar, con veinte a cincuenta elementos por pagina, porque un endpoint que devuelve cincuenta mil registros es problema de latencia y de memoria; indexar la columna por la que se filtra, porque sin indice el motor recorre la tabla completa; cachear lecturas repetidas, donde una tasa de acierto del 90 por ciento significa que nueve de cada diez lecturas no llegan a la base; y limitar la tasa de peticiones, el control de denegacion de servicio de la Clase 6. Aparece la segunda pregunta previsible: «si no tenemos usuarios reales, que monitoreamos?». El entregable es el plan, no los datos, y el chequeo de salud que consulta el balanceador de la Clase 7 ya es monitoreo real. Con esto cierra el bloque del Parcial 2 de la Clase 9: los umbrales de hoy se prueban con carga en la Clase 12, la saturacion sera el disparador del autoescalado de la Clase 13 y el consumo medido es el que se costea en la Clase 10.
+Segundo ejemplo concreto: la tabla de cuatro a seis senales de CloudLite, con umbral y accion. Latencia p95 del inicio de sesion y del listado principal, con objetivo bajo 300 milisegundos; peticiones por minuto; porcentaje de respuestas 5xx, con alerta sobre el 1 por ciento sostenido; uso del pool de conexiones, con alerta sobre el 80 por ciento; crecimiento del almacenamiento de objetos donde viven los adjuntos de la Clase 7; y, si se modelaron notificaciones, los mensajes pendientes en la cola. La columna que convierte una lista de metricas en un plan de operacion es la ultima: que se hace cuando se cruza el umbral. Ahi entra la optimizacion: paginar, con veinte a cincuenta elementos por pagina, porque un endpoint que devuelve cincuenta mil registros es problema de latencia y de memoria; indexar la columna por la que se filtra, porque sin indice el motor recorre la tabla completa; cachear lecturas repetidas, donde una tasa de acierto del 90 por ciento significa que nueve de cada diez lecturas no llegan a la base; y limitar la tasa de peticiones, el control de denegacion de servicio de la Clase 6. Aparece la segunda pregunta previsible: «si no tenemos usuarios reales, que monitoreamos?». El entregable es el plan, no los datos, y el chequeo de salud que consulta el balanceador de la Clase 7 ya es monitoreo real. Con esto cierra el bloque del Parcial 2 de la Clase 9: los umbrales de hoy se prueban con carga en la Clase 12, la saturacion sera el disparador del autoescalado de la Clase 13 y el consumo medido es el que se costea en la Clase 10.
 
 Error tipico del docente que no domina el tema: presentar CI y CD como sinonimos intercambiables y hablar de «hacer CI/CD» sin separar que valida, que entrega y que despliega. La consecuencia aguas abajo es que el estudiante cree que su workflow puso la aplicacion en produccion, describe en el informe un despliegue que no existe y en la sustentacion de la Clase 15 defiende una capacidad operativa que no puede demostrar. El segundo tropiezo es dejar la tabla de monitoreo como una lista de palabras sueltas (latencia, errores, CPU) sin umbral, sin unidad y sin accion asociada; cuando eso pasa, la seccion de monitoreo no dice nada, la Clase 12 no tiene contra que comparar los resultados de la prueba de carga y la politica de autoescalado de la Clase 13 se inventa un disparador sin ninguna medida que lo sustente.
 
@@ -47,7 +47,7 @@ Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Workflow Actions (bui
 Entregable concreto: .github/workflows/ci.yml + sección Monitoreo/CI del informe.
 Teoría breve y luego taller; no es un lab suelto.»
 Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
-Pregunta de arranque (1 min): «¿en qué quedó su CloudLite la clase pasada?» — sirve para detectar equipos rezagados antes de avanzar.
+Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
 
 ### 10–40 · Teoría Core (al servicio del taller)
 Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las diapositivas de teoría):
@@ -58,7 +58,7 @@ Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las 
 El desarrollo completo de cada uno está arriba, en «Fundamento teórico para el docente»:
 esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
-Pide un equipo voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
+Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
 ### 40–55 · Demo en vivo
 Herramienta del día: **GitHub Actions · Google Docs**.
@@ -74,7 +74,7 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 📸 Run verde del workflow: build + test reales, no un `echo ok` [[captura: salida-actions-run.png]]
 
 
-### 55–100 · Taller guiado PI (equipos)
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste)
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -85,16 +85,16 @@ Haz 3–4 de las preguntas de comprobación oral de abajo, a personas distintas 
 Aplica el quiz corto de `Kit docente/Clase 8/Quiz Clase 8 - Monitoreo optimizacion y CI-CD.docx`
 (la clave va en archivo aparte y **no se proyecta**).
 Mientras responden, verifica que el entregable esté realmente subido.
-Retroalimenta 2–3 equipos en voz alta, nombrando el error y la corrección concreta.
+Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
 ### 115–120 · Cierre
 Di: «Queda avanzado: Workflow Actions (build/test/simulate) + métricas de monitoreo del PI.
-Criterio de éxito: cualquier integrante explica el artefacto en 60 s.
+Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
-1. Paso 1: creen o reutilicen el repositorio gratuito del equipo con el stub de la Clase 3 y al menos 3 pruebas automatizadas que verifiquen la ruta de salud, un caso valido y un caso de error de negocio, verificando con una ejecucion local o en el lab que las 3 pruebas pasan antes de tocar el pipeline; el enlace del repositorio queda en la portada del informe.
+1. Paso 1: cree o reutilice su repositorio gratuito del proyecto con el stub de la Clase 3 y al menos 3 pruebas automatizadas que verifiquen la ruta de salud, un caso valido y un caso de error de negocio, verificando con una ejecucion local o en el lab que las 3 pruebas pasan antes de tocar el pipeline; el enlace del repositorio queda en la portada del informe.
 2. Paso 2: agreguen el archivo .github/workflows/ci.yml con 4 jobs encadenados (build, test, package y deploy simulado), disparadores en push y pull_request sobre la rama principal, y publicacion de artefacto, verificando que ningun paso imprima secretos y que el job de deploy diga explicitamente en su log que es un despliegue simulado.
 3. Paso 3: ejecuten el workflow con un push real, esperen el run completo y capturen el enlace del run verde mas el nombre del artefacto descargable, verificando que los 4 jobs aparezcan en verde y que el artefacto pese mas de 0 bytes; si Actions falla por cuota, dejen registrado el mensaje textual del error y la explicacion, que es el plan B aceptado.
 4. Paso 4: escriban en ExamLab el diagrama Mermaid del pipeline con los 4 jobs dentro de un subgrafo, la compuerta de decision y las dos salidas (despliegue simulado y bloqueo del pull request), verificando al renderizar que los nombres de los jobs sean exactamente los del ci.yml.
@@ -103,7 +103,7 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).
 - Evidencia adjunta.
-- Explicación oral de 60 s por integrante (muestreo).
+- Explicación oral de 60 s por estudiante (muestreo; si autorizaste equipos, pregunta a cualquier integrante).
 
 ## Errores frecuentes del estudiante (y cómo corregirlos en el momento)
 - Un workflow que solo hace `echo ok`: es un pipeline decorativo. Exija que corra algo que pueda fallar de verdad.
@@ -118,7 +118,7 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 ## Solución del taller (privada)
 `Kit docente/Clase 8/Solucion Taller Clase 8 - CloudLite.docx` — es la referencia con la que
-comparas lo que entregan los equipos. **No proyectarla completa** antes de que trabajen.
+comparas lo que entregan los estudiantes. **No proyectarla completa** antes de que trabajen.
 
 ## Quiz
 `Kit docente/Clase 8/Quiz Clase 8 - Monitoreo optimizacion y CI-CD.docx` (versión estudiante, sin respuestas)

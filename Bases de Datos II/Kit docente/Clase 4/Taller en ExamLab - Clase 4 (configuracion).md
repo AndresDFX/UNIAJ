@@ -446,7 +446,7 @@ Con base en lo que acabas de implementar, selecciona **todas** las afirmaciones 
 - [x] Si la regla depende solo de columnas de la propia fila, como stock >= 0, un CHECK es preferible al trigger: es declarativo, mas barato y no se puede olvidar.
 - [ ] Un trigger AFTER UPDATE puede impedir que un UPDATE deje datos invalidos, igual que un BEFORE UPDATE.
 - [x] Registrar la historia de cambios de estado de una cita requiere trigger o codigo: ninguna restriccion declarativa guarda el valor anterior.
-- [ ] Validar solo en la aplicacion es suficiente si el equipo se compromete a no tocar la base con SQL directo.
+- [ ] Validar solo en la aplicacion es suficiente si quien desarrolla se compromete a no tocar la base con SQL directo.
 - [x] Poner la validacion en la base protege tambien a cargas masivas, scripts de mantenimiento y a cualquier otra aplicacion que se conecte despues.
 - [x] Abusar de triggers dificulta depurar: efectos ocultos, orden de ejecucion no evidente y costo por fila en operaciones masivas.
 

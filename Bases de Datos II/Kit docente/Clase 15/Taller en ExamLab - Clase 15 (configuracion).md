@@ -25,11 +25,11 @@
 
 **Clase autonoma y evaluacion final del PI (20 % del Corte 3). Lee el enunciado completo antes de escribir.**
 
-Esta base esta **vacia**: solo existe la tabla `entrega_final` donde se registra el paquete del equipo. Debes entregar aqui el **script maestro** de VetCare DB, el mismo que va en el ZIP: se ejecuta **una sola vez, de arriba abajo, sobre una base limpia**, y debe correr **sin un solo error**.
+Esta base esta **vacia**: solo existe la tabla `entrega_final` donde registras tu paquete. Debes entregar aqui el **script maestro** de VetCare DB, el mismo que va en el ZIP: se ejecuta **una sola vez, de arriba abajo, sobre una base limpia**, y debe correr **sin un solo error**.
 
 Ese script debe contener, en este orden:
 
-**Bloque 0 - Registro.** Un `INSERT INTO entrega_final (equipo, integrantes, enlace_zip)` con los datos reales de tu equipo.
+**Bloque 0 - Registro.** Un `INSERT INTO entrega_final (estudiante, codigo, proyecto, enlace_zip)` con tus datos reales. Si el docente autorizo equipo, llena tambien la columna opcional `integrantes`; si trabajas solo, dejala nula.
 
 **Bloque 1 - DDL completo.** Las **8 tablas** del PI: `dueno`, `mascota`, `veterinario`, `cita`, `consulta`, `insumo`, `factura`, `detalle_factura`, con PK, todas las FK y las restricciones de dominio (`CHECK` de `mascota.activa`, `CHECK` de `cita.estado`, `CHECK (stock >= 0)`, `CHECK (cantidad > 0)`, `CHECK (precio >= 0)`). Incluye tambien la tabla de auditoria `audit_cita`.
 
@@ -58,14 +58,16 @@ estudiante, sobre una base limpia. PostgreSQL, no Oracle:
 -- Base limpia para la entrega final del PI.
 CREATE TABLE entrega_final (
   id_entrega SERIAL PRIMARY KEY,
-  equipo TEXT NOT NULL,
-  integrantes TEXT NOT NULL,
+  estudiante TEXT NOT NULL,
+  codigo TEXT NOT NULL,
+  proyecto TEXT NOT NULL,
+  integrantes TEXT,  -- opcional: solo si el docente autorizo equipo
   enlace_zip TEXT,
   fecha_entrega DATE NOT NULL DEFAULT CURRENT_DATE
 );
 
-INSERT INTO entrega_final (equipo, integrantes, enlace_zip)
-VALUES ('VetCare-Demo', 'Ejemplo del docente', 'https://ejemplo.uniajc/entrega-demo.zip');
+INSERT INTO entrega_final (estudiante, codigo, proyecto, enlace_zip)
+VALUES ('Ejemplo del docente', '000000', 'VetCare-Demo', 'https://ejemplo.uniajc/entrega-demo.zip');
 ```
 
 **Rubrica esperada (campo Rubrica):**
@@ -249,7 +251,7 @@ Las 4 consultas corren y devuelven resultados coherentes con los datos entregado
 
 ## 3. Checklist de empaquetado del ZIP final
 
-El equipo va a subir el paquete final al modulo de Proyectos de ExamLab. Selecciona **todas** las afirmaciones correctas sobre como debe quedar armado el entregable.
+Vas a subir el paquete final al modulo de Proyectos de ExamLab. Selecciona **todas** las afirmaciones correctas sobre como debe quedar armado el entregable.
 
 **Opciones:**
 
@@ -257,7 +259,7 @@ El equipo va a subir el paquete final al modulo de Proyectos de ExamLab. Selecci
 - [x] Debe incluirse un README que diga en que motor se probo (PostgreSQL), como ejecutar los scripts y en que orden, y quien hizo que.
 - [ ] Basta con adjuntar capturas de pantalla de las consultas funcionando; el codigo fuente es opcional si la demo salio bien.
 - [x] El ER debe ir tanto en imagen (PNG o el diagrama Mermaid) como reflejado en el DDL: si no coinciden, el entregable es inconsistente.
-- [ ] Conviene incluir credenciales de la base de datos del equipo en el README para que el docente pueda entrar.
+- [ ] Conviene incluir las credenciales de tu base de datos en el README para que el docente pueda entrar.
 - [x] El informe debe traer las secciones que se fueron construyendo en el semestre: roles y privilegios, respaldo, optimizacion antes/despues, indices, transacciones, concurrencia y lecciones de casos reales.
 
 **Rubrica esperada (campo Rubrica):**
@@ -276,16 +278,16 @@ El equipo va a subir el paquete final al modulo de Proyectos de ExamLab. Selecci
 
 Entrega el acta que acompana el paquete final. Debe contener:
 
-1. **Identificacion**: nombre del equipo, integrantes con nombre completo, asignatura (Bases de Datos II, FI303215), periodo 2026-2 y fecha de entrega.
+1. **Identificacion**: tu nombre completo y codigo, nombre del proyecto, asignatura (Bases de Datos II, FI303215), periodo 2026-2 y fecha de entrega. Si el docente autorizo equipo, lista tambien a los demas integrantes.
 2. **Inventario del paquete**: tabla con cada archivo del ZIP, su proposito y su orden de ejecucion. Deben aparecer como minimo el DDL, los datos semilla, la logica (funciones, procedimientos, triggers), los indices, el par antes/despues de optimizacion, el script de pruebas de las tres reglas de negocio, el informe y el ER.
 3. **Trazabilidad hito por hito**: una fila por clase del semestre (1, 2, 3, 4, 6, 7, 8, 10, 11, 12, 13) indicando **que artefacto del paquete** contiene el avance de esa clase. Si algo quedo sin cerrar, dilo aqui.
-4. **Reparto de la sustentacion (5 a 8 minutos)**: quien habla en cada bloque y cuantos minutos, sumando entre 5 y 8. Todos los integrantes deben hablar.
-5. **Declaracion de autoria y uso de herramientas**: que hizo cada integrante, y si usaron asistentes de IA o codigo de terceros, en que parte y como lo verificaron.
-6. **Estado final declarado**: `COMPLETO`, `COMPLETO CON OBSERVACIONES` o `INCOMPLETO`, con una justificacion de dos lineas y la firma de los integrantes.
+4. **Guion de la sustentacion (5 a 8 minutos)**: que bloque expones en cada tramo y cuantos minutos, sumando entre 5 y 8. Si trabajas en equipo autorizado, indica quien habla en cada bloque: **todos los integrantes deben hablar**.
+5. **Declaracion de autoria y uso de herramientas**: que hiciste tu (y cada integrante, si hubo equipo), y si usaste asistentes de IA o codigo de terceros, en que parte y como lo verificaste.
+6. **Estado final declarado**: `COMPLETO`, `COMPLETO CON OBSERVACIONES` o `INCOMPLETO`, con una justificacion de dos lineas y tu firma (y la de los demas integrantes, si hubo equipo).
 
 **Rubrica esperada (campo Rubrica):**
 
-Las 6 secciones estan completas. El inventario nombra archivos concretos con su orden de ejecucion y cubre los minimos exigidos. La trazabilidad asocia cada una de las 11 clases con un artefacto real del paquete y reconoce lo que quedo abierto. El reparto suma entre 5 y 8 minutos e incluye a todos los integrantes. Hay declaracion de autoria y uso de herramientas, y un estado final justificado y firmado.
+Las 6 secciones estan completas. El inventario nombra archivos concretos con su orden de ejecucion y cubre los minimos exigidos. La trazabilidad asocia cada una de las 11 clases con un artefacto real del paquete y reconoce lo que quedo abierto. El guion de sustentacion suma entre 5 y 8 minutos y cubre todos los bloques; si hubo equipo autorizado, asigna voz a todos los integrantes. Hay declaracion de autoria y uso de herramientas, y un estado final justificado y firmado.
 
 ---
 
@@ -304,7 +306,7 @@ Cierra el curso con una autoevaluacion honesta. Responde cada punto en 3 a 6 lin
 3. **El concepto que mas te costo** de todo el semestre (transacciones, concurrencia, planes de ejecucion, privilegios, triggers) y **como lo desatascaste**. Si todavia no lo tienes claro, dilo: reconocerlo vale mas que fingir.
 4. **De Oracle a PostgreSQL**: durante el curso pasaste de material escrito en PL/SQL a resolver todo en PL/pgSQL sobre PostgreSQL. Nombra **tres diferencias concretas de sintaxis o de comportamiento** que tuviste que aprender (por ejemplo `RAISE EXCEPTION` frente a `RAISE_APPLICATION_ERROR`, `GET DIAGNOSTICS ... ROW_COUNT` frente a `SQL%ROWCOUNT`, funcion de trigger separada del trigger, ausencia de `DUAL`) y por que importan.
 5. **Lo que se queda sin verificar**: que parte de tu diseno **no** pudiste probar en este entorno (concurrencia real con dos sesiones, roles con usuarios conectados de verdad, particionamiento con volumen real, respaldo fisico) y como lo verificarias en un servidor de produccion.
-6. **Nota que te pondrias** al trabajo del equipo, de 1 a 5, con una linea de justificacion.
+6. **Nota que te pondrias** a tu propio trabajo en el PI, de 1 a 5, con una linea de justificacion. Si trabajaste en equipo autorizado, agrega en una linea aparte la nota que le pondrias al aporte de cada integrante.
 
 **Rubrica esperada (campo Rubrica):**
 

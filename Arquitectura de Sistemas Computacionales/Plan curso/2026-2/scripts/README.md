@@ -8,7 +8,7 @@ En **1 comando** levantar un emulador cloud local (**sin cuenta, sin tarjeta**) 
 
 ## Prerrequisitos
 - Docker Desktop / Engine **en ejecución**, **o**
-- Sesión en [Play with Docker](https://labs.play-with-docker.com) / Killercoda (camino solo navegador).
+- Sesión en [LabEx Docker Playground](https://labex.io) / Killercoda (camino solo navegador).
 
 ## Uso rápido (Windows)
 ```powershell
@@ -38,7 +38,7 @@ chmod +x lab-floci.sh
 ./lab-floci.sh aws --stop
 ```
 
-## Camino B — Play with Docker (sin instalar en el PC)
+## Camino B — LabEx Docker Playground (sin instalar en el PC)
 ```bash
 docker run --rm -d --name uniajc-floci -p 4566:4566 \
   -v /var/run/docker.sock:/var/run/docker.sock \

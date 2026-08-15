@@ -21,7 +21,7 @@ HERRAMIENTAS_DIA = {
         {
             'name': 'Google Docs',
             'logo': 'google_docs.png',
-            'note': 'Ficha equipo',
+            'note': 'Ficha del PI',
         },
     ],
     2: [
@@ -222,12 +222,12 @@ TALLER_BLOQUE = {
     1: {
         'contexto': [
             '@@Por qué importa al PI VetCare:@@ sin ER/alcance no hay base para procs ni seguridad.',
-            'Hoy cierran dominio + entidades mínimas + reglas de negocio del equipo.',
-            'El DDL demo (Codigo/) es semilla; el ER del equipo manda.',
+            'Hoy cierras dominio + entidades mínimas + reglas de negocio propias.',
+            'El DDL demo (Codigo/) es semilla; tu ER manda.',
         ],
         'objetivo': 'Arrancar VetCare: ficha + ER borrador + entidades/reglas.',
         'criterios': [
-            'Equipo 2-3 nombrado.',
+            'Proyecto nombrado y registrado.',
             'ER PNG con entidades mínimas.',
             '3 reglas de negocio propias.',
             'Alcance SI/NO 5-8 lineas.',
@@ -281,7 +281,7 @@ TALLER_BLOQUE = {
             'Contrato documentado.',
         ],
         'escenario': [
-            'DDL VetCare del equipo.',
+            'Tu DDL de VetCare.',
             'Validación típica: mascota activa.',
         ],
         'pistas': [
@@ -477,7 +477,7 @@ TALLER_BLOQUE = {
         ],
         'pistas': [
             '□ Falta evidencia?',
-            '□ Todos hablan?',
+            '□ Cubre todos los bloques (y todos hablan, si hay equipo)?',
             '□ PI != P3?',
         ],
     },
@@ -488,7 +488,7 @@ SOLUCION = {
         'titulo': 'Solución Taller Clase 1 — Arranque VetCare',
         'resumen': 'ER minimo Dueño-Mascota-Cita + 3 reglas + alcance.',
         'pasos': [
-            'Formar equipo de 2-3 y nombrarlo VetCare-<apellido del lider> para identificarlo en todas las entregas del semestre.',
+            'Trabajo individual por defecto: nombra tu proyecto VetCare-<tu apellido> y registralo para identificarlo en todas las entregas del semestre. Si el docente autoriza equipo de 2 o 3, el artefacto puede ser compartido pero la entrega en ExamLab sigue siendo individual.',
             'Listar las entidades minimas del dominio: Dueño (persona que trae la mascota), Mascota (paciente), Veterinario (quien atiende), Cita (agenda de una atencion). Consulta, Insumo y DetalleFactura se agregan en clases posteriores.',
             'Redactar como reglas de negocio explicitas (no solo mencionarlas): "una mascota con activa=N no puede tener una cita nueva", "el stock de un insumo nunca puede quedar en negativo", "toda cancelacion de cita queda registrada con usuario y fecha".',
             'Dibujar el ER borrador marcando cardinalidad en cada relacion (Dueño 1-N Mascota, Mascota 1-N Cita) y exportarlo como PNG legible, no un boceto a mano ilegible.',
@@ -499,7 +499,7 @@ SOLUCION = {
             'ER: Dueño 1-N Mascota; Mascota 1-N Cita.',
         ],
         'rubrica': [
-            'Equipo (1)',
+            'Registro del proyecto (1)',
             'ER (3)',
             'Reglas (2)',
             'Alcance (2)',
@@ -590,7 +590,7 @@ SOLUCION = {
             'Escribir la version "antes" tal como la escribiria alguien sin entrenamiento: SELECT * ... con JOIN sin filtro de fecha, trayendo todo el historico.',
             'Reescribir la version "despues": proyectar solo las columnas necesarias, filtrar por fecha_hora >= hoy ANTES del JOIN cuando el motor lo permita, y evitar funciones sobre la columna de fecha en el WHERE.',
             'Justificar por escrito minimo 3 cambios concretos (ej. "se elimino SELECT * porque solo se usan 4 columnas", "el filtro de fecha reduce el conjunto antes del JOIN", "se evito CAST sobre fecha_hora en el WHERE porque bloqueaba el uso de indice").',
-            'Guardar ambas versiones como 06_opt_antes.sql y 06_opt_despues.sql en la carpeta del equipo, y si el playground lo permite, adjuntar el resultado de EXPLAIN de cada una como evidencia de la mejora.',
+            'Guardar ambas versiones como 06_opt_antes.sql y 06_opt_despues.sql en tu carpeta del PI, y si el playground lo permite, adjuntar el resultado de EXPLAIN de cada una como evidencia de la mejora.',
         ],
         'ejemplo': [
             'Codigo/06_opt_consultas.sql',
@@ -659,7 +659,7 @@ SOLUCION = {
             'Narrar el escenario de doble reserva con linea de tiempo explicita: T1 lee la franja como libre en el segundo 0, T2 lee la misma franja como libre en el segundo 1 (antes de que T1 confirme), ambas insertan y quedan dos citas para el mismo veterinario/franja.',
             'Narrar el escenario de doble descuento de stock con la misma logica T1/T2: dos facturas leen el mismo stock disponible antes de que ninguna confirme su UPDATE, y el stock final queda incorrecto (mayor de lo que debería haberse descontado, o incluso negativo).',
             'Proponer la mitigacion SQL concreta para cada escenario: UNIQUE(id_veterinario, fecha_hora) para que el segundo INSERT de cita falle automaticamente; y para el stock, un UPDATE con condicion (UPDATE insumo SET stock = stock - x WHERE id_insumo = y AND stock >= x) que falla/no afecta filas si ya no alcanza, en vez de restar a ciegas.',
-            'Agregar la seccion de concurrencia al informe del PI explicando, en lenguaje simple, por que un simple "usar transacciones" no basta sin la restriccion UNIQUE o la condicion en el UPDATE, y que mecanismo especifico eligio el equipo para VetCare.',
+            'Agregar la seccion de concurrencia al informe del PI explicando, en lenguaje simple, por que un simple "usar transacciones" no basta sin la restriccion UNIQUE o la condicion en el UPDATE, y que mecanismo especifico elegiste para VetCare.',
         ],
         'ejemplo': [
             'Codigo/10_concurrencia_vetcare.sql',
@@ -681,7 +681,7 @@ SOLUCION = {
         'pasos': [
             'Completar el checklist marcando SI/NO/PARCIAL en cada evidencia exigida: ER actualizado, DDL ejecutable, roles definidos, minimo 2 procedimientos, minimo 1 funcion, minimo 2 triggers, minimo 1 optimizacion documentada.',
             'Preparar y ejecutar una demo de 3-5 minutos que muestre en vivo: el ER, un procedimiento ejecutandose con un caso real, y un trigger disparandose (ej. cancelar una cita y mostrar la fila de auditoria creada).',
-            'Listar explicitamente los gaps (huecos) que quedan pendientes, cada uno con un responsable del equipo asignado — no dejar gaps sin dueño.',
+            'Listar explicitamente los gaps (huecos) que quedan pendientes, cada uno con un responsable con nombre (tu mismo si trabajas solo; repartido si hay equipo autorizado) — no dejar gaps sin dueño.',
             'Subir el avance intermedio (enlace o ZIP con DDL + procs + ER) a ExamLab si el docente lo solicita, como respaldo verificable del progreso a mitad de corte.',
         ],
         'ejemplo': [
@@ -704,7 +704,7 @@ SOLUCION = {
         'pasos': [
             'Redactar el contrato de al menos 3 operaciones (ej. agendar_cita, registrar_consulta, facturar) especificando nombre del proc, cada parametro con tipo y direccion IN/OUT, y que retorna en caso de exito.',
             'Para cada operacion, documentar los posibles errores de negocio (ej. "mascota inactiva", "stock insuficiente") con el mensaje exacto que devuelve el proc, y un ejemplo de llamada con valores concretos.',
-            'Construir el outline de la sustentacion de 5-8 minutos con la secuencia problema -> modelo -> seguridad -> procs/triggers -> optimizacion -> demo en vivo, asignando quien del equipo presenta cada seccion.',
+            'Construir el outline de la sustentacion de 5-8 minutos con la secuencia problema -> modelo -> seguridad -> procs/triggers -> optimizacion -> demo en vivo, dejando claro que dices en cada seccion (y quien la presenta, si hay equipo autorizado: todos deben hablar).',
             'Empaquetar el borrador de entrega final (DDL, procs, contrato, outline) en una carpeta o ZIP organizado, listo para completarse en las Clases 13-15 sin tener que reconstruirlo desde cero.',
         ],
         'ejemplo': [
@@ -725,7 +725,7 @@ SOLUCION = {
         'titulo': 'Solución Taller Clase 13 — Casos reales',
         'resumen': '1 caso -> 3 mejoras.',
         'pasos': [
-            'Elegir uno de los 3 casos trabajados en teoria (falta de backup, indices mal disenados, o inyeccion SQL) segun el que mas riesgo represente para el estado actual del VetCare del equipo.',
+            'Elegir uno de los 3 casos trabajados en teoria (falta de backup, indices mal disenados, o inyeccion SQL) segun el que mas riesgo represente para el estado actual de tu VetCare.',
             'Resumir el caso en media pagina con la estructura contexto -> fallo -> causa raiz tecnica (no "mala suerte") -> leccion general.',
             'Proponer 3 mejoras concretas y verificables aplicadas al VetCare propio (ej. "agregar prueba de restore mensual", "revisar y eliminar 2 indices sin uso real", "confirmar que todos los procs usan parametros tipados, ninguno concatena texto de usuario").',
             'Actualizar el informe del PI incorporando estas lecciones como una seccion nueva, citando en que clase/entregable anterior se relaciona cada mejora (Clase 4 para backup, Clase 7 para indices, Clase 3/12 para inyeccion SQL).',
@@ -750,7 +750,7 @@ SOLUCION = {
         'pasos': [
             'Verificar el ZIP/paquete final linea por linea contra la rubrica de 100 pts (ER, DDL, roles, procs, funciones/triggers, optimizacion, indices, transacciones, concurrencia, contrato de integracion, informe) antes de subirlo, no despues.',
             'Sustentar 5-8 minutos siguiendo el outline preparado en Clase 12, con evidencia en vivo (no solo diapositivas) de al menos un procedimiento y un trigger ejecutandose.',
-            'Completar la autoevaluacion del equipo respondiendo con honestidad que harian distinto si empezaran de nuevo — esto pesa en la nota y demuestra criterio, no solo ejecucion.',
+            'Completar la autoevaluacion de tu propio trabajo respondiendo con honestidad que harias distinto si empezaras de nuevo (si hubo equipo autorizado, agrega una linea por integrante) — esto pesa en la nota y demuestra criterio, no solo ejecucion.',
             'Cerrar formalmente el curso confirmando que la entrega quedo registrada en ExamLab dentro del plazo, con el enlace o archivo accesible para el docente.',
         ],
         'ejemplo': [

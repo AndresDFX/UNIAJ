@@ -48,8 +48,8 @@ HERRAMIENTAS_DIA = {
             'note': 'Lab contenedores',
         },
         {
-            'name': 'Play with Docker',
-            'logo': 'play_with_docker.png',
+            'name': 'LabEx Docker Playground',
+            'logo': None,
             'note': 'Sandbox',
         },
         {
@@ -234,9 +234,9 @@ TALLER_BLOQUE = {
             'Doc + PNG (o enlace) listos para ExamLab · domingo 23:59.',
         ],
         'escenario': [
-            'Equipo 2-3 (o individual). Elegir un dominio concreto.',
+            'Actividad individual. Elegir un dominio concreto.',
             'Sugeridos: AgendaU · BiblioLite · InventarioLab · TurnosClinica · EventosCampus.',
-            'Plantilla ficha: DOMINIO · PROBLEMA · ACTORES · CAPACIDADES · FUERA DE ALCANCE.',
+            'Plantilla ficha: DOMINIO · PROBLEMA · CAPACIDADES · ACTORES · SISTEMAS EXTERNOS · FUERA DE ALCANCE.',
             'Herramienta: Excalidraw o draw.io (gratis en navegador).',
         ],
         'pistas': [
@@ -274,7 +274,7 @@ TALLER_BLOQUE = {
         'contexto': [
             '@@Por qué importa al PI:@@ CloudLite debe mostrar al menos un servicio contenerizado con evidencia.',
             'El contenedor es el puente entre el diagrama C4 y el despliegue realista (sin cloud de pago).',
-            'Labs en navegador (Killercoda / Play with Docker): sin Docker Desktop obligatorio.',
+            'Labs en navegador (LabEx Docker Playground / Killercoda): sin Docker Desktop obligatorio.',
         ],
         'objetivo': 'Contenerizar un stub HTTP del servicio principal y dejar Dockerfile + captura.',
         'criterios': [
@@ -285,7 +285,7 @@ TALLER_BLOQUE = {
         ],
         'escenario': [
             'Elegir el servicio principal del C4 (API o web).',
-            'Abrir Killercoda o Play with Docker; sesión temporal.',
+            'Abrir LabEx Docker Playground (labex.io, login con Google/Microsoft) o Killercoda; sesión temporal.',
             'Prohibido: copiar .env / API keys a la imagen.',
         ],
         'pistas': [
@@ -429,7 +429,7 @@ TALLER_BLOQUE = {
         ],
         'escenario': [
             'Revisar: dominio, ADR, C4, Deployment, Dockerfile, Actions, Seguridad, Costos.',
-            'Demo corta por equipo si el tiempo alcanza.',
+            'Demo corta por estudiante (o por equipo, si el docente los autorizo) si el tiempo alcanza.',
         ],
         'pistas': [
             '□ Cada si tiene enlace o ruta de archivo?',
@@ -446,7 +446,7 @@ TALLER_BLOQUE = {
         'objetivo': 'Escenario de rendimiento + ensayo pitch + paquete casi-final.',
         'criterios': [
             'Escenario de carga con 3 métricas + bottleneck.',
-            'Pitch cronometrado 5-8 min (todos hablan).',
+            'Pitch cronometrado 5-8 min (en equipo autorizado, hablan todos).',
             'Backlog de Clase 11 cerrado o residual explícito.',
             'Paquete casi-final ordenado.',
         ],
@@ -492,7 +492,7 @@ TALLER_BLOQUE = {
         'objetivo': 'Entregar paquete final + pitch 5-8 min + Q&A escrito.',
         'criterios': [
             'ZIP/PDF en ExamLab con diagramas + lab + CI + informe.',
-            'Pitch 5-8 min con todos los integrantes.',
+            'Pitch 5-8 min: individual, o con todos los integrantes si el docente autorizo equipo.',
             'Q&A escrito 3+3 + reflexión 1/2 página.',
             'Autoevaluación breve del proceso.',
         ],
@@ -511,33 +511,36 @@ TALLER_BLOQUE = {
 SOLUCION = {
     1: {
         'titulo': 'Solución Taller Clase 1 — Ficha + C4 Context CloudLite',
-        'resumen': 'Ejemplo aceptable (AgendaU). Otros dominios válidos si cumplen criterios.',
+        'resumen': 'Ejemplo aceptable (AgendaU). Actividad individual. Otros dominios válidos si cumplen criterios.',
         'pasos': [
-            'Equipo 2-3. Dominio: AgendaU (tutorías estudiante-docente).',
+            'Actividad individual. Dominio: AgendaU (tutorías estudiante-docente).',
             'Problema: estudiantes pierden turnos por doble agenda y recordatorios débiles.',
-            'Actores: Estudiante, Tutor, CloudLite App; SaaS: correo/calendario.',
             'Capacidades: reservar, cancelar, recordar, ver disponibilidad.',
+            'Actores: Estudiante, Tutor; sistemas externos: proveedor de identidad, correo/calendario.',
             'C4 Context exportable PNG + .drawio.',
         ],
         'ejemplo': [
             'DOMINIO: AgendaU',
             'PROBLEMA: pérdida de turnos por solapamientos y falta de recordatorio.',
-            'ACTORES: Estudiante, Tutor; externo: email SaaS.',
             'CAPACIDADES: reservar, cancelar, listar disponibilidad, notificar.',
+            'ACTORES: Estudiante, Tutor.',
+            'SISTEMAS EXTERNOS: proveedor de identidad institucional (login), correo/calendario SaaS (recordatorios).',
             'FUERA DE ALCANCE: pagos, videollamada, app nativa.',
-            'C4: CloudLite App <-HTTPS-> personas; CloudLite ->SMTP-> Email SaaS.',
+            'C4: CloudLite App <-HTTPS-> personas; CloudLite ->SMTP-> correo SaaS; CloudLite ->OIDC-> proveedor de identidad.',
         ],
         'rubrica': [
             'Dominio concreto (2)',
             'Capacidades+actores (2)',
+            'Sistemas externos coherentes con el C4 (1)',
             'C4 correcto (3)',
-            'Evidencia+entrega (2)',
+            'Evidencia+entrega (1)',
             'Fuera de alcance (1)',
         ],
         'errores': [
             'Rechazar dominio vago sin actor/métrica.',
             'No pedir Containers internos hoy.',
             'C4 sin flechas.',
+            'Ficha con bloque EQUIPO cuando el docente no autorizo equipos: la actividad es individual por defecto y solo admite lenguaje de equipo si hubo autorizacion.',
         ],
     },
     2: {

@@ -1,5 +1,5 @@
 -- VetCare DB · Clase 3 · Procedimiento agendar cita (Oracle Live SQL)
--- Ajustar tipos segun el schema creado por el equipo.
+-- Ajustar tipos segun el schema creado por el estudiante.
 
 CREATE OR REPLACE PROCEDURE sp_agendar_cita (
   p_id_cita IN NUMBER,

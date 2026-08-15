@@ -2,33 +2,38 @@
 
 Documento para estudiantes (carpeta compartida `Clases/`).
 
-- **Código:** FI303215
-- **Grupo:** **641A-2**
+- **Código:** FI303215 · **Grupo:** **641A-2**
 - **Horario:** **Lunes 18:00 – 20:00** (120 min)
-- **Periodo:** 2026-2 · 10/08/2026 – 22/11/2026
-- **Modalidad:** **Presencialidad asistida** (Clase 1 y parciales presencial síncrono · resto virtual síncrona · festivos = clase autónoma)
+- **Periodo:** 2026-2 · **24/08/2026 – 22/11/2026**
+- **Modalidad:** **Presencialidad asistida** (Sesión 1 y parciales presencial síncrono · resto virtual síncrona · festivos = clase autónoma)
+- **Sesiones:** **13** (cubren los **15 temas** del curso; 2 sesiones son dobles)
 
-> La **Clase 1** incluye la Presentación del curso (acuerdo, logística, Padlet, evaluación, cronograma) **y** el arranque temático.
+> El **día 1** incluye la **Sesión 0** (Presentación del curso: acuerdo, logística, Padlet, evaluación, socialización del Proyecto Integrador) **y** el arranque temático.
 
-| Clase | Fecha | Tipo | Tema | Parcial |
-|---|---|---|---|---|
-| 1 | 10/08/2026 | Presencial | Presentación del curso · Revisión de Bases de Datos I | no |
-| 2 | 17/08/2026 | Autónoma (festivo) | Administración de bases de datos (Asunción de la Virgen) | no |
-| 3 | 24/08/2026 | Virtual (síncrona) | Procedimientos almacenados | no |
-| 4 | 31/08/2026 | Virtual (síncrona) | Funciones y disparadores | no |
-| 5 | 07/09/2026 | Presencial | Seguridad y respaldo · **Parcial 1 (cierre Corte 1)** | sí |
-| 6 | 14/09/2026 | Virtual (síncrona) | Optimización de consultas | no |
-| 7 | 21/09/2026 | Virtual (síncrona) | Índices y particionamiento | no |
-| 8 | 28/09/2026 | Virtual (síncrona) | Tuning de bases de datos | no |
-| 9 | 05/10/2026 | Presencial | Gestión de transacciones · **Parcial 2 (cierre Corte 2)** | sí |
-| 10 | 12/10/2026 | Autónoma (festivo) | Control de concurrencia · refuerzo sin parcial | no |
-| 11 | 19/10/2026 | Virtual (síncrona) | Avance del proyecto final | no |
-| 12 | 26/10/2026 | Virtual (síncrona) | Integración de aplicaciones externas | no |
-| 13 | 02/11/2026 | Autónoma (festivo) | Análisis de casos reales (Todos los Santos) | no |
-| 14 | 09/11/2026 | Presencial | Preparación de presentación final · **Parcial 3 (cierre Corte 3)** | sí |
-| 15 | 16/11/2026 | Autónoma (festivo) | Presentación del proyecto + cierre · refuerzo sin parcial | no |
-| 1 | 30% | 10/08 – 13/09/2026 | Parcial 1 en Clase 5 (07/09/2026) (10%) + Talleres/Quiz 10% + Asistencia 10% | sí |
-| 2 | 30% | 14/09 – 18/10/2026 | Parcial 2 en Clase 9 (05/10/2026) (10%) + Talleres/Quiz 10% + Asistencia 10% | sí |
-| 3 | 40% | 19/10 – 22/11/2026 | Parcial 3 en Clase 14 (09/11/2026) (15%) + Proyecto Integrador 20% + Asistencia 5% | sí |
+| Sesión | Fecha | Tipo | Tema | Material | Parcial |
+|---|---|---|---|---|---|
+| 1 | 24/08/2026 | Presencial (síncrona) | Diagnóstico · Revisión de Bases de Datos I (VetCare) | Clase 1 | no |
+| 2 | 31/08/2026 | Virtual (síncrona) | Administración de bases de datos | Clase 2 | no |
+| 3 | 07/09/2026 | Virtual (síncrona) | Procedimientos almacenados | Clase 3 | no |
+| 4 | 14/09/2026 | Virtual (síncrona) | Funciones y disparadores · Seguridad y respaldo | Clase 4 | no |
+| 5 | 21/09/2026 | Presencial (síncrona) | PARCIAL 1 (solo evaluación) | Clase 5 | sí |
+| 6 | 28/09/2026 | Virtual (síncrona) | Optimización de consultas | Clase 6 | no |
+| 7 | 05/10/2026 | Virtual (síncrona) | **Sesión doble** · Índices y particionamiento + Tuning y gestión de transacciones | Clase 7 + Clase 8 | no |
+| 8 | 12/10/2026 | Autónoma (festivo) | Control de concurrencia | Clase 10 | no |
+| 9 | 19/10/2026 | Presencial (síncrona) | PARCIAL 2 (solo evaluación) | Clase 9 | sí |
+| 10 | 26/10/2026 | Virtual (síncrona) | **Sesión doble** · Avance del proyecto final + Integración de apps externas y preparación final | Clase 11 + Clase 12 | no |
+| 11 | 02/11/2026 | Autónoma (festivo) | Análisis de casos reales | Clase 13 | no |
+| 12 | 09/11/2026 | Presencial (síncrona) | PARCIAL 3 (solo evaluación) | Clase 14 | sí |
+| 13 | 16/11/2026 | Sustentación PI (festivo) | Presentación del proyecto y cierre (sustentaciones PI) | Clase 15 | no |
+
+## Evaluación por cortes
+
+| Corte | % | Ventana | Detalle |
+|---|---|---|---|
+| 1 | 30% | 24/08/2026 – 27/09/2026 | Parcial 1 en Sesión 5 (21/09/2026) · 10% Parcial 1 (cierre de corte) · 10% Talleres y Quiz · 10% Asistencia |
+| 2 | 30% | 28/09/2026 – 25/10/2026 | Parcial 2 en Sesión 9 (19/10/2026) · 10% Parcial 2 (cierre de corte) · 10% Talleres y Quiz · 10% Asistencia |
+| 3 | 40% | 26/10/2026 – 22/11/2026 | Parcial 3 en Sesión 12 (09/11/2026) · 15% Parcial 3 (cierre de corte) · 20% Proyecto Integrador · 5% Asistencia |
+
+> **Sustentación del Proyecto Integrador:** Sesión 13 — 16/11/2026.
 
 Fuente derivada del Plan de curso 2026-2. Detalle docente interno no se comparte aquí.

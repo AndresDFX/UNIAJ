@@ -35,25 +35,39 @@ CREDS = [
     "Líder Técnico · Speaker Tecnológico",
 ]
 
-# CONTENIDO: Sesión 0 + Clases 1–15 (lunes · parciales 5/9/14 · festivos autónomas)
-CONTENIDO = [
-    {"n": 0, "kind": "sesion0", "tema": "Presentación del curso: logística, evaluación y socialización del PI CloudLite", "fecha": "10/08"},
-    {"n": 1, "tema": "Diagnóstico · Introducción a arquitecturas cloud", "fecha": "10/08"},
-    {"n": 2, "tema": "Modelos de servicio IaaS / PaaS / SaaS", "fecha": "17/08", "tag": "Autónoma"},
-    {"n": 3, "tema": "Virtualización y contenedores", "fecha": "24/08"},
-    {"n": 4, "tema": "Microservicios y arquitecturas distribuidas", "fecha": "31/08"},
-    {"n": 5, "tema": "Parcial 1", "fecha": "07/09", "tag": "Parcial 1 · presencial"},
-    {"n": 6, "tema": "Seguridad en la nube", "fecha": "14/09"},
-    {"n": 7, "tema": "Redes y almacenamiento cloud", "fecha": "21/09"},
-    {"n": 8, "tema": "Monitoreo, optimización y CI/CD", "fecha": "28/09"},
-    {"n": 9, "tema": "Parcial 2", "fecha": "05/10", "tag": "Parcial 2 · presencial"},
-    {"n": 10, "tema": "Costos y sostenibilidad cloud", "fecha": "12/10", "tag": "Autónoma"},
-    {"n": 11, "tema": "Avance del proyecto final (CloudLite)", "fecha": "19/10"},
-    {"n": 12, "tema": "Pruebas de rendimiento y preparación final", "fecha": "26/10"},
-    {"n": 13, "tema": "Escalabilidad automática", "fecha": "02/11", "tag": "Autónoma"},
-    {"n": 14, "tema": "Parcial 3", "fecha": "09/11", "tag": "Parcial 3 · presencial"},
-    {"n": 15, "tema": "Presentación del proyecto y cierre", "fecha": "16/11", "tag": "Autónoma"},
-]
+import calendario_2026_2 as cal
+
+CURSO_KEY = "arquitectura"
+
+# Temas del material ya construido (carpetas «Clase N», que NO se renumeran).
+# El calendario 2026-2 (13 sesiones) decide en qué sesión se dicta cada uno; dos
+# sesiones son dobles y la sesión 13 (16/11) es de sustentaciones del PI.
+TEMAS_MATERIAL = {
+    1: "Diagnóstico · Introducción a arquitecturas cloud",
+    2: "Modelos de servicio IaaS / PaaS / SaaS",
+    3: "Virtualización y contenedores",
+    4: "Microservicios y arquitecturas distribuidas",
+    5: "Repaso y evaluación del corte 1",
+    6: "Seguridad en la nube",
+    7: "Redes y almacenamiento cloud",
+    8: "Monitoreo, optimización y CI/CD",
+    9: "Repaso y evaluación del corte 2",
+    10: "Costos y sostenibilidad cloud",
+    11: "Avance del proyecto final (CloudLite)",
+    12: "Pruebas de rendimiento y preparación final",
+    13: "Escalabilidad automática",
+    14: "Repaso y evaluación del corte 3",
+    15: "Presentación del proyecto y cierre",
+}
+
+# CONTENIDO: Sesión 0 + las 13 sesiones reales (lunes · parciales 5/9/12 ·
+# festivos autónomas · sesión 13 = sustentaciones del PI CloudLite).
+CT = cal.cortes(CURSO_KEY)
+
+CONTENIDO = cal.contenido_items(
+    CURSO_KEY, TEMAS_MATERIAL,
+    "Presentación del curso: logística, evaluación y socialización del PI CloudLite",
+)
 
 
 def build():
@@ -106,7 +120,7 @@ def build():
         [
             "**Sesión 0 (hoy)** = encuadre del curso + evaluación + **socialización del Proyecto Integrador CloudLite** + herramientas.",
             "**Clase 1** = diagnóstico + arranque del primer tema (introducción a arquitecturas cloud) — mismo bloque de hoy.",
-            "De la Clase 2 en adelante, cada sesión sigue la misma estructura: **Teoría Core breve** → **Taller PI CloudLite** → **cierre**. Modalidad: Clase 1 y parciales (**5 / 9 / 14**) **presencial**; resto **virtual síncrona**; festivos = **clase autónoma**.",
+            "De la sesión 2 en adelante, cada sesión sigue la misma estructura: **Teoría Core breve** → **Taller PI CloudLite** → **cierre**. Modalidad: sesión 1 y parciales (**5 / 9 / 12**) **presencial**; resto **virtual síncrona**; festivos = **clase autónoma**. Dos sesiones son **dobles** (dos temas en un bloque) y la **sesión 13 (16/11)** es de **sustentaciones**.",
             "Herramientas **gratis + navegador** (sin cloud de pago ni Docker Desktop). Talleres y quices/parciales se entregan/presentan en @@ExamLab@@ (https://examlab.lovable.app/) — no es la plataforma oficial de la UNIAJC, la usamos solo para esto.",
             "Hilo conductor de todo el semestre: **Proyecto Integrador CloudLite**.",
         ],
@@ -117,12 +131,15 @@ def build():
         prs,
         "Sistema de evaluación (Acuerdo pedagógico)",
         [
-            {"corte": 1, "pct": "30%", "ventana": "10/08 – 13/09/2026",
-             "desglose": ["**Parcial 1** (Clase 5) · 10%", "Talleres o Quiz · 10%", "Asistencia · 10%"]},
-            {"corte": 2, "pct": "30%", "ventana": "14/09 – 18/10/2026",
-             "desglose": ["**Parcial 2** (Clase 9) · 10%", "Talleres o Quiz · 10%", "Asistencia · 10%"]},
-            {"corte": 3, "pct": "40%", "ventana": "19/10 – 22/11/2026",
-             "desglose": ["**Parcial 3** (Clase 14) · 15%", "**PI CloudLite** · 20%", "Asistencia · 5%"]},
+            {"corte": 1, "pct": CT[0]["pct"], "ventana": CT[0]["ventana"],
+             "desglose": [f"**Parcial 1** ({CT[0]['parcial_fecha']} · sesión {CT[0]['parcial_sesion']}) · 10%",
+                          "Talleres o Quiz · 10%", "Asistencia · 10%"]},
+            {"corte": 2, "pct": CT[1]["pct"], "ventana": CT[1]["ventana"],
+             "desglose": [f"**Parcial 2** ({CT[1]['parcial_fecha']} · sesión {CT[1]['parcial_sesion']}) · 10%",
+                          "Talleres o Quiz · 10%", "Asistencia · 10%"]},
+            {"corte": 3, "pct": CT[2]["pct"], "ventana": CT[2]["ventana"],
+             "desglose": [f"**Parcial 3** ({CT[2]['parcial_fecha']} · sesión {CT[2]['parcial_sesion']}) · 15%",
+                          "**PI CloudLite** · 20%", "Asistencia · 5%"]},
         ],
         note="Parciales síncronos presenciales · nunca en festivo/autónoma. Día de parcial = solo evaluación.",
         idx=7,
@@ -132,7 +149,8 @@ def build():
         prs,
         CONTENIDO,
         title="CONTENIDO",
-        sub="Sesión 0 + Clases 1–15 · grupo 6303C · lunes 10:00–12:00",
+        sub=("Sesión 0 + 13 sesiones · grupo 6303C · lunes 10:00–12:00 · los 15 temas se "
+             "conservan: dos sesiones son **dobles** y la sesión 13 es de **sustentaciones**"),
         idx=8,
         size=12,
     )
@@ -155,7 +173,7 @@ def build():
         [
             {"name": "draw.io", "logo": "drawio.png", "note": "C4 · despliegue"},
             {"name": "Excalidraw", "logo": "excalidraw.png", "note": "Bocetos de taller"},
-            {"name": "Play with Docker", "logo": "play_with_docker.png", "note": "Lab contenedores (4h)"},
+            {"name": "LabEx Docker Playground", "logo": None, "note": "Lab contenedores"},
             {"name": "GitHub Actions", "logo": "github.png", "note": "CI/CD conceptual"},
             {"name": "ExamLab", "logo": "examlab.png", "note": "Talleres + quices/parciales"},
         ],

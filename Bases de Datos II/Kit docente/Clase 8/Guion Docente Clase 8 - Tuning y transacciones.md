@@ -87,16 +87,16 @@ Herramienta: Oracle Live SQL / DB Fiddle
 Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Taller guiado = tarea del PI
-**Decir:** «Equipos: abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
+**Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
 1. Implementar bloque/proc que facture y descuente stock atomicamente.
 2. Probar fallo a mitad (stock insuficiente) -> ROLLBACK.
 3. Completar checklist tuning del PI.
 4. Actualizar informe PI: seccion transacciones.
-Circular por equipos (o salas). Empujar evidencia, no perfectionismo.
+Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: Script transaccional + checklist tuning del PI (1 pag.)
-📸 Pantallazo: [CAP: avance equipo / playground Clase 8]
+📸 Pantallazo: [CAP: avance del estudiante / playground Clase 8]
 
 ### 105-115 · Criterios de exito + quiz corto
 Repasar checklist del dia (slide Criterios).
@@ -115,5 +115,5 @@ Carpeta Capturas/. Placeholders [CAP: ...] arriba; reemplazar por PNG reales cua
 (Playwright/manual en DB Fiddle, draw.io, Live SQL).
 
 ## Criterios de exito del dia
-- Equipos tienen el entregable o gaps escritos.
+- Cada estudiante tiene el entregable o sus gaps escritos.
 - Queda claro el vinculo con la rubrica del PI (modelo, seguridad, procs, opt, integracion).

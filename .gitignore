@@ -15,6 +15,20 @@ Clases grabadas/
 [0-9]*[A-Z] - *.xls
 [0-9]*[A-Z] - *.xlsx
 
+# Exportaciones del sistema academico ("Java Excel API"), que llegan con
+# otro nombre y en subcarpetas (p. ej. "Plan curso/2026-2/"). Mismo criterio:
+# es informacion privada del estudiante y no debe versionarse.
+LISTA_DE_ALUMNOS*.xls
+LISTA_DE_ALUMNOS*.xlsx
+*LISTADO*ALUMNOS*.xls
+*LISTADO*ESTUDIANTES*.xls
+
+# Salidas derivadas de la nomina real: .ics con estudiantes como invitados,
+# nomina normalizada y planillas de asistencia. Las genera
+# config/calendario/generar_eventos_calendario.py y llevan nombre, documento y
+# correo de cada estudiante. Nunca al repo.
+config/calendario/_privado_2026-2/
+
 # ── Incidente de recuperacion de Drive (2026-08-08, ya resuelto) ─────
 # Scripts operativos de una sola vez (lectura de cookies del navegador,
 # IDs de archivos de Drive, logs). Sin credenciales reales, pero es

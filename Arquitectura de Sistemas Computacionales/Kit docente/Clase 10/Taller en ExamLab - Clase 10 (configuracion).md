@@ -81,7 +81,7 @@ mindmap
       Correos salientes de confirmacion y recordatorio
     Ocioso
       Ambiente de pruebas encendido todo el fin de semana
-      Sesiones de Play with Docker abiertas y olvidadas
+      Sesiones de LabEx Docker Playground abiertas y olvidadas
     Integracion continua
       Minutos de Actions consumidos en cada push a main
       Build sin cache de capas que reconstruye todo
@@ -129,7 +129,7 @@ Ninguno puede romper un requisito del PI: si el ahorro implica quitar la ruta de
 
 Escriba **exactamente 3 acciones** de sostenibilidad aplicables a *su* diseno, cada una con **3 lineas rotuladas**:
 
-1. **Accion**: que hace el equipo, en imperativo (`apagar el ambiente de pruebas los viernes a las 18:00`).
+1. **Accion**: que se hace, en imperativo (`apagar el ambiente de pruebas los viernes a las 18:00`).
 2. **Efecto ambiental o de recursos**: que se deja de consumir (energia por horas encendido, almacenamiento del registro de imagenes, minutos de runner).
 3. **Evidencia verificable**: donde queda la prueba de que se hizo (`captura del historial del lab con la hora`, `salida de docker images con el tamano`, `bitacora del repositorio`).
 

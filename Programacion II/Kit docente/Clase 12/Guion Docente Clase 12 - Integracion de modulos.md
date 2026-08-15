@@ -21,7 +21,7 @@ El debugger de NetBeans es la herramienta de esta clase y hay que perderle el mi
 
 La forma de integrar sin sufrir es por goteo y no de un solo golpe. Integración de un solo golpe es juntar los cuatro módulos la noche anterior a la entrega; el resultado conocido es una aplicación que no arranca y nadie sabe cuál de los cuatro la rompió. Integración por goteo es unir de a un módulo, correr el guion de humo después de cada unión, y no avanzar mientras el ejecutable esté en rojo: primero modelo más servicio con un main de consola, después servicio más repositorio verificando el archivo en disco, después la ventana consumiendo el servicio, y por último el cierre que guarda. Cuando algo se rompe, uno sabe exactamente qué fue lo último que tocó. Tres hábitos más que valen oro: fijar por escrito el contrato entre módulos, es decir la firma de los métodos públicos del servicio y el orden exacto de los campos del CSV, para que quien escribe y quien lee no se contradigan; poner el try-catch en las fronteras, o sea en el manejador del botón y en el acceso al archivo, y no repartido por todo el modelo; y llevar la bitácora de integración con síntoma, causa y corrección de cada defecto, que es lo que se entrega y lo que salva en la sustentación.
 
-Error tipico del docente que no domina el tema: junta todos los módulos la noche anterior, en clase la aplicación no arranca, y termina explicando el flujo en el tablero mientras los estudiantes nunca ven correr el producto; después culpa a NetBeans, al JDK o al computador del salón. El segundo error es no abrir jamás el debugger: llena el código de System.out.println, y como imprime solo lo que se le ocurrió imprimir, no logra distinguir entre 'el dato llegó mal desde el formulario' y 'el dato se guardó mal en el archivo', que son dos defectos completamente distintos con el mismo síntoma. El tercero es no fijar el contrato del CSV: cada equipo escribe su propio orden de campos, y al integrar el módulo del compañero el archivo se lee corrido, con lo que el docente concluye que 'el CSV es frágil' cuando lo frágil fue el acuerdo. La disciplina que se enseña hoy y que el docente debe haber practicado antes de entrar al salón es: integrar temprano, integrar por partes, tener un guion de humo de dos minutos que se corre después de cada cambio, y llegar a clase con VetCare ya corriendo para poder romperlo a propósito delante del grupo y arreglarlo con el debugger en vivo, que es la única forma de que el estudiante crea que la herramienta sirve.
+Error tipico del docente que no domina el tema: junta todos los módulos la noche anterior, en clase la aplicación no arranca, y termina explicando el flujo en el tablero mientras los estudiantes nunca ven correr el producto; después culpa a NetBeans, al JDK o al computador del salón. El segundo error es no abrir jamás el debugger: llena el código de System.out.println, y como imprime solo lo que se le ocurrió imprimir, no logra distinguir entre 'el dato llegó mal desde el formulario' y 'el dato se guardó mal en el archivo', que son dos defectos completamente distintos con el mismo síntoma. El tercero es no fijar el contrato del CSV: cada estudiante escribe su propio orden de campos, y al integrar el módulo del compañero el archivo se lee corrido, con lo que el docente concluye que 'el CSV es frágil' cuando lo frágil fue el acuerdo. La disciplina que se enseña hoy y que el docente debe haber practicado antes de entrar al salón es: integrar temprano, integrar por partes, tener un guion de humo de dos minutos que se corre después de cada cambio, y llegar a clase con VetCare ya corriendo para poder romperlo a propósito delante del grupo y arreglarlo con el debugger en vivo, que es la única forma de que el estudiante crea que la herramienta sirve.
 
 **Demo que usted debe poder repetir:** El docente corre el guion de humo completo (abrir, registrar, buscar, cerrar, reabrir) y luego pone un breakpoint en el botón Registrar para mostrar con el debugger por qué una edad vacía estaba entrando como cero.
 
@@ -35,7 +35,7 @@ Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 ### 10-40 · Teoria Core
 Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
 proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
-Pregunta al aire (2 min): ¿donde encaja esto en el VetCare de su equipo?
+Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
@@ -44,14 +44,14 @@ Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 12/Codigo/VetCareApp.java`
 
 ### 60-105 · Taller guiado = avance del PI
-**Decir:** «Equipos: abran su proyecto VetCare. Esto suma a la rubrica del PI.»
+**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Organice el proyecto en los paquetes vetcare.modelo, vetcare.datos, vetcare.logica y vetcare.ui, deje un único método main en la clase de arranque, elimine cualquier otro main que haya quedado de los talleres anteriores y verifique que la aplicación abre desde ese único punto.
 2. Asegure una sola instancia: cree el repositorio y el servicio en el main y páselos por constructor a la ventana; ponga un breakpoint en el botón Registrar y otro en el cierre, y compruebe en la ventana Variables que el objeto servicio tiene el mismo identificador en ambos puntos.
 3. Corra el guion de humo de cinco pasos (abrir con datos, registrar, buscar por ID, cerrar guardando, reabrir y verificar) y anote en qué paso exacto falla y con qué mensaje; si pasa completo a la primera, dañe una línea de mascotas.csv y vuelva a correrlo.
 4. Depure el primer defecto con el debugger: breakpoint en el manejador del botón, registre el valor real de cada campo del formulario antes de llegar al servicio, identifique en qué capa se corrompe el dato y aplique la corrección; deje la evidencia en la bitácora.
 5. Repita hasta que el guion de humo corra completo dos veces seguidas y entregue la bitácora de integración con tres defectos documentados con síntoma, causa, corrección y cómo lo verificó.
-Circular por los equipos. Empujar evidencia funcionando, no perfeccionismo.
+Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: El proyecto VetCare ejecutable (carpeta del proyecto o JAR) más la bitácora de integración con tres defectos hallados con el debugger, cada uno con síntoma, causa, corrección y evidencia, subidos a ExamLab.
 
 ### 105-120 · Criterios de exito y cierre

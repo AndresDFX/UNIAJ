@@ -8,10 +8,12 @@
 
 Estimados estudiantes:
 
-Les doy la bienvenida al curso **Arquitectura de Sistemas Computacionales** (código **FI303380**, grupo **6303C**) del periodo **2026-2** (ventana académica: **10/08/2026 – 22/11/2026**).
+Les doy la bienvenida al curso **Arquitectura de Sistemas Computacionales** (código **FI303380**, grupo **6303C**) del periodo **2026-2** (ventana académica: **24/08/2026 – 22/11/2026**).
 
 - **Modalidad:** Presencialidad asistida (clases presencial / virtual síncrona / autónoma)
-- **Modalidad por sesión:** Clase 1 presencial; resto de clases regulares virtual síncrona; parciales presencial; festivos clase autónoma.
+- **Modalidad por sesión:** **Sesión 1 presencial**; resto de sesiones regulares **virtual síncrona**; **parciales presencial** síncrono (Sesiones 5, 9 y 12). Festivo → **clase autónoma**.
+- **Calendario:** **13 sesiones de lunes** (24/08/2026 – 22/11/2026) que cubren los 15 temas del curso; las Sesiones 7 y 10 son **dobles** (dos temas en el mismo bloque de 120 min).
+- **Sustentación del proyecto final:** Sesión 13 — 16/11/2026.
 - **Horario:** lunes **10:00 – 12:00** (inicio práctico de clase: **10:10**)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
 - **Entrega de talleres y evaluaciones:** ExamLab · https://examlab.lovable.app/app

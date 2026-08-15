@@ -53,7 +53,7 @@ Redacte el ADR-001 con **estas 7 secciones rotuladas, en este orden y sin agrega
 
 1. **Titulo**: `ADR-001 Modelo de servicio dominante de CloudLite App`.
 2. **Estado**: `Aceptado` mas la fecha.
-3. **Contexto**: exactamente 3 frases. Una del dominio, una de la restriccion del curso (gratis, en navegador, sin tarjeta de credito) y una de la capacidad real del equipo (2 o 3 personas, un semestre).
+3. **Contexto**: exactamente 3 frases. Una del dominio, una de la restriccion del curso (gratis, en navegador, sin tarjeta de credito) y una de la capacidad real de quien desarrolla (una persona, o 2 o 3 si el docente autorizo equipo; un semestre).
 4. **Decision**: **una sola frase** que nombre **un unico modelo dominante** (IaaS, PaaS o SaaS) para la aplicacion propia de CloudLite.
 5. **Alternativas descartadas**: exactamente 2, cada una con el motivo del descarte expresado en terminos de este dominio.
 6. **Consecuencias**: exactamente 2 positivas y 2 negativas, rotuladas con `+` y `-`. Al menos una negativa debe hablar de amarre al proveedor o de perdida de control.

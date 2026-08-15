@@ -7,10 +7,10 @@
 ## Alineacion
 - Taller: `Clases/Clase 1 - Revision BD I y arranque VetCare/Taller PI - Clase 1 - VetCare.docx`
 - Hito: Arranque PI: dominio, alcance y borrador ER de VetCare DB
-- Entregable: Ficha de equipo + ER borrador (PNG) + lista de entidades/reglas
+- Entregable: Ficha del proyecto + ER borrador (PNG) + lista de entidades/reglas
 
 ## Solucion paso a paso
-1. Formar equipo de 2-3 y nombrarlo VetCare-<apellido del lider> para identificarlo en todas las entregas del semestre.
+1. Trabajo individual por defecto: nombra tu proyecto VetCare-<tu apellido> y registralo para identificarlo en todas las entregas del semestre. Si el docente autoriza equipo de 2 o 3, el artefacto puede ser compartido pero la entrega en ExamLab sigue siendo individual.
 2. Listar las entidades minimas del dominio: Dueño (persona que trae la mascota), Mascota (paciente), Veterinario (quien atiende), Cita (agenda de una atencion). Consulta, Insumo y DetalleFactura se agregan en clases posteriores.
 3. Redactar como reglas de negocio explicitas (no solo mencionarlas): "una mascota con activa=N no puede tener una cita nueva", "el stock de un insumo nunca puede quedar en negativo", "toda cancelacion de cita queda registrada con usuario y fecha".
 4. Dibujar el ER borrador marcando cardinalidad en cada relacion (Dueño 1-N Mascota, Mascota 1-N Cita) y exportarlo como PNG legible, no un boceto a mano ilegible.
@@ -22,7 +22,7 @@
 - Script demo: `Kit docente/Clase 1/Codigo/01_arranque_vetcare.sql`
 
 ## Rubrica corta
-- [ ] Equipo (1)
+- [ ] Registro del proyecto (1)
 - [ ] ER (3)
 - [ ] Reglas (2)
 - [ ] Alcance (2)

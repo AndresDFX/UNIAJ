@@ -12,20 +12,36 @@ import java.util.Scanner;
  * 1) Siembra el juego de datos de demostracion.
  * 2) Chequeo pre-vuelo antes de conectar el videobeam.
  * 3) Ensayo cronometrado de 5 a 8 minutos.
+ * Trabajo individual por defecto: si el docente autoriza equipo, agregue los nombres
+ * en PRESENTADORES y el reparto de bloques se hace automatico.
  * Ejecutar en Apache NetBeans: clic derecho sobre el archivo y luego Run File.
  */
 public class EnsayoSustentacionVetCare {
 
     private static final String CARPETA = "datos_demo";
 
-    // Guion: bloque, responsable y minutos planeados. Total 7 minutos, con la demo ocupando 4.
+    // Modalidad de trabajo: INDIVIDUAL por defecto. Si el docente autoriza equipo de 2 o 3,
+    // escriba los nombres aqui y el reparto de bloques se calcula solo.
+    // Individual: {"Usted"}   |   Equipo: {"Marta", "Julian", "Sara"}
+    private static final String[] PRESENTADORES = {"Usted"};
+
+    // Guion: bloque, evidencia que se muestra en pantalla y minutos planeados.
+    // Total 7 minutos, con la demo ocupando 4. El guion no cambia por el numero de expositores.
     private static final String[][] GUION = {
-        {"Problema de la clinica Huellitas y solucion propuesta", "Integrante 1", "1"},
-        {"Arquitectura: clases, herencia y colecciones", "Integrante 2", "1"},
-        {"DEMO: registrar dueno y mascota (con validacion de edad)", "Integrante 3", "2"},
-        {"DEMO: agendar cita, buscar por ID y guardar en CSV", "Integrante 4", "2"},
-        {"Limitaciones, aprendizajes y cierre", "Todo el equipo", "1"}
+        {"Problema de la clinica Huellitas y solucion propuesta", "Diapositiva con los 3 dolores", "1"},
+        {"Arquitectura: clases, herencia y colecciones", "Persona.java al lado de Dueno.java", "1"},
+        {"DEMO: registrar dueno y mascota (con validacion de edad)", "La aplicacion corriendo", "2"},
+        {"DEMO: agendar cita, buscar por ID y guardar en CSV", "Cerrar y reabrir con los datos ahi", "2"},
+        {"Limitaciones, aprendizajes y cierre", "Lista de 3 limitaciones", "1"}
     };
+
+    /** Quien habla el bloque i. Con un solo presentador, todos los bloques son suyos. */
+    private static String responsableDe(int i) {
+        if (PRESENTADORES.length == 0) {
+            return "Usted";
+        }
+        return PRESENTADORES[i % PRESENTADORES.length];
+    }
 
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
@@ -134,10 +150,12 @@ public class EnsayoSustentacionVetCare {
         System.out.println("--- Ensayo cronometrado. Presione Enter al terminar cada bloque ---");
         long inicio = System.currentTimeMillis();
         long anterior = inicio;
-        for (String[] bloque : GUION) {
+        for (int i = 0; i < GUION.length; i++) {
+            String[] bloque = GUION[i];
             System.out.println("");
             System.out.println("-> " + bloque[0]);
-            System.out.println("   Habla: " + bloque[1] + " | Planeado: " + bloque[2] + " min");
+            System.out.println("   Evidencia: " + bloque[1]);
+            System.out.println("   Habla: " + responsableDe(i) + " | Planeado: " + bloque[2] + " min");
             teclado.nextLine();
             long ahora = System.currentTimeMillis();
             double real = (ahora - anterior) / 60000.0;
@@ -153,7 +171,7 @@ public class EnsayoSustentacionVetCare {
         } else if (total > 8) {
             System.out.println("Se paso: recorte la parte teorica, nunca la demo.");
         } else {
-            System.out.println("Tiempo dentro de la ventana. Repitan el ensayo una vez mas.");
+            System.out.println("Tiempo dentro de la ventana. Repita el ensayo una vez mas.");
         }
     }
 }

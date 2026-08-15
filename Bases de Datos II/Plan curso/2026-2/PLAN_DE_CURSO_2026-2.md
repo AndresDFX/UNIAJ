@@ -1,46 +1,54 @@
-# Plan de curso propuesto — Bases de Datos II · 2026-2
-> **CSV eventos:** `Plan curso/2026-2/calendario_eventos_2026-2.csv` (UTF-8 BOM). Importar en hoja/calendario cuando exista el listado de estudiantes (una fila = una clase; filtrar `es_parcial=si` para parciales síncronos).
+# Plan de curso — Bases de Datos II · 2026-2
+> **CSV eventos:** `Plan curso/2026-2/calendario_eventos_2026-2.csv` (UTF-8 BOM). Importar en hoja/calendario cuando exista el listado de estudiantes (una fila = una sesión; filtrar `es_parcial=si` para parciales síncronos).
 
-- **Código:** FI303215
-- **Grupo:** **641A-2**
-- **Periodo:** **2026-2** · 10/08/2026 – 22/11/2026
+- **Código:** FI303215 · **Grupo:** **641A-2**
+- **Periodo:** **2026-2** · **24/08/2026 – 22/11/2026**
 - **Horario:** **Lunes 18:00 – 20:00** (120 min)
-- **Modalidad:** **Presencialidad asistida** (Clase 1 y parciales presencial síncrono · resto virtual síncrona · festivos = clase autónoma)
+- **Modalidad:** **Presencialidad asistida** (Sesión 1 y parciales presencial síncrono · resto virtual síncrona · festivos = clase autónoma)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
-- **Fuente oficial:** Microcurrículo FI303215 + Plan_de_curso FI303215
 - **Calendario:** `Plan curso/2026-2/CALENDARIO_2026-2.md` · `config/calendario/semestre_2026_2.json`
 
-## Ajuste 16 → 15 clases
+## Ajuste 2026-2: 13 sesiones para 15 temas
 
-El Plan oficial trae 16 sesiones. En 2026-2 hay **15 clases**: el cierre de la sesión 16 se integra en la **Clase 15**.
+Semestre 2026-2 acortado: inicio **24/08/2026** (fin fijo **22/11/2026**) = **13 sesiones**. Se conservan los **15 temas** del microcurrículo: **2 sesiones son dobles** (dos temas afines en el mismo bloque de 120 min). El material existente (`Clases/Clase N - …`, `Kit docente/Clase N/`) **no se renumera**: cambia solo el mapeo Sesión → Clase(s) de material.
 
-Criterio de modalidad por sesión (fijo 2026-2): modalidad del curso = Presencialidad asistida. Tipo por sesión = ver CSV. Parciales = siempre presenciales y síncronos; festivos = clase autónoma (sin parcial). Los parciales NUNCA se programan en día festivo ni en clase autónoma. Si el cierre teórico del corte cae en festivo/autónoma, el parcial se mueve a la última clase regular anterior del mismo corte; la clase autónoma de cierre queda como refuerzo sin parcial.
+Sesiones dobles de este curso: **Sesión 7** (05/10/2026) = Clase 7 + Clase 8 · **Sesión 10** (26/10/2026) = Clase 11 + Clase 12.
 
-Parciales de este curso: Clases **5 / 9 / 14** (07/09/2026, 05/10/2026, 09/11/2026).
+**Bases de Datos II** (Lunes 18:00 – 20:00) · Modalidad: Presencialidad asistida. Sesión 1 presencial (encuadre) · parciales en las sesiones **5/9/12**, presencial síncrono · resto de sesiones regulares virtual síncrona. Festivos = clase autónoma, no se omiten: Sesión 8 (12/10/2026, Día de la Diversidad Étnica y Cultural) · Sesión 11 (02/11/2026, Todos los Santos). Sesión 13 (16/11/2026) se dedica a las **sustentaciones del Proyecto Integrador** (no es parcial). Día de parcial = solo evaluación. Los parciales NUNCA se programan en festivo ni en clase autónoma. Sesión 0 = Presentación del Curso (no es sesión temática).
 
-> **Día de parcial = solo evaluación:** sin tema de trabajo dirigido nuevo. Si un tema técnico estaba mezclado con el parcial, se reasigna a la última clase regular anterior del mismo corte.
+Parciales de este curso: Sesiones **5 / 9 / 12** (21/09/2026, 19/10/2026, 09/11/2026) — presencial síncrono.
 
-> **Sesión 0 (no es clase temática):** `Clases/Presentacion del Curso - ….pptx` (logística, acuerdo, Padlet, evaluación, CONTENIDO). En el **día 1** puede ir Sesión 0 + Clase 1 dentro del bloque de 120 min. Se mantienen **15 clases** temáticas (1–15).
+> **Día de parcial = solo evaluación:** sin tema de trabajo dirigido nuevo.
 
-## Tabla Clase · Fecha · Tipo · Tema
+> **Sesión 0 (no es sesión temática):** `Clases/Presentacion del Curso - ….pptx` (logística, acuerdo, Padlet, evaluación, CONTENIDO, socialización del Proyecto Integrador). En el **día 1** va Sesión 0 + Sesión 1 en el bloque de 120 min.
 
-| Clase | Fecha | Tipo | Tema (Trabajo dirigido) |
+> **Sesión 13 (16/11/2026) = sustentaciones del Proyecto Integrador** (Cae en festivo (Independencia de Cartagena). Por decision docente esta sesion se usa para las sustentaciones del proyecto final; no es parcial.)
+
+## Tabla Sesión · Fecha · Tipo · Clase(s) de material · Tema
+
+| Sesión | Fecha | Tipo | Clase(s) de material | Tema (Trabajo dirigido) |
+|---|---|---|---|---|
+| 1 | 24/08/2026 | Presencial (síncrona) | Clase 1 | Diagnóstico · Revisión de Bases de Datos I (VetCare) |
+| 2 | 31/08/2026 | Virtual (síncrona) | Clase 2 | Administración de bases de datos |
+| 3 | 07/09/2026 | Virtual (síncrona) | Clase 3 | Procedimientos almacenados |
+| 4 | 14/09/2026 | Virtual (síncrona) | Clase 4 | Funciones y disparadores · Seguridad y respaldo |
+| 5 | 21/09/2026 | Presencial (síncrona) | Clase 5 | **Parcial 1** (solo evaluación) |
+| 6 | 28/09/2026 | Virtual (síncrona) | Clase 6 | Optimización de consultas |
+| 7 | 05/10/2026 | Virtual (síncrona) | Clase 7 + Clase 8 **(doble)** | Índices y particionamiento + Tuning y gestión de transacciones |
+| 8 | 12/10/2026 | Autónoma (festivo) | Clase 10 | Control de concurrencia |
+| 9 | 19/10/2026 | Presencial (síncrona) | Clase 9 | **Parcial 2** (solo evaluación) |
+| 10 | 26/10/2026 | Virtual (síncrona) | Clase 11 + Clase 12 **(doble)** | Avance del proyecto final + Integración de apps externas y preparación final |
+| 11 | 02/11/2026 | Autónoma (festivo) | Clase 13 | Análisis de casos reales |
+| 12 | 09/11/2026 | Presencial (síncrona) | Clase 14 | **Parcial 3** (solo evaluación) |
+| 13 | 16/11/2026 | Sustentación PI (festivo) | Clase 15 | Presentación del proyecto y cierre (sustentaciones PI) |
+
+## Evaluación teórica (Acuerdo 2026-2)
+
+| Corte | % | Ventana | Parcial de cierre |
 |---|---|---|---|
-| 1 | 10/08/2026 | Virtual (síncrona) | Diagnóstico · Revisión de Bases de Datos I |
-| 2 | 17/08/2026 | Autónoma (festivo) | Administración de bases de datos (Asunción de la Virgen) |
-| 3 | 24/08/2026 | Virtual (síncrona) | Procedimientos almacenados |
-| 4 | 31/08/2026 | Virtual (síncrona) | Funciones y disparadores · Seguridad y respaldo |
-| 5 | 07/09/2026 | Presencial (síncrona) | **Parcial 1** |
-| 6 | 14/09/2026 | Virtual (síncrona) | Optimización de consultas |
-| 7 | 21/09/2026 | Virtual (síncrona) | Índices y particionamiento |
-| 8 | 28/09/2026 | Virtual (síncrona) | Tuning de bases de datos · Gestión de transacciones |
-| 9 | 05/10/2026 | Presencial (síncrona) | **Parcial 2** |
-| 10 | 12/10/2026 | Autónoma (festivo) | Control de concurrencia · refuerzo sin parcial |
-| 11 | 19/10/2026 | Virtual (síncrona) | Avance del proyecto final |
-| 12 | 26/10/2026 | Virtual (síncrona) | Integración de aplicaciones externas · Preparación de presentación final |
-| 13 | 02/11/2026 | Autónoma (festivo) | Análisis de casos reales (Todos los Santos) |
-| 14 | 09/11/2026 | Presencial (síncrona) | **Parcial 3** |
-| 15 | 16/11/2026 | Autónoma (festivo) | Presentación del proyecto + cierre · refuerzo sin parcial |
+| 1 | 30% | 24/08/2026 – 27/09/2026 | Parcial 1 en Sesión 5 (21/09/2026) · 10% Parcial 1 (cierre de corte) · 10% Talleres y Quiz · 10% Asistencia |
+| 2 | 30% | 28/09/2026 – 25/10/2026 | Parcial 2 en Sesión 9 (19/10/2026) · 10% Parcial 2 (cierre de corte) · 10% Talleres y Quiz · 10% Asistencia |
+| 3 | 40% | 26/10/2026 – 22/11/2026 | Parcial 3 en Sesión 12 (09/11/2026) · 15% Parcial 3 (cierre de corte) · 20% Proyecto Integrador · 5% Asistencia |
 
 ## Herramientas del curso (lista ajustada)
 
@@ -64,14 +72,6 @@ Parciales de este curso: Clases **5 / 9 / 14** (07/09/2026, 05/10/2026, 09/11/20
 
 ### Estado
 - **Lista ajustada — pendiente OK docente para generar Clase N.**
-
-## Evaluación teórica (Acuerdo 2026-2)
-
-| Corte | % | Ventana | Parcial de cierre |
-|---|---|---|---|
-| 1 | 30% | 10/08 – 13/09/2026 | Parcial 1 en Clase 5 (07/09/2026) (10%) + Talleres/Quiz 10% + Asistencia 10% |
-| 2 | 30% | 14/09 – 18/10/2026 | Parcial 2 en Clase 9 (05/10/2026) (10%) + Talleres/Quiz 10% + Asistencia 10% |
-| 3 | 40% | 19/10 – 22/11/2026 | Parcial 3 en Clase 14 (09/11/2026) (15%) + Proyecto Integrador 20% + Asistencia 5% |
 
 ## Objeto / objetivo / RAA (microcurrículo)
 

@@ -5,7 +5,7 @@
 - **Preguntas:** 5 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
 - **Hito del PI:** Arranque PI: dominio, alcance y borrador ER de VetCare DB
-- **Entregable de la clase:** Ficha de equipo + ER borrador (PNG) + lista de entidades/reglas
+- **Entregable de la clase:** Ficha del proyecto + ER borrador (PNG) + lista de entidades/reglas
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
@@ -23,11 +23,13 @@
 
 ## 1. DDL base de VetCare DB
 
-La clinica veterinaria **Huellitas** arranca su base de datos `VetCare DB`. En esta base ya existe una tabla `equipo_pi` donde se registran los equipos del curso.
+La clinica veterinaria **Huellitas** arranca su base de datos `VetCare DB`. En esta base ya existe una tabla `proyecto_pi` donde cada estudiante registra su Proyecto Integrador.
+
+> **Modalidad de trabajo: individual por defecto.** El docente puede autorizar equipos de 2 o 3 integrantes; en ese caso el artefacto puede ser compartido, pero **la entrega en ExamLab siempre es individual**.
 
 **Escribe el SQL (PostgreSQL) que:**
 
-1. Registre tu equipo en `equipo_pi` con el nombre de tu equipo y los nombres completos de los 2 o 3 integrantes.
+1. Registre tu proyecto en `proyecto_pi` con tu nombre completo, tu codigo y el nombre de tu proyecto. Si el docente te autorizo trabajar en equipo, lista ademas los otros integrantes en la columna opcional `integrantes`; si trabajas solo, dejala nula.
 2. Cree las **tres tablas base** con estas reglas exactas:
 
 | Tabla | Columnas y restricciones |
@@ -46,21 +48,23 @@ estudiante, sobre una base limpia. PostgreSQL, no Oracle:
 
 ```sql
 -- Base limpia para el arranque de VetCare DB.
--- Solo se entrega la bitacora de equipos; el esquema lo construye el estudiante.
-CREATE TABLE equipo_pi (
-  id_equipo SERIAL PRIMARY KEY,
-  nombre_equipo TEXT NOT NULL,
-  integrantes TEXT NOT NULL,
+-- Solo se entrega la bitacora de proyectos; el esquema lo construye el estudiante.
+CREATE TABLE proyecto_pi (
+  id_registro SERIAL PRIMARY KEY,
+  estudiante TEXT NOT NULL,
+  codigo TEXT NOT NULL,
+  proyecto TEXT NOT NULL,
+  integrantes TEXT,  -- opcional: solo si el docente autorizo equipo
   fecha_registro DATE NOT NULL DEFAULT CURRENT_DATE
 );
 
-INSERT INTO equipo_pi (nombre_equipo, integrantes)
-VALUES ('VetCare-Demo', 'Ejemplo del docente');
+INSERT INTO proyecto_pi (estudiante, codigo, proyecto)
+VALUES ('Ejemplo del docente', '000000', 'VetCare-Demo');
 ```
 
 **Rubrica esperada (campo Rubrica):**
 
-Las 3 tablas se crean sin error con PK, las 2 FK, el DEFAULT de ciudad y los 2 CHECK exigidos (activa y estado). Se insertan al menos 3 duenos, 4 mascotas (>=1 inactiva) y 3 citas coherentes con las FK. El SELECT final devuelve filas y usa JOIN explicito, no producto cartesiano. Sintaxis 100% PostgreSQL (SERIAL/TEXT); se penaliza NUMBER, VARCHAR2 o comillas dobles mal usadas. Se registra el equipo en equipo_pi.
+Las 3 tablas se crean sin error con PK, las 2 FK, el DEFAULT de ciudad y los 2 CHECK exigidos (activa y estado). Se insertan al menos 3 duenos, 4 mascotas (>=1 inactiva) y 3 citas coherentes con las FK. El SELECT final devuelve filas y usa JOIN explicito, no producto cartesiano. Sintaxis 100% PostgreSQL (SERIAL/TEXT); se penaliza NUMBER, VARCHAR2 o comillas dobles mal usadas. Se registra el proyecto propio en proyecto_pi (estudiante, codigo y proyecto); la columna integrantes solo se llena si hubo equipo autorizado y su ausencia no descuenta.
 
 ---
 
@@ -82,7 +86,7 @@ Dibuja el **modelo entidad-relacion completo** del Proyecto Integrador usando `e
 - `factura` **1 - N** `detalle_factura`
 - `insumo` **1 - N** `detalle_factura`
 
-Para cada entidad lista **al menos su PK y 2 atributos**, marcando `PK` y `FK`. Este diagrama es el ER borrador del entregable de la clase: exportalo tambien como PNG para la carpeta del equipo.
+Para cada entidad lista **al menos su PK y 2 atributos**, marcando `PK` y `FK`. Este diagrama es el ER borrador del entregable de la clase: exportalo tambien como PNG para tu carpeta del PI.
 
 **Diagrama de referencia (Mermaid):**
 
@@ -288,12 +292,12 @@ Se otorgan los 10 puntos con las 4 opciones correctas marcadas y ninguna incorre
 
 ## 5. Alcance del Proyecto Integrador VetCare DB
 
-Redacta la ficha de alcance de tu equipo. Debe incluir, con estos titulos:
+Redacta la ficha de alcance de tu proyecto. Debe incluir, con estos titulos:
 
-1. **Equipo y proyecto**: nombre del equipo, integrantes y una frase que describa VetCare DB.
+1. **Autor y proyecto**: tu nombre y codigo, el nombre de tu proyecto y una frase que describa VetCare DB. Si el docente autorizo equipo, agrega los otros integrantes.
 2. **Que SI hara el PI** (5 a 8 lineas): procesos de la clinica Huellitas que la base de datos va a soportar (por ejemplo agendamiento, historia clinica, facturacion con insumos, auditoria).
 3. **Que NO hara el PI** (3 a 5 lineas): limites explicitos (por ejemplo: no habra pasarela de pagos, no habra app movil, no se manejara nomina).
-4. **Tres reglas de negocio propias** del equipo, distintas o adicionales a las tres del enunciado general, escritas de forma verificable ("...no puede...", "...siempre debe..."). Para cada una, indica **como piensas implementarla**: `CHECK`, `UNIQUE`, `FK`, trigger o procedimiento.
+4. **Tres reglas de negocio propias** que tu adoptas, distintas o adicionales a las tres del enunciado general, escritas de forma verificable ("...no puede...", "...siempre debe..."). Para cada una, indica **como piensas implementarla**: `CHECK`, `UNIQUE`, `FK`, trigger o procedimiento.
 5. **Riesgo principal** que ves para terminar el PI y como lo mitigas.
 
 **Rubrica esperada (campo Rubrica):**

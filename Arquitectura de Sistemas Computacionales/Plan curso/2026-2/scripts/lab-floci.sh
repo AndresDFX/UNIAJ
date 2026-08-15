@@ -30,7 +30,7 @@ if ! docker info >/dev/null 2>&1; then
   echo "ERROR: Docker no responde."
   echo "Opciones:"
   echo "  1) Inicia Docker y reintenta."
-  echo "  2) Camino navegador: Play with Docker / Killercoda (ver README.md)."
+  echo "  2) Camino navegador: LabEx Docker Playground / Killercoda (ver README.md)."
   exit 1
 fi
 

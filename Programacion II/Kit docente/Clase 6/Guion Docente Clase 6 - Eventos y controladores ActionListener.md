@@ -35,7 +35,7 @@ Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 ### 10-40 · Teoria Core
 Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
 proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
-Pregunta al aire (2 min): ¿donde encaja esto en el VetCare de su equipo?
+Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
@@ -44,14 +44,14 @@ Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 6/Codigo/VetCareEventosDemo.java`
 
 ### 60-105 · Taller guiado = avance del PI
-**Decir:** «Equipos: abran su proyecto VetCare. Esto suma a la rubrica del PI.»
+**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Cree el paquete vetcare.vista y dentro la clase VentanaRegistroMascota que extiende JFrame, con los campos ID, nombre, especie y edad, el boton 'Registrar mascota' y un JTextArea de solo lectura para el listado; ejecutela y verifique que abre centrada y que cierra con EXIT_ON_CLOSE.
 2. Deje Mascota en vetcare.modelo y cree en vetcare.servicio la clase RepositorioMascotas con un ArrayList<Mascota> privado y los metodos registrar, buscarPorId, listar y total; compruebe con Ctrl+F que ninguna de esas dos clases tiene un import de javax.swing.
 3. Cree ControladorRegistro con el metodo registrarMascota(String id, String nombre, String especie, String edadTexto) que valide obligatorios, convierta la edad con Integer.parseInt dentro de try-catch y lance IllegalArgumentException con mensajes en español; el repositorio debe recibirse por el constructor, no crearse adentro del metodo.
 4. Conecte el boton con addActionListener de manera que el cuerpo del listener tenga maximo cinco lineas: leer los getText(), llamar al controlador, refrescar el area, limpiar campos y mostrar el JOptionPane; declare el controlador como atributo de la ventana, nunca dentro del listener.
 5. Pruebe y capture evidencia de tres casos: (a) registro valido de M-001 Kira, (b) edad escrita como 'tres', (c) ID repetido M-001; guarde las tres capturas, exporte el proyecto comprimido y subalo a ExamLab.
-Circular por los equipos. Empujar evidencia funcionando, no perfeccionismo.
+Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Proyecto VetCare con la ventana de registro operativa y la clase ControladorRegistro separada de la vista, comprimido y subido a ExamLab.
 
 ### 105-120 · Criterios de exito y cierre
