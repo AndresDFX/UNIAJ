@@ -27,7 +27,7 @@ Asistente de consulta para docencia UNIAJC. Respuestas verificadas contra docume
 
 **Marca / reglas:** `.cursor/rules/uniajc-docente.mdc` · `config/universidades/uniajc.json`.
 
-**Calendario 2026-2:** `config/calendario/semestre_2026_2.json`. Prog II / Seminario: `Plan curso/2026-1/`. BD II / Arquitectura: `Plan curso/2026-2/`.
+**Calendario 2026-2:** `config/calendario/semestre_2026_2.json`. Los 4 cursos usan `Plan curso/2026-2/` (periodo vigente). Prog II y Seminario conservan ademas `Plan curso/2026-1/` con la oferta anterior (periodo cerrado).
 
 Espejo canónico también en `.claude/agents/uniajc-dudas-material.md` — mantener alineados.
 

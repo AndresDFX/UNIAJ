@@ -278,7 +278,7 @@ def build():
 
 
 
-    # Estilo CONTENIDO (lista limpia) — temas desde Plan curso/2026-1/PLAN_DE_CURSO_2026-1.md
+    # Estilo CONTENIDO (lista limpia) — temas desde Plan curso/2026-2/PLAN_DE_CURSO_2026-2.md
 
 
 

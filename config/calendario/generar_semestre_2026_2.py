@@ -306,11 +306,13 @@ ACUERDO_EXTRA = {
     },
 }
 
-# Nombre del CSV consolidado por curso en config/calendario/ (nombres históricos:
-# programacion_ii y seminario quedaron etiquetados 2026-1 aunque su contenido es 2026-2).
+# Nombre del CSV consolidado por curso en config/calendario/. Todos llevan el periodo
+# vigente: antes programacion_ii y seminario se llamaban *_2026-1.csv aunque su contenido
+# ya era 2026-2, y eso choca con que 2026-1 SÍ es un periodo real de esos dos cursos
+# (ver <Curso>/Plan curso/2026-1/).
 CSV_CONFIG_NAME = {
-    "programacion_ii": "eventos_programacion_ii_2026-1.csv",
-    "seminario": "eventos_seminario_2026-1.csv",
+    "programacion_ii": "eventos_programacion_ii_2026-2.csv",
+    "seminario": "eventos_seminario_2026-2.csv",
     "bases_datos_ii": "eventos_bases_datos_ii_2026-2.csv",
     "arquitectura": "eventos_arquitectura_2026-2.csv",
 }

@@ -1,5 +1,5 @@
 {
-  "_nota_periodos_por_curso": "Los 4 cursos usan Plan curso/2026-2/ (periodo 2026-2, ago-nov 2026). Correccion 2026-08-14: antes se declaraba que Prog II y Seminario usaban Plan curso/2026-1/, carpeta que no existe en el repo.",
+  "_nota_periodos_por_curso": "Periodo vigente 2026-2 (ago-nov 2026) en los 4 cursos: todos usan Plan curso/2026-2/. Programacion II y Seminario tienen ademas Plan curso/2026-1/ con su oferta ANTERIOR (periodo cerrado; ver el LEEME de esa carpeta). BD II y Arquitectura arrancan en 2026-2. Este archivo describe unicamente el periodo vigente.",
   "_comentario": "Calendario académico docente UNIAJC 2026-2. Fuente de verdad para generación de material.",
   "_actualizado": "2026-08-14",
   "periodo": "2026-2",

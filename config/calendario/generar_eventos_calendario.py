@@ -144,8 +144,27 @@ def parse_detalles_cuenta(filas: list[list[str]]) -> dict | None:
     return {"codigo": codigo, "estudiantes": estudiantes, "reporte": ""}
 
 
+PERIODO = DATA["periodo"]  # "2026-2"
+
+
+def _es_de_otro_periodo(p: Path) -> bool:
+    """True si la ruta cuelga de una carpeta de periodo distinta a la vigente.
+
+    Programación II y Seminario conservan la nómina de su oferta anterior en
+    `Plan curso/2026-1/`. Esa nómina NO debe usarse para los eventos de 2026-2.
+    """
+    partes = {x.lower() for x in p.parts}
+    return any(
+        re.fullmatch(r"20\d{2}-\d", x) and x != PERIODO.lower()
+        for x in partes
+    )
+
+
 def buscar_listado(carpeta: Path, grupo: str) -> list[Path]:
-    """Candidatos, del más específico/reciente al más genérico."""
+    """Candidatos, del más específico/reciente al más genérico.
+
+    Se descartan los que estén en una carpeta de periodo anterior.
+    """
     pats = [
         f"{carpeta}/**/LISTA_DE_ALUMNOS*.xls*",
         f"{carpeta}/{grupo} - *.xls",
@@ -156,9 +175,13 @@ def buscar_listado(carpeta: Path, grupo: str) -> list[Path]:
     for p in pats:
         for f in sorted(glob.glob(p, recursive=True)):
             rp = Path(f).resolve()
-            if rp not in vistos and rp.is_file():
-                vistos.add(rp)
-                out.append(Path(f))
+            if rp in vistos or not rp.is_file():
+                continue
+            vistos.add(rp)
+            if _es_de_otro_periodo(Path(f)):
+                print(f"   . {Path(f).name}: es de otro periodo -> omitido")
+                continue
+            out.append(Path(f))
     return out
 
 

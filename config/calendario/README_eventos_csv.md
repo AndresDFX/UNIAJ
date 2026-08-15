@@ -55,11 +55,16 @@ Todo se regenera con `python config/calendario/generar_semestre_2026_2.py`, que 
 | **Arquitectura** (lun 10:00–12:00 · 6303C) | Presencialidad asistida | Sesión 1 + parciales **5/9/12** presencial; sesiones **8 y 11 autónomas** (festivos 12/10 y 02/11); **sesión 13 = sustentaciones del PI** (16/11); sesiones dobles **7 y 10** |
 | **BD II** (lun 18:00–20:00 · 641A-2) | Presencialidad asistida | Igual que Arquitectura: parciales **5/9/12**; autónomas **8 y 11**; **sesión 13 = sustentaciones del PI**; sesiones dobles **7 y 10** |
 
-## Nombres de archivo (inconsistencia conocida)
+## Nombres de archivo y periodos
 
-`eventos_programacion_ii_2026-1.csv` y `eventos_seminario_2026-1.csv` están etiquetados **2026-1**
-aunque su contenido es del periodo **2026-2**. Se mantiene el nombre para no romper referencias;
-el contenido sí está actualizado.
+Los 4 CSV por curso llevan el periodo vigente: `eventos_<curso>_2026-2.csv`.
+
+Antes, los de Programación II y Seminario se llamaban `*_2026-1.csv` aunque su contenido ya era
+2026-2. Se renombraron porque **2026-1 sí es un periodo real** de esos dos cursos: tienen una
+oferta anterior archivada en `<Curso>/Plan curso/2026-1/` (ver su `LEEME - periodo 2026-1.md`),
+así que un archivo con 2026-1 en el nombre y contenido de 2026-2 era engañoso.
+
+Bases de Datos II y Arquitectura no tienen periodo anterior en este repo: arrancan en 2026-2.
 
 ## Reglas transversales
 
