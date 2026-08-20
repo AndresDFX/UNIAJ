@@ -55,9 +55,15 @@ Festivos = **clase autónoma** (no se omiten). Si el cierre de corte cae en fest
     Clase N/  guion (.md+.docx) · Quiz + CLAVE DOCENTE · Codigo/ · Capturas/
     Proyecto Integrador/Guia Docente PI ….docx|.md
   Parciales/                      ← enunciado + SOLUCION (nunca en Clases/)
-  Plan curso/2026-2/              ← plan, calendario, cronograma, CSV
-  Entregas docente/2026-2/        ← acuerdo, diagnostico, correo de bienvenida
+  Plan curso/<periodo>/           ← plan, calendario, cronograma, CSV de eventos,
+                                     CORREO_BIENVENIDA y la nomina (fuera de git)
+  Entregas docente/<periodo>/     ← SOLO lo que se entrega a la universidad:
+                                     acuerdo pedagogico y diagnostico
 ```
+
+`Manuales/` (raiz de `Cursos`) tiene los procedimientos que se ejecutan **fuera del repo**:
+crear los eventos del calendario e invitar a los estudiantes, e instalar el Apps Script que
+archiva las grabaciones de Meet. Son generales: sirven para cualquier periodo.
 
 Regla del dia de parcial: **solo evaluacion**, sin tema tecnico nuevo. El material del
 parcial vive en `Parciales/`, nunca en `Clases/`.

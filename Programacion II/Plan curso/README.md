@@ -29,3 +29,9 @@ periodo empezó a producirse en 2026-2, y **no se inventan documentos de un peri
 > Bases de Datos II y Arquitectura arrancan en 2026-2.
 
 Futuros periodos: crear `Plan curso/2027-1/`, etc., sin mover el material general de la raíz.
+
+## Cómo se operan los eventos y el correo
+
+El procedimiento (importar los eventos, invitar a los estudiantes, enviar el correo)
+está en [`Manuales/`](../../Manuales/LEEME.md), en la raíz de `Cursos`. Es general:
+sirve para cualquier periodo.

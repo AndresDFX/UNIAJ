@@ -21,3 +21,9 @@ Versión **puntual** de esta oferta (24/08/2026 – 22/11/2026 · 13 sesiones, 1
 - La nómina del periodo (`LISTA_DE_ALUMNOS_POR_GRUPOS*.xls`) vive aquí y **no se versiona**
 
 Futuros periodos: crear `Plan curso/2027-1/`, etc., sin mover el material general de la raíz.
+
+## Cómo se operan los eventos y el correo
+
+El procedimiento (importar los eventos, invitar a los estudiantes, enviar el correo)
+está en [`Manuales/`](../../Manuales/LEEME.md), en la raíz de `Cursos`. Es general:
+sirve para cualquier periodo.
