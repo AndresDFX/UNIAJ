@@ -245,13 +245,21 @@ def cargar_nomina(meta: dict, key: str, manuales: dict) -> dict | None:
 # ----------------------------------------------------------------- eventos
 
 def titulo(meta: dict, cl: dict) -> str:
+    """Título del evento, con el tipo de encuentro al principio.
+
+    El estudiante ve el prefijo antes que nada en su calendario, así que ahí va lo único
+    que necesita decidir de un vistazo: si tiene que conectarse/asistir a esa hora o no.
+    `[SINCRONICO]` = hay encuentro (presencial, virtual o sustentación);
+    `[AUTONOMO]` = no hay encuentro, es trabajo independiente guiado con fecha de cierre.
+    """
+    prefijo = "[AUTONOMO]" if cl["tipo"] == "autonoma" else "[SINCRONICO]"
     if cl.get("parcial"):
-        return f"Parcial {cl['parcial_n']} · {meta['nombre']}"
-    if cl["tipo"] == "sustentacion":
-        return f"Sustentaciones PI · {meta['nombre']}"
-    if cl["tipo"] == "autonoma":
-        return f"[Autónoma] Sesión {cl['n']} · {meta['nombre']}"
-    return f"Sesión {cl['n']} · {meta['nombre']}"
+        cuerpo = f"Parcial {cl['parcial_n']} · {meta['nombre']}"
+    elif cl["tipo"] == "sustentacion":
+        cuerpo = f"Sustentaciones PI · {meta['nombre']}"
+    else:
+        cuerpo = f"Sesión {cl['n']} · {meta['nombre']}"
+    return f"{prefijo} {cuerpo}"
 
 
 def material(cl: dict) -> str:

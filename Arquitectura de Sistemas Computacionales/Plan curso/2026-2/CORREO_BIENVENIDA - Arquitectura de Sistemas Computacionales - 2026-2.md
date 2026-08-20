@@ -34,6 +34,13 @@ Les doy la bienvenida al curso **Arquitectura de Sistemas Computacionales** (có
 
 > El curso son **13 sesiones de lunes**, una por semana, de 24/08/2026 a 16/11/2026.
 
+Les voy a compartir los eventos del curso por calendario. Cada uno empieza con el tipo de encuentro, para que sepan de un vistazo si tienen que conectarse a esa hora:
+
+- **`[SINCRONICO]`** — hay encuentro en el horario del curso: presencial, virtual en vivo, parcial o sustentación. **Deben asistir.**
+- **`[AUTONOMO]`** — **no hay encuentro**. Es trabajo independiente guiado: les dejo el material y la actividad, y ustedes la resuelven por su cuenta antes de la fecha de cierre.
+
+En este curso hay **2 sesiones autónomas**, porque caen en festivo: 12/10/2026 (Día de la Diversidad Étnica y Cultural) y 02/11/2026 (Todos los Santos). **No se pierden**: la clase existe, con material y entrega, solo que sin encuentro en vivo.
+
 <!-- /fechas-clave -->
 
 <!-- examlab: generado -->

@@ -32,6 +32,13 @@ Les doy la bienvenida al curso **Programación II** (código **FI303204**, grupo
 
 > El curso son **13 sesiones de miércoles**, una por semana, de 26/08/2026 a 18/11/2026.
 
+Les voy a compartir los eventos del curso por calendario. Cada uno empieza con el tipo de encuentro, para que sepan de un vistazo si tienen que conectarse a esa hora:
+
+- **`[SINCRONICO]`** — hay encuentro en el horario del curso: presencial, virtual en vivo, parcial o sustentación. **Deben asistir.**
+- **`[AUTONOMO]`** — **no hay encuentro**. Es trabajo independiente guiado: les dejo el material y la actividad, y ustedes la resuelven por su cuenta antes de la fecha de cierre.
+
+En este curso **todas las sesiones son sincrónicas**: ningún festivo cae en miércoles.
+
 <!-- /fechas-clave -->
 
 <!-- examlab: generado -->

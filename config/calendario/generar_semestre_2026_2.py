@@ -929,7 +929,29 @@ def fechas_clave_md(meta: dict) -> str:
     out += ["",
             f"> El curso son **{len(clases)} sesiones de {meta['dia'].lower()}**, "
             f"una por semana, de {dmy(primera['fecha'])} a {dmy(ultima['fecha'])}.",
-            "", MARCA_FECHAS[1]]
+            ""]
+
+    # Los eventos del calendario llevan el tipo de encuentro al principio del título.
+    autonomas = [cl for cl in clases if cl["tipo"] == "autonoma"]
+    out += ["Les voy a compartir los eventos del curso por calendario. Cada uno empieza "
+            "con el tipo de encuentro, para que sepan de un vistazo si tienen que "
+            "conectarse a esa hora:", "",
+            "- **`[SINCRONICO]`** — hay encuentro en el horario del curso: presencial, "
+            "virtual en vivo, parcial o sustentación. **Deben asistir.**",
+            "- **`[AUTONOMO]`** — **no hay encuentro**. Es trabajo independiente guiado: "
+            "les dejo el material y la actividad, y ustedes la resuelven por su cuenta "
+            "antes de la fecha de cierre."]
+    if autonomas:
+        det = " y ".join(f"{dmy(cl['fecha'])} ({cl['festivo']})" for cl in autonomas)
+        out += ["",
+                f"En este curso hay **{len(autonomas)} sesiones autónomas**, porque caen "
+                f"en festivo: {det}. **No se pierden**: la clase existe, con material y "
+                "entrega, solo que sin encuentro en vivo."]
+    else:
+        out += ["",
+                f"En este curso **todas las sesiones son sincrónicas**: ningún festivo "
+                f"cae en {meta['dia'].lower()}."]
+    out += ["", MARCA_FECHAS[1]]
     return "\n".join(out)
 
 
