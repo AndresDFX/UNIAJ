@@ -185,7 +185,31 @@ def buscar_listado(carpeta: Path, grupo: str) -> list[Path]:
     return out
 
 
-def cargar_nomina(meta: dict) -> dict | None:
+CORREOS_MANUALES = Path(__file__).with_name("_correos_manuales.csv")
+
+
+def cargar_correos_manuales() -> dict[tuple[str, str], dict]:
+    """Correos que el docente completa a mano (clave: curso + documento).
+
+    El export academico a veces no trae el correo institucional de algunos
+    estudiantes. En vez de editar el .xls del sistema, el docente los agrega en
+    `_correos_manuales.csv` (curso,documento,correo,nota). Ese archivo es dato
+    personal y no se versiona.
+    """
+    if not CORREOS_MANUALES.exists():
+        return {}
+    out = {}
+    with CORREOS_MANUALES.open(encoding="utf-8-sig", newline="") as fh:
+        for fila in csv.DictReader(fh):
+            curso = _norm(fila.get("curso")).lower()
+            doc = _norm(fila.get("documento"))
+            correo = _norm(fila.get("correo"))
+            if curso and doc and correo:
+                out[(curso, doc)] = {"correo": correo, "nota": _norm(fila.get("nota"))}
+    return out
+
+
+def cargar_nomina(meta: dict, key: str, manuales: dict) -> dict | None:
     carpeta = ROOT / meta["folder"]
     for path in buscar_listado(carpeta, meta["grupo"]):
         try:
@@ -201,6 +225,19 @@ def cargar_nomina(meta: dict) -> dict | None:
             print(f"   ! {path.name}: es de {info['codigo']}, no de {meta['codigo']} -> omitido")
             continue
         info["archivo"] = path
+
+        # completar los que no traen correo institucional
+        aplicados = 0
+        for e in info["estudiantes"]:
+            if e["correo"]:
+                continue
+            m = manuales.get((key, e["documento"]))
+            if m:
+                e["correo"] = m["correo"]
+                e["correo_manual"] = True
+                aplicados += 1
+        if aplicados:
+            print(f"   + {aplicados} correo(s) completados desde {CORREOS_MANUALES.name}")
         return info
     return None
 
@@ -334,6 +371,10 @@ def main() -> None:
         encoding="utf-8",
     )
 
+    manuales = cargar_correos_manuales()
+    if manuales:
+        print(f"Correos completados a mano: {len(manuales)} (de {CORREOS_MANUALES.name})")
+
     total_ok = 0
     for key, meta in DATA["cursos"].items():
         print(f"\n== {meta['nombre']} ({meta['codigo']} · grupo {meta['grupo']})")
@@ -345,7 +386,7 @@ def main() -> None:
         print(f"   eventos (sin nomina) -> {destino.relative_to(ROOT)}")
 
         # 2) Salidas con nómina real
-        info = cargar_nomina(meta)
+        info = cargar_nomina(meta, key, manuales)
         if not info:
             print("   sin listado de estudiantes: no se generan .ics ni planillas.")
             print("   coloca el export del sistema academico en la carpeta del curso y re-ejecuta.")
@@ -355,7 +396,10 @@ def main() -> None:
         con_correo = [e for e in ests if e["correo"]]
         print(f"   listado: {info['archivo'].name}"
               + (f" (reporte {info['reporte']})" if info["reporte"] else ""))
-        print(f"   estudiantes: {len(ests)} · con correo institucional: {len(con_correo)}"
+        manual = sum(1 for e in ests if e.get("correo_manual"))
+        inst = len(con_correo) - manual
+        detalle_correo = f"institucional {inst}" + (f" + personal {manual}" if manual else "")
+        print(f"   estudiantes: {len(ests)} · invitables: {len(con_correo)} ({detalle_correo})"
               + (f" · repitentes: {sum(e['repitente'] for e in ests)}" if ests else ""))
         sin_correo = [e for e in ests if not e["correo"]]
         if sin_correo:
@@ -367,10 +411,17 @@ def main() -> None:
                             for e in sin_correo])
             print(f"     -> pendientes_correo_{slug}.csv (para pedirlos a Registro Académico)")
 
-        (PRIVADO / f"invitaciones_{slug}.ics").write_text(ics(meta, con_correo), encoding="utf-8")
+        # newline="" es obligatorio: el .ics ya trae CRLF (RFC 5545) y sin esto Windows
+        # traduciria cada \n y dejaria \r\r\n, que algunos clientes rechazan.
+        with (PRIVADO / f"invitaciones_{slug}.ics").open(
+            "w", encoding="utf-8", newline=""
+        ) as fh:
+            fh.write(ics(meta, con_correo))
         escribir_csv(PRIVADO / f"nomina_{slug}.csv",
-                     [["documento", "nombre", "correo_institucional", "repitente"]]
-                     + [[e["documento"], e["nombre"], e["correo"], "si" if e["repitente"] else "no"]
+                     [["documento", "nombre", "correo", "origen_correo", "repitente"]]
+                     + [[e["documento"], e["nombre"], e["correo"],
+                         "personal (manual)" if e.get("correo_manual") else "institucional",
+                         "si" if e["repitente"] else "no"]
                         for e in ests])
 
         cab = ["documento", "nombre"] + [

@@ -32,6 +32,23 @@ Produce dos clases de salida, deliberadamente separadas:
 | `nomina_<curso>.csv` | **Sí** | idem | Nómina normalizada (documento, nombre, correo, repitente) |
 | `asistencia_<curso>.csv` | **Sí** | idem | Planilla estudiantes × 13 sesiones (el 10% de asistencia de cada corte) |
 | `pendientes_correo_<curso>.csv` | **Sí** | idem (solo si aplica) | Estudiantes sin correo institucional, para pedirlo a Registro Académico |
+| `COMO INVITAR - 2026-2.md` | **Sí** | idem | Paso a paso para importar y notificar |
+
+### Correos que faltan en el export académico
+
+Cuando el sistema no trae el correo institucional de alguien, **no se edita el `.xls`**:
+se agrega en `config/calendario/_correos_manuales.csv` (`curso,documento,correo,nota`), que
+el generador aplica cruzando por documento. Ese archivo es entrada del docente, tiene datos
+personales y está en `.gitignore`. En la nómina esos estudiantes salen con
+`origen_correo = personal (manual)`.
+
+### Validación
+
+`python config/calendario/validar_calendario.py` comprueba los invariantes del calendario
+(semana de inicio, 13 sesiones por curso, día de la semana correcto, una sesión por semana,
+los 15 temas cubiertos sin duplicados, sesiones dobles coherentes, ningún parcial en festivo
+o sesión autónoma, cortes que cubren 1..13) y que los CSV y el `CALENDARIO_2026-2.md`
+derivados coincidan con el JSON. Devuelve código 1 si algo falla.
 
 > `config/calendario/_privado_2026-2/` está en `.gitignore`: son datos personales de estudiantes
 > (nombre, documento, correo) y **no se versionan ni se comparten**. El CSV de eventos que sí se

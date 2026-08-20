@@ -29,6 +29,11 @@ LISTA_DE_ALUMNOS*.xlsx
 # correo de cada estudiante. Nunca al repo.
 config/calendario/_privado_2026-2/
 
+# Correos que el docente completa a mano cuando el export academico no trae el
+# institucional (suelen ser correos personales del estudiante). Es ENTRADA del
+# generador de eventos, la mantiene el docente, y es dato personal: no se versiona.
+config/calendario/_correos_manuales.csv
+
 # ── Incidente de recuperacion de Drive (2026-08-08, ya resuelto) ─────
 # Scripts operativos de una sola vez (lectura de cookies del navegador,
 # IDs de archivos de Drive, logs). Sin credenciales reales, pero es
