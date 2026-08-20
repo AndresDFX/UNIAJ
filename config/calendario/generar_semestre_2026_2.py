@@ -860,9 +860,101 @@ def patch_correo(meta: dict, path: Path) -> bool:
     if not inserted:
         return False
     txt = "\n".join(out)
+    txt = _bloques_gestionados(meta, txt)
     if txt != orig:
         path.write_text(txt, encoding="utf-8")
     return True
+
+
+# Bloques que este script gestiona dentro del correo. Van entre marcadores para poder
+# regenerarlos sin duplicar y sin tocar lo que el docente escribió a mano (por ejemplo
+# el link de la carpeta compartida).
+MARCA_FECHAS = ("<!-- fechas-clave: generado -->", "<!-- /fechas-clave -->")
+MARCA_VOCERO = ("<!-- vocero: generado -->", "<!-- /vocero -->")
+
+
+def _quitar_bloque(txt: str, marcas: tuple[str, str]) -> str:
+    ini, fin = marcas
+    while ini in txt and fin in txt:
+        a = txt.index(ini)
+        b = txt.index(fin) + len(fin)
+        txt = (txt[:a].rstrip("\n") + "\n\n" + txt[b:].lstrip("\n")).rstrip() + "\n"
+    return txt
+
+
+def fechas_clave_md(meta: dict) -> str:
+    """Tabla de fechas clave del curso, incluida la de la PRIMERA CLASE.
+
+    La primera clase no siempre coincide con el inicio del periodo: el periodo abre el
+    24/08 (lunes) pero Programación II arranca el miércoles 26 y Seminario el jueves 27.
+    """
+    clases = meta["clases"]
+    primera, ultima = clases[0], clases[-1]
+    dia = meta["dia"]
+    filas = [
+        ("Inicio del periodo académico", dmy(START), "—"),
+        (f"**Primera clase** ({dia})", f"**{dmy(primera['fecha'])}**",
+         "Sesión 0 (presentación del curso) + Clase 1 (diagnóstico) en el mismo bloque"),
+    ]
+    parc = meta.get("parciales", {})
+    for i in (1, 2, 3):
+        p = parc.get(f"parcial_{i}")
+        if p:
+            filas.append((f"Parcial {i}", dmy(p["fecha"]),
+                          f"Sesión {p['clase']} · presencial síncrono · solo evaluación"))
+    sust = meta.get("sustentacion_pi")
+    if sust:
+        filas.append(("Sustentación del Proyecto Integrador", dmy(sust["fecha"]),
+                      f"Sesión {sust['clase']} · en vivo"))
+    tipo_ult = "sustentaciones del PI" if ultima.get("sustentacion_pi") else (
+        f"Parcial {ultima['parcial_n']}" if ultima.get("parcial") else "cierre del curso")
+    filas.append((f"Última clase ({dia})", dmy(ultima["fecha"]),
+                  f"Sesión {ultima['n']} · {tipo_ult}"))
+    filas.append(("Cierre del periodo académico", dmy(END), "—"))
+
+    out = [MARCA_FECHAS[0], "", "### Fechas clave", "",
+           "| Hito | Fecha | Detalle |", "|---|---|---|"]
+    out += [f"| {a} | {b} | {c} |" for a, b, c in filas]
+    out += ["",
+            f"> El curso son **{len(clases)} sesiones de {meta['dia'].lower()}**, "
+            f"una por semana, de {dmy(primera['fecha'])} a {dmy(ultima['fecha'])}.",
+            "", MARCA_FECHAS[1]]
+    return "\n".join(out)
+
+
+def vocero_md() -> str:
+    return "\n".join([
+        MARCA_VOCERO[0],
+        "",
+        "**Una cosa que necesito de ustedes:** que el **vocero del grupo** me **responda "
+        "este correo con su número de WhatsApp**. Lo uso solo para avisos urgentes del "
+        "curso (un cambio de sala, una caída de la plataforma el día de un parcial) y para "
+        "tener un canal directo con el grupo. Si todavía no han elegido vocero, lo "
+        "definimos en la primera clase y me escribe después.",
+        "",
+        MARCA_VOCERO[1],
+    ])
+
+
+def _bloques_gestionados(meta: dict, txt: str) -> str:
+    txt = _quitar_bloque(txt, MARCA_FECHAS)
+    txt = _quitar_bloque(txt, MARCA_VOCERO)
+
+    # Fechas clave: después de la lista de bullets, antes del bloque de contenido.
+    lineas = txt.splitlines()
+    corte = next((i for i, ln in enumerate(lineas)
+                  if ln.startswith("**Contenido de las clases**")), None)
+    if corte is None:
+        corte = next((i for i, ln in enumerate(lineas)
+                      if ln.startswith("Por favor **revisen")), len(lineas))
+    lineas[corte:corte] = ["", fechas_clave_md(meta), ""]
+
+    # Vocero: justo antes del cierre.
+    cierre = next((i for i, ln in enumerate(lineas) if ln.startswith("Nos vemos pronto")),
+                  len(lineas))
+    lineas[cierre:cierre] = [vocero_md(), ""]
+
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(lineas)).rstrip() + "\n"
 
 
 # ---------------------------------------------------------------- main
