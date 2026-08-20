@@ -416,6 +416,10 @@ Reglas:
 - El enlace se pega en `semestre_<periodo>.json → cursos.<curso>.meet`; el correo de
   bienvenida lo publica. Si está vacío, el correo dice que el enlace llega dentro de la
   invitación de Calendar — **nunca inventar un enlace de Meet**.
+- Los dos Apps Script (encuentros y grabaciones) piden un **`CALENDAR_ID` explícito**, que
+  sale vacío a propósito y debe ser **el mismo en los dos**. No usan el calendario por
+  omisión porque depende de la cuenta con la que se abrió Apps Script; la línea queda
+  comentada como alternativa. `listarCalendarios()` imprime los IDs disponibles.
 - Los títulos de los eventos llevan el tipo de encuentro al principio:
   `[SINCRONICO] Sesión N · <Curso>` / `[AUTONOMO] Sesión N · <Curso>`. No es decorativo: es
   lo que el estudiante lee primero, y el script de grabaciones lo usa para clasificar.

@@ -81,9 +81,51 @@ estudiantes, por eso vive en `_privado/`.
 Sin esto los eventos se crean con invitados pero **sin Meet**: el enlace único de Meet se
 crea con la API avanzada, no con `CalendarApp`.
 
-### 1.3 Verificar (no toca nada)
+### 1.3 Pegar el ID del calendario
 
-Ejecuta **`verificar`** y abre **Ver → Registro de ejecución**.
+En el `.gs`, arriba del todo, hay una constante que **sale vacía a propósito**:
+
+```js
+var CALENDAR_ID = '';   // <- pega aquí el ID del calendario
+```
+
+Se pide explícito y no se usa el calendario "por omisión" porque ese depende de la cuenta con
+la que se abrió Apps Script: si un día se ejecuta con otra sesión, escribiría los eventos en
+otro calendario sin avisar — y con las invitaciones ya enviadas eso no se deshace fácil.
+
+**Cómo obtener el ID, dos caminos:**
+
+1. **Desde el propio script (más rápido):** ejecuta la función **`listarCalendarios`**. El
+   registro imprime cada calendario de la cuenta con su ID y marca cuál es el por omisión:
+
+   ```
+   Calendarios visibles en esta cuenta (3):
+     Julian Castaño [por omision]  ->  julianacastano@profesores.uniajc.edu.co
+     Clases UNIAJC                 ->  c_a1b2c3...@group.calendar.google.com
+   ```
+
+2. **Desde Google Calendar:** en «Mis calendarios», pasa el mouse sobre el calendario → **⋮**
+   → **Configuración y uso compartido** → baja hasta **«Integrar calendario»** → copia
+   **«ID de calendario»**.
+
+El del calendario principal es tu propio correo; uno secundario se ve como
+`…@group.calendar.google.com`.
+
+Pega el valor entre las comillas y guarda:
+
+```js
+var CALENDAR_ID = 'c_a1b2c3...@group.calendar.google.com';
+```
+
+> **Usa el MISMO ID en el script de grabaciones** (manual 02). Si los dos miran calendarios
+> distintos, el de grabaciones no encontrará los encuentros y dejará todo sin clasificar.
+
+Si de verdad prefieres el calendario por omisión, la línea está en el script comentada dentro
+de `_cal_()` (y de `_calId_()`): descoméntala y deja `CALENDAR_ID` vacío.
+
+### 1.4 Verificar (no toca nada)
+
+Ejecuta **`verificar`** y abre **Ver → Registro de ejecución**. Entre otras cosas confirma el **calendario** y el `CALENDAR_ID` que quedó configurado.
 
 La primera vez Google pide permisos y muestra *"Google no ha verificado esta aplicación"* —
 es esperado, es tu propio script: **Configuración avanzada → Ir a (proyecto) → Permitir**.
@@ -91,7 +133,7 @@ es esperado, es tu propio script: **Configuración avanzada → Ir a (proyecto) 
 Revisa en el log: que el **calendario** sea el tuyo, que el **servicio avanzado** diga
 `activo`, el número de **invitados**, y la lista de sesiones (`se crearía` / `YA EXISTE`).
 
-### 1.4 Crear de verdad
+### 1.5 Crear de verdad
 
 En el `.gs`, cambia:
 
@@ -187,6 +229,7 @@ Importar: Google Calendar → **⚙ Configuración → Importar y exportar → I
 - [ ] Nómina descargada del sistema en `<Curso>/Plan curso/<periodo>/`
 - [ ] Los 4 scripts del paso 0 corridos · validador en `OK`
 - [ ] `invitables` = total de estudiantes (si no, ver *Problemas frecuentes*)
+- [ ] `CALENDAR_ID` pegado en el `.gs` del curso (el mismo del manual 02)
 - [ ] `verificar` revisado en el Apps Script del curso
 - [ ] `crearEncuentros` ejecutado con `SIMULAR = false` → invitaciones enviadas
 - [ ] Enlace de Meet pegado en el JSON y material regenerado

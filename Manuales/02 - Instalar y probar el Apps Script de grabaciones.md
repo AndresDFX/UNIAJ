@@ -43,7 +43,28 @@ publicarlo en el curso equivocado.
 3. Borra el contenido de `Código.gs` y pega **todo** `MoverGrabaciones.gs`.
 4. Guarda (💾).
 
-### 5. Verifica las carpetas
+### 5. Pega el ID del calendario
+
+Arriba del `.gs` hay una constante que **sale vacía a propósito**:
+
+```js
+const CALENDAR_ID = '';   // <- pega aquí el ID del calendario
+```
+
+Tiene que ser **el mismo** que pusiste en el script de encuentros
+([manual 01](01%20-%20Alistar%20un%20curso%20%28encuentros%2C%20Meet%2C%20correo%20e%20invitaciones%29.md)):
+este script identifica cada grabación buscando el encuentro que había a esa hora, así que si
+mira otro calendario no encuentra nada y deja todo sin clasificar.
+
+No se usa el calendario "por omisión" porque depende de la cuenta con la que se abrió Apps
+Script. Para obtener el ID: ejecuta **`listarCalendarios`** (imprime cada calendario con su
+ID y marca el por omisión), o en Google Calendar → **⋮** sobre el calendario →
+**Configuración y uso compartido** → **«Integrar calendario»** → **«ID de calendario»**.
+
+Si prefieres el por omisión, la línea está comentada dentro de `_cal_()`: descoméntala y deja
+`CALENDAR_ID` vacío.
+
+### 6. Verifica el calendario y las carpetas
 
 Ejecuta la función **`verificarCarpetas`** y abre el registro (**Ver → Registro de
 ejecución**).
@@ -53,10 +74,11 @@ porque el script es tuyo y no está publicado. Es esperado — entra en **Config
 avanzada → Ir a (nombre del proyecto)** y acepta. Los permisos son sobre **tu propio** Drive
 y Calendar; el script no accede a nada de nadie más.
 
-Deben salir tantas líneas `OK` como cursos. Si alguna dice `ERROR … no accesible`, el id de
-esa carpeta está mal o la carpeta no es tuya.
+Debe salir una línea `OK    calendario -> …` y tantas `OK` como cursos. Si el calendario
+dice `ERROR`, revisa el `CALENDAR_ID`; si una carpeta dice `ERROR … no accesible`, ese id está
+mal o la carpeta no es tuya.
 
-### 6. Ensaya sin mover nada
+### 7. Ensaya sin mover nada
 
 Ejecuta **`simulacro`** y revisa el registro. Lista, archivo por archivo, a qué curso iría:
 
@@ -72,7 +94,7 @@ los archivos como se espera en tu cuenta. Si hay grabaciones recientes y todas s
 Si aún no tienes grabaciones, haz una reunión de prueba de un minuto en Meet, grábala, espera
 a que Drive la procese (puede tardar) y vuelve a correr `simulacro`.
 
-### 7. Actívalo
+### 8. Actívalo
 
 Cuando el simulacro se vea bien, ejecuta **`instalarDisparador`** una vez. Desde ahí corre
 solo cada 6 horas. Para apagarlo: **`desinstalarDisparador`**.
@@ -84,6 +106,7 @@ solo cada 6 horas. Para apagarlo: **`desinstalarDisparador`**.
 | Constante | Para qué |
 |---|---|
 | `CURSOS` | Un objeto por curso: carpeta destino, día, ventana horaria y alias |
+| `CALENDAR_ID` | ID del calendario con los encuentros. **El mismo del manual 01** |
 | `NOMBRES_CARPETA_MEET` | Nombres posibles de la carpeta de Meet (cambia con el idioma de la cuenta) |
 | `DIAS_ATRAS` | Cuántos días atrás revisa en cada corrida |
 | `SIMULACRO` | `true` = no mueve nada, solo registra |
@@ -106,7 +129,8 @@ menú lateral). Casi siempre lo dice ahí.
 |---|---|---|
 | `no encontré la carpeta de grabaciones de Meet` | Drive la llama distinto en tu idioma, o Meet cambió el nombre | Agrega el nombre exacto a `NOMBRES_CARPETA_MEET` |
 | Todo sale `(sin curso)` | El nombre del archivo cambió y no hay evento de calendario que coincida | Revisa que los eventos del curso estén en tu calendario principal; agrega un alias al curso |
-| `No pude leer el calendario` | Los eventos están en un calendario secundario | Cambia `CalendarApp.getDefaultCalendar()` por `CalendarApp.getCalendarById('...')` |
+| `Falta CALENDAR_ID` / `CALENDAR_ID no corresponde a un calendario visible` | No pegaste el id, o está mal | Ejecuta `listarCalendarios()` y copia el correcto |
+| `No pude leer el calendario` | El `CALENDAR_ID` apunta a un calendario que esta cuenta no ve | Verifica con `listarCalendarios()` que el id esté en la lista |
 | Mueve al curso equivocado | Dos cursos comparten día y ventana horaria | Ajusta `desde`/`hasta`, o añade un alias más específico |
 | Dejó de correr solo | El disparador se borró o falló varias veces seguidas | Ejecuta `instalarDisparador` otra vez |
 
@@ -120,5 +144,8 @@ menú lateral). Casi siempre lo dice ahí.
 - **Mueve, no copia**: la grabación deja de estar en `Meet Recordings`.
 - Meet cambia de vez en cuando el nombre de la carpeta y el formato del nombre de archivo.
   Cuando pase, el log lo dice y se arregla con un alias o un nombre nuevo en la constante.
+- Los dos scripts (encuentros y grabaciones) tienen que apuntar al **mismo**
+  `CALENDAR_ID`. Es el error más fácil de cometer y el log lo delata: todo sale
+  *(sin curso)*.
 - Si el disparador corre cada 6 h, una grabación puede tardar hasta ese tiempo en aparecer
   en la carpeta del curso. Si necesitas que esté ya, ejecuta `moverGrabaciones` a mano.

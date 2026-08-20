@@ -70,6 +70,23 @@ const CURSOS = [
   },
 ];
 
+/**
+ * ID del calendario donde estan los encuentros del curso.
+ *
+ * Sale VACIO a proposito: sin el, el script no sabe donde buscar los eventos con los que
+ * identifica cada grabacion. Como obtenerlo: ejecuta `listarCalendarios()` (esta abajo) y
+ * copia el ID que te interese; o en Google Calendar, en «Mis calendarios», pasa el mouse
+ * sobre el calendario -> ⋮ -> «Configuracion y uso compartido» -> baja hasta «Integrar
+ * calendario» -> copia «ID de calendario».
+ *
+ * El principal tiene el ID de tu correo (p. ej. `julianacastano@profesores.uniajc.edu.co`);
+ * uno secundario se ve como `abc123...@group.calendar.google.com`.
+ */
+const CALENDAR_ID = '';
+
+// Alternativa: usar el calendario por omision de la cuenta en vez de un ID explicito.
+// Descomenta la linea de _cal_() marcada mas abajo si prefieres eso.
+
 /** Carpeta donde Meet deja las grabaciones. Se busca por nombre en Mi unidad. */
 const NOMBRES_CARPETA_MEET = ['Meet Recordings', 'Grabaciones de Meet'];
 
@@ -148,6 +165,36 @@ function simulacro() {
 
 // ─────────────────────────────────────────────────────────────── LÓGICA
 
+/**
+ * El calendario con el que trabaja el script.
+ * Preferimos un ID explicito: el «por omision» depende de la cuenta con la que se abrio
+ * Apps Script, y si un dia se ejecuta con otra sesion mira un calendario distinto sin avisar.
+ */
+function _cal_() {
+  if (CALENDAR_ID) {
+    const c = CalendarApp.getCalendarById(CALENDAR_ID);
+    if (!c) throw new Error('CALENDAR_ID no corresponde a un calendario visible: ' + CALENDAR_ID);
+    return c;
+  }
+  // return CalendarApp.getDefaultCalendar();   // <- alternativa: calendario por omision
+  throw new Error('Falta CALENDAR_ID. Ejecuta listarCalendarios() y pega el ID arriba, ' +
+                  'o descomenta la linea de getDefaultCalendar() en _cal_().');
+}
+
+/** Imprime los calendarios de la cuenta con su ID, para copiar el que toque. */
+function listarCalendarios() {
+  const todos = CalendarApp.getAllCalendars();
+  Logger.log('Calendarios visibles en esta cuenta (%s):', todos.length);
+  for (const c of todos) {
+    Logger.log('  %s%s  ->  %s',
+               c.getName(),
+               c.getId() === CalendarApp.getDefaultCalendar().getId() ? ' [por omision]' : '',
+               c.getId());
+  }
+  Logger.log('');
+  Logger.log('Copia el ID que corresponda y pegalo en CALENDAR_ID, arriba del todo.');
+}
+
 function carpetaMeet_() {
   for (const nombre of NOMBRES_CARPETA_MEET) {
     const it = DriveApp.getFoldersByName(nombre);
@@ -172,7 +219,7 @@ function cursoPorEvento_(creado) {
   const fin = new Date(creado.getTime() + 1 * 60 * 60 * 1000);
   let eventos;
   try {
-    eventos = CalendarApp.getDefaultCalendar().getEvents(ini, fin);
+    eventos = _cal_().getEvents(ini, fin);
   } catch (e) {
     Logger.log('No pude leer el calendario: %s', e.message);
     return null;
@@ -234,8 +281,15 @@ function desinstalarDisparador() {
   Logger.log('Disparador eliminado.');
 }
 
-/** Comprueba que las 4 carpetas destino existan y sean accesibles. */
+/** Comprueba el calendario y que las carpetas destino existan y sean accesibles. */
 function verificarCarpetas() {
+  try {
+    const c = _cal_();
+    Logger.log('OK    calendario -> "%s"  [%s]', c.getName(), c.getId());
+  } catch (e) {
+    Logger.log('ERROR calendario -> %s', e.message);
+    Logger.log('      Ejecuta listarCalendarios() para ver los IDs disponibles.');
+  }
   for (const c of CURSOS) {
     try {
       const f = DriveApp.getFolderById(c.carpetaGrabadas);

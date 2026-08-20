@@ -13,11 +13,18 @@ qué hacer si deja de funcionar y las limitaciones conocidas.
 
 ## Notas técnicas
 
+`CALENDAR_ID` sale **vacío a propósito**: hay que pegar el ID del calendario con los
+encuentros, y debe ser **el mismo** que usa el script de encuentros del manual 01. No se usa
+el calendario por omisión porque depende de la cuenta con la que se abrió Apps Script; la
+línea está comentada dentro de `_cal_()` por si se prefiere. `listarCalendarios()` imprime los
+IDs disponibles.
+
 Funciones que se ejecutan a mano:
 
 | Función | Qué hace |
 |---|---|
-| `verificarCarpetas` | Comprueba que las carpetas destino existan y sean accesibles |
+| `listarCalendarios` | Imprime los calendarios de la cuenta con su ID (para llenar `CALENDAR_ID`) |
+| `verificarCarpetas` | Comprueba el calendario y que las carpetas destino existan |
 | `simulacro` | Lista a qué curso iría cada grabación, **sin mover nada** |
 | `instalarDisparador` | Activa la ejecución automática cada 6 h |
 | `desinstalarDisparador` | La desactiva |

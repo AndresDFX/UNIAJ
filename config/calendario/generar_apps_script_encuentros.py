@@ -91,6 +91,21 @@ PLANTILLA = """/**
 /** Enlace de Meet de la serie. Vacío = lo crea el script y lo imprime para que lo pegues. */
 var MEET_URL = {meet_url};
 
+/**
+ * ID del calendario donde se crean los encuentros.
+ *
+ * Sale VACÍO a propósito. Cómo obtenerlo: ejecuta `listarCalendarios()` (está más abajo) y
+ * copia el ID que te interese; o en Google Calendar, en «Mis calendarios», pasa el mouse
+ * sobre el calendario -> tres puntos -> «Configuración y uso compartido» -> baja hasta
+ * «Integrar calendario» -> copia «ID de calendario».
+ *
+ * El principal tiene el ID de tu correo; uno secundario se ve como
+ * `abc123...@group.calendar.google.com`. Si usas un calendario aparte para clases, ese es el
+ * que va aquí — y es también el que hay que poner en el script de grabaciones, para que los
+ * dos miren el mismo sitio.
+ */
+var CALENDAR_ID = '';
+
 /** true = envía los correos de invitación al crear/actualizar. */
 var SEND_INVITES = true;
 
@@ -114,14 +129,56 @@ var SESIONES = [
 {sesiones}
 ];
 
+// ─────────────────────────────────────────────── CALENDARIO
+
+/**
+ * El calendario con el que trabaja el script.
+ * Preferimos un ID explicito: el «por omision» depende de la cuenta con la que se abrio
+ * Apps Script, y si un dia se ejecuta con otra sesion escribe en un calendario distinto sin
+ * avisar. Con los eventos ya creados e invitaciones enviadas, eso no se deshace facil.
+ */
+function _cal_() {{
+  if (CALENDAR_ID) {{
+    var c = CalendarApp.getCalendarById(CALENDAR_ID);
+    if (!c) throw new Error('CALENDAR_ID no corresponde a un calendario visible: ' + CALENDAR_ID);
+    return c;
+  }}
+  // return CalendarApp.getDefaultCalendar();   // <- alternativa: calendario por omision
+  throw new Error('Falta CALENDAR_ID. Ejecuta listarCalendarios() y pega el ID arriba, ' +
+                  'o descomenta la linea de getDefaultCalendar() en _cal_().');
+}}
+
+/** El mismo calendario, para la API avanzada (que recibe el id, no el objeto). */
+function _calId_() {{
+  // return 'primary';   // <- alternativa: calendario por omision
+  if (!CALENDAR_ID) throw new Error('Falta CALENDAR_ID (ver _cal_()).');
+  return CALENDAR_ID;
+}}
+
+/** Imprime los calendarios de la cuenta con su ID, para copiar el que toque. */
+function listarCalendarios() {{
+  var todos = CalendarApp.getAllCalendars();
+  var pormision = CalendarApp.getDefaultCalendar().getId();
+  Logger.log('Calendarios visibles en esta cuenta (' + todos.length + '):');
+  for (var i = 0; i < todos.length; i++) {{
+    Logger.log('  ' + todos[i].getName() +
+               (todos[i].getId() === pormision ? ' [por omision]' : '') +
+               '  ->  ' + todos[i].getId());
+  }}
+  Logger.log('');
+  Logger.log('Copia el ID que corresponda y pegalo en CALENDAR_ID, arriba del todo.');
+  Logger.log('Usa el MISMO en el script de grabaciones (manual 02).');
+}}
+
 // ─────────────────────────────────────────────── ENTRADA
 
 /** SOLO LECTURA: qué pasaría. Ejecútalo primero. */
 function verificar() {{
-  var cal = CalendarApp.getDefaultCalendar();
+  var cal = _cal_();
   Logger.log('Modo             : ' + (SIMULAR ? 'SIMULACIÓN (no toca nada)' : 'REAL'));
   Logger.log('Curso            : ' + CURSO + ' (' + CODIGO + ' · grupo ' + GRUPO + ')');
   Logger.log('Calendario       : ' + cal.getName() + '  [' + cal.getId() + ']');
+  Logger.log('CALENDAR_ID      : ' + (CALENDAR_ID || '(vacio: usa listarCalendarios())'));
   Logger.log('Servicio avanzado: ' + (_apiCalendar_() ? 'activo' : 'NO ACTIVO — sin él no hay Meet'));
   Logger.log('Invitados        : ' + INVITADOS.length);
   Logger.log('Enviar correos   : ' + (SEND_INVITES ? 'sí' : 'no'));
@@ -147,7 +204,7 @@ function verificar() {{
 
 /** Crea los encuentros, deja la misma sala de Meet en todos e invita al grupo. */
 function crearEncuentros() {{
-  var cal = CalendarApp.getDefaultCalendar();
+  var cal = _cal_();
   if (SIMULAR) {{
     Logger.log('SIMULAR = true: no se creó nada. Ponlo en false cuando verificar() se vea bien.');
     return;
@@ -194,7 +251,7 @@ function crearEncuentros() {{
 /** Borra los eventos de esta serie. NO olvida la sala (para eso, olvidarSalaMeet). */
 function eliminarEncuentros() {{
   if (SIMULAR) {{ Logger.log('SIMULAR = true: no se borró nada.'); return; }}
-  var cal = CalendarApp.getDefaultCalendar(), n = 0;
+  var cal = _cal_(), n = 0;
   for (var i = 0; i < SESIONES.length; i++) {{
     var ev = _buscarEvento_(cal, SESIONES[i]);
     if (ev) {{ ev.deleteEvent(); n++; }}
@@ -248,7 +305,7 @@ function _uriDeConferencia_(conf) {{
 function _meetNativo_(id) {{
   if (!_apiCalendar_()) return '';
   try {{
-    var ev = Calendar.Events.get('primary', id, {{ conferenceDataVersion: 1 }});
+    var ev = Calendar.Events.get(_calId_(), id, {{ conferenceDataVersion: 1 }});
     return _uriDeConferencia_(ev && ev.conferenceData);
   }} catch (e) {{ return ''; }}
 }}
@@ -312,7 +369,7 @@ function _crearSala_(evento) {{
           conferenceSolutionKey: {{ type: 'hangoutsMeet' }}
         }}
       }}
-    }}, 'primary', id, {{ conferenceDataVersion: 1, sendUpdates: 'none' }});
+    }}, _calId_(), id, {{ conferenceDataVersion: 1, sendUpdates: 'none' }});
 
     var url = _uriDeConferencia_(res && res.conferenceData);
     // Google crea la sala de forma asíncrona: la primera respuesta puede venir «pending».
@@ -343,7 +400,7 @@ function _aplicarMeet_(evento, url) {{
   try {{
     var id = _idApi_(evento);
     if (_meetNativo_(id) === url) return true;   // ya está bien
-    Calendar.Events.patch({{ conferenceData: _conferenciaDesdeUrl_(url) }}, 'primary', id, {{
+    Calendar.Events.patch({{ conferenceData: _conferenciaDesdeUrl_(url) }}, _calId_(), id, {{
       conferenceDataVersion: 1,
       sendUpdates: SEND_INVITES ? 'all' : 'none'
     }});
