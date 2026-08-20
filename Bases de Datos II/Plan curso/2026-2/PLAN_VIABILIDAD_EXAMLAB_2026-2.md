@@ -13,7 +13,7 @@
 
 ## 0. De dónde sale este documento
 
-Este curso **no tiene material propio todavía**. Todo lo que existe son las 15 carpetas de `Clases/` con el nombre del tema (sin archivos adentro) y dos README de plantilla. A diferencia del plan de Arquitectura, acá no hay parciales ni actividades que "refactorizar" — es diseño desde cero. La estructura de cortes/fechas de abajo está **inferida** de la plantilla que usa Arquitectura (mismo docente, mismo periodo 2026-2, mismo patrón de carpetas: parciales en Clases 5/9/14, PI en 11-12-13-15) — **hay que confirmarla contra el Acuerdo institucional real de este curso** antes de publicar nada a estudiantes.
+Este curso **no tiene material propio todavía**. Todo lo que existe son las 15 carpetas de `Clases/` con el nombre del tema (sin archivos adentro) y dos README de plantilla. A diferencia del plan de Arquitectura, acá no hay parciales ni actividades que "refactorizar" — es diseño desde cero. La estructura de cortes/fechas de abajo se **confirmó** en el calendario del semestre (`config/calendario/semestre_2026_2.json`, fuente de verdad): 13 sesiones que cubren los 15 temas, parciales en las **sesiones 5/9/12** y la **sesión 13 dedicada a las sustentaciones del PI**. Ese JSON manda sobre cualquier número escrito aquí.
 
 ## 1. Resumen ejecutivo
 

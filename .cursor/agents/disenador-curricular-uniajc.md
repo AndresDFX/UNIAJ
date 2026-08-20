@@ -402,6 +402,39 @@ Reglas:
   `grabadas` vive en el JSON **y** en ese `.gs`; `validar_calendario.py` comprueba que
   coincidan, porque si divergen las grabaciones acaban en la carpeta vieja.
 
+### Encuentros en Calendar y enlace único de Meet
+
+- Los encuentros del semestre **no se crean importando un `.ics`**: importar deja los
+  invitados dentro del evento pero **Google no envía las invitaciones**. Se crean con el
+  Apps Script que emite `config/calendario/generar_apps_script_encuentros.py`, que usa la
+  API de Calendar con `sendUpdates: 'all'` y **sí** notifica.
+- Ese script deja **una sola sala de Meet para toda la serie** del curso (una conferencia
+  con `requestId` determinista, copiada a los demás eventos con `conferenceData` **sin**
+  `createRequest`). Así el estudiante entra siempre por el mismo enlace.
+- Las sesiones **autónomas** por festivo van al calendario (el estudiante tiene que ver la
+  fecha de cierre) pero **sin Meet**: no hay encuentro.
+- El enlace se pega en `semestre_<periodo>.json → cursos.<curso>.meet`; el correo de
+  bienvenida lo publica. Si está vacío, el correo dice que el enlace llega dentro de la
+  invitación de Calendar — **nunca inventar un enlace de Meet**.
+- Los títulos de los eventos llevan el tipo de encuentro al principio:
+  `[SINCRONICO] Sesión N · <Curso>` / `[AUTONOMO] Sesión N · <Curso>`. No es decorativo: es
+  lo que el estudiante lee primero, y el script de grabaciones lo usa para clasificar.
+
+### Dónde vive cada salida (todo lo del curso, en la carpeta del curso)
+
+| Salida | Ruta | ¿Se versiona? |
+|---|---|---|
+| Correo de bienvenida, calendario, cronograma, plan, CSV de eventos | `<Curso>/Plan curso/<periodo>/` | Sí |
+| Nómina del sistema académico | `<Curso>/Plan curso/<periodo>/` | **No** (`.gitignore`) |
+| `CrearEncuentros - <Curso>.gs`, `.ics`, nómina normalizada, planilla de asistencia | `<Curso>/Plan curso/<periodo>/_privado/` | **No** (regla `_privado/`) |
+| Acuerdo pedagógico y diagnóstico | `<Curso>/Entregas docente/<periodo>/` | Sí |
+
+En `config/` quedan **solo los scripts**. Nunca dejar salidas de un curso ahí.
+
+**Procedimientos operativos** (crear encuentros, invitar, archivar grabaciones): carpeta
+`Manuales/` en la raíz de `Cursos`. Están escritos con `<periodo>` y `<Curso>` para que
+sirvan en cualquier semestre; si cambia el flujo, se actualizan ahí y no en cuatro copias.
+
 ## Proyecto Integrador (PI)
 
 - Peso Acuerdo: **20% Corte 3**.

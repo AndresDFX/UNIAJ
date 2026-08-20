@@ -14,6 +14,9 @@ Versión **puntual** de esta oferta (24/08/2026 – 22/11/2026 · 13 sesiones, 1
 - `CORREO_BIENVENIDA - <Curso> - 2026-2.md` — correo de bienvenida al grupo
   (va aquí, no en `Entregas docente/`, que es solo la entrega institucional)
 
+- `_privado/` — derivado de la nómina (`.ics`, nómina normalizada, planilla de
+  asistencia, el `.gs` de encuentros). **Datos personales: no se versiona.**
+
 Futuros periodos: crear `Plan curso/2027-1/`, etc., sin mover el material general de la raíz.
 
 ## Cómo se operan los eventos y el correo

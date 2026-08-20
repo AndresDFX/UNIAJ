@@ -1,6 +1,6 @@
 # Calendario de eventos CSV 2026-2
 
-Archivos `eventos_*_2026-1.csv` / `eventos_*_2026-2.csv` (copia en `config/calendario/`) y
+Archivos `eventos_<curso>_2026-2.csv` (copia consolidada en `config/calendario/`) y
 `<Curso>/Plan curso/2026-2/calendario_eventos_2026-2.csv`: **13 filas (una por sesión) por curso**,
 UTF-8 con BOM, 14 columnas. La columna de notas NO lleva nómina de estudiantes (información privada).
 
@@ -23,40 +23,58 @@ acepta el export Academusoft `LISTA_DE_ALUMNOS_POR_GRUPOS*.xls` y el formato
 `<grupo> - <MATERIA>.xls[x]`, y valida que el código `FI######` del archivo coincida con el del
 curso para no cruzar nóminas). Requiere `xlrd` y `openpyxl`.
 
-Produce dos clases de salida, deliberadamente separadas:
+Produce dos clases de salida, deliberadamente separadas. **Todo lo de un curso vive en la
+carpeta del curso**; en `config/` quedan solo los scripts.
 
-| Salida | Contiene nómina | Ruta | Para qué |
+| Salida | Nómina | Ruta | Para qué |
 |---|---|---|---|
-| `eventos_calendario_2026-2.csv` | **No** | `<Curso>/Plan curso/2026-2/` | Importación directa a Google Calendar (13 eventos) |
-| `invitaciones_<curso>.ics` | **Sí** | `config/calendario/_privado_2026-2/` | 13 eventos con los estudiantes como `ATTENDEE` → invitaciones reales |
-| `nomina_<curso>.csv` | **Sí** | idem | Nómina normalizada (documento, nombre, correo, repitente) |
-| `asistencia_<curso>.csv` | **Sí** | idem | Planilla estudiantes × 13 sesiones (el 10% de asistencia de cada corte) |
-| `pendientes_correo_<curso>.csv` | **Sí** | idem (solo si aplica) | Estudiantes sin correo institucional, para pedirlo a Registro Académico |
-| `COMO INVITAR - 2026-2.md` | **Sí** | idem | Paso a paso para importar y notificar |
+| `eventos_calendario_<periodo>.csv` | **No** | `<Curso>/Plan curso/<periodo>/` | Importar los bloques a tu calendario |
+| `invitaciones_<curso>.ics` | **Sí** | `<Curso>/Plan curso/<periodo>/_privado/` | Eventos con los estudiantes como `ATTENDEE` |
+| `nomina_<curso>.csv` | **Sí** | idem | documento, nombre, correo, `origen_correo`, repitente |
+| `asistencia_<curso>.csv` | **Sí** | idem | Planilla estudiantes × sesiones (nota de asistencia) |
+| `pendientes_correo_<curso>.csv` | **Sí** | idem (solo si aplica) | Quién no trae correo institucional |
+
+La regla `_privado/` está en `.gitignore`: son datos personales de estudiantes (nombre,
+documento, correo) y **no se versionan ni se comparten**. El CSV de eventos que sí se versiona
+no lleva nómina, y el script no imprime nombres ni correos en consola, solo conteos.
+
+### El camino recomendado no es el .ics
+
+**Importar un `.ics` no envía las invitaciones**: Google deja a los invitados dentro del
+evento pero no les manda nada. Para que lleguen, y para que todas las sesiones compartan
+**un solo enlace de Meet**, se usa el Apps Script que genera:
+
+```bash
+python config/calendario/generar_apps_script_encuentros.py
+```
+
+Emite `<Curso>/Plan curso/<periodo>/_privado/CrearEncuentros - <Curso>.gs`, que crea la serie
+con la API de Calendar (`sendUpdates: 'all'`) y aplica la misma sala de Meet a todas las
+sesiones sincrónicas. Las autónomas por festivo van al calendario pero **sin Meet**, porque
+no hay encuentro. El enlace que imprime se pega en `semestre_<periodo>.json →
+cursos.<curso>.meet` y el correo de bienvenida lo publica.
+
+El `.ics` y el CSV quedan como camino manual alternativo. Las sesiones autónomas van en el
+`.ics` como `TRANSP:TRANSPARENT` porque no bloquean agenda.
+
+**Procedimiento completo:** carpeta `Manuales/` en la raíz de `Cursos`.
 
 ### Correos que faltan en el export académico
 
-Cuando el sistema no trae el correo institucional de alguien, **no se edita el `.xls`**:
-se agrega en `config/calendario/_correos_manuales.csv` (`curso,documento,correo,nota`), que
-el generador aplica cruzando por documento. Ese archivo es entrada del docente, tiene datos
-personales y está en `.gitignore`. En la nómina esos estudiantes salen con
+Cuando el sistema no trae el correo institucional de alguien, **no se edita el `.xls`**: se
+agrega en `<Curso>/Plan curso/<periodo>/_privado/correos_manuales.csv`
+(`documento,correo,nota`), que el generador cruza por documento. Es entrada del docente, tiene
+datos personales y está fuera de git. En la nómina esos estudiantes salen con
 `origen_correo = personal (manual)`.
 
 ### Validación
 
 `python config/calendario/validar_calendario.py` comprueba los invariantes del calendario
-(semana de inicio, 13 sesiones por curso, día de la semana correcto, una sesión por semana,
-los 15 temas cubiertos sin duplicados, sesiones dobles coherentes, ningún parcial en festivo
-o sesión autónoma, cortes que cubren 1..13) y que los CSV y el `CALENDARIO_2026-2.md`
-derivados coincidan con el JSON. Devuelve código 1 si algo falla.
-
-> `config/calendario/_privado_2026-2/` está en `.gitignore`: son datos personales de estudiantes
-> (nombre, documento, correo) y **no se versionan ni se comparten**. El CSV de eventos que sí se
-> versiona no lleva nómina. El script tampoco imprime nombres ni correos en consola, solo conteos.
-
-Cómo usarlo: importa el `.csv` si solo quieres los bloques en tu calendario; importa el `.ics` si
-además quieres **invitar** a los estudiantes (el cliente de calendario pedirá confirmar el envío).
-Las sesiones autónomas van como `TRANSP:TRANSPARENT` porque no hay encuentro sincrónico.
+(semana de inicio, sesiones numeradas sin huecos, día de la semana correcto, una sesión por
+semana, los 15 temas cubiertos sin duplicados, sesiones dobles coherentes, ningún parcial en
+festivo o sesión autónoma, cortes que cubren todas las sesiones), que los CSV y el
+`CALENDARIO_<periodo>.md` derivados coincidan con el JSON, y que las carpetas de Drive del
+JSON coincidan con las del Apps Script de grabaciones. Devuelve código 1 si algo falla.
 
 Si cambia el calendario o llega un listado actualizado: vuelve a correr el script; es idempotente.
 

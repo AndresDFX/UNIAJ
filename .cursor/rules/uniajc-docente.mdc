@@ -24,10 +24,10 @@ alwaysApply: true
 
 | Curso | Oferta | Por sesión |
 |---|---|---|
-| **Programación II** (mié 18:00–20:00) | Presencialidad asistida | Clase 1 + parciales (5/10/15) **presencial**; resto **virtual** síncrona; festivos **autónoma** |
-| **Seminario** (jue 18:00–20:00) | Presencialidad asistida | Clases regulares (incl. Clase 1) **virtual** síncrona; parciales (5/10/15) **presencial**; festivos **autónoma** |
-| **Arquitectura** (lun 10:00–12:00 · 6303C) | Presencialidad asistida | Clase 1 + parciales (5/9/14) **presencial**; resto **virtual** síncrona; festivos **autónoma** |
-| **BD II** (lun **20:00–22:00** · 641A-2) | **Virtual** (según `CALENDARIO_2026-2` / CSV) | Regulares y parciales (5/9/14) **virtual** síncronos; festivos **autónoma**. No inventar presencial si el CSV no lo marca |
+| **Programación II** (mié 18:00–20:00) | Presencialidad asistida | Sesión 1 + parciales (5/9/13) **presencial**; resto **virtual** síncrona; sin festivos en miércoles |
+| **Seminario** (jue 18:00–20:00) | Presencialidad asistida | Sesión 1 + parciales (5/9/13) **presencial**; resto **virtual** síncrona; sin festivos en jueves |
+| **Arquitectura** (lun 10:00–12:00 · 6303C) | Presencialidad asistida | Sesión 1 + parciales (5/9/12) **presencial**; resto **virtual**; sesiones **8 y 11 autónomas**; **sesión 13 = sustentaciones PI** |
+| **BD II** (lun **18:00–20:00** · 641A-2) | Presencialidad asistida | Sesión 1 + parciales (5/9/12) **presencial**; resto **virtual**; sesiones **8 y 11 autónomas**; **sesión 13 = sustentaciones PI** |
 
 Cortes teóricos (validar en Acuerdo): **30% / 30% / 40%**
 
@@ -40,7 +40,7 @@ Cortes teóricos (validar en Acuerdo): **30% / 30% / 40%**
 
 1. **Programación II** (FI303204 · grupo **341C** · mié **18:00–20:00** · **120 min**)
 2. **Seminario de Sistemas** (FI303301 · grupo **341C** · jue **18:00–20:00** · **120 min**)
-3. **Bases de Datos II** (FI303215 · grupo **641A-2** · lun **20:00–22:00** · **120 min** · Virtual)
+3. **Bases de Datos II** (FI303215 · grupo **641A-2** · lun **18:00–20:00** · **120 min** · Presencialidad asistida)
 4. **Arquitectura de Sistemas Computacionales** (FI303380 · grupo **6303C** · lun **10:00–12:00** · **120 min**)
 5. **0. Base** — plantillas institucionales / Ingeniería de Software 1 (referencia)
 
@@ -52,7 +52,7 @@ Cualquier ajuste general de marca/diseño/nomenclatura UNIAJC se aplica a los cu
 
 - **Sesión 0** = `Clases/Presentacion del Curso - ….pptx` (logística: acuerdo, Padlet, evaluación, CONTENIDO, herramientas, cierre). **No es tema de unidad.**
 - **Clase 1** = **Diagnóstico de conocimientos previos** + arranque del tema intro del plan. **Sin** repetir bio/evaluación/cronograma global (eso es Sesión 0).
-- En el **día 1** del calendario: Sesión 0 + Clase 1 dentro del mismo bloque de 120 min. Se mantienen **15 clases** temáticas (1–15). CONTENIDO lista Sesión 0 + Clases 1–15.
+- En el **día 1** del calendario: Sesión 0 + Clase 1 dentro del mismo bloque de 120 min. El semestre 2026-2 tiene **13 sesiones** que cubren los **15 temas** (2 sesiones dobles por curso); el material `Clase N` **no se renumeró**. CONTENIDO lista Sesión 0 + las 13 sesiones.
 - Wording CONTENIDO: celda Clase 1 = `Diagnóstico · [tema intro]`; Sesión 0 como ítem aparte (`n: 0` / `kind: sesion0`).
 - Instrumento: `Kit docente/Clase 1/Prueba Diagnostica…` · Registro: `Entregas docente/<periodo>/DIAGNOSTICO…`.
 

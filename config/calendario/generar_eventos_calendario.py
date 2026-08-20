@@ -22,11 +22,20 @@ Salidas
 -------
 * `<Curso>/Plan curso/2026-2/eventos_calendario_2026-2.csv` — **sin datos personales**.
   Formato de importación de Google Calendar (Subject, Start Date, …). Versionable.
-* `config/calendario/_privado_2026-2/` — **CON datos personales, NO se versiona**
-  (está en .gitignore). Por curso:
-    - `invitaciones_<curso>.ics`  · 13 eventos con los estudiantes como invitados (ATTENDEE)
-    - `nomina_<curso>.csv`        · nómina normalizada (documento, nombre, correo)
-    - `asistencia_<curso>.csv`    · planilla estudiantes × 13 sesiones (el 10% de asistencia)
+* `<Curso>/Plan curso/2026-2/_privado/` — **CON datos personales, NO se versiona**
+  (la regla `_privado/` está en .gitignore). Todo lo del curso vive en la carpeta del curso:
+    - `invitaciones_<curso>.ics`  · un evento por sesión con los estudiantes como ATTENDEE
+    - `nomina_<curso>.csv`        · nómina normalizada (documento, nombre, correo, origen)
+    - `asistencia_<curso>.csv`    · planilla estudiantes × sesiones (la nota de asistencia)
+    - `pendientes_correo_<curso>.csv` · solo si alguien no trae correo institucional
+
+Entrada opcional que mantiene el docente, en la misma carpeta privada:
+`correos_manuales.csv` (`documento,correo,nota`) para completar los correos que el export
+academico no trae. Se cruza por documento.
+
+Ojo: importar el .ics NO envia las invitaciones (Google no lo hace al importar). Para que
+lleguen, usa el Apps Script que genera `generar_apps_script_encuentros.py`, que además deja
+una sola sala de Meet en toda la serie. Procedimiento: carpeta `Manuales/` en la raíz.
 
 Uso
 ---
@@ -463,7 +472,7 @@ def main() -> None:
     print(f"\nOK. Cursos con nomina real: {total_ok}/{len(DATA['cursos'])}")
     print("Los .ics traen a los estudiantes como invitados (ATTENDEE): importalos en el")
     print("calendario del docente y confirma el envio de invitaciones.")
-    print("Recuerda: la carpeta _privado_2026-2/ NO se versiona (datos personales).")
+    print("Recuerda: las carpetas Plan curso/<periodo>/_privado/ NO se versionan (datos personales).")
 
 
 if __name__ == "__main__":

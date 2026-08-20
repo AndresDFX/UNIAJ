@@ -39,6 +39,16 @@ Es **idempotente**: dos corridas seguidas producen archivos idénticos.
 
 Para cambiar el calendario: **edita el JSON y vuelve a correr el generador.** Nada más.
 
+Los otros dos generadores vivos de esta carpeta:
+
+| Script | Qué produce |
+|---|---|
+| `generar_eventos_calendario.py` | Por curso: CSV de eventos, `.ics` con invitados, nómina y planilla de asistencia (los tres últimos en `<Curso>/Plan curso/<periodo>/_privado/`) |
+| `generar_apps_script_encuentros.py` | Por curso: el Apps Script que **crea** los encuentros en Calendar con una sola sala de Meet y **envía** las invitaciones |
+| `validar_calendario.py` | Comprueba invariantes y coherencia; sale con código 1 si algo falla |
+
+Procedimiento operativo: carpeta `Manuales/` en la raíz de `Cursos`.
+
 Las diapositivas y los parciales leen el mismo JSON a través de
 `config/slides/calendario_2026_2.py` y `config/parciales/contenido_parciales_2026_2.py`.
 

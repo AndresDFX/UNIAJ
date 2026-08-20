@@ -15,6 +15,8 @@ Versión puntual de la oferta actual (24/08/2026 – 22/11/2026 · 13 sesiones, 
 - `CORREO_BIENVENIDA - <Curso> - 2026-2.md` — correo de bienvenida al grupo
   (va aquí, no en `Entregas docente/`, que es solo la entrega institucional)
 - La nómina del periodo (`LISTA_DE_ALUMNOS_POR_GRUPOS*.xls`) vive aquí y **no se versiona**
+- `_privado/` — derivado de la nómina (`.ics`, nómina normalizada, planilla de
+  asistencia, el `.gs` de encuentros). **Datos personales: no se versiona.**
 
 ## Periodo `2026-1/` — cerrado
 Oferta anterior de esta asignatura. Ver `2026-1/LEEME - periodo 2026-1.md`: indexa lo

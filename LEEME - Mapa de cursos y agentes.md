@@ -80,6 +80,26 @@ parcial vive en `Parciales/`, nunca en `Clases/`.
 | Motor slides | `config/slides/uniajc_slides_engine.py` |
 | Skill transcribir | `.claude/skills/transcribir-video/` |
 
+## Alistar el semestre (calendario, Meet, invitaciones, grabaciones)
+
+```bash
+python config/calendario/generar_semestre_2026_2.py         # calendario, correo, CSV, acuerdos
+python config/calendario/generar_eventos_calendario.py      # nominas, planillas, .ics
+python config/calendario/generar_apps_script_encuentros.py  # .gs de encuentros por curso
+python config/calendario/validar_calendario.py              # invariantes; sale 1 si algo falla
+```
+
+Fuente de verdad: `config/calendario/semestre_2026_2.json` (fechas, sesiones, parciales,
+festivos, carpetas de Drive y enlace de Meet). Se corrige ahi y se regenera.
+
+**Los encuentros no se crean importando un `.ics`**: importar deja los invitados dentro del
+evento pero Google no envia las invitaciones. Se crean con el Apps Script generado, que usa
+la API de Calendar (`sendUpdates: 'all'`) y deja **una sola sala de Meet** en toda la serie
+del curso. Las sesiones autonomas van al calendario pero sin Meet.
+
+Procedimiento paso a paso: **`Manuales/`** (01 alistar un curso · 02 archivar grabaciones).
+Estan escritos con `<periodo>` y `<Curso>`: sirven en cualquier semestre.
+
 ## Builds / regeneración
 
 ```bash
