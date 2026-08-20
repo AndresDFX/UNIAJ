@@ -1,14 +1,14 @@
 ﻿curso,codigo_fi,grupo,clase_n,fecha,dia,hora_inicio,hora_fin,tipo_clase,es_parcial,parcial_n,sesion_etiqueta,tema,notas
-Bases de Datos II,FI303215,641A-2,1,2026-08-24,Lunes,18:00,20:00,presencial,no,,Sesión 1 · Clase 1,Diagnóstico · Revisión de Bases de Datos I (VetCare),
+Bases de Datos II,FI303215,641A-2,1,2026-08-24,Lunes,18:00,20:00,virtual,no,,Sesión 1 · Clase 1,Diagnóstico · Revisión de Bases de Datos I (VetCare),
 Bases de Datos II,FI303215,641A-2,2,2026-08-31,Lunes,18:00,20:00,virtual,no,,Sesión 2 · Clase 2,Administración de bases de datos,
 Bases de Datos II,FI303215,641A-2,3,2026-09-07,Lunes,18:00,20:00,virtual,no,,Sesión 3 · Clase 3,Procedimientos almacenados,
 Bases de Datos II,FI303215,641A-2,4,2026-09-14,Lunes,18:00,20:00,virtual,no,,Sesión 4 · Clase 4,Funciones y disparadores · Seguridad y respaldo,
-Bases de Datos II,FI303215,641A-2,5,2026-09-21,Lunes,18:00,20:00,presencial,si,1,Sesión 5 · Parcial 1 · Clase 5,PARCIAL 1 (solo evaluación),parcial presencial síncrono
+Bases de Datos II,FI303215,641A-2,5,2026-09-21,Lunes,18:00,20:00,virtual,si,1,Sesión 5 · Parcial 1 · Clase 5,PARCIAL 1 (solo evaluación),parcial virtual síncrono
 Bases de Datos II,FI303215,641A-2,6,2026-09-28,Lunes,18:00,20:00,virtual,no,,Sesión 6 · Clase 6,Optimización de consultas,
 Bases de Datos II,FI303215,641A-2,7,2026-10-05,Lunes,18:00,20:00,virtual,no,,Sesión 7 · Clase 7 + Clase 8 (doble),Índices y particionamiento + Tuning y gestión de transacciones,sesión doble: cubre Clase 7 + Clase 8 del material en un bloque de 120 min
 Bases de Datos II,FI303215,641A-2,8,2026-10-12,Lunes,18:00,20:00,autonoma,no,,Sesión 8 · Clase 10,Control de concurrencia,festivo: Día de la Diversidad Étnica y Cultural; clase autónoma (trabajo independiente guiado)
-Bases de Datos II,FI303215,641A-2,9,2026-10-19,Lunes,18:00,20:00,presencial,si,2,Sesión 9 · Parcial 2 · Clase 9,PARCIAL 2 (solo evaluación),parcial presencial síncrono
+Bases de Datos II,FI303215,641A-2,9,2026-10-19,Lunes,18:00,20:00,virtual,si,2,Sesión 9 · Parcial 2 · Clase 9,PARCIAL 2 (solo evaluación),parcial virtual síncrono
 Bases de Datos II,FI303215,641A-2,10,2026-10-26,Lunes,18:00,20:00,virtual,no,,Sesión 10 · Clase 11 + Clase 12 (doble),Avance del proyecto final + Integración de apps externas y preparación final,sesión doble: cubre Clase 11 + Clase 12 del material en un bloque de 120 min
 Bases de Datos II,FI303215,641A-2,11,2026-11-02,Lunes,18:00,20:00,autonoma,no,,Sesión 11 · Clase 13,Análisis de casos reales,festivo: Todos los Santos; clase autónoma (trabajo independiente guiado)
-Bases de Datos II,FI303215,641A-2,12,2026-11-09,Lunes,18:00,20:00,presencial,si,3,Sesión 12 · Parcial 3 · Clase 14,PARCIAL 3 (solo evaluación),parcial presencial síncrono
+Bases de Datos II,FI303215,641A-2,12,2026-11-09,Lunes,18:00,20:00,virtual,si,3,Sesión 12 · Parcial 3 · Clase 14,PARCIAL 3 (solo evaluación),parcial virtual síncrono
 Bases de Datos II,FI303215,641A-2,13,2026-11-16,Lunes,18:00,20:00,sustentacion,no,,Sesión 13 · Sustentación PI · Clase 15,Presentación del proyecto y cierre (sustentaciones PI),festivo: Independencia de Cartagena; sesión de sustentaciones del Proyecto Integrador (no es parcial)

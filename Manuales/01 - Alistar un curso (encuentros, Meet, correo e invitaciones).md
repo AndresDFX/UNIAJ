@@ -245,7 +245,7 @@ Importar: Google Calendar → **⚙ Configuración → Importar y exportar → I
 | Cambió | Qué hacer |
 |---|---|
 | Una fecha, un parcial, un festivo | Editar el JSON, correr los scripts del paso 0, volver a pegar el `.gs` del curso y ejecutar `crearEncuentros` (reutiliza lo que ya existe; los cambios de hora sí hay que ajustarlos en Calendar o borrar y recrear con `eliminarEncuentros`). |
-| Llegó una nómina nueva | Reemplazar el `.xls`, correr los scripts del paso 0 y volver a pegar el `.gs`: los invitados nuevos entran al ejecutar `crearEncuentros`. |
+| Llegó una nómina nueva | Reemplazar el `.xls`, correr los scripts del paso 0, volver a pegar el `.gs` y ejecutar `crearEncuentros`: reutiliza los eventos que ya existen y **agrega al calendario los invitados que faltaban** (lo informa como «Invitados agregados a eventos que ya existían»). No borra a nadie: si alguien se retiró, quítalo a mano en Calendar. |
 | Cambió una carpeta de Drive | Actualizar `carpetas_drive` en el JSON; si es la de grabaciones, actualizar también el script del manual 02. El validador avisa si divergen. |
 | Arranca un periodo nuevo | Crear `Plan curso/<periodo nuevo>/`; el anterior se queda donde está, no se borra. |
 

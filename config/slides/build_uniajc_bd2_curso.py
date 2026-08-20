@@ -142,7 +142,7 @@ def build():
 
 
 
-        'Horario: **Lunes 18:00 – 20:00** (120 min) · Modalidad: **Presencialidad asistida**',
+        'Horario: **Lunes 18:00 – 20:00** (120 min) · Modalidad: **Virtual**',
 
 
 
@@ -377,7 +377,7 @@ def build():
 
 
 
-            ('info', 'Lunes 18:00 – 20:00 · Presencialidad asistida: Clase 1 y parciales presencial · resto virtual síncrona · festivos autónoma · Grupo 641A-2.'),
+            ('info', 'Lunes 18:00 – 20:00 · Virtual: todas las sesiones por Meet, incluidos la Sesión 1 y los parciales · festivos autónoma · Grupo 641A-2.'),
 
 
 
@@ -425,7 +425,7 @@ def build():
 
 
 
-        'Lunes **18:00 – 20:00** · Presencialidad asistida',
+        'Lunes **18:00 – 20:00** · Virtual',
 
 
 

@@ -153,7 +153,7 @@ courses = [
       "Codigo: **FI303380** · Grupo: **6303C** · Periodo: **2026-2**",
       "Programa: Ingenieria de Sistemas · Facultad de Ingenieria · UNIAJC",
       "Horario: **Lunes 10:00 – 12:00** (120 min)",
-      "Modalidad: **Presencialidad asistida** (Clase 1 y parciales presencial · resto virtual síncrona · festivos = clase autónoma)",
+      "Modalidad: **Virtual** (todas las sesiones virtual síncrona por Meet · festivos = clase autónoma)",
       "Docente: Julian Andres Castano",
     ],
     "purpose": [
@@ -196,7 +196,7 @@ courses = [
       "Plan propio: `Plan curso/PLAN_DE_CURSO_2026-2.md`.",
     ],
     "boxes": [
-      ("info", "Lunes 10:00–12:00 (120 min) · Grupo 6303C · Presencialidad asistida."),
+      ("info", "Lunes 10:00–12:00 (120 min) · Grupo 6303C · Virtual (todas las sesiones por Meet)."),
       ("aclaracion", "Clases en festivo (12/10, 02/11) = autonomas con actividad en ExamLab; el 16/11 (festivo) se usa para las sustentaciones del PI CloudLite."),
       ("advertencia", "Parciales SIEMPRE presenciales y nunca en autonoma: sesiones 5 (21/09), 9 (19/10) y 12 (09/11)."),
     ],

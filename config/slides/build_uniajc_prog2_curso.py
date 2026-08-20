@@ -94,7 +94,7 @@ def build():
         [
             "**Sesión 0 (hoy)** = logística + acuerdo pedagógico + evaluación + CONTENIDO + **socialización del Proyecto Integrador**.",
             "**Clase 1** (material en archivo aparte) = diagnóstico de conocimientos previos + arranque temático — mismo bloque de hoy.",
-            "Cada miércoles (120 min): **Teoría Core** → **Taller Guiado** → **cierre**. Modalidad: **Presencialidad asistida**: Clase 1 y parciales **presencial**; resto **virtual síncrona**; festivos = **clase autónoma**.",
+            "Cada miércoles (120 min): **Teoría Core** → **Taller Guiado** → **cierre**. Modalidad: **Virtual**: todas las sesiones son **virtual síncrona** por Google Meet, incluidos la Sesión 1 y los parciales; festivos = **clase autónoma**.",
             "Talleres y quices/parciales se entregan/presentan en @@ExamLab@@ (https://examlab.lovable.app/) — no es la plataforma oficial de la UNIAJC, la usamos solo para esto. Taller calificable: entrega máxima el **domingo 23:59**.",
             "Hilo conductor de todo el semestre: **Proyecto Integrador** continuo. Enfoque: aprender haciendo · aprendizaje invertido.",
         ],

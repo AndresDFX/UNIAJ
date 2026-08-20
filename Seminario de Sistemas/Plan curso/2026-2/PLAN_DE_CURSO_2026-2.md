@@ -4,7 +4,7 @@
 - **Código:** FI303301 · **Grupo:** **341C**
 - **Periodo:** **2026-2** · **24/08/2026 – 22/11/2026**
 - **Horario:** **Jueves 18:00 – 20:00** (120 min)
-- **Modalidad:** **Presencialidad asistida** (Sesión 1 y parciales presencial síncrono · resto virtual síncrona · festivos = clase autónoma)
+- **Modalidad:** Virtual (todas las sesiones virtual síncrona · resto virtual síncrona · festivos = clase autónoma)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
 - **Calendario:** `Plan curso/2026-2/CALENDARIO_2026-2.md` · `config/calendario/semestre_2026_2.json`
 
@@ -14,9 +14,9 @@ Semestre 2026-2 acortado: inicio **24/08/2026** (fin fijo **22/11/2026**) = **13
 
 Sesiones dobles de este curso: **Sesión 8** (15/10/2026) = Clase 8 + Clase 9 · **Sesión 10** (29/10/2026) = Clase 11 + Clase 12.
 
-**Seminario de Sistemas** (Jueves 18:00 – 20:00) · Modalidad: Presencialidad asistida. Sesión 1 presencial (encuadre) · parciales en las sesiones **5/9/13**, presencial síncrono · resto de sesiones regulares virtual síncrona. No hay festivos en jueves: todas las sesiones son regulares. Día de parcial = solo evaluación. Los parciales NUNCA se programan en festivo ni en clase autónoma. Sesión 0 = Presentación del Curso (no es sesión temática).
+**Seminario de Sistemas** (Jueves 18:00 – 20:00) · Modalidad: Virtual. Todas las sesiones son **virtual síncrona** por Google Meet, incluidos la Sesión 1 y los parciales (sesiones **5/9/13**). No hay sesiones presenciales. No hay festivos en jueves: todas las sesiones son regulares. Día de parcial = solo evaluación. Los parciales NUNCA se programan en festivo ni en clase autónoma. Sesión 0 = Presentación del Curso (no es sesión temática).
 
-Parciales de este curso: Sesiones **5 / 9 / 13** (24/09/2026, 22/10/2026, 19/11/2026) — presencial síncrono.
+Parciales de este curso: Sesiones **5 / 9 / 13** (24/09/2026, 22/10/2026, 19/11/2026) — virtual síncrono.
 
 > **Día de parcial = solo evaluación:** sin tema de trabajo dirigido nuevo.
 
@@ -26,19 +26,19 @@ Parciales de este curso: Sesiones **5 / 9 / 13** (24/09/2026, 22/10/2026, 19/11/
 
 | Sesión | Fecha | Tipo | Clase(s) de material | Tema (Trabajo dirigido) |
 |---|---|---|---|---|
-| 1 | 27/08/2026 | Presencial (síncrona) | Clase 1 | Presentación del curso · Conceptos iniciales |
+| 1 | 27/08/2026 | Virtual (síncrona) | Clase 1 | Presentación del curso · Conceptos iniciales |
 | 2 | 03/09/2026 | Virtual (síncrona) | Clase 2 | Ciclos de vida del software |
 | 3 | 10/09/2026 | Virtual (síncrona) | Clase 3 | Metodologías tradicionales |
 | 4 | 17/09/2026 | Virtual (síncrona) | Clase 4 | Metodologías ágiles |
-| 5 | 24/09/2026 | Presencial (síncrona) | Clase 5 | **Parcial 1** (solo evaluación) |
+| 5 | 24/09/2026 | Virtual (síncrona) | Clase 5 | **Parcial 1** (solo evaluación) |
 | 6 | 01/10/2026 | Virtual (síncrona) | Clase 6 | Requerimientos de software |
 | 7 | 08/10/2026 | Virtual (síncrona) | Clase 7 | Historias de usuario |
 | 8 | 15/10/2026 | Virtual (síncrona) | Clase 8 + Clase 9 **(doble)** | Introducción a UML + Casos de uso |
-| 9 | 22/10/2026 | Presencial (síncrona) | Clase 10 | **Parcial 2** (solo evaluación) |
+| 9 | 22/10/2026 | Virtual (síncrona) | Clase 10 | **Parcial 2** (solo evaluación) |
 | 10 | 29/10/2026 | Virtual (síncrona) | Clase 11 + Clase 12 **(doble)** | Avance proyecto integrador + Diagramas UML avanzados |
 | 11 | 05/11/2026 | Virtual (síncrona) | Clase 13 | Diseño de interfaces |
 | 12 | 12/11/2026 | Virtual (síncrona) | Clase 14 | Preparación de la sustentación y cierre |
-| 13 | 19/11/2026 | Presencial (síncrona) | Clase 15 | **Parcial 3** (solo evaluación) |
+| 13 | 19/11/2026 | Virtual (síncrona) | Clase 15 | **Parcial 3** (solo evaluación) |
 
 ## Evaluación teórica (Acuerdo 2026-2)
 

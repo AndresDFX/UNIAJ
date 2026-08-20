@@ -78,7 +78,7 @@ TZID = "America/Bogota"
 UTC_OFFSET = "-0500"  # Colombia no tiene horario de verano
 
 TIPO_ETIQUETA = {
-    "presencial": "Presencial",
+    "presencial": "Presencial",   # sin uso en 2026-2 (modalidad Virtual)
     "virtual": "Virtual sincrónica",
     "autonoma": "Autónoma (festivo)",
     "sustentacion": "Sustentaciones del Proyecto Integrador",
@@ -277,7 +277,7 @@ def titulo(meta: dict, cl: dict) -> str:
 
     El estudiante ve el prefijo antes que nada en su calendario, así que ahí va lo único
     que necesita decidir de un vistazo: si tiene que conectarse/asistir a esa hora o no.
-    `[SINCRONICO]` = hay encuentro (presencial, virtual o sustentación);
+    `[SINCRONICO]` = hay encuentro en vivo (virtual por Meet, parcial o sustentación);
     `[AUTONOMO]` = no hay encuentro, es trabajo independiente guiado con fecha de cierre.
     """
     prefijo = "[AUTONOMO]" if cl["tipo"] == "autonoma" else "[SINCRONICO]"
@@ -288,6 +288,20 @@ def titulo(meta: dict, cl: dict) -> str:
     else:
         cuerpo = f"Sesión {cl['n']} · {meta['nombre']}"
     return f"{prefijo} {cuerpo}"
+
+
+def ubicacion(cl: dict) -> str:
+    """Lugar del evento. En modalidad Virtual no hay campus: todo encuentro es por Meet.
+
+    Las autónomas no tienen encuentro, así que no se les pone un lugar que sugiera lo
+    contrario. Si un periodo futuro vuelve a tener sesiones presenciales, el tipo
+    `presencial` del JSON las distingue aquí.
+    """
+    if cl["tipo"] == "autonoma":
+        return "Trabajo autónomo (sin encuentro)"
+    if cl["tipo"] == "presencial":
+        return "UNIAJC (presencial)"
+    return "Google Meet (virtual)"
 
 
 def material(cl: dict) -> str:
@@ -307,7 +321,7 @@ def descripcion(meta: dict, cl: dict) -> str:
     if cl["tipo"] == "autonoma":
         partes.append("Clase autónoma: trabajo independiente guiado, sin encuentro sincrónico.")
     if cl.get("parcial"):
-        partes.append("Día de parcial = solo evaluación (presencial síncrono).")
+        partes.append("Día de parcial = solo evaluación (virtual síncrono).")
     if cl["tipo"] == "sustentacion":
         partes.append("Sustentación del Proyecto Integrador (no es parcial).")
     partes.append(f"Docente: {DOCENTE} · {CORREO_DOCENTE}")
@@ -329,7 +343,7 @@ def csv_google(meta: dict) -> list[list[str]]:
         fecha = f"{m}/{d}/{y}"  # Google Calendar CSV espera MM/DD/YYYY
         rows.append([titulo(meta, cl), fecha, ini, fecha, fin, "False",
                      descripcion(meta, cl),
-                     "Virtual" if cl["tipo"] == "virtual" else "UNIAJC", "True"])
+                     ubicacion(cl), "True"])
     return rows
 
 
@@ -355,7 +369,7 @@ def ics(meta: dict, estudiantes: list[dict]) -> str:
             f"DTEND;TZID={TZID}:{stamp}T{fin}",
             f"SUMMARY:{_esc(titulo(meta, cl))}",
             f"DESCRIPTION:{_esc(descripcion(meta, cl))}",
-            f"LOCATION:{'Virtual' if cl['tipo'] == 'virtual' else 'UNIAJC'}",
+            f"LOCATION:{ubicacion(cl)}",
             f"ORGANIZER;CN={_esc(DOCENTE)}:mailto:{CORREO_DOCENTE}",
             # las autónomas no bloquean agenda: no hay encuentro sincrónico
             "TRANSP:TRANSPARENT" if cl["tipo"] == "autonoma" else "TRANSP:OPAQUE",
@@ -470,8 +484,10 @@ def main() -> None:
         total_ok += 1
 
     print(f"\nOK. Cursos con nomina real: {total_ok}/{len(DATA['cursos'])}")
-    print("Los .ics traen a los estudiantes como invitados (ATTENDEE): importalos en el")
-    print("calendario del docente y confirma el envio de invitaciones.")
+    print("OJO: importar el .ics NO envia las invitaciones (Google no lo hace al importar).")
+    print("Para que lleguen y para tener UNA sola sala de Meet, usa el Apps Script:")
+    print("  python config/calendario/generar_apps_script_encuentros.py")
+    print("y ejecuta crearEncuentros(). Procedimiento: carpeta Manuales/ en la raiz.")
     print("Recuerda: las carpetas Plan curso/<periodo>/_privado/ NO se versionan (datos personales).")
 
 

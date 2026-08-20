@@ -11,23 +11,28 @@ Workspace docente: Institución Universitaria Antonio José Camacho.
 
 | Carpeta | Oferta 2026-2 | Notas |
 |---|---|---|
-| `Programacion II/` | FI303204 · **341C** · mié **18:00–20:00** · Presencialidad asistida (120 min) | 13 sesiones / 15 temas (sesiones 8 y 10 dobles) · sin festivos · **reconstruido 2026-2** con `build_uniajc_prog2_all.py` · PI VetCare (Java) |
-| `Seminario de Sistemas/` | FI303301 · **341C** · jue **18:00–20:00** · Presencialidad asistida (120 min) | 13 sesiones / 15 temas (sesiones 8 y 10 dobles) · sin festivos · **reconstruido 2026-2** con `build_uniajc_seminario_all.py` · PI VetCare (diseño: requisitos, UML, wireframes) |
-| `Bases de Datos II/` | **641A-2** · lun **18:00–20:00** · Presencialidad asistida (120 min) | Curso nuevo · **FI303215** · 13 sesiones / 15 temas (sesiones 7 y 10 dobles) · 2 sesiones autónomas (12/10 y 02/11) · sesión 13 (16/11) = sustentaciones del PI · falta confirmación oficial de secretaría |
-| `Arquitectura de Sistemas Computacionales/` | lun **10:00–12:00** · Presencialidad asistida (120 min) | Curso nuevo · **FI303380 · 6303C** · 13 sesiones / 15 temas (sesiones 7 y 10 dobles) · 2 sesiones autónomas (12/10 y 02/11) · sesión 13 (16/11) = sustentaciones del PI · falta confirmación oficial de secretaría |
+| `Programacion II/` | FI303204 · **341C** · mié **18:00–20:00** · **Virtual** (120 min) | 13 sesiones / 15 temas (sesiones 8 y 10 dobles) · sin festivos · **reconstruido 2026-2** con `build_uniajc_prog2_all.py` · PI VetCare (Java) |
+| `Seminario de Sistemas/` | FI303301 · **341C** · jue **18:00–20:00** · **Virtual** (120 min) | 13 sesiones / 15 temas (sesiones 8 y 10 dobles) · sin festivos · **reconstruido 2026-2** con `build_uniajc_seminario_all.py` · PI VetCare (diseño: requisitos, UML, wireframes) |
+| `Bases de Datos II/` | **641A-2** · lun **18:00–20:00** · **Virtual** (120 min) | Curso nuevo · **FI303215** · 13 sesiones / 15 temas (sesiones 7 y 10 dobles) · 2 sesiones autónomas (12/10 y 02/11) · sesión 13 (16/11) = sustentaciones del PI · falta confirmación oficial de secretaría |
+| `Arquitectura de Sistemas Computacionales/` | lun **10:00–12:00** · **Virtual** (120 min) | Curso nuevo · **FI303380 · 6303C** · 13 sesiones / 15 temas (sesiones 7 y 10 dobles) · 2 sesiones autónomas (12/10 y 02/11) · sesión 13 (16/11) = sustentaciones del PI · falta confirmación oficial de secretaría |
 | `0. Base/` | — | Plantillas institucionales (Ing. Software 1) |
 
 ## Modalidad (regla única, 4 cursos)
 
-**Presencialidad asistida**, idéntica en los 4 cursos:
+**Virtual**, idéntica en los 4 cursos. **No hay sesiones presenciales en el campus**, ni
+siquiera los parciales:
 
 | Sesión | Modalidad |
 |---|---|
-| **Sesión 1** (encuadre) | **Presencial** síncrona |
-| **Parciales** (mié-jue: **5/9/13** · lun: **5/9/12**) | **Presencial** síncrona |
-| Resto de clases regulares | **Virtual** síncrona |
+| **Sesión 1** (encuadre) | **Virtual** síncrona (Google Meet) |
+| **Parciales** (mié-jue: **5/9/13** · lun: **5/9/12**) | **Virtual** síncrona |
+| Resto de sesiones regulares | **Virtual** síncrona |
 | Festivos | **Clase autónoma** (único caso asincrónico) |
-| **Sesión 13 de lunes** (16/11, BD II y Arquitectura) | **Sustentaciones del Proyecto Integrador** (no es parcial) |
+| **Sesión 13 de lunes** (16/11, BD II y Arquitectura) | **Sustentaciones del PI**, virtual en vivo (no es parcial) |
+
+El enlace de Meet es **el mismo toda la serie** de cada curso (ver `Manuales/01`). Antes la
+oferta fue «Presencialidad asistida» (Sesión 1 y parciales presenciales); si un documento
+todavía lo dice, está desactualizado.
 
 Fuente de verdad: `config/calendario/semestre_2026_2.json` → `regla_modalidad_sesion`.
 

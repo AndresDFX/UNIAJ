@@ -143,7 +143,7 @@ def portada_estudiante(doc, meta):
          align=WD_ALIGN_PARAGRAPH.CENTER, space_before=8)
     para(doc, f"Código {meta['codigo']}  ·  Grupo {meta['grupo']}  ·  Periodo {meta['periodo']}",
          size=11, bold=True, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER)
-    para(doc, f"Horario: {meta['horario']}  ·  Modalidad: Presencialidad asistida",
+    para(doc, f"Horario: {meta['horario']}  ·  Modalidad: Virtual (sesiones por Meet)",
          size=11, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER)
     para(doc, f"Docente: {DOCENTE}  ·  {CORREO}",
          size=10, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)

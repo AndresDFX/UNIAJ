@@ -116,7 +116,7 @@ def tema_txt(cl: dict) -> str:
 
 
 TIPO_LABEL = {
-    "presencial": "Presencial (síncrona)",
+    "presencial": "Presencial (síncrona)",   # sin uso en 2026-2 (modalidad Virtual)
     "virtual": "Virtual (síncrona)",
     "autonoma": "Autónoma (festivo)",
     "sustentacion": "Sustentación PI (festivo)",
@@ -173,7 +173,7 @@ def nota_sesion(cl: dict) -> str:
     if cl.get("tipo") == "sustentacion":
         notas.append("sesión de sustentaciones del Proyecto Integrador (no es parcial)")
     if cl.get("parcial"):
-        notas.append("parcial presencial síncrono")
+        notas.append("parcial virtual síncrono")
     if cl.get("sesion_doble"):
         notas.append(f"sesión doble: cubre {material(cl)} del material en un bloque de 120 min")
     return "; ".join(notas)
@@ -201,8 +201,8 @@ def logica_curso(meta: dict) -> str:
     partes = [
         f'**{meta["nombre"]}** ({meta["dia"]} {meta["horario"]}) · '
         f'Modalidad: {meta["modalidad"]}.',
-        f"Sesión 1 presencial (encuadre) · parciales en las sesiones **{nums}**, "
-        "presencial síncrono · resto de sesiones regulares virtual síncrona.",
+        f"Todas las sesiones son **virtual síncrona** por Google Meet, incluidos la "
+        f"Sesión 1 y los parciales (sesiones **{nums}**). No hay sesiones presenciales.",
     ]
     autonomas = [cl for cl in clases if cl["tipo"] == "autonoma"]
     if autonomas:
@@ -354,7 +354,7 @@ def metodologia_text(key: str, meta: dict) -> str:
         "Acuerdo sobre los aspectos metodológicos",
         f"Periodo 2026-2 · Grupo {meta['grupo']} · {meta['dia']} {meta['horario']} "
         f"({meta['duracion_min']} min).",
-        "Modalidad: Presencialidad asistida (Sesión 1 y parciales presencial síncrono · "
+        "Modalidad: Virtual (todas las sesiones virtual síncrona por Meet · "
         "resto de sesiones regulares virtual síncrona · festivos = clase autónoma).",
         extra["metodologia_base"],
         f"Calendario: 13 sesiones ({N_TEMAS} temas del microcurrículo) "
@@ -386,7 +386,7 @@ def eval_text(meta: dict) -> str:
     out = [
         "Acuerdo sobre los aspectos de evaluación",
         "(Cálculo teórico 2026-2 · 30% / 30% / 40% — validar en socialización con el grupo)",
-        "Parciales: presenciales y síncronos; NUNCA en festivo ni en clase autónoma. "
+        "Parciales: virtuales y síncronos; NUNCA en festivo ni en clase autónoma. "
         "Criterio: última sesión regular del corte.",
         "",
     ]
@@ -400,7 +400,7 @@ def eval_text(meta: dict) -> str:
         if p:
             out.append(
                 f"* {peso[pn]} Parcial {pn} (cierre de corte, Sesión {p['clase']} — "
-                f"{dmy(p['fecha'])}, presencial) | {detalle[pn]}"
+                f"{dmy(p['fecha'])}, virtual) | {detalle[pn]}"
             )
         out.append("")
     sust = meta.get("sustentacion_pi")
@@ -495,7 +495,7 @@ def fill_acuerdo(key: str, meta: dict) -> Path:
     note.add_run(
         f"Docente: {DOCENTE} · Correo: {CORREO} · "
         f'Horario: {meta["dia"]} {meta["horario"]} ({meta["duracion_min"]} min) · '
-        f'Modalidad: {meta["modalidad"]} (Sesión 1 y parciales presencial síncrono · '
+        f'Modalidad: {meta["modalidad"]} (todas las sesiones virtual síncrona · '
         "resto virtual síncrona · festivos = clase autónoma) · "
         f'Código: {meta["codigo"]} · '
         f"Periodo: {dmy(START)}–{dmy(END)} · 13 sesiones / {N_TEMAS} temas · "
@@ -525,7 +525,8 @@ def cortes_table(meta: dict) -> list[str]:
         c = CORTES[f"corte_{pn}"]
         p = parcial_de_corte(meta, pn)
         parcial = (
-            f"Parcial {pn} · Sesión {p['clase']} ({dmy(p['fecha'])}) · Presencial (síncrona)"
+            f"Parcial {pn} · Sesión {p['clase']} ({dmy(p['fecha'])}) · "
+            f"{TIPO_LABEL.get(p.get('tipo', 'virtual'), 'Virtual (síncrona)')}"
             if p
             else "—"
         )
@@ -547,7 +548,7 @@ def calendario_md(meta: dict) -> str:
         f'- **Grupo:** {meta["grupo"]}',
         f"- **Periodo:** 2026-2 · **{dmy(START)} – {dmy(END)}**",
         f'- **Horario:** {meta["dia"]} **{meta["horario"]}** ({meta["duracion_min"]} min)',
-        f'- **Modalidad:** **{meta["modalidad"]}** (Sesión 1 y parciales presencial síncrono · '
+        f'- **Modalidad:** {meta["modalidad"]} (todas las sesiones virtual síncrona · '
         "resto virtual síncrona · festivos = clase autónoma)",
         f"- **Docente:** {DOCENTE} · `{CORREO}`",
         f"- **Total sesiones:** {len(clases)} · **temas del microcurrículo:** {N_TEMAS} "
@@ -619,7 +620,7 @@ def cronograma_md(meta: dict) -> str:
         f'- **Código:** {meta["codigo"]} · **Grupo:** **{meta["grupo"]}**',
         f'- **Horario:** **{meta["dia"]} {meta["horario"]}** ({meta["duracion_min"]} min)',
         f"- **Periodo:** 2026-2 · **{dmy(START)} – {dmy(END)}**",
-        f'- **Modalidad:** **{meta["modalidad"]}** (Sesión 1 y parciales presencial síncrono · '
+        f'- **Modalidad:** {meta["modalidad"]} (todas las sesiones virtual síncrona · '
         "resto virtual síncrona · festivos = clase autónoma)",
         f"- **Sesiones:** **{len(clases)}** (cubren los **{N_TEMAS} temas** del curso; "
         "2 sesiones son dobles)",
@@ -685,7 +686,7 @@ def plan_head(meta: dict) -> str:
         f'- **Código:** {meta["codigo"]} · **Grupo:** **{meta["grupo"]}**',
         f"- **Periodo:** **2026-2** · **{dmy(START)} – {dmy(END)}**",
         f'- **Horario:** **{meta["dia"]} {meta["horario"]}** ({meta["duracion_min"]} min)',
-        f'- **Modalidad:** **{meta["modalidad"]}** (Sesión 1 y parciales presencial síncrono · '
+        f'- **Modalidad:** {meta["modalidad"]} (todas las sesiones virtual síncrona · '
         "resto virtual síncrona · festivos = clase autónoma)",
         f"- **Docente:** {DOCENTE} · `{CORREO}`",
         "- **Calendario:** `Plan curso/2026-2/CALENDARIO_2026-2.md` · "
@@ -704,7 +705,7 @@ def plan_head(meta: dict) -> str:
         logica_curso(meta),
         "",
         f"Parciales de este curso: Sesiones **{' / '.join(nums)}** "
-        f"({', '.join(fechas)}) — presencial síncrono.",
+        f"({', '.join(fechas)}) — virtual síncrono.",
         "",
         "> **Día de parcial = solo evaluación:** sin tema de trabajo dirigido nuevo.",
         "",
@@ -822,15 +823,25 @@ def patch_correo(meta: dict, path: Path) -> bool:
     txt = path.read_text(encoding="utf-8")
     orig = txt
     txt = txt.replace("10/08/2026 – 22/11/2026", f"{dmy(START)} – {dmy(END)}")
+    # La modalidad viaja en el asunto y en un bullet heredados: se reescriben desde el JSON
+    # para que no queden contradiciendo al resto del correo.
+    txt = re.sub(r"· (Presencialidad asistida|Virtual) · ",
+                 f'· {meta["modalidad"]} · ', txt)
+    txt = re.sub(r"^- \*\*Modalidad:\*\* .*$",
+                 f'- **Modalidad:** {meta["modalidad"]}',
+                 txt, count=1, flags=re.M)
     parc = meta.get("parciales", {})
     nums = [str(parc[f"parcial_{i}"]["clase"]) for i in (1, 2, 3) if f"parcial_{i}" in parc]
     dobles = [cl["n"] for cl in meta["clases"] if cl.get("sesion_doble")]
     dia = meta["dia"].lower()
     bullets = [
-        f"- **Modalidad por sesión:** **Sesión 1 presencial**; resto de sesiones regulares "
-        f"**virtual síncrona**; **parciales presencial** síncrono "
+        f"- **Modalidad por sesión:** todas las sesiones son **virtual síncrona** por "
+        f"Google Meet, incluidos la Sesión 1 y los parciales "
         f"(Sesiones {', '.join(nums[:-1])} y {nums[-1]}). Festivo → **clase autónoma**.",
-        f"- **Calendario:** **13 sesiones de {dia}** ({dmy(START)} – {dmy(END)}) que cubren los "
+        # Ojo: una sola negrita por bullet. "**Calendario:** **13 sesiones**" (dos negritas
+        # separadas por un espacio) hace que algunos renderizadores muestren los asteriscos.
+        f"- **Calendario:** {len(meta['clases'])} sesiones de {dia} "
+        f"({dmy(START)} – {dmy(END)}) que cubren los "
         f"{N_TEMAS} temas del curso; las Sesiones "
         + " y ".join(str(n) for n in dobles)
         + " son **dobles** (dos temas en el mismo bloque de 120 min).",
@@ -913,7 +924,7 @@ def fechas_clave_md(meta: dict) -> str:
         p = parc.get(f"parcial_{i}")
         if p:
             filas.append((f"Parcial {i}", dmy(p["fecha"]),
-                          f"Sesión {p['clase']} · presencial síncrono · solo evaluación"))
+                          f"Sesión {p['clase']} · virtual síncrono · solo evaluación"))
     sust = meta.get("sustentacion_pi")
     if sust:
         filas.append(("Sustentación del Proyecto Integrador", dmy(sust["fecha"]),
@@ -952,7 +963,7 @@ def fechas_clave_md(meta: dict) -> str:
     out += [
             "Cada evento empieza con el tipo de encuentro, para que sepan de un vistazo si "
             "tienen que conectarse a esa hora:", "",
-            "- **`[SINCRONICO]`** — hay encuentro en el horario del curso: presencial, "
+            "- **`[SINCRONICO]`** — hay encuentro en vivo por Meet en el horario del curso: "
             "virtual en vivo, parcial o sustentación. **Deben asistir.**",
             "- **`[AUTONOMO]`** — **no hay encuentro**. Es trabajo independiente guiado: "
             "les dejo el material y la actividad, y ustedes la resuelven por su cuenta "
@@ -1035,9 +1046,9 @@ def vocero_md() -> str:
         "",
         "**Una cosa que necesito de ustedes:** que el **vocero del grupo** me **responda "
         "este correo con su número de WhatsApp**. Lo uso solo para avisos urgentes del "
-        "curso (un cambio de sala, una caída de la plataforma el día de un parcial) y para "
-        "tener un canal directo con el grupo. Si todavía no han elegido vocero, lo "
-        "definimos en la primera clase y me escribe después.",
+        "curso (que el enlace de Meet falle, una caída de la plataforma el día de un "
+        "parcial) y para tener un canal directo con el grupo. Si todavía no han elegido "
+        "vocero, lo definimos en la primera clase y me escribe después.",
         "",
         MARCA_VOCERO[1],
     ])
@@ -1063,13 +1074,22 @@ def _bloques_gestionados(meta: dict, txt: str) -> str:
     txt = "\n".join(ln for ln in txt.splitlines()
                     if not ln.startswith("- **Entrega de talleres y evaluaciones:**"))
 
-    # Fechas clave: después de la lista de bullets, antes del bloque de contenido.
+    # Los bloques van despues de los bullets de cabecera y ANTES de la nota del dia 1,
+    # nunca al final: si el ancla no existe acaban despues de la firma, que es como se
+    # rompio una vez. Se prueban varias anclas de mas especifica a mas general.
     lineas = txt.splitlines()
-    corte = next((i for i, ln in enumerate(lineas)
-                  if ln.startswith("**Contenido de las clases**")), None)
+    ANCLAS = ("En el **día 1**", "**Contenido de las clases**", "Por favor **revisen",
+              "Nos vemos pronto")
+    corte = None
+    for ancla in ANCLAS:
+        corte = next((i for i, ln in enumerate(lineas) if ln.startswith(ancla)), None)
+        if corte is not None:
+            break
     if corte is None:
-        corte = next((i for i, ln in enumerate(lineas)
-                      if ln.startswith("Por favor **revisen")), len(lineas))
+        raise SystemExit(
+            "No encontre donde insertar los bloques del correo. Anclas probadas: "
+            + " / ".join(ANCLAS) + ". Revisa el correo antes de regenerar."
+        )
     lineas[corte:corte] = ["", fechas_clave_md(meta), "", carpetas_md(meta), "",
                            examlab_md(), ""]
 

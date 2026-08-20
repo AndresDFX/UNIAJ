@@ -4,7 +4,7 @@
 - **Código:** FI303215 · **Grupo:** **641A-2**
 - **Periodo:** **2026-2** · **24/08/2026 – 22/11/2026**
 - **Horario:** **Lunes 18:00 – 20:00** (120 min)
-- **Modalidad:** **Presencialidad asistida** (Sesión 1 y parciales presencial síncrono · resto virtual síncrona · festivos = clase autónoma)
+- **Modalidad:** Virtual (todas las sesiones virtual síncrona · resto virtual síncrona · festivos = clase autónoma)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
 - **Calendario:** `Plan curso/2026-2/CALENDARIO_2026-2.md` · `config/calendario/semestre_2026_2.json`
 
@@ -14,9 +14,9 @@ Semestre 2026-2 acortado: inicio **24/08/2026** (fin fijo **22/11/2026**) = **13
 
 Sesiones dobles de este curso: **Sesión 7** (05/10/2026) = Clase 7 + Clase 8 · **Sesión 10** (26/10/2026) = Clase 11 + Clase 12.
 
-**Bases de Datos II** (Lunes 18:00 – 20:00) · Modalidad: Presencialidad asistida. Sesión 1 presencial (encuadre) · parciales en las sesiones **5/9/12**, presencial síncrono · resto de sesiones regulares virtual síncrona. Festivos = clase autónoma, no se omiten: Sesión 8 (12/10/2026, Día de la Diversidad Étnica y Cultural) · Sesión 11 (02/11/2026, Todos los Santos). Sesión 13 (16/11/2026) se dedica a las **sustentaciones del Proyecto Integrador** (no es parcial). Día de parcial = solo evaluación. Los parciales NUNCA se programan en festivo ni en clase autónoma. Sesión 0 = Presentación del Curso (no es sesión temática).
+**Bases de Datos II** (Lunes 18:00 – 20:00) · Modalidad: Virtual. Todas las sesiones son **virtual síncrona** por Google Meet, incluidos la Sesión 1 y los parciales (sesiones **5/9/12**). No hay sesiones presenciales. Festivos = clase autónoma, no se omiten: Sesión 8 (12/10/2026, Día de la Diversidad Étnica y Cultural) · Sesión 11 (02/11/2026, Todos los Santos). Sesión 13 (16/11/2026) se dedica a las **sustentaciones del Proyecto Integrador** (no es parcial). Día de parcial = solo evaluación. Los parciales NUNCA se programan en festivo ni en clase autónoma. Sesión 0 = Presentación del Curso (no es sesión temática).
 
-Parciales de este curso: Sesiones **5 / 9 / 12** (21/09/2026, 19/10/2026, 09/11/2026) — presencial síncrono.
+Parciales de este curso: Sesiones **5 / 9 / 12** (21/09/2026, 19/10/2026, 09/11/2026) — virtual síncrono.
 
 > **Día de parcial = solo evaluación:** sin tema de trabajo dirigido nuevo.
 
@@ -28,18 +28,18 @@ Parciales de este curso: Sesiones **5 / 9 / 12** (21/09/2026, 19/10/2026, 09/11/
 
 | Sesión | Fecha | Tipo | Clase(s) de material | Tema (Trabajo dirigido) |
 |---|---|---|---|---|
-| 1 | 24/08/2026 | Presencial (síncrona) | Clase 1 | Diagnóstico · Revisión de Bases de Datos I (VetCare) |
+| 1 | 24/08/2026 | Virtual (síncrona) | Clase 1 | Diagnóstico · Revisión de Bases de Datos I (VetCare) |
 | 2 | 31/08/2026 | Virtual (síncrona) | Clase 2 | Administración de bases de datos |
 | 3 | 07/09/2026 | Virtual (síncrona) | Clase 3 | Procedimientos almacenados |
 | 4 | 14/09/2026 | Virtual (síncrona) | Clase 4 | Funciones y disparadores · Seguridad y respaldo |
-| 5 | 21/09/2026 | Presencial (síncrona) | Clase 5 | **Parcial 1** (solo evaluación) |
+| 5 | 21/09/2026 | Virtual (síncrona) | Clase 5 | **Parcial 1** (solo evaluación) |
 | 6 | 28/09/2026 | Virtual (síncrona) | Clase 6 | Optimización de consultas |
 | 7 | 05/10/2026 | Virtual (síncrona) | Clase 7 + Clase 8 **(doble)** | Índices y particionamiento + Tuning y gestión de transacciones |
 | 8 | 12/10/2026 | Autónoma (festivo) | Clase 10 | Control de concurrencia |
-| 9 | 19/10/2026 | Presencial (síncrona) | Clase 9 | **Parcial 2** (solo evaluación) |
+| 9 | 19/10/2026 | Virtual (síncrona) | Clase 9 | **Parcial 2** (solo evaluación) |
 | 10 | 26/10/2026 | Virtual (síncrona) | Clase 11 + Clase 12 **(doble)** | Avance del proyecto final + Integración de apps externas y preparación final |
 | 11 | 02/11/2026 | Autónoma (festivo) | Clase 13 | Análisis de casos reales |
-| 12 | 09/11/2026 | Presencial (síncrona) | Clase 14 | **Parcial 3** (solo evaluación) |
+| 12 | 09/11/2026 | Virtual (síncrona) | Clase 14 | **Parcial 3** (solo evaluación) |
 | 13 | 16/11/2026 | Sustentación PI (festivo) | Clase 15 | Presentación del proyecto y cierre (sustentaciones PI) |
 
 ## Evaluación teórica (Acuerdo 2026-2)

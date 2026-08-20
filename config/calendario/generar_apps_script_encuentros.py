@@ -210,11 +210,17 @@ function crearEncuentros() {{
     return;
   }}
 
-  var eventos = [], creados = 0, reusados = 0;
+  var eventos = [], creados = 0, reusados = 0, invAgregados = 0;
   for (var i = 0; i < SESIONES.length; i++) {{
     var s = SESIONES[i];
     var ya = _buscarEvento_(cal, s);
-    if (ya) {{ eventos.push(ya); reusados++; continue; }}
+    if (ya) {{
+      // El evento ya existe. Hay que SINCRONIZAR los invitados: si llego una nomina nueva,
+      // un estudiante que entro tarde no recibiria invitacion nunca (los invitados solo se
+      // pasan al crear el evento).
+      invAgregados += _sincronizarInvitados_(ya);
+      eventos.push(ya); reusados++; continue;
+    }}
     eventos.push(cal.createEvent(s.subject, _fecha(s.fecha, s.ini), _fecha(s.fecha, s.fin), {{
       description: s.desc,
       guests: INVITADOS.join(','),
@@ -224,6 +230,10 @@ function crearEncuentros() {{
     Utilities.sleep(300);   // no atropellar la cuota
   }}
   Logger.log('Eventos: ' + creados + ' creado(s) · ' + reusados + ' ya existía(n).');
+  if (invAgregados) {{
+    Logger.log('Invitados agregados a eventos que ya existían: ' + invAgregados +
+               ' (nómina nueva).');
+  }}
 
   var semilla = null;
   for (var k = 0; k < eventos.length; k++) {{ if (SESIONES[k].meet) {{ semilla = eventos[k]; break; }} }}
@@ -246,6 +256,27 @@ function crearEncuentros() {{
   Logger.log('  config/calendario/semestre_' + {periodo_us} + '.json -> cursos.<curso>.meet');
   Logger.log('  ' + url);
   Logger.log('y regenera para que el correo de bienvenida lo publique.');
+}}
+
+/**
+ * Agrega al evento los invitados de INVITADOS que todavia no esten. Devuelve cuantos agrego.
+ * Necesario porque `createEvent` solo pone invitados al crear: sin esto, una nomina nueva no
+ * llegaria nunca a los eventos ya creados.
+ */
+function _sincronizarInvitados_(evento) {{
+  var actuales = {{}};
+  var lista = evento.getGuestList();
+  for (var i = 0; i < lista.length; i++) {{
+    actuales[String(lista[i].getEmail()).toLowerCase()] = true;
+  }}
+  var n = 0;
+  for (var j = 0; j < INVITADOS.length; j++) {{
+    if (!actuales[String(INVITADOS[j]).toLowerCase()]) {{
+      try {{ evento.addGuest(INVITADOS[j]); n++; }}
+      catch (e) {{ Logger.log('AVISO: no pude invitar a un estudiante: ' + e); }}
+    }}
+  }}
+  return n;
 }}
 
 /** Borra los eventos de esta serie. NO olvida la sala (para eso, olvidarSalaMeet). */

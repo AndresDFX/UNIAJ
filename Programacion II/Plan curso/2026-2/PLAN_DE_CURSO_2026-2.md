@@ -4,7 +4,7 @@
 - **Código:** FI303204 · **Grupo:** **341C**
 - **Periodo:** **2026-2** · **24/08/2026 – 22/11/2026**
 - **Horario:** **Miércoles 18:00 – 20:00** (120 min)
-- **Modalidad:** **Presencialidad asistida** (Sesión 1 y parciales presencial síncrono · resto virtual síncrona · festivos = clase autónoma)
+- **Modalidad:** Virtual (todas las sesiones virtual síncrona · resto virtual síncrona · festivos = clase autónoma)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
 - **Calendario:** `Plan curso/2026-2/CALENDARIO_2026-2.md` · `config/calendario/semestre_2026_2.json`
 
@@ -14,9 +14,9 @@ Semestre 2026-2 acortado: inicio **24/08/2026** (fin fijo **22/11/2026**) = **13
 
 Sesiones dobles de este curso: **Sesión 8** (14/10/2026) = Clase 8 + Clase 9 · **Sesión 10** (28/10/2026) = Clase 11 + Clase 12.
 
-**Programación II** (Miércoles 18:00 – 20:00) · Modalidad: Presencialidad asistida. Sesión 1 presencial (encuadre) · parciales en las sesiones **5/9/13**, presencial síncrono · resto de sesiones regulares virtual síncrona. No hay festivos en miércoles: todas las sesiones son regulares. Día de parcial = solo evaluación. Los parciales NUNCA se programan en festivo ni en clase autónoma. Sesión 0 = Presentación del Curso (no es sesión temática).
+**Programación II** (Miércoles 18:00 – 20:00) · Modalidad: Virtual. Todas las sesiones son **virtual síncrona** por Google Meet, incluidos la Sesión 1 y los parciales (sesiones **5/9/13**). No hay sesiones presenciales. No hay festivos en miércoles: todas las sesiones son regulares. Día de parcial = solo evaluación. Los parciales NUNCA se programan en festivo ni en clase autónoma. Sesión 0 = Presentación del Curso (no es sesión temática).
 
-Parciales de este curso: Sesiones **5 / 9 / 13** (23/09/2026, 21/10/2026, 18/11/2026) — presencial síncrono.
+Parciales de este curso: Sesiones **5 / 9 / 13** (23/09/2026, 21/10/2026, 18/11/2026) — virtual síncrono.
 
 > **Día de parcial = solo evaluación:** sin tema de trabajo dirigido nuevo.
 
@@ -26,19 +26,19 @@ Parciales de este curso: Sesiones **5 / 9 / 13** (23/09/2026, 21/10/2026, 18/11/
 
 | Sesión | Fecha | Tipo | Clase(s) de material | Tema (Trabajo dirigido) |
 |---|---|---|---|---|
-| 1 | 26/08/2026 | Presencial (síncrona) | Clase 1 | Presentación del curso · Introducción a POO (+ diagnóstico) |
+| 1 | 26/08/2026 | Virtual (síncrona) | Clase 1 | Presentación del curso · Introducción a POO (+ diagnóstico) |
 | 2 | 02/09/2026 | Virtual (síncrona) | Clase 2 | Colecciones dinámicas ArrayList |
 | 3 | 09/09/2026 | Virtual (síncrona) | Clase 3 | Pilas y colas |
 | 4 | 16/09/2026 | Virtual (síncrona) | Clase 4 | Mapas y conjuntos · Interfaces gráficas GUI |
-| 5 | 23/09/2026 | Presencial (síncrona) | Clase 5 | **Parcial 1** (solo evaluación) |
+| 5 | 23/09/2026 | Virtual (síncrona) | Clase 5 | **Parcial 1** (solo evaluación) |
 | 6 | 30/09/2026 | Virtual (síncrona) | Clase 6 | Eventos y controladores (ActionListener) |
 | 7 | 07/10/2026 | Virtual (síncrona) | Clase 7 | Patrones de diseño (Singleton y Factory) |
 | 8 | 14/10/2026 | Virtual (síncrona) | Clase 8 + Clase 9 **(doble)** | Documentación y QA (Javadoc y pruebas) + Refactorización con IA y persistencia de archivos |
-| 9 | 21/10/2026 | Presencial (síncrona) | Clase 10 | **Parcial 2** (solo evaluación) |
+| 9 | 21/10/2026 | Virtual (síncrona) | Clase 10 | **Parcial 2** (solo evaluación) |
 | 10 | 28/10/2026 | Virtual (síncrona) | Clase 11 + Clase 12 **(doble)** | Revisión de código cruzada + Integración de módulos |
 | 11 | 04/11/2026 | Virtual (síncrona) | Clase 13 | Control de excepciones |
 | 12 | 11/11/2026 | Virtual (síncrona) | Clase 14 | Preparación presentación final |
-| 13 | 18/11/2026 | Presencial (síncrona) | Clase 15 | **Parcial 3** (solo evaluación) |
+| 13 | 18/11/2026 | Virtual (síncrona) | Clase 15 | **Parcial 3** (solo evaluación) |
 
 ## Evaluación teórica (Acuerdo 2026-2)
 

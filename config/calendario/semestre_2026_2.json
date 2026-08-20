@@ -17,7 +17,7 @@
     "2026-11-02": "Todos los Santos",
     "2026-11-16": "Independencia de Cartagena"
   },
-  "logica_evaluacion": "Modalidad POR CURSO (2026-2, semestre acortado a 13 sesiones). Prog II (mie): Clase 1 + parciales 5/9/13 presencial · resto virtual · festivos autonoma. Seminario (jue): regulares (incl. Clase 1) virtual · parciales 5/9/13 presencial · festivos autonoma. Arquitectura (lun 10:00): Clase 1 + parciales 5/9/12 presencial · clase 13 (16-nov) sustentaciones del PI · resto virtual · festivos autonoma. BD II (lun 18:00-20:00 · 641A-2): Presencialidad asistida · ver tipo por sesion en CSV · parciales 5/9/12 presencial sincronos · clase 13 (16-nov) sustentaciones del PI · festivos autonoma. Dia de parcial = solo evaluacion. Parciales NUNCA en festivo/autonoma. Sesion 0 = Presentacion del Curso; Clase 1 = diagnostico + tema intro. 15 temas en 13 sesiones (2 sesiones dobles).",
+  "logica_evaluacion": "Modalidad POR CURSO (2026-2, semestre acortado a 13 sesiones). Prog II (mie): Clase 1 + parciales 5/9/13 virtual sincrono · resto virtual · festivos autonoma. Seminario (jue): regulares (incl. Clase 1) virtual · parciales 5/9/13 virtual sincrono · festivos autonoma. Arquitectura (lun 10:00): Clase 1 + parciales 5/9/12 virtual sincrono · clase 13 (16-nov) sustentaciones del PI · resto virtual · festivos autonoma. BD II (lun 18:00-20:00 · 641A-2): Virtual · ver tipo por sesion en CSV · parciales 5/9/12 virtual sincrono sincronos · clase 13 (16-nov) sustentaciones del PI · festivos autonoma. Dia de parcial = solo evaluacion. Parciales NUNCA en festivo/autonoma. Sesion 0 = Presentacion del Curso; Clase 1 = diagnostico + tema intro. 15 temas en 13 sesiones (2 sesiones dobles).",
   "cortes_teoricos": {
     "corte_1": {
       "pct": "30%",
@@ -53,13 +53,13 @@
       "dia": "Miércoles",
       "horario": "18:00 – 20:00",
       "duracion_min": 120,
-      "modalidad": "Presencialidad asistida",
+      "modalidad": "Virtual",
       "n_clases": 13,
       "clases": [
         {
           "n": 1,
           "fecha": "2026-08-26",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": false,
           "clases_material": [
@@ -107,7 +107,7 @@
         {
           "n": 5,
           "fecha": "2026-09-23",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": true,
           "parcial_n": 1,
@@ -157,7 +157,7 @@
         {
           "n": 9,
           "fecha": "2026-10-21",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": true,
           "parcial_n": 2,
@@ -207,7 +207,7 @@
         {
           "n": 13,
           "fecha": "2026-11-18",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": true,
           "parcial_n": 3,
@@ -225,21 +225,21 @@
         "parcial_1": {
           "clase": 5,
           "fecha": "2026-09-23",
-          "tipo": "presencial"
+          "tipo": "virtual"
         },
         "parcial_2": {
           "clase": 9,
           "fecha": "2026-10-21",
-          "tipo": "presencial"
+          "tipo": "virtual"
         },
         "parcial_3": {
           "clase": 13,
           "fecha": "2026-11-18",
-          "tipo": "presencial"
+          "tipo": "virtual"
         }
       },
       "calendario_csv": "Programacion II/Plan curso/2026-2/calendario_eventos_2026-2.csv",
-      "regla_modalidad_sesion": "Uniforme en los 4 cursos (Presencialidad asistida): Clase 1 PRESENCIAL (encuadre) · parciales PRESENCIAL sincrono · resto de clases regulares VIRTUAL SINCRONA · festivos = clase AUTONOMA. No hay sesiones asincronas fuera de los festivos.",
+      "regla_modalidad_sesion": "Uniforme en los 4 cursos (modalidad VIRTUAL): todas las sesiones regulares, la Sesion 1 y los parciales son VIRTUAL SINCRONA por Google Meet. Festivos = clase AUTONOMA (unico caso asincronico). La sesion de sustentaciones del PI tambien es virtual sincrona. No hay sesiones presenciales en el campus.",
       "n_temas": 15,
       "nota_compresion": "Semestre acortado: inicio 2026-08-24 (fin fijo 2026-11-22) = 13 sesiones. Los 15 temas del microcurriculo se conservan: 2 sesiones son dobles (dos temas afines en un bloque). Ver CALENDARIO del curso para el mapeo sesion -> tema(s).",
       "mapa_sesion_tema": "13 sesiones cubren los 15 temas del microcurriculo. clases_material = numero de \"Clase N\" del material ya construido (carpetas Clases/ y Kit docente/ NO se renumeran). Las 2 sesiones dobles van en sesiones con clase en vivo; las autonomas por festivo llevan un solo tema.",
@@ -263,13 +263,13 @@
       "dia": "Jueves",
       "horario": "18:00 – 20:00",
       "duracion_min": 120,
-      "modalidad": "Presencialidad asistida",
+      "modalidad": "Virtual",
       "n_clases": 13,
       "clases": [
         {
           "n": 1,
           "fecha": "2026-08-27",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": false,
           "clases_material": [
@@ -317,7 +317,7 @@
         {
           "n": 5,
           "fecha": "2026-09-24",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": true,
           "parcial_n": 1,
@@ -367,7 +367,7 @@
         {
           "n": 9,
           "fecha": "2026-10-22",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": true,
           "parcial_n": 2,
@@ -417,7 +417,7 @@
         {
           "n": 13,
           "fecha": "2026-11-19",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": true,
           "parcial_n": 3,
@@ -435,21 +435,21 @@
         "parcial_1": {
           "clase": 5,
           "fecha": "2026-09-24",
-          "tipo": "presencial"
+          "tipo": "virtual"
         },
         "parcial_2": {
           "clase": 9,
           "fecha": "2026-10-22",
-          "tipo": "presencial"
+          "tipo": "virtual"
         },
         "parcial_3": {
           "clase": 13,
           "fecha": "2026-11-19",
-          "tipo": "presencial"
+          "tipo": "virtual"
         }
       },
       "calendario_csv": "Seminario de Sistemas/Plan curso/2026-2/calendario_eventos_2026-2.csv",
-      "regla_modalidad_sesion": "Uniforme en los 4 cursos (Presencialidad asistida): Clase 1 PRESENCIAL (encuadre) · parciales PRESENCIAL sincrono · resto de clases regulares VIRTUAL SINCRONA · festivos = clase AUTONOMA. No hay sesiones asincronas fuera de los festivos.",
+      "regla_modalidad_sesion": "Uniforme en los 4 cursos (modalidad VIRTUAL): todas las sesiones regulares, la Sesion 1 y los parciales son VIRTUAL SINCRONA por Google Meet. Festivos = clase AUTONOMA (unico caso asincronico). La sesion de sustentaciones del PI tambien es virtual sincrona. No hay sesiones presenciales en el campus.",
       "n_temas": 15,
       "nota_compresion": "Semestre acortado: inicio 2026-08-24 (fin fijo 2026-11-22) = 13 sesiones. Los 15 temas del microcurriculo se conservan: 2 sesiones son dobles (dos temas afines en un bloque). Ver CALENDARIO del curso para el mapeo sesion -> tema(s).",
       "mapa_sesion_tema": "13 sesiones cubren los 15 temas del microcurriculo. clases_material = numero de \"Clase N\" del material ya construido (carpetas Clases/ y Kit docente/ NO se renumeran). Las 2 sesiones dobles van en sesiones con clase en vivo; las autonomas por festivo llevan un solo tema.",
@@ -473,13 +473,13 @@
       "dia": "Lunes",
       "horario": "18:00 – 20:00",
       "duracion_min": 120,
-      "modalidad": "Presencialidad asistida",
+      "modalidad": "Virtual",
       "n_clases": 13,
       "clases": [
         {
           "n": 1,
           "fecha": "2026-08-24",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": false,
           "clases_material": [
@@ -527,7 +527,7 @@
         {
           "n": 5,
           "fecha": "2026-09-21",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": true,
           "parcial_n": 1,
@@ -577,7 +577,7 @@
         {
           "n": 9,
           "fecha": "2026-10-19",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": true,
           "parcial_n": 2,
@@ -615,7 +615,7 @@
         {
           "n": 12,
           "fecha": "2026-11-09",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": true,
           "parcial_n": 3,
@@ -646,21 +646,21 @@
         "parcial_1": {
           "clase": 5,
           "fecha": "2026-09-21",
-          "tipo": "presencial"
+          "tipo": "virtual"
         },
         "parcial_2": {
           "clase": 9,
           "fecha": "2026-10-19",
-          "tipo": "presencial"
+          "tipo": "virtual"
         },
         "parcial_3": {
           "clase": 12,
           "fecha": "2026-11-09",
-          "tipo": "presencial"
+          "tipo": "virtual"
         }
       },
       "calendario_csv": "Bases de Datos II/Plan curso/2026-2/calendario_eventos_2026-2.csv",
-      "regla_modalidad_sesion": "Uniforme en los 4 cursos (Presencialidad asistida): Clase 1 PRESENCIAL (encuadre) · parciales PRESENCIAL sincrono · resto de clases regulares VIRTUAL SINCRONA · festivos = clase AUTONOMA. No hay sesiones asincronas fuera de los festivos.",
+      "regla_modalidad_sesion": "Uniforme en los 4 cursos (modalidad VIRTUAL): todas las sesiones regulares, la Sesion 1 y los parciales son VIRTUAL SINCRONA por Google Meet. Festivos = clase AUTONOMA (unico caso asincronico). La sesion de sustentaciones del PI tambien es virtual sincrona. No hay sesiones presenciales en el campus.",
       "n_temas": 15,
       "nota_compresion": "Semestre acortado: inicio 2026-08-24 (fin fijo 2026-11-22) = 13 sesiones. Los 15 temas del microcurriculo se conservan: 2 sesiones son dobles (dos temas afines en un bloque). Ver CALENDARIO del curso para el mapeo sesion -> tema(s).",
       "sustentacion_pi": {
@@ -690,14 +690,14 @@
       "dia": "Lunes",
       "horario": "10:00 – 12:00",
       "duracion_min": 120,
-      "modalidad": "Presencialidad asistida",
-      "regla_modalidad_sesion": "Uniforme en los 4 cursos (Presencialidad asistida): Clase 1 PRESENCIAL (encuadre) · parciales PRESENCIAL sincrono · resto de clases regulares VIRTUAL SINCRONA · festivos = clase AUTONOMA. No hay sesiones asincronas fuera de los festivos.",
+      "modalidad": "Virtual",
+      "regla_modalidad_sesion": "Uniforme en los 4 cursos (modalidad VIRTUAL): todas las sesiones regulares, la Sesion 1 y los parciales son VIRTUAL SINCRONA por Google Meet. Festivos = clase AUTONOMA (unico caso asincronico). La sesion de sustentaciones del PI tambien es virtual sincrona. No hay sesiones presenciales en el campus.",
       "n_clases": 13,
       "clases": [
         {
           "n": 1,
           "fecha": "2026-08-24",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": false,
           "clases_material": [
@@ -745,7 +745,7 @@
         {
           "n": 5,
           "fecha": "2026-09-21",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": true,
           "parcial_n": 1,
@@ -795,7 +795,7 @@
         {
           "n": 9,
           "fecha": "2026-10-19",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": true,
           "parcial_n": 2,
@@ -833,7 +833,7 @@
         {
           "n": 12,
           "fecha": "2026-11-09",
-          "tipo": "presencial",
+          "tipo": "virtual",
           "festivo": null,
           "parcial": true,
           "parcial_n": 3,
@@ -864,17 +864,17 @@
         "parcial_1": {
           "clase": 5,
           "fecha": "2026-09-21",
-          "tipo": "presencial"
+          "tipo": "virtual"
         },
         "parcial_2": {
           "clase": 9,
           "fecha": "2026-10-19",
-          "tipo": "presencial"
+          "tipo": "virtual"
         },
         "parcial_3": {
           "clase": 12,
           "fecha": "2026-11-09",
-          "tipo": "presencial"
+          "tipo": "virtual"
         }
       },
       "calendario_csv": "Arquitectura de Sistemas Computacionales/Plan curso/2026-2/calendario_eventos_2026-2.csv",
@@ -900,15 +900,15 @@
       "meet": ""
     }
   },
-  "modalidad_cursos": "Presencialidad asistida (Clase 1 y parciales presencial · resto virtual sincrona · festivos autonoma)",
+  "modalidad_cursos": "Virtual (todas las sesiones virtual sincrona por Meet · festivos clase autonoma)",
   "tipos_clase": [
     "presencial",
     "virtual",
     "autonoma",
     "sustentacion"
   ],
-  "regla_parciales": "Criterio de modalidad por sesion (2026-2 acortado): modalidad del curso = Presencialidad asistida. Prog II (miercoles) y Seminario (jueves): Clase 1 presencial (Prog II) / virtual (Seminario) · clases regulares virtual sincrona · parciales 5/9/13 presencial sincrono. BD II / Arquitectura (lunes): parciales 5/9/12 presencial sincrono · clase 13 sustentaciones del PI. Festivos = clase autonoma (sin parcial). Los parciales NUNCA se programan en dia festivo ni en clase autonoma.",
-  "regla_modalidad_sesion": "Uniforme en los 4 cursos (Presencialidad asistida): Clase 1 PRESENCIAL (encuadre) · parciales PRESENCIAL sincrono · resto de clases regulares VIRTUAL SINCRONA · festivos = clase AUTONOMA. No hay sesiones asincronas fuera de los festivos.",
+  "regla_parciales": "Modalidad VIRTUAL en los 4 cursos: los parciales se presentan VIRTUAL SINCRONO, no en el campus. Dia de parcial = solo evaluacion. Los parciales NUNCA se programan en dia festivo ni en clase autonoma; si el cierre teorico del corte cae en festivo/autonoma, el parcial se mueve a la ultima sesion regular anterior del mismo corte.",
+  "regla_modalidad_sesion": "Uniforme en los 4 cursos (modalidad VIRTUAL): todas las sesiones regulares, la Sesion 1 y los parciales son VIRTUAL SINCRONA por Google Meet. Festivos = clase AUTONOMA (unico caso asincronico). La sesion de sustentaciones del PI tambien es virtual sincrona. No hay sesiones presenciales en el campus.",
   "regla_parcial_solo_eval": "Día de parcial = solo evaluación; sin tema de trabajo dirigido nuevo. No mezclar tema técnico · Parcial N. La prep del PI va en la clase regular anterior.",
   "_nota_semestre_acortado": "Inicio movido de 2026-08-10 a 2026-08-24 (semana del 24 de agosto) por decision institucional/docente; la fecha fin NO se mueve (2026-11-22). Resultado: 13 sesiones por curso en vez de 15. Los 15 temas se conservan comprimiendo 2 sesiones dobles. Parciales: Prog II y Seminario en clases 5/9/13; BD II y Arquitectura en clases 5/9/12, con la clase 13 (2026-11-16) dedicada a sustentaciones del proyecto final.",
   "_nota_carpetas_drive": "carpetas_drive por curso: 'clases' = carpeta compartida con el material del curso; 'grabadas' = carpeta donde se archivan las grabaciones de Meet. Las URL se guardan canonicas (sin ?usp= y sin /u/0/, que es el indice de cuenta del docente). El id se usa en el Apps Script que mueve las grabaciones.",

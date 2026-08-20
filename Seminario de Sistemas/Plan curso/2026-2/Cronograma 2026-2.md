@@ -5,26 +5,26 @@ Documento para estudiantes (carpeta compartida `Clases/`).
 - **Código:** FI303301 · **Grupo:** **341C**
 - **Horario:** **Jueves 18:00 – 20:00** (120 min)
 - **Periodo:** 2026-2 · **24/08/2026 – 22/11/2026**
-- **Modalidad:** **Presencialidad asistida** (Sesión 1 y parciales presencial síncrono · resto virtual síncrona · festivos = clase autónoma)
+- **Modalidad:** Virtual (todas las sesiones virtual síncrona · resto virtual síncrona · festivos = clase autónoma)
 - **Sesiones:** **13** (cubren los **15 temas** del curso; 2 sesiones son dobles)
 
 > El **día 1** incluye la **Sesión 0** (Presentación del curso: acuerdo, logística, Padlet, evaluación, socialización del Proyecto Integrador) **y** el arranque temático.
 
 | Sesión | Fecha | Tipo | Tema | Material | Parcial |
 |---|---|---|---|---|---|
-| 1 | 27/08/2026 | Presencial (síncrona) | Presentación del curso · Conceptos iniciales | Clase 1 | no |
+| 1 | 27/08/2026 | Virtual (síncrona) | Presentación del curso · Conceptos iniciales | Clase 1 | no |
 | 2 | 03/09/2026 | Virtual (síncrona) | Ciclos de vida del software | Clase 2 | no |
 | 3 | 10/09/2026 | Virtual (síncrona) | Metodologías tradicionales | Clase 3 | no |
 | 4 | 17/09/2026 | Virtual (síncrona) | Metodologías ágiles | Clase 4 | no |
-| 5 | 24/09/2026 | Presencial (síncrona) | PARCIAL 1 (solo evaluación) | Clase 5 | sí |
+| 5 | 24/09/2026 | Virtual (síncrona) | PARCIAL 1 (solo evaluación) | Clase 5 | sí |
 | 6 | 01/10/2026 | Virtual (síncrona) | Requerimientos de software | Clase 6 | no |
 | 7 | 08/10/2026 | Virtual (síncrona) | Historias de usuario | Clase 7 | no |
 | 8 | 15/10/2026 | Virtual (síncrona) | **Sesión doble** · Introducción a UML + Casos de uso | Clase 8 + Clase 9 | no |
-| 9 | 22/10/2026 | Presencial (síncrona) | PARCIAL 2 (solo evaluación) | Clase 10 | sí |
+| 9 | 22/10/2026 | Virtual (síncrona) | PARCIAL 2 (solo evaluación) | Clase 10 | sí |
 | 10 | 29/10/2026 | Virtual (síncrona) | **Sesión doble** · Avance proyecto integrador + Diagramas UML avanzados | Clase 11 + Clase 12 | no |
 | 11 | 05/11/2026 | Virtual (síncrona) | Diseño de interfaces | Clase 13 | no |
 | 12 | 12/11/2026 | Virtual (síncrona) | Preparación de la sustentación y cierre | Clase 14 | no |
-| 13 | 19/11/2026 | Presencial (síncrona) | PARCIAL 3 (solo evaluación) | Clase 15 | sí |
+| 13 | 19/11/2026 | Virtual (síncrona) | PARCIAL 3 (solo evaluación) | Clase 15 | sí |
 
 ## Evaluación por cortes
 

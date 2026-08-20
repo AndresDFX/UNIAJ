@@ -81,7 +81,7 @@ def build():
             "Código: **FI303380** · Grupo: **6303C** · Periodo: **2026-2**",
             "Programa: Ingeniería de Sistemas · Facultad de Ingeniería · UNIAJC",
             "Horario: **Lunes 10:00 – 12:00** (120 min)",
-            "Modalidad: **Presencialidad asistida**",
+            "Modalidad: **Virtual**",
             "Docente: Julian Andres Castaño",
         ],
         inicio_clase="10:10",

@@ -57,13 +57,16 @@ Espejo canónico también en `.claude/agents/disenador-curricular-uniajc.md` —
 
    | Sesión | Modalidad |
    |---|---|
-   | **Clase 1** (encuadre) | **Presencial** síncrona |
-   | **Parciales** | **Presencial** síncrona |
-   | Resto de clases regulares | **Virtual** síncrona |
+   | **Sesión 1** (encuadre) | **Virtual** síncrona (Google Meet) |
+   | **Parciales** | **Virtual** síncrona |
+   | Resto de sesiones regulares | **Virtual** síncrona |
+   | Sustentación del PI | **Virtual** síncrona, en vivo |
    | Festivos | **Clase autónoma** (único caso asincrónico) |
 
-   Bajo la figura institucional **«Presencialidad asistida»**. No inventes variantes
-   por curso ni por día: si un documento dice otra cosa, está desactualizado.
+   La oferta 2026-2 es **Virtual**: no hay sesiones presenciales en el campus, ni siquiera
+   los parciales. Antes fue «Presencialidad asistida» (Sesión 1 y parciales presenciales);
+   si un documento dice eso, está desactualizado. No inventes variantes por curso ni por
+   día: el tipo real de cada sesión está en `clases[].tipo` del JSON.
 
 5. Marca: `#095292` · `#269CCB` · `#FFD000` · motor `uniajc_slides_engine.py`.
 6. Confirma breve:

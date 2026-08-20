@@ -24,23 +24,23 @@ alwaysApply: true
 
 | Curso | Oferta | Por sesión |
 |---|---|---|
-| **Programación II** (mié 18:00–20:00) | Presencialidad asistida | Sesión 1 + parciales (5/9/13) **presencial**; resto **virtual** síncrona; sin festivos en miércoles |
-| **Seminario** (jue 18:00–20:00) | Presencialidad asistida | Sesión 1 + parciales (5/9/13) **presencial**; resto **virtual** síncrona; sin festivos en jueves |
-| **Arquitectura** (lun 10:00–12:00 · 6303C) | Presencialidad asistida | Sesión 1 + parciales (5/9/12) **presencial**; resto **virtual**; sesiones **8 y 11 autónomas**; **sesión 13 = sustentaciones PI** |
-| **BD II** (lun **18:00–20:00** · 641A-2) | Presencialidad asistida | Sesión 1 + parciales (5/9/12) **presencial**; resto **virtual**; sesiones **8 y 11 autónomas**; **sesión 13 = sustentaciones PI** |
+| **Programación II** (mié 18:00–20:00) | **Virtual** | Todas las sesiones virtual síncrona por Meet, incluidos la Sesión 1 y los parciales (5/9/13); sin festivos en miércoles |
+| **Seminario** (jue 18:00–20:00) | **Virtual** | Todas las sesiones virtual síncrona por Meet, incluidos la Sesión 1 y los parciales (5/9/13); sin festivos en jueves |
+| **Arquitectura** (lun 10:00–12:00 · 6303C) | **Virtual** | Todas las sesiones virtual síncrona por Meet, incluidos la Sesión 1 y los parciales (5/9/12); sesiones **8 y 11 autónomas**; **sesión 13 = sustentaciones PI** |
+| **BD II** (lun **18:00–20:00** · 641A-2) | **Virtual** | Todas las sesiones virtual síncrona por Meet, incluidos la Sesión 1 y los parciales (5/9/12); sesiones **8 y 11 autónomas**; **sesión 13 = sustentaciones PI** |
 
 Cortes teóricos (validar en Acuerdo): **30% / 30% / 40%**
 
-- Corte 1: 10/08–13/09 · clases 1–5 · Parcial 1 en última regular (mié/jue: Clase 5; lun: Clase 5)
-- Corte 2: 14/09–18/10 · clases 6–10 · Parcial 2 en última regular (mié/jue: Clase 10; lun: **Clase 9**, no 10 festivo)
-- Corte 3: 19/10–22/11 · clases 11–15 · Parcial 3 en última regular (mié/jue: Clase 15; lun: **Clase 14**, no 15 festivo)
+- Corte 1 (30%): 24/08–27/09 · sesiones 1-5 · Parcial 1 en la **sesión 5** (mié/jue y lun)
+- Corte 2 (30%): 28/09–25/10 · sesiones 6-9 · Parcial 2 en la **sesión 9** (los 4 cursos)
+- Corte 3 (40%): 26/10–22/11 · sesiones 10-13 · Parcial 3 en la **sesión 13** (mié/jue) y en la **sesión 12** (lun; la 13 es de sustentaciones del PI)
 - Desglose: C1/C2 = 10% Parcial + 10% Talleres/Quiz + 10% Asistencia; C3 = 15% Parcial + 20% PI + 5% Asistencia
 
 ## Cursos activos 2026-2
 
 1. **Programación II** (FI303204 · grupo **341C** · mié **18:00–20:00** · **120 min**)
 2. **Seminario de Sistemas** (FI303301 · grupo **341C** · jue **18:00–20:00** · **120 min**)
-3. **Bases de Datos II** (FI303215 · grupo **641A-2** · lun **18:00–20:00** · **120 min** · Presencialidad asistida)
+3. **Bases de Datos II** (FI303215 · grupo **641A-2** · lun **18:00–20:00** · **120 min** · Virtual)
 4. **Arquitectura de Sistemas Computacionales** (FI303380 · grupo **6303C** · lun **10:00–12:00** · **120 min**)
 5. **0. Base** — plantillas institucionales / Ingeniería de Software 1 (referencia)
 
@@ -64,8 +64,8 @@ Cualquier ajuste general de marca/diseño/nomenclatura UNIAJC se aplica a los cu
 4. Timeline «Mapa del bloque de hoy» (`block_timeline_slide`): barra proporcional + cards verticales (NO la raya con cuadraditos vieja).
 5. Slide **Herramientas del curso** (`herramientas_slide`): **3–4 principales**, logos **grandes** (~2×); no saturar.
 6. Quizzes proyectables: **sin** «no proyectar claves» en subtítulo estudiante; subtítulo tipo `Individual · 8–10 min`. Opciones OM **una por línea**. Helpers: `config/slides/uniajc_quiz_helpers.py`.
-7. Plataforma = **Campus Virtual UNIAJC** (nunca “LMS” como nombre; nunca «CDigital»). Placeholder ops: `[URL Campus Virtual UNIAJC — pendiente]` (no en PPTX del curso).
-8. Presentación del curso (estudiantes): grupo(s), docente, recursos, evaluación, CONTENIDO (Sesión 0 + Clases 1–15 en **una** diapositiva vía `contenido_clases_slides`), Padlet, herramientas, cierre. **Sin** checklist docente ni Clear posts. **Sin** placeholder Campus Virtual ni listado.
+7. Plataforma = **ExamLab** (`https://examlab.lovable.app/auth`), que **no es plataforma oficial de la UNIAJC**. **Nunca** escribir «Campus Virtual», «LMS» ni una URL institucional: mandaría al estudiante a un sitio que no existe. Nunca «CDigital» (eso es CUN).
+8. Presentación del curso (estudiantes): grupo(s), docente, recursos, evaluación, CONTENIDO (Sesión 0 + las **13 sesiones** en **una** diapositiva vía `contenido_clases_slide`), Padlet, herramientas, cierre. **Sin** checklist docente ni Clear posts. **Sin** placeholder Campus Virtual ni listado.
 9. Datos de oferta del periodo en **negrita** (grupo, periodo, horario). **No** forzar negrita en docente/correo, temario ni textos pedagógicos.
 10. Marca: `#095292` / `#269CCB` / `#FFD000` — ver `config/universidades/uniajc.json`.
 
@@ -88,7 +88,7 @@ Cualquier ajuste general de marca/diseño/nomenclatura UNIAJC se aplica a los cu
 - Cubren todo el bloque (**120 min**), minuto a minuto, teórico-práctico; solo el tema de ESA clase.
 - **Sin** mapa del curso, políticas largas, desglose global de evaluación, bio ni fechas de periodo.
 - Plataforma = **Campus Virtual UNIAJC**. Capturas: `Kit docente/Clase N/Capturas/`.
-- Builds de referencia: `config/slides/build_uniajc_prog2_clase01.py` + `guion_md_a_docx.py`.
+- Builds de referencia: `config/slides/build_uniajc_prog2_all.py` (datos en `prog2_clases_data.py`) + `guion_md_a_docx.py`. **Ojo:** `build_uniajc_prog2_clase01.py`, `build_uniajc_seminario_clase01.py` y `build_uniajc_clase01_prog2_seminario.py` están SUPERSEDIDOS y abortan si se ejecutan.
 
 ## Práctica de clase = gratis + nube
 
@@ -142,7 +142,7 @@ Cualquier ajuste general de marca/diseño/nomenclatura UNIAJC se aplica a los cu
 - Perfil: `config/universidades/uniajc.json`
 - Calendario: `config/calendario/semestre_2026_2.json`
 - Builds curso: `build_uniajc_prog2_curso.py`, `build_uniajc_seminario_curso.py`, `build_uniajc_bd2_curso.py`, `build_uniajc_arq_curso.py`
-- Builds batch/clase: `build_uniajc_prog2_clase01.py`, `build_uniajc_bd2_all.py`, `build_uniajc_arq_clases_batch.py`, `build_uniajc_pi_2026_2.py`
+- Builds batch/clase: `build_uniajc_prog2_all.py`, `build_uniajc_seminario_all.py`, `build_uniajc_bd2_all.py`, `build_uniajc_arq_clases_batch.py`, `build_uniajc_pi_2026_2.py`
 - Agentes: `.claude/agents/disenador-curricular-uniajc.md`, `uniajc-dudas-material.md` (espejo en `.cursor/agents/`)
 - Marca web: [uniajc.edu.co](https://www.uniajc.edu.co/)
 

@@ -147,7 +147,7 @@ def build():
 
 
 
-        'Modalidad: **Presencialidad asistida** (Clase 1 y parciales presencial · resto virtual síncrona)',
+        'Modalidad: **Virtual** (todas las sesiones virtual síncrona por Meet · festivos autónoma)',
 
 
 
@@ -358,7 +358,7 @@ def build():
 
 
 
-            ('info', 'Jueves 18:00-20:00 (120 min). Modalidad: Presencialidad asistida (jueves virtual / parciales presencial). Grupo: 341C.'),
+            ('info', 'Jueves 18:00-20:00 (120 min). Modalidad: Virtual (todas las sesiones por Meet, incluidos los parciales). Grupo: 341C.'),
 
 
 
