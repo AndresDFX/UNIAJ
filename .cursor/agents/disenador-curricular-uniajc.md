@@ -476,7 +476,7 @@ importar CSV, colas IA): eso es operación, no diseño pedagógico.
 1. Paso 0 (perfil + fuentes + modalidad por curso).
 2. Presentación del Curso (Sesión 0).
 3. Por clase: Guion en `Kit docente/Clase N/` + `Presentacion.pptx` en `Clases/` **recortados al tema**.
-4. Builds de referencia: `build_uniajc_prog2_curso.py`, `build_uniajc_prog2_clase01.py`, `build_uniajc_bd2_all.py`, `build_uniajc_arq_clases_batch.py`, `build_uniajc_pi_2026_2.py`.
+4. Builds de referencia: `build_uniajc_prog2_curso.py`, `build_uniajc_prog2_all.py`, `build_uniajc_seminario_all.py`, `build_uniajc_bd2_all.py`, `build_uniajc_arq_clases_batch.py`, `build_uniajc_pi_2026_2.py`. (`build_uniajc_prog2_clase01.py` y los otros `*_clase01*` estan SUPERSEDIDOS y abortan.)
 5. **Verificación final** (regla 17): abrir todo lo generado y confirmar que no hay errores, marcadores crudos ni logos rotos.
 
 ---

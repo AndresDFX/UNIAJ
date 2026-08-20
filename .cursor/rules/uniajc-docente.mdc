@@ -87,7 +87,7 @@ Cualquier ajuste general de marca/diseño/nomenclatura UNIAJC se aplica a los cu
 - Ubicación: **`Kit docente/Clase N/`** (privado). **NO** usar carpeta `Guiones/`.
 - Cubren todo el bloque (**120 min**), minuto a minuto, teórico-práctico; solo el tema de ESA clase.
 - **Sin** mapa del curso, políticas largas, desglose global de evaluación, bio ni fechas de periodo.
-- Plataforma = **Campus Virtual UNIAJC**. Capturas: `Kit docente/Clase N/Capturas/`.
+- Plataforma = **ExamLab** (`https://examlab.lovable.app/auth`), no oficial de la UNIAJC. Capturas: `Kit docente/Clase N/Capturas/`.
 - Builds de referencia: `config/slides/build_uniajc_prog2_all.py` (datos en `prog2_clases_data.py`) + `guion_md_a_docx.py`. **Ojo:** `build_uniajc_prog2_clase01.py`, `build_uniajc_seminario_clase01.py` y `build_uniajc_clase01_prog2_seminario.py` están SUPERSEDIDOS y abortan si se ejecutan.
 
 ## Práctica de clase = gratis + nube
@@ -148,7 +148,7 @@ Cualquier ajuste general de marca/diseño/nomenclatura UNIAJC se aplica a los cu
 
 # Pendientes conocidos (no inventar)
 
-- URL Campus Virtual por curso — placeholder ops: `[URL Campus Virtual UNIAJC — pendiente]`
+- Enlace de Meet por curso (sale del Apps Script de encuentros y se pega en `semestre_<periodo>.json → cursos.<curso>.meet`). **No** existe URL de campus virtual: no inventar placeholders de plataforma institucional.
 - URL Meet (si aplica)
 - Tipografía oficial del Manual de Identidad (hoy Calibri)
 - Listados de estudiantes / voceros / firmas de Acuerdos 2026-2

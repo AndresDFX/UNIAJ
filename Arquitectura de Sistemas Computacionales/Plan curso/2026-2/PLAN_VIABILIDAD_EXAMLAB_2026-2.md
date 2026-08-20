@@ -14,7 +14,7 @@
 
 ## 0. De dónde sale este documento
 
-A diferencia de Bases de Datos II (curso vacío), acá **sí hay material real** para refactorizar: 3 parciales completos con solución (`Parciales/*.docx`), 2 actividades autónomas del PI con su guion completo (Clases 13 y 15), y el trabajo ya hecho de viabilidad de Floci. Todo eso vive hoy en **Word + Campus Virtual UNIAJC + Google Docs/Drive** — nada está en ExamLab todavía. Este plan mapea ese material real a construcciones de la plataforma, no inventa contenido nuevo.
+A diferencia de Bases de Datos II (curso vacío), acá **sí hay material real** para refactorizar: 3 parciales completos con solución (`Parciales/*.docx`), 2 actividades autónomas del PI con su guion completo (Clases 13 y 15), y el trabajo ya hecho de viabilidad de Floci. Todo eso vive hoy en **Word + Google Docs/Drive** (la UNIAJC no tiene campus virtual propio) — nada está en ExamLab todavía. Este plan mapea ese material real a construcciones de la plataforma, no inventa contenido nuevo.
 
 ## 1. Resumen ejecutivo
 
