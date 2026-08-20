@@ -379,6 +379,29 @@ usar un campo aparte (`fundamento`) que solo consuma el guión. Si no, se rompe 
 
 Solo se comparte `Clases/`. Ahí: Presentación del Curso + Clase N (`.pptx` + `.docx`) + PI enunciado. **Nunca `.md` para estudiantes.** Parciales solo en `Parciales/`. Kit docente = privado (guion, quiz+clave, código, capturas + PI docente). **Sin carpeta `Guiones/`.**
 
+### Carpetas de Drive por curso
+
+Cada curso tiene **dos** carpetas compartidas, con su id y URL en
+`config/calendario/semestre_2026_2.json` → `cursos.<curso>.carpetas_drive`:
+
+| Clave | Qué contiene |
+|---|---|
+| `clases` | Material del curso (Presentación del Curso, diapositivas, talleres) |
+| `grabadas` | "Clases grabadas": la grabación de cada sesión sincrónica |
+
+Reglas:
+
+- **Las URL se guardan canónicas**: `https://drive.google.com/drive/folders/<id>`, sin
+  `?usp=…` y **sin `/u/0/`**. Ese `/u/0/` es el índice de cuenta del docente: a un
+  estudiante con varias cuentas de Google le abriría la equivocada.
+- El correo de bienvenida las publica automáticamente (bloque `<!-- carpetas: generado -->`).
+  **No pegar links a mano** ni dejar placeholders tipo `[PEGAR AQUÍ …]`.
+- Al mencionar las grabaciones, aclarar que **no reemplazan la asistencia**.
+- Las grabaciones de Meet se archivan solas con el Apps Script de
+  `config/calendario/apps_script_grabaciones/` (corre en la cuenta del docente). El id de
+  `grabadas` vive en el JSON **y** en ese `.gs`; `validar_calendario.py` comprueba que
+  coincidan, porque si divergen las grabaciones acaban en la carpeta vieja.
+
 ## Proyecto Integrador (PI)
 
 - Peso Acuerdo: **20% Corte 3**.

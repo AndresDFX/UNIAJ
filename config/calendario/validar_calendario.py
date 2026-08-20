@@ -173,6 +173,44 @@ def validar_curso(key: str, meta: dict) -> None:
         avisos.append(f"{nombre}: falta {md.name}")
 
 
+def validar_carpetas_drive() -> None:
+    """Las carpetas de Drive del JSON deben estar completas y coincidir con el Apps Script.
+
+    El id de `grabadas` vive en dos sitios: el JSON (que alimenta el correo de bienvenida)
+    y `apps_script_grabaciones/MoverGrabaciones.gs` (que mueve las grabaciones). Si se
+    cambia una carpeta y solo se actualiza uno, las grabaciones acaban en la carpeta vieja.
+    """
+    gs = Path(__file__).parent / "apps_script_grabaciones" / "MoverGrabaciones.gs"
+    texto = gs.read_text(encoding="utf-8") if gs.exists() else None
+    if texto is None:
+        avisos.append("no existe apps_script_grabaciones/MoverGrabaciones.gs")
+
+    for meta in DATA["cursos"].values():
+        c = meta.get("carpetas_drive") or {}
+        for tipo in ("clases", "grabadas"):
+            ent = c.get(tipo) or {}
+            check(bool(ent.get("id")) and bool(ent.get("url")),
+                  f"{meta['nombre']}: falta carpetas_drive.{tipo} (id/url)")
+            url = ent.get("url", "")
+            check("?usp=" not in url and "/u/0/" not in url,
+                  f"{meta['nombre']}: la URL de {tipo} no está canónica (trae ?usp= o /u/0/): {url}")
+            if ent.get("id") and ent.get("url"):
+                check(ent["url"].endswith(ent["id"]),
+                      f"{meta['nombre']}: la URL de {tipo} no termina en su propio id")
+        # el id de grabadas debe aparecer en el .gs
+        gid = (c.get("grabadas") or {}).get("id")
+        if texto and gid:
+            check(gid in texto,
+                  f"{meta['nombre']}: el id de 'grabadas' ({gid}) no está en "
+                  f"MoverGrabaciones.gs — el script movería las grabaciones a otra carpeta")
+        # y NO debe estar el de clases (sería mandar grabaciones al material compartido)
+        cid = (c.get("clases") or {}).get("id")
+        if texto and cid:
+            check(f"carpetaGrabadas: '{cid}'" not in texto,
+                  f"{meta['nombre']}: MoverGrabaciones.gs usa como destino el id de la "
+                  f"carpeta de CLASES ({cid}), no el de grabadas")
+
+
 def main() -> int:
     print(f"Validando calendario {DATA['periodo']}: {INICIO} -> {FIN}")
     print(f"Semana de inicio esperada: lunes {semana_de(INICIO)}\n")
@@ -187,6 +225,8 @@ def main() -> int:
         cubierto.extend(range(a, b + 1))
     check(sorted(cubierto) == list(range(1, N_SESIONES + 1)),
           f"los cortes no cubren 1..{N_SESIONES} sin solaparse: {rangos}")
+
+    validar_carpetas_drive()
 
     for key, meta in DATA["cursos"].items():
         validar_curso(key, meta)

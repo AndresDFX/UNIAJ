@@ -872,6 +872,7 @@ def patch_correo(meta: dict, path: Path) -> bool:
 MARCA_FECHAS = ("<!-- fechas-clave: generado -->", "<!-- /fechas-clave -->")
 MARCA_VOCERO = ("<!-- vocero: generado -->", "<!-- /vocero -->")
 MARCA_EXAMLAB = ("<!-- examlab: generado -->", "<!-- /examlab -->")
+MARCA_CARPETAS = ("<!-- carpetas: generado -->", "<!-- /carpetas -->")
 
 EXAMLAB_AUTH = "https://examlab.lovable.app/auth"
 EXAMLAB_MANUAL = (
@@ -994,6 +995,25 @@ def examlab_md() -> str:
     ])
 
 
+def carpetas_md(meta: dict) -> str:
+    """Carpetas de Drive del curso: material y grabaciones."""
+    c = meta.get("carpetas_drive") or {}
+    if not c:
+        return ""
+    out = [MARCA_CARPETAS[0], "", "### Carpetas del curso en Drive", ""]
+    if c.get("clases"):
+        out.append(f'- **Clases** (Presentación del Curso, diapositivas y talleres): '
+                   f'{c["clases"]["url"]}')
+    if c.get("grabadas"):
+        out.append(f'- **Clases grabadas** (queda la grabación de cada sesión sincrónica): '
+                   f'{c["grabadas"]["url"]}')
+    out += ["",
+            "Las grabaciones se suben después de cada sesión. Sirven para repasar, y sobre "
+            "todo si faltaron: **no reemplazan la asistencia**, que se toma en la sesión.",
+            "", MARCA_CARPETAS[1]]
+    return "\n".join(out)
+
+
 def vocero_md() -> str:
     return "\n".join([
         MARCA_VOCERO[0],
@@ -1012,6 +1032,14 @@ def _bloques_gestionados(meta: dict, txt: str) -> str:
     txt = _quitar_bloque(txt, MARCA_FECHAS)
     txt = _quitar_bloque(txt, MARCA_VOCERO)
     txt = _quitar_bloque(txt, MARCA_EXAMLAB)
+    txt = _quitar_bloque(txt, MARCA_CARPETAS)
+
+    # El bloque de carpetas reemplaza al parrafo heredado con el placeholder a mano.
+    txt = "\n".join(
+        ln for ln in txt.splitlines()
+        if not ln.startswith("**Contenido de las clases**")
+        and "[PEGAR AQUÍ LINK DE LA CARPETA CLASES]" not in ln
+    )
 
     # El bullet suelto de ExamLab queda redundante (y traía la URL vieja /app):
     # lo cubre el bloque de plataforma, que además da la URL de acceso correcta.
@@ -1025,7 +1053,8 @@ def _bloques_gestionados(meta: dict, txt: str) -> str:
     if corte is None:
         corte = next((i for i, ln in enumerate(lineas)
                       if ln.startswith("Por favor **revisen")), len(lineas))
-    lineas[corte:corte] = ["", fechas_clave_md(meta), "", examlab_md(), ""]
+    lineas[corte:corte] = ["", fechas_clave_md(meta), "", carpetas_md(meta), "",
+                           examlab_md(), ""]
 
     # Vocero: justo antes del cierre.
     cierre = next((i for i, ln in enumerate(lineas) if ln.startswith("Nos vemos pronto")),

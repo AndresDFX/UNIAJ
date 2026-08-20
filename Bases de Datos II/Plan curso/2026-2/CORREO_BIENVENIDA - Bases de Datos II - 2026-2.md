@@ -43,6 +43,17 @@ En este curso hay **2 sesiones autónomas**, porque caen en festivo: 12/10/2026 
 
 <!-- /fechas-clave -->
 
+<!-- carpetas: generado -->
+
+### Carpetas del curso en Drive
+
+- **Clases** (Presentación del Curso, diapositivas y talleres): https://drive.google.com/drive/folders/1JETo74O3sofOqlXUXVizrp5OU87MNxxZ
+- **Clases grabadas** (queda la grabación de cada sesión sincrónica): https://drive.google.com/drive/folders/10q7c22SXqsabyVRxpLkQnc9doSZamZo6
+
+Las grabaciones se suben después de cada sesión. Sirven para repasar, y sobre todo si faltaron: **no reemplazan la asistencia**, que se toma en la sesión.
+
+<!-- /carpetas -->
+
 <!-- examlab: generado -->
 
 ### Plataforma del curso — ExamLab
@@ -68,9 +79,6 @@ Material de apoyo para usar la plataforma:
 - **Todas las funcionalidades (video):** https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/help-videos/serie-estudiante.mp4
 
 <!-- /examlab -->
-
-**Contenido de las clases** (Presentación del Curso, diapositivas y talleres — carpeta compartida):  
-[PEGAR AQUÍ LINK DE LA CARPETA CLASES]
 
 Por favor **revisen en su calendario institucional** los eventos del curso (fechas de clase, parciales y demás hitos del cronograma). Es importante que los tengan visibles para organizar el semestre.
 

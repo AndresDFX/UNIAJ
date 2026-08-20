@@ -242,7 +242,17 @@
       "regla_modalidad_sesion": "Uniforme en los 4 cursos (Presencialidad asistida): Clase 1 PRESENCIAL (encuadre) · parciales PRESENCIAL sincrono · resto de clases regulares VIRTUAL SINCRONA · festivos = clase AUTONOMA. No hay sesiones asincronas fuera de los festivos.",
       "n_temas": 15,
       "nota_compresion": "Semestre acortado: inicio 2026-08-24 (fin fijo 2026-11-22) = 13 sesiones. Los 15 temas del microcurriculo se conservan: 2 sesiones son dobles (dos temas afines en un bloque). Ver CALENDARIO del curso para el mapeo sesion -> tema(s).",
-      "mapa_sesion_tema": "13 sesiones cubren los 15 temas del microcurriculo. clases_material = numero de \"Clase N\" del material ya construido (carpetas Clases/ y Kit docente/ NO se renumeran). Las 2 sesiones dobles van en sesiones con clase en vivo; las autonomas por festivo llevan un solo tema."
+      "mapa_sesion_tema": "13 sesiones cubren los 15 temas del microcurriculo. clases_material = numero de \"Clase N\" del material ya construido (carpetas Clases/ y Kit docente/ NO se renumeran). Las 2 sesiones dobles van en sesiones con clase en vivo; las autonomas por festivo llevan un solo tema.",
+      "carpetas_drive": {
+        "clases": {
+          "id": "11hieB8gg9JK7F_EZ6SzLlqp6U6jXZXUA",
+          "url": "https://drive.google.com/drive/folders/11hieB8gg9JK7F_EZ6SzLlqp6U6jXZXUA"
+        },
+        "grabadas": {
+          "id": "1oTA2kYgBvNbUfzD784R7AQxsIt_BmGmA",
+          "url": "https://drive.google.com/drive/folders/1oTA2kYgBvNbUfzD784R7AQxsIt_BmGmA"
+        }
+      }
     },
     "seminario": {
       "folder": "Seminario de Sistemas",
@@ -441,7 +451,17 @@
       "regla_modalidad_sesion": "Uniforme en los 4 cursos (Presencialidad asistida): Clase 1 PRESENCIAL (encuadre) · parciales PRESENCIAL sincrono · resto de clases regulares VIRTUAL SINCRONA · festivos = clase AUTONOMA. No hay sesiones asincronas fuera de los festivos.",
       "n_temas": 15,
       "nota_compresion": "Semestre acortado: inicio 2026-08-24 (fin fijo 2026-11-22) = 13 sesiones. Los 15 temas del microcurriculo se conservan: 2 sesiones son dobles (dos temas afines en un bloque). Ver CALENDARIO del curso para el mapeo sesion -> tema(s).",
-      "mapa_sesion_tema": "13 sesiones cubren los 15 temas del microcurriculo. clases_material = numero de \"Clase N\" del material ya construido (carpetas Clases/ y Kit docente/ NO se renumeran). Las 2 sesiones dobles van en sesiones con clase en vivo; las autonomas por festivo llevan un solo tema."
+      "mapa_sesion_tema": "13 sesiones cubren los 15 temas del microcurriculo. clases_material = numero de \"Clase N\" del material ya construido (carpetas Clases/ y Kit docente/ NO se renumeran). Las 2 sesiones dobles van en sesiones con clase en vivo; las autonomas por festivo llevan un solo tema.",
+      "carpetas_drive": {
+        "clases": {
+          "id": "1Q0ckPMop749oNuhkufDN-uT7pvbK8H3j",
+          "url": "https://drive.google.com/drive/folders/1Q0ckPMop749oNuhkufDN-uT7pvbK8H3j"
+        },
+        "grabadas": {
+          "id": "10XBX8t7dFrBQhxaQrYWZxWr-nwulo3xi",
+          "url": "https://drive.google.com/drive/folders/10XBX8t7dFrBQhxaQrYWZxWr-nwulo3xi"
+        }
+      }
     },
     "bases_datos_ii": {
       "folder": "Bases de Datos II",
@@ -647,7 +667,17 @@
         "tipo": "sustentacion",
         "nota": "Cae en festivo (Independencia de Cartagena). Por decision docente esta sesion se usa para las sustentaciones del proyecto final; no es parcial."
       },
-      "mapa_sesion_tema": "13 sesiones cubren los 15 temas del microcurriculo. clases_material = numero de \"Clase N\" del material ya construido (carpetas Clases/ y Kit docente/ NO se renumeran). Las 2 sesiones dobles van en sesiones con clase en vivo; las autonomas por festivo llevan un solo tema."
+      "mapa_sesion_tema": "13 sesiones cubren los 15 temas del microcurriculo. clases_material = numero de \"Clase N\" del material ya construido (carpetas Clases/ y Kit docente/ NO se renumeran). Las 2 sesiones dobles van en sesiones con clase en vivo; las autonomas por festivo llevan un solo tema.",
+      "carpetas_drive": {
+        "clases": {
+          "id": "1JETo74O3sofOqlXUXVizrp5OU87MNxxZ",
+          "url": "https://drive.google.com/drive/folders/1JETo74O3sofOqlXUXVizrp5OU87MNxxZ"
+        },
+        "grabadas": {
+          "id": "10q7c22SXqsabyVRxpLkQnc9doSZamZo6",
+          "url": "https://drive.google.com/drive/folders/10q7c22SXqsabyVRxpLkQnc9doSZamZo6"
+        }
+      }
     },
     "arquitectura": {
       "folder": "Arquitectura de Sistemas Computacionales",
@@ -853,7 +883,17 @@
         "tipo": "sustentacion",
         "nota": "Cae en festivo (Independencia de Cartagena). Por decision docente esta sesion se usa para las sustentaciones del proyecto final; no es parcial."
       },
-      "mapa_sesion_tema": "13 sesiones cubren los 15 temas del microcurriculo. clases_material = numero de \"Clase N\" del material ya construido (carpetas Clases/ y Kit docente/ NO se renumeran). Las 2 sesiones dobles van en sesiones con clase en vivo; las autonomas por festivo llevan un solo tema."
+      "mapa_sesion_tema": "13 sesiones cubren los 15 temas del microcurriculo. clases_material = numero de \"Clase N\" del material ya construido (carpetas Clases/ y Kit docente/ NO se renumeran). Las 2 sesiones dobles van en sesiones con clase en vivo; las autonomas por festivo llevan un solo tema.",
+      "carpetas_drive": {
+        "clases": {
+          "id": "1CUPae6eabFlygIyI0Nh3hTvaCL1R1Qcm",
+          "url": "https://drive.google.com/drive/folders/1CUPae6eabFlygIyI0Nh3hTvaCL1R1Qcm"
+        },
+        "grabadas": {
+          "id": "1rpmcE6xEUZFNOxPV4bfQ0VqVR6wcN9yg",
+          "url": "https://drive.google.com/drive/folders/1rpmcE6xEUZFNOxPV4bfQ0VqVR6wcN9yg"
+        }
+      }
     }
   },
   "modalidad_cursos": "Presencialidad asistida (Clase 1 y parciales presencial · resto virtual sincrona · festivos autonoma)",
@@ -866,5 +906,6 @@
   "regla_parciales": "Criterio de modalidad por sesion (2026-2 acortado): modalidad del curso = Presencialidad asistida. Prog II (miercoles) y Seminario (jueves): Clase 1 presencial (Prog II) / virtual (Seminario) · clases regulares virtual sincrona · parciales 5/9/13 presencial sincrono. BD II / Arquitectura (lunes): parciales 5/9/12 presencial sincrono · clase 13 sustentaciones del PI. Festivos = clase autonoma (sin parcial). Los parciales NUNCA se programan en dia festivo ni en clase autonoma.",
   "regla_modalidad_sesion": "Uniforme en los 4 cursos (Presencialidad asistida): Clase 1 PRESENCIAL (encuadre) · parciales PRESENCIAL sincrono · resto de clases regulares VIRTUAL SINCRONA · festivos = clase AUTONOMA. No hay sesiones asincronas fuera de los festivos.",
   "regla_parcial_solo_eval": "Día de parcial = solo evaluación; sin tema de trabajo dirigido nuevo. No mezclar tema técnico · Parcial N. La prep del PI va en la clase regular anterior.",
-  "_nota_semestre_acortado": "Inicio movido de 2026-08-10 a 2026-08-24 (semana del 24 de agosto) por decision institucional/docente; la fecha fin NO se mueve (2026-11-22). Resultado: 13 sesiones por curso en vez de 15. Los 15 temas se conservan comprimiendo 2 sesiones dobles. Parciales: Prog II y Seminario en clases 5/9/13; BD II y Arquitectura en clases 5/9/12, con la clase 13 (2026-11-16) dedicada a sustentaciones del proyecto final."
+  "_nota_semestre_acortado": "Inicio movido de 2026-08-10 a 2026-08-24 (semana del 24 de agosto) por decision institucional/docente; la fecha fin NO se mueve (2026-11-22). Resultado: 13 sesiones por curso en vez de 15. Los 15 temas se conservan comprimiendo 2 sesiones dobles. Parciales: Prog II y Seminario en clases 5/9/13; BD II y Arquitectura en clases 5/9/12, con la clase 13 (2026-11-16) dedicada a sustentaciones del proyecto final.",
+  "_nota_carpetas_drive": "carpetas_drive por curso: 'clases' = carpeta compartida con el material del curso; 'grabadas' = carpeta donde se archivan las grabaciones de Meet. Las URL se guardan canonicas (sin ?usp= y sin /u/0/, que es el indice de cuenta del docente). El id se usa en el Apps Script que mueve las grabaciones."
 }
