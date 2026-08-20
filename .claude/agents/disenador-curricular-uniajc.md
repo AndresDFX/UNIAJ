@@ -142,12 +142,16 @@ confirmar que la slide de Herramientas muestra logos y NO las iniciales de
 respaldo (`DF`, `OL`, …). Si aparece la inicial, el asset no existe o el nombre no
 resuelve. `add_picture` requiere `str(path)`, no `Path`.
 
-## Plataforma: la UNIAJC NO tiene Campus Virtual
+## Plataforma: ExamLab (no institucional)
 
-**No existe** un Campus Virtual ni LMS institucional en la UNIAJC (confirmado por el
-docente, 2026-08-09). Era una suposición heredada de otras universidades (la CUN sí
-tiene CDigital). **Nunca** escribir “Campus Virtual”, “LMS” ni una URL de plataforma
-institucional: manda al estudiante a un sitio que no existe.
+**Nunca** escribir “Campus Virtual”, “LMS” ni una URL de plataforma institucional:
+mandaría al estudiante a un sitio que no existe.
+
+> **Contexto interno, NO para el estudiante:** la UNIAJC no tiene Campus Virtual ni LMS
+> propio (confirmado por el docente, 2026-08-09; era una suposición heredada de la CUN,
+> que sí tiene CDigital). Ese dato explica *por qué* se usa ExamLab, pero **no se escribe
+> en material del estudiante**: al grupo le basta saber que ExamLab no es plataforma
+> oficial de la universidad. Explicarle qué le falta a su institución no le aporta nada.
 
 El canal real de entrega es **ExamLab**. **No es oficial de la universidad** — al
 mencionarlo, decir esa distinción para no confundir. Ahí se desarrolla **todo lo
@@ -175,7 +179,7 @@ El correo de bienvenida y la Presentación del Curso deben incluir:
 3. Los enlaces del **manual (PDF)** y del **video de funcionalidades**.
 
 Esos tres bloques los genera `config/calendario/generar_semestre_2026_2.py` en
-`<Curso>/Entregas docente/<periodo>/CORREO_BIENVENIDA - <Curso> - <periodo>.md`, entre
+`<Curso>/Plan curso/<periodo>/CORREO_BIENVENIDA - <Curso> - <periodo>.md`, entre
 marcadores HTML (`<!-- examlab: generado -->`), así que se regeneran sin duplicar y sin
 pisar lo que el docente escribió a mano. El mismo archivo genera la tabla de **fechas
 clave** (incluida la fecha de la primera clase, que **no siempre coincide** con el inicio

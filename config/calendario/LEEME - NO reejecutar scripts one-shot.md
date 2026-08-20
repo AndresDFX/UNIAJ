@@ -28,9 +28,14 @@ python3 config/calendario/generar_semestre_2026_2.py
 ```
 
 Ese script **lee** el JSON (no lo reescribe) y regenera, por curso:
-`Plan curso/2026-2/{CALENDARIO_2026-2.md, calendario_eventos_2026-2.csv, Cronograma 2026-2.md, PLAN_DE_CURSO_2026-2.md}`,
-el `ACUERDO PEDAGOGICO …docx`, el `CORREO_BIENVENIDA …md` y las copias `eventos_*.csv` de esta carpeta.
+`Plan curso/2026-2/{CALENDARIO_2026-2.md, calendario_eventos_2026-2.csv, Cronograma 2026-2.md, PLAN_DE_CURSO_2026-2.md, CORREO_BIENVENIDA - <Curso> - 2026-2.md}`,
+el `ACUERDO PEDAGOGICO …docx` en `Entregas docente/2026-2/` y las copias `eventos_*.csv` de esta carpeta.
 Es **idempotente**: dos corridas seguidas producen archivos idénticos.
+
+> **Ubicación del correo de bienvenida:** va en `Plan curso/<periodo>/`, no en
+> `Entregas docente/`. Esa última carpeta guarda **solo lo que el docente le entrega a la
+> universidad** (acuerdo, diagnóstico). El correo es planeación y comunicación con el
+> grupo. Si el script encuentra un correo en la ubicación vieja, lo **migra** solo.
 
 Para cambiar el calendario: **edita el JSON y vuelve a correr el generador.** Nada más.
 

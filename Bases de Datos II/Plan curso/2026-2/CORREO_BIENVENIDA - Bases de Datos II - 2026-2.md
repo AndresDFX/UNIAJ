@@ -1,19 +1,20 @@
-# Correo de bienvenida — Seminario de Sistemas · 2026-2
+# Correo de bienvenida — Bases de Datos II · 2026-2
 
 **Para:** estudiantes del grupo  
 **De:** Julian Andres Castaño Espinosa · julianacastano@profesores.uniajc.edu.co  
-**Asunto sugerido:** Bienvenida · Seminario de Sistemas (FI303301 · 341C) · 2026-2 · Presencialidad asistida · jue 18:00–20:00
+**Asunto sugerido:** Bienvenida · Bases de Datos II (FI303215 · 641A-2) · 2026-2 · Presencialidad asistida · lun 18:00–20:00
 
 ---
 
 Estimados estudiantes:
 
-Les doy la bienvenida al curso **Seminario de Sistemas** (código **FI303301**, grupo **341C**) del periodo **2026-2** (ventana académica: **24/08/2026 – 22/11/2026**).
+Les doy la bienvenida al curso **Bases de Datos II** (código **FI303215**, grupo **641A-2**) del periodo **2026-2** (ventana académica: **24/08/2026 – 22/11/2026**).
 
 - **Modalidad:** Presencialidad asistida (clases presencial / virtual síncrona / autónoma)
-- **Modalidad por sesión:** **Sesión 1 presencial**; resto de sesiones regulares **virtual síncrona**; **parciales presencial** síncrono (Sesiones 5, 9 y 13). Festivo → **clase autónoma**.
-- **Calendario:** **13 sesiones de jueves** (24/08/2026 – 22/11/2026) que cubren los 15 temas del curso; las Sesiones 8 y 10 son **dobles** (dos temas en el mismo bloque de 120 min).
-- **Horario:** jueves **18:00 – 20:00** (inicio práctico de clase: **18:10**)
+- **Modalidad por sesión:** **Sesión 1 presencial**; resto de sesiones regulares **virtual síncrona**; **parciales presencial** síncrono (Sesiones 5, 9 y 12). Festivo → **clase autónoma**.
+- **Calendario:** **13 sesiones de lunes** (24/08/2026 – 22/11/2026) que cubren los 15 temas del curso; las Sesiones 7 y 10 son **dobles** (dos temas en el mismo bloque de 120 min).
+- **Sustentación del proyecto final:** Sesión 13 — 16/11/2026.
+- **Horario:** lunes **18:00 – 20:00** (inicio práctico de clase: **18:10**)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
 
 <!-- fechas-clave: generado -->
@@ -23,14 +24,15 @@ Les doy la bienvenida al curso **Seminario de Sistemas** (código **FI303301**, 
 | Hito | Fecha | Detalle |
 |---|---|---|
 | Inicio del periodo académico | 24/08/2026 | — |
-| **Primera clase** (Jueves) | **27/08/2026** | Sesión 0 (presentación del curso) + Clase 1 (diagnóstico) en el mismo bloque |
-| Parcial 1 | 24/09/2026 | Sesión 5 · presencial síncrono · solo evaluación |
-| Parcial 2 | 22/10/2026 | Sesión 9 · presencial síncrono · solo evaluación |
-| Parcial 3 | 19/11/2026 | Sesión 13 · presencial síncrono · solo evaluación |
-| Última clase (Jueves) | 19/11/2026 | Sesión 13 · Parcial 3 |
+| **Primera clase** (Lunes) | **24/08/2026** | Sesión 0 (presentación del curso) + Clase 1 (diagnóstico) en el mismo bloque |
+| Parcial 1 | 21/09/2026 | Sesión 5 · presencial síncrono · solo evaluación |
+| Parcial 2 | 19/10/2026 | Sesión 9 · presencial síncrono · solo evaluación |
+| Parcial 3 | 09/11/2026 | Sesión 12 · presencial síncrono · solo evaluación |
+| Sustentación del Proyecto Integrador | 16/11/2026 | Sesión 13 · en vivo |
+| Última clase (Lunes) | 16/11/2026 | Sesión 13 · sustentaciones del PI |
 | Cierre del periodo académico | 22/11/2026 | — |
 
-> El curso son **13 sesiones de jueves**, una por semana, de 27/08/2026 a 19/11/2026.
+> El curso son **13 sesiones de lunes**, una por semana, de 24/08/2026 a 16/11/2026.
 
 <!-- /fechas-clave -->
 
@@ -40,7 +42,7 @@ Les doy la bienvenida al curso **Seminario de Sistemas** (código **FI303301**, 
 
 Trabajaremos en **ExamLab**: https://examlab.lovable.app/auth
 
-**No es una plataforma oficial de la UNIAJC** (la universidad no tiene campus virtual propio), pero es donde se desarrolla todo lo evaluable del curso:
+**No es una plataforma oficial de la UNIAJC**, pero es donde se desarrolla todo lo evaluable del curso:
 
 - **Asistencia**
 - **Talleres** (se resuelven y se entregan dentro de la plataforma)

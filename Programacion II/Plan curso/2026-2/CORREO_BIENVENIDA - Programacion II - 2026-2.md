@@ -40,7 +40,7 @@ Les doy la bienvenida al curso **Programación II** (código **FI303204**, grupo
 
 Trabajaremos en **ExamLab**: https://examlab.lovable.app/auth
 
-**No es una plataforma oficial de la UNIAJC** (la universidad no tiene campus virtual propio), pero es donde se desarrolla todo lo evaluable del curso:
+**No es una plataforma oficial de la UNIAJC**, pero es donde se desarrolla todo lo evaluable del curso:
 
 - **Asistencia**
 - **Talleres** (se resuelven y se entregan dentro de la plataforma)

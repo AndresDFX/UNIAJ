@@ -13,7 +13,7 @@ Salidas por curso:
   <Curso>/Plan curso/2026-2/Cronograma 2026-2.md            (documento del estudiante)
   <Curso>/Plan curso/2026-2/PLAN_DE_CURSO_2026-2.md         (cabecera regenerada · secciones propias preservadas)
   <Curso>/Entregas docente/2026-2/ACUERDO PEDAGOGICO - <Curso> - 2026-2.docx
-  <Curso>/Entregas docente/2026-2/CORREO_BIENVENIDA - <Curso> - 2026-2.md (fechas actualizadas)
+  <Curso>/Plan curso/2026-2/CORREO_BIENVENIDA - <Curso> - 2026-2.md (fechas y bloques gestionados)
   config/calendario/eventos_<curso>_*.csv + eventos_todos_cursos_2026-2.csv
 """
 from __future__ import annotations
@@ -946,8 +946,8 @@ def examlab_md() -> str:
         "",
         f"Trabajaremos en **ExamLab**: {EXAMLAB_AUTH}",
         "",
-        "**No es una plataforma oficial de la UNIAJC** (la universidad no tiene campus "
-        "virtual propio), pero es donde se desarrolla todo lo evaluable del curso:",
+        "**No es una plataforma oficial de la UNIAJC**, pero es donde se desarrolla "
+        "todo lo evaluable del curso:",
         "",
         "- **Asistencia**",
         "- **Talleres** (se resuelven y se entregan dentro de la plataforma)",
@@ -1047,14 +1047,19 @@ def main() -> None:
         todos.extend(rows)
 
         acuerdo = fill_acuerdo(key, meta)
-        correo = (
-            folder
-            / "Entregas docente"
-            / "2026-2"
-            / f'CORREO_BIENVENIDA - {meta["folder"]} - 2026-2.md'
-        )
+        # El correo de bienvenida es material de PLANEACION del curso, no una entrega a
+        # la universidad: vive en Plan curso/<periodo>/. En "Entregas docente/" va solo lo
+        # que el docente le entrega a la institucion (acuerdo, diagnostico).
+        correo = periodo_dir / f'CORREO_BIENVENIDA - {meta["folder"]} - 2026-2.md'
         if not correo.exists():
-            cand = list((folder / "Entregas docente" / "2026-2").glob("CORREO_BIENVENIDA*.md"))
+            cand = list(periodo_dir.glob("CORREO_BIENVENIDA*.md"))
+            if not cand:  # compatibilidad: si quedo en la ubicacion vieja, se migra
+                cand = list((folder / "Entregas docente" / "2026-2").glob("CORREO_BIENVENIDA*.md"))
+                if cand:
+                    destino = periodo_dir / cand[0].name
+                    cand[0].replace(destino)
+                    print(f"  - correo movido a Plan curso/2026-2/: {destino.name}")
+                    cand = [destino]
             correo = cand[0] if cand else correo
         ok_correo = patch_correo(meta, correo)
 

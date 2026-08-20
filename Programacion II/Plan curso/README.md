@@ -12,6 +12,8 @@ Versión puntual de la oferta actual (24/08/2026 – 22/11/2026 · 13 sesiones, 
 - `Cronograma 2026-2.md` — versión para estudiantes
 - `calendario_eventos_2026-2.csv` — eventos con detalle docente
 - `eventos_calendario_2026-2.csv` — eventos importables a Google Calendar
+- `CORREO_BIENVENIDA - <Curso> - 2026-2.md` — correo de bienvenida al grupo
+  (va aquí, no en `Entregas docente/`, que es solo la entrega institucional)
 - La nómina del periodo (`LISTA_DE_ALUMNOS_POR_GRUPOS*.xls`) vive aquí y **no se versiona**
 
 ## Periodo `2026-1/` — cerrado
