@@ -17,6 +17,11 @@ Google. **No se sincronizan entre sí.**
 Cada pocas horas revisa la carpeta donde Meet deja las grabaciones y mueve lo nuevo (video,
 transcripción, chat) a la carpeta de grabaciones del curso al que pertenece.
 
+> **Paso previo:** los encuentros del curso tienen que **existir en tu Calendar**. Es el
+> criterio principal con el que este script identifica de qué clase es cada grabación, así
+> que hazlo antes: **[manual 01](01%20-%20Alistar%20un%20curso%20%28encuentros%2C%20Meet%2C%20correo%20e%20invitaciones%29.md)**.
+> Sin la serie creada, las grabaciones saldrán como *(sin curso)* y se quedarán quietas.
+
 Para decidir el curso usa tres criterios en orden:
 
 1. **El evento de calendario** que se solapa con la hora de la grabación. Es el fiable,

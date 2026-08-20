@@ -48,7 +48,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 JSON_PATH = Path(__file__).with_name("semestre_2026_2.json")
-PRIVADO = Path(__file__).parent / "_privado_2026-2"
+PERIODO_DIR = "2026-2"
+
+
+def privado_de(meta: dict) -> Path:
+    """Carpeta privada del curso: todo lo del curso vive en la carpeta del curso.
+
+    Antes estas salidas se juntaban en config/calendario/_privado_<periodo>/, lo que
+    obligaba al docente a salir de la carpeta de su curso para buscar la nomina o el
+    .ics. Ahora cada curso tiene su `Plan curso/<periodo>/_privado/`, ignorado por git
+    porque lleva datos personales.
+    """
+    return ROOT / meta["folder"] / "Plan curso" / PERIODO_DIR / "_privado"
 
 DATA = json.loads(JSON_PATH.read_text(encoding="utf-8"))
 DOCENTE = DATA["docente"]["nombre_completo"]
@@ -185,10 +196,11 @@ def buscar_listado(carpeta: Path, grupo: str) -> list[Path]:
     return out
 
 
-CORREOS_MANUALES = Path(__file__).with_name("_correos_manuales.csv")
+CORREOS_MANUALES_NOMBRE = "correos_manuales.csv"
+CORREOS_MANUALES_GLOBAL = Path(__file__).with_name("_correos_manuales.csv")
 
 
-def cargar_correos_manuales() -> dict[tuple[str, str], dict]:
+def cargar_correos_manuales(meta: dict | None = None) -> dict[tuple[str, str], dict]:
     """Correos que el docente completa a mano (clave: curso + documento).
 
     El export academico a veces no trae el correo institucional de algunos
@@ -196,16 +208,23 @@ def cargar_correos_manuales() -> dict[tuple[str, str], dict]:
     `_correos_manuales.csv` (curso,documento,correo,nota). Ese archivo es dato
     personal y no se versiona.
     """
-    if not CORREOS_MANUALES.exists():
-        return {}
+    rutas = []
+    if meta is not None:
+        rutas.append(privado_de(meta) / CORREOS_MANUALES_NOMBRE)
+    if CORREOS_MANUALES_GLOBAL.exists():
+        rutas.append(CORREOS_MANUALES_GLOBAL)  # compatibilidad con la ubicacion vieja
     out = {}
-    with CORREOS_MANUALES.open(encoding="utf-8-sig", newline="") as fh:
-        for fila in csv.DictReader(fh):
-            curso = _norm(fila.get("curso")).lower()
-            doc = _norm(fila.get("documento"))
-            correo = _norm(fila.get("correo"))
-            if curso and doc and correo:
-                out[(curso, doc)] = {"correo": correo, "nota": _norm(fila.get("nota"))}
+    for ruta in rutas:
+        if not ruta.exists():
+            continue
+        with ruta.open(encoding="utf-8-sig", newline="") as fh:
+            for fila in csv.DictReader(fh):
+                doc = _norm(fila.get("documento"))
+                correo = _norm(fila.get("correo"))
+                if not doc or not correo:
+                    continue
+                out[doc] = {"correo": correo, "nota": _norm(fila.get("nota")),
+                            "origen": ruta.name}
     return out
 
 
@@ -231,13 +250,13 @@ def cargar_nomina(meta: dict, key: str, manuales: dict) -> dict | None:
         for e in info["estudiantes"]:
             if e["correo"]:
                 continue
-            m = manuales.get((key, e["documento"]))
+            m = manuales.get(e["documento"])
             if m:
                 e["correo"] = m["correo"]
                 e["correo_manual"] = True
                 aplicados += 1
         if aplicados:
-            print(f"   + {aplicados} correo(s) completados desde {CORREOS_MANUALES.name}")
+            print(f"   + {aplicados} correo(s) completados desde {CORREOS_MANUALES_NOMBRE}")
         return info
     return None
 
@@ -371,18 +390,6 @@ def escribir_csv(path: Path, rows: list[list[str]], bom: bool = True) -> None:
 # ----------------------------------------------------------------- main
 
 def main() -> None:
-    PRIVADO.mkdir(parents=True, exist_ok=True)
-    (PRIVADO / "LEEME.txt").write_text(
-        "Contenido con datos personales de estudiantes (nombre, documento, correo).\n"
-        "Esta carpeta esta en .gitignore y NO debe versionarse ni compartirse.\n"
-        "Se regenera con: python config/calendario/generar_eventos_calendario.py\n",
-        encoding="utf-8",
-    )
-
-    manuales = cargar_correos_manuales()
-    if manuales:
-        print(f"Correos completados a mano: {len(manuales)} (de {CORREOS_MANUALES.name})")
-
     total_ok = 0
     for key, meta in DATA["cursos"].items():
         print(f"\n== {meta['nombre']} ({meta['codigo']} · grupo {meta['grupo']})")
@@ -393,7 +400,17 @@ def main() -> None:
         escribir_csv(destino, csv_google(meta))
         print(f"   eventos (sin nomina) -> {destino.relative_to(ROOT)}")
 
-        # 2) Salidas con nómina real
+        # 2) Salidas con nómina real, en la carpeta privada DEL CURSO
+        privado = privado_de(meta)
+        privado.mkdir(parents=True, exist_ok=True)
+        (privado / "LEEME.txt").write_text(
+            "Datos personales de estudiantes (nombre, documento, correo).\n"
+            "Esta carpeta esta en .gitignore: NO se versiona ni se comparte.\n"
+            "Se regenera con: python config/calendario/generar_eventos_calendario.py\n"
+            "Procedimiento: ver la carpeta Manuales/ en la raiz de Cursos.\n",
+            encoding="utf-8",
+        )
+        manuales = cargar_correos_manuales(meta)
         info = cargar_nomina(meta, key, manuales)
         if not info:
             print("   sin listado de estudiantes: no se generan .ics ni planillas.")
@@ -412,7 +429,7 @@ def main() -> None:
         sin_correo = [e for e in ests if not e["correo"]]
         if sin_correo:
             print(f"   ! {len(sin_correo)} sin correo institucional: NO reciben invitación.")
-            escribir_csv(PRIVADO / f"pendientes_correo_{slug}.csv",
+            escribir_csv(privado / f"pendientes_correo_{slug}.csv",
                          [["documento", "nombre", "accion"]]
                          + [[e["documento"], e["nombre"],
                              "solicitar correo institucional a Registro Académico"]
@@ -421,11 +438,11 @@ def main() -> None:
 
         # newline="" es obligatorio: el .ics ya trae CRLF (RFC 5545) y sin esto Windows
         # traduciria cada \n y dejaria \r\r\n, que algunos clientes rechazan.
-        with (PRIVADO / f"invitaciones_{slug}.ics").open(
+        with (privado / f"invitaciones_{slug}.ics").open(
             "w", encoding="utf-8", newline=""
         ) as fh:
             fh.write(ics(meta, con_correo))
-        escribir_csv(PRIVADO / f"nomina_{slug}.csv",
+        escribir_csv(privado / f"nomina_{slug}.csv",
                      [["documento", "nombre", "correo", "origen_correo", "repitente"]]
                      + [[e["documento"], e["nombre"], e["correo"],
                          "personal (manual)" if e.get("correo_manual") else "institucional",
@@ -437,10 +454,10 @@ def main() -> None:
             + ("(P)" if cl.get("parcial") else "(A)" if cl["tipo"] == "autonoma" else "")
             for cl in meta["clases"]
         ]
-        escribir_csv(PRIVADO / f"asistencia_{slug}.csv",
+        escribir_csv(privado / f"asistencia_{slug}.csv",
                      [cab] + [[e["documento"], e["nombre"]] + [""] * len(meta["clases"])
                               for e in ests])
-        print(f"   .ics + nomina + planilla -> {PRIVADO.relative_to(ROOT)}/*_{slug}.*")
+        print(f"   .ics + nomina + planilla -> {privado.relative_to(ROOT)}/")
         total_ok += 1
 
     print(f"\nOK. Cursos con nomina real: {total_ok}/{len(DATA['cursos'])}")

@@ -934,9 +934,24 @@ def fechas_clave_md(meta: dict) -> str:
 
     # Los eventos del calendario llevan el tipo de encuentro al principio del título.
     autonomas = [cl for cl in clases if cl["tipo"] == "autonoma"]
-    out += ["Les voy a compartir los eventos del curso por calendario. Cada uno empieza "
-            "con el tipo de encuentro, para que sepan de un vistazo si tienen que "
-            "conectarse a esa hora:", "",
+    meet = (meta.get("meet") or "").strip()
+    if meet:
+        out += [f"**El enlace de Google Meet del curso es el mismo toda el semestre:** {meet}",
+                "",
+                "Guárdenlo. Además les va a llegar a este correo una **invitación de Google "
+                "Calendar por cada sesión**, con ese mismo enlace dentro: acéptenla y entran "
+                "a clase desde su propio calendario, sin buscar nada.",
+                ""]
+    else:
+        out += ["**Les va a llegar a este mismo correo institucional una invitación de Google "
+                "Calendar por cada sesión del curso**, con el **enlace de Google Meet** "
+                "adentro. Acéptenla: así les queda el horario en su calendario y entran a "
+                "clase desde ahí, sin buscar el enlace cada semana. El enlace de Meet es el "
+                "mismo durante todo el semestre.",
+                ""]
+    out += [
+            "Cada evento empieza con el tipo de encuentro, para que sepan de un vistazo si "
+            "tienen que conectarse a esa hora:", "",
             "- **`[SINCRONICO]`** — hay encuentro en el horario del curso: presencial, "
             "virtual en vivo, parcial o sustentación. **Deben asistir.**",
             "- **`[AUTONOMO]`** — **no hay encuentro**. Es trabajo independiente guiado: "
@@ -1039,6 +1054,8 @@ def _bloques_gestionados(meta: dict, txt: str) -> str:
         ln for ln in txt.splitlines()
         if not ln.startswith("**Contenido de las clases**")
         and "[PEGAR AQUÍ LINK DE LA CARPETA CLASES]" not in ln
+        # lo cubre el bloque de fechas clave, que ademas explica los prefijos
+        and not ln.startswith("Por favor **revisen en su calendario institucional**")
     )
 
     # El bullet suelto de ExamLab queda redundante (y traía la URL vieja /app):

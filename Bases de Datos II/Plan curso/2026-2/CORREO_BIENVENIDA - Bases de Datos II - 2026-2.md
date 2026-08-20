@@ -17,6 +17,21 @@ Les doy la bienvenida al curso **Bases de Datos II** (código **FI303215**, grup
 - **Horario:** lunes **18:00 – 20:00** (inicio práctico de clase: **18:10**)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
 
+En el **día 1**: **Sesión 0** (Presentación del curso: logística, acuerdo, Padlet, evaluación) y **Clase 1** (diagnóstico de conocimientos previos + arranque temático).
+
+<!-- vocero: generado -->
+
+**Una cosa que necesito de ustedes:** que el **vocero del grupo** me **responda este correo con su número de WhatsApp**. Lo uso solo para avisos urgentes del curso (un cambio de sala, una caída de la plataforma el día de un parcial) y para tener un canal directo con el grupo. Si todavía no han elegido vocero, lo definimos en la primera clase y me escribe después.
+
+<!-- /vocero -->
+
+Nos vemos pronto. ¡Bienvenidos!
+
+Cordialmente,  
+Julian Andres Castaño Espinosa  
+Ingeniero de Sistemas · Candidato a MsC en IA  
+`julianacastano@profesores.uniajc.edu.co`
+
 <!-- fechas-clave: generado -->
 
 ### Fechas clave
@@ -34,7 +49,9 @@ Les doy la bienvenida al curso **Bases de Datos II** (código **FI303215**, grup
 
 > El curso son **13 sesiones de lunes**, una por semana, de 24/08/2026 a 16/11/2026.
 
-Les voy a compartir los eventos del curso por calendario. Cada uno empieza con el tipo de encuentro, para que sepan de un vistazo si tienen que conectarse a esa hora:
+**Les va a llegar a este mismo correo institucional una invitación de Google Calendar por cada sesión del curso**, con el **enlace de Google Meet** adentro. Acéptenla: así les queda el horario en su calendario y entran a clase desde ahí, sin buscar el enlace cada semana. El enlace de Meet es el mismo durante todo el semestre.
+
+Cada evento empieza con el tipo de encuentro, para que sepan de un vistazo si tienen que conectarse a esa hora:
 
 - **`[SINCRONICO]`** — hay encuentro en el horario del curso: presencial, virtual en vivo, parcial o sustentación. **Deben asistir.**
 - **`[AUTONOMO]`** — **no hay encuentro**. Es trabajo independiente guiado: les dejo el material y la actividad, y ustedes la resuelven por su cuenta antes de la fecha de cierre.
@@ -79,20 +96,3 @@ Material de apoyo para usar la plataforma:
 - **Todas las funcionalidades (video):** https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/help-videos/serie-estudiante.mp4
 
 <!-- /examlab -->
-
-Por favor **revisen en su calendario institucional** los eventos del curso (fechas de clase, parciales y demás hitos del cronograma). Es importante que los tengan visibles para organizar el semestre.
-
-En el **día 1**: **Sesión 0** (Presentación del curso: logística, acuerdo, Padlet, evaluación) y **Clase 1** (diagnóstico de conocimientos previos + arranque temático).
-
-<!-- vocero: generado -->
-
-**Una cosa que necesito de ustedes:** que el **vocero del grupo** me **responda este correo con su número de WhatsApp**. Lo uso solo para avisos urgentes del curso (un cambio de sala, una caída de la plataforma el día de un parcial) y para tener un canal directo con el grupo. Si todavía no han elegido vocero, lo definimos en la primera clase y me escribe después.
-
-<!-- /vocero -->
-
-Nos vemos pronto. ¡Bienvenidos!
-
-Cordialmente,  
-Julian Andres Castaño Espinosa  
-Ingeniero de Sistemas · Candidato a MsC en IA  
-`julianacastano@profesores.uniajc.edu.co`

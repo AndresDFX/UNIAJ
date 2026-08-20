@@ -252,7 +252,8 @@
           "id": "1oTA2kYgBvNbUfzD784R7AQxsIt_BmGmA",
           "url": "https://drive.google.com/drive/folders/1oTA2kYgBvNbUfzD784R7AQxsIt_BmGmA"
         }
-      }
+      },
+      "meet": ""
     },
     "seminario": {
       "folder": "Seminario de Sistemas",
@@ -461,7 +462,8 @@
           "id": "10XBX8t7dFrBQhxaQrYWZxWr-nwulo3xi",
           "url": "https://drive.google.com/drive/folders/10XBX8t7dFrBQhxaQrYWZxWr-nwulo3xi"
         }
-      }
+      },
+      "meet": ""
     },
     "bases_datos_ii": {
       "folder": "Bases de Datos II",
@@ -677,7 +679,8 @@
           "id": "10q7c22SXqsabyVRxpLkQnc9doSZamZo6",
           "url": "https://drive.google.com/drive/folders/10q7c22SXqsabyVRxpLkQnc9doSZamZo6"
         }
-      }
+      },
+      "meet": ""
     },
     "arquitectura": {
       "folder": "Arquitectura de Sistemas Computacionales",
@@ -893,7 +896,8 @@
           "id": "1rpmcE6xEUZFNOxPV4bfQ0VqVR6wcN9yg",
           "url": "https://drive.google.com/drive/folders/1rpmcE6xEUZFNOxPV4bfQ0VqVR6wcN9yg"
         }
-      }
+      },
+      "meet": ""
     }
   },
   "modalidad_cursos": "Presencialidad asistida (Clase 1 y parciales presencial · resto virtual sincrona · festivos autonoma)",
@@ -907,5 +911,6 @@
   "regla_modalidad_sesion": "Uniforme en los 4 cursos (Presencialidad asistida): Clase 1 PRESENCIAL (encuadre) · parciales PRESENCIAL sincrono · resto de clases regulares VIRTUAL SINCRONA · festivos = clase AUTONOMA. No hay sesiones asincronas fuera de los festivos.",
   "regla_parcial_solo_eval": "Día de parcial = solo evaluación; sin tema de trabajo dirigido nuevo. No mezclar tema técnico · Parcial N. La prep del PI va en la clase regular anterior.",
   "_nota_semestre_acortado": "Inicio movido de 2026-08-10 a 2026-08-24 (semana del 24 de agosto) por decision institucional/docente; la fecha fin NO se mueve (2026-11-22). Resultado: 13 sesiones por curso en vez de 15. Los 15 temas se conservan comprimiendo 2 sesiones dobles. Parciales: Prog II y Seminario en clases 5/9/13; BD II y Arquitectura en clases 5/9/12, con la clase 13 (2026-11-16) dedicada a sustentaciones del proyecto final.",
-  "_nota_carpetas_drive": "carpetas_drive por curso: 'clases' = carpeta compartida con el material del curso; 'grabadas' = carpeta donde se archivan las grabaciones de Meet. Las URL se guardan canonicas (sin ?usp= y sin /u/0/, que es el indice de cuenta del docente). El id se usa en el Apps Script que mueve las grabaciones."
+  "_nota_carpetas_drive": "carpetas_drive por curso: 'clases' = carpeta compartida con el material del curso; 'grabadas' = carpeta donde se archivan las grabaciones de Meet. Las URL se guardan canonicas (sin ?usp= y sin /u/0/, que es el indice de cuenta del docente). El id se usa en el Apps Script que mueve las grabaciones.",
+  "_nota_meet": "cursos.<curso>.meet = enlace UNICO de Google Meet de la serie de encuentros del curso. Sale de ejecutar crearEncuentros() en el Apps Script generado por generar_apps_script_encuentros.py; se pega aqui y se regenera para que el correo de bienvenida lo publique. Vacio = el correo avisa que el enlace llega en la invitacion."
 }

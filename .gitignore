@@ -24,14 +24,15 @@ LISTA_DE_ALUMNOS*.xlsx
 *LISTADO*ESTUDIANTES*.xls
 
 # Salidas derivadas de la nomina real: .ics con estudiantes como invitados,
-# nomina normalizada y planillas de asistencia. Las genera
-# config/calendario/generar_eventos_calendario.py y llevan nombre, documento y
-# correo de cada estudiante. Nunca al repo.
-config/calendario/_privado_2026-2/
+# nomina normalizada, planillas de asistencia y los correos que el docente completa
+# a mano. Viven en la carpeta del curso, en
+# <Curso>/Plan curso/<periodo>/_privado/, y llevan nombre, documento y correo de
+# cada estudiante. Nunca al repo.
+_privado/
 
-# Correos que el docente completa a mano cuando el export academico no trae el
-# institucional (suelen ser correos personales del estudiante). Es ENTRADA del
-# generador de eventos, la mantiene el docente, y es dato personal: no se versiona.
+# Ubicacion anterior de lo mismo (se dejaba todo junto en config/): se conserva la
+# regla para que no se cuele si queda algun resto.
+config/calendario/_privado_2026-2/
 config/calendario/_correos_manuales.csv
 
 # ── Incidente de recuperacion de Drive (2026-08-08, ya resuelto) ─────
