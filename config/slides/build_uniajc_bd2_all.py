@@ -1594,7 +1594,7 @@ python .config/slides/build_uniajc_bd2_curso.py
 """
     (KIT_DIR / "README.md").write_text(text, encoding='utf-8')
 
-EXAMLAB_URL = "https://examlab.lovable.app/app"
+EXAMLAB_URL = "https://examlab.lovable.app/auth"
 
 # Boceto sugerido para la Pizarra (whiteboard) de cada clase — agnostico de
 # herramienta: sirve igual en el whiteboard de ExamLab, en una pizarra fisica

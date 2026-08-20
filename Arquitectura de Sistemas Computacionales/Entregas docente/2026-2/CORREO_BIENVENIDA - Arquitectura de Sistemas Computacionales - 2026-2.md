@@ -16,7 +16,6 @@ Les doy la bienvenida al curso **Arquitectura de Sistemas Computacionales** (có
 - **Sustentación del proyecto final:** Sesión 13 — 16/11/2026.
 - **Horario:** lunes **10:00 – 12:00** (inicio práctico de clase: **10:10**)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
-- **Entrega de talleres y evaluaciones:** ExamLab · https://examlab.lovable.app/app
 
 <!-- fechas-clave: generado -->
 
@@ -36,6 +35,32 @@ Les doy la bienvenida al curso **Arquitectura de Sistemas Computacionales** (có
 > El curso son **13 sesiones de lunes**, una por semana, de 24/08/2026 a 16/11/2026.
 
 <!-- /fechas-clave -->
+
+<!-- examlab: generado -->
+
+### Plataforma del curso — ExamLab
+
+Trabajaremos en **ExamLab**: https://examlab.lovable.app/auth
+
+**No es una plataforma oficial de la UNIAJC** (la universidad no tiene campus virtual propio), pero es donde se desarrolla todo lo evaluable del curso:
+
+- **Asistencia**
+- **Talleres** (se resuelven y se entregan dentro de la plataforma)
+- **Quices y parciales**
+- **Entrega del proyecto integrador**
+
+**Por favor verifiquen que pueden entrar ANTES de la primera clase**, con su **correo institucional** y esta contraseña temporal:
+
+> **Contraseña temporal:** ________________________
+
+Al ingresar por primera vez, cámbienla. Si no logran entrar, escríbanme respondiendo este correo **antes de la primera sesión**: resolverlo en clase nos quita tiempo de clase.
+
+Material de apoyo para usar la plataforma:
+
+- **Manual del estudiante (PDF):** https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/help-docs/manual-estudiante.pdf
+- **Todas las funcionalidades (video):** https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/help-videos/serie-estudiante.mp4
+
+<!-- /examlab -->
 
 **Contenido de las clases** (Presentación del Curso, diapositivas y talleres — carpeta compartida):  
 [PEGAR AQUÍ LINK DE LA CARPETA CLASES]

@@ -28,7 +28,7 @@
   },
   "periodo": "2026-2",
   "ventana_academica": "24/08/2026 – 22/11/2026",
-  "plataforma": "ExamLab (examlab.lovable.app/app) — la UNIAJC no tiene campus virtual propio",
+  "plataforma": "ExamLab (https://examlab.lovable.app/auth) — no es plataforma oficial de la UNIAJC, que no tiene campus virtual propio; ahi van asistencia, talleres, quices/parciales y la entrega del PI",
   "cursos": {
     "arquitectura": {
       "codigo": "FI303380",

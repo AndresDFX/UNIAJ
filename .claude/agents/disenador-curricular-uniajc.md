@@ -149,9 +149,37 @@ docente, 2026-08-09). Era una suposición heredada de otras universidades (la CU
 tiene CDigital). **Nunca** escribir “Campus Virtual”, “LMS” ni una URL de plataforma
 institucional: manda al estudiante a un sitio que no existe.
 
-El canal real de entrega es **ExamLab** (`https://examlab.lovable.app/`): ahí se
-**suben talleres** y se **presentan quices/parciales**. No es oficial de la
-universidad — al mencionarlo, decir esa distinción para no confundir.
+El canal real de entrega es **ExamLab**. **No es oficial de la universidad** — al
+mencionarlo, decir esa distinción para no confundir. Ahí se desarrolla **todo lo
+evaluable**: **asistencia**, **talleres** (se resuelven dentro, no es solo un buzón),
+**quices y parciales**, y la **entrega del proyecto integrador**.
+
+URLs canónicas (usar exactamente estas; `…/app` es una ruta vieja, no usarla):
+
+| Para | URL |
+|---|---|
+| Acceso del estudiante | `https://examlab.lovable.app/auth` |
+| Manual del estudiante (PDF) | `https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/help-docs/manual-estudiante.pdf` |
+| Todas las funcionalidades (video) | `https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/help-videos/serie-estudiante.mp4` |
+
+### Al INICIAR un curso (obligatorio en el correo de bienvenida y en la Sesión 0)
+
+El correo de bienvenida y la Presentación del Curso deben incluir:
+
+1. Que ExamLab **no es plataforma oficial de la UNIAJC**, y que aun así ahí van
+   asistencia, talleres, quices/parciales y la entrega del PI.
+2. La URL de acceso (`/auth`) y la petición de **verificar el acceso ANTES de la primera
+   clase** con el **correo institucional** + una **contraseña temporal** (dejar el espacio
+   en blanco para escribirla: `**Contraseña temporal:** ____________`), con instrucción de
+   cambiarla al primer ingreso y de avisar por correo si no logran entrar.
+3. Los enlaces del **manual (PDF)** y del **video de funcionalidades**.
+
+Esos tres bloques los genera `config/calendario/generar_semestre_2026_2.py` en
+`<Curso>/Entregas docente/<periodo>/CORREO_BIENVENIDA - <Curso> - <periodo>.md`, entre
+marcadores HTML (`<!-- examlab: generado -->`), así que se regeneran sin duplicar y sin
+pisar lo que el docente escribió a mano. El mismo archivo genera la tabla de **fechas
+clave** (incluida la fecha de la primera clase, que **no siempre coincide** con el inicio
+del periodo) y la petición al **vocero** de responder con su número de WhatsApp.
 
 ### El taller se RESUELVE dentro de ExamLab (no es solo un buzón)
 

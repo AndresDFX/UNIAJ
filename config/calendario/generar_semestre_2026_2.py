@@ -871,6 +871,17 @@ def patch_correo(meta: dict, path: Path) -> bool:
 # el link de la carpeta compartida).
 MARCA_FECHAS = ("<!-- fechas-clave: generado -->", "<!-- /fechas-clave -->")
 MARCA_VOCERO = ("<!-- vocero: generado -->", "<!-- /vocero -->")
+MARCA_EXAMLAB = ("<!-- examlab: generado -->", "<!-- /examlab -->")
+
+EXAMLAB_AUTH = "https://examlab.lovable.app/auth"
+EXAMLAB_MANUAL = (
+    "https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/"
+    "help-docs/manual-estudiante.pdf"
+)
+EXAMLAB_VIDEO = (
+    "https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/"
+    "help-videos/serie-estudiante.mp4"
+)
 
 
 def _quitar_bloque(txt: str, marcas: tuple[str, str]) -> str:
@@ -922,6 +933,45 @@ def fechas_clave_md(meta: dict) -> str:
     return "\n".join(out)
 
 
+def examlab_md() -> str:
+    """Bloque de ExamLab: qué es, qué se hace ahí y verificación de acceso.
+
+    Se pide verificar el acceso ANTES de la primera clase: si alguien no entra, se
+    resuelve fuera del bloque de clase y no se pierde tiempo de la sesión 1.
+    """
+    return "\n".join([
+        MARCA_EXAMLAB[0],
+        "",
+        "### Plataforma del curso — ExamLab",
+        "",
+        f"Trabajaremos en **ExamLab**: {EXAMLAB_AUTH}",
+        "",
+        "**No es una plataforma oficial de la UNIAJC** (la universidad no tiene campus "
+        "virtual propio), pero es donde se desarrolla todo lo evaluable del curso:",
+        "",
+        "- **Asistencia**",
+        "- **Talleres** (se resuelven y se entregan dentro de la plataforma)",
+        "- **Quices y parciales**",
+        "- **Entrega del proyecto integrador**",
+        "",
+        "**Por favor verifiquen que pueden entrar ANTES de la primera clase**, con su "
+        "**correo institucional** y esta contraseña temporal:",
+        "",
+        "> **Contraseña temporal:** ________________________",
+        "",
+        "Al ingresar por primera vez, cámbienla. Si no logran entrar, escríbanme "
+        "respondiendo este correo **antes de la primera sesión**: resolverlo en clase nos "
+        "quita tiempo de clase.",
+        "",
+        "Material de apoyo para usar la plataforma:",
+        "",
+        f"- **Manual del estudiante (PDF):** {EXAMLAB_MANUAL}",
+        f"- **Todas las funcionalidades (video):** {EXAMLAB_VIDEO}",
+        "",
+        MARCA_EXAMLAB[1],
+    ])
+
+
 def vocero_md() -> str:
     return "\n".join([
         MARCA_VOCERO[0],
@@ -939,6 +989,12 @@ def vocero_md() -> str:
 def _bloques_gestionados(meta: dict, txt: str) -> str:
     txt = _quitar_bloque(txt, MARCA_FECHAS)
     txt = _quitar_bloque(txt, MARCA_VOCERO)
+    txt = _quitar_bloque(txt, MARCA_EXAMLAB)
+
+    # El bullet suelto de ExamLab queda redundante (y traía la URL vieja /app):
+    # lo cubre el bloque de plataforma, que además da la URL de acceso correcta.
+    txt = "\n".join(ln for ln in txt.splitlines()
+                    if not ln.startswith("- **Entrega de talleres y evaluaciones:**"))
 
     # Fechas clave: después de la lista de bullets, antes del bloque de contenido.
     lineas = txt.splitlines()
@@ -947,7 +1003,7 @@ def _bloques_gestionados(meta: dict, txt: str) -> str:
     if corte is None:
         corte = next((i for i, ln in enumerate(lineas)
                       if ln.startswith("Por favor **revisen")), len(lineas))
-    lineas[corte:corte] = ["", fechas_clave_md(meta), ""]
+    lineas[corte:corte] = ["", fechas_clave_md(meta), "", examlab_md(), ""]
 
     # Vocero: justo antes del cierre.
     cierre = next((i for i, ln in enumerate(lineas) if ln.startswith("Nos vemos pronto")),

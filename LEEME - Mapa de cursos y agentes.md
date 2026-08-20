@@ -119,7 +119,7 @@ python config/calendario/generar_semestre_2026_2.py
 ## Convención de material
 
 - Nomenclatura **Clase N** (no «Sesión» CUN).
-- **La UNIAJC no tiene Campus Virtual/LMS.** Canal de entrega = **ExamLab** (`examlab.lovable.app/app`), que no es oficial de la universidad. Nunca escribir “Campus Virtual” ni incluir listado de estudiantes (privado).
+- **La UNIAJC no tiene Campus Virtual/LMS.** Canal de entrega = **ExamLab** (`https://examlab.lovable.app/auth`), que **no es oficial de la universidad**; ahi van asistencia, talleres, quices/parciales y la entrega del PI. Nunca escribir “Campus Virtual” ni incluir listado de estudiantes (privado).
 - **Presentación del curso:** docente + oferta (grupo/periodo/horario/URL en **negrita**) + evaluación + cronograma.
 - **PPTX de clase:** solo tema de esa clase + nº discreto («Clase N»). Sin fechas de periodo, sin mapa completo del curso, sin bio.
 - **Guion de clase:** en `Kit docente/Clase N/` (privado docente). Fundamento + minuto a minuto + práctica + entregable de hoy. Sin carpeta `Guiones/`.

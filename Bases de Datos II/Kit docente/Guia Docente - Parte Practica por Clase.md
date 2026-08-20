@@ -3,7 +3,7 @@
 > Cada clase = una practica con objetivo propio. La demo se apoya en un
 > boceto de pizarra + un script SQL completo (con datos) para que usted lo
 > ejecute en vivo en Oracle Live SQL / DB Fiddle. El taller y el quiz se
-> entregan/presentan en ExamLab (`https://examlab.lovable.app/app`) — no es la plataforma
+> entregan/presentan en ExamLab (`https://examlab.lovable.app/auth`) — no es la plataforma
 > oficial de la UNIAJC, pero es la que usamos para eso en este curso.
 
 ## Clase 1 — Revision BD I · Arranque VetCare DB
