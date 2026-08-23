@@ -3,7 +3,7 @@
 - **Curso:** Bases de Datos II (FI303215)
 - **Taller:** Taller Clase 7 en ExamLab - Indices y particionamiento de VetCare
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** >=2 indices justificados sobre tablas calientes del PI
 - **Entregable de la clase:** Script CREATE INDEX + tabla justificacion consulta->indice
 

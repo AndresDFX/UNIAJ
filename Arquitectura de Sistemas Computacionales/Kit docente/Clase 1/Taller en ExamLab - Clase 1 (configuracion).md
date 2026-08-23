@@ -3,7 +3,7 @@
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
 - **Taller:** Taller Clase 1 en ExamLab - Ficha y C4 Context de CloudLite App
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases
 - **Entregable de la clase:** Ficha PI: dominio, capacidades, actores y boceto C4 Context (Excalidraw/draw.io)
 

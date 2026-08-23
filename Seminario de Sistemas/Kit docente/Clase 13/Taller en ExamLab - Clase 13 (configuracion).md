@@ -3,7 +3,7 @@
 - **Curso:** Seminario de Sistemas (FI303301)
 - **Taller:** Taller Clase 13 en ExamLab - Diseno de interfaces de VetCare
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Quedan listas las pantallas de Registrar mascota y Buscar expediente de VetCare, anotadas y conectadas en un prototipo navegable.
 - **Entregable de la clase:** Un archivo de Figma o Penpot con las dos pantallas anotadas y minimo tres transiciones navegables, mas la hoja de anotaciones que amarra cada campo a un RF y a un atributo del diccionario de datos, subido a ExamLab.
 

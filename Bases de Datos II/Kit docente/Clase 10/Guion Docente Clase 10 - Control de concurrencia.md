@@ -1,7 +1,7 @@
 # Guion docente · Clase 10 · Control de concurrencia · VetCare
 
 - **Curso:** Bases de Datos II (FI303215) · 120 min
-- **Tipo:** AUTONOMA (festivo)
+- **Tipo:** AUTONOMA (festivo, sin encuentro sincrono)
 - **Hilo:** Proyecto Integrador **VetCare DB**
 - **Hoy avanzamos el PI en:** Escenarios de concurrencia del PI documentados
 - **Entregable de hoy:** Informe corto: 2 escenarios (cita doble / stock) + mitigacion

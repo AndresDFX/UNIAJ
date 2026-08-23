@@ -64,7 +64,7 @@ Cualquier ajuste general de marca/diseño/nomenclatura UNIAJC se aplica a los cu
 4. Timeline «Mapa del bloque de hoy» (`block_timeline_slide`): barra proporcional + cards verticales (NO la raya con cuadraditos vieja).
 5. Slide **Herramientas del curso** (`herramientas_slide`): **3–4 principales**, logos **grandes** (~2×); no saturar.
 6. Quizzes proyectables: **sin** «no proyectar claves» en subtítulo estudiante; subtítulo tipo `Individual · 8–10 min`. Opciones OM **una por línea**. Helpers: `config/slides/uniajc_quiz_helpers.py`.
-7. Plataforma = **ExamLab** (`https://examlab.lovable.app/auth`), que **no es plataforma oficial de la UNIAJC**. **Nunca** escribir «Campus Virtual», «LMS» ni una URL institucional: mandaría al estudiante a un sitio que no existe. Nunca «CDigital» (eso es CUN).
+7. Plataforma = **ExamLab** (`https://uniaj.examlab.workers.dev/`), que **no es plataforma oficial de la UNIAJC**. **Nunca** escribir «Campus Virtual», «LMS» ni una URL institucional: mandaría al estudiante a un sitio que no existe. Nunca «CDigital» (eso es CUN).
 8. Presentación del curso (estudiantes): grupo(s), docente, recursos, evaluación, CONTENIDO (Sesión 0 + las **13 sesiones** en **una** diapositiva vía `contenido_clases_slide`), Padlet, herramientas, cierre. **Sin** checklist docente ni Clear posts. **Sin** placeholder Campus Virtual ni listado.
 9. Datos de oferta del periodo en **negrita** (grupo, periodo, horario). **No** forzar negrita en docente/correo, temario ni textos pedagógicos.
 10. Marca: `#095292` / `#269CCB` / `#FFD000` — ver `config/universidades/uniajc.json`.
@@ -87,7 +87,7 @@ Cualquier ajuste general de marca/diseño/nomenclatura UNIAJC se aplica a los cu
 - Ubicación: **`Kit docente/Clase N/`** (privado). **NO** usar carpeta `Guiones/`.
 - Cubren todo el bloque (**120 min**), minuto a minuto, teórico-práctico; solo el tema de ESA clase.
 - **Sin** mapa del curso, políticas largas, desglose global de evaluación, bio ni fechas de periodo.
-- Plataforma = **ExamLab** (`https://examlab.lovable.app/auth`), no oficial de la UNIAJC. Capturas: `Kit docente/Clase N/Capturas/`.
+- Plataforma = **ExamLab** (`https://uniaj.examlab.workers.dev/`), no oficial de la UNIAJC. Capturas: `Kit docente/Clase N/Capturas/`.
 - Builds de referencia: `config/slides/build_uniajc_prog2_all.py` (datos en `prog2_clases_data.py`) + `guion_md_a_docx.py`. **Ojo:** `build_uniajc_prog2_clase01.py`, `build_uniajc_seminario_clase01.py` y `build_uniajc_clase01_prog2_seminario.py` están SUPERSEDIDOS y abortan si se ejecutan.
 
 ## Práctica de clase = gratis + nube

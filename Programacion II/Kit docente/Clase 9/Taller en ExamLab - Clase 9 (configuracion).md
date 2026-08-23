@@ -3,7 +3,7 @@
 - **Curso:** Programacion II (FI303204)
 - **Taller:** Taller Clase 9 en ExamLab - Persistencia en CSV y refactorizacion asistida por IA
 - **Preguntas:** 4 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** VetCare guarda la lista de mascotas en mascotas.csv al cerrar y la vuelve a cargar al abrir.
 - **Entregable de la clase:** La clase RepositorioMascotasCSV con guardar() y cargar() funcionando, el archivo mascotas.csv generado por la propia aplicación y la bitácora REFACTOR.md, subidos a ExamLab.
 

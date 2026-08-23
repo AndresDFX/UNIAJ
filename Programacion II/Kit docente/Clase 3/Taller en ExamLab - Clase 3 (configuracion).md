@@ -3,7 +3,7 @@
 - **Curso:** Programacion II (FI303204)
 - **Taller:** Taller Clase 3 en ExamLab - Sala de espera con Queue e historial con pila
 - **Preguntas:** 6 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** VetCare queda con la sala de espera modelada como cola FIFO y el historial de atenciones recientes como pila LIFO, ambas conectadas al registro de mascotas de la clase anterior.
 - **Entregable de la clase:** Clases SalaDeEspera (Queue) e HistorialReciente (Deque como pila) integradas al proyecto VetCare, con una demo que atiende en orden de llegada las cuatro mascotas del escenario y deshace la ultima atencion registrada; comprimido y subido a ExamLab.
 

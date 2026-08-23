@@ -1,7 +1,7 @@
 # Guion docente · Clase 3 · Procedimientos almacenados · VetCare
 
 - **Curso:** Bases de Datos II (FI303215) · 120 min
-- **Tipo:** REGULAR
+- **Tipo:** REGULAR (sincrona)
 - **Hilo:** Proyecto Integrador **VetCare DB**
 - **Hoy avanzamos el PI en:** >=1 procedimiento de negocio (agendar cita / registrar consulta)
 - **Entregable de hoy:** Script proc + casos de prueba (captura o enlace Live SQL)

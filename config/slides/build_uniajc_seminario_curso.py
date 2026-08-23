@@ -342,7 +342,7 @@ def build():
 
 
 
-        '@@ExamLab@@ (https://examlab.lovable.app/): entrega de talleres + quices/parciales del curso.',
+        '@@ExamLab@@ (https://uniaj.examlab.workers.dev/): entrega de talleres + quices/parciales del curso.',
 
 
 
@@ -362,7 +362,7 @@ def build():
 
 
 
-            ('aclaracion', 'Día 1: Sesión 0 (Presentación del curso, archivo aparte) + Clase 1 (diagnóstico + Conceptos iniciales). Material estudiante solo en carpeta Clases/. Talleres y quices/parciales en ExamLab (https://examlab.lovable.app/).'),
+            ('aclaracion', 'Día 1: Sesión 0 (Presentación del curso, archivo aparte) + Clase 1 (diagnóstico + Conceptos iniciales). Material estudiante solo en carpeta Clases/. Talleres y quices/parciales en ExamLab (https://uniaj.examlab.workers.dev/).'),
 
 
 

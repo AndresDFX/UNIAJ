@@ -3,7 +3,7 @@
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
 - **Taller:** Taller Clase 7 en ExamLab - Despliegue por zonas y almacenamiento de CloudLite
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Diagrama de despliegue: red, zonas, almacenamiento
 - **Entregable de la clase:** Diagrama Deployment (draw.io) + elección de storage (objeto/bloque/relacional conceptual)
 

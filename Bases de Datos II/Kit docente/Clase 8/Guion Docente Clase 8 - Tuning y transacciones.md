@@ -1,7 +1,7 @@
 # Guion docente · Clase 8 · Tuning · Transacciones · VetCare
 
 - **Curso:** Bases de Datos II (FI303215) · 120 min
-- **Tipo:** REGULAR
+- **Tipo:** REGULAR (sincrona)
 - **Hilo:** Proyecto Integrador **VetCare DB**
 - **Hoy avanzamos el PI en:** Transaccion de negocio (factura + stock) + notas de tuning
 - **Entregable de hoy:** Script transaccional + checklist tuning del PI (1 pag.)

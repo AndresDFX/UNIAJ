@@ -3,7 +3,7 @@
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
 - **Taller:** Taller Clase 4 en ExamLab - C4 Container y contratos de CloudLite
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Diagramar componentes/servicios de CloudLite y sus contratos
 - **Entregable de la clase:** Diagrama C4 Container/Componentes v0.9 + lista de APIs entre servicios
 

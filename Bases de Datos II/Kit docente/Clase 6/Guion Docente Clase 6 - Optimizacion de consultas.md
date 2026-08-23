@@ -1,7 +1,7 @@
 # Guion docente · Clase 6 · Optimizacion de consultas · VetCare
 
 - **Curso:** Bases de Datos II (FI303215) · 120 min
-- **Tipo:** REGULAR
+- **Tipo:** REGULAR (sincrona)
 - **Hilo:** Proyecto Integrador **VetCare DB**
 - **Hoy avanzamos el PI en:** Primera pareja de consultas antes/despues del PI
 - **Entregable de hoy:** 2 consultas (antes/despues) + justificacion (media pag.)

@@ -3,7 +3,7 @@
 - **Curso:** Bases de Datos II (FI303215)
 - **Taller:** Taller Clase 1 en ExamLab - Arranque VetCare DB y repaso de DDL
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Arranque PI: dominio, alcance y borrador ER de VetCare DB
 - **Entregable de la clase:** Ficha del proyecto + ER borrador (PNG) + lista de entidades/reglas
 

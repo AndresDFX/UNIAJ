@@ -3,7 +3,7 @@
 - **Curso:** Bases de Datos II (FI303215)
 - **Taller:** Taller Clase 15 en ExamLab - Entrega final y cierre de VetCare DB (previo a la sustentacion en vivo)
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Sustentacion en vivo y entrega final del PI (20% Corte 3)
 - **Entregable de la clase:** ZIP/PDF final subido antes del turno + sustentacion en vivo 5-8 min + Q&A
 

@@ -1,7 +1,7 @@
 # Guion docente · Clase 12 · Integracion app <-> BD · Prep. presentacion
 
 - **Curso:** Bases de Datos II (FI303215) · 120 min
-- **Tipo:** REGULAR
+- **Tipo:** REGULAR (sincrona)
 - **Hilo:** Proyecto Integrador **VetCare DB**
 - **Hoy avanzamos el PI en:** Contrato integracion + preparacion de entrega/sustentacion
 - **Entregable de hoy:** Contrato app<->BD + outline de slides de sustentacion (5-8 min)

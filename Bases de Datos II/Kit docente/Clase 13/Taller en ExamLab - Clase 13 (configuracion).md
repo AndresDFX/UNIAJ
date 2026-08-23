@@ -3,7 +3,7 @@
 - **Curso:** Bases de Datos II (FI303215)
 - **Taller:** Taller Clase 13 en ExamLab - Analisis de casos reales aplicado a VetCare (clase autonoma)
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Informe de caso -> mejoras concretas al PI
 - **Entregable de la clase:** Informe 1-2 pag.: caso + 3 mejoras aplicables a VetCare
 

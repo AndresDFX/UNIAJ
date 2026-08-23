@@ -3,7 +3,7 @@
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
 - **Taller:** Taller Clase 6 en ExamLab - Modelo de amenazas y controles de CloudLite
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Modelo de amenazas mínimo + controles para CloudLite
 - **Entregable de la clase:** Sección Seguridad PI: 5 amenazas STRIDE-lite + controles + secretos/CI
 

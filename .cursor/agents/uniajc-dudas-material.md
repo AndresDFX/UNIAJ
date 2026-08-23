@@ -67,5 +67,5 @@ Solo se comparte `Clases/`. Formatos: `.pptx` + `.docx` (**nunca `.md`**). Parci
 
 - **Presentación del curso:** docente, grupo/periodo en negrita, evaluación, CONTENIDO, Padlet, herramientas (3–4). **Sin** placeholder Campus Virtual ni listado.
 - **PPTX / guion de clase:** solo tema + «Clase N». Sin fechas de periodo, sin mapa del curso, sin bio. Portada `class_cover` limpia (sin bloque PI/120 min). Quiz proyectable sin claves (`Individual · 8–10 min`).
-- Plataforma: **ExamLab** (`https://examlab.lovable.app/auth`), **no oficial de la UNIAJC**. Nunca «Campus Virtual» ni «LMS» · nunca CDigital/CUN.
+- Plataforma: **ExamLab** (`https://uniaj.examlab.workers.dev/`), **no oficial de la UNIAJC**. Nunca «Campus Virtual» ni «LMS» · nunca CDigital/CUN.
 - BD II / Arquitectura: material orientado al PI (práctica); teoría breve al servicio del entregable.

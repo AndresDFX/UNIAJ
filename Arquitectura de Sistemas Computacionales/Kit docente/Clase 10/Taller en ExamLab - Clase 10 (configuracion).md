@@ -3,7 +3,7 @@
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
 - **Taller:** Taller Clase 10 en ExamLab - Costos y sostenibilidad de CloudLite
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Estimación cualitativa de costos + notas de sostenibilidad
 - **Entregable de la clase:** Sección Costos/Sostenibilidad del informe (bajo/medio + drivers)
 

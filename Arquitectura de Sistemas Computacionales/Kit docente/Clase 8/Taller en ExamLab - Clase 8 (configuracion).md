@@ -3,7 +3,7 @@
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
 - **Taller:** Taller Clase 8 en ExamLab - Pipeline de Actions y monitoreo de CloudLite
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Workflow Actions (build/test/simulate) + métricas de monitoreo del PI
 - **Entregable de la clase:** .github/workflows/ci.yml + sección Monitoreo/CI del informe
 

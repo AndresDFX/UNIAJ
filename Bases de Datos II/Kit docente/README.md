@@ -11,7 +11,7 @@ Teoria breve; talleres = entregables del PI.
 - Quiz Clase N - VetCare.docx (sin claves) + Quiz Clase N - CLAVE DOCENTE.docx (privado; no proyectar)
 - Codigo/*.sql demos VetCare
 - Capturas/ placeholders [CAP:…] (pendiente pantallazos reales)
-- Sesiones 5/9/12: Guia aplicacion Parcial N (solo evaluacion) · sesion 13 = sustentaciones PI
+- Dias 5/9/14: Guia aplicacion Parcial N (solo evaluacion)
 
 ## Builds
 `ash

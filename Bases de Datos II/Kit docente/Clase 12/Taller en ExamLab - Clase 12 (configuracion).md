@@ -3,7 +3,7 @@
 - **Curso:** Bases de Datos II (FI303215)
 - **Taller:** Taller Clase 12 en ExamLab - Contrato de integracion app <-> BD y preparacion de la sustentacion
 - **Preguntas:** 6 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Contrato integracion + preparacion de entrega/sustentacion
 - **Entregable de la clase:** Contrato app<->BD + outline de slides de sustentacion (5-8 min)
 

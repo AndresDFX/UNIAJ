@@ -165,7 +165,7 @@ URLs canónicas (usar exactamente estas; `…/app` es una ruta vieja, no usarla)
 
 | Para | URL |
 |---|---|
-| Acceso del estudiante | `https://examlab.lovable.app/auth` |
+| Acceso del estudiante | `https://uniaj.examlab.workers.dev/` |
 | Manual del estudiante (PDF) | `https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/help-docs/manual-estudiante.pdf` |
 | Todas las funcionalidades (video) | `https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/help-videos/serie-estudiante.mp4` |
 

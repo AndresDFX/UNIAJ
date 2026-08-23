@@ -32,5 +32,5 @@
 - Secrets en claro.
 
 ## Entrega / politica
-Entrega en ExamLab (https://examlab.lovable.app/) · gratis + navegador · sin cloud con tarjeta.
+Entrega en ExamLab (https://uniaj.examlab.workers.dev/) · gratis + navegador · sin cloud con tarjeta.
 La UNIAJC no tiene campus virtual propio.

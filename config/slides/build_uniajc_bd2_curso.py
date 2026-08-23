@@ -246,7 +246,7 @@ def build():
 
 
 
-        'Herramientas **gratis + en la nube**. Talleres y quices/parciales se entregan/presentan en @@ExamLab@@ (https://examlab.lovable.app/) — no es la plataforma oficial de la UNIAJC, la usamos solo para esto.',
+        'Herramientas **gratis + en la nube**. Talleres y quices/parciales se entregan/presentan en @@ExamLab@@ (https://uniaj.examlab.workers.dev/) — no es la plataforma oficial de la UNIAJC, la usamos solo para esto.',
 
 
 
@@ -353,7 +353,7 @@ def build():
 
 
 
-        '@@ExamLab@@ (https://examlab.lovable.app/): entrega de talleres + quices/parciales del curso.',
+        '@@ExamLab@@ (https://uniaj.examlab.workers.dev/): entrega de talleres + quices/parciales del curso.',
 
 
 

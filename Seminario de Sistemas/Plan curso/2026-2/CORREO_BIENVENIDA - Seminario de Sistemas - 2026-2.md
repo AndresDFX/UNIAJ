@@ -58,7 +58,7 @@ Las grabaciones se suben después de cada sesión. Sirven para repasar, y sobre 
 
 ### Plataforma del curso — ExamLab
 
-Trabajaremos en **ExamLab**: https://examlab.lovable.app/auth
+Trabajaremos en **ExamLab**: https://uniaj.examlab.workers.dev/
 
 **No es una plataforma oficial de la UNIAJC**, pero es donde se desarrolla todo lo evaluable del curso:
 

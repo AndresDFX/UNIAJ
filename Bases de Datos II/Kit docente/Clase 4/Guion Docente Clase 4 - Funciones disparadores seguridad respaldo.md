@@ -1,7 +1,7 @@
 # Guion docente · Clase 4 · Funciones · Triggers · Seguridad y respaldo
 
 - **Curso:** Bases de Datos II (FI303215) · 120 min
-- **Tipo:** REGULAR
+- **Tipo:** REGULAR (sincrona)
 - **Hilo:** Proyecto Integrador **VetCare DB**
 - **Hoy avanzamos el PI en:** >=1 funcion + >=1 trigger + borrador plan de respaldo
 - **Entregable de hoy:** Scripts funcion/trigger + Plan_Backup_VetCare (1 pag.)

@@ -3,7 +3,7 @@
 ## Información de la clase
 - Asignatura: Arquitectura de Sistemas Computacionales (FI303380)
 - Duración del bloque: **120 min**
-- Tipo: Clase regular (teoría + taller PI)
+- Tipo: Clase regular (teoría + taller PI) · encuentro síncrono
 - Enfoque: **Proyecto Integrador CloudLite App** (parte práctica)
 - Sin fechas de periodo · sin bio · sin mapa completo del curso
 
@@ -129,6 +129,6 @@ y `Kit docente/Clase 8/Quiz Clase 8 - CLAVE DOCENTE.docx` (clave, privada).
 - 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (https://examlab.lovable.app/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
+- Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).

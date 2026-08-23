@@ -3,7 +3,7 @@
 - **Curso:** Bases de Datos II (FI303215)
 - **Taller:** Taller Clase 4 en ExamLab - Funciones, triggers y plan de respaldo de VetCare
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** >=1 funcion + >=1 trigger + borrador plan de respaldo
 - **Entregable de la clase:** Scripts funcion/trigger + Plan_Backup_VetCare (1 pag.)
 

@@ -41,5 +41,5 @@
 - Ficha con bloque EQUIPO cuando el docente no autorizo equipos: la actividad es individual por defecto y solo admite lenguaje de equipo si hubo autorizacion.
 
 ## Entrega / politica
-La entrega oficial es la respuesta a las preguntas abiertas dentro de ExamLab (https://examlab.lovable.app/); el documento en Word/Google Docs es opcional y solo sirve para conservar respuestas. Gratis + navegador · sin cloud con tarjeta.
+La entrega oficial es la respuesta a las preguntas abiertas dentro de ExamLab (https://uniaj.examlab.workers.dev/); el documento en Word/Google Docs es opcional y solo sirve para conservar respuestas. Gratis + navegador · sin cloud con tarjeta.
 La UNIAJC no tiene campus virtual propio.

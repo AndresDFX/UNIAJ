@@ -3,7 +3,7 @@
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
 - **Taller:** Taller Clase 11 en ExamLab - Checkpoint del paquete v1 de CloudLite
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Integrar diagramas v1 + checklist de avance PI
 - **Entregable de la clase:** Paquete v1: Context + Containers + Deployment + Dockerfile + Actions + informe 60%+
 

@@ -95,7 +95,7 @@ def build():
             "**Sesión 0 (hoy)** = logística + acuerdo pedagógico + evaluación + CONTENIDO + **socialización del Proyecto Integrador**.",
             "**Clase 1** (material en archivo aparte) = diagnóstico de conocimientos previos + arranque temático — mismo bloque de hoy.",
             "Cada miércoles (120 min): **Teoría Core** → **Taller Guiado** → **cierre**. Modalidad: **Virtual**: todas las sesiones son **virtual síncrona** por Google Meet, incluidos la Sesión 1 y los parciales; festivos = **clase autónoma**.",
-            "Talleres y quices/parciales se entregan/presentan en @@ExamLab@@ (https://examlab.lovable.app/) — no es la plataforma oficial de la UNIAJC, la usamos solo para esto. Taller calificable: entrega máxima el **domingo 23:59**.",
+            "Talleres y quices/parciales se entregan/presentan en @@ExamLab@@ (https://uniaj.examlab.workers.dev/) — no es la plataforma oficial de la UNIAJC, la usamos solo para esto. Taller calificable: entrega máxima el **domingo 23:59**.",
             "Hilo conductor de todo el semestre: **Proyecto Integrador** continuo. Enfoque: aprender haciendo · aprendizaje invertido.",
         ],
         idx=6,
@@ -146,7 +146,7 @@ def build():
         prs, "Recursos",
         [
             "IDE recomendado: IntelliJ IDEA / VS Code / NetBeans (Java 17+).",
-            "@@ExamLab@@ (https://examlab.lovable.app/): entrega de talleres + quices/parciales del curso.",
+            "@@ExamLab@@ (https://uniaj.examlab.workers.dev/): entrega de talleres + quices/parciales del curso.",
             "Bibliografía (microcurrículo): Deitel & Deitel · Design Patterns (GoF) · Head First Design Patterns · JavaFX Docs.",
             "Material de clase: carpeta `Clases/Clase N` + talleres; guiones en `Guiones/` / `Kit docente/`.",
         ],
@@ -157,7 +157,7 @@ def build():
         prs, "Acuerdos importantes",
         [
             ("info", "Horario fijo del grupo 341C: miércoles 18:00–20:00 · Norte-Noche."),
-            ("aclaracion", "Los talleres guiados se entregan en ExamLab (https://examlab.lovable.app/) a más tardar el domingo 23:59 de la semana correspondiente."),
+            ("aclaracion", "Los talleres guiados se entregan en ExamLab (https://uniaj.examlab.workers.dev/) a más tardar el domingo 23:59 de la semana correspondiente."),
             ("advertencia", "La asistencia tiene peso en cada corte (10% / 10% / 5%). Llega a tiempo y participa."),
         ],
         idx=11,

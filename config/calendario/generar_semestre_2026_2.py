@@ -885,7 +885,7 @@ MARCA_VOCERO = ("<!-- vocero: generado -->", "<!-- /vocero -->")
 MARCA_EXAMLAB = ("<!-- examlab: generado -->", "<!-- /examlab -->")
 MARCA_CARPETAS = ("<!-- carpetas: generado -->", "<!-- /carpetas -->")
 
-EXAMLAB_AUTH = "https://examlab.lovable.app/auth"
+EXAMLAB_AUTH = "https://uniaj.examlab.workers.dev/"
 EXAMLAB_MANUAL = (
     "https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/"
     "help-docs/manual-estudiante.pdf"

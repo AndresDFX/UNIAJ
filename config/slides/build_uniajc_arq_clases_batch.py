@@ -216,7 +216,7 @@ CLASSES = [
         "ficha_bloques_note": "Ficha de 6 bloques: DOMINIO · PROBLEMA · CAPACIDADES · ACTORES · SISTEMAS EXTERNOS · FUERA DE ALCANCE.",
         "explica_60s_note": "El estudiante puede explicar su decisión en 60 segundos.",
         "entrega_unidad_note": "Un envío por estudiante.",
-        "entrega_oficial_nota": "La entrega oficial se hace respondiendo las preguntas abiertas del taller dentro de ExamLab (https://examlab.lovable.app/). El documento/ficha en Word o Google Docs es opcional, solo para que el estudiante conserve sus respuestas; lo que califica es lo que quede escrito en las preguntas de ExamLab.",
+        "entrega_oficial_nota": "La entrega oficial se hace respondiendo las preguntas abiertas del taller dentro de ExamLab (https://uniaj.examlab.workers.dev/). El documento/ficha en Word o Google Docs es opcional, solo para que el estudiante conserve sus respuestas; lo que califica es lo que quede escrito en las preguntas de ExamLab.",
         "separar_notas_docente": True,
         "arranque_cita": "¿En qué quedó tu CloudLite la clase pasada?",
         "arranque_nota": "pregunta de arranque (1 min) para detectar estudiantes rezagados antes de avanzar:",
@@ -1175,13 +1175,13 @@ def build_pptx(c: dict) -> Path:
     if c["tipo"] == "sustentacion":
         box_note_slide(prs, "Para continuar (PI)", [
             ("info", f"Entregable: {c['entregable']}"),
-            ("aclaracion", "El paquete se sube a ExamLab (https://examlab.lovable.app/ · módulo Proyectos) **antes** del bloque de sustentaciones."),
+            ("aclaracion", "El paquete se sube a ExamLab (https://uniaj.examlab.workers.dev/ · módulo Proyectos) **antes** del bloque de sustentaciones."),
             ("advertencia", "La sustentación es **en vivo** y con Q&A: no se acepta video grabado en su lugar."),
         ], idx=idx)
     else:
         box_note_slide(prs, "Para continuar (PI)", [
             ("info", f"Entregable: {c['entregable']}"),
-            ("aclaracion", "Subir evidencias al paquete CloudLite (Drive/repo) y a ExamLab (https://examlab.lovable.app/) domingo 23:59."),
+            ("aclaracion", "Subir evidencias al paquete CloudLite (Drive/repo) y a ExamLab (https://uniaj.examlab.workers.dev/) domingo 23:59."),
             ("advertencia", "Sin cloud de pago ni instalaciones obligatorias de hipervisores/Docker Desktop."),
         ], idx=idx)
     idx += 1
@@ -1452,12 +1452,12 @@ def build_taller_docx(c: dict) -> Path | None:
     if c["tipo"] == "sustentacion":
         # No es un taller con plazo del domingo: la sesión es la sustentación en vivo,
         # así que el paquete tiene que estar arriba ANTES del bloque.
-        para(doc, "El paquete final se sube a ExamLab (https://examlab.lovable.app/ · módulo Proyectos) "
+        para(doc, "El paquete final se sube a ExamLab (https://uniaj.examlab.workers.dev/ · módulo Proyectos) "
                   "ANTES del bloque de sustentaciones: quien llega a subir archivos consume su propio "
                   "turno. La sustentación es en vivo (5–8 min de pitch + Q&A) en la sesión de clase; no "
                   "se reemplaza por un video grabado. " + mod(c, "entrega_unidad_note"))
     else:
-        para(doc, "Entrega en ExamLab (https://examlab.lovable.app/ · módulo Talleres) · domingo 23:59 (regla del Acuerdo). "
+        para(doc, "Entrega en ExamLab (https://uniaj.examlab.workers.dev/ · módulo Talleres) · domingo 23:59 (regla del Acuerdo). "
                   + mod(c, "entrega_unidad_note"))
     if c.get("entrega_oficial_nota"):
         para(doc, c["entrega_oficial_nota"], shade="E8F4FA")
@@ -2027,7 +2027,7 @@ y `Kit docente/Clase {n}/Quiz Clase {n} - CLAVE DOCENTE.docx` (clave, privada).
 - 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (https://examlab.lovable.app/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.{chr(10) + "- " + c["entrega_oficial_nota"] if c.get("entrega_oficial_nota") else ""}
+- Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.{chr(10) + "- " + c["entrega_oficial_nota"] if c.get("entrega_oficial_nota") else ""}
 - Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).
 """

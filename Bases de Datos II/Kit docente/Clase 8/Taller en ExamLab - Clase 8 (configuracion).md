@@ -3,7 +3,7 @@
 - **Curso:** Bases de Datos II (FI303215)
 - **Taller:** Taller Clase 8 en ExamLab - Transacciones de facturacion y tuning de VetCare
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Transaccion de negocio (factura + stock) + notas de tuning
 - **Entregable de la clase:** Script transaccional + checklist tuning del PI (1 pag.)
 

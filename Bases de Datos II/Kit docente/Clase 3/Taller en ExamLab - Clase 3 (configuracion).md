@@ -3,7 +3,7 @@
 - **Curso:** Bases de Datos II (FI303215)
 - **Taller:** Taller Clase 3 en ExamLab - Procedimientos almacenados de VetCare en PL/pgSQL
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** >=1 procedimiento de negocio (agendar cita / registrar consulta)
 - **Entregable de la clase:** Script proc + casos de prueba (captura o enlace Live SQL)
 

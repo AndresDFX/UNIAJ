@@ -3,7 +3,7 @@
 - **Curso:** Bases de Datos II (FI303215)
 - **Taller:** Taller Clase 2 en ExamLab - Administracion de BD y roles de VetCare
 - **Preguntas:** 5 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Plan de roles/privilegios de VetCare
 - **Entregable de la clase:** Documento Roles_VetCare + script GRANT/REVOKE (o plan equivalente)
 

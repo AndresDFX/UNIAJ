@@ -1,7 +1,7 @@
 # Guion docente · Clase 13 · Analisis de casos reales · VetCare
 
 - **Curso:** Bases de Datos II (FI303215) · 120 min
-- **Tipo:** AUTONOMA (festivo)
+- **Tipo:** AUTONOMA (festivo, sin encuentro sincrono)
 - **Hilo:** Proyecto Integrador **VetCare DB**
 - **Hoy avanzamos el PI en:** Informe de caso -> mejoras concretas al PI
 - **Entregable de hoy:** Informe 1-2 pag.: caso + 3 mejoras aplicables a VetCare

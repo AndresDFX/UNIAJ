@@ -35,7 +35,7 @@ from __future__ import annotations
 
 import re
 
-EXAMLAB_URL = "https://examlab.lovable.app/"
+EXAMLAB_URL = "https://uniaj.examlab.workers.dev/"
 
 # Como se le explica al ESTUDIANTE cada tipo: que va a ver y que se espera que
 # deje. La clave es que sepa la FORMA de la respuesta antes de abrir la pregunta.

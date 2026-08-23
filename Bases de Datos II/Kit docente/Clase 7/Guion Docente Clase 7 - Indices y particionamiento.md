@@ -1,7 +1,7 @@
 # Guion docente · Clase 7 · Indices y particionamiento · VetCare
 
 - **Curso:** Bases de Datos II (FI303215) · 120 min
-- **Tipo:** REGULAR
+- **Tipo:** REGULAR (sincrona)
 - **Hilo:** Proyecto Integrador **VetCare DB**
 - **Hoy avanzamos el PI en:** >=2 indices justificados sobre tablas calientes del PI
 - **Entregable de hoy:** Script CREATE INDEX + tabla justificacion consulta->indice

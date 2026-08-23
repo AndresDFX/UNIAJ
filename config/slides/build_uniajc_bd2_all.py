@@ -1145,7 +1145,7 @@ def build_pptx(c):
             f"**Entregable:** {c['entregable']}",
             "Evidencia ejecutable en pantalla durante tu turno (no solo capturas).",
             "Puedes explicar **cualquier** parte de tu modelo en 60 segundos.",
-            "@@Entrega en ExamLab@@ (https://examlab.lovable.app/ · módulo Proyectos) — **antes** de tu turno.",
+            "@@Entrega en ExamLab@@ (https://uniaj.examlab.workers.dev/ · módulo Proyectos) — **antes** de tu turno.",
         ], idx=idx); idx += 1
         box_note_slide(prs, "Cierre del PI", [
             ("info", f"Hito: {c['hito_pi']}"),
@@ -1157,12 +1157,12 @@ def build_pptx(c):
             f"**Entregable:** {c['entregable']}",
             "Evidencia en playground (enlace) o archivo SQL/PNG propio.",
             "Actualizar checklist PI (que criterio de rubrica avanzo).",
-            "@@Entrega en ExamLab@@ (https://examlab.lovable.app/) — domingo 23:59 cuando aplique taller.",
+            "@@Entrega en ExamLab@@ (https://uniaj.examlab.workers.dev/) — domingo 23:59 cuando aplique taller.",
         ], idx=idx); idx += 1
         box_note_slide(prs, "Para el PI esta semana", [
             ("info", f"Hito: {c['hito_pi']}"),
             ("aclaracion", "Enunciado completo: Clases/Proyecto Integrador/ (VetCare DB)."),
-            ("advertencia", "Taller de la semana en ExamLab (https://examlab.lovable.app/): domingo 23:59 (regla del Acuerdo) cuando aplique."),
+            ("advertencia", "Taller de la semana en ExamLab (https://uniaj.examlab.workers.dev/): domingo 23:59 (regla del Acuerdo) cuando aplique."),
         ], idx=idx); idx += 1
     # El QUIZ no va en el material del estudiante: ni proyectado ni anunciado.
     # Vive solo en Kit docente/Clase N/ (enunciados + CLAVE DOCENTE aparte), que
@@ -1221,11 +1221,11 @@ def build_taller_docx(c):
     if c['tipo'] == 'sustentacion':
         # No es un taller con plazo del domingo: la sesion es la sustentacion en vivo,
         # asi que el paquete tiene que estar arriba ANTES del bloque.
-        add_inline_docx(_p_entrega, "@@Sube el paquete final en ExamLab@@ (https://examlab.lovable.app/ · módulo Proyectos) "
+        add_inline_docx(_p_entrega, "@@Sube el paquete final en ExamLab@@ (https://uniaj.examlab.workers.dev/ · módulo Proyectos) "
                                     "ANTES de tu turno: presentando no se sube nada. La sustentación es EN VIVO en la sesión "
                                     "de clase (5-8 min + Q&A del docente); no se reemplaza por un video grabado.")
     else:
-        add_inline_docx(_p_entrega, "@@Sube tu taller en ExamLab@@ (https://examlab.lovable.app/ · módulo Talleres) — domingo 23:59 cuando aplique.")
+        add_inline_docx(_p_entrega, "@@Sube tu taller en ExamLab@@ (https://uniaj.examlab.workers.dev/ · módulo Talleres) — domingo 23:59 cuando aplique.")
     # 9. Que encuentra en la plataforma. Antes el taller terminaba en «sube esto a
     # ExamLab» sin decir en que forma se responde cada cosa; con esto el estudiante
     # sabe de antemano que hay editor de SQL con PostgreSQL real, cuadro de texto, etc.
@@ -1594,7 +1594,7 @@ python .config/slides/build_uniajc_bd2_curso.py
 """
     (KIT_DIR / "README.md").write_text(text, encoding='utf-8')
 
-EXAMLAB_URL = "https://examlab.lovable.app/auth"
+EXAMLAB_URL = "https://uniaj.examlab.workers.dev/"
 
 # Boceto sugerido para la Pizarra (whiteboard) de cada clase — agnostico de
 # herramienta: sirve igual en el whiteboard de ExamLab, en una pizarra fisica

@@ -3,7 +3,7 @@
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
 - **Taller:** Taller Clase 12 en ExamLab - Rendimiento y ensayo de sustentacion de CloudLite
 - **Preguntas:** 6 · **Total:** 100 puntos
-- **Plataforma:** ExamLab (https://examlab.lovable.app/) · modulo Talleres
+- **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Escenario de rendimiento + ensayo 5–8 min de sustentación
 - **Entregable de la clase:** Sección Rendimiento + guion de pitch + paquete casi-final
 
