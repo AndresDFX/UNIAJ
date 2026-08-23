@@ -193,7 +193,9 @@ dice que el enlace llega dentro de la invitación de Calendar.
 Se genera solo y ya trae: fechas clave con la **fecha de la primera clase** (que no siempre
 coincide con el inicio del periodo), el **enlace de Meet**, el aviso de la invitación de
 Calendar, la explicación de `[SINCRONICO]` / `[AUTONOMO]`, las carpetas de Drive, el bloque
-de ExamLab y la petición al vocero.
+de ExamLab —con la verificación de acceso y la **encuesta de inicio de semestre**, las dos
+cosas que el estudiante tiene que hacer **antes de la primera clase**— y la petición al
+vocero.
 
 **Antes de enviar completa lo único que el repo no puede saber:**
 
@@ -241,6 +243,8 @@ Importar: Google Calendar → **⚙ Configuración → Importar y exportar → I
 - [ ] Enlace de Meet pegado en el JSON y material regenerado
 - [ ] Carpetas de Drive (**Clases** y **Clases grabadas**) compartidas con el grupo
 - [ ] Contraseña temporal de ExamLab escrita en el correo
+- [ ] Encuesta de inicio de semestre publicada en el correo (la trae el bloque de
+      ExamLab; sale de `semestre_<periodo>.json → encuesta_inicio_semestre`)
 - [ ] Correo de bienvenida enviado en CCO
 - [ ] Archivado de grabaciones instalado (manual 02) · `simulacro` revisado
 

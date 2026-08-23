@@ -912,5 +912,9 @@
   "regla_parcial_solo_eval": "Día de parcial = solo evaluación; sin tema de trabajo dirigido nuevo. No mezclar tema técnico · Parcial N. La prep del PI va en la clase regular anterior.",
   "_nota_semestre_acortado": "Inicio movido de 2026-08-10 a 2026-08-24 (semana del 24 de agosto) por decision institucional/docente; la fecha fin NO se mueve (2026-11-22). Resultado: 13 sesiones por curso en vez de 15. Los 15 temas se conservan comprimiendo 2 sesiones dobles. Parciales: Prog II y Seminario en clases 5/9/13; BD II y Arquitectura en clases 5/9/12, con la clase 13 (2026-11-16) dedicada a sustentaciones del proyecto final.",
   "_nota_carpetas_drive": "carpetas_drive por curso: 'clases' = carpeta compartida con el material del curso; 'grabadas' = carpeta donde se archivan las grabaciones de Meet. Las URL se guardan canonicas (sin ?usp= y sin /u/0/, que es el indice de cuenta del docente). El id se usa en el Apps Script que mueve las grabaciones.",
-  "_nota_meet": "cursos.<curso>.meet = enlace UNICO de Google Meet de la serie de encuentros del curso. Sale de ejecutar crearEncuentros() en el Apps Script generado por generar_apps_script_encuentros.py; se pega aqui y se regenera para que el correo de bienvenida lo publique. Vacio = el correo avisa que el enlace llega en la invitacion."
+  "_nota_meet": "cursos.<curso>.meet = enlace UNICO de Google Meet de la serie de encuentros del curso. Sale de ejecutar crearEncuentros() en el Apps Script generado por generar_apps_script_encuentros.py; se pega aqui y se regenera para que el correo de bienvenida lo publique. Vacio = el correo avisa que el enlace llega en la invitacion.",
+  "encuesta_inicio_semestre": {
+    "url": "https://uniaj.examlab.workers.dev/encuesta/e7610f29ce21b0019305054857ac83d0",
+    "nota": "Encuesta de inicio de semestre en ExamLab. Se pide llenarla ANTES de la primera clase. Es la misma para los 4 cursos. Se publica en el correo de bienvenida."
+  }
 }

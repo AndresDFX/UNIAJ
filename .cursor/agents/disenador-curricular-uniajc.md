@@ -168,6 +168,7 @@ URLs canónicas (usar exactamente estas; `…/app` es una ruta vieja, no usarla)
 | Acceso del estudiante | `https://uniaj.examlab.workers.dev/` |
 | Manual del estudiante (PDF) | `https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/help-docs/manual-estudiante.pdf` |
 | Todas las funcionalidades (video) | `https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/help-videos/serie-estudiante.mp4` |
+| Encuesta de inicio de semestre | `https://uniaj.examlab.workers.dev/encuesta/e7610f29ce21b0019305054857ac83d0` |
 
 ### Al INICIAR un curso (obligatorio en el correo de bienvenida y en la Sesión 0)
 
@@ -180,6 +181,11 @@ El correo de bienvenida y la Presentación del Curso deben incluir:
    en blanco para escribirla: `**Contraseña temporal:** ____________`), con instrucción de
    cambiarla al primer ingreso y de avisar por correo si no logran entrar.
 3. Los enlaces del **manual (PDF)** y del **video de funcionalidades**.
+4. La **encuesta de inicio de semestre**, con la instrucción de llenarla **antes de la
+   primera clase**: es lo que permite ajustar el arranque (con qué llegan, qué
+   herramientas manejan, qué hay que reforzar). Contestada después ya no sirve para eso.
+   Vive en `semestre_<periodo>.json → encuesta_inicio_semestre.url`; es **una sola para
+   los 4 cursos**, no una por curso.
 
 Esos tres bloques los genera `config/calendario/generar_semestre_2026_2.py` en
 `<Curso>/Plan curso/<periodo>/CORREO_BIENVENIDA - <Curso> - <periodo>.md`, entre

@@ -28,7 +28,7 @@
   },
   "periodo": "2026-2",
   "ventana_academica": "24/08/2026 – 22/11/2026",
-  "plataforma": "ExamLab (https://uniaj.examlab.workers.dev/) — no es plataforma oficial de la UNIAJC, que no tiene campus virtual propio; ahi van asistencia, talleres, quices/parciales y la entrega del PI",
+  "plataforma": "ExamLab (https://uniaj.examlab.workers.dev/) — no es plataforma oficial de la UNIAJC, que no tiene campus virtual propio; ahi van asistencia, talleres, quices/parciales y la entrega del PI. La encuesta de inicio de semestre esta en config/calendario/semestre_<periodo>.json -> encuesta_inicio_semestre",
   "cursos": {
     "arquitectura": {
       "codigo": "FI303380",

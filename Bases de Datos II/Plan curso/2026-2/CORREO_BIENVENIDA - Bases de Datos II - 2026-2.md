@@ -80,6 +80,14 @@ Material de apoyo para usar la plataforma:
 - **Manual del estudiante (PDF):** https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/help-docs/manual-estudiante.pdf
 - **Todas las funcionalidades (video):** https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/help-videos/serie-estudiante.mp4
 
+#### Encuesta de inicio de semestre
+
+Y una vez dentro, **llenen la encuesta de inicio de semestre**, también en ExamLab:
+
+> https://uniaj.examlab.workers.dev/encuesta/e7610f29ce21b0019305054857ac83d0
+
+**Antes de la primera clase, por favor.** Es corta, y con lo que respondan ajusto el arranque del curso: me dice con qué llegan, qué herramientas ya manejan y qué hay que reforzar. Si la contestan después, la clase 1 ya pasó y deja de servir para eso.
+
 <!-- /examlab -->
 
 En el **día 1**: **Sesión 0** (Presentación del curso: logística, acuerdo, Padlet, evaluación) y **Clase 1** (diagnóstico de conocimientos previos + arranque temático).

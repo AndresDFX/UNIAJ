@@ -894,6 +894,8 @@ EXAMLAB_VIDEO = (
     "https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/"
     "help-videos/serie-estudiante.mp4"
 )
+# Encuesta de inicio de semestre: una sola para los 4 cursos, en el JSON para no repetirla.
+ENCUESTA = (DATA.get("encuesta_inicio_semestre") or {}).get("url", "")
 
 
 def _quitar_bloque(txt: str, marcas: tuple[str, str]) -> str:
@@ -1016,6 +1018,18 @@ def examlab_md() -> str:
         "",
         f"- **Manual del estudiante (PDF):** {EXAMLAB_MANUAL}",
         f"- **Todas las funcionalidades (video):** {EXAMLAB_VIDEO}",
+    ] + ([
+        "",
+        "#### Encuesta de inicio de semestre",
+        "",
+        "Y una vez dentro, **llenen la encuesta de inicio de semestre**, también en ExamLab:",
+        "",
+        f"> {ENCUESTA}",
+        "",
+        "**Antes de la primera clase, por favor.** Es corta, y con lo que respondan ajusto el "
+        "arranque del curso: me dice con qué llegan, qué herramientas ya manejan y qué hay que "
+        "reforzar. Si la contestan después, la clase 1 ya pasó y deja de servir para eso.",
+    ] if ENCUESTA else []) + [
         "",
         MARCA_EXAMLAB[1],
     ])
