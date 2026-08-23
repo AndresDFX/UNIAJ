@@ -1,7 +1,7 @@
 # Guion docente · Clase 1 · Revision BD I · Arranque VetCare DB
 
 - **Curso:** Bases de Datos II (FI303215) · 120 min
-- **Tipo:** REGULAR
+- **Tipo:** REGULAR (sincrona)
 - **Hilo:** Proyecto Integrador **VetCare DB**
 - **Hoy avanzamos el PI en:** Arranque PI: dominio, alcance y borrador ER de VetCare DB
 - **Entregable de hoy:** Ficha del proyecto + ER borrador (PNG) + lista de entidades/reglas

@@ -19,6 +19,8 @@ Versión **puntual** de esta oferta (24/08/2026 – 22/11/2026 · 13 sesiones, 1
 - `PLAN_VIABILIDAD_EXAMLAB_2026-2.md` — plan de viabilidad ExamLab
 - `scripts/` — MVP lab Floci para estudiantes (borrador)
 - La nómina del periodo (`LISTA_DE_ALUMNOS_POR_GRUPOS*.xls`) vive aquí y **no se versiona**
+- `LEEME - Apps Script del curso.md` — dónde está el `.gs` que crea los encuentros
+  (el `.gs` vive en `_privado/` y no se versiona: lleva correos de estudiantes)
 - `_privado/` — derivado de la nómina (`.ics`, nómina normalizada, planilla de
   asistencia, el `.gs` de encuentros). **Datos personales: no se versiona.**
 

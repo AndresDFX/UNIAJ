@@ -47,6 +47,7 @@ El segundo script imprime por curso cuántos estudiantes hay y cuántos son **in
 
 ```
 <Curso>/Plan curso/<periodo>/
+├── LEEME - Apps Script del curso.md             ← dice dónde está el .gs (visible)
 ├── CORREO_BIENVENIDA - <Curso> - <periodo>.md   ← paso 3
 ├── eventos_calendario_<periodo>.csv             ← alternativa manual (sin invitados)
 ├── CALENDARIO_<periodo>.md · Cronograma · PLAN_DE_CURSO
@@ -65,8 +66,13 @@ El segundo script imprime por curso cuántos estudiantes hay y cuántos son **in
 
 Archivo: `<Curso>/Plan curso/<periodo>/_privado/CrearEncuentros - <Curso>.gs`
 
-Es un **Google Apps Script**: corre en tu cuenta, no en el repo. Contiene los correos de los
-estudiantes, por eso vive en `_privado/`.
+Es un **Google Apps Script**: corre en tu cuenta, no en el repo.
+
+> **Si no lo encuentras:** contiene los correos de los estudiantes, así que `_privado/` está
+> en `.gitignore` — **existe en tu disco y en Drive, pero no en GitHub**. Al lado, ya visible,
+> queda un `LEEME - Apps Script del curso.md` con la ruta exacta. Si de verdad falta el
+> archivo, lo regenera `python config/calendario/generar_apps_script_encuentros.py`, que
+> además imprime la ruta absoluta de cada uno.
 
 ### 1.1 Pegarlo en tu cuenta
 

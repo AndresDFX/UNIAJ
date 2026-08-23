@@ -76,8 +76,8 @@ PLANTILLA = """/**
  * CONTIENE CORREOS DE ESTUDIANTES. Vive en _privado/ y no se versiona.
  *
  * Qué hace:
- *   - Crea {n_ses} eventos (las sesiones con encuentro; las autónomas por festivo no
- *     llevan evento con Meet porque no hay encuentro).
+ *   - Crea {n_ses} eventos, uno por sesión. Las autónomas por festivo también quedan en
+ *     el calendario (el estudiante debe ver la fecha de cierre), pero SIN Meet.
  *   - Deja **la misma sala de Meet en todos**, para que el estudiante entre siempre por el
  *     mismo enlace.
  *   - Invita a los {n_inv} estudiantes del grupo y, si SEND_INVITES = true, **les envía**
@@ -444,6 +444,62 @@ function _aplicarMeet_(evento, url) {{
 """
 
 
+def _escribir_puntero(meta: dict, gs: Path, n_ses: int, n_inv: int) -> None:
+    """Deja un LEEME VISIBLE al lado de la carpeta privada.
+
+    El .gs lleva los correos de los estudiantes, asi que vive en `_privado/` y no se
+    versiona: no aparece en GitHub, y en Drive una carpeta con guion bajo se pasa por alto.
+    Este puntero SI se versiona (no tiene datos personales) y dice exactamente donde esta.
+    """
+    L = [
+        f"# Apps Script del curso - {meta['nombre']} - {PERIODO}",
+        "",
+        "## Crear los encuentros en Calendar (con una sola sala de Meet)",
+        "",
+        "El script **existe** y esta aqui:",
+        "",
+        "```",
+        f"{gs.parent.name}/{gs.name}",
+        "```",
+        "",
+        "Ruta completa desde la raiz de `Cursos`:",
+        "",
+        "```",
+        gs.relative_to(ROOT).as_posix(),
+        "```",
+        "",
+        f"> **Por que no lo ves en GitHub:** el `.gs` incluye los correos de los {n_inv}",
+        "> estudiantes del grupo, asi que la carpeta `_privado/` esta en `.gitignore`.",
+        "> Existe en tu disco y en Drive, no en el repositorio remoto. Si no aparece,",
+        "> regeneralo:",
+        ">",
+        "> ```bash",
+        "> python config/calendario/generar_apps_script_encuentros.py",
+        "> ```",
+        "",
+        f"Crea **{n_ses} eventos** (uno por sesion) e invita a los **{n_inv} estudiantes**,",
+        "enviandoles la invitacion de verdad. Deja **la misma sala de Meet** en todas las",
+        "sesiones sincronicas; las autonomas por festivo quedan en el calendario pero sin Meet.",
+        "",
+        "**Paso a paso:** `Manuales/01 - Alistar un curso (encuentros, Meet, correo e",
+        "invitaciones).md` en la raiz de `Cursos`. Incluye como sacar el `CALENDAR_ID` y por",
+        "que se ejecuta `verificar` antes de `crearEncuentros`.",
+        "",
+        "## Archivar las grabaciones de Meet",
+        "",
+        "Ese script es **uno solo para los 4 cursos** y vive en",
+        "`config/calendario/apps_script_grabaciones/MoverGrabaciones.gs`.",
+        "Paso a paso: `Manuales/02 - Instalar y probar el Apps Script de grabaciones.md`.",
+        "",
+        "---",
+        "",
+        "*Archivo generado por `config/calendario/generar_apps_script_encuentros.py`.*",
+        "",
+    ]
+    destino = gs.parent.parent / "LEEME - Apps Script del curso.md"
+    destino.write_text("\n".join(L), encoding="utf-8")
+
+
 def main() -> None:
     total = 0
     for key, meta in DATA["cursos"].items():
@@ -480,11 +536,16 @@ def main() -> None:
         privado.mkdir(parents=True, exist_ok=True)
         destino = privado / f"CrearEncuentros - {meta['nombre']}.gs"
         destino.write_text(gs, encoding="utf-8")
-        print(f"  {meta['nombre'][:34]:<34} {len(ses)} sesiones · {len(correos)} invitados "
-              f"-> {destino.relative_to(ROOT)}")
+        _escribir_puntero(meta, destino, len(ses), len(correos))
+        print(f"  {meta['nombre'][:34]:<34} {len(ses)} sesiones · {len(correos)} invitados")
+        print(f"      {destino}")
         total += 1
 
     print(f"\nOK: {total}/{len(DATA['cursos'])} cursos.")
+    print("Los .gs viven en _privado/ de cada curso: llevan los correos de los estudiantes,")
+    print("asi que NO se versionan y NO aparecen en GitHub. Al lado, visible, queda un")
+    print("\"LEEME - Apps Script del curso.md\" con la ruta exacta.")
+    print("")
     print("Instalación y pruebas: Manuales/01 (crear los encuentros es el PRIMER paso:")
     print("de ahí sale el enlace de Meet que se publica en el correo de bienvenida).")
 
