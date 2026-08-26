@@ -265,7 +265,7 @@ CLASSES = [
                 "Aplicación web/API de un dominio realista (citas, academia, inventario liviano…).",
                 "Entregables del semestre: diagramas + contenedor (lab) + CI/CD conceptual + informe.",
                 "Hoy solo: **problema + capacidades + boceto de contexto**.",
-                "Sin AWS/GCP/Oracle: draw.io, LabEx Docker Playground, GitHub Actions.",
+                "Sin AWS/GCP/Oracle: draw.io, Killercoda, GitHub Actions.",
             ]),
             ("De dominio a arquitectura (mini-método)", [
                 "1) Actor y problema. 2) Capacidades. 3) Contenedores lógicos. 4) Datos. 5) Riesgos.",
@@ -341,10 +341,10 @@ CLASSES = [
         "n": 3,
         "slug": "Virtualizacion y contenedores",
         "tema": "Virtualización y contenedores",
-        "sub": "Lab LabEx Docker Playground → stub CloudLite",
+        "sub": "Lab Killercoda → stub CloudLite",
         "pi_hoy": "Contenerizar un stub del servicio principal de CloudLite",
         "entregable": "Dockerfile (+ compose opcional) + captura/enlace lab navegador",
-        "herramienta": "LabEx Docker Playground · alterna si no carga: Killercoda",
+        "herramienta": "Killercoda · alterna si no carga: LabEx Docker Playground",
         "objetivos": [
             "Diferenciar VM vs contenedor y el rol de la imagen.",
             "Ejecutar un contenedor en lab de **navegador** (sin Docker Desktop obligatorio).",
@@ -358,10 +358,13 @@ CLASSES = [
                 "CloudLite: contenerizamos al menos **un** servicio (API stub o front estático).",
             ]),
             ("Lab en navegador (pasos demo)", [
-                "Abrir LabEx Docker Playground (labex.io, inicie sesión con su cuenta de Google o Microsoft).",
+                "Abrir **Killercoda** (killercoda.com, escenario Ubuntu) con cuenta gratuita.",
                 "`docker run` de un nginx/hello y luego **su** imagen stub.",
-                "📸 [CAP: labex-home] Home del lab · 📸 [CAP: docker-ps] `docker ps`.",
-                "La sesión de LabEx es temporal: guardar Dockerfile + capturas con timestamp antes de cerrarla. Si LabEx está caído: Killercoda (ubuntu/docker) como alterna.",
+                "📸 [CAP: docker-ps] `docker ps` con el contenedor arriba.",
+                "@@La sesión caduca a 1 h:@@ el Dockerfile se escribe en **tu** carpeta del PI y se "
+                "pega en el lab, nunca al contrario. Guarda capturas antes de cerrar.",
+                "Si Killercoda no carga: **LabEx Docker Playground** como alterna (misma hora de "
+                "sesión, pero solo **3 al día** en el plan gratuito).",
             ]),
             ("Dockerfile mínimo para el stub", [
                 "FROM imagen base ligera → COPY → EXPOSE → CMD.",
@@ -372,14 +375,14 @@ CLASSES = [
         "taller_titulo": "Taller Clase 3 — Contenedor stub CloudLite",
         "taller_pasos": [
             "Definan qué servicio contenerizan hoy (API stub o front estático del dominio).",
-            "En LabEx Docker Playground: construyan y corran el contenedor (si no carga, Killercoda como alterna).",
+            "En Killercoda: construyan y corran el contenedor (si no carga, LabEx como alterna).",
             "Documenten Dockerfile (y compose si aplica) en el repo/ZIP del PI.",
             "Capturen evidencia (PNG) o enlace de sesión + nota de caducidad.",
             "Actualicen informe: sección Contenedores + enlace a diagrama de despliegue futuro.",
         ],
         "quiz": [
             ("¿Qué comparte un contenedor con el host que una VM típicamente no comparte?", "El kernel del SO."),
-            ("Nombre la herramienta de lab principal del curso para contenedores.", "LabEx Docker Playground (alterna: Killercoda)."),
+            ("Nombre la herramienta de lab principal del curso para contenedores.", "Killercoda (alterna: LabEx Docker Playground)."),
             ("¿Por qué no poner secretos en el Dockerfile?", "Quedan en capas/historial de la imagen."),
         ],
     },
@@ -1120,8 +1123,8 @@ HERRAMIENTAS_DIA = {
         {"name": "draw.io", "logo": "drawio.png", "note": "C4 Context"}],
     2: [{"name": "Google Docs", "logo": "google_docs.png", "note": "ADR-001"},
         {"name": "draw.io", "logo": "drawio.png", "note": "Matriz de modelos"}],
-    3: [{"name": "LabEx Docker Playground", "logo": "labex.png", "note": "Lab del dia"},
-        {"name": "Killercoda", "logo": "killercoda.png", "note": "Alterna si no carga"},
+    3: [{"name": "Killercoda", "logo": "killercoda.png", "note": "Lab del dia · sesion 1 h"},
+        {"name": "LabEx Docker Playground", "logo": "labex.png", "note": "Alterna · 3 al dia"},
         {"name": "Google Docs", "logo": "google_docs.png", "note": "Informe PI"}],
     4: [{"name": "draw.io", "logo": "drawio.png", "note": "C4 Containers"},
         {"name": "Excalidraw", "logo": "excalidraw.png", "note": "Boceto rapido"}],
@@ -1164,6 +1167,13 @@ def _herramientas_de(c: dict) -> list:
 # Titulo de la diapositiva del flujo de diagramacion (Excalidraw -> IA -> Mermaid
 # -> ExamLab). El CONTENIDO de los 4 pasos es compartido (examlab_talleres), este
 # es solo el rotulo con el que aparece en el deck del curso.
+# Laboratorio de contenedores del curso. Se define aqui una sola vez para que el
+# orden primario/alterna y sus limites no queden repetidos a mano por clase.
+# Los dos cumplen la politica (gratis, navegador, sin tarjeta) y los dos caducan
+# la sesion a 1 h; el desempate es el tope diario, ver LAB_LIMITES.
+LAB_LIMITES = ("Cuenta gratuita, sin tarjeta · la sesión caduca a 1 h · "
+               "un escenario a la vez")
+
 FLUJO_SLIDE_TITULO = "Del boceto a ExamLab (diagrama)"
 
 
@@ -1469,14 +1479,15 @@ TALLER_BLOQUE = {
         "contexto": [
             "@@Por qué importa al PI:@@ CloudLite debe mostrar al menos un servicio contenerizado con evidencia.",
             "El contenedor es el puente entre el diagrama C4 y el despliegue realista (sin cloud de pago).",
-            "Lab en navegador LabEx Docker Playground: sin Docker Desktop obligatorio.",
+            "Lab en navegador Killercoda: sin Docker Desktop obligatorio.",
         ],
         "escenario": [
             "Elegir el servicio principal del C4 (API o web).",
-            "Abrir LabEx Docker Playground (labex.io, login con Google/Microsoft); sesión temporal.",
+            "Abrir Killercoda (killercoda.com, escenario Ubuntu). " + LAB_LIMITES + ".",
             "Prohibido: copiar .env / API keys a la imagen.",
         ],
         "pistas": [
+            "¿El Dockerfile está en tu carpeta del PI y no solo dentro del lab?",
             "¿El puerto expuesto coincide con el que documentan?",
             "¿Hay evidencia con timestamp (captura o enlace)?",
             "¿Secretos fuera de la imagen?",
@@ -1737,7 +1748,7 @@ def build_quiz_docx(c: dict) -> Path | None:
 CAPTURAS_CLASE = {
     1: [("C4 Context de la demo en vivo: asi debe quedar el tablero al terminar",
          "demo-clase01.png")],
-    3: [("Build y run del stub en LabEx Docker Playground (lo que debe verse en pantalla)",
+    3: [("Build y run del stub en el lab del navegador (lo que debe verse en pantalla)",
          "salida-docker-build-run.png"),
         ("Evidencia del entregable: el contenedor corriendo (`docker ps`)",
          "salida-docker-ps.png")],
@@ -1779,12 +1790,12 @@ DEMO_ARQ = {
         "Decision: PaaS conceptual + contenedores. Consecuencias: se acepta menos control del sistema operativo a cambio de no administrar servidores.",
         "Diga: «un ADR de media pagina que se entiende vale mas que 5 paginas que nadie lee».",
     ]),
-    3: ("Construir y correr el stub en LabEx Docker Playground", [
-        "Abra labex.io e inicie sesion con su cuenta de Google o Microsoft (advierta en voz alta: la sesion es temporal, guarden capturas antes de cerrarla).",
+    3: ("Construir y correr el stub en Killercoda", [
+        "Abra killercoda.com, inicie sesion con la cuenta gratuita y lance un escenario Ubuntu (advierta en voz alta: la sesion caduca a 1 h, guarden capturas antes de cerrarla).",
         "Escriba un Dockerfile minimo en vivo: FROM nginx:alpine y COPY de un index.html de una linea.",
         "Ejecute docker build -t cloudlite-stub . y luego docker run -d -p 80:80 cloudlite-stub.",
         "Ejecute docker ps y senale las columnas IMAGE, STATUS y PORTS: «esta es la evidencia que entregan».",
-        "Si la red falla, proyecte las capturas de `Kit docente/Clase 3/Capturas/`.",
+        "Si Killercoda no carga, la alterna es LabEx Docker Playground (ojo: solo 3 sesiones al dia en el plan gratuito); si falla la red, proyecte las capturas de `Kit docente/Clase 3/Capturas/`.",
     ]),
     4: ("Convertir el Context de la Clase 1 en Containers", [
         "Abra el diagrama C4 Context de la demo de Clase 1 y haga zoom a la caja «CloudLite App».",
@@ -1850,7 +1861,7 @@ ERRORES_ARQ = {
         "Nombrar productos de marca en vez del modelo conceptual; el modelo aplica a cualquier proveedor."],
     3: ["Decir que el contenedor «es una VM ligera». Insista en la diferencia real: kernel propio vs kernel compartido.",
         "Confundir imagen con contenedor al hablar. Corrija en el momento: la imagen es el molde, el contenedor la instancia corriendo.",
-        "Perder el trabajo porque la sesion de LabEx Docker Playground se cerro. Recuerdeles guardar el Dockerfile y las capturas ANTES."],
+        "Perder el trabajo porque la sesion del lab caduco a la hora. Es el error mas comun del dia: recuerdeles que el Dockerfile se escribe en la carpeta del PI y se PEGA en el lab, nunca al contrario."],
     4: ["Inventar 6 u 8 servicios para verse sofisticados. Pregunte por cada uno: que responsabilidad de negocio propia tiene y quien lo despliega por separado.",
         "Flechas sin etiqueta entre servicios. Toda flecha lleva protocolo y formato de datos.",
         "Olvidar que distribuir agrega fallos parciales: exija al menos 2 riesgos de red en la tabla."],
@@ -1889,7 +1900,7 @@ PREGUNTAS_ARQ = {
         "Por que un ADR necesita las alternativas que descartaron?"],
     3: ["Que comparten los contenedores de una misma maquina que las VM no comparten?",
         "Cual es la diferencia entre imagen y contenedor?",
-        "Que pasa con su trabajo cuando se cierra la sesion de LabEx Docker Playground?"],
+        "Que pasa con su trabajo cuando caduca la sesion del lab, y donde deberia vivir el Dockerfile?"],
     4: ["Que justifica que dos funciones vivan en servicios separados?",
         "Que cambia cuando una llamada de funcion se vuelve una llamada de red?",
         "Como se llama en su C4 Containers el servicio que expone la API?"],

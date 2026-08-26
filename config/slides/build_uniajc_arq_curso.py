@@ -173,7 +173,7 @@ def build():
         [
             {"name": "draw.io", "logo": "drawio.png", "note": "C4 · despliegue"},
             {"name": "Excalidraw", "logo": "excalidraw.png", "note": "Bocetos de taller"},
-            {"name": "LabEx Docker Playground", "logo": "labex.png", "note": "Lab contenedores"},
+            {"name": "Killercoda", "logo": "killercoda.png", "note": "Lab contenedores · 1 h"},
             {"name": "GitHub Actions", "logo": "github.png", "note": "CI/CD conceptual"},
             {"name": "ExamLab", "logo": "examlab.png", "note": "Talleres + quices/parciales"},
         ],

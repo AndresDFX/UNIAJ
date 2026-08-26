@@ -11,7 +11,7 @@
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
 > campo para copiar y pegar, incluidos el SQL de partida y el codigo base.
 
-**Que produce el estudiante:** El estudiante deja el contexto de build verificado en la consola de ExamLab, el Dockerfile de 7 instrucciones documentado y la evidencia del contenedor corriendo en LabEx Docker Playground con su ruta de salud respondiendo 200.
+**Que produce el estudiante:** El estudiante deja el contexto de build verificado en la consola de ExamLab, el Dockerfile de 7 instrucciones documentado y la evidencia del contenedor corriendo en Killercoda con su ruta de salud respondiendo 200.
 
 ---
 
@@ -48,7 +48,7 @@ Seleccione las **3 afirmaciones correctas**.
 
 ## Dockerfile del stub de CloudLite
 
-> ExamLab **no ejecuta** este Dockerfile: la construccion real ocurre en LabEx Docker Playground (pregunta 4). Aqui se evalua el contenido y su justificacion.
+> ExamLab **no ejecuta** este Dockerfile: la construccion real ocurre en Killercoda (pregunta 4). Aqui se evalua el contenido y su justificacion.
 
 Pegue el Dockerfile completo del servicio que eligio, con **exactamente 7 instrucciones**, en este orden:
 
@@ -80,7 +80,7 @@ Cierre con **3 lineas**: nombre de la imagen y tag (`cloudlite-api:v1`), puerto 
 
 ## Consola Linux: arme y valide el contexto de build
 
-La consola de ExamLab es un Linux real **pero sin red y sin Docker**: aqui **no** se ejecuta `docker build`, eso va en LabEx Docker Playground (pregunta 4). Lo que se evalua es que el **contexto de build** quede bien armado y verificado.
+La consola de ExamLab es un Linux real **pero sin red y sin Docker**: aqui **no** se ejecuta `docker build`, eso va en Killercoda (pregunta 4). Lo que se evalua es que el **contexto de build** quede bien armado y verificado.
 
 Ejecute y deje visible en la sesion:
 
@@ -107,9 +107,11 @@ Deje la sesion terminando con el `ls -la` y el `grep` vacio a la vista.
 
 **Enunciado (campo Contenido):**
 
-## Bitacora del laboratorio en LabEx Docker Playground
+## Bitacora del laboratorio en Killercoda
 
-Abra **LabEx Docker Playground** (labex.io, inicie sesion con su cuenta de Google o Microsoft; si no carga, **Killercoda**), suba su contexto de build y ejecute el ciclo completo. Reporte una tabla de **4 columnas** (`Comando | Que esperaba | Que salio realmente | Evidencia`) con **exactamente 5 filas**, una por comando, en este orden:
+Abra **Killercoda** (killercoda.com, cuenta gratuita sin tarjeta, escenario Ubuntu), suba su contexto de build y ejecute el ciclo completo.
+
+> **Dos limites del lab, y planifique con ellos.** La sesion **caduca a 1 hora** y solo puede tener **un escenario a la vez**: escriba el Dockerfile en la carpeta de su PI y **peguelo** en el lab, nunca al contrario, y capture la evidencia **antes** de cerrar. Si Killercoda no carga, la alterna es **LabEx Docker Playground**, que en su plan gratuito da solo **3 sesiones al dia**: uselo para terminar, no para experimentar. Reporte una tabla de **4 columnas** (`Comando | Que esperaba | Que salio realmente | Evidencia`) con **exactamente 5 filas**, una por comando, en este orden:
 
 1. `docker build -t cloudlite-api:v1 .`
 2. `docker images | grep cloudlite-api`
@@ -120,7 +122,7 @@ Abra **LabEx Docker Playground** (labex.io, inicie sesion con su cuenta de Googl
 En la columna `Evidencia` escriba el fragmento textual de la salida (numero de capas, ID corto del contenedor, `HTTP/1.1 200 OK`).
 
 Debajo de la tabla pegue:
-- El **enlace de la sesion** del lab **mas la nota de que la sesion es temporal** (`la sesion de LabEx es temporal; guarde evidencia antes de cerrarla`).
+- El **enlace de la sesion** del lab **mas la nota del limite** (`la sesion del lab caduca a 1 h; el Dockerfile vive en mi carpeta del PI y la evidencia se guardo antes de cerrar`).
 - La descripcion de la **captura** que adjunta: debe mostrarse al mismo tiempo el prompt del lab, la salida de `docker ps` y la hora del sistema (`date`).
 - **Una fila extra de incidente**: un comando que le fallo y como lo resolvio. Si nada fallo, escriba el comando que estuvo a punto de fallar y por que no fallo.
 

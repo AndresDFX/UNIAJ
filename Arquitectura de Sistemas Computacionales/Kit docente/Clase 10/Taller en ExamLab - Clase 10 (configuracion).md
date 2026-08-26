@@ -90,7 +90,7 @@ mindmap
       Correos salientes de confirmacion y recordatorio
     Ocioso
       Ambiente de pruebas encendido todo el fin de semana
-      Sesiones de LabEx Docker Playground abiertas y olvidadas
+      Sesiones del laboratorio abiertas y olvidadas
     Integracion continua
       Minutos de Actions consumidos en cada push a main
       Build sin cache de capas que reconstruye todo

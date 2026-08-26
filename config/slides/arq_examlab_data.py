@@ -401,12 +401,7 @@ Cierre con un **veredicto de 2 frases**: (a) que opcion elige para CloudLite, (b
                'del codigo, EXPOSE del puerto declarado en el paso 1, CMD) y verifique que el '
                'puerto de EXPOSE, el del CMD y el documentado en el informe sean el mismo numero; '
                'el Dockerfile se pega completo en la pregunta 2 de ExamLab.',
-               'Paso 4: abra LabEx Docker Playground en labex.io con su cuenta de Google o '
-               'Microsoft (o Killercoda si no carga), ejecute docker build -t '
-               'cloudlite-api:v1 . y docker run -d -p 8080:8080 cloudlite-api:v1, compruebe con '
-               'curl que la ruta de salud devuelve 200 y llene la bitacora de 5 filas comando / '
-               'que esperaba / que salio / evidencia, verificando que la captura muestre a la vez '
-               'el prompt del lab, la salida del docker ps y la hora del sistema.',
+               '''Paso 4: abra Killercoda en killercoda.com con su cuenta gratuita y lance un escenario Ubuntu (si no carga, LabEx Docker Playground como alterna; ojo: LabEx solo da 3 sesiones al dia en el plan gratuito), ejecute docker build -t cloudlite-api:v1 . y docker run -d -p 8080:8080 cloudlite-api:v1, compruebe con curl que la ruta de salud devuelve 200 y llene la bitacora de 5 filas comando / que esperaba / que salio / evidencia, verificando que la captura muestre a la vez el prompt del lab, la salida del docker ps y la hora del sistema.''',
                'Paso 5: complete el diagrama Mermaid del ciclo Dockerfile a contenedor, adjunte la '
                'captura del lab con su nota de caducidad y suba las 5 preguntas del taller a '
                'ExamLab (modulo Talleres) antes del domingo 23:59, verificando que la seccion '
@@ -432,35 +427,25 @@ Cierre con un **veredicto de 2 frases**: (a) que opcion elige para CloudLite, (b
                     'rubrica': '4 pts por cada correcta marcada hasta un maximo de 10; se '
                                'descuentan 4 pts por cada incorrecta marcada, sin bajar de cero.',
                     'tipo': 'cerrada_multi'},
-                   {'enunciado': '## Dockerfile del stub de CloudLite\n'
-                                 '\n'
-                                 '> ExamLab **no ejecuta** este Dockerfile: la construccion real '
-                                 'ocurre en LabEx Docker Playground (pregunta 4). Aqui se evalua el '
-                                 'contenido y su justificacion.\n'
-                                 '\n'
-                                 'Pegue el Dockerfile completo del servicio que eligio, con '
-                                 '**exactamente 7 instrucciones**, en este orden:\n'
-                                 '\n'
-                                 '1. `FROM` con imagen **slim y tag de version fijo** (nunca '
-                                 '`latest`).\n'
-                                 '2. `WORKDIR`.\n'
-                                 '3. `COPY` **solo** del archivo de dependencias.\n'
-                                 '4. `RUN` de instalacion con `--no-cache-dir` (o el equivalente '
-                                 'de su lenguaje).\n'
-                                 '5. `COPY` del codigo de la aplicacion.\n'
-                                 '6. `EXPOSE` con el puerto que declaro en la ficha del paso 1.\n'
-                                 '7. `CMD` en forma de lista, apuntando al mismo puerto del '
-                                 '`EXPOSE`.\n'
-                                 '\n'
-                                 'Debajo agregue una tabla de **2 columnas** (`Instruccion | Por '
-                                 'que esta y que pasaria si no estuviera`) con **7 filas**, una '
-                                 'por instruccion.\n'
-                                 '\n'
-                                 'Cierre con **3 lineas**: nombre de la imagen y tag '
-                                 '(`cloudlite-api:v1`), puerto publicado y ruta de salud.\n'
-                                 '\n'
-                                 '**Verificacion:** el numero de puerto debe aparecer identico en '
-                                 '`EXPOSE`, en `CMD` y en la linea de cierre.',
+                   {'enunciado': '''## Dockerfile del stub de CloudLite
+
+> ExamLab **no ejecuta** este Dockerfile: la construccion real ocurre en Killercoda (pregunta 4). Aqui se evalua el contenido y su justificacion.
+
+Pegue el Dockerfile completo del servicio que eligio, con **exactamente 7 instrucciones**, en este orden:
+
+1. `FROM` con imagen **slim y tag de version fijo** (nunca `latest`).
+2. `WORKDIR`.
+3. `COPY` **solo** del archivo de dependencias.
+4. `RUN` de instalacion con `--no-cache-dir` (o el equivalente de su lenguaje).
+5. `COPY` del codigo de la aplicacion.
+6. `EXPOSE` con el puerto que declaro en la ficha del paso 1.
+7. `CMD` en forma de lista, apuntando al mismo puerto del `EXPOSE`.
+
+Debajo agregue una tabla de **2 columnas** (`Instruccion | Por que esta y que pasaria si no estuviera`) con **7 filas**, una por instruccion.
+
+Cierre con **3 lineas**: nombre de la imagen y tag (`cloudlite-api:v1`), puerto publicado y ruta de salud.
+
+**Verificacion:** el numero de puerto debe aparecer identico en `EXPOSE`, en `CMD` y en la linea de cierre.''',
                     'puntos': 30,
                     'rubrica': '10 pts las 7 instrucciones en el orden pedido con tag fijo y '
                                'variante slim. 8 pts que el COPY de dependencias este separado del '
@@ -470,34 +455,22 @@ Cierre con un **veredicto de 2 frases**: (a) que opcion elige para CloudLite, (b
                                'pregunta si aparece un secreto o un archivo .env copiado a la '
                                'imagen.',
                     'tipo': 'abierta'},
-                   {'enunciado': '## Consola Linux: arme y valide el contexto de build\n'
-                                 '\n'
-                                 'La consola de ExamLab es un Linux real **pero sin red y sin '
-                                 'Docker**: aqui **no** se ejecuta `docker build`, eso va en LabEx '
-                                 'Docker Playground (pregunta 4). Lo que se evalua es que el **contexto '
-                                 'de build** quede bien armado y verificado.\n'
-                                 '\n'
-                                 'Ejecute y deje visible en la sesion:\n'
-                                 '\n'
-                                 '1. `mkdir -p /root/cloudlite-api/app` y entre al directorio.\n'
-                                 '2. Cree `app/main.py` con un stub de 3 lineas que exponga '
-                                 "`/health`, usando `cat > app/main.py << 'EOF' ... EOF`.\n"
-                                 '3. Cree `requirements.txt` con **exactamente 2 dependencias '
-                                 'fijadas por version** (por ejemplo `fastapi==0.115.0` y '
-                                 '`uvicorn==0.30.6`).\n'
-                                 '4. Cree el `Dockerfile` con las **mismas 7 instrucciones** de la '
-                                 'pregunta 2, con el mismo heredoc.\n'
-                                 '5. Cree `.dockerignore` con **exactamente 4 entradas**: `.git`, '
-                                 '`__pycache__`, `*.env`, `tests/`.\n'
-                                 '6. Ejecute `chmod 644 Dockerfile requirements.txt .dockerignore` '
-                                 'y luego `ls -la` y `wc -l Dockerfile .dockerignore`.\n'
-                                 "7. Ejecute `grep -c '' Dockerfile` y confirme que el conteo es "
-                                 '**7 o mas**.\n'
-                                 "8. Ejecute `grep -rniE 'password|secret|token|api_key' .` y "
-                                 'confirme que **la salida es vacia**.\n'
-                                 '\n'
-                                 'Deje la sesion terminando con el `ls -la` y el `grep` vacio a la '
-                                 'vista.',
+                   {'enunciado': '''## Consola Linux: arme y valide el contexto de build
+
+La consola de ExamLab es un Linux real **pero sin red y sin Docker**: aqui **no** se ejecuta `docker build`, eso va en Killercoda (pregunta 4). Lo que se evalua es que el **contexto de build** quede bien armado y verificado.
+
+Ejecute y deje visible en la sesion:
+
+1. `mkdir -p /root/cloudlite-api/app` y entre al directorio.
+2. Cree `app/main.py` con un stub de 3 lineas que exponga `/health`, usando `cat > app/main.py << 'EOF' ... EOF`.
+3. Cree `requirements.txt` con **exactamente 2 dependencias fijadas por version** (por ejemplo `fastapi==0.115.0` y `uvicorn==0.30.6`).
+4. Cree el `Dockerfile` con las **mismas 7 instrucciones** de la pregunta 2, con el mismo heredoc.
+5. Cree `.dockerignore` con **exactamente 4 entradas**: `.git`, `__pycache__`, `*.env`, `tests/`.
+6. Ejecute `chmod 644 Dockerfile requirements.txt .dockerignore` y luego `ls -la` y `wc -l Dockerfile .dockerignore`.
+7. Ejecute `grep -c '' Dockerfile` y confirme que el conteo es **7 o mas**.
+8. Ejecute `grep -rniE 'password|secret|token|api_key' .` y confirme que **la salida es vacia**.
+
+Deje la sesion terminando con el `ls -la` y el `grep` vacio a la vista.''',
                     'puntos': 22,
                     'rubrica': '6 pts los 5 archivos creados en /root/cloudlite-api con la '
                                'estructura pedida. 5 pts requirements.txt con 2 dependencias '
@@ -507,35 +480,24 @@ Cierre con un **veredicto de 2 frases**: (a) que opcion elige para CloudLite, (b
                                'pregunta si intenta pasar como evidencia un docker build en esta '
                                'consola.',
                     'tipo': 'so_consola'},
-                   {'enunciado': '## Bitacora del laboratorio en LabEx Docker Playground\n'
-                                 '\n'
-                                 'Abra **LabEx Docker Playground** (labex.io, inicie sesion con su '
-                                 'cuenta de Google o Microsoft; si no carga, **Killercoda**), suba su '
-                                 'contexto de build y ejecute el ciclo completo. Reporte una tabla '
-                                 'de **4 columnas** (`Comando | Que esperaba | Que salio realmente '
-                                 '| Evidencia`) con **exactamente 5 filas**, una por comando, en '
-                                 'este orden:\n'
-                                 '\n'
-                                 '1. `docker build -t cloudlite-api:v1 .`\n'
-                                 '2. `docker images | grep cloudlite-api`\n'
-                                 '3. `docker run -d -p 8080:8080 --name api cloudlite-api:v1`\n'
-                                 '4. `docker ps`\n'
-                                 '5. `curl -i http://localhost:8080/health`\n'
-                                 '\n'
-                                 'En la columna `Evidencia` escriba el fragmento textual de la '
-                                 'salida (numero de capas, ID corto del contenedor, `HTTP/1.1 200 '
-                                 'OK`).\n'
-                                 '\n'
-                                 'Debajo de la tabla pegue:\n'
-                                 '- El **enlace de la sesion** del lab **mas la nota de que la '
-                                 'sesion es temporal** (`la sesion de LabEx es temporal; guarde '
-                                 'evidencia antes de cerrarla`).\n'
-                                 '- La descripcion de la **captura** que adjunta: debe mostrarse '
-                                 'al mismo tiempo el prompt del lab, la salida de `docker ps` y la '
-                                 'hora del sistema (`date`).\n'
-                                 '- **Una fila extra de incidente**: un comando que le fallo y '
-                                 'como lo resolvio. Si nada fallo, escriba el comando que estuvo a '
-                                 'punto de fallar y por que no fallo.',
+                   {'enunciado': '''## Bitacora del laboratorio en Killercoda
+
+Abra **Killercoda** (killercoda.com, cuenta gratuita sin tarjeta, escenario Ubuntu), suba su contexto de build y ejecute el ciclo completo.
+
+> **Dos limites del lab, y planifique con ellos.** La sesion **caduca a 1 hora** y solo puede tener **un escenario a la vez**: escriba el Dockerfile en la carpeta de su PI y **peguelo** en el lab, nunca al contrario, y capture la evidencia **antes** de cerrar. Si Killercoda no carga, la alterna es **LabEx Docker Playground**, que en su plan gratuito da solo **3 sesiones al dia**: uselo para terminar, no para experimentar. Reporte una tabla de **4 columnas** (`Comando | Que esperaba | Que salio realmente | Evidencia`) con **exactamente 5 filas**, una por comando, en este orden:
+
+1. `docker build -t cloudlite-api:v1 .`
+2. `docker images | grep cloudlite-api`
+3. `docker run -d -p 8080:8080 --name api cloudlite-api:v1`
+4. `docker ps`
+5. `curl -i http://localhost:8080/health`
+
+En la columna `Evidencia` escriba el fragmento textual de la salida (numero de capas, ID corto del contenedor, `HTTP/1.1 200 OK`).
+
+Debajo de la tabla pegue:
+- El **enlace de la sesion** del lab **mas la nota del limite** (`la sesion del lab caduca a 1 h; el Dockerfile vive en mi carpeta del PI y la evidencia se guardo antes de cerrar`).
+- La descripcion de la **captura** que adjunta: debe mostrarse al mismo tiempo el prompt del lab, la salida de `docker ps` y la hora del sistema (`date`).
+- **Una fila extra de incidente**: un comando que le fallo y como lo resolvio. Si nada fallo, escriba el comando que estuvo a punto de fallar y por que no fallo.''',
                     'puntos': 20,
                     'rubrica': '8 pts las 5 filas con el comando y la evidencia textual, no '
                                'parafraseada. 5 pts el 200 OK de la ruta de salud demostrado con '
@@ -590,9 +552,7 @@ Cierre con un **veredicto de 2 frases**: (a) que opcion elige para CloudLite, (b
                                'pts las 2 aristas punteadas: reciclo por inmutabilidad y secretos '
                                'excluidos. 2 pts que renderice sin error.',
                     'tipo': 'diagrama'}],
-     'resumen': 'El estudiante deja el contexto de build verificado en la consola de ExamLab, el '
-                'Dockerfile de 7 instrucciones documentado y la evidencia del contenedor corriendo '
-                'en LabEx Docker Playground con su ruta de salud respondiendo 200.',
+     'resumen': '''El estudiante deja el contexto de build verificado en la consola de ExamLab, el Dockerfile de 7 instrucciones documentado y la evidencia del contenedor corriendo en Killercoda con su ruta de salud respondiendo 200.''',
      'titulo': 'Taller Clase 3 en ExamLab - Contenedor stub de CloudLite'},
  4: {'pasos': ['Paso 1: abran el C4 Context de la Clase 1 y escriban la lista canonica de nombres '
                'de CloudLite: exactamente 5 contenedores con nombre, responsabilidad en una frase '
@@ -1531,26 +1491,23 @@ Cierre con un **veredicto de 2 frases**: (a) que opcion elige para CloudLite, (b
                                   '**Verificacion:** al renderizar debe contar 1 raiz, 5 ramas y '
                                   '10 hojas; si una hoja no se puede senalar en su C4Deployment, '
                                   'reemplacela.',
-                     'mermaid_esperado': 'mindmap\n'
-                                         '  root((Drivers de costo de CloudLite))\n'
-                                         '    Computo\n'
-                                         '      API CloudLite con 2 replicas encendidas 24 horas\n'
-                                         '      Worker Notificaciones esperando eventos sin '
-                                         'trabajo\n'
-                                         '    Datos\n'
-                                         '      Base de datos Citas con 20 GB y respaldo diario\n'
-                                         '      Retencion de logs de la API por 90 dias\n'
-                                         '    Transferencia\n'
-                                         '      Descarga del PDF de constancia por cada cita '
-                                         'confirmada\n'
-                                         '      Correos salientes de confirmacion y recordatorio\n'
-                                         '    Ocioso\n'
-                                         '      Ambiente de pruebas encendido todo el fin de '
-                                         'semana\n'
-                                         '      Sesiones de LabEx Docker Playground abiertas y olvidadas\n'
-                                         '    Integracion continua\n'
-                                         '      Minutos de Actions consumidos en cada push a main\n'
-                                         '      Build sin cache de capas que reconstruye todo',
+                     'mermaid_esperado': '''mindmap
+  root((Drivers de costo de CloudLite))
+    Computo
+      API CloudLite con 2 replicas encendidas 24 horas
+      Worker Notificaciones esperando eventos sin trabajo
+    Datos
+      Base de datos Citas con 20 GB y respaldo diario
+      Retencion de logs de la API por 90 dias
+    Transferencia
+      Descarga del PDF de constancia por cada cita confirmada
+      Correos salientes de confirmacion y recordatorio
+    Ocioso
+      Ambiente de pruebas encendido todo el fin de semana
+      Sesiones del laboratorio abiertas y olvidadas
+    Integracion continua
+      Minutos de Actions consumidos en cada push a main
+      Build sin cache de capas que reconstruye todo''',
                      'puntos': 20,
                      'rubrica': '8 pts la estructura exacta de 1 raiz, 5 ramas y 10 hojas. 8 pts '
                                 'que las 10 hojas nombren elementos reales del despliegue con '

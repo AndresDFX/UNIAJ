@@ -11,7 +11,7 @@ PI: **CloudLite**
 |---|---|---|---|
 | Arquitectura / C4 / diagramas | **draw.io / diagrams.net** (https://app.diagrams.net) | Navegador | Componentes, despliegue, redes |
 | Bocetos y talleres colaborativos | **Excalidraw** (https://excalidraw.com) | Navegador | Bajo roce, sin cuenta |
-| Contenedores conceptuales (sin Docker local) | **LabEx Docker Playground** o **Killercoda** | Navegador | Labs temporales en la nube |
+| Contenedores conceptuales (sin Docker local) | **Killercoda** (primaria) · **LabEx Docker Playground** (alterna) | Navegador | Cuenta gratuita sin tarjeta. Sesión de 1 h en las dos. Killercoda va primero porque **no limita** los escenarios gratuitos; LabEx da solo **3 sesiones al día**, lo que puede dejar sin intentos a quien depura el día de la entrega. |
 | Kubernetes intro (opcional) | **Killercoda** | Navegador | Solo demos guiadas |
 | CI/CD conceptual | **GitHub Actions** (cuenta free) | Navegador | Pipelines simples; sin runner local |
 | Documentación / entregas | **Google Docs / Drive** o Word Online | Navegador | Talleres en `.docx` en `Clases/` |

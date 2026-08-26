@@ -123,9 +123,13 @@ Docente proyecta Floci; estudiantes hacen diagrama en draw.io + cuestionario. Ce
 | CI/CD local reproducible | Alto | Bajo | Bajo | N/A |
 | Soporte Windows aula | Medio (Docker Desktop) | Alto | Alto | Alto |
 | Madurez / riesgo proyecto | Medio (org joven, 2026; AWS más maduro que az/gcp/oci) | Alto | Alto | Alto |
+| Tope de uso en plan gratuito | N/A (local) | **Sin tope** de escenarios gratuitos | **3 sesiones/día** | Sin tope |
+| Duración de sesión | N/A (local) | 1 h | 1 h | N/A |
 | Encaje CloudLite | Alto (object storage + colas + funciones) | Medio | Medio | Alto (C4/diagramas) |
 
 **Lectura:** Floci **complementa** Killercoda/LabEx y draw.io; **no los reemplaza** en 2026-2 hasta que el piloto salga bien.
+
+**Decisión 2026-2 sobre el lab de contenedores:** **Killercoda queda como primaria y LabEx como alterna.** Las dos cumplen la política (gratis, navegador, sin tarjeta) y las dos piden cuenta y caducan la sesión a 1 h; el desempate es el tope diario. LabEx limita a 3 sesiones por día en el plan gratuito, y la actividad calificada de la Clase 3 exige depurar un Dockerfile: tres intentos es un riesgo real de bloqueo el día de la entrega. Dato pendiente de confirmar en la fuente primaria (labex.io y killercoda.com no eran alcanzables al verificar; las cifras vienen de resultados de búsqueda).
 
 ---
 
