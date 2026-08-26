@@ -85,6 +85,7 @@ parcial vive en `Parciales/`, nunca en `Clases/`.
 | Motor slides | `config/slides/uniajc_slides_engine.py` |
 | Iconos de herramientas | `config/slides/assets/herramientas/` + `normalizar_iconos.py` |
 | Skill transcribir | `.claude/skills/transcribir-video/` |
+| Limpieza `desktop.ini` de Drive | `config/git/limpiar_desktop_ini.py` (hook `SessionStart`) |
 
 ## Alistar el semestre (calendario, Meet, invitaciones, grabaciones)
 
@@ -154,6 +155,44 @@ python config/slides/guion_md_a_docx.py "<ruta al guion>.md"
 # Calendario del periodo  (OJO: regenera los 4 Acuerdos Pedagogicos)
 python config/calendario/generar_semestre_2026_2.py
 ```
+
+## El repo vive en Google Drive: `desktop.ini` rompe git
+
+Sintoma, al hacer `git pull` / `fetch` / `push`:
+
+```text
+fatal: bad object refs/desktop.ini
+error: github-personal:AndresDFX/UNIAJ.git did not send all necessary objects
+```
+
+**Causa.** Google Drive escribe un `desktop.ini` oculto en cada carpeta que
+sincroniza (metadata de shell: el icono de Drive, apunta a `GoogleDriveFS.exe`).
+Cuando cae dentro de `.git/refs/`, git rompe: **lee todo archivo bajo `refs/` como
+si fuera una referencia**, asi que `.git/refs/desktop.ini` pasa a ser un ref
+llamado `refs/desktop.ini` cuyo contenido no es un SHA.
+
+**`.gitignore` no lo puede arreglar.** En el arbol de trabajo si esta ignorado
+(linea 57) y ahi no molesta; pero git **nunca** aplica reglas de ignore a su propio
+directorio `.git/`. La unica salida es borrarlos. Tampoco sirve crear un
+`desktop.ini` señuelo: el driver de Drive rechaza que otro proceso escriba con ese
+nombre, solo lo escribe el.
+
+**Arreglo:**
+
+```bash
+python config/git/limpiar_desktop_ini.py     # o, a mano:  find .git -iname desktop.ini -delete
+```
+
+Borra solo archivos llamados `desktop.ini` dentro del git-dir, y ademas las
+carpetas vacias que quedan bajo `refs/heads/` por ramas ya borradas (son imanes de
+`desktop.ini`). Preserva `refs/heads`, `refs/tags` y `refs/remotes`, que git espera.
+Es idempotente y siempre sale con codigo 0.
+
+Corre **automatico al iniciar cada sesion** de Claude Code por el hook
+`SessionStart` de `.claude/settings.json`. En una terminal propia hay que correrlo
+a mano, o cuando aparezca el error.
+
+Los `desktop.ini` del arbol de trabajo (unos 400) son inofensivos: estan ignorados.
 
 ## Convención de material
 

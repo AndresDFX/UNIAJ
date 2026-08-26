@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/config/git/limpiar_desktop_ini.py\" --silencioso"
+          }
+        ]
+      }
+    ]
+  }
+}
