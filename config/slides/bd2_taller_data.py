@@ -23,6 +23,16 @@ HERRAMIENTAS_DIA = {
             'logo': 'google_docs.png',
             'note': 'Ficha del PI',
         },
+        {
+            'name': 'Mermaid',
+            'logo': 'mermaid.png',
+            'note': 'Codigo del ER',
+        },
+        {
+            'name': 'ExamLab',
+            'logo': 'examlab.png',
+            'note': 'Donde se entrega',
+        },
     ],
     2: [
         {
@@ -235,10 +245,14 @@ TALLER_BLOQUE = {
         ],
         'escenario': [
             'Dominio: clínica veterinaria VetCare.',
-            'Herramientas: draw.io + DB Fiddle.',
-            'Reutilizar nombres del enunciado PI.',
+            'Ficha con plantilla fija: VetCare - [Apellido], alcance SI / NO y 3 reglas Condición → Acción.',
+            'Diagrama: boceto visual en Excalidraw o draw.io → código Mermaid (erDiagram) → ExamLab.',
+            'Nombres en minúscula y singular (dueno, mascota, cita) con id_<entidad>: iguales en ER, DDL y Mermaid.',
         ],
         'pistas': [
+            '□ El proyecto se llama VetCare - [Apellido]?',
+            '□ Las 3 reglas están escritas como Condición → Acción?',
+            '□ El Mermaid renderiza dentro de ExamLab (no basta el PNG)?',
             '□ Hay PK/FK visibles en el ER?',
             '□ Mascota inactiva / stock aparecen como regla?',
             '□ El alcance evita scope infinito?',
@@ -490,10 +504,10 @@ SOLUCION = {
         'titulo': 'Solución Taller Clase 1 — Arranque VetCare',
         'resumen': 'ER minimo Dueño-Mascota-Cita + 3 reglas + alcance.',
         'pasos': [
-            'Trabajo individual por defecto: nombra tu proyecto VetCare-<tu apellido> y registralo para identificarlo en todas las entregas del semestre. Si el docente autoriza equipo de 2 o 3, el artefacto puede ser compartido pero la entrega en ExamLab sigue siendo individual.',
+            'Trabajo individual por defecto: nombra tu proyecto VetCare - [Apellido] y registralo para identificarlo en todas las entregas del semestre. Si el docente autoriza equipo de 2 o 3, el artefacto puede ser compartido pero la entrega en ExamLab sigue siendo individual.',
             'Listar las entidades minimas del dominio: Dueño (persona que trae la mascota), Mascota (paciente), Veterinario (quien atiende), Cita (agenda de una atencion). Consulta, Insumo y DetalleFactura se agregan en clases posteriores.',
-            'Redactar como reglas de negocio explicitas (no solo mencionarlas): "una mascota con activa=N no puede tener una cita nueva", "el stock de un insumo nunca puede quedar en negativo", "toda cancelacion de cita queda registrada con usuario y fecha".',
-            'Dibujar el ER borrador marcando cardinalidad en cada relacion (Dueño 1-N Mascota, Mascota 1-N Cita) y exportarlo como PNG legible, no un boceto a mano ilegible.',
+            'Redactar 3 reglas de negocio propias en formato Condicion -> Accion, cada una con el mecanismo con que se implementara (CHECK, UNIQUE, FK, procedimiento o trigger): "una mascota con activa=N no puede tener una cita nueva", "el stock de un insumo nunca puede quedar en negativo", "toda cancelacion de cita queda registrada con usuario y fecha".',
+            'Dibujar el ER borrador marcando cardinalidad en cada relacion (Dueño 1-N Mascota, Mascota 1-N Cita) en Excalidraw o draw.io, pasarlo a Mermaid (erDiagram) con ayuda de una IA y pegarlo en la pregunta 2 de ExamLab verificando que renderice; el PNG exportado va a la carpeta del PI, pero lo que califica es el Mermaid renderizado.',
             'Escribir el alcance en dos listas explicitas: que SI cubre el PI este semestre (agenda, facturacion basica, roles) y que NO cubre (ej. pagos en linea, historial clinico completo) para evitar scope creep en clases futuras.',
         ],
         'ejemplo': [
@@ -511,6 +525,9 @@ SOLUCION = {
             'ER genérico.',
             'Sin FK.',
             'Scope infinito.',
+            'Entregar el PNG y dejar vacía la pregunta de diagrama: ExamLab califica el Mermaid renderizado, no la imagen.',
+            'Reglas escritas como deseos («el sistema debe ser seguro») en vez de Condición → Acción verificable.',
+            'Nombres en mayúscula, plural o con tilde: el DDL falla en el PostgreSQL de ExamLab y se pierde la clase depurándolo.',
         ],
     },
     2: {

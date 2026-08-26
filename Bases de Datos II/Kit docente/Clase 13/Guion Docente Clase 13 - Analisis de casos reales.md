@@ -45,17 +45,25 @@ Error tipico del docente que no domina el tema: el primero es dejar que la activ
 **Demo que usted debe poder repetir:** Plantilla: contexto -> fallo -> leccion -> cambio en VetCare.
 
 ## Referencias a diapositivas
-1. Slide 1 portada (Clase N + titulo VetCare)
-2. Slide Agenda 120 min
-3. Slide Objetivo PI de la clase
-4. Slide Teoria Core
-5. Slide Demo del dia
-6. Slide Herramientas de hoy (logos 3-4)
-7. Bloque Taller ampliado: contexto / objetivo / escenario / pasos / pistas
-8. Slide Criterios de exito / entregable
-9. Slide Para el PI esta semana
-10. Slide Cierre
-11. Solucion PRIVADA: Kit docente/Clase N/Solucion Taller Clase N - VetCare.docx
+Numeracion real del deck `Clases/Clase 13 - Analisis de casos reales/Presentacion.pptx`.
+Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
+
+1. Portada · Clase 13 · Analisis de casos reales · VetCare
+2. Encuadre de hoy · Objetivo PI
+3. Mapa del bloque de hoy (120 min)
+4. Teoria Core (breve)
+5. Demo del dia
+6. Herramientas de hoy
+7. Actividad autonoma — contexto / por que importa
+8. Actividad autonoma — objetivo y criterios
+9. Actividad autonoma — escenario / datos de partida
+10. Actividad autonoma — pasos guiados
+11. Actividad autonoma — pistas (checklist vacio)
+12. Criterios de exito / entregable
+13. Para el PI esta semana
+14. Cierre · Clase 13
+
+> Privado, no se proyecta: `Kit docente/Clase 13/Solucion Taller Clase 13 - VetCare.docx`
 
 ## Plan minuto a minuto (120 min equivalentes — trabajo autonomo)
 
@@ -72,7 +80,7 @@ Leer Teoria Core. Tomar notas en el informe del PI.
 Seguir el taller estudiante. Herramienta: Google Docs.
 Salida esperada de la practica (publiquela junto al enunciado para que el
 estudiante autonomo sepa si le quedo bien):
-📸 Pantallazo: [CAP: demo VetCare Clase 13]
+📸 Salida esperada de la demo de la Clase 13 [[captura: cap01_demo.png | receta: 1) Abra Google Docs y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 13/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda embebida aqui sola.]]
 
 ### Bloque D (100-120) · Empaquetado y cierre
 Subir entregable a ExamLab. Actualizar el checklist PI del proyecto.
@@ -82,8 +90,10 @@ Subir entregable a ExamLab. Actualizar el checklist PI del proyecto.
 Carpeta Codigo/ — archivo N/A.
 
 ## Capturas
-Carpeta Capturas/. Placeholders [CAP: ...] arriba; reemplazar por PNG reales cuando pueda
-(Playwright/manual en DB Fiddle, draw.io, Live SQL).
+Carpeta `Kit docente/Clase 13/Capturas/`. Cada linea de pantallazo de arriba trae
+el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia
 - Cada estudiante tiene el entregable o sus gaps escritos.

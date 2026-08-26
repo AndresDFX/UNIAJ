@@ -38,18 +38,34 @@ Segundo ejemplo concreto: la tabla de cuatro a seis senales de CloudLite, con um
 
 Error tipico del docente que no domina el tema: presentar CI y CD como sinonimos intercambiables y hablar de «hacer CI/CD» sin separar que valida, que entrega y que despliega. La consecuencia aguas abajo es que el estudiante cree que su workflow puso la aplicacion en produccion, describe en el informe un despliegue que no existe y en la sustentacion de la Clase 15 defiende una capacidad operativa que no puede demostrar. El segundo tropiezo es dejar la tabla de monitoreo como una lista de palabras sueltas (latencia, errores, CPU) sin umbral, sin unidad y sin accion asociada; cuando eso pasa, la seccion de monitoreo no dice nada, la Clase 12 no tiene contra que comparar los resultados de la prueba de carga y la politica de autoescalado de la Clase 13 se inventa un disparador sin ninguna medida que lo sustente.
 
-Referencia de slides: `Clases/Clase 8 - Monitoreo optimizacion y CI-CD/Presentacion.pptx` (solo tema de esta clase).
+## Referencias a diapositivas
+Numeración real del deck `Clases/Clase 8 - Monitoreo optimizacion y CI-CD/Presentacion.pptx` (solo tema
+de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
+
+1. Portada · Clase 8 · Monitoreo y optimización · CI/CD
+2. Agenda de hoy (120 min)
+3. Objetivos de la clase
+4. PI CloudLite — entregable de hoy
+5. CI/CD sin tarjeta
+6. YAML mínimo
+7. Monitoreo y optimización
+8. .github/workflows/ci.yml — CI real, no un echo
+9. Herramientas de hoy
+10. Del boceto a ExamLab (diagrama)
+11. Taller PI (paso a paso)
+12. Para continuar (PI)
+13. Clase 8 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 4]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Workflow Actions (build/test/simulate) + métricas de monitoreo del PI**.
 Entregable concreto: .github/workflows/ci.yml + sección Monitoreo/CI del informe.
 Teoría breve y luego taller; no es un lab suelto.»
 Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
 Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
 
-### 10–40 · Teoría Core (al servicio del taller)
+### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 5]
 Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las diapositivas de teoría):
 - CI/CD sin tarjeta
 - YAML mínimo
@@ -60,7 +76,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo
+### 40–55 · Demo en vivo · [Slide 10]
 Herramienta del día: **GitHub Actions · Google Docs**.
 **Demo que usted debe poder repetir:** Un workflow de GitHub Actions que corra de verdad
 
@@ -71,10 +87,19 @@ Herramienta del día: **GitHub Actions · Google Docs**.
 
 Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase 8/Capturas/`.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
+
+**Cierra la demo dentro de ExamLab** [Slide 10] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
+
+**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
+
+- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
+- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `flowchart`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
+- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
+- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 📸 Run verde del workflow: build + test reales, no un `echo ok` [[captura: salida-actions-run.png]]
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste)
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 11]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -87,7 +112,7 @@ Aplica el quiz corto de `Kit docente/Clase 8/Quiz Clase 8 - Monitoreo optimizaci
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre
+### 115–120 · Cierre · [Slide 13]
 Di: «Queda avanzado: Workflow Actions (build/test/simulate) + métricas de monitoreo del PI.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
@@ -125,8 +150,8 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 8/Quiz Clase 8 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 Pantallazo: herramienta del día en uso con artefacto CloudLite [[captura: demo-clase08.png]]
-- 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase08.png | receta: 1) Abre GitHub Actions · Google Docs y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 8/Capturas/demo-clase08.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase08.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 8/Capturas/evidencia-clase08.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
 - Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.

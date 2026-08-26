@@ -15,7 +15,7 @@
 ## Hoy avanzamos el PI en…
 **Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases**
 
-**Entregable concreto:** Ficha PI: dominio, capacidades, actores y boceto C4 Context (Excalidraw/draw.io)
+**Entregable concreto:** Ficha PI de 6 bloques + C4 Context en Mermaid renderizado en ExamLab (boceto previo en Excalidraw/draw.io)
 
 **Herramienta:** Padlet · Excalidraw / draw.io
 
@@ -43,25 +43,41 @@ El segundo artefacto de hoy es la ficha con cuatro capacidades y el problema en 
 ### Ejemplo de diagrama C4 - nivel Context - diapositiva 8
 Use el diagrama proyectado (System, dos Person, System_Ext) como plantilla en vivo: reemplace actor, sistema y externo por el dominio de un estudiante voluntario mientras explica que en el nivel Context el sistema sigue siendo UNA sola caja, sin abrir por dentro. Es el mismo modelo C4 explicado arriba, ahora aplicado con nombres concretos, y sirve de puente directo hacia la pregunta 2 del taller en ExamLab (el diagrama Mermaid que cada estudiante entrega hoy).
 
-### Preguntas frecuentes y cierre conceptual (diapositivas 5-8)
+### Preguntas frecuentes y cierre conceptual (de la diapositiva 5 a la diapositiva 8)
 Tres preguntas aparecen casi siempre en esta primera clase y conviene tener la respuesta lista. La primera: cual es la diferencia entre arquitectura y diseno. Respuesta: es una diferencia de alcance y de reversibilidad, no de naturaleza; arquitectura son las decisiones que afectan a todo el sistema y son caras de revertir, diseno son las decisiones internas de un componente que se pueden cambiar sin tocar a los demas. La segunda: por que no usamos una cuenta real de un proveedor de nube. Respuesta, y hay que darla sin disculparse: porque este curso evalua razonamiento arquitectonico y no el manejo de una consola que cambia de aspecto cada semestre; ninguna actividad exigira tarjeta de credito ni cuenta de pago, todo se hace con draw.io, Excalidraw, LabEx Docker Playground y el nivel gratuito de GitHub Actions, y quien aprende a justificar un trade-off lo aplica luego en cualquier proveedor en una tarde. La tercera: cuantas cajas debe tener mi diagrama. Respuesta: en el nivel de contexto, entre cuatro y ocho elementos en total; si hay veinte, es casi seguro que se colaron piezas internas. Y vale cerrar ubicando al docente en el mapa del curso, porque la Clase 1 no es una introduccion suelta sino el cimiento de una cadena. Lo que se decida hoy (dominio, actores, capacidades, problema) es la entrada obligatoria de la Clase 2, que se dicta la semana siguiente en sesion virtual sincrona y pide elegir entre IaaS, PaaS y SaaS registrando la decision; de la Clase 3, donde se contenerizara uno de los servicios de este mismo sistema; y sobre todo de la Clase 4, que abre la caja negra dibujada hoy para mostrar de dos a cinco contenedores logicos. La Clase 5 es el primer parcial y evalua justamente este vocabulario. Conviene decirlo en voz alta al cerrar: el estudiante que salga hoy sin dominio definido no tiene sobre que trabajar en las siguientes cuatro sesiones, y el docente debe negarse a dejar el tema abierto para la proxima semana.
 
 Error tipico del docente que no domina el tema: confundir arquitectura con stack tecnologico y permitir que el estudiante presente una lista de tecnologias como si fuera una arquitectura. La consecuencia aguas abajo es directa: en la Clase 2 ese estudiante no podra sustentar su registro de decision, porque nunca hizo explicito un atributo de calidad que la justifique, y en la Clase 4 producira un diagrama de contenedores que es un inventario de herramientas sin fronteras de responsabilidad. El segundo error es aceptar diagramas de contexto contaminados con piezas internas (base de datos, cache, balanceador) porque «se ven mas completos»; si eso se aprueba hoy, el nivel de contenedores de la Clase 4 pierde todo sentido, ya que no habra nada nuevo que revelar, y la sustentacion final de la Clase 15 terminara siendo un unico diagrama ilegible en el que el estudiante no sabe a que nivel de zoom esta hablando.
 
-Referencia de slides: `Clases/Clase 1 - Introduccion a arquitecturas cloud/Presentacion.pptx` (solo tema de esta clase).
+## Referencias a diapositivas
+Numeración real del deck `Clases/Clase 1 - Introduccion a arquitecturas cloud/Presentacion.pptx` (solo tema
+de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
+
+1. Portada · Clase 1 · Introducción a arquitecturas cloud
+2. Agenda de hoy (120 min)
+3. Objetivos de la clase
+4. PI CloudLite — entregable de hoy
+5. Qué es arquitectura cloud (mapa mental)
+6. CloudLite App — el hilo conductor
+7. De dominio a arquitectura (mini-método)
+8. Ejemplo de diagrama C4 — nivel Context
+9. Herramientas de hoy
+10. Del boceto a ExamLab (diagrama)
+11. Taller PI (paso a paso)
+12. Para continuar (PI)
+13. Clase 1 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 4]
 Di casi literal:
-> "Hoy avanzamos el PI CloudLite App en: Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases. Entregable concreto: Ficha PI: dominio, capacidades, actores y boceto C4 Context (Excalidraw/draw.io). Teoría breve y luego taller; no es un lab suelto."
+> "Hoy avanzamos el PI CloudLite App en: Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases. Entregable concreto: Ficha PI de 6 bloques + C4 Context en Mermaid renderizado en ExamLab (boceto previo en Excalidraw/draw.io). Teoría breve y luego taller; no es un lab suelto."
 
 **[Nota docente]:** pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
 
 **[Nota docente]:** pregunta de arranque (1 min) para detectar estudiantes rezagados antes de avanzar:
 > "¿En qué quedó tu CloudLite la clase pasada?"
 
-### 10–40 · Teoría Core (al servicio del taller)
+### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 5]
 Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las diapositivas de teoría):
 - Qué es arquitectura cloud (mapa mental)
 - CloudLite App — el hilo conductor
@@ -73,7 +89,7 @@ por diapositiva: esa sección está escrita para que puedas dictarla sin consult
 **[Nota docente]:** cada 8–10 min amarra al artefacto («esto es lo que van a dejar hoy en su informe/diagrama/repo»)
 y pide un estudiante voluntario para usar SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo
+### 40–55 · Demo en vivo · [Slide 10]
 Herramienta del día: **Padlet · Excalidraw / draw.io**.
 **Demo que usted debe poder repetir:** Dibujar en vivo el C4 Context de un CloudLite de ejemplo
 
@@ -82,13 +98,37 @@ Herramienta del día: **Padlet · Excalidraw / draw.io**.
 3. Agregue 1 caja gris a la derecha rotulada «Pasarela de pagos (externo)» y una flecha «cobra».
 4. Diga en voz alta: «no dibuje que hay ADENTRO de la caja; eso es Clase 4».
 
+**Referencia del resultado:** C4 Context de la demo (el mismo de `Capturas/demo-clase01.png`). Si la red falla o prefiere no dibujar a mano, pegue este codigo en la pregunta de diagrama de ExamLab y proyectelo renderizado; tambien sirve para volver a generar la imagen en cualquier editor que soporte Mermaid.
+
+```mermaid
+C4Context
+    title CloudLite App - nivel Context (demo de clase)
+    Person(usuario, "Usuario final", "Consulta y usa el servicio")
+    Person(admin, "Administrador", "Configura y opera")
+    System(cloudlite, "CloudLite App", "El sistema completo, como caja negra")
+    System_Ext(pagos, "Pasarela de pagos", "Servicio de terceros")
+    Rel(usuario, cloudlite, "consulta", "HTTPS")
+    Rel(admin, cloudlite, "administra", "HTTPS")
+    Rel(cloudlite, pagos, "cobra", "API REST sobre HTTPS")
+```
+
 
 **[Nota docente]:** narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase 1/Capturas/`.
 Cierra la demo diciendo:
 > "Copien la estructura, no el dominio de mi ejemplo."
 
+**Cierra la demo dentro de ExamLab** [Slide 10] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
-### 55–100 · Taller guiado PI (individual)
+**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
+
+- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
+- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `C4Context`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
+- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
+- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
+📸 C4 Context de la demo en vivo: asi debe quedar el tablero al terminar [[captura: demo-clase01.png]]
+
+
+### 55–100 · Taller guiado PI (individual) · [Slide 11]
 **[Nota docente]:** proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller»
 de este guion). Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas
 a ver hoy. A los 80 min anuncia:
@@ -102,7 +142,7 @@ Aplica el quiz corto de `Kit docente/Clase 1/Quiz Clase 1 - Introduccion a arqui
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre
+### 115–120 · Cierre · [Slide 13]
 Di:
 > "Queda avanzado: Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases. Criterio de éxito: el estudiante explica su artefacto en 60 s. Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan."
 
@@ -110,7 +150,7 @@ Di:
 ## Actividad / taller (detalle)
 1. Paso 1: elija un dominio concreto entre AgendaU, BiblioLite, InventarioLab, TurnosClinica o EventosCampus (o uno propio del mismo tamano) y escriba el problema en exactamente 3 frases: quien sufre el problema, como se resuelve hoy sin CloudLite y una cifra medible del dolor (por ejemplo 40 correos por semana para cuadrar 12 asesorias), verificando que en ninguna de las 3 frases aparezca una expresion generica como app de la universidad o red social; el resultado queda en la seccion 1 Dominio y problema del informe del PI.
 2. Paso 2: liste exactamente 4 capacidades con la forma verbo mas objeto de negocio (reservar cita, publicar cupo, cancelar reserva, notificar recordatorio), 3 actores humanos con lo que espera cada uno, 2 o 3 sistemas externos con los que CloudLite intercambia informacion (por ejemplo proveedor de identidad, correo transaccional o pasarela de pagos) y 3 elementos de fuera de alcance, verificando que ninguna capacidad nombre tecnologia (nada de usar PostgreSQL ni desplegar en Docker) y que las 4 capacidades se lean como frases del negocio; queda en la seccion 1 del informe y se pega tal cual en la pregunta 1 de ExamLab.
-3. Paso 3: escriba en la pregunta de tipo diagrama de ExamLab el C4 Context en Mermaid con exactamente 1 System para CloudLite, 2 Person, 2 System_Ext y 5 relaciones etiquetadas con verbo de negocio y protocolo, verificando al renderizar dentro de la plataforma que no aparezca ninguna caja interna (ni base de datos ni API ni worker, eso es Clase 4) y que cada flecha se lea en voz alta como una frase completa.
+3. Paso 3: dibuje primero el boceto del C4 Context en Excalidraw o draw.io, que es donde se piensa el modelo, y despues pidale a una IA que lo traduzca a Mermaid («convierte este diagrama a Mermaid usando C4Context»); pegue ese codigo en la pregunta de tipo diagrama de ExamLab y verifique que renderice ahi mismo, con exactamente 1 System para CloudLite, 2 Person, 2 System_Ext y 5 relaciones etiquetadas con verbo de negocio y protocolo, verificando en el diagrama ya renderizado que no aparezca ninguna caja interna (ni base de datos ni API ni worker, eso es Clase 4) y que cada flecha se lea en voz alta como una frase completa.
 4. Paso 4: resuelva la tabla comparativa de 4 filas nube frente a on-premise, cierre con el veredicto de 2 frases que sera la entrada del ADR-001 de la Clase 2, y suba a ExamLab (modulo Talleres) las 5 preguntas resueltas antes del domingo 23:59, verificando que la ficha, el diagrama renderizado y el veredicto usen exactamente los mismos nombres de actores y de sistemas externos.
 
 ### Criterio de éxito
@@ -138,8 +178,8 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 1/Quiz Clase 1 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 Pantallazo: herramienta del día en uso con artefacto CloudLite [[captura: demo-clase01.png]]
-- 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase01.png | receta: 1) Abre Padlet · Excalidraw / draw.io y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 1/Capturas/demo-clase01.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase01.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 1/Capturas/evidencia-clase01.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
 - Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.

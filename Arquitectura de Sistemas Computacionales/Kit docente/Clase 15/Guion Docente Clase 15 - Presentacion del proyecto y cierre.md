@@ -38,7 +38,23 @@ El cierre del curso debe conectar lo hecho con la practica profesional, porque d
 
 Error tipico del docente que no domina el tema: el primero es dar por sustentado un paquete sin haber hecho una sola pregunta al azar, y en los equipos autorizados permitir que un solo integrante presente todo mientras los demas observan en silencio, normalmente porque es el que habla mejor y la presentacion sale mas fluida. La consecuencia aguas abajo es la misma en los dos casos: el docente pierde el unico instrumento que tenia para verificar autoria individual, y cuando llegue el reclamo de nota no tendra con que sostener la calificacion de quien no hablo. El segundo es aceptar como sustentacion la lectura descriptiva del diagrama, del tipo «aqui esta la API, aqui la base de datos, aqui el balanceador», sin exigir nunca la tercera capa del trade-off. La consecuencia es que el estudiante cierra el curso creyendo que arquitectura es dibujar cajas, y en la siguiente asignatura o en su primer empleo no sabra defender una decision frente a un lider tecnico que le pregunte por el costo de mantenerla. Un tercer tropiezo menor pero muy frecuente: dejar el Q&A para el ultimo minuto y quedarse sin tiempo, con lo cual los 15 puntos de informe y sustentacion se califican sobre la presentacion sola y se pierde precisamente la parte que mas informacion da sobre lo que el estudiante realmente entendio.
 
-Referencia de slides: `Clases/Clase 15 - Presentacion del proyecto y cierre/Presentacion.pptx` (solo tema de esta clase).
+## Referencias a diapositivas
+Numeración real del deck `Clases/Clase 15 - Presentacion del proyecto y cierre/Presentacion.pptx` (solo tema
+de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
+
+1. Portada · Clase 15 · Presentación del proyecto + cierre
+2. Agenda de hoy (120 min)
+3. Objetivos de la clase
+4. PI CloudLite — entregable de hoy
+5. Cómo se ordena la sesión de hoy
+6. Rúbrica de sustentación (recordatorio)
+7. Checklist final
+8. Cierre del curso
+9. Herramientas de hoy
+10. Del boceto a ExamLab (diagrama)
+11. Sustentación (paso a paso)
+12. Para continuar (PI)
+13. Clase 15 · cierre del PI CloudLite
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -139,8 +155,8 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 15/Quiz Clase 15 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 Pantallazo: herramienta del día en uso con artefacto CloudLite [[captura: demo-clase15.png]]
-- 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase15.png | receta: 1) Abre Google Docs/Slides · diagramas · capturas lab y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 15/Capturas/demo-clase15.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase15.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 15/Capturas/evidencia-clase15.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
 - Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.

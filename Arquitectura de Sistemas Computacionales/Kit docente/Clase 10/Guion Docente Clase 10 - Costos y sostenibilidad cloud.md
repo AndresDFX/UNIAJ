@@ -38,7 +38,21 @@ Tres preguntas aparecen siempre. La primera es si tiene sentido estimar costos c
 
 Error tipico del docente que no domina el tema: tratar el costo como asunto "de negocio, no tecnico" y despacharlo en cinco minutos. Las decisiones que mas mueven la factura son decisiones de arquitectura, tomadas por quien dibuja el diagrama: gestionado o autoadministrado, con cache o sin cache, sincronico o con cola, replicas fijas o autoescalado. Si esta clase se salta, la consecuencia aparece dos clases despues: en la Clase 13 los estudiantes escriben politicas de autoescalado sin limite superior, en la Clase 15 defienden arquitecturas que nadie podria pagar y en el Parcial 3 responden la pregunta de drivers con generalidades sobre "optimizar recursos". El segundo error es el opuesto e igual de danino: exigir cifras exactas en dolares. Con eso la clase se vuelve una caceria de calculadoras de precios, el estudiante copia numeros que no entiende y las acciones de right-sizing quedan cosmeticas. El criterio de aprobacion no es la precision del numero sino que cada componente tenga driver nombrado y que cada accion sea verificable: "reducir a una replica el worker de notificaciones y usar imagen slim" se puede revisar, "optimizar el codigo" no.
 
-Referencia de slides: `Clases/Clase 10 - Costos y sostenibilidad cloud/Presentacion.pptx` (solo tema de esta clase).
+## Referencias a diapositivas
+Numeración real del deck `Clases/Clase 10 - Costos y sostenibilidad cloud/Presentacion.pptx` (solo tema
+de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
+
+1. Portada · Clase 10 · Costos y sostenibilidad cloud
+2. Agenda de hoy (120 min)
+3. Objetivos de la clase
+4. PI CloudLite — entregable de hoy
+5. Costos sin factura real
+6. Sostenibilidad
+7. Herramientas de hoy
+8. Del boceto a ExamLab (diagrama)
+9. Taller PI (paso a paso)
+10. Para continuar (PI)
+11. Clase 10 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -118,8 +132,8 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 10/Quiz Clase 10 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 Pantallazo: herramienta del día en uso con artefacto CloudLite [[captura: demo-clase10.png]]
-- 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase10.png | receta: 1) Abre Google Docs y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 10/Capturas/demo-clase10.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase10.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 10/Capturas/evidencia-clase10.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
 - Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.

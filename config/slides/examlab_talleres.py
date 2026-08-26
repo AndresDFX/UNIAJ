@@ -73,7 +73,9 @@ TIPOS = {
     "diagrama": (
         "Diagrama (Mermaid)",
         "El diagrama se escribe como texto en sintaxis Mermaid y la plataforma lo "
-        "dibuja al instante. No hay que exportar imagenes ni salir a otra herramienta.",
+        "dibuja al instante: no se sube una imagen. Puedes disenarlo primero a mano "
+        "en Excalidraw o draw.io y pedirle a una IA que lo traduzca a Mermaid "
+        "(ver «Del boceto al codigo Mermaid» mas abajo).",
     ),
     "bd_sql": (
         "SQL sobre PostgreSQL real",
@@ -98,6 +100,97 @@ TIPOS = {
 
 def _tipo(nombre):
     return TIPOS.get(nombre, (nombre, ""))
+
+
+# ---------------------------------------------------------------------------
+# Del boceto visual al codigo Mermaid: el puente que faltaba
+# ---------------------------------------------------------------------------
+# Por que existe: el material de clase manda a disenar en Excalidraw/draw.io y a
+# exportar un PNG, pero la pregunta que se califica en ExamLab es de tipo
+# `diagrama` y espera TEXTO en sintaxis Mermaid. Nadie habia escrito el puente
+# entre las dos cosas, asi que el estudiante llegaba con una imagen a una caja de
+# texto. Este bloque es la fuente unica de ese flujo y lo consumen tres salidas:
+#   - `bloque_estudiante()`  -> .docx del taller que recibe el estudiante
+#   - `guia_docente_md()`    -> texto que el docente pega al crear la pregunta
+#   - `flujo_diagrama_pasos()` -> diapositiva «Del boceto a ExamLab» de cada curso
+# Se mantiene aqui, en el modulo compartido, porque 15 clases de los cursos
+# activos tienen pregunta de diagrama: copiarlo por clase garantizaba que se
+# desincronizara.
+
+FLUJO_DIAGRAMA_TITULO = "Del boceto al codigo Mermaid"
+
+#: Los 4 pasos como (titulo corto, descripcion). `{dialecto}` se reemplaza con el
+#: tipo de diagrama que pide la pregunta (erDiagram, C4Context, flowchart...).
+FLUJO_DIAGRAMA_PASOS = [
+    ("1. Disena visual",
+     "Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido "
+     "arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo."),
+    ("2. Traduce con IA",
+     "Copia o describe tu boceto a una IA y pidele el codigo Mermaid: "
+     "«convierte este diagrama a Mermaid usando {dialecto}». Revisa el "
+     "resultado: la IA acierta la sintaxis, no tu modelo."),
+    ("3. Pega y renderiza en ExamLab",
+     "Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja "
+     "la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es "
+     "el diagrama renderizado dentro de ExamLab."),
+    ("4. Guarda el PNG para tu PI",
+     "Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia "
+     "es para tu informe; no reemplaza la respuesta en la plataforma."),
+]
+
+
+def _dialecto_mermaid(pregunta, por_defecto="el tipo que pide el enunciado"):
+    """Tipo de diagrama Mermaid que espera la pregunta (`erDiagram`, `C4Context`...).
+
+    Se deduce de la primera linea del `mermaid_esperado` de la propia pregunta, que
+    es donde ya vive esa informacion: asi el texto del flujo nombra el dialecto
+    correcto por clase sin tener que escribirlo dos veces.
+    """
+    ref = (pregunta or {}).get("mermaid_esperado") or ""
+    for linea in ref.splitlines():
+        linea = linea.strip()
+        if linea:
+            return "`%s`" % linea.split()[0]
+    return por_defecto
+
+
+def _dialectos_del_taller(taller):
+    """Dialectos distintos usados por las preguntas de diagrama de un taller."""
+    vistos = []
+    for p in taller.get("preguntas", []):
+        if p.get("tipo") != "diagrama":
+            continue
+        d = _dialecto_mermaid(p, por_defecto="")
+        if d and d not in vistos:
+            vistos.append(d)
+    return vistos
+
+
+def flujo_diagrama_pasos(dialecto="el tipo que pide el enunciado"):
+    """Los 4 pasos como lista de (titulo, descripcion), para `steps_visual_slide`.
+
+    Se le quita el «1. » del titulo porque la diapositiva ya pinta su propia
+    insignia numerada, y los backticks del dialecto porque el motor de slides no
+    interpreta markdown inline y los mostraria literales.
+    """
+    d_slide = dialecto.replace("`", "")
+    return [(re.sub(r"^\d+\.\s*", "", t), d.format(dialecto=d_slide))
+            for t, d in FLUJO_DIAGRAMA_PASOS]
+
+
+def flujo_diagrama_lineas(dialecto="el tipo que pide el enunciado", *, prefijo=""):
+    """Los 4 pasos como lineas de texto plano (una por paso)."""
+    return ["%s%s: %s" % (prefijo, t, d.format(dialecto=dialecto))
+            for t, d in FLUJO_DIAGRAMA_PASOS]
+
+
+def flujo_diagrama_md(dialecto="el tipo que pide el enunciado"):
+    """El flujo en Markdown, para pegar en el enunciado de ExamLab o en un guion."""
+    L = ["**%s.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid."
+         % FLUJO_DIAGRAMA_TITULO, ""]
+    for t, d in FLUJO_DIAGRAMA_PASOS:
+        L.append("- **%s** %s" % (t, d.format(dialecto=dialecto)))
+    return "\n".join(L)
 
 
 def total_puntos(taller):
@@ -131,6 +224,30 @@ def bloque_estudiante(taller):
             f"{p.get('titulo_corto') or _primera_frase(p['enunciado'])}",
         ))
         out.append(("li", comose))
+    dialectos = _dialectos_del_taller(taller)
+    if dialectos:
+        # Hay al menos una pregunta de diagrama: el estudiante necesita saber que
+        # la respuesta es TEXTO Mermaid y como llegar hasta el desde un boceto.
+        out.append(("h2", FLUJO_DIAGRAMA_TITULO))
+        out.append((
+            "p",
+            "La pregunta de diagrama NO recibe imagenes: se responde con codigo "
+            "Mermaid (%s) que la plataforma dibuja al instante. No tienes que "
+            "escribirlo de memoria; el camino corto es este:"
+            % " y ".join(dialectos),
+        ))
+        for titulo, desc in FLUJO_DIAGRAMA_PASOS:
+            out.append((
+                "b",
+                "@@%s:@@ %s" % (titulo, desc.format(
+                    dialecto=dialectos[0] if len(dialectos) == 1 else "el tipo que pide el enunciado")),
+            ))
+        out.append((
+            "p",
+            "Si la IA te devuelve algo que no renderiza, no lo pegues tal cual: "
+            "corrigelo en ExamLab hasta ver el dibujo. Un diagrama que no renderiza "
+            "no se puede calificar.",
+        ))
     out.append((
         "p",
         "Cada pregunta trae su propio enunciado completo dentro de la plataforma: "
@@ -155,6 +272,10 @@ def render_estudiante(doc, taller, *, para, bullets, add_inline, color_titulo,
     for estilo, texto in bloque_estudiante(taller):
         if estilo == "h":
             para(doc, titulo or texto, size=size_titulo, bold=True, color=color_titulo)
+        elif estilo == "h2":
+            # Sub-encabezado dentro de la seccion (p. ej. el flujo de diagramacion):
+            # va un punto por debajo del titulo para que no compita con el.
+            para(doc, texto, size=size_titulo - 1, bold=True, color=color_titulo)
         elif estilo == "b":
             p = doc.add_paragraph()
             add_inline(p, texto)
@@ -248,6 +369,15 @@ def guia_docente_md(n, taller, curso, hito=None, entregable=None):
                 "**SQL de partida (`options.db.setupSql`)** - corre antes del SQL del",
                 "estudiante, sobre una base limpia. PostgreSQL, no Oracle:",
                 "", "```sql", p["setup_sql"].rstrip(), "```", "",
+            ]
+        if p["tipo"] == "diagrama":
+            # Se pega al final del campo Contenido: sin esto el estudiante llega con
+            # un PNG a una caja que espera texto Mermaid.
+            L += [
+                "**Pegar al final del enunciado — flujo de entrega del diagrama:**",
+                "",
+                flujo_diagrama_md(_dialecto_mermaid(p)),
+                "",
             ]
         if p.get("mermaid_esperado"):
             L += ["**Diagrama de referencia (Mermaid):**", "", "```mermaid",

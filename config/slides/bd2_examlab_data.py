@@ -23,60 +23,36 @@ en PostgreSQL/PL-pgSQL a proposito, porque es el que va a correr en la plataform
 Cada taller suma 100 puntos.
 """
 
-EXAMLAB = {1: {'preguntas': [{'enunciado': '## 1. DDL base de VetCare DB\n'
-                                 '\n'
-                                 'La clinica veterinaria **Huellitas** arranca su base de datos '
-                                 '`VetCare DB`. En esta base ya existe una tabla `proyecto_pi` '
-                                 'donde cada estudiante registra su Proyecto Integrador.\n'
-                                 '\n'
-                                 '> **Modalidad de trabajo: individual por defecto.** El docente '
-                                 'puede autorizar equipos de 2 o 3 integrantes; en ese caso el '
-                                 'artefacto puede ser compartido, pero **la entrega en ExamLab '
-                                 'siempre es individual**.\n'
-                                 '\n'
-                                 '**Escribe el SQL (PostgreSQL) que:**\n'
-                                 '\n'
-                                 '1. Registre tu proyecto en `proyecto_pi` con tu nombre completo, '
-                                 'tu codigo y el nombre de tu proyecto. Si el docente te autorizo '
-                                 'trabajar en equipo, lista ademas los otros integrantes en la '
-                                 'columna opcional `integrantes`; si trabajas solo, dejala nula.\n'
-                                 '2. Cree las **tres tablas base** con estas reglas exactas:\n'
-                                 '\n'
-                                 '| Tabla | Columnas y restricciones |\n'
-                                 '|---|---|\n'
-                                 '| `dueno` | `id_dueno` autonumerico PK; `nombre` texto '
-                                 'obligatorio; `telefono`; `email`; `ciudad` con valor por defecto '
-                                 "`'Cali'` |\n"
-                                 '| `mascota` | `id_mascota` autonumerico PK; `id_dueno` '
-                                 'obligatorio con **FK** a `dueno`; `nombre` obligatorio; '
-                                 '`especie` obligatoria; `fecha_nac` tipo fecha; `activa` de un '
-                                 "caracter, por defecto `'S'`, que **solo** acepte `'S'` o `'N'` "
-                                 '|\n'
-                                 '| `cita` | `id_cita` autonumerico PK; `id_mascota` obligatorio '
-                                 'con **FK** a `mascota`; `fecha_hora` tipo `TIMESTAMP` '
-                                 "obligatorio; `estado` texto por defecto `'PROGRAMADA'` que "
-                                 "**solo** acepte `'PROGRAMADA'`, `'ATENDIDA'` o `'CANCELADA'` |\n"
-                                 '\n'
-                                 '3. Inserte **3 duenos**, **4 mascotas** (al menos una con '
-                                 "`activa = 'N'`) y **3 citas** con datos realistas de una "
-                                 "veterinaria en Cali (nombres en espanol: 'Firulais', 'Ana "
-                                 "Gomez', ...).\n"
-                                 '4. Termine con un `SELECT` que muestre nombre de mascota, nombre '
-                                 'del dueno y fecha de la cita usando `JOIN`.\n'
-                                 '\n'
-                                 '**Recuerda:** el motor es **PostgreSQL**, no Oracle. Usa '
-                                 '`SERIAL` (o `GENERATED ALWAYS AS IDENTITY`) y `TEXT`/`VARCHAR`; '
-                                 'no existen `NUMBER` ni `VARCHAR2`.',
+EXAMLAB = {1: {'preguntas': [{'enunciado': '''## 1. DDL base de VetCare DB
+
+La clinica veterinaria **Huellitas** arranca su base de datos `VetCare DB`. En esta base ya existe una tabla `proyecto_pi` donde cada estudiante registra su Proyecto Integrador.
+
+> **Modalidad de trabajo: individual por defecto.** El docente puede autorizar equipos de 2 o 3 integrantes; en ese caso el artefacto puede ser compartido, pero **la entrega en ExamLab siempre es individual**.
+
+**Escribe el SQL (PostgreSQL) que:**
+
+1. Registre tu proyecto en `proyecto_pi` con tu nombre completo, tu codigo y el nombre de tu proyecto. Si el docente te autorizo trabajar en equipo, lista ademas los otros integrantes en la columna opcional `integrantes`; si trabajas solo, dejala nula.
+2. Cree las **tres tablas base** con estas reglas exactas:
+
+| Tabla | Columnas y restricciones |
+|---|---|
+| `dueno` | `id_dueno` autonumerico PK; `nombre` texto obligatorio; `telefono`; `email`; `ciudad` con valor por defecto `'Cali'` |
+| `mascota` | `id_mascota` autonumerico PK; `id_dueno` obligatorio con **FK** a `dueno`; `nombre` obligatorio; `especie` obligatoria; `fecha_nac` tipo fecha; `activa` de un caracter, por defecto `'S'`, que **solo** acepte `'S'` o `'N'` |
+| `cita` | `id_cita` autonumerico PK; `id_mascota` obligatorio con **FK** a `mascota`; `fecha_hora` tipo `TIMESTAMP` obligatorio; `estado` texto por defecto `'PROGRAMADA'` que **solo** acepte `'PROGRAMADA'`, `'ATENDIDA'` o `'CANCELADA'` |
+
+3. Inserte **3 duenos**, **4 mascotas** (al menos una con `activa = 'N'`) y **3 citas** con datos realistas de una veterinaria en Cali (nombres en espanol: 'Firulais', 'Ana Gomez', ...).
+4. Termine con un `SELECT` que muestre nombre de mascota, nombre del dueno y fecha de la cita usando `JOIN`.
+
+**Recuerda:** el motor es **PostgreSQL**, no Oracle. Usa `SERIAL` (o `GENERATED ALWAYS AS IDENTITY`) y `TEXT`/`VARCHAR`; no existen `NUMBER` ni `VARCHAR2`.
+
+**Convenciones de nombres del curso** (rigen todas las entregas del semestre; son lo que hace que tu script corra a la primera):
+
+- Todo en **minusculas** y **sin comillas dobles**: PostgreSQL pliega a minuscula cualquier identificador sin comillas, asi que `CREATE TABLE Mascota` y luego una consulta entrecomillada da error de tabla inexistente.
+- Nombres de tabla en **singular**, sin tildes ni enes: `dueno`, `mascota`, `cita`, `veterinario`.
+- Identificadores sustitutos con el patron **`id_<entidad>`**, con el **mismo nombre** en la tabla propia y en la que la referencia: `cita.id_mascota` apunta a `mascota.id_mascota`.
+- Palabras compuestas con guion bajo (`detalle_factura`, `fecha_hora`), nunca camelCase.''',
                     'puntos': 30,
-                    'rubrica': 'Las 3 tablas se crean sin error con PK, las 2 FK, el DEFAULT de '
-                               'ciudad y los 2 CHECK exigidos (activa y estado). Se insertan al '
-                               'menos 3 duenos, 4 mascotas (>=1 inactiva) y 3 citas coherentes con '
-                               'las FK. El SELECT final devuelve filas y usa JOIN explicito, no '
-                               'producto cartesiano. Sintaxis 100% PostgreSQL (SERIAL/TEXT); se '
-                               'penaliza NUMBER, VARCHAR2 o comillas dobles mal usadas. Se '
-                               'registra el proyecto propio en proyecto_pi (estudiante, codigo y '
-                               'proyecto); la columna integrantes solo se llena si hubo equipo '
-                               'autorizado y su ausencia no descuenta.',
+                    'rubrica': '''Las 3 tablas se crean sin error con PK, las 2 FK, el DEFAULT de ciudad y los 2 CHECK exigidos (activa y estado). Se insertan al menos 3 duenos, 4 mascotas (>=1 inactiva) y 3 citas coherentes con las FK. El SELECT final devuelve filas y usa JOIN explicito, no producto cartesiano. Sintaxis 100% PostgreSQL (SERIAL/TEXT); se penaliza NUMBER, VARCHAR2 o comillas dobles mal usadas. Se respetan las convenciones de nombres: minusculas, tabla en singular sin tildes e identificadores id_<entidad> con el mismo nombre a ambos lados de la FK. Se registra el proyecto propio en proyecto_pi (estudiante, codigo y proyecto); la columna integrantes solo se llena si hubo equipo autorizado y su ausencia no descuenta.''',
                     'setup_sql': '-- Base limpia para el arranque de VetCare DB.\n'
                                  '-- Solo se entrega la bitacora de proyectos; el esquema lo '
                                  'construye el estudiante.\n'
@@ -93,24 +69,23 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## 1. DDL base de VetCare DB\n'
                                  'INSERT INTO proyecto_pi (estudiante, codigo, proyecto)\n'
                                  "VALUES ('Ejemplo del docente', '000000', 'VetCare-Demo');\n",
                     'tipo': 'bd_sql'},
-                   {'enunciado': '## 2. Modelo ER de VetCare DB en Mermaid\n'
-                                 '\n'
-                                 'Dibuja el **modelo entidad-relacion completo** del Proyecto '
-                                 'Integrador usando `erDiagram` de Mermaid. Debe contener las **8 '
-                                 'entidades** del dominio y las relaciones con su cardinalidad:\n'
-                                 '\n'
-                                 '- `dueno` **1 - N** `mascota`\n'
-                                 '- `mascota` **1 - N** `cita`\n'
-                                 '- `veterinario` **1 - N** `cita`\n'
-                                 '- `cita` **1 - 1** `consulta`\n'
-                                 '- `consulta` **1 - N** `factura`\n'
-                                 '- `factura` **1 - N** `detalle_factura`\n'
-                                 '- `insumo` **1 - N** `detalle_factura`\n'
-                                 '\n'
-                                 'Para cada entidad lista **al menos su PK y 2 atributos**, '
-                                 'marcando `PK` y `FK`. Este diagrama es el ER borrador del '
-                                 'entregable de la clase: exportalo tambien como PNG para tu '
-                                 'carpeta del PI.',
+                   {'enunciado': '''## 2. Modelo ER de VetCare DB en Mermaid
+
+Dibuja el **modelo entidad-relacion completo** del Proyecto Integrador usando `erDiagram` de Mermaid. Debe contener las **8 entidades** del dominio y las relaciones con su cardinalidad:
+
+- `dueno` **1 - N** `mascota`
+- `mascota` **1 - N** `cita`
+- `veterinario` **1 - N** `cita`
+- `cita` **1 - 1** `consulta`
+- `consulta` **1 - N** `factura`
+- `factura` **1 - N** `detalle_factura`
+- `insumo` **1 - N** `detalle_factura`
+
+Para cada entidad lista **al menos su PK y 2 atributos**, marcando `PK` y `FK`.
+
+Usa **exactamente los mismos nombres** que en la pregunta 1: minusculas, singular e `id_<entidad>`. Si el ER y el DDL no coinciden, no son el mismo modelo.
+
+Este diagrama es el ER borrador del entregable de la clase. El PNG exportado va a tu carpeta del PI para el informe, pero **lo que se califica es el Mermaid renderizado aqui**.''',
                     'mermaid_esperado': 'erDiagram\n'
                                         '    dueno {\n'
                                         '        int id_dueno PK\n'
@@ -165,12 +140,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## 1. DDL base de VetCare DB\n'
                                         '    factura ||--o{ detalle_factura : contiene\n'
                                         '    insumo ||--o{ detalle_factura : aparece_en',
                     'puntos': 20,
-                    'rubrica': 'El diagrama renderiza sin error de sintaxis Mermaid (erDiagram). '
-                               'Aparecen las 8 entidades con nombres exactos y las 7 relaciones '
-                               'con la cardinalidad correcta (||--o{ para 1-N, ||--|| para 1-1). '
-                               'Cada entidad declara al menos PK + 2 atributos, con PK/FK '
-                               'marcados. Se descuenta por entidades faltantes, cardinalidades '
-                               'invertidas o relaciones inventadas.',
+                    'rubrica': '''El diagrama renderiza sin error de sintaxis Mermaid (erDiagram). Aparecen las 8 entidades con nombres exactos y las 7 relaciones con la cardinalidad correcta (||--o{ para 1-N, ||--|| para 1-1). Cada entidad declara al menos PK + 2 atributos, con PK/FK marcados. Se descuenta por entidades faltantes, cardinalidades invertidas o relaciones inventadas. Los nombres de entidades y de claves coinciden con el DDL de la pregunta 1 (minusculas, singular, id_<entidad>).''',
                     'tipo': 'diagrama'},
                    {'enunciado': '## 3. Consultas de repaso sobre datos reales de Huellitas\n'
                                  '\n'
@@ -315,35 +285,40 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## 1. DDL base de VetCare DB\n'
                                'ninguna incorrecta; puntaje proporcional por acierto parcial. '
                                'Correctas: indices 0, 2, 3 y 5.',
                     'tipo': 'cerrada_multi'},
-                   {'enunciado': '## 5. Alcance del Proyecto Integrador VetCare DB\n'
-                                 '\n'
-                                 'Redacta la ficha de alcance de tu proyecto. Debe incluir, con '
-                                 'estos titulos:\n'
-                                 '\n'
-                                 '1. **Autor y proyecto**: tu nombre y codigo, el nombre de tu '
-                                 'proyecto y una frase que describa VetCare DB. Si el docente '
-                                 'autorizo equipo, agrega los otros integrantes.\n'
-                                 '2. **Que SI hara el PI** (5 a 8 lineas): procesos de la clinica '
-                                 'Huellitas que la base de datos va a soportar (por ejemplo '
-                                 'agendamiento, historia clinica, facturacion con insumos, '
-                                 'auditoria).\n'
-                                 '3. **Que NO hara el PI** (3 a 5 lineas): limites explicitos (por '
-                                 'ejemplo: no habra pasarela de pagos, no habra app movil, no se '
-                                 'manejara nomina).\n'
-                                 '4. **Tres reglas de negocio propias** que tu adoptas, distintas o '
-                                 'adicionales a las tres del enunciado general, escritas de forma '
-                                 'verificable ("...no puede...", "...siempre debe..."). Para cada '
-                                 'una, indica **como piensas implementarla**: `CHECK`, `UNIQUE`, '
-                                 '`FK`, trigger o procedimiento.\n'
-                                 '5. **Riesgo principal** que ves para terminar el PI y como lo '
-                                 'mitigas.',
+                   {'enunciado': '''## 5. Alcance del Proyecto Integrador VetCare DB
+
+Redacta la ficha de alcance de tu proyecto. Debe incluir, con estos titulos:
+
+1. **Autor y proyecto**: tu nombre y codigo, el nombre de tu proyecto y una frase que describa VetCare DB. Si el docente autorizo equipo, agrega los otros integrantes.
+2. **Que SI hara el PI** (5 a 8 lineas): procesos de la clinica Huellitas que la base de datos va a soportar (por ejemplo agendamiento, historia clinica, facturacion con insumos, auditoria).
+3. **Que NO hara el PI** (3 a 5 lineas): limites explicitos (por ejemplo: no habra pasarela de pagos, no habra app movil, no se manejara nomina).
+4. **Tres reglas de negocio propias** que tu adoptas, distintas o adicionales a las tres del enunciado general. Escribelas en formato **`Condicion -> Accion`**: `Si <condicion verificable> -> entonces <lo que hace la base>`. Ejemplo: `Si la mascota tiene activa = 'N' -> entonces no se puede crear una cita nueva para ella`. Para cada una, indica **como piensas implementarla**: `CHECK`, `UNIQUE`, `FK`, trigger o procedimiento.
+5. **Riesgo principal** que ves para terminar el PI y como lo mitigas.
+
+**Copia esta plantilla y llenala.** Son exactamente los campos que se califican; no cambies los titulos.
+
+```
+Nombre del proyecto: VetCare - [Apellido]
+Autor: [nombre completo]        Codigo: [__________]
+Integrantes: [solo si el docente autorizo equipo; si trabajas solo, escribe "individual"]
+Descripcion en una frase: [que es VetCare DB para la clinica Huellitas]
+
+1) QUE SI HARA EL PI  (5 a 8 lineas)
+   - ...
+
+2) QUE NO HARA EL PI  (3 a 5 lineas)
+   - ...
+
+3) TRES REGLAS DE NEGOCIO PROPIAS  (formato Condicion -> Accion)
+   R1. Si ... -> entonces ...     Se implementa con: [CHECK | UNIQUE | FK | procedimiento | trigger]
+   R2. Si ... -> entonces ...     Se implementa con: ...
+   R3. Si ... -> entonces ...     Se implementa con: ...
+
+4) RIESGO PRINCIPAL Y MITIGACION  (2 lineas)
+   Riesgo: ...        Mitigacion: ...
+```''',
                     'puntos': 15,
-                    'rubrica': 'Estan las 5 secciones. El SI/NO delimita el alcance de forma '
-                               'concreta y realista para un semestre (no promesas vagas). Las 3 '
-                               'reglas de negocio son verificables y cada una viene con el '
-                               'mecanismo de implementacion propuesto, coherente con lo visto en '
-                               'la pregunta 4. Se descuenta si las reglas repiten literalmente las '
-                               'del enunciado o si no se indica mecanismo.',
+                    'rubrica': '''Estan las 5 secciones de la plantilla y el proyecto se llama VetCare - [Apellido]. El SI/NO delimita el alcance de forma concreta y realista para un semestre (no promesas vagas). Las 3 reglas de negocio estan escritas en formato Condicion -> Accion, son verificables y cada una viene con el mecanismo de implementacion propuesto, coherente con lo visto en la pregunta 4. Se descuenta si las reglas repiten literalmente las del enunciado o si no se indica mecanismo. Tambien se descuenta si las reglas estan redactadas como deseos («el sistema debe ser seguro») en vez de como condicion y accion.''',
                     'tipo': 'abierta'}],
      'resumen': 'El estudiante deja creado el esqueleto de VetCare DB (dueno, mascota, cita) con '
                 'integridad declarativa, su modelo ER en Mermaid y el alcance escrito del Proyecto '

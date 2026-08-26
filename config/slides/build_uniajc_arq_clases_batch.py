@@ -32,7 +32,9 @@ from uniajc_slides_engine import (  # noqa: E402
     closing_slide,
     content_slide,
     new_prs,
+    herramientas_slide,
     pseudo_code_slide,
+    steps_visual_slide,
     table_content,
 )
 from uniajc_slides_engine import (  # noqa: E402
@@ -205,7 +207,7 @@ CLASSES = [
         "tema": "Introducción a arquitecturas cloud",
         "sub": "Diagnóstico · CloudLite App · primer boceto",
         "pi_hoy": "Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases",
-        "entregable": "Ficha PI: dominio, capacidades, actores y boceto C4 Context (Excalidraw/draw.io)",
+        "entregable": "Ficha PI de 6 bloques + C4 Context en Mermaid renderizado en ExamLab (boceto previo en Excalidraw/draw.io)",
         "herramienta": "Padlet · Excalidraw / draw.io",
         # Modalidad individual por defecto: desde 2026-2 los textos por defecto del
         # curso ya estan escritos en modo individual (ver MODALIDAD_DEFAULTS abajo),
@@ -255,7 +257,7 @@ CLASSES = [
         "taller_pasos": [
             "Elija dominio concreto (no «red social genérica») y escriba: problema (2–3 frases), 4 capacidades.",
             "Escriba actores, sistemas externos (2–3) y fuera de alcance.",
-            "En Excalidraw o draw.io: diagrama **C4 Context** (CloudLite + actores + sistemas externos).",
+            "Boceto del **C4 Context** en Excalidraw o draw.io (CloudLite + actores + sistemas externos), y después convertirlo a **Mermaid** con ayuda de una IA para pegarlo renderizado en ExamLab.",
             "Tabla nube vs on-prem + veredicto. Entregue en **ExamLab** (Talleres) las preguntas resueltas (domingo 23:59).",
         ],
         "quiz": [
@@ -1086,6 +1088,164 @@ def _pasos(c):
     return t.get("pasos") or c["taller_pasos"]
 
 
+# Herramientas por clase. El orden importa: primero la herramienta con la que se
+# trabaja, y al final siempre Mermaid (cuando el taller pide un diagrama) y ExamLab,
+# que es donde se entrega todo. Los nombres deben coincidir con el campo
+# `herramienta` del dict de la clase; los logos viven en assets/herramientas/ y se
+# normalizan con `python config/slides/normalizar_iconos.py`.
+HERRAMIENTAS_DIA = {
+    1: [{"name": "Padlet", "logo": "padlet.png", "note": "Rompehielos"},
+        {"name": "Excalidraw", "logo": "excalidraw.png", "note": "Boceto rapido"},
+        {"name": "draw.io", "logo": "drawio.png", "note": "C4 Context"}],
+    2: [{"name": "Google Docs", "logo": "google_docs.png", "note": "ADR-001"},
+        {"name": "draw.io", "logo": "drawio.png", "note": "Matriz de modelos"}],
+    3: [{"name": "LabEx Docker Playground", "logo": "labex.png", "note": "Lab del dia"},
+        {"name": "Killercoda", "logo": "killercoda.png", "note": "Alterna si no carga"},
+        {"name": "Google Docs", "logo": "google_docs.png", "note": "Informe PI"}],
+    4: [{"name": "draw.io", "logo": "drawio.png", "note": "C4 Containers"},
+        {"name": "Excalidraw", "logo": "excalidraw.png", "note": "Boceto rapido"}],
+    6: [{"name": "Excalidraw", "logo": "excalidraw.png", "note": "Tabla STRIDE"},
+        {"name": "Google Docs", "logo": "google_docs.png", "note": "Informe PI"}],
+    7: [{"name": "draw.io", "logo": "drawio.png", "note": "Deployment"},
+        {"name": "Google Docs", "logo": "google_docs.png", "note": "Informe PI"}],
+    8: [{"name": "GitHub Actions", "logo": "github_actions.png", "note": "CI del PI"},
+        {"name": "Google Docs", "logo": "google_docs.png", "note": "Informe PI"}],
+    10: [{"name": "Google Docs", "logo": "google_docs.png", "note": "Tabla de costos"}],
+    11: [{"name": "draw.io", "logo": "drawio.png", "note": "Auditoria del paquete"},
+         {"name": "GitHub Actions", "logo": "github_actions.png", "note": "Evidencia CI"},
+         {"name": "Google Docs", "logo": "google_docs.png", "note": "Informe PI"}],
+    12: [{"name": "Google Docs", "logo": "google_docs.png", "note": "Objetivo de rendimiento"},
+         {"name": "draw.io", "logo": "drawio.png", "note": "Bottleneck"}],
+    13: [{"name": "Google Docs", "logo": "google_docs.png", "note": "Politica de escalado"},
+         {"name": "draw.io", "logo": "drawio.png", "note": "Nota en Deployment"}],
+    15: [{"name": "Google Docs", "logo": "google_docs.png", "note": "Pitch y portafolio"},
+         {"name": "draw.io", "logo": "drawio.png", "note": "Diagramas del paquete"}],
+}
+
+
+def _herramientas_de(c: dict) -> list:
+    """Herramientas de la clase + Mermaid (si hay diagrama) + ExamLab.
+
+    Mermaid y ExamLab no se escriben clase por clase porque son transversales: si
+    el taller tiene pregunta de diagrama, el estudiante entrega codigo Mermaid, y
+    la entrega siempre ocurre en ExamLab. Anadirlos aqui evita que una clase se
+    quede sin nombrarlos.
+    """
+    base = list(HERRAMIENTAS_DIA.get(c["n"], []))
+    if not base:
+        return []
+    if _tiene_diagrama(c["n"]):
+        base.append({"name": "Mermaid", "logo": "mermaid.png", "note": "Codigo del diagrama"})
+    base.append({"name": "ExamLab", "logo": "examlab.png", "note": "Donde se entrega"})
+    return base
+
+
+# Titulo de la diapositiva del flujo de diagramacion (Excalidraw -> IA -> Mermaid
+# -> ExamLab). El CONTENIDO de los 4 pasos es compartido (examlab_talleres), este
+# es solo el rotulo con el que aparece en el deck del curso.
+FLUJO_SLIDE_TITULO = "Del boceto a ExamLab (diagrama)"
+
+
+def _tiene_diagrama(n: int) -> bool:
+    """True si el taller de ExamLab de esta clase tiene pregunta tipo `diagrama`.
+
+    Decide si la clase necesita la diapositiva del flujo: 12 de las 15 clases de
+    Arquitectura piden un diagrama, y hasta ahora ninguna explicaba que la respuesta
+    es codigo Mermaid y no una imagen exportada.
+    """
+    taller = TALLERES_EXAMLAB.get(n) or {}
+    return any(p.get("tipo") == "diagrama" for p in taller.get("preguntas", []))
+
+
+def _slide_map(c: dict) -> list:
+    """Titulos de las diapositivas de esta clase, EN ORDEN.
+
+    Refleja los mismos condicionales que `build_pptx`. El guion docente numera sus
+    referencias con esta lista para que se pueda leer con la presentacion
+    proyectada, y `build_pptx` verifica al final que las dos coincidan: si alguien
+    agrega una diapositiva y olvida el mapa, el build falla en vez de publicar un
+    guion que apunta a la diapositiva equivocada.
+    """
+    n = c["n"]
+    if c["tipo"] == "parcial":
+        return [f"Portada · Clase {n} · {c['tema']}",
+                "Indicaciones (dia de parcial)",
+                f"Parcial · Clase {n}"]
+    m = [f"Portada · Clase {n} · {c['tema']}",
+         "Agenda de hoy (120 min)",
+         "Objetivos de la clase",
+         "PI CloudLite — entregable de hoy"]
+    m += [titulo for titulo, _ in c.get("slides_extra", [])]
+    dg = DIAGRAMAS.get(n)
+    if dg:
+        m.append(dg["titulo"])
+    ad = ANTES_DESPUES_ARQ.get(n)
+    if ad:
+        m.append(ad["titulo"])
+    cs = CODIGO_SLIDE.get(n)
+    if cs:
+        m.append(cs[0])
+    if _herramientas_de(c):
+        m.append("Herramientas de hoy")
+    if _tiene_diagrama(n):
+        m.append(FLUJO_SLIDE_TITULO)
+    m.append("Sustentación (paso a paso)" if c["tipo"] == "sustentacion"
+             else "Taller PI (paso a paso)")
+    m.append("Para continuar (PI)")
+    m.append(f"Clase {n} · cierre del PI CloudLite" if c["tipo"] == "sustentacion"
+             else f"Clase {n} · PI en movimiento")
+    return m
+
+
+def _slide_no(mapa, *fragmentos):
+    """Numero (1-based) de la primera diapositiva cuyo titulo contiene el fragmento."""
+    for frag in fragmentos:
+        f = frag.lower()
+        for i, t in enumerate(mapa, 1):
+            if f in t.lower():
+                return i
+    return None
+
+
+def _slide_tag(mapa, *fragmentos) -> str:
+    """`[Slide 8]` listo para pegar en el guion, o cadena vacia si no aplica."""
+    i = _slide_no(mapa, *fragmentos)
+    return f"[Slide {i}] " if i else ""
+
+
+# --- Referencias a diapositivas dentro del fundamento teorico ---------------
+# En la prosa se escribe «{{slide:Teoria Core}}» y aqui se convierte en
+# «diapositiva 4» usando el mapa real del deck. Asi el numero no se escribe a mano
+# en ningun sitio y no puede quedar corrido.
+_SLIDE_TOKEN = re.compile(r"\{\{\s*slide:\s*([^}]+?)\s*\}\}")
+
+
+def _resolver_slides(texto, mapa, n_clase):
+    def _rep(m):
+        frag = m.group(1)
+        i = _slide_no(mapa, frag)
+        if i is None:
+            raise SystemExit(
+                f"Clase {n_clase}: el fundamento referencia la diapositiva "
+                f"«{frag}», que ya no existe en el deck. Corrige el texto o "
+                "_slide_map()."
+            )
+        return f"diapositiva {i}"
+    return _SLIDE_TOKEN.sub(_rep, texto)
+
+
+def _verificar_mapa(c: dict, prs) -> None:
+    """Aborta si `_slide_map` y el deck real dejaron de coincidir."""
+    esperado, real = len(_slide_map(c)), len(prs.slides)
+    if esperado != real:
+        raise SystemExit(
+            f"Clase {c['n']}: el deck tiene {real} diapositivas y _slide_map() "
+            f"declara {esperado}. Actualiza _slide_map() en "
+            "build_uniajc_arq_clases_batch.py para que el guion siga apuntando a "
+            "las diapositivas correctas."
+        )
+
+
 def build_pptx(c: dict) -> Path:
     n = c["n"]
     folder = CURSO / "Clases" / f"Clase {n} - {c['slug']}"
@@ -1105,6 +1265,7 @@ def build_pptx(c: dict) -> Path:
             "Enfocados en la evaluación del corte",
             "PI CloudLite continúa en la siguiente clase regular/autónoma",
         ], accent="Solo evaluación")
+        _verificar_mapa(c, prs)
         prs.save(str(out))
         print("OK pptx parcial ->", out)
         return out
@@ -1168,6 +1329,24 @@ def build_pptx(c: dict) -> Path:
     if cs:
         pseudo_code_slide(prs, cs[0], cs[1], caption=cs[2], idx=idx)
         idx += 1
+    tools = _herramientas_de(c)
+    if tools:
+        herramientas_slide(prs, tools, title="Herramientas de hoy",
+                           sub="Gratis · navegador o free tier · sin cuenta de pago",
+                           idx=idx)
+        idx += 1
+    # Del boceto al codigo: solo donde el taller pide un diagrama. El estudiante
+    # disena en Excalidraw/draw.io y entrega Mermaid; sin esta diapositiva llegaba
+    # con un PNG a una caja de texto.
+    if _tiene_diagrama(n):
+        dialectos = examlab_talleres._dialectos_del_taller(TALLERES_EXAMLAB[n])
+        steps_visual_slide(
+            prs, FLUJO_SLIDE_TITULO,
+            examlab_talleres.flujo_diagrama_pasos(
+                dialectos[0] if len(dialectos) == 1 else "el tipo que pide el enunciado"),
+            sub="El diagrama se entrega como código Mermaid dentro de ExamLab, no como imagen",
+            idx=idx)
+        idx += 1
     pasos_titulo = ("Sustentación (paso a paso)" if c["tipo"] == "sustentacion"
                     else "Taller PI (paso a paso)")
     content_slide(prs, pasos_titulo, [f"**{i+1}.** {p}" for i, p in enumerate(_pasos(c))], idx=idx)
@@ -1207,6 +1386,7 @@ def build_pptx(c: dict) -> Path:
             ],
             accent="Teoría al servicio del proyecto",
         )
+    _verificar_mapa(c, prs)
     prs.save(str(out))
     print("OK pptx ->", out)
     return out
@@ -1226,12 +1406,14 @@ TALLER_BLOQUE = {
             "Actividad individual. Elegir un dominio concreto.",
             "Sugeridos: AgendaU · BiblioLite · InventarioLab · TurnosClinica · EventosCampus.",
             "Plantilla ficha: DOMINIO · PROBLEMA · CAPACIDADES · ACTORES · SISTEMAS EXTERNOS · FUERA DE ALCANCE.",
+            "Diagrama: boceto visual en @@Excalidraw o draw.io@@ → conversión a @@Mermaid (C4Context)@@ con ayuda de una IA → pegar y @@renderizar en ExamLab@@.",
         ],
         "pistas": [
             "¿Quién sufre el problema y como lo miden?",
             "¿La caja grande es el sistema CloudLite (no un módulo interno)?",
             "¿Las flechas tienen verbo (reservar, notificar, autenticar)?",
             "¿Los 2-3 sistemas externos coinciden con los System_Ext del diagrama C4?",
+            "¿El diagrama quedó pegado como Mermaid y renderizado en ExamLab (no solo como imagen)?",
             "¿Fuera de alcance está escrito (que NO haran hoy)?",
         ],
     },
@@ -1520,6 +1702,8 @@ def build_quiz_docx(c: dict) -> Path | None:
 # El guion las embebe con [[captura: archivo.png]]; si falta el archivo,
 # guion_md_a_docx.py deja la caja "inserta aqui la captura" sin romper el build.
 CAPTURAS_CLASE = {
+    1: [("C4 Context de la demo en vivo: asi debe quedar el tablero al terminar",
+         "demo-clase01.png")],
     3: [("Build y run del stub en LabEx Docker Playground (lo que debe verse en pantalla)",
          "salida-docker-build-run.png"),
         ("Evidencia del entregable: el contenedor corriendo (`docker ps`)",
@@ -1707,13 +1891,42 @@ def _lista_md(items, bullet="- "):
     return "\n".join(f"{bullet}{x}" for x in items) if items else ""
 
 
+# Codigo de referencia del diagrama que el docente dibuja en vivo. Existe porque el
+# bloque «Demo en vivo» pedia dibujar un diagrama sin dar ninguna referencia de como
+# debe quedar: si el proyector o la red fallan, o si el docente prefiere no dibujar a
+# mano, pega este codigo en la pregunta de diagrama de ExamLab y lo proyecta
+# renderizado en un minuto. Es el mismo contenido que la imagen de Capturas/.
+DEMO_MERMAID = {
+    1: ("C4 Context de la demo (el mismo de `Capturas/demo-clase01.png`)", """C4Context
+    title CloudLite App - nivel Context (demo de clase)
+    Person(usuario, "Usuario final", "Consulta y usa el servicio")
+    Person(admin, "Administrador", "Configura y opera")
+    System(cloudlite, "CloudLite App", "El sistema completo, como caja negra")
+    System_Ext(pagos, "Pasarela de pagos", "Servicio de terceros")
+    Rel(usuario, cloudlite, "consulta", "HTTPS")
+    Rel(admin, cloudlite, "administra", "HTTPS")
+    Rel(cloudlite, pagos, "cobra", "API REST sobre HTTPS")"""),
+}
+
+
 def _demo_md(n: int) -> str:
     d = DEMO_ARQ.get(n)
     if not d:
         return "Muestre en vivo la herramienta del dia con un mini-ejemplo de CloudLite.\n"
     titulo, pasos = d
     cuerpo = "\n".join(f"{i + 1}. {p}" for i, p in enumerate(pasos))
-    return f"**Demo que usted debe poder repetir:** {titulo}\n\n{cuerpo}\n"
+    md = f"**Demo que usted debe poder repetir:** {titulo}\n\n{cuerpo}\n"
+    ref = DEMO_MERMAID.get(n)
+    if ref:
+        rotulo, codigo = ref
+        md += (
+            f"\n**Referencia del resultado:** {rotulo}. Si la red falla o prefiere no "
+            "dibujar a mano, pegue este codigo en la pregunta de diagrama de ExamLab y "
+            "proyectelo renderizado; tambien sirve para volver a generar la imagen en "
+            "cualquier editor que soporte Mermaid.\n\n"
+            "```mermaid\n" + codigo + "\n```\n"
+        )
+    return md
 
 
 def guion_md(c: dict) -> str:
@@ -1757,6 +1970,7 @@ Di: «Gracias. El PI CloudLite continúa en la siguiente clase regular o autóno
     fund = FUNDAMENTOS.get(
         n, "Teoria al servicio del entregable PI de hoy. Ver diapositivas de la clase."
     )
+    fund = _resolver_slides(fund, _slide_map(c), n)
 
     # Conceptos reales de esta clase (titulos de las slides de teoria), para que el
     # plan diga QUE cubrir en cada tramo en vez de "recorre las slides".
@@ -1773,19 +1987,45 @@ Di: «Gracias. El PI CloudLite continúa en la siguiente clase regular o autóno
     retro_word = mod(c, "retro_word")
     criterio_60s_note = mod(c, "criterio_60s_note")
 
+    # Mapeo real del deck: el guion se lee CON la presentacion proyectada, asi que
+    # cada tramo del plan dice a que diapositiva corresponde. Sale de _slide_map(),
+    # la misma lista que arma build_pptx, no de numeros escritos a mano.
+    mapa = _slide_map(c)
+    sl_agenda = _slide_tag(mapa, "Agenda de hoy").strip()
+    sl_obj = _slide_tag(mapa, "Objetivos de la clase").strip()
+    sl_entreg = _slide_tag(mapa, "entregable de hoy").strip()
+    sl_teoria = _slide_tag(mapa, *(conceptos or ["Objetivos"])).strip()
+    sl_flujo = _slide_tag(mapa, FLUJO_SLIDE_TITULO).strip()
+    sl_taller = _slide_tag(mapa, "paso a paso").strip()
+    sl_cierre = f"[Slide {len(mapa)}]"
+    mapa_md = "\n".join(f"{i}. {t}" for i, t in enumerate(mapa, 1))
+    # Bloque del flujo de diagramacion: solo si el taller de hoy pide un diagrama.
+    if _tiene_diagrama(n):
+        _dial = examlab_talleres._dialectos_del_taller(TALLERES_EXAMLAB[n])
+        flujo_guion = (
+            "\n**Cierra la demo dentro de ExamLab** " + sl_flujo + " — es el paso que el "
+            "estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, "
+            "pegalo en la pregunta de diagrama y muestralo renderizado.\n\n"
+            + examlab_talleres.flujo_diagrama_md(
+                _dial[0] if len(_dial) == 1 else "el tipo que pide el enunciado")
+            + "\n"
+        )
+    else:
+        flujo_guion = ""
+
     if not c.get("separar_notas_docente"):
         # Plantilla compartida por las clases que no separan «lo que el docente dice»
         # de «las notas para el docente». Cualquier cambio aqui se propaga a esas
         # clases en su proximo build; las frases de modalidad de trabajo estan
         # parametrizadas arriba, no las vuelvas a escribir a mano.
-        plan_blocks = f"""### 0–10 · Encuadre PI
+        plan_blocks = f"""### 0–10 · Encuadre PI · {sl_agenda}{sl_obj}{sl_entreg}
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **{c['pi_hoy']}**.
 Entregable concreto: {c['entregable']}.
 Teoría breve y luego taller; no es un lab suelto.»
 Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
 Pregunta de arranque (1 min): «{arranque_cita}» — sirve para detectar estudiantes rezagados antes de avanzar.
 
-### 10–40 · Teoría Core (al servicio del taller)
+### 10–40 · Teoría Core (al servicio del taller) · desde {sl_teoria}
 Cubre estos conceptos, en este orden, ~{minutos_por_concepto} min cada uno (son los títulos de las diapositivas de teoría):
 {conceptos_md}
 
@@ -1794,14 +2034,14 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un {voluntario_word} voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo
+### 40–55 · Demo en vivo · {sl_flujo}
 Herramienta del día: **{c['herramienta']}**.
 {_demo_md(n)}
 Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase {n}/Capturas/`.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
-{_capturas_md(n)}
+{flujo_guion}{_capturas_md(n)}
 
-### 55–100 · Taller guiado PI ({taller_modalidad_word})
+### 55–100 · Taller guiado PI ({taller_modalidad_word}) · {sl_taller}
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -1814,7 +2054,7 @@ Aplica el quiz corto de `Kit docente/Clase {n}/Quiz Clase {n} - {c['slug']}.docx
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 {retro_word} en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre
+### 115–120 · Cierre · {sl_cierre}
 Di: «Queda avanzado: {c['pi_hoy']}.
 Criterio de éxito: {criterio_60s_note}.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
@@ -1823,7 +2063,7 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
         # Rama exclusiva para clases con actividad individual (hoy: Clase 1), donde se
         # separa explicitamente lo que el docente DICE (bloques "> ...") de las
         # instrucciones PARA el docente (bloques "**[Nota docente]:**").
-        plan_blocks = f"""### 0–10 · Encuadre PI
+        plan_blocks = f"""### 0–10 · Encuadre PI · {sl_agenda}{sl_obj}{sl_entreg}
 Di casi literal:
 > "Hoy avanzamos el PI CloudLite App en: {c['pi_hoy']}. Entregable concreto: {c['entregable']}. Teoría breve y luego taller; no es un lab suelto."
 
@@ -1832,7 +2072,7 @@ Di casi literal:
 **[Nota docente]:** {arranque_nota}
 > "{arranque_cita}"
 
-### 10–40 · Teoría Core (al servicio del taller)
+### 10–40 · Teoría Core (al servicio del taller) · desde {sl_teoria}
 Cubre estos conceptos, en este orden, ~{minutos_por_concepto} min cada uno (son los títulos de las diapositivas de teoría):
 {conceptos_md}
 
@@ -1842,16 +2082,16 @@ por diapositiva: esa sección está escrita para que puedas dictarla sin consult
 **[Nota docente]:** cada 8–10 min amarra al artefacto («esto es lo que van a dejar hoy en su informe/diagrama/repo»)
 y pide un {voluntario_word} voluntario para usar SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo
+### 40–55 · Demo en vivo · {sl_flujo}
 Herramienta del día: **{c['herramienta']}**.
 {_demo_md(n)}
 
 **[Nota docente]:** narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase {n}/Capturas/`.
 Cierra la demo diciendo:
 > "Copien la estructura, no el dominio de mi ejemplo."
-{_capturas_md(n)}
+{flujo_guion}{_capturas_md(n)}
 
-### 55–100 · Taller guiado PI ({taller_modalidad_word})
+### 55–100 · Taller guiado PI ({taller_modalidad_word}) · {sl_taller}
 **[Nota docente]:** proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller»
 de este guion). Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas
 a ver hoy. A los 80 min anuncia:
@@ -1865,7 +2105,7 @@ Aplica el quiz corto de `Kit docente/Clase {n}/Quiz Clase {n} - {c['slug']}.docx
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 {retro_word} en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre
+### 115–120 · Cierre · {sl_cierre}
 Di:
 > "Queda avanzado: {c['pi_hoy']}. Criterio de éxito: {criterio_60s_note}. Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan."
 """
@@ -1993,7 +2233,11 @@ excepción en la regla del semestre siguiente y elimina el Q&A, que es la mitad 
 ## Fundamento teórico para el docente
 {fund}
 
-Referencia de slides: `Clases/Clase {n} - {c['slug']}/Presentacion.pptx` (solo tema de esta clase).
+## Referencias a diapositivas
+Numeración real del deck `Clases/Clase {n} - {c['slug']}/Presentacion.pptx` (solo tema
+de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
+
+{mapa_md}
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -2023,14 +2267,57 @@ comparas lo que entregan {mod(c, "entregan_word")}. **No proyectarla completa** 
 y `Kit docente/Clase {n}/Quiz Clase {n} - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 Pantallazo: herramienta del día en uso con artefacto CloudLite [[captura: demo-clase{n:02d}.png]]
-- 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase{n:02d}.png | receta: 1) Abre {c['herramienta']} y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase {n}/Capturas/demo-clase{n:02d}.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase{n:02d}.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase {n}/Capturas/evidencia-clase{n:02d}.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
 - Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.{chr(10) + "- " + c["entrega_oficial_nota"] if c.get("entrega_oficial_nota") else ""}
 - Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).
 """
+
+
+def _escribir_readme_capturas(c: dict, cap: Path) -> None:
+    """README de la carpeta Capturas/ con el paso a paso de cada imagen.
+
+    Antes era una linea generica («preferir PNG reales») que no decia que abrir ni
+    con que nombre guardar, asi que las carpetas quedaban vacias y el .docx salia
+    con la caja de captura en blanco el dia de la clase. Se reescribe en cada build
+    para que refleje la herramienta y la demo actuales de la clase.
+    """
+    n = c["n"]
+    demo = DEMO_ARQ.get(n)
+    L = [f"Capturas de la Clase {n} — Arquitectura de Sistemas Computacionales",
+         "=" * 62, "",
+         "El guion embebe automaticamente cualquier PNG que exista aqui con el nombre",
+         "esperado. Mientras no exista, el .docx imprime la receta en su lugar.", ""]
+    ya = CAPTURAS_CLASE.get(n) or []
+    if ya:
+        L.append("Ya generadas por `python config/slides/mockups.py` (no hay que tomarlas):")
+        for rotulo, fn in ya:
+            L.append(f"  - {fn} — {rotulo}")
+        L.append("")
+    L += [f"Pendiente: demo-clase{n:02d}.png — la herramienta del dia en uso",
+          f"  1. Abrir {c['herramienta']}."]
+    if demo:
+        L.append(f"  2. Repetir la demo: {demo[0]}.")
+        for i, paso in enumerate(demo[1], 1):
+            L.append(f"     {i}. {paso}")
+    else:
+        L.append("  2. Reproducir el ejercicio del bloque sobre el dominio CloudLite de ejemplo.")
+    L += ["  3. Capturar solo la ventana util, no el escritorio completo.",
+          "  4. Recortar a ~1200 px de ancho.",
+          f"  5. Guardar aqui como demo-clase{n:02d}.png.",
+          "",
+          "Pendiente: evidencia del entregable (diagrama / YAML / lab)",
+          "  - Con permiso del estudiante, capturar su artefacto de hoy.",
+          "  - Recortar nombre y correo antes de guardar. No se proyecta en clase.",
+          "",
+          "Despues de agregar una imagen, regenerar el guion:",
+          f"  SOLO_CLASES={n} python config/slides/build_uniajc_arq_clases_batch.py",
+          ""]
+    cap.mkdir(parents=True, exist_ok=True)
+    (cap / "README.txt").write_text("\n".join(L), encoding="utf-8")
 
 
 def build_guion(c: dict) -> Path:
@@ -2040,13 +2327,7 @@ def build_guion(c: dict) -> Path:
     kit.mkdir(parents=True, exist_ok=True)
     cap.mkdir(parents=True, exist_ok=True)
     # placeholder readme capturas
-    readme = cap / "README.txt"
-    if not readme.exists():
-        readme.write_text(
-            f"Capturas Clase {n}. Preferir PNG reales (Playwright/manual). "
-            "El guion referencia [CAP:] / [[captura: …]].\n",
-            encoding="utf-8",
-        )
+    _escribir_readme_capturas(c, cap)
     path = kit / f"Guion Docente Clase {n} - {c['slug']}.md"
     path.write_text(guion_md(c), encoding="utf-8")
     print("OK guion md ->", path)

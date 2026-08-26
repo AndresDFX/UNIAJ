@@ -661,7 +661,11 @@ def herramientas_slide(
 
     for i, it in enumerate(norm):
         r, c = divmod(i, columns)
-        x = MARGIN + c * (card_w + gap_x)
+        # Fila incompleta (p. ej. 5 herramientas en 3 columnas): se centra en vez de
+        # dejar el hueco pegado a la derecha, que descuadra la grilla.
+        en_fila = min(columns, n - r * columns)
+        sangria = (columns - en_fila) * (card_w + gap_x) / 2
+        x = MARGIN + sangria + c * (card_w + gap_x)
         y = area_top + r * (card_h + gap_y)
         rounded(s, x, y, card_w, card_h, ALT)
         # filete superior marca
@@ -669,10 +673,18 @@ def herramientas_slide(
         rect(s, x, y + 0.07, card_w, 0.03, AMARILLO)
 
         logo_path = _herramienta_logo_path(it.get("logo"))
-        logo_side = min(card_w - 0.55, card_h - 1.15, 1.15)
+        # Reparto vertical de la tarjeta: antes el logo se anclaba a 0.22 del borde
+        # superior con un tope fijo de 1.15", asi que con pocas filas la tarjeta
+        # quedaba con medio palmo de vacio abajo y la grilla se veia desbalanceada.
+        # Ahora se calcula el alto del bloque (logo + nombre + nota) y se centra,
+        # dejando que el logo crezca cuando hay sitio.
+        texto_h = 0.42 + (0.26 if it.get("note") else 0.0)
+        tope_logo = 1.5 if rows <= 2 else 1.15
+        logo_side = min(card_w - 0.7, card_h - texto_h - 0.5, tope_logo)
         logo_side = max(0.55, logo_side)
+        bloque_h = logo_side + 0.10 + texto_h
         lx = x + (card_w - logo_side) / 2
-        ly = y + 0.22
+        ly = y + 0.16 + max(0.0, (card_h - 0.16 - bloque_h) / 2)
         if logo_path:
             try:
                 from PIL import Image as _PILImage
@@ -699,9 +711,9 @@ def herramientas_slide(
             initials = "".join(w[0] for w in (it.get("name") or "?").split()[:2]).upper()
             _run(p.add_run(), initials or "?", 16, NAVY, bold=True)
 
-        name_y = ly + logo_side + 0.08
-        name_h = min(0.55, y + card_h - name_y - (0.28 if it.get("note") else 0.06))
-        tf = textbox(s, x + 0.08, name_y, card_w - 0.16, max(0.35, name_h), anchor=MSO_ANCHOR.TOP)
+        name_y = ly + logo_side + 0.10
+        name_h = min(texto_h, max(0.35, y + card_h - name_y - 0.06))
+        tf = textbox(s, x + 0.08, name_y, card_w - 0.16, name_h, anchor=MSO_ANCHOR.TOP)
         p = tf.paragraphs[0]
         p.alignment = PP_ALIGN.CENTER
         _run(p.add_run(), it.get("name") or "", 13, NAVY, bold=True)
@@ -1099,7 +1111,13 @@ def steps_visual_slide(prs, title, steps, sub=None, idx=None):
             norm.append((str(st), ""))
     n = len(norm)
     y = top + 0.12
-    row_h = min(0.85, (SH - y - 0.55) / max(n, 1) - 0.08)
+    area_h = SH - y - 0.55
+    # El tope de altura evita filas absurdas con 2-3 pasos, pero con 4 pasos cortos
+    # dejaba palmo y medio de blanco al pie. Se sube el tope y, si aun sobra sitio,
+    # se centra el bloque en vez de dejarlo colgando arriba.
+    row_h = min(1.15, area_h / max(n, 1) - 0.08)
+    bloque_h = n * row_h + (n - 1) * 0.1
+    y += max(0.0, (area_h - bloque_h) / 2)
     for i, (head, detail) in enumerate(norm):
         yy = y + i * (row_h + 0.1)
         rounded(s, MARGIN, yy, CONTENT_W, row_h, ALT if i % 2 == 0 else INFO)

@@ -237,8 +237,93 @@ def build_bd2():
 ARQ = ROOT / "Arquitectura de Sistemas Computacionales" / "Kit docente"
 
 
+def c4_context(path: Path, titulo: str, sistema: str, personas: list,
+               externos: list, nota: str, width: int = 900):
+    """Diagrama C4 Context: el sistema como UNA caja, actores a la izquierda y
+    sistemas externos a la derecha, con las flechas rotuladas.
+
+    Por que existe: el bloque «Demo en vivo» del guion le pide al docente dibujar
+    este diagrama delante del grupo, pero no le daba ninguna referencia de como
+    debe quedar. Sin ella la demo sale distinta cada semestre y el estudiante no
+    tiene contra que comparar su entrega. `personas` y `externos` son listas de
+    (rotulo, etiqueta_de_flecha).
+    """
+    w = width * SCALE
+    top = (34 + 3) * SCALE
+    fila = 108 * SCALE
+    filas = max(len(personas), len(externos))
+    alto_area = max(2, filas) * fila
+    h = top + alto_area + 74 * SCALE
+    img = Image.new("RGB", (w, h), BLANCO)
+    d = ImageDraw.Draw(img)
+    _header(d, w, titulo)
+
+    caja_w, caja_h = 210 * SCALE, 96 * SCALE
+    lat_w, lat_h = 172 * SCALE, 66 * SCALE
+    cx0 = (w - caja_w) // 2
+    cy0 = top + (alto_area - caja_h) // 2
+    izq_x = 26 * SCALE
+    der_x = w - lat_w - 26 * SCALE
+
+    def _caja(x0, y0, x1, y1, fill, borde, texto, color_txt, size=11, bold=True):
+        d.rounded_rectangle([x0, y0, x1, y1], radius=9 * SCALE, fill=fill,
+                            outline=borde, width=2 * SCALE)
+        f = _sans(size, bold)
+        lineas = texto.split("\n")
+        alto = len(lineas) * (size + 4) * SCALE
+        yy = y0 + ((y1 - y0) - alto) / 2
+        for ln in lineas:
+            tw = d.textlength(ln, font=f)
+            d.text((x0 + ((x1 - x0) - tw) / 2, yy), ln, font=f, fill=color_txt)
+            yy += (size + 4) * SCALE
+
+    def _flecha(x1, y1, x2, y2, etiqueta):
+        d.line([(x1, y1), (x2, y2)], fill=CIAN, width=3 * SCALE)
+        ang = 1 if x2 > x1 else -1
+        d.polygon([(x2, y2), (x2 - 11 * SCALE * ang, y2 - 6 * SCALE),
+                   (x2 - 11 * SCALE * ang, y2 + 6 * SCALE)], fill=CIAN)
+        f = _sans(8.5)
+        tw = d.textlength(etiqueta, font=f)
+        mx, my = (x1 + x2) / 2 - tw / 2, (y1 + y2) / 2 - 15 * SCALE
+        d.rectangle([mx - 4 * SCALE, my - 1 * SCALE, mx + tw + 4 * SCALE,
+                     my + 13 * SCALE], fill=BLANCO)
+        d.text((mx, my), etiqueta, font=f, fill=NAVY)
+
+    _caja(cx0, cy0, cx0 + caja_w, cy0 + caja_h, NAVY, NAVY,
+          sistema + "\n[Sistema]", BLANCO, size=13)
+
+    y = top + (alto_area - len(personas) * fila) // 2 + (fila - lat_h) // 2
+    for rotulo, etiqueta in personas:
+        _caja(izq_x, y, izq_x + lat_w, y + lat_h, AMARILLO, AMARILLO,
+              rotulo + "\n[Persona]", GRIS, size=10)
+        _flecha(izq_x + lat_w, y + lat_h / 2, cx0, y + lat_h / 2, etiqueta)
+        y += fila
+
+    y = top + (alto_area - len(externos) * fila) // 2 + (fila - lat_h) // 2
+    for rotulo, etiqueta in externos:
+        _caja(der_x, y, der_x + lat_w, y + lat_h, (150, 150, 150), (110, 110, 110),
+              rotulo + "\n[Sistema externo]", BLANCO, size=10)
+        _flecha(cx0 + caja_w, y + lat_h / 2, der_x, y + lat_h / 2, etiqueta)
+        y += fila
+
+    d.line([(0, h - 52 * SCALE), (w, h - 52 * SCALE)], fill=BORDE, width=SCALE)
+    d.text((14 * SCALE, h - 42 * SCALE), nota, font=_sans(9.5), fill=SOFT)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    img.save(path)
+    return path
+
+
 def build_arq():
     out = []
+    out.append(c4_context(
+        ARQ / "Clase 1" / "Capturas" / "demo-clase01.png",
+        "Clase 1 · C4 Context de la demo en vivo (draw.io)",
+        "CloudLite App",
+        [("Usuario final", "consulta"), ("Administrador", "administra")],
+        [("Pasarela de pagos", "cobra")],
+        "Nivel Context: el sistema es UNA caja. Nada de base de datos, API ni cache: "
+        "eso es Clase 4 (Containers).",
+    ))
     out.append(terminal(
         ARQ / "Clase 3" / "Capturas" / "salida-docker-build-run.png",
         "Clase 3 · LabEx Docker Playground — build y run del stub CloudLite",

@@ -73,6 +73,15 @@ Reglas de verificacion:
 - Debe entenderse **sin leer el informe**: si un jurado no puede seguir el camino del usuario hasta la base de datos, simplifique.
 - Debe caber en una pantalla: **maximo 14 nodos** contando los de los subgrafos.
 
+**Pegar al final del enunciado — flujo de entrega del diagrama:**
+
+**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
+
+- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
+- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `flowchart`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
+- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
+- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
+
 **Diagrama de referencia (Mermaid):**
 
 ```mermaid

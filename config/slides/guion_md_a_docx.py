@@ -8,6 +8,9 @@ Convierte un GUIÓN DOCENTE en Markdown a un archivo .docx bien formateado:
 - Líneas de 📸 Pantallazo -> caja de "marcador de captura"; si hay una captura
   real que coincide, se EMBEBE la imagen. Las capturas viven POR CURSO en
   '<curso>/Kit docente/Clase N/Capturas/' (misma carpeta del guion + /Capturas).
+  Si la imagen NO existe, en vez de una caja vacía se imprime el paso a paso para
+  producirla: la del token '[[captura: x.png | receta: ...]]' si viene escrita, o
+  una genérica con el nombre y la ruta exactos con que hay que guardarla.
 
 Uso:  python guion_md_a_docx.py "ruta/al/guion.md"  [--out "ruta.docx"]
 """
@@ -76,18 +79,63 @@ def find_capture(caption):
     return None
 
 def _capture_token(text):
-    """Extrae un token explícito [[captura: archivo.png]] de la línea de pantallazo.
-    Devuelve (texto_sin_token, nombre_archivo|None)."""
+    """Extrae un token explícito de la línea de pantallazo.
+
+    Sintaxis aceptada:
+        [[captura: archivo.png]]
+        [[captura: archivo.png | receta: 1) abre X  2) ejecuta Y  3) recorta ...]]
+
+    La parte `receta:` es opcional y se usa cuando el PNG todavía no existe: en vez
+    de dejar una caja vacía que nadie llena, el .docx imprime el paso a paso para
+    producirla. Devuelve (texto_sin_token, nombre_archivo|None, receta|None)."""
     m = re.search(r'\[\[\s*captura:\s*([^\]]+?)\s*\]\]', text, re.I)
     if not m:
-        return text, None
-    fn = m.group(1).strip()
+        return text, None, None
+    cuerpo = m.group(1).strip()
+    receta = None
+    if "|" in cuerpo:
+        fn, resto = cuerpo.split("|", 1)
+        fn = fn.strip()
+        resto = resto.strip()
+        if re.match(r'(?i)receta\s*:', resto):
+            receta = re.sub(r'(?i)^receta\s*:\s*', '', resto).strip() or None
+    else:
+        fn = cuerpo
     if not fn.lower().endswith(".png"):
         fn += ".png"
-    return re.sub(r'\[\[\s*captura:[^\]]+\]\]', '', text, flags=re.I).strip(), fn
+    limpio = re.sub(r'\[\[\s*captura:[^\]]+\]\]', '', text, flags=re.I).strip()
+    return limpio, fn, receta
 
 
-def screenshot_box(doc, caption, explicit=None):
+def _ruta_capturas_legible(nombre=None):
+    """`Kit docente/Clase N/Capturas/archivo.png` — ruta que el docente reconoce.
+
+    CAPTURAS es una ruta absoluta de esta máquina; en el documento sirve más la
+    ruta relativa al curso, que es como está escrita en el resto del material."""
+    partes = [x for x in os.path.normpath(CAPTURAS or "").split(os.sep) if x]
+    cola = "/".join(partes[-3:]) if len(partes) >= 3 else (CAPTURAS or "Capturas")
+    return cola + "/" + nombre if nombre else cola + "/"
+
+
+def _receta_generica(caption, explicit):
+    """Paso a paso por defecto para producir una captura que todavía no existe.
+
+    Existe porque el material referencia imágenes que nadie alcanzó a tomar y la
+    caja «inserta aquí la captura» no le decía al docente ni qué abrir ni con qué
+    nombre guardar; el resultado era que la caja seguía vacía el día de la clase."""
+    destino = _ruta_capturas_legible(explicit or "<nombre-corto-con-guiones>.png")
+    return (
+        "1) Abre la herramienta del bloque y reproduce exactamente los pasos "
+        "descritos arriba, con el mismo dominio del ejemplo.  "
+        "2) Captura solo la ventana útil (no el escritorio completo) en el momento "
+        "en que se ve el resultado: " + (caption or "el resultado del paso") + ".  "
+        "3) Recorta a ~1200 px de ancho para que se lea dentro del documento.  "
+        "4) Guárdala como " + destino + ".  "
+        "5) Vuelve a generar el guion: la imagen queda embebida aquí sola."
+    )
+
+
+def screenshot_box(doc, caption, explicit=None, receta=None):
     # Caja marcador + imagen real si coincide (token explícito o por palabra clave).
     p = doc.add_paragraph(); shade_par(p, "FFF4EC")
     p.paragraph_format.space_before = Pt(4); p.paragraph_format.space_after = Pt(2)
@@ -106,9 +154,16 @@ def screenshot_box(doc, caption, explicit=None):
         except Exception:
             pass
     else:
+        # Recurso que no se pudo generar: en vez de una caja vacía, el paso a paso
+        # para producirlo. Regla transversal del material 2026-2.
         ph = doc.add_paragraph(); shade_par(ph, CODE_BG)
-        rr = ph.add_run("[  Inserta aquí la captura de pantalla  ]")
-        rr.italic = True; rr.font.size = Pt(9); rr.font.color.rgb = GRAY
+        ph.paragraph_format.space_after = Pt(1)
+        rr = ph.add_run("Esta imagen todavía no existe. Cómo producirla:")
+        rr.bold = True; rr.italic = True; rr.font.size = Pt(9); rr.font.color.rgb = GRAY
+        pr = doc.add_paragraph(); shade_par(pr, CODE_BG)
+        pr.paragraph_format.left_indent = Inches(0.15)
+        r2 = pr.add_run(receta or _receta_generica(caption, explicit))
+        r2.italic = True; r2.font.size = Pt(9); r2.font.color.rgb = GRAY
 
 def add_code_block(doc, lines):
     p = doc.add_paragraph(); shade_par(p, CODE_BG)
@@ -190,10 +245,10 @@ def convert(md_path, out_path):
         if s.startswith(">"):
             content = s.lstrip(">").strip()
             if "📸" in content or "🖼" in content or re.search(r'\[\[\s*captura:', content, re.I):
-                content, explicit = _capture_token(content)
+                content, explicit, receta = _capture_token(content)
                 cap = re.sub(r'^\s*(📸|🖼️?)\s*', '', content).replace("**", "").replace("Pantallazo —", "").replace("Imagen —", "").strip()
                 cap = re.sub(r'^\W+', '', cap)
-                screenshot_box(doc, cap or "Imagen", explicit)
+                screenshot_box(doc, cap or "Imagen", explicit, receta)
             else:
                 p = doc.add_paragraph(); p.paragraph_format.left_indent = Inches(0.3)
                 shade_par(p, "F7F7F8")
@@ -202,9 +257,9 @@ def convert(md_path, out_path):
             i += 1; continue
         # 📸 / 🖼️ sin blockquote (o cualquier línea con token [[captura:]])
         if s.startswith("📸") or s.startswith("**📸") or "📸 **Pantallazo" in s or s.startswith("🖼") or re.search(r'\[\[\s*captura:', s, re.I):
-            s2, explicit = _capture_token(s)
+            s2, explicit, receta = _capture_token(s)
             cap = re.sub(r'^\W*(📸|🖼️?)\W*', '', s2).replace("**", "").replace("Pantallazo —", "").replace("Imagen —", "").strip()
-            screenshot_box(doc, cap or "Imagen", explicit); i += 1; continue
+            screenshot_box(doc, cap or "Imagen", explicit, receta); i += 1; continue
         # Lista
         mli = re.match(r'^(\s*)([-*]|\d+\.)\s+(.*)$', line)
         if mli:

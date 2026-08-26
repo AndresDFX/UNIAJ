@@ -38,12 +38,7 @@ EXAMLAB = {1: {'pasos': ['Paso 1: elija un dominio concreto entre AgendaU, Bibli
                'que ninguna capacidad nombre tecnologia (nada de usar PostgreSQL ni desplegar en '
                'Docker) y que las 4 capacidades se lean como frases del negocio; queda en la '
                'seccion 1 del informe y se pega tal cual en la pregunta 1 de ExamLab.',
-               'Paso 3: escriba en la pregunta de tipo diagrama de ExamLab el C4 Context en '
-               'Mermaid con exactamente 1 System para CloudLite, 2 Person, 2 System_Ext y 5 '
-               'relaciones etiquetadas con verbo de negocio y protocolo, verificando al renderizar '
-               'dentro de la plataforma que no aparezca ninguna caja interna (ni base de datos ni '
-               'API ni worker, eso es Clase 4) y que cada flecha se lea en voz alta como una frase '
-               'completa.',
+               '''Paso 3: dibuje primero el boceto del C4 Context en Excalidraw o draw.io, que es donde se piensa el modelo, y despues pidale a una IA que lo traduzca a Mermaid («convierte este diagrama a Mermaid usando C4Context»); pegue ese codigo en la pregunta de tipo diagrama de ExamLab y verifique que renderice ahi mismo, con exactamente 1 System para CloudLite, 2 Person, 2 System_Ext y 5 relaciones etiquetadas con verbo de negocio y protocolo, verificando en el diagrama ya renderizado que no aparezca ninguna caja interna (ni base de datos ni API ni worker, eso es Clase 4) y que cada flecha se lea en voz alta como una frase completa.''',
                'Paso 4: resuelva la tabla comparativa de 4 filas nube frente a on-premise, cierre '
                'con el veredicto de 2 frases que sera la entrada del ADR-001 de la Clase 2, y suba '
                'a ExamLab (modulo Talleres) las 5 preguntas resueltas antes del domingo 23:59, '
@@ -94,34 +89,20 @@ EXAMLAB = {1: {'pasos': ['Paso 1: elija un dominio concreto entre AgendaU, Bibli
                                'las 3 exclusiones. Si el dominio es generico (app de la '
                                'universidad, red social), los bloques 1 y 2 valen cero.',
                     'tipo': 'abierta'},
-                   {'enunciado': '## C4 Context de CloudLite App\n'
-                                 '\n'
-                                 'Escriba en Mermaid el diagrama **C4Context** de su CloudLite. La '
-                                 'primera linea debe ser exactamente `C4Context`. Debe contener:\n'
-                                 '\n'
-                                 '- Exactamente **1** `System(...)`: CloudLite App completo, como '
-                                 'caja negra.\n'
-                                 '- Exactamente **2** `Person(...)`: sus dos actores principales '
-                                 'de la ficha.\n'
-                                 '- Exactamente **2** `System_Ext(...)`: dos sistemas de terceros '
-                                 'con los que CloudLite habla (por ejemplo el proveedor de '
-                                 'identidad institucional y el servicio de correo transaccional).\n'
-                                 '- Exactamente **5** `Rel(...)`, cada una con **verbo de '
-                                 'negocio** y **protocolo** (`HTTPS`, `OIDC sobre HTTPS`, `SMTP`, '
-                                 '`API REST sobre HTTPS`).\n'
-                                 '\n'
-                                 '**Verifique antes de enviar**, renderizando dentro de ExamLab: '
-                                 '(a) no aparece ninguna caja interna del sistema (nada de base de '
-                                 'datos, API ni worker: eso es la Clase 4), (b) cada flecha se lee '
-                                 'como frase completa, (c) los nombres son identicos a los de su '
-                                 'ficha.\n'
-                                 '\n'
-                                 '> El modelo de referencia esta escrito sobre el dominio '
-                                 '**AgendaU**. Usted conserva la estructura y los conteos, y '
-                                 'cambia los nombres por los de su dominio.\n'
-                                 '\n'
-                                 '**Consejo de sintaxis:** no use comas dentro de las etiquetas '
-                                 'entre comillas del C4; separe con `y` o con guion.',
+                   {'enunciado': '''## C4 Context de CloudLite App
+
+Escriba en Mermaid el diagrama **C4Context** de su CloudLite. No tiene que escribirlo de memoria: dibujelo primero en Excalidraw o draw.io y pidale a una IA que lo traduzca a Mermaid; usted revisa el resultado y lo pega aqui. Esta pregunta **no recibe imagenes**: lo que se califica es el diagrama renderizado dentro de la plataforma. La primera linea debe ser exactamente `C4Context`. Debe contener:
+
+- Exactamente **1** `System(...)`: CloudLite App completo, como caja negra.
+- Exactamente **2** `Person(...)`: sus dos actores principales de la ficha.
+- Exactamente **2** `System_Ext(...)`: dos sistemas de terceros con los que CloudLite habla (por ejemplo el proveedor de identidad institucional y el servicio de correo transaccional).
+- Exactamente **5** `Rel(...)`, cada una con **verbo de negocio** y **protocolo** (`HTTPS`, `OIDC sobre HTTPS`, `SMTP`, `API REST sobre HTTPS`).
+
+**Verifique antes de enviar**, renderizando dentro de ExamLab: (a) no aparece ninguna caja interna del sistema (nada de base de datos, API ni worker: eso es la Clase 4), (b) cada flecha se lee como frase completa, (c) los nombres son identicos a los de su ficha.
+
+> El modelo de referencia esta escrito sobre el dominio **AgendaU**. Usted conserva la estructura y los conteos, y cambia los nombres por los de su dominio.
+
+**Consejo de sintaxis:** no use comas dentro de las etiquetas entre comillas del C4; separe con `y` o con guion.''',
                     'mermaid_esperado': 'C4Context\n'
                                         '    title Contexto de CloudLite App - dominio AgendaU\n'
                                         '    Person(estudiante, "Estudiante", "Reserva y cancela '

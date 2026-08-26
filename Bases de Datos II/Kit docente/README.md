@@ -10,7 +10,7 @@ Teoria breve; talleres = entregables del PI.
 - Guion Docente Clase N - ….md + .docx (via guion_md_a_docx.py)
 - Quiz Clase N - VetCare.docx (sin claves) + Quiz Clase N - CLAVE DOCENTE.docx (privado; no proyectar)
 - Codigo/*.sql demos VetCare
-- Capturas/ placeholders [CAP:…] (pendiente pantallazos reales)
+- Capturas/ con README de paso a paso; si falta el PNG, el guion imprime la receta
 - Dias 5/9/14: Guia aplicacion Parcial N (solo evaluacion)
 
 ## Builds

@@ -5,7 +5,7 @@
 - **Preguntas:** 5 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases
-- **Entregable de la clase:** Ficha PI: dominio, capacidades, actores y boceto C4 Context (Excalidraw/draw.io)
+- **Entregable de la clase:** Ficha PI de 6 bloques + C4 Context en Mermaid renderizado en ExamLab (boceto previo en Excalidraw/draw.io)
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
@@ -50,7 +50,7 @@ Esta ficha es la seccion 1 del informe del PI y el dominio **no vuelve a cambiar
 
 ## C4 Context de CloudLite App
 
-Escriba en Mermaid el diagrama **C4Context** de su CloudLite. La primera linea debe ser exactamente `C4Context`. Debe contener:
+Escriba en Mermaid el diagrama **C4Context** de su CloudLite. No tiene que escribirlo de memoria: dibujelo primero en Excalidraw o draw.io y pidale a una IA que lo traduzca a Mermaid; usted revisa el resultado y lo pega aqui. Esta pregunta **no recibe imagenes**: lo que se califica es el diagrama renderizado dentro de la plataforma. La primera linea debe ser exactamente `C4Context`. Debe contener:
 
 - Exactamente **1** `System(...)`: CloudLite App completo, como caja negra.
 - Exactamente **2** `Person(...)`: sus dos actores principales de la ficha.
@@ -62,6 +62,15 @@ Escriba en Mermaid el diagrama **C4Context** de su CloudLite. La primera linea d
 > El modelo de referencia esta escrito sobre el dominio **AgendaU**. Usted conserva la estructura y los conteos, y cambia los nombres por los de su dominio.
 
 **Consejo de sintaxis:** no use comas dentro de las etiquetas entre comillas del C4; separe con `y` o con guion.
+
+**Pegar al final del enunciado — flujo de entrega del diagrama:**
+
+**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
+
+- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
+- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `C4Context`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
+- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
+- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
 **Diagrama de referencia (Mermaid):**
 

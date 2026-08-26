@@ -44,43 +44,62 @@ Error tipico del docente que no domina el tema: el primero es dar retroalimentac
 **Demo que usted debe poder repetir:** Recorrido de checklist + ejemplo demo de 3 min.
 
 ## Referencias a diapositivas
-1. Slide 1 portada (Clase N + titulo VetCare)
-2. Slide Agenda 120 min
-3. Slide Objetivo PI de la clase
-4. Slide Teoria Core
-5. Slide Demo del dia
-6. Slide Herramientas de hoy (logos 3-4)
-7. Bloque Taller ampliado: contexto / objetivo / escenario / pasos / pistas
-8. Slide Criterios de exito / entregable
-9. Slide Para el PI esta semana
-10. Slide Cierre
-11. Solucion PRIVADA: Kit docente/Clase N/Solucion Taller Clase N - VetCare.docx
+Numeracion real del deck `Clases/Clase 11 - Avance del proyecto final/Presentacion.pptx`.
+Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
+
+1. Portada · Clase 11 · Avance PI · VetCare DB
+2. Encuadre de hoy · Objetivo PI
+3. Mapa del bloque de hoy (120 min)
+4. Teoria Core (breve)
+5. Demo del dia
+6. Herramientas de hoy
+7. Del boceto a ExamLab (diagrama)
+8. Taller PI VetCare — contexto / por que importa
+9. Taller PI VetCare — objetivo y criterios
+10. Taller PI VetCare — escenario / datos de partida
+11. Taller PI VetCare — pasos guiados
+12. Taller PI VetCare — pistas (checklist vacio)
+13. Criterios de exito / entregable
+14. Para el PI esta semana
+15. Cierre · Clase 11
+
+> Privado, no se proyecta: `Kit docente/Clase 11/Solucion Taller Clase 11 - VetCare.docx`
 
 ## Plan minuto a minuto (120 min) — texto casi literal
 
-### 0-10 · Encuadre
+### 0-10 · Encuadre · [Slide 2][Slide 3]
 **Decir:** «Buenas. Hoy el hilo es VetCare DB. Avanzamos el PI en: Demo parcial + checklist de avance (hito formal PI).
 La teoria sera corta; el peso esta en el taller del proyecto.»
-Mostrar slide Agenda + Objetivo PI.
+Proyectar [Slide 2] «Encuadre de hoy · Objetivo PI» y [Slide 3] «Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
-### 10-35 · Teoria Core (breve)
+### 10-35 · Teoria Core (breve) · [Slide 4]
 **Decir:** «Solo lo necesario para el entregable de hoy.»
+Proyectar [Slide 4] «Teoria Core (breve)». El desarrollo completo de cada punto esta
+arriba, en «Fundamento teorico», dividido por diapositiva.
 Cubrir:
 - Hoy no hay tema nuevo: se cierran huecos del PI con rubrica.
 - Evidencias: ER, DDL, roles, >=2 procs, >=1 fn, >=2 triggers, 1 opt.
 - Revision cruzada entre estudiantes: 10 min por persona.
-Referencia: slide Teoria Core.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso
+### 35-55 · Demo paso a paso · [Slide 5][Slide 7]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: Recorrido de checklist + ejemplo demo de 3 min.
 Herramienta: Live SQL / DB Fiddle + draw.io + ExamLab
-📸 Pantallazo: [CAP: demo VetCare Clase 11]
+
+**Cierre la demo dentro de ExamLab** [Slide 7] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
+
+**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
+
+- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
+- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `erDiagram`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
+- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
+- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
+📸 Salida esperada de la demo de la Clase 11 [[captura: cap01_demo.png | receta: 1) Abra Live SQL / DB Fiddle + draw.io + ExamLab y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 11/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda embebida aqui sola.]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI
+### 55-105 · Taller guiado = tarea del PI · [Slide 11]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -90,23 +109,25 @@ Actividades:
 4. Subir avance intermedio a ExamLab (Talleres) si se pide.
 Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: Checklist firmada + enlace/ZIP avance (DDL+procs+ER)
-📸 Pantallazo: [CAP: avance del estudiante / playground Clase 11]
+📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 11/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto
-Repasar checklist del dia (slide Criterios).
+### 105-115 · Criterios de exito + quiz corto · [Slide 13]
+Repasar checklist del dia con [Slide 13] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 11 - VetCare.docx`. Clave para usted: `Quiz Clase 11 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre
+### 115-120 · Cierre · [Slide 15]
 **Decir:** «Queda avanzado: Demo parcial + checklist de avance (hito formal PI). Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Slide cierre. Dudas finales.
+Proyectar [Slide 15] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts
 Carpeta Codigo/ — archivo 11_checklist_seed.sql.
 
 ## Capturas
-Carpeta Capturas/. Placeholders [CAP: ...] arriba; reemplazar por PNG reales cuando pueda
-(Playwright/manual en DB Fiddle, draw.io, Live SQL).
+Carpeta `Kit docente/Clase 11/Capturas/`. Cada linea de pantallazo de arriba trae
+el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia
 - Cada estudiante tiene el entregable o sus gaps escritos.

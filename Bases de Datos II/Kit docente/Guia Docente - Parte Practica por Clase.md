@@ -50,12 +50,12 @@ JOIN dueno d ON d.id_dueno=m.id_dueno;
 ```
 
 **Pasos guiados del taller:**
-1. Nombrar y registrar su proyecto VetCare DB (trabajo individual por defecto; equipo de 2-3 solo si el docente lo autoriza).
-2. Listar entidades minimas + 3 reglas de negocio propias.
-3. Dibujar ER borrador en draw.io/Excalidraw y exportar PNG.
-4. Escribir 5-8 lineas de alcance (que SI / que NO hara el PI).
+1. Registrar el proyecto con el nombre exacto VetCare - [Apellido] (trabajo individual por defecto; equipo de 2-3 solo si el docente lo autoriza).
+2. Llenar la plantilla de la ficha del PI: alcance SI / alcance NO y 3 reglas de negocio propias en formato Condicion -> Accion.
+3. Dibujar el ER borrador en Excalidraw o draw.io, pasarlo a Mermaid (erDiagram) con ayuda de una IA y pegarlo renderizado en ExamLab.
+4. Exportar tambien el PNG del ER a la carpeta del PI y verificar que los nombres coincidan con el DDL (minusculas, singular, id_<entidad>).
 
-**Entregable:** Ficha del proyecto + ER borrador (PNG) + lista de entidades/reglas
+**Entregable:** Ficha del PI (plantilla) + ER en Mermaid renderizado en ExamLab (PNG para tu carpeta) + 3 reglas Condicion -> Accion
 **Criterios de exito:**
 - Proyecto nombrado y registrado.
 - ER PNG con entidades mínimas.

@@ -38,18 +38,34 @@ Queda la trazabilidad, donde mas puntos se pierden: los nombres de las cajas del
 
 Error tipico del docente que no domina el tema: dejar pasar el dibujo de la nube como una caja difusa con flechas sin etiqueta, donde no se distingue zona publica de privada, no hay puertos y no se sabe donde viven los datos. La consecuencia aguas abajo es acumulativa: sin zonas, los controles de red de la Clase 6 no tienen donde mostrarse; sin flechas etiquetadas, la Clase 8 no tiene sobre que definir latencia ni saturacion; y en la sustentacion de la Clase 15 el estudiante describe su sistema con gestos en vez de senalar componentes. El segundo tropiezo es permitir que el despliegue introduzca nombres y servicios que no existian en el C4 Containers, o dejar la eleccion de almacenamiento sin justificar («usamos base de datos porque es lo normal»). Cuando eso ocurre, el informe describe dos sistemas distintos que se contradicen entre secciones y se pierde la trazabilidad, que es el criterio con el que se calificara el paquete integrado de la Clase 11.
 
-Referencia de slides: `Clases/Clase 7 - Redes y almacenamiento cloud/Presentacion.pptx` (solo tema de esta clase).
+## Referencias a diapositivas
+Numeración real del deck `Clases/Clase 7 - Redes y almacenamiento cloud/Presentacion.pptx` (solo tema
+de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
+
+1. Portada · Clase 7 · Redes y almacenamiento cloud
+2. Agenda de hoy (120 min)
+3. Objetivos de la clase
+4. PI CloudLite — entregable de hoy
+5. Red lógica para el diagrama
+6. Almacenamiento
+7. Checklist del diagrama Deployment
+8. Ejemplo de diagrama de despliegue (Deployment)
+9. Herramientas de hoy
+10. Del boceto a ExamLab (diagrama)
+11. Taller PI (paso a paso)
+12. Para continuar (PI)
+13. Clase 7 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 4]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Diagrama de despliegue: red, zonas, almacenamiento**.
 Entregable concreto: Diagrama Deployment (draw.io) + elección de storage (objeto/bloque/relacional conceptual).
 Teoría breve y luego taller; no es un lab suelto.»
 Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
 Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
 
-### 10–40 · Teoría Core (al servicio del taller)
+### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 5]
 Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las diapositivas de teoría):
 - Red lógica para el diagrama
 - Almacenamiento
@@ -60,7 +76,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo
+### 40–55 · Demo en vivo · [Slide 10]
 Herramienta del día: **draw.io**.
 **Demo que usted debe poder repetir:** Dibujar zonas de confianza sobre el diagrama de despliegue
 
@@ -72,8 +88,17 @@ Herramienta del día: **draw.io**.
 Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase 7/Capturas/`.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
+**Cierra la demo dentro de ExamLab** [Slide 10] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste)
+**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
+
+- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
+- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `C4Deployment`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
+- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
+- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
+
+
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 11]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -86,7 +111,7 @@ Aplica el quiz corto de `Kit docente/Clase 7/Quiz Clase 7 - Redes y almacenamien
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre
+### 115–120 · Cierre · [Slide 13]
 Di: «Queda avanzado: Diagrama de despliegue: red, zonas, almacenamiento.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
@@ -124,8 +149,8 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 7/Quiz Clase 7 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 Pantallazo: herramienta del día en uso con artefacto CloudLite [[captura: demo-clase07.png]]
-- 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase07.png | receta: 1) Abre draw.io y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 7/Capturas/demo-clase07.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase07.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 7/Capturas/evidencia-clase07.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
 - Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.

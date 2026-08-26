@@ -44,17 +44,25 @@ Error tipico del docente que no domina el tema: el primero es evaluar el paquete
 **Demo que usted debe poder repetir:** Checklist final de empaquetado del ZIP.
 
 ## Referencias a diapositivas
-1. Slide 1 portada (Clase N + titulo VetCare)
-2. Slide Agenda 120 min
-3. Slide Objetivo PI de la clase
-4. Slide Teoria Core
-5. Slide Demo del dia
-6. Slide Herramientas de hoy (logos 3-4)
-7. Bloque Taller ampliado: contexto / objetivo / escenario / pasos / pistas
-8. Slide Criterios de exito / entregable
-9. Slide Para el PI esta semana
-10. Slide Cierre
-11. Solucion PRIVADA: Kit docente/Clase N/Solucion Taller Clase N - VetCare.docx
+Numeracion real del deck `Clases/Clase 15 - Presentacion del proyecto y cierre/Presentacion.pptx`.
+Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
+
+1. Portada · Clase 15 · Presentacion PI · Cierre VetCare
+2. Encuadre de hoy · Objetivo PI
+3. Mapa del bloque de hoy (120 min)
+4. Teoria Core (breve)
+5. Como se ordena la sesion de hoy
+6. Herramientas de hoy
+7. Sustentacion del PI — contexto / por que importa
+8. Sustentacion del PI — objetivo y criterios
+9. Sustentacion del PI — escenario / datos de partida
+10. Sustentacion del PI — pasos guiados
+11. Sustentacion del PI — pistas (checklist vacio)
+12. Criterios de exito / entregable
+13. Cierre del PI
+14. Cierre · Clase 15
+
+> Privado, no se proyecta: `Kit docente/Clase 15/Solucion Taller Clase 15 - VetCare.docx`
 
 ## Plan minuto a minuto (120 min) — sesion de SUSTENTACIONES EN VIVO
 
@@ -106,8 +114,10 @@ mitad de lo que se evalua, y vuelve regla la excepcion el semestre siguiente.
 Carpeta Codigo/ — archivo N/A.
 
 ## Capturas
-Carpeta Capturas/. Placeholders [CAP: ...] arriba; reemplazar por PNG reales cuando pueda
-(Playwright/manual en DB Fiddle, draw.io, Live SQL).
+Carpeta `Kit docente/Clase 15/Capturas/`. Cada linea de pantallazo de arriba trae
+el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia
 - Cada estudiante tiene el entregable o sus gaps escritos.

@@ -83,6 +83,7 @@ parcial vive en `Parciales/`, nunca en `Clases/`.
 | Perfil marca | `config/universidades/uniajc.json` |
 | Calendario periodo | `config/calendario/semestre_2026_2.json` |
 | Motor slides | `config/slides/uniajc_slides_engine.py` |
+| Iconos de herramientas | `config/slides/assets/herramientas/` + `normalizar_iconos.py` |
 | Skill transcribir | `.claude/skills/transcribir-video/` |
 
 ## Alistar el semestre (calendario, Meet, invitaciones, grabaciones)
@@ -139,6 +140,13 @@ python config/parciales/build_parciales_2026_2.py
 
 # Capturas de "salida esperada" de los guiones
 python config/slides/mockups.py
+
+# Iconos de herramientas de las diapositivas
+# --ingesta importa los archivos que dejes en la raiz (png/jpg/svg, cualquier
+# nombre) con el nombre canonico y archiva el original en assets/herramientas/
+# _originales/. Sin --ingesta solo recorta y recentra lo ya instalado, que es lo
+# que evita que un favicon de 32 px salga como una mota en la tarjeta.
+python config/slides/normalizar_iconos.py --ingesta
 
 # Guion suelto .md -> .docx
 python config/slides/guion_md_a_docx.py "<ruta al guion>.md"

@@ -47,28 +47,40 @@ Error tipico del docente que no domina el tema: mostrar la sintaxis de CREATE PR
 **Demo que usted debe poder repetir:** CREATE PROCEDURE sp_agendar_cita(...) con validacion de mascota activa.
 
 ## Referencias a diapositivas
-1. Slide 1 portada (Clase N + titulo VetCare)
-2. Slide Agenda 120 min
-3. Slide Objetivo PI de la clase
-4. Slide Teoria Core
-5. Slide Demo del dia
-6. Slide Herramientas de hoy (logos 3-4)
-7. Bloque Taller ampliado: contexto / objetivo / escenario / pasos / pistas
-8. Slide Criterios de exito / entregable
-9. Slide Para el PI esta semana
-10. Slide Cierre
-11. Solucion PRIVADA: Kit docente/Clase N/Solucion Taller Clase N - VetCare.docx
+Numeracion real del deck `Clases/Clase 3 - Procedimientos almacenados/Presentacion.pptx`.
+Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
+
+1. Portada · Clase 3 · Procedimientos almacenados · VetCare
+2. Encuadre de hoy · Objetivo PI
+3. Mapa del bloque de hoy (120 min)
+4. Teoria Core (breve)
+5. Por que un procedimiento y no SQL en cada pantalla
+6. La validacion que justifica usar un procedimiento
+7. Demo del dia
+8. Herramientas de hoy
+9. Taller PI VetCare — contexto / por que importa
+10. Taller PI VetCare — objetivo y criterios
+11. Taller PI VetCare — escenario / datos de partida
+12. Taller PI VetCare — pasos guiados
+13. Taller PI VetCare — pistas (checklist vacio)
+14. Criterios de exito / entregable
+15. Para el PI esta semana
+16. Cierre · Clase 3
+
+> Privado, no se proyecta: `Kit docente/Clase 3/Solucion Taller Clase 3 - VetCare.docx`
 
 ## Plan minuto a minuto (120 min) — texto casi literal
 
-### 0-10 · Encuadre
+### 0-10 · Encuadre · [Slide 2][Slide 3]
 **Decir:** «Buenas. Hoy el hilo es VetCare DB. Avanzamos el PI en: >=1 procedimiento de negocio (agendar cita / registrar consulta).
 La teoria sera corta; el peso esta en el taller del proyecto.»
-Mostrar slide Agenda + Objetivo PI.
+Proyectar [Slide 2] «Encuadre de hoy · Objetivo PI» y [Slide 3] «Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
-### 10-35 · Teoria Core (breve)
+### 10-35 · Teoria Core (breve) · [Slide 4]
 **Decir:** «Solo lo necesario para el entregable de hoy.»
+Proyectar [Slide 4] «Teoria Core (breve)». El desarrollo completo de cada punto esta
+arriba, en «Fundamento teorico», dividido por diapositiva.
 Cubrir:
 - Un procedimiento almacenado (stored procedure) es un bloque de codigo SQL/PLSQL con nombre propio, guardado y compilado DENTRO de la base de datos, que se invoca con CALL o EXECUTE en vez de reescribir la logica cada vez.
 - Parametros: IN (entra un valor, ej. p_id_mascota), OUT (el proc devuelve un valor al que lo llamo, ej. p_msg con el resultado), IN OUT (ambos). A diferencia de una consulta suelta, un proc puede recibir varios parametros y ejecutar varias sentencias como una sola unidad logica.
@@ -76,17 +88,16 @@ Cubrir:
 - Manejo de errores controlado: en vez de dejar que la insercion falle con un error crudo de motor, el proc valida primero (SELECT activa FROM mascota) y responde con un mensaje de negocio claro ('ERROR: mascota inactiva; no se agenda'), y usa EXCEPTION/TRY-CATCH segun el motor para capturar fallos inesperados sin tumbar la transaccion completa.
 - Diferencia con una funcion (se vera en Clase 4): el procedimiento se ejecuta como una accion (CALL sp_algo), la funcion se invoca dentro de una expresion SQL y retorna un valor (SELECT fn_algo(x) FROM ...).
 - Error de docente que no domina el tema: escribir el proc sin validar nada (solo el INSERT) y llamarlo 'logica de negocio' — un proc sin reglas de validacion es solo una consulta con nombre, no resuelve el problema que motiva usar procedimientos.
-Referencia: slide Teoria Core.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso
+### 35-55 · Demo paso a paso · [Slide 7]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: CREATE PROCEDURE sp_agendar_cita(...) con validacion de mascota activa.
 Herramienta: Oracle Live SQL
 📸 sp_agendar_cita: caso OK vs caso rechazado por mascota inactiva [[captura: salida-proc-ok-y-error.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI
+### 55-105 · Taller guiado = tarea del PI · [Slide 12]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -96,23 +107,25 @@ Actividades:
 4. Documentar firma del proc (contrato para la futura app).
 Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: Script proc + casos de prueba (captura o enlace Live SQL)
-📸 Pantallazo: [CAP: avance del estudiante / playground Clase 3]
+📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 3/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto
-Repasar checklist del dia (slide Criterios).
+### 105-115 · Criterios de exito + quiz corto · [Slide 14]
+Repasar checklist del dia con [Slide 14] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 3 - VetCare.docx`. Clave para usted: `Quiz Clase 3 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre
+### 115-120 · Cierre · [Slide 16]
 **Decir:** «Queda avanzado: >=1 procedimiento de negocio (agendar cita / registrar consulta). Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Slide cierre. Dudas finales.
+Proyectar [Slide 16] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts
 Carpeta Codigo/ — archivo 03_procs_vetcare.sql.
 
 ## Capturas
-Carpeta Capturas/. Placeholders [CAP: ...] arriba; reemplazar por PNG reales cuando pueda
-(Playwright/manual en DB Fiddle, draw.io, Live SQL).
+Carpeta `Kit docente/Clase 3/Capturas/`. Cada linea de pantallazo de arriba trae
+el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia
 - Cada estudiante tiene el entregable o sus gaps escritos.

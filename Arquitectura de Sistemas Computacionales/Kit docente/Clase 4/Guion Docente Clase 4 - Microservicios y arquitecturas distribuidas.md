@@ -38,18 +38,35 @@ Las preguntas de esta clase son predecibles y conviene responderlas con firmeza.
 
 Error tipico del docente que no domina el tema: aplaudir un diagrama con ocho microservicios sin preguntar por que existe cada uno. El numero de servicios no mide calidad arquitectonica; la justificacion de cada frontera si. La consecuencia aguas abajo es que ese estudiante llega a la Clase 7 con ocho cajas que no puede ubicar en zonas de red, a la Clase 8 con ocho pipelines que nunca construira y a la Clase 12 sin poder identificar un cuello de botella, porque no entiende el flujo de su propio sistema. El segundo error es tratar la latencia y los fallos parciales como un detalle de implementacion que se vera despues: si hoy no se dice que una flecha en el diagrama es una llamada de red que puede fallar, el estudiante disenara como si distribuir fuera gratis, no incluira timeouts ni idempotencia en su tabla de riesgos, y en la Clase 13 pedira autoescalado como solucion magica a un problema de diseno originado precisamente en esta clase.
 
-Referencia de slides: `Clases/Clase 4 - Microservicios y arquitecturas distribuidas/Presentacion.pptx` (solo tema de esta clase).
+## Referencias a diapositivas
+Numeración real del deck `Clases/Clase 4 - Microservicios y arquitecturas distribuidas/Presentacion.pptx` (solo tema
+de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
+
+1. Portada · Clase 4 · Microservicios · Arquitecturas distribuidas
+2. Agenda de hoy (120 min)
+3. Objetivos de la clase
+4. PI CloudLite — entregable de hoy
+5. Monolito vs microservicios (para el PI)
+6. C4-lite en draw.io
+7. Distribuido implica fallos
+8. Ejemplo de diagrama C4 — nivel Containers
+9. Microservicios de verdad vs microservicios teatro
+10. Herramientas de hoy
+11. Del boceto a ExamLab (diagrama)
+12. Taller PI (paso a paso)
+13. Para continuar (PI)
+14. Clase 4 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 4]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Diagramar componentes/servicios de CloudLite y sus contratos**.
 Entregable concreto: Diagrama C4 Container/Componentes v0.9 + lista de APIs entre servicios.
 Teoría breve y luego taller; no es un lab suelto.»
 Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
 Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
 
-### 10–40 · Teoría Core (al servicio del taller)
+### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 5]
 Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las diapositivas de teoría):
 - Monolito vs microservicios (para el PI)
 - C4-lite en draw.io
@@ -60,7 +77,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo
+### 40–55 · Demo en vivo · [Slide 11]
 Herramienta del día: **draw.io / diagrams.net**.
 **Demo que usted debe poder repetir:** Convertir el Context de la Clase 1 en Containers
 
@@ -72,8 +89,17 @@ Herramienta del día: **draw.io / diagrams.net**.
 Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase 4/Capturas/`.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
+**Cierra la demo dentro de ExamLab** [Slide 11] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste)
+**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
+
+- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
+- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando el tipo que pide el enunciado». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
+- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
+- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
+
+
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 12]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -86,7 +112,7 @@ Aplica el quiz corto de `Kit docente/Clase 4/Quiz Clase 4 - Microservicios y arq
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre
+### 115–120 · Cierre · [Slide 14]
 Di: «Queda avanzado: Diagramar componentes/servicios de CloudLite y sus contratos.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
@@ -124,8 +150,8 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 4/Quiz Clase 4 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 Pantallazo: herramienta del día en uso con artefacto CloudLite [[captura: demo-clase04.png]]
-- 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase04.png | receta: 1) Abre draw.io / diagrams.net y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 4/Capturas/demo-clase04.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase04.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 4/Capturas/evidencia-clase04.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
 - Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.

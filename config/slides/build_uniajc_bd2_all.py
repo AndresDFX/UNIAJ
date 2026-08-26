@@ -88,18 +88,18 @@ CLASES = [
     subtitulo="Diagnostico · dominio PI · primer modelo",
     herramienta="draw.io + DB Fiddle",
     hito_pi="Arranque PI: dominio, alcance y borrador ER de VetCare DB",
-    entregable="Ficha del proyecto + ER borrador (PNG) + lista de entidades/reglas",
-    teoria=["Modelo entidad-relacion: una tabla = conjunto de entidades del mismo tipo; cada fila es una instancia, cada columna un atributo. La clave primaria (PK) identifica sin ambiguedad cada fila: nunca se repite, nunca es nula.",
+    entregable="Ficha del PI (plantilla) + ER en Mermaid renderizado en ExamLab (PNG para tu carpeta) + 3 reglas Condicion -> Accion",
+    teoria=["Nivel conceptual = entidades y relaciones; nivel fisico = tablas con tipos y longitudes. El ER de hoy es el conceptual (Dueno posee Mascota); el CREATE TABLE de la demo es el mismo modelo en fisico (dueno.telefono VARCHAR(30)). Una tabla = conjunto de entidades del mismo tipo; cada fila es una instancia, cada columna un atributo. La clave primaria (PK) identifica sin ambiguedad cada fila: nunca se repite, nunca es nula.",
             "Clave foranea (FK): columna que apunta a la PK de otra tabla y materializa una relacion (1-N o N-N via tabla intermedia). Garantiza integridad referencial: la BD rechaza una Cita con id_mascota que no existe.",
             "Normalizacion 1FN-3FN en una frase cada una: 1FN = nada de listas dentro de una celda (una fila = una mascota, no varias); 2FN = ningun atributo depende solo de una parte de una PK compuesta; 3FN = ningun atributo depende de otro atributo que no sea la PK. Sub-normalizar genera anomalias de insercion/actualizacion/borrado (ej.: cambiar el telefono de un dueno en 5 filas distintas); sobre-normalizar multiplica JOINs sin necesidad real.",
             "Error de docente que no domina el tema: confundir PK con 'el primer campo de la tabla', o asumir que normalizar siempre mejora el rendimiento (en lectura intensiva a veces se denormaliza a proposito, y eso se vera en Clase 6-7).",
             "Dominio VetCare y sus relaciones: Dueno 1-N Mascota, Mascota 1-N Cita, Veterinario 1-N Cita, Consulta 1-1 Cita (una consulta documenta una cita atendida), Factura 1-N DetalleFactura N-1 Insumo.",
             "Reglas de negocio del PI que ya anticipan clases futuras: mascota inactiva no puede tener cita nueva (se validara con un procedimiento en Clase 3), stock de insumo nunca queda negativo (transacciones, Clase 8), cambios sensibles quedan auditados (triggers, Clase 4)."],
-    demo="Boceto ER en draw.io (Dueno-Mascota-Cita) + CREATE TABLE minimo en DB Fiddle.",
-    taller=["Nombrar y registrar su proyecto VetCare DB (trabajo individual por defecto; equipo de 2-3 solo si el docente lo autoriza).",
-            "Listar entidades minimas + 3 reglas de negocio propias.",
-            "Dibujar ER borrador en draw.io/Excalidraw y exportar PNG.",
-            "Escribir 5-8 lineas de alcance (que SI / que NO hara el PI)."],
+    demo="Boceto ER en draw.io (Dueno-Mascota-Cita) + CREATE TABLE minimo en DB Fiddle, y cierre pasando el boceto a Mermaid con IA para pegarlo renderizado en ExamLab.",
+    taller=["Registrar el proyecto con el nombre exacto VetCare - [Apellido] (trabajo individual por defecto; equipo de 2-3 solo si el docente lo autoriza).",
+            "Llenar la plantilla de la ficha del PI: alcance SI / alcance NO y 3 reglas de negocio propias en formato Condicion -> Accion.",
+            "Dibujar el ER borrador en Excalidraw o draw.io, pasarlo a Mermaid (erDiagram) con ayuda de una IA y pegarlo renderizado en ExamLab.",
+            "Exportar tambien el PNG del ER a la carpeta del PI y verificar que los nombres coincidan con el DDL (minusculas, singular, id_<entidad>)."],
     quiz=True, sql="01_arranque_vetcare.sql"),
   dict(n=2, slug="Administracion de bases de datos",
     titulo="Administracion de BD · Roles VetCare",
@@ -986,6 +986,12 @@ ANTES_DESPUES = {
 }
 
 
+# Titulo de la diapositiva del flujo de diagramacion (Excalidraw -> IA -> Mermaid
+# -> ExamLab). Vive aqui y no en examlab_talleres porque es el rotulo del deck del
+# curso; el CONTENIDO de los 4 pasos si es compartido entre los cuatro cursos.
+FLUJO_SLIDE_TITULO = "Del boceto a ExamLab (diagrama)"
+
+
 def _fundamento_md(c):
     """Desarrollo en prosa del tema, SOLO para el guion docente.
 
@@ -998,6 +1004,7 @@ def _fundamento_md(c):
     fund = (c.get("fundamento") or FUNDAMENTOS.get(c["n"]) or "").strip()
     if not fund:
         return ""
+    fund = _resolver_slides(fund, _slide_map(c), c["n"])
     return "\n\n### Desarrollo del tema (para dictar sin consultar otra fuente)\n\n" + fund + "\n"
 
 
@@ -1021,6 +1028,107 @@ def _slide_summary(bullets_, max_chars=110, max_items=5):
             first = base[:max_chars].rsplit(" ", 1)[0].rstrip(":,;") + "…"
         out.append(first)
     return out[:max_items]
+
+
+def _tiene_diagrama(n):
+    """True si el taller de ExamLab de esta clase tiene una pregunta tipo `diagrama`.
+
+    Es lo que decide si la clase necesita la diapositiva del flujo Excalidraw ->
+    IA -> Mermaid -> ExamLab: sin pregunta de diagrama no aporta nada.
+    """
+    taller = TALLERES_EXAMLAB.get(n) or {}
+    return any(p.get("tipo") == "diagrama" for p in taller.get("preguntas", []))
+
+
+def _slide_map(c):
+    """Titulos de las diapositivas de esta clase, EN ORDEN.
+
+    Por que existe: el guion docente tenia una lista de «Referencias a diapositivas»
+    escrita a mano que no coincidia con el deck real (anunciaba la demo en la slide 5
+    cuando estaba en la 7), asi que el docente no podia leer el guion con la
+    presentacion proyectada. Esta funcion refleja los mismos condicionales que
+    `build_pptx`, y `build_pptx` verifica al final que las dos listas tengan la misma
+    longitud: si alguien agrega una diapositiva y olvida este mapa, el build falla en
+    vez de publicar un guion desincronizado.
+    """
+    if c['tipo'] == 'parcial':
+        return [f"Portada · Clase {c['n']} · {c['titulo']}",
+                "Indicaciones (dia de parcial)",
+                "Cierre"]
+    m = [f"Portada · Clase {c['n']} · {c['titulo']}",
+         "Encuadre de hoy · Objetivo PI",
+         "Mapa del bloque de hoy (120 min)",
+         "Teoria Core (breve)"]
+    dg = DIAGRAMAS_BD2.get(c['n'])
+    if dg:
+        m.append(dg["titulo"])
+    ad = ANTES_DESPUES.get(c['n'])
+    if ad:
+        m.append(ad["titulo"])
+    cs = CODIGO_SLIDE.get(c['n'])
+    if cs:
+        m.append(cs[0])
+    m.append("Como se ordena la sesion de hoy" if c['tipo'] == 'sustentacion' else "Demo del dia")
+    if HERRAMIENTAS_DIA.get(c["n"]):
+        m.append("Herramientas de hoy")
+    if _tiene_diagrama(c['n']):
+        m.append(FLUJO_SLIDE_TITULO)
+    tb = TALLER_BLOQUE.get(c["n"], {})
+    label = {"autonoma": "Actividad autonoma",
+             "sustentacion": "Sustentacion del PI"}.get(c["tipo"], "Taller PI VetCare")
+    if tb.get("contexto"):
+        m.append(f"{label} — contexto / por que importa")
+    m.append(f"{label} — objetivo y criterios")
+    if tb.get("escenario"):
+        m.append(f"{label} — escenario / datos de partida")
+    m.append(f"{label} — pasos guiados")
+    if tb.get("pistas"):
+        m.append(f"{label} — pistas (checklist vacio)")
+    m.append("Criterios de exito / entregable")
+    m.append("Cierre del PI" if c['tipo'] == 'sustentacion' else "Para el PI esta semana")
+    m.append(f"Cierre · Clase {c['n']}")
+    return m
+
+
+def _slide_no(mapa, *fragmentos):
+    """Numero (1-based) de la primera diapositiva cuyo titulo contiene el fragmento.
+
+    Sirve para etiquetar el plan minuto a minuto con `[Slide N]` reales en vez de
+    numeros escritos a mano.
+    """
+    for frag in fragmentos:
+        f = frag.lower()
+        for i, t in enumerate(mapa, 1):
+            if f in t.lower():
+                return i
+    return None
+
+
+def _slide_tag(mapa, *fragmentos):
+    """`[Slide 7]` listo para pegar en el guion, o cadena vacia si no aplica."""
+    n = _slide_no(mapa, *fragmentos)
+    return f"[Slide {n}] " if n else ""
+
+
+# --- Referencias a diapositivas dentro del fundamento teorico ---------------
+# En la prosa se escribe «{{slide:Teoria Core}}» y aqui se convierte en
+# «diapositiva 4» usando el mapa real del deck. Asi el numero no se escribe a mano
+# en ningun sitio y no puede quedar corrido.
+_SLIDE_TOKEN = re.compile(r"\{\{\s*slide:\s*([^}]+?)\s*\}\}")
+
+
+def _resolver_slides(texto, mapa, n_clase):
+    def _rep(m):
+        frag = m.group(1)
+        i = _slide_no(mapa, frag)
+        if i is None:
+            raise SystemExit(
+                f"Clase {n_clase}: el fundamento referencia la diapositiva "
+                f"«{frag}», que ya no existe en el deck. Corrige el texto o "
+                "_slide_map()."
+            )
+        return f"diapositiva {i}"
+    return _SLIDE_TOKEN.sub(_rep, texto)
 
 
 def cover_pptx(prs, c):
@@ -1119,6 +1227,18 @@ def build_pptx(c):
         herramientas_slide(prs, tools, title="Herramientas de hoy",
                            sub="Gratis · navegador o free tier", idx=idx)
         idx += 1
+    # Del boceto al codigo: solo en las clases cuyo taller tiene pregunta de
+    # diagrama. El estudiante disena en Excalidraw/draw.io y entrega Mermaid; sin
+    # esta diapositiva llegaba con un PNG a una caja que espera texto.
+    if _tiene_diagrama(c['n']):
+        dialectos = examlab_talleres._dialectos_del_taller(TALLERES_EXAMLAB[c['n']])
+        steps_visual_slide(
+            prs, FLUJO_SLIDE_TITULO,
+            examlab_talleres.flujo_diagrama_pasos(
+                dialectos[0] if len(dialectos) == 1 else "el tipo que pide el enunciado"),
+            sub="El diagrama se entrega como codigo Mermaid dentro de ExamLab, no como imagen",
+            idx=idx)
+        idx += 1
     tb = TALLER_BLOQUE.get(c["n"], {})
     label = {"autonoma": "Actividad autonoma",
              "sustentacion": "Sustentacion del PI"}.get(c["tipo"], "Taller PI VetCare")
@@ -1180,11 +1300,63 @@ def build_pptx(c):
             f"Entregable: {c['entregable']}",
             "Siguiente clase: continuar el hilo del PI segun plan",
         ], accent="Teoria breve · practica = PI")
+    _verificar_mapa(c, prs)
     out_dir = CLASES_DIR / f"Clase {c['n']} - {c['slug']}"
     out_dir.mkdir(parents=True, exist_ok=True)
     out = out_dir / "Presentacion.pptx"
     prs.save(str(out)); print("PPTX", out)
     return out
+
+
+def _verificar_mapa(c, prs):
+    """Aborta si `_slide_map` y el deck real dejaron de coincidir.
+
+    Sin esta guarda el guion vuelve a anunciar numeros de diapositiva equivocados en
+    cuanto alguien agregue o quite una slide, que es exactamente el defecto que se
+    esta corrigiendo.
+    """
+    esperado, real = len(_slide_map(c)), len(prs.slides)
+    if esperado != real:
+        raise SystemExit(
+            f"Clase {c['n']}: el deck tiene {real} diapositivas y _slide_map() "
+            f"declara {esperado}. Actualiza _slide_map() en build_uniajc_bd2_all.py "
+            "para que el guion siga apuntando a las diapositivas correctas."
+        )
+
+
+# Plantillas de ficha por clase: el esqueleto literal que el estudiante copia y
+# llena. Refleja campo por campo lo que califica la pregunta abierta de ExamLab
+# (que es la fuente de verdad de la nota); el documento solo evita que cada quien
+# invente su propia estructura.
+PLANTILLA_FICHA = {
+    1: [
+        "Nombre del proyecto: VetCare - [Apellido]",
+        "Autor: [nombre completo]        Codigo: [__________]",
+        "Integrantes: [solo si el docente autorizo equipo; si trabajas solo, escribe «individual»]",
+        "Descripcion en una frase: [que es VetCare DB para la clinica Huellitas]",
+        "",
+        "1) QUE SI HARA EL PI  (5 a 8 lineas)",
+        "   - [proceso de la clinica que la base va a soportar]",
+        "   - [ ... ]",
+        "",
+        "2) QUE NO HARA EL PI  (3 a 5 lineas)",
+        "   - [limite explicito: p. ej. no habra pasarela de pagos]",
+        "   - [ ... ]",
+        "",
+        "3) TRES REGLAS DE NEGOCIO PROPIAS  —  formato Condicion -> Accion",
+        "   R1. Si [condicion verificable] -> entonces [accion que hace la base].",
+        "       Se implementa con: [ ] CHECK  [ ] UNIQUE  [ ] FK  [ ] procedimiento  [ ] trigger",
+        "   R2. Si [ ... ] -> entonces [ ... ].",
+        "       Se implementa con: [ ] CHECK  [ ] UNIQUE  [ ] FK  [ ] procedimiento  [ ] trigger",
+        "   R3. Si [ ... ] -> entonces [ ... ].",
+        "       Se implementa con: [ ] CHECK  [ ] UNIQUE  [ ] FK  [ ] procedimiento  [ ] trigger",
+        "   (deben ser TUYAS: distintas de las tres del enunciado general)",
+        "",
+        "4) RIESGO PRINCIPAL PARA TERMINAR EL PI Y COMO LO MITIGAS  (2 lineas)",
+        "   Riesgo: [ ... ]        Mitigacion: [ ... ]",
+    ],
+}
+
 
 def build_taller_docx(c):
     if c['tipo']=='parcial': return None
@@ -1206,17 +1378,31 @@ def build_taller_docx(c):
     bullets(doc, tb.get('escenario') or ["Usar su propio DDL/ER de VetCare."])
     para(doc, "4. Actividades (pasos guiados)", size=12, bold=True, color=AZUL)
     bullets(doc, c['taller'])
-    para(doc, "5. Entregable", size=12, bold=True, color=AZUL)
+    _n_sec = 5
+    if PLANTILLA_FICHA.get(c['n']):
+        # La plantilla vive DENTRO del taller a proposito: cuando estaba solo en el
+        # enunciado del PI, el estudiante improvisaba la estructura y cada entrega
+        # llegaba con secciones distintas, imposibles de comparar contra la rubrica.
+        para(doc, f"{_n_sec}. Plantilla de la ficha (copia esto y llenalo)",
+             size=12, bold=True, color=AZUL)
+        para(doc, "Estos son exactamente los campos que califica ExamLab. Copia el bloque "
+                  "tal cual en tu documento, llenalo, y pega cada parte en la pregunta que "
+                  "corresponda.", size=10)
+        for linea in PLANTILLA_FICHA[c['n']]:
+            para(doc, linea or " ", size=10, shade_fill="F2F2F3", space_after=0)
+        para(doc, " ", size=6, space_after=0)
+        _n_sec += 1
+    para(doc, f"{_n_sec}. Entregable", size=12, bold=True, color=AZUL)
     para(doc, c['entregable'], shade_fill="E8F4FA")
-    para(doc, "6. Criterios de exito", size=12, bold=True, color=AZUL)
+    para(doc, f"{_n_sec + 1}. Criterios de exito", size=12, bold=True, color=AZUL)
     bullets(doc, tb.get('criterios') or [
         "Avance real de su propio VetCare.",
         "Evidencia ejecutable o diagrama exportado.",
         "Criterio de rubrica del PI movido hoy.",
     ])
-    para(doc, "7. Pistas (checklist vacio — sin solucion)", size=12, bold=True, color=AZUL)
+    para(doc, f"{_n_sec + 2}. Pistas (checklist vacio — sin solucion)", size=12, bold=True, color=AZUL)
     bullets(doc, tb.get('pistas') or ["Revisar evidencia antes de subir."])
-    para(doc, "8. Entrega", size=12, bold=True, color=AZUL)
+    para(doc, f"{_n_sec + 3}. Entrega", size=12, bold=True, color=AZUL)
     _p_entrega = doc.add_paragraph(); _p_entrega.paragraph_format.space_after = DocPt(6)
     if c['tipo'] == 'sustentacion':
         # No es un taller con plazo del domingo: la sesion es la sustentacion en vivo,
@@ -1234,7 +1420,7 @@ def build_taller_docx(c):
         examlab_talleres.render_estudiante(
             doc, _taller_el, para=para, bullets=bullets,
             add_inline=add_inline_docx, color_titulo=AZUL,
-            titulo="9. Que vas a resolver en ExamLab",
+            titulo=f"{_n_sec + 4}. Que vas a resolver en ExamLab",
         )
     out_dir = CLASES_DIR / f"Clase {c['n']} - {c['slug']}"
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -1311,11 +1497,38 @@ CAPTURAS_CLASE = {
 }
 
 
-def _capturas_md(n):
-    """Lineas 📸 del guion para la clase n (con token explicito de archivo)."""
+#: Receta por defecto para la captura de la demo cuando todavia no hay PNG. El
+#: marcador `[CAP: ...]` que habia antes llegaba literal al .docx y no le decia al
+#: docente ni que abrir ni con que nombre guardar, asi que la caja seguia vacia.
+def _receta_demo(c):
+    return (
+        f"1) Abra {c['herramienta']} y repita la demo de este bloque sobre el dominio "
+        "VetCare (no otro ejemplo).  "
+        "2) Capture la ventana en el momento en que se ve el resultado, no el "
+        "escritorio completo.  "
+        "3) Recorte a ~1200 px de ancho.  "
+        f"4) Guardela como Kit docente/Clase {c['n']}/Capturas/cap01_demo.png.  "
+        "5) Vuelva a generar el guion: la imagen queda embebida aqui sola."
+    )
+
+
+def _capturas_md(n, c=None):
+    """Lineas 📸 del guion para la clase n (con token explicito de archivo).
+
+    Cuando la clase no tiene ilustracion de «salida esperada» generada por
+    `mockups.py`, en vez de un marcador crudo se emite el token con la receta para
+    producir la captura: es la regla transversal de recursos no generables.
+    """
     items = CAPTURAS_CLASE.get(n)
     if not items:
-        return f"📸 Pantallazo: [CAP: demo VetCare Clase {n}]\n"
+        receta = _receta_demo(c) if c else (
+            f"1) Abra la herramienta de la demo y repita los pasos sobre VetCare.  "
+            f"2) Capture solo la ventana util.  3) Recorte a ~1200 px de ancho.  "
+            f"4) Guardela como Kit docente/Clase {n}/Capturas/cap01_demo.png.  "
+            "5) Vuelva a generar el guion."
+        )
+        return (f"📸 Salida esperada de la demo de la Clase {n} "
+                f"[[captura: cap01_demo.png | receta: {receta}]]\n")
     return "".join(f"📸 {cap} [[captura: {fn}]]\n" for cap, fn in items)
 
 
@@ -1351,20 +1564,31 @@ def build_guion_md(c):
         (kit/"Capturas"/".gitkeep").write_text("", encoding='utf-8')
         return path
 
-    slides_ref = [
-        "Slide 1 portada (Clase N + titulo VetCare)",
-        "Slide Agenda 120 min",
-        "Slide Objetivo PI de la clase",
-        "Slide Teoria Core",
-        "Slide Demo del dia",
-        "Slide Herramientas de hoy (logos 3-4)",
-        "Bloque Taller ampliado: contexto / objetivo / escenario / pasos / pistas",
-        "Slide Criterios de exito / entregable",
-        "Slide Para el PI esta semana",
-        "Slide Cierre",
-        "Solucion PRIVADA: Kit docente/Clase N/Solucion Taller Clase N - VetCare.docx",
-    ]
+    # Referencias a diapositivas: se derivan del mismo mapa que arma el deck, para
+    # que el docente pueda leer el guion con la presentacion proyectada sin perder
+    # el hilo. Antes era una lista escrita a mano y estaba corrida.
+    mapa = _slide_map(c)
+    sl_teoria = _slide_tag(mapa, "Teoria Core")
+    sl_demo = _slide_tag(mapa, "Demo del dia", "Como se ordena")
+    sl_flujo = _slide_tag(mapa, FLUJO_SLIDE_TITULO)
+    sl_taller = _slide_tag(mapa, "pasos guiados")
+    sl_crit = _slide_tag(mapa, "Criterios de exito")
+    sl_cierre = f"[Slide {len(mapa)}] "  # el cierre es siempre la ultima
     tipo = TIPO_LABEL[c['tipo']]
+    # Si el taller pide un diagrama, la demo tiene que terminar en ExamLab y no en
+    # el PNG: el docente demuestra tambien la conversion a Mermaid.
+    if _tiene_diagrama(c['n']):
+        _dial = examlab_talleres._dialectos_del_taller(TALLERES_EXAMLAB[c['n']])
+        flujo_guion = (
+            "\n**Cierre la demo dentro de ExamLab** " + sl_flujo + "— es la parte que el "
+            "estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, "
+            "peguelo en la pregunta de diagrama y muestrelo renderizado.\n\n"
+            + examlab_talleres.flujo_diagrama_md(
+                _dial[0] if len(_dial) == 1 else "el tipo que pide el enunciado")
+            + "\n"
+        )
+    else:
+        flujo_guion = ""
     bloques = ""
     if c['tipo'] == 'sustentacion':
         plan = """## Plan minuto a minuto (120 min) — sesion de SUSTENTACIONES EN VIVO
@@ -1431,40 +1655,41 @@ estudiante autonomo sepa si le quedo bien):
 {caps}
 ### Bloque D (100-120) · Empaquetado y cierre
 Subir entregable a ExamLab. Actualizar el checklist PI del proyecto.
-""".format(hito=c['hito_pi'], herr=c['herramienta'], caps=_capturas_md(c['n']))
+""".format(hito=c['hito_pi'], herr=c['herramienta'], caps=_capturas_md(c['n'], c))
     else:
         plan = f"""## Plan minuto a minuto (120 min) — texto casi literal
 
-### 0-10 · Encuadre
+### 0-10 · Encuadre · {_slide_tag(mapa, "Encuadre de hoy").strip()}{_slide_tag(mapa, "Mapa del bloque").strip()}
 **Decir:** «Buenas. Hoy el hilo es VetCare DB. Avanzamos el PI en: {c['hito_pi']}.
 La teoria sera corta; el peso esta en el taller del proyecto.»
-Mostrar slide Agenda + Objetivo PI.
+Proyectar {_slide_tag(mapa, "Encuadre de hoy") or "la slide de"}«Encuadre de hoy · Objetivo PI» y {_slide_tag(mapa, "Mapa del bloque")}«Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
-### 10-35 · Teoria Core (breve)
+### 10-35 · Teoria Core (breve) · {sl_teoria.strip()}
 **Decir:** «Solo lo necesario para el entregable de hoy.»
+Proyectar {sl_teoria}«Teoria Core (breve)». El desarrollo completo de cada punto esta
+arriba, en «Fundamento teorico», dividido por diapositiva.
 Cubrir:
 """ + "\n".join(f"- {t}" for t in c['teoria']) + f"""
-Referencia: slide Teoria Core.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso
+### 35-55 · Demo paso a paso · {sl_demo.strip()}{sl_flujo.strip()}
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: {c['demo']}
 Herramienta: {c['herramienta']}
-""" + _capturas_md(c['n']) + f"""Dejar script/enlace en el chat o en ExamLab.
+{flujo_guion}""" + _capturas_md(c['n'], c) + f"""Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI
+### 55-105 · Taller guiado = tarea del PI · {sl_taller.strip()}
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
 """ + "\n".join(f"{i+1}. {t}" for i,t in enumerate(c['taller'])) + f"""
 Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: {c['entregable']}
-📸 Pantallazo: [CAP: avance del estudiante / playground Clase {c['n']}]
+📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase {c['n']}/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto
-Repasar checklist del dia (slide Criterios).
+### 105-115 · Criterios de exito + quiz corto · {sl_crit.strip()}
+Repasar checklist del dia con {sl_crit}«Criterios de exito / entregable».
 """ + (
         f"Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). "
         f"Version impresa/proyectable de respaldo: `Quiz Clase {c['n']} - VetCare.docx`. "
@@ -1473,9 +1698,9 @@ Repasar checklist del dia (slide Criterios).
         "Sin quiz formal: 2 preguntas orales de cierre."
     ) + f"""
 
-### 115-120 · Cierre
+### 115-120 · Cierre · {sl_cierre.strip()}
 **Decir:** «Queda avanzado: {c['hito_pi']}. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Slide cierre. Dudas finales.
+Proyectar {sl_cierre}slide de cierre. Dudas finales.
 """
 
     md = f"""# Guion docente · Clase {c['n']} · {c['titulo']}
@@ -1501,14 +1726,22 @@ del PI VetCare. La teoria se limita a desbloquear el taller.
 **Demo que usted debe poder repetir:** {c['demo']}
 
 ## Referencias a diapositivas
-""" + "\n".join(f"{i+1}. {s}" for i,s in enumerate(slides_ref)) + "\n\n" + plan + f"""
+Numeracion real del deck `Clases/Clase {c['n']} - {c['slug']}/Presentacion.pptx`.
+Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
+
+""" + "\n".join(f"{i+1}. {t}" for i, t in enumerate(mapa)) + f"""
+
+> Privado, no se proyecta: `Kit docente/Clase {c['n']}/Solucion Taller Clase {c['n']} - VetCare.docx`
+""" + "\n" + plan + f"""
 
 ## Codigo / scripts
 Carpeta Codigo/ — archivo {c['sql'] or 'N/A'}.
 
 ## Capturas
-Carpeta Capturas/. Placeholders [CAP: ...] arriba; reemplazar por PNG reales cuando pueda
-(Playwright/manual en DB Fiddle, draw.io, Live SQL).
+Carpeta `Kit docente/Clase {c['n']}/Capturas/`. Cada linea de pantallazo de arriba trae
+el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia
 - Cada estudiante tiene el entregable o sus gaps escritos.
@@ -1518,10 +1751,20 @@ Carpeta Capturas/. Placeholders [CAP: ...] arriba; reemplazar por PNG reales cua
     path.write_text(md, encoding='utf-8')
     # capturas placeholder readme
     (kit/"Capturas"/"README_capturas.txt").write_text(
-        f"Placeholders pendientes Clase {c['n']}:\n"
-        f"- [CAP: demo {c['herramienta']} VetCare Clase {c['n']}]\n"
-        f"- [CAP: avance del estudiante / playground Clase {c['n']}]\n"
-        "Nombre sugerido: cap01_demo.png, cap02_taller.png\n", encoding='utf-8')
+        f"Capturas de la Clase {c['n']} — Bases de Datos II\n"
+        f"{'=' * 46}\n\n"
+        "El guion embebe automaticamente cualquier PNG que exista en esta carpeta con\n"
+        "el nombre esperado. Mientras no exista, el .docx imprime la receta en su lugar.\n\n"
+        "1) cap01_demo.png — salida de la demo del docente\n"
+        f"   - Abrir {c['herramienta']} y repetir la demo: {c['demo']}\n"
+        "   - Capturar solo la ventana con el resultado (no el escritorio completo).\n"
+        "   - Recortar a ~1200 px de ancho y guardar aqui como cap01_demo.png.\n\n"
+        "2) cap02_taller.png — evidencia de avance de un estudiante\n"
+        "   - Con permiso del estudiante, capturar su artefacto a medio construir.\n"
+        "   - Recortar nombre y correo antes de guardar. No se proyecta en clase.\n\n"
+        "Despues de agregar una imagen, regenerar el guion:\n"
+        f'   SOLO_CLASES={c["n"]} python config/slides/build_uniajc_bd2_all.py\n',
+        encoding='utf-8')
     if c['sql'] and c['sql'] in SQL_BODIES:
         (kit/"Codigo"/c['sql']).write_text(SQL_BODIES[c['sql']], encoding='utf-8')
     return path
@@ -1579,7 +1822,7 @@ Teoria breve; talleres = entregables del PI.
 - Guion Docente Clase N - ….md + .docx (via guion_md_a_docx.py)
 - Quiz Clase N - VetCare.docx (sin claves) + Quiz Clase N - CLAVE DOCENTE.docx (privado; no proyectar)
 - Codigo/*.sql demos VetCare
-- Capturas/ placeholders [CAP:…] (pendiente pantallazos reales)
+- Capturas/ con README de paso a paso; si falta el PNG, el guion imprime la receta
 - Dias 5/9/14: Guia aplicacion Parcial N (solo evaluacion)
 
 ## Builds

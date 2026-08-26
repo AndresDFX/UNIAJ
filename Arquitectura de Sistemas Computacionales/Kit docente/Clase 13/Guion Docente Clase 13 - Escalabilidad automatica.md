@@ -38,7 +38,22 @@ Tres preguntas aparecen sin falta en una clase autonoma como esta y conviene res
 
 Error tipico del docente que no domina el tema: presentar el autoescalado como solucion general a los problemas de rendimiento. Si no se identifico primero el cuello de botella, escalar la pieza equivocada no mejora nada y sube el costo; el caso mas ilustrativo es la API limitada por la base de datos, donde agregar instancias empeora la situacion porque suma presion sobre el recurso ya saturado. La consecuencia pedagogica es que el estudiante sale creyendo que la escalabilidad se compra con configuracion, y en el Parcial 3 responde con la definicion de vertical y horizontal sin poder decidir cual aplica a un caso. El segundo error es celebrar el escalado horizontal como si fuera gratis: presentarlo solo como "agregar instancias" sin exigir la revision del estado en memoria, ni el limite de conexiones, ni la capa de datos. Si eso se deja pasar, el entregable llega con la seccion de "que no escala" vacia o rellenada con una frase generica, y en la Clase 15 el estudiante afirma que su sistema soporta cualquier crecimiento mientras el diagrama muestra una unica base de datos con la sesion guardada en memoria, que es la contradiccion mas facil de detectar y la mas costosa de explicar en ese momento.
 
-Referencia de slides: `Clases/Clase 13 - Escalabilidad automatica/Presentacion.pptx` (solo tema de esta clase).
+## Referencias a diapositivas
+Numeración real del deck `Clases/Clase 13 - Escalabilidad automatica/Presentacion.pptx` (solo tema
+de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
+
+1. Portada · Clase 13 · Escalabilidad automática
+2. Agenda de hoy (120 min)
+3. Objetivos de la clase
+4. PI CloudLite — entregable de hoy
+5. Escala para CloudLite
+6. Límites y costos
+7. Politica de autoescalado (tabla, no prosa)
+8. Herramientas de hoy
+9. Del boceto a ExamLab (diagrama)
+10. Taller PI (paso a paso)
+11. Para continuar (PI)
+12. Clase 13 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -119,8 +134,8 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 13/Quiz Clase 13 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 Pantallazo: herramienta del día en uso con artefacto CloudLite [[captura: demo-clase13.png]]
-- 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase13.png | receta: 1) Abre Google Docs · draw.io (opcional nota en Deployment) y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 13/Capturas/demo-clase13.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase13.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 13/Capturas/evidencia-clase13.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
 - Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.

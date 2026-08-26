@@ -38,18 +38,34 @@ Tres preguntas llegan siempre. La primera es como se prueba rendimiento sin usua
 
 Error tipico del docente que no domina el tema: aceptar "queremos que la app sea rapida" como objetivo de rendimiento. Sin metrica en percentil, sin umbral, sin condicion de carga y sin cuello de botella sospechado, la seccion de rendimiento del informe se convierte en adjetivos, y la consecuencia es inmediata aguas abajo: en la Clase 13 el estudiante no tiene nada sobre lo que basar el trigger del autoescalado y escribe "cuando la CPU suba", y en la sustentacion de la Clase 15 no puede responder por que su diseno soporta la carga que dice soportar. El segundo error es dejar que el ensayo del pitch se convierta en un recorrido narrado del diagrama, leido en voz alta y sin una sola justificacion; y, en los equipos que el docente haya autorizado, permitir que un solo integrante hable mientras el resto observa. Si eso no se corrige hoy, en la Clase 15 la sustentacion llega como un guion memorizado que el Q&A dirigido desarma en dos preguntas, y la nota cae por una razon que era corregible con quince minutos de ensayo bien dirigido.
 
-Referencia de slides: `Clases/Clase 12 - Pruebas de rendimiento y preparacion final/Presentacion.pptx` (solo tema de esta clase).
+## Referencias a diapositivas
+Numeración real del deck `Clases/Clase 12 - Pruebas de rendimiento y preparacion final/Presentacion.pptx` (solo tema
+de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
+
+1. Portada · Clase 12 · Pruebas de rendimiento · Preparación de presentación final
+2. Agenda de hoy (120 min)
+3. Objetivos de la clase
+4. PI CloudLite — entregable de hoy
+5. Rendimiento sin stress-tool de pago
+6. Preparación de presentación (5–8 min)
+7. Paquete de entrega
+8. «Que sea rapido» no es un requisito
+9. Herramientas de hoy
+10. Del boceto a ExamLab (diagrama)
+11. Taller PI (paso a paso)
+12. Para continuar (PI)
+13. Clase 12 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 4]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Escenario de rendimiento + ensayo 5–8 min de sustentación**.
 Entregable concreto: Sección Rendimiento + guion de pitch + paquete casi-final.
 Teoría breve y luego taller; no es un lab suelto.»
 Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
 Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
 
-### 10–40 · Teoría Core (al servicio del taller)
+### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 5]
 Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las diapositivas de teoría):
 - Rendimiento sin stress-tool de pago
 - Preparación de presentación (5–8 min)
@@ -60,7 +76,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo
+### 40–55 · Demo en vivo · [Slide 10]
 Herramienta del día: **Google Docs · draw.io · (opcional) lab contenedor**.
 **Demo que usted debe poder repetir:** Definir un objetivo de rendimiento que si se puede verificar
 
@@ -72,8 +88,17 @@ Herramienta del día: **Google Docs · draw.io · (opcional) lab contenedor**.
 Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase 12/Capturas/`.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
+**Cierra la demo dentro de ExamLab** [Slide 10] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste)
+**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
+
+- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
+- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `sequenceDiagram`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
+- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
+- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
+
+
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 11]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -86,7 +111,7 @@ Aplica el quiz corto de `Kit docente/Clase 12/Quiz Clase 12 - Pruebas de rendimi
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre
+### 115–120 · Cierre · [Slide 13]
 Di: «Queda avanzado: Escenario de rendimiento + ensayo 5–8 min de sustentación.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
@@ -124,8 +149,8 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 12/Quiz Clase 12 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 Pantallazo: herramienta del día en uso con artefacto CloudLite [[captura: demo-clase12.png]]
-- 📸 Pantallazo: evidencia de entregable (diagrama/YAML/lab)
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase12.png | receta: 1) Abre Google Docs · draw.io · (opcional) lab contenedor y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 12/Capturas/demo-clase12.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase12.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 12/Capturas/evidencia-clase12.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
 - Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.

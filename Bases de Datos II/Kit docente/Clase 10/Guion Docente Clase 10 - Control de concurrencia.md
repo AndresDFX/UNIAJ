@@ -47,17 +47,27 @@ Error tipico del docente que no domina el tema: el primero es afirmar que envolv
 **Demo que usted debe poder repetir:** Narrativa paso a paso T1/T2 sobre tabla Cita.
 
 ## Referencias a diapositivas
-1. Slide 1 portada (Clase N + titulo VetCare)
-2. Slide Agenda 120 min
-3. Slide Objetivo PI de la clase
-4. Slide Teoria Core
-5. Slide Demo del dia
-6. Slide Herramientas de hoy (logos 3-4)
-7. Bloque Taller ampliado: contexto / objetivo / escenario / pasos / pistas
-8. Slide Criterios de exito / entregable
-9. Slide Para el PI esta semana
-10. Slide Cierre
-11. Solucion PRIVADA: Kit docente/Clase N/Solucion Taller Clase N - VetCare.docx
+Numeracion real del deck `Clases/Clase 10 - Control de concurrencia/Presentacion.pptx`.
+Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
+
+1. Portada · Clase 10 · Control de concurrencia · VetCare
+2. Encuadre de hoy · Objetivo PI
+3. Mapa del bloque de hoy (120 min)
+4. Teoria Core (breve)
+5. Doble reserva sin control de concurrencia
+6. La restriccion que hace imposible la doble reserva
+7. Demo del dia
+8. Herramientas de hoy
+9. Actividad autonoma — contexto / por que importa
+10. Actividad autonoma — objetivo y criterios
+11. Actividad autonoma — escenario / datos de partida
+12. Actividad autonoma — pasos guiados
+13. Actividad autonoma — pistas (checklist vacio)
+14. Criterios de exito / entregable
+15. Para el PI esta semana
+16. Cierre · Clase 10
+
+> Privado, no se proyecta: `Kit docente/Clase 10/Solucion Taller Clase 10 - VetCare.docx`
 
 ## Plan minuto a minuto (120 min equivalentes — trabajo autonomo)
 
@@ -85,8 +95,10 @@ Subir entregable a ExamLab. Actualizar el checklist PI del proyecto.
 Carpeta Codigo/ — archivo 10_concurrencia_vetcare.sql.
 
 ## Capturas
-Carpeta Capturas/. Placeholders [CAP: ...] arriba; reemplazar por PNG reales cuando pueda
-(Playwright/manual en DB Fiddle, draw.io, Live SQL).
+Carpeta `Kit docente/Clase 10/Capturas/`. Cada linea de pantallazo de arriba trae
+el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia
 - Cada estudiante tiene el entregable o sus gaps escritos.

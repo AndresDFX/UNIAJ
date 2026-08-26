@@ -47,28 +47,39 @@ Error tipico del docente que no domina el tema: mostrar la consulta antes y la c
 **Demo que usted debe poder repetir:** Consulta pesada citas+mascotas+duenos -> version filtrada y proyectada.
 
 ## Referencias a diapositivas
-1. Slide 1 portada (Clase N + titulo VetCare)
-2. Slide Agenda 120 min
-3. Slide Objetivo PI de la clase
-4. Slide Teoria Core
-5. Slide Demo del dia
-6. Slide Herramientas de hoy (logos 3-4)
-7. Bloque Taller ampliado: contexto / objetivo / escenario / pasos / pistas
-8. Slide Criterios de exito / entregable
-9. Slide Para el PI esta semana
-10. Slide Cierre
-11. Solucion PRIVADA: Kit docente/Clase N/Solucion Taller Clase N - VetCare.docx
+Numeracion real del deck `Clases/Clase 6 - Optimizacion de consultas/Presentacion.pptx`.
+Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
+
+1. Portada · Clase 6 · Optimizacion de consultas · VetCare
+2. Encuadre de hoy · Objetivo PI
+3. Mapa del bloque de hoy (120 min)
+4. Teoria Core (breve)
+5. Optimizar es un ANTES medible, no una opinion
+6. Demo del dia
+7. Herramientas de hoy
+8. Taller PI VetCare — contexto / por que importa
+9. Taller PI VetCare — objetivo y criterios
+10. Taller PI VetCare — escenario / datos de partida
+11. Taller PI VetCare — pasos guiados
+12. Taller PI VetCare — pistas (checklist vacio)
+13. Criterios de exito / entregable
+14. Para el PI esta semana
+15. Cierre · Clase 6
+
+> Privado, no se proyecta: `Kit docente/Clase 6/Solucion Taller Clase 6 - VetCare.docx`
 
 ## Plan minuto a minuto (120 min) — texto casi literal
 
-### 0-10 · Encuadre
+### 0-10 · Encuadre · [Slide 2][Slide 3]
 **Decir:** «Buenas. Hoy el hilo es VetCare DB. Avanzamos el PI en: Primera pareja de consultas antes/despues del PI.
 La teoria sera corta; el peso esta en el taller del proyecto.»
-Mostrar slide Agenda + Objetivo PI.
+Proyectar [Slide 2] «Encuadre de hoy · Objetivo PI» y [Slide 3] «Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
-### 10-35 · Teoria Core (breve)
+### 10-35 · Teoria Core (breve) · [Slide 4]
 **Decir:** «Solo lo necesario para el entregable de hoy.»
+Proyectar [Slide 4] «Teoria Core (breve)». El desarrollo completo de cada punto esta
+arriba, en «Fundamento teorico», dividido por diapositiva.
 Cubrir:
 - Optimizar consultas parte de entender que el motor NO ejecuta el SQL tal cual se escribe: primero lo transforma en un plan de ejecucion (que tablas leer, en que orden, con o sin indice) y ese plan es lo que realmente determina el tiempo de respuesta.
 - Tres cuellos de botella clasicos: (1) SELECT * trae columnas que nadie usa y aumenta el trafico/memoria; (2) JOIN sin filtro temprano obliga a cruzar tablas completas antes de descartar filas; (3) aplicar una funcion sobre la columna en el WHERE (ej. WHERE UPPER(nombre)='LUNA') impide que el motor use un indice normal sobre esa columna (esto se llama 'no-sargable').
@@ -76,17 +87,16 @@ Cubrir:
 - EXPLAIN (o EXPLAIN PLAN segun el motor) muestra COMO el motor piensa ejecutar la consulta: si dice 'Seq Scan'/'Full Table Scan' sobre una tabla grande donde se esperaba usar un indice, esa es la senal de que algo en el WHERE o el tipo de dato esta bloqueando el uso del indice.
 - Conexion con Clase 7: optimizar consultas y crear indices son las dos caras de la misma moneda — una consulta mal escrita no aprovecha ni el mejor indice, y el mejor indice no compensa una consulta que fuerza un escaneo completo.
 - Error de docente que no domina el tema: pedir 'la consulta más rápida' sin definir contra que se compara (volumen de datos, indices existentes) — optimizar siempre es relativo a un antes medible, por eso el taller pide guardar la version antes Y despues, no solo la version final.
-Referencia: slide Teoria Core.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso
+### 35-55 · Demo paso a paso · [Slide 6]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: Consulta pesada citas+mascotas+duenos -> version filtrada y proyectada.
 Herramienta: DB Fiddle / SQLTest.online
 📸 Plan de ejecucion ANTES vs DESPUES (FULL SCAN -> INDEX RANGE SCAN) [[captura: salida-explain-antes-despues.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI
+### 55-105 · Taller guiado = tarea del PI · [Slide 11]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -96,23 +106,25 @@ Actividades:
 4. Guardar 06_opt_antes.sql / 06_opt_despues.sql en la carpeta del PI.
 Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: 2 consultas (antes/despues) + justificacion (media pag.)
-📸 Pantallazo: [CAP: avance del estudiante / playground Clase 6]
+📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 6/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto
-Repasar checklist del dia (slide Criterios).
+### 105-115 · Criterios de exito + quiz corto · [Slide 13]
+Repasar checklist del dia con [Slide 13] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 6 - VetCare.docx`. Clave para usted: `Quiz Clase 6 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre
+### 115-120 · Cierre · [Slide 15]
 **Decir:** «Queda avanzado: Primera pareja de consultas antes/despues del PI. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Slide cierre. Dudas finales.
+Proyectar [Slide 15] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts
 Carpeta Codigo/ — archivo 06_opt_consultas.sql.
 
 ## Capturas
-Carpeta Capturas/. Placeholders [CAP: ...] arriba; reemplazar por PNG reales cuando pueda
-(Playwright/manual en DB Fiddle, draw.io, Live SQL).
+Carpeta `Kit docente/Clase 6/Capturas/`. Cada linea de pantallazo de arriba trae
+el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia
 - Cada estudiante tiene el entregable o sus gaps escritos.
