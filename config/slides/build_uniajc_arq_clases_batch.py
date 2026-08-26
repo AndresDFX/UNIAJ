@@ -25,6 +25,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import calendario_2026_2 as cal  # noqa: E402
 from arq_fundamentos import FUNDAMENTOS  # noqa: E402
 from arq_examlab_data import EXAMLAB as TALLERES_EXAMLAB  # noqa: E402
+import arq_solucion_data as soluciones  # noqa: E402
 import examlab_talleres  # noqa: E402
 from uniajc_slides_engine import (  # noqa: E402
     before_after_slide,
@@ -1674,7 +1675,17 @@ def build_taller_docx(c: dict) -> Path | None:
     if tb.get("pistas"):
         h2(doc, "8. Pistas (checklist vacío — sin solución)")
         bullets(doc, [f"☐ {p}" for p in tb["pistas"]])
-    h2(doc, "9. Entrega")
+    _dudas = soluciones.DUDAS_ESTUDIANTE.get(n)
+    if _dudas:
+        # Van en el documento del estudiante a proposito: son las mismas preguntas
+        # que aparecen cada semestre en la hora de taller.
+        h2(doc, "9. Dudas frecuentes (lee esto antes de preguntar)")
+        for preg, resp in _dudas:
+            para(doc, preg, bold=True, size=10.5, space_after=2)
+            para(doc, resp, size=10.5)
+        h2(doc, "10. Entrega")
+    else:
+        h2(doc, "9. Entrega")
     if c["tipo"] == "sustentacion":
         # No es un taller con plazo del domingo: la sesión es la sustentación en vivo,
         # así que el paquete tiene que estar arriba ANTES del bloque.
@@ -1695,7 +1706,8 @@ def build_taller_docx(c: dict) -> Path | None:
         examlab_talleres.render_estudiante(
             doc, _taller_el, para=para, bullets=bullets,
             add_inline=add_inline_docx, color_titulo=AZUL,
-            titulo="10. Que vas a resolver en ExamLab",
+            titulo=("11. Que vas a resolver en ExamLab" if _dudas
+                    else "10. Que vas a resolver en ExamLab"),
         )
     doc.save(str(path))
     print("OK taller ->", path)
@@ -2378,6 +2390,112 @@ def build_guion(c: dict) -> Path:
     return path
 
 
+def build_solucion(c: dict):
+    """Solucion del taller, pregunta por pregunta, para el Kit docente.
+
+    Se genera desde `arq_solucion_data` y no a mano porque la solucion tiene que
+    seguir a la rubrica: la clave de las preguntas cerradas se lee de la misma
+    fuente que ve el estudiante (`arq_examlab_data`), asi que no puede quedar
+    marcando una opcion que en la plataforma ya cambio. Las clases sin datos de
+    solucion no se tocan: conservan su archivo actual.
+    """
+    n = c["n"]
+    sol = soluciones.SOLUCION.get(n)
+    if not sol:
+        return None
+
+    taller = TALLERES_EXAMLAB.get(n) or {}
+    L = [
+        f"# {sol['titulo']}",
+        "",
+        "> **DOCUMENTO DOCENTE — PRIVADO.** No publicar en `Clases/` ni en ExamLab "
+        "antes del cierre de la entrega.",
+        "",
+        f"**Resumen:** {sol['resumen']}",
+        "",
+        "## Alineacion con el taller",
+        "",
+        f"- Taller del estudiante: `Clases/Clase {n} - {c['slug']}/`",
+        f"- Configuracion en la plataforma: `Kit docente/Clase {n}/Taller en ExamLab - "
+        f"Clase {n} (configuracion).md`",
+        f"- Hito del PI: {c.get('pi_hoy', '—')}",
+        f"- Entregable: {c.get('entregable', '—')}",
+        f"- **Total: {sol['total']} puntos** repartidos en "
+        f"{len(sol['preguntas'])} preguntas.",
+        "",
+        "| # | Pregunta | Tipo | Puntos |",
+        "|---|---|---|---|",
+    ]
+    for p in sol["preguntas"]:
+        L.append(f"| {p['n']} | {p['titulo']} | `{p['tipo']}` | {p['puntos']} |")
+    L.append("")
+
+    for p in sol["preguntas"]:
+        L += ["---", "", f"## Pregunta {p['n']} · {p['titulo']} · {p['puntos']} pts", ""]
+
+        # Respuesta esperada, en la forma que corresponda al tipo de pregunta.
+        if p.get("respuesta"):
+            L += ["### Respuesta esperada", "", p["respuesta"], ""]
+        if p.get("respuesta_mermaid_biblio"):
+            L += ["### Respuesta esperada (dominio de la solucion)", "",
+                  "```mermaid", p["respuesta_mermaid_biblio"].strip(), "```", "",
+                  "### Modelo de referencia que ve el estudiante", "",
+                  "Es el que aparece en el enunciado de la plataforma, sobre el dominio "
+                  f"**{soluciones.DOMINIO_PROYECTADO}**. Sirve para comparar estructura y "
+                  "conteos, no para calificar contenido:", "",
+                  "```mermaid", soluciones.mermaid_referencia(n).strip(), "```", ""]
+        if p.get("tabla"):
+            t = p["tabla"]
+            L += ["### Respuesta esperada", "",
+                  "| " + " | ".join(t["headers"]) + " |",
+                  "|" + "---|" * len(t["headers"])]
+            for fila in t["rows"]:
+                L.append("| " + " | ".join(fila) + " |")
+            L.append("")
+        if p.get("veredicto"):
+            L += ["**Veredicto (las 2 frases que se piden):**", "", f"> {p['veredicto']}", ""]
+
+        # Preguntas cerradas: clave leida de ExamLab + por que cada opcion.
+        if p.get("justificacion"):
+            ops, correctas = soluciones.opciones(n, p["n"])
+            L += ["### Clave y por que", "",
+                  "La clave se lee del banco de la plataforma, asi que esta es la que se "
+                  "califica. La columna de la derecha es lo que hay que poder responderle al "
+                  "estudiante cuando pregunte.", "",
+                  "| | Opcion | Por que |", "|---|---|---|"]
+            for i, o in enumerate(ops):
+                marca = "**SI**" if i in correctas else "no"
+                L.append(f"| {marca} | {o} | {p['justificacion'].get(i, '—')} |")
+            L.append("")
+
+        L += ["### Como calificar", ""] + [f"- {x}" for x in p["como_calificar"]] + [""]
+        L += ["### Errores frecuentes y que hacer", ""] + [f"- {x}" for x in p["errores"]] + [""]
+
+    if sol.get("preguntas_frecuentes"):
+        L += ["---", "", "## Lo que van a preguntar (respuestas listas)", "",
+              "Estas son las dudas que aparecen todos los semestres. Tenerlas resueltas por "
+              "escrito es lo que evita responder la misma cosa quince veces durante el taller.",
+              ""]
+        for preg, resp in sol["preguntas_frecuentes"]:
+            L += [f"**{preg}**", "", resp, ""]
+
+    L += ["---", "",
+          "## Politica de entrega",
+          "",
+          "La entrega que se califica es la respuesta dentro de ExamLab "
+          "(https://uniaj.examlab.workers.dev/). El documento en Word o Google Docs es "
+          "opcional y solo sirve para que el estudiante conserve sus respuestas. "
+          "Gratis + navegador; sin cuentas cloud de pago ni tarjeta.",
+          ""]
+
+    kit = CURSO / "Kit docente" / f"Clase {n}"
+    kit.mkdir(parents=True, exist_ok=True)
+    out = kit / f"Solucion Taller Clase {n} - CloudLite.md"
+    out.write_text("\n".join(L), encoding="utf-8")
+    print("OK solucion md ->", out)
+    return out
+
+
 def build_parcial_kit_note(c: dict) -> Path:
     n = c["n"]
     kit = CURSO / "Kit docente" / f"Clase {n}"
@@ -2461,6 +2579,9 @@ def build_all(solo_clases=None):
         build_taller_docx(c)
         build_quiz_docx(c)
         build_examlab_guia(c)
+        sol = build_solucion(c)
+        if sol:
+            guiones.append(sol)   # se convierte a .docx con el mismo conversor
         g = build_guion(c)
         guiones.append(g)
     convert_guiones(guiones)
