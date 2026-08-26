@@ -27,7 +27,7 @@ Cada taller suma 100 puntos.
 # Actividad unica del Corte 1
 # ---------------------------------------------------------------------------
 # En ExamLab las Clases 1 a 4 NO tienen un taller cada una: comparten UNA sola
-# actividad de 11 preguntas, con numeracion continua y 25 % del peso por clase.
+# actividad de 15 preguntas, con numeracion continua y 25 % del peso por clase.
 # Por eso cada `EXAMLAB[n]` de esas cuatro clases lleva solo sus preguntas, y
 # cada pregunta declara su `n_global`: es el numero con el que el estudiante la
 # ve en la plataforma. Sin eso, el material de la Clase 3 hablaria de «la
@@ -38,7 +38,7 @@ Cada taller suma 100 puntos.
 ACTIVIDAD_CORTE1 = {
     "titulo": "Actividad del Corte 1 - CloudLite App: dominio, decision y contenedor",
     "clases": (1, 2, 3, 4),
-    "preguntas": 11,
+    "preguntas": 15,
     "total": 100,
     "cierre": "domingo 23:59 de la semana de la Clase 4",
 }
@@ -47,14 +47,14 @@ ACTIVIDAD_CORTE1 = {
 EXAMLAB = {1: {'pasos': [
                             'Paso 1: elija un dominio concreto entre AgendaU, BiblioLite, InventarioLab, TurnosClinica o EventosCampus (o uno propio del mismo tamano) y escriba en la pregunta 1 el problema en 2 o 3 frases, diciendo QUIEN lo sufre con un rol concreto y COMO se mide con una cifra, aunque sea estimada; verifique que su enunciado no sirva igual para cualquier otro sistema, porque entonces el dominio todavia es generico.',
                             'Paso 2: complete en la pregunta 2 la ficha de cinco bloques (DOMINIO, PROBLEMA, ACTORES, CAPACIDADES, FUERA DE ALCANCE) con 3 a 5 capacidades en la forma verbo mas objeto de negocio, 2 a 3 actores con lo que espera cada uno, los sistemas externos dentro del bloque ACTORES, y lo que el sistema no hara este semestre; verifique que ninguna capacidad nombre tecnologia.',
-                            'Paso 3: dibuje primero el boceto del C4 Context en Excalidraw o draw.io, que es donde se piensa el modelo, y despues pidale a una IA que lo traduzca a Mermaid («convierta este diagrama a Mermaid usando C4Context»); peguelo en la pregunta 3 y verifique en el diagrama ya renderizado que el sistema sea UNA sola caja, que no aparezca ninguna caja interna (eso es la pregunta 9) y que cada flecha lleve verbo y protocolo.',
-                            'Paso 4: antes de cerrar la sesion, revise que los nombres de actores y de sistemas externos sean EXACTAMENTE los mismos en la ficha y en el diagrama; si no coinciden, no son el mismo sistema, y las preguntas 9 a 11 de esta actividad reutilizan esos nombres. Las preguntas 4 a 11 se resuelven en las Clases 2, 3 y 4: la actividad se entrega completa al cierre del Corte 1, no hoy.',
+                            'Paso 3: dibuje primero el boceto del C4 Context en Excalidraw o draw.io, que es donde se piensa el modelo, y despues pidale a una IA que lo traduzca a Mermaid («convierta este diagrama a Mermaid usando C4Context»); peguelo en la pregunta 3 y verifique en el diagrama ya renderizado que el sistema sea UNA sola caja, que no aparezca ninguna caja interna (eso es la pregunta 13) y que cada flecha lleve verbo y protocolo.',
+                            'Paso 4: elija en la pregunta 4 dos atributos de calidad de los cuatro del curso, escriba por que pesan en SU dominio y como los mediria con un numero y una unidad, y cierre diciendo cual sacrificaria y que gana a cambio; revise ademas que los nombres de actores y de sistemas externos sean EXACTAMENTE los mismos en la ficha y en el diagrama, porque las preguntas 12 a 15 los reutilizan. Las preguntas 5 a 15 se resuelven en las Clases 2, 3 y 4: la actividad se entrega completa al cierre del Corte 1, no hoy.',
                         ],
      'preguntas': [
                       {
                           'n_global': 1,
                           'tipo': 'abierta',
-                          'puntos': 6.25,
+                          'puntos': 5.0,
                           'enunciado': '''## Dominio y problema de CloudLite App
 
 Elija un dominio **concreto** para CloudLite App y escriba el problema en **2 o 3 frases**.
@@ -83,7 +83,7 @@ misma actividad, y las Clases 7, 11 y 15, reutilizan estos nombres.
                       {
                           'n_global': 2,
                           'tipo': 'abierta',
-                          'puntos': 8.75,
+                          'puntos': 7.0,
                           'enunciado': '''## Ficha del dominio
 
 Complete la ficha del dominio que eligio en la pregunta anterior. Son **cinco bloques
@@ -118,7 +118,7 @@ FUERA DE ALCANCE
                       {
                           'n_global': 3,
                           'tipo': 'diagrama',
-                          'puntos': 10.0,
+                          'puntos': 8.0,
                           'enunciado': '''## C4 Context de CloudLite App
 
 Modele el diagrama **C4 de nivel Context** de su CloudLite, en Mermaid. La primera linea
@@ -137,7 +137,7 @@ El diagrama debe mostrar:
 
 > **No incluya todavia los contenedores internos.** Nada de base de datos, API, worker ni
 > cache: en el nivel Context el sistema es una caja negra. Esas cajas son el diagrama de
-> la pregunta 9 de esta misma actividad, que corresponde a la Clase 4. Si se dibujan aqui,
+> la pregunta 13 de esta misma actividad, que corresponde a la Clase 4. Si se dibujan aqui,
 > ese diagrama se queda sin nada nuevo que mostrar.
 
 **Antes de enviar, verifique renderizando dentro de ExamLab:** que el diagrama se dibuje
@@ -151,7 +151,7 @@ separe con «y» o con guion.
 seguro que se colaron piezas internas del sistema.
 
 > La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
-                          'rubrica': '3 pts una sola caja System para CloudLite completo. 2 pts los actores como Person, coherentes con la ficha. 2 pts los sistemas externos como System_Ext, los mismos que la ficha. 2 pts que TODA flecha lleve verbo de negocio y protocolo. 1 pt que el diagrama renderice sin error dentro de la plataforma. Si aparece un contenedor interno (base de datos, API, worker, cache) se pierden los 3 pts de la caja del sistema, porque eso es el nivel Container de la pregunta 9.',
+                          'rubrica': '3 pts una sola caja System para CloudLite completo. 2 pts los actores como Person, coherentes con la ficha. 2 pts los sistemas externos como System_Ext, los mismos que la ficha. 2 pts que TODA flecha lleve verbo de negocio y protocolo. 1 pt que el diagrama renderice sin error dentro de la plataforma. Si aparece un contenedor interno (base de datos, API, worker, cache) se pierden los 3 pts de la caja del sistema, porque eso es el nivel Container de la pregunta 13.',
                           'mermaid_esperado': '''C4Context
     title Contexto de CloudLite App - dominio AgendaU
     Person(estudiante, "Estudiante", "Reserva y cancela citas de asesoria")
@@ -165,605 +165,420 @@ seguro que se colaron piezas internas del sistema.
     Rel(cloudlite, correo, "Solicita el envio de la confirmacion de cita", "API REST sobre HTTPS")
     Rel(correo, estudiante, "Entrega el recordatorio 24 horas antes", "SMTP")''',
                       },
+                      {
+                          'n_global': 4,
+                          'tipo': 'abierta',
+                          'puntos': 5.0,
+                          'enunciado': '''## Atributos de calidad de su CloudLite
+
+Los atributos de calidad son las propiedades **medibles** que el sistema debe exhibir, y
+son el vocabulario con el que se justifica cualquier decision de arquitectura. Este curso
+usa cuatro de forma permanente: **rendimiento**, **disponibilidad**, **seguridad** y
+**costo**.
+
+Elija **dos** de los cuatro, los que mas pesen en su dominio, y para cada uno escriba:
+
+1. **Por que ese pesa en SU dominio.** Una frase que lo ate al problema de la pregunta 1,
+   no a la teoria general.
+2. **Como lo mediria**, con un **numero y una unidad**. Ejemplos de la forma esperada:
+   `el listado de disponibilidad responde en menos de 300 ms`, `el sistema responde el
+   99,9 % del mes, es decir que acepto hasta unos 43 minutos de caida`.
+
+Cierre con **una frase de conflicto**: nombre **cual de los dos sacrificaria** si no puede
+tener los dos al mismo tiempo, y **que gana** a cambio.
+
+> El punto de la pregunta es ese cierre. Los atributos compiten entre si: mas
+> disponibilidad exige redundancia, la redundancia cuesta dinero, y por eso la
+> arquitectura es sobre todo el oficio de elegir que se sacrifica. Una respuesta que diga
+> que los cuatro son igual de importantes no ha decidido nada.
+
+Lo que escriba aqui vuelve dos veces en el curso: el **costo** se retoma en la Clase 10 y
+el **rendimiento** con percentiles en la Clase 12.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '1 pt la eleccion de dos atributos con una razon atada al dominio propio y no a la teoria general. 2 pts las dos metricas, con numero Y unidad: una metrica sin numero («que sea rapido», «que sea seguro») no suma. 2 pts la frase de conflicto, que debe nombrar cual se sacrifica y que se gana; cero en este criterio si la respuesta afirma que los cuatro son igual de importantes o no elige.',
+                      },
                   ],
-     'resumen': '''Las preguntas 1 a 3 de la actividad del Corte 1, que es una sola para las Clases 1 a 4. El estudiante sale con el dominio de CloudLite cerrado en una ficha de cinco bloques y con el diagrama C4 Context renderizado dentro de ExamLab, que es la semilla de todos los diagramas del semestre.''',
-     'titulo': '''Actividad del Corte 1 (preguntas 1 a 3) - Dominio, ficha y C4 Context'''},
- 2: {'pasos': ['Paso 1: relea la ficha y el C4 Context de la Clase 1 y copie en el encabezado del '
-               'ADR el nombre del dominio y las 4 capacidades ya aprobadas, verificando que sean '
-               'literalmente las mismas 4 y que no cambia de dominio a mitad de camino, porque una '
-               'inconsistencia aqui arrastra error en todos los diagramas que siguen.',
-               'Paso 2: complete la matriz de 4 columnas y 5 filas (control del sistema operativo, '
-               'esfuerzo de operacion, tiempo hasta la primera demo, costo cualitativo con su '
-               'driver, portabilidad) puntuando cada celda de 1 a 3 y sumando por columna, '
-               'verificando que los tres totales de IaaS, PaaS y SaaS sean distintos: si dos '
-               'empatan, vuelva a puntuar porque el criterio esta mal aplicado; la matriz queda en '
-               'la seccion Modelo de servicio del informe del PI.',
-               'Paso 3: redacte el ADR-001 con las 7 secciones obligatorias (titulo, estado, '
-               'contexto en 3 frases, decision en 1 frase, 2 alternativas descartadas con motivo, '
-               '2 consecuencias positivas y 2 negativas, impacto en el PI), verificando que la '
-               'decision nombre un unico modelo dominante y no un poco de todo, y que cada '
-               'alternativa descartada explique el motivo en terminos de este dominio y no en '
-               'teoria.',
-               'Paso 4: escriba en ExamLab el diagrama Mermaid de responsabilidad compartida con 3 '
-               'subgrafos (IaaS, PaaS, SaaS), 4 capas por subgrafo y un nodo final de decision, '
-               'verificando al renderizar que se cuentan 12 nodos de capa, que los nodos '
-               'gestionados por el equipo y por el proveedor quedan pintados distinto y que la '
-               'caja de decision cita el mismo modelo del ADR-001.',
-               'Paso 5: pegue matriz, ADR-001 y diagrama en las 5 preguntas del taller, actualice '
-               'la seccion Modelo de servicio del informe con el mismo texto del ADR y suba todo a '
-               'ExamLab (modulo Talleres) antes del domingo 23:59, verificando que el modelo '
-               'elegido se pueda demostrar sin tarjeta de credito ni cloud de pago.'],
-     'preguntas': [{'enunciado': '## Matriz IaaS / PaaS / SaaS aplicada a su dominio\n'
-                                 '\n'
-                                 'Construya una tabla de **4 columnas** con encabezados exactos '
-                                 '`Criterio | IaaS | PaaS | SaaS` y **exactamente 5 filas**, en '
-                                 'este orden:\n'
-                                 '\n'
-                                 '1. Control sobre el sistema operativo y el runtime.\n'
-                                 '2. Esfuerzo de operacion que recae en el equipo (parches, '
-                                 'respaldos, monitoreo).\n'
-                                 '3. Tiempo hasta la primera demo del PI.\n'
-                                 '4. Costo cualitativo para CloudLite: `bajo` / `medio` / `alto` '
-                                 '**mas el driver que lo causa**.\n'
-                                 '5. Portabilidad y riesgo de quedar amarrado al proveedor.\n'
-                                 '\n'
-                                 'En cada celda escriba **una frase referida a su dominio** y '
-                                 'termine la celda con una nota de **1 a 3** (3 = mejor para '
-                                 'CloudLite).\n'
-                                 '\n'
-                                 'Debajo de la tabla sume las notas por columna y escriba los 3 '
-                                 'totales. **Verificacion obligatoria:** los tres totales deben '
-                                 'ser distintos entre si; si dos empatan, el criterio esta mal '
-                                 'aplicado y debe volver a puntuar antes de enviar.',
-                    'puntos': 25,
-                    'rubrica': '10 pts la tabla completa con los 5 criterios en orden y las 15 '
-                               'celdas con frase de dominio. 8 pts las notas de 1 a 3 en las 15 '
-                               'celdas y los 3 totales calculados. 4 pts que la fila de costo '
-                               'nombre el driver y no solo el nivel. 3 pts que los tres totales '
-                               'sean distintos.',
-                    'tipo': 'abierta'},
-                   {'enunciado': '## ADR-001: modelo de servicio dominante de CloudLite\n'
-                                 '\n'
-                                 'Redacte el ADR-001 con **estas 7 secciones rotuladas, en este '
-                                 'orden y sin agregar otras**:\n'
-                                 '\n'
-                                 '1. **Titulo**: `ADR-001 Modelo de servicio dominante de '
-                                 'CloudLite App`.\n'
-                                 '2. **Estado**: `Aceptado` mas la fecha.\n'
-                                 '3. **Contexto**: exactamente 3 frases. Una del dominio, una de '
-                                 'la restriccion del curso (gratis, en navegador, sin tarjeta de '
-                                 'credito) y una de la capacidad real de quien desarrolla (una persona, '
-                                 'o 2 o 3 si el docente autorizo equipo; un semestre).\n'
-                                 '4. **Decision**: **una sola frase** que nombre **un unico modelo '
-                                 'dominante** (IaaS, PaaS o SaaS) para la aplicacion propia de '
-                                 'CloudLite.\n'
-                                 '5. **Alternativas descartadas**: exactamente 2, cada una con el '
-                                 'motivo del descarte expresado en terminos de este dominio.\n'
-                                 '6. **Consecuencias**: exactamente 2 positivas y 2 negativas, '
-                                 'rotuladas con `+` y `-`. Al menos una negativa debe hablar de '
-                                 'amarre al proveedor o de perdida de control.\n'
-                                 '7. **Impacto en el PI**: 2 lineas que digan que secciones del '
-                                 'informe cambian por esta decision.\n'
-                                 '\n'
-                                 'Si la seccion 4 nombra dos modelos, esa seccion vale cero. Puede '
-                                 'aclarar en las consecuencias que consume **SaaS satelite** para '
-                                 'identidad y correo.',
-                    'puntos': 30,
-                    'rubrica': '6 pts las 7 secciones presentes y rotuladas. 6 pts el contexto con '
-                               'las 3 frases exigidas incluida la restriccion sin tarjeta. 6 pts '
-                               'la decision en una frase con un unico modelo dominante. 6 pts las '
-                               '2 alternativas con motivo del dominio. 6 pts las 2 consecuencias '
-                               'positivas y 2 negativas con una de amarre o perdida de control.',
-                    'tipo': 'abierta'},
-                   {'enunciado': '## Responsabilidad compartida en Mermaid\n'
-                                 '\n'
-                                 'Escriba un `flowchart TB` con **3 subgrafos** rotulados `IaaS`, '
-                                 '`PaaS` y `SaaS`. Cada subgrafo lleva **exactamente 4 nodos**, '
-                                 'uno por capa, de arriba hacia abajo:\n'
-                                 '\n'
-                                 '`Datos y aplicacion` -> `Runtime y librerias` -> `Sistema '
-                                 'operativo` -> `Virtualizacion y red y hardware`\n'
-                                 '\n'
-                                 'En cada nodo escriba la capa **y quien la gestiona**, con el '
-                                 'formato `Capa - CloudLite` o `Capa - proveedor`.\n'
-                                 '\n'
-                                 'Agregue un nodo `decision` con el texto del ADR-001 y una flecha '
-                                 'desde el subgrafo del modelo elegido hacia ese nodo. Use '
-                                 '`classDef` y `class` para pintar distinto lo que gestiona el '
-                                 'equipo y lo que gestiona el proveedor.\n'
-                                 '\n'
-                                 '**Verificacion:** al renderizar debe poder contar 12 nodos de '
-                                 'capa, y la cantidad de nodos con la palabra `CloudLite` debe '
-                                 'bajar de IaaS a SaaS (3, luego 1, luego 1).',
-                    'mermaid_esperado': 'flowchart TB\n'
-                                        '    subgraph iaas["IaaS - maquina virtual desnuda"]\n'
-                                        '        direction TB\n'
-                                        '        ia1["Datos y aplicacion - CloudLite"] --> '
-                                        'ia2["Runtime y librerias - CloudLite"]\n'
-                                        '        ia2 --> ia3["Sistema operativo - CloudLite"]\n'
-                                        '        ia3 --> ia4["Virtualizacion y red y hardware - '
-                                        'proveedor"]\n'
-                                        '    end\n'
-                                        '    subgraph paas["PaaS - plataforma administrada"]\n'
-                                        '        direction TB\n'
-                                        '        pa1["Datos y aplicacion - CloudLite"] --> '
-                                        'pa2["Runtime y librerias - proveedor"]\n'
-                                        '        pa2 --> pa3["Sistema operativo - proveedor"]\n'
-                                        '        pa3 --> pa4["Virtualizacion y red y hardware - '
-                                        'proveedor"]\n'
-                                        '    end\n'
-                                        '    subgraph saas["SaaS - aplicacion lista para usar"]\n'
-                                        '        direction TB\n'
-                                        '        sa1["Configuracion y usuarios - CloudLite"] --> '
-                                        'sa2["Aplicacion y datos - proveedor"]\n'
-                                        '        sa2 --> sa3["Runtime y sistema operativo - '
-                                        'proveedor"]\n'
-                                        '        sa3 --> sa4["Virtualizacion y red y hardware - '
-                                        'proveedor"]\n'
-                                        '    end\n'
-                                        '    decision["ADR-001 - PaaS dominante para la API de '
-                                        'CloudLite con SaaS satelite de identidad y correo"]\n'
-                                        '    paas --> decision\n'
-                                        '    classDef propio '
-                                        'fill:#1b5e20,color:#ffffff,stroke:#0b3d13\n'
-                                        '    classDef proveedor '
-                                        'fill:#455a64,color:#ffffff,stroke:#263238\n'
-                                        '    class ia1,ia2,ia3,pa1,sa1 propio\n'
-                                        '    class ia4,pa2,pa3,pa4,sa2,sa3,sa4 proveedor',
-                    'puntos': 25,
-                    'rubrica': '10 pts los 3 subgrafos con 4 capas cada uno en el orden pedido. 8 '
-                               'pts que cada nodo declare quien gestiona la capa y que el reparto '
-                               'sea correcto por modelo. 4 pts el nodo de decision conectado desde '
-                               'el modelo elegido y coherente con el ADR-001. 3 pts que renderice '
-                               'sin error.',
-                    'tipo': 'diagrama'},
-                   {'correctas': [0, 2, 3],
-                    'enunciado': '## Que es cierto de PaaS\n'
-                                 '\n'
-                                 'Seleccione las **3 afirmaciones correctas** sobre PaaS.',
-                    'opciones': ['El proveedor aplica los parches del sistema operativo y del '
-                                 'runtime; el equipo mantiene el codigo y los datos.',
-                                 'El equipo debe dimensionar y actualizar las maquinas virtuales '
-                                 'una por una.',
-                                 'Se llega mas rapido a una demo funcional porque no hay que '
-                                 'construir la plataforma base.',
-                                 'El riesgo principal es el amarre al proveedor por servicios '
-                                 'propietarios de plataforma.',
-                                 'El equipo pierde el control del codigo fuente de su aplicacion.',
-                                 'Consumir un SaaS de correo o de identidad contradice haber '
-                                 'elegido PaaS como modelo dominante.'],
-                    'puntos': 12,
-                    'rubrica': '4 pts por cada correcta marcada; se descuentan 4 pts por cada '
-                               'incorrecta marcada, sin bajar de cero.',
-                    'tipo': 'cerrada_multi'},
-                   {'correctas': [2],
-                    'enunciado': '## Clasifique esta parte de CloudLite\n'
-                                 '\n'
-                                 'El equipo decide **no** operar servidores de correo ni de '
-                                 'identidad: usara el login institucional por OIDC y un servicio '
-                                 'de correo de terceros a traves de su API. Como se clasifica '
-                                 '**esa parte** de la arquitectura de CloudLite?',
-                    'opciones': ['IaaS, porque detras hay maquinas de un proveedor.',
-                                 'PaaS, porque se despliega codigo propio sobre una plataforma.',
-                                 'SaaS satelite, porque se consume una aplicacion completa de '
-                                 'terceros por su API.',
-                                 'No aplica: los servicios de terceros quedan fuera de la '
-                                 'arquitectura.'],
-                    'puntos': 8,
-                    'rubrica': '8 pts la opcion correcta, 0 en cualquier otra.',
-                    'tipo': 'cerrada'}],
-     'resumen': 'El estudiante produce el ADR-001 de CloudLite con una matriz puntuada '
-                'IaaS/PaaS/SaaS y un diagrama de responsabilidad compartida que justifica el '
-                'modelo dominante elegido.',
-     'titulo': 'Taller Clase 2 en ExamLab - ADR-001 del modelo de servicio'},
- 3: {'pasos': ['Paso 1: decidan cual de los contenedores de CloudLite se contenerizara hoy (la API '
-               'stub o el front estatico) y escriban en la seccion Contenedores del informe el '
-               'nombre exacto del servicio, el puerto que expondra y la ruta de salud que '
-               'responderan (por ejemplo api-citas, puerto 8080, ruta /health), verificando que '
-               'ese nombre sea el mismo que usaran en el C4 de la Clase 4 y en el despliegue de la '
-               'Clase 7.',
-               'Paso 2: en la consola Linux de ExamLab arme el contexto de build con 5 archivos '
-               '(app/main.py, requirements.txt con 2 dependencias fijadas por version, Dockerfile, '
-               '.dockerignore con 4 entradas) y verifique con ls -la que los 5 existen y con un '
-               'grep de PASSWORD, SECRET, TOKEN y api_key que la salida sea vacia, confirmando que '
-               'no hay ningun secreto en el contexto.',
-               'Paso 3: escriba el Dockerfile con exactamente 7 instrucciones (FROM con tag fijo y '
-               'variante slim, WORKDIR, COPY de requirements, RUN pip install --no-cache-dir, COPY '
-               'del codigo, EXPOSE del puerto declarado en el paso 1, CMD) y verifique que el '
-               'puerto de EXPOSE, el del CMD y el documentado en el informe sean el mismo numero; '
-               'el Dockerfile se pega completo en la pregunta 2 de ExamLab.',
-               '''Paso 4: abra Killercoda en killercoda.com con su cuenta gratuita y lance un escenario Ubuntu (si no carga, LabEx Docker Playground como alterna; ojo: LabEx solo da 3 sesiones al dia en el plan gratuito), ejecute docker build -t cloudlite-api:v1 . y docker run -d -p 8080:8080 cloudlite-api:v1, compruebe con curl que la ruta de salud devuelve 200 y llene la bitacora de 5 filas comando / que esperaba / que salio / evidencia, verificando que la captura muestre a la vez el prompt del lab, la salida del docker ps y la hora del sistema.''',
-               'Paso 5: complete el diagrama Mermaid del ciclo Dockerfile a contenedor, adjunte la '
-               'captura del lab con su nota de caducidad y suba las 5 preguntas del taller a '
-               'ExamLab (modulo Talleres) antes del domingo 23:59, verificando que la seccion '
-               'Contenedores del informe cite el mismo tag de imagen cloudlite-api:v1 que aparece '
-               'en la captura.'],
-     'preguntas': [{'correctas': [0, 2, 3],
-                    'enunciado': '## Maquina virtual o contenedor\n'
-                                 '\n'
-                                 'Seleccione las **3 afirmaciones correctas**.',
-                    'opciones': ['El contenedor comparte el kernel del host y por eso arranca en '
-                                 'segundos.',
-                                 'Cada contenedor incluye su propio kernel completo, igual que una '
-                                 'maquina virtual.',
-                                 'La imagen es inmutable y de solo lectura; el contenedor agrega '
-                                 'encima una capa de escritura efimera.',
-                                 'Si el contenedor se destruye se pierde lo escrito en su capa '
-                                 'efimera, salvo que exista un volumen.',
-                                 'Un contenedor aisla el hardware mediante un hipervisor de tipo '
-                                 '1.',
-                                 'Dejar el archivo .env con la clave del correo dentro de la '
-                                 'imagen es aceptable si el repositorio es privado.'],
-                    'puntos': 10,
-                    'rubrica': '4 pts por cada correcta marcada hasta un maximo de 10; se '
-                               'descuentan 4 pts por cada incorrecta marcada, sin bajar de cero.',
-                    'tipo': 'cerrada_multi'},
-                   {'enunciado': '''## Dockerfile del stub de CloudLite
+     'resumen': '''Las preguntas 1 a 4 de la actividad del Corte 1, que es una sola para las Clases 1 a 4. El estudiante sale con el dominio de CloudLite cerrado en una ficha de cinco bloques y con el diagrama C4 Context renderizado dentro de ExamLab, que es la semilla de todos los diagramas del semestre.''',
+     'titulo': '''Actividad del Corte 1 (preguntas 1 a 4) - Dominio, ficha, C4 Context y calidad'''},
+ 2: {'pasos': [
+                  'Paso 1: relea su ficha y su C4 Context de la Clase 1. No cambie de dominio: las preguntas 5 a 7 se califican sobre el mismo sistema, y el ADR que redacte hoy se reutiliza en el informe del PI y en la sustentacion de la Clase 15.',
+                  'Paso 2: construya en la pregunta 5 la matriz `Criterio | IaaS | PaaS | SaaS` con las cuatro filas en orden (control, costo cualitativo, operacion, time-to-demo) y maximo 2 lineas por celda; verifique que cada celda nombre una capacidad o una restriccion de SU dominio, y que la fila de operacion no afirme que en PaaS o SaaS usted deja de responder por su propia aplicacion.',
+                  'Paso 3: redacte en la pregunta 6 el ADR-001 con titulo, estado con fecha, la decision en UNA sola frase con UN modelo dominante, y exactamente 2 alternativas descartadas con el motivo atado a su dominio; verifique que la seccion de decision no nombre dos modelos, porque en ese caso vale cero.',
+                  'Paso 4: escriba en la pregunta 7 las consecuencias en los tres ejes (operacion, costo y aprendizaje), con al menos una positiva y una negativa por eje marcadas con + y -, y verifique que al menos una negativa hable de amarre al proveedor o de perdida de control; guarde y continue, que la actividad se entrega completa al cierre del corte.',
+              ],
+     'preguntas': [
+                      {
+                          'n_global': 5,
+                          'tipo': 'abierta',
+                          'puntos': 6.25,
+                          'enunciado': '''## Matriz IaaS / PaaS / SaaS para su dominio
 
-> ExamLab **no ejecuta** este Dockerfile: la construccion real ocurre en Killercoda (pregunta 4). Aqui se evalua el contenido y su justificacion.
+Partiendo de la **ficha** y del **C4 Context** del mismo dominio que cerro en la Clase 1,
+construya una matriz que compare los tres modelos de servicio **aplicados a las
+capacidades de SU dominio**.
 
-Pegue el Dockerfile completo del servicio que eligio, con **exactamente 7 instrucciones**, en este orden:
+Encabezados exactos: `Criterio | IaaS | PaaS | SaaS`, con **estas cuatro filas** y en este
+orden:
 
-1. `FROM` con imagen **slim y tag de version fijo** (nunca `latest`).
-2. `WORKDIR`.
-3. `COPY` **solo** del archivo de dependencias.
-4. `RUN` de instalacion con `--no-cache-dir` (o el equivalente de su lenguaje).
-5. `COPY` del codigo de la aplicacion.
-6. `EXPOSE` con el puerto que declaro en la ficha del paso 1.
-7. `CMD` en forma de lista, apuntando al mismo puerto del `EXPOSE`.
+1. **Control**: cuanto puede ajustar usted del entorno.
+2. **Costo cualitativo**: bajo, medio o alto, y por que. No hace falta ningun precio.
+3. **Operacion**: **quien opera el sistema operativo y el runtime**, usted o el proveedor.
+4. **Time-to-demo**: cuanto tarda en tener la primera demo de su CloudLite funcionando.
 
-Debajo agregue una tabla de **2 columnas** (`Instruccion | Por que esta y que pasaria si no estuviera`) con **7 filas**, una por instruccion.
+Cada celda: **maximo 2 lineas**, y siempre referida a su dominio y a sus capacidades. Una
+celda que dice «mas control» no dice nada; «puedo instalar la libreria de codigos de barras
+que necesita el prestamo» si.
 
-Cierre con **3 lineas**: nombre de la imagen y tag (`cloudlite-api:v1`), puerto publicado y ruta de salud.
+> La fila de **Operacion** es la que mas se equivoca. La responsabilidad no desaparece al
+> subir de nivel: se **reparte**. Cuanto se reparte es exactamente lo que distingue los
+> tres modelos, y en los tres usted sigue respondiendo por su propia aplicacion, sus
+> permisos y sus datos.
 
-**Verificacion:** el numero de puerto debe aparecer identico en `EXPOSE`, en `CMD` y en la linea de cierre.''',
-                    'puntos': 30,
-                    'rubrica': '10 pts las 7 instrucciones en el orden pedido con tag fijo y '
-                               'variante slim. 8 pts que el COPY de dependencias este separado del '
-                               'COPY del codigo y que el RUN use --no-cache-dir. 8 pts la tabla de '
-                               '7 filas explicando el efecto de cada instruccion. 4 pts que el '
-                               'puerto coincida en EXPOSE, CMD y linea de cierre. Cero en toda la '
-                               'pregunta si aparece un secreto o un archivo .env copiado a la '
-                               'imagen.',
-                    'tipo': 'abierta'},
-                   {'enunciado': '''## Consola Linux: arme y valide el contexto de build
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '2 pts la matriz con los cuatro criterios en el orden pedido y las cuatro columnas. 3 pts que las doce celdas de comparacion hablen del dominio propio y de sus capacidades, no de teoria general; se descuenta por cada fila escrita en abstracto. 1.25 pts que la fila de operacion reparta correctamente la responsabilidad en los tres modelos y no afirme que en PaaS o SaaS el equipo deja de responder por su aplicacion.',
+                      },
+                      {
+                          'n_global': 6,
+                          'tipo': 'abierta',
+                          'puntos': 12.5,
+                          'enunciado': '''## ADR-001: modelo de servicio dominante de CloudLite
 
-La consola de ExamLab es un Linux real **pero sin red y sin Docker**: aqui **no** se ejecuta `docker build`, eso va en Killercoda (pregunta 4). Lo que se evalua es que el **contexto de build** quede bien armado y verificado.
+Redacte el **ADR-001** con estas cuatro secciones rotuladas, en este orden y sin agregar
+otras:
 
-Ejecute y deje visible en la sesion:
+1. **Titulo**: `ADR-001 Modelo de servicio dominante de CloudLite App`.
+2. **Estado**: `Aceptado` mas la fecha.
+3. **Decision**: **una sola frase** que nombre **un unico modelo dominante** —IaaS, PaaS o
+   SaaS— para la aplicacion propia de CloudLite.
+4. **Alternativas descartadas**: **exactamente 2**, cada una con el motivo del descarte
+   **expresado en terminos de su dominio**, no en abstracto.
 
-1. `mkdir -p /root/cloudlite-api/app` y entre al directorio.
-2. Cree `app/main.py` con un stub de 3 lineas que exponga `/health`, usando `cat > app/main.py << 'EOF' ... EOF`.
-3. Cree `requirements.txt` con **exactamente 2 dependencias fijadas por version** (por ejemplo `fastapi==0.115.0` y `uvicorn==0.30.6`).
-4. Cree el `Dockerfile` con las **mismas 7 instrucciones** de la pregunta 2, con el mismo heredoc.
-5. Cree `.dockerignore` con **exactamente 4 entradas**: `.git`, `__pycache__`, `*.env`, `tests/`.
-6. Ejecute `chmod 644 Dockerfile requirements.txt .dockerignore` y luego `ls -la` y `wc -l Dockerfile .dockerignore`.
-7. Ejecute `grep -c '' Dockerfile` y confirme que el conteo es **7 o mas**.
-8. Ejecute `grep -rniE 'password|secret|token|api_key' .` y confirme que **la salida es vacia**.
+> **Si la seccion 3 nombra dos modelos, esa seccion vale cero.** «Un poco de PaaS y un poco
+> de IaaS» no es una decision: es no haber decidido. Puede aclarar en las alternativas que
+> consume **SaaS satelite** para identidad y correo; eso no rompe la regla, porque el
+> modelo dominante se refiere a **su** aplicacion.
 
-Deje la sesion terminando con el `ls -la` y el `grep` vacio a la vista.''',
-                    'puntos': 22,
-                    'rubrica': '6 pts los 5 archivos creados en /root/cloudlite-api con la '
-                               'estructura pedida. 5 pts requirements.txt con 2 dependencias '
-                               'fijadas por version y .dockerignore con las 4 entradas. 5 pts los '
-                               'permisos 644 y las salidas de ls -la y wc -l visibles. 6 pts el '
-                               'grep de secretos ejecutado y con salida vacia. Se anula la '
-                               'pregunta si intenta pasar como evidencia un docker build en esta '
-                               'consola.',
-                    'tipo': 'so_consola'},
-                   {'enunciado': '''## Bitacora del laboratorio en Killercoda
+Un ADR (Architecture Decision Record) es un formato real, usado en equipos reales: sirve
+para que dentro de seis meses alguien —incluido usted— entienda **por que** se decidio asi
+y **que se descarto**. Un ADR con una sola opcion no documenta una decision: documenta un
+hecho.
 
-Abra **Killercoda** (killercoda.com, cuenta gratuita sin tarjeta, escenario Ubuntu), suba su contexto de build y ejecute el ciclo completo.
+Este ADR se reutiliza en el informe del PI y en la sustentacion de la Clase 15.
 
-> **Dos limites del lab, y planifique con ellos.** La sesion **caduca a 1 hora** y solo puede tener **un escenario a la vez**: escriba el Dockerfile en la carpeta de su PI y **peguelo** en el lab, nunca al contrario, y capture la evidencia **antes** de cerrar. Si Killercoda no carga, la alterna es **LabEx Docker Playground**, que en su plan gratuito da solo **3 sesiones al dia**: uselo para terminar, no para experimentar. Reporte una tabla de **4 columnas** (`Comando | Que esperaba | Que salio realmente | Evidencia`) con **exactamente 5 filas**, una por comando, en este orden:
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '2 pts titulo y estado con fecha. 4 pts la decision en UNA frase con UN modelo dominante; cero en este criterio si nombra dos o mas modelos. 6.5 pts las dos alternativas descartadas con el motivo del descarte atado al dominio: 3.25 pts cada una, y se pierde la mitad de cada una si el motivo es generico («es mas caro», «es mas complejo») sin decir mas caro o mas complejo PARA QUE de su sistema.',
+                      },
+                      {
+                          'n_global': 7,
+                          'tipo': 'abierta',
+                          'puntos': 6.25,
+                          'enunciado': '''## Consecuencias del ADR-001
 
-1. `docker build -t cloudlite-api:v1 .`
-2. `docker images | grep cloudlite-api`
-3. `docker run -d -p 8080:8080 --name api cloudlite-api:v1`
+Escriba las **consecuencias** de la decision que tomo en la pregunta anterior, cubriendo
+**los tres ejes** y rotulandolos:
+
+- **Operacion**: que tiene que hacer usted a partir de ahora, y que deja de hacer.
+- **Costo**: que se abarata y que se encarece, en terminos cualitativos.
+- **Aprendizaje**: que tiene que aprender para sostener esa decision durante el semestre.
+
+En cada eje escriba **al menos una consecuencia positiva y una negativa**, rotuladas con
+`+` y `-`. **Al menos una de las negativas debe hablar de amarre al proveedor o de perdida
+de control**: es la contrapartida que casi nunca se escribe y la que la sustentacion de la
+Clase 15 va a pedir.
+
+> Una consecuencia no es una ventaja de folleto. «Es mas facil» no es una consecuencia;
+> «no voy a poder instalar la libreria de codigos de barras y tendre que buscar una
+> alternativa que el proveedor soporte» si lo es, porque describe algo que cambia en su
+> trabajo.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '3 pts los tres ejes presentes y rotulados (operacion, costo, aprendizaje). 2 pts que cada eje traiga al menos una consecuencia positiva y una negativa marcadas con + y -. 1.25 pts que al menos una negativa hable de amarre al proveedor o de perdida de control. Se descuenta por cada consecuencia escrita como ventaja de folleto («es mas facil», «es mas moderno») en vez de como algo que cambia en el trabajo del estudiante.',
+                      },
+                  ],
+     'resumen': '''Las preguntas 5 a 7 de la actividad del Corte 1. El estudiante compara IaaS, PaaS y SaaS sobre las capacidades de su propio dominio, decide un modelo dominante y lo documenta como ADR-001 con sus alternativas descartadas y sus consecuencias.''',
+     'titulo': '''Actividad del Corte 1 (preguntas 5 a 7) - Modelos de servicio y ADR-001'''},
+ 3: {'pasos': [
+                  'Paso 1: elija en la pregunta 8 cual servicio de su C4 Context va a contenedorizar y justifiquelo en 2 o 3 frases; escriba a continuacion el Dockerfile completo con la imagen base ligera y con etiqueta fija, el COPY de dependencias antes del COPY del codigo, el EXPOSE y el CMD, verificando que no copie el .env ni ninguna clave.',
+                  'Paso 2: explique en la pregunta 9, sobre su propio Dockerfile, la diferencia entre imagen y contenedor, que instrucciones de SU archivo crean capa, por que el orden aprovecha el cache y en que se diferencia su contenedor de una maquina virtual; verifique que no escribio que un contenedor es una VM ligera.',
+                  'Paso 3: describa en la pregunta 10 el ciclo completo con los comandos exactos de build y de run, explicando que lado del mapeo de puertos es el anfitrion y que lado el contenedor, y cierre con el contrato del endpoint de salud (ruta, codigo de estado y cuerpo); verifique que el puerto sea el mismo que puso en el EXPOSE.',
+                  'Paso 4: ejecute de verdad el ciclo en Killercoda y reporte en la pregunta 11 la tabla de 5 filas con la salida real pegada textualmente, la descripcion de la captura con prompt, docker ps y hora del sistema, y una fila de incidente; recuerde que la sesion caduca a 1 hora, asi que capture la evidencia ANTES de cerrarla.',
+              ],
+     'preguntas': [
+                      {
+                          'n_global': 8,
+                          'tipo': 'abierta',
+                          'puntos': 10.0,
+                          'enunciado': '''## El servicio a contenedorizar y su Dockerfile
+
+**Primera parte — la eleccion.** Diga **cual servicio de su C4 Context** va a
+contenedorizar: el servicio principal de su dominio, que normalmente es la **API stub** o
+el **front estatico**. Justifique la eleccion en 2 o 3 frases: por que ese y no otro, y que
+demuestra tener ese servicio corriendo.
+
+**Segunda parte — el Dockerfile.** Escriba el Dockerfile **completo** de ese servicio. Debe
+tener, como minimo, estas instrucciones y en un orden que tenga sentido:
+
+- `FROM` con una imagen base **ligera y con etiqueta fija** (por ejemplo `node:20-alpine`,
+  `python:3.12-slim`, `nginx:alpine`). Nada de `latest`.
+- `WORKDIR`
+- `COPY` de las dependencias **antes** que el `COPY` del codigo
+- `RUN` de instalacion de dependencias
+- `COPY` del codigo
+- `EXPOSE` con el puerto
+- `CMD` con el proceso principal
+
+**Dos reglas que se califican aparte:**
+
+1. **El puerto de `EXPOSE`, el del `CMD` y el que documenta en la pregunta 10 tienen que ser
+   el mismo numero.** Es el error mas comun y el mas facil de evitar.
+2. **Prohibido copiar el `.env` o cualquier clave dentro de la imagen.** Si el `COPY` es de
+   todo el directorio, se necesita un `.dockerignore`; diga que lleva dentro.
+
+> Un secreto dentro de la imagen queda en el **historial de capas** para siempre: cualquiera
+> que tenga la imagen puede leerlo con `docker history` aunque el archivo se borre en una
+> capa posterior. Los secretos se inyectan en tiempo de ejecucion, no se construyen dentro.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '2 pts la eleccion del servicio con justificacion atada al dominio. 5 pts el Dockerfile completo con las instrucciones minimas y un orden que aproveche el cache (dependencias antes del codigo). 1.5 pts imagen base ligera y con etiqueta fija; se descuenta por usar latest. 1.5 pts coherencia del puerto entre EXPOSE, CMD y lo documentado. Si el Dockerfile copia un .env o una clave, o hace COPY de todo sin .dockerignore ni mencionarlo, se pierden los 5 pts del Dockerfile: es el error que el curso corta el mismo dia.',
+                      },
+                      {
+                          'n_global': 9,
+                          'tipo': 'abierta',
+                          'puntos': 4.0,
+                          'enunciado': '''## Imagen, contenedor y capas, sobre su propio Dockerfile
+
+Explique, **usando el Dockerfile que acaba de escribir**, no la teoria general:
+
+1. **Imagen y contenedor no son lo mismo.** Diga cual es cual en su caso, en una frase. La
+   analogia que se espera: la imagen es el molde, el contenedor es la instancia corriendo;
+   de una imagen se pueden levantar varios contenedores a la vez.
+2. **Que instruccion de SU Dockerfile crea una capa nueva** y por que eso importa. Nombre al
+   menos dos instrucciones concretas de su archivo.
+3. **Por que puso el `COPY` de dependencias antes que el `COPY` del codigo.** Diga que pasa
+   con el cache cuando cambia una linea de codigo, comparado con lo que pasaria en el orden
+   inverso.
+4. **Una diferencia entre su contenedor y una maquina virtual**, en una frase, en terminos
+   de que comparte con la maquina anfitriona.
+
+> Cuidado con dos frases que suenan bien y son falsas: «un contenedor es una VM ligera» (no
+> lo es: la VM carga un sistema operativo completo, el contenedor **comparte el kernel** del
+> anfitrion) y «la imagen se ejecuta» (se ejecuta el contenedor, que es una instancia de la
+> imagen).
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '1 pt distinguir imagen de contenedor sin decir que un contenedor es una VM ligera. 1 pt nombrar al menos dos instrucciones de SU propio Dockerfile que crean capa. 1 pt explicar el efecto del orden en el cache, comparando con el orden inverso. 1 pt la diferencia con una VM en terminos de kernel compartido. Una respuesta que explique la teoria sin referirse a su archivo pierde la mitad: la pregunta evalua que entienda lo que escribio.',
+                      },
+                      {
+                          'n_global': 10,
+                          'tipo': 'abierta',
+                          'puntos': 5.0,
+                          'enunciado': '''## Construir, ejecutar y verificar el contenedor
+
+Explique el ciclo completo de su servicio, con los **comandos exactos** que usaria:
+
+1. **Construccion**: el comando de build con el nombre y la etiqueta de su imagen.
+2. **Ejecucion**: el comando de run, con el **mapeo de puertos entre el anfitrion y el
+   contenedor** explicado. Diga que numero corresponde a cada lado y que pasaria si los
+   invierte.
+3. **Verificacion**: el **contrato del endpoint de salud** de su stub, con las tres cosas
+   que lo definen:
+   - la **ruta** (por ejemplo `/health`),
+   - el **codigo de estado** esperado,
+   - el **cuerpo** de la respuesta, con su formato.
+
+> El endpoint de salud no es un adorno: es la forma en que cualquier orquestador, balanceador
+> o pipeline sabra si su servicio esta vivo, y por eso vuelve en la Clase 7 (despliegue) y en
+> la Clase 8 (CI). Un endpoint que devuelve 200 con el cuerpo vacio es peor que ninguno,
+> porque no distingue «vivo» de «vivo pero roto».
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '1.5 pts el comando de build con nombre y etiqueta. 1.5 pts el comando de run con el mapeo de puertos correctamente explicado: que lado es el anfitrion, que lado el contenedor y que pasa si se invierten. 2 pts el contrato de salud completo con ruta, codigo de estado y cuerpo con su formato; se descuenta si falta cualquiera de los tres. El puerto tiene que ser el mismo de la pregunta 8.',
+                      },
+                      {
+                          'n_global': 11,
+                          'tipo': 'abierta',
+                          'puntos': 6.0,
+                          'enunciado': '''## Bitacora del laboratorio: la evidencia de que corrio
+
+Ejecute de verdad el ciclo en **Killercoda** (killercoda.com, cuenta gratuita, escenario
+Ubuntu) y reporte lo que paso. Si Killercoda no carga, la alterna es **LabEx Docker
+Playground**, que en su plan gratuito da solo **3 sesiones al dia**.
+
+Entregue una tabla de **3 columnas** (`Comando | Que esperaba | Que salio realmente`) con
+**una fila por comando**, en este orden:
+
+1. el build de su imagen
+2. `docker images` filtrado por su imagen
+3. el run de su contenedor
 4. `docker ps`
-5. `curl -i http://localhost:8080/health`
+5. la peticion a su endpoint de salud
 
-En la columna `Evidencia` escriba el fragmento textual de la salida (numero de capas, ID corto del contenedor, `HTTP/1.1 200 OK`).
+En la columna de la derecha pegue el **fragmento textual** de la salida real: el numero de
+capas, el identificador corto del contenedor, el `200` de la respuesta. No la parafrasee.
 
-Debajo de la tabla pegue:
-- El **enlace de la sesion** del lab **mas la nota del limite** (`la sesion del lab caduca a 1 h; el Dockerfile vive en mi carpeta del PI y la evidencia se guardo antes de cerrar`).
-- La descripcion de la **captura** que adjunta: debe mostrarse al mismo tiempo el prompt del lab, la salida de `docker ps` y la hora del sistema (`date`).
-- **Una fila extra de incidente**: un comando que le fallo y como lo resolvio. Si nada fallo, escriba el comando que estuvo a punto de fallar y por que no fallo.''',
-                    'puntos': 20,
-                    'rubrica': '8 pts las 5 filas con el comando y la evidencia textual, no '
-                               'parafraseada. 5 pts el 200 OK de la ruta de salud demostrado con '
-                               'la salida de curl. 4 pts el enlace de sesion con nota de caducidad '
-                               'y la captura con prompt, docker ps y hora. 3 pts la fila de '
-                               'incidente resuelto.',
-                    'tipo': 'abierta'},
-                   {'enunciado': '## Del Dockerfile al contenedor en ejecucion\n'
-                                 '\n'
-                                 'Escriba un `flowchart LR` con **exactamente 7 nodos** que '
-                                 'muestre el ciclo real que acaba de ejecutar, en este orden:\n'
-                                 '\n'
-                                 '`Dockerfile` -> `docker build` -> `Imagen con tag` -> `docker '
-                                 'run` -> `Contenedor en ejecucion` -> `curl a la ruta de salud` '
-                                 '-> `Evidencia para el PI`\n'
-                                 '\n'
-                                 'Requisitos:\n'
-                                 '- El nodo de la imagen debe llevar el **tag exacto** que uso '
-                                 '(`cloudlite-api:v1`).\n'
-                                 '- El nodo de `docker run` debe mostrar el **mapeo de puertos** '
-                                 '(`-p 8080:8080`).\n'
-                                 '- Agregue **una arista punteada** desde el nodo del contenedor '
-                                 'de vuelta al Dockerfile rotulada con el motivo del reciclo (por '
-                                 'ejemplo `la imagen es inmutable y hay que reconstruir`).\n'
-                                 '- Agregue **un nodo aparte** rotulado con lo que **no** entra en '
-                                 'la imagen (`.env y claves quedan fuera por .dockerignore`) '
-                                 'conectado con arista punteada al `docker build`.\n'
-                                 '\n'
-                                 '**Verificacion:** al renderizar debe contar 8 nodos en total (7 '
-                                 'del ciclo mas el de los secretos excluidos) y 2 aristas '
-                                 'punteadas.',
-                    'mermaid_esperado': 'flowchart LR\n'
-                                        '    df["Dockerfile - 7 instrucciones"] --> build["docker '
-                                        'build -t cloudlite-api:v1 ."]\n'
-                                        '    build --> img["Imagen cloudlite-api:v1 - capas '
-                                        'inmutables"]\n'
-                                        '    img --> run["docker run -d -p 8080:8080 --name api"]\n'
-                                        '    run --> cont["Contenedor api en ejecucion - uvicorn '
-                                        'como PID 1"]\n'
-                                        '    cont --> health["curl -i http://localhost:8080/health '
-                                        'devuelve HTTP 200"]\n'
-                                        '    health --> evid["Evidencia del PI - captura con '
-                                        'docker ps y hora mas enlace de sesion"]\n'
-                                        '    secretos["Fuera de la imagen - .env claves y tests '
-                                        'excluidos por .dockerignore"]\n'
-                                        '    secretos -.->|"nunca entran al contexto"| build\n'
-                                        '    cont -.->|"la imagen es inmutable - hay que '
-                                        'reconstruir y volver a etiquetar"| df',
-                    'puntos': 18,
-                    'rubrica': '8 pts los 7 nodos del ciclo en el orden correcto. 4 pts el tag '
-                               'exacto de la imagen y el mapeo de puertos visibles en los nodos. 4 '
-                               'pts las 2 aristas punteadas: reciclo por inmutabilidad y secretos '
-                               'excluidos. 2 pts que renderice sin error.',
-                    'tipo': 'diagrama'}],
-     'resumen': '''El estudiante deja el contexto de build verificado en la consola de ExamLab, el Dockerfile de 7 instrucciones documentado y la evidencia del contenedor corriendo en Killercoda con su ruta de salud respondiendo 200.''',
-     'titulo': 'Taller Clase 3 en ExamLab - Contenedor stub de CloudLite'},
- 4: {'pasos': ['Paso 1: abran el C4 Context de la Clase 1 y escriban la lista canonica de nombres '
-               'de CloudLite: exactamente 5 contenedores con nombre, responsabilidad en una frase '
-               'y tecnologia tentativa (por ejemplo SPA Web, API CloudLite, Worker Notificaciones, '
-               'Base de datos Citas, Cola Notificaciones), verificando que ninguno de los 5 sea un '
-               'modulo interno de otro y que ningun nombre se repita; esa lista se congela y la '
-               'reutilizan las clases 7, 11 y 15.',
-               'Paso 2: escriban en ExamLab el diagrama C4Container en Mermaid con los 5 '
-               'contenedores dentro de un Container_Boundary, los 2 Person y los 2 System_Ext de '
-               'la Clase 1, y 8 relaciones etiquetadas con protocolo y puerto, verificando al '
-               'renderizar que la base de datos usa ContainerDb, la cola usa ContainerQueue y que '
-               'ningun actor habla directamente con la base de datos.',
-               'Paso 3: definan los 3 contratos entre partes en una tabla de 6 columnas (ID, '
-               'consumidor a proveedor, verbo y ruta, request, respuesta 2xx, error de negocio), '
-               'verificando que al menos un contrato sea asincrono por evento y que cada fila '
-               'declare un codigo de error de negocio real como 409 CUPO_OCUPADO o 401 '
-               'TOKEN_INVALIDO, no solo 500.',
-               'Paso 4: escriban el sequenceDiagram del contrato principal con 5 participantes y '
-               'un bloque alt que cubra el camino feliz y el camino de error 409, verificando que '
-               'los nombres de los participantes sean identicos a los 5 contenedores del paso 1 y '
-               'que el mensaje de error muestre el mismo codigo declarado en la tabla de '
-               'contratos.',
-               'Paso 5: redacten los 3 riesgos de distribucion con su mitigacion, actualicen la '
-               'seccion Arquitectura logica del informe con el diagrama y la tabla de contratos, y '
-               'suban las 5 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, '
-               'verificando que la lista canonica de 5 nombres aparezca identica en el diagrama, '
-               'en los contratos y en el informe.'],
-     'preguntas': [{'enunciado': '## C4 Container de CloudLite App\n'
-                                 '\n'
-                                 'Escriba en Mermaid el diagrama **C4Container**. La primera linea '
-                                 'debe ser exactamente `C4Container`. Debe contener:\n'
-                                 '\n'
-                                 '- Un `Container_Boundary(...)` rotulado `CloudLite App` con '
-                                 '**exactamente 5 contenedores**: una interfaz web, una API, un '
-                                 'procesador asincrono, un almacen relacional con '
-                                 '`ContainerDb(...)` y una cola con `ContainerQueue(...)`.\n'
-                                 '- Los **2 `Person(...)`** y los **2 `System_Ext(...)`** de su '
-                                 'Clase 1, con los mismos nombres.\n'
-                                 '- Cada contenedor con sus 3 datos: **nombre**, **tecnologia '
-                                 'tentativa** y **responsabilidad en una frase**.\n'
-                                 '- Exactamente **8 `Rel(...)`**, cada una con **protocolo y '
-                                 'puerto** cuando aplique (`HTTPS 443`, `JSON sobre HTTPS`, `SQL '
-                                 '5432`, `RESP 6379`).\n'
-                                 '\n'
-                                 '**Reglas de verificacion antes de enviar:**\n'
-                                 '1. Ningun actor habla directamente con la base de datos ni con '
-                                 'la cola.\n'
-                                 '2. Ningun contenedor es un modulo interno de otro (los '
-                                 'componentes internos son la Clase 11).\n'
-                                 '3. Ningun nombre se repite, y estos 5 nombres se congelan: el '
-                                 'despliegue de la Clase 7 debe usar los mismos.\n'
-                                 '\n'
-                                 '**Consejo de sintaxis:** no use comas dentro de las etiquetas '
-                                 'entre comillas.',
-                    'mermaid_esperado': 'C4Container\n'
-                                        '    title Contenedores de CloudLite App - dominio '
-                                        'AgendaU\n'
-                                        '    Person(estudiante, "Estudiante", "Reserva y cancela '
-                                        'citas de asesoria")\n'
-                                        '    Person(coordinador, "Coordinador academico", "Publica '
-                                        'cupos y revisa la ocupacion")\n'
-                                        '    Container_Boundary(cl, "CloudLite App") {\n'
-                                        '        Container(spa, "SPA Web", "HTML y JavaScript", '
-                                        '"Interfaz de reserva servida como contenido estatico")\n'
-                                        '        Container(api, "API CloudLite", "Python FastAPI", '
-                                        '"Expone /citas y /cupos y aplica las reglas de reserva")\n'
-                                        '        Container(worker, "Worker Notificaciones", '
-                                        '"Python", "Consume eventos y solicita el envio de '
-                                        'correos")\n'
-                                        '        ContainerDb(db, "Base de datos Citas", '
-                                        '"PostgreSQL 16", "Guarda usuarios cupos y citas '
-                                        'confirmadas")\n'
-                                        '        ContainerQueue(cola, "Cola Notificaciones", '
-                                        '"Redis Streams", "Encola el evento cita_confirmada")\n'
-                                        '    }\n'
-                                        '    System_Ext(idp, "Proveedor de identidad '
-                                        'institucional", "Login OIDC de la universidad")\n'
-                                        '    System_Ext(correo, "Correo transaccional SaaS", '
-                                        '"Envio de confirmaciones y recordatorios")\n'
-                                        '    Rel(estudiante, spa, "Reserva una cita disponible", '
-                                        '"HTTPS 443")\n'
-                                        '    Rel(coordinador, spa, "Publica cupos de la semana", '
-                                        '"HTTPS 443")\n'
-                                        '    Rel(spa, api, "POST /citas y GET /cupos", "JSON sobre '
-                                        'HTTPS")\n'
-                                        '    Rel(api, idp, "Valida el token del usuario", "OIDC '
-                                        'sobre HTTPS")\n'
-                                        '    Rel(api, db, "Lee cupos y escribe citas confirmadas", '
-                                        '"SQL 5432")\n'
-                                        '    Rel(api, cola, "Publica el evento cita_confirmada", '
-                                        '"RESP 6379")\n'
-                                        '    Rel(worker, cola, "Consume el evento '
-                                        'cita_confirmada", "RESP 6379")\n'
-                                        '    Rel(worker, correo, "Solicita el envio del correo de '
-                                        'confirmacion", "API REST sobre HTTPS")',
-                    'puntos': 35,
-                    'rubrica': '12 pts los 5 contenedores dentro del boundary con nombre, '
-                               'tecnologia y responsabilidad, usando ContainerDb y ContainerQueue '
-                               'donde corresponde. 8 pts los 2 Person y 2 System_Ext con los '
-                               'mismos nombres de la Clase 1. 10 pts las 8 relaciones con '
-                               'protocolo y puerto. 5 pts que ningun actor toque directamente la '
-                               'base de datos o la cola. Se descuentan 10 pts si hay mas de 5 '
-                               'contenedores o si aparece un sexto servicio sin justificacion.',
-                    'tipo': 'diagrama'},
-                   {'enunciado': '## Los 3 contratos de CloudLite\n'
-                                 '\n'
-                                 'Construya una tabla de **6 columnas** con encabezados exactos:\n'
-                                 '\n'
-                                 '`ID | Consumidor -> Proveedor | Verbo y ruta o evento | Request '
-                                 '| Respuesta 2xx | Error de negocio`\n'
-                                 '\n'
-                                 'con **exactamente 3 filas**:\n'
-                                 '\n'
-                                 '- **C-01**: la operacion principal de escritura de su dominio '
-                                 '(por ejemplo `SPA Web -> API CloudLite`, `POST /citas`).\n'
-                                 '- **C-02**: una operacion de lectura o consulta.\n'
-                                 '- **C-03**: **un contrato asincrono por evento** (por ejemplo '
-                                 '`API CloudLite -> Cola Notificaciones`, evento '
-                                 '`cita_confirmada`), donde en lugar de respuesta 2xx describa la '
-                                 '**garantia de entrega** y quien consume el evento.\n'
-                                 '\n'
-                                 'Reglas por fila:\n'
-                                 '- `Request` lista **los 3 campos minimos** con su tipo.\n'
-                                 '- `Respuesta 2xx` indica el **codigo exacto** (`201`, `200`) y '
-                                 'los campos que devuelve.\n'
-                                 '- `Error de negocio` es un **codigo y una constante**, por '
-                                 'ejemplo `409 CUPO_OCUPADO` o `401 TOKEN_INVALIDO`. **No se '
-                                 'acepta `500 error interno`** como error de negocio.\n'
-                                 '\n'
-                                 'Cierre con **2 lineas**: que pasa si el consumidor reintenta '
-                                 '`C-01` con los mismos datos (idempotencia) y quien es el dueno '
-                                 'del contrato.',
-                    'puntos': 25,
-                    'rubrica': '9 pts las 3 filas completas con las 6 columnas. 6 pts que C-03 sea '
-                               'realmente asincrono por evento con garantia de entrega y '
-                               'consumidor declarado. 6 pts los errores de negocio con codigo y '
-                               'constante, sin usar 500 como error de negocio. 4 pts las 2 lineas '
-                               'de idempotencia y dueno del contrato.',
-                    'tipo': 'abierta'},
-                   {'enunciado': '## Flujo del contrato C-01 con su camino de error\n'
-                                 '\n'
-                                 'Escriba un `sequenceDiagram` del contrato **C-01** con '
-                                 '**exactamente 5 participantes**, usando **los mismos nombres** '
-                                 'de sus contenedores (por ejemplo `Estudiante`, `SPA Web`, `API '
-                                 'CloudLite`, `Base de datos Citas`, `Cola Notificaciones`).\n'
-                                 '\n'
-                                 'Debe incluir:\n'
-                                 '- `autonumber`.\n'
-                                 '- Un bloque `alt ... else ... end` con **el camino feliz** y '
-                                 '**el camino de error de negocio** de su tabla de contratos.\n'
-                                 '- En el camino feliz: la validacion, la escritura en la base de '
-                                 'datos, la publicacion del evento en la cola y la respuesta `201` '
-                                 'al usuario.\n'
-                                 '- En el camino de error: la respuesta con **el mismo codigo y '
-                                 'constante** que declaro en `C-01` (por ejemplo `409 '
-                                 'CUPO_OCUPADO`) y **sin** escritura en la base de datos.\n'
-                                 '\n'
-                                 '**Verificacion:** cuente los mensajes y confirme que en la rama '
-                                 'de error **no hay ningun mensaje de escritura** ni publicacion '
-                                 'en la cola.',
-                    'mermaid_esperado': 'sequenceDiagram\n'
-                                        '    autonumber\n'
-                                        '    actor E as Estudiante\n'
-                                        '    participant S as SPA Web\n'
-                                        '    participant A as API CloudLite\n'
-                                        '    participant D as Base de datos Citas\n'
-                                        '    participant Q as Cola Notificaciones\n'
-                                        '    E->>S: Selecciona el cupo del 12/09 a las 09:00\n'
-                                        '    S->>A: POST /citas con id_cupo y token OIDC\n'
-                                        '    A->>D: SELECT del cupo con bloqueo FOR UPDATE\n'
-                                        '    alt Cupo disponible\n'
-                                        '        A->>D: INSERT de la cita confirmada\n'
-                                        '        A->>Q: XADD del evento cita_confirmada\n'
-                                        '        A-->>S: 201 Created con id_cita\n'
-                                        '        S-->>E: Muestra la confirmacion y el recordatorio '
-                                        'programado\n'
-                                        '    else Cupo ya tomado por otro estudiante\n'
-                                        '        A-->>S: 409 Conflict con codigo CUPO_OCUPADO\n'
-                                        '        S-->>E: Sugiere los dos horarios libres mas '
-                                        'cercanos\n'
-                                        '    end',
-                    'puntos': 20,
-                    'rubrica': '6 pts los 5 participantes con los nombres identicos a los '
-                               'contenedores. 6 pts el bloque alt con camino feliz y camino de '
-                               'error. 5 pts que la rama de error use el mismo codigo y constante '
-                               'del contrato y no escriba ni publique. 3 pts autonumber y que '
-                               'renderice sin error.',
-                    'tipo': 'diagrama'},
-                   {'enunciado': '## Riesgos de partir el sistema\n'
-                                 '\n'
-                                 'Al separar CloudLite en 5 contenedores aparecen problemas que un '
-                                 'monolito no tiene. Construya una tabla de **3 columnas** '
-                                 '(`Riesgo de distribucion | Donde aparece en mi diagrama | '
-                                 'Mitigacion concreta`) con **exactamente 3 filas**, eligiendo 3 '
-                                 'riesgos distintos entre: fallo parcial de un salto de red, '
-                                 'latencia acumulada, consistencia entre la base de datos y la '
-                                 'cola, doble entrega de un evento, o crecimiento del acoplamiento '
-                                 'por contrato.\n'
-                                 '\n'
-                                 'Reglas:\n'
-                                 '- La columna del medio **debe citar la flecha exacta** de su '
-                                 'C4Container (por ejemplo `API CloudLite -> Cola '
-                                 'Notificaciones`).\n'
-                                 '- La mitigacion debe ser algo **visible en el diseno** '
-                                 '(reintento con espera, tiempo de espera maximo, idempotencia por '
-                                 'clave, cola con reintento), no una buena intencion.\n'
-                                 '\n'
-                                 'Cierre con **una frase** que responda: por que 5 contenedores y '
-                                 'no 12.',
-                    'puntos': 12,
-                    'rubrica': '6 pts las 3 filas con riesgos distintos y la flecha exacta del '
-                               'diagrama citada. 4 pts las 3 mitigaciones expresadas como '
-                               'mecanismo verificable en el diseno. 2 pts la frase que justifica '
-                               'el numero de contenedores frente al tamano del equipo.',
-                    'tipo': 'abierta'},
-                   {'correctas': [0, 1, 3],
-                    'enunciado': '## Antipatrones de arquitectura distribuida\n'
-                                 '\n'
-                                 'Seleccione las **3 situaciones que son antipatrones**.',
-                    'opciones': ['Definir 12 microservicios para un equipo de 3 personas y un '
-                                 'semestre.',
-                                 'Dos servicios distintos escribiendo directamente en la misma '
-                                 'tabla de la misma base de datos.',
-                                 'Nombrar cada contenedor con su responsabilidad y su tecnologia '
-                                 'tentativa.',
-                                 'Encadenar 5 llamadas sincronas entre servicios para responder '
-                                 'una sola peticion del usuario.',
-                                 'Publicar un evento en una cola para el trabajo que puede '
-                                 'terminar despues de responder al usuario.',
-                                 'Usar los mismos nombres de contenedor en el C4 y en el diagrama '
-                                 'de despliegue.'],
-                    'puntos': 8,
-                    'rubrica': '3 pts por cada antipatron correctamente marcado hasta un maximo de '
-                               '8; se descuentan 3 pts por cada opcion correcta de diseno marcada '
-                               'como antipatron, sin bajar de cero.',
-                    'tipo': 'cerrada_multi'}],
-     'resumen': 'El estudiante entrega el mapa logico de CloudLite como C4Container renderizado, '
-                'con 5 contenedores de nombre congelado, 3 contratos con errores de negocio y el '
-                'flujo principal en un diagrama de secuencia con camino de error.',
-     'titulo': 'Taller Clase 4 en ExamLab - C4 Container y contratos de CloudLite'},
+Debajo de la tabla:
+
+- **Describa la captura** que adjunta. Debe mostrarse al mismo tiempo el prompt del
+  laboratorio, la salida de `docker ps` y la hora del sistema.
+- **Una fila de incidente**: un comando que le fallo y como lo resolvio. Si nada fallo,
+  escriba el que estuvo a punto de fallar y por que no fallo.
+
+> **La sesion del laboratorio caduca a 1 hora.** El Dockerfile se escribe en la carpeta de
+> su PI y se **pega** en el laboratorio, nunca al contrario, y la evidencia se captura
+> **antes** de cerrar. Perder el trabajo por no haber guardado es el incidente mas comun del
+> dia, y no es excusa aceptable para no entregar esta pregunta.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '2.5 pts las cinco filas con la salida real pegada textualmente; una salida parafraseada («salio bien») no suma. 1.5 pts la descripcion de la captura con los tres elementos exigidos (prompt, docker ps y hora del sistema). 1 pt la fila de incidente con el problema y como se resolvio. 1 pt coherencia: el nombre de la imagen, la etiqueta y el puerto son los mismos de las preguntas 8 y 10. Es la pregunta que demuestra que el contenedor existio de verdad y no solo en papel.',
+                      },
+                  ],
+     'resumen': '''Las preguntas 8 a 11 de la actividad del Corte 1. El estudiante elige el servicio a contenedorizar, escribe su Dockerfile, explica capas y cache sobre su propio archivo, documenta el ciclo con el contrato de salud y entrega la bitacora con la evidencia real del contenedor corriendo.''',
+     'titulo': '''Actividad del Corte 1 (preguntas 8 a 11) - Contenedor del stub de CloudLite'''},
+ 4: {'pasos': [
+                  'Paso 1: decida en la pregunta 12 si su CloudLite es un monolito modular o microservicios, con los dos criterios aplicados a su caso (tamano del equipo con numero y plazo, y que partes cambian juntas) y lo que gana y pierde; verifique que no escribio «un poco de los dos», porque eso vale cero.',
+                  'Paso 2: modele en la pregunta 13 el C4 Container partiendo del C4 Context de la pregunta 3, con entre 2 y 5 contenedores coherentes con la decision anterior, los almacenes de datos como ContainerDb y toda flecha con protocolo y formato; verifique que los nombres de sistema, actores y sistemas externos sean identicos a los del Context.',
+                  'Paso 3: liste en la pregunta 14 los 3 contratos con quien llama a quien usando los nombres exactos del diagrama, el verbo y la ruta (o el evento) y el error de negocio con su codigo y su significado en el dominio; verifique que al menos uno sea un 409 de conflicto y que ninguno diga «500 error del servidor».',
+                  'Paso 4: analice en la pregunta 15 los tres riesgos de distribucion nombrando una caja concreta que se cae, contando los saltos de red de una operacion de punta a punta y nombrando un dato expuesto a inconsistencia; con esto la actividad del Corte 1 queda completa y se entrega en ExamLab antes del domingo 23:59 de esta semana.',
+              ],
+     'preguntas': [
+                      {
+                          'n_global': 12,
+                          'tipo': 'abierta',
+                          'puntos': 4.0,
+                          'enunciado': '''## Monolito modular o microservicios para su CloudLite
+
+Antes de dibujar las cajas hay que decidir si el sistema se parte o no. Escriba su decision
+con esta estructura:
+
+1. **La decision**, en una frase: **monolito modular** o **microservicios** para CloudLite.
+2. **Dos criterios que la sustentan**, aplicados a su caso concreto:
+   - **tamano del equipo**: cuantas personas sostienen el proyecto y durante cuanto tiempo;
+   - **acoplamiento**: que partes de su dominio cambian juntas y cuales cambian por separado.
+3. **Que gana y que pierde** con la decision: una de cada una, en terminos de su dominio.
+
+> **Regla del curso:** doce microservicios para un equipo de tres es teatro, no
+> arquitectura. Partir un sistema tiene un costo real —cada llamada de funcion se convierte
+> en una llamada de red, con su latencia y su posibilidad de fallar— y ese costo hay que
+> pagarlo con una razon. Un monolito modular bien argumentado vale exactamente lo mismo que
+> microservicios bien argumentados; lo que no vale es partir por moda.
+
+Esta decision es la que explica cuantas cajas tendra el diagrama de la pregunta 13: si
+elige monolito modular, esas cajas son modulos dentro de un contenedor mas sus almacenes de
+datos, no servicios sueltos.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '1 pt la decision nombrada en una frase, sin ambiguedad. 2 pts los dos criterios aplicados al caso: 1 pt tamano del equipo con numero y plazo, 1 pt acoplamiento diciendo que partes cambian juntas. 1 pt el que gana y que pierde en terminos del dominio. Cero en la decision si dice «un poco de los dos» o no elige. Elegir monolito modular NO se penaliza: se penaliza no sustentar.',
+                      },
+                      {
+                          'n_global': 13,
+                          'tipo': 'diagrama',
+                          'puntos': 11.0,
+                          'enunciado': '''## C4 Containers de CloudLite App
+
+Modele el diagrama **C4 de nivel Container** de su CloudLite, en Mermaid. La primera linea
+debe ser exactamente `C4Container`.
+
+Parta del **C4 Context de la pregunta 3** y **reutilice exactamente los mismos nombres** de
+sistema, de actores y de sistemas externos. Es el mismo sistema visto con mas zoom, no otro
+sistema.
+
+El diagrama debe tener:
+
+- Entre **2 y 5** contenedores o servicios logicos dentro de la frontera del sistema, cada
+  uno con su tecnologia entre parentesis y **coherente con la decision de la pregunta 12**.
+- Los **almacenes de datos** como `ContainerDb(...)`.
+- Los actores y los sistemas externos que ya estaban en el Context.
+- **Cada flecha etiquetada con su protocolo y su formato**: `HTTPS/JSON`, `TCP/SQL`,
+  `evento/cola`. Una flecha sin protocolo no cuenta.
+
+> **Justifique cada caja.** Por cada contenedor tiene que poder responder dos preguntas: que
+> responsabilidad de negocio propia tiene, y por que se despliega por separado. Si no puede
+> responder las dos, esa caja no deberia existir. **Doce microservicios para un equipo de
+> tres es teatro, no arquitectura.**
+
+Estos nombres vuelven en el diagrama de despliegue de la Clase 7 y en el checkpoint de la
+Clase 11: si aqui llama «api-prestamos» a un servicio, alla tiene que llamarse igual.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '3 pts entre 2 y 5 contenedores, cada uno con su tecnologia; se descuenta por cada caja de mas sin justificacion. 2 pts los almacenes de datos declarados como ContainerDb. 3 pts que TODA flecha lleve protocolo y formato. 2 pts que los nombres de sistema, actores y sistemas externos sean identicos a los del C4 Context de la pregunta 3. 1 pt que renderice sin error. Si el numero de cajas contradice la decision de la pregunta 12 (por ejemplo cinco servicios sueltos habiendo elegido monolito modular) se pierden los 3 pts de los contenedores.',
+                          'mermaid_esperado': '''C4Container
+    title Contenedores de CloudLite App - dominio AgendaU
+    Person(estudiante, "Estudiante", "Reserva y cancela citas de asesoria")
+    Person(coordinador, "Coordinador academico", "Publica cupos y revisa la ocupacion semanal")
+    System_Boundary(cloudlite, "CloudLite App") {
+        Container(spa, "Aplicacion web", "React", "Interfaz de reserva y de publicacion de cupos")
+        Container(api, "API de agenda", "Node.js", "Reglas de reserva, cancelacion y cupos")
+        ContainerDb(db, "Base de datos de agenda", "PostgreSQL", "Cupos, reservas y usuarios")
+    }
+    System_Ext(idp, "Proveedor de identidad institucional", "Login OIDC de la universidad")
+    System_Ext(correo, "Correo transaccional SaaS", "Envio de confirmaciones y recordatorios")
+    Rel(estudiante, spa, "Reserva y cancela citas", "HTTPS")
+    Rel(coordinador, spa, "Publica cupos y consulta la ocupacion", "HTTPS")
+    Rel(spa, api, "Consulta y modifica la agenda", "HTTPS/JSON")
+    Rel(api, db, "Lee y escribe reservas y cupos", "TCP/SQL")
+    Rel(api, idp, "Valida la identidad institucional", "OIDC sobre HTTPS")
+    Rel(api, correo, "Solicita el envio de la confirmacion", "API REST sobre HTTPS")''',
+                      },
+                      {
+                          'n_global': 14,
+                          'tipo': 'abierta',
+                          'puntos': 7.0,
+                          'enunciado': '''## Los tres contratos de CloudLite
+
+Liste **3 contratos** entre las piezas del diagrama de la pregunta 13. Un contrato es el
+acuerdo de como se hablan dos partes, y aqui se escribe con **cuatro datos**:
+
+| Contrato | Quien llama a quien | Verbo y ruta | Error de negocio |
+|---|---|---|---|
+
+- **Quien llama a quien**: los nombres exactos de las cajas del diagrama.
+- **Verbo y ruta**: el verbo HTTP y la ruta (`POST /reservas`), o el **evento** si la
+  comunicacion es asincrona (`evento reserva.creada`).
+- **Error de negocio**: el codigo y **que significa en su dominio**. No vale «500 error del
+  servidor»: eso es una falla, no un contrato. Se espera algo como
+  `409 el cupo ya fue tomado por otro estudiante` o `422 la fecha esta fuera del periodo`.
+
+> **Al menos uno de los tres errores debe ser un `409` de conflicto**, porque el conflicto
+> es el error que aparece en cuanto dos usuarios hacen lo mismo a la vez, y es el que se
+> retoma en la Clase 13 cuando se hable de concurrencia y escalado.
+
+Un contrato sin su error solo describe el camino feliz, y el camino feliz nunca es el que
+rompe el sistema.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '3 pts los tres contratos con quien llama a quien usando los nombres exactos del diagrama: 1 pt cada uno. 2 pts los verbos y rutas bien formados (o el evento, si es asincrono). 2 pts los errores de negocio con codigo y significado en el dominio; se pierde el punto del error si dice 500 o «error generico», y se pierde 1 pt del total si ninguno de los tres es un 409 de conflicto.',
+                      },
+                      {
+                          'n_global': 15,
+                          'tipo': 'abierta',
+                          'puntos': 3.0,
+                          'enunciado': '''## Riesgos de distribucion de su arquitectura
+
+Toda frontera que dibujo en la pregunta 13 es una llamada de red, y una llamada de red puede
+fallar, tardar o dejar los datos a medias. Analice **los tres riesgos** que introdujo su
+propia arquitectura logica, en este orden:
+
+1. **Que se rompe cuando una pieza no responde.** Elija **una** caja concreta de su
+   diagrama, digala por su nombre, y describa que deja de funcionar y que sigue funcionando
+   si esa pieza se cae. La respuesta interesante no es «se cae todo»: es cual capacidad de
+   su ficha queda inservible y cual no.
+2. **Que latencia agrega cada salto.** Cuente los saltos de red de **una** operacion
+   completa de su dominio, de punta a punta, y diga cuantos son. No hace falta medir: hace
+   falta contar y darse cuenta de que antes eran cero.
+3. **Que datos quedan expuestos a inconsistencia.** Nombre **un** dato que viva en dos
+   sitios o que se actualice en dos pasos, y que pasaria si el segundo paso falla.
+
+> Si su decision de la pregunta 12 fue **monolito modular**, esta pregunta sigue aplicando:
+> los saltos hacia la base de datos y hacia los sistemas externos son igualmente red, y el
+> riesgo 3 existe en cuanto haya dos escrituras que deban ocurrir juntas.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '1 pt el riesgo de indisponibilidad nombrando una caja concreta y distinguiendo que deja de funcionar de que sigue funcionando; media respuesta si dice «se cae todo». 1 pt el conteo de saltos de una operacion de punta a punta. 1 pt el dato expuesto a inconsistencia, nombrado, con lo que pasa si falla el segundo paso. Una respuesta generica sobre «los microservicios son mas complejos» no suma en ningun criterio.',
+                      },
+                  ],
+     'resumen': '''Las preguntas 12 a 15 de la actividad del Corte 1, que la cierran. El estudiante decide si parte el sistema, modela el C4 Container reutilizando los nombres del Context, define 3 contratos con su error de negocio y analiza los riesgos que introdujo al distribuir.''',
+     'titulo': '''Actividad del Corte 1 (preguntas 12 a 15) - C4 Containers, contratos y riesgos'''},
  6: {'pasos': ['Paso 1: liste 5 amenazas concretas de su dominio, una por cada categoria de '
                'STRIDE-lite (suplantacion, manipulacion, divulgacion de informacion, denegacion de '
                'servicio y elevacion de privilegios), verificando que cada amenaza nombre el '

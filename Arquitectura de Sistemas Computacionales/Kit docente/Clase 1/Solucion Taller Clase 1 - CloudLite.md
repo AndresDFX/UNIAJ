@@ -1,10 +1,10 @@
-# Solucion — Actividad del Corte 1, preguntas 1 a 3 (dominio, ficha y C4 Context)
+# Solucion — Actividad del Corte 1, preguntas 1 a 4 (dominio, ficha, C4 Context y calidad)
 
 > **DOCUMENTO DOCENTE — PRIVADO.** No publicar en `Clases/` ni en ExamLab antes del cierre de la entrega.
 
-**Resumen:** Las tres preguntas que corresponden a la Clase 1, resueltas sobre el dominio **BiblioLite** (prestamos de biblioteca). El dominio de la solucion es distinto del que se proyecta en clase (**AgendaU**) a proposito: sirve de contraste para calificar y evita que esta solucion se convierta en la respuesta que todos copian.
+**Resumen:** Las cuatro preguntas que corresponden a la Clase 1, resueltas sobre el dominio **BiblioLite** (prestamos de biblioteca). El dominio de la solucion es distinto del que se proyecta en clase (**AgendaU**) a proposito: sirve de contraste para calificar y evita que esta solucion se convierta en la respuesta que todos copian.
 
-> Estas 3 preguntas valen **25 de los 100 puntos** de la actividad del Corte 1, que es **una sola para las Clases 1 a 4** y se entrega completa al cierre del corte. Las preguntas 4 a 11 se resuelven en las Clases 2, 3 y 4.
+> Estas 4 preguntas valen **25 de los 100 puntos** de la actividad del Corte 1, que es **una sola para las Clases 1 a 4** y se entrega completa al cierre del corte. Las preguntas 5 a 15 se resuelven en las Clases 2, 3 y 4.
 
 ## Alineacion con el taller
 
@@ -12,17 +12,18 @@
 - Configuracion en la plataforma: `Kit docente/Clase 1/Taller en ExamLab - Clase 1 (configuracion).md`
 - Hito del PI: Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases
 - Entregable: Ficha PI de 5 bloques + C4 Context en Mermaid renderizado en ExamLab (boceto previo en Excalidraw/draw.io)
-- **Estas preguntas: 25.0 puntos** en 3 preguntas.
+- **Estas preguntas: 25.0 puntos** en 4 preguntas.
 
 | # | Pregunta | Tipo | Puntos |
 |---|---|---|---|
-| 1 | Dominio y problema de CloudLite App | `abierta` | 6.25 |
-| 2 | Ficha del dominio (cinco bloques) | `abierta` | 8.75 |
-| 3 | C4 Context en Mermaid | `diagrama` | 10.0 |
+| 1 | Dominio y problema de CloudLite App | `abierta` | 5.0 |
+| 2 | Ficha del dominio (cinco bloques) | `abierta` | 7.0 |
+| 3 | C4 Context en Mermaid | `diagrama` | 8.0 |
+| 4 | Atributos de calidad de su CloudLite | `abierta` | 5.0 |
 
 ---
 
-## Pregunta 1 · Dominio y problema de CloudLite App · 6.25 pts
+## Pregunta 1 · Dominio y problema de CloudLite App · 5.0 pts
 
 ### Respuesta esperada
 
@@ -41,7 +42,7 @@ noto el vencimiento.
 - 3 pts el dominio concreto y del tamano adecuado.
 - 1.5 pts que el problema nombre a **QUIEN** lo sufre con un rol concreto. «Los usuarios» no es un rol; «el auxiliar de biblioteca» si.
 - 1.75 pts que incluya **una cifra** que mida el dolor. Una cifra estimada sirve; «mucho tiempo» o «se pierde informacion» no.
-- **Si el dominio es generico** («una red social», «una app de la universidad», «un e-commerce»), **toda la pregunta vale cero**: sin dominio concreto no hay nada que arquitecturar en las clases siguientes, y el estudiante llegaria a la pregunta 9 sin sistema que dibujar.
+- **Si el dominio es generico** («una red social», «una app de la universidad», «un e-commerce»), **toda la pregunta vale cero**: sin dominio concreto no hay nada que arquitecturar en las clases siguientes, y el estudiante llegaria a la pregunta 13 sin sistema que dibujar.
 - Se descuenta si el problema pasa de 3 frases.
 
 ### Errores frecuentes y que hacer
@@ -53,7 +54,7 @@ noto el vencimiento.
 
 ---
 
-## Pregunta 2 · Ficha del dominio (cinco bloques) · 8.75 pts
+## Pregunta 2 · Ficha del dominio (cinco bloques) · 7.0 pts
 
 ### Respuesta esperada
 
@@ -99,7 +100,7 @@ BiblioLite: prestamo y devolucion de libros de la biblioteca de la universidad.
 
 ---
 
-## Pregunta 3 · C4 Context en Mermaid · 10.0 pts
+## Pregunta 3 · C4 Context en Mermaid · 8.0 pts
 
 ### Respuesta esperada (dominio de la solucion)
 
@@ -144,7 +145,7 @@ C4Context
 - 2 pts los sistemas externos como `System_Ext`, los mismos que la ficha.
 - 2 pts que **toda** flecha lleve verbo de negocio **y** protocolo. Una flecha rotulada «usa», o sin protocolo, no suma.
 - 1 pt que el diagrama renderice sin error dentro de la plataforma.
-- **Si aparece un contenedor interno** (base de datos, API, worker, cache) se pierden los 3 pts de la caja del sistema: eso es el nivel Container de la pregunta 9, y aprobarlo aqui la deja sin nada que revelar.
+- **Si aparece un contenedor interno** (base de datos, API, worker, cache) se pierden los 3 pts de la caja del sistema: eso es el nivel Container de la pregunta 13, y aprobarlo aqui la deja sin nada que revelar.
 
 ### Errores frecuentes y que hacer
 
@@ -156,17 +157,56 @@ C4Context
 
 ---
 
+## Pregunta 4 · Atributos de calidad de su CloudLite · 5.0 pts
+
+### Respuesta esperada
+
+**Atributo 1 — Disponibilidad**
+Por que pesa en BiblioLite: la semana de matricula todos buscan los libros de reserva a la
+vez, y si el sistema no responde el estudiante vuelve al mostrador, que es justo el
+problema que veniamos a resolver.
+Como lo mediria: el sistema responde el 99,5 % del mes, es decir que acepto hasta unas 3
+horas y media de caida, siempre que no caigan en la semana de matricula.
+
+**Atributo 2 — Rendimiento**
+Por que pesa en BiblioLite: la consulta de disponibilidad es la accion que mas se repite y
+compite contra la alternativa de caminar hasta la biblioteca; si tarda, nadie la usa.
+Como lo mediria: el listado de disponibilidad de un titulo responde en menos de 400 ms
+para el 95 % de las consultas.
+
+**Conflicto**
+Sacrifico disponibilidad antes que rendimiento. Prefiero un sistema que a veces este caido
+pero que cuando responda sea inmediato, porque el estudiante que encuentra el sistema
+caido camina hasta la biblioteca igual que hoy, mientras que uno que espera diez segundos
+deja de confiar en el dato y tampoco vuelve. A cambio acepto no montar redundancia, que es
+lo que me permite sostener el proyecto sin presupuesto.
+
+### Como calificar
+
+- 1 pt la eleccion de dos atributos **con una razon atada al dominio**. «La disponibilidad es importante» no es una razon; «la semana de matricula todos consultan a la vez» si.
+- 2 pts las dos metricas, con **numero y unidad**. Una metrica sin numero («que sea rapido», «que sea seguro») no suma. El numero puede ser discutible; lo que no puede es faltar.
+- 2 pts la frase de conflicto: **cual sacrifica y que gana**. **Cero en este criterio** si la respuesta dice que los cuatro son igual de importantes o no elige: es justamente lo que la pregunta evalua.
+
+### Errores frecuentes y que hacer
+
+- Elegir los cuatro «porque todos importan». Es la respuesta que la pregunta busca descartar: si no se sacrifica nada, no se decidio nada. Devuelvala pidiendo que elija dos.
+- Metricas copiadas de la clase sin aterrizar: «menos de 300 ms» sirve solo si dice de QUE operacion de su dominio.
+- Confundir seguridad con disponibilidad: «que nadie lo tumbe» es disponibilidad; seguridad es quien puede ver o cambiar que.
+- Usar porcentajes sin traducirlos a tiempo. Si escribe 99,9 %, pidale que diga cuantos minutos al mes son: es la unica forma de saber si entendio lo que esta prometiendo.
+
+---
+
 ## Lo que van a preguntar (respuestas listas)
 
 Estas son las dudas que aparecen todos los semestres. Tenerlas resueltas por escrito es lo que evita responder la misma cosa quince veces durante el taller.
 
 **¿La actividad se entrega hoy?**
 
-No. Es una sola actividad de 11 preguntas para las Clases 1 a 4. Hoy se resuelven las tres primeras; la entrega completa cierra al final del Corte 1. Conviene decirlo al abrir el taller, porque es la duda que mas aparece.
+No. Es una sola actividad de 15 preguntas para las Clases 1 a 4. Hoy se resuelven las cuatro primeras; la entrega completa cierra al final del Corte 1. Conviene decirlo al abrir el taller, porque es la duda que mas aparece.
 
 **¿Puede cambiar de dominio en la Clase 2?**
 
-No. El dominio se cierra hoy y las preguntas 4 a 11 lo reutilizan. Si el dominio elegido resulta demasiado grande, se recorta el bloque «fuera de alcance», no se cambia de dominio.
+No. El dominio se cierra hoy y las preguntas 5 a 15 lo reutilizan. Si el dominio elegido resulta demasiado grande, se recorta el bloque «fuera de alcance», no se cambia de dominio.
 
 **¿Cuantos actores y capacidades exactamente?**
 
@@ -182,7 +222,7 @@ No. Se disena en Excalidraw o draw.io, que es donde se piensa el modelo, y se pi
 
 **¿Por que el diagrama no puede tener la base de datos?**
 
-Porque es el nivel Context, donde el sistema es una caja negra. La base de datos aparece en el nivel Container, que es la pregunta 9 de esta misma actividad. Si se dibuja hoy, esa pregunta no tendria nada nuevo que revelar.
+Porque es el nivel Context, donde el sistema es una caja negra. La base de datos aparece en el nivel Container, que es la pregunta 13 de esta misma actividad. Si se dibuja hoy, esa pregunta no tendria nada nuevo que revelar.
 
 **¿Cuantas cajas debe tener el diagrama?**
 

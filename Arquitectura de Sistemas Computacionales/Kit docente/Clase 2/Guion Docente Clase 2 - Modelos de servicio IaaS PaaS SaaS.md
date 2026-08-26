@@ -51,10 +51,9 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 7. Plantilla ADR-001
 8. ADR-001 — la plantilla completa cabe en una pagina
 9. Herramientas de hoy
-10. Del boceto a ExamLab (diagrama)
-11. Taller PI (paso a paso)
-12. Para continuar (PI)
-13. Clase 2 · PI en movimiento
+10. Taller PI (paso a paso)
+11. Para continuar (PI)
+12. Clase 2 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -76,7 +75,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 10]
+### 40–55 · Demo en vivo · 
 Herramienta del día: **Google Docs · draw.io (opcional)**.
 **Demo que usted debe poder repetir:** Llenar un ADR-001 delante del grupo, en 6 lineas
 
@@ -89,17 +88,8 @@ Herramienta del día: **Google Docs · draw.io (opcional)**.
 Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase 2/Capturas/`.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
-**Cierra la demo dentro de ExamLab** [Slide 10] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
-**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
-
-- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
-- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `flowchart`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
-- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
-- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
-
-
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 11]
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 10]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -112,18 +102,17 @@ Aplica el quiz corto de `Kit docente/Clase 2/Quiz Clase 2 - Modelos de servicio 
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 13]
+### 115–120 · Cierre · [Slide 12]
 Di: «Queda avanzado: Decidir modelo dominante (IaaS/PaaS/SaaS) para CloudLite + ADR breve.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
-1. Paso 1: relea la ficha y el C4 Context de la Clase 1 y copie en el encabezado del ADR el nombre del dominio y las 4 capacidades ya aprobadas, verificando que sean literalmente las mismas 4 y que no cambia de dominio a mitad de camino, porque una inconsistencia aqui arrastra error en todos los diagramas que siguen.
-2. Paso 2: complete la matriz de 4 columnas y 5 filas (control del sistema operativo, esfuerzo de operacion, tiempo hasta la primera demo, costo cualitativo con su driver, portabilidad) puntuando cada celda de 1 a 3 y sumando por columna, verificando que los tres totales de IaaS, PaaS y SaaS sean distintos: si dos empatan, vuelva a puntuar porque el criterio esta mal aplicado; la matriz queda en la seccion Modelo de servicio del informe del PI.
-3. Paso 3: redacte el ADR-001 con las 7 secciones obligatorias (titulo, estado, contexto en 3 frases, decision en 1 frase, 2 alternativas descartadas con motivo, 2 consecuencias positivas y 2 negativas, impacto en el PI), verificando que la decision nombre un unico modelo dominante y no un poco de todo, y que cada alternativa descartada explique el motivo en terminos de este dominio y no en teoria.
-4. Paso 4: escriba en ExamLab el diagrama Mermaid de responsabilidad compartida con 3 subgrafos (IaaS, PaaS, SaaS), 4 capas por subgrafo y un nodo final de decision, verificando al renderizar que se cuentan 12 nodos de capa, que los nodos gestionados por el equipo y por el proveedor quedan pintados distinto y que la caja de decision cita el mismo modelo del ADR-001.
-5. Paso 5: pegue matriz, ADR-001 y diagrama en las 5 preguntas del taller, actualice la seccion Modelo de servicio del informe con el mismo texto del ADR y suba todo a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que el modelo elegido se pueda demostrar sin tarjeta de credito ni cloud de pago.
+1. Paso 1: relea su ficha y su C4 Context de la Clase 1. No cambie de dominio: las preguntas 5 a 7 se califican sobre el mismo sistema, y el ADR que redacte hoy se reutiliza en el informe del PI y en la sustentacion de la Clase 15.
+2. Paso 2: construya en la pregunta 5 la matriz `Criterio | IaaS | PaaS | SaaS` con las cuatro filas en orden (control, costo cualitativo, operacion, time-to-demo) y maximo 2 lineas por celda; verifique que cada celda nombre una capacidad o una restriccion de SU dominio, y que la fila de operacion no afirme que en PaaS o SaaS usted deja de responder por su propia aplicacion.
+3. Paso 3: redacte en la pregunta 6 el ADR-001 con titulo, estado con fecha, la decision en UNA sola frase con UN modelo dominante, y exactamente 2 alternativas descartadas con el motivo atado a su dominio; verifique que la seccion de decision no nombre dos modelos, porque en ese caso vale cero.
+4. Paso 4: escriba en la pregunta 7 las consecuencias en los tres ejes (operacion, costo y aprendizaje), con al menos una positiva y una negativa por eje marcadas con + y -, y verifique que al menos una negativa hable de amarre al proveedor o de perdida de control; guarde y continue, que la actividad se entrega completa al cierre del corte.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

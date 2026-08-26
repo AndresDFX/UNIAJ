@@ -53,10 +53,9 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 9. Maquina virtual vs contenedor — que cambia de verdad
 10. Dockerfile minimo del stub CloudLite
 11. Herramientas de hoy
-12. Del boceto a ExamLab (diagrama)
-13. Taller PI (paso a paso)
-14. Para continuar (PI)
-15. Clase 3 · PI en movimiento
+12. Taller PI (paso a paso)
+13. Para continuar (PI)
+14. Clase 3 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -78,7 +77,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 12]
+### 40–55 · Demo en vivo · 
 Herramienta del día: **Killercoda · alterna si no carga: LabEx Docker Playground**.
 **Demo que usted debe poder repetir:** Construir y correr el stub en Killercoda
 
@@ -90,20 +89,11 @@ Herramienta del día: **Killercoda · alterna si no carga: LabEx Docker Playgrou
 
 Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase 3/Capturas/`.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
-
-**Cierra la demo dentro de ExamLab** [Slide 12] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
-
-**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
-
-- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
-- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `flowchart`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
-- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
-- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 📸 Build y run del stub en el lab del navegador (lo que debe verse en pantalla) [[captura: salida-docker-build-run.png]]
 📸 Evidencia del entregable: el contenedor corriendo (`docker ps`) [[captura: salida-docker-ps.png]]
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 13]
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 12]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -116,18 +106,17 @@ Aplica el quiz corto de `Kit docente/Clase 3/Quiz Clase 3 - Virtualizacion y con
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 15]
+### 115–120 · Cierre · [Slide 14]
 Di: «Queda avanzado: Contenerizar un stub del servicio principal de CloudLite.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
-1. Paso 1: decidan cual de los contenedores de CloudLite se contenerizara hoy (la API stub o el front estatico) y escriban en la seccion Contenedores del informe el nombre exacto del servicio, el puerto que expondra y la ruta de salud que responderan (por ejemplo api-citas, puerto 8080, ruta /health), verificando que ese nombre sea el mismo que usaran en el C4 de la Clase 4 y en el despliegue de la Clase 7.
-2. Paso 2: en la consola Linux de ExamLab arme el contexto de build con 5 archivos (app/main.py, requirements.txt con 2 dependencias fijadas por version, Dockerfile, .dockerignore con 4 entradas) y verifique con ls -la que los 5 existen y con un grep de PASSWORD, SECRET, TOKEN y api_key que la salida sea vacia, confirmando que no hay ningun secreto en el contexto.
-3. Paso 3: escriba el Dockerfile con exactamente 7 instrucciones (FROM con tag fijo y variante slim, WORKDIR, COPY de requirements, RUN pip install --no-cache-dir, COPY del codigo, EXPOSE del puerto declarado en el paso 1, CMD) y verifique que el puerto de EXPOSE, el del CMD y el documentado en el informe sean el mismo numero; el Dockerfile se pega completo en la pregunta 2 de ExamLab.
-4. Paso 4: abra Killercoda en killercoda.com con su cuenta gratuita y lance un escenario Ubuntu (si no carga, LabEx Docker Playground como alterna; ojo: LabEx solo da 3 sesiones al dia en el plan gratuito), ejecute docker build -t cloudlite-api:v1 . y docker run -d -p 8080:8080 cloudlite-api:v1, compruebe con curl que la ruta de salud devuelve 200 y llene la bitacora de 5 filas comando / que esperaba / que salio / evidencia, verificando que la captura muestre a la vez el prompt del lab, la salida del docker ps y la hora del sistema.
-5. Paso 5: complete el diagrama Mermaid del ciclo Dockerfile a contenedor, adjunte la captura del lab con su nota de caducidad y suba las 5 preguntas del taller a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que la seccion Contenedores del informe cite el mismo tag de imagen cloudlite-api:v1 que aparece en la captura.
+1. Paso 1: elija en la pregunta 8 cual servicio de su C4 Context va a contenedorizar y justifiquelo en 2 o 3 frases; escriba a continuacion el Dockerfile completo con la imagen base ligera y con etiqueta fija, el COPY de dependencias antes del COPY del codigo, el EXPOSE y el CMD, verificando que no copie el .env ni ninguna clave.
+2. Paso 2: explique en la pregunta 9, sobre su propio Dockerfile, la diferencia entre imagen y contenedor, que instrucciones de SU archivo crean capa, por que el orden aprovecha el cache y en que se diferencia su contenedor de una maquina virtual; verifique que no escribio que un contenedor es una VM ligera.
+3. Paso 3: describa en la pregunta 10 el ciclo completo con los comandos exactos de build y de run, explicando que lado del mapeo de puertos es el anfitrion y que lado el contenedor, y cierre con el contrato del endpoint de salud (ruta, codigo de estado y cuerpo); verifique que el puerto sea el mismo que puso en el EXPOSE.
+4. Paso 4: ejecute de verdad el ciclo en Killercoda y reporte en la pregunta 11 la tabla de 5 filas con la salida real pegada textualmente, la descripcion de la captura con prompt, docker ps y hora del sistema, y una fila de incidente; recuerde que la sesion caduca a 1 hora, asi que capture la evidencia ANTES de cerrarla.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

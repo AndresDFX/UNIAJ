@@ -19,7 +19,7 @@ que el estudiante trae cada semestre, con la respuesta ya redactada.
 
 Estructura de la actividad
 --------------------------
-En ExamLab las Clases 1 a 4 comparten UNA actividad de 11 preguntas (ver
+En ExamLab las Clases 1 a 4 comparten UNA actividad de 15 preguntas (ver
 `ACTIVIDAD_CORTE1` en `arq_examlab_data`). Por eso las preguntas se identifican
 por su numero GLOBAL, que es el que el estudiante ve en la plataforma, y no por su
 posicion dentro de la clase.
@@ -42,8 +42,8 @@ DOMINIO_SOLUCION = "BiblioLite"
 DUDAS_ESTUDIANTE = {
     1: [
         ("¿Esta actividad se entrega hoy?",
-         "No. Es UNA sola actividad para las Clases 1 a 4, con 11 preguntas. Hoy resuelves "
-         "las preguntas 1, 2 y 3; las demás se resuelven en las clases siguientes y la "
+         "No. Es UNA sola actividad para las Clases 1 a 4, con 15 preguntas. Hoy resuelves "
+         "las preguntas 1 a 4; las demás se resuelven en las clases siguientes y la "
          "entrega completa cierra al final del Corte 1. Puedes guardar y volver."),
         ("¿Qué hace que mi dominio sea «concreto» y no genérico?",
          "Que el problema nombre a quién lo sufre con un rol («el auxiliar de biblioteca») y "
@@ -59,13 +59,17 @@ DUDAS_ESTUDIANTE = {
          "renderizado en la plataforma, no la imagen."),
         ("¿Por qué mi diagrama no puede llevar la base de datos?",
          "Porque hoy entregas el nivel Context, donde el sistema es una sola caja negra. "
-         "La base de datos y la API aparecen en el nivel Container, que es la pregunta 9 de "
+         "La base de datos y la API aparecen en el nivel Container, que es la pregunta 13 de "
          "esta misma actividad. Si las dibujas aquí, esa pregunta se queda sin nada nuevo."),
         ("¿Cuántas cajas debe tener el diagrama?",
          "Entre cuatro y ocho elementos en total. Si tienes veinte, es casi seguro que se "
          "colaron piezas internas del sistema."),
+        ("En atributos de calidad, ¿puedo decir que los cuatro son importantes?",
+         "No. La pregunta evalúa exactamente lo contrario: que elijas dos, los midas con un "
+         "número y digas cuál sacrificas. Más disponibilidad exige redundancia y la "
+         "redundancia cuesta; arquitectura es elegir qué se sacrifica."),
         ("¿Puedo cambiar de dominio más adelante?",
-         "No. El dominio se cierra hoy y las preguntas 4 a 11 de esta actividad, más las "
+         "No. El dominio se cierra hoy y las preguntas 5 a 15 de esta actividad, más las "
          "Clases 7, 11 y 15, reutilizan estos mismos nombres. Si te queda grande, recorta el "
          "bloque «fuera de alcance»."),
     ],
@@ -73,10 +77,10 @@ DUDAS_ESTUDIANTE = {
 
 SOLUCION = {
     1: {
-        "titulo": ("Solucion — Actividad del Corte 1, preguntas 1 a 3 "
-                   "(dominio, ficha y C4 Context)"),
+        "titulo": ("Solucion — Actividad del Corte 1, preguntas 1 a 4 "
+                   "(dominio, ficha, C4 Context y calidad)"),
         "resumen": (
-            "Las tres preguntas que corresponden a la Clase 1, resueltas sobre el dominio "
+            "Las cuatro preguntas que corresponden a la Clase 1, resueltas sobre el dominio "
             "**BiblioLite** (prestamos de biblioteca). El dominio de la solucion es distinto "
             "del que se proyecta en clase (**AgendaU**) a proposito: sirve de contraste para "
             "calificar y evita que esta solucion se convierta en la respuesta que todos "
@@ -84,16 +88,16 @@ SOLUCION = {
         ),
         "total": 25.0,
         "nota_actividad": (
-            "Estas 3 preguntas valen **25 de los 100 puntos** de la actividad del Corte 1, "
+            "Estas 4 preguntas valen **25 de los 100 puntos** de la actividad del Corte 1, "
             "que es **una sola para las Clases 1 a 4** y se entrega completa al cierre del "
-            "corte. Las preguntas 4 a 11 se resuelven en las Clases 2, 3 y 4."
+            "corte. Las preguntas 5 a 15 se resuelven en las Clases 2, 3 y 4."
         ),
         "preguntas": [
             {
                 "n": 1,
                 "titulo": "Dominio y problema de CloudLite App",
                 "tipo": "abierta",
-                "puntos": 6.25,
+                "puntos": 5.0,
                 "respuesta": """**DOMINIO**
 BiblioLite: prestamo y devolucion de libros de la biblioteca de la universidad.
 
@@ -112,7 +116,7 @@ noto el vencimiento.""",
                     "**Si el dominio es generico** («una red social», «una app de la "
                     "universidad», «un e-commerce»), **toda la pregunta vale cero**: sin "
                     "dominio concreto no hay nada que arquitecturar en las clases siguientes, "
-                    "y el estudiante llegaria a la pregunta 9 sin sistema que dibujar.",
+                    "y el estudiante llegaria a la pregunta 13 sin sistema que dibujar.",
                     "Se descuenta si el problema pasa de 3 frases.",
                 ],
                 "errores": [
@@ -132,7 +136,7 @@ noto el vencimiento.""",
                 "n": 2,
                 "titulo": "Ficha del dominio (cinco bloques)",
                 "tipo": "abierta",
-                "puntos": 8.75,
+                "puntos": 7.0,
                 "respuesta": """**DOMINIO**
 BiblioLite: prestamo y devolucion de libros de la biblioteca de la universidad.
 
@@ -188,7 +192,7 @@ BiblioLite: prestamo y devolucion de libros de la biblioteca de la universidad.
                 "n": 3,
                 "titulo": "C4 Context en Mermaid",
                 "tipo": "diagrama",
-                "puntos": 10.0,
+                "puntos": 8.0,
                 "respuesta_mermaid": """C4Context
     title Contexto de CloudLite App - dominio BiblioLite
     Person(estudiante, "Estudiante", "Consulta disponibilidad y reserva ejemplares")
@@ -210,7 +214,7 @@ BiblioLite: prestamo y devolucion de libros de la biblioteca de la universidad.
                     "1 pt que el diagrama renderice sin error dentro de la plataforma.",
                     "**Si aparece un contenedor interno** (base de datos, API, worker, cache) "
                     "se pierden los 3 pts de la caja del sistema: eso es el nivel Container de "
-                    "la pregunta 9, y aprobarlo aqui la deja sin nada que revelar.",
+                    "la pregunta 13, y aprobarlo aqui la deja sin nada que revelar.",
                 ],
                 "errores": [
                     "Base de datos o API dentro del diagrama. Es el error numero uno. La "
@@ -226,14 +230,62 @@ BiblioLite: prestamo y devolucion de libros de la biblioteca de la universidad.
                     "es de tipo diagrama: si no renderiza, no se puede calificar.",
                 ],
             },
+            {
+                "n": 4,
+                "titulo": "Atributos de calidad de su CloudLite",
+                "tipo": "abierta",
+                "puntos": 5.0,
+                "respuesta": """**Atributo 1 — Disponibilidad**
+Por que pesa en BiblioLite: la semana de matricula todos buscan los libros de reserva a la
+vez, y si el sistema no responde el estudiante vuelve al mostrador, que es justo el
+problema que veniamos a resolver.
+Como lo mediria: el sistema responde el 99,5 % del mes, es decir que acepto hasta unas 3
+horas y media de caida, siempre que no caigan en la semana de matricula.
+
+**Atributo 2 — Rendimiento**
+Por que pesa en BiblioLite: la consulta de disponibilidad es la accion que mas se repite y
+compite contra la alternativa de caminar hasta la biblioteca; si tarda, nadie la usa.
+Como lo mediria: el listado de disponibilidad de un titulo responde en menos de 400 ms
+para el 95 % de las consultas.
+
+**Conflicto**
+Sacrifico disponibilidad antes que rendimiento. Prefiero un sistema que a veces este caido
+pero que cuando responda sea inmediato, porque el estudiante que encuentra el sistema
+caido camina hasta la biblioteca igual que hoy, mientras que uno que espera diez segundos
+deja de confiar en el dato y tampoco vuelve. A cambio acepto no montar redundancia, que es
+lo que me permite sostener el proyecto sin presupuesto.""",
+                "como_calificar": [
+                    "1 pt la eleccion de dos atributos **con una razon atada al dominio**. "
+                    "«La disponibilidad es importante» no es una razon; «la semana de "
+                    "matricula todos consultan a la vez» si.",
+                    "2 pts las dos metricas, con **numero y unidad**. Una metrica sin numero "
+                    "(«que sea rapido», «que sea seguro») no suma. El numero puede ser "
+                    "discutible; lo que no puede es faltar.",
+                    "2 pts la frase de conflicto: **cual sacrifica y que gana**. "
+                    "**Cero en este criterio** si la respuesta dice que los cuatro son igual "
+                    "de importantes o no elige: es justamente lo que la pregunta evalua.",
+                ],
+                "errores": [
+                    "Elegir los cuatro «porque todos importan». Es la respuesta que la "
+                    "pregunta busca descartar: si no se sacrifica nada, no se decidio nada. "
+                    "Devuelvala pidiendo que elija dos.",
+                    "Metricas copiadas de la clase sin aterrizar: «menos de 300 ms» sirve "
+                    "solo si dice de QUE operacion de su dominio.",
+                    "Confundir seguridad con disponibilidad: «que nadie lo tumbe» es "
+                    "disponibilidad; seguridad es quien puede ver o cambiar que.",
+                    "Usar porcentajes sin traducirlos a tiempo. Si escribe 99,9 %, pidale que "
+                    "diga cuantos minutos al mes son: es la unica forma de saber si entendio "
+                    "lo que esta prometiendo.",
+                ],
+            },
         ],
         "preguntas_frecuentes": [
             ("¿La actividad se entrega hoy?",
-             "No. Es una sola actividad de 11 preguntas para las Clases 1 a 4. Hoy se "
-             "resuelven las tres primeras; la entrega completa cierra al final del Corte 1. "
+             "No. Es una sola actividad de 15 preguntas para las Clases 1 a 4. Hoy se "
+             "resuelven las cuatro primeras; la entrega completa cierra al final del Corte 1. "
              "Conviene decirlo al abrir el taller, porque es la duda que mas aparece."),
             ("¿Puede cambiar de dominio en la Clase 2?",
-             "No. El dominio se cierra hoy y las preguntas 4 a 11 lo reutilizan. Si el "
+             "No. El dominio se cierra hoy y las preguntas 5 a 15 lo reutilizan. Si el "
              "dominio elegido resulta demasiado grande, se recorta el bloque «fuera de "
              "alcance», no se cambia de dominio."),
             ("¿Cuantos actores y capacidades exactamente?",
@@ -250,7 +302,7 @@ BiblioLite: prestamo y devolucion de libros de la biblioteca de la universidad.
              "dentro de ExamLab, no el PNG."),
             ("¿Por que el diagrama no puede tener la base de datos?",
              "Porque es el nivel Context, donde el sistema es una caja negra. La base de "
-             "datos aparece en el nivel Container, que es la pregunta 9 de esta misma "
+             "datos aparece en el nivel Container, que es la pregunta 13 de esta misma "
              "actividad. Si se dibuja hoy, esa pregunta no tendria nada nuevo que revelar."),
             ("¿Cuantas cajas debe tener el diagrama?",
              "Entre cuatro y ocho elementos en total. Si hay veinte, es casi seguro que se "

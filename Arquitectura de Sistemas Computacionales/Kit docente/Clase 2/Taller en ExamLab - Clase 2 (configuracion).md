@@ -1,8 +1,8 @@
 # Taller de la Clase 2 en ExamLab - configuracion
 
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
-- **Taller:** Taller Clase 2 en ExamLab - ADR-001 del modelo de servicio
-- **Preguntas:** 5 · **Total:** 100 puntos
+- **Taller:** Actividad del Corte 1 (preguntas 5 a 7) - Modelos de servicio y ADR-001
+- **Preguntas:** 3 · **Total:** 24 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Decidir modelo dominante (IaaS/PaaS/SaaS) para CloudLite + ADR breve
 - **Entregable de la clase:** ADR-001: decisión de modelo de servicio + matriz de comparación aplicada al dominio
@@ -11,37 +11,48 @@
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
 > campo para copiar y pegar, incluidos el SQL de partida y el codigo base.
 
-**Que produce el estudiante:** El estudiante produce el ADR-001 de CloudLite con una matriz puntuada IaaS/PaaS/SaaS y un diagrama de responsabilidad compartida que justifica el modelo dominante elegido.
+**Que produce el estudiante:** Las preguntas 5 a 7 de la actividad del Corte 1. El estudiante compara IaaS, PaaS y SaaS sobre las capacidades de su propio dominio, decide un modelo dominante y lo documenta como ADR-001 con sus alternativas descartadas y sus consecuencias.
 
 ---
 
-## Pregunta 1 - Respuesta escrita · 25 pts
+## Pregunta 5 - Respuesta escrita · 6.25 pts
 
 **Tipo en la plataforma:** `abierta`
 
 **Enunciado (campo Contenido):**
 
-## Matriz IaaS / PaaS / SaaS aplicada a su dominio
+## Matriz IaaS / PaaS / SaaS para su dominio
 
-Construya una tabla de **4 columnas** con encabezados exactos `Criterio | IaaS | PaaS | SaaS` y **exactamente 5 filas**, en este orden:
+Partiendo de la **ficha** y del **C4 Context** del mismo dominio que cerro en la Clase 1,
+construya una matriz que compare los tres modelos de servicio **aplicados a las
+capacidades de SU dominio**.
 
-1. Control sobre el sistema operativo y el runtime.
-2. Esfuerzo de operacion que recae en el equipo (parches, respaldos, monitoreo).
-3. Tiempo hasta la primera demo del PI.
-4. Costo cualitativo para CloudLite: `bajo` / `medio` / `alto` **mas el driver que lo causa**.
-5. Portabilidad y riesgo de quedar amarrado al proveedor.
+Encabezados exactos: `Criterio | IaaS | PaaS | SaaS`, con **estas cuatro filas** y en este
+orden:
 
-En cada celda escriba **una frase referida a su dominio** y termine la celda con una nota de **1 a 3** (3 = mejor para CloudLite).
+1. **Control**: cuanto puede ajustar usted del entorno.
+2. **Costo cualitativo**: bajo, medio o alto, y por que. No hace falta ningun precio.
+3. **Operacion**: **quien opera el sistema operativo y el runtime**, usted o el proveedor.
+4. **Time-to-demo**: cuanto tarda en tener la primera demo de su CloudLite funcionando.
 
-Debajo de la tabla sume las notas por columna y escriba los 3 totales. **Verificacion obligatoria:** los tres totales deben ser distintos entre si; si dos empatan, el criterio esta mal aplicado y debe volver a puntuar antes de enviar.
+Cada celda: **maximo 2 lineas**, y siempre referida a su dominio y a sus capacidades. Una
+celda que dice «mas control» no dice nada; «puedo instalar la libreria de codigos de barras
+que necesita el prestamo» si.
+
+> La fila de **Operacion** es la que mas se equivoca. La responsabilidad no desaparece al
+> subir de nivel: se **reparte**. Cuanto se reparte es exactamente lo que distingue los
+> tres modelos, y en los tres usted sigue respondiendo por su propia aplicacion, sus
+> permisos y sus datos.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
-10 pts la tabla completa con los 5 criterios en orden y las 15 celdas con frase de dominio. 8 pts las notas de 1 a 3 en las 15 celdas y los 3 totales calculados. 4 pts que la fila de costo nombre el driver y no solo el nivel. 3 pts que los tres totales sean distintos.
+2 pts la matriz con los cuatro criterios en el orden pedido y las cuatro columnas. 3 pts que las doce celdas de comparacion hablen del dominio propio y de sus capacidades, no de teoria general; se descuenta por cada fila escrita en abstracto. 1.25 pts que la fila de operacion reparta correctamente la responsabilidad en los tres modelos y no afirme que en PaaS o SaaS el equipo deja de responder por su aplicacion.
 
 ---
 
-## Pregunta 2 - Respuesta escrita · 30 pts
+## Pregunta 6 - Respuesta escrita · 12.5 pts
 
 **Tipo en la plataforma:** `abierta`
 
@@ -49,138 +60,72 @@ Debajo de la tabla sume las notas por columna y escriba los 3 totales. **Verific
 
 ## ADR-001: modelo de servicio dominante de CloudLite
 
-Redacte el ADR-001 con **estas 7 secciones rotuladas, en este orden y sin agregar otras**:
+Redacte el **ADR-001** con estas cuatro secciones rotuladas, en este orden y sin agregar
+otras:
 
 1. **Titulo**: `ADR-001 Modelo de servicio dominante de CloudLite App`.
 2. **Estado**: `Aceptado` mas la fecha.
-3. **Contexto**: exactamente 3 frases. Una del dominio, una de la restriccion del curso (gratis, en navegador, sin tarjeta de credito) y una de la capacidad real de quien desarrolla (una persona, o 2 o 3 si el docente autorizo equipo; un semestre).
-4. **Decision**: **una sola frase** que nombre **un unico modelo dominante** (IaaS, PaaS o SaaS) para la aplicacion propia de CloudLite.
-5. **Alternativas descartadas**: exactamente 2, cada una con el motivo del descarte expresado en terminos de este dominio.
-6. **Consecuencias**: exactamente 2 positivas y 2 negativas, rotuladas con `+` y `-`. Al menos una negativa debe hablar de amarre al proveedor o de perdida de control.
-7. **Impacto en el PI**: 2 lineas que digan que secciones del informe cambian por esta decision.
+3. **Decision**: **una sola frase** que nombre **un unico modelo dominante** —IaaS, PaaS o
+   SaaS— para la aplicacion propia de CloudLite.
+4. **Alternativas descartadas**: **exactamente 2**, cada una con el motivo del descarte
+   **expresado en terminos de su dominio**, no en abstracto.
 
-Si la seccion 4 nombra dos modelos, esa seccion vale cero. Puede aclarar en las consecuencias que consume **SaaS satelite** para identidad y correo.
+> **Si la seccion 3 nombra dos modelos, esa seccion vale cero.** «Un poco de PaaS y un poco
+> de IaaS» no es una decision: es no haber decidido. Puede aclarar en las alternativas que
+> consume **SaaS satelite** para identidad y correo; eso no rompe la regla, porque el
+> modelo dominante se refiere a **su** aplicacion.
+
+Un ADR (Architecture Decision Record) es un formato real, usado en equipos reales: sirve
+para que dentro de seis meses alguien —incluido usted— entienda **por que** se decidio asi
+y **que se descarto**. Un ADR con una sola opcion no documenta una decision: documenta un
+hecho.
+
+Este ADR se reutiliza en el informe del PI y en la sustentacion de la Clase 15.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
-6 pts las 7 secciones presentes y rotuladas. 6 pts el contexto con las 3 frases exigidas incluida la restriccion sin tarjeta. 6 pts la decision en una frase con un unico modelo dominante. 6 pts las 2 alternativas con motivo del dominio. 6 pts las 2 consecuencias positivas y 2 negativas con una de amarre o perdida de control.
+2 pts titulo y estado con fecha. 4 pts la decision en UNA frase con UN modelo dominante; cero en este criterio si nombra dos o mas modelos. 6.5 pts las dos alternativas descartadas con el motivo del descarte atado al dominio: 3.25 pts cada una, y se pierde la mitad de cada una si el motivo es generico («es mas caro», «es mas complejo») sin decir mas caro o mas complejo PARA QUE de su sistema.
 
 ---
 
-## Pregunta 3 - Diagrama (Mermaid) · 25 pts
+## Pregunta 7 - Respuesta escrita · 6.25 pts
 
-**Tipo en la plataforma:** `diagrama`
-
-**Enunciado (campo Contenido):**
-
-## Responsabilidad compartida en Mermaid
-
-Escriba un `flowchart TB` con **3 subgrafos** rotulados `IaaS`, `PaaS` y `SaaS`. Cada subgrafo lleva **exactamente 4 nodos**, uno por capa, de arriba hacia abajo:
-
-`Datos y aplicacion` -> `Runtime y librerias` -> `Sistema operativo` -> `Virtualizacion y red y hardware`
-
-En cada nodo escriba la capa **y quien la gestiona**, con el formato `Capa - CloudLite` o `Capa - proveedor`.
-
-Agregue un nodo `decision` con el texto del ADR-001 y una flecha desde el subgrafo del modelo elegido hacia ese nodo. Use `classDef` y `class` para pintar distinto lo que gestiona el equipo y lo que gestiona el proveedor.
-
-**Verificacion:** al renderizar debe poder contar 12 nodos de capa, y la cantidad de nodos con la palabra `CloudLite` debe bajar de IaaS a SaaS (3, luego 1, luego 1).
-
-**Pegar al final del enunciado — flujo de entrega del diagrama:**
-
-**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
-
-- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
-- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `flowchart`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
-- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
-- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
-
-**Diagrama de referencia (Mermaid):**
-
-```mermaid
-flowchart TB
-    subgraph iaas["IaaS - maquina virtual desnuda"]
-        direction TB
-        ia1["Datos y aplicacion - CloudLite"] --> ia2["Runtime y librerias - CloudLite"]
-        ia2 --> ia3["Sistema operativo - CloudLite"]
-        ia3 --> ia4["Virtualizacion y red y hardware - proveedor"]
-    end
-    subgraph paas["PaaS - plataforma administrada"]
-        direction TB
-        pa1["Datos y aplicacion - CloudLite"] --> pa2["Runtime y librerias - proveedor"]
-        pa2 --> pa3["Sistema operativo - proveedor"]
-        pa3 --> pa4["Virtualizacion y red y hardware - proveedor"]
-    end
-    subgraph saas["SaaS - aplicacion lista para usar"]
-        direction TB
-        sa1["Configuracion y usuarios - CloudLite"] --> sa2["Aplicacion y datos - proveedor"]
-        sa2 --> sa3["Runtime y sistema operativo - proveedor"]
-        sa3 --> sa4["Virtualizacion y red y hardware - proveedor"]
-    end
-    decision["ADR-001 - PaaS dominante para la API de CloudLite con SaaS satelite de identidad y correo"]
-    paas --> decision
-    classDef propio fill:#1b5e20,color:#ffffff,stroke:#0b3d13
-    classDef proveedor fill:#455a64,color:#ffffff,stroke:#263238
-    class ia1,ia2,ia3,pa1,sa1 propio
-    class ia4,pa2,pa3,pa4,sa2,sa3,sa4 proveedor
-```
-
-**Rubrica esperada (campo Rubrica):**
-
-10 pts los 3 subgrafos con 4 capas cada uno en el orden pedido. 8 pts que cada nodo declare quien gestiona la capa y que el reparto sea correcto por modelo. 4 pts el nodo de decision conectado desde el modelo elegido y coherente con el ADR-001. 3 pts que renderice sin error.
-
----
-
-## Pregunta 4 - Seleccion multiple · 12 pts
-
-**Tipo en la plataforma:** `cerrada_multi`
+**Tipo en la plataforma:** `abierta`
 
 **Enunciado (campo Contenido):**
 
-## Que es cierto de PaaS
+## Consecuencias del ADR-001
 
-Seleccione las **3 afirmaciones correctas** sobre PaaS.
+Escriba las **consecuencias** de la decision que tomo en la pregunta anterior, cubriendo
+**los tres ejes** y rotulandolos:
 
-**Opciones:**
+- **Operacion**: que tiene que hacer usted a partir de ahora, y que deja de hacer.
+- **Costo**: que se abarata y que se encarece, en terminos cualitativos.
+- **Aprendizaje**: que tiene que aprender para sostener esa decision durante el semestre.
 
-- [x] El proveedor aplica los parches del sistema operativo y del runtime; el equipo mantiene el codigo y los datos.
-- [ ] El equipo debe dimensionar y actualizar las maquinas virtuales una por una.
-- [x] Se llega mas rapido a una demo funcional porque no hay que construir la plataforma base.
-- [x] El riesgo principal es el amarre al proveedor por servicios propietarios de plataforma.
-- [ ] El equipo pierde el control del codigo fuente de su aplicacion.
-- [ ] Consumir un SaaS de correo o de identidad contradice haber elegido PaaS como modelo dominante.
+En cada eje escriba **al menos una consecuencia positiva y una negativa**, rotuladas con
+`+` y `-`. **Al menos una de las negativas debe hablar de amarre al proveedor o de perdida
+de control**: es la contrapartida que casi nunca se escribe y la que la sustentacion de la
+Clase 15 va a pedir.
 
-**Rubrica esperada (campo Rubrica):**
+> Una consecuencia no es una ventaja de folleto. «Es mas facil» no es una consecuencia;
+> «no voy a poder instalar la libreria de codigos de barras y tendre que buscar una
+> alternativa que el proveedor soporte» si lo es, porque describe algo que cambia en su
+> trabajo.
 
-4 pts por cada correcta marcada; se descuentan 4 pts por cada incorrecta marcada, sin bajar de cero.
-
----
-
-## Pregunta 5 - Seleccion unica · 8 pts
-
-**Tipo en la plataforma:** `cerrada`
-
-**Enunciado (campo Contenido):**
-
-## Clasifique esta parte de CloudLite
-
-El equipo decide **no** operar servidores de correo ni de identidad: usara el login institucional por OIDC y un servicio de correo de terceros a traves de su API. Como se clasifica **esa parte** de la arquitectura de CloudLite?
-
-**Opciones:**
-
-- [ ] IaaS, porque detras hay maquinas de un proveedor.
-- [ ] PaaS, porque se despliega codigo propio sobre una plataforma.
-- [x] SaaS satelite, porque se consume una aplicacion completa de terceros por su API.
-- [ ] No aplica: los servicios de terceros quedan fuera de la arquitectura.
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
-8 pts la opcion correcta, 0 en cualquier otra.
+3 pts los tres ejes presentes y rotulados (operacion, costo, aprendizaje). 2 pts que cada eje traiga al menos una consecuencia positiva y una negativa marcadas con + y -. 1.25 pts que al menos una negativa hable de amarre al proveedor o de perdida de control. Se descuenta por cada consecuencia escrita como ventaja de folleto («es mas facil», «es mas moderno») en vez de como algo que cambia en el trabajo del estudiante.
 
 ---
 
 ## Al terminar de crearlo
 
-- Verifique que la suma de puntos sea la esperada: **100**.
+- Verifique que la suma de puntos sea la esperada: **24**.
 - Publique el taller y confirme la fecha limite (domingo 23:59 segun el Acuerdo).
 - Las preguntas con SQL o codigo: ejecutelas una vez usted mismo antes de publicar,
   para confirmar que el SQL de partida corre y que el starter compila.

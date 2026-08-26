@@ -259,7 +259,7 @@ CLASSES = [
             "Elija dominio concreto (no «red social genérica») y escriba: problema (2–3 frases), 4 capacidades.",
             "Escriba actores, sistemas externos (2–3) y fuera de alcance.",
             "Boceto del **C4 Context** en Excalidraw o draw.io (CloudLite + actores + sistemas externos), y después convertirlo a **Mermaid** con ayuda de una IA para pegarlo renderizado en ExamLab.",
-            "Revise que los nombres de actores y sistemas externos coincidan entre la ficha y el diagrama, y entregue en **ExamLab** las preguntas 1 a 3 de la actividad del Corte 1.",
+            "Revise que los nombres de actores y sistemas externos coincidan entre la ficha y el diagrama, y entregue en **ExamLab** las preguntas 1 a 4 de la actividad del Corte 1.",
         ],
         "quiz": [
             ("¿Qué hace que un dominio sea concreto y no genérico?",

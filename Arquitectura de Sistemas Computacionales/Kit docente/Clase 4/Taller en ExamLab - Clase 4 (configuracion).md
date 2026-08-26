@@ -1,8 +1,8 @@
 # Taller de la Clase 4 en ExamLab - configuracion
 
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
-- **Taller:** Taller Clase 4 en ExamLab - C4 Container y contratos de CloudLite
-- **Preguntas:** 5 · **Total:** 100 puntos
+- **Taller:** Actividad del Corte 1 (preguntas 12 a 15) - C4 Containers, contratos y riesgos
+- **Preguntas:** 4 · **Total:** 25 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Diagramar componentes/servicios de CloudLite y sus contratos
 - **Entregable de la clase:** Diagrama C4 Container/Componentes v0.9 + lista de APIs entre servicios
@@ -11,31 +11,78 @@
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
 > campo para copiar y pegar, incluidos el SQL de partida y el codigo base.
 
-**Que produce el estudiante:** El estudiante entrega el mapa logico de CloudLite como C4Container renderizado, con 5 contenedores de nombre congelado, 3 contratos con errores de negocio y el flujo principal en un diagrama de secuencia con camino de error.
+**Que produce el estudiante:** Las preguntas 12 a 15 de la actividad del Corte 1, que la cierran. El estudiante decide si parte el sistema, modela el C4 Container reutilizando los nombres del Context, define 3 contratos con su error de negocio y analiza los riesgos que introdujo al distribuir.
 
 ---
 
-## Pregunta 1 - Diagrama (Mermaid) · 35 pts
+## Pregunta 12 - Respuesta escrita · 4.0 pts
+
+**Tipo en la plataforma:** `abierta`
+
+**Enunciado (campo Contenido):**
+
+## Monolito modular o microservicios para su CloudLite
+
+Antes de dibujar las cajas hay que decidir si el sistema se parte o no. Escriba su decision
+con esta estructura:
+
+1. **La decision**, en una frase: **monolito modular** o **microservicios** para CloudLite.
+2. **Dos criterios que la sustentan**, aplicados a su caso concreto:
+   - **tamano del equipo**: cuantas personas sostienen el proyecto y durante cuanto tiempo;
+   - **acoplamiento**: que partes de su dominio cambian juntas y cuales cambian por separado.
+3. **Que gana y que pierde** con la decision: una de cada una, en terminos de su dominio.
+
+> **Regla del curso:** doce microservicios para un equipo de tres es teatro, no
+> arquitectura. Partir un sistema tiene un costo real —cada llamada de funcion se convierte
+> en una llamada de red, con su latencia y su posibilidad de fallar— y ese costo hay que
+> pagarlo con una razon. Un monolito modular bien argumentado vale exactamente lo mismo que
+> microservicios bien argumentados; lo que no vale es partir por moda.
+
+Esta decision es la que explica cuantas cajas tendra el diagrama de la pregunta 13: si
+elige monolito modular, esas cajas son modulos dentro de un contenedor mas sus almacenes de
+datos, no servicios sueltos.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+
+**Rubrica esperada (campo Rubrica):**
+
+1 pt la decision nombrada en una frase, sin ambiguedad. 2 pts los dos criterios aplicados al caso: 1 pt tamano del equipo con numero y plazo, 1 pt acoplamiento diciendo que partes cambian juntas. 1 pt el que gana y que pierde en terminos del dominio. Cero en la decision si dice «un poco de los dos» o no elige. Elegir monolito modular NO se penaliza: se penaliza no sustentar.
+
+---
+
+## Pregunta 13 - Diagrama (Mermaid) · 11.0 pts
 
 **Tipo en la plataforma:** `diagrama`
 
 **Enunciado (campo Contenido):**
 
-## C4 Container de CloudLite App
+## C4 Containers de CloudLite App
 
-Escriba en Mermaid el diagrama **C4Container**. La primera linea debe ser exactamente `C4Container`. Debe contener:
+Modele el diagrama **C4 de nivel Container** de su CloudLite, en Mermaid. La primera linea
+debe ser exactamente `C4Container`.
 
-- Un `Container_Boundary(...)` rotulado `CloudLite App` con **exactamente 5 contenedores**: una interfaz web, una API, un procesador asincrono, un almacen relacional con `ContainerDb(...)` y una cola con `ContainerQueue(...)`.
-- Los **2 `Person(...)`** y los **2 `System_Ext(...)`** de su Clase 1, con los mismos nombres.
-- Cada contenedor con sus 3 datos: **nombre**, **tecnologia tentativa** y **responsabilidad en una frase**.
-- Exactamente **8 `Rel(...)`**, cada una con **protocolo y puerto** cuando aplique (`HTTPS 443`, `JSON sobre HTTPS`, `SQL 5432`, `RESP 6379`).
+Parta del **C4 Context de la pregunta 3** y **reutilice exactamente los mismos nombres** de
+sistema, de actores y de sistemas externos. Es el mismo sistema visto con mas zoom, no otro
+sistema.
 
-**Reglas de verificacion antes de enviar:**
-1. Ningun actor habla directamente con la base de datos ni con la cola.
-2. Ningun contenedor es un modulo interno de otro (los componentes internos son la Clase 11).
-3. Ningun nombre se repite, y estos 5 nombres se congelan: el despliegue de la Clase 7 debe usar los mismos.
+El diagrama debe tener:
 
-**Consejo de sintaxis:** no use comas dentro de las etiquetas entre comillas.
+- Entre **2 y 5** contenedores o servicios logicos dentro de la frontera del sistema, cada
+  uno con su tecnologia entre parentesis y **coherente con la decision de la pregunta 12**.
+- Los **almacenes de datos** como `ContainerDb(...)`.
+- Los actores y los sistemas externos que ya estaban en el Context.
+- **Cada flecha etiquetada con su protocolo y su formato**: `HTTPS/JSON`, `TCP/SQL`,
+  `evento/cola`. Una flecha sin protocolo no cuenta.
+
+> **Justifique cada caja.** Por cada contenedor tiene que poder responder dos preguntas: que
+> responsabilidad de negocio propia tiene, y por que se despliega por separado. Si no puede
+> responder las dos, esa caja no deberia existir. **Doce microservicios para un equipo de
+> tres es teatro, no arquitectura.**
+
+Estos nombres vuelven en el diagrama de despliegue de la Clase 7 y en el checkpoint de la
+Clase 11: si aqui llama «api-prestamos» a un servicio, alla tiene que llamarse igual.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Pegar al final del enunciado — flujo de entrega del diagrama:**
 
@@ -52,170 +99,101 @@ Escriba en Mermaid el diagrama **C4Container**. La primera linea debe ser exacta
 C4Container
     title Contenedores de CloudLite App - dominio AgendaU
     Person(estudiante, "Estudiante", "Reserva y cancela citas de asesoria")
-    Person(coordinador, "Coordinador academico", "Publica cupos y revisa la ocupacion")
-    Container_Boundary(cl, "CloudLite App") {
-        Container(spa, "SPA Web", "HTML y JavaScript", "Interfaz de reserva servida como contenido estatico")
-        Container(api, "API CloudLite", "Python FastAPI", "Expone /citas y /cupos y aplica las reglas de reserva")
-        Container(worker, "Worker Notificaciones", "Python", "Consume eventos y solicita el envio de correos")
-        ContainerDb(db, "Base de datos Citas", "PostgreSQL 16", "Guarda usuarios cupos y citas confirmadas")
-        ContainerQueue(cola, "Cola Notificaciones", "Redis Streams", "Encola el evento cita_confirmada")
+    Person(coordinador, "Coordinador academico", "Publica cupos y revisa la ocupacion semanal")
+    System_Boundary(cloudlite, "CloudLite App") {
+        Container(spa, "Aplicacion web", "React", "Interfaz de reserva y de publicacion de cupos")
+        Container(api, "API de agenda", "Node.js", "Reglas de reserva, cancelacion y cupos")
+        ContainerDb(db, "Base de datos de agenda", "PostgreSQL", "Cupos, reservas y usuarios")
     }
     System_Ext(idp, "Proveedor de identidad institucional", "Login OIDC de la universidad")
     System_Ext(correo, "Correo transaccional SaaS", "Envio de confirmaciones y recordatorios")
-    Rel(estudiante, spa, "Reserva una cita disponible", "HTTPS 443")
-    Rel(coordinador, spa, "Publica cupos de la semana", "HTTPS 443")
-    Rel(spa, api, "POST /citas y GET /cupos", "JSON sobre HTTPS")
-    Rel(api, idp, "Valida el token del usuario", "OIDC sobre HTTPS")
-    Rel(api, db, "Lee cupos y escribe citas confirmadas", "SQL 5432")
-    Rel(api, cola, "Publica el evento cita_confirmada", "RESP 6379")
-    Rel(worker, cola, "Consume el evento cita_confirmada", "RESP 6379")
-    Rel(worker, correo, "Solicita el envio del correo de confirmacion", "API REST sobre HTTPS")
+    Rel(estudiante, spa, "Reserva y cancela citas", "HTTPS")
+    Rel(coordinador, spa, "Publica cupos y consulta la ocupacion", "HTTPS")
+    Rel(spa, api, "Consulta y modifica la agenda", "HTTPS/JSON")
+    Rel(api, db, "Lee y escribe reservas y cupos", "TCP/SQL")
+    Rel(api, idp, "Valida la identidad institucional", "OIDC sobre HTTPS")
+    Rel(api, correo, "Solicita el envio de la confirmacion", "API REST sobre HTTPS")
 ```
 
 **Rubrica esperada (campo Rubrica):**
 
-12 pts los 5 contenedores dentro del boundary con nombre, tecnologia y responsabilidad, usando ContainerDb y ContainerQueue donde corresponde. 8 pts los 2 Person y 2 System_Ext con los mismos nombres de la Clase 1. 10 pts las 8 relaciones con protocolo y puerto. 5 pts que ningun actor toque directamente la base de datos o la cola. Se descuentan 10 pts si hay mas de 5 contenedores o si aparece un sexto servicio sin justificacion.
+3 pts entre 2 y 5 contenedores, cada uno con su tecnologia; se descuenta por cada caja de mas sin justificacion. 2 pts los almacenes de datos declarados como ContainerDb. 3 pts que TODA flecha lleve protocolo y formato. 2 pts que los nombres de sistema, actores y sistemas externos sean identicos a los del C4 Context de la pregunta 3. 1 pt que renderice sin error. Si el numero de cajas contradice la decision de la pregunta 12 (por ejemplo cinco servicios sueltos habiendo elegido monolito modular) se pierden los 3 pts de los contenedores.
 
 ---
 
-## Pregunta 2 - Respuesta escrita · 25 pts
+## Pregunta 14 - Respuesta escrita · 7.0 pts
 
 **Tipo en la plataforma:** `abierta`
 
 **Enunciado (campo Contenido):**
 
-## Los 3 contratos de CloudLite
+## Los tres contratos de CloudLite
 
-Construya una tabla de **6 columnas** con encabezados exactos:
+Liste **3 contratos** entre las piezas del diagrama de la pregunta 13. Un contrato es el
+acuerdo de como se hablan dos partes, y aqui se escribe con **cuatro datos**:
 
-`ID | Consumidor -> Proveedor | Verbo y ruta o evento | Request | Respuesta 2xx | Error de negocio`
+| Contrato | Quien llama a quien | Verbo y ruta | Error de negocio |
+|---|---|---|---|
 
-con **exactamente 3 filas**:
+- **Quien llama a quien**: los nombres exactos de las cajas del diagrama.
+- **Verbo y ruta**: el verbo HTTP y la ruta (`POST /reservas`), o el **evento** si la
+  comunicacion es asincrona (`evento reserva.creada`).
+- **Error de negocio**: el codigo y **que significa en su dominio**. No vale «500 error del
+  servidor»: eso es una falla, no un contrato. Se espera algo como
+  `409 el cupo ya fue tomado por otro estudiante` o `422 la fecha esta fuera del periodo`.
 
-- **C-01**: la operacion principal de escritura de su dominio (por ejemplo `SPA Web -> API CloudLite`, `POST /citas`).
-- **C-02**: una operacion de lectura o consulta.
-- **C-03**: **un contrato asincrono por evento** (por ejemplo `API CloudLite -> Cola Notificaciones`, evento `cita_confirmada`), donde en lugar de respuesta 2xx describa la **garantia de entrega** y quien consume el evento.
+> **Al menos uno de los tres errores debe ser un `409` de conflicto**, porque el conflicto
+> es el error que aparece en cuanto dos usuarios hacen lo mismo a la vez, y es el que se
+> retoma en la Clase 13 cuando se hable de concurrencia y escalado.
 
-Reglas por fila:
-- `Request` lista **los 3 campos minimos** con su tipo.
-- `Respuesta 2xx` indica el **codigo exacto** (`201`, `200`) y los campos que devuelve.
-- `Error de negocio` es un **codigo y una constante**, por ejemplo `409 CUPO_OCUPADO` o `401 TOKEN_INVALIDO`. **No se acepta `500 error interno`** como error de negocio.
+Un contrato sin su error solo describe el camino feliz, y el camino feliz nunca es el que
+rompe el sistema.
 
-Cierre con **2 lineas**: que pasa si el consumidor reintenta `C-01` con los mismos datos (idempotencia) y quien es el dueno del contrato.
-
-**Rubrica esperada (campo Rubrica):**
-
-9 pts las 3 filas completas con las 6 columnas. 6 pts que C-03 sea realmente asincrono por evento con garantia de entrega y consumidor declarado. 6 pts los errores de negocio con codigo y constante, sin usar 500 como error de negocio. 4 pts las 2 lineas de idempotencia y dueno del contrato.
-
----
-
-## Pregunta 3 - Diagrama (Mermaid) · 20 pts
-
-**Tipo en la plataforma:** `diagrama`
-
-**Enunciado (campo Contenido):**
-
-## Flujo del contrato C-01 con su camino de error
-
-Escriba un `sequenceDiagram` del contrato **C-01** con **exactamente 5 participantes**, usando **los mismos nombres** de sus contenedores (por ejemplo `Estudiante`, `SPA Web`, `API CloudLite`, `Base de datos Citas`, `Cola Notificaciones`).
-
-Debe incluir:
-- `autonumber`.
-- Un bloque `alt ... else ... end` con **el camino feliz** y **el camino de error de negocio** de su tabla de contratos.
-- En el camino feliz: la validacion, la escritura en la base de datos, la publicacion del evento en la cola y la respuesta `201` al usuario.
-- En el camino de error: la respuesta con **el mismo codigo y constante** que declaro en `C-01` (por ejemplo `409 CUPO_OCUPADO`) y **sin** escritura en la base de datos.
-
-**Verificacion:** cuente los mensajes y confirme que en la rama de error **no hay ningun mensaje de escritura** ni publicacion en la cola.
-
-**Pegar al final del enunciado — flujo de entrega del diagrama:**
-
-**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
-
-- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
-- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `sequenceDiagram`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
-- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
-- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
-
-**Diagrama de referencia (Mermaid):**
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor E as Estudiante
-    participant S as SPA Web
-    participant A as API CloudLite
-    participant D as Base de datos Citas
-    participant Q as Cola Notificaciones
-    E->>S: Selecciona el cupo del 12/09 a las 09:00
-    S->>A: POST /citas con id_cupo y token OIDC
-    A->>D: SELECT del cupo con bloqueo FOR UPDATE
-    alt Cupo disponible
-        A->>D: INSERT de la cita confirmada
-        A->>Q: XADD del evento cita_confirmada
-        A-->>S: 201 Created con id_cita
-        S-->>E: Muestra la confirmacion y el recordatorio programado
-    else Cupo ya tomado por otro estudiante
-        A-->>S: 409 Conflict con codigo CUPO_OCUPADO
-        S-->>E: Sugiere los dos horarios libres mas cercanos
-    end
-```
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
-6 pts los 5 participantes con los nombres identicos a los contenedores. 6 pts el bloque alt con camino feliz y camino de error. 5 pts que la rama de error use el mismo codigo y constante del contrato y no escriba ni publique. 3 pts autonumber y que renderice sin error.
+3 pts los tres contratos con quien llama a quien usando los nombres exactos del diagrama: 1 pt cada uno. 2 pts los verbos y rutas bien formados (o el evento, si es asincrono). 2 pts los errores de negocio con codigo y significado en el dominio; se pierde el punto del error si dice 500 o «error generico», y se pierde 1 pt del total si ninguno de los tres es un 409 de conflicto.
 
 ---
 
-## Pregunta 4 - Respuesta escrita · 12 pts
+## Pregunta 15 - Respuesta escrita · 3.0 pts
 
 **Tipo en la plataforma:** `abierta`
 
 **Enunciado (campo Contenido):**
 
-## Riesgos de partir el sistema
+## Riesgos de distribucion de su arquitectura
 
-Al separar CloudLite en 5 contenedores aparecen problemas que un monolito no tiene. Construya una tabla de **3 columnas** (`Riesgo de distribucion | Donde aparece en mi diagrama | Mitigacion concreta`) con **exactamente 3 filas**, eligiendo 3 riesgos distintos entre: fallo parcial de un salto de red, latencia acumulada, consistencia entre la base de datos y la cola, doble entrega de un evento, o crecimiento del acoplamiento por contrato.
+Toda frontera que dibujo en la pregunta 13 es una llamada de red, y una llamada de red puede
+fallar, tardar o dejar los datos a medias. Analice **los tres riesgos** que introdujo su
+propia arquitectura logica, en este orden:
 
-Reglas:
-- La columna del medio **debe citar la flecha exacta** de su C4Container (por ejemplo `API CloudLite -> Cola Notificaciones`).
-- La mitigacion debe ser algo **visible en el diseno** (reintento con espera, tiempo de espera maximo, idempotencia por clave, cola con reintento), no una buena intencion.
+1. **Que se rompe cuando una pieza no responde.** Elija **una** caja concreta de su
+   diagrama, digala por su nombre, y describa que deja de funcionar y que sigue funcionando
+   si esa pieza se cae. La respuesta interesante no es «se cae todo»: es cual capacidad de
+   su ficha queda inservible y cual no.
+2. **Que latencia agrega cada salto.** Cuente los saltos de red de **una** operacion
+   completa de su dominio, de punta a punta, y diga cuantos son. No hace falta medir: hace
+   falta contar y darse cuenta de que antes eran cero.
+3. **Que datos quedan expuestos a inconsistencia.** Nombre **un** dato que viva en dos
+   sitios o que se actualice en dos pasos, y que pasaria si el segundo paso falla.
 
-Cierre con **una frase** que responda: por que 5 contenedores y no 12.
+> Si su decision de la pregunta 12 fue **monolito modular**, esta pregunta sigue aplicando:
+> los saltos hacia la base de datos y hacia los sistemas externos son igualmente red, y el
+> riesgo 3 existe en cuanto haya dos escrituras que deban ocurrir juntas.
 
-**Rubrica esperada (campo Rubrica):**
-
-6 pts las 3 filas con riesgos distintos y la flecha exacta del diagrama citada. 4 pts las 3 mitigaciones expresadas como mecanismo verificable en el diseno. 2 pts la frase que justifica el numero de contenedores frente al tamano del equipo.
-
----
-
-## Pregunta 5 - Seleccion multiple · 8 pts
-
-**Tipo en la plataforma:** `cerrada_multi`
-
-**Enunciado (campo Contenido):**
-
-## Antipatrones de arquitectura distribuida
-
-Seleccione las **3 situaciones que son antipatrones**.
-
-**Opciones:**
-
-- [x] Definir 12 microservicios para un equipo de 3 personas y un semestre.
-- [x] Dos servicios distintos escribiendo directamente en la misma tabla de la misma base de datos.
-- [ ] Nombrar cada contenedor con su responsabilidad y su tecnologia tentativa.
-- [x] Encadenar 5 llamadas sincronas entre servicios para responder una sola peticion del usuario.
-- [ ] Publicar un evento en una cola para el trabajo que puede terminar despues de responder al usuario.
-- [ ] Usar los mismos nombres de contenedor en el C4 y en el diagrama de despliegue.
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
-3 pts por cada antipatron correctamente marcado hasta un maximo de 8; se descuentan 3 pts por cada opcion correcta de diseno marcada como antipatron, sin bajar de cero.
+1 pt el riesgo de indisponibilidad nombrando una caja concreta y distinguiendo que deja de funcionar de que sigue funcionando; media respuesta si dice «se cae todo». 1 pt el conteo de saltos de una operacion de punta a punta. 1 pt el dato expuesto a inconsistencia, nombrado, con lo que pasa si falla el segundo paso. Una respuesta generica sobre «los microservicios son mas complejos» no suma en ningun criterio.
 
 ---
 
 ## Al terminar de crearlo
 
-- Verifique que la suma de puntos sea la esperada: **100**.
+- Verifique que la suma de puntos sea la esperada: **25**.
 - Publique el taller y confirme la fecha limite (domingo 23:59 segun el Acuerdo).
 - Las preguntas con SQL o codigo: ejecutelas una vez usted mismo antes de publicar,
   para confirmar que el SQL de partida corre y que el starter compila.

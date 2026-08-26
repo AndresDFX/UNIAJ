@@ -94,7 +94,7 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
 - **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
-- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando el tipo que pide el enunciado». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
+- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `C4Container`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
 - **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
@@ -119,11 +119,10 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
-1. Paso 1: abran el C4 Context de la Clase 1 y escriban la lista canonica de nombres de CloudLite: exactamente 5 contenedores con nombre, responsabilidad en una frase y tecnologia tentativa (por ejemplo SPA Web, API CloudLite, Worker Notificaciones, Base de datos Citas, Cola Notificaciones), verificando que ninguno de los 5 sea un modulo interno de otro y que ningun nombre se repita; esa lista se congela y la reutilizan las clases 7, 11 y 15.
-2. Paso 2: escriban en ExamLab el diagrama C4Container en Mermaid con los 5 contenedores dentro de un Container_Boundary, los 2 Person y los 2 System_Ext de la Clase 1, y 8 relaciones etiquetadas con protocolo y puerto, verificando al renderizar que la base de datos usa ContainerDb, la cola usa ContainerQueue y que ningun actor habla directamente con la base de datos.
-3. Paso 3: definan los 3 contratos entre partes en una tabla de 6 columnas (ID, consumidor a proveedor, verbo y ruta, request, respuesta 2xx, error de negocio), verificando que al menos un contrato sea asincrono por evento y que cada fila declare un codigo de error de negocio real como 409 CUPO_OCUPADO o 401 TOKEN_INVALIDO, no solo 500.
-4. Paso 4: escriban el sequenceDiagram del contrato principal con 5 participantes y un bloque alt que cubra el camino feliz y el camino de error 409, verificando que los nombres de los participantes sean identicos a los 5 contenedores del paso 1 y que el mensaje de error muestre el mismo codigo declarado en la tabla de contratos.
-5. Paso 5: redacten los 3 riesgos de distribucion con su mitigacion, actualicen la seccion Arquitectura logica del informe con el diagrama y la tabla de contratos, y suban las 5 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que la lista canonica de 5 nombres aparezca identica en el diagrama, en los contratos y en el informe.
+1. Paso 1: decida en la pregunta 12 si su CloudLite es un monolito modular o microservicios, con los dos criterios aplicados a su caso (tamano del equipo con numero y plazo, y que partes cambian juntas) y lo que gana y pierde; verifique que no escribio «un poco de los dos», porque eso vale cero.
+2. Paso 2: modele en la pregunta 13 el C4 Container partiendo del C4 Context de la pregunta 3, con entre 2 y 5 contenedores coherentes con la decision anterior, los almacenes de datos como ContainerDb y toda flecha con protocolo y formato; verifique que los nombres de sistema, actores y sistemas externos sean identicos a los del Context.
+3. Paso 3: liste en la pregunta 14 los 3 contratos con quien llama a quien usando los nombres exactos del diagrama, el verbo y la ruta (o el evento) y el error de negocio con su codigo y su significado en el dominio; verifique que al menos uno sea un 409 de conflicto y que ninguno diga «500 error del servidor».
+4. Paso 4: analice en la pregunta 15 los tres riesgos de distribucion nombrando una caja concreta que se cae, contando los saltos de red de una operacion de punta a punta y nombrando un dato expuesto a inconsistencia; con esto la actividad del Corte 1 queda completa y se entrega en ExamLab antes del domingo 23:59 de esta semana.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).
