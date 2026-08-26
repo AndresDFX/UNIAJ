@@ -1,48 +1,99 @@
 # Taller de la Clase 1 en ExamLab - configuracion
 
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
-- **Taller:** Taller Clase 1 en ExamLab - Ficha y C4 Context de CloudLite App
-- **Preguntas:** 5 · **Total:** 100 puntos
+- **Taller:** Actividad del Corte 1 (preguntas 1 a 3) - Dominio, ficha y C4 Context
+- **Preguntas:** 3 · **Total:** 24 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases
-- **Entregable de la clase:** Ficha PI de 6 bloques + C4 Context en Mermaid renderizado en ExamLab (boceto previo en Excalidraw/draw.io)
+- **Entregable de la clase:** Ficha PI de 5 bloques + C4 Context en Mermaid renderizado en ExamLab (boceto previo en Excalidraw/draw.io)
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
 > campo para copiar y pegar, incluidos el SQL de partida y el codigo base.
 
-**Que produce el estudiante:** El estudiante sale con el dominio de CloudLite cerrado en una ficha de 6 bloques y con el diagrama C4 Context renderizado dentro de ExamLab, que es la semilla de todos los diagramas del semestre.
+**Que produce el estudiante:** Las preguntas 1 a 3 de la actividad del Corte 1, que es una sola para las Clases 1 a 4. El estudiante sale con el dominio de CloudLite cerrado en una ficha de cinco bloques y con el diagrama C4 Context renderizado dentro de ExamLab, que es la semilla de todos los diagramas del semestre.
 
 ---
 
-## Pregunta 1 - Respuesta escrita · 20 pts
+## Pregunta 1 - Respuesta escrita · 6.25 pts
 
 **Tipo en la plataforma:** `abierta`
 
 **Enunciado (campo Contenido):**
 
-## Ficha del PI CloudLite App
+## Dominio y problema de CloudLite App
 
-Esta es una actividad **individual**: cada estudiante entrega su propia ficha y su propio diagrama. Escriba su ficha respetando **exactamente** esta estructura de 6 bloques rotulados:
+Elija un dominio **concreto** para CloudLite App y escriba el problema en **2 o 3 frases**.
 
-1. **DOMINIO**: una linea. Elija uno concreto: AgendaU (asesorias academicas), BiblioLite (prestamos), InventarioLab (equipos de laboratorio), TurnosClinica (citas) o EventosCampus (inscripciones). Puede proponer uno propio del mismo tamano.
-2. **PROBLEMA**: exactamente 3 frases, en este orden: (a) quien sufre el problema, (b) como se resuelve hoy sin CloudLite, (c) una cifra medible del dolor. Ejemplo de (c): `hoy se cruzan 40 correos por semana para cuadrar 12 asesorias`.
-3. **CAPACIDADES**: exactamente 4 capacidades en formato verbo + objeto de negocio (reservar cita, publicar cupo, cancelar reserva, notificar recordatorio). **Prohibido nombrar tecnologia.**
-4. **ACTORES**: exactamente 3 actores humanos, cada uno con una frase de que espera del sistema.
-5. **SISTEMAS EXTERNOS**: 2 o 3 sistemas de terceros con los que CloudLite intercambia informacion (por ejemplo un proveedor de identidad institucional, un servicio de correo transaccional o una pasarela de pagos). Estos mismos nombres son los que despues aparecen como `System_Ext` en el diagrama de la pregunta 2.
-6. **FUERA DE ALCANCE**: exactamente 3 cosas que CloudLite NO hara este semestre.
+Dominios sugeridos: **AgendaU** (asesorias academicas) · **BiblioLite** (prestamos de
+biblioteca) · **InventarioLab** (equipos de laboratorio) · **TurnosClinica** (citas) ·
+**EventosCampus** (inscripciones). Puede proponer uno propio del mismo tamano.
 
-Esta ficha es la seccion 1 del informe del PI y el dominio **no vuelve a cambiar** en el resto del curso: las clases 4, 7, 11 y 15 reutilizan estos mismos nombres.
+El problema debe decir dos cosas, y las dos se califican:
 
-> **La entrega oficial es esta respuesta dentro de ExamLab.** El documento o ficha en Word/Google Docs que use para preparar sus ideas es opcional y solo sirve para conservar sus respuestas; lo que se califica es lo que quede escrito aqui.
+1. **QUIEN lo sufre.** Una persona concreta con un rol, no «los usuarios».
+2. **COMO se mide.** Una cifra, aunque sea estimada: `se cruzan 40 correos por semana
+   para cuadrar 12 asesorias`, `38 libros devueltos tarde el semestre pasado`.
+
+> No vale un dominio generico. «Una red social», «una app de la universidad» o «un
+> e-commerce» no permiten evaluar ninguna decision de arquitectura, porque no hay nada
+> concreto que disenar. Si su enunciado sirve igual para cualquier otro sistema, todavia
+> no es un dominio.
+
+Este dominio **no vuelve a cambiar** en el resto del curso: las Clases 2, 3 y 4 de esta
+misma actividad, y las Clases 7, 11 y 15, reutilizan estos nombres.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
-3 pts los 6 bloques rotulados y completos. 4 pts el problema con las 3 frases exigidas y una cifra medible. 4 pts las 4 capacidades en verbo + objeto sin mencionar tecnologia. 3 pts los 3 actores con expectativa explicita. 3 pts los 2 o 3 sistemas externos coherentes con los System_Ext del diagrama de la pregunta 2. 3 pts las 3 exclusiones. Si el dominio es generico (app de la universidad, red social), los bloques 1 y 2 valen cero.
+3 pts el dominio concreto y del tamano adecuado. Si es generico (red social, app de la universidad), toda la pregunta vale cero: sin dominio no hay nada que arquitecturar en las clases siguientes. 1.5 pts que el problema nombre a QUIEN lo sufre con un rol concreto. 1.75 pts que incluya una cifra que mida el dolor; una cifra estimada sirve, «mucho tiempo» no. Se descuenta si el problema pasa de 3 frases.
 
 ---
 
-## Pregunta 2 - Diagrama (Mermaid) · 35 pts
+## Pregunta 2 - Respuesta escrita · 8.75 pts
+
+**Tipo en la plataforma:** `abierta`
+
+**Enunciado (campo Contenido):**
+
+## Ficha del dominio
+
+Complete la ficha del dominio que eligio en la pregunta anterior. Son **cinco bloques
+rotulados**, en este orden:
+
+```
+DOMINIO
+PROBLEMA
+ACTORES
+CAPACIDADES
+FUERA DE ALCANCE
+```
+
+- **DOMINIO** y **PROBLEMA**: repita lo que escribio en la pregunta 1, para que la ficha
+  se lea completa.
+- **ACTORES**: de **2 a 3** actores humanos, cada uno con una frase de que espera del
+  sistema. En este mismo bloque liste tambien **los sistemas externos** con los que
+  CloudLite se conecta (por ejemplo un proveedor de identidad institucional o un servicio
+  de correo transaccional). Esos sistemas externos son los que despues aparecen en el
+  diagrama de la pregunta 3, asi que conviene escribirlos aqui **antes** de dibujar.
+- **CAPACIDADES**: de **3 a 5**, en la forma **verbo + objeto de negocio**: `reservar una
+  asesoria`, `publicar un cupo`, `cancelar una reserva`, `notificar el recordatorio`.
+  **Prohibido nombrar tecnologia**: «tener login con JWT» o «usar cache» no son
+  capacidades, son medios. Una capacidad describe lo que el usuario puede HACER.
+- **FUERA DE ALCANCE**: que **no** va a hacer el sistema este semestre. Es el bloque que
+  evita que el alcance crezca sin control, y es lo primero que se revisa cuando alguien
+  pida mas tiempo en una entrega futura.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+
+**Rubrica esperada (campo Rubrica):**
+
+2 pts los cinco bloques presentes y rotulados en el orden pedido. 2.5 pts las capacidades (3 a 5) en verbo mas objeto de negocio, sin nombrar tecnologia; se descuenta por cada capacidad que sea una pieza tecnica. 2.25 pts los actores (2 a 3) con su expectativa explicita, mas los sistemas externos nombrados. 2 pts el fuera de alcance con exclusiones que un evaluador razonable si habria esperado. Los sistemas externos de este bloque deben ser los mismos que aparezcan en el diagrama de la pregunta 3.
+
+---
+
+## Pregunta 3 - Diagrama (Mermaid) · 10.0 pts
 
 **Tipo en la plataforma:** `diagrama`
 
@@ -50,18 +101,36 @@ Esta ficha es la seccion 1 del informe del PI y el dominio **no vuelve a cambiar
 
 ## C4 Context de CloudLite App
 
-Escriba en Mermaid el diagrama **C4Context** de su CloudLite. No tiene que escribirlo de memoria: dibujelo primero en Excalidraw o draw.io y pidale a una IA que lo traduzca a Mermaid; usted revisa el resultado y lo pega aqui. Esta pregunta **no recibe imagenes**: lo que se califica es el diagrama renderizado dentro de la plataforma. La primera linea debe ser exactamente `C4Context`. Debe contener:
+Modele el diagrama **C4 de nivel Context** de su CloudLite, en Mermaid. La primera linea
+debe ser exactamente `C4Context`.
 
-- Exactamente **1** `System(...)`: CloudLite App completo, como caja negra.
-- Exactamente **2** `Person(...)`: sus dos actores principales de la ficha.
-- Exactamente **2** `System_Ext(...)`: dos sistemas de terceros con los que CloudLite habla (por ejemplo el proveedor de identidad institucional y el servicio de correo transaccional).
-- Exactamente **5** `Rel(...)`, cada una con **verbo de negocio** y **protocolo** (`HTTPS`, `OIDC sobre HTTPS`, `SMTP`, `API REST sobre HTTPS`).
+El diagrama debe mostrar:
 
-**Verifique antes de enviar**, renderizando dentro de ExamLab: (a) no aparece ninguna caja interna del sistema (nada de base de datos, API ni worker: eso es la Clase 4), (b) cada flecha se lee como frase completa, (c) los nombres son identicos a los de su ficha.
+- El sistema como **UNA sola caja**: `System(...)`. Es el sistema completo, no un modulo
+  interno.
+- Los **actores que lo usan**: `Person(...)`, los mismos de su ficha.
+- Los **sistemas externos** con los que se conecta: `System_Ext(...)`, los mismos que
+  listo en el bloque ACTORES.
+- **Cada flecha** (`Rel`) etiquetada con un **verbo de negocio** y un **protocolo**
+  (`HTTPS`, `OIDC sobre HTTPS`, `SMTP`, `API REST sobre HTTPS`). Una flecha rotulada
+  «usa», o sin protocolo, no cuenta.
 
-> El modelo de referencia esta escrito sobre el dominio **AgendaU**. Usted conserva la estructura y los conteos, y cambia los nombres por los de su dominio.
+> **No incluya todavia los contenedores internos.** Nada de base de datos, API, worker ni
+> cache: en el nivel Context el sistema es una caja negra. Esas cajas son el diagrama de
+> la pregunta 9 de esta misma actividad, que corresponde a la Clase 4. Si se dibujan aqui,
+> ese diagrama se queda sin nada nuevo que mostrar.
 
-**Consejo de sintaxis:** no use comas dentro de las etiquetas entre comillas del C4; separe con `y` o con guion.
+**Antes de enviar, verifique renderizando dentro de ExamLab:** que el diagrama se dibuje
+sin error de sintaxis, que cada flecha se lea en voz alta como una frase completa, y que
+los nombres sean identicos a los de su ficha.
+
+**Consejo de sintaxis:** no use comas dentro de las etiquetas entre comillas del C4;
+separe con «y» o con guion.
+
+**Tamano de referencia:** entre cuatro y ocho elementos en total. Si tiene veinte, es casi
+seguro que se colaron piezas internas del sistema.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Pegar al final del enunciado — flujo de entrega del diagrama:**
 
@@ -91,90 +160,13 @@ C4Context
 
 **Rubrica esperada (campo Rubrica):**
 
-12 pts los conteos exactos: 1 System, 2 Person, 2 System_Ext. 12 pts las 5 relaciones con verbo de negocio y protocolo. 6 pts que el diagrama renderice sin error de sintaxis. 5 pts coherencia de nombres con la ficha. Se pierden los 12 pts de conteos si aparecen contenedores internos (base de datos, API, worker) porque eso es nivel 2.
-
----
-
-## Pregunta 3 - Seleccion multiple · 15 pts
-
-**Tipo en la plataforma:** `cerrada_multi`
-
-**Enunciado (campo Contenido):**
-
-## Nube y on-premise: que es cierto
-
-Seleccione las **3 afirmaciones correctas** para un proyecto academico como CloudLite App.
-
-**Opciones:**
-
-- [x] En la nube el costo se comporta como gasto operativo variable, mientras en on-premise es una inversion de capital anticipada.
-- [x] La elasticidad permite devolver capacidad cuando baja la demanda, algo que no ocurre con servidores ya comprados.
-- [ ] Migrar a la nube elimina la responsabilidad del equipo sobre la seguridad de su propia aplicacion.
-- [x] En on-premise el equipo sigue respondiendo por la energia, el enfriamiento y el reemplazo del hardware.
-- [ ] La nube garantiza automaticamente menor latencia para todos los usuarios sin importar la region.
-- [ ] Todo sistema en la nube es por definicion mas barato que su equivalente on-premise.
-
-**Rubrica esperada (campo Rubrica):**
-
-5 pts por cada opcion correcta marcada; se descuentan 5 pts por cada opcion incorrecta marcada, sin bajar de cero. Marcar las seis da cero.
-
----
-
-## Pregunta 4 - Respuesta escrita · 20 pts
-
-**Tipo en la plataforma:** `abierta`
-
-**Enunciado (campo Contenido):**
-
-## Nube u on-premise para CloudLite
-
-Construya una tabla de **3 columnas** con los encabezados exactos `Criterio | On-premise en la UNIAJC | Nube` y **exactamente 4 filas**, una por criterio y en este orden:
-
-1. Inversion inicial necesaria para arrancar.
-2. Tiempo hasta la primera demo del PI.
-3. Quien opera el sistema operativo, los parches y los respaldos.
-4. Que pasa el dia del pico de su dominio (matricula, inicio de semestre, jornada de citas).
-
-Cada celda: **maximo 2 lineas** y siempre referida a *su* dominio, no a teoria general.
-
-Cierre con un **veredicto de 2 frases**: (a) que opcion elige para CloudLite, (b) cual es el riesgo concreto que asume al elegirla (por ejemplo dependencia del proveedor). Ese veredicto se copia a la seccion 1 del informe.
-
-> **Hoy se decide solo nube u on-premise.** El modelo de servicio (IaaS, PaaS o SaaS) se decide en la Clase 2: este veredicto es la **entrada** del ADR-001 de esa clase, no el ADR.
-
-> La estructura de la tabla es la que se proyecto en clase, resuelta sobre el dominio de referencia **AgendaU**. Usted conserva los 4 criterios y rehace las celdas con su propio dominio.
-
-**Rubrica esperada (campo Rubrica):**
-
-8 pts la tabla con los 4 criterios en el orden pedido y las 3 columnas. 6 pts que las 8 celdas de comparacion hablen del dominio propio y no de teoria generica. 6 pts el veredicto de 2 frases con eleccion y riesgo asumido; cero en el veredicto si no nombra un riesgo.
-
----
-
-## Pregunta 5 - Seleccion unica · 10 pts
-
-**Tipo en la plataforma:** `cerrada`
-
-**Enunciado (campo Contenido):**
-
-## Nivel del modelo C4
-
-Usted quiere mostrar **las cajas internas de CloudLite** (la SPA, la API y la base de datos) y como se comunican entre si. Que nivel del modelo C4 corresponde?
-
-**Opciones:**
-
-- [ ] Nivel 1 - Context: el sistema como caja negra frente a actores y sistemas externos.
-- [x] Nivel 2 - Container: las aplicaciones y los almacenes de datos que forman el sistema.
-- [ ] Nivel 3 - Component: las piezas internas de un unico contenedor.
-- [ ] Nivel 4 - Code: las clases y las funciones.
-
-**Rubrica esperada (campo Rubrica):**
-
-10 pts la opcion correcta, 0 en cualquier otra. Comprueba que el estudiante distingue el nivel que entrega hoy (Context) del que entrega en la Clase 4 (Container).
+3 pts una sola caja System para CloudLite completo. 2 pts los actores como Person, coherentes con la ficha. 2 pts los sistemas externos como System_Ext, los mismos que la ficha. 2 pts que TODA flecha lleve verbo de negocio y protocolo. 1 pt que el diagrama renderice sin error dentro de la plataforma. Si aparece un contenedor interno (base de datos, API, worker, cache) se pierden los 3 pts de la caja del sistema, porque eso es el nivel Container de la pregunta 9.
 
 ---
 
 ## Al terminar de crearlo
 
-- Verifique que la suma de puntos sea la esperada: **100**.
+- Verifique que la suma de puntos sea la esperada: **24**.
 - Publique el taller y confirme la fecha limite (domingo 23:59 segun el Acuerdo).
 - Las preguntas con SQL o codigo: ejecutelas una vez usted mismo antes de publicar,
   para confirmar que el SQL de partida corre y que el starter compila.

@@ -208,7 +208,7 @@ CLASSES = [
         "tema": "Introducción a arquitecturas cloud",
         "sub": "Diagnóstico · CloudLite App · primer boceto",
         "pi_hoy": "Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases",
-        "entregable": "Ficha PI de 6 bloques + C4 Context en Mermaid renderizado en ExamLab (boceto previo en Excalidraw/draw.io)",
+        "entregable": "Ficha PI de 5 bloques + C4 Context en Mermaid renderizado en ExamLab (boceto previo en Excalidraw/draw.io)",
         "herramienta": "Padlet · Excalidraw / draw.io",
         # Modalidad individual por defecto: desde 2026-2 los textos por defecto del
         # curso ya estan escritos en modo individual (ver MODALIDAD_DEFAULTS abajo),
@@ -216,7 +216,7 @@ CLASSES = [
         # trabajo es estrictamente individual porque cada estudiante define SU dominio.
         "agenda_taller_nota": "avance individual",
         "equipo_note": "Actividad individual: cada estudiante define su propio dominio CloudLite.",
-        "ficha_bloques_note": "Ficha de 6 bloques: DOMINIO · PROBLEMA · CAPACIDADES · ACTORES · SISTEMAS EXTERNOS · FUERA DE ALCANCE.",
+        "ficha_bloques_note": "Ficha de 5 bloques: DOMINIO · PROBLEMA · ACTORES (con sus sistemas externos) · CAPACIDADES · FUERA DE ALCANCE.",
         "explica_60s_note": "El estudiante puede explicar su decisión en 60 segundos.",
         "entrega_unidad_note": "Un envío por estudiante.",
         "entrega_oficial_nota": "La entrega oficial se hace respondiendo las preguntas abiertas del taller dentro de ExamLab (https://uniaj.examlab.workers.dev/). El documento/ficha en Word o Google Docs es opcional, solo para que el estudiante conserve sus respuestas; lo que califica es lo que quede escrito en las preguntas de ExamLab.",
@@ -231,7 +231,7 @@ CLASSES = [
         "entregan_word": "los estudiantes",
         "objetivos": [
             "Ubicar el curso como diseño de arquitecturas cloud al servicio del **PI CloudLite App**.",
-            "Distinguir nube vs on-prem y los bloques de una arquitectura cloud simple.",
+            "Cerrar el dominio del PI en una ficha de cinco bloques, con capacidades de negocio y no piezas tecnicas.",
             "Dejar el **dominio y alcance** del PI escritos y compartibles.",
         ],
         "slides_extra": [
@@ -241,27 +241,6 @@ CLASSES = [
                 "Para CloudLite App: no «comprar servidores»; **diseñar** capas y simular en labs gratis.",
                 "Bloques tipicos: cliente → API → lógica → datos → observabilidad.",
             ]),
-            ("Nube vs on-premise para CloudLite", [], {
-                "headers": ["Criterio", "On-premise en la UNIAJC", "Nube"],
-                "rows": [
-                    ["**Inversión inicial**",
-                     "Comprar servidor, UPS y licencias antes de escribir una línea. Gasto de capital.",
-                     "Casi cero para arrancar. Gasto operativo por lo que se consume."],
-                    ["**Tiempo hasta la primera demo del PI**",
-                     "Semanas: cotizar, comprar, instalar y pedir permisos a TI.",
-                     "Minutos: la capacidad se aprovisiona sin pedir permiso."],
-                    ["**Quién opera SO, parches y respaldos**",
-                     "Usted o la oficina de TI de la universidad, todo el semestre.",
-                     "Se reparte con el proveedor; cuánto, lo decide el modelo de servicio (Clase 2)."],
-                    ["**El día del pico** (inicio de semestre)",
-                     "La capacidad es fija: si se queda corta, AgendaU se cae y no hay nada que hacer ese día.",
-                     "Elasticidad: sube mientras dura el pico y luego se devuelve."],
-                ],
-                "note": "Resuelta sobre el dominio de referencia AgendaU. Usted conserva los 4 criterios "
-                        "y rehace las celdas con SU dominio: es la pregunta 4 del taller. Hoy se decide "
-                        "nube u on-premise; el modelo de servicio (IaaS/PaaS/SaaS) es la Clase 2.",
-                "col_w": [2.6, 5.1, 5.1],
-            }),
             ("CloudLite App — el hilo conductor", [
                 "Aplicación web/API de un dominio realista (citas, academia, inventario liviano…).",
                 "Entregables del semestre: diagramas + contenedor (lab) + CI/CD conceptual + informe.",
@@ -280,11 +259,11 @@ CLASSES = [
             "Elija dominio concreto (no «red social genérica») y escriba: problema (2–3 frases), 4 capacidades.",
             "Escriba actores, sistemas externos (2–3) y fuera de alcance.",
             "Boceto del **C4 Context** en Excalidraw o draw.io (CloudLite + actores + sistemas externos), y después convertirlo a **Mermaid** con ayuda de una IA para pegarlo renderizado en ExamLab.",
-            "Tabla nube vs on-prem + veredicto. Entregue en **ExamLab** (Talleres) las preguntas resueltas (domingo 23:59).",
+            "Revise que los nombres de actores y sistemas externos coincidan entre la ficha y el diagrama, y entregue en **ExamLab** las preguntas 1 a 3 de la actividad del Corte 1.",
         ],
         "quiz": [
-            ("¿Qué diferencia principal hay entre «tener un servidor en un cuarto» y un diseño cloud?",
-             "Cloud: recursos elásticos/automatizados bajo demanda; on-prem: capacidad fija y operación local."),
+            ("¿Qué hace que un dominio sea concreto y no genérico?",
+             "Que nombre a quién sufre el problema con un rol y cómo se mide con una cifra; si el enunciado sirve para cualquier sistema, es genérico."),
             ("Nombre dos entregables del PI CloudLite App.",
              "Cualquiera de: diagramas C4/despliegue, lab contenedores, workflow Actions, informe, sustentación."),
             ("¿Por qué el curso prohíbe pedir AWS/GCP con tarjeta?",
@@ -1449,7 +1428,7 @@ TALLER_BLOQUE = {
         "escenario": [
             "Actividad individual. Elegir un dominio concreto.",
             "Sugeridos: AgendaU · BiblioLite · InventarioLab · TurnosClinica · EventosCampus.",
-            "Plantilla ficha: DOMINIO · PROBLEMA · CAPACIDADES · ACTORES · SISTEMAS EXTERNOS · FUERA DE ALCANCE.",
+            "Plantilla ficha (5 bloques): DOMINIO · PROBLEMA · ACTORES (con sus sistemas externos) · CAPACIDADES · FUERA DE ALCANCE.",
             "Diagrama: boceto visual en @@Excalidraw o draw.io@@ → conversión a @@Mermaid (C4Context)@@ con ayuda de una IA → pegar y @@renderizar en ExamLab@@.",
         ],
         "pistas": [
@@ -2413,6 +2392,10 @@ def build_solucion(c: dict):
         "",
         f"**Resumen:** {sol['resumen']}",
         "",
+    ]
+    if sol.get("nota_actividad"):
+        L += [f"> {sol['nota_actividad']}", ""]
+    L += [
         "## Alineacion con el taller",
         "",
         f"- Taller del estudiante: `Clases/Clase {n} - {c['slug']}/`",
@@ -2420,7 +2403,7 @@ def build_solucion(c: dict):
         f"Clase {n} (configuracion).md`",
         f"- Hito del PI: {c.get('pi_hoy', '—')}",
         f"- Entregable: {c.get('entregable', '—')}",
-        f"- **Total: {sol['total']} puntos** repartidos en "
+        f"- **Estas preguntas: {sol['total']} puntos** en "
         f"{len(sol['preguntas'])} preguntas.",
         "",
         "| # | Pregunta | Tipo | Puntos |",
@@ -2436,9 +2419,9 @@ def build_solucion(c: dict):
         # Respuesta esperada, en la forma que corresponda al tipo de pregunta.
         if p.get("respuesta"):
             L += ["### Respuesta esperada", "", p["respuesta"], ""]
-        if p.get("respuesta_mermaid_biblio"):
+        if p.get("respuesta_mermaid"):
             L += ["### Respuesta esperada (dominio de la solucion)", "",
-                  "```mermaid", p["respuesta_mermaid_biblio"].strip(), "```", "",
+                  "```mermaid", p["respuesta_mermaid"].strip(), "```", "",
                   "### Modelo de referencia que ve el estudiante", "",
                   "Es el que aparece en el enunciado de la plataforma, sobre el dominio "
                   f"**{soluciones.DOMINIO_PROYECTADO}**. Sirve para comparar estructura y "

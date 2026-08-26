@@ -218,9 +218,14 @@ def bloque_estudiante(taller):
     ))
     for i, p in enumerate(taller.get("preguntas", []), 1):
         etiqueta, comose = _tipo(p["tipo"])
+        # `n_global` existe cuando varias clases comparten UNA actividad en la
+        # plataforma: entonces el numero que el estudiante ve no es la posicion
+        # dentro de su clase. Sin esto, el material de una clase hablaria de «la
+        # pregunta 1» cuando en pantalla es la 7.
+        num = p.get("n_global", i)
         out.append((
             "b",
-            f"@@Pregunta {i} - {etiqueta} ({p.get('puntos', 0)} pts):@@ "
+            f"@@Pregunta {num} - {etiqueta} ({p.get('puntos', 0)} pts):@@ "
             f"{p.get('titulo_corto') or _primera_frase(p['enunciado'])}",
         ))
         out.append(("li", comose))
@@ -341,7 +346,7 @@ def guia_docente_md(n, taller, curso, hito=None, entregable=None):
     for i, p in enumerate(preguntas, 1):
         etiqueta, _ = _tipo(p["tipo"])
         L += [
-            f"## Pregunta {i} - {etiqueta} · {p.get('puntos', 0)} pts",
+            f"## Pregunta {p.get('n_global', i)} - {etiqueta} · {p.get('puntos', 0)} pts",
             "",
             f"**Tipo en la plataforma:** `{p['tipo']}`",
             "",

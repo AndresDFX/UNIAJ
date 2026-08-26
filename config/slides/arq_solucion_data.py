@@ -3,15 +3,12 @@
 
 Por que existe
 --------------
-Las soluciones de Arquitectura eran 15 archivos estaticos que nadie regeneraba, y
-la de la Clase 1 solo cubria dos de las cinco preguntas: la ficha y el diagrama.
-Las preguntas 3, 4 y 5 —los 45 puntos de nube frente a on-premise y de nivel del
-modelo C4— no tenian solucion, asi que el docente no tenia con que calificarlas ni
-con que responder cuando el estudiante preguntara por que su opcion estaba mal.
+Las soluciones de Arquitectura eran 15 archivos estaticos que nadie regeneraba y
+que solo cubrian parte de las preguntas. Aqui la solucion se declara como datos,
+pregunta por pregunta y alineada con la rubrica de `arq_examlab_data`, y el build
+la escribe como .md y .docx.
 
-Aqui la solucion se declara como datos, pregunta por pregunta y alineada con la
-rubrica de `arq_examlab_data`, y el build la escribe como .md y .docx. Cada
-pregunta trae tres cosas distintas y conviene no mezclarlas:
+Cada pregunta trae tres cosas distintas y conviene no mezclarlas:
 
   - `respuesta`      lo que se espera, resuelto sobre un dominio concreto
   - `como_calificar` el desglose de puntos, copiado de la rubrica de ExamLab
@@ -19,6 +16,13 @@ pregunta trae tres cosas distintas y conviene no mezclarlas:
 
 `preguntas_frecuentes` es la seccion que baja la carga del docente: son las dudas
 que el estudiante trae cada semestre, con la respuesta ya redactada.
+
+Estructura de la actividad
+--------------------------
+En ExamLab las Clases 1 a 4 comparten UNA actividad de 11 preguntas (ver
+`ACTIVIDAD_CORTE1` en `arq_examlab_data`). Por eso las preguntas se identifican
+por su numero GLOBAL, que es el que el estudiante ve en la plataforma, y no por su
+posicion dentro de la clase.
 """
 from __future__ import annotations
 
@@ -37,106 +41,155 @@ DOMINIO_SOLUCION = "BiblioLite"
 #: `preguntas_frecuentes` (la version del docente lleva ademas criterio de nota).
 DUDAS_ESTUDIANTE = {
     1: [
+        ("¿Esta actividad se entrega hoy?",
+         "No. Es UNA sola actividad para las Clases 1 a 4, con 11 preguntas. Hoy resuelves "
+         "las preguntas 1, 2 y 3; las demás se resuelven en las clases siguientes y la "
+         "entrega completa cierra al final del Corte 1. Puedes guardar y volver."),
+        ("¿Qué hace que mi dominio sea «concreto» y no genérico?",
+         "Que el problema nombre a quién lo sufre con un rol («el auxiliar de biblioteca») y "
+         "cómo se mide con una cifra («38 libros devueltos tarde el semestre pasado»). Si tu "
+         "enunciado sirve igual para cualquier otro sistema, todavía es genérico."),
+        ("¿Los sistemas externos van en un bloque aparte de la ficha?",
+         "No. La ficha son cinco bloques y los sistemas externos van DENTRO de ACTORES. "
+         "Escríbelos ahí antes de dibujar: son los mismos que van a aparecer como "
+         "`System_Ext` en el diagrama de la pregunta 3."),
         ("¿Tengo que escribir el diagrama a mano en Mermaid?",
          "No. Dibújalo en Excalidraw o draw.io y pide a una IA que lo traduzca a Mermaid; "
          "tú revisas el resultado y lo pegas en ExamLab. Lo que se califica es el diagrama "
          "renderizado en la plataforma, no la imagen."),
         ("¿Por qué mi diagrama no puede llevar la base de datos?",
          "Porque hoy entregas el nivel Context, donde el sistema es una sola caja negra. "
-         "La base de datos y la API aparecen en el nivel Container, que es el entregable "
-         "de la Clase 4."),
+         "La base de datos y la API aparecen en el nivel Container, que es la pregunta 9 de "
+         "esta misma actividad. Si las dibujas aquí, esa pregunta se queda sin nada nuevo."),
         ("¿Cuántas cajas debe tener el diagrama?",
          "Entre cuatro y ocho elementos en total. Si tienes veinte, es casi seguro que se "
          "colaron piezas internas del sistema."),
-        ("¿La respuesta correcta siempre es «nube»?",
-         "No se califica la elección: se califican los 4 criterios aplicados a TU dominio y "
-         "el riesgo que declaras asumir. Un veredicto por on-premise bien sustentado vale lo "
-         "mismo. Lo que no vale es un veredicto sin riesgo."),
-        ("¿Tengo que abrir una cuenta en AWS o Azure?",
-         "No, y ninguna actividad del curso lo va a pedir. Nada de tarjeta de crédito en "
-         "todo el semestre."),
         ("¿Puedo cambiar de dominio más adelante?",
-         "No. El dominio se cierra hoy y las Clases 4, 7, 11 y 15 reutilizan estos mismos "
-         "nombres. Si te queda grande, recorta el bloque «fuera de alcance»."),
+         "No. El dominio se cierra hoy y las preguntas 4 a 11 de esta actividad, más las "
+         "Clases 7, 11 y 15, reutilizan estos mismos nombres. Si te queda grande, recorta el "
+         "bloque «fuera de alcance»."),
     ],
 }
 
 SOLUCION = {
     1: {
-        "titulo": "Solucion Taller Clase 1 — Ficha, C4 Context y nube vs on-premise",
+        "titulo": ("Solucion — Actividad del Corte 1, preguntas 1 a 3 "
+                   "(dominio, ficha y C4 Context)"),
         "resumen": (
-            "Las 5 preguntas resueltas sobre el dominio **BiblioLite** (prestamos de "
-            "biblioteca). El dominio de la solucion es distinto del que se proyecta en "
-            "clase (AgendaU) a proposito: sirve de contraste para calificar, y evita que "
-            "esta solucion se convierta en la respuesta que todos copian."
+            "Las tres preguntas que corresponden a la Clase 1, resueltas sobre el dominio "
+            "**BiblioLite** (prestamos de biblioteca). El dominio de la solucion es distinto "
+            "del que se proyecta en clase (**AgendaU**) a proposito: sirve de contraste para "
+            "calificar y evita que esta solucion se convierta en la respuesta que todos "
+            "copian."
         ),
-        "total": 100,
+        "total": 25.0,
+        "nota_actividad": (
+            "Estas 3 preguntas valen **25 de los 100 puntos** de la actividad del Corte 1, "
+            "que es **una sola para las Clases 1 a 4** y se entrega completa al cierre del "
+            "corte. Las preguntas 4 a 11 se resuelven en las Clases 2, 3 y 4."
+        ),
         "preguntas": [
             {
                 "n": 1,
-                "titulo": "Ficha del PI CloudLite App",
+                "titulo": "Dominio y problema de CloudLite App",
                 "tipo": "abierta",
-                "puntos": 20,
-                "respuesta": """**1. DOMINIO**
+                "puntos": 6.25,
+                "respuesta": """**DOMINIO**
 BiblioLite: prestamo y devolucion de libros de la biblioteca de la universidad.
 
-**2. PROBLEMA** (3 frases: quien sufre, como se resuelve hoy, cifra del dolor)
-Los estudiantes que necesitan un libro de reserva no saben si esta disponible sin ir
-hasta el mostrador. Hoy la biblioteca lleva los prestamos en una planilla de Excel que
-solo la auxiliar puede abrir, y las renovaciones se piden por WhatsApp al numero
-personal de la auxiliar. En el ultimo semestre se registraron 38 libros devueltos tarde
-sin cobro de multa porque nadie noto el vencimiento.
+**PROBLEMA** (3 frases: quien lo sufre y como se mide)
+El auxiliar de biblioteca lleva los prestamos en una planilla de Excel que solo el puede
+abrir, y las renovaciones le llegan por WhatsApp a su numero personal. Los estudiantes que
+necesitan un libro de reserva no saben si esta disponible sin ir hasta el mostrador. El
+semestre pasado se registraron 38 libros devueltos tarde sin cobro de multa, porque nadie
+noto el vencimiento.""",
+                "como_calificar": [
+                    "3 pts el dominio concreto y del tamano adecuado.",
+                    "1.5 pts que el problema nombre a **QUIEN** lo sufre con un rol concreto. "
+                    "«Los usuarios» no es un rol; «el auxiliar de biblioteca» si.",
+                    "1.75 pts que incluya **una cifra** que mida el dolor. Una cifra estimada "
+                    "sirve; «mucho tiempo» o «se pierde informacion» no.",
+                    "**Si el dominio es generico** («una red social», «una app de la "
+                    "universidad», «un e-commerce»), **toda la pregunta vale cero**: sin "
+                    "dominio concreto no hay nada que arquitecturar en las clases siguientes, "
+                    "y el estudiante llegaria a la pregunta 9 sin sistema que dibujar.",
+                    "Se descuenta si el problema pasa de 3 frases.",
+                ],
+                "errores": [
+                    "Dominio generico. Es el error que hay que cortar HOY, porque arrastra "
+                    "las once preguntas. La prueba rapida: si el enunciado sirve igual para "
+                    "otro sistema, no es un dominio.",
+                    "Problema sin cifra: «se pierde mucho tiempo». Pida un numero, aunque sea "
+                    "estimado, y aceptelo: el objetivo es que exista algo medible contra lo "
+                    "que comparar, no la exactitud del dato.",
+                    "Problema que describe la solucion y no el dolor: «el problema es que no "
+                    "tienen una app». El problema es lo que pasa hoy sin el sistema.",
+                    "Confundir quien sufre con quien paga. El coordinador aprueba el "
+                    "proyecto; el que sufre es quien hace el trabajo manual todos los dias.",
+                ],
+            },
+            {
+                "n": 2,
+                "titulo": "Ficha del dominio (cinco bloques)",
+                "tipo": "abierta",
+                "puntos": 8.75,
+                "respuesta": """**DOMINIO**
+BiblioLite: prestamo y devolucion de libros de la biblioteca de la universidad.
 
-**3. CAPACIDADES** (4, verbo + objeto de negocio, sin tecnologia)
+**PROBLEMA**
+(el mismo de la pregunta 1, repetido para que la ficha se lea completa)
+
+**ACTORES** (2 a 3, con lo que espera cada uno, y los sistemas externos)
+- Estudiante: quiere saber si el libro esta libre sin caminar hasta la biblioteca.
+- Auxiliar de biblioteca: quiere registrar un prestamo en menos de 30 segundos.
+- Coordinador de la biblioteca: quiere saber que titulos se agotan cada semestre.
+- Sistemas externos: proveedor de identidad institucional (valida que quien reserva es
+  estudiante activo) y correo transaccional SaaS (envia el aviso de vencimiento).
+
+**CAPACIDADES** (3 a 5, verbo + objeto de negocio)
 - Consultar disponibilidad de un titulo
 - Reservar un ejemplar
 - Renovar un prestamo vigente
 - Notificar el vencimiento del prestamo
 
-**4. ACTORES** (3, con lo que espera cada uno)
-- Estudiante: quiere saber si el libro esta libre sin caminar hasta la biblioteca.
-- Auxiliar de biblioteca: quiere registrar un prestamo en menos de 30 segundos.
-- Coordinador de la biblioteca: quiere saber que titulos se agotan cada semestre.
-
-**5. SISTEMAS EXTERNOS** (2 o 3, con los que BiblioLite intercambia informacion)
-- Proveedor de identidad institucional: valida que quien reserva es estudiante activo.
-- Correo transaccional SaaS: envia el aviso de vencimiento.
-
-**6. FUERA DE ALCANCE** (3)
+**FUERA DE ALCANCE**
 - No cobra multas ni procesa pagos.
 - No digitaliza el contenido de los libros.
 - No gestiona compras ni inventario de adquisiciones.""",
                 "como_calificar": [
-                    "3 pts los 6 bloques rotulados y completos.",
-                    "4 pts el problema con las 3 frases exigidas **y una cifra medible**. "
-                    "La cifra es lo que mas falta: sin ella el problema es una opinion.",
-                    "4 pts las 4 capacidades en verbo + objeto, **sin nombrar tecnologia**.",
-                    "3 pts los 3 actores con expectativa explicita.",
-                    "3 pts los 2 o 3 sistemas externos, y que sean **los mismos** que los "
-                    "`System_Ext` de la pregunta 2.",
-                    "3 pts las 3 exclusiones.",
-                    "Si el dominio es generico («una app de la universidad», «una red "
-                    "social»), los bloques 1 y 2 valen **cero**: sin dominio concreto no hay "
-                    "nada que arquitecturar en las clases siguientes.",
+                    "2 pts los **cinco** bloques presentes y rotulados en el orden pedido.",
+                    "2.5 pts las capacidades (**3 a 5**) en verbo mas objeto de negocio, sin "
+                    "nombrar tecnologia. Se descuenta por cada capacidad que sea una pieza "
+                    "tecnica.",
+                    "2.25 pts los actores (**2 a 3**) con su expectativa explicita, **mas los "
+                    "sistemas externos nombrados dentro de este mismo bloque**.",
+                    "2 pts el fuera de alcance con exclusiones que un evaluador razonable si "
+                    "habria esperado.",
+                    "Los sistemas externos de la ficha deben ser **los mismos** que aparezcan "
+                    "en el diagrama de la pregunta 3. Compare los dos antes de poner nota.",
                 ],
                 "errores": [
-                    "«Tener login con JWT» como capacidad. Es un medio, no un fin: la "
-                    "capacidad seria «autenticar al estudiante». Se corrige en el momento "
-                    "preguntando «¿que puede HACER el usuario con eso?».",
-                    "Problema sin cifra: «se pierde mucho tiempo». Pida un numero, aunque "
-                    "sea estimado; «38 libros» sirve, «mucho tiempo» no.",
-                    "Sistemas externos inventados que no vuelven a aparecer en el diagrama. "
-                    "Compare los dos bloques antes de poner nota: es el criterio de 3 pts.",
+                    "«Tener login con JWT» o «usar cache» como capacidad. Son medios, no "
+                    "fines. Se corrige en el momento preguntando «¿que puede HACER el usuario "
+                    "con eso?»: la capacidad seria «autenticar al estudiante».",
+                    "Poner los sistemas externos en un bloque aparte. La ficha son cinco "
+                    "bloques y van dentro de ACTORES; no penalice la intencion, pero corrija "
+                    "la estructura porque la rubrica cuenta cinco.",
+                    "Ocho o diez capacidades. El rango es 3 a 5 y es una decision pedagogica: "
+                    "con una sola persona y doce semanas, un alcance de ocho capacidades "
+                    "garantiza que el proyecto no llegue a ninguna parte.",
                     "Fuera de alcance con cosas que nadie iba a pedir («no viaja a Marte»). "
                     "Debe excluir lo que un evaluador razonable SI esperaria.",
+                    "Actores que no son personas: «la base de datos» no es un actor. Los "
+                    "actores son humanos con un rol; lo demas son sistemas externos.",
                 ],
             },
             {
-                "n": 2,
+                "n": 3,
                 "titulo": "C4 Context en Mermaid",
                 "tipo": "diagrama",
-                "puntos": 35,
-                "respuesta_mermaid_biblio": """C4Context
+                "puntos": 10.0,
+                "respuesta_mermaid": """C4Context
     title Contexto de CloudLite App - dominio BiblioLite
     Person(estudiante, "Estudiante", "Consulta disponibilidad y reserva ejemplares")
     Person(auxiliar, "Auxiliar de biblioteca", "Registra prestamos y devoluciones")
@@ -149,15 +202,15 @@ sin cobro de multa porque nadie noto el vencimiento.
     Rel(cloudlite, correo, "Solicita el envio del aviso de vencimiento", "API REST sobre HTTPS")
     Rel(correo, estudiante, "Entrega el aviso 2 dias antes del vencimiento", "SMTP")""",
                 "como_calificar": [
-                    "12 pts los conteos exactos: **1** `System`, **2** `Person`, **2** "
-                    "`System_Ext`. Se cuentan, no se estiman.",
-                    "12 pts las **5** `Rel` con verbo de negocio **y** protocolo. Una flecha "
-                    "sin protocolo o rotulada «usa» no suma.",
-                    "6 pts que renderice sin error de sintaxis dentro de ExamLab.",
-                    "5 pts coherencia de nombres con la ficha de la pregunta 1.",
-                    "**Los 12 pts de conteos se pierden completos** si aparece un contenedor "
-                    "interno (base de datos, API, worker, cache): eso es nivel 2, y aprobarlo "
-                    "hoy deja sin sentido la Clase 4.",
+                    "3 pts **una sola caja** `System` para CloudLite completo.",
+                    "2 pts los actores como `Person`, coherentes con la ficha.",
+                    "2 pts los sistemas externos como `System_Ext`, los mismos que la ficha.",
+                    "2 pts que **toda** flecha lleve verbo de negocio **y** protocolo. Una "
+                    "flecha rotulada «usa», o sin protocolo, no suma.",
+                    "1 pt que el diagrama renderice sin error dentro de la plataforma.",
+                    "**Si aparece un contenedor interno** (base de datos, API, worker, cache) "
+                    "se pierden los 3 pts de la caja del sistema: eso es el nivel Container de "
+                    "la pregunta 9, y aprobarlo aqui la deja sin nada que revelar.",
                 ],
                 "errores": [
                     "Base de datos o API dentro del diagrama. Es el error numero uno. La "
@@ -173,173 +226,39 @@ sin cobro de multa porque nadie noto el vencimiento.
                     "es de tipo diagrama: si no renderiza, no se puede calificar.",
                 ],
             },
-            {
-                "n": 3,
-                "titulo": "Nube y on-premise: que es cierto",
-                "tipo": "cerrada_multi",
-                "puntos": 15,
-                # Las opciones y las correctas se leen de ExamLab para que la clave no
-                # pueda quedar desincronizada de lo que responde el estudiante.
-                "justificacion": {
-                    0: ("CORRECTA. Es la diferencia de fondo y no de monto: on-premise "
-                        "compromete dinero antes de que exista una linea de codigo y se "
-                        "amortiza a anos; la nube se paga por lo consumido, mes a mes. Por eso "
-                        "en la nube el costo pasa a ser un atributo tecnico y no solo "
-                        "administrativo, idea que la Clase 10 retoma."),
-                    1: ("CORRECTA. Devolver capacidad es lo que distingue elasticidad de "
-                        "«tener capacidad de sobra». Un servidor ya comprado no se puede "
-                        "devolver el lunes siguiente al pico."),
-                    2: ("FALSA, y es la trampa principal. En la nube la responsabilidad se "
-                        "REPARTE, no desaparece: el proveedor responde por su infraestructura "
-                        "y el equipo sigue respondiendo por su propia aplicacion, sus "
-                        "permisos y sus datos. Cuanto se reparte es lo que decide el modelo de "
-                        "servicio de la Clase 2."),
-                    3: ("CORRECTA. Energia, enfriamiento y reemplazo de hardware son costos y "
-                        "trabajo que no desaparecen porque el servidor este «ahi». Es el "
-                        "criterio 3 de la tabla de la pregunta 4."),
-                    4: ("FALSA. La latencia depende de la distancia fisica a la region donde "
-                        "se despliega. Un usuario en Cali contra una region en Virginia puede "
-                        "estar peor que contra un servidor en el campus."),
-                    5: ("FALSA. Es la generalizacion mas comun. La nube suele ganar en "
-                        "time-to-market y en no comprometer capital; en carga constante y "
-                        "predecible durante anos, on-premise puede salir mas barato."),
-                },
-                "como_calificar": [
-                    "5 pts por cada opcion correcta marcada.",
-                    "Se **descuentan 5 pts** por cada opcion incorrecta marcada, sin bajar de cero.",
-                    "Marcar las seis da **cero**: el diseno de la pregunta castiga marcar todo "
-                    "por seguridad.",
-                ],
-                "errores": [
-                    "Marcar la opcion de «la nube elimina la responsabilidad de seguridad». "
-                    "Si aparece muy repetida en el grupo, vale dedicarle dos minutos en la "
-                    "Clase 2, porque es el cimiento del modelo de responsabilidad compartida.",
-                    "Marcar «siempre mas barato». Suele venir de material de marketing; la "
-                    "respuesta corta es «depende de la carga y del plazo».",
-                ],
-            },
-            {
-                "n": 4,
-                "titulo": "Nube u on-premise para CloudLite: tabla y veredicto",
-                "tipo": "abierta",
-                "puntos": 20,
-                "tabla": {
-                    "headers": ["Criterio", "On-premise en la UNIAJC", "Nube"],
-                    "rows": [
-                        ["Inversion inicial",
-                         "Hay que comprar un servidor y su UPS antes de tener la primera "
-                         "pantalla de BiblioLite. No tengo presupuesto.",
-                         "Arranco en cero y pago por lo que use mientras dure el semestre."],
-                        ["Tiempo hasta la primera demo del PI",
-                         "Semanas: cotizar, comprar y pedir permiso a la oficina de TI para "
-                         "montar algo en la red del campus.",
-                         "Minutos: aprovisiono y despliego el stub el mismo dia."],
-                        ["Quien opera SO, parches y respaldos",
-                         "Yo, o la oficina de TI, todo el semestre. Si el prestamo se cae un "
-                         "sabado, no hay quien lo levante.",
-                         "El proveedor la infraestructura; yo sigo respondiendo por la app y "
-                         "por los datos de los estudiantes."],
-                        ["El dia del pico (inicio de semestre)",
-                         "La capacidad es la que compre. La semana de matricula todos buscan "
-                         "los libros de reserva a la vez y BiblioLite se cae.",
-                         "Subo capacidad esa semana y la devuelvo despues."],
-                    ],
-                },
-                "veredicto": (
-                    "Elijo **nube** para BiblioLite, porque necesito la primera demo en dos "
-                    "semanas y no tengo presupuesto de capital. **Asumo el riesgo de quedar "
-                    "amarrado al proveedor que elija**: si sube precios o cierra el servicio, "
-                    "mudar la base de prestamos y el envio de avisos me costaria rehacer la "
-                    "integracion."
-                ),
-                "como_calificar": [
-                    "8 pts la tabla con los **4 criterios en el orden pedido** y las 3 columnas.",
-                    "6 pts que las **8 celdas de comparacion hablen del dominio propio** y no "
-                    "de teoria generica. Una celda que dice «la nube es escalable» no dice "
-                    "nada sobre BiblioLite y no suma.",
-                    "6 pts el veredicto de 2 frases con eleccion **y riesgo asumido**. "
-                    "**Cero en el veredicto si no nombra un riesgo**, aunque la eleccion sea "
-                    "razonable.",
-                    "Si el estudiante entrega la tabla de **" + DOMINIO_PROYECTADO + "** que "
-                    "se proyecto en clase, tal cual, pierde los 6 pts de dominio propio: la "
-                    "diapositiva era una referencia de estructura, no la respuesta.",
-                ],
-                "errores": [
-                    "Veredicto sin riesgo: «elijo nube porque es mas facil». Es media "
-                    "respuesta y son 6 pts. El riesgo esperable es dependencia del proveedor; "
-                    "tambien valen el costo que crece sin control (Clase 10) o los datos "
-                    "alojados por un tercero (Clase 6).",
-                    "Decidir IaaS, PaaS o SaaS aqui. Hoy solo se decide nube u on-premise; el "
-                    "modelo de servicio es el ADR-001 de la Clase 2 y este veredicto es su "
-                    "entrada, no su conclusion.",
-                    "Celdas copiadas de internet. Se detectan rapido: no nombran el dominio "
-                    "ni una sola vez.",
-                    "Elegir on-premise. No es incorrecto por si mismo y **no se penaliza**, "
-                    "pero exija que el veredicto explique como consigue el servidor y quien "
-                    "lo opera durante el semestre; si no puede responderlo, la eleccion no "
-                    "esta sustentada.",
-                ],
-            },
-            {
-                "n": 5,
-                "titulo": "Nivel del modelo C4",
-                "tipo": "cerrada",
-                "puntos": 10,
-                "justificacion": {
-                    0: ("Incorrecta, y es la confusion que la pregunta busca detectar. "
-                        "Context es lo que el estudiante entrego HOY: el sistema como caja "
-                        "negra frente a actores y sistemas externos."),
-                    1: ("CORRECTA. Container es el nivel que muestra las aplicaciones y los "
-                        "almacenes de datos que forman el sistema: la SPA, la API y la base de "
-                        "datos. Es el entregable de la Clase 4."),
-                    2: ("Incorrecta. Component abre UN contenedor y muestra sus modulos "
-                        "internos; el enunciado pide las cajas del sistema completo, no las de "
-                        "una sola."),
-                    3: ("Incorrecta. Code son clases y funciones, y en la practica casi nunca "
-                        "se dibuja porque el codigo mismo ya lo documenta."),
-                },
-                "como_calificar": [
-                    "10 pts la opcion correcta, 0 en cualquier otra. No hay puntos parciales.",
-                    "Comprueba que el estudiante distingue el nivel que entrega hoy (Context) "
-                    "del que entrega en la Clase 4 (Container). Si falla mas de un tercio del "
-                    "grupo, conviene repetir la regla de los cuatro niveles al abrir la Clase 4.",
-                ],
-                "errores": [
-                    "Marcar Context. Suele venir de haber memorizado «C4 = una caja» sin los "
-                    "cuatro niveles.",
-                    "Marcar Component. Confunde «piezas internas del sistema» con «piezas "
-                    "internas de un contenedor».",
-                ],
-            },
         ],
         "preguntas_frecuentes": [
-            ("¿Puedo cambiar de dominio en la Clase 2?",
-             "No. El dominio se cierra hoy y las Clases 4, 7, 11 y 15 reutilizan estos mismos "
-             "nombres. Si el dominio elegido resulta demasiado grande, se recorta el bloque "
-             "«fuera de alcance», no se cambia de dominio."),
-            ("¿El diagrama lo tengo que escribir a mano en Mermaid?",
-             "No. Dibujelo en Excalidraw o draw.io, que es donde se piensa el modelo, y pida a "
-             "una IA que lo traduzca a Mermaid. Usted revisa el resultado y lo pega en ExamLab. "
-             "Lo que se califica es el diagrama renderizado en la plataforma, no el PNG."),
-            ("¿Por que mi diagrama no puede tener la base de datos?",
-             "Porque este es el nivel Context, donde el sistema es una caja negra. La base de "
-             "datos aparece en el nivel Container, que es el entregable de la Clase 4. Si se "
-             "dibuja hoy, la Clase 4 no tendria nada nuevo que revelar."),
+            ("¿La actividad se entrega hoy?",
+             "No. Es una sola actividad de 11 preguntas para las Clases 1 a 4. Hoy se "
+             "resuelven las tres primeras; la entrega completa cierra al final del Corte 1. "
+             "Conviene decirlo al abrir el taller, porque es la duda que mas aparece."),
+            ("¿Puede cambiar de dominio en la Clase 2?",
+             "No. El dominio se cierra hoy y las preguntas 4 a 11 lo reutilizan. Si el "
+             "dominio elegido resulta demasiado grande, se recorta el bloque «fuera de "
+             "alcance», no se cambia de dominio."),
+            ("¿Cuantos actores y capacidades exactamente?",
+             "Son rangos, no numeros fijos: 2 a 3 actores y 3 a 5 capacidades. Lo que se "
+             "califica no es la cantidad sino la forma: actor con expectativa, capacidad en "
+             "verbo mas objeto de negocio."),
+            ("¿Los sistemas externos son un bloque de la ficha?",
+             "No. La ficha son cinco bloques y los sistemas externos van dentro de ACTORES. "
+             "Si un estudiante los pone aparte, corrija la estructura pero no penalice la "
+             "intencion: lo que importa es que esten y que coincidan con el diagrama."),
+            ("¿El diagrama hay que escribirlo a mano en Mermaid?",
+             "No. Se disena en Excalidraw o draw.io, que es donde se piensa el modelo, y se "
+             "pide a una IA que lo traduzca. Lo que se califica es el diagrama renderizado "
+             "dentro de ExamLab, no el PNG."),
+            ("¿Por que el diagrama no puede tener la base de datos?",
+             "Porque es el nivel Context, donde el sistema es una caja negra. La base de "
+             "datos aparece en el nivel Container, que es la pregunta 9 de esta misma "
+             "actividad. Si se dibuja hoy, esa pregunta no tendria nada nuevo que revelar."),
             ("¿Cuantas cajas debe tener el diagrama?",
              "Entre cuatro y ocho elementos en total. Si hay veinte, es casi seguro que se "
              "colaron piezas internas del sistema."),
-            ("¿Entonces la respuesta correcta siempre es nube?",
-             "Para un proyecto de un semestre, sin presupuesto y con una sola persona "
-             "desarrollando, casi siempre si. Pero lo que se califica no es la eleccion: son "
-             "los 4 criterios aplicados a su dominio y el riesgo que declara asumir. Un "
-             "veredicto por on-premise bien sustentado vale lo mismo."),
-            ("¿Tengo que abrir una cuenta en AWS o en Azure?",
+            ("¿Hay que abrir una cuenta en AWS o en Azure?",
              "No, y ninguna actividad del curso lo va a pedir. Todo se trabaja con draw.io, "
-             "Excalidraw, Killercoda y el nivel gratuito de GitHub Actions. No se pide tarjeta "
-             "de credito en ningun momento del semestre."),
-            ("¿La ficha la entrego en Word o en ExamLab?",
-             "La entrega que se califica es la respuesta dentro de ExamLab. El documento en "
-             "Word o Google Docs es opcional y solo sirve para que conserve sus respuestas."),
+             "Excalidraw, Killercoda y el nivel gratuito de GitHub Actions. No se pide "
+             "tarjeta de credito en ningun momento del semestre."),
         ],
     },
 }
@@ -357,14 +276,14 @@ def mermaid_referencia(n: int) -> str:
     return ""
 
 
-def opciones(n: int, i_pregunta: int):
+def opciones(n: int, n_global: int):
     """(opciones, indices correctos) de una pregunta cerrada, leidas de ExamLab.
 
     La clave se lee de la misma fuente que ve el estudiante: asi no puede quedar
     una solucion marcando una opcion que en la plataforma ya no es la correcta.
+    Se busca por numero GLOBAL porque varias clases comparten una actividad.
     """
-    preguntas = (EXAMLAB.get(n) or {}).get("preguntas", [])
-    if 1 <= i_pregunta <= len(preguntas):
-        p = preguntas[i_pregunta - 1]
-        return p.get("opciones") or [], set(p.get("correctas") or [])
+    for p in (EXAMLAB.get(n) or {}).get("preguntas", []):
+        if p.get("n_global") == n_global and p.get("opciones"):
+            return p["opciones"], set(p.get("correctas") or [])
     return [], set()
