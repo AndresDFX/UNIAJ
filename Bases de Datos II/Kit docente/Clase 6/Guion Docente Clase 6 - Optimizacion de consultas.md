@@ -7,6 +7,9 @@
 - **Entregable de hoy:** 2 consultas (antes/despues) + justificacion (media pag.)
 - **Herramienta:** DB Fiddle / SQLTest.online
 - **Slides:** Clases/Clase 6 - Optimizacion de consultas/Presentacion.pptx
+- **Caso de estudio (anexo del estudiante):** `Clases/Proyecto Integrador/Anexo - Caso de estudio Clinica Huellitas - Bases de Datos II.docx`
+  — perfil de la clinica, las 8 entidades, las 3 reglas, el elenco de nombres y la escala por clase.
+  Remita a este anexo cada vez que alguien pregunte «que datos guarda» o «de que tamano es esto».
 
 > Sin mapa completo del curso, sin bio del docente, sin fechas de periodo.
 > Presentacion del Curso / Acuerdo cubren logistica global.

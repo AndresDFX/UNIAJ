@@ -7,6 +7,9 @@
 - **Entregable de hoy:** Documento Roles_VetCare + script GRANT/REVOKE (o plan equivalente)
 - **Herramienta:** Oracle Live SQL / DB Fiddle + Google Docs
 - **Slides:** Clases/Clase 2 - Administracion de bases de datos/Presentacion.pptx
+- **Caso de estudio (anexo del estudiante):** `Clases/Proyecto Integrador/Anexo - Caso de estudio Clinica Huellitas - Bases de Datos II.docx`
+  — perfil de la clinica, las 8 entidades, las 3 reglas, el elenco de nombres y la escala por clase.
+  Remita a este anexo cada vez que alguien pregunte «que datos guarda» o «de que tamano es esto».
 
 > Sin mapa completo del curso, sin bio del docente, sin fechas de periodo.
 > Presentacion del Curso / Acuerdo cubren logistica global.

@@ -7,6 +7,9 @@
 - **Entregable de hoy:** Informe corto: 2 escenarios (cita doble / stock) + mitigacion
 - **Herramienta:** Google Docs + Live SQL
 - **Slides:** Clases/Clase 10 - Control de concurrencia/Presentacion.pptx
+- **Caso de estudio (anexo del estudiante):** `Clases/Proyecto Integrador/Anexo - Caso de estudio Clinica Huellitas - Bases de Datos II.docx`
+  — perfil de la clinica, las 8 entidades, las 3 reglas, el elenco de nombres y la escala por clase.
+  Remita a este anexo cada vez que alguien pregunte «que datos guarda» o «de que tamano es esto».
 
 > Sin mapa completo del curso, sin bio del docente, sin fechas de periodo.
 > Presentacion del Curso / Acuerdo cubren logistica global.

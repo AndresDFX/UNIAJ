@@ -7,6 +7,9 @@
 - **Entregable de hoy:** Contrato app<->BD + outline de slides de sustentacion (5-8 min)
 - **Herramienta:** Google Docs + Live SQL + Excalidraw
 - **Slides:** Clases/Clase 12 - Integracion y preparacion final/Presentacion.pptx
+- **Caso de estudio (anexo del estudiante):** `Clases/Proyecto Integrador/Anexo - Caso de estudio Clinica Huellitas - Bases de Datos II.docx`
+  — perfil de la clinica, las 8 entidades, las 3 reglas, el elenco de nombres y la escala por clase.
+  Remita a este anexo cada vez que alguien pregunte «que datos guarda» o «de que tamano es esto».
 
 > Sin mapa completo del curso, sin bio del docente, sin fechas de periodo.
 > Presentacion del Curso / Acuerdo cubren logistica global.

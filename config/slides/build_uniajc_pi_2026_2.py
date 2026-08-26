@@ -28,7 +28,20 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 # cursos y, ademas del enunciado del PI, lo consumen las diapositivas de BD II.
 # Mientras estaba definido aqui, BD II no lo usaba y su enunciado describia al
 # cliente con un parrafo generico que no lo nombraba.
-from vetcare_contexto import CONTEXTO_VETCARE  # noqa: E402
+from vetcare_contexto import (  # noqa: E402
+    CLIENTE,
+    CONTEXTO_VETCARE,
+    CONVENCIONES_DATOS,
+    ELENCO,
+    ENTIDADES,
+    ESCALA,
+    FUERA_DE_ALCANCE,
+    INTERESADOS,
+    NOMENCLATURA,
+    PERFIL,
+    PROBLEMAS,
+    REGLAS_NEGOCIO,
+)
 
 AZUL = RGBColor(0x09, 0x52, 0x92)
 CIAN = RGBColor(0x26, 0x9C, 0xCB)
@@ -185,6 +198,7 @@ BD2_META = {
     "periodo": "2026-2",
     "horario": "Lunes 18:00–20:00 (120 min)",
     "dominio": "VetCare DB",
+    "caso_huellitas": True,
 }
 
 
@@ -208,6 +222,12 @@ def enunciado_bd2(doc):
          "@@Nomenclatura:@@ «Huellitas» es la clínica, es decir el cliente que tiene el "
          "problema; @@VetCare DB@@ es la base de datos que usted construye para ella. "
          "Los enunciados de los talleres en ExamLab usan estos mismos dos nombres.")
+    para(doc,
+         "@@Anexo obligatorio:@@ el caso completo —perfil de la clínica, las 8 entidades, las 3 "
+         "reglas de negocio, el elenco de nombres y cómo crece la base durante el semestre— está "
+         "en @@Anexo - Caso de estudio Clinica Huellitas@@, en esta misma carpeta. Téngalo a mano "
+         "en todas las clases: los talleres se refieren a esos datos.",
+         shade="E8F4FA")
     h3(doc, "Qué le toca a Bases de Datos II")
     para(doc,
          "Usted modela y opera la @@capa de datos@@ de VetCare: mascotas, dueños, "
@@ -894,6 +914,81 @@ draw.io · LabEx Docker Playground / Killercoda · GitHub Actions · **sin** AWS
 """
 
 
+def anexo_caso_estudio(doc, meta: dict):
+    """Anexo del caso de estudio: el cliente, su operacion y sus reglas.
+
+    Por que es un documento aparte y no un parrafo mas del enunciado: el
+    estudiante lo consulta en las quince clases, no una vez. Antes estos datos
+    estaban repartidos entre dos diapositivas, un parrafo del enunciado y los
+    enunciados de ExamLab, y algunos —la escala de 30.010 citas que evaluan las
+    Clases 6 y 7— no estaban escritos en ninguna parte que el estudiante lea.
+    """
+    banda(doc, "Anexo · Caso de estudio — " + CLIENTE)
+    para(doc, meta["asignatura"] + " · " + meta["codigo"] + " · Periodo " + meta["periodo"],
+         size=10, color=CIAN)
+    para(doc, "Documento de consulta para todo el semestre. Los talleres, los quices y el "
+              "Proyecto Integrador se refieren a esta clínica y a estos datos.", size=10)
+    para(doc, NOMENCLATURA, size=10, bold=True, shade="FFF8D6")
+
+    h2(doc, "1. La clínica")
+    table(doc, ["Dato", "Detalle"], [[k, v] for k, v in PERFIL])
+
+    h2(doc, "2. El problema que la trae hasta aquí")
+    para(doc, CONTEXTO_VETCARE)
+    bullets(doc, PROBLEMAS)
+
+    h2(doc, "3. Quién va a usar el sistema")
+    bullets(doc, INTERESADOS)
+    para(doc, "Sus intereses @@entran en conflicto@@: pedir más datos en el formulario de la "
+              "cita da mejores métricas al dueño y le hace más lento el trabajo a la "
+              "recepcionista. Cuando dude si un dato sobra, pregúntese @@cuál de los tres lo "
+              "necesita@@ y qué pierde otro si lo agrega. Ahí están las decisiones de diseño "
+              "del semestre.")
+
+    h2(doc, "4. Qué guarda el sistema")
+    para(doc, "Ocho entidades. Aquí están descritas por lo que significan para la clínica; "
+              "traducirlas a tablas con sus tipos y sus claves es su trabajo.", size=10)
+    table(doc, ["Entidad", "Qué es para la clínica"], [[k, v] for k, v in ENTIDADES])
+    para(doc, "Cómo se relacionan: un @@Dueño@@ tiene varias @@Mascotas@@; una @@Mascota@@ "
+              "tiene varias @@Citas@@; un @@Veterinario@@ atiende varias @@Citas@@; una "
+              "@@Cita@@ atendida produce @@una@@ @@Consulta@@; una @@Consulta@@ puede generar "
+              "@@Facturas@@; cada @@Factura@@ tiene varias líneas de @@Detalle@@, y cada línea "
+              "apunta a un @@Insumo@@.")
+
+    h2(doc, "5. Las reglas del negocio")
+    para(doc, "Son tres y no cambian en el semestre. La columna de la derecha dice @@dónde@@ se "
+              "hacen cumplir: es lo que conecta este caso con el temario del curso.", size=10)
+    table(doc, ["Regla", "Dónde se hace cumplir"], [[k, v] for k, v in REGLAS_NEGOCIO])
+
+    h2(doc, "6. Cómo crece la base durante el semestre")
+    para(doc, "El mismo cliente en tres momentos. Conviene tenerlo claro porque los talleres "
+              "de optimización no evalúan la base de la primera semana.", size=10)
+    table(doc, ["Momento", "Volumen y qué implica"], [[k, v] for k, v in ESCALA])
+
+    h2(doc, "7. Convenciones de datos del curso")
+    bullets(doc, CONVENCIONES_DATOS)
+
+    h2(doc, "8. Elenco fijo")
+    para(doc, "Use estos nombres en sus ejemplos y datos de prueba. Existen para que su "
+              "entrega, la solución del docente y los enunciados de ExamLab hablen de las "
+              "mismas personas. @@Están escritos sin tilde a propósito:@@ así están "
+              "sembrados en la base, y así hay que escribirlos en un `WHERE` o un "
+              "`INSERT` para que coincidan.", size=10)
+    table(doc, ["Grupo", "Nombres"], [
+        ["Dueños", ELENCO["duenos"]],
+        ["Mascotas", ELENCO["mascotas"]],
+        ["Veterinarios", ELENCO["veterinarios"]],
+        ["Especialidades", ELENCO["especialidades"]],
+        ["Servicios", ELENCO["servicios"]],
+    ])
+
+    h2(doc, "9. Qué NO cubre el proyecto")
+    bullets(doc, FUERA_DE_ALCANCE)
+    para(doc, "Si una idea suya no cabe en las ocho entidades ni en las tres reglas, "
+              "probablemente está fuera de alcance. Escríbala en el bloque «qué NO hará» de su "
+              "ficha en vez de intentar construirla.", size=10)
+
+
 def build_one(curso_dir: Path, meta: dict, build_est, build_doc, md_text: str, slug: str):
     est_dir = curso_dir / "Clases" / "Proyecto Integrador"
     kit_dir = curso_dir / "Kit docente" / "Proyecto Integrador"
@@ -908,6 +1003,17 @@ def build_one(curso_dir: Path, meta: dict, build_est, build_doc, md_text: str, s
     margins(d1)
     build_est(d1)
     d1.save(est_path)
+
+    # El anexo del caso de estudio acompana al enunciado en la carpeta del PI.
+    # Solo para los cursos cuyo PI es la Clinica Huellitas: Arquitectura trabaja
+    # CloudLite, con un dominio que elige cada estudiante.
+    if meta.get("caso_huellitas"):
+        anexo_path = est_dir / f"Anexo - Caso de estudio Clinica Huellitas - {slug}.docx"
+        d3 = Document()
+        margins(d3)
+        anexo_caso_estudio(d3, meta)
+        d3.save(anexo_path)
+        print("OK ->", anexo_path)
 
     d2 = Document()
     margins(d2)

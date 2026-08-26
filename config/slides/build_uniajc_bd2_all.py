@@ -23,7 +23,7 @@ from uniajc_slides_engine import (
 )
 from uniajc_quiz_helpers import clave_text, pptx_chunks, q_abierta, q_om, q_vf, student_lines
 import calendario_2026_2 as cal
-from vetcare_contexto import CLIENTE, INTERESADOS, NOMENCLATURA
+from vetcare_contexto import CLIENTE, INTERESADOS, NOMENCLATURA, PROBLEMAS
 from bd2_taller_data import HERRAMIENTAS_DIA, TALLER_BLOQUE, SOLUCION
 from bd2_fundamentos import FUNDAMENTOS
 from bd2_examlab_data import EXAMLAB as TALLERES_EXAMLAB
@@ -1200,11 +1200,18 @@ def build_pptx(c):
         ], idx=idx); idx += 1
     if c['n'] == 1:
         content_slide(prs, CLIENTE_SLIDE_TITULO, [
-            f"@@{CLIENTE}@@ lleva su gestión en papel y quiere un sistema. Tres personas lo van a usar:",
-            *INTERESADOS,
-            "Sus intereses **entran en conflicto**: más datos dan mejores métricas, pero "
+            f"@@{CLIENTE}@@ (Cali): unas @@150 citas al día@@, @@16 veterinarios@@, "
+            "~5.000 mascotas de ~2.000 dueños — y todo en @@carpetas de papel@@.",
+            "Duele en tres puntos: se extravían fichas, buscar un historial genera filas "
+            "en la sala de espera, y no hay métricas.",
+            "Tres personas van a usar el sistema, y esperan cosas distintas: "
+            "@@el dueño@@ métricas, @@la recepcionista@@ agendar rápido, "
+            "@@el veterinario@@ el historial a la mano.",
+            "Sus intereses @@entran en conflicto@@: más datos dan mejores métricas, pero "
             "hacen más lento el agendamiento. Ahí están las decisiones de diseño del semestre.",
-        ], sub=NOMENCLATURA, idx=idx, size=15); idx += 1
+            "@@Caso completo:@@ anexo «Caso de estudio Clínica Huellitas» en "
+            "Clases/Proyecto Integrador — 8 entidades, 3 reglas y el elenco de nombres.",
+        ], sub=NOMENCLATURA, idx=idx, size=14); idx += 1
     content_slide(prs, "Teoria Core (breve)", _slide_summary(c['teoria']), idx=idx, size=15); idx += 1
     dg = DIAGRAMAS_BD2.get(c['n'])
     if dg:
@@ -1385,6 +1392,26 @@ def build_taller_docx(c):
     para(doc, "Hilo conductor: Proyecto Integrador VetCare DB (no es un ejercicio desconectado).", size=11, bold=True)
     para(doc, f"Herramienta: {c['herramienta']}")
     para(doc, f"Hoy avanzamos el PI en: {c['hito_pi']}", shade_fill="FFF8D6")
+    if c['n'] == 1:
+        # El cliente se presentaba solo en la diapositiva. Aqui queda en el
+        # documento que el estudiante conserva, con el puntero al anexo completo.
+        para(doc, "0. El cliente: " + CLIENTE, size=12, bold=True, color=AZUL)
+        _p = doc.add_paragraph(); _p.paragraph_format.space_after = DocPt(6)
+        add_inline_docx(_p, "Atiende unas @@150 citas al día@@ con @@16 veterinarios@@, sobre "
+                            "unas 5.000 mascotas de unos 2.000 dueños, y hoy lleva todo en "
+                            "@@carpetas de papel@@. La administración reporta tres problemas:")
+        bullets(doc, [p.replace("@@", "") for p in PROBLEMAS])
+        _p = doc.add_paragraph(); _p.paragraph_format.space_after = DocPt(6)
+        add_inline_docx(_p, "Usted construye la @@capa de datos@@ de VetCare: el modelo, la "
+                            "integridad, la seguridad y el rendimiento. La aplicación no se "
+                            "pide en esta asignatura.")
+        _p = doc.add_paragraph(); _p.paragraph_format.space_after = DocPt(6)
+        shade(_p, "E8F4FA")
+        add_inline_docx(_p, "@@Caso completo (téngalo a mano todo el semestre):@@ "
+                            "Clases/Proyecto Integrador/Anexo - Caso de estudio Clinica "
+                            "Huellitas — las 8 entidades, las 3 reglas de negocio, el elenco de "
+                            "nombres y cómo crece la base hasta las 30.010 citas que se "
+                            "optimizan en las Clases 6 y 7.")
     para(doc, "1. Contexto / por que importa al PI", size=12, bold=True, color=AZUL)
     bullets(doc, tb.get('contexto') or ["Trabaje sobre su propio dominio VetCare."])
     para(doc, "2. Objetivo", size=12, bold=True, color=AZUL)
@@ -1727,6 +1754,9 @@ Proyectar {sl_cierre}slide de cierre. Dudas finales.
 - **Entregable de hoy:** {c['entregable']}
 - **Herramienta:** {c['herramienta']}
 - **Slides:** Clases/Clase {c['n']} - {c['slug']}/Presentacion.pptx
+- **Caso de estudio (anexo del estudiante):** `Clases/Proyecto Integrador/Anexo - Caso de estudio Clinica Huellitas - Bases de Datos II.docx`
+  — perfil de la clinica, las 8 entidades, las 3 reglas, el elenco de nombres y la escala por clase.
+  Remita a este anexo cada vez que alguien pregunte «que datos guarda» o «de que tamano es esto».
 
 > Sin mapa completo del curso, sin bio del docente, sin fechas de periodo.
 > Presentacion del Curso / Acuerdo cubren logistica global.
