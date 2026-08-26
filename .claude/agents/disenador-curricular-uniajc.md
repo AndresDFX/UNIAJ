@@ -428,10 +428,23 @@ Reglas:
   Calendar trae su propio enlace. **Nunca inventar ni pegar a mano un enlace de Meet.**
 - Por lo mismo, el correo puede salir **antes** de crear los encuentros: no depende de ellos.
   Orden del manual 01: regenerar → correo → encuentros → grabaciones.
-- Para rehacer la serie: `eliminarEncuentros()` (dos pasadas: título exacto + barrido por
-  fecha para cazar eventos de una corrida anterior con título viejo) y `recrearTodo()`.
-  Ambas respetan `SIMULAR`. Borrar **manda cancelaciones** a los invitados; si lo único que
-  cambió es la nómina, `crearEncuentros()` sola sincroniza los invitados sin tocar nada.
+- Para rehacer la serie: `eliminarEncuentros()` (dos pasadas: título exacto + barrido de la
+  misma **fecha y hora** para cazar eventos de una corrida anterior con título viejo) y
+  `recrearTodo()`. Ambas respetan `SIMULAR`. Borrar **manda cancelaciones** a los invitados; si
+  lo único que cambió es la nómina, `crearEncuentros()` sola sincroniza los invitados sin
+  tocar nada.
+- El generador emite **dos** cosas de la misma plantilla: un `.gs` por curso y **uno
+  consolidado** en `_privado/<periodo>/CrearEncuentros - TODO EL SEMESTRE <periodo>.gs`, con
+  las funciones de cada curso (`crearSeminario`, `eliminarArquitectura`, …) más cuatro que
+  abarcan el periodo (`*TodosLosCursos`). Esas cuatro exigen un segundo interruptor,
+  `CONFIRMO_SEMESTRE_COMPLETO`, porque tocan decenas de eventos y más de mil correos.
+  Puntero visible: `LEEME - Apps Script del semestre.md` en la raíz.
+- **Programación II y Seminario de Sistemas son el mismo grupo (341C)**: hay estudiantes en los
+  dos, así que toda operación «de los 4 cursos» les llega por duplicado. Decirlo cuando se
+  proponga una acción masiva.
+- El generador tiene pruebas que ejecutan el `.gs` contra un simulacro de las APIs de Google:
+  `bash config/calendario/pruebas_apps_script/probar.sh`. Correrlas tras cualquier cambio en
+  `generar_apps_script_encuentros.py`, antes de pegar nada en Apps Script.
 - Los dos Apps Script (encuentros y grabaciones) piden un **`CALENDAR_ID` explícito**, que
   sale vacío a propósito y debe ser **el mismo en los dos**. No usan el calendario por
   omisión porque depende de la cuenta con la que se abrió Apps Script; la línea queda

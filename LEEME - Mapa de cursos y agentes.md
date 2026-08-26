@@ -30,9 +30,11 @@ siquiera los parciales:
 | Festivos | **Clase autónoma** (único caso asincrónico) |
 | **Sesión 13 de lunes** (16/11, BD II y Arquitectura) | **Sustentaciones del PI**, virtual en vivo (no es parcial) |
 
-El enlace de Meet es **el mismo toda la serie** de cada curso (ver `Manuales/01`). Antes la
-oferta fue «Presencialidad asistida» (Sesión 1 y parciales presenciales); si un documento
-todavía lo dice, está desactualizado.
+**Cada sesión tiene su propio enlace de Meet**, dentro de la invitación de Calendar de esa
+sesión: no hay un enlace único del curso (ver `Manuales/01` y `_nota_meet` en el JSON). Antes
+hubo una sola sala para toda la serie, y antes de eso la oferta fue «Presencialidad asistida»
+(Sesión 1 y parciales presenciales); si un documento todavía dice cualquiera de las dos cosas,
+está desactualizado.
 
 Fuente de verdad: `config/calendario/semestre_2026_2.json` → `regla_modalidad_sesion`.
 
@@ -92,17 +94,24 @@ parcial vive en `Parciales/`, nunca en `Clases/`.
 ```bash
 python config/calendario/generar_semestre_2026_2.py         # calendario, correo, CSV, acuerdos
 python config/calendario/generar_eventos_calendario.py      # nominas, planillas, .ics
-python config/calendario/generar_apps_script_encuentros.py  # .gs de encuentros por curso
+python config/calendario/generar_apps_script_encuentros.py  # .gs de encuentros (por curso + consolidado)
 python config/calendario/validar_calendario.py              # invariantes; sale 1 si algo falla
+bash   config/calendario/pruebas_apps_script/probar.sh      # ejecuta los .gs contra un simulacro
 ```
 
 Fuente de verdad: `config/calendario/semestre_2026_2.json` (fechas, sesiones, parciales,
-festivos, carpetas de Drive y enlace de Meet). Se corrige ahi y se regenera.
+festivos y carpetas de Drive). Se corrige ahi y se regenera.
 
 **Los encuentros no se crean importando un `.ics`**: importar deja los invitados dentro del
 evento pero Google no envia las invitaciones. Se crean con el Apps Script generado, que usa
 la API de Calendar (`sendUpdates: 'all'`) y le da a **cada sesión su propia sala de Meet**
 del curso. Las sesiones autonomas van al calendario pero sin Meet.
+
+El generador emite **dos** `.gs` de la misma plantilla: uno por curso, en
+`<Curso>/Plan curso/<periodo>/_privado/`, y **uno consolidado** con todos los cursos del
+periodo en `_privado/<periodo>/`, con las funciones de cada curso y cuatro `*TodosLosCursos`.
+Los `.gs` llevan correos de estudiantes y no se versionan; los punteros visibles son
+`LEEME - Apps Script del curso.md` (por curso) y `LEEME - Apps Script del semestre.md` (raiz).
 
 Procedimiento paso a paso: **`Manuales/`** (01 alistar un curso · 02 archivar grabaciones).
 Estan escritos con `<periodo>` y `<Curso>`: sirven en cualquier semestre.

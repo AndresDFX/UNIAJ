@@ -48,14 +48,21 @@ sala de Meet**, se usa el Apps Script que genera:
 python config/calendario/generar_apps_script_encuentros.py
 ```
 
-Emite `<Curso>/Plan curso/<periodo>/_privado/CrearEncuentros - <Curso>.gs`, que crea la serie
-con la API de Calendar (`sendUpdates: 'all'`) y le pone a cada sesión sincrónica una sala de
-Meet distinta (`requestId` propio por sesión, así reejecutar no duplica). Las autónomas por
-festivo van al calendario pero **sin Meet**, porque no hay encuentro.
+Emite un `.gs` por curso en `<Curso>/Plan curso/<periodo>/_privado/` y uno consolidado del
+periodo en `_privado/<periodo>/`, los dos de la misma plantilla. Crean la serie con la API de
+Calendar (`sendUpdates: 'all'`) y le dan a cada sesión sincrónica una sala de Meet distinta
+(`requestId` propio por sesión, así reejecutar no duplica). Las autónomas por festivo van al
+calendario pero **sin Meet**, porque no hay encuentro.
 
 No hay ningún enlace que pegar de vuelta en el material: al estudiante le llega el de cada
-sesión dentro de su invitación de Calendar. El mismo `.gs` trae `eliminarEncuentros()` y
-`recrearTodo()` para rehacer la serie desde cero.
+sesión dentro de su invitación de Calendar. Los `.gs` traen también las funciones para borrar
+y rehacer la serie desde cero — por curso y, en el consolidado, para todo el periodo.
+
+Se prueban ejecutándolos contra un simulacro de las APIs de Google:
+
+```bash
+bash config/calendario/pruebas_apps_script/probar.sh
+```
 
 El `.ics` y el CSV quedan como camino manual alternativo. Las sesiones autónomas van en el
 `.ics` como `TRANSP:TRANSPARENT` porque no bloquean agenda.

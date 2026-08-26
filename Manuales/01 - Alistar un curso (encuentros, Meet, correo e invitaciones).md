@@ -32,13 +32,17 @@ envía las invitaciones** — que es justo lo que la importación de un `.ics` n
 ```bash
 python config/calendario/generar_semestre_<periodo>.py         # calendario, correo, CSV
 python config/calendario/generar_eventos_calendario.py         # nóminas, planillas, .ics
-python config/calendario/generar_apps_script_encuentros.py     # el .gs de encuentros por curso
+python config/calendario/generar_apps_script_encuentros.py     # los .gs de encuentros
 python config/calendario/validar_calendario.py                 # debe terminar en OK
 ```
 
 Todo sale de `config/calendario/semestre_<periodo>.json`, la **fuente de verdad**: si una
 fecha está mal se corrige ahí y se regenera, nunca a mano en los documentos — lo escrito a
 mano se pierde en la siguiente corrida.
+
+El tercer script emite **dos cosas**: un `.gs` por curso y **uno consolidado con todos los
+cursos del periodo**. Los dos salen de la misma plantilla, así que hacen lo mismo; eliges uno
+de los dos caminos (ver *Un proyecto o cuatro*, más abajo).
 
 El segundo script imprime por curso cuántos estudiantes hay y cuántos son **invitables**.
 **Lee esa línea:** si dice `invitables: 13` de 16, esas 3 personas no recibirán la invitación
@@ -59,6 +63,14 @@ El segundo script imprime por curso cuántos estudiantes hay y cuántos son **in
     ├── nomina_<curso>.csv                       ← correos para el paso 3
     ├── asistencia_<curso>.csv                   ← planilla de asistencia
     └── correos_manuales.csv                     ← si lo creas tú (ver más abajo)
+```
+
+Y, una sola vez para todo el periodo, en la raíz de `Cursos`:
+
+```
+LEEME - Apps Script del semestre.md              ← visible: dice qué trae y dónde está
+_privado/<periodo>/
+└── CrearEncuentros - TODO EL SEMESTRE <periodo>.gs   ← el consolidado
 ```
 
 ---
@@ -92,23 +104,86 @@ Publicar uno fijo mandaría al grupo a la sala equivocada en las otras 12 sesion
 
 ---
 
-## Paso 2 — Crear los encuentros en Calendar (una vez por curso)
+## Un proyecto o cuatro
 
-Archivo: `<Curso>/Plan curso/<periodo>/_privado/CrearEncuentros - <Curso>.gs`
+Hay dos caminos para el paso 2, y **son equivalentes**: los `.gs` salen de la misma plantilla.
+
+| Camino | Archivo | Cuándo conviene |
+|---|---|---|
+| **Cuatro proyectos** | `<Curso>/Plan curso/<periodo>/_privado/CrearEncuentros - <Curso>.gs` | Cuando alistas los cursos de a uno, en semanas distintas. El desplegable de Apps Script solo muestra las 4 funciones de ese curso, así que no hay dónde equivocarse. |
+| **Un proyecto** | `_privado/<periodo>/CrearEncuentros - TODO EL SEMESTRE <periodo>.gs` | Cuando alistas el semestre completo de una sentada, o cuando hay que rehacer varios cursos. Un solo `CALENDAR_ID` que pegar, un solo permiso que aceptar. |
+
+En el consolidado las funciones llevan el nombre del curso, y además hay cuatro que abarcan
+todo el periodo:
+
+| Función | Alcance |
+|---|---|
+| `verificarProgramacionII` · `crearProgramacionII` · `eliminarProgramacionII` · `recrearProgramacionII` | solo ese curso |
+| `verificarSeminario` · `crearSeminario` · `eliminarSeminario` · `recrearSeminario` | solo ese curso |
+| `verificarBasesDatosII` · `crearBasesDatosII` · `eliminarBasesDatosII` · `recrearBasesDatosII` | solo ese curso |
+| `verificarArquitectura` · `crearArquitectura` · `eliminarArquitectura` · `recrearArquitectura` | solo ese curso |
+| `verificarTodosLosCursos` | **los 4** · solo lectura |
+| `crearTodosLosCursos` | **los 4** · crea lo que falte y sincroniza invitados |
+| `eliminarTodosLosCursos` | **los 4** · borra todo |
+| `recrearTodosLosCursos` | **los 4** · borra y vuelve a crear |
+
+Las cuatro `*TodosLosCursos` piden **un segundo interruptor** además de `SIMULAR = false`:
+
+```js
+var CONFIRMO_SEMESTRE_COMPLETO = false;   // ponlo en true para las funciones de los 4 cursos
+```
+
+Existe porque esas cuatro tocan 52 eventos y más de mil correos, y en el desplegable de Apps
+Script es fácil elegir `crearTodosLosCursos` cuando querías `crearSeminario`. Si está en
+`false`, la función se detiene y te dice qué hacer, sin haber tocado nada. Las funciones de un
+curso suelto no lo necesitan.
+
+> **Ojo con Programación II y Seminario de Sistemas:** son el **mismo grupo (341C)**, así que
+> hay estudiantes matriculados en los dos. Cualquier cosa que hagas «para los 4 cursos» les
+> llega por duplicado a esas personas.
+
+El resto del paso 2 es idéntico en los dos caminos: solo cambian los nombres de las funciones.
+Donde el manual dice `verificar`, `crearEncuentros`, `eliminarEncuentros` o `recrearTodo`, en
+el consolidado usa la del curso (`verificarSeminario`, `crearSeminario`, …) o la de todo el
+periodo.
+
+---
+
+## Paso 2 — Crear los encuentros en Calendar
+
+Archivo, según el camino que elegiste arriba:
+
+```
+<Curso>/Plan curso/<periodo>/_privado/CrearEncuentros - <Curso>.gs          ← un curso
+_privado/<periodo>/CrearEncuentros - TODO EL SEMESTRE <periodo>.gs          ← los 4
+```
 
 Es un **Google Apps Script**: corre en tu cuenta, no en el repo.
 
 > **Si no lo encuentras:** contiene los correos de los estudiantes, así que `_privado/` está
-> en `.gitignore` — **existe en tu disco y en Drive, pero no en GitHub**. Al lado, ya visible,
-> queda un `LEEME - Apps Script del curso.md` con la ruta exacta. Si de verdad falta el
+> en `.gitignore` — **existe en tu disco y en Drive, pero no en GitHub**. Al lado, ya visibles,
+> quedan los punteros con la ruta exacta: `LEEME - Apps Script del curso.md` en la carpeta del
+> curso, y `LEEME - Apps Script del semestre.md` en la raíz de `Cursos`. Si de verdad falta el
 > archivo, lo regenera `python config/calendario/generar_apps_script_encuentros.py`, que
 > además imprime la ruta absoluta de cada uno.
 
 ### 2.1 Pegarlo en tu cuenta
 
 1. **https://script.google.com** con tu cuenta institucional → **Nuevo proyecto**.
-2. Nómbralo con el curso, p. ej. `UNIAJC - Encuentros <Curso>`.
-3. Borra `Código.gs` y pega **todo** el `.gs` del curso. Guarda.
+2. Nómbralo con el curso, p. ej. `UNIAJC - Encuentros <Curso>` (o `UNIAJC - Encuentros
+   <periodo>` si usas el consolidado).
+3. Borra `Código.gs` y pega **todo** el `.gs`. Guarda.
+4. **⚙ Configuración del proyecto → Zona horaria → `America/Bogota`.**
+
+> **El paso 4 no es cosmético.** Las horas de los eventos las construye Apps Script con la
+> zona **del proyecto**, no con la del calendario ni la del curso. Google no siempre pone la
+> local: si el proyecto queda en UTC o en `America/New_York`, las 13 sesiones entran corridas
+> una o cinco horas **con las invitaciones ya enviadas**, y reejecutar no lo arregla porque el
+> evento existe y se reutiliza. Peor con Nueva York: allí hay horario de verano y en Bogotá no,
+> así que el desfase cambia a mitad de semestre y la serie queda inconsistente consigo misma.
+>
+> El script se defiende: `verificar` imprime la zona y, si no es `America/Bogota`, **crear y
+> borrar quedan bloqueados** hasta que la corrijas.
 
 ### 2.2 Activar el servicio avanzado de Calendar
 
@@ -166,8 +241,9 @@ Ejecuta **`verificar`** y abre **Ver → Registro de ejecución**. Entre otras c
 La primera vez Google pide permisos y muestra *"Google no ha verificado esta aplicación"* —
 es esperado, es tu propio script: **Configuración avanzada → Ir a (proyecto) → Permitir**.
 
-Revisa en el log: que el **calendario** sea el tuyo, que el **servicio avanzado** diga
-`activo`, el número de **invitados**, y la lista de sesiones (`se crearía` / `YA EXISTE`).
+Revisa en el log: que el **calendario** sea el tuyo, que la **zona del proyecto** diga
+`America/Bogota (correcta)`, que el **servicio avanzado** diga `activo`, el número de
+**invitados**, y la lista de sesiones (`se crearía` / `YA EXISTE`).
 
 ### 2.5 Crear de verdad
 
@@ -185,6 +261,10 @@ Guarda y ejecuta **`crearEncuentros`**. Qué hace:
   distintos. El log los imprime uno por línea, junto a su fecha.
 - Las sesiones **autónomas** también quedan en el calendario (para que vean la fecha de
   cierre) pero **sin Meet**, porque no hay encuentro.
+- Si en un hueco ya hay un encuentro del curso **con otro título**, no crea nada ahí y lo dice
+  (`OMITIDO(S) por título cambiado`). Pasa cuando el título cambió en el JSON —se marcó un
+  parcial, una sesión pasó a autónoma— y evita dejar dos eventos y dos salas el mismo día. La
+  salida es `recrear…`, que borra el viejo y crea el nuevo.
 
 **No hay nada que copiar al material.** El enlace de cada sesión vive en su evento y le llega
 al estudiante dentro de la invitación. No existe un enlace único del curso.
@@ -196,6 +276,15 @@ al estudiante dentro de la invitación. No existe un enlace único del curso.
 Si Google acepta la petición pero aún no devuelve el enlace, espera un minuto y ejecuta
 `crearEncuentros` otra vez — el propio log lo dice.
 
+**Si se corta a la mitad.** Apps Script mata cualquier ejecución a los 30 minutos (6 en
+cuentas gratuitas). El script se corta **solo** antes de eso —la constante `MINUTOS_MAX`— y en
+el log te dice **qué función ejecutar para continuar**. No se pierde nada.
+
+Hazle caso al nombre que te dé, porque no siempre es la que se cortó: si lo que se cortó fue
+una `recrear…`, hay que continuar con la `crear…` correspondiente. Reejecutar la `recrear…`
+volvería a **borrar** lo que acababa de recrear, con una cancelación por invitado y por evento.
+El propio log lo advierte en mayúsculas.
+
 ### 2.6 Borrar todo y volver a crear
 
 Solo cuando de verdad haga falta partir de cero (se movieron las fechas, o quieres rehacer la
@@ -203,8 +292,26 @@ serie completa):
 
 | Función | Qué hace |
 |---|---|
-| `eliminarEncuentros` | Borra los eventos de la serie. Dos pasadas: por título exacto, y un barrido por la fecha/hora de cada sesión para cazar eventos de una corrida anterior cuyo título ya no coincide (pasa al cambiar los prefijos o la modalidad). Solo borra si el título menciona el curso o su código. |
+| `eliminarEncuentros` | Borra los eventos de la serie. **Tres pasadas**, ver abajo. |
 | `recrearTodo` | Borra y vuelve a crear en una sola corrida. |
+
+Las tres pasadas del borrado, y qué caza cada una:
+
+| Pasada | Qué encuentra | Cómo se llama en el log |
+|---|---|---|
+| Título exacto | Los eventos tal como se llaman **ahora** | `Por titulo exacto` |
+| Misma fecha **y hora** de cada sesión | Eventos de una corrida anterior cuyo **título** ya no coincide (cambiaron los prefijos, la modalidad, se marcó un parcial) | `Huerfanos del curso` |
+| Todo el periodo, a la hora del curso | Eventos en **fechas que ya no están** en el calendario del curso: una sesión que se movió o se quitó del JSON | `Fantasmas` |
+
+Las tres exigen que el título mencione el curso **y** que la hora sea la del curso, así que no
+se llevan tus eventos personales que nombren la asignatura a otra hora, ni los del otro curso
+que caiga el mismo día (Bases de Datos II y Arquitectura son los dos lunes).
+
+Con `SIMULAR = true` las tres se **listan una por una** antes de borrar nada. Léelas: es la
+única oportunidad de ver qué se va.
+
+En el consolidado, lo mismo por curso (`eliminarSeminario` / `recrearSeminario`) o para todo
+el periodo (`eliminarTodosLosCursos` / `recrearTodosLosCursos`, con el segundo interruptor).
 
 Con `SIMULAR = true` las dos **solo listan** lo que harían — incluidos los "huérfanos" que
 encontró. Corre así primero, siempre.
@@ -247,8 +354,9 @@ Importar: Google Calendar → **⚙ Configuración → Importar y exportar → I
 - [ ] Nómina descargada del sistema en `<Curso>/Plan curso/<periodo>/`
 - [ ] Los 4 scripts del paso 0 corridos · validador en `OK`
 - [ ] `invitables` = total de estudiantes (si no, ver *Problemas frecuentes*)
-- [ ] `CALENDAR_ID` pegado en el `.gs` del curso (el mismo del manual 02)
-- [ ] `verificar` revisado en el Apps Script del curso
+- [ ] **Zona horaria del proyecto** de Apps Script en `America/Bogota` (paso 2.1)
+- [ ] `CALENDAR_ID` pegado en el `.gs` (el mismo del manual 02)
+- [ ] `verificar` revisado: zona `correcta`, servicio avanzado `activo`, invitados = total
 - [ ] Carpetas de Drive (**Clases** y **Clases grabadas**) compartidas con el grupo
 - [ ] Contraseña temporal de ExamLab escrita en el correo
 - [ ] Encuesta de inicio de semestre publicada en el correo (la trae el bloque de
@@ -264,7 +372,9 @@ Importar: Google Calendar → **⚙ Configuración → Importar y exportar → I
 
 | Cambió | Qué hacer |
 |---|---|
-| Una fecha, un parcial, un festivo | Editar el JSON, correr los scripts del paso 0, volver a pegar el `.gs` del curso y ejecutar `crearEncuentros` (reutiliza lo que ya existe). Un cambio de **fecha u hora** deja el evento viejo donde estaba: ajústalo en Calendar, o rehaz la serie con `recrearTodo` (paso 2.6). |
+| Un parcial, una sesión que pasa a autónoma | Cambia el **título** del evento. `crearEncuentros` lo detecta, **no** crea un duplicado y lo dice (`OMITIDO por título cambiado`). Para aplicarlo: `recrearTodo` (o `recrear<Curso>`), que borra el viejo y crea el nuevo. |
+| Una fecha o una hora | Editar el JSON, correr el paso 0, volver a pegar el `.gs` y ejecutar `recrearTodo`. El evento viejo queda en una fecha que ya no está en el calendario del curso: lo caza la tercera pasada del borrado (`Fantasmas`, paso 2.6). Con `crearEncuentros` sola te quedarían los dos. |
+| Un festivo nuevo | Igual que una fecha: el título pasa a `[AUTONOMO]` y la sesión deja de llevar Meet. `recrearTodo`. |
 | Llegó una nómina nueva | Reemplazar el `.xls`, correr los scripts del paso 0, volver a pegar el `.gs` y ejecutar `crearEncuentros`: reutiliza los eventos que ya existen y **agrega los invitados que faltaban** (lo informa como «Invitados agregados a eventos que ya existían»). **No borra a nadie**: si alguien se retiró, quítalo a mano en Calendar. Esta es la vía barata — no hace falta `recrearTodo`. |
 | La nómina que dejaste es de otra asignatura | El generador lo detecta por el código `FI######`, la omite y **no genera el `.gs`**. Deja dicho en el `LEEME - Apps Script del curso.md` del curso que el `.gs` que hay en `_privado/` es el viejo y **no debe usarse**. Consigue el export correcto y vuelve a correr el paso 0. |
 | Cambió una carpeta de Drive | Actualizar `carpetas_drive` en el JSON; si es la de grabaciones, actualizar también el script del manual 02. El validador avisa si divergen. |
@@ -293,6 +403,14 @@ estudiante no necesita guardar ninguno — entra desde el evento de ese día en 
 **Un estudiante pregunta cuál es «el link de la clase».** No hay uno solo. Que abra el evento
 de esa sesión en su Google Calendar: el botón de Meet está ahí, y también en la descripción.
 
+**«BLOQUEADO: crearTodosLosCursos toca los 4 cursos a la vez».** Es la rejilla de seguridad,
+no un error. O pones `CONFIRMO_SEMESTRE_COMPLETO = true`, o usas la función del curso que
+querías.
+
+**Se creó todo dos veces.** No debería: el script busca el evento por título exacto dentro del
+día antes de crearlo. Si pasó, es que los títulos cambiaron entre las dos corridas (se editó
+el JSON en medio). Borra los sobrantes a mano o usa `recrear…`, que parte de cero.
+
 **Un estudiante dice que el link de Drive le pide acceso.** La carpeta no está compartida.
 
 **Importé el `.ics` y nadie recibió nada.** Es lo esperado: ver *Camino manual*.
@@ -302,3 +420,19 @@ la carpeta de un periodo anterior.
 
 **El validador falla.** Arréglalo antes de crear eventos o enviar correos: todo esto es de
 cara al estudiante, y corregir aquí es más barato que retirar invitaciones ya enviadas.
+
+---
+
+## Si toca cambiar el generador
+
+Los `.gs` no se editan a mano: se regeneran. Y el generador tiene pruebas que ejecutan el
+`.gs` de verdad contra un simulacro de las APIs de Google:
+
+```bash
+bash config/calendario/pruebas_apps_script/probar.sh
+```
+
+Comprueban lo que este manual promete —que reejecutar no duplica, que hay una sala por sesión,
+que el borrado no se lleva nada ajeno, que los interruptores frenan—. Córrelas después de
+cualquier cambio en `generar_apps_script_encuentros.py`, **antes** de pegar el `.gs` en Apps
+Script. Detalle: `config/calendario/pruebas_apps_script/LEEME.md`.

@@ -9,7 +9,7 @@ Aquí no hay material de clase: esto es el "cómo se alista y se opera el semest
 
 | Manual | Cuándo se usa |
 |---|---|
-| [01 — Alistar un curso: encuentros, Meet, correo e invitaciones](01%20-%20Alistar%20un%20curso%20%28encuentros%2C%20Meet%2C%20correo%20e%20invitaciones%29.md) | Al arrancar un periodo, **una vez por curso** |
+| [01 — Alistar un curso: encuentros, Meet, correo e invitaciones](01%20-%20Alistar%20un%20curso%20%28encuentros%2C%20Meet%2C%20correo%20e%20invitaciones%29.md) | Al arrancar un periodo. Hay dos caminos: un proyecto de Apps Script por curso, o **uno solo con todos los cursos** |
 | [02 — Instalar y probar el Apps Script de grabaciones](02%20-%20Instalar%20y%20probar%20el%20Apps%20Script%20de%20grabaciones.md) | Una vez por cuenta; sirve para todos los cursos y periodos |
 
 ## El orden, en corto
@@ -23,6 +23,10 @@ Aquí no hay material de clase: esto es el "cómo se alista y se opera el semest
 
 **Cada sesión tiene su propio enlace de Meet**, así que el correo no publica ninguno y no
 depende de que la serie exista: va primero, y llega antes que las invitaciones.
+
+El paso 2 se puede hacer curso por curso o de una vez para todo el periodo, con el script
+consolidado (`LEEME - Apps Script del semestre.md`, en la raíz de `Cursos`). Los dos salen de
+la misma plantilla; el manual 01 explica cuándo conviene cada uno.
 
 ## Antes de cualquiera de los dos manuales
 

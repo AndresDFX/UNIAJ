@@ -1,6 +1,6 @@
 # Apps Script del curso - Seminario de Sistemas - 2026-2
 
-## Crear los encuentros en Calendar (cada sesión con su propio Meet)
+## Crear los encuentros en Calendar (cada sesion con su propio Meet)
 
 El script **existe** y esta aqui:
 
@@ -24,12 +24,25 @@ Seminario de Sistemas/Plan curso/2026-2/_privado/CrearEncuentros - Seminario de 
 > ```
 
 Crea **13 eventos** (uno por sesion) e invita a los **22 estudiantes**,
-enviandoles la invitacion de verdad. Deja **la misma sala de Meet** en todas las
-sesiones sincronicas; las autonomas por festivo quedan en el calendario pero sin Meet.
+enviandoles la invitacion de verdad. Cada sesion sincronica lleva **su propia sala
+de Meet**; las autonomas por festivo quedan en el calendario pero sin Meet.
+
+Funciones: `verificar` · `crearEncuentros` · `eliminarEncuentros` · `recrearTodo`.
 
 **Paso a paso:** `Manuales/01 - Alistar un curso (encuentros, Meet, correo e
 invitaciones).md` en la raiz de `Cursos`. Incluye como sacar el `CALENDAR_ID` y por
 que se ejecuta `verificar` antes de `crearEncuentros`.
+
+## Si prefieres un solo script para los 4 cursos
+
+Hay uno consolidado, con las funciones de creacion y borrado **de cada curso** mas
+las de todo el semestre. Sale de la misma plantilla que este, asi que hacen lo mismo:
+
+```
+_privado/2026-2/CrearEncuentros - TODO EL SEMESTRE 2026-2.gs
+```
+
+Puntero visible: `LEEME - Apps Script del semestre.md` en la raiz de `Cursos`.
 
 ## Archivar las grabaciones de Meet
 
