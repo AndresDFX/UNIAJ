@@ -137,7 +137,11 @@ Construya una tabla de **3 columnas** con los encabezados exactos `Criterio | On
 
 Cada celda: **maximo 2 lineas** y siempre referida a *su* dominio, no a teoria general.
 
-Cierre con un **veredicto de 2 frases**: (a) que opcion elige para CloudLite, (b) cual es el riesgo concreto que asume al elegirla. Ese veredicto se copia a la seccion 1 del informe y es la entrada del ADR-001 de la Clase 2.
+Cierre con un **veredicto de 2 frases**: (a) que opcion elige para CloudLite, (b) cual es el riesgo concreto que asume al elegirla (por ejemplo dependencia del proveedor). Ese veredicto se copia a la seccion 1 del informe.
+
+> **Hoy se decide solo nube u on-premise.** El modelo de servicio (IaaS, PaaS o SaaS) se decide en la Clase 2: este veredicto es la **entrada** del ADR-001 de esa clase, no el ADR.
+
+> La estructura de la tabla es la que se proyecto en clase, resuelta sobre el dominio de referencia **AgendaU**. Usted conserva los 4 criterios y rehace las celdas con su propio dominio.
 
 **Rubrica esperada (campo Rubrica):**
 

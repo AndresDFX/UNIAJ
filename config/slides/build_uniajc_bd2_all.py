@@ -23,6 +23,7 @@ from uniajc_slides_engine import (
 )
 from uniajc_quiz_helpers import clave_text, pptx_chunks, q_abierta, q_om, q_vf, student_lines
 import calendario_2026_2 as cal
+from vetcare_contexto import CLIENTE, INTERESADOS, NOMENCLATURA
 from bd2_taller_data import HERRAMIENTAS_DIA, TALLER_BLOQUE, SOLUCION
 from bd2_fundamentos import FUNDAMENTOS
 from bd2_examlab_data import EXAMLAB as TALLERES_EXAMLAB
@@ -991,6 +992,11 @@ ANTES_DESPUES = {
 # curso; el CONTENIDO de los 4 pasos si es compartido entre los cuatro cursos.
 FLUJO_SLIDE_TITULO = "Del boceto a ExamLab (diagrama)"
 
+# Diapositiva de contexto del cliente. Solo en la Clase 1: es donde el estudiante
+# empieza a modelar y necesita saber para quien. Antes conocia a la clinica
+# «Huellitas» por primera vez dentro de ExamLab, el dia que se le calificaba.
+CLIENTE_SLIDE_TITULO = "El cliente · " + CLIENTE
+
 
 def _fundamento_md(c):
     """Desarrollo en prosa del tema, SOLO para el guion docente.
@@ -1057,8 +1063,10 @@ def _slide_map(c):
                 "Cierre"]
     m = [f"Portada · Clase {c['n']} · {c['titulo']}",
          "Encuadre de hoy · Objetivo PI",
-         "Mapa del bloque de hoy (120 min)",
-         "Teoria Core (breve)"]
+         "Mapa del bloque de hoy (120 min)"]
+    if c['n'] == 1:
+        m.append(CLIENTE_SLIDE_TITULO)
+    m.append("Teoria Core (breve)")
     dg = DIAGRAMAS_BD2.get(c['n'])
     if dg:
         m.append(dg["titulo"])
@@ -1140,7 +1148,7 @@ def build_pptx(c):
         prs = new_prs()
         class_cover(prs, c['titulo'], subtitulo="Solo evaluacion", clase_n=c['n'], idx=1)
         content_slide(prs, "Indicaciones", [
-            "Hoy es **solo Parcial** (presencial sincrono).",
+            "Hoy es **solo Parcial** (virtual sincrono por Meet).",
             "No hay tema nuevo ni taller del PI en esta sesion.",
             "Duracion sugerida: **90-100 min** dentro del bloque de 120.",
             "El avance del PI VetCare DB continua en la siguiente clase regular.",
@@ -1190,6 +1198,13 @@ def build_pptx(c):
             ("55-105", "Taller guiado = tarea del PI"),
             ("105-120", "Criterios de exito · cierre · dudas del PI"),
         ], idx=idx); idx += 1
+    if c['n'] == 1:
+        content_slide(prs, CLIENTE_SLIDE_TITULO, [
+            f"@@{CLIENTE}@@ lleva su gestión en papel y quiere un sistema. Tres personas lo van a usar:",
+            *INTERESADOS,
+            "Sus intereses **entran en conflicto**: más datos dan mejores métricas, pero "
+            "hacen más lento el agendamiento. Ahí están las decisiones de diseño del semestre.",
+        ], sub=NOMENCLATURA, idx=idx, size=15); idx += 1
     content_slide(prs, "Teoria Core (breve)", _slide_summary(c['teoria']), idx=idx, size=15); idx += 1
     dg = DIAGRAMAS_BD2.get(c['n'])
     if dg:
@@ -1940,7 +1955,7 @@ def build_guia_practica():
         "",
         "Solo evaluacion — enunciado + solucion en `Parciales/` (dominio VetCare).",
         "Se presentan en ExamLab con proctoring activado (es evaluacion formal",
-        "presencial); duracion 90-100 min dentro del bloque de 120.",
+        "virtual sincrona por Meet); duracion 90-100 min dentro del bloque de 120.",
         "",
         "## Proyecto Integrador VetCare DB",
         "",

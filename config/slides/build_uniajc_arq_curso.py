@@ -120,7 +120,7 @@ def build():
         [
             "**Sesión 0 (hoy)** = encuadre del curso + evaluación + **socialización del Proyecto Integrador CloudLite** + herramientas.",
             "**Clase 1** = diagnóstico + arranque del primer tema (introducción a arquitecturas cloud) — mismo bloque de hoy.",
-            "De la sesión 2 en adelante, cada sesión sigue la misma estructura: **Teoría Core breve** → **Taller PI CloudLite** → **cierre**. Modalidad: sesión 1 y parciales (**5 / 9 / 12**) **presencial**; resto **virtual síncrona**; festivos = **clase autónoma**. Dos sesiones son **dobles** (dos temas en un bloque) y la **sesión 13 (16/11)** es de **sustentaciones**.",
+            "De la sesión 2 en adelante, cada sesión sigue la misma estructura: **Teoría Core breve** → **Taller PI CloudLite** → **cierre**. Modalidad: **todas las sesiones son virtuales síncronas por Meet**, incluidos la sesión 1 y los parciales (**5 / 9 / 12**); festivos = **clase autónoma**. Dos sesiones son **dobles** (dos temas en un bloque) y la **sesión 13 (16/11)** es de **sustentaciones**.",
             "Herramientas **gratis + navegador** (sin cloud de pago ni Docker Desktop). Talleres y quices/parciales se entregan/presentan en @@ExamLab@@ (https://uniaj.examlab.workers.dev/) — no es la plataforma oficial de la UNIAJC, la usamos solo para esto.",
             "Hilo conductor de todo el semestre: **Proyecto Integrador CloudLite**.",
         ],
@@ -141,7 +141,7 @@ def build():
              "desglose": [f"**Parcial 3** ({CT[2]['parcial_fecha']} · sesión {CT[2]['parcial_sesion']}) · 15%",
                           "**PI CloudLite** · 20%", "Asistencia · 5%"]},
         ],
-        note="Parciales síncronos presenciales · nunca en festivo/autónoma. Día de parcial = solo evaluación.",
+        note="Parciales síncronos por Meet · nunca en festivo/autónoma. Día de parcial = solo evaluación.",
         idx=7,
     )
 

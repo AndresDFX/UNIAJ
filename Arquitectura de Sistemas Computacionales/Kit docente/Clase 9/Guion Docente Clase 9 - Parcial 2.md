@@ -13,7 +13,7 @@ Aplicar el instrumento de evaluación del corte. Material en `Parciales/`.
 
 ### 0–10 · Organización
 Di: «Hoy es solo Parcial. Guarden materiales del PI; no hay taller dirigido.»
-Verificar asistencia y condiciones del aula/Meet presencial.
+Verificar asistencia y que todos entren al Meet.
 
 ### 10–100 · Aplicación del parcial
 Distribuir enunciado. Silencio de evaluación. Resolver dudas de enunciado (no de contenido).

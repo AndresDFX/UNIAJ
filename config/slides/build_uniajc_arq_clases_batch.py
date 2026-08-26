@@ -240,6 +240,27 @@ CLASSES = [
                 "Para CloudLite App: no «comprar servidores»; **diseñar** capas y simular en labs gratis.",
                 "Bloques tipicos: cliente → API → lógica → datos → observabilidad.",
             ]),
+            ("Nube vs on-premise para CloudLite", [], {
+                "headers": ["Criterio", "On-premise en la UNIAJC", "Nube"],
+                "rows": [
+                    ["**Inversión inicial**",
+                     "Comprar servidor, UPS y licencias antes de escribir una línea. Gasto de capital.",
+                     "Casi cero para arrancar. Gasto operativo por lo que se consume."],
+                    ["**Tiempo hasta la primera demo del PI**",
+                     "Semanas: cotizar, comprar, instalar y pedir permisos a TI.",
+                     "Minutos: la capacidad se aprovisiona sin pedir permiso."],
+                    ["**Quién opera SO, parches y respaldos**",
+                     "Usted o la oficina de TI de la universidad, todo el semestre.",
+                     "Se reparte con el proveedor; cuánto, lo decide el modelo de servicio (Clase 2)."],
+                    ["**El día del pico** (inicio de semestre)",
+                     "La capacidad es fija: si se queda corta, AgendaU se cae y no hay nada que hacer ese día.",
+                     "Elasticidad: sube mientras dura el pico y luego se devuelve."],
+                ],
+                "note": "Resuelta sobre el dominio de referencia AgendaU. Usted conserva los 4 criterios "
+                        "y rehace las celdas con SU dominio: es la pregunta 4 del taller. Hoy se decide "
+                        "nube u on-premise; el modelo de servicio (IaaS/PaaS/SaaS) es la Clase 2.",
+                "col_w": [2.6, 5.1, 5.1],
+            }),
             ("CloudLite App — el hilo conductor", [
                 "Aplicación web/API de un dominio realista (citas, academia, inventario liviano…).",
                 "Entregables del semestre: diagramas + contenedor (lab) + CI/CD conceptual + informe.",
@@ -686,7 +707,7 @@ CLASSES = [
         ],
         "quiz": [
             ("¿Qué es p95 de latencia?", "El 95% de las solicitudes están por debajo de ese tiempo."),
-            ("¿La prep de pitch reemplaza el Parcial 3?", "No; Parcial 3 es evaluación presencial del corte."),
+            ("¿La prep de pitch reemplaza el Parcial 3?", "No; Parcial 3 es evaluación síncrona por Meet del corte."),
             ("Cite un bottleneck típico.", "Base de datos, autenticación, almacenamiento de objetos…"),
         ],
     },
@@ -1175,7 +1196,7 @@ def _slide_map(c: dict) -> list:
          "Agenda de hoy (120 min)",
          "Objetivos de la clase",
          "PI CloudLite — entregable de hoy"]
-    m += [titulo for titulo, _ in c.get("slides_extra", [])]
+    m += [x[0] for x in c.get("slides_extra", [])]
     dg = DIAGRAMAS.get(n)
     if dg:
         m.append(dg["titulo"])
@@ -1256,7 +1277,7 @@ def build_pptx(c: dict) -> Path:
         prs = new_prs()
         cover_slide(prs, n, c["tema"], "Solo evaluación · sin tema de trabajo dirigido", c["pi_hoy"])
         content_slide(prs, "Indicaciones", [
-            "Hoy es **solo Parcial** (presencial síncrono).",
+            "Hoy es **solo Parcial** (virtual síncrono por Meet).",
             "No hay taller ni avance dirigido del PI en esta clase.",
             "Material de evaluación en carpeta docente de Parciales (no se distribuye antes).",
             "La prep del PI / pitch quedó en la clase regular anterior.",
@@ -1308,11 +1329,23 @@ def build_pptx(c: dict) -> Path:
         entregable_bullets[-1:-1] = [c["ficha_bloques_note"]]
     content_slide(prs, "PI CloudLite — entregable de hoy", entregable_bullets, idx=idx)
     idx += 1
-    for title, bullets_ in c["slides_extra"]:
-        bullets_limpias, imagen = _limpiar_y_capturar(bullets_)
-        slide = content_slide(prs, title, bullets_limpias, idx=idx)
-        if imagen:
-            _add_captura(slide, imagen)
+    for extra in c["slides_extra"]:
+        # Una entrada es (titulo, vinetas) o (titulo, vinetas, tabla). La tercera
+        # forma existe porque hay conceptos que son una comparacion y salen mejor
+        # como tabla; renderizarla aqui, y no en un diccionario aparte, la mantiene
+        # en el ORDEN de la teoria y dentro de `conceptos` (que es de donde el
+        # guion saca la lista de temas y el reparto de minutos).
+        title, bullets_ = extra[0], extra[1]
+        tabla = extra[2] if len(extra) > 2 else None
+        if tabla:
+            table_content(prs, title, tabla["headers"], tabla["rows"],
+                          note=tabla.get("note"), col_w=tabla.get("col_w"),
+                          fs_body=tabla.get("fs_body", 11), idx=idx)
+        else:
+            bullets_limpias, imagen = _limpiar_y_capturar(bullets_)
+            slide = content_slide(prs, title, bullets_limpias, idx=idx)
+            if imagen:
+                _add_captura(slide, imagen)
         idx += 1
     dg = DIAGRAMAS.get(n)
     if dg:
@@ -1947,7 +1980,7 @@ Aplicar el instrumento de evaluación del corte. Material en `Parciales/`.
 
 ### 0–10 · Organización
 Di: «Hoy es solo Parcial. Guarden materiales del PI; no hay taller dirigido.»
-Verificar asistencia y condiciones del aula/Meet presencial.
+Verificar asistencia y que todos entren al Meet.
 
 ### 10–100 · Aplicación del parcial
 Distribuir enunciado. Silencio de evaluación. Resolver dudas de enunciado (no de contenido).
@@ -1974,7 +2007,7 @@ Di: «Gracias. El PI CloudLite continúa en la siguiente clase regular o autóno
 
     # Conceptos reales de esta clase (titulos de las slides de teoria), para que el
     # plan diga QUE cubrir en cada tramo en vez de "recorre las slides".
-    conceptos = [t for t, _ in c.get("slides_extra", [])]
+    conceptos = [x[0] for x in c.get("slides_extra", [])]
     conceptos_md = _lista_md(conceptos) or "- Ver diapositivas de la clase."
     minutos_por_concepto = max(5, 30 // max(1, len(conceptos)))
 
@@ -2347,7 +2380,7 @@ def build_parcial_kit_note(c: dict) -> Path:
     path.write_text(
         f"""# Clase {n} — Solo Parcial
 
-- Bloque 120 min · presencial síncrono · **sin taller PI**.
+- Bloque 120 min · virtual síncrono por Meet · **sin taller PI**.
 - Enunciado/solución: `Parciales/{mapping.get(n, "")}` (+ SOLUCION).
 - Recordar: prep de pitch/PI fue en clase regular anterior (p. ej. Clase 12 para P3).
 - No publicar solución en `Clases/`.

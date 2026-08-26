@@ -10,6 +10,7 @@ Docente (privado):
 """
 from __future__ import annotations
 
+import os
 import re
 import sys
 from pathlib import Path
@@ -22,6 +23,12 @@ from docx.shared import Inches, Pt, RGBColor
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+# El cliente ficticio vive en un modulo aparte porque lo comparten los cuatro
+# cursos y, ademas del enunciado del PI, lo consumen las diapositivas de BD II.
+# Mientras estaba definido aqui, BD II no lo usaba y su enunciado describia al
+# cliente con un parrafo generico que no lo nombraba.
+from vetcare_contexto import CONTEXTO_VETCARE  # noqa: E402
 
 AZUL = RGBColor(0x09, 0x52, 0x92)
 CIAN = RGBColor(0x26, 0x9C, 0xCB)
@@ -187,18 +194,26 @@ def enunciado_bd2(doc):
     h2(doc, "1. Propósito")
     para(doc,
          "Diseñar, administrar y optimizar una base de datos relacional avanzada para "
-         "VetCare DB (clínica veterinaria), integrando seguridad/respaldo, objetos "
+         "VetCare DB, el sistema de la Clínica Veterinaria «Huellitas», integrando "
+         "seguridad/respaldo, objetos "
          "programables (procedimientos, funciones y disparadores), optimización e "
          "integración conceptual con una aplicación externa. Hilo conductor ABPr del curso.")
     para(doc,
          "Peso: 20% del Corte 3 (Acuerdo pedagógico). El Parcial 3 (15%) y la asistencia "
          "(5%) se evalúan por separado.")
 
-    h2(doc, "2. Dominio — VetCare DB")
+    h2(doc, "2. Contexto del cliente y dominio — VetCare DB")
+    para(doc, CONTEXTO_VETCARE)
     para(doc,
-         "Una clínica veterinaria necesita gestionar mascotas, dueños, veterinarios, "
-         "citas, historial clínico, insumos/medicamentos y facturación básica. Usted "
-         "modela y opera la capa de datos avanzada (no se exige una app de escritorio).")
+         "@@Nomenclatura:@@ «Huellitas» es la clínica, es decir el cliente que tiene el "
+         "problema; @@VetCare DB@@ es la base de datos que usted construye para ella. "
+         "Los enunciados de los talleres en ExamLab usan estos mismos dos nombres.")
+    h3(doc, "Qué le toca a Bases de Datos II")
+    para(doc,
+         "Usted modela y opera la @@capa de datos@@ de VetCare: mascotas, dueños, "
+         "veterinarios, citas, historial clínico, insumos/medicamentos y facturación "
+         "básica. No se exige la aplicación ni la interfaz gráfica: eso es el alcance de "
+         "Programación II sobre el mismo cliente.")
     bullets(doc, [
         "Entidades mínimas sugeridas: Dueño, Mascota, Veterinario, Cita, Consulta/Historial, "
         "Insumo/Medicamento, DetalleFactura (ajuste el modelo con justificación).",
@@ -234,7 +249,7 @@ def enunciado_bd2(doc):
               ["Casos reales", "Sesión 11 (autónoma · Clase 13)", "02/11/2026",
                "Aplicar el análisis de casos al PI (cierre: domingo 08/11 23:59)"],
               ["Parcial 3 · paquete final", "Sesión 12 (Clase 14)", "09/11/2026",
-               "Día de parcial = solo evaluación (presencial). El paquete final "
+               "Día de parcial = solo evaluación (virtual síncrona por Meet). El paquete final "
                "cierra el domingo 15/11 23:59; el ensayo y la preparación fueron "
                "en la Sesión 10 (Clase 12)"],
               ["Sustentación / cierre", "Sesión 13 (Clase 15)", "16/11/2026",
@@ -280,7 +295,7 @@ def enunciado_bd2(doc):
 
     h2(doc, "8. Qué NO es este proyecto")
     bullets(doc, [
-        "No sustituye el Parcial 3 (evaluación síncrona presencial del 09/11).",
+        "No sustituye el Parcial 3 (evaluación síncrona por Meet del 09/11).",
         "No es una app GUI completa: el foco es la capa de datos avanzada.",
         "No se copia un enunciado de otra institución: el dominio es VetCare DB UNIAJC.",
     ])
@@ -309,7 +324,7 @@ def guia_bd2(doc):
               ["11 (autónoma)", "02/11", "Clase 13",
                "Publicar el caso real y revisar la entrega asíncrona (dom 08/11)"],
               ["12", "09/11", "Clase 14",
-               "Parcial 3 presencial + ensayo de presentación PI"],
+               "Parcial 3 (virtual síncrona) + ensayo de presentación PI"],
               ["13", "16/11", "Clase 15",
                "Sesión síncrona de sustentaciones: turnos, preguntas y cierre"],
           ])
@@ -400,7 +415,7 @@ def enunciado_arq(doc):
               ["Escalabilidad", "Sesión 11 (autónoma · Clase 13)", "02/11/2026",
                "Sección de autoescalado del informe (cierre: domingo 08/11 23:59)"],
               ["Parcial 3 · paquete final", "Sesión 12 (Clase 14)", "09/11/2026",
-               "Día de parcial = solo evaluación (presencial). El paquete final "
+               "Día de parcial = solo evaluación (virtual síncrona por Meet). El paquete final "
                "cierra el domingo 15/11 23:59; el ensayo y la preparación fueron "
                "en la Sesión 10 (Clase 12)"],
               ["Sustentación / cierre", "Sesión 13 (Clase 15)", "16/11/2026",
@@ -445,7 +460,7 @@ def enunciado_arq(doc):
 
     h2(doc, "8. Qué NO es este proyecto")
     bullets(doc, [
-        "No sustituye el Parcial 3 (09/11, presencial).",
+        "No sustituye el Parcial 3 (09/11, virtual síncrona por Meet).",
         "No exige cuenta cloud de pago ni gastos del estudiante.",
         "No se pide producción real en Internet: el foco es diseño + simulación en labs gratis.",
     ])
@@ -515,14 +530,6 @@ CASOS_MATRICULA = [
     "pruebas. Para validar su diseno entrega un prototipo navegable (mockup) o un prototipo "
     "minimo en consola; no se le exige software con interfaz grafica.",
 ]
-
-CONTEXTO_VETCARE = (
-    "La Clinica Veterinaria «Huellitas» atiende un alto volumen de pacientes y hoy lleva "
-    "toda su gestion en carpetas de papel. La administracion reporta tres problemas: se "
-    "extravian fichas de pacientes, buscar un historial en el archivo fisico genera filas "
-    "en la sala de espera, y no hay metricas (no saben cuantas especies atienden al mes). "
-    "Ustedes fueron contratados para resolverlo con un sistema llamado @@VetCare@@."
-)
 
 PROG2_META = {
     "titulo": "Proyecto Integrador 2026-2 — VetCare (aplicacion Java)",
@@ -994,39 +1001,35 @@ Entrega en **ExamLab**. Enunciado del estudiante en `Clases/Proyecto Integrador/
 """
 
 
-def build():
-    build_one(
-        ROOT / "Bases de Datos II",
-        BD2_META,
-        enunciado_bd2,
-        guia_bd2,
-        MD_BD2,
-        "Bases de Datos II",
-    )
-    build_one(
-        ROOT / "Arquitectura de Sistemas Computacionales",
-        ARQ_META,
-        enunciado_arq,
-        guia_arq,
-        MD_ARQ,
-        "Arquitectura de Sistemas Computacionales",
-    )
-    build_one(
-        ROOT / "Programacion II",
-        PROG2_META,
-        enunciado_prog2,
-        guia_prog2,
-        MD_PROG2,
-        "Programacion II",
-    )
-    build_one(
-        ROOT / "Seminario de Sistemas",
-        SEMIN_META,
-        enunciado_seminario,
-        guia_seminario,
-        MD_SEMIN,
-        "Seminario de Sistemas",
-    )
+CURSOS = [
+    ("Bases de Datos II", "BD2_META", "enunciado_bd2", "guia_bd2", "MD_BD2"),
+    ("Arquitectura de Sistemas Computacionales", "ARQ_META", "enunciado_arq", "guia_arq", "MD_ARQ"),
+    ("Programacion II", "PROG2_META", "enunciado_prog2", "guia_prog2", "MD_PROG2"),
+    ("Seminario de Sistemas", "SEMIN_META", "enunciado_seminario", "guia_seminario", "MD_SEMIN"),
+]
+
+
+def build(solo_cursos=None):
+    """Regenera el PI de los cuatro cursos, o solo de algunos.
+
+    ``solo_cursos`` (iterable con nombres de carpeta) o la variable de entorno
+    SOLO_CURSOS="Bases de Datos II,Arquitectura de Sistemas Computacionales"
+    limitan la regeneracion. Existe porque una correccion suele afectar a un curso
+    y regenerar los cuatro reescribia documentos identicos de los otros tres:
+    el diff se llenaba de .docx binarios que nadie habia revisado.
+    """
+    if solo_cursos is None:
+        env = os.environ.get("SOLO_CURSOS")
+        solo_cursos = {x.strip() for x in env.split(",") if x.strip()} if env else None
+    else:
+        solo_cursos = set(solo_cursos)
+
+    glob = globals()
+    for curso, meta, enun, guia, md in CURSOS:
+        if solo_cursos is not None and curso not in solo_cursos:
+            print("omitido:", curso)
+            continue
+        build_one(ROOT / curso, glob[meta], glob[enun], glob[guia], glob[md], curso)
 
 
 if __name__ == "__main__":

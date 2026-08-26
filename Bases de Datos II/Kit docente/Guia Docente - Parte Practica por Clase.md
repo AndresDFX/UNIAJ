@@ -632,7 +632,7 @@ END;
 
 Solo evaluacion — enunciado + solucion en `Parciales/` (dominio VetCare).
 Se presentan en ExamLab con proctoring activado (es evaluacion formal
-presencial); duracion 90-100 min dentro del bloque de 120.
+virtual sincrona por Meet); duracion 90-100 min dentro del bloque de 120.
 
 ## Proyecto Integrador VetCare DB
 

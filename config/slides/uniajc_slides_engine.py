@@ -285,7 +285,11 @@ def table_content(
             cell.fill.solid()
             cell.fill.fore_color.rgb = ALT if r_i % 2 == 0 else WHITE
     if note:
-        tn = textbox(s, MARGIN, SH - 0.95, CONTENT_W, 0.5)
+        # La nota va DEBAJO de la tabla, no clavada al pie: con 4-5 filas quedaba a
+        # tres pulgadas de distancia y parecia de otra diapositiva. Se estima el alto
+        # con holgura para celdas de dos lineas y se limita para no salirse del area.
+        y_note = min(SH - 0.95, top + 0.1 + 0.42 + 0.55 * len(rows or []) + 0.2)
+        tn = textbox(s, MARGIN, y_note, CONTENT_W, 0.5)
         _rich(tn.paragraphs[0], note, 11, SOFT, italic=True)
     footer_num(s, idx)
     return s

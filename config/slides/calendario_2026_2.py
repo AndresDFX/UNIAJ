@@ -127,9 +127,9 @@ def contenido_items(key, temas_material, sesion0_tema, sesion0_fecha=None):
             # del Parcial 3. No inventarlo ni ocultarlo: leerlo del tema del JSON.
             if "sustentacion" in (s.get("tema") or "").lower():
                 tema += " + sustentación de proyectos y cierre"
-                tags.append("presencial")
+                tags.append("virtual síncrona por Meet")
             else:
-                tags.append("presencial · solo evaluación")
+                tags.append("virtual síncrona · solo evaluación")
         elif tipo == "sustentacion":
             tema = " + ".join(temas_material[m] for m in mats) if mats else "Sustentación y cierre"
             tags.append("Sustentación del Proyecto Integrador")

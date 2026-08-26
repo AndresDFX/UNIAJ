@@ -39,11 +39,9 @@ EXAMLAB = {1: {'pasos': ['Paso 1: elija un dominio concreto entre AgendaU, Bibli
                'Docker) y que las 4 capacidades se lean como frases del negocio; queda en la '
                'seccion 1 del informe y se pega tal cual en la pregunta 1 de ExamLab.',
                '''Paso 3: dibuje primero el boceto del C4 Context en Excalidraw o draw.io, que es donde se piensa el modelo, y despues pidale a una IA que lo traduzca a Mermaid («convierte este diagrama a Mermaid usando C4Context»); pegue ese codigo en la pregunta de tipo diagrama de ExamLab y verifique que renderice ahi mismo, con exactamente 1 System para CloudLite, 2 Person, 2 System_Ext y 5 relaciones etiquetadas con verbo de negocio y protocolo, verificando en el diagrama ya renderizado que no aparezca ninguna caja interna (ni base de datos ni API ni worker, eso es Clase 4) y que cada flecha se lea en voz alta como una frase completa.''',
-               'Paso 4: resuelva la tabla comparativa de 4 filas nube frente a on-premise, cierre '
-               'con el veredicto de 2 frases que sera la entrada del ADR-001 de la Clase 2, y suba '
-               'a ExamLab (modulo Talleres) las 5 preguntas resueltas antes del domingo 23:59, '
-               'verificando que la ficha, el diagrama renderizado y el veredicto usen exactamente '
-               'los mismos nombres de actores y de sistemas externos.'],
+               '''Paso 4: resuelva la tabla comparativa nube frente a on-premise en la pregunta 4, con los 4 criterios en este orden (inversion inicial, tiempo hasta la primera demo, quien opera el sistema operativo y los respaldos, y que pasa el dia del pico de su dominio) y maximo 2 lineas por celda, verificando que cada celda hable de SU dominio y no de teoria general; la estructura es la que se proyecto en clase, resuelta sobre AgendaU.''',
+               '''Paso 5: cierre esa misma pregunta 4 con el veredicto de 2 frases: (a) que opcion elige para su CloudLite y (b) que riesgo concreto asume al elegirla, verificando que el riesgo este nombrado y no solo insinuado (por ejemplo dependencia del proveedor). Hoy se decide unicamente nube u on-premise: el modelo de servicio (IaaS, PaaS o SaaS) se decide en la Clase 2, y este veredicto es la entrada del ADR-001 de esa clase.''',
+               '''Paso 6: suba a ExamLab (modulo Talleres) las 5 preguntas resueltas antes del domingo 23:59, verificando antes de enviar que la ficha de la pregunta 1, el diagrama renderizado de la pregunta 2 y el veredicto de la pregunta 4 usen exactamente los mismos nombres de actores y de sistemas externos; si no coinciden, no son el mismo sistema y las Clases 4, 7, 11 y 15 reutilizan esos nombres.'''],
      'preguntas': [{'enunciado': '## Ficha del PI CloudLite App\n'
                                  '\n'
                                  'Esta es una actividad **individual**: cada estudiante entrega su '
@@ -155,26 +153,22 @@ Escriba en Mermaid el diagrama **C4Context** de su CloudLite. No tiene que escri
                                'cada opcion incorrecta marcada, sin bajar de cero. Marcar las seis '
                                'da cero.',
                     'tipo': 'cerrada_multi'},
-                   {'enunciado': '## Nube u on-premise para CloudLite\n'
-                                 '\n'
-                                 'Construya una tabla de **3 columnas** con los encabezados '
-                                 'exactos `Criterio | On-premise en la UNIAJC | Nube` y '
-                                 '**exactamente 4 filas**, una por criterio y en este orden:\n'
-                                 '\n'
-                                 '1. Inversion inicial necesaria para arrancar.\n'
-                                 '2. Tiempo hasta la primera demo del PI.\n'
-                                 '3. Quien opera el sistema operativo, los parches y los '
-                                 'respaldos.\n'
-                                 '4. Que pasa el dia del pico de su dominio (matricula, inicio de '
-                                 'semestre, jornada de citas).\n'
-                                 '\n'
-                                 'Cada celda: **maximo 2 lineas** y siempre referida a *su* '
-                                 'dominio, no a teoria general.\n'
-                                 '\n'
-                                 'Cierre con un **veredicto de 2 frases**: (a) que opcion elige '
-                                 'para CloudLite, (b) cual es el riesgo concreto que asume al '
-                                 'elegirla. Ese veredicto se copia a la seccion 1 del informe y es '
-                                 'la entrada del ADR-001 de la Clase 2.',
+                   {'enunciado': '''## Nube u on-premise para CloudLite
+
+Construya una tabla de **3 columnas** con los encabezados exactos `Criterio | On-premise en la UNIAJC | Nube` y **exactamente 4 filas**, una por criterio y en este orden:
+
+1. Inversion inicial necesaria para arrancar.
+2. Tiempo hasta la primera demo del PI.
+3. Quien opera el sistema operativo, los parches y los respaldos.
+4. Que pasa el dia del pico de su dominio (matricula, inicio de semestre, jornada de citas).
+
+Cada celda: **maximo 2 lineas** y siempre referida a *su* dominio, no a teoria general.
+
+Cierre con un **veredicto de 2 frases**: (a) que opcion elige para CloudLite, (b) cual es el riesgo concreto que asume al elegirla (por ejemplo dependencia del proveedor). Ese veredicto se copia a la seccion 1 del informe.
+
+> **Hoy se decide solo nube u on-premise.** El modelo de servicio (IaaS, PaaS o SaaS) se decide en la Clase 2: este veredicto es la **entrada** del ADR-001 de esa clase, no el ADR.
+
+> La estructura de la tabla es la que se proyecto en clase, resuelta sobre el dominio de referencia **AgendaU**. Usted conserva los 4 criterios y rehace las celdas con su propio dominio.''',
                     'puntos': 20,
                     'rubrica': '8 pts la tabla con los 4 criterios en el orden pedido y las 3 '
                                'columnas. 6 pts que las 8 celdas de comparacion hablen del dominio '

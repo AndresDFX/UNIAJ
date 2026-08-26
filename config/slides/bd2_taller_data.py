@@ -244,7 +244,7 @@ TALLER_BLOQUE = {
             'Entrega domingo 23:59.',
         ],
         'escenario': [
-            'Dominio: clínica veterinaria VetCare.',
+            'Cliente: Clínica Veterinaria «Huellitas» · Sistema: VetCare DB (la base de datos).',
             'Ficha con plantilla fija: VetCare - [Apellido], alcance SI / NO y 3 reglas Condición → Acción.',
             'Diagrama: boceto visual en Excalidraw o draw.io → código Mermaid (erDiagram) → ExamLab.',
             'Nombres en minúscula y singular (dueno, mascota, cita) con id_<entidad>: iguales en ER, DDL y Mermaid.',

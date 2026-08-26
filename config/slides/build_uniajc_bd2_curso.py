@@ -22,6 +22,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 
 
+from vetcare_contexto import CLIENTE, PROBLEMAS
 from uniajc_slides_engine import (
 
 
@@ -242,7 +243,7 @@ def build():
 
 
 
-        'Cada lunes (120 min): **Teoría Core** → **Taller / laboratorio en la nube** → cierre. **13 sesiones**: sesión 1 y parciales (**5 / 9 / 12**) **presencial**; resto **virtual síncrona**; festivos = **clase autónoma**; dos sesiones **dobles** y sustentación en la **sesión 13**.',
+        'Cada lunes (120 min): **Teoría Core** → **Taller / laboratorio en la nube** → cierre. **13 sesiones**, todas **virtuales síncronas por Meet** — incluidos los parciales (**5 / 9 / 12**); festivos = **clase autónoma**; dos sesiones **dobles** y sustentación en la **sesión 13**.',
 
 
 
@@ -271,7 +272,7 @@ def build():
              "desglose": [f"**Parcial 3** ({CT[2]['parcial_fecha']} · sesión {CT[2]['parcial_sesion']}) · 15%",
                           "**PI VetCare** · 20%", "Asistencia · 5%"]},
         ],
-        note="Parciales síncronos presenciales · nunca en festivo/autónoma. Día de parcial = solo evaluación.",
+        note="Parciales síncronos por Meet · nunca en festivo/autónoma. Día de parcial = solo evaluación.",
         idx=8,
     )
 
@@ -339,6 +340,15 @@ def build():
 
     ], idx=10)
 
+    content_slide(prs, "El cliente · " + CLIENTE, [
+        'Atiende un **alto volumen de pacientes** y hoy lleva toda su gestión en '
+        '**carpetas de papel**. La administración reporta tres problemas:',
+        *PROBLEMAS,
+        '@@Su parte en este curso:@@ la **capa de datos** de VetCare — modelo, integridad, '
+        'seguridad y rendimiento. La aplicación y la interfaz no se piden en esta asignatura.',
+    ], sub='«Huellitas» es la clínica (el cliente) · «VetCare DB» es la base de datos que usted construye para ella',
+       idx=11)
+
 
 
 
@@ -369,7 +379,7 @@ def build():
 
 
 
-    ], idx=11)
+    ], idx=12)
 
 
 
@@ -389,7 +399,7 @@ def build():
 
 
 
-        ], idx=12)
+        ], idx=13)
 
 
 
