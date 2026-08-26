@@ -41,18 +41,21 @@ no lleva nómina, y el script no imprime nombres ni correos en consola, solo con
 ### El camino recomendado no es el .ics
 
 **Importar un `.ics` no envía las invitaciones**: Google deja a los invitados dentro del
-evento pero no les manda nada. Para que lleguen, y para que todas las sesiones compartan
-**un solo enlace de Meet**, se usa el Apps Script que genera:
+evento pero no les manda nada. Para que lleguen, y para que cada sesión tenga **su propia
+sala de Meet**, se usa el Apps Script que genera:
 
 ```bash
 python config/calendario/generar_apps_script_encuentros.py
 ```
 
 Emite `<Curso>/Plan curso/<periodo>/_privado/CrearEncuentros - <Curso>.gs`, que crea la serie
-con la API de Calendar (`sendUpdates: 'all'`) y aplica la misma sala de Meet a todas las
-sesiones sincrónicas. Las autónomas por festivo van al calendario pero **sin Meet**, porque
-no hay encuentro. El enlace que imprime se pega en `semestre_<periodo>.json →
-cursos.<curso>.meet` y el correo de bienvenida lo publica.
+con la API de Calendar (`sendUpdates: 'all'`) y le pone a cada sesión sincrónica una sala de
+Meet distinta (`requestId` propio por sesión, así reejecutar no duplica). Las autónomas por
+festivo van al calendario pero **sin Meet**, porque no hay encuentro.
+
+No hay ningún enlace que pegar de vuelta en el material: al estudiante le llega el de cada
+sesión dentro de su invitación de Calendar. El mismo `.gs` trae `eliminarEncuentros()` y
+`recrearTodo()` para rehacer la serie desde cero.
 
 El `.ics` y el CSV quedan como camino manual alternativo. Las sesiones autónomas van en el
 `.ics` como `TRANSP:TRANSPARENT` porque no bloquean agenda.

@@ -148,7 +148,7 @@ Cualquier ajuste general de marca/diseño/nomenclatura UNIAJC se aplica a los cu
 
 # Pendientes conocidos (no inventar)
 
-- Enlace de Meet por curso (sale del Apps Script de encuentros y se pega en `semestre_<periodo>.json → cursos.<curso>.meet`). **No** existe URL de campus virtual: no inventar placeholders de plataforma institucional.
+- **Un enlace de Meet por sesión**, no uno por curso: lo crea el Apps Script de encuentros y le llega al estudiante dentro de la invitación de Calendar de esa sesión. No se pega en el JSON ni en el correo. **No** existe URL de campus virtual: no inventar placeholders de plataforma institucional.
 - URL Meet (si aplica)
 - Tipografía oficial del Manual de Identidad (hoy Calibri)
 - Listados de estudiantes / voceros / firmas de Acuerdos 2026-2

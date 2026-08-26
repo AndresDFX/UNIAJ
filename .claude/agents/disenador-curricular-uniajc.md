@@ -411,20 +411,27 @@ Reglas:
   `grabadas` vive en el JSON **y** en ese `.gs`; `validar_calendario.py` comprueba que
   coincidan, porque si divergen las grabaciones acaban en la carpeta vieja.
 
-### Encuentros en Calendar y enlace único de Meet
+### Encuentros en Calendar y Meet (uno por sesión)
 
 - Los encuentros del semestre **no se crean importando un `.ics`**: importar deja los
   invitados dentro del evento pero **Google no envía las invitaciones**. Se crean con el
   Apps Script que emite `config/calendario/generar_apps_script_encuentros.py`, que usa la
   API de Calendar con `sendUpdates: 'all'` y **sí** notifica.
-- Ese script deja **una sola sala de Meet para toda la serie** del curso (una conferencia
-  con `requestId` determinista, copiada a los demás eventos con `conferenceData` **sin**
-  `createRequest`). Así el estudiante entra siempre por el mismo enlace.
+- Ese script le da a **cada sesión su propia sala de Meet**: N encuentros, N enlaces
+  distintos. Cada una se pide con un `requestId` determinista y **distinto por sesión**
+  (`…-s01`, `…-s02`, …), así reejecutar no crea una segunda sala para la misma sesión ni
+  cambia el enlace de una que ya existe. **No hay un enlace único del curso.**
 - Las sesiones **autónomas** por festivo van al calendario (el estudiante tiene que ver la
   fecha de cierre) pero **sin Meet**: no hay encuentro.
-- El enlace se pega en `semestre_<periodo>.json → cursos.<curso>.meet`; el correo de
-  bienvenida lo publica. Si está vacío, el correo dice que el enlace llega dentro de la
-  invitación de Calendar — **nunca inventar un enlace de Meet**.
+- El correo de bienvenida **no publica ninguna URL de Meet**, a propósito: publicar una sola
+  mandaría al grupo a la sala equivocada en las demás sesiones. Dice que cada invitación de
+  Calendar trae su propio enlace. **Nunca inventar ni pegar a mano un enlace de Meet.**
+- Por lo mismo, el correo puede salir **antes** de crear los encuentros: no depende de ellos.
+  Orden del manual 01: regenerar → correo → encuentros → grabaciones.
+- Para rehacer la serie: `eliminarEncuentros()` (dos pasadas: título exacto + barrido por
+  fecha para cazar eventos de una corrida anterior con título viejo) y `recrearTodo()`.
+  Ambas respetan `SIMULAR`. Borrar **manda cancelaciones** a los invitados; si lo único que
+  cambió es la nómina, `crearEncuentros()` sola sincroniza los invitados sin tocar nada.
 - Los dos Apps Script (encuentros y grabaciones) piden un **`CALENDAR_ID` explícito**, que
   sale vacío a propósito y debe ser **el mismo en los dos**. No usan el calendario por
   omisión porque depende de la cuenta con la que se abrió Apps Script; la línea queda

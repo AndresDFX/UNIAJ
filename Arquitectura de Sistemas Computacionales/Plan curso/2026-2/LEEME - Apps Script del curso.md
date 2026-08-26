@@ -1,6 +1,6 @@
 # Apps Script del curso - Arquitectura de Sistemas Computacionales - 2026-2
 
-## Crear los encuentros en Calendar (con una sola sala de Meet)
+## Crear los encuentros en Calendar (cada sesión con su propio Meet)
 
 El script **existe** y esta aqui:
 
@@ -14,7 +14,7 @@ Ruta completa desde la raiz de `Cursos`:
 Arquitectura de Sistemas Computacionales/Plan curso/2026-2/_privado/CrearEncuentros - Arquitectura de Sistemas Computacionales.gs
 ```
 
-> **Por que no lo ves en GitHub:** el `.gs` incluye los correos de los 16
+> **Por que no lo ves en GitHub:** el `.gs` incluye los correos de los 18
 > estudiantes del grupo, asi que la carpeta `_privado/` esta en `.gitignore`.
 > Existe en tu disco y en Drive, no en el repositorio remoto. Si no aparece,
 > regeneralo:
@@ -23,7 +23,7 @@ Arquitectura de Sistemas Computacionales/Plan curso/2026-2/_privado/CrearEncuent
 > python config/calendario/generar_apps_script_encuentros.py
 > ```
 
-Crea **13 eventos** (uno por sesion) e invita a los **16 estudiantes**,
+Crea **13 eventos** (uno por sesion) e invita a los **18 estudiantes**,
 enviandoles la invitacion de verdad. Deja **la misma sala de Meet** en todas las
 sesiones sincronicas; las autonomas por festivo quedan en el calendario pero sin Meet.
 

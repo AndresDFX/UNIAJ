@@ -34,7 +34,9 @@ Les doy la bienvenida al curso **Bases de Datos II** (código **FI303215**, grup
 
 > El curso son **13 sesiones de lunes**, una por semana, de 24/08/2026 a 16/11/2026.
 
-**Les va a llegar a este mismo correo institucional una invitación de Google Calendar por cada sesión del curso**, con el **enlace de Google Meet** adentro. Acéptenla: así les queda el horario en su calendario y entran a clase desde ahí, sin buscar el enlace cada semana. El enlace de Meet es el mismo durante todo el semestre.
+**Les va a llegar a este mismo correo institucional una invitación de Google Calendar por cada sesión del curso**, y **cada una trae adentro su propio enlace de Google Meet**. Acéptenlas: así les queda todo el horario en su calendario y el día de clase entran desde el evento de ese día, sin buscar ningún enlace.
+
+> No guarden un enlace fijo: **el de cada sesión es distinto**. El que sirve siempre es el del evento de ese día en su calendario.
 
 Cada evento empieza con el tipo de encuentro, para que sepan de un vistazo si tienen que conectarse a esa hora:
 

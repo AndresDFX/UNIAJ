@@ -13,16 +13,17 @@ que se corre desde `config/` son los scripts que generan esos archivos.
 
 ```
 0. Regenerar y validar
-1. Crear los encuentros en Calendar   → de aquí sale el enlace de Meet y se envían las invitaciones
-2. Pegar el enlace de Meet y regenerar
-3. Enviar el correo de bienvenida     → ya con el enlace adentro
-4. Dejar el archivado de grabaciones  → manual 02
+1. Enviar el correo de bienvenida     → avisa que va a llegar la invitación de Calendar
+2. Crear los encuentros en Calendar   → se envían las invitaciones, cada una con SU Meet
+3. Dejar el archivado de grabaciones  → manual 02
 ```
 
-El paso 1 va **antes** del correo porque el enlace de Meet **lo crea Google, no el repo**:
-hasta que no existe la serie de encuentros no hay enlace que publicar. Y como el script crea
-los eventos con la API (no importando un archivo), **sí envía las invitaciones** — que es
-justo lo que la importación de un `.ics` no hace.
+**Cada sesión tiene su propio enlace de Meet**, así que no hay ningún enlace que copiar del
+calendario al correo: al estudiante le llega dentro de la invitación de cada sesión. Por eso
+el correo va **primero** — llega antes que las 13 invitaciones y explica qué son.
+
+El paso 2 crea los eventos con la API de Calendar, no importando un archivo, y por eso **sí
+envía las invitaciones** — que es justo lo que la importación de un `.ics` no hace.
 
 ---
 
@@ -62,7 +63,36 @@ El segundo script imprime por curso cuántos estudiantes hay y cuántos son **in
 
 ---
 
-## Paso 1 — Crear los encuentros en Calendar (una vez por curso)
+## Paso 1 — Enviar el correo de bienvenida
+
+Archivo:
+
+```
+<Curso>/Plan curso/<periodo>/CORREO_BIENVENIDA - <Curso> - <periodo>.md
+```
+
+Se genera solo y ya trae: fechas clave con la **fecha de la primera clase** (que no siempre
+coincide con el inicio del periodo), el aviso de que va a llegar **una invitación de Google
+Calendar por sesión con su propio enlace de Meet**, la explicación de `[SINCRONICO]` /
+`[AUTONOMO]`, las carpetas de Drive, el bloque de ExamLab —con la verificación de acceso y la
+**encuesta de inicio de semestre**, las dos cosas que el estudiante tiene que hacer **antes de
+la primera clase**— y la petición al vocero.
+
+**Antes de enviar completa lo único que el repo no puede saber:**
+
+- [ ] La **contraseña temporal** de ExamLab (el correo deja el espacio en blanco).
+- [ ] Que las carpetas de Drive estén **compartidas** con el grupo. El repo publica el
+      enlace, no los permisos: si falta compartir, el estudiante ve "Solicitar acceso".
+
+Destinatarios: columna `correo` de `_privado/nomina_<curso>.csv`. Ponlos en **CCO** para no
+exponer los correos del grupo entre ellos.
+
+El correo **no publica ningún enlace de Meet**, a propósito: no existe uno solo del curso.
+Publicar uno fijo mandaría al grupo a la sala equivocada en las otras 12 sesiones.
+
+---
+
+## Paso 2 — Crear los encuentros en Calendar (una vez por curso)
 
 Archivo: `<Curso>/Plan curso/<periodo>/_privado/CrearEncuentros - <Curso>.gs`
 
@@ -74,20 +104,20 @@ Es un **Google Apps Script**: corre en tu cuenta, no en el repo.
 > archivo, lo regenera `python config/calendario/generar_apps_script_encuentros.py`, que
 > además imprime la ruta absoluta de cada uno.
 
-### 1.1 Pegarlo en tu cuenta
+### 2.1 Pegarlo en tu cuenta
 
 1. **https://script.google.com** con tu cuenta institucional → **Nuevo proyecto**.
 2. Nómbralo con el curso, p. ej. `UNIAJC - Encuentros <Curso>`.
 3. Borra `Código.gs` y pega **todo** el `.gs` del curso. Guarda.
 
-### 1.2 Activar el servicio avanzado de Calendar
+### 2.2 Activar el servicio avanzado de Calendar
 
 **Servicios (+)** en el panel izquierdo → **Google Calendar API** → **Añadir**.
 
-Sin esto los eventos se crean con invitados pero **sin Meet**: el enlace único de Meet se
-crea con la API avanzada, no con `CalendarApp`.
+Sin esto los eventos se crean con invitados pero **sin Meet**: las salas se crean con la API
+avanzada, no con `CalendarApp`.
 
-### 1.3 Pegar el ID del calendario
+### 2.3 Pegar el ID del calendario
 
 En el `.gs`, arriba del todo, hay una constante que **sale vacía a propósito**:
 
@@ -129,7 +159,7 @@ var CALENDAR_ID = 'c_a1b2c3...@group.calendar.google.com';
 Si de verdad prefieres el calendario por omisión, la línea está en el script comentada dentro
 de `_cal_()` (y de `_calId_()`): descoméntala y deja `CALENDAR_ID` vacío.
 
-### 1.4 Verificar (no toca nada)
+### 2.4 Verificar (no toca nada)
 
 Ejecuta **`verificar`** y abre **Ver → Registro de ejecución**. Entre otras cosas confirma el **calendario** y el `CALENDAR_ID` que quedó configurado.
 
@@ -139,7 +169,7 @@ es esperado, es tu propio script: **Configuración avanzada → Ir a (proyecto) 
 Revisa en el log: que el **calendario** sea el tuyo, que el **servicio avanzado** diga
 `activo`, el número de **invitados**, y la lista de sesiones (`se crearía` / `YA EXISTE`).
 
-### 1.5 Crear de verdad
+### 2.5 Crear de verdad
 
 En el `.gs`, cambia:
 
@@ -151,64 +181,44 @@ Guarda y ejecuta **`crearEncuentros`**. Qué hace:
 
 - Crea un evento por sesión, con los estudiantes como invitados y **enviándoles la
   invitación** (`SEND_INVITES = true`).
-- Crea **una sola sala de Meet** y la deja en **todas** las sesiones sincrónicas, para que el
-  estudiante entre siempre por el mismo enlace.
+- Le da a **cada sesión sincrónica su propia sala de Meet**: 13 sesiones = 13 enlaces
+  distintos. El log los imprime uno por línea, junto a su fecha.
 - Las sesiones **autónomas** también quedan en el calendario (para que vean la fecha de
   cierre) pero **sin Meet**, porque no hay encuentro.
-- Al final imprime el **enlace de Meet**. Cópialo: es el del paso 2.
 
-> Volver a ejecutarlo **no duplica**: reutiliza los eventos que ya existen y la sala ya
-> creada (el `requestId` es determinista, así que Google no crea una segunda sala).
+**No hay nada que copiar al material.** El enlace de cada sesión vive en su evento y le llega
+al estudiante dentro de la invitación. No existe un enlace único del curso.
+
+> Volver a ejecutarlo **no duplica**: reutiliza los eventos que ya existen, y si una sesión ya
+> tiene sala la respeta. Cada sesión pide la suya con un `requestId` propio y estable
+> (`…-s01`, `…-s02`, …), así que Google no crea una segunda sala para la misma sesión.
 
 Si Google acepta la petición pero aún no devuelve el enlace, espera un minuto y ejecuta
 `crearEncuentros` otra vez — el propio log lo dice.
 
----
+### 2.6 Borrar todo y volver a crear
 
-## Paso 2 — Pegar el enlace de Meet y regenerar
+Solo cuando de verdad haga falta partir de cero (se movieron las fechas, o quieres rehacer la
+serie completa):
 
-En `config/calendario/semestre_<periodo>.json`:
+| Función | Qué hace |
+|---|---|
+| `eliminarEncuentros` | Borra los eventos de la serie. Dos pasadas: por título exacto, y un barrido por la fecha/hora de cada sesión para cazar eventos de una corrida anterior cuyo título ya no coincide (pasa al cambiar los prefijos o la modalidad). Solo borra si el título menciona el curso o su código. |
+| `recrearTodo` | Borra y vuelve a crear en una sola corrida. |
 
-```json
-"cursos": { "<curso>": { "meet": "https://meet.google.com/xxx-xxxx-xxx" } }
-```
+Con `SIMULAR = true` las dos **solo listan** lo que harían — incluidos los "huérfanos" que
+encontró. Corre así primero, siempre.
 
-Y regenera:
-
-```bash
-python config/calendario/generar_semestre_<periodo>.py
-```
-
-Ahora el correo de bienvenida **publica el enlace**. Si lo dejas vacío el correo no miente:
-dice que el enlace llega dentro de la invitación de Calendar.
-
----
-
-## Paso 3 — Enviar el correo de bienvenida
-
-```
-<Curso>/Plan curso/<periodo>/CORREO_BIENVENIDA - <Curso> - <periodo>.md
-```
-
-Se genera solo y ya trae: fechas clave con la **fecha de la primera clase** (que no siempre
-coincide con el inicio del periodo), el **enlace de Meet**, el aviso de la invitación de
-Calendar, la explicación de `[SINCRONICO]` / `[AUTONOMO]`, las carpetas de Drive, el bloque
-de ExamLab —con la verificación de acceso y la **encuesta de inicio de semestre**, las dos
-cosas que el estudiante tiene que hacer **antes de la primera clase**— y la petición al
-vocero.
-
-**Antes de enviar completa lo único que el repo no puede saber:**
-
-- [ ] La **contraseña temporal** de ExamLab (el correo deja el espacio en blanco).
-- [ ] Que las carpetas de Drive estén **compartidas** con el grupo. El repo publica el
-      enlace, no los permisos: si falta compartir, el estudiante ve "Solicitar acceso".
-
-Destinatarios: columna `correo` de `_privado/nomina_<curso>.csv`. Ponlos en **CCO** para no
-exponer los correos del grupo entre ellos.
+> **Borrar manda correos de cancelación** a cada estudiante, y crear manda invitaciones otra
+> vez: son ~26 correos por curso. Y como cada evento nuevo trae **una sala de Meet nueva**,
+> los enlaces cambian (no importa para el estudiante, que entra por su invitación).
+>
+> **Si lo único que cambió es la nómina, no borres nada:** `crearEncuentros` sincroniza los
+> invitados de los eventos que ya existen (ver *Cuando algo cambia*).
 
 ---
 
-## Paso 4 — Archivado de grabaciones
+## Paso 3 — Archivado de grabaciones
 
 Una sola vez por cuenta, sirve para los 4 cursos y los periodos siguientes:
 **[manual 02](02%20-%20Instalar%20y%20probar%20el%20Apps%20Script%20de%20grabaciones.md)**.
@@ -225,8 +235,8 @@ saber de antemano:
 | `eventos_calendario_<periodo>.csv` | Los bloques en **tu** agenda | Sin invitados |
 | `_privado/invitaciones_<curso>.ics` | Eventos **con** invitados | **Google no envía las invitaciones al importar**: hay que abrir y guardar cada evento para que pregunte *"¿Enviar correos de invitación?"* |
 
-Y en ninguno de los dos casos hay enlace de Meet: el enlace lo crea Google, así que habría
-que añadirlo a mano en cada evento. Por eso el camino recomendado es el paso 1.
+Y en ninguno de los dos casos hay enlace de Meet: la sala la crea Google, así que habría que
+añadir una a mano en cada evento. Por eso el camino recomendado es el paso 2.
 
 Importar: Google Calendar → **⚙ Configuración → Importar y exportar → Importar**.
 
@@ -239,13 +249,13 @@ Importar: Google Calendar → **⚙ Configuración → Importar y exportar → I
 - [ ] `invitables` = total de estudiantes (si no, ver *Problemas frecuentes*)
 - [ ] `CALENDAR_ID` pegado en el `.gs` del curso (el mismo del manual 02)
 - [ ] `verificar` revisado en el Apps Script del curso
-- [ ] `crearEncuentros` ejecutado con `SIMULAR = false` → invitaciones enviadas
-- [ ] Enlace de Meet pegado en el JSON y material regenerado
 - [ ] Carpetas de Drive (**Clases** y **Clases grabadas**) compartidas con el grupo
 - [ ] Contraseña temporal de ExamLab escrita en el correo
 - [ ] Encuesta de inicio de semestre publicada en el correo (la trae el bloque de
       ExamLab; sale de `semestre_<periodo>.json → encuesta_inicio_semestre`)
 - [ ] Correo de bienvenida enviado en CCO
+- [ ] `crearEncuentros` ejecutado con `SIMULAR = false` → invitaciones enviadas
+- [ ] En el log, cada sesión sincrónica con su enlace de Meet
 - [ ] Archivado de grabaciones instalado (manual 02) · `simulacro` revisado
 
 ---
@@ -254,8 +264,9 @@ Importar: Google Calendar → **⚙ Configuración → Importar y exportar → I
 
 | Cambió | Qué hacer |
 |---|---|
-| Una fecha, un parcial, un festivo | Editar el JSON, correr los scripts del paso 0, volver a pegar el `.gs` del curso y ejecutar `crearEncuentros` (reutiliza lo que ya existe; los cambios de hora sí hay que ajustarlos en Calendar o borrar y recrear con `eliminarEncuentros`). |
-| Llegó una nómina nueva | Reemplazar el `.xls`, correr los scripts del paso 0, volver a pegar el `.gs` y ejecutar `crearEncuentros`: reutiliza los eventos que ya existen y **agrega al calendario los invitados que faltaban** (lo informa como «Invitados agregados a eventos que ya existían»). No borra a nadie: si alguien se retiró, quítalo a mano en Calendar. |
+| Una fecha, un parcial, un festivo | Editar el JSON, correr los scripts del paso 0, volver a pegar el `.gs` del curso y ejecutar `crearEncuentros` (reutiliza lo que ya existe). Un cambio de **fecha u hora** deja el evento viejo donde estaba: ajústalo en Calendar, o rehaz la serie con `recrearTodo` (paso 2.6). |
+| Llegó una nómina nueva | Reemplazar el `.xls`, correr los scripts del paso 0, volver a pegar el `.gs` y ejecutar `crearEncuentros`: reutiliza los eventos que ya existen y **agrega los invitados que faltaban** (lo informa como «Invitados agregados a eventos que ya existían»). **No borra a nadie**: si alguien se retiró, quítalo a mano en Calendar. Esta es la vía barata — no hace falta `recrearTodo`. |
+| La nómina que dejaste es de otra asignatura | El generador lo detecta por el código `FI######`, la omite y **no genera el `.gs`**. Deja dicho en el `LEEME - Apps Script del curso.md` del curso que el `.gs` que hay en `_privado/` es el viejo y **no debe usarse**. Consigue el export correcto y vuelve a correr el paso 0. |
 | Cambió una carpeta de Drive | Actualizar `carpetas_drive` en el JSON; si es la de grabaciones, actualizar también el script del manual 02. El validador avisa si divergen. |
 | Arranca un periodo nuevo | Crear `Plan curso/<periodo nuevo>/`; el anterior se queda donde está, no se borra. |
 
@@ -271,14 +282,16 @@ encabezado `documento,correo,nota` — se cruza por documento y esos correos que
 como `personal (manual)` en la nómina. Cuando lleguen los institucionales, actualiza el
 `.xls` y borra ese archivo.
 
-**«Servicio avanzado: NO ACTIVO».** Falta el paso 1.2. Los eventos se crearían sin Meet.
+**«Servicio avanzado: NO ACTIVO».** Falta el paso 2.2. Los eventos se crearían sin Meet.
 
 **Los eventos quedaron sin enlace de Meet.** O falta el servicio avanzado, o Google todavía
 no había devuelto el enlace: vuelve a ejecutar `crearEncuentros`, no duplica nada.
 
-**Creé dos salas de Meet distintas.** Pasa si borraste la sala guardada (`olvidarSalaMeet`) o
-si pegaste el `.gs` en dos proyectos distintos. Deja una, pégala en `MEET_URL` del `.gs` y
-ejecuta `crearEncuentros`: aplicará esa a toda la serie.
+**Cada sesión tiene un enlace de Meet distinto.** Es a propósito: una sala por encuentro. El
+estudiante no necesita guardar ninguno — entra desde el evento de ese día en su calendario.
+
+**Un estudiante pregunta cuál es «el link de la clase».** No hay uno solo. Que abra el evento
+de esa sesión en su Google Calendar: el botón de Meet está ahí, y también en la descripción.
 
 **Un estudiante dice que el link de Drive le pide acceso.** La carpeta no está compartida.
 

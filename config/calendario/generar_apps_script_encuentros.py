@@ -7,14 +7,14 @@ Importar un `.ics` deja los invitados dentro del evento pero **Google no envía 
 invitaciones**. Este camino sí las envía: crea los eventos con la API de Calendar y
 `sendUpdates: 'all'`.
 
-Y deja **una sola sala de Meet para todas las sesiones del curso**, en vez de una sala
-distinta por evento. Ese enlace único es el que se publica en el correo de bienvenida, así
-el estudiante entra siempre por el mismo sitio.
+Y le pone a **cada sesión su propia sala de Meet**: N encuentros, N enlaces distintos.
+El estudiante no tiene que guardar ningún enlace — entra por la invitación de Calendar de
+esa sesión, que ya lo trae dentro.
 
-El patrón de la sala única está portado de la implementación ya probada en producción en
-`CUN/Cursos/config/slides/build_calendar_encuentros.py`: se crea **una** conferencia con un
-`requestId` determinista y luego se copia a los demás eventos con `conferenceData`
-**sin** `createRequest`, que es como Calendar duplica un Meet.
+Cada sala se pide con un `requestId` determinista y **distinto por sesión**
+(`<codigo>-<grupo>-sNN`). Eso es lo que hace la operación repetible: volver a ejecutar no
+crea una segunda sala para la misma sesión, y el enlace de una sesión que ya existe no
+cambia por reejecutar.
 
 Salida
 ------
@@ -78,8 +78,8 @@ PLANTILLA = """/**
  * Qué hace:
  *   - Crea {n_ses} eventos, uno por sesión. Las autónomas por festivo también quedan en
  *     el calendario (el estudiante debe ver la fecha de cierre), pero SIN Meet.
- *   - Deja **la misma sala de Meet en todos**, para que el estudiante entre siempre por el
- *     mismo enlace.
+ *   - Le da a **cada sesión su propio enlace de Meet** (N sesiones = N salas distintas).
+ *     El estudiante entra por la invitación de Calendar de esa sesión, que lo trae dentro.
  *   - Invita a los {n_inv} estudiantes del grupo y, si SEND_INVITES = true, **les envía**
  *     el correo de invitación (esto es lo que la importación de un .ics no hace).
  *
@@ -87,9 +87,6 @@ PLANTILLA = """/**
  */
 
 // ─────────────────────────────────────────────── CONFIGURACIÓN
-
-/** Enlace de Meet de la serie. Vacío = lo crea el script y lo imprime para que lo pegues. */
-var MEET_URL = {meet_url};
 
 /**
  * ID del calendario donde se crean los encuentros.
@@ -117,9 +114,12 @@ var CODIGO = {codigo};
 var GRUPO = {grupo};
 var TZ = {tz};
 
-/** requestId determinista: si se repite, Google NO crea una segunda sala. */
+/**
+ * Base del requestId. Cada sesión pide su sala con REQUEST_ID + '-sNN', distinto por sesión:
+ * así cada encuentro tiene SU enlace, y reejecutar no crea una segunda sala para la misma
+ * sesión (Google devuelve la que ya existe para ese requestId).
+ */
 var REQUEST_ID = {request_id};
-var PROP_MEET = 'meet_' + CODIGO + '_' + GRUPO;
 
 var INVITADOS = [
 {invitados}
@@ -182,19 +182,26 @@ function verificar() {{
   Logger.log('Servicio avanzado: ' + (_apiCalendar_() ? 'activo' : 'NO ACTIVO — sin él no hay Meet'));
   Logger.log('Invitados        : ' + INVITADOS.length);
   Logger.log('Enviar correos   : ' + (SEND_INVITES ? 'sí' : 'no'));
-  Logger.log('Meet configurado : ' + (_meetConfigurado_() ? MEET_URL : '(vacío: se creará uno)'));
-  Logger.log('Sala guardada    : ' + (_salaGuardada_() || '(ninguna)'));
+  Logger.log('Meet             : uno distinto por sesión (' + _conMeet_() + ' de ' +
+             SESIONES.length + ' sesiones lo llevan; las autónomas no)');
   Logger.log('');
-  var existen = 0;
+  var existen = 0, conSala = 0;
   for (var i = 0; i < SESIONES.length; i++) {{
     var s = SESIONES[i];
     var ya = _buscarEvento_(cal, s);
-    if (ya) existen++;
+    var sala = '';
+    if (ya) {{
+      existen++;
+      sala = s.meet ? _meetNativo_(_idApi_(ya)) : '';
+      if (sala) conSala++;
+    }}
     Logger.log((ya ? 'YA EXISTE  ' : 'se crearía ') + s.fecha + ' ' + s.ini + '-' + s.fin +
-               '  ' + s.subject);
+               '  ' + s.subject +
+               (sala ? '   ' + sala : (ya && s.meet ? '   (sin Meet aún)' : '')));
   }}
   Logger.log('');
-  Logger.log('Total: ' + SESIONES.length + ' sesión(es) · ya creadas: ' + existen);
+  Logger.log('Total: ' + SESIONES.length + ' sesión(es) · ya creadas: ' + existen +
+             ' · con sala de Meet: ' + conSala + '/' + _conMeet_());
   if (!_apiCalendar_()) {{
     Logger.log('');
     Logger.log('Activa el servicio avanzado: Servicios (+) -> Google Calendar API -> Añadir.');
@@ -202,7 +209,7 @@ function verificar() {{
   }}
 }}
 
-/** Crea los encuentros, deja la misma sala de Meet en todos e invita al grupo. */
+/** Crea los encuentros, le da a cada uno su propia sala de Meet e invita al grupo. */
 function crearEncuentros() {{
   var cal = _cal_();
   if (SIMULAR) {{
@@ -235,27 +242,27 @@ function crearEncuentros() {{
                ' (nómina nueva).');
   }}
 
-  var semilla = null;
-  for (var k = 0; k < eventos.length; k++) {{ if (SESIONES[k].meet) {{ semilla = eventos[k]; break; }} }}
-  var url = _salaDeLaSerie_(cal, semilla);
-  if (!url) {{
-    Logger.log('Los encuentros quedaron creados, pero SIN enlace de Meet.');
-    Logger.log('Activa el servicio avanzado de Calendar y vuelve a ejecutar (no duplica nada).');
+  if (!_apiCalendar_()) {{
+    Logger.log('');
+    Logger.log('Los encuentros quedaron creados, pero SIN enlace de Meet: el servicio');
+    Logger.log('avanzado de Calendar no está activo. Actívalo (Servicios (+) -> Google');
+    Logger.log('Calendar API) y vuelve a ejecutar: no duplica eventos ni salas.');
     return;
   }}
+
+  // Una sala POR SESION. Cada una con su requestId, para que reejecutar no duplique.
   var nativos = 0, conMeet = 0;
   for (var j = 0; j < eventos.length; j++) {{
     if (!SESIONES[j].meet) continue;          // autonoma: no hay encuentro, no lleva Meet
     conMeet++;
-    if (_aplicarMeet_(eventos[j], url)) nativos++;
+    var url = _asegurarMeet_(eventos[j], j);
+    if (url) {{ nativos++; Logger.log('  ' + SESIONES[j].fecha + '  ' + url); }}
   }}
-  Logger.log('Meet ' + url + ' -> chip nativo en ' + nativos + '/' + conMeet +
-             ' (las autonomas no llevan Meet a proposito)');
+  Logger.log('Meet: ' + nativos + '/' + conMeet + ' sesión(es) con su propia sala ' +
+             '(las autónomas no llevan Meet a propósito).');
   Logger.log('');
-  Logger.log('PEGA ESTE ENLACE EN EL MATERIAL:');
-  Logger.log('  config/calendario/semestre_' + {periodo_us} + '.json -> cursos.<curso>.meet');
-  Logger.log('  ' + url);
-  Logger.log('y regenera para que el correo de bienvenida lo publique.');
+  Logger.log('No hay enlace que pegar en el material: a cada estudiante le llega el de');
+  Logger.log('cada sesión dentro de su invitación de Calendar.');
 }}
 
 /**
@@ -279,35 +286,110 @@ function _sincronizarInvitados_(evento) {{
   return n;
 }}
 
-/** Borra los eventos de esta serie. NO olvida la sala (para eso, olvidarSalaMeet). */
+/**
+ * Borra los encuentros de esta serie. Dos pasadas:
+ *   1. Por titulo exacto de cada sesion (lo que este script creo).
+ *   2. Barrido por la ventana horaria de cada sesion, para cazar eventos de una corrida
+ *      ANTERIOR cuyo titulo ya no coincide (paso al cambiar los prefijos o la modalidad).
+ *      Solo borra si el titulo menciona el curso o su codigo: no toca eventos ajenos.
+ *
+ * OJO: borrar un evento con invitados le manda a cada estudiante un correo de cancelacion.
+ * Si lo unico que cambio es la nomina, NO hace falta borrar: `crearEncuentros` ya sincroniza
+ * los invitados de los eventos que existen.
+ *
+ * Al borrar un evento se va TAMBIEN su sala de Meet. Si despues recreas, esa sesion queda
+ * con un enlace NUEVO — y ese es justo el que le llega al estudiante en la invitacion, asi
+ * que no hay nada que republicar en el material.
+ */
 function eliminarEncuentros() {{
-  if (SIMULAR) {{ Logger.log('SIMULAR = true: no se borró nada.'); return; }}
-  var cal = _cal_(), n = 0;
+  var cal = _cal_();
+  var exactos = [], huerfanos = [];
+
   for (var i = 0; i < SESIONES.length; i++) {{
-    var ev = _buscarEvento_(cal, SESIONES[i]);
-    if (ev) {{ ev.deleteEvent(); n++; }}
+    var s = SESIONES[i];
+    var ev = _buscarEvento_(cal, s);
+    if (ev) {{ exactos.push(ev); continue; }}
+    // segunda pasada: mismo dia y hora, titulo distinto pero del curso
+    var desde = _fecha(s.fecha, '00:01'), hasta = _fecha(s.fecha, '23:59');
+    var enEseDia = cal.getEvents(desde, hasta);
+    for (var j = 0; j < enEseDia.length; j++) {{
+      var t = enEseDia[j].getTitle();
+      if (_esDeEsteCurso_(t) && !_yaEsta_(exactos, enEseDia[j]) &&
+          !_yaEsta_(huerfanos, enEseDia[j])) {{
+        huerfanos.push(enEseDia[j]);
+      }}
+    }}
   }}
-  Logger.log('Eliminados=' + n + '. La sala de Meet sigue guardada.');
+
+  Logger.log('Por titulo exacto : ' + exactos.length);
+  Logger.log('Huerfanos del curso: ' + huerfanos.length +
+             (huerfanos.length ? '  (titulo viejo, misma fecha)' : ''));
+  for (var k = 0; k < huerfanos.length; k++) {{
+    Logger.log('   huerfano: ' + huerfanos[k].getStartTime() + '  ' + huerfanos[k].getTitle());
+  }}
+
+  if (SIMULAR) {{
+    Logger.log('');
+    Logger.log('SIMULAR = true: no se borro nada. Se borrarian ' +
+               (exactos.length + huerfanos.length) + ' evento(s).');
+    return 0;
+  }}
+
+  var todos = exactos.concat(huerfanos), n = 0;
+  for (var m = 0; m < todos.length; m++) {{
+    try {{ todos[m].deleteEvent(); n++; Utilities.sleep(200); }}
+    catch (e) {{ Logger.log('AVISO: no pude borrar «' + todos[m].getTitle() + '»: ' + e); }}
+  }}
+  Logger.log('Eliminados=' + n + '. Sus salas de Meet se fueron con ellos.');
+  return n;
 }}
 
-/** Suelta la sala guardada: la próxima corrida creará una nueva. */
-function olvidarSalaMeet() {{
-  PropertiesService.getScriptProperties().deleteProperty(PROP_MEET);
-  Logger.log('Sala olvidada. Ojo: si ya publicaste el enlace, quedará desactualizado.');
+/** true si el titulo es de este curso (nombre o codigo), para no borrar eventos ajenos. */
+function _esDeEsteCurso_(titulo) {{
+  var t = String(titulo || '').toLowerCase();
+  return t.indexOf(String(CURSO).toLowerCase()) !== -1 ||
+         t.indexOf(String(CODIGO).toLowerCase()) !== -1;
 }}
 
-// ─────────────────────────────────────────────── MEET (una sala para toda la serie)
+function _yaEsta_(lista, ev) {{
+  for (var i = 0; i < lista.length; i++) {{
+    if (lista[i].getId() === ev.getId()) return true;
+  }}
+  return false;
+}}
+
+/**
+ * Borra TODO y vuelve a crear, en una sola corrida. Es lo que se usa cuando cambio la
+ * nomina de forma grande o se movieron fechas y se prefiere partir de cero.
+ *
+ * Manda cancelaciones y luego invitaciones nuevas a cada estudiante, y los enlaces de Meet
+ * cambian (cada evento nuevo trae su propia sala). Si solo entraron o salieron algunas
+ * personas, `crearEncuentros` sola es menos ruidosa: sincroniza invitados sin tocar los
+ * eventos ni sus enlaces.
+ */
+function recrearTodo() {{
+  if (SIMULAR) {{
+    Logger.log('SIMULAR = true: no se toca nada. Esto es lo que pasaria:');
+    eliminarEncuentros();
+    Logger.log('');
+    Logger.log('...y despues se crearian ' + SESIONES.length + ' evento(s) con ' +
+               INVITADOS.length + ' invitado(s), cada uno con una sala de Meet NUEVA.');
+    return;
+  }}
+  Logger.log('=== 1/2  BORRANDO ===');
+  var borrados = eliminarEncuentros();
+  Logger.log('');
+  Logger.log('=== 2/2  CREANDO ===');
+  crearEncuentros();
+  Logger.log('');
+  Logger.log('Listo: ' + borrados + ' borrado(s) y la serie recreada con ' +
+             INVITADOS.length + ' invitado(s).');
+}}
+
+// ─────────────────────────────────────────────── MEET (una sala por sesión)
 
 function _apiCalendar_() {{
   try {{ return typeof Calendar !== 'undefined' && !!Calendar.Events; }} catch (e) {{ return false; }}
-}}
-
-function _meetConfigurado_() {{
-  return typeof MEET_URL === 'string' && MEET_URL.indexOf('https://meet.google.com/') === 0;
-}}
-
-function _salaGuardada_() {{
-  return (PropertiesService.getScriptProperties().getProperty(PROP_MEET) || '').trim();
 }}
 
 function _idApi_(evento) {{ return evento.getId().split('@')[0]; }}
@@ -341,66 +423,46 @@ function _meetNativo_(id) {{
   }} catch (e) {{ return ''; }}
 }}
 
-function _meetDeLaSerieExistente_(cal) {{
-  for (var i = 0; i < SESIONES.length; i++) {{
-    if (!SESIONES[i].meet) continue;
-    var ev = _buscarEvento_(cal, SESIONES[i]);
-    if (ev) {{ var u = _meetNativo_(_idApi_(ev)); if (u) return u; }}
-  }}
-  return '';
+/** Cuántas sesiones llevan Meet (las autónomas no). */
+function _conMeet_() {{
+  var n = 0;
+  for (var i = 0; i < SESIONES.length; i++) if (SESIONES[i].meet) n++;
+  return n;
+}}
+
+/** requestId de la sesión `i`: distinto por sesión, estable entre corridas. */
+function _requestId_(i) {{
+  var n = String(i + 1);
+  return REQUEST_ID + '-s' + (n.length < 2 ? '0' + n : n);
 }}
 
 /**
- * conferenceData reutilizable a partir de una URL de Meet ya conocida.
- * SIN createRequest: así es como Calendar copia el Meet al duplicar un evento, y por eso
- * las N sesiones acaban con el MISMO enlace en vez de con N salas distintas.
+ * Se asegura de que la sesión `i` tenga SU propia sala, y devuelve su URL ('' si no se pudo).
+ * Si el evento ya tiene una, la respeta: no la reemplaza ni crea una segunda.
  */
-function _conferenciaDesdeUrl_(url) {{
-  var id = String(url).replace(/^https?:\\/\\/meet\\.google\\.com\\//, '');
-  return {{
-    conferenceId: id,
-    signature: null,
-    conferenceSolution: {{ key: {{ type: 'hangoutsMeet' }}, name: 'Google Meet' }},
-    entryPoints: [{{ entryPointType: 'video', uri: url, label: id }}]
-  }};
-}}
-
-/** La sala de TODA la serie, sin crear nunca una segunda. */
-function _salaDeLaSerie_(cal, semilla) {{
-  if (_meetConfigurado_()) return MEET_URL;
-
-  var guardado = _salaGuardada_();
-  if (guardado) {{ Logger.log('Reutilizo la sala que creé antes: ' + guardado); return guardado; }}
-
-  if (!_apiCalendar_()) return '';
-
-  var enEvento = _meetDeLaSerieExistente_(cal);
-  if (enEvento) {{
-    PropertiesService.getScriptProperties().setProperty(PROP_MEET, enEvento);
-    Logger.log('Reutilizo la sala que ya tenían los encuentros: ' + enEvento);
-    return enEvento;
-  }}
-  if (!semilla) return '';
-
-  var url = _crearSala_(semilla);
-  if (!url) return '';
-  PropertiesService.getScriptProperties().setProperty(PROP_MEET, url);
-  Logger.log('SALA DE MEET CREADA: ' + url);
+function _asegurarMeet_(evento, i) {{
+  var ya = _meetNativo_(_idApi_(evento));
+  if (ya) {{ _anotarMeet_(evento, ya); return ya; }}
+  var url = _crearSala_(evento, _requestId_(i));
+  if (url) _anotarMeet_(evento, url);
   return url;
 }}
 
-/** Crea UNA sala de Meet sobre `evento` y devuelve su URL ('' si no se pudo). */
-function _crearSala_(evento) {{
+/** Crea la sala de Meet de `evento` y devuelve su URL ('' si no se pudo). */
+function _crearSala_(evento, requestId) {{
   var id = _idApi_(evento);
   try {{
     var res = Calendar.Events.patch({{
       conferenceData: {{
         createRequest: {{
-          requestId: REQUEST_ID,
+          requestId: requestId,
           conferenceSolutionKey: {{ type: 'hangoutsMeet' }}
         }}
       }}
-    }}, _calId_(), id, {{ conferenceDataVersion: 1, sendUpdates: 'none' }});
+    }}, _calId_(), id, {{
+      conferenceDataVersion: 1,
+      sendUpdates: SEND_INVITES ? 'all' : 'none'
+    }});
 
     var url = _uriDeConferencia_(res && res.conferenceData);
     // Google crea la sala de forma asíncrona: la primera respuesta puede venir «pending».
@@ -416,29 +478,16 @@ function _crearSala_(evento) {{
   }}
 }}
 
-/** Deja `url` en el evento: Ubicación, descripción y chip nativo de Meet. */
-function _aplicarMeet_(evento, url) {{
+/** Escribe la URL en Ubicación y descripción, para que se vea sin abrir el chip. */
+function _anotarMeet_(evento, url) {{
   try {{
     if (evento.getLocation() !== url) evento.setLocation(url);
     var d = evento.getDescription() || '';
     if (d.indexOf(url) < 0) {{
-      evento.setDescription((d ? d + '\\n' : '') + 'Meet (mismo enlace toda la serie): ' + url);
+      evento.setDescription((d ? d + '\\n' : '') + 'Meet de esta sesión: ' + url);
     }}
   }} catch (e) {{
     Logger.log('AVISO: no pude escribir el enlace en «' + evento.getTitle() + '»: ' + e);
-  }}
-  if (!_apiCalendar_()) return false;
-  try {{
-    var id = _idApi_(evento);
-    if (_meetNativo_(id) === url) return true;   // ya está bien
-    Calendar.Events.patch({{ conferenceData: _conferenciaDesdeUrl_(url) }}, _calId_(), id, {{
-      conferenceDataVersion: 1,
-      sendUpdates: SEND_INVITES ? 'all' : 'none'
-    }});
-    return _meetNativo_(id) === url;
-  }} catch (e) {{
-    Logger.log('AVISO: sin chip nativo en «' + evento.getTitle() + '»: ' + e);
-    return false;
   }}
 }}
 """
@@ -454,7 +503,7 @@ def _escribir_puntero(meta: dict, gs: Path, n_ses: int, n_inv: int) -> None:
     L = [
         f"# Apps Script del curso - {meta['nombre']} - {PERIODO}",
         "",
-        "## Crear los encuentros en Calendar (con una sola sala de Meet)",
+        "## Crear los encuentros en Calendar (cada sesión con su propio Meet)",
         "",
         "El script **existe** y esta aqui:",
         "",
@@ -500,6 +549,54 @@ def _escribir_puntero(meta: dict, gs: Path, n_ses: int, n_inv: int) -> None:
     destino.write_text("\n".join(L), encoding="utf-8")
 
 
+def _avisar_sin_nomina(meta: dict, privado) -> None:
+    """Marca el LEEME del curso cuando NO se pudo generar el .gs.
+
+    Importa porque el .gs de una corrida anterior sigue en disco con la nómina vieja: sin
+    este aviso, se pega en Apps Script un archivo desactualizado sin que nada lo delate.
+    """
+    gs = privado / f"CrearEncuentros - {meta['nombre']}.gs"
+    viejo = gs.exists()
+    L = [
+        f"# Apps Script del curso - {meta['nombre']} - {PERIODO}",
+        "",
+        "## ATENCION: este curso NO tiene Apps Script al dia",
+        "",
+        "La ultima regeneracion **no encontro la nomina** del grupo "
+        f"`{meta['codigo']}` / `{meta['grupo']}`, asi que no se pudo generar el `.gs`.",
+        "",
+    ]
+    if viejo:
+        L += [
+            "> **Hay un `.gs` viejo en `_privado/`. NO lo uses:** trae la nomina de la",
+            "> corrida anterior, asi que invitaria a los estudiantes equivocados.",
+            "",
+        ]
+    L += [
+        "### Como arreglarlo",
+        "",
+        "1. Exporta de Academusoft la **Lista de Alumnos por Grupo** de "
+        f"`{meta['codigo']}` (grupo `{meta['grupo']}`).",
+        f"2. Dejala en `{meta['folder']}/Plan curso/{PERIODO}/`.",
+        "3. Vuelve a correr, desde la raiz de `Cursos`:",
+        "",
+        "```",
+        "python config/calendario/generar_eventos_calendario.py",
+        "python config/calendario/generar_apps_script_encuentros.py",
+        "```",
+        "",
+        "Si el listado que dejaste es de OTRA asignatura, el generador lo dice y lo omite:",
+        "compara el codigo `FI######` del archivo con el del curso.",
+        "",
+        "---",
+        "",
+        "*Archivo generado por `config/calendario/generar_apps_script_encuentros.py`.*",
+        "",
+    ]
+    (privado.parent / "LEEME - Apps Script del curso.md").write_text(
+        "\n".join(L), encoding="utf-8")
+
+
 def main() -> None:
     total = 0
     for key, meta in DATA["cursos"].items():
@@ -507,10 +604,10 @@ def main() -> None:
         info = ev.cargar_nomina(meta, key, ev.cargar_correos_manuales(meta))
         if not info:
             print(f"  {meta['nombre']}: sin nómina -> no se genera el .gs")
+            _avisar_sin_nomina(meta, privado)
             continue
         correos = sorted({e["correo"] for e in info["estudiantes"] if e["correo"]})
         ses = sesiones_de(meta)
-        meet = (meta.get("meet") or "").strip()
 
         gs = PLANTILLA.format(
             nombre=meta["nombre"],
@@ -518,7 +615,6 @@ def main() -> None:
             periodo_us=js(PERIODO.replace("-", "_")),
             n_ses=len(ses),
             n_inv=len(correos),
-            meet_url=js(meet) if meet else "''",
             curso=js(meta["nombre"]),
             codigo=js(meta["codigo"]),
             grupo=js(meta["grupo"]),
@@ -546,8 +642,9 @@ def main() -> None:
     print("asi que NO se versionan y NO aparecen en GitHub. Al lado, visible, queda un")
     print("\"LEEME - Apps Script del curso.md\" con la ruta exacta.")
     print("")
-    print("Instalación y pruebas: Manuales/01 (crear los encuentros es el PRIMER paso:")
-    print("de ahí sale el enlace de Meet que se publica en el correo de bienvenida).")
+    print("Instalación y pruebas: Manuales/01. Cada sesión lleva SU propio enlace de Meet,")
+    print("así que no hay ningún enlace que pegar de vuelta en el material: al estudiante le")
+    print("llega dentro de la invitación de Calendar de cada sesión.")
 
 
 if __name__ == "__main__":

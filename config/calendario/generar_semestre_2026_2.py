@@ -354,8 +354,8 @@ def metodologia_text(key: str, meta: dict) -> str:
         "Acuerdo sobre los aspectos metodológicos",
         f"Periodo 2026-2 · Grupo {meta['grupo']} · {meta['dia']} {meta['horario']} "
         f"({meta['duracion_min']} min).",
-        "Modalidad: Virtual (todas las sesiones virtual síncrona por Meet · "
-        "resto de sesiones regulares virtual síncrona · festivos = clase autónoma).",
+        "Modalidad: Virtual (todas las sesiones por Meet, incluidos los parciales · "
+        "festivos = clase autónoma).",
         extra["metodologia_base"],
         f"Calendario: 13 sesiones ({N_TEMAS} temas del microcurrículo) "
         f"({dmy(clases[0]['fecha'])}–{dmy(clases[-1]['fecha'])}). "
@@ -495,8 +495,8 @@ def fill_acuerdo(key: str, meta: dict) -> Path:
     note.add_run(
         f"Docente: {DOCENTE} · Correo: {CORREO} · "
         f'Horario: {meta["dia"]} {meta["horario"]} ({meta["duracion_min"]} min) · '
-        f'Modalidad: {meta["modalidad"]} (todas las sesiones virtual síncrona · '
-        "resto virtual síncrona · festivos = clase autónoma) · "
+        f'Modalidad: {meta["modalidad"]} (todas las sesiones por Meet, incluidos los '
+        "parciales · festivos = clase autónoma) · "
         f'Código: {meta["codigo"]} · '
         f"Periodo: {dmy(START)}–{dmy(END)} · 13 sesiones / {N_TEMAS} temas · "
         "PRELLENADO 2026-2 — campos de estudiantes pendientes."
@@ -548,8 +548,8 @@ def calendario_md(meta: dict) -> str:
         f'- **Grupo:** {meta["grupo"]}',
         f"- **Periodo:** 2026-2 · **{dmy(START)} – {dmy(END)}**",
         f'- **Horario:** {meta["dia"]} **{meta["horario"]}** ({meta["duracion_min"]} min)',
-        f'- **Modalidad:** {meta["modalidad"]} (todas las sesiones virtual síncrona · '
-        "resto virtual síncrona · festivos = clase autónoma)",
+        f'- **Modalidad:** {meta["modalidad"]} (todas las sesiones por Meet, incluidos los '
+        "parciales · festivos = clase autónoma)",
         f"- **Docente:** {DOCENTE} · `{CORREO}`",
         f"- **Total sesiones:** {len(clases)} · **temas del microcurrículo:** {N_TEMAS} "
         f"({len(dobles)} sesiones dobles) — festivos = **clase autónoma**, no se omiten",
@@ -620,8 +620,8 @@ def cronograma_md(meta: dict) -> str:
         f'- **Código:** {meta["codigo"]} · **Grupo:** **{meta["grupo"]}**',
         f'- **Horario:** **{meta["dia"]} {meta["horario"]}** ({meta["duracion_min"]} min)',
         f"- **Periodo:** 2026-2 · **{dmy(START)} – {dmy(END)}**",
-        f'- **Modalidad:** {meta["modalidad"]} (todas las sesiones virtual síncrona · '
-        "resto virtual síncrona · festivos = clase autónoma)",
+        f'- **Modalidad:** {meta["modalidad"]} (todas las sesiones por Meet, incluidos los '
+        "parciales · festivos = clase autónoma)",
         f"- **Sesiones:** **{len(clases)}** (cubren los **{N_TEMAS} temas** del curso; "
         "2 sesiones son dobles)",
         "",
@@ -686,8 +686,8 @@ def plan_head(meta: dict) -> str:
         f'- **Código:** {meta["codigo"]} · **Grupo:** **{meta["grupo"]}**',
         f"- **Periodo:** **2026-2** · **{dmy(START)} – {dmy(END)}**",
         f'- **Horario:** **{meta["dia"]} {meta["horario"]}** ({meta["duracion_min"]} min)',
-        f'- **Modalidad:** {meta["modalidad"]} (todas las sesiones virtual síncrona · '
-        "resto virtual síncrona · festivos = clase autónoma)",
+        f'- **Modalidad:** {meta["modalidad"]} (todas las sesiones por Meet, incluidos los '
+        "parciales · festivos = clase autónoma)",
         f"- **Docente:** {DOCENTE} · `{CORREO}`",
         "- **Calendario:** `Plan curso/2026-2/CALENDARIO_2026-2.md` · "
         "`config/calendario/semestre_2026_2.json`",
@@ -947,21 +947,18 @@ def fechas_clave_md(meta: dict) -> str:
 
     # Los eventos del calendario llevan el tipo de encuentro al principio del título.
     autonomas = [cl for cl in clases if cl["tipo"] == "autonoma"]
-    meet = (meta.get("meet") or "").strip()
-    if meet:
-        out += [f"**El enlace de Google Meet del curso es el mismo toda el semestre:** {meet}",
-                "",
-                "Guárdenlo. Además les va a llegar a este correo una **invitación de Google "
-                "Calendar por cada sesión**, con ese mismo enlace dentro: acéptenla y entran "
-                "a clase desde su propio calendario, sin buscar nada.",
-                ""]
-    else:
-        out += ["**Les va a llegar a este mismo correo institucional una invitación de Google "
-                "Calendar por cada sesión del curso**, con el **enlace de Google Meet** "
-                "adentro. Acéptenla: así les queda el horario en su calendario y entran a "
-                "clase desde ahí, sin buscar el enlace cada semana. El enlace de Meet es el "
-                "mismo durante todo el semestre.",
-                ""]
+    # No hay un enlace unico del curso: cada sesion tiene su propia sala, y el estudiante
+    # la recibe dentro de la invitacion de esa sesion. Por eso el correo no publica ninguna
+    # URL de Meet — publicar una sola seria mandarlos a la sala equivocada.
+    out += ["**Les va a llegar a este mismo correo institucional una invitación de Google "
+            "Calendar por cada sesión del curso**, y **cada una trae adentro su propio "
+            "enlace de Google Meet**. Acéptenlas: así les queda todo el horario en su "
+            "calendario y el día de clase entran desde el evento de ese día, sin buscar "
+            "ningún enlace.",
+            "",
+            "> No guarden un enlace fijo: **el de cada sesión es distinto**. El que sirve "
+            "siempre es el del evento de ese día en su calendario.",
+            ""]
     out += [
             "Cada evento empieza con el tipo de encuentro, para que sepan de un vistazo si "
             "tienen que conectarse a esa hora:", "",

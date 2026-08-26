@@ -5,7 +5,7 @@ Documento para estudiantes (carpeta compartida `Clases/`).
 - **Código:** FI303215 · **Grupo:** **641A-2**
 - **Horario:** **Lunes 18:00 – 20:00** (120 min)
 - **Periodo:** 2026-2 · **24/08/2026 – 22/11/2026**
-- **Modalidad:** Virtual (todas las sesiones virtual síncrona · resto virtual síncrona · festivos = clase autónoma)
+- **Modalidad:** Virtual (todas las sesiones por Meet, incluidos los parciales · festivos = clase autónoma)
 - **Sesiones:** **13** (cubren los **15 temas** del curso; 2 sesiones son dobles)
 
 > El **día 1** incluye la **Sesión 0** (Presentación del curso: acuerdo, logística, Padlet, evaluación, socialización del Proyecto Integrador) **y** el arranque temático.

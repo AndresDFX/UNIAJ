@@ -31,7 +31,7 @@ Asistente de consulta para docencia UNIAJC. Respuestas verificadas contra docume
 
 Espejo canónico también en `.claude/agents/uniajc-dudas-material.md` — mantener alineados.
 
-**Procedimientos operativos** (crear los encuentros en Calendar con un solo enlace de Meet,
+**Procedimientos operativos** (crear los encuentros en Calendar, cada sesión con su Meet,
 invitar a los estudiantes, archivar las grabaciones): carpeta `Manuales/` en la raíz de
 `Cursos`. Si preguntan «cómo invito» o «cómo se mueven las grabaciones», la respuesta está ahí.
 

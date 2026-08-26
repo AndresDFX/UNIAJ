@@ -4,7 +4,7 @@
 - **Grupo:** 6303C
 - **Periodo:** 2026-2 · **24/08/2026 – 22/11/2026**
 - **Horario:** Lunes **10:00 – 12:00** (120 min)
-- **Modalidad:** Virtual (todas las sesiones virtual síncrona · resto virtual síncrona · festivos = clase autónoma)
+- **Modalidad:** Virtual (todas las sesiones por Meet, incluidos los parciales · festivos = clase autónoma)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
 - **Total sesiones:** 13 · **temas del microcurrículo:** 15 (2 sesiones dobles) — festivos = **clase autónoma**, no se omiten
 

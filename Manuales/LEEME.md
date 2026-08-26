@@ -16,14 +16,13 @@ Aquí no hay material de clase: esto es el "cómo se alista y se opera el semest
 
 ```
 0. Regenerar y validar          (4 scripts en config/calendario/)
-1. Crear los encuentros         → de ahí sale el enlace de Meet y se envían las invitaciones
-2. Pegar el enlace de Meet      → y regenerar
-3. Enviar el correo             → ya con el enlace adentro
-4. Archivado de grabaciones     → manual 02, una sola vez
+1. Enviar el correo             → avisa que va a llegar la invitación de Calendar
+2. Crear los encuentros         → se envían las invitaciones, cada una con SU enlace de Meet
+3. Archivado de grabaciones     → manual 02, una sola vez
 ```
 
-El paso 1 va antes del correo porque **el enlace de Meet lo crea Google, no el repo**: hasta
-que no existe la serie de encuentros no hay enlace que publicar.
+**Cada sesión tiene su propio enlace de Meet**, así que el correo no publica ninguno y no
+depende de que la serie exista: va primero, y llega antes que las invitaciones.
 
 ## Antes de cualquiera de los dos manuales
 
@@ -53,7 +52,7 @@ Las carpetas `_privado/` están en `.gitignore`. No las compartas ni las subas.
 
 ## Fuente de verdad
 
-Fechas, sesiones, parciales, festivos, carpetas de Drive y el enlace de Meet salen de
+Fechas, sesiones, parciales, festivos y carpetas de Drive salen de
 `config/calendario/semestre_<periodo>.json`. Si algo está mal, **se corrige ahí y se
 regenera**, nunca a mano en los documentos: lo escrito a mano se pierde en la siguiente
 corrida.

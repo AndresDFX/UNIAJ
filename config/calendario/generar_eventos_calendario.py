@@ -35,7 +35,7 @@ academico no trae. Se cruza por documento.
 
 Ojo: importar el .ics NO envia las invitaciones (Google no lo hace al importar). Para que
 lleguen, usa el Apps Script que genera `generar_apps_script_encuentros.py`, que además deja
-una sola sala de Meet en toda la serie. Procedimiento: carpeta `Manuales/` en la raíz.
+una sala de Meet propia por sesión. Procedimiento: carpeta `Manuales/` en la raíz.
 
 Uso
 ---
@@ -485,7 +485,7 @@ def main() -> None:
 
     print(f"\nOK. Cursos con nomina real: {total_ok}/{len(DATA['cursos'])}")
     print("OJO: importar el .ics NO envia las invitaciones (Google no lo hace al importar).")
-    print("Para que lleguen y para tener UNA sola sala de Meet, usa el Apps Script:")
+    print("Para que lleguen y para que cada sesion tenga SU sala de Meet, usa el Apps Script:")
     print("  python config/calendario/generar_apps_script_encuentros.py")
     print("y ejecuta crearEncuentros(). Procedimiento: carpeta Manuales/ en la raiz.")
     print("Recuerda: las carpetas Plan curso/<periodo>/_privado/ NO se versionan (datos personales).")

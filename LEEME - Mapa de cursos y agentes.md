@@ -101,7 +101,7 @@ festivos, carpetas de Drive y enlace de Meet). Se corrige ahi y se regenera.
 
 **Los encuentros no se crean importando un `.ics`**: importar deja los invitados dentro del
 evento pero Google no envia las invitaciones. Se crean con el Apps Script generado, que usa
-la API de Calendar (`sendUpdates: 'all'`) y deja **una sola sala de Meet** en toda la serie
+la API de Calendar (`sendUpdates: 'all'`) y le da a **cada sesión su propia sala de Meet**
 del curso. Las sesiones autonomas van al calendario pero sin Meet.
 
 Procedimiento paso a paso: **`Manuales/`** (01 alistar un curso · 02 archivar grabaciones).

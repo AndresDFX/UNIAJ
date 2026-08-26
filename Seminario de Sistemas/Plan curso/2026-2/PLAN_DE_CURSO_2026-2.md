@@ -4,7 +4,7 @@
 - **Código:** FI303301 · **Grupo:** **341C**
 - **Periodo:** **2026-2** · **24/08/2026 – 22/11/2026**
 - **Horario:** **Jueves 18:00 – 20:00** (120 min)
-- **Modalidad:** Virtual (todas las sesiones virtual síncrona · resto virtual síncrona · festivos = clase autónoma)
+- **Modalidad:** Virtual (todas las sesiones por Meet, incluidos los parciales · festivos = clase autónoma)
 - **Docente:** Julian Andres Castaño Espinosa · `julianacastano@profesores.uniajc.edu.co`
 - **Calendario:** `Plan curso/2026-2/CALENDARIO_2026-2.md` · `config/calendario/semestre_2026_2.json`
 
