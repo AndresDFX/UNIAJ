@@ -49,10 +49,9 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 5. Costos sin factura real
 6. Sostenibilidad
 7. Herramientas de hoy
-8. Del boceto a ExamLab (diagrama)
-9. Taller PI (paso a paso)
-10. Para continuar (PI)
-11. Clase 10 · PI en movimiento
+8. Taller PI (paso a paso)
+9. Para continuar (PI)
+10. Clase 10 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -101,11 +100,10 @@ para detectar quién entendió y quién solo copió la plantilla. No adelantes c
 
 
 ## Actividad / taller (detalle)
-1. Paso 1: liste los 6 elementos de costo de su diseno tomandolos del C4Deployment de la Clase 7 (edge, API, worker, base de datos, almacen de objetos y minutos de integracion continua), verificando que no aparezca ningun componente que no exista en su diagrama y que ninguno quede sin fila, porque al ser clase autonoma nadie va a completar la tabla por usted.
-2. Paso 2: complete la tabla de 5 columnas asignando a cada elemento su driver de costo, el nivel bajo, medio o alto, un apalancamiento y el riesgo de aplicarlo, verificando que ningun driver se repita entre filas y que la palabra caro no aparezca sola como explicacion.
-3. Paso 3: escriba en ExamLab el mindmap Mermaid con las 5 ramas de drivers (computo, datos, transferencia, ocioso e integracion continua) y 2 hojas concretas por rama, verificando al renderizar que las 10 hojas mencionen elementos reales de su despliegue y no categorias abstractas.
-4. Paso 4: desarrolle 3 apalancamientos de ahorro con su estado antes y despues y 3 acciones de sostenibilidad verificables, verificando que cada accion tenga una evidencia que un tercero pueda revisar (tamano de la imagen en megabytes, hora de apagado del lab, numero de replicas en la noche) y que ninguna rompa un requisito del PI.
-5. Paso 5: integre la tabla, el mindmap y las acciones en la seccion Costos y sostenibilidad del informe (1 pagina) y suba las 5 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que no haya inventado ninguna factura en dolares de un proveedor de pago.
+1. Paso 1: construya en la pregunta 11 la tabla de costos con una fila por cada componente de su despliegue y las columnas componente, driver, nivel B/M/A y apalancamiento; verifique que cada driver sea una variable contable (horas encendidas, GB de salida, GB almacenados, minutos de CI) y no «el uso».
+2. Paso 2: fuerce al menos un Alto y un Bajo con su justificacion. Marcar todo como Medio para no decidir es lo que la pregunta busca descartar, y ese criterio vale cero si todas las filas quedan iguales.
+3. Paso 3: escriba en la pregunta 12 tres acciones de sostenibilidad, cada una con el artefacto donde se comprueba y como se comprueba; aplique la prueba de que otra persona pueda decir en seis meses, mirando el repositorio, si la accion se aplico.
+4. Paso 4: ate al menos una de las tres acciones a un driver de costo de la pregunta 11 y suba la actividad completa del Corte 2 a ExamLab antes del domingo 23:59. Es una clase autonoma: no hay encuentro sincrono, y las dudas van por el foro.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

@@ -1,8 +1,8 @@
 # Taller de la Clase 8 en ExamLab - configuracion
 
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
-- **Taller:** Taller Clase 8 en ExamLab - Pipeline de Actions y monitoreo de CloudLite
-- **Preguntas:** 5 · **Total:** 100 puntos
+- **Taller:** Actividad del Corte 2 (preguntas 7 a 10) - Integracion continua y monitoreo
+- **Preguntas:** 4 · **Total:** 25 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Workflow Actions (build/test/simulate) + métricas de monitoreo del PI
 - **Entregable de la clase:** .github/workflows/ci.yml + sección Monitoreo/CI del informe
@@ -11,170 +11,140 @@
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
 > campo para copiar y pegar, incluidos el SQL de partida y el codigo base.
 
-**Que produce el estudiante:** El estudiante entrega un workflow de GitHub Actions con build, pruebas, artefacto y despliegue simulado, evidenciado con un run verde, mas el plan de monitoreo de CloudLite con umbrales y acciones.
+**Que produce el estudiante:** Las preguntas 7 a 10 de la actividad del Corte 2. El estudiante escribe el workflow de CI de su stub, explica que valida de verdad, ubica hasta donde llega su pipeline y define las senales con las que operaria CloudLite.
 
 ---
 
-## Pregunta 1 - Respuesta escrita · 30 pts
+## Pregunta 7 - Respuesta escrita · 10.0 pts
 
 **Tipo en la plataforma:** `abierta`
 
 **Enunciado (campo Contenido):**
 
-## Workflow ci.yml de CloudLite
+## El workflow de integracion continua
 
-> ExamLab **no ejecuta** este YAML: los workflows corren en GitHub Actions. Aqui se evalua el contenido pegado **mas la evidencia del run real**.
+Escriba el **contenido completo** del archivo `.github/workflows/ci.yml` para el stub de
+CloudLite. Debe incluir:
 
-**Parte A.** Pegue el contenido completo de `.github/workflows/ci.yml`. Debe tener:
-- `on:` con `push` y `pull_request` sobre la rama principal.
-- **4 jobs** encadenados con `needs:`, nombrados `build`, `test`, `package` y `deploy_simulado`.
-- `test` ejecuta **al menos 3 pruebas** reales (no `echo`).
-- `package` construye la imagen y publica un artefacto con `actions/upload-artifact`.
-- `deploy_simulado` imprime el plan de despliegue y **dice en el log que es simulado**.
-- Todo secreto se lee como `${{ secrets.NOMBRE }}`; **cero valores en claro**.
+1. **Disparadores** (`on`): cuando corre el pipeline.
+2. **Entorno de ejecucion** (`runs-on`).
+3. **Pasos** de **construccion**, **prueba** y **despliegue simulado**.
 
-**Parte B.** Tabla de **2 columnas** (`Job | Que verifica y por que el siguiente no debe correr si este falla`) con **4 filas**.
+> **Los secretos se referencian desde la configuracion del repositorio**, con la sintaxis de
+> *secrets* del proyecto, **nunca escritos en claro dentro del YAML**. Es la misma politica
+> que definio en la pregunta 3.
 
-**Parte C.** Evidencia, en 3 lineas: enlace publico al **run verde**, nombre y tamano del artefacto publicado, y numero de pruebas ejecutadas segun el log.
+El **despliegue simulado** es deliberado: en este curso el pipeline llega hasta «listo para
+desplegar» y no despliega a ningun servidor real, porque no abrimos cuentas de nube de pago.
+Dejelo explicito en el nombre del paso para no prometer lo que no hace.
 
-**Plan B aceptado:** si Actions falla por cuota o por permisos, pegue el **mensaje de error textual**, la marca de tiempo y una explicacion de 4 lineas de que habria pasado en cada job. El plan B pierde solo los puntos de la Parte C.
+Use la imagen y el puerto **del Dockerfile que escribio en el Corte 1**: es el mismo
+servicio.
 
-**Rubrica esperada (campo Rubrica):**
-
-12 pts el YAML con los 4 jobs encadenados por needs y los disparadores pedidos. 6 pts que test ejecute al menos 3 pruebas reales y package publique artefacto. 4 pts que no haya ningun secreto en claro y que el deploy declare que es simulado. 4 pts la tabla de 4 filas. 4 pts la evidencia del run verde con artefacto y conteo de pruebas, o el plan B con error textual y explicacion.
-
----
-
-## Pregunta 2 - Diagrama (Mermaid) · 20 pts
-
-**Tipo en la plataforma:** `diagrama`
-
-**Enunciado (campo Contenido):**
-
-## Pipeline de CloudLite en Mermaid
-
-Escriba un `flowchart LR` del pipeline que acaba de crear. Requisitos:
-
-1. Un **subgrafo** rotulado con el nombre del archivo (`GitHub Actions - ci.yml`) que contenga **los 4 jobs con sus nombres exactos** del YAML, encadenados en orden.
-2. Antes del subgrafo: el nodo del desarrollador que hace push y el nodo del pull request.
-3. Despues del subgrafo: **un nodo de decision con forma de rombo** que pregunte si los 4 jobs quedaron en verde.
-4. Dos salidas de la decision: `Si` hacia el **despliegue simulado con publicacion del artefacto**, y `No` hacia el **bloqueo del pull request**.
-5. Un nodo final de **evidencia** (enlace al run y artefacto descargable) y una arista de retorno del bloqueo hacia el desarrollador.
-
-**Verificacion:** al renderizar debe contar 4 nodos de job, 1 rombo y 2 salidas rotuladas `Si` y `No`; los nombres de los jobs deben coincidir letra por letra con el YAML.
-
-**Pegar al final del enunciado — flujo de entrega del diagrama:**
-
-**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
-
-- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
-- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `flowchart`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
-- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
-- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
-
-**Diagrama de referencia (Mermaid):**
-
-```mermaid
-flowchart LR
-    dev["Desarrollador - push a rama feature"] --> pr["Pull request hacia main"]
-    subgraph ci["GitHub Actions - ci.yml"]
-        direction TB
-        build["job build - checkout y setup e instalacion de dependencias"] --> test["job test - 3 pruebas del stub incluida la ruta de salud"]
-        test --> package["job package - docker build y upload-artifact cloudlite-api.tar"]
-        package --> deploy_simulado["job deploy_simulado - imprime el plan y marca en el log que es simulado"]
-    end
-    pr --> build
-    deploy_simulado --> gate{"Los 4 jobs quedaron en verde"}
-    gate -->|"Si"| ok["Despliegue simulado aprobado y artefacto publicado"]
-    gate -->|"No"| block["Pull request bloqueado por verificacion obligatoria"]
-    ok --> evid["Evidencia del PI - enlace al run verde y artefacto descargable"]
-    block --> dev
-```
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
-8 pts el subgrafo con los 4 jobs en orden y con los nombres exactos del YAML. 5 pts el rombo de decision con las salidas Si y No rotuladas. 4 pts el nodo de despliegue simulado y el de bloqueo del pull request. 3 pts el nodo de evidencia y la arista de retorno al desarrollador.
+2 pts los disparadores declarados. 1.5 pts el entorno de ejecucion. 4 pts los tres pasos presentes y en orden (construccion, prueba, despliegue simulado). 1.5 pts que el despliegue este rotulado como simulado y no prometa un despliegue real. 1 pt coherencia con el Dockerfile del Corte 1 (misma imagen, mismo puerto). **Cero en toda la pregunta si aparece un secreto escrito en claro en el YAML.**
 
 ---
 
-## Pregunta 3 - Respuesta escrita · 25 pts
+## Pregunta 8 - Respuesta escrita · 5.0 pts
 
 **Tipo en la plataforma:** `abierta`
 
 **Enunciado (campo Contenido):**
 
-## Plan de monitoreo de CloudLite
+## Que hace realmente su paso de construccion y prueba
 
-Construya una tabla de **5 columnas** con encabezados exactos:
+Explique, sobre **su propio** `ci.yml`:
 
-`Senal | Tipo | Donde se mide | Umbral objetivo | Accion si se rompe`
+1. **Que se compila o se instala** en el paso de construccion.
+2. **Que se ejecuta** en el paso de prueba: que comprueba exactamente.
+3. **Con que condicion el pipeline debe FALLAR**: que tiene que pasar para que el check
+   salga rojo.
 
-con **exactamente 5 filas**. En la columna `Tipo` use **solo** estos rotulos y **cubra los cuatro**: `latencia`, `errores`, `trafico`, `saturacion` (la quinta fila repite el tipo que mas le duela a su dominio y debe justificar por que).
+> **Un CI que solo imprime un mensaje de exito no es CI.** Si su pipeline no puede fallar
+> nunca, no esta validando nada: es una decoracion verde. La pregunta que hay que poder
+> responder es «que error tendria que introducir yo en el codigo para que este pipeline lo
+> detecte», y su respuesta tiene que decirlo.
 
-Reglas por fila:
-- `Donde se mide` cita **un componente exacto** de su C4Deployment (`Edge TLS`, `API CloudLite`, `Base de datos Citas`, `Cola Notificaciones`, `Worker Notificaciones`).
-- `Umbral objetivo` lleva **numero y ventana de tiempo** (`p95 por debajo de 800 ms en 5 minutos`, `tasa de error por debajo de 1 por ciento en 15 minutos`, `menos de 500 mensajes en cola`).
-- `Accion si se rompe` nombra **quien hace que** (`el responsable de laboratorio revisa el log del worker y reencola`), no `investigar`.
-
-Cierre con **2 lineas**: cual de las 5 senales avisaria primero de una caida real de su dominio, y que senal es solo ruido en un proyecto academico.
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
-10 pts las 5 filas con los 4 tipos cubiertos y la quinta justificada. 6 pts que cada senal cite un componente exacto del C4Deployment. 6 pts los umbrales con numero y ventana de tiempo en las 5 filas. 3 pts las 2 lineas de cierre. Cada fila con umbral sin numero pierde su parte proporcional.
+1.5 pts que se compila o instala. 1.5 pts que se ejecuta en la prueba y que comprueba. 2 pts la condicion de fallo, expresada como algo que el pipeline detectaria. **Cero en la condicion de fallo si el pipeline no puede fallar nunca** (solo `echo`, o pruebas que siempre pasan): es el criterio central de la pregunta.
 
 ---
 
-## Pregunta 4 - Seleccion multiple · 15 pts
+## Pregunta 9 - Respuesta escrita · 4.0 pts
 
-**Tipo en la plataforma:** `cerrada_multi`
+**Tipo en la plataforma:** `abierta`
 
 **Enunciado (campo Contenido):**
 
-## Que es realista con GitHub Actions gratuito
+## Hasta donde llega su pipeline: CI, CD y lo que es realista aqui
 
-En este curso esta prohibido cloud de pago y tarjeta de credito. Seleccione las **3 opciones realistas y aceptadas** para el PI.
+Distinga los dos terminos y ubique su propio trabajo:
 
-**Opciones:**
+1. **Que valida la integracion continua (CI)** y en que momento del ciclo actua.
+2. **Que hace la entrega o despliegue continuo (CD)**, y en que se diferencia de lo
+   anterior.
+3. **Cual de los dos construyo usted hoy**, y hasta que punto exacto llega su `ci.yml`.
+4. **Que le faltaria** para tener CD de verdad, y **por que este curso no lo pide**.
 
-- [x] Ejecutar build y pruebas unitarias en cada push sobre un runner alojado gratuito.
-- [x] Publicar un artefacto con upload-artifact y descargarlo como evidencia del run.
-- [ ] Desplegar automaticamente en un cluster Kubernetes administrado de pago como parte del PI.
-- [x] Simular el despliegue con un job que imprime el plan, adjunta el artefacto y deja en el log que es simulado.
-- [ ] Guardar la clave de produccion en claro dentro del ci.yml para que el despliegue real funcione.
-- [ ] Comprar minutos adicionales de runner con tarjeta de credito para alcanzar la entrega.
+> La frontera importa mas de lo que parece: decir «ya tenemos CD» porque el YAML tiene un
+> paso llamado `deploy` es de las afirmaciones que un evaluador tumba en dos preguntas. En
+> este curso el despliegue **se simula**, y decirlo asi no resta puntos: los suma, porque
+> demuestra que sabe donde esta el limite de lo que construyo.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
-5 pts por cada opcion correcta marcada; se descuentan 5 pts por cada opcion incorrecta marcada, sin bajar de cero.
+1 pt la definicion de CI atada a cuando actua. 1 pt la de CD y su diferencia. 1 pt ubicar correctamente su propio trabajo, reconociendo que llega hasta «listo para desplegar». 1 pt lo que faltaria para CD real y por que el curso no lo exige. Se descuenta la mitad si afirma haber construido CD.
 
 ---
 
-## Pregunta 5 - Seleccion unica · 10 pts
+## Pregunta 10 - Respuesta escrita · 6.0 pts
 
-**Tipo en la plataforma:** `cerrada`
+**Tipo en la plataforma:** `abierta`
 
 **Enunciado (campo Contenido):**
 
-## Como se llama lo que tiene el equipo
+## Metricas y registros de CloudLite en produccion
 
-El workflow compila, ejecuta pruebas y publica un artefacto, pero **ningun paso lleva el cambio a un ambiente**: el ultimo job solo imprime el plan de despliegue. Como se describe correctamente lo que tiene el equipo?
+Liste entre **4 y 6 metricas o registros** que observaria en la produccion hipotetica de su
+CloudLite, **cada una con su umbral u objetivo**.
 
-**Opciones:**
+Orientacion: use las **senales doradas** en version reducida, aterrizadas a su dominio:
 
-- [x] Integracion continua con despliegue simulado.
-- [ ] Despliegue continuo completo hasta produccion.
-- [ ] Entrega continua con aprobacion manual a produccion.
-- [ ] No es un pipeline, porque un pipeline se define por desplegar.
+- **Latencia**: cuanto tarda la operacion que mas se usa.
+- **Trafico**: cuantas peticiones u operaciones por unidad de tiempo.
+- **Errores**: que proporcion falla, y cuales cuentan como fallo de negocio.
+- **Saturacion**: que recurso se agota primero.
+
+Formato: `Senal | Que se mide en MI dominio | Umbral u objetivo`.
+
+> **Una metrica sin umbral no sirve para operar.** «Medimos la latencia» no permite decidir
+> nada; «el listado de disponibilidad debe responder en menos de 400 ms y si pasa de 800 ms
+> se revisa» si, porque define cuando hay que actuar. El umbral puede ser discutible; lo que
+> no puede es faltar.
+
+Al menos una de las senales debe ser un **registro** y no una metrica numerica: algo que se
+escribe para poder reconstruir que paso despues.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
-10 pts la opcion correcta, 0 en cualquier otra. Comprueba que el estudiante no llame despliegue continuo a un pipeline que no despliega.
+1 pt por senal bien formada con su umbral, hasta 4 senales; las senales 5 y 6 suman hasta 1 pt adicional entre las dos. 1 pt que al menos una sea un registro y no una metrica numerica. **Una senal sin umbral no suma**, aunque este bien elegida. Se descuenta si las senales no se refieren a operaciones del dominio propio.
 
 ---
 
 ## Al terminar de crearlo
 
-- Verifique que la suma de puntos sea la esperada: **100**.
+- Verifique que la suma de puntos sea la esperada: **25**.
 - Publique el taller y confirme la fecha limite (domingo 23:59 segun el Acuerdo).
 - Las preguntas con SQL o codigo: ejecutelas una vez usted mismo antes de publicar,
   para confirmar que el SQL de partida corre y que el starter compila.

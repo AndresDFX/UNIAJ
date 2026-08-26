@@ -93,7 +93,7 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
 - **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
-- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `C4Deployment`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
+- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `flowchart`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
 - **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
@@ -118,11 +118,10 @@ Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
-1. Paso 1: copien la lista canonica de 5 contenedores de la Clase 4 y asignen cada uno a una de 3 zonas con su subred (zona publica 10.10.1.0/24, zona privada 10.10.2.0/24, zona de datos 10.10.3.0/24), verificando que ningun contenedor quede sin zona y que la base de datos y la cola no queden en la zona publica.
-2. Paso 2: escriban en ExamLab el diagrama C4Deployment en Mermaid con 4 Deployment_Node (dispositivo del usuario, zona publica, zona privada y zona de datos), el tamano de cada nodo y los mismos nombres de contenedores, verificando al renderizar que cada relacion lleve puerto y que el nombre de cada contenedor sea identico letra por letra al del C4Container de la Clase 4.
-3. Paso 3: en el editor de topologia de red arme la red con 5 dispositivos (equipo del usuario, edge o proxy reverso, dos nodos de aplicacion y un nodo de datos) y las 3 subredes del paso 1, verificando que cada interfaz tenga una direccion valida dentro de su subred y que el nodo de datos no tenga ruta hacia la subred del usuario.
-4. Paso 4: en la consola de red ejecuten las 4 comprobaciones (direcciones de las interfaces, alcance del usuario al edge, alcance del edge a la aplicacion y alcance del usuario a la base de datos) y peguen las salidas, verificando que las 3 primeras tengan exito y que la cuarta falle, porque un exito ahi significa que la zona de datos quedo expuesta.
-5. Paso 5: completen la tabla de almacenamiento de 5 filas y la matriz de puertos de 6 filas, actualicen la seccion Redes y almacenamiento del informe y suban las 5 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que los puertos del diagrama, de la matriz y de la topologia sean los mismos numeros.
+1. Paso 1: dibuje primero el boceto del despliegue en Excalidraw o draw.io con las tres zonas (publica, privada y de datos), y despues pidale a una IA que lo traduzca a Mermaid; peguelo en la pregunta 4 y verifique en el diagrama ya renderizado que la base de datos NO quede en la zona publica.
+2. Paso 2: etiquete en ese mismo diagrama el puerto de cada componente y marque las fronteras de confianza, es decir donde termina lo que usted controla; verifique que no aparezcan nombres de subredes ni de servicios de un proveedor concreto.
+3. Paso 3: justifique en la pregunta 5 el tipo de almacenamiento de cada componente diciendo que caracteristica del dato lo exige; si su dominio no necesita almacenamiento de objetos, declarelo y justifiquelo en vez de agregarlo.
+4. Paso 4: complete en la pregunta 6 la tabla de correspondencia entre el C4 Containers y el Despliegue, con una fila por componente y su zona, y liste los renombres que aplico; si no hubo ninguno, digalo explicitamente.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

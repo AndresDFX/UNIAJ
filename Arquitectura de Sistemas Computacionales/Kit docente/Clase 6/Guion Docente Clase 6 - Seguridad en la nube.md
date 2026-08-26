@@ -51,10 +51,9 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 7. Ejercicio guiado
 8. Amenaza -> control -> evidencia (una fila por amenaza)
 9. Herramientas de hoy
-10. Del boceto a ExamLab (diagrama)
-11. Taller PI (paso a paso)
-12. Para continuar (PI)
-13. Clase 6 · PI en movimiento
+10. Taller PI (paso a paso)
+11. Para continuar (PI)
+12. Clase 6 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -76,7 +75,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 10]
+### 40–55 · Demo en vivo · 
 Herramienta del día: **Excalidraw · Google Docs**.
 **Demo que usted debe poder repetir:** De amenaza STRIDE a control verificable, en vivo
 
@@ -87,19 +86,10 @@ Herramienta del día: **Excalidraw · Google Docs**.
 
 Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase 6/Capturas/`.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
-
-**Cierra la demo dentro de ExamLab** [Slide 10] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
-
-**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
-
-- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
-- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `flowchart`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
-- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
-- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 📸 Por que un secreto NUNCA va dentro de la imagen (demo de 1 minuto) [[captura: salida-secreto-en-imagen.png]]
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 11]
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 10]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -112,18 +102,17 @@ Aplica el quiz corto de `Kit docente/Clase 6/Quiz Clase 6 - Seguridad en la nube
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 13]
+### 115–120 · Cierre · [Slide 12]
 Di: «Queda avanzado: Modelo de amenazas mínimo + controles para CloudLite.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
-1. Paso 1: liste 5 amenazas concretas de su dominio, una por cada categoria de STRIDE-lite (suplantacion, manipulacion, divulgacion de informacion, denegacion de servicio y elevacion de privilegios), verificando que cada amenaza nombre el activo afectado de su propio C4 (por ejemplo la Base de datos Citas o el token del estudiante) y que ninguna sea copiada como frase generica de internet.
-2. Paso 2: asigne a cada amenaza un control tecnico y la flecha o zona exacta del diagrama donde se ve ese control, verificando que los 5 controles sean distintos entre si y que al menos uno sea preventivo, uno detectivo y uno de contencion; la tabla completa queda en la seccion Seguridad del informe del PI.
-3. Paso 3: escriban en ExamLab el diagrama Mermaid de fronteras de confianza con 3 zonas (publica, privada y de datos), los 5 contenedores de la Clase 4 ubicados en su zona, las aristas rotuladas con protocolo y puerto, y una arista punteada de trafico bloqueado, verificando al renderizar que la base de datos y la cola quedan en la zona de datos y que el usuario no tiene ninguna arista solida hacia ellas.
-4. Paso 4: redacten la politica de secretos con los 6 puntos obligatorios (inventario de 4 secretos, donde vive cada uno, quien accede, rotacion, plan si se filtra, prohibiciones), verificando que ningun secreto quede en el Dockerfile, en el repositorio ni en el YAML en claro y que el plan de filtracion incluya rotar e invalidar la credencial anterior.
-5. Paso 5: integren la tabla STRIDE, el diagrama y la politica de secretos en la seccion Seguridad del informe (1 a 1.5 paginas) y suban las 5 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que cada amenaza de la tabla se pueda senalar con el dedo en el diagrama renderizado.
+1. Paso 1: liste en la pregunta 1 cinco amenazas de SU dominio, cada una nombrando el actor o el dato concreto que pone en riesgo y el camino por el que ocurre; use STRIDE como guia de categorias y verifique que ninguna sea una frase de manual que sirva igual para cualquier sistema.
+2. Paso 2: complete en la pregunta 2 la tabla amenaza-control-donde, senalando para cada control la caja o la flecha concreta del C4 Containers o del Despliegue donde se ve; incluya el principio de menor privilegio aplicado a un componente, diciendo que deja de poder hacer.
+3. Paso 3: escriba en la pregunta 3 la politica de secretos respondiendo donde viven, quien los rota, cada cuanto y que esta prohibido, y cierre con el procedimiento ante una filtracion; verifique que su politica no admita secretos en el Dockerfile, el README ni el YAML en claro.
+4. Paso 4: guarde y continue. Esta actividad es una sola para las Clases 6, 7, 8 y 10 y se entrega completa al cierre del Corte 2: hoy resuelve las preguntas 1 a 3 y las 4 a 12 se resuelven en las clases siguientes.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).

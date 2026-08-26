@@ -1,8 +1,8 @@
 # Taller de la Clase 6 en ExamLab - configuracion
 
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
-- **Taller:** Taller Clase 6 en ExamLab - Modelo de amenazas y controles de CloudLite
-- **Preguntas:** 5 · **Total:** 100 puntos
+- **Taller:** Actividad del Corte 2 (preguntas 1 a 3) - Amenazas, controles y secretos
+- **Preguntas:** 3 · **Total:** 23 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Modelo de amenazas mínimo + controles para CloudLite
 - **Entregable de la clase:** Sección Seguridad PI: 5 amenazas STRIDE-lite + controles + secretos/CI
@@ -11,174 +11,113 @@
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
 > campo para copiar y pegar, incluidos el SQL de partida y el codigo base.
 
-**Que produce el estudiante:** El estudiante entrega el modelo de amenazas STRIDE-lite de su dominio con 5 controles trazados a un diagrama de fronteras de confianza y una politica de secretos que deja el repositorio y el pipeline limpios.
+**Que produce el estudiante:** Las preguntas 1 a 3 de la actividad del Corte 2, que es una sola para las Clases 6, 7, 8 y 10. El estudiante deja el modelo de amenazas de su dominio con sus controles ubicados en los diagramas y la politica de secretos escrita.
 
 ---
 
-## Pregunta 1 - Respuesta escrita · 30 pts
+## Pregunta 1 - Respuesta escrita · 8.75 pts
 
 **Tipo en la plataforma:** `abierta`
 
 **Enunciado (campo Contenido):**
 
-## Modelo de amenazas STRIDE-lite de su dominio
+## Cinco amenazas STRIDE-lite de SU dominio
 
-Construya una tabla de **5 columnas** con encabezados exactos:
+Liste **5 amenazas** aplicadas a su CloudLite. **No una lista generica copiada de
+internet**: cada amenaza tiene que nombrar **el actor o el dato concreto de su dominio** que
+pone en riesgo.
 
-`Categoria STRIDE | Amenaza concreta de mi dominio | Activo afectado | Control | Donde se ve en el diagrama`
+Use STRIDE como guia de categorias: **S**poofing (suplantacion), **T**ampering (alteracion),
+**R**epudiation (negacion), **I**nformation disclosure (fuga), **D**enial of service y
+**E**levation of privilege. No hacen falta las seis: hacen falta cinco amenazas reales.
 
-con **exactamente 5 filas**, una por categoria y en este orden: **Spoofing (suplantacion)**, **Tampering (manipulacion)**, **Information disclosure (divulgacion)**, **Denial of service (denegacion)**, **Elevation of privilege (elevacion de privilegios)**.
+Amenazas tipicas del curso, como referencia de la **forma** esperada, no para copiarlas:
 
-Reglas por fila:
-- La amenaza debe nombrar **un activo de su propio C4Container** (`Base de datos Citas`, `Cola Notificaciones`, `token del estudiante`, `clave del correo transaccional`).
-- Los **5 controles deben ser distintos** y entre ellos debe haber **al menos uno preventivo, uno detectivo y uno de contencion**; rotule cada control con `[preventivo]`, `[detectivo]` o `[contencion]`.
-- La ultima columna cita **la flecha o la zona exacta** del diagrama de la pregunta 2 (por ejemplo `arista Estudiante -> Edge TLS 443`).
+- secretos dentro de la imagen del contenedor
+- API sin autenticacion
+- registros que guardan tokens
+- datos personales viajando sin TLS
 
-No se acepta una amenaza escrita como frase generica del tipo `podrian hackear el sistema`.
+> La diferencia entre una amenaza y una frase de manual es el complemento. «Fuga de
+> informacion» no es una amenaza; «un estudiante puede consultar por identificador las
+> reservas de otro porque el endpoint no valida a quien pertenece» si lo es, porque nombra
+> al actor, el dato y el camino.
 
-**Rubrica esperada (campo Rubrica):**
-
-10 pts las 5 filas con las 5 categorias en orden y amenaza concreta del dominio. 8 pts el activo afectado tomado del C4 propio en las 5 filas. 8 pts los 5 controles distintos con etiqueta preventivo, detectivo o contencion y al menos uno de cada tipo. 4 pts la trazabilidad al diagrama citando la flecha o zona exacta. Cada fila generica del tipo podrian hackear el sistema vale cero.
-
----
-
-## Pregunta 2 - Diagrama (Mermaid) · 25 pts
-
-**Tipo en la plataforma:** `diagrama`
-
-**Enunciado (campo Contenido):**
-
-## Fronteras de confianza de CloudLite
-
-Escriba un `flowchart LR` con **exactamente 3 subgrafos** rotulados `Zona publica`, `Zona privada` y `Zona de datos`, y ubique dentro los **5 contenedores de su Clase 4** mas el nodo del edge que termina TLS.
-
-Requisitos:
-1. El actor del usuario queda **fuera** de los 3 subgrafos.
-2. Cada arista solida lleva **protocolo y puerto** y, cuando aplique, **el control** (`HTTPS 443 con TLS 1.2 o superior`, `token OIDC verificado`, `usuario app_rw sin permisos DDL`).
-3. Un nodo de secretos con forma `[[ ]]` conectado por **arista punteada** al consumidor, rotulada `inyeccion en tiempo de ejecucion y nunca en la imagen`.
-4. **Una arista punteada de trafico bloqueado** desde el usuario hacia la base de datos, rotulada `bloqueado por regla de firewall`.
-
-**Verificacion:** la base de datos y la cola deben quedar en la `Zona de datos` y el usuario **no** puede tener ninguna arista solida hacia ellas.
-
-**Pegar al final del enunciado — flujo de entrega del diagrama:**
-
-**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
-
-- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
-- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `flowchart`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
-- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
-- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
-
-**Diagrama de referencia (Mermaid):**
-
-```mermaid
-flowchart LR
-    usuario["Estudiante en su navegador"]
-    subgraph pub["Zona publica - expuesta a Internet"]
-        edge["Edge TLS y proxy reverso - Nginx 443"]
-        spa["SPA Web - contenido estatico"]
-    end
-    subgraph priv["Zona privada - solo trafico interno"]
-        api["API CloudLite - 8080"]
-        worker["Worker Notificaciones"]
-    end
-    subgraph datos["Zona de datos - sin salida a Internet"]
-        db[("Base de datos Citas - PostgreSQL 5432")]
-        cola[("Cola Notificaciones - Redis 6379")]
-    end
-    secretos[["Secretos en GitHub Actions y variables de entorno del contenedor"]]
-    usuario -->|"HTTPS 443 con TLS 1.2 o superior"| edge
-    edge --> spa
-    edge -->|"HTTP 8080 interno con token OIDC verificado"| api
-    api -->|"SQL 5432 con usuario app_rw sin permisos DDL"| db
-    api -->|"RESP 6379 solo XADD"| cola
-    worker -->|"RESP 6379 solo XREAD"| cola
-    secretos -.->|"inyeccion en tiempo de ejecucion y nunca en la imagen"| api
-    usuario -.->|"bloqueado por regla de firewall"| db
-```
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
-8 pts los 3 subgrafos con los 5 contenedores ubicados en la zona correcta. 8 pts las aristas solidas con protocolo puerto y control. 5 pts el nodo de secretos con arista punteada de inyeccion en tiempo de ejecucion. 4 pts la arista punteada de trafico bloqueado del usuario a la base de datos. Se descuentan 8 pts si la base de datos o la cola aparecen en la zona publica.
+1.75 pts por amenaza bien formada, hasta 5. Una amenaza suma completo solo si nombra el actor o el dato concreto del dominio y el camino por el que ocurre. Una amenaza generica («podrian hackear la base de datos») vale la mitad. Se descuenta si dos amenazas son la misma con otras palabras.
 
 ---
 
-## Pregunta 3 - Respuesta escrita · 20 pts
+## Pregunta 2 - Respuesta escrita · 8.75 pts
 
 **Tipo en la plataforma:** `abierta`
 
 **Enunciado (campo Contenido):**
 
-## Politica de secretos de CloudLite
+## El control de cada amenaza y donde se ve
 
-Redacte la politica con **estos 6 puntos numerados**, en este orden:
+Para **cada una de las 5 amenazas** de la pregunta anterior indique:
 
-1. **Inventario**: tabla de **4 secretos** con 3 columnas (`Secreto | Para que sirve | Que pasa si se filtra`). Incluya al menos la credencial de la base de datos y la clave del servicio de correo.
-2. **Donde vive cada secreto**: una linea por secreto indicando el lugar exacto (`Settings > Secrets and variables > Actions`, variable de entorno del contenedor, gestor local). Prohibido: Dockerfile, repositorio, YAML en claro, captura de pantalla en el informe.
-3. **Quien accede**: quien puede ver o rotar cada secreto (usted, y cada integrante si el docente autorizo equipo) y con que criterio de minimo privilegio.
-4. **Rotacion**: cada cuanto se rota y **el evento que fuerza rotacion inmediata**.
-5. **Plan si se filtra**: exactamente **4 pasos numerados**, y el primero debe ser rotar e invalidar la credencial anterior (borrar el commit **no** es suficiente y debe decirlo explicitamente).
-6. **Prohibiciones**: 3 practicas prohibidas en este proyecto, cada una con una frase de por que.
+1. **El CONTROL que la mitiga.** Concreto y verificable, no «mejorar la seguridad».
+2. **DONDE se ve ese control en sus diagramas**: sobre que **caja** o sobre que **flecha**
+   del C4 Containers o del diagrama de Despliegue aplica.
 
-Extension total: entre media y una pagina. Esta politica se pega en la seccion Seguridad del informe.
+Presentelo como tabla: `Amenaza | Control | Donde se ve (caja o flecha)`.
+
+**Debe aparecer el principio de menor privilegio**, aunque sea narrado: que cada componente
+y cada rol reciba exactamente los permisos que necesita y ni uno mas. Diga sobre que
+componente de SU sistema lo aplica y que deja de poder hacer al aplicarlo.
+
+> Un control que no se puede senalar en un artefacto no existe todavia: es una intencion.
+> Por eso la segunda columna vale tanto como la primera. Si no encuentra donde ubicarlo,
+> probablemente le falta una caja o una frontera en el diagrama.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
-6 pts el inventario de 4 secretos con las 3 columnas incluidas base de datos y correo. 4 pts la ubicacion exacta de cada secreto sin caer en Dockerfile repositorio ni YAML en claro. 3 pts el acceso por minimo privilegio. 3 pts la rotacion con periodo y evento disparador. 4 pts el plan de filtracion con 4 pasos empezando por rotar e invalidar y aclarando que borrar el commit no basta.
+1 pt por cada control concreto y verificable, hasta 5. 2.5 pts por senalar correctamente la caja o la flecha de cada uno; se prorratea. 1.25 pts por el principio de menor privilegio aplicado a un componente concreto, diciendo que deja de poder hacer. Un control tipo «usar buenas practicas» no suma.
 
 ---
 
-## Pregunta 4 - Seleccion multiple · 15 pts
+## Pregunta 3 - Respuesta escrita · 7.5 pts
 
-**Tipo en la plataforma:** `cerrada_multi`
-
-**Enunciado (campo Contenido):**
-
-## Secretos en el pipeline
-
-Seleccione las **3 practicas correctas** para manejar secretos en GitHub Actions y en la imagen del contenedor.
-
-**Opciones:**
-
-- [x] Guardar la clave del servicio de correo en Settings > Secrets and variables > Actions y leerla como ${{ secrets.EMAIL_API_KEY }}.
-- [ ] Escribir la clave en claro dentro del ci.yml porque el repositorio es privado.
-- [ ] Copiar el archivo .env al contexto de build para que quede dentro de la imagen.
-- [x] Rotar la clave e invalidar la anterior en cuanto aparezca en un commit, aunque despues se borre el archivo.
-- [x] Usar un token con permiso solo de envio de correo en lugar del token de administrador de la cuenta.
-- [ ] Imprimir el valor del secreto con echo en el log del pipeline para confirmar que llego bien.
-
-**Rubrica esperada (campo Rubrica):**
-
-5 pts por cada practica correcta marcada; se descuentan 5 pts por cada practica incorrecta marcada, sin bajar de cero.
-
----
-
-## Pregunta 5 - Seleccion unica · 10 pts
-
-**Tipo en la plataforma:** `cerrada`
+**Tipo en la plataforma:** `abierta`
 
 **Enunciado (campo Contenido):**
 
-## Clasifique la amenaza
+## Politica de secretos del repositorio y de la CI
 
-Un atacante copia el token que quedo guardado en el `localStorage` del navegador de otro estudiante, lo reenvia en un `POST /citas` y reserva una cita a nombre de esa persona. En STRIDE, que categoria describe **mejor** la amenaza?
+Defina la politica de secretos de CloudLite respondiendo estas cuatro preguntas:
 
-**Opciones:**
+1. **Donde viven** los secretos.
+2. **Quien los rota**.
+3. **Con que frecuencia** se rotan.
+4. **Que esta explicitamente prohibido**.
 
-- [x] Spoofing: suplantacion de la identidad de otro usuario.
-- [ ] Denial of service: agotamiento de la capacidad del servicio.
-- [ ] Repudiation: imposibilidad de demostrar quien ejecuto la accion.
-- [ ] Tampering: alteracion de los datos en transito.
+> **Regla del curso:** los secretos van en la **configuracion del repositorio** (los
+> *secrets* del proyecto), **nunca** en el `Dockerfile`, en el `README` ni en el YAML en
+> claro. Un secreto escrito en el Dockerfile queda en el **historial de capas** de la imagen
+> para siempre: cualquiera que tenga la imagen lo lee, aunque el archivo se borre en una
+> capa posterior.
+
+Cierre nombrando **que haria si un secreto se filtra**: el primer paso no es borrar el
+commit, es **rotar la credencial**, porque el historial ya salio del equipo.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
-10 pts la opcion correcta, 0 en cualquier otra.
+1.5 pts cada una de las cuatro preguntas respondida de forma concreta (donde, quien, cada cuanto, que se prohibe): 6 pts. 1.5 pts el procedimiento ante filtracion empezando por rotar la credencial y no por borrar el commit. Cero en la primera pregunta si la respuesta admite guardar secretos en el repositorio en claro.
 
 ---
 
 ## Al terminar de crearlo
 
-- Verifique que la suma de puntos sea la esperada: **100**.
+- Verifique que la suma de puntos sea la esperada: **23**.
 - Publique el taller y confirme la fecha limite (domingo 23:59 segun el Acuerdo).
 - Las preguntas con SQL o codigo: ejecutelas una vez usted mismo antes de publicar,
   para confirmar que el SQL de partida corre y que el starter compila.

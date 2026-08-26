@@ -26,7 +26,11 @@ Cada taller suma 100 puntos.
 # ---------------------------------------------------------------------------
 # Actividad unica del Corte 1
 # ---------------------------------------------------------------------------
-# En ExamLab las Clases 1 a 4 NO tienen un taller cada una: comparten UNA sola
+# En ExamLab hay UNA actividad por CORTE, no un taller por clase:
+#   Corte 1 -> Clases 1, 2, 3 y 4   ·   Corte 2 -> Clases 6, 7, 8 y 10
+#   Corte 3 -> Clases 11, 12, 13 y 15
+# Las Clases 5, 9 y 14 son parciales y no aportan preguntas.
+# Las Clases 1 a 4 NO tienen un taller cada una: comparten UNA sola
 # actividad de 15 preguntas, con numeracion continua y 25 % del peso por clase.
 # Por eso cada `EXAMLAB[n]` de esas cuatro clases lleva solo sus preguntas, y
 # cada pregunta declara su `n_global`: es el numero con el que el estudiante la
@@ -41,6 +45,23 @@ ACTIVIDAD_CORTE1 = {
     "preguntas": 15,
     "total": 100,
     "cierre": "domingo 23:59 de la semana de la Clase 4",
+}
+
+
+ACTIVIDAD_CORTE2 = {
+    "titulo": "Actividad del Corte 2 - CloudLite App: seguridad, despliegue, CI y costos",
+    "clases": (6, 7, 8, 10),
+    "preguntas": 12,
+    "total": 100,
+    "cierre": "domingo 23:59 de la semana de la Clase 10",
+}
+
+ACTIVIDAD_CORTE3 = {
+    "titulo": "Actividad del Corte 3 - CloudLite App: diagnostico, rendimiento y cierre",
+    "clases": (11, 12, 13, 15),
+    "preguntas": 8,
+    "total": 100,
+    "cierre": "antes del turno de sustentacion de la Clase 15",
 }
 
 
@@ -579,808 +600,375 @@ propia arquitectura logica, en este orden:
                   ],
      'resumen': '''Las preguntas 12 a 15 de la actividad del Corte 1, que la cierran. El estudiante decide si parte el sistema, modela el C4 Container reutilizando los nombres del Context, define 3 contratos con su error de negocio y analiza los riesgos que introdujo al distribuir.''',
      'titulo': '''Actividad del Corte 1 (preguntas 12 a 15) - C4 Containers, contratos y riesgos'''},
- 6: {'pasos': ['Paso 1: liste 5 amenazas concretas de su dominio, una por cada categoria de '
-               'STRIDE-lite (suplantacion, manipulacion, divulgacion de informacion, denegacion de '
-               'servicio y elevacion de privilegios), verificando que cada amenaza nombre el '
-               'activo afectado de su propio C4 (por ejemplo la Base de datos Citas o el token del '
-               'estudiante) y que ninguna sea copiada como frase generica de internet.',
-               'Paso 2: asigne a cada amenaza un control tecnico y la flecha o zona exacta del '
-               'diagrama donde se ve ese control, verificando que los 5 controles sean distintos '
-               'entre si y que al menos uno sea preventivo, uno detectivo y uno de contencion; la '
-               'tabla completa queda en la seccion Seguridad del informe del PI.',
-               'Paso 3: escriban en ExamLab el diagrama Mermaid de fronteras de confianza con 3 '
-               'zonas (publica, privada y de datos), los 5 contenedores de la Clase 4 ubicados en '
-               'su zona, las aristas rotuladas con protocolo y puerto, y una arista punteada de '
-               'trafico bloqueado, verificando al renderizar que la base de datos y la cola quedan '
-               'en la zona de datos y que el usuario no tiene ninguna arista solida hacia ellas.',
-               'Paso 4: redacten la politica de secretos con los 6 puntos obligatorios (inventario '
-               'de 4 secretos, donde vive cada uno, quien accede, rotacion, plan si se filtra, '
-               'prohibiciones), verificando que ningun secreto quede en el Dockerfile, en el '
-               'repositorio ni en el YAML en claro y que el plan de filtracion incluya rotar e '
-               'invalidar la credencial anterior.',
-               'Paso 5: integren la tabla STRIDE, el diagrama y la politica de secretos en la '
-               'seccion Seguridad del informe (1 a 1.5 paginas) y suban las 5 preguntas a ExamLab '
-               '(modulo Talleres) antes del domingo 23:59, verificando que cada amenaza de la '
-               'tabla se pueda senalar con el dedo en el diagrama renderizado.'],
-     'preguntas': [{'enunciado': '## Modelo de amenazas STRIDE-lite de su dominio\n'
-                                 '\n'
-                                 'Construya una tabla de **5 columnas** con encabezados exactos:\n'
-                                 '\n'
-                                 '`Categoria STRIDE | Amenaza concreta de mi dominio | Activo '
-                                 'afectado | Control | Donde se ve en el diagrama`\n'
-                                 '\n'
-                                 'con **exactamente 5 filas**, una por categoria y en este orden: '
-                                 '**Spoofing (suplantacion)**, **Tampering (manipulacion)**, '
-                                 '**Information disclosure (divulgacion)**, **Denial of service '
-                                 '(denegacion)**, **Elevation of privilege (elevacion de '
-                                 'privilegios)**.\n'
-                                 '\n'
-                                 'Reglas por fila:\n'
-                                 '- La amenaza debe nombrar **un activo de su propio C4Container** '
-                                 '(`Base de datos Citas`, `Cola Notificaciones`, `token del '
-                                 'estudiante`, `clave del correo transaccional`).\n'
-                                 '- Los **5 controles deben ser distintos** y entre ellos debe '
-                                 'haber **al menos uno preventivo, uno detectivo y uno de '
-                                 'contencion**; rotule cada control con `[preventivo]`, '
-                                 '`[detectivo]` o `[contencion]`.\n'
-                                 '- La ultima columna cita **la flecha o la zona exacta** del '
-                                 'diagrama de la pregunta 2 (por ejemplo `arista Estudiante -> '
-                                 'Edge TLS 443`).\n'
-                                 '\n'
-                                 'No se acepta una amenaza escrita como frase generica del tipo '
-                                 '`podrian hackear el sistema`.',
-                    'puntos': 30,
-                    'rubrica': '10 pts las 5 filas con las 5 categorias en orden y amenaza '
-                               'concreta del dominio. 8 pts el activo afectado tomado del C4 '
-                               'propio en las 5 filas. 8 pts los 5 controles distintos con '
-                               'etiqueta preventivo, detectivo o contencion y al menos uno de cada '
-                               'tipo. 4 pts la trazabilidad al diagrama citando la flecha o zona '
-                               'exacta. Cada fila generica del tipo podrian hackear el sistema '
-                               'vale cero.',
-                    'tipo': 'abierta'},
-                   {'enunciado': '## Fronteras de confianza de CloudLite\n'
-                                 '\n'
-                                 'Escriba un `flowchart LR` con **exactamente 3 subgrafos** '
-                                 'rotulados `Zona publica`, `Zona privada` y `Zona de datos`, y '
-                                 'ubique dentro los **5 contenedores de su Clase 4** mas el nodo '
-                                 'del edge que termina TLS.\n'
-                                 '\n'
-                                 'Requisitos:\n'
-                                 '1. El actor del usuario queda **fuera** de los 3 subgrafos.\n'
-                                 '2. Cada arista solida lleva **protocolo y puerto** y, cuando '
-                                 'aplique, **el control** (`HTTPS 443 con TLS 1.2 o superior`, '
-                                 '`token OIDC verificado`, `usuario app_rw sin permisos DDL`).\n'
-                                 '3. Un nodo de secretos con forma `[[ ]]` conectado por **arista '
-                                 'punteada** al consumidor, rotulada `inyeccion en tiempo de '
-                                 'ejecucion y nunca en la imagen`.\n'
-                                 '4. **Una arista punteada de trafico bloqueado** desde el usuario '
-                                 'hacia la base de datos, rotulada `bloqueado por regla de '
-                                 'firewall`.\n'
-                                 '\n'
-                                 '**Verificacion:** la base de datos y la cola deben quedar en la '
-                                 '`Zona de datos` y el usuario **no** puede tener ninguna arista '
-                                 'solida hacia ellas.',
-                    'mermaid_esperado': 'flowchart LR\n'
-                                        '    usuario["Estudiante en su navegador"]\n'
-                                        '    subgraph pub["Zona publica - expuesta a Internet"]\n'
-                                        '        edge["Edge TLS y proxy reverso - Nginx 443"]\n'
-                                        '        spa["SPA Web - contenido estatico"]\n'
-                                        '    end\n'
-                                        '    subgraph priv["Zona privada - solo trafico interno"]\n'
-                                        '        api["API CloudLite - 8080"]\n'
-                                        '        worker["Worker Notificaciones"]\n'
-                                        '    end\n'
-                                        '    subgraph datos["Zona de datos - sin salida a '
-                                        'Internet"]\n'
-                                        '        db[("Base de datos Citas - PostgreSQL 5432")]\n'
-                                        '        cola[("Cola Notificaciones - Redis 6379")]\n'
-                                        '    end\n'
-                                        '    secretos[["Secretos en GitHub Actions y variables de '
-                                        'entorno del contenedor"]]\n'
-                                        '    usuario -->|"HTTPS 443 con TLS 1.2 o superior"| edge\n'
-                                        '    edge --> spa\n'
-                                        '    edge -->|"HTTP 8080 interno con token OIDC '
-                                        'verificado"| api\n'
-                                        '    api -->|"SQL 5432 con usuario app_rw sin permisos '
-                                        'DDL"| db\n'
-                                        '    api -->|"RESP 6379 solo XADD"| cola\n'
-                                        '    worker -->|"RESP 6379 solo XREAD"| cola\n'
-                                        '    secretos -.->|"inyeccion en tiempo de ejecucion y '
-                                        'nunca en la imagen"| api\n'
-                                        '    usuario -.->|"bloqueado por regla de firewall"| db',
-                    'puntos': 25,
-                    'rubrica': '8 pts los 3 subgrafos con los 5 contenedores ubicados en la zona '
-                               'correcta. 8 pts las aristas solidas con protocolo puerto y '
-                               'control. 5 pts el nodo de secretos con arista punteada de '
-                               'inyeccion en tiempo de ejecucion. 4 pts la arista punteada de '
-                               'trafico bloqueado del usuario a la base de datos. Se descuentan 8 '
-                               'pts si la base de datos o la cola aparecen en la zona publica.',
-                    'tipo': 'diagrama'},
-                   {'enunciado': '## Politica de secretos de CloudLite\n'
-                                 '\n'
-                                 'Redacte la politica con **estos 6 puntos numerados**, en este '
-                                 'orden:\n'
-                                 '\n'
-                                 '1. **Inventario**: tabla de **4 secretos** con 3 columnas '
-                                 '(`Secreto | Para que sirve | Que pasa si se filtra`). Incluya al '
-                                 'menos la credencial de la base de datos y la clave del servicio '
-                                 'de correo.\n'
-                                 '2. **Donde vive cada secreto**: una linea por secreto indicando '
-                                 'el lugar exacto (`Settings > Secrets and variables > Actions`, '
-                                 'variable de entorno del contenedor, gestor local). Prohibido: '
-                                 'Dockerfile, repositorio, YAML en claro, captura de pantalla en '
-                                 'el informe.\n'
-                                 '3. **Quien accede**: quien puede ver o '
-                                 'rotar cada secreto (usted, y cada integrante si el docente autorizo equipo) y con que criterio de minimo privilegio.\n'
-                                 '4. **Rotacion**: cada cuanto se rota y **el evento que fuerza '
-                                 'rotacion inmediata**.\n'
-                                 '5. **Plan si se filtra**: exactamente **4 pasos numerados**, y '
-                                 'el primero debe ser rotar e invalidar la credencial anterior '
-                                 '(borrar el commit **no** es suficiente y debe decirlo '
-                                 'explicitamente).\n'
-                                 '6. **Prohibiciones**: 3 practicas prohibidas en este proyecto, '
-                                 'cada una con una frase de por que.\n'
-                                 '\n'
-                                 'Extension total: entre media y una pagina. Esta politica se pega '
-                                 'en la seccion Seguridad del informe.',
-                    'puntos': 20,
-                    'rubrica': '6 pts el inventario de 4 secretos con las 3 columnas incluidas '
-                               'base de datos y correo. 4 pts la ubicacion exacta de cada secreto '
-                               'sin caer en Dockerfile repositorio ni YAML en claro. 3 pts el '
-                               'acceso por minimo privilegio. 3 pts la rotacion con periodo y '
-                               'evento disparador. 4 pts el plan de filtracion con 4 pasos '
-                               'empezando por rotar e invalidar y aclarando que borrar el commit '
-                               'no basta.',
-                    'tipo': 'abierta'},
-                   {'correctas': [0, 3, 4],
-                    'enunciado': '## Secretos en el pipeline\n'
-                                 '\n'
-                                 'Seleccione las **3 practicas correctas** para manejar secretos '
-                                 'en GitHub Actions y en la imagen del contenedor.',
-                    'opciones': ['Guardar la clave del servicio de correo en Settings > Secrets '
-                                 'and variables > Actions y leerla como ${{ secrets.EMAIL_API_KEY '
-                                 '}}.',
-                                 'Escribir la clave en claro dentro del ci.yml porque el '
-                                 'repositorio es privado.',
-                                 'Copiar el archivo .env al contexto de build para que quede '
-                                 'dentro de la imagen.',
-                                 'Rotar la clave e invalidar la anterior en cuanto aparezca en un '
-                                 'commit, aunque despues se borre el archivo.',
-                                 'Usar un token con permiso solo de envio de correo en lugar del '
-                                 'token de administrador de la cuenta.',
-                                 'Imprimir el valor del secreto con echo en el log del pipeline '
-                                 'para confirmar que llego bien.'],
-                    'puntos': 15,
-                    'rubrica': '5 pts por cada practica correcta marcada; se descuentan 5 pts por '
-                               'cada practica incorrecta marcada, sin bajar de cero.',
-                    'tipo': 'cerrada_multi'},
-                   {'correctas': [0],
-                    'enunciado': '## Clasifique la amenaza\n'
-                                 '\n'
-                                 'Un atacante copia el token que quedo guardado en el '
-                                 '`localStorage` del navegador de otro estudiante, lo reenvia en '
-                                 'un `POST /citas` y reserva una cita a nombre de esa persona. En '
-                                 'STRIDE, que categoria describe **mejor** la amenaza?',
-                    'opciones': ['Spoofing: suplantacion de la identidad de otro usuario.',
-                                 'Denial of service: agotamiento de la capacidad del servicio.',
-                                 'Repudiation: imposibilidad de demostrar quien ejecuto la accion.',
-                                 'Tampering: alteracion de los datos en transito.'],
-                    'puntos': 10,
-                    'rubrica': '10 pts la opcion correcta, 0 en cualquier otra.',
-                    'tipo': 'cerrada'}],
-     'resumen': 'El estudiante entrega el modelo de amenazas STRIDE-lite de su dominio con 5 '
-                'controles trazados a un diagrama de fronteras de confianza y una politica de '
-                'secretos que deja el repositorio y el pipeline limpios.',
-     'titulo': 'Taller Clase 6 en ExamLab - Modelo de amenazas y controles de CloudLite'},
- 7: {'pasos': ['Paso 1: copien la lista canonica de 5 contenedores de la Clase 4 y asignen cada '
-               'uno a una de 3 zonas con su subred (zona publica 10.10.1.0/24, zona privada '
-               '10.10.2.0/24, zona de datos 10.10.3.0/24), verificando que ningun contenedor quede '
-               'sin zona y que la base de datos y la cola no queden en la zona publica.',
-               'Paso 2: escriban en ExamLab el diagrama C4Deployment en Mermaid con 4 '
-               'Deployment_Node (dispositivo del usuario, zona publica, zona privada y zona de '
-               'datos), el tamano de cada nodo y los mismos nombres de contenedores, verificando '
-               'al renderizar que cada relacion lleve puerto y que el nombre de cada contenedor '
-               'sea identico letra por letra al del C4Container de la Clase 4.',
-               'Paso 3: en el editor de topologia de red arme la red con 5 dispositivos (equipo '
-               'del usuario, edge o proxy reverso, dos nodos de aplicacion y un nodo de datos) y '
-               'las 3 subredes del paso 1, verificando que cada interfaz tenga una direccion '
-               'valida dentro de su subred y que el nodo de datos no tenga ruta hacia la subred '
-               'del usuario.',
-               'Paso 4: en la consola de red ejecuten las 4 comprobaciones (direcciones de las '
-               'interfaces, alcance del usuario al edge, alcance del edge a la aplicacion y '
-               'alcance del usuario a la base de datos) y peguen las salidas, verificando que las '
-               '3 primeras tengan exito y que la cuarta falle, porque un exito ahi significa que '
-               'la zona de datos quedo expuesta.',
-               'Paso 5: completen la tabla de almacenamiento de 5 filas y la matriz de puertos de '
-               '6 filas, actualicen la seccion Redes y almacenamiento del informe y suban las 5 '
-               'preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que los '
-               'puertos del diagrama, de la matriz y de la topologia sean los mismos numeros.'],
-     'preguntas': [{'enunciado': '## C4 Deployment de CloudLite App\n'
-                                 '\n'
-                                 'Escriba en Mermaid el diagrama **C4Deployment**. La primera '
-                                 'linea debe ser exactamente `C4Deployment`. Debe contener '
-                                 '**exactamente 4 `Deployment_Node(...)` de primer nivel**:\n'
-                                 '\n'
-                                 '1. `Dispositivo del usuario`.\n'
-                                 '2. `Zona publica` con la subred `10.10.1.0/24`.\n'
-                                 '3. `Zona privada` con la subred `10.10.2.0/24` y la nota `sin IP '
-                                 'publica`.\n'
-                                 '4. `Zona de datos` con la subred `10.10.3.0/24` y la nota `sin '
-                                 'salida a Internet`.\n'
-                                 '\n'
-                                 'Requisitos:\n'
-                                 '- Los **5 contenedores de su Clase 4** aparecen con **el mismo '
-                                 'nombre letra por letra**, cada uno dentro de su zona; agregue el '
-                                 'nodo del **edge** que termina TLS.\n'
-                                 '- Cada nodo declara su **tamano tentativo** (`1 vCPU 1 GB`, `2 '
-                                 'vCPU 2 GB con 2 replicas`).\n'
-                                 '- La base de datos usa `ContainerDb(...)` y declara su **tipo de '
-                                 'almacenamiento** (`almacenamiento de bloque 20 GB`); la cola usa '
-                                 '`ContainerQueue(...)`.\n'
-                                 '- Agregue **un almacen de objetos** para los adjuntos de su '
-                                 'dominio, tambien con `ContainerDb(...)` y la nota '
-                                 '`almacenamiento de objetos`.\n'
-                                 '- Exactamente **7 `Rel(...)`**, todas con **puerto o '
-                                 'protocolo**.\n'
-                                 '\n'
-                                 '**Verificacion:** compare nombre por nombre contra su '
-                                 'C4Container de la Clase 4; si alguno difiere, corrija aqui y '
-                                 'anote la correccion en el informe.',
-                    'mermaid_esperado': 'C4Deployment\n'
-                                        '    title Despliegue de CloudLite App - zonas y '
-                                        'almacenamiento\n'
-                                        '    Deployment_Node(cliente, "Dispositivo del usuario", '
-                                        '"Navegador de escritorio o movil") {\n'
-                                        '        Container(nav, "Navegador", "Chrome o Firefox", '
-                                        '"Descarga la SPA Web y llama a la API")\n'
-                                        '    }\n'
-                                        '    Deployment_Node(publica, "Zona publica", "Subred '
-                                        '10.10.1.0/24 expuesta a Internet") {\n'
-                                        '        Deployment_Node(nodoedge, "Nodo edge", "1 vCPU 1 '
-                                        'GB") {\n'
-                                        '            Container(edge, "Edge TLS y proxy reverso", '
-                                        '"Nginx", "Termina TLS en 443 y sirve la SPA Web")\n'
-                                        '            Container(spa, "SPA Web", "HTML y '
-                                        'JavaScript", "Interfaz estatica de reserva")\n'
-                                        '        }\n'
-                                        '    }\n'
-                                        '    Deployment_Node(privada, "Zona privada", "Subred '
-                                        '10.10.2.0/24 sin IP publica") {\n'
-                                        '        Deployment_Node(nodoapp, "Nodo aplicacion", "2 '
-                                        'vCPU 2 GB con 2 replicas") {\n'
-                                        '            Container(api, "API CloudLite", "Python '
-                                        'FastAPI en contenedor", "Escucha en 8080 y aplica las '
-                                        'reglas de reserva")\n'
-                                        '            Container(worker, "Worker Notificaciones", '
-                                        '"Python en contenedor", "Consume la cola y pide el envio '
-                                        'de correos")\n'
-                                        '        }\n'
-                                        '    }\n'
-                                        '    Deployment_Node(zdatos, "Zona de datos", "Subred '
-                                        '10.10.3.0/24 sin salida a Internet") {\n'
-                                        '        ContainerDb(db, "Base de datos Citas", '
-                                        '"PostgreSQL 16 con almacenamiento de bloque 20 GB", '
-                                        '"Datos transaccionales de cupos y citas")\n'
-                                        '        ContainerQueue(cola, "Cola Notificaciones", '
-                                        '"Redis 7 en memoria con persistencia AOF", "Eventos '
-                                        'cita_confirmada")\n'
-                                        '        ContainerDb(objeto, "Almacen Adjuntos", '
-                                        '"Compatible S3 con almacenamiento de objetos", "PDF de '
-                                        'constancia de cita")\n'
-                                        '    }\n'
-                                        '    Container_Ext(correo, "Correo transaccional SaaS", '
-                                        '"API REST", "Envia confirmaciones y recordatorios")\n'
-                                        '    Rel(nav, edge, "HTTPS 443")\n'
-                                        '    Rel(edge, api, "HTTP 8080 interno")\n'
-                                        '    Rel(api, db, "SQL 5432")\n'
-                                        '    Rel(api, cola, "RESP 6379")\n'
-                                        '    Rel(worker, cola, "RESP 6379")\n'
-                                        '    Rel(api, objeto, "HTTPS PUT y GET de objetos")\n'
-                                        '    Rel(worker, correo, "API REST sobre HTTPS")',
-                    'puntos': 30,
-                    'rubrica': '10 pts los 4 Deployment_Node con su subred y sus notas. 8 pts los '
-                               '5 contenedores con nombre identico al de la Clase 4 ubicados en la '
-                               'zona correcta. 6 pts el tamano de cada nodo y el tipo de '
-                               'almacenamiento declarado en la base de datos y en el almacen de '
-                               'objetos. 6 pts las 7 relaciones con puerto o protocolo. Se '
-                               'descuentan 10 pts si la base de datos o la cola aparecen en la '
-                               'zona publica.',
-                    'tipo': 'diagrama'},
-                   {'enunciado': '## Arme la topologia de CloudLite en el simulador\n'
-                                 '\n'
-                                 'Usando el editor de topologia, construya la red que acaba de '
-                                 'disenar con **exactamente 5 dispositivos** y **3 subredes**:\n'
-                                 '\n'
-                                 '| Dispositivo | Zona | Subred | Direccion sugerida |\n'
-                                 '|---|---|---|---|\n'
-                                 '| `pc-estudiante` | fuera de las zonas | red del usuario | segun '
-                                 'su simulador |\n'
-                                 '| `edge-nginx` | Zona publica | `10.10.1.0/24` | `10.10.1.10` |\n'
-                                 '| `app-1` | Zona privada | `10.10.2.0/24` | `10.10.2.11` |\n'
-                                 '| `app-2` | Zona privada | `10.10.2.0/24` | `10.10.2.12` |\n'
-                                 '| `datos-1` | Zona de datos | `10.10.3.0/24` | `10.10.3.20` |\n'
-                                 '\n'
-                                 'Requisitos de la topologia:\n'
-                                 '1. `pc-estudiante` se conecta **unicamente** con `edge-nginx`.\n'
-                                 '2. `edge-nginx` es el **unico** que alcanza `app-1` y `app-2`.\n'
-                                 '3. `datos-1` se conecta **solo** con la zona privada: **no** '
-                                 'debe tener camino hacia la red del usuario.\n'
-                                 '4. Rotule cada enlace con el **puerto permitido** (`443`, '
-                                 '`8080`, `5432`, `6379`).\n'
-                                 '\n'
-                                 '**Verificacion antes de enviar:** cada interfaz tiene una '
-                                 'direccion dentro de su subred, ningun enlace salta de la red del '
-                                 'usuario a la zona de datos, y los nombres de los dispositivos '
-                                 'corresponden a los nodos de su C4Deployment.',
-                    'puntos': 20,
-                    'rubrica': '8 pts los 5 dispositivos con direccion valida dentro de su subred. '
-                               '6 pts la topologia con las 3 restricciones de conexion respetadas, '
-                               'en especial la ausencia de camino del usuario a la zona de datos. '
-                               '4 pts los enlaces rotulados con el puerto permitido. 2 pts la '
-                               'correspondencia de nombres con el C4Deployment.',
-                    'tipo': 'red_gui'},
-                   {'enunciado': '## Compruebe el aislamiento de la zona de datos\n'
-                                 '\n'
-                                 'En la consola del simulador ejecute **exactamente estas 4 '
-                                 'comprobaciones** sobre la topologia de la pregunta anterior y '
-                                 'pegue la salida de cada una:\n'
-                                 '\n'
-                                 '1. Ver las direcciones de las interfaces de `pc-estudiante` y de '
-                                 '`datos-1` (`ip addr` o el comando equivalente de su simulador).\n'
-                                 '2. Alcanzar `edge-nginx` desde `pc-estudiante` (`ping '
-                                 '10.10.1.10`) -> **debe tener exito**.\n'
-                                 '3. Alcanzar `app-1` desde `edge-nginx` (`ping 10.10.2.11`) -> '
-                                 '**debe tener exito**.\n'
-                                 '4. Alcanzar `datos-1` desde `pc-estudiante` (`ping 10.10.3.20` y '
-                                 'luego el trazado de ruta) -> **debe fallar**.\n'
-                                 '\n'
-                                 'Debajo de las salidas escriba **3 lineas de interpretacion**:\n'
-                                 '- Que demuestra el exito de las comprobaciones 2 y 3.\n'
-                                 '- Que demuestra el **fallo** de la comprobacion 4 y por que un '
-                                 'exito ahi seria un hallazgo de seguridad.\n'
-                                 '- Que control del diagrama de la Clase 6 corresponde a ese '
-                                 'fallo.\n'
-                                 '\n'
-                                 'Si su simulador nombra distinto el comando de trazado de ruta, '
-                                 'escriba el comando exacto que uso.',
-                    'puntos': 15,
-                    'rubrica': '6 pts las 4 comprobaciones ejecutadas con su salida pegada. 5 pts '
-                               'que las comprobaciones 2 y 3 tengan exito y la 4 falle. 4 pts las '
-                               '3 lineas de interpretacion incluyendo la referencia al control de '
-                               'la Clase 6. Si la comprobacion 4 tiene exito y el estudiante no lo '
-                               'detecta, la pregunta vale como maximo 5 pts.',
-                    'tipo': 'red_consola'},
-                   {'enunciado': '## Eleccion de almacenamiento para CloudLite\n'
-                                 '\n'
-                                 'Construya una tabla de **5 columnas** con encabezados exactos:\n'
-                                 '\n'
-                                 '`Dato o componente | Tipo de almacenamiento | Por que ese tipo y '
-                                 'no otro | Retencion | Costo cualitativo B/M/A`\n'
-                                 '\n'
-                                 'con **exactamente 5 filas**, una por cada dato de su dominio:\n'
-                                 '\n'
-                                 '1. Datos transaccionales (cupos, citas, usuarios).\n'
-                                 '2. Archivos adjuntos o comprobantes (PDF, imagenes).\n'
-                                 '3. Eventos o mensajes de notificacion.\n'
-                                 '4. Registros de actividad (logs).\n'
-                                 '5. Respaldos.\n'
-                                 '\n'
-                                 'En la columna `Tipo de almacenamiento` use **solo** estos '
-                                 'rotulos: `relacional`, `almacenamiento de objetos`, '
-                                 '`almacenamiento de bloque`, `en memoria`.\n'
-                                 '\n'
-                                 'Reglas:\n'
-                                 '- La columna `Por que ese tipo y no otro` debe **nombrar el tipo '
-                                 'descartado** (por ejemplo `objetos y no relacional porque el PDF '
-                                 'no se consulta por campos`).\n'
-                                 '- `Retencion` es un tiempo concreto (`90 dias`, `mientras dure '
-                                 'el semestre`, `12 meses`).\n'
-                                 '\n'
-                                 'Cierre con **una frase**: cual de los 5 datos crece mas rapido y '
-                                 'que hara cuando eso pase.',
-                    'puntos': 25,
-                    'rubrica': '10 pts las 5 filas con los 5 datos y solo los 4 rotulos '
-                               'permitidos. 8 pts la justificacion que nombra el tipo descartado '
-                               'en cada fila. 4 pts la retencion como tiempo concreto en las 5 '
-                               'filas. 3 pts la frase de crecimiento con la accion prevista.',
-                    'tipo': 'abierta'},
-                   {'enunciado': '## Matriz de puertos y reglas de red\n'
-                                 '\n'
-                                 'Construya una tabla de **5 columnas** con encabezados exactos:\n'
-                                 '\n'
-                                 '`Origen | Destino | Puerto | Protocolo | Permitido o negado`\n'
-                                 '\n'
-                                 'con **exactamente 6 filas**, que cubran: (1) usuario al edge, '
-                                 '(2) edge a la API, (3) API a la base de datos, (4) API a la '
-                                 'cola, (5) worker al servicio de correo externo, (6) **usuario a '
-                                 'la base de datos, que debe quedar `negado`**.\n'
-                                 '\n'
-                                 'En cada fila `negado` agregue entre parentesis **el motivo** '
-                                 '(`la zona de datos no publica rutas hacia Internet`).\n'
-                                 '\n'
-                                 '**Verificacion:** los 5 numeros de puerto de esta matriz deben '
-                                 'ser exactamente los mismos que aparecen en su C4Deployment y en '
-                                 'los enlaces de su topologia; si alguno no coincide, corrija los '
-                                 'tres artefactos antes de enviar.',
-                    'puntos': 10,
-                    'rubrica': '5 pts las 6 filas con las 5 columnas completas. 3 pts que la fila '
-                               'usuario a base de datos este marcada como negada con su motivo. 2 '
-                               'pts que los puertos coincidan con el C4Deployment y con la '
-                               'topologia del simulador.',
-                    'tipo': 'abierta'}],
-     'resumen': 'El estudiante entrega el diagrama de despliegue de CloudLite por zonas con '
-                'puertos y almacenamiento elegido, y demuestra en el simulador de red que la zona '
-                'de datos no es alcanzable desde el equipo del usuario.',
-     'titulo': 'Taller Clase 7 en ExamLab - Despliegue por zonas y almacenamiento de CloudLite'},
- 8: {'pasos': ['Paso 1: cree o reutilice su repositorio gratuito del proyecto con el stub de la '
-               'Clase 3 y al menos 3 pruebas automatizadas que verifiquen la ruta de salud, un '
-               'caso valido y un caso de error de negocio, verificando con una ejecucion local o '
-               'en el lab que las 3 pruebas pasan antes de tocar el pipeline; el enlace del '
-               'repositorio queda en la portada del informe.',
-               'Paso 2: agreguen el archivo .github/workflows/ci.yml con 4 jobs encadenados '
-               '(build, test, package y deploy simulado), disparadores en push y pull_request '
-               'sobre la rama principal, y publicacion de artefacto, verificando que ningun paso '
-               'imprima secretos y que el job de deploy diga explicitamente en su log que es un '
-               'despliegue simulado.',
-               'Paso 3: ejecuten el workflow con un push real, esperen el run completo y capturen '
-               'el enlace del run verde mas el nombre del artefacto descargable, verificando que '
-               'los 4 jobs aparezcan en verde y que el artefacto pese mas de 0 bytes; si Actions '
-               'falla por cuota, dejen registrado el mensaje textual del error y la explicacion, '
-               'que es el plan B aceptado.',
-               'Paso 4: escriban en ExamLab el diagrama Mermaid del pipeline con los 4 jobs dentro '
-               'de un subgrafo, la compuerta de decision y las dos salidas (despliegue simulado y '
-               'bloqueo del pull request), verificando al renderizar que los nombres de los jobs '
-               'sean exactamente los del ci.yml.',
-               'Paso 5: completen la tabla de 5 senales de monitoreo con umbral y accion, '
-               'actualicen las secciones CI/CD y Monitoreo del informe y suban las 5 preguntas a '
-               'ExamLab (modulo Talleres) antes del domingo 23:59, verificando que el enlace del '
-               'run verde abra sin pedir permisos y que cada senal se pueda medir en el diseno que '
-               'ya dibujaron.'],
-     'preguntas': [{'enunciado': '## Workflow ci.yml de CloudLite\n'
-                                 '\n'
-                                 '> ExamLab **no ejecuta** este YAML: los workflows corren en '
-                                 'GitHub Actions. Aqui se evalua el contenido pegado **mas la '
-                                 'evidencia del run real**.\n'
-                                 '\n'
-                                 '**Parte A.** Pegue el contenido completo de '
-                                 '`.github/workflows/ci.yml`. Debe tener:\n'
-                                 '- `on:` con `push` y `pull_request` sobre la rama principal.\n'
-                                 '- **4 jobs** encadenados con `needs:`, nombrados `build`, '
-                                 '`test`, `package` y `deploy_simulado`.\n'
-                                 '- `test` ejecuta **al menos 3 pruebas** reales (no `echo`).\n'
-                                 '- `package` construye la imagen y publica un artefacto con '
-                                 '`actions/upload-artifact`.\n'
-                                 '- `deploy_simulado` imprime el plan de despliegue y **dice en el '
-                                 'log que es simulado**.\n'
-                                 '- Todo secreto se lee como `${{ secrets.NOMBRE }}`; **cero '
-                                 'valores en claro**.\n'
-                                 '\n'
-                                 '**Parte B.** Tabla de **2 columnas** (`Job | Que verifica y por '
-                                 'que el siguiente no debe correr si este falla`) con **4 '
-                                 'filas**.\n'
-                                 '\n'
-                                 '**Parte C.** Evidencia, en 3 lineas: enlace publico al **run '
-                                 'verde**, nombre y tamano del artefacto publicado, y numero de '
-                                 'pruebas ejecutadas segun el log.\n'
-                                 '\n'
-                                 '**Plan B aceptado:** si Actions falla por cuota o por permisos, '
-                                 'pegue el **mensaje de error textual**, la marca de tiempo y una '
-                                 'explicacion de 4 lineas de que habria pasado en cada job. El '
-                                 'plan B pierde solo los puntos de la Parte C.',
-                    'puntos': 30,
-                    'rubrica': '12 pts el YAML con los 4 jobs encadenados por needs y los '
-                               'disparadores pedidos. 6 pts que test ejecute al menos 3 pruebas '
-                               'reales y package publique artefacto. 4 pts que no haya ningun '
-                               'secreto en claro y que el deploy declare que es simulado. 4 pts la '
-                               'tabla de 4 filas. 4 pts la evidencia del run verde con artefacto y '
-                               'conteo de pruebas, o el plan B con error textual y explicacion.',
-                    'tipo': 'abierta'},
-                   {'enunciado': '## Pipeline de CloudLite en Mermaid\n'
-                                 '\n'
-                                 'Escriba un `flowchart LR` del pipeline que acaba de crear. '
-                                 'Requisitos:\n'
-                                 '\n'
-                                 '1. Un **subgrafo** rotulado con el nombre del archivo (`GitHub '
-                                 'Actions - ci.yml`) que contenga **los 4 jobs con sus nombres '
-                                 'exactos** del YAML, encadenados en orden.\n'
-                                 '2. Antes del subgrafo: el nodo del desarrollador que hace push y '
-                                 'el nodo del pull request.\n'
-                                 '3. Despues del subgrafo: **un nodo de decision con forma de '
-                                 'rombo** que pregunte si los 4 jobs quedaron en verde.\n'
-                                 '4. Dos salidas de la decision: `Si` hacia el **despliegue '
-                                 'simulado con publicacion del artefacto**, y `No` hacia el '
-                                 '**bloqueo del pull request**.\n'
-                                 '5. Un nodo final de **evidencia** (enlace al run y artefacto '
-                                 'descargable) y una arista de retorno del bloqueo hacia el '
-                                 'desarrollador.\n'
-                                 '\n'
-                                 '**Verificacion:** al renderizar debe contar 4 nodos de job, 1 '
-                                 'rombo y 2 salidas rotuladas `Si` y `No`; los nombres de los jobs '
-                                 'deben coincidir letra por letra con el YAML.',
-                    'mermaid_esperado': 'flowchart LR\n'
-                                        '    dev["Desarrollador - push a rama feature"] --> '
-                                        'pr["Pull request hacia main"]\n'
-                                        '    subgraph ci["GitHub Actions - ci.yml"]\n'
-                                        '        direction TB\n'
-                                        '        build["job build - checkout y setup e instalacion '
-                                        'de dependencias"] --> test["job test - 3 pruebas del stub '
-                                        'incluida la ruta de salud"]\n'
-                                        '        test --> package["job package - docker build y '
-                                        'upload-artifact cloudlite-api.tar"]\n'
-                                        '        package --> deploy_simulado["job deploy_simulado '
-                                        '- imprime el plan y marca en el log que es simulado"]\n'
-                                        '    end\n'
-                                        '    pr --> build\n'
-                                        '    deploy_simulado --> gate{"Los 4 jobs quedaron en '
-                                        'verde"}\n'
-                                        '    gate -->|"Si"| ok["Despliegue simulado aprobado y '
-                                        'artefacto publicado"]\n'
-                                        '    gate -->|"No"| block["Pull request bloqueado por '
-                                        'verificacion obligatoria"]\n'
-                                        '    ok --> evid["Evidencia del PI - enlace al run verde y '
-                                        'artefacto descargable"]\n'
-                                        '    block --> dev',
-                    'puntos': 20,
-                    'rubrica': '8 pts el subgrafo con los 4 jobs en orden y con los nombres '
-                               'exactos del YAML. 5 pts el rombo de decision con las salidas Si y '
-                               'No rotuladas. 4 pts el nodo de despliegue simulado y el de bloqueo '
-                               'del pull request. 3 pts el nodo de evidencia y la arista de '
-                               'retorno al desarrollador.',
-                    'tipo': 'diagrama'},
-                   {'enunciado': '## Plan de monitoreo de CloudLite\n'
-                                 '\n'
-                                 'Construya una tabla de **5 columnas** con encabezados exactos:\n'
-                                 '\n'
-                                 '`Senal | Tipo | Donde se mide | Umbral objetivo | Accion si se '
-                                 'rompe`\n'
-                                 '\n'
-                                 'con **exactamente 5 filas**. En la columna `Tipo` use **solo** '
-                                 'estos rotulos y **cubra los cuatro**: `latencia`, `errores`, '
-                                 '`trafico`, `saturacion` (la quinta fila repite el tipo que mas '
-                                 'le duela a su dominio y debe justificar por que).\n'
-                                 '\n'
-                                 'Reglas por fila:\n'
-                                 '- `Donde se mide` cita **un componente exacto** de su '
-                                 'C4Deployment (`Edge TLS`, `API CloudLite`, `Base de datos '
-                                 'Citas`, `Cola Notificaciones`, `Worker Notificaciones`).\n'
-                                 '- `Umbral objetivo` lleva **numero y ventana de tiempo** (`p95 '
-                                 'por debajo de 800 ms en 5 minutos`, `tasa de error por debajo de '
-                                 '1 por ciento en 15 minutos`, `menos de 500 mensajes en cola`).\n'
-                                 '- `Accion si se rompe` nombra **quien hace que** (`el '
-                                 'responsable de laboratorio revisa el log del worker y '
-                                 'reencola`), no `investigar`.\n'
-                                 '\n'
-                                 'Cierre con **2 lineas**: cual de las 5 senales avisaria primero '
-                                 'de una caida real de su dominio, y que senal es solo ruido en un '
-                                 'proyecto academico.',
-                    'puntos': 25,
-                    'rubrica': '10 pts las 5 filas con los 4 tipos cubiertos y la quinta '
-                               'justificada. 6 pts que cada senal cite un componente exacto del '
-                               'C4Deployment. 6 pts los umbrales con numero y ventana de tiempo en '
-                               'las 5 filas. 3 pts las 2 lineas de cierre. Cada fila con umbral '
-                               'sin numero pierde su parte proporcional.',
-                    'tipo': 'abierta'},
-                   {'correctas': [0, 1, 3],
-                    'enunciado': '## Que es realista con GitHub Actions gratuito\n'
-                                 '\n'
-                                 'En este curso esta prohibido cloud de pago y tarjeta de credito. '
-                                 'Seleccione las **3 opciones realistas y aceptadas** para el PI.',
-                    'opciones': ['Ejecutar build y pruebas unitarias en cada push sobre un runner '
-                                 'alojado gratuito.',
-                                 'Publicar un artefacto con upload-artifact y descargarlo como '
-                                 'evidencia del run.',
-                                 'Desplegar automaticamente en un cluster Kubernetes administrado '
-                                 'de pago como parte del PI.',
-                                 'Simular el despliegue con un job que imprime el plan, adjunta el '
-                                 'artefacto y deja en el log que es simulado.',
-                                 'Guardar la clave de produccion en claro dentro del ci.yml para '
-                                 'que el despliegue real funcione.',
-                                 'Comprar minutos adicionales de runner con tarjeta de credito '
-                                 'para alcanzar la entrega.'],
-                    'puntos': 15,
-                    'rubrica': '5 pts por cada opcion correcta marcada; se descuentan 5 pts por '
-                               'cada opcion incorrecta marcada, sin bajar de cero.',
-                    'tipo': 'cerrada_multi'},
-                   {'correctas': [0],
-                    'enunciado': '## Como se llama lo que tiene el equipo\n'
-                                 '\n'
-                                 'El workflow compila, ejecuta pruebas y publica un artefacto, '
-                                 'pero **ningun paso lleva el cambio a un ambiente**: el ultimo '
-                                 'job solo imprime el plan de despliegue. Como se describe '
-                                 'correctamente lo que tiene el equipo?',
-                    'opciones': ['Integracion continua con despliegue simulado.',
-                                 'Despliegue continuo completo hasta produccion.',
-                                 'Entrega continua con aprobacion manual a produccion.',
-                                 'No es un pipeline, porque un pipeline se define por desplegar.'],
-                    'puntos': 10,
-                    'rubrica': '10 pts la opcion correcta, 0 en cualquier otra. Comprueba que el '
-                               'estudiante no llame despliegue continuo a un pipeline que no '
-                               'despliega.',
-                    'tipo': 'cerrada'}],
-     'resumen': 'El estudiante entrega un workflow de GitHub Actions con build, pruebas, artefacto '
-                'y despliegue simulado, evidenciado con un run verde, mas el plan de monitoreo de '
-                'CloudLite con umbrales y acciones.',
-     'titulo': 'Taller Clase 8 en ExamLab - Pipeline de Actions y monitoreo de CloudLite'},
- 10: {'pasos': ['Paso 1: liste los 6 elementos de costo de su diseno tomandolos del C4Deployment '
-                'de la Clase 7 (edge, API, worker, base de datos, almacen de objetos y minutos de '
-                'integracion continua), verificando que no aparezca ningun componente que no '
-                'exista en su diagrama y que ninguno quede sin fila, porque al ser clase autonoma '
-                'nadie va a completar la tabla por usted.',
-                'Paso 2: complete la tabla de 5 columnas asignando a cada elemento su driver de '
-                'costo, el nivel bajo, medio o alto, un apalancamiento y el riesgo de aplicarlo, '
-                'verificando que ningun driver se repita entre filas y que la palabra caro no '
-                'aparezca sola como explicacion.',
-                'Paso 3: escriba en ExamLab el mindmap Mermaid con las 5 ramas de drivers '
-                '(computo, datos, transferencia, ocioso e integracion continua) y 2 hojas '
-                'concretas por rama, verificando al renderizar que las 10 hojas mencionen '
-                'elementos reales de su despliegue y no categorias abstractas.',
-                'Paso 4: desarrolle 3 apalancamientos de ahorro con su estado antes y despues y 3 '
-                'acciones de sostenibilidad verificables, verificando que cada accion tenga una '
-                'evidencia que un tercero pueda revisar (tamano de la imagen en megabytes, hora de '
-                'apagado del lab, numero de replicas en la noche) y que ninguna rompa un requisito '
-                'del PI.',
-                'Paso 5: integre la tabla, el mindmap y las acciones en la seccion Costos y '
-                'sostenibilidad del informe (1 pagina) y suba las 5 preguntas a ExamLab (modulo '
-                'Talleres) antes del domingo 23:59, verificando que no haya inventado ninguna '
-                'factura en dolares de un proveedor de pago.'],
-      'preguntas': [{'enunciado': '## Tabla de costos de CloudLite\n'
-                                  '\n'
-                                  'En este curso **no se inventan facturas en dolares**: el costo '
-                                  'se expresa como `bajo` / `medio` / `alto` mas el driver que lo '
-                                  'causa.\n'
-                                  '\n'
-                                  'Construya una tabla de **5 columnas** con encabezados exactos:\n'
-                                  '\n'
-                                  '`Elemento del despliegue | Driver de costo | Nivel B/M/A | '
-                                  'Apalancamiento | Riesgo del apalancamiento`\n'
-                                  '\n'
-                                  'con **exactamente 6 filas**, una por elemento, tomadas de su '
-                                  'C4Deployment de la Clase 7:\n'
-                                  '\n'
-                                  '1. Edge TLS y proxy reverso.\n'
-                                  '2. API CloudLite.\n'
-                                  '3. Worker Notificaciones.\n'
-                                  '4. Base de datos Citas.\n'
-                                  '5. Almacen Adjuntos (objetos).\n'
-                                  '6. Minutos de GitHub Actions.\n'
-                                  '\n'
-                                  'Reglas:\n'
-                                  '- `Driver de costo` debe ser un mecanismo (`horas encendido sin '
-                                  'trafico`, `gigabytes de salida hacia el navegador`, `gigabytes '
-                                  'almacenados con respaldo diario`, `minutos de ejecucion por '
-                                  'push`). **Ningun driver se repite** entre filas.\n'
-                                  '- `Nivel B/M/A` va acompanado de media linea que diga **por que '
-                                  'ese nivel en su dominio**.\n'
-                                  '- `Riesgo del apalancamiento` dice que se degrada al aplicarlo '
-                                  '(`menos replicas implica peor p95 en el pico`).\n'
-                                  '\n'
-                                  'La palabra `caro` por si sola no es una explicacion valida.',
-                     'puntos': 30,
-                     'rubrica': '10 pts las 6 filas con los 6 elementos del despliegue propio. 8 '
-                                'pts los 6 drivers expresados como mecanismo y sin repetirse. 6 '
-                                'pts el nivel B/M/A justificado en el dominio. 6 pts el '
-                                'apalancamiento con su riesgo de degradacion en las 6 filas. Cero '
-                                'en la fila que use caro o costoso como unica explicacion.',
-                     'tipo': 'abierta'},
-                    {'enunciado': '## Mapa de drivers de costo\n'
-                                  '\n'
-                                  'Escriba un `mindmap` de Mermaid con la raiz `Drivers de costo '
-                                  'de CloudLite` y **exactamente 5 ramas**: `Computo`, `Datos`, '
-                                  '`Transferencia`, `Ocioso`, `Integracion continua`.\n'
-                                  '\n'
-                                  'Cada rama lleva **exactamente 2 hojas**, y cada hoja debe '
-                                  'nombrar **un elemento real de su despliegue** con una cifra o '
-                                  'cantidad aproximada (`API con 2 replicas encendidas 24 horas`, '
-                                  '`Base de datos Citas con 20 GB y respaldo diario`, `descarga de '
-                                  'PDF de constancia por cada cita`).\n'
-                                  '\n'
-                                  '**Verificacion:** al renderizar debe contar 1 raiz, 5 ramas y '
-                                  '10 hojas; si una hoja no se puede senalar en su C4Deployment, '
-                                  'reemplacela.',
-                     'mermaid_esperado': '''mindmap
-  root((Drivers de costo de CloudLite))
-    Computo
-      API CloudLite con 2 replicas encendidas 24 horas
-      Worker Notificaciones esperando eventos sin trabajo
-    Datos
-      Base de datos Citas con 20 GB y respaldo diario
-      Retencion de logs de la API por 90 dias
-    Transferencia
-      Descarga del PDF de constancia por cada cita confirmada
-      Correos salientes de confirmacion y recordatorio
-    Ocioso
-      Ambiente de pruebas encendido todo el fin de semana
-      Sesiones del laboratorio abiertas y olvidadas
-    Integracion continua
-      Minutos de Actions consumidos en cada push a main
-      Build sin cache de capas que reconstruye todo''',
-                     'puntos': 20,
-                     'rubrica': '8 pts la estructura exacta de 1 raiz, 5 ramas y 10 hojas. 8 pts '
-                                'que las 10 hojas nombren elementos reales del despliegue con '
-                                'cantidad o cifra. 4 pts que renderice sin error y que las ramas '
-                                'tengan los 5 nombres pedidos.',
-                     'tipo': 'diagrama'},
-                    {'enunciado': '## Tres apalancamientos de ahorro\n'
-                                  '\n'
-                                  'Desarrolle **exactamente 3 apalancamientos** de la tabla '
-                                  'anterior, cada uno con **estas 5 lineas rotuladas**:\n'
-                                  '\n'
-                                  '1. **Apalancamiento**: que va a cambiar, en una frase.\n'
-                                  '2. **Antes**: el estado actual con una cifra (`imagen de 940 '
-                                  'MB`, `2 replicas encendidas 24 horas`, `build de 6 minutos sin '
-                                  'cache`).\n'
-                                  '3. **Despues**: el estado esperado con la cifra objetivo '
-                                  '(`imagen por debajo de 200 MB`, `1 replica en horario '
-                                  'nocturno`).\n'
-                                  '4. **Como se verifica**: el comando, la pantalla o el archivo '
-                                  'donde un tercero comprueba el cambio.\n'
-                                  '5. **Que se degrada**: el precio que se paga (mayor latencia en '
-                                  'el primer acceso, menos margen en el pico, mas trabajo '
-                                  'manual).\n'
-                                  '\n'
-                                  'Los 3 apalancamientos deben atacar **drivers distintos**. Al '
-                                  'menos uno debe afectar el **computo ocioso** y al menos uno la '
-                                  '**imagen o el pipeline**.\n'
-                                  '\n'
-                                  'Ninguno puede romper un requisito del PI: si el ahorro implica '
-                                  'quitar la ruta de salud, el pipeline o la seguridad, no se '
-                                  'acepta.',
-                     'puntos': 20,
-                     'rubrica': '9 pts los 3 apalancamientos con las 5 lineas rotuladas. 5 pts que '
-                                'el antes y el despues tengan cifras comparables. 4 pts que '
-                                'atiendan drivers distintos incluido el computo ocioso y la imagen '
-                                'o el pipeline. 2 pts la degradacion declarada en los tres.',
-                     'tipo': 'abierta'},
-                    {'enunciado': '## Tres acciones de sostenibilidad\n'
-                                  '\n'
-                                  'Escriba **exactamente 3 acciones** de sostenibilidad aplicables '
-                                  'a *su* diseno, cada una con **3 lineas rotuladas**:\n'
-                                  '\n'
-                                  '1. **Accion**: que se hace, en imperativo (`apagar el '
-                                  'ambiente de pruebas los viernes a las 18:00`).\n'
-                                  '2. **Efecto ambiental o de recursos**: que se deja de consumir '
-                                  '(energia por horas encendido, almacenamiento del registro de '
-                                  'imagenes, minutos de runner).\n'
-                                  '3. **Evidencia verificable**: donde queda la prueba de que se '
-                                  'hizo (`captura del historial del lab con la hora`, `salida de '
-                                  'docker images con el tamano`, `bitacora del repositorio`).\n'
-                                  '\n'
-                                  'Al menos una accion debe referirse a **imagenes ligeras**, una '
-                                  'a **apagado de laboratorios o ambientes** y una a **evitar '
-                                  'sobredimensionar** (right sizing).\n'
-                                  '\n'
-                                  'Cierre con **una frase** que responda: cual de las 3 acciones '
-                                  'haria de todas formas aunque no la calificaran, y por que.',
-                     'puntos': 20,
-                     'rubrica': '9 pts las 3 acciones con las 3 lineas rotuladas. 6 pts que cubran '
-                                'imagenes ligeras, apagado de ambientes y right sizing. 4 pts que '
-                                'las 3 evidencias sean verificables por un tercero. 1 pt la frase '
-                                'de cierre. Cero en la accion cuya evidencia sea prometemos '
-                                'hacerlo.',
-                     'tipo': 'abierta'},
-                    {'correctas': [0, 1, 2],
-                     'enunciado': '## Costos en la nube: que es cierto\n'
-                                  '\n'
-                                  'Seleccione las **3 afirmaciones correctas**.',
-                     'opciones': ['Dejar el ambiente de pruebas encendido el fin de semana sin '
-                                  'trafico genera costo ocioso.',
-                                  'Servir miles de descargas de PDF directamente desde la API '
-                                  'aumenta el costo de transferencia de salida.',
-                                  'Una imagen base slim reduce el tiempo de construccion y el '
-                                  'almacenamiento del registro de imagenes.',
-                                  'El almacenamiento de objetos es siempre mas caro que el de '
-                                  'bloque para archivos grandes poco consultados.',
-                                  'Los respaldos no generan costo porque no reciben trafico.',
-                                  'Aumentar el numero de replicas no afecta el costo mientras el '
-                                  'trafico no suba.'],
-                     'puntos': 10,
-                     'rubrica': '4 pts por cada correcta marcada hasta un maximo de 10; se '
-                                'descuentan 4 pts por cada incorrecta marcada, sin bajar de cero.',
-                     'tipo': 'cerrada_multi'}],
-      'resumen': 'El estudiante entrega la seccion de costos de CloudLite con 6 elementos del '
-                 'despliegue mapeados a drivers y niveles cualitativos, tres apalancamientos de '
-                 'ahorro con antes y despues, y tres acciones de sostenibilidad verificables.',
-      'titulo': 'Taller Clase 10 en ExamLab - Costos y sostenibilidad de CloudLite'},
+ 6: {'pasos': [
+                  'Paso 1: liste en la pregunta 1 cinco amenazas de SU dominio, cada una nombrando el actor o el dato concreto que pone en riesgo y el camino por el que ocurre; use STRIDE como guia de categorias y verifique que ninguna sea una frase de manual que sirva igual para cualquier sistema.',
+                  'Paso 2: complete en la pregunta 2 la tabla amenaza-control-donde, senalando para cada control la caja o la flecha concreta del C4 Containers o del Despliegue donde se ve; incluya el principio de menor privilegio aplicado a un componente, diciendo que deja de poder hacer.',
+                  'Paso 3: escriba en la pregunta 3 la politica de secretos respondiendo donde viven, quien los rota, cada cuanto y que esta prohibido, y cierre con el procedimiento ante una filtracion; verifique que su politica no admita secretos en el Dockerfile, el README ni el YAML en claro.',
+                  'Paso 4: guarde y continue. Esta actividad es una sola para las Clases 6, 7, 8 y 10 y se entrega completa al cierre del Corte 2: hoy resuelve las preguntas 1 a 3 y las 4 a 12 se resuelven en las clases siguientes.',
+              ],
+     'preguntas': [
+                      {
+                          'n_global': 1,
+                          'tipo': 'abierta',
+                          'puntos': 8.75,
+                          'enunciado': '''## Cinco amenazas STRIDE-lite de SU dominio
+
+Liste **5 amenazas** aplicadas a su CloudLite. **No una lista generica copiada de
+internet**: cada amenaza tiene que nombrar **el actor o el dato concreto de su dominio** que
+pone en riesgo.
+
+Use STRIDE como guia de categorias: **S**poofing (suplantacion), **T**ampering (alteracion),
+**R**epudiation (negacion), **I**nformation disclosure (fuga), **D**enial of service y
+**E**levation of privilege. No hacen falta las seis: hacen falta cinco amenazas reales.
+
+Amenazas tipicas del curso, como referencia de la **forma** esperada, no para copiarlas:
+
+- secretos dentro de la imagen del contenedor
+- API sin autenticacion
+- registros que guardan tokens
+- datos personales viajando sin TLS
+
+> La diferencia entre una amenaza y una frase de manual es el complemento. «Fuga de
+> informacion» no es una amenaza; «un estudiante puede consultar por identificador las
+> reservas de otro porque el endpoint no valida a quien pertenece» si lo es, porque nombra
+> al actor, el dato y el camino.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '1.75 pts por amenaza bien formada, hasta 5. Una amenaza suma completo solo si nombra el actor o el dato concreto del dominio y el camino por el que ocurre. Una amenaza generica («podrian hackear la base de datos») vale la mitad. Se descuenta si dos amenazas son la misma con otras palabras.',
+                      },
+                      {
+                          'n_global': 2,
+                          'tipo': 'abierta',
+                          'puntos': 8.75,
+                          'enunciado': '''## El control de cada amenaza y donde se ve
+
+Para **cada una de las 5 amenazas** de la pregunta anterior indique:
+
+1. **El CONTROL que la mitiga.** Concreto y verificable, no «mejorar la seguridad».
+2. **DONDE se ve ese control en sus diagramas**: sobre que **caja** o sobre que **flecha**
+   del C4 Containers o del diagrama de Despliegue aplica.
+
+Presentelo como tabla: `Amenaza | Control | Donde se ve (caja o flecha)`.
+
+**Debe aparecer el principio de menor privilegio**, aunque sea narrado: que cada componente
+y cada rol reciba exactamente los permisos que necesita y ni uno mas. Diga sobre que
+componente de SU sistema lo aplica y que deja de poder hacer al aplicarlo.
+
+> Un control que no se puede senalar en un artefacto no existe todavia: es una intencion.
+> Por eso la segunda columna vale tanto como la primera. Si no encuentra donde ubicarlo,
+> probablemente le falta una caja o una frontera en el diagrama.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '1 pt por cada control concreto y verificable, hasta 5. 2.5 pts por senalar correctamente la caja o la flecha de cada uno; se prorratea. 1.25 pts por el principio de menor privilegio aplicado a un componente concreto, diciendo que deja de poder hacer. Un control tipo «usar buenas practicas» no suma.',
+                      },
+                      {
+                          'n_global': 3,
+                          'tipo': 'abierta',
+                          'puntos': 7.5,
+                          'enunciado': '''## Politica de secretos del repositorio y de la CI
+
+Defina la politica de secretos de CloudLite respondiendo estas cuatro preguntas:
+
+1. **Donde viven** los secretos.
+2. **Quien los rota**.
+3. **Con que frecuencia** se rotan.
+4. **Que esta explicitamente prohibido**.
+
+> **Regla del curso:** los secretos van en la **configuracion del repositorio** (los
+> *secrets* del proyecto), **nunca** en el `Dockerfile`, en el `README` ni en el YAML en
+> claro. Un secreto escrito en el Dockerfile queda en el **historial de capas** de la imagen
+> para siempre: cualquiera que tenga la imagen lo lee, aunque el archivo se borre en una
+> capa posterior.
+
+Cierre nombrando **que haria si un secreto se filtra**: el primer paso no es borrar el
+commit, es **rotar la credencial**, porque el historial ya salio del equipo.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '1.5 pts cada una de las cuatro preguntas respondida de forma concreta (donde, quien, cada cuanto, que se prohibe): 6 pts. 1.5 pts el procedimiento ante filtracion empezando por rotar la credencial y no por borrar el commit. Cero en la primera pregunta si la respuesta admite guardar secretos en el repositorio en claro.',
+                      },
+                  ],
+     'resumen': '''Las preguntas 1 a 3 de la actividad del Corte 2, que es una sola para las Clases 6, 7, 8 y 10. El estudiante deja el modelo de amenazas de su dominio con sus controles ubicados en los diagramas y la politica de secretos escrita.''',
+     'titulo': '''Actividad del Corte 2 (preguntas 1 a 3) - Amenazas, controles y secretos'''},
+ 7: {'pasos': [
+                  'Paso 1: dibuje primero el boceto del despliegue en Excalidraw o draw.io con las tres zonas (publica, privada y de datos), y despues pidale a una IA que lo traduzca a Mermaid; peguelo en la pregunta 4 y verifique en el diagrama ya renderizado que la base de datos NO quede en la zona publica.',
+                  'Paso 2: etiquete en ese mismo diagrama el puerto de cada componente y marque las fronteras de confianza, es decir donde termina lo que usted controla; verifique que no aparezcan nombres de subredes ni de servicios de un proveedor concreto.',
+                  'Paso 3: justifique en la pregunta 5 el tipo de almacenamiento de cada componente diciendo que caracteristica del dato lo exige; si su dominio no necesita almacenamiento de objetos, declarelo y justifiquelo en vez de agregarlo.',
+                  'Paso 4: complete en la pregunta 6 la tabla de correspondencia entre el C4 Containers y el Despliegue, con una fila por componente y su zona, y liste los renombres que aplico; si no hubo ninguno, digalo explicitamente.',
+              ],
+     'preguntas': [
+                      {
+                          'n_global': 4,
+                          'tipo': 'diagrama',
+                          'puntos': 14.0,
+                          'enunciado': '''## Diagrama de Despliegue de CloudLite
+
+Modele en Mermaid el diagrama de **Despliegue** de su CloudLite, con sus **tres zonas** y
+el flujo completo **Cliente -> edge -> aplicacion -> datos**.
+
+Debe tener:
+
+- Las **tres zonas** como fronteras explicitas: **publica**, **privada** y **de datos**.
+- Cada componente **ubicado en su zona**. **La base de datos NO puede quedar en la zona
+  publica**: es el error que la pregunta busca detectar.
+- Las **fronteras de confianza** marcadas: donde termina lo que usted controla y empieza lo
+  que no.
+- **El puerto de cada componente** etiquetado.
+
+> **No invente subredes de un proveedor concreto.** Nada de nombres de VPC, de
+> disponibilidad ni de servicios de marca: el diagrama es conceptual y tiene que servir
+> igual en cualquier proveedor. El curso no abre cuentas de nube de pago.
+
+Reutilice **los mismos nombres** de componentes del C4 Containers del Corte 1: es el mismo
+sistema visto desde donde se ejecuta.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '4 pts las tres zonas presentes y rotuladas. 4 pts cada componente en la zona que le corresponde; **se pierden los 4 completos si la base de datos queda en la zona publica**. 2 pts las fronteras de confianza marcadas. 2 pts el puerto de cada componente. 2 pts que renderice sin error. Se descuenta por nombrar subredes o servicios de un proveedor concreto.',
+                          'mermaid_esperado': '''flowchart LR
+    subgraph publica["Zona publica - internet"]
+        cliente["Cliente / navegador"]
+        edge["Edge / balanceador<br/>443 HTTPS"]
+    end
+    subgraph privada["Zona privada - solo alcanzable desde el edge"]
+        api["API de agenda<br/>8080 HTTP"]
+    end
+    subgraph datos["Zona de datos - sin salida a internet"]
+        db[("Base de datos<br/>5432 TCP")]
+    end
+    ext["Correo transaccional SaaS<br/>externo"]
+    cliente -->|"HTTPS 443"| edge
+    edge -->|"HTTP 8080"| api
+    api -->|"TCP 5432"| db
+    api -->|"HTTPS 443 - frontera de confianza"| ext''',
+                      },
+                      {
+                          'n_global': 5,
+                          'tipo': 'abierta',
+                          'puntos': 5.5,
+                          'enunciado': '''## Tipo de almacenamiento de cada componente
+
+Justifique **que tipo de almacenamiento** le corresponde a cada componente de su
+despliegue, a nivel conceptual:
+
+- **Relacional**: datos con relaciones y consultas que los cruzan.
+- **Bloque**: un disco crudo que un solo proceso monta y escribe.
+- **Objeto**: archivos completos que se guardan y se recuperan enteros, por su nombre.
+
+Para cada componente diga **que caracteristica del dato lo exige**, no que tipo le gusta
+mas. Formato: `Componente | Tipo | Que caracteristica del dato lo exige`.
+
+> **Use almacenamiento de objetos solo si su dominio realmente lo necesita.** Si no maneja
+> archivos, imagenes ni documentos adjuntos, no lo incluya: agregar un almacen de objetos
+> «porque suena a cloud» es exactamente el tipo de decision que este curso pide justificar.
+> Decir «mi dominio no necesita objeto, y por eso no lo tengo» es una respuesta correcta y
+> completa.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '3 pts la clasificacion correcta de cada componente del despliegue. 2.5 pts que cada justificacion nombre la caracteristica del dato (se cruza con otros, lo monta un solo proceso, se recupera entero) y no una preferencia. Suma completo quien declare que su dominio no necesita almacenamiento de objetos y lo justifique; se descuenta quien lo incluya sin un dato que lo pida.',
+                      },
+                      {
+                          'n_global': 6,
+                          'tipo': 'abierta',
+                          'puntos': 5.5,
+                          'enunciado': '''## Correspondencia entre el C4 Containers y el Despliegue
+
+Explique **por que** los nombres del diagrama de Despliegue tienen que ser **exactamente los
+mismos** del C4 Containers, y demuestrelo con la tabla de correspondencia:
+
+`Componente en el C4 Containers | Componente en el Despliegue | Zona`
+
+Si al dibujar el despliegue **renombro** algo, **liste los renombres** que aplico y diga
+cual de los dos diagramas actualizo para que queden iguales.
+
+> Los dos diagramas son **el mismo sistema visto desde angulos distintos**: el C4 Containers
+> muestra que piezas hay y el Despliegue donde se ejecutan. Si una pieza se llama
+> «api-agenda» en uno y «servidor-backend» en otro, nadie puede saber si son la misma cosa,
+> y en la sustentacion de la Clase 15 eso se lee como dos sistemas distintos.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '2 pts la explicacion de por que los nombres deben coincidir, en terminos de que son el mismo sistema. 2.5 pts la tabla completa con una fila por componente y su zona. 1 pt listar los renombres aplicados, o declarar explicitamente que no hubo ninguno. Se descuenta si la tabla deja fuera algun componente que si aparece en alguno de los dos diagramas.',
+                      },
+                  ],
+     'resumen': '''Las preguntas 4 a 6 de la actividad del Corte 2. El estudiante deja el diagrama de Despliegue con sus tres zonas, justifica el almacenamiento de cada componente y demuestra que los nombres coinciden con el C4 Containers del Corte 1.''',
+     'titulo': '''Actividad del Corte 2 (preguntas 4 a 6) - Despliegue, almacenamiento y nombres'''},
+ 8: {'pasos': [
+                  'Paso 1: escriba en la pregunta 7 el contenido completo del ci.yml con disparadores, entorno y los pasos de construccion, prueba y despliegue simulado, usando la imagen y el puerto del Dockerfile del Corte 1; verifique que ningun secreto quede escrito en claro dentro del YAML.',
+                  'Paso 2: explique en la pregunta 8 que se compila o instala, que se ejecuta en la prueba y con que condicion el pipeline debe fallar; hagase la prueba mental de que error tendria que introducir para que el check salga rojo, y si no encuentra ninguno, su pipeline todavia no valida nada.',
+                  'Paso 3: distinga en la pregunta 9 que valida CI y que hace CD, ubique cual de los dos construyo y diga que le faltaria para CD real; reconocer que su pipeline llega hasta «listo para desplegar» suma puntos, afirmar que ya tiene CD los resta.',
+                  'Paso 4: liste en la pregunta 10 entre 4 y 6 senales con su umbral, atadas a operaciones de su dominio, y verifique que al menos una sea un registro y no una metrica numerica; una senal sin umbral no sirve para operar y no suma.',
+              ],
+     'preguntas': [
+                      {
+                          'n_global': 7,
+                          'tipo': 'abierta',
+                          'puntos': 10.0,
+                          'enunciado': '''## El workflow de integracion continua
+
+Escriba el **contenido completo** del archivo `.github/workflows/ci.yml` para el stub de
+CloudLite. Debe incluir:
+
+1. **Disparadores** (`on`): cuando corre el pipeline.
+2. **Entorno de ejecucion** (`runs-on`).
+3. **Pasos** de **construccion**, **prueba** y **despliegue simulado**.
+
+> **Los secretos se referencian desde la configuracion del repositorio**, con la sintaxis de
+> *secrets* del proyecto, **nunca escritos en claro dentro del YAML**. Es la misma politica
+> que definio en la pregunta 3.
+
+El **despliegue simulado** es deliberado: en este curso el pipeline llega hasta «listo para
+desplegar» y no despliega a ningun servidor real, porque no abrimos cuentas de nube de pago.
+Dejelo explicito en el nombre del paso para no prometer lo que no hace.
+
+Use la imagen y el puerto **del Dockerfile que escribio en el Corte 1**: es el mismo
+servicio.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '2 pts los disparadores declarados. 1.5 pts el entorno de ejecucion. 4 pts los tres pasos presentes y en orden (construccion, prueba, despliegue simulado). 1.5 pts que el despliegue este rotulado como simulado y no prometa un despliegue real. 1 pt coherencia con el Dockerfile del Corte 1 (misma imagen, mismo puerto). **Cero en toda la pregunta si aparece un secreto escrito en claro en el YAML.**',
+                      },
+                      {
+                          'n_global': 8,
+                          'tipo': 'abierta',
+                          'puntos': 5.0,
+                          'enunciado': '''## Que hace realmente su paso de construccion y prueba
+
+Explique, sobre **su propio** `ci.yml`:
+
+1. **Que se compila o se instala** en el paso de construccion.
+2. **Que se ejecuta** en el paso de prueba: que comprueba exactamente.
+3. **Con que condicion el pipeline debe FALLAR**: que tiene que pasar para que el check
+   salga rojo.
+
+> **Un CI que solo imprime un mensaje de exito no es CI.** Si su pipeline no puede fallar
+> nunca, no esta validando nada: es una decoracion verde. La pregunta que hay que poder
+> responder es «que error tendria que introducir yo en el codigo para que este pipeline lo
+> detecte», y su respuesta tiene que decirlo.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '1.5 pts que se compila o instala. 1.5 pts que se ejecuta en la prueba y que comprueba. 2 pts la condicion de fallo, expresada como algo que el pipeline detectaria. **Cero en la condicion de fallo si el pipeline no puede fallar nunca** (solo `echo`, o pruebas que siempre pasan): es el criterio central de la pregunta.',
+                      },
+                      {
+                          'n_global': 9,
+                          'tipo': 'abierta',
+                          'puntos': 4.0,
+                          'enunciado': '''## Hasta donde llega su pipeline: CI, CD y lo que es realista aqui
+
+Distinga los dos terminos y ubique su propio trabajo:
+
+1. **Que valida la integracion continua (CI)** y en que momento del ciclo actua.
+2. **Que hace la entrega o despliegue continuo (CD)**, y en que se diferencia de lo
+   anterior.
+3. **Cual de los dos construyo usted hoy**, y hasta que punto exacto llega su `ci.yml`.
+4. **Que le faltaria** para tener CD de verdad, y **por que este curso no lo pide**.
+
+> La frontera importa mas de lo que parece: decir «ya tenemos CD» porque el YAML tiene un
+> paso llamado `deploy` es de las afirmaciones que un evaluador tumba en dos preguntas. En
+> este curso el despliegue **se simula**, y decirlo asi no resta puntos: los suma, porque
+> demuestra que sabe donde esta el limite de lo que construyo.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '1 pt la definicion de CI atada a cuando actua. 1 pt la de CD y su diferencia. 1 pt ubicar correctamente su propio trabajo, reconociendo que llega hasta «listo para desplegar». 1 pt lo que faltaria para CD real y por que el curso no lo exige. Se descuenta la mitad si afirma haber construido CD.',
+                      },
+                      {
+                          'n_global': 10,
+                          'tipo': 'abierta',
+                          'puntos': 6.0,
+                          'enunciado': '''## Metricas y registros de CloudLite en produccion
+
+Liste entre **4 y 6 metricas o registros** que observaria en la produccion hipotetica de su
+CloudLite, **cada una con su umbral u objetivo**.
+
+Orientacion: use las **senales doradas** en version reducida, aterrizadas a su dominio:
+
+- **Latencia**: cuanto tarda la operacion que mas se usa.
+- **Trafico**: cuantas peticiones u operaciones por unidad de tiempo.
+- **Errores**: que proporcion falla, y cuales cuentan como fallo de negocio.
+- **Saturacion**: que recurso se agota primero.
+
+Formato: `Senal | Que se mide en MI dominio | Umbral u objetivo`.
+
+> **Una metrica sin umbral no sirve para operar.** «Medimos la latencia» no permite decidir
+> nada; «el listado de disponibilidad debe responder en menos de 400 ms y si pasa de 800 ms
+> se revisa» si, porque define cuando hay que actuar. El umbral puede ser discutible; lo que
+> no puede es faltar.
+
+Al menos una de las senales debe ser un **registro** y no una metrica numerica: algo que se
+escribe para poder reconstruir que paso despues.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                          'rubrica': '1 pt por senal bien formada con su umbral, hasta 4 senales; las senales 5 y 6 suman hasta 1 pt adicional entre las dos. 1 pt que al menos una sea un registro y no una metrica numerica. **Una senal sin umbral no suma**, aunque este bien elegida. Se descuenta si las senales no se refieren a operaciones del dominio propio.',
+                      },
+                  ],
+     'resumen': '''Las preguntas 7 a 10 de la actividad del Corte 2. El estudiante escribe el workflow de CI de su stub, explica que valida de verdad, ubica hasta donde llega su pipeline y define las senales con las que operaria CloudLite.''',
+     'titulo': '''Actividad del Corte 2 (preguntas 7 a 10) - Integracion continua y monitoreo'''},
+ 10: {'pasos': [
+                   'Paso 1: construya en la pregunta 11 la tabla de costos con una fila por cada componente de su despliegue y las columnas componente, driver, nivel B/M/A y apalancamiento; verifique que cada driver sea una variable contable (horas encendidas, GB de salida, GB almacenados, minutos de CI) y no «el uso».',
+                   'Paso 2: fuerce al menos un Alto y un Bajo con su justificacion. Marcar todo como Medio para no decidir es lo que la pregunta busca descartar, y ese criterio vale cero si todas las filas quedan iguales.',
+                   'Paso 3: escriba en la pregunta 12 tres acciones de sostenibilidad, cada una con el artefacto donde se comprueba y como se comprueba; aplique la prueba de que otra persona pueda decir en seis meses, mirando el repositorio, si la accion se aplico.',
+                   'Paso 4: ate al menos una de las tres acciones a un driver de costo de la pregunta 11 y suba la actividad completa del Corte 2 a ExamLab antes del domingo 23:59. Es una clase autonoma: no hay encuentro sincrono, y las dudas van por el foro.',
+               ],
+      'preguntas': [
+                       {
+                           'n_global': 11,
+                           'tipo': 'abierta',
+                           'puntos': 16.25,
+                           'enunciado': '''## Tabla de costos de CloudLite
+
+Construya la tabla de costos con **una fila por componente** —API, base de datos,
+almacenamiento de objetos si lo tiene, integracion continua y edge— y **estas cuatro
+columnas**:
+
+`Componente | Driver de costo | Nivel B/M/A | Apalancamiento`
+
+- **Driver de costo**: la variable concreta que, si crece, hace crecer la factura de ese
+  componente. Drivers a considerar: **tiempo inactivo** (instancias encendidas sin trabajo),
+  **transferencia de salida**, **almacenamiento** y **minutos de CI**.
+- **Nivel**: **B**ajo, **M**edio o **A**lto. Es una escala **ordinal**: ordena, no mide
+  distancias. Decir que la base de datos es Alto y el edge es Bajo afirma que una cuesta mas
+  que la otra, no cuantas veces mas.
+- **Apalancamiento**: **que palanca concreta baja ese costo**. No «optimizar»: algo que se
+  pueda hacer y comprobar.
+
+> **Prohibido inventar precios en dolares o facturas de un proveedor.** La estimacion es
+> **cualitativa B/M/A**. Un componente al que no le sabe poner driver es un componente que
+> todavia no entiende: vuelva al diagrama antes de escribir la fila.
+
+**Fuerce al menos un Alto y un Bajo.** Marcar todo como «Medio» para no pensar es la
+respuesta que esta pregunta busca descartar.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                           'rubrica': '4 pts una fila por cada componente del despliegue, sin dejar ninguno fuera. 5 pts los drivers: cada uno tiene que ser una variable contable (horas encendidas, GB de salida, GB almacenados, minutos de CI) y no «el uso». 3.25 pts los niveles, con al menos un Alto y un Bajo justificados; si todo es Medio, este criterio vale cero. 4 pts los apalancamientos, uno por fila, concretos y comprobables. **Se descuenta fuerte por inventar precios en dolares**: la escala es cualitativa.',
+                       },
+                       {
+                           'n_global': 12,
+                           'tipo': 'abierta',
+                           'puntos': 8.75,
+                           'enunciado': '''## Tres acciones de sostenibilidad tecnica
+
+Proponga **3 acciones de sostenibilidad tecnica** aplicables al diseno de CloudLite. La
+condicion que las hace validas es que sean **verificables en el propio diseno**: debe poder
+comprobarse **si se aplico o no** mirando los artefactos del sistema.
+
+Para cada accion escriba: `Accion | En que artefacto se comprueba | Como se comprueba`.
+
+Ejemplos de la **forma** esperada, no para copiarlos:
+
+- apagar los laboratorios al terminar la sesion — se comprueba en la bitacora del lab;
+- usar imagenes base ligeras — se comprueba en la primera linea del `Dockerfile`;
+- no sobredimensionar instancias — se comprueba en la politica de escalado.
+
+> Una accion como «ser mas eficientes» o «concientizar al equipo» no se puede comprobar
+> mirando un artefacto, y por eso no cuenta. La prueba: si otra persona abre su repositorio
+> dentro de seis meses, ¿puede decir si la accion se aplico? Si la respuesta es no, todavia
+> es una intencion.
+
+Ate al menos una de las tres a un **driver de costo** de la tabla anterior: sostenibilidad y
+costo suelen apalancarse con la misma decision.
+
+> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+                           'rubrica': '2.5 pts por accion verificable, hasta 3 acciones: suma completo solo si nombra el artefacto y como se comprueba. 1.25 pts por atar al menos una accion a un driver de costo de la pregunta 11. Una accion que no se pueda comprobar mirando un artefacto vale cero, aunque sea razonable.',
+                       },
+                   ],
+      'resumen': '''Las preguntas 11 y 12 de la actividad del Corte 2, que la cierran. Clase autonoma: el estudiante construye la tabla de costos cualitativa de CloudLite y propone tres acciones de sostenibilidad verificables en sus propios artefactos.''',
+      'titulo': '''Actividad del Corte 2 (preguntas 11 y 12) - Costos y sostenibilidad'''},
  11: {'pasos': ['Paso 1: completen el checklist de 10 filas del paquete v1 marcando cada evidencia '
                 'como si, no o parcial y pegando la ruta o el enlace exacto de cada una, '
                 'verificando que ninguna fila marcada como si quede sin ruta verificable, porque '

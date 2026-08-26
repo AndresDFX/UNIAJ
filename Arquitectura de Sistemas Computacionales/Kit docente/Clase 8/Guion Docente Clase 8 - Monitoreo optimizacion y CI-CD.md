@@ -51,10 +51,9 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 7. Monitoreo y optimización
 8. .github/workflows/ci.yml — CI real, no un echo
 9. Herramientas de hoy
-10. Del boceto a ExamLab (diagrama)
-11. Taller PI (paso a paso)
-12. Para continuar (PI)
-13. Clase 8 · PI en movimiento
+10. Taller PI (paso a paso)
+11. Para continuar (PI)
+12. Clase 8 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -76,7 +75,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 10]
+### 40–55 · Demo en vivo · 
 Herramienta del día: **GitHub Actions · Google Docs**.
 **Demo que usted debe poder repetir:** Un workflow de GitHub Actions que corra de verdad
 
@@ -87,19 +86,10 @@ Herramienta del día: **GitHub Actions · Google Docs**.
 
 Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase 8/Capturas/`.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
-
-**Cierra la demo dentro de ExamLab** [Slide 10] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
-
-**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
-
-- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
-- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `flowchart`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
-- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
-- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 📸 Run verde del workflow: build + test reales, no un `echo ok` [[captura: salida-actions-run.png]]
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 11]
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 10]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -112,18 +102,17 @@ Aplica el quiz corto de `Kit docente/Clase 8/Quiz Clase 8 - Monitoreo optimizaci
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 13]
+### 115–120 · Cierre · [Slide 12]
 Di: «Queda avanzado: Workflow Actions (build/test/simulate) + métricas de monitoreo del PI.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
-1. Paso 1: cree o reutilice su repositorio gratuito del proyecto con el stub de la Clase 3 y al menos 3 pruebas automatizadas que verifiquen la ruta de salud, un caso valido y un caso de error de negocio, verificando con una ejecucion local o en el lab que las 3 pruebas pasan antes de tocar el pipeline; el enlace del repositorio queda en la portada del informe.
-2. Paso 2: agreguen el archivo .github/workflows/ci.yml con 4 jobs encadenados (build, test, package y deploy simulado), disparadores en push y pull_request sobre la rama principal, y publicacion de artefacto, verificando que ningun paso imprima secretos y que el job de deploy diga explicitamente en su log que es un despliegue simulado.
-3. Paso 3: ejecuten el workflow con un push real, esperen el run completo y capturen el enlace del run verde mas el nombre del artefacto descargable, verificando que los 4 jobs aparezcan en verde y que el artefacto pese mas de 0 bytes; si Actions falla por cuota, dejen registrado el mensaje textual del error y la explicacion, que es el plan B aceptado.
-4. Paso 4: escriban en ExamLab el diagrama Mermaid del pipeline con los 4 jobs dentro de un subgrafo, la compuerta de decision y las dos salidas (despliegue simulado y bloqueo del pull request), verificando al renderizar que los nombres de los jobs sean exactamente los del ci.yml.
-5. Paso 5: completen la tabla de 5 senales de monitoreo con umbral y accion, actualicen las secciones CI/CD y Monitoreo del informe y suban las 5 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que el enlace del run verde abra sin pedir permisos y que cada senal se pueda medir en el diseno que ya dibujaron.
+1. Paso 1: escriba en la pregunta 7 el contenido completo del ci.yml con disparadores, entorno y los pasos de construccion, prueba y despliegue simulado, usando la imagen y el puerto del Dockerfile del Corte 1; verifique que ningun secreto quede escrito en claro dentro del YAML.
+2. Paso 2: explique en la pregunta 8 que se compila o instala, que se ejecuta en la prueba y con que condicion el pipeline debe fallar; hagase la prueba mental de que error tendria que introducir para que el check salga rojo, y si no encuentra ninguno, su pipeline todavia no valida nada.
+3. Paso 3: distinga en la pregunta 9 que valida CI y que hace CD, ubique cual de los dos construyo y diga que le faltaria para CD real; reconocer que su pipeline llega hasta «listo para desplegar» suma puntos, afirmar que ya tiene CD los resta.
+4. Paso 4: liste en la pregunta 10 entre 4 y 6 senales con su umbral, atadas a operaciones de su dominio, y verifique que al menos una sea un registro y no una metrica numerica; una senal sin umbral no sirve para operar y no suma.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).
