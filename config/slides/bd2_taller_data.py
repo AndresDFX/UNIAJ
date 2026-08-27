@@ -35,20 +35,28 @@ HERRAMIENTAS_DIA = {
         },
     ],
     2: [
+        # ExamLab primero a proposito: es el unico de los tres donde CREATE ROLE y
+        # GRANT corren de verdad y donde se califica. Live SQL queda como contraste
+        # de sintaxis, no como sitio de trabajo (ver el fundamento de la clase).
         {
-            'name': 'Oracle Live SQL',
-            'logo': 'oracle_livesql.png',
-            'note': 'GRANT/roles',
-        },
-        {
-            'name': 'DB Fiddle',
-            'logo': 'dbfiddle.png',
-            'note': 'SQL demo',
+            'name': 'ExamLab',
+            'logo': 'examlab.png',
+            'note': 'PostgreSQL: aqui corre',
         },
         {
             'name': 'Google Docs',
             'logo': 'google_docs.png',
-            'note': 'Matriz roles',
+            'note': 'Matriz y politica',
+        },
+        {
+            'name': 'DB Fiddle',
+            'logo': 'dbfiddle.png',
+            'note': 'Alterno: SQL suelto',
+        },
+        {
+            'name': 'Oracle Live SQL',
+            'logo': 'oracle_livesql.png',
+            'note': 'Solo contraste',
         },
     ],
     3: [

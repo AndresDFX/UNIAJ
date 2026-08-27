@@ -66,7 +66,16 @@ def render_md(n, sol, *, contexto, opciones=None, mermaid_referencia=None,
     for p in preguntas:
         L += ["---", "", f"## Pregunta {p['n']} · {p['titulo']} · {p['puntos']} pts", ""]
 
-        if p.get("respuesta"):
+        # `tabla` y `respuesta` pueden convivir (una matriz mas la prosa que la
+        # defiende) y entonces comparten UN solo encabezado: la tabla abre, porque
+        # es la respuesta, y la prosa la explica. Emitir el encabezado dos veces
+        # dejaba el documento con «Respuesta esperada» repetido.
+        if p.get("tabla"):
+            t = p["tabla"]
+            L += ["### Respuesta esperada", ""] + _tabla_md(t["headers"], t["rows"]) + [""]
+            if p.get("respuesta"):
+                L += [p["respuesta"], ""]
+        elif p.get("respuesta"):
             L += ["### Respuesta esperada", "", p["respuesta"], ""]
 
         if p.get("sql"):
@@ -86,10 +95,6 @@ def render_md(n, sol, *, contexto, opciones=None, mermaid_referencia=None,
                       + ". Sirve para comparar estructura y conteos, no para calificar "
                         "contenido:", "",
                       "```mermaid", ref.strip(), "```", ""]
-
-        if p.get("tabla"):
-            t = p["tabla"]
-            L += ["### Respuesta esperada", ""] + _tabla_md(t["headers"], t["rows"]) + [""]
 
         if p.get("veredicto"):
             L += ["**Veredicto (las frases que se piden):**", "", f"> {p['veredicto']}", ""]

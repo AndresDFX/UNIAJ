@@ -125,12 +125,12 @@ GRANT SELECT ON dueno TO auditor;
 ```
 
 **Pasos guiados del taller:**
-1. Definir >=4 roles (ADMIN_BD, RECEPCION, VETERINARIO, AUDITOR).
-2. Matriz SELECT/INSERT/UPDATE/DELETE/EXECUTE por objeto clave.
-3. Justificar privilegio minimo (least privilege).
-4. Redactar 1 pagina: politica de altas/bajas de usuarios.
+1. Crear los 4 roles (admin_bd, recepcion, veterinario_rol, auditor) con GRANT/REVOKE que corran.
+2. Recortar la superficie: vista v_agenda_recepcion + privilegio por columna sobre dueno.
+3. Matriz rol x objeto x privilegio de los 10 objetos, justificando privilegio minimo.
+4. Redactar 1 pagina: politica de altas/bajas de usuarios y limite del entorno.
 
-**Entregable:** Documento Roles_VetCare + script GRANT/REVOKE (o plan equivalente)
+**Entregable:** Documento Roles_VetCare + script GRANT/REVOKE ejecutado en ExamLab
 **Criterios de exito:**
 - >=4 roles.
 - Matriz privilegio x objeto.

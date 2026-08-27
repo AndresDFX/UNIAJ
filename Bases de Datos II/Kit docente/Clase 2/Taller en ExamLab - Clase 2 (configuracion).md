@@ -5,7 +5,7 @@
 - **Preguntas:** 5 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Plan de roles/privilegios de VetCare
-- **Entregable de la clase:** Documento Roles_VetCare + script GRANT/REVOKE (o plan equivalente)
+- **Entregable de la clase:** Documento Roles_VetCare + script GRANT/REVOKE ejecutado en ExamLab
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
@@ -30,12 +30,12 @@ El esquema de VetCare (`dueno`, `mascota`, `veterinario`, `cita`, `consulta`, `i
 En PostgreSQL un **rol** es la unidad de permisos (`CREATE ROLE`), y los permisos se dan y quitan con `GRANT` / `REVOKE`. Escribe el SQL que:
 
 1. Cree **cuatro roles sin login**: `admin_bd`, `recepcion`, `veterinario_rol`, `auditor`.
-   Usa `CREATE ROLE <nombre> NOLOGIN;` (el nombre del rol del veterinario lleva sufijo `_rol` para no chocar con la tabla `veterinario`).
+   Usa `CREATE ROLE <nombre> NOLOGIN;` (el rol del veterinario lleva sufijo `_rol` por legibilidad: en `GRANT SELECT ON cita TO veterinario` no se distingue a simple vista el rol de la tabla. No hay colision tecnica: en PostgreSQL los roles son globales al cluster y las tablas viven en un esquema).
 2. Otorgue exactamente estos privilegios:
    - `recepcion`: `SELECT, INSERT, UPDATE` sobre `cita`; solo `SELECT` sobre `dueno`, `mascota` y `veterinario`. **Sin DELETE en ninguna tabla.**
    - `veterinario_rol`: `SELECT` sobre `cita` y `mascota`; `SELECT, INSERT, UPDATE` sobre `consulta`.
    - `auditor`: **solo** `SELECT` sobre `dueno`, `mascota`, `cita`, `consulta` y `factura`.
-   - `admin_bd`: `ALL PRIVILEGES` sobre `cita`, `consulta`, `factura`, `detalle_factura` e `insumo`.
+   - `admin_bd`: `ALL PRIVILEGES` sobre **las ocho tablas** (`dueno`, `mascota`, `veterinario`, `cita`, `consulta`, `insumo`, `factura`, `detalle_factura`). Es el unico rol con privilegios amplios, y tiene que quedar consistente con la matriz de la pregunta 4.
 3. Ejecute un `REVOKE` **explicito y documentado** que quite `DELETE` sobre `cita` a `recepcion` (deja la sentencia aunque sea redundante: es la evidencia de la decision de diseno).
 4. Termine con una consulta de **verificacion** sobre `information_schema.role_table_grants` que muestre `grantee`, `table_name` y `privilege_type` para los cuatro roles, ordenada por `grantee, table_name, privilege_type`.
 
@@ -182,7 +182,7 @@ INSERT INTO detalle_factura (id_factura, id_insumo, cantidad, precio_unit) VALUE
 
 **Rubrica esperada (campo Rubrica):**
 
-Los 4 roles se crean sin error y los GRANT reproducen exactamente la matriz pedida, sin privilegios de mas ni de menos (en particular auditor solo con SELECT y recepcion sin DELETE). Existe el REVOKE explicito de DELETE sobre cita a recepcion. La consulta final sobre information_schema.role_table_grants devuelve filas de los 4 roles y permite auditar la matriz. Sintaxis PostgreSQL, sin CREATE USER de Oracle ni GRANT de privilegios de sistema inventados.
+Los 4 roles se crean sin error y los GRANT reproducen exactamente la matriz pedida, sin privilegios de mas ni de menos (en particular auditor solo con SELECT y recepcion sin DELETE). Existe el REVOKE explicito de DELETE sobre cita a recepcion. admin_bd cubre las 8 tablas. La consulta final sobre information_schema.role_table_grants devuelve filas de los 4 roles y permite auditar la matriz. Sintaxis PostgreSQL, sin CREATE USER de Oracle ni GRANT de privilegios de sistema inventados.
 
 ---
 
@@ -232,7 +232,7 @@ Sobre el mismo esquema de VetCare (ya creado y poblado) y **asumiendo que los ro
 
 3. **Verificacion (obligatoria).** Termina con dos consultas:
    - un `SELECT` sobre la vista `v_agenda_recepcion` que muestre sus filas;
-   - un `SELECT grantee, table_name, column_name, privilege_type FROM information_schema.column_privileges WHERE grantee = 'veterinario_rol' ORDER BY table_name, column_name;`
+   - un `SELECT grantee, table_name, column_name, privilege_type FROM information_schema.column_privileges WHERE grantee = 'veterinario_rol' AND table_name = 'dueno' ORDER BY column_name;` — debe devolver **exactamente dos filas**, `id_dueno` y `nombre`. Si aparece `email` o `telefono`, otorgaste la tabla completa.
 
 **SQL de partida (`options.db.setupSql`)** - corre antes del SQL del
 estudiante, sobre una base limpia. PostgreSQL, no Oracle:

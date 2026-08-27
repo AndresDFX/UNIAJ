@@ -324,57 +324,27 @@ Descripcion en una frase: [que es VetCare DB para la clinica Huellitas]
                 'integridad declarativa, su modelo ER en Mermaid y el alcance escrito del Proyecto '
                 'Integrador.',
      'titulo': 'Taller Clase 1 en ExamLab - Arranque VetCare DB y repaso de DDL'},
- 2: {'preguntas': [{'enunciado': '## 1. Crear los roles de VetCare y otorgar privilegios\n'
-                                 '\n'
-                                 '**Todo lo que necesitas esta aqui; si algo no te corre, '
-                                 'preguntalo en clase antes de irte.**\n'
-                                 '\n'
-                                 'El esquema de VetCare (`dueno`, `mascota`, `veterinario`, '
-                                 '`cita`, `consulta`, `insumo`, `factura`, `detalle_factura`) ya '
-                                 'esta creado y poblado.\n'
-                                 '\n'
-                                 'En PostgreSQL un **rol** es la unidad de permisos (`CREATE '
-                                 'ROLE`), y los permisos se dan y quitan con `GRANT` / `REVOKE`. '
-                                 'Escribe el SQL que:\n'
-                                 '\n'
-                                 '1. Cree **cuatro roles sin login**: `admin_bd`, `recepcion`, '
-                                 '`veterinario_rol`, `auditor`.\n'
-                                 '   Usa `CREATE ROLE <nombre> NOLOGIN;` (el nombre del rol del '
-                                 'veterinario lleva sufijo `_rol` para no chocar con la tabla '
-                                 '`veterinario`).\n'
-                                 '2. Otorgue exactamente estos privilegios:\n'
-                                 '   - `recepcion`: `SELECT, INSERT, UPDATE` sobre `cita`; solo '
-                                 '`SELECT` sobre `dueno`, `mascota` y `veterinario`. **Sin DELETE '
-                                 'en ninguna tabla.**\n'
-                                 '   - `veterinario_rol`: `SELECT` sobre `cita` y `mascota`; '
-                                 '`SELECT, INSERT, UPDATE` sobre `consulta`.\n'
-                                 '   - `auditor`: **solo** `SELECT` sobre `dueno`, `mascota`, '
-                                 '`cita`, `consulta` y `factura`.\n'
-                                 '   - `admin_bd`: `ALL PRIVILEGES` sobre `cita`, `consulta`, '
-                                 '`factura`, `detalle_factura` e `insumo`.\n'
-                                 '3. Ejecute un `REVOKE` **explicito y documentado** que quite '
-                                 '`DELETE` sobre `cita` a `recepcion` (deja la sentencia aunque '
-                                 'sea redundante: es la evidencia de la decision de diseno).\n'
-                                 '4. Termine con una consulta de **verificacion** sobre '
-                                 '`information_schema.role_table_grants` que muestre `grantee`, '
-                                 '`table_name` y `privilege_type` para los cuatro roles, ordenada '
-                                 'por `grantee, table_name, privilege_type`.\n'
-                                 '\n'
-                                 '**Nota tecnica importante:** ExamLab ejecuta PostgreSQL en el '
-                                 'navegador con **una sola sesion de un unico usuario**. Por eso '
-                                 'puedes crear roles y otorgar privilegios (es DDL real y '
-                                 'verificable), pero **no** puedes conectarte simultaneamente como '
-                                 '`recepcion` y comprobar en vivo que le rebotan las sentencias. '
-                                 'Esa parte se analiza en la pregunta 5.',
+ 2: {'preguntas': [{'enunciado': '''## 1. Crear los roles de VetCare y otorgar privilegios
+
+**Todo lo que necesitas esta aqui; si algo no te corre, preguntalo en clase antes de irte.**
+
+El esquema de VetCare (`dueno`, `mascota`, `veterinario`, `cita`, `consulta`, `insumo`, `factura`, `detalle_factura`) ya esta creado y poblado.
+
+En PostgreSQL un **rol** es la unidad de permisos (`CREATE ROLE`), y los permisos se dan y quitan con `GRANT` / `REVOKE`. Escribe el SQL que:
+
+1. Cree **cuatro roles sin login**: `admin_bd`, `recepcion`, `veterinario_rol`, `auditor`.
+   Usa `CREATE ROLE <nombre> NOLOGIN;` (el rol del veterinario lleva sufijo `_rol` por legibilidad: en `GRANT SELECT ON cita TO veterinario` no se distingue a simple vista el rol de la tabla. No hay colision tecnica: en PostgreSQL los roles son globales al cluster y las tablas viven en un esquema).
+2. Otorgue exactamente estos privilegios:
+   - `recepcion`: `SELECT, INSERT, UPDATE` sobre `cita`; solo `SELECT` sobre `dueno`, `mascota` y `veterinario`. **Sin DELETE en ninguna tabla.**
+   - `veterinario_rol`: `SELECT` sobre `cita` y `mascota`; `SELECT, INSERT, UPDATE` sobre `consulta`.
+   - `auditor`: **solo** `SELECT` sobre `dueno`, `mascota`, `cita`, `consulta` y `factura`.
+   - `admin_bd`: `ALL PRIVILEGES` sobre **las ocho tablas** (`dueno`, `mascota`, `veterinario`, `cita`, `consulta`, `insumo`, `factura`, `detalle_factura`). Es el unico rol con privilegios amplios, y tiene que quedar consistente con la matriz de la pregunta 4.
+3. Ejecute un `REVOKE` **explicito y documentado** que quite `DELETE` sobre `cita` a `recepcion` (deja la sentencia aunque sea redundante: es la evidencia de la decision de diseno).
+4. Termine con una consulta de **verificacion** sobre `information_schema.role_table_grants` que muestre `grantee`, `table_name` y `privilege_type` para los cuatro roles, ordenada por `grantee, table_name, privilege_type`.
+
+**Nota tecnica importante:** ExamLab ejecuta PostgreSQL en el navegador con **una sola sesion de un unico usuario**. Por eso puedes crear roles y otorgar privilegios (es DDL real y verificable), pero **no** puedes conectarte simultaneamente como `recepcion` y comprobar en vivo que le rebotan las sentencias. Esa parte se analiza en la pregunta 5.''',
                     'puntos': 30,
-                    'rubrica': 'Los 4 roles se crean sin error y los GRANT reproducen exactamente '
-                               'la matriz pedida, sin privilegios de mas ni de menos (en '
-                               'particular auditor solo con SELECT y recepcion sin DELETE). Existe '
-                               'el REVOKE explicito de DELETE sobre cita a recepcion. La consulta '
-                               'final sobre information_schema.role_table_grants devuelve filas de '
-                               'los 4 roles y permite auditar la matriz. Sintaxis PostgreSQL, sin '
-                               'CREATE USER de Oracle ni GRANT de privilegios de sistema '
-                               'inventados.',
+                    'rubrica': '''Los 4 roles se crean sin error y los GRANT reproducen exactamente la matriz pedida, sin privilegios de mas ni de menos (en particular auditor solo con SELECT y recepcion sin DELETE). Existe el REVOKE explicito de DELETE sobre cita a recepcion. admin_bd cubre las 8 tablas. La consulta final sobre information_schema.role_table_grants devuelve filas de los 4 roles y permite auditar la matriz. Sintaxis PostgreSQL, sin CREATE USER de Oracle ni GRANT de privilegios de sistema inventados.''',
                     'setup_sql': 'CREATE TABLE dueno (\n'
                                  '  id_dueno SERIAL PRIMARY KEY,\n'
                                  '  nombre TEXT NOT NULL,\n'
@@ -545,37 +515,20 @@ Descripcion en una frase: [que es VetCare DB para la clinica Huellitas]
                                'puntaje proporcional por acierto parcial. Correctas: indices 1, 3 '
                                'y 4.',
                     'tipo': 'cerrada_multi'},
-                   {'enunciado': '## 3. Reducir la superficie: vista de agenda y privilegios por '
-                                 'columna\n'
-                                 '\n'
-                                 'Sobre el mismo esquema de VetCare (ya creado y poblado) y '
-                                 '**asumiendo que los roles `recepcion`, `veterinario_rol` y '
-                                 '`auditor` ya existen** (los crea el setup de esta pregunta), '
-                                 'implementa dos mecanismos de privilegio minimo:\n'
-                                 '\n'
-                                 '1. **Vista para recepcion.** Crea `v_agenda_recepcion` que '
-                                 'devuelva, para las citas **no canceladas**: `id_cita`, '
-                                 '`fecha_hora`, `estado`, nombre de la mascota (`mascota`), nombre '
-                                 'del dueno (`dueno`), telefono del dueno (`telefono`) y nombre '
-                                 'del veterinario (`veterinario`). **No debe exponer el email del '
-                                 'dueno.**\n'
-                                 '   Luego:\n'
-                                 '   - `GRANT SELECT` de la vista a `recepcion`.\n'
-                                 '   - `REVOKE SELECT ON dueno FROM recepcion;` para que llegue al '
-                                 'dato del dueno **solo** a traves de la vista.\n'
-                                 '\n'
-                                 '2. **Privilegios por columna para veterinario_rol.** En lugar de '
-                                 'dar `SELECT` sobre toda la tabla `dueno`, otorga `SELECT` '
-                                 '**unicamente** sobre las columnas `id_dueno` y `nombre` de '
-                                 '`dueno`. La sintaxis es `GRANT SELECT (col1, col2) ON tabla TO '
-                                 'rol;`\n'
-                                 '\n'
-                                 '3. **Verificacion (obligatoria).** Termina con dos consultas:\n'
-                                 '   - un `SELECT` sobre la vista `v_agenda_recepcion` que muestre '
-                                 'sus filas;\n'
-                                 '   - un `SELECT grantee, table_name, column_name, privilege_type '
-                                 'FROM information_schema.column_privileges WHERE grantee = '
-                                 "'veterinario_rol' ORDER BY table_name, column_name;`",
+                   {'enunciado': '''## 3. Reducir la superficie: vista de agenda y privilegios por columna
+
+Sobre el mismo esquema de VetCare (ya creado y poblado) y **asumiendo que los roles `recepcion`, `veterinario_rol` y `auditor` ya existen** (los crea el setup de esta pregunta), implementa dos mecanismos de privilegio minimo:
+
+1. **Vista para recepcion.** Crea `v_agenda_recepcion` que devuelva, para las citas **no canceladas**: `id_cita`, `fecha_hora`, `estado`, nombre de la mascota (`mascota`), nombre del dueno (`dueno`), telefono del dueno (`telefono`) y nombre del veterinario (`veterinario`). **No debe exponer el email del dueno.**
+   Luego:
+   - `GRANT SELECT` de la vista a `recepcion`.
+   - `REVOKE SELECT ON dueno FROM recepcion;` para que llegue al dato del dueno **solo** a traves de la vista.
+
+2. **Privilegios por columna para veterinario_rol.** En lugar de dar `SELECT` sobre toda la tabla `dueno`, otorga `SELECT` **unicamente** sobre las columnas `id_dueno` y `nombre` de `dueno`. La sintaxis es `GRANT SELECT (col1, col2) ON tabla TO rol;`
+
+3. **Verificacion (obligatoria).** Termina con dos consultas:
+   - un `SELECT` sobre la vista `v_agenda_recepcion` que muestre sus filas;
+   - un `SELECT grantee, table_name, column_name, privilege_type FROM information_schema.column_privileges WHERE grantee = 'veterinario_rol' AND table_name = 'dueno' ORDER BY column_name;` — debe devolver **exactamente dos filas**, `id_dueno` y `nombre`. Si aparece `email` o `telefono`, otorgaste la tabla completa.''',
                     'puntos': 20,
                     'rubrica': 'La vista se crea con las 7 columnas pedidas, excluye el email y '
                                'filtra las citas canceladas; el SELECT sobre la vista devuelve '

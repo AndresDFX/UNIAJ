@@ -5,7 +5,7 @@ El guion embebe automaticamente cualquier PNG que exista en esta carpeta con
 el nombre esperado. Mientras no exista, el .docx imprime la receta en su lugar.
 
 1) cap01_demo.png — salida de la demo del docente
-   - Abrir Oracle Live SQL / DB Fiddle + Google Docs y repetir la demo: Matriz rol x objeto x privilegio sobre tablas VetCare.
+   - Abrir ExamLab (PostgreSQL) + Google Docs y repetir la demo: Los 4 roles de VetCare con CREATE ROLE/GRANT/REVOKE en ExamLab, verificados con information_schema.role_table_grants.
    - Capturar solo la ventana con el resultado (no el escritorio completo).
    - Recortar a ~1200 px de ancho y guardar aqui como cap01_demo.png.
 
