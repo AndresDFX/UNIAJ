@@ -26,6 +26,8 @@ import calendario_2026_2 as cal
 from vetcare_contexto import CLIENTE, INTERESADOS, NOMENCLATURA, PROBLEMAS
 from bd2_taller_data import HERRAMIENTAS_DIA, TALLER_BLOQUE, SOLUCION
 from bd2_fundamentos import FUNDAMENTOS
+import bd2_solucion_data as soluciones_bd2
+import solucion_taller
 from bd2_examlab_data import EXAMLAB as TALLERES_EXAMLAB
 import examlab_talleres
 from docx import Document
@@ -1470,8 +1472,48 @@ def build_taller_docx(c):
     doc.save(str(out)); print("TALLER", out); return out
 
 
+def _build_solucion_completa(c):
+    """Solucion pregunta por pregunta, con el render compartido con Arquitectura."""
+    n = c['n']
+    md = solucion_taller.render_md(
+        n, soluciones_bd2.SOLUCION[n],
+        contexto={
+            "alineacion": [
+                ("Taller del estudiante",
+                 f"`Clases/Clase {n} - {c['slug']}/Taller PI - Clase {n} - VetCare.docx`"),
+                ("Configuracion en la plataforma",
+                 f"`Kit docente/Clase {n}/Taller en ExamLab - Clase {n} (configuracion).md`"),
+                ("Caso de estudio",
+                 "`Clases/Proyecto Integrador/Anexo - Caso de estudio Clinica Huellitas - "
+                 "Bases de Datos II.docx`"),
+                ("Hito del PI", c.get('hito_pi', '—')),
+                ("Entregable", c.get('entregable', '—')),
+            ],
+            "politica_extra": ("El motor de la plataforma es PostgreSQL (PGlite en el "
+                               "navegador), no Oracle."),
+        },
+        opciones=soluciones_bd2.opciones,
+        # Sin `mermaid_referencia` a proposito: en BD II el dominio es fijo (VetCare),
+        # asi que el modelo de la solucion Y el que ve el estudiante son el mismo y
+        # mostrarlo dos veces solo alarga el documento. En Arquitectura si tiene
+        # sentido, porque alli la solucion usa un dominio distinto del proyectado.
+    )
+    kit = KIT_DIR / f"Clase {n}"
+    kit.mkdir(parents=True, exist_ok=True)
+    out_md = kit / f"Solucion Taller Clase {n} - VetCare.md"
+    out_md.write_text(md, encoding='utf-8')
+    print("SOLUCION md", out_md)
+    convert_guion(out_md)          # mismo conversor que los guiones: tablas y bloques
+    return out_md
+
+
 def build_solucion_docx(c):
     if c['tipo']=='parcial': return None
+    # Formato nuevo (pregunta por pregunta, con criterio de calificacion) si esta
+    # migrada; si no, el formato corto de siempre. Asi la migracion va clase por
+    # clase sin romper el build de las que faltan.
+    if c['n'] in soluciones_bd2.SOLUCION:
+        return _build_solucion_completa(c)
     sol = SOLUCION.get(c['n'])
     if not sol: return None
     kit = KIT_DIR / f"Clase {c['n']}"
