@@ -78,11 +78,13 @@ Di casi literal:
 > "¿En qué quedó tu CloudLite la clase pasada?"
 
 ### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 5]
-Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las diapositivas de teoría):
-- Qué es arquitectura cloud (mapa mental)
-- CloudLite App — el hilo conductor
-- De dominio a arquitectura (mini-método)
+Cubre estos conceptos, en este orden, ~10 min cada uno, con su diapositiva:
+- **Qué es arquitectura cloud (mapa mental)** · [Slide 5]
+- **CloudLite App — el hilo conductor** · [Slide 6]
+- **De dominio a arquitectura (mini-método)** · [Slide 7]
 
+**[Nota docente]: ninguna se salta** — cada una de esas diapositivas es el mecanismo con que se
+resuelve al menos una pregunta de la actividad calificada de hoy.
 El desarrollo completo de cada uno está arriba, en «Fundamento teórico para el docente», ya dividido
 por diapositiva: esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 

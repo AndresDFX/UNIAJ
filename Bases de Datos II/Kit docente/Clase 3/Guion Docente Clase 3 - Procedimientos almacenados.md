@@ -81,11 +81,18 @@ La teoria sera corta; el peso esta en el taller del proyecto.»
 Proyectar [Slide 2] «Encuadre de hoy · Objetivo PI» y [Slide 3] «Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
-### 10-35 · Teoria Core (breve) · [Slide 4]
+### 10-35 · Teoria Core (breve) · desde [Slide 4]
 **Decir:** «Solo lo necesario para el entregable de hoy.»
-Proyectar [Slide 4] «Teoria Core (breve)». El desarrollo completo de cada punto esta
-arriba, en «Fundamento teorico», dividido por diapositiva.
-Cubrir:
+Proyecte estas diapositivas, en este orden, ~8 min cada una. Son la teoria
+completa del dia: **ninguna se salta**, porque el taller cobra puntos por lo que se
+proyecta en todas ellas.
+1. **[Slide 4] Teoria Core (breve)**
+2. **[Slide 5] Por que un procedimiento y no SQL en cada pantalla**
+3. **[Slide 6] La validacion que justifica usar un procedimiento**
+
+El desarrollo completo de cada una esta arriba, en «Fundamento teorico», dividido por
+diapositiva: esa seccion esta escrita para dictarla sin consultar otra fuente.
+Ideas que tienen que quedar dichas:
 - Un procedimiento almacenado (stored procedure) es un bloque de codigo SQL/PLSQL con nombre propio, guardado y compilado DENTRO de la base de datos, que se invoca con CALL o EXECUTE en vez de reescribir la logica cada vez.
 - Parametros: IN (entra un valor, ej. p_id_mascota), OUT (el proc devuelve un valor al que lo llamo, ej. p_msg con el resultado), IN OUT (ambos). A diferencia de una consulta suelta, un proc puede recibir varios parametros y ejecutar varias sentencias como una sola unidad logica.
 - Ventaja central para el PI: sin proc, cada pantalla de la futura app (o cada persona que toque el codigo) reescribiria la regla 'mascota inactiva no agenda' con su propio SQL, y tarde o temprano alguien la escribe distinto o la olvida. Con el proc, la regla vive UNA vez dentro de la BD; toda la app la respeta sin excepcion.

@@ -80,11 +80,17 @@ La teoria sera corta; el peso esta en el taller del proyecto.»
 Proyectar [Slide 2] «Encuadre de hoy · Objetivo PI» y [Slide 3] «Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
-### 10-35 · Teoria Core (breve) · [Slide 4]
+### 10-35 · Teoria Core (breve) · desde [Slide 4]
 **Decir:** «Solo lo necesario para el entregable de hoy.»
-Proyectar [Slide 4] «Teoria Core (breve)». El desarrollo completo de cada punto esta
-arriba, en «Fundamento teorico», dividido por diapositiva.
-Cubrir:
+Proyecte estas diapositivas, en este orden, ~12 min cada una. Son la teoria
+completa del dia: **ninguna se salta**, porque el taller cobra puntos por lo que se
+proyecta en todas ellas.
+1. **[Slide 4] Teoria Core (breve)**
+2. **[Slide 5] Un indice se justifica con la consulta que lo usa**
+
+El desarrollo completo de cada una esta arriba, en «Fundamento teorico», dividido por
+diapositiva: esa seccion esta escrita para dictarla sin consultar otra fuente.
+Ideas que tienen que quedar dichas:
 - Un indice es una estructura auxiliar (tipicamente un arbol B-Tree) que el motor mantiene ordenada por una o mas columnas, para encontrar filas sin recorrer toda la tabla — como el indice de un libro en vez de leer pagina por pagina.
 - El costo no es gratis: cada INSERT/UPDATE/DELETE sobre una columna indexada obliga al motor a actualizar tambien el indice, asi que mas indices = lecturas mas rapidas pero escrituras mas lentas. Por eso 'indexar todo' es un error, no una optimizacion.
 - Buen candidato a indice: columna usada muy frecuentemente en WHERE, JOIN u ORDER BY, con alta cardinalidad (muchos valores distintos, ej. id_dueno) — indexar una columna de baja cardinalidad (ej. un booleano activo S/N con solo 2 valores) rara vez ayuda porque el motor igual debe leer una fraccion enorme de la tabla.

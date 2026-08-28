@@ -889,7 +889,7 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
                 ],
             },
             {
-                "n": 5, "titulo": "Politica de altas y bajas de usuarios (y limites del entorno)",
+                "n": 5, "titulo": "Politica de altas y bajas de usuarios (y la prueba negativa)",
                 "tipo": "abierta", "puntos": 15,
                 "respuesta": (
                     "Version de referencia, en una pagina. Lo que se califica no es la redaccion "
@@ -931,20 +931,22 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
                     "`admin_bd` prepara la evidencia pero no se autoaprueba, porque eso rompe la "
                     "separacion de funciones que la matriz defiende. Toda diferencia se corrige o "
                     "se documenta como excepcion con fecha de vencimiento.\n\n"
-                    "**5. Limite del entorno de practica.** En ExamLab la base es PostgreSQL "
-                    "corriendo en el navegador, con **una sola sesion y un solo usuario**. Eso "
-                    "alcanza para todo lo que es DDL de permisos — crear los cuatro roles, "
-                    "otorgar, revocar, crear la vista, recortar por columna — y para verificarlo "
-                    "con `information_schema`, porque esas consultas describen el estado del "
-                    "catalogo y no requieren cambiar de identidad. Lo que **no** se puede hacer es "
-                    "la prueba negativa: conectarse como `recepcion` e intentar un `DELETE FROM "
-                    "cita` para ver el rechazo. En un servidor real se hace sin cambiar de "
-                    "conexion, con `SET ROLE recepcion;` seguido de `DELETE FROM cita WHERE "
-                    "id_cita = 1;`, y el resultado esperado es el error `permission denied for "
-                    "table cita`; despues se vuelve con `RESET ROLE`. La ausencia de esa prueba es "
-                    "una brecha de verificacion concreta en esta entrega: se comprobo que el "
-                    "permiso **esta escrito** como se decidio, no que el motor **lo hace "
-                    "cumplir**. Son dos afirmaciones distintas y solo una quedo demostrada."
+                    "**5. Prueba negativa y limite del entorno.** En ExamLab la base es PostgreSQL "
+                    "corriendo en el navegador (PGlite), con **una sola sesion y un solo usuario "
+                    "de conexion**. Eso no impide la prueba negativa, y aqui esta corrida: `SET "
+                    "ROLE recepcion;` cambia el rol efectivo de la sesion, y desde esa linea el "
+                    "motor evalua los permisos como `recepcion`. Entonces `DELETE FROM cita WHERE "
+                    "id_cita = 1;` responde `ERROR: permission denied for table cita`, y `RESET "
+                    "ROLE;` devuelve la sesion al rol propietario. El limite real es otro, y "
+                    "conviene decirlo con precision: `SET ROLE` cambia el rol **dentro** de la "
+                    "sesion ya abierta, no abre una sesion nueva; los cuatro roles se crearon "
+                    "`NOLOGIN` justamente porque son paquetes de permisos y no identidades de "
+                    "conexion, asi que lo que ExamLab no permite probar es el **login** de "
+                    "`recepcion` ni la concurrencia entre dos personas. Lo que si quedo demostrado "
+                    "es lo que importa de la pregunta 1: que el motor **hace cumplir** la matriz, "
+                    "no solo que esta escrita. Y si en la maquina de alguien el `SET ROLE` "
+                    "fallara, ese mensaje se pega tal cual y ahi si aparece la brecha de "
+                    "verificacion: se habria comprobado la configuracion y no el cumplimiento."
                 ),
                 "como_calificar": [
                     "**8 pts — las cinco secciones, con responsable y plazo.** 1,6 por seccion. "
@@ -955,10 +957,14 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
                     "dice que se otorga el nuevo, no se dan.",
                     "**2 pts — la baja resuelve el destino de los objetos** (`REASSIGN OWNED` o "
                     "equivalente razonado) y dice cuanto se conserva la traza.",
-                    "**3 pts — la seccion 5.** 1 pt por identificar bien la limitacion (una sola "
-                    "sesion, no «no se pueden crear roles»), 1 pt por proponer `SET ROLE` u otra "
-                    "conexion como prueba negativa, y 1 pt por nombrar la consecuencia: que sin "
-                    "esa prueba lo verificado es la configuracion y no el cumplimiento.",
+                    "**3 pts — la seccion 5.** 1 pt por la prueba negativa corrida (`SET ROLE`, la "
+                    "sentencia que fallo, `RESET ROLE`), 1 pt por el mensaje del motor pegado "
+                    "literal — `permission denied for table cita` — y no parafraseado, y 1 pt por "
+                    "distinguir `SET ROLE` de conectarse como otro usuario y nombrar el limite "
+                    "verdadero del entorno: un solo usuario de conexion, sin login de `recepcion` "
+                    "ni concurrencia. Si el `SET ROLE` le fallo y pego el mensaje mas la brecha de "
+                    "verificacion, se dan los 3 igual: lo que se califica es que haya intentado "
+                    "comprobar y haya reportado lo que vio.",
                     "**Extension.** Una pagina es el techo, no la meta. Tres parrafos que "
                     "resuelven las cinco secciones valen mas que dos paginas de generalidades, y "
                     "no se descuenta por brevedad si esta todo.",
@@ -978,6 +984,15 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
                     "**Proponer como prueba negativa «abrir otra pestana y entrar como "
                     "recepcion».** No sirve: no hay segundo usuario ni segunda sesion. Lo que se "
                     "pide es el comando concreto de PostgreSQL, y es `SET ROLE`.",
+                    "**Afirmar que «en ExamLab no se puede hacer la prueba negativa» sin haberla "
+                    "intentado.** Es falso, y hay que saberlo antes de calificar: PGlite conecta "
+                    "como el superusuario `postgres`, asi que `SET ROLE recepcion;` funciona y el "
+                    "`DELETE` rebota de verdad. Si la entrega lo afirma, se le pide la corrida; "
+                    "sin evidencia no hay seccion 5.",
+                    "**Correr el `SET ROLE` y olvidar el `RESET ROLE;`.** Todo lo que el "
+                    "estudiante escriba despues se sigue ejecutando como `recepcion` y falla por "
+                    "una razon que no es la del ejercicio. Cuando alguien reporta que «se le "
+                    "rompio el resto del taller», es esto casi siempre.",
                     "**Permitir cuentas compartidas** («la cuenta recepcion1 la usan las tres "
                     "recepcionistas»). Rompe toda la auditoria de la Clase 4 antes de escribirla: "
                     "el disparador registrara siempre el mismo nombre y ninguna investigacion "
@@ -1006,10 +1021,13 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
              "dar la vista y revocar la tabla en el mismo script, y el rol sigue viendo el telefono "
              "pero ya no el correo."),
             ("¿Puedo demostrar que a recepcion le rebota el DELETE?",
-             "No en ExamLab, porque hay una sola sesion. En un servidor real, sin abrir otra "
-             "conexion: `SET ROLE recepcion;` y luego `DELETE FROM cita WHERE id_cita = 1;`, que "
-             "debe responder `permission denied for table cita`; se vuelve con `RESET ROLE`. Esa es "
-             "la respuesta que vale puntos en la pregunta 5."),
+             "Si, y sin abrir otra conexion: `SET ROLE recepcion;` y luego `DELETE FROM cita WHERE "
+             "id_cita = 1;`, que debe responder `permission denied for table cita`; se vuelve con "
+             "`RESET ROLE;`. Funciona en ExamLab porque PGlite conecta como superusuario y `SET "
+             "ROLE` cambia el rol efectivo de la sesion, no la conexion. Lo que no se puede es "
+             "conectarse *como* `recepcion`: hay un solo usuario de conexion y, de hecho, los "
+             "cuatro roles se crearon `NOLOGIN`. Esa es la respuesta que vale puntos en la "
+             "pregunta 5."),
             ("¿Rol y usuario son lo mismo?",
              "En PostgreSQL si: un usuario es un rol con el atributo `LOGIN`, y `CREATE USER` es "
              "literalmente un alias de `CREATE ROLE ... LOGIN`. Por eso los cuatro roles del taller "

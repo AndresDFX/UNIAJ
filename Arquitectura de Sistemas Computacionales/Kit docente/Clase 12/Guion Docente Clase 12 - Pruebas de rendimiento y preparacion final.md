@@ -67,11 +67,13 @@ Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien
 Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
 
 ### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 5]
-Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las diapositivas de teoría):
-- Rendimiento sin stress-tool de pago
-- Preparación de presentación (5–8 min)
-- Paquete de entrega
+Cubre estos conceptos, en este orden, ~10 min cada uno, con su diapositiva:
+- **Rendimiento sin stress-tool de pago** · [Slide 5]
+- **Preparación de presentación (5–8 min)** · [Slide 6]
+- **Paquete de entrega** · [Slide 7]
 
+**Ninguna se salta**: cada una de esas diapositivas es el mecanismo con que se resuelve
+al menos una pregunta de la actividad calificada de hoy.
 El desarrollo completo de cada uno está arriba, en «Fundamento teórico para el docente»:
 esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
@@ -86,7 +88,7 @@ Herramienta del día: **Google Docs · draw.io · (opcional) lab contenedor**.
 3. Explique el p95 con 20 numeros en el tablero: ordene y marque el que deja 95% por debajo.
 4. Cierre pidiendo el bottleneck sospechado: «cual pieza creen que revienta primero, y por que esa».
 
-Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase 12/Capturas/`.
+Narra los clics en voz alta. Si falla la red, proyecta la solución docente de este kit (`Solucion Taller Clase 12 - CloudLite.md`), que trae el resultado esperado.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
 **Cierra la demo dentro de ExamLab** [Slide 10] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.

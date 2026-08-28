@@ -111,7 +111,13 @@ def _run(run, text, size, color, bold=False, italic=False):
     return run
 
 def _rich(paragraph, text, size, color, bold=False, italic=False):
-    """Soporta **negrita** y marcadores @@label@@ (negrita) en fragmentos."""
+    """Soporta **negrita** y marcadores @@label@@ (negrita) en fragmentos.
+
+    Los `code spans` de Markdown se convierten a «comillas angulares»: PowerPoint no
+    tiene fuente monoespaciada dentro de una vineta, asi que los acentos graves salian
+    impresos tal cual en la diapositiva («Los `GRANT` de hoy corren de verdad»). El
+    fuente puede seguir escribiendose en Markdown, que es lo que necesita el guion .md.
+    """
     if hasattr(paragraph, "clear"):
         try:
             paragraph.clear()
@@ -120,6 +126,7 @@ def _rich(paragraph, text, size, color, bold=False, italic=False):
     if paragraph.runs:
         paragraph.runs[0].text = ""
     text = re.sub(r"@@([^@]+)@@", r"**\1**", str(text))
+    text = re.sub(r"`([^`\n]+)`", r"«\1»", text)
     parts = re.split(r"(\*\*[^*]+\*\*)", text)
     first = True
     for part in parts:

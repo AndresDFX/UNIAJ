@@ -79,12 +79,20 @@ ADR-001 Modelo de servicio dominante de CloudLite App
 **2. Estado**
 Aceptado — 31 de agosto de 2026
 
-**3. Decision** (una sola frase, un unico modelo dominante)
+**3. Contexto**
+BiblioLite gestiona los prestamos de la biblioteca universitaria: unos 400 prestamos al mes,
+con un pico en la semana de matricula, y 38 devoluciones tardias el semestre pasado. El
+proyecto lo sostiene **una sola persona durante doce semanas**, **sin presupuesto de nube y
+sin tarjeta de credito**, y tiene que estar en linea el dia de la sustentacion de la Clase 15.
+La unica capacidad que pide algo del sistema operativo es la lectura del codigo de barras del
+lomo del libro, que necesitaria una libreria nativa.
+
+**4. Decision** (una sola frase, un unico modelo dominante)
 La aplicacion de BiblioLite se desplegara sobre **PaaS**: se entrega el codigo de la API de
 prestamos y del front al proveedor, que opera el sistema operativo y el runtime, mientras el
 equipo conserva la responsabilidad del codigo, de los permisos y de los datos de prestamo.
 
-**4. Alternativas descartadas** (exactamente 2, con el motivo en terminos del dominio)
+**5. Alternativas descartadas** (exactamente 2, con el motivo en terminos del dominio)
 
 - **IaaS.** Se descarta porque el proyecto lo sostiene una sola persona durante doce
   semanas, y en IaaS esa persona tendria que operar el sistema operativo: parchear la
@@ -101,27 +109,32 @@ equipo conserva la responsabilidad del codigo, de los permisos y de los datos de
   las 38 devoluciones tardias del semestre pasado se resolverian con la regla que traiga el
   producto, no con la que la biblioteca necesita.
 
-**Nota de alcance** (no es una quinta seccion; se escribe dentro de las alternativas)
+**Nota de alcance** (no es una seccion aparte; se escribe dentro de las alternativas)
 Identidad y correo se siguen consumiendo como **SaaS satelite**, tal como quedaron en el C4
 Context de la pregunta 3. Eso no rompe la decision: el modelo dominante se refiere a **la
 aplicacion propia**.
 
+La **seccion 6, Consecuencias**, es la pregunta 7 y esta resuelta ahi mismo. El ADR completo
+del curso son esas seis secciones; ninguna otra.
+
 ### Como calificar
 
-- 2 pts titulo y estado. El estado tiene que traer **fecha**; «Aceptado» solo, sin fecha, vale la mitad de este criterio.
-- 4 pts la decision en **una frase** con **un** modelo dominante. **Cero en este criterio si nombra dos o mas modelos**: «un poco de PaaS y un poco de IaaS» no es una decision, es no haber decidido. Es el criterio que hay que revisar primero, antes de leer el resto.
-- 6.5 pts las dos alternativas descartadas con el motivo atado al dominio: **3.25 pts cada una**. Se pierde **la mitad de cada una** si el motivo es generico («es mas caro», «es mas complejo») sin decir mas caro o mas complejo **para que** de su sistema.
+- 1.5 pts titulo y estado. El titulo tiene que traer el **numero** del ADR y el estado tiene que traer **fecha**; «Aceptado» solo, sin fecha, vale la mitad de este criterio.
+- 2 pts el **contexto**: nombra el dominio, el plazo y al menos una restriccion real de quien sostiene el proyecto (una persona, sin presupuesto, sin tarjeta). **Cero en este criterio** si es teoria general o un resumen del tema de la clase. La prueba rapida: si el contexto no permite deducir por que se descarto IaaS, no es contexto.
+- 3.5 pts la decision en **una frase** con **un** modelo dominante. **Cero en este criterio si nombra dos o mas modelos**: «un poco de PaaS y un poco de IaaS» no es una decision, es no haber decidido. Es el criterio que hay que revisar primero, antes de leer el resto.
+- 5.5 pts las dos alternativas descartadas con el motivo atado al dominio: **2.75 pts cada una**. Se pierde **la mitad de cada una** si el motivo es generico («es mas caro», «es mas complejo») sin decir mas caro o mas complejo **para que** de su sistema.
 - **Exactamente dos** alternativas. Con una sola, el ADR no documenta una decision sino un hecho: se califica solo la que este. Con tres o mas, se califican las dos primeras y se descuenta 1 pt por no seguir el formato, que es parte de lo que se evalua.
 - Mencionar SaaS satelite para identidad y correo **no** penaliza y no cuenta como segundo modelo dominante. Si penaliza que la seccion 3 diga «PaaS para la app y SaaS para identidad» como si fueran dos decisiones dominantes: ahi ya se nombraron dos modelos.
 - Elegir IaaS o SaaS como dominante **no se penaliza en absoluto**. Lo que se califica es que el motivo del descarte de los otros dos este atado al dominio. Un ADR que elige IaaS porque necesita la libreria nativa de codigo de barras y lo sustenta esta perfecto.
 
 ### Errores frecuentes y que hacer
 
-- Decision con dos modelos. Es el error mas frecuente y el mas caro: cuesta 4 de los 12.5 puntos. Suele venir de querer no equivocarse. Devuelvala con una sola instruccion: «tache uno».
+- Decision con dos modelos. Es el error mas frecuente y el mas caro: cuesta 3.5 de los 12.5 puntos. Suele venir de querer no equivocarse. Devuelvala con una sola instruccion: «tache uno».
+- Contexto escrito como resumen del tema: «los modelos de servicio son IaaS, PaaS y SaaS y hay que elegir uno». Eso no es contexto, es apunte de clase, y vale 0 de los 2 pts. La instruccion que lo corrige es una pregunta: «¿que tienes tu que no tiene otro equipo, y cuanto tiempo tienes?». Lo que responda es el contexto.
 - Alternativas descartadas con motivo de folleto: «IaaS es mas complejo». Pregunte «mas complejo para hacer que, en BiblioLite» y la respuesta que dé el estudiante es exactamente lo que debia haber escrito.
 - Una sola alternativa descartada, casi siempre SaaS, porque es la facil. La que enseña algo es IaaS, que es la que obliga a mirar el costo de operacion propio.
 - Estado «Propuesto» o «En estudio». El enunciado pide `Aceptado` con fecha porque el ADR tiene que quedar cerrado hoy: las Clases 3, 7 y 15 construyen sobre esta decision y no puede seguir abierta.
-- Agregar secciones que no se pidieron (contexto, participantes, diagramas). No es un error conceptual, pero el enunciado dice cuatro secciones y sin agregar otras: se descuenta del formato.
+- Agregar secciones que no se pidieron (participantes, diagramas, riesgos, opciones consideradas). No es un error conceptual, pero el enunciado dice cinco secciones y sin agregar otras: se descuenta del formato. Ojo con «Opciones consideradas»: en este curso las opciones son la matriz de la pregunta 5, y lo que va en el ADR son las dos **descartadas**.
 - ADR que contradice la matriz de la pregunta 5. Si la matriz dijo que PaaS no sirve porque hace falta la libreria nativa, y el ADR elige PaaS sin resolver eso, hay una incoherencia que la sustentacion de la Clase 15 va a encontrar. Marquela hoy.
 
 ---
@@ -200,6 +213,14 @@ No, y buscarlos es la forma mas rapida de perder la hora del taller. El criterio
 **¿Que fecha se le pone al estado del ADR?**
 
 La de hoy, la de la sesion en que se decide. El ADR es un documento fechado: sirve precisamente para que en seis meses se sepa cuando se decidio y con que informacion.
+
+**¿Cuantas secciones tiene el ADR y donde va cada una?**
+
+**Seis**, y son las mismas en todo el curso: Titulo, Estado, Contexto, Decision, Alternativas descartadas y Consecuencias. Las cinco primeras se entregan en la pregunta 6 y la sexta en la pregunta 7, pero es **un solo documento**: el que se cita en la sustentacion de la Clase 15 y el que sirve de molde para el ADR-002 en adelante. No hay seccion de «Opciones consideradas»: ese analisis es la matriz de la pregunta 5.
+
+**El contexto y la matriz de la pregunta 5, ¿no son lo mismo?**
+
+No, y conviene decirlo antes de que empiecen a escribir. La matriz **compara** los tres modelos sobre las capacidades del dominio; el contexto son las **restricciones** bajo las que se decide: quien sostiene el proyecto, cuanto tiempo hay y con que presupuesto. La matriz es el analisis, el contexto es el terreno. Si el contexto repite la matriz, no cumple.
 
 **¿Las consecuencias pueden ser las mismas para los tres ejes?**
 

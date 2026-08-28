@@ -80,11 +80,17 @@ La teoria sera corta; el peso esta en el taller del proyecto.»
 Proyectar [Slide 2] «Encuadre de hoy · Objetivo PI» y [Slide 3] «Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
-### 10-35 · Teoria Core (breve) · [Slide 4]
+### 10-35 · Teoria Core (breve) · desde [Slide 4]
 **Decir:** «Solo lo necesario para el entregable de hoy.»
-Proyectar [Slide 4] «Teoria Core (breve)». El desarrollo completo de cada punto esta
-arriba, en «Fundamento teorico», dividido por diapositiva.
-Cubrir:
+Proyecte estas diapositivas, en este orden, ~12 min cada una. Son la teoria
+completa del dia: **ninguna se salta**, porque el taller cobra puntos por lo que se
+proyecta en todas ellas.
+1. **[Slide 4] Teoria Core (breve)**
+2. **[Slide 5] Trigger de auditoria: nadie tiene que acordarse de registrarlo**
+
+El desarrollo completo de cada una esta arriba, en «Fundamento teorico», dividido por
+diapositiva: esa seccion esta escrita para dictarla sin consultar otra fuente.
+Ideas que tienen que quedar dichas:
 - Funcion (Clase 3 vio procedimiento): retorna un valor y se usa DENTRO de una expresion SQL, ej. SELECT fn_precio_base(especie) FROM mascota. Debe ser determinista y sin efectos secundarios pesados; si necesita modificar datos y ejecutarse como accion independiente, es un procedimiento, no una funcion.
 - Trigger (disparador): bloque de codigo que el motor ejecuta AUTOMATICAMENTE cuando ocurre un evento (BEFORE/AFTER INSERT, UPDATE o DELETE) sobre una tabla, sin que nadie lo llame explicitamente. Dos usos tipicos aqui: auditoria (guardar quien/cuando cancelo una cita) y validacion de invariantes (que el stock nunca quede negativo tras un UPDATE).
 - Riesgo real de los triggers: son invisibles en el codigo de la app (un desarrollador que solo mira el INSERT no ve que ademas se dispara una auditoria), y pueden encadenarse (un trigger que dispara otro trigger) generando efectos dificiles de rastrear. Se usan para pocas reglas criticas, no para toda la logica de negocio.

@@ -113,6 +113,9 @@ GRIS = RGBColor(0x2B, 0x2B, 0x2B)
 BLANCO = RGBColor(0xFF, 0xFF, 0xFF)
 ROJO = RGBColor(0xA0, 0x20, 0x30)
 FONT = "Calibri"
+# Monoespaciada para las plantillas del entregable: sin ella, las columnas de una
+# matriz separadas por «|» no quedan alineadas y el estudiante no ve la tabla.
+MONO = "Consolas"
 
 # ---------------------------------------------------------------------------
 # Modalidad de trabajo — decision docente 2026-2
@@ -298,18 +301,24 @@ CLASSES = [
                 "Si el dominio exige mucho control de red → justifique IaaS *simulado* en diagrama.",
                 "SaaS solo como **satélite** (auth, email, analytics) — no como toda la app.",
             ]),
+            # Las 6 secciones son EXACTAMENTE las que califican las preguntas 6 y 7, y van
+            # en la diapositiva porque el formato del ADR vale 18.75 de los 25 puntos de la
+            # clase: titulo y estado no aparecian en ningun deck y se cobraban igual.
             ("Plantilla ADR-001", [
-                "Contexto · Decisión · Alternativas · Consecuencias · Riesgos.",
-                "Máximo 1 página. Lenguaje de arquitectura, no marketing.",
-                "Debe citar 2 trade-offs (ej.: control vs velocidad de entrega).",
+                "@@6 secciones rotuladas@@: Título · Estado · Contexto · Decisión · Alternativas descartadas · Consecuencias.",
+                "@@Título@@: «ADR-001 Modelo de servicio dominante de CloudLite App».  @@Estado@@: Aceptado + fecha de hoy.",
+                "@@Contexto@@ = las restricciones (quién lo sostiene, cuánto tiempo, qué presupuesto), no el resumen del tema.",
+                "@@Decisión@@: 1 frase, 1 modelo dominante.  @@Alternativas descartadas@@: exactamente 2, con motivo del dominio.",
+                "Máximo 1 página. Las 5 primeras secciones son la **pregunta 6**; @@Consecuencias@@ es la **pregunta 7**.",
             ]),
         ],
         "taller_titulo": "Taller Clase 2 — ADR modelo de servicio CloudLite",
         "taller_pasos": [
             "Retome su ficha y su C4 Context de la Clase 1: dominio, capacidades y actores (no cambie de dominio).",
-            "Complete una matriz IaaS/PaaS/SaaS vs su dominio (control, costo cualitativo, operación, time-to-demo).",
-            "Redacte ADR-001 (decisión dominante + 2 alternativas descartadas).",
-            "Actualice el informe PI (sección «Modelo de servicio»).",
+            "Complete la matriz «Criterio | IaaS | PaaS | SaaS» con las 4 filas en orden: control, costo cualitativo, operación, time-to-demo (pregunta 5).",
+            "Redacte las 5 primeras secciones del ADR-001: Título · Estado con fecha · Contexto · Decisión (1 frase, 1 modelo dominante) · Alternativas descartadas (exactamente 2) — pregunta 6.",
+            "Escriba la sección 6 del mismo ADR, Consecuencias, en los 3 ejes (operación, costo, aprendizaje) con un + y un - en cada uno (pregunta 7).",
+            "Actualice el informe PI (sección «Modelo de servicio») pegando el ADR completo, las 6 secciones.",
             "Entrega domingo 23:59 en **ExamLab** (Talleres) — mismo doc del PI o anexo.",
         ],
         "quiz": [
@@ -811,24 +820,32 @@ def _shade(paragraph, fill: str) -> None:
     pPr.append(shd)
 
 
-def _run_d(run, *, size=11, bold=False, color=GRIS):
-    run.font.name = FONT
-    run._element.rPr.rFonts.set(qn("w:eastAsia"), FONT)
+def _run_d(run, *, size=11, bold=False, color=GRIS, font=None):
+    f = font or FONT
+    run.font.name = f
+    run._element.rPr.rFonts.set(qn("w:eastAsia"), f)
     run.font.size = Pt(size)
     run.bold = bold
     run.font.color.rgb = color
 
 
+def _sin_code_spans(text) -> str:
+    """`code span` de Markdown -> «code span». El .docx no es Markdown: los acentos
+    graves salian impresos tal cual en lo que lee el estudiante. El fuente puede
+    seguir escribiendose en Markdown, que es lo que necesita el guion .md."""
+    return re.sub(r"`([^`\n]+)`", r"«\1»", str(text))
+
+
 def para(doc, text, *, size=11, bold=False, color=GRIS, align=WD_ALIGN_PARAGRAPH.LEFT,
-         space_after=6, space_before=0, shade=None):
+         space_after=6, space_before=0, shade=None, font=None):
     p = doc.add_paragraph()
     p.alignment = align
     p.paragraph_format.space_after = Pt(space_after)
     p.paragraph_format.space_before = Pt(space_before)
     if shade:
         _shade(p, shade)
-    r = p.add_run(text)
-    _run_d(r, size=size, bold=bold, color=color)
+    r = p.add_run(_sin_code_spans(text))
+    _run_d(r, size=size, bold=bold, color=color, font=font)
     return p
 
 
@@ -842,7 +859,12 @@ def h2(doc, text):
 
 
 def add_inline_docx(p, text, *, size=11, color=GRIS):
-    """Soporta @@negrita@@ dentro de un run de docx (mismo formato usado en las slides)."""
+    """Soporta @@negrita@@ dentro de un run de docx (mismo formato usado en las slides).
+
+    Los `code spans` de Markdown pasan a «comillas angulares», igual que en las slides:
+    el docx del estudiante los imprimia con los acentos graves a la vista.
+    """
+    text = _sin_code_spans(text)
     for part in re.split(r'(@@.*?@@)', text):
         if not part:
             continue
@@ -982,22 +1004,25 @@ DIAGRAMAS = {
 # Codigo/artefacto PROYECTABLE por clase: lo minimo que el estudiante debe ver
 # en pantalla mientras se explica (el archivo completo va al repo del PI).
 CODIGO_SLIDE = {
-    2: ("ADR-001 — la plantilla completa cabe en una pagina", [
-        "# ADR-001: Modelo de servicio de CloudLite",
+    # Los rotulos son literalmente los de las preguntas 6 y 7. Antes faltaban Titulo y
+    # Estado, que la pregunta 6 cobra, y sobraba «Riesgos», que nadie califica.
+    2: ("ADR-001 — las 6 secciones caben en una pagina", [
+        "## 1. Titulo     ADR-001 Modelo de servicio dominante de CloudLite App",
+        "## 2. Estado     Aceptado — <fecha de hoy>",
         "",
-        "## Contexto",
-        "MVP academico, un desarrollador (2 o 3 si el docente autorizo equipo), sin presupuesto cloud.",
+        "## 3. Contexto                    <- restricciones, no resumen del tema",
+        "Lo sostengo yo solo, 12 semanas, sin presupuesto cloud ni tarjeta; demo viva el dia de la sustentacion.",
         "",
-        "## Decision",
-        "PaaS conceptual + contenedores (portable).",
+        "## 4. Decision                    <- UNA frase, UN modelo dominante",
+        "La aplicacion de CloudLite se despliega sobre PaaS.",
         "",
-        "## Alternativas descartadas",
-        "- IaaS: control total, pero operamos SO y red -> tiempo que no tenemos.",
-        "- SaaS como nucleo: no personalizable; solo satelite (auth/email).",
+        "## 5. Alternativas descartadas    <- exactamente 2, con motivo del dominio",
+        "- IaaS: control total, pero yo opero SO y parches -> tiempo que no tengo.",
+        "- SaaS como nucleo: no queda nada que arquitecturar; solo satelite (auth/email).",
         "",
-        "## Consecuencias",
-        "+ Menos operacion.  - Menos control de red.  ~ Portabilidad OK.",
-    ], "Si el ADR no nombra un modelo DOMINANTE y 2 descartes con razon, no es un ADR."),
+        "## 6. Consecuencias               <- pregunta 7: 3 ejes, cada uno con + y -",
+        "Operacion + / -        Costo + / -        Aprendizaje + / -",
+    ], "Sin Titulo y Estado con fecha no hay ADR que citar en la Clase 15: son 1.5 puntos de la pregunta 6."),
     3: ("Dockerfile minimo del stub CloudLite", [
         "FROM node:20-alpine          # base slim: arranca rapido, pesa poco",
         "WORKDIR /app",
@@ -1443,6 +1468,78 @@ def build_pptx(c: dict) -> Path:
     return out
 
 
+# Plantilla en blanco del entregable, dentro del taller del estudiante.
+#
+# Va SOLO donde la FORMA de la respuesta se califica. En la Clase 2 son 18.75 de los 25
+# puntos: la matriz de la pregunta 5 (encabezados y filas exactos, celdas de maximo 2
+# lineas) y las secciones rotuladas del ADR de las preguntas 6 y 7. Antes el taller las
+# enumeraba en una linea de prosa; el estudiante inventaba la estructura y perdia puntos
+# por la forma, que es justo lo que nunca se le habia dado. Los rotulos son LITERALMENTE
+# los de TALLERES_EXAMLAB[n] y los de la solucion docente: si alli cambia un nombre,
+# cambia aqui. No se le inventa formulario a una pregunta sin forma fija (SQL, diagrama,
+# seleccion multiple, prosa libre): por eso el dict solo tiene las clases que lo piden.
+#
+# Ancho maximo de linea: 96 caracteres (Consolas 9 pt en la caja del docx). Mas largo
+# envuelve y descuadra las columnas de la matriz.
+PLANTILLA_TALLER = {
+    2: [
+        "A) MATRIZ IaaS / PaaS / SaaS DE TU DOMINIO   (pregunta 5)",
+        "   Encabezados y filas exactos, en este orden. Ninguna celda queda vacia y ninguna pasa",
+        "   de 2 lineas. Cada celda habla de TU dominio y de TUS capacidades, no de teoria general:",
+        "   «mas control» no dice nada; «puedo instalar la libreria que necesita el prestamo» si.",
+        "",
+        "   | Criterio          | IaaS                 | PaaS                 | SaaS                 |",
+        "   |-------------------|----------------------|----------------------|----------------------|",
+        "   | Control           |                      |                      |                      |",
+        "   |                   |                      |                      |                      |",
+        "   | Costo cualitativo |                      |                      |                      |",
+        "   |                   |                      |                      |                      |",
+        "   | Operacion         |                      |                      |                      |",
+        "   |                   |                      |                      |                      |",
+        "   | Time-to-demo      |                      |                      |                      |",
+        "   |                   |                      |                      |                      |",
+        "",
+        "   Fila Operacion: di QUIEN opera el sistema operativo y el runtime en cada modelo. Es la",
+        "   que mas se equivoca: la responsabilidad no desaparece al subir de nivel, se reparte, y",
+        "   en los tres modelos tu sigues respondiendo por tu aplicacion, tus permisos y tus datos.",
+        "",
+        "B) ADR-001  —  6 secciones rotuladas   (1 a 5 = pregunta 6 · 6 = pregunta 7)",
+        "   Copia los rotulos tal cual, no agregues secciones y no pases de 1 pagina en total.",
+        "",
+        "   1. Titulo",
+        "      ADR-001 Modelo de servicio dominante de CloudLite App",
+        "",
+        "   2. Estado",
+        "      Aceptado - [fecha de hoy: __ / __ / 2026]",
+        "",
+        "   3. Contexto        <- RESTRICCIONES reales, no un resumen del tema (2 o 3 lineas)",
+        "      Dominio: [el mismo de la ficha y del C4 Context de la Clase 1]",
+        "      Quien sostiene el proyecto: [ ... ]      En cuanto tiempo: [ ... semanas]",
+        "      Presupuesto y medios de pago: [ ... ]",
+        "      Prueba: del contexto se deduce por que descartaste las dos alternativas. Si no se",
+        "      deduce, todavia no es contexto.",
+        "",
+        "   4. Decision        <- UNA sola frase, UN solo modelo dominante (dos modelos = 0 pts aqui)",
+        "      [ ... ]",
+        "",
+        "   5. Alternativas descartadas        <- exactamente 2, ni 1 ni 3",
+        "      - [modelo]: [motivo atado a tu dominio: mas caro o mas complejo PARA QUE de tu sistema]",
+        "      - [modelo]: [ ... ]",
+        "      (si consumes SaaS satelite para identidad o correo, aclaralo aqui: no rompe la regla)",
+        "",
+        "   6. Consecuencias   (pregunta 7)   <- los tres ejes, cada uno con una + y una -",
+        "      Operacion     + [que empiezas a hacer]",
+        "                    - [ ... ]",
+        "      Costo         + [que se abarata]",
+        "                    - [que se encarece]",
+        "      Aprendizaje   + [ ... ]",
+        "                    - [ ... ]",
+        "      Al menos UNA de las tres negativas habla de amarre al proveedor o de perdida de",
+        "      control. Marca cual: [ Operacion / Costo / Aprendizaje ]",
+    ],
+}
+
+
 # Bloque ampliado por clase (contexto/por-que-importa, escenario, pistas) — fusiona
 # el contenido de los dos talleres duplicados que existian antes por clase, quedandose
 # con lo mejor de cada uno en un solo documento generado por el pipeline.
@@ -1474,13 +1571,22 @@ TALLER_BLOQUE = {
             "Sin ADR, el PI no puede justificar trade-offs en sustentación ni en parciales.",
         ],
         "escenario": [
-            "Partir de la ficha/C4 de Clase 1 (mismo dominio).",
+            "Partir de la ficha/C4 de Clase 1 (mismo dominio, no se cambia).",
             "MVP académico típico: PaaS conceptual + SaaS satélite (auth/email).",
+            "El ADR-001 son @@6 secciones rotuladas@@: Título · Estado · Contexto · Decisión · Alternativas descartadas · Consecuencias. Las 5 primeras van en la pregunta 6; Consecuencias es la pregunta 7.",
         ],
+        # El checklist cubre las TRES preguntas de la clase (5, 6 y 7), no solo el ADR:
+        # la matriz vale 6.25 puntos y no tenia ni una linea aqui.
         "pistas": [
-            "¿La decisión nombra un modelo dominante (no un poco de todo)?",
-            "¿Hay al menos dos alternativas descartadas con razón?",
-            "¿Consecuencias incluyen operación, costo y aprendizaje?",
+            "¿La matriz tiene los 4 encabezados exactos (Criterio · IaaS · PaaS · SaaS) y las 4 filas en el orden pedido?",
+            "¿Cada celda de la matriz nombra una capacidad de TU dominio y no cabe en más de 2 líneas?",
+            "¿La fila de operación dice quién opera SO y runtime en cada modelo, sin afirmar que dejas de responder por tu app?",
+            "¿El ADR trae el Título con el número y el Estado con la fecha de hoy?",
+            "¿El Contexto son restricciones tuyas (quién lo sostiene, cuánto tiempo, qué presupuesto) y no un resumen del tema?",
+            "¿La decisión nombra un modelo dominante en UNA frase (no un poco de todo)?",
+            "¿Hay exactamente dos alternativas descartadas, cada una con el motivo atado a tu dominio?",
+            "¿Las consecuencias cubren operación, costo y aprendizaje, con al menos un + y un - en cada eje?",
+            "¿Alguna consecuencia negativa habla de amarre al proveedor o de pérdida de control?",
         ],
     },
     3: {
@@ -1657,42 +1763,65 @@ def build_taller_docx(c: dict) -> Path | None:
          size=11, bold=True, color=AZUL, align=WD_ALIGN_PARAGRAPH.CENTER)
     para(doc, "Documento estudiante — avance del Proyecto Integrador",
          size=10, color=CIAN_D, align=WD_ALIGN_PARAGRAPH.CENTER, shade="E8F4FA")
+    # Las secciones se numeran corridas: cuatro de ellas son condicionales y con los
+    # numeros escritos a mano un taller sin «contexto» empezaba en «2.» y otro sin
+    # «escenario» saltaba del 3 al 5.
+    _sec = 1
     if tb.get("contexto"):
-        h2(doc, "1. Contexto / por qué importa al PI")
+        h2(doc, f"{_sec}. Contexto / por qué importa al PI")
         bullets(doc, tb["contexto"])
-    h2(doc, "2. Hoy avanzamos el PI en…")
+        _sec += 1
+    h2(doc, f"{_sec}. Hoy avanzamos el PI en…")
     para(doc, c["pi_hoy"])
-    h2(doc, "3. Entregable concreto")
+    _sec += 1
+    h2(doc, f"{_sec}. Entregable concreto")
     para(doc, c["entregable"], shade="E8F4FA")
+    _sec += 1
     if tb.get("escenario"):
-        h2(doc, "4. Escenario / datos de partida")
+        h2(doc, f"{_sec}. Escenario / datos de partida")
         bullets(doc, tb["escenario"])
-    h2(doc, "5. Herramientas (gratis + navegador)")
+        _sec += 1
+    h2(doc, f"{_sec}. Herramientas (gratis + navegador)")
     para(doc, c["herramienta"])
     para(doc, "Prohibido como requisito: AWS/GCP/Oracle/Azure con tarjeta; VirtualBox/VMware/Docker Desktop obligatorio.",
          shade="FBE4E4")
-    h2(doc, "6. Pasos guiados")
+    _sec += 1
+    h2(doc, f"{_sec}. Pasos guiados")
     bullets(doc, _pasos(c))
-    h2(doc, "7. Criterio de éxito")
+    _sec += 1
+    if PLANTILLA_TALLER.get(n):
+        # La plantilla va DENTRO del taller a proposito: si el formato del entregable se
+        # califica, el formato se entrega, no se adivina.
+        h2(doc, f"{_sec}. Plantilla del entregable (copia esto y llénalo)")
+        para(doc, "Esta es exactamente la estructura que se califica. Copia el bloque tal cual "
+                  "en tu documento, llénalo, y pega cada parte en la pregunta de ExamLab que "
+                  "corresponda. Los nombres no se cambian.", size=10)
+        for linea in PLANTILLA_TALLER[n]:
+            para(doc, linea or " ", size=9, shade="F2F2F3", space_after=0, font=MONO)
+        para(doc, " ", size=6, space_after=0)
+        _sec += 1
+    h2(doc, f"{_sec}. Criterio de éxito")
     bullets(doc, [
         "El artefacto queda en el paquete PI (informe y/o repo) con nombres consistentes.",
         mod(c, "explica_60s_note"),
         "Evidencia adjunta (PNG, enlace lab, YAML, etc.).",
     ])
+    _sec += 1
     if tb.get("pistas"):
-        h2(doc, "8. Pistas (checklist vacío — sin solución)")
+        h2(doc, f"{_sec}. Pistas (checklist vacío — sin solución)")
         bullets(doc, [f"☐ {p}" for p in tb["pistas"]])
+        _sec += 1
     _dudas = soluciones.DUDAS_ESTUDIANTE.get(n)
     if _dudas:
         # Van en el documento del estudiante a proposito: son las mismas preguntas
         # que aparecen cada semestre en la hora de taller.
-        h2(doc, "9. Dudas frecuentes (lee esto antes de preguntar)")
+        h2(doc, f"{_sec}. Dudas frecuentes (lee esto antes de preguntar)")
         for preg, resp in _dudas:
             para(doc, preg, bold=True, size=10.5, space_after=2)
             para(doc, resp, size=10.5)
-        h2(doc, "10. Entrega")
-    else:
-        h2(doc, "9. Entrega")
+        _sec += 1
+    h2(doc, f"{_sec}. Entrega")
+    _sec += 1
     if c["tipo"] == "sustentacion":
         # No es un taller con plazo del domingo: la sesión es la sustentación en vivo,
         # así que el paquete tiene que estar arriba ANTES del bloque.
@@ -1713,8 +1842,7 @@ def build_taller_docx(c: dict) -> Path | None:
         examlab_talleres.render_estudiante(
             doc, _taller_el, para=para, bullets=bullets,
             add_inline=add_inline_docx, color_titulo=AZUL,
-            titulo=("11. Que vas a resolver en ExamLab" if _dudas
-                    else "10. Que vas a resolver en ExamLab"),
+            titulo=f"{_sec}. Qué vas a resolver en ExamLab",
         )
     doc.save(str(path))
     print("OK taller ->", path)
@@ -1802,12 +1930,16 @@ DEMO_ARQ = {
         "Agregue 1 caja gris a la derecha rotulada «Pasarela de pagos (externo)» y una flecha «cobra».",
         "Diga en voz alta: «no dibuje que hay ADENTRO de la caja; eso es Clase 4».",
     ]),
-    2: ("Llenar un ADR-001 delante del grupo, en 6 lineas", [
-        "Abra un Google Doc y escriba los 4 encabezados del ADR: Contexto, Opciones, Decision, Consecuencias.",
-        "Contexto: «CloudLite necesita correr una API y una base de datos; lo desarrolla una persona en un semestre y con cero presupuesto».",
-        "Opciones: IaaS (control total, mas trabajo operativo) · PaaS (menos control, menos operacion) · SaaS (no aplica, no compramos software hecho).",
-        "Decision: PaaS conceptual + contenedores. Consecuencias: se acepta menos control del sistema operativo a cambio de no administrar servidores.",
-        "Diga: «un ADR de media pagina que se entiende vale mas que 5 paginas que nadie lee».",
+    # Los 6 rotulos de la demo son los que califican las preguntas 6 y 7. Antes eran
+    # otros cuatro (Contexto, Opciones, Decision, Consecuencias) y el estudiante copiaba
+    # del tablero una estructura que la plataforma penalizaba.
+    2: ("Llenar un ADR-001 delante del grupo, con sus 6 secciones rotuladas", [
+        "Abra un Google Doc y escriba los 6 encabezados en orden: 1. Titulo · 2. Estado · 3. Contexto · 4. Decision · 5. Alternativas descartadas · 6. Consecuencias.",
+        "Titulo: «ADR-001 Modelo de servicio dominante de CloudLite App». Estado: «Aceptado» y la fecha de hoy. Diga en voz alta: «estos dos rotulos valen 1.5 puntos y son los que se citan en la sustentacion».",
+        "Contexto: «lo desarrolla una persona en doce semanas, sin presupuesto ni tarjeta, y tiene que estar en linea el dia de la sustentacion». Subraye que son RESTRICCIONES: «existen tres modelos y hay que elegir uno» no es contexto, es el apunte de clase.",
+        "Decision, en una sola frase: «la aplicacion de CloudLite se despliega sobre PaaS». Tache en vivo un segundo modelo si alguien lo propone: «esta seccion vale cero si nombra dos».",
+        "Alternativas descartadas, exactamente dos: IaaS, porque habria que operar el sistema operativo sin tiempo para ello; SaaS como nucleo, porque no quedaria arquitectura que disenar. Aclare aqui —y no en la decision— que identidad y correo siguen siendo SaaS satelite.",
+        "Consecuencias: escriba UN eje (operacion) con su + y su -, y deje los otros dos al grupo. Diga: «un ADR de una pagina que se entiende vale mas que 5 paginas que nadie lee».",
     ]),
     3: ("Construir y correr el stub en Killercoda", [
         "Abra killercoda.com, inicie sesion con la cuenta gratuita y lance un escenario Ubuntu (advierta en voz alta: la sesion caduca a 1 h, guarden capturas antes de cerrarla).",
@@ -2038,7 +2170,6 @@ Di: «Gracias. El PI CloudLite continúa en la siguiente clase regular o autóno
     # Conceptos reales de esta clase (titulos de las slides de teoria), para que el
     # plan diga QUE cubrir en cada tramo en vez de "recorre las slides".
     conceptos = [x[0] for x in c.get("slides_extra", [])]
-    conceptos_md = _lista_md(conceptos) or "- Ver diapositivas de la clase."
     minutos_por_concepto = max(5, 30 // max(1, len(conceptos)))
 
     # Modalidad de trabajo (individual por defecto, equipos si el docente los autoriza).
@@ -2062,6 +2193,37 @@ Di: «Gracias. El PI CloudLite continúa en la siguiente clase regular o autóno
     sl_taller = _slide_tag(mapa, "paso a paso").strip()
     sl_cierre = f"[Slide {len(mapa)}]"
     mapa_md = "\n".join(f"{i}. {t}" for i, t in enumerate(mapa, 1))
+
+    # Cada concepto de teoria con SU numero de diapositiva. Antes la lista eran titulos
+    # sueltos: el docente leia «Cubre estos conceptos» y tenia que buscarlos a ojo en el
+    # deck, y no habia forma de notar que una diapositiva de teoria no aparecia en
+    # ningun tramo del plan. Si un titulo no esta en el mapa se rotula, no se inventa.
+    conceptos_md = _lista_md(
+        [f"**{t}** · {_slide_tag(mapa, t).strip() or '(sin diapositiva — avisar)'}"
+         for t in conceptos]
+    ) or "- Ver diapositivas de la clase."
+
+    # La diapositiva de codigo/plantilla es el artefacto de la demo, asi que la demo la
+    # cita. Sin esto, las clases sin diagrama publicaban «Demo en vivo · » — un separador
+    # colgando y ninguna referencia — y la diapositiva de codigo no la nombraba ningun
+    # tramo del plan.
+    _cod = CODIGO_SLIDE.get(n)
+    _cod_tag = _slide_tag(mapa, _cod[0]).strip() if _cod else ""
+    sl_demo = sl_flujo or _cod_tag
+    demo_tag = f" · {sl_demo}" if sl_demo else ""
+
+    # Respaldo si falla la red o el proyector. Antes las 12 clases con taller mandaban al
+    # docente a «Capturas/», pero solo 4 tienen imagen: en las otras 8 abria una carpeta
+    # con un README dentro. Ahora se cita lo que existe de verdad en cada clase.
+    if CAPTURAS_CLASE.get(n):
+        respaldo_demo = f"proyecta las capturas de `Kit docente/Clase {n}/Capturas/`"
+    elif _cod_tag:
+        respaldo_demo = (f"proyecta la {_cod_tag}, que ya trae el resultado de la demo, y "
+                         "recórrela rótulo por rótulo")
+    else:
+        respaldo_demo = (f"proyecta la solución docente de este kit (`Solucion Taller "
+                         f"Clase {n} - CloudLite.md`), que trae el resultado esperado")
+
     # Bloque del flujo de diagramacion: solo si el taller de hoy pide un diagrama.
     if _tiene_diagrama(n):
         _dial = examlab_talleres._dialectos_del_taller(TALLERES_EXAMLAB[n])
@@ -2089,18 +2251,20 @@ Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien
 Pregunta de arranque (1 min): «{arranque_cita}» — sirve para detectar estudiantes rezagados antes de avanzar.
 
 ### 10–40 · Teoría Core (al servicio del taller) · desde {sl_teoria}
-Cubre estos conceptos, en este orden, ~{minutos_por_concepto} min cada uno (son los títulos de las diapositivas de teoría):
+Cubre estos conceptos, en este orden, ~{minutos_por_concepto} min cada uno, con su diapositiva:
 {conceptos_md}
 
+**Ninguna se salta**: cada una de esas diapositivas es el mecanismo con que se resuelve
+al menos una pregunta de la actividad calificada de hoy.
 El desarrollo completo de cada uno está arriba, en «Fundamento teórico para el docente»:
 esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un {voluntario_word} voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · {sl_flujo}
+### 40–55 · Demo en vivo{demo_tag}
 Herramienta del día: **{c['herramienta']}**.
 {_demo_md(n)}
-Narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase {n}/Capturas/`.
+Narra los clics en voz alta. Si falla la red, {respaldo_demo}.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 {flujo_guion}{_capturas_md(n)}
 
@@ -2136,20 +2300,22 @@ Di casi literal:
 > "{arranque_cita}"
 
 ### 10–40 · Teoría Core (al servicio del taller) · desde {sl_teoria}
-Cubre estos conceptos, en este orden, ~{minutos_por_concepto} min cada uno (son los títulos de las diapositivas de teoría):
+Cubre estos conceptos, en este orden, ~{minutos_por_concepto} min cada uno, con su diapositiva:
 {conceptos_md}
 
+**[Nota docente]: ninguna se salta** — cada una de esas diapositivas es el mecanismo con que se
+resuelve al menos una pregunta de la actividad calificada de hoy.
 El desarrollo completo de cada uno está arriba, en «Fundamento teórico para el docente», ya dividido
 por diapositiva: esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 
 **[Nota docente]:** cada 8–10 min amarra al artefacto («esto es lo que van a dejar hoy en su informe/diagrama/repo»)
 y pide un {voluntario_word} voluntario para usar SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · {sl_flujo}
+### 40–55 · Demo en vivo{demo_tag}
 Herramienta del día: **{c['herramienta']}**.
 {_demo_md(n)}
 
-**[Nota docente]:** narra los clics en voz alta. Si falla la red, proyecta las capturas de `Kit docente/Clase {n}/Capturas/`.
+**[Nota docente]:** narra los clics en voz alta. Si falla la red, {respaldo_demo}.
 Cierra la demo diciendo:
 > "Copien la estructura, no el dominio de mi ejemplo."
 {flujo_guion}{_capturas_md(n)}

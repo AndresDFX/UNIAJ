@@ -71,72 +71,123 @@ JOIN dueno d ON d.id_dueno=m.id_dueno;
 ## Clase 2 — Administracion de BD · Roles VetCare
 
 **Objetivo practico:** Plan de roles/privilegios de VetCare
-**Por que importa:** roles son evidencia de administración.
+**Por que importa:** la seguridad de VetCare DB es un criterio de la rúbrica, y la evidencia son los roles y su matriz — no una promesa.
 
 **Demo en vivo:**
 - Pizarra: Tabla simple 3 columnas: Rol | Objeto | Privilegio (llenar en vivo con los 4 roles del taller).
 - Prompt de apoyo (IA, opcional si le falta tiempo de preparar): "Actua como docente de Bases de Datos II. Usando el dominio VetCare (Dueño, Mascota, Cita, Veterinario, Insumo, Factura), dame un ejemplo minimo en SQL (Oracle/PostgreSQL) sobre «Administracion de BD»: (1) el DDL de las tablas que necesito, (2) datos de ejemplo realistas de una clinica veterinaria (INSERT), (3) el codigo que ilustra «Administracion de BD» paso a paso, (4) en 3 lineas, que debe notar el estudiante cuando lo vea ejecutar."
 - Script SQL completo para correr en vivo (con datos de ejemplo):
 ```sql
--- VetCare DB · Clase 2 · Roles y privilegios (Oracle Live SQL)
--- Live SQL da UN solo usuario/schema por cuenta: no siempre se puede CREATE ROLE
--- ni GRANT a otro usuario real. Por eso este script trae DOS partes:
---   PARTE A: ejecutable tal cual en cualquier cuenta Live SQL (GRANT/REVOKE sobre
---            las propias tablas hacia PUBLIC, para demostrar la sintaxis real).
---   PARTE B: la version completa multi-usuario (CREATE ROLE + GRANT a rol),
---            documentada como PLAN si el playground no permite crear usuarios/roles.
+-- VetCare DB · Clase 2 · Roles y privilegios · PostgreSQL
+-- Este es el script de la DEMO: corre tal cual en ExamLab (PostgreSQL en el
+-- navegador), sobre el esquema de VetCare ya creado. Los nombres de rol son los
+-- mismos que pide el taller: minusculas, y el del veterinario con sufijo `_rol`
+-- porque `veterinario` ya es una tabla.
+--
+-- Se ejecuta de arriba abajo, narrando cada bloque. El bloque 5 es el que convence
+-- al grupo: es la unica parte donde se VE que un permiso negado detiene una
+-- sentencia — y por eso mismo va SENTENCIA POR SENTENCIA, no de un solo tiro: dos
+-- de sus lineas tienen que fallar, y un runner que aborta al primer error se
+-- llevaria las siguientes. Correr el script completo una vez antes de la clase.
 
--- ============ PARTE A — ejecutable en Live SQL (su propio schema) ============
--- Sirve para demostrar que GRANT/REVOKE son sentencias reales, no solo teoria.
-GRANT SELECT ON mascota TO PUBLIC;
-GRANT SELECT, INSERT, UPDATE ON cita TO PUBLIC;
-REVOKE UPDATE ON cita FROM PUBLIC;
+-- ============ 1) Los cuatro roles ============
+-- NOLOGIN: son paquetes de privilegios, no cuentas con las que alguien entra.
+-- Una persona recibe el rol despues, con GRANT recepcion TO ana_gomez.
+CREATE ROLE admin_bd NOLOGIN;
+CREATE ROLE recepcion NOLOGIN;
+CREATE ROLE veterinario_rol NOLOGIN;
+CREATE ROLE auditor NOLOGIN;
 
--- Verificacion de privilegios otorgados sobre los propios objetos:
-SELECT table_name, privilege, grantee
-FROM user_tab_privs_made
-WHERE table_name IN ('MASCOTA', 'CITA');
+-- ============ 2) Los privilegios, uno por uno ============
+-- admin_bd es el unico con privilegios amplios, y sobre las 8 tablas.
+GRANT ALL PRIVILEGES ON dueno, mascota, veterinario, cita,
+                        consulta, insumo, factura, detalle_factura TO admin_bd;
 
--- ============ PARTE B — plan multi-rol (requiere privilegios DBA) ============
--- Roles conceptuales del PI: ADMIN_BD, RECEPCION, VETERINARIO, AUDITOR
-CREATE ROLE recepcion;
+-- recepcion opera citas y solo LEE los datos con que identifica a quien llama.
 GRANT SELECT, INSERT, UPDATE ON cita TO recepcion;
-GRANT SELECT ON mascota TO recepcion;
-GRANT SELECT ON dueno TO recepcion;
+GRANT SELECT ON dueno, mascota, veterinario TO recepcion;
+
+-- veterinario_rol registra la consulta; la cita y la mascota solo las lee.
+GRANT SELECT ON cita, mascota TO veterinario_rol;
+GRANT SELECT, INSERT, UPDATE ON consulta TO veterinario_rol;
+
+-- auditor verifica: solo lectura, sobre todo lo sensible.
+GRANT SELECT ON dueno, mascota, cita, consulta, factura TO auditor;
+
+-- El REVOKE se deja escrito aunque sea redundante (nunca se otorgo DELETE):
+-- es la evidencia de una decision de diseno, no una correccion.
 REVOKE DELETE ON cita FROM recepcion;
 
-CREATE ROLE veterinario;
-GRANT SELECT ON cita TO veterinario;
-GRANT SELECT, INSERT, UPDATE ON consulta TO veterinario;
+-- ============ 3) La matriz sale del motor, no del documento ============
+SELECT grantee, table_name, privilege_type
+FROM information_schema.role_table_grants
+WHERE grantee IN ('admin_bd', 'recepcion', 'veterinario_rol', 'auditor')
+ORDER BY grantee, table_name, privilege_type;
 
-CREATE ROLE auditor;
-GRANT SELECT ON cita TO auditor;
-GRANT SELECT ON mascota TO auditor;
-GRANT SELECT ON dueno TO auditor;
+-- ============ 4) Cuando el GRANT es demasiado ============
+-- La vista recorta filas (las canceladas) y columnas (el email nunca sale).
+-- Se ejecuta con los privilegios de SU PROPIETARIO: por eso recepcion puede
+-- consultarla aunque le quitemos el SELECT sobre la tabla dueno.
+CREATE VIEW v_agenda_recepcion AS
+SELECT c.id_cita, c.fecha_hora, c.estado,
+       m.nombre AS mascota, d.nombre AS dueno, d.telefono,
+       v.nombre AS veterinario
+FROM cita c
+JOIN mascota m     ON m.id_mascota = c.id_mascota
+JOIN dueno d       ON d.id_dueno = m.id_dueno
+JOIN veterinario v ON v.id_veterinario = c.id_veterinario
+WHERE c.estado <> 'CANCELADA';
 
--- Asignar el rol a un usuario real (equivalente conceptual):
--- GRANT recepcion TO usuario_recepcion01;
+GRANT SELECT ON v_agenda_recepcion TO recepcion;
+REVOKE SELECT ON dueno FROM recepcion;   -- ahora solo llega por la vista
 
--- Matriz minima (documentar tal cual en el entregable):
--- RECEPCION:   Cita CRUD limitado (sin DELETE), Dueno/Mascota solo lectura
--- VETERINARIO: Consulta escritura, Cita lectura
--- AUDITOR:     solo SELECT sobre las tablas sensibles
--- ADMIN_BD:    DDL completo + capacidad de otorgar/revocar roles
+-- Privilegio por columna: dos columnas y ninguna otra, sin crear objeto nuevo.
+GRANT SELECT (id_dueno, nombre) ON dueno TO veterinario_rol;
+
+-- Evidencia: tiene que devolver EXACTAMENTE dos filas (id_dueno y nombre).
+SELECT grantee, table_name, column_name, privilege_type
+FROM information_schema.column_privileges
+WHERE grantee = 'veterinario_rol' AND table_name = 'dueno'
+ORDER BY column_name;
+
+-- ============ 5) La prueba negativa: ver el permiso NEGADO ============
+-- No hay una segunda conexion (el entorno tiene un solo usuario con login), pero
+-- no hace falta: SET ROLE cambia el rol efectivo DENTRO de la misma sesion, y a
+-- partir de ahi los permisos que se revisan son los del rol, no los del dueno.
+SET ROLE recepcion;
+
+SELECT id_cita, fecha_hora, dueno FROM v_agenda_recepcion;  -- OK: la vista si
+SELECT nombre, email FROM dueno;   -- debe fallar: permission denied for table dueno
+DELETE FROM cita WHERE id_cita = 1;  -- debe fallar: permission denied for table cita
+
+RESET ROLE;   -- volver al propietario ANTES de seguir con cualquier otra cosa
+
+-- Si su entorno no permite SET ROLE, no lo esconda: dejelo en pantalla, diga que
+-- eso vuelve la prueba negativa una brecha de verificacion del entregable, y
+-- muestre cual seria el comando en un servidor real.
+
+-- ============ 6) Ciclo de vida, para la politica ============
+-- Alta:   GRANT recepcion TO ana_gomez;
+-- Cambio: GRANT veterinario_rol TO ana_gomez; REVOKE recepcion FROM ana_gomez;
+--         (los dos, siempre: los permisos NO se acumulan)
+-- Baja:   REASSIGN OWNED BY ana_gomez TO admin_bd;  -- antes de borrar el rol
+--         DROP ROLE ana_gomez;                      -- falla si todavia posee objetos
 ```
 
 **Pasos guiados del taller:**
 1. Crear los 4 roles (admin_bd, recepcion, veterinario_rol, auditor) con GRANT/REVOKE que corran.
 2. Recortar la superficie: vista v_agenda_recepcion + privilegio por columna sobre dueno.
 3. Matriz rol x objeto x privilegio de los 10 objetos, justificando privilegio minimo.
-4. Redactar 1 pagina: politica de altas/bajas de usuarios y limite del entorno.
+4. Redactar 1 pagina: politica de altas/bajas de usuarios, con la prueba negativa (SET ROLE) corrida y su mensaje de error.
 
 **Entregable:** Documento Roles_VetCare + script GRANT/REVOKE ejecutado en ExamLab
 **Criterios de exito:**
-- >=4 roles.
-- Matriz privilegio x objeto.
-- Justificación least privilege.
-- 1 página política.
-- Domingo 23:59.
+- Los 4 roles creados, con sus GRANT y el REVOKE explícito de DELETE.
+- La matriz real consultada con `information_schema.role_table_grants`.
+- Vista `v_agenda_recepcion` sin el email + `GRANT SELECT (id_dueno, nombre)`.
+- Matriz de 10 objetos x 4 roles, sin celdas vacías y consistente con los GRANT.
+- Política de 1 página con las 5 secciones, cada una con responsable y plazo.
+- Entrega domingo 23:59.
 
 **Quiz de cierre:** 8 preguntas (banco completo en `Kit docente/Clase 2/Quiz Clase 2 - VetCare.docx`).
 **Entrega:** taller y quiz en ExamLab · domingo 23:59 cuando aplique el taller.

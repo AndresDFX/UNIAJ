@@ -80,11 +80,17 @@ La teoria sera corta; el peso esta en el taller del proyecto.»
 Proyectar [Slide 2] «Encuadre de hoy · Objetivo PI» y [Slide 3] «Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
-### 10-35 · Teoria Core (breve) · [Slide 4]
+### 10-35 · Teoria Core (breve) · desde [Slide 4]
 **Decir:** «Solo lo necesario para el entregable de hoy.»
-Proyectar [Slide 4] «Teoria Core (breve)». El desarrollo completo de cada punto esta
-arriba, en «Fundamento teorico», dividido por diapositiva.
-Cubrir:
+Proyecte estas diapositivas, en este orden, ~12 min cada una. Son la teoria
+completa del dia: **ninguna se salta**, porque el taller cobra puntos por lo que se
+proyecta en todas ellas.
+1. **[Slide 4] Teoria Core (breve)**
+2. **[Slide 5] Optimizar es un ANTES medible, no una opinion**
+
+El desarrollo completo de cada una esta arriba, en «Fundamento teorico», dividido por
+diapositiva: esa seccion esta escrita para dictarla sin consultar otra fuente.
+Ideas que tienen que quedar dichas:
 - Optimizar consultas parte de entender que el motor NO ejecuta el SQL tal cual se escribe: primero lo transforma en un plan de ejecucion (que tablas leer, en que orden, con o sin indice) y ese plan es lo que realmente determina el tiempo de respuesta.
 - Tres cuellos de botella clasicos: (1) SELECT * trae columnas que nadie usa y aumenta el trafico/memoria; (2) JOIN sin filtro temprano obliga a cruzar tablas completas antes de descartar filas; (3) aplicar una funcion sobre la columna en el WHERE (ej. WHERE UPPER(nombre)='LUNA') impide que el motor use un indice normal sobre esa columna (esto se llama 'no-sargable').
 - Reescritura tipica: proyectar solo columnas necesarias (SELECT nombre, fecha en vez de SELECT *), aplicar el filtro mas selectivo primero (WHERE fecha >= hoy antes del JOIN si reduce mucho el conjunto), y mover comparaciones a la forma que el motor pueda usar con indice.

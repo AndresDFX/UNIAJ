@@ -224,9 +224,9 @@ el **rendimiento** con percentiles en la Clase 12.
      'titulo': '''Actividad del Corte 1 (preguntas 1 a 4) - Dominio, ficha, C4 Context y calidad'''},
  2: {'pasos': [
                   'Paso 1: relea su ficha y su C4 Context de la Clase 1. No cambie de dominio: las preguntas 5 a 7 se califican sobre el mismo sistema, y el ADR que redacte hoy se reutiliza en el informe del PI y en la sustentacion de la Clase 15.',
-                  'Paso 2: construya en la pregunta 5 la matriz `Criterio | IaaS | PaaS | SaaS` con las cuatro filas en orden (control, costo cualitativo, operacion, time-to-demo) y maximo 2 lineas por celda; verifique que cada celda nombre una capacidad o una restriccion de SU dominio, y que la fila de operacion no afirme que en PaaS o SaaS usted deja de responder por su propia aplicacion.',
-                  'Paso 3: redacte en la pregunta 6 el ADR-001 con titulo, estado con fecha, la decision en UNA sola frase con UN modelo dominante, y exactamente 2 alternativas descartadas con el motivo atado a su dominio; verifique que la seccion de decision no nombre dos modelos, porque en ese caso vale cero.',
-                  'Paso 4: escriba en la pregunta 7 las consecuencias en los tres ejes (operacion, costo y aprendizaje), con al menos una positiva y una negativa por eje marcadas con + y -, y verifique que al menos una negativa hable de amarre al proveedor o de perdida de control; guarde y continue, que la actividad se entrega completa al cierre del corte.',
+                  'Paso 2: construya en la pregunta 5 la matriz «Criterio | IaaS | PaaS | SaaS» con las cuatro filas en orden (control, costo cualitativo, operacion, time-to-demo) y maximo 2 lineas por celda; verifique que cada celda nombre una capacidad o una restriccion de SU dominio, y que la fila de operacion no afirme que en PaaS o SaaS usted deja de responder por su propia aplicacion.',
+                  'Paso 3: redacte en la pregunta 6 el ADR-001 con las cinco secciones rotuladas —titulo, estado con fecha, contexto con sus restricciones reales, la decision en UNA sola frase con UN modelo dominante, y exactamente 2 alternativas descartadas con el motivo atado a su dominio—; verifique que la seccion de decision no nombre dos modelos, porque en ese caso vale cero.',
+                  'Paso 4: escriba en la pregunta 7 la seccion 6 del mismo ADR, las consecuencias en los tres ejes (operacion, costo y aprendizaje), con al menos una positiva y una negativa por eje marcadas con + y -, y verifique que al menos una negativa hable de amarre al proveedor o de perdida de control; guarde y continue, que la actividad se entrega completa al cierre del corte.',
               ],
      'preguntas': [
                       {
@@ -265,20 +265,32 @@ que necesita el prestamo» si.
                           'puntos': 12.5,
                           'enunciado': '''## ADR-001: modelo de servicio dominante de CloudLite
 
-Redacte el **ADR-001** con estas cuatro secciones rotuladas, en este orden y sin agregar
+Redacte el **ADR-001** con estas cinco secciones rotuladas, en este orden y sin agregar
 otras:
 
 1. **Titulo**: `ADR-001 Modelo de servicio dominante de CloudLite App`.
 2. **Estado**: `Aceptado` mas la fecha.
-3. **Decision**: **una sola frase** que nombre **un unico modelo dominante** —IaaS, PaaS o
+3. **Contexto**: 2 o 3 lineas con el dominio que eligio y las **restricciones reales** bajo
+   las que decide: quien sostiene el proyecto, en cuanto tiempo y con que presupuesto.
+4. **Decision**: **una sola frase** que nombre **un unico modelo dominante** —IaaS, PaaS o
    SaaS— para la aplicacion propia de CloudLite.
-4. **Alternativas descartadas**: **exactamente 2**, cada una con el motivo del descarte
+5. **Alternativas descartadas**: **exactamente 2**, cada una con el motivo del descarte
    **expresado en terminos de su dominio**, no en abstracto.
 
-> **Si la seccion 3 nombra dos modelos, esa seccion vale cero.** «Un poco de PaaS y un poco
+Las **consecuencias** son la **seccion 6** del mismo documento y se entregan en la
+**pregunta 7**: no las escriba aqui, y alla no repita la decision. Con las dos respuestas
+juntas usted tiene el ADR completo —**seis secciones, ninguna mas**— para el informe del PI.
+
+> **Si la seccion 4 nombra dos modelos, esa seccion vale cero.** «Un poco de PaaS y un poco
 > de IaaS» no es una decision: es no haber decidido. Puede aclarar en las alternativas que
 > consume **SaaS satelite** para identidad y correo; eso no rompe la regla, porque el
 > modelo dominante se refiere a **su** aplicacion.
+
+> El **contexto** no es un resumen del tema: es la lista de restricciones que hacen que su
+> decision sea razonable. «Es un proyecto academico» no es contexto; «lo sostengo yo solo en
+> doce semanas, sin presupuesto de nube y sin tarjeta de credito» si lo es, porque de ahi se
+> deduce el descarte de IaaS. La matriz de la pregunta 5 es el analisis; el contexto son las
+> restricciones.
 
 Un ADR (Architecture Decision Record) es un formato real, usado en equipos reales: sirve
 para que dentro de seis meses alguien —incluido usted— entienda **por que** se decidio asi
@@ -288,7 +300,7 @@ hecho.
 Este ADR se reutiliza en el informe del PI y en la sustentacion de la Clase 15.
 
 > La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
-                          'rubrica': '2 pts titulo y estado con fecha. 4 pts la decision en UNA frase con UN modelo dominante; cero en este criterio si nombra dos o mas modelos. 6.5 pts las dos alternativas descartadas con el motivo del descarte atado al dominio: 3.25 pts cada una, y se pierde la mitad de cada una si el motivo es generico («es mas caro», «es mas complejo») sin decir mas caro o mas complejo PARA QUE de su sistema.',
+                          'rubrica': '1.5 pts titulo con el numero del ADR y estado con fecha. 2 pts el contexto: nombra el dominio, el plazo y al menos una restriccion real de quien sostiene el proyecto; cero en este criterio si es teoria general o un resumen del tema de la clase. 3.5 pts la decision en UNA frase con UN modelo dominante; cero en este criterio si nombra dos o mas modelos. 5.5 pts las dos alternativas descartadas con el motivo del descarte atado al dominio: 2.75 pts cada una, y se pierde la mitad de cada una si el motivo es generico («es mas caro», «es mas complejo») sin decir mas caro o mas complejo PARA QUE de su sistema.',
                       },
                       {
                           'n_global': 7,
@@ -296,8 +308,8 @@ Este ADR se reutiliza en el informe del PI y en la sustentacion de la Clase 15.
                           'puntos': 6.25,
                           'enunciado': '''## Consecuencias del ADR-001
 
-Escriba las **consecuencias** de la decision que tomo en la pregunta anterior, cubriendo
-**los tres ejes** y rotulandolos:
+Escriba la **seccion 6 del mismo ADR-001**, las **consecuencias** de la decision que tomo
+en la pregunta anterior, cubriendo **los tres ejes** y rotulandolos:
 
 - **Operacion**: que tiene que hacer usted a partir de ahora, y que deja de hacer.
 - **Costo**: que se abarata y que se encarece, en terminos cualitativos.

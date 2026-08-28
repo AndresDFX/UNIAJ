@@ -80,11 +80,17 @@ La teoria sera corta; el peso esta en el taller del proyecto.»
 Proyectar [Slide 2] «Encuadre de hoy · Objetivo PI» y [Slide 3] «Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
-### 10-35 · Teoria Core (breve) · [Slide 4]
+### 10-35 · Teoria Core (breve) · desde [Slide 4]
 **Decir:** «Solo lo necesario para el entregable de hoy.»
-Proyectar [Slide 4] «Teoria Core (breve)». El desarrollo completo de cada punto esta
-arriba, en «Fundamento teorico», dividido por diapositiva.
-Cubrir:
+Proyecte estas diapositivas, en este orden, ~12 min cada una. Son la teoria
+completa del dia: **ninguna se salta**, porque el taller cobra puntos por lo que se
+proyecta en todas ellas.
+1. **[Slide 4] Teoria Core (breve)**
+2. **[Slide 5] Todo o nada: la transaccion de facturacion**
+
+El desarrollo completo de cada una esta arriba, en «Fundamento teorico», dividido por
+diapositiva: esa seccion esta escrita para dictarla sin consultar otra fuente.
+Ideas que tienen que quedar dichas:
 - Una transaccion agrupa varias sentencias SQL en una sola unidad de todo-o-nada: si facturar implica INSERT en factura, INSERT en detalle_factura Y UPDATE de stock en insumo, las tres deben aplicarse juntas o ninguna — nunca queda una factura sin descontar stock, ni stock descontado sin factura.
 - Propiedades ACID en una frase cada una: Atomicidad (todo o nada, ya explicado), Consistencia (la BD pasa de un estado valido a otro, respetando reglas como stock>=0), Aislamiento (transacciones concurrentes no se pisan entre si — se profundiza en Clase 10), Durabilidad (una vez hecho COMMIT, el dato sobrevive aunque el sistema se caiga un segundo despues).
 - COMMIT confirma la transaccion de forma permanente; ROLLBACK deshace todo lo hecho desde el ultimo COMMIT si algo salio mal (ej. el insumo no tenia stock suficiente). Sin ROLLBACK explicito ante el error, quedaria una factura registrada sin el descuento real de stock: inconsistencia de datos.

@@ -68,17 +68,19 @@ Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien
 Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
 
 ### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 5]
-Cubre estos conceptos, en este orden, ~10 min cada uno (son los títulos de las diapositivas de teoría):
-- VM vs contenedor
-- Lab en navegador (pasos demo)
-- Dockerfile mínimo para el stub
+Cubre estos conceptos, en este orden, ~10 min cada uno, con su diapositiva:
+- **VM vs contenedor** · [Slide 5]
+- **Lab en navegador (pasos demo)** · [Slide 6]
+- **Dockerfile mínimo para el stub** · [Slide 7]
 
+**Ninguna se salta**: cada una de esas diapositivas es el mecanismo con que se resuelve
+al menos una pregunta de la actividad calificada de hoy.
 El desarrollo completo de cada uno está arriba, en «Fundamento teórico para el docente»:
 esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · 
+### 40–55 · Demo en vivo · [Slide 10]
 Herramienta del día: **Killercoda · alterna si no carga: LabEx Docker Playground**.
 **Demo que usted debe poder repetir:** Construir y correr el stub en Killercoda
 

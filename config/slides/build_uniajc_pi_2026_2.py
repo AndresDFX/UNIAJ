@@ -72,7 +72,11 @@ def _run(run, *, size=11, bold=False, color=GRIS, name=FONT):
 
 def _run_inline(p, text, *, size=11, bold=False, color=GRIS):
     """Soporta el marcador @@negrita@@ (convencion del workspace): parte el texto
-    en runs y fuerza negrita solo en los tramos marcados."""
+    en runs y fuerza negrita solo en los tramos marcados.
+
+    Los `code spans` de Markdown pasan a «comillas angulares»: el .docx no es Markdown
+    y los acentos graves salian impresos tal cual en el enunciado del estudiante."""
+    text = re.sub(r'`([^`\n]+)`', r'«\1»', str(text))
     for part in re.split(r'(@@.*?@@)', text):
         if not part:
             continue

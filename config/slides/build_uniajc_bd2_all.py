@@ -45,6 +45,11 @@ CIAN_D = RGBColor(0x26, 0x9C, 0xCB)
 GRIS = RGBColor(0x2B, 0x2B, 0x2B)
 BLANCO = RGBColor(0xFF, 0xFF, 0xFF)
 FONT = "Calibri"
+# Fuente de ancho fijo para las plantillas en blanco del entregable. Con Calibri la
+# matriz rol x objeto quedaba desalineada (las columnas de una tabla de pipes solo
+# cuadran en monoespaciada) y el estudiante la recibia rota justo en el artefacto
+# que se califica por su estructura.
+MONO = "Consolas"
 
 # ---------------------------------------------------------------------------
 # Tipo de bloque: SE DERIVA DEL CALENDARIO, no se escribe a mano por clase
@@ -121,7 +126,7 @@ CLASES = [
     taller=["Crear los 4 roles (admin_bd, recepcion, veterinario_rol, auditor) con GRANT/REVOKE que corran.",
             "Recortar la superficie: vista v_agenda_recepcion + privilegio por columna sobre dueno.",
             "Matriz rol x objeto x privilegio de los 10 objetos, justificando privilegio minimo.",
-            "Redactar 1 pagina: politica de altas/bajas de usuarios y limite del entorno."],
+            "Redactar 1 pagina: politica de altas/bajas de usuarios, con la prueba negativa (SET ROLE) corrida y su mensaje de error."],
     quiz=True, sql="02_roles_vetcare.sql"),
   dict(n=3, slug="Procedimientos almacenados",
     titulo="Procedimientos almacenados · VetCare",
@@ -347,50 +352,100 @@ SELECT m.nombre, d.nombre AS dueno, c.fecha_hora
 FROM cita c JOIN mascota m ON m.id_mascota=c.id_mascota
 JOIN dueno d ON d.id_dueno=m.id_dueno;
 """,
-"02_roles_vetcare.sql": """-- VetCare DB · Clase 2 · Roles y privilegios (Oracle Live SQL)
--- Live SQL da UN solo usuario/schema por cuenta: no siempre se puede CREATE ROLE
--- ni GRANT a otro usuario real. Por eso este script trae DOS partes:
---   PARTE A: ejecutable tal cual en cualquier cuenta Live SQL (GRANT/REVOKE sobre
---            las propias tablas hacia PUBLIC, para demostrar la sintaxis real).
---   PARTE B: la version completa multi-usuario (CREATE ROLE + GRANT a rol),
---            documentada como PLAN si el playground no permite crear usuarios/roles.
+"02_roles_vetcare.sql": """-- VetCare DB · Clase 2 · Roles y privilegios · PostgreSQL
+-- Este es el script de la DEMO: corre tal cual en ExamLab (PostgreSQL en el
+-- navegador), sobre el esquema de VetCare ya creado. Los nombres de rol son los
+-- mismos que pide el taller: minusculas, y el del veterinario con sufijo `_rol`
+-- porque `veterinario` ya es una tabla.
+--
+-- Se ejecuta de arriba abajo, narrando cada bloque. El bloque 5 es el que convence
+-- al grupo: es la unica parte donde se VE que un permiso negado detiene una
+-- sentencia — y por eso mismo va SENTENCIA POR SENTENCIA, no de un solo tiro: dos
+-- de sus lineas tienen que fallar, y un runner que aborta al primer error se
+-- llevaria las siguientes. Correr el script completo una vez antes de la clase.
 
--- ============ PARTE A — ejecutable en Live SQL (su propio schema) ============
--- Sirve para demostrar que GRANT/REVOKE son sentencias reales, no solo teoria.
-GRANT SELECT ON mascota TO PUBLIC;
-GRANT SELECT, INSERT, UPDATE ON cita TO PUBLIC;
-REVOKE UPDATE ON cita FROM PUBLIC;
+-- ============ 1) Los cuatro roles ============
+-- NOLOGIN: son paquetes de privilegios, no cuentas con las que alguien entra.
+-- Una persona recibe el rol despues, con GRANT recepcion TO ana_gomez.
+CREATE ROLE admin_bd NOLOGIN;
+CREATE ROLE recepcion NOLOGIN;
+CREATE ROLE veterinario_rol NOLOGIN;
+CREATE ROLE auditor NOLOGIN;
 
--- Verificacion de privilegios otorgados sobre los propios objetos:
-SELECT table_name, privilege, grantee
-FROM user_tab_privs_made
-WHERE table_name IN ('MASCOTA', 'CITA');
+-- ============ 2) Los privilegios, uno por uno ============
+-- admin_bd es el unico con privilegios amplios, y sobre las 8 tablas.
+GRANT ALL PRIVILEGES ON dueno, mascota, veterinario, cita,
+                        consulta, insumo, factura, detalle_factura TO admin_bd;
 
--- ============ PARTE B — plan multi-rol (requiere privilegios DBA) ============
--- Roles conceptuales del PI: ADMIN_BD, RECEPCION, VETERINARIO, AUDITOR
-CREATE ROLE recepcion;
+-- recepcion opera citas y solo LEE los datos con que identifica a quien llama.
 GRANT SELECT, INSERT, UPDATE ON cita TO recepcion;
-GRANT SELECT ON mascota TO recepcion;
-GRANT SELECT ON dueno TO recepcion;
+GRANT SELECT ON dueno, mascota, veterinario TO recepcion;
+
+-- veterinario_rol registra la consulta; la cita y la mascota solo las lee.
+GRANT SELECT ON cita, mascota TO veterinario_rol;
+GRANT SELECT, INSERT, UPDATE ON consulta TO veterinario_rol;
+
+-- auditor verifica: solo lectura, sobre todo lo sensible.
+GRANT SELECT ON dueno, mascota, cita, consulta, factura TO auditor;
+
+-- El REVOKE se deja escrito aunque sea redundante (nunca se otorgo DELETE):
+-- es la evidencia de una decision de diseno, no una correccion.
 REVOKE DELETE ON cita FROM recepcion;
 
-CREATE ROLE veterinario;
-GRANT SELECT ON cita TO veterinario;
-GRANT SELECT, INSERT, UPDATE ON consulta TO veterinario;
+-- ============ 3) La matriz sale del motor, no del documento ============
+SELECT grantee, table_name, privilege_type
+FROM information_schema.role_table_grants
+WHERE grantee IN ('admin_bd', 'recepcion', 'veterinario_rol', 'auditor')
+ORDER BY grantee, table_name, privilege_type;
 
-CREATE ROLE auditor;
-GRANT SELECT ON cita TO auditor;
-GRANT SELECT ON mascota TO auditor;
-GRANT SELECT ON dueno TO auditor;
+-- ============ 4) Cuando el GRANT es demasiado ============
+-- La vista recorta filas (las canceladas) y columnas (el email nunca sale).
+-- Se ejecuta con los privilegios de SU PROPIETARIO: por eso recepcion puede
+-- consultarla aunque le quitemos el SELECT sobre la tabla dueno.
+CREATE VIEW v_agenda_recepcion AS
+SELECT c.id_cita, c.fecha_hora, c.estado,
+       m.nombre AS mascota, d.nombre AS dueno, d.telefono,
+       v.nombre AS veterinario
+FROM cita c
+JOIN mascota m     ON m.id_mascota = c.id_mascota
+JOIN dueno d       ON d.id_dueno = m.id_dueno
+JOIN veterinario v ON v.id_veterinario = c.id_veterinario
+WHERE c.estado <> 'CANCELADA';
 
--- Asignar el rol a un usuario real (equivalente conceptual):
--- GRANT recepcion TO usuario_recepcion01;
+GRANT SELECT ON v_agenda_recepcion TO recepcion;
+REVOKE SELECT ON dueno FROM recepcion;   -- ahora solo llega por la vista
 
--- Matriz minima (documentar tal cual en el entregable):
--- RECEPCION:   Cita CRUD limitado (sin DELETE), Dueno/Mascota solo lectura
--- VETERINARIO: Consulta escritura, Cita lectura
--- AUDITOR:     solo SELECT sobre las tablas sensibles
--- ADMIN_BD:    DDL completo + capacidad de otorgar/revocar roles
+-- Privilegio por columna: dos columnas y ninguna otra, sin crear objeto nuevo.
+GRANT SELECT (id_dueno, nombre) ON dueno TO veterinario_rol;
+
+-- Evidencia: tiene que devolver EXACTAMENTE dos filas (id_dueno y nombre).
+SELECT grantee, table_name, column_name, privilege_type
+FROM information_schema.column_privileges
+WHERE grantee = 'veterinario_rol' AND table_name = 'dueno'
+ORDER BY column_name;
+
+-- ============ 5) La prueba negativa: ver el permiso NEGADO ============
+-- No hay una segunda conexion (el entorno tiene un solo usuario con login), pero
+-- no hace falta: SET ROLE cambia el rol efectivo DENTRO de la misma sesion, y a
+-- partir de ahi los permisos que se revisan son los del rol, no los del dueno.
+SET ROLE recepcion;
+
+SELECT id_cita, fecha_hora, dueno FROM v_agenda_recepcion;  -- OK: la vista si
+SELECT nombre, email FROM dueno;   -- debe fallar: permission denied for table dueno
+DELETE FROM cita WHERE id_cita = 1;  -- debe fallar: permission denied for table cita
+
+RESET ROLE;   -- volver al propietario ANTES de seguir con cualquier otra cosa
+
+-- Si su entorno no permite SET ROLE, no lo esconda: dejelo en pantalla, diga que
+-- eso vuelve la prueba negativa una brecha de verificacion del entregable, y
+-- muestre cual seria el comando en un servidor real.
+
+-- ============ 6) Ciclo de vida, para la politica ============
+-- Alta:   GRANT recepcion TO ana_gomez;
+-- Cambio: GRANT veterinario_rol TO ana_gomez; REVOKE recepcion FROM ana_gomez;
+--         (los dos, siempre: los permisos NO se acumulan)
+-- Baja:   REASSIGN OWNED BY ana_gomez TO admin_bd;  -- antes de borrar el rol
+--         DROP ROLE ana_gomez;                      -- falla si todavia posee objetos
 """,
 "03_procs_vetcare.sql": """-- VetCare DB · Clase 3 · Procedimiento agendar cita (Oracle Live SQL)
 -- Ajustar tipos segun el schema creado por el estudiante.
@@ -810,21 +865,35 @@ def shade(p, fill):
     shd = OxmlElement('w:shd'); shd.set(qn('w:val'), 'clear'); shd.set(qn('w:fill'), fill)
     pPr.append(shd)
 
-def run(r, *, size=11, bold=False, color=GRIS):
-    r.font.name = FONT
-    r._element.rPr.rFonts.set(qn('w:eastAsia'), FONT)
+def run(r, *, size=11, bold=False, color=GRIS, font=None):
+    f = font or FONT
+    r.font.name = f
+    r._element.rPr.rFonts.set(qn('w:eastAsia'), f)
     r.font.size = DocPt(size); r.bold = bold; r.font.color.rgb = color
 
-def para(doc, text, *, size=11, bold=False, color=GRIS, space_after=6, shade_fill=None):
+def _sin_code_spans(text) -> str:
+    """`code span` de Markdown -> «code span». El .docx no es Markdown: los acentos
+    graves salian impresos tal cual en lo que lee el estudiante. El fuente puede
+    seguir escribiendose en Markdown, que es lo que necesita el guion .md."""
+    return re.sub(r"`([^`\n]+)`", r"«\1»", str(text))
+
+def para(doc, text, *, size=11, bold=False, color=GRIS, space_after=6, shade_fill=None,
+         font=None):
+    """`font` solo se pasa para las plantillas: ver MONO."""
     p = doc.add_paragraph(); p.paragraph_format.space_after = DocPt(space_after)
     if shade_fill: shade(p, shade_fill)
-    r = p.add_run(text); run(r, size=size, bold=bold, color=color); return p
+    r = p.add_run(_sin_code_spans(text)); run(r, size=size, bold=bold, color=color, font=font); return p
 
 def banda(doc, text):
     return para(doc, "  "+text, size=13, bold=True, color=BLANCO, shade_fill="095292", space_after=8)
 
 def add_inline_docx(p, text, *, size=11, color=GRIS):
-    """Igual que uniajc_slides_engine._rich pero para runs de docx: soporta @@negrita@@."""
+    """Igual que uniajc_slides_engine._rich pero para runs de docx: soporta @@negrita@@.
+
+    Y como alli, los `code spans` de Markdown pasan a «comillas angulares»: el docx del
+    estudiante los imprimia con los acentos graves a la vista («los `GRANT` de hoy»).
+    """
+    text = _sin_code_spans(text)
     for part in re.split(r'(@@.*?@@)', text):
         if not part:
             continue
@@ -1006,6 +1075,47 @@ ANTES_DESPUES = {
 }
 
 
+# Diapositivas de teoria que no caben en ninguno de los tres moldes anteriores
+# (diagrama, antes/despues, codigo) y que cierran la corrida teorica: van despues
+# de CODIGO_SLIDE y antes de la demo.
+#
+# Por que existe: el taller cobra puntos por entregables que ninguna diapositiva
+# enseñaba. El caso que la creo es la politica de altas y bajas de la Clase 2, que
+# vale 15 de 100 puntos y cuyo unico ancla era «Para el PI esta semana», una
+# diapositiva que trae el hito y la fecha limite pero ni una palabra de la
+# politica. Antes de inventar un molde nuevo, mire si el contenido es una lista de
+# secciones: si lo es, va aqui.
+#
+#   {n: [(titulo, [vinetas], subtitulo_o_None), ...]}
+TEORIA_EXTRA = {
+    2: [(
+        "Ciclo de vida de una cuenta: alta, cambio, baja, revision",
+        [
+            "@@1. Alta.@@ Quien solicita y quien aprueba; la cuenta nace con @@un solo rol@@ "
+            "y con credencial temporal que caduca en el primer ingreso.",
+            "@@2. Cambio de rol.@@ `GRANT` del nuevo y @@`REVOKE` del anterior@@: los permisos "
+            "@@no se acumulan@@. Quien pasa de recepcion a auditoria y conserva los dos "
+            "termina auditando lo que el mismo modifica.",
+            "@@3. Baja: el mismo dia.@@ Revocar los roles, dejar la cuenta sin login y "
+            "@@reasignar los objetos antes de borrar el rol@@ (`REASSIGN OWNED BY ... TO "
+            "admin_bd`): PostgreSQL no deja hacer `DROP ROLE` de un rol que todavia posee "
+            "objetos. Lo que esto evita es la @@cuenta huerfana@@.",
+            "@@4. Revision periodica.@@ Cada 3 a 6 meses se audita la matriz con "
+            "`information_schema.role_table_grants`, y @@alguien firma@@ la evidencia. "
+            "Sin cuentas compartidas: si tres personas entran como `recepcion1`, la "
+            "auditoria no puede decir quien cancelo la cita.",
+            "@@5. Probar que el permiso NO esta.@@ No hace falta otra conexion (aqui hay un "
+            "solo usuario con login): `SET ROLE recepcion;` cambia el rol efectivo, y ahi "
+            "`DELETE FROM cita ...` debe responder @@permission denied@@. Se cierra con "
+            "`RESET ROLE;`. Si el entorno no deja cambiar de rol, se documenta el intento: "
+            "eso es una @@brecha de verificacion@@ del entregable.",
+        ],
+        "Cada flecha del ciclo es un GRANT o un REVOKE. La politica es lo que le pone "
+        "responsable y plazo a cada uno: son las 5 secciones del entregable",
+    )],
+}
+
+
 # Titulo de la diapositiva del flujo de diagramacion (Excalidraw -> IA -> Mermaid
 # -> ExamLab). Vive aqui y no en examlab_talleres porque es el rotulo del deck del
 # curso; el CONTENIDO de los 4 pasos si es compartido entre los cuatro cursos.
@@ -1095,6 +1205,8 @@ def _slide_map(c):
     cs = CODIGO_SLIDE.get(c['n'])
     if cs:
         m.append(cs[0])
+    for extra in TEORIA_EXTRA.get(c['n'], []):
+        m.append(extra[0])
     m.append("Como se ordena la sesion de hoy" if c['tipo'] == 'sustentacion' else "Demo del dia")
     if HERRAMIENTAS_DIA.get(c["n"]):
         m.append("Herramientas de hoy")
@@ -1155,6 +1267,28 @@ def _slide_tag(mapa, *fragmentos):
     """`[Slide 7]` listo para pegar en el guion, o cadena vacia si no aplica."""
     n = _slide_no(mapa, *fragmentos)
     return f"[Slide {n}] " if n else ""
+
+
+def _slides_teoria(mapa):
+    """Corrida de teoria del deck: de «Teoria Core» hasta la anterior a la demo.
+
+    Devuelve `[(numero, titulo), ...]`.
+
+    Por que existe: el plan minuto a minuto anclaba la teoria a UNA diapositiva
+    («Teoria Core») y luego saltaba a la demo, asi que las de diagrama,
+    antes/despues, codigo y cierre teorico quedaban en el deck pero fuera del
+    plan. El docente que lee el guion pasaba de la 4 a la 7 y el mecanismo que
+    despues cobra el taller no se proyectaba nunca: en la Clase 2 eran 20 puntos
+    (vista y privilegio por columna, diapositiva 6) proyectados por nadie.
+
+    La corrida se deriva del mismo `_slide_map()` que arma el deck, de modo que
+    agregar una diapositiva de teoria la mete en el plan sin tocar esta funcion.
+    """
+    ini = _slide_no(mapa, "Teoria Core")
+    if ini is None:
+        return []
+    fin = _slide_no(mapa, "Demo del dia", "Como se ordena") or (len(mapa) + 1)
+    return [(i, mapa[i - 1]) for i in range(ini, fin)]
 
 
 # --- Referencias a diapositivas dentro del fundamento teorico ---------------
@@ -1266,6 +1400,10 @@ def build_pptx(c):
     cs = CODIGO_SLIDE.get(c['n'])
     if cs:
         pseudo_code_slide(prs, cs[0], cs[1], caption=cs[2], idx=idx)
+        idx += 1
+    for extra in TEORIA_EXTRA.get(c['n'], []):
+        content_slide(prs, extra[0], extra[1],
+                      sub=(extra[2] if len(extra) > 2 else None), idx=idx, size=13)
         idx += 1
     if c['tipo'] == 'sustentacion':
         # Hoy no hay demo del docente: el que demuestra es el estudiante, en su turno.
@@ -1416,6 +1554,68 @@ PLANTILLA_FICHA = {
         "4) RIESGO PRINCIPAL PARA TERMINAR EL PI Y COMO LO MITIGAS  (2 lineas)",
         "   Riesgo: [ ... ]        Mitigacion: [ ... ]",
     ],
+    # Clase 2: la matriz (pregunta 4) y la politica (pregunta 5) son 40 de los 100
+    # puntos y las dos se califican POR SU ESTRUCTURA — la matriz por cubrir los 10
+    # objetos x 4 roles sin celdas vacias, la politica por tener las 5 secciones con
+    # responsable y plazo. Los nombres de rol van en minuscula y con el sufijo `_rol`
+    # del veterinario, exactamente como los pide ExamLab y como los verifica la
+    # solucion: escribirlos de otra forma en la matriz es una inconsistencia con el
+    # script de la pregunta 1.
+    2: [
+        "A) MATRIZ ROL x OBJETO x PRIVILEGIO  (pregunta 4)",
+        "   Leyenda de las celdas:  S=SELECT  I=INSERT  U=UPDATE  D=DELETE  E=EXECUTE  -=ninguno",
+        "   Regla: ninguna celda queda vacia, y la matriz tiene que decir lo mismo que",
+        "   los GRANT que ejecutaste en la pregunta 1.",
+        "",
+        "   | Objeto           | admin_bd | recepcion | veterinario_rol | auditor |",
+        "   |------------------|----------|-----------|-----------------|---------|",
+        "   | dueno            |          |           |                 |         |",
+        "   | mascota          |          |           |                 |         |",
+        "   | veterinario      |          |           |                 |         |",
+        "   | cita             |          |           |                 |         |",
+        "   | consulta         |          |           |                 |         |",
+        "   | insumo           |          |           |                 |         |",
+        "   | factura          |          |           |                 |         |",
+        "   | detalle_factura  |          |           |                 |         |",
+        "   | sp_agendar_cita  |          |           |                 |         |",
+        "   | sp_facturar      |          |           |                 |         |",
+        "",
+        "   Justificacion (4 a 6 lineas, tres decisiones concretas de minimo privilegio):",
+        "   1. [por que ningun rol operativo tiene D] ...",
+        "   2. [por que auditor es de solo lectura, incluso sobre la tabla de auditoria] ...",
+        "   3. [por que los dos sp_ van con E y no con I] ...",
+        "",
+        "B) POLITICA DE ALTAS Y BAJAS  —  maximo una pagina  (pregunta 5)",
+        "   Cada seccion se califica por tener responsable y plazo concretos, no genericos.",
+        "",
+        "   1) ALTA",
+        "      Quien la solicita: [cargo]        Quien la aprueba: [cargo]",
+        "      Rol con el que nace la cuenta: [uno solo]",
+        "      Como se entrega la credencial inicial: [ ... ]   Caduca en: [ ... ]",
+        "",
+        "   2) CAMBIO DE ROL  (recepcionista -> auxiliar veterinaria)",
+        "      Se otorga: GRANT [ ... ] TO [ ... ];",
+        "      Se REVOCA: REVOKE [ ... ] FROM [ ... ];   <- sin esto los permisos se acumulan",
+        "",
+        "   3) BAJA  (el mismo dia del retiro)",
+        "      Paso 1 - revocar roles: [ ... ]",
+        "      Paso 2 - dejar la cuenta sin login: [ ... ]",
+        "      Paso 3 - objetos de los que era dueno: REASSIGN OWNED BY [ ... ] TO [ ... ];",
+        "      Traza de auditoria: se conserva [cuanto tiempo] porque [ ... ]",
+        "",
+        "   4) REVISION PERIODICA",
+        "      Cada [3 / 6] meses.        Quien firma la evidencia: [cargo]",
+        "      Consulta con la que se saca la evidencia:",
+        "      SELECT ______________ FROM information_schema.______________ ;",
+        "",
+        "   5) PRUEBA NEGATIVA Y LIMITE DEL ENTORNO",
+        "      Comando con el que compruebo que el privilegio NO esta:",
+        "        SET ROLE ____________;  ->  [ sentencia que debe fallar ]  ->  RESET ROLE;",
+        "      Error que esperaba: [ ... ]        Lo que realmente obtuve: [ ... ]",
+        "      Diferencia entre SET ROLE y conectarse como otro usuario: [ ... ]",
+        "      Lo que este entorno NO permite (un solo usuario con login): [ ... ]",
+        "      Si no pude correr la prueba: por que eso es una brecha de verificacion: [ ... ]",
+    ],
 }
 
 
@@ -1464,13 +1664,13 @@ def build_taller_docx(c):
         # La plantilla vive DENTRO del taller a proposito: cuando estaba solo en el
         # enunciado del PI, el estudiante improvisaba la estructura y cada entrega
         # llegaba con secciones distintas, imposibles de comparar contra la rubrica.
-        para(doc, f"{_n_sec}. Plantilla de la ficha (copia esto y llenalo)",
+        para(doc, f"{_n_sec}. Plantilla del entregable (copia esto y llenalo)",
              size=12, bold=True, color=AZUL)
         para(doc, "Estos son exactamente los campos que califica ExamLab. Copia el bloque "
                   "tal cual en tu documento, llenalo, y pega cada parte en la pregunta que "
                   "corresponda.", size=10)
         for linea in PLANTILLA_FICHA[c['n']]:
-            para(doc, linea or " ", size=10, shade_fill="F2F2F3", space_after=0)
+            para(doc, linea or " ", size=9, shade_fill="F2F2F3", space_after=0, font=MONO)
         para(doc, " ", size=6, space_after=0)
         _n_sec += 1
     para(doc, f"{_n_sec}. Entregable", size=12, bold=True, color=AZUL)
@@ -1690,6 +1890,13 @@ def build_guion_md(c):
     # el hilo. Antes era una lista escrita a mano y estaba corrida.
     mapa = _slide_map(c)
     sl_teoria = _slide_tag(mapa, "Teoria Core")
+    # La teoria son VARIAS diapositivas, no solo «Teoria Core»: el plan las enumera
+    # todas con su numero real y reparte los 25 min entre ellas, para que ninguna
+    # quede proyectada por nadie.
+    teoria_slides = _slides_teoria(mapa)
+    teoria_slides_md = "\n".join(
+        f"{k}. **[Slide {i}] {t}**" for k, (i, t) in enumerate(teoria_slides, 1))
+    min_por_slide = max(4, 25 // max(1, len(teoria_slides)))
     sl_demo = _slide_tag(mapa, "Demo del dia", "Como se ordena")
     sl_flujo = _slide_tag(mapa, FLUJO_SLIDE_TITULO)
     sl_taller = _slide_tag(mapa, "pasos guiados")
@@ -1786,11 +1993,16 @@ La teoria sera corta; el peso esta en el taller del proyecto.»
 Proyectar {_slide_tag(mapa, "Encuadre de hoy") or "la slide de"}«Encuadre de hoy · Objetivo PI» y {_slide_tag(mapa, "Mapa del bloque")}«Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
-### 10-35 · Teoria Core (breve) · {sl_teoria.strip()}
+### 10-35 · Teoria Core (breve) · desde {sl_teoria.strip()}
 **Decir:** «Solo lo necesario para el entregable de hoy.»
-Proyectar {sl_teoria}«Teoria Core (breve)». El desarrollo completo de cada punto esta
-arriba, en «Fundamento teorico», dividido por diapositiva.
-Cubrir:
+Proyecte estas diapositivas, en este orden, ~{min_por_slide} min cada una. Son la teoria
+completa del dia: **ninguna se salta**, porque el taller cobra puntos por lo que se
+proyecta en todas ellas.
+{teoria_slides_md}
+
+El desarrollo completo de cada una esta arriba, en «Fundamento teorico», dividido por
+diapositiva: esa seccion esta escrita para dictarla sin consultar otra fuente.
+Ideas que tienen que quedar dichas:
 """ + "\n".join(f"- {t}" for t in c['teoria']) + f"""
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 

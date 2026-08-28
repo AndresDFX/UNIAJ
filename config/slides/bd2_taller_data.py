@@ -267,27 +267,45 @@ TALLER_BLOQUE = {
         ],
     },
     2: {
+        # Los nombres de rol van en minúscula y el del veterinario con sufijo `_rol`,
+        # exactamente como los pide ExamLab y como los verifica la solución docente:
+        # antes decían ADMIN_BD/VETERINARIO y el estudiante escribía en el script un
+        # nombre distinto del que la rúbrica busca.
         'contexto': [
-            '@@Por qué importa al PI:@@ roles son evidencia de administración.',
-            'Least privilege evita que Recepción borre historial.',
-            'Si el playground no persiste usuarios, la matriz igual se documenta: es el entregable.',
+            '@@Por qué importa al PI:@@ la seguridad de VetCare DB es un criterio de la '
+            'rúbrica, y la evidencia son los roles y su matriz — no una promesa.',
+            'Mínimo privilegio evita que Recepción borre historia clínica: cancelar una '
+            'cita es un @@UPDATE de estado@@, nunca un DELETE.',
+            'Los `GRANT` de hoy corren de verdad y se auditan con `information_schema`: la '
+            'matriz que entregas tiene que decir lo mismo que ejecutó el motor.',
         ],
-        'objetivo': 'Plan de roles/privilegios VetCare (>=4 roles).',
+        'objetivo': 'Los 4 roles de VetCare creados y verificados, más la matriz rol x objeto '
+                    'y la política de altas y bajas.',
         'criterios': [
-            '>=4 roles.',
-            'Matriz privilegio x objeto.',
-            'Justificación least privilege.',
-            '1 página política.',
-            'Domingo 23:59.',
+            'Los 4 roles creados, con sus GRANT y el REVOKE explícito de DELETE.',
+            'La matriz real consultada con `information_schema.role_table_grants`.',
+            'Vista `v_agenda_recepcion` sin el email + `GRANT SELECT (id_dueno, nombre)`.',
+            'Matriz de 10 objetos x 4 roles, sin celdas vacías y consistente con los GRANT.',
+            'Política de 1 página con las 5 secciones, cada una con responsable y plazo.',
+            'Entrega domingo 23:59.',
         ],
         'escenario': [
-            'Roles: ADMIN_BD, RECEPCION, VETERINARIO, AUDITOR.',
-            'Live SQL / Docs.',
+            'Esquema de VetCare ya creado y poblado: 8 tablas, y los dos procedimientos '
+            '(`sp_agendar_cita`, `sp_facturar`) como objetos de la matriz.',
+            'Roles a crear: `admin_bd` · `recepcion` · `veterinario_rol` · `auditor` '
+            '(minúsculas; el del veterinario lleva `_rol` porque `veterinario` ya es una tabla).',
+            '@@Motor:@@ PostgreSQL dentro de ExamLab. Los GRANT son reales, y el permiso negado '
+            'se comprueba con `SET ROLE` en la misma sesión: no hay una segunda conexión.',
+            'La matriz y la política se escriben en Google Docs y se pegan en ExamLab; la '
+            'plantilla en blanco de las dos está en este documento.',
         ],
         'pistas': [
-            '□ Recepción con DELETE historial? (no)',
-            '□ Auditor solo SELECT?',
-            '□ DDL separado?',
+            '□ ¿Los 4 roles con el nombre exacto, en minúscula y con `veterinario_rol`?',
+            '□ ¿`recepcion` sin DELETE en ninguna tabla, y el REVOKE escrito aunque sea redundante?',
+            '□ ¿`auditor` solo con SELECT?',
+            '□ ¿La vista deja fuera el email, y `column_privileges` devuelve exactamente 2 filas?',
+            '□ ¿La matriz tiene las 10 filas llenas y los `sp_` con E, no con S ni I?',
+            '□ ¿La política dice quién aprueba y en cuánto tiempo, y trae la prueba negativa con `SET ROLE`?',
         ],
     },
     3: {
@@ -540,26 +558,29 @@ SOLUCION = {
     },
     2: {
         'titulo': 'Solución Taller Clase 2 — Roles VetCare',
-        'resumen': '4 roles + matriz least privilege.',
+        'resumen': '4 roles verificados + matriz de 10 objetos + política de altas y bajas.',
         'pasos': [
-            'Definir los 4 roles minimos: ADMIN_BD (DDL + gestion de roles), RECEPCION (opera citas y datos de contacto), VETERINARIO (registra consultas), AUDITOR (solo lectura sobre todo lo sensible).',
-            'Construir la matriz rol x objeto x privilegio: por cada rol, listar exactamente que tabla y que operacion (SELECT/INSERT/UPDATE/DELETE/EXECUTE) tiene permitida — no "acceso general", sino privilegio por objeto.',
-            'RECEPCION puede SELECT/INSERT/UPDATE sobre cita y SELECT sobre mascota/dueno, pero NUNCA DELETE sobre historial clinico ni sobre consulta — solo un veterinario o admin puede borrar ese tipo de registro.',
-            'AUDITOR recibe unicamente SELECT sobre las tablas sensibles (cita, consulta, factura); ningun privilegio de escritura, ni siquiera sobre datos "poco importantes", porque su funcion es verificar, no operar.',
-            'Redactar la politica de altas/bajas de usuarios en media pagina: quien autoriza crear un usuario nuevo, que rol se le asigna por defecto, y que pasa con sus privilegios el dia que deja de trabajar en la clinica (revocacion inmediata, no "despues").',
+            'Crear los 4 roles con el nombre exacto que pide ExamLab, en minuscula y sin login: admin_bd (ALL PRIVILEGES sobre las 8 tablas), recepcion (opera citas y lee datos de contacto), veterinario_rol (registra consultas; lleva el sufijo _rol porque veterinario ya es una tabla) y auditor (solo lectura sobre lo sensible).',
+            'Construir la matriz rol x objeto x privilegio: por cada rol, listar exactamente que objeto y que operacion (SELECT/INSERT/UPDATE/DELETE/EXECUTE) tiene permitida — no "acceso general", sino privilegio por objeto. Son 10 objetos: las 8 tablas mas sp_agendar_cita y sp_facturar, que van con EXECUTE.',
+            'recepcion puede SELECT/INSERT/UPDATE sobre cita y SELECT sobre mascota/dueno/veterinario, pero NUNCA DELETE en ninguna tabla: cancelar una cita es un UPDATE de estado a CANCELADA, y el REVOKE de DELETE se deja escrito aunque sea redundante, como evidencia de la decision.',
+            'auditor recibe unicamente SELECT sobre las tablas sensibles (dueno, mascota, cita, consulta, factura); ningun privilegio de escritura, ni siquiera sobre datos "poco importantes", porque su funcion es verificar, no operar.',
+            'Recortar la superficie donde el GRANT es demasiado: vista v_agenda_recepcion sin el email del dueno (y REVOKE SELECT ON dueno FROM recepcion), y GRANT SELECT (id_dueno, nombre) ON dueno TO veterinario_rol. Verificar las dos cosas con information_schema.',
+            'Redactar la politica de altas y bajas en una pagina, con las 5 secciones del enunciado: alta, cambio de rol, baja el mismo dia (con REASSIGN OWNED BY antes del DROP ROLE), revision periodica con la consulta que sirve de evidencia, y la prueba negativa — SET ROLE recepcion; seguido de la sentencia que debe fallar con permission denied, y RESET ROLE; para volver.',
         ],
         'ejemplo': [
             'Codigo/02_roles_vetcare.sql',
         ],
         'rubrica': [
-            '4 roles (2)',
-            'Matriz (3)',
-            'Least privilege (3)',
-            'Política (2)',
+            'Roles + GRANT/REVOKE verificados (30)',
+            'Minimo privilegio en la matriz (10)',
+            'Vista y privilegio por columna (20)',
+            'Matriz 10 objetos x 4 roles (25)',
+            'Politica de altas y bajas (15)',
         ],
         'errores': [
             'Todos DBA.',
             'Sin justificar.',
+            'Nombres de rol en mayuscula o veterinario sin _rol.',
         ],
     },
     3: {
