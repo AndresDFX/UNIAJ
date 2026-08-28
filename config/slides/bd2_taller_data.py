@@ -60,49 +60,70 @@ HERRAMIENTAS_DIA = {
         },
     ],
     3: [
+        # ExamLab primero: el taller es PL/pgSQL y los 100 puntos se califican ahi.
+        # Live SQL no puede ejecutar nada de hoy —es PL/SQL de Oracle— y queda solo
+        # como contraste de sintaxis (ver el fundamento de la clase).
         {
-            'name': 'Oracle Live SQL',
-            'logo': 'oracle_livesql.png',
-            'note': 'Procedimientos',
-        },
-        {
-            'name': 'DB Fiddle',
-            'logo': 'dbfiddle.png',
-            'note': 'Pruebas',
+            'name': 'ExamLab',
+            'logo': 'examlab.png',
+            'note': 'PL/pgSQL: aqui corre',
         },
         {
             'name': 'Google Docs',
             'logo': 'google_docs.png',
-            'note': 'Contrato proc',
+            'note': 'Contrato del proc',
+        },
+        {
+            'name': 'DB Fiddle',
+            'logo': 'dbfiddle.png',
+            'note': 'Alterno: PostgreSQL',
+        },
+        {
+            'name': 'Oracle Live SQL',
+            'logo': 'oracle_livesql.png',
+            'note': 'Solo contraste',
         },
     ],
     4: [
+        # Igual que en la Clase 3: la funcion, los dos triggers y sus pruebas corren
+        # en ExamLab. Lo unico que NO se ejecuta es el respaldo (pg_dump y compania
+        # necesitan sistema de archivos): la pregunta 5 es un documento.
         {
-            'name': 'Oracle Live SQL',
-            'logo': 'oracle_livesql.png',
-            'note': 'Fn/trigger',
-        },
-        {
-            'name': 'DB Fiddle',
-            'logo': 'dbfiddle.png',
-            'note': 'Pruebas',
+            'name': 'ExamLab',
+            'logo': 'examlab.png',
+            'note': 'Funcion y triggers',
         },
         {
             'name': 'Google Docs',
             'logo': 'google_docs.png',
-            'note': 'Plan backup',
+            'note': 'Plan de respaldo',
+        },
+        {
+            'name': 'DB Fiddle',
+            'logo': 'dbfiddle.png',
+            'note': 'Alterno: PostgreSQL',
+        },
+        {
+            'name': 'Oracle Live SQL',
+            'logo': 'oracle_livesql.png',
+            'note': 'Solo contraste',
         },
     ],
     6: [
+        # ExamLab primero, y ExamLab no estaba en esta lista: los 100 puntos del taller se
+        # califican ahi y es el unico entorno del kit que trae la base CON VOLUMEN
+        # (30.010 citas, ANALYZE corrido, sin indices). Medir un antes/despues en una base
+        # de 20 filas no mide nada, asi que la herramienta no es un detalle de logistica.
+        # SQLTest.online sale: su gracia es comparar motores, y hoy el motor es uno.
+        # DB Fiddle sale por la misma razon, y con una consecuencia peor: figuraba como
+        # «alterno: SQL suelto», pero ahi no existe la base sembrada, asi que el
+        # estudiante que la use mide sobre otros datos y sus numeros no pueden coincidir
+        # con el plan que la rubrica exige «tomado del plan real» -- el `Rows Removed by
+        # Filter: 29919` y las 91 filas. Un alterno que cuesta puntos no es un alterno.
         {
-            'name': 'DB Fiddle',
-            'logo': 'dbfiddle.png',
-            'note': 'Antes/despues',
-        },
-        {
-            'name': 'SQLTest.online',
-            'logo': 'sqltest.png',
-            'note': 'Multi-motor',
+            'name': 'ExamLab',
+            'logo': 'examlab.png',
+            'note': 'PostgreSQL con volumen',
         },
         {
             'name': 'Google Docs',
@@ -110,38 +131,43 @@ HERRAMIENTAS_DIA = {
             'note': 'Justificacion',
         },
     ],
+    # Igual que en la Clase 6: DB Fiddle queda fuera. Los 100 puntos se califican sobre la
+    # base sembrada de 30.010 citas, que solo existe en ExamLab; quien mida en DB Fiddle no
+    # puede reproducir el cambio de plan ni el reparto de particiones que pide la rubrica.
+    # draw.io tambien sale: el diagrama de tabla caliente es un boceto de pizarra del
+    # docente, no un entregable, y anunciarlo aqui hacia que el estudiante buscara donde
+    # subirlo.
     7: [
         {
-            'name': 'DB Fiddle',
-            'logo': 'dbfiddle.png',
-            'note': 'CREATE INDEX',
-        },
-        {
-            'name': 'draw.io',
-            'logo': 'drawio.png',
-            'note': 'Tabla caliente',
+            'name': 'ExamLab',
+            'logo': 'examlab.png',
+            'note': 'PostgreSQL: 30.010 citas',
         },
         {
             'name': 'Google Docs',
             'logo': 'google_docs.png',
-            'note': 'Justificacion',
+            'note': 'Tabla de justificacion',
         },
     ],
+    # Oracle Live SQL encabezaba esta lista y las tres preguntas de SQL del dia --75 de los
+    # 100 puntos-- son PL/pgSQL: `CALL`, `GET DIAGNOSTICS ... ROW_COUNT`, `RAISE EXCEPTION`
+    # y una funcion que devuelve BOOLEAN. Alli no compila ninguna. Se queda al final porque
+    # el contraste con Oracle SI se ensena (es la pregunta 4), pero como contraste.
     8: [
+        {
+            'name': 'ExamLab',
+            'logo': 'examlab.png',
+            'note': 'PL/pgSQL: aqui corre',
+        },
+        {
+            'name': 'Google Docs',
+            'logo': 'google_docs.png',
+            'note': 'Checklist de tuning',
+        },
         {
             'name': 'Oracle Live SQL',
             'logo': 'oracle_livesql.png',
-            'note': 'Transacciones',
-        },
-        {
-            'name': 'DB Fiddle',
-            'logo': 'dbfiddle.png',
-            'note': 'ROLLBACK',
-        },
-        {
-            'name': 'Google Docs',
-            'logo': 'google_docs.png',
-            'note': 'Checklist tuning',
+            'note': 'Solo contraste (pregunta 4)',
         },
     ],
     10: [
@@ -309,109 +335,320 @@ TALLER_BLOQUE = {
         ],
     },
     3: {
+        # El taller se resuelve en PL/pgSQL dentro de ExamLab, no en Oracle Live SQL:
+        # los 100 puntos se califican contra sintaxis de PostgreSQL y la rúbrica
+        # descuenta `VARCHAR2`, `RAISE_APPLICATION_ERROR` y la barra `/` final.
+        # Las pistas cubren las 5 preguntas, no las primeras.
         'contexto': [
-            '@@Por qué importa al PI:@@ la regla vive en un proc reutilizable.',
-            'La app futura llama al proc.',
+            '@@Por qué importa al PI:@@ la regla de negocio deja de vivir en la pantalla y '
+            'queda dentro de la base, donde vale para @@cualquier@@ cliente que se conecte.',
+            'Un procedimiento probado es la única forma de que «una mascota inactiva no '
+            'agenda» siga siendo cierto cuando aparezcan la app, un script de carga y soporte.',
+            'El contrato que escribes hoy es lo que la Clase 12 le entrega a quien programe '
+            'la aplicación: firma, errores y qué hacer con cada uno.',
         ],
-        'objetivo': '>=1 procedimiento con validación + 2 pruebas.',
+        'objetivo': 'Dos procedimientos de negocio en PL/pgSQL corriendo en ExamLab, su batería '
+                    'de pruebas con evidencia, y el contrato de los dos documentado.',
         'criterios': [
-            'Proc en Live SQL.',
-            'Validación negocio.',
-            'Prueba OK + error.',
-            'Contrato documentado.',
+            '`sp_agendar_cita` con sus 3 parámetros y sus 3 validaciones, cada una con su '
+            '`RAISE EXCEPTION` y su mensaje literal.',
+            'Batería de 4 bloques `DO` que @@no aborta el script@@ y escribe 4 filas en '
+            '`resultado_prueba` con el `SQLERRM` real.',
+            'El `COUNT(*)` de `cita` demuestra que pasó de @@10 a 11@@ filas: las tres '
+            'validaciones no insertaron nada.',
+            '`sp_registrar_consulta` detectando la consulta duplicada con `EXISTS` @@antes@@ '
+            'de chocar contra el `UNIQUE`.',
+            'Contrato de los dos procedimientos con sus 6 bloques y la tabla de errores '
+            'completa (7 filas); las firmas coinciden con el código entregado.',
+            'Entrega domingo 23:59.',
         ],
         'escenario': [
-            'Tu DDL de VetCare.',
-            'Validación típica: mascota activa.',
+            'Esquema de VetCare ya creado y poblado: @@8 mascotas@@ —la @@3 (Rocky)@@ y la '
+            '@@8 (Kiara)@@ están @@INACTIVAS@@—, 4 veterinarios y 10 citas.',
+            'Ya existe una cita del @@veterinario 1@@ el `2026-09-01 08:00:00`: es la que '
+            'dispara la validación de veterinario ocupado.',
+            '@@Motor:@@ PostgreSQL dentro de ExamLab. El molde es `CREATE PROCEDURE ... '
+            'LANGUAGE plpgsql AS $proc$ ... $proc$;` — no hay `IS`, ni `VARCHAR2`, ni `/` final.',
+            'El contrato se escribe en Google Docs y se pega en la pregunta 5; la plantilla '
+            'en blanco de sus 6 bloques y de la tabla de errores está en este documento.',
         ],
         'pistas': [
-            '□ Error controlado?',
-            '□ Captura/enlace?',
-            '□ Firma clara?',
+            '□ ¿El procedimiento se creó @@y@@ el `CALL` corrió? Crear no es evidencia.',
+            '□ ¿La validación de «no existe» usa `IF NOT FOUND` tras el `SELECT ... INTO`?',
+            '□ ¿Los 4 bloques `DO` capturan la excepción y el script llega hasta el final?',
+            '□ ¿El conteo final de `cita` es @@11@@, y está en la evidencia?',
+            '□ ¿`sp_registrar_consulta` inserta la consulta @@y@@ deja la cita en `ATENDIDA`?',
+            '□ ¿La cerrada la decidiste por @@dónde se invoca@@ cada rutina —dentro de un '
+            '`SELECT` o como sentencia suelta— y no por el `LANGUAGE` que declara?',
+            '□ ¿El contrato trae los 6 bloques de @@cada@@ procedimiento y las 7 filas de errores?',
         ],
     },
     4: {
+        # Cierre del Corte 1. Todo el código corre en ExamLab; lo único que NO se
+        # ejecuta es el respaldo (`pg_dump` y compañía necesitan sistema de archivos,
+        # y ExamLab es PostgreSQL en el navegador): la pregunta 5 es un documento y
+        # así está declarado, para que nadie pierda el taller intentando ejecutarla.
         'contexto': [
-            '@@Por qué importa al PI:@@ integridad + RAA1.',
-            'Trigger evita inconsistencias silenciosas.',
+            '@@Por qué importa al PI:@@ integridad y trazabilidad son criterios de la rúbrica, '
+            'y la evidencia son el trigger corriendo y la fila de auditoría — no una promesa.',
+            'La auditoría es el único mecanismo que @@no se puede evitar olvidándose de '
+            'llamarlo@@: nadie invoca un trigger, lo dispara el motor.',
+            'El plan de respaldo es lo que un evaluador pregunta primero: cuánto se pierde y '
+            'en cuánto tiempo se vuelve a operar, con @@números@@.',
         ],
-        'objetivo': '>=1 funcion + >=1 trigger + plan backup.',
+        'objetivo': 'Una función de tarifas y dos triggers —auditoría y stock— corriendo en '
+                    'ExamLab, más el Plan_Backup_VetCare con sus 6 secciones.',
         'criterios': [
-            'Funcion util.',
-            'Trigger auditoria/stock.',
-            'Plan backup 1 pag.',
-            'Checklist PI.',
+            '`fn_precio_consulta` con `RETURNS NUMERIC`, `IMMUTABLE`, insensible a mayúsculas, '
+            'recargo del 35 % y `NULL` tratado como falso (45000 → @@60750@@).',
+            'El trigger de auditoría en sus @@dos objetos@@: `fn_trg_audit_cita() RETURNS '
+            'TRIGGER` + `CREATE TRIGGER ... EXECUTE FUNCTION`. Cero `:NEW` / `:OLD`.',
+            'Los 3 `UPDATE` dejan @@2 filas@@ en `audit_cita` y el estudiante explica por qué '
+            'la tercera no se auditó.',
+            'El stock negativo (@@-7@@) evidenciado @@antes@@ del trigger, y el trigger '
+            '`BEFORE UPDATE` con el mensaje literal de la rúbrica.',
+            '`Plan_Backup_VetCare` con las 6 secciones, RPO y RTO justificados contra el '
+            'horario de la clínica, y la consulta de validación post-restore.',
+            'Entrega domingo 23:59.',
         ],
         'escenario': [
-            'Ej: fn_precio_consulta; trg_audit_cancelacion.',
+            'Esquema de VetCare completo y poblado: 10 citas, con consultas ya registradas en '
+            'las citas 2, 5, 7 y 10.',
+            '`insumo` fue creada @@a propósito sin@@ `CHECK (stock >= 0)`: el insumo @@2 '
+            '(Vacuna triple felina) tiene stock 3@@, y de ahí sale el -7 de la demostración.',
+            '@@Motor:@@ PostgreSQL dentro de ExamLab. La función, los dos triggers y sus '
+            'pruebas con bloques `DO` corren de verdad y ahí se califican.',
+            '@@Lo que NO se ejecuta:@@ `pg_dump`, `pg_dumpall`, `pg_basebackup` ni `pg_restore` '
+            '—son programas que escriben archivos y ExamLab corre en el navegador—. La '
+            'pregunta 5 es un documento: se califica que nombre la herramienta correcta.',
         ],
         'pistas': [
-            '□ Trigger con propósito?',
-            '□ Backup con restore?',
-            '□ Evidencia SQL?',
+            '□ ¿La función es `IMMUTABLE` y un canino en urgencia da @@60750@@?',
+            '□ ¿Creaste los @@dos@@ objetos del trigger? Una función sola no dispara nada.',
+            '□ ¿Está el `WHEN (OLD.estado IS DISTINCT FROM NEW.estado)`, y `audit_cita` quedó '
+            'con @@2@@ filas?',
+            '□ ¿`usuario_bd` y `fecha_evento` se llenan por `DEFAULT`, no desde el trigger?',
+            '□ ¿Se ve el @@-7@@ antes de crear el trigger, y el stock volvió a 3 para probarlo?',
+            '□ ¿El trigger de stock es `BEFORE`, y el insumo 2 termina en @@stock 1@@?',
+            '□ ¿En la de selección múltiple revisaste @@las seis@@ afirmaciones, preguntándote '
+            'si la regla mira solo su propia fila y quién la garantiza cuando el SQL @@no@@ '
+            'viene de la aplicación?',
+            '□ ¿El plan trae RPO y RTO en números, `pg_dumpall` para los roles y la sección 6 '
+            'de lo que @@no@@ cubre?',
         ],
     },
     6: {
         'contexto': [
-            '@@Por qué importa al PI:@@ optimizar el propio DDL.',
-            'Reescribir y justificar, no solo decir lento.',
+            '@@Por qué importa al PI:@@ la rúbrica pide un análisis de plan de ejecución, y un '
+            'análisis es un @@antes y un después medidos@@ — no la frase «la optimicé».',
+            'La pantalla de agenda de Huellitas se abre @@decenas de veces al día@@: es la '
+            'consulta que más veces paga cualquier descuido.',
+            'Optimizar y @@romper@@ se parecen mucho: las dos versiones se ven bien y una '
+            'devuelve otra cosa. Por eso hoy la @@prueba de equivalencia@@ también vale puntos.',
         ],
-        'objetivo': 'Pareja consultas antes/después + justificación.',
+        'objetivo': 'Dos consultas del PI reescritas y medidas con EXPLAIN ANALYZE sobre una base '
+                    'con volumen, con la prueba de que el resultado no cambió, y la justificación '
+                    'técnica que va al informe.',
         'criterios': [
-            'Consulta real PI.',
-            'Version después.',
-            '3 cambios.',
-            'Archivos SQL.',
+            'La agenda del día con sus @@4 antipatrones@@ corregidos: proyección, `JOIN … ON`, '
+            'predicado de rango sargable y comparación directa del estado.',
+            'Las dos versiones devuelven las mismas @@91 filas@@, probado con `COUNT(*)` de cada '
+            'una en la misma corrida.',
+            'Tres planes leídos: `EXPLAIN (ANALYZE, BUFFERS)` del antes y del después, y '
+            '`EXPLAIN ANALYZE` del después con `LIMIT 50`. Las @@tres@@ versiones van en la mini '
+            'tabla de comentarios: nodo más costoso, filas estimadas vs reales, tiempo.',
+            'La subconsulta correlacionada convertida en @@una sola pasada@@: `LEFT JOIN` + '
+            '`GROUP BY` + @@`COUNT(c.id_cita)`@@, con los duenos sin citas todavía en 0.',
+            'La equivalencia del ranking probada con `EXCEPT` en los @@dos sentidos@@: cero filas.',
+            'La justificación de media página con sus 5 secciones, y `06_opt_antes.sql` / '
+            '`06_opt_despues.sql` en la carpeta del PI.',
+            'Entrega domingo 23:59.',
         ],
         'escenario': [
-            'Citas del dia / historial mascota.',
+            'La base de este taller @@sí tiene volumen@@: 2.006 duenos, 5.008 mascotas, 16 '
+            'veterinarios y @@30.010 citas@@ entre el 2026-01-05 y el 2026-07-23, unas 150 por día.',
+            '`ANALYZE` ya está corrido y @@no hay ningún índice@@ más allá de las llaves '
+            'primarias: es a propósito, para que la mejora venga de la consulta y no de una '
+            'estructura que aún no se ha visto.',
+            '@@Motor:@@ PostgreSQL dentro de ExamLab, en el navegador. `EXPLAIN`, '
+            '`EXPLAIN ANALYZE` y la opción `BUFFERS` corren de verdad; ahí se califica.',
+            'Los @@seis duenos con cero citas@@ (ids 2001 a 2006) están puestos a propósito: son '
+            'los que delatan un `COUNT(*)` o un `INNER JOIN` mal elegidos.',
+            '@@Aviso:@@ la versión ANTES de la pregunta 3 se ejecuta 2.006 veces y puede tardar '
+            'de varios segundos a más de un minuto. @@No está colgada.@@',
         ],
         'pistas': [
-            '□ Sin SELECT *?',
-            '□ Filtro temprano?',
-            '□ Cuello de botella nombrado?',
+            '□ ¿Quedó algún `SELECT *`, o proyectaste las @@6@@ columnas que pide el enunciado?',
+            '□ ¿La fecha se filtra con un @@rango@@ sobre la columna, sin `to_char` ni `EXTRACT` '
+            'encima de ella?',
+            '□ ¿Los dos `COUNT(*)` de la pregunta 1 dan el @@mismo@@ número?',
+            '□ ¿Están los @@tres@@ `EXPLAIN`, incluido el de `LIMIT 50`, y la tabla de '
+            'comentarios con sus @@tres filas@@ (ANTES, DESPUES, DESPUES+LIM50) y sus tres '
+            'columnas?',
+            '□ ¿Los números de la tabla los @@leíste del plan@@, o los estimaste? Se compara con '
+            '`rows=` frente a `actual rows=`.',
+            '□ ¿Contaste `COUNT(c.id_cita)` y no `COUNT(*)`? Mira los duenos @@2001 a 2006@@: '
+            'tienen que decir @@0@@.',
+            '□ ¿El `EXCEPT` va en los @@dos@@ sentidos y @@sin@@ `LIMIT`?',
+            '□ ¿En la de selección múltiple revisaste @@las seis@@ afirmaciones, incluida la que '
+            'dice que optimizar puede cambiar el número de filas?',
+            '□ ¿La justificación tiene las @@5@@ secciones, y cada cambio se ancla a una '
+            'evidencia concreta del plan?',
         ],
     },
     7: {
         'contexto': [
-            '@@Por qué importa al PI:@@ indices aceleran lecturas frecuentes.',
-            'Sobre-indexar castiga escrituras.',
+            '@@Por qué importa al PI:@@ la rúbrica pide índices @@justificados@@, y una '
+            'justificación es una consulta concreta más la evidencia del plan — no «indexé las '
+            'columnas importantes».',
+            'La agenda del día y la ficha del dueño son las dos pantallas que Huellitas abre '
+            '@@todo el día@@: son las que pagan cada `Seq Scan` sobre 30.010 citas.',
+            'Indexar de más también cuesta: cada índice se mantiene en @@cada cita agendada@@. Por '
+            'eso hoy el @@veredicto@@ de cada índice vale tantos puntos como crearlo.',
         ],
-        'objetivo': '>=2 indices justificados en tablas calientes.',
+        'objetivo': 'Tres índices creados con nombre exacto (uno parcial) y probados con EXPLAIN '
+                    'antes y después, el experimento del orden de columnas en un índice compuesto, '
+                    'el histórico particionado por año con su poda demostrada, y la tabla de '
+                    'justificación que va al informe.',
         'criterios': [
-            '2 CREATE INDEX.',
-            'Justificación.',
-            'Riesgo sobre-indexar.',
-            'Diagrama opcional.',
+            'La línea base medida @@antes@@ de indexar: `EXPLAIN ANALYZE` de las dos consultas '
+            'frecuentes con `Seq Scan` a la vista.',
+            'Los @@tres@@ índices con el nombre exacto — `idx_cita_fecha_hora`, '
+            '`idx_mascota_dueno` y el @@parcial@@ `idx_cita_programada_fecha` con su `WHERE '
+            "estado = 'PROGRAMADA'` — y `ANALYZE` corrido después.",
+            'Los `EXPLAIN` repetidos mostrando `Index Scan` o `Bitmap Index Scan`, y dicho '
+            '@@cuál@@ de los dos índices sobre `fecha_hora` eligió el planeador.',
+            'El experimento del orden de columnas: los dos índices compuestos, las @@tres@@ '
+            'consultas medidas, el `DROP INDEX` que fuerza la comparación y la línea '
+            '`-- CONCLUSION:` con la regla de igualdad antes que rango.',
+            '`cita_hist` particionada por año: PK que @@incluye la columna de partición@@, las dos '
+            'particiones sin solaparse, la migración completa y la @@poda@@ evidenciada en el plan.',
+            'La tabla de justificación con sus @@7 columnas@@ y una fila por índice (mínimo 3), la '
+            'regla de sobre-indexación y el veredicto de particionamiento con @@tus números@@.',
+            'Entrega domingo 23:59.',
         ],
         'escenario': [
-            'Candidatos: Cita(fecha), Mascota(id_dueño).',
+            'Las preguntas 1 y 2 corren sobre una base @@con volumen@@: 2.006 duenos, 5.008 '
+            'mascotas, 16 veterinarios y @@30.010 citas@@ entre el 2026-01-05 y el 2026-07-23. '
+            '`ANALYZE` ya está corrido y @@no hay ningún índice@@ más allá de las PK: los creas tú.',
+            'Las dos consultas frecuentes vienen @@escritas en el enunciado@@ y no se cambian: la '
+            "agenda del día filtra `cita` por rango de `fecha_hora` y por `estado = 'PROGRAMADA'`; "
+            'la ficha del dueño filtra `mascota` por `id_dueno`.',
+            'La pregunta 3 usa @@otra@@ base, a propósito: @@5.010 citas@@ repartidas entre enero '
+            'de 2025 y diciembre de 2026, para que haya dos años que particionar. Si ves 5.010 '
+            'donde esperabas 30.010, @@no es un error@@.',
+            '@@Motor:@@ PostgreSQL dentro de ExamLab, en el navegador. `EXPLAIN ANALYZE`, los '
+            'índices parciales, `PARTITION BY RANGE` y la poda de particiones corren de verdad; '
+            'ahí se califica.',
+            'Los nombres del curso son @@minúsculas y sin eñes@@: las tablas son `dueno`, '
+            '`mascota` y `cita`, y la columna es `id_dueno`. Un `Mascota(id_dueño)` no compila.',
         ],
         'pistas': [
-            '□ Nombre legible?',
-            '□ Atado a consulta?',
-            '□ Indexar todo? (no)',
+            '□ ¿Corriste los `EXPLAIN` @@antes@@ de crear los índices? Sin la línea base con '
+            '`Seq Scan` no hay con qué comparar el después.',
+            '□ ¿Los tres índices tienen el @@nombre exacto@@ del enunciado, y el parcial lleva su '
+            "cláusula `WHERE estado = 'PROGRAMADA'`?",
+            '□ ¿Corriste `ANALYZE cita;` y `ANALYZE mascota;` antes de volver a medir? Sin '
+            'estadísticas frescas el planeador puede seguir eligiendo el barrido.',
+            '□ ¿Dijiste @@cuál@@ de los dos índices sobre `fecha_hora` usó la agenda del día, y '
+            'por qué ese y no el otro?',
+            '□ En la pregunta 2, ¿hiciste el `DROP INDEX` y volviste a medir @@Q2@@? La '
+            'comparación es el punto del experimento, no crear los dos índices.',
+            '□ ¿La `-- CONCLUSION:` habla del orden de las columnas, o solo dice que el índice '
+            'sirvió?',
+            '□ En `cita_hist`, ¿la PK incluye `fecha_hora`? PostgreSQL @@rechaza@@ una PK '
+            'particionada que no contenga la columna de partición.',
+            '□ ¿El plan de la consulta de 2026 muestra @@una sola@@ partición? Si aparecen las '
+            'dos, no hubo poda y eso es lo que se califica.',
+            '□ ¿Revisaste las @@seis@@ afirmaciones de la de selección múltiple, incluida la que '
+            'sostiene que una `FOREIGN KEY` ya crea su índice? Puedes comprobarlo en el '
+            '`pg_indexes` de la pregunta 1.',
+            '□ ¿Tu tabla tiene las @@7@@ columnas en las @@3@@ filas, con los números @@leídos del '
+            'plan@@ y no estimados?',
+            '□ ¿Tu regla de sobre-indexación la puede @@verificar otra persona@@ mirando tu '
+            'proyecto? «Indexar con cuidado» no se puede verificar.',
+            '□ ¿El veredicto de particionamiento trae tus números de volumen @@y@@ reconoce que con '
+            '5.010 filas lo comprobado fue la poda y el archivado, no la velocidad?',
         ],
     },
     8: {
         'contexto': [
-            '@@Por qué importa al PI:@@ factura+stock atomicos.',
-            'ROLLBACK ante stock insuficiente.',
+            '@@Por qué importa al PI:@@ facturar es la operación donde Huellitas @@pierde plata@@ '
+            'si algo queda a medias: una factura sin líneas, o un stock descontado de una factura '
+            'que nunca existió.',
+            'Hoy no se evalúa que el procedimiento @@funcione@@, sino que @@falle bien@@: la '
+            'pregunta 2 vale 25 puntos y consiste en romperlo a propósito y demostrar con datos '
+            'que la base quedó intacta.',
+            'El patrón que aprendes hoy — comprobar y escribir en @@una sola sentencia@@ — es el '
+            'que evita el stock negativo cuando hay dos recepcionistas facturando. Que aquí no '
+            'puedas montar las dos sesiones es la @@Clase 10@@, y declararlo suma puntos.',
         ],
-        'objetivo': 'Transaccion factura+stock + checklist tuning.',
+        'objetivo': 'La transacción de facturación implementada como procedimiento atómico, su '
+                    'atomicidad demostrada con foto antes y después de un fallo a mitad de camino, '
+                    'el patrón de descuento seguro encapsulado en una función, y la sección '
+                    '«Transacciones y tuning» del informe del PI.',
         'criterios': [
-            'Transaccion completa.',
-            'Prueba ROLLBACK.',
-            'Checklist tuning.',
-            'Sección informe.',
+            '`sp_facturar(p_id_consulta INT, p_insumos INT[], p_cantidades INT[])` con la firma '
+            'exacta: cabecera en total 0 con `RETURNING … INTO`, bucle por línea, `UPDATE` '
+            'condicional con `GET DIAGNOSTICS … ROW_COUNT` y `RAISE EXCEPTION` si no alcanza.',
+            'El caso exitoso ejecutado y evidenciado: factura por @@27.400@@ y los insumos 1, 6 y '
+            '5 en @@11, 58 y 5@@.',
+            'La atomicidad probada con @@la misma consulta@@ de foto inicial y final, y dicho con '
+            'datos que el stock del insumo 3 @@volvió a 40@@ y que no quedó factura ni línea '
+            'huérfana.',
+            '`fn_descontar_stock` devolviendo `BOOLEAN` — @@`FALSE`, no excepción@@, cuando no hay '
+            'stock — con la prueba que arroja `true / false / true` y ningún stock negativo.',
+            'La sección del informe con sus 4 bloques: @@3 transacciones@@ con su punto de fallo, '
+            'el checklist de @@7 ítems@@ con estado y evidencia, la decisión documentada y el gap '
+            'de concurrencia.',
+            'Entrega domingo 23:59.',
         ],
         'escenario': [
-            'BEGIN/COMMIT/ROLLBACK del playground.',
+            'El esquema de VetCare ya está creado y poblado: consultas @@1 a 4@@, facturas 1 a 3 '
+            'con sus 8 líneas de detalle, y @@6 insumos@@ con stock 12, @@3@@, 40, 25, @@8@@ y 60.',
+            'Los stocks bajos son @@deliberados@@: el insumo 2 con 3 unidades es el que va a hacer '
+            'fallar la factura de la pregunta 2, y el insumo 3 con 40 es el que tiene que '
+            '@@volver@@ a 40.',
+            'La consulta 4 es la única @@sin facturar@@: es la que vas a facturar tú.',
+            'En la pregunta 2 el `sp_facturar` @@ya viene creado@@ (versión de referencia), así '
+            'que puedes demostrar la atomicidad aunque tu propio procedimiento de la pregunta 1 '
+            'te haya quedado a medias.',
+            '@@Motor:@@ PostgreSQL dentro de ExamLab, en el navegador. PL/pgSQL, `CALL`, '
+            '`GET DIAGNOSTICS` y los bloques `DO $$ … EXCEPTION` corren de verdad. Corre con '
+            '@@una sola sesión@@: la concurrencia real no se puede montar aquí, y eso es la '
+            'Clase 10.',
         ],
         'pistas': [
-            '□ Prueba de fallo?',
-            '□ Locks/indices en checklist?',
-            '□ En informe?',
+            '□ ¿Usaste `GET DIAGNOSTICS v_filas = ROW_COUNT;`? En PostgreSQL @@no existe@@ '
+            '`SQL%ROWCOUNT`.',
+            '□ ¿Dejaste algún `COMMIT` dentro del procedimiento? No va: el `CALL` de nivel '
+            'superior @@ya es@@ su propia transacción.',
+            '□ ¿El descuento va con la condición `AND stock >= p_cantidades[i]` @@dentro del@@ '
+            '`WHERE`, o leíste el stock primero y decidiste después?',
+            '□ ¿La factura del caso exitoso quedó en @@27.400@@ y los stocks en 11, 58 y 5? Si no '
+            'cuadra, revisa que uses el `precio_unit` @@del insumo@@ y no el de la consulta.',
+            '□ ¿La foto inicial y la foto final son @@exactamente la misma@@ consulta? Si cambias '
+            'la consulta, la comparación no prueba nada.',
+            '□ ¿Envolviste el intento que debe fallar en `DO $$ … EXCEPTION WHEN OTHERS`? Sin eso '
+            'el script se detiene y no alcanzas a tomar la foto final.',
+            '□ ¿Escribiste la comparación en comentarios `--`, incluida la línea del @@stock del '
+            'insumo 3@@? Es la evidencia central de los 25 puntos: sin ella la pregunta queda '
+            'sin argumento.',
+            '□ ¿Corriste también la llamada @@viable@@ al final? El contraste entre la abortada y '
+            'la exitosa es parte de la respuesta.',
+            '□ ¿`fn_descontar_stock` @@retorna@@ `FALSE` cuando no hay stock, en vez de lanzar '
+            'excepción? Aquí el «no alcanza» es una respuesta, no un error.',
+            '□ ¿Verificaste que @@ningún@@ stock quedó negativo después de las tres pruebas?',
+            '□ En la de selección única, ¿la explicación que marcaste es válida en '
+            '@@PostgreSQL@@, o es la de otro motor? Contrástala con lo que tú escribiste: no '
+            'pusiste ningún `ROLLBACK` en el procedimiento y aun así se deshizo todo.',
+            '□ ¿Tus 3 transacciones traen las @@tres@@ cosas — tablas que toca, paso que puede '
+            'fallar y qué debe pasar si falla? Sin el punto de fallo es una lista de operaciones, '
+            'no un inventario de transacciones.',
+            '□ ¿Los 7 ítems del checklist tienen @@evidencia@@ y no solo la casilla marcada? Un '
+            'nombre de índice, un archivo o una consulta.',
+            '□ ¿Declaraste el @@gap de concurrencia@@ y cómo lo abordas en la Clase 10? Reconocer '
+            'lo que no se pudo comprobar suma; ocultarlo se descuenta.',
         ],
     },
     10: {

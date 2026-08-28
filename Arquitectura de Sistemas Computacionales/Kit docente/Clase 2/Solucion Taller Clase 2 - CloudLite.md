@@ -33,23 +33,11 @@
 | **Operacion** | **Yo** opero sistema operativo y runtime: parches, version de Node, arranque del servicio. El proveedor responde por hardware y red. | **El proveedor** opera sistema operativo y runtime; **yo sigo respondiendo** por el codigo de BiblioLite, sus permisos y los datos de los prestamos. | **El proveedor** opera todo el stack; **yo sigo respondiendo** por quien tiene cuenta, que rol le doy y que datos cargo. |
 | **Time-to-demo** | Dias: crear la instancia, instalar runtime, configurar servicio y proxy antes de ver la primera consulta de disponibilidad. | Horas: un push del repositorio y el endpoint de disponibilidad responde. Es lo unico que cabe en doce semanas. | Minutos, pero no demuestra nada mio: la demo seria del producto del proveedor y no de BiblioLite. |
 
-La fila que decide la nota es **Operacion**, y conviene leerla antes que las otras tres.
-En los tres modelos la responsabilidad no desaparece: se reparte. Lo que cambia de columna a
-columna es **cuanto** se reparte, y lo que NO cambia nunca es que el equipo responde por su
-propia aplicacion, por sus permisos y por sus datos. Una matriz que en la columna de PaaS o
-de SaaS escriba «el proveedor se encarga de todo» esta mal aunque las otras once celdas esten
-bien, porque es exactamente la creencia que la clase existe para corregir.
+La fila que decide la nota es **Operacion**, y conviene leerla antes que las otras tres. En los tres modelos la responsabilidad no desaparece: se reparte. Lo que cambia de columna a columna es **cuanto** se reparte, y lo que NO cambia nunca es que el equipo responde por su propia aplicacion, por sus permisos y por sus datos. Una matriz que en la columna de PaaS o de SaaS escriba «el proveedor se encarga de todo» esta mal aunque las otras once celdas esten bien, porque es exactamente la creencia que la clase existe para corregir.
 
-Las otras tres filas se califican por una sola cosa: que hablen de BiblioLite. «Mas control»
-es una celda vacia; «puedo instalar la libreria que lee el codigo de barras» es una celda
-llena, porque nombra una capacidad de la ficha y dice que se puede o no se puede hacer con
-ella. El mismo criterio para el costo: no se pide ningun precio, se pide que diga bajo, medio
-o alto **y por que en este dominio**.
+Las otras tres filas se califican por una sola cosa: que hablen de BiblioLite. «Mas control» es una celda vacia; «puedo instalar la libreria que lee el codigo de barras» es una celda llena, porque nombra una capacidad de la ficha y dice que se puede o no se puede hacer con ella. El mismo criterio para el costo: no se pide ningun precio, se pide que diga bajo, medio o alto **y por que en este dominio**.
 
-Un detalle que suele confundir al calificar: es correcto que la matriz mencione **SaaS
-satelite** para identidad y correo, porque esos dos sistemas externos ya estaban en el C4
-Context de la pregunta 3 y se consumen como servicio. Eso no contradice nada: la matriz
-compara donde vive **la aplicacion propia**, no de donde sale cada dependencia.
+Un detalle que suele confundir al calificar: es correcto que la matriz mencione **SaaS satelite** para identidad y correo, porque esos dos sistemas externos ya estaban en el C4 Context de la pregunta 3 y se consumen como servicio. Eso no contradice nada: la matriz compara donde vive **la aplicacion propia**, no de donde sale cada dependencia.
 
 ### Como calificar
 
@@ -73,49 +61,23 @@ compara donde vive **la aplicacion propia**, no de donde sale cada dependencia.
 
 ### Respuesta esperada
 
-**1. Titulo**
-ADR-001 Modelo de servicio dominante de CloudLite App
+**1. Titulo** ADR-001 Modelo de servicio dominante de CloudLite App
 
-**2. Estado**
-Aceptado — 31 de agosto de 2026
+**2. Estado** Aceptado — 31 de agosto de 2026
 
-**3. Contexto**
-BiblioLite gestiona los prestamos de la biblioteca universitaria: unos 400 prestamos al mes,
-con un pico en la semana de matricula, y 38 devoluciones tardias el semestre pasado. El
-proyecto lo sostiene **una sola persona durante doce semanas**, **sin presupuesto de nube y
-sin tarjeta de credito**, y tiene que estar en linea el dia de la sustentacion de la Clase 15.
-La unica capacidad que pide algo del sistema operativo es la lectura del codigo de barras del
-lomo del libro, que necesitaria una libreria nativa.
+**3. Contexto** BiblioLite gestiona los prestamos de la biblioteca universitaria: unos 400 prestamos al mes, con un pico en la semana de matricula, y 38 devoluciones tardias el semestre pasado. El proyecto lo sostiene **una sola persona durante doce semanas**, **sin presupuesto de nube y sin tarjeta de credito**, y tiene que estar en linea el dia de la sustentacion de la Clase 15. La unica capacidad que pide algo del sistema operativo es la lectura del codigo de barras del lomo del libro, que necesitaria una libreria nativa.
 
-**4. Decision** (una sola frase, un unico modelo dominante)
-La aplicacion de BiblioLite se desplegara sobre **PaaS**: se entrega el codigo de la API de
-prestamos y del front al proveedor, que opera el sistema operativo y el runtime, mientras el
-equipo conserva la responsabilidad del codigo, de los permisos y de los datos de prestamo.
+**4. Decision** (una sola frase, un unico modelo dominante) La aplicacion de BiblioLite se desplegara sobre **PaaS**: se entrega el codigo de la API de prestamos y del front al proveedor, que opera el sistema operativo y el runtime, mientras el equipo conserva la responsabilidad del codigo, de los permisos y de los datos de prestamo.
 
 **5. Alternativas descartadas** (exactamente 2, con el motivo en terminos del dominio)
 
-- **IaaS.** Se descarta porque el proyecto lo sostiene una sola persona durante doce
-  semanas, y en IaaS esa persona tendria que operar el sistema operativo: parchear la
-  instancia, sostener la version de Node y levantar el servicio despues de cada reinicio.
-  Cada hora gastada en eso es una hora que no se gasta en la regla de negocio que de verdad
-  cuesta, que es la de renovaciones vencidas. La libreria nativa de codigo de barras, que es
-  el unico argumento real a favor de IaaS en este dominio, se reemplaza por lectura manual
-  del ISBN en el mostrador: es una perdida aceptable frente al costo de operar la maquina.
+- **IaaS.** Se descarta porque el proyecto lo sostiene una sola persona durante doce semanas, y en IaaS esa persona tendria que operar el sistema operativo: parchear la instancia, sostener la version de Node y levantar el servicio despues de cada reinicio. Cada hora gastada en eso es una hora que no se gasta en la regla de negocio que de verdad cuesta, que es la de renovaciones vencidas. La libreria nativa de codigo de barras, que es el unico argumento real a favor de IaaS en este dominio, se reemplaza por lectura manual del ISBN en el mostrador: es una perdida aceptable frente al costo de operar la maquina.
 
-- **SaaS.** Se descarta porque un sistema de prestamos comprado ya resuelve el problema, y
-  entonces no queda nada que arquitecturar ni nada que sustentar en la Clase 15: el
-  entregable del semestre seria una configuracion. Ademas el modelo de licenciamiento por
-  usuario no encaja con una biblioteca donde el auxiliar de mostrador rota cada semestre, y
-  las 38 devoluciones tardias del semestre pasado se resolverian con la regla que traiga el
-  producto, no con la que la biblioteca necesita.
+- **SaaS.** Se descarta porque un sistema de prestamos comprado ya resuelve el problema, y entonces no queda nada que arquitecturar ni nada que sustentar en la Clase 15: el entregable del semestre seria una configuracion. Ademas el modelo de licenciamiento por usuario no encaja con una biblioteca donde el auxiliar de mostrador rota cada semestre, y las 38 devoluciones tardias del semestre pasado se resolverian con la regla que traiga el producto, no con la que la biblioteca necesita.
 
-**Nota de alcance** (no es una seccion aparte; se escribe dentro de las alternativas)
-Identidad y correo se siguen consumiendo como **SaaS satelite**, tal como quedaron en el C4
-Context de la pregunta 3. Eso no rompe la decision: el modelo dominante se refiere a **la
-aplicacion propia**.
+**Nota de alcance** (no es una seccion aparte; se escribe dentro de las alternativas) Identidad y correo se siguen consumiendo como **SaaS satelite**, tal como quedaron en el C4 Context de la pregunta 3. Eso no rompe la decision: el modelo dominante se refiere a **la aplicacion propia**.
 
-La **seccion 6, Consecuencias**, es la pregunta 7 y esta resuelta ahi mismo. El ADR completo
-del curso son esas seis secciones; ninguna otra.
+La **seccion 6, Consecuencias**, es la pregunta 7 y esta resuelta ahi mismo. El ADR completo del curso son esas seis secciones; ninguna otra.
 
 ### Como calificar
 
@@ -144,29 +106,16 @@ del curso son esas seis secciones; ninguna otra.
 ### Respuesta esperada
 
 **Operacion**
-- `+` Dejo de administrar el sistema operativo y el runtime: no vuelvo a parchear la
-  instancia ni a levantar el servicio a mano despues de un reinicio. En terminos concretos,
-  las tres o cuatro horas al mes que eso costaba se van a la regla de renovaciones.
-- `-` Pierdo el acceso a la maquina: cuando la consulta de disponibilidad se ponga lenta no
-  podre entrar por SSH a mirar procesos, solo tendre los registros y las metricas que el
-  proveedor exponga. Depurar pasa a depender de lo que el panel me deje ver.
+- `+` Dejo de administrar el sistema operativo y el runtime: no vuelvo a parchear la instancia ni a levantar el servicio a mano despues de un reinicio. En terminos concretos, las tres o cuatro horas al mes que eso costaba se van a la regla de renovaciones.
+- `-` Pierdo el acceso a la maquina: cuando la consulta de disponibilidad se ponga lenta no podre entrar por SSH a mirar procesos, solo tendre los registros y las metricas que el proveedor exponga. Depurar pasa a depender de lo que el panel me deje ver.
 
 **Costo**
-- `+` Se abarata el arranque: el nivel gratuito cubre la demo y el semestre, asi que el
-  proyecto no necesita presupuesto para existir.
-- `-` Se encarece el pico: la semana de matricula, que es cuando todos consultan los libros
-  de reserva a la vez, es justo cuando el plan gratuito se queda corto y hay que escalar. El
-  costo llega concentrado en la peor semana, no repartido.
+- `+` Se abarata el arranque: el nivel gratuito cubre la demo y el semestre, asi que el proyecto no necesita presupuesto para existir.
+- `-` Se encarece el pico: la semana de matricula, que es cuando todos consultan los libros de reserva a la vez, es justo cuando el plan gratuito se queda corto y hay que escalar. El costo llega concentrado en la peor semana, no repartido.
 
 **Aprendizaje**
-- `+` Tengo que aprender a desplegar con un push y a leer los registros del proveedor, que
-  es la forma en que se trabaja en la mayoria de los equipos que voy a encontrar.
-- `-` **Amarre al proveedor**: cada archivo de configuracion, cada variable de entorno y
-  cada nombre de servicio que escriba es especifico de esta plataforma. Si el ano entrante
-  hay que mover BiblioLite a otra parte, la aplicacion se mueve pero la configuracion se
-  reescribe completa, y no tengo forma de saber cuanto cuesta eso hasta que toque hacerlo.
-  Ademas no voy a poder instalar la libreria nativa de codigo de barras: tendre que buscar
-  una alternativa que el proveedor soporte o dejar la lectura manual del ISBN.
+- `+` Tengo que aprender a desplegar con un push y a leer los registros del proveedor, que es la forma en que se trabaja en la mayoria de los equipos que voy a encontrar.
+- `-` **Amarre al proveedor**: cada archivo de configuracion, cada variable de entorno y cada nombre de servicio que escriba es especifico de esta plataforma. Si el ano entrante hay que mover BiblioLite a otra parte, la aplicacion se mueve pero la configuracion se reescribe completa, y no tengo forma de saber cuanto cuesta eso hasta que toque hacerlo. Ademas no voy a poder instalar la libreria nativa de codigo de barras: tendre que buscar una alternativa que el proveedor soporte o dejar la lectura manual del ISBN.
 
 ### Como calificar
 

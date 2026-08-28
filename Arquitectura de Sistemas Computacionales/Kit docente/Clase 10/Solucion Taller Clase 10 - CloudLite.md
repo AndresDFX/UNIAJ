@@ -33,28 +33,13 @@
 | Integracion continua (GitHub Actions) | **Minutos de CI por mes**: cada corrida del `ci.yml` de la Clase 8 consume entre 3 y 5 minutos, y se dispara en cada `push` a `main` y en cada solicitud de cambios. | **M** | Cache de `npm` y de capas de Docker (el `cache: 'npm'` ya esta en el YAML), y disparar el pipeline solo en `main` y en solicitudes de cambios, no en cada rama. **Comprobable** en el bloque `on:` del `ci.yml` y en la duracion de dos corridas consecutivas. |
 | `Edge / balanceador` | **GB de transferencia de salida**: todo lo que sale hacia el navegador pasa por aqui, y la salida se paga; la entrada casi nunca. | **M** | Cachear el bundle con `Cache-Control` de un ano usando el hash en el nombre del archivo, y comprimir con gzip o brotli. **Comprobable** en los encabezados de respuesta: un `curl -I` los muestra. |
 
-**Por que dos Altos y un Bajo, y no todo Medio.** La API y la base son Alto por el mismo
-motivo y vale decirlo en voz alta: **su costo no depende del uso, depende del tiempo**. Se
-pagan encendidas aunque nadie reserve un libro a las tres de la manana. El almacenamiento de
-objetos es Bajo porque BiblioLite no digitaliza contenidos —lo dice el «fuera de alcance» de la
-ficha de la Clase 1— y por eso guarda megabytes, no terabytes. CI y edge quedan en Medio porque
-crecen con la actividad, no con el reloj, y la actividad de un proyecto de curso es pequena.
+**Por que dos Altos y un Bajo, y no todo Medio.** La API y la base son Alto por el mismo motivo y vale decirlo en voz alta: **su costo no depende del uso, depende del tiempo**. Se pagan encendidas aunque nadie reserve un libro a las tres de la manana. El almacenamiento de objetos es Bajo porque BiblioLite no digitaliza contenidos —lo dice el «fuera de alcance» de la ficha de la Clase 1— y por eso guarda megabytes, no terabytes. CI y edge quedan en Medio porque crecen con la actividad, no con el reloj, y la actividad de un proyecto de curso es pequena.
 
-La escala es **ordinal**: afirma que la API cuesta mas que el edge, **no cuantas veces mas**.
-Ese matiz es la razon de que la pregunta prohiba precios: con B/M/A se puede ordenar
-honestamente sin inventar una factura, y ordenar es lo que permite decidir donde apalancar
-primero.
+La escala es **ordinal**: afirma que la API cuesta mas que el edge, **no cuantas veces mas**. Ese matiz es la razon de que la pregunta prohiba precios: con B/M/A se puede ordenar honestamente sin inventar una factura, y ordenar es lo que permite decidir donde apalancar primero.
 
-**Sin precios en dolares, a proposito.** No hay una sola cifra de moneda en la tabla. Cualquier
-precio que pusiera seria inventado: no tengo cuenta de nube de pago —eso es la politica del
-curso desde el ADR-001— y los precios cambian por region y por nivel. Lo que si es verificable
-es la aritmetica de las **720 horas**, que sale del calendario y no de una lista de precios.
+**Sin precios en dolares, a proposito.** No hay una sola cifra de moneda en la tabla. Cualquier precio que pusiera seria inventado: no tengo cuenta de nube de pago —eso es la politica del curso desde el ADR-001— y los precios cambian por region y por nivel. Lo que si es verificable es la aritmetica de las **720 horas**, que sale del calendario y no de una lista de precios.
 
-**El componente que mas ensena.** La fila de la base de datos es la unica cuyo driver crece
-solo, sin que nadie haga nada: cada prestamo cerrado que se acumula suma GB para siempre. Es la
-fila donde el apalancamiento tiene que ser una politica escrita (retencion) y no una accion
-puntual, y es la que conecta con la Clase 13, donde se vera que esa tabla es tambien la que no
-escala.
+**El componente que mas ensena.** La fila de la base de datos es la unica cuyo driver crece solo, sin que nadie haga nada: cada prestamo cerrado que se acumula suma GB para siempre. Es la fila donde el apalancamiento tiene que ser una politica escrita (retencion) y no una accion puntual, y es la que conecta con la Clase 13, donde se vera que esa tabla es tambien la que no escala.
 
 ### Como calificar
 
@@ -92,28 +77,15 @@ escala.
 
 Las tres se apalancan sobre un driver de la tabla anterior, y la segunda es la mas directa:
 
-- **Accion 2 -> driver «horas de instancia encendida» de la fila `API de prestamos` (nivel A).**
-  Es literalmente el mismo apalancamiento escrito en esa fila: pasar de 720 a 480 horas al mes.
-  Un tercio menos de horas es un tercio menos de energia consumida y un tercio menos de
-  factura; la misma decision baja las dos cosas.
+- **Accion 2 -> driver «horas de instancia encendida» de la fila `API de prestamos` (nivel A).** Es literalmente el mismo apalancamiento escrito en esa fila: pasar de 720 a 480 horas al mes. Un tercio menos de horas es un tercio menos de energia consumida y un tercio menos de factura; la misma decision baja las dos cosas.
 - **Accion 3 -> driver «minutos de CI».** Menos corridas y corridas mas cortas.
-- **Accion 1 -> driver «GB almacenados» del registro y, de rebote, «minutos de CI»**, porque una
-  imagen ocho veces mas pequena se descarga y arranca mas rapido en cada corrida.
+- **Accion 1 -> driver «GB almacenados» del registro y, de rebote, «minutos de CI»**, porque una imagen ocho veces mas pequena se descarga y arranca mas rapido en cada corrida.
 
-Que costo y sostenibilidad se apalanquen con la misma decision no es una coincidencia
-retorica: el recurso que no se consume no se paga y no se genera. Por eso la pregunta pide
-atar al menos una.
+Que costo y sostenibilidad se apalanquen con la misma decision no es una coincidencia retorica: el recurso que no se consume no se paga y no se genera. Por eso la pregunta pide atar al menos una.
 
-**Por que estas tres pasan la prueba de los seis meses.** El enunciado da el criterio: si otra
-persona abre el repositorio dentro de seis meses, ¿puede decir si la accion se aplico? Con las
-tres, si: la primera linea del `Dockerfile` esta ahi, el bloque `on:` del `ci.yml` esta ahi, y
-la politica de escalado esta escrita con su rango horario. Ninguna depende de que alguien
-recuerde haber tenido buenas intenciones.
+**Por que estas tres pasan la prueba de los seis meses.** El enunciado da el criterio: si otra persona abre el repositorio dentro de seis meses, ¿puede decir si la accion se aplico? Con las tres, si: la primera linea del `Dockerfile` esta ahi, el bloque `on:` del `ci.yml` esta ahi, y la politica de escalado esta escrita con su rango horario. Ninguna depende de que alguien recuerde haber tenido buenas intenciones.
 
-**Una cuarta que quedo fuera, por si el grupo la propone:** apagar el escenario de Killercoda
-al terminar la sesion, comprobable en la bitacora del laboratorio de la Clase 3. Es valida y
-esta bien formada —artefacto y comprobacion—, pero es la que viene como ejemplo en el
-enunciado, asi que la use como referencia y no como respuesta.
+**Una cuarta que quedo fuera, por si el grupo la propone:** apagar el escenario de Killercoda al terminar la sesion, comprobable en la bitacora del laboratorio de la Clase 3. Es valida y esta bien formada —artefacto y comprobacion—, pero es la que viene como ejemplo en el enunciado, asi que la use como referencia y no como respuesta.
 
 ### Como calificar
 

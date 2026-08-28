@@ -194,7 +194,19 @@ def flujo_diagrama_md(dialecto="el tipo que pide el enunciado"):
 
 
 def total_puntos(taller):
-    return sum(int(p.get("puntos", 0)) for p in taller.get("preguntas", []))
+    """Suma de los puntos de las preguntas, sin truncar los decimales.
+
+    El `int()` estaba aplicado a CADA pregunta antes de sumar, asi que una actividad
+    con puntajes fraccionarios perdia hasta un punto por pregunta: la Clase 6 de
+    Arquitectura reparte 8.75 + 8.75 + 7.5 = 25 y el taller del estudiante anunciaba
+    «suman 23 puntos» tres lineas antes de listar las tres preguntas con su 8.75. Los
+    puntajes fraccionarios aparecen en cuanto una actividad de corte reparte 100
+    puntos entre las clases que la comparten, que es como se califica Arquitectura.
+    Se redondea a dos decimales para no arrastrar el error del punto flotante, y el
+    entero se emite sin «.0».
+    """
+    t = round(sum(float(p.get("puntos", 0)) for p in taller.get("preguntas", [])), 2)
+    return int(t) if t == int(t) else t
 
 
 def bloque_estudiante(taller):

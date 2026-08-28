@@ -927,6 +927,15 @@ BD2_P1 = {
                           'c) Un archivo CSV externo',
                           'd) Una vista materializada obligatoria'],
              'pregunta': 'Un procedimiento almacenado es:',
+             'por_que': {
+                 'a)': 'Un indice es una estructura de acceso a datos; no contiene logica ni '
+                       'recibe parametros. Se ve en la Clase 7.',
+                 'b)': 'CORRECTA. Es la definicion de la Clase 3: codigo que vive en el '
+                       'catalogo del motor, recibe parametros y se invoca con CALL.',
+                 'c)': 'Un CSV es un archivo de datos fuera del motor; no se ejecuta.',
+                 'd)': 'Una vista materializada guarda el resultado de una consulta, no logica '
+                       'con parametros, y nada la vuelve obligatoria.',
+             },
              'pts': 5,
              'tipo': 'mcq'},
             {'clave': 'b',
@@ -936,6 +945,15 @@ BD2_P1 = {
                           'c) Únicamente con SELECT',
                           'd) Nunca de forma automática'],
              'pregunta': 'Un trigger (disparador) se ejecuta:',
+             'por_que': {
+                 'a)': 'Nada en el motor se dispara por el arranque del sistema operativo.',
+                 'b)': 'CORRECTA. En la Clase 4 se vio el trigger DML por fila: INSERT, UPDATE '
+                       'o DELETE sobre una tabla. El «segun SGBD» cubre los triggers de DDL, '
+                       'que en PostgreSQL son otro objeto (event trigger) y NO se pidieron.',
+                 'c)': 'Un SELECT no modifica filas, asi que no hay evento DML que disparar.',
+                 'd)': 'Al contrario: automatico es precisamente su razon de ser —nadie tiene '
+                       'que acordarse de llamarlo—.',
+             },
              'pts': 5,
              'tipo': 'mcq'},
             {'clave': 'b',
@@ -945,6 +963,18 @@ BD2_P1 = {
                           'c) Reemplazar al motor de transacciones',
                           'd) Eliminar la necesidad de permisos'],
              'pregunta': 'Una función almacenada, a diferencia típica de un procedimiento, suele:',
+             'por_que': {
+                 'a)': 'Las dos existen en el catalogo; eso no las distingue.',
+                 'b)': 'CORRECTA. Es la diapositiva «PROCEDURE o FUNCTION: cual se puede usar '
+                       'dentro de un SELECT» de la Clase 3: la funcion devuelve un valor y se '
+                       'invoca DENTRO de una expresion; el procedimiento es sentencia suelta '
+                       '(CALL). El criterio es donde se invoca, no el LANGUAGE.',
+                 'c)': 'Ninguna reemplaza al motor de transacciones. El matiz real es el '
+                       'contrario: un procedimiento puede abrir y cerrar transacciones y una '
+                       'funcion corre dentro de la del que la llama.',
+                 'd)': 'Los privilegios se siguen necesitando: hace falta EXECUTE, y ademas los '
+                       'privilegios sobre las tablas que toca.',
+             },
              'pts': 5,
              'tipo': 'mcq'},
             {'clave': 'b',
@@ -954,6 +984,16 @@ BD2_P1 = {
                           'c) Compartir contraseñas en el chat del curso',
                           'd) Desactivar respaldos para ganar espacio'],
              'pregunta': 'Una práctica de seguridad en BD es:',
+             'por_que': {
+                 'a)': 'Es el antipatron que abre la Clase 2: un solo usuario compartido deja '
+                       'sin trazabilidad y da a la app permisos que no necesita.',
+                 'b)': 'CORRECTA. Minimo privilegio con roles acotados: es lo que se construyo '
+                       'en la Clase 2 con los 4 roles de VetCare y sus GRANT/REVOKE.',
+                 'c)': 'Compartir contrasenas por chat destruye la trazabilidad; no queda nada '
+                       'que auditar despues.',
+                 'd)': 'Desactivar respaldos cambia unos gigas por la perdida total. Es lo '
+                       'contrario de la Clase 4.',
+             },
              'pts': 5,
              'tipo': 'mcq'}],
   'pts': 20,
@@ -963,49 +1003,173 @@ BD2_P1 = {
              'enunciado': 'Un respaldo (backup) completo permite recuperar la BD ante pérdida o '
                           'corrupción, según la política definida.',
              'id': 'B1',
-             'justificacion': 'Objetivo del backup/restore.',
+             'justificacion': 'V. Es el objetivo del respaldo, y la coletilla «segun la '
+                              'politica definida» es lo que la hace verdadera: recupera hasta '
+                              'el ultimo respaldo valido, no hasta el segundo anterior a la '
+                              'perdida. Aceptar tambien la respuesta que precise que se pierde '
+                              'lo ocurrido entre el ultimo respaldo y la falla (el RPO de la '
+                              'Clase 4): es mas correcta, no menos.',
              'pts': 5,
              'tipo': 'vf'},
             {'clave': 'F',
              'enunciado': 'GRANT y REVOKE no tienen relación con el control de acceso en SQL.',
              'id': 'B2',
-             'justificacion': 'Son el mecanismo estándar de privilegios.',
+             'justificacion': 'F. GRANT y REVOKE SON el mecanismo estandar de control de acceso '
+                              'en SQL: son las dos sentencias con las que se construyeron los 4 '
+                              'roles de VetCare en la Clase 2. La afirmacion niega justo eso.',
              'pts': 5,
              'tipo': 'vf'},
             {'clave': 'V',
              'enunciado': 'Los disparadores pueden usarse para auditar cambios (registrar quién '
                           'modificó qué).',
              'id': 'B3',
-             'justificacion': 'Caso típico de auditoría.',
+             'justificacion': 'V. Es la demo de la Clase 4: fn_trg_audit_cita mas su CREATE '
+                              'TRIGGER, que escribe quien y cuando usando OLD y NEW. La ventaja '
+                              'es que nadie tiene que acordarse de registrarlo, ni siquiera '
+                              'quien entra por fuera de la aplicacion.',
              'pts': 5,
              'tipo': 'vf'},
             {'clave': 'V',
              'enunciado': 'La administración de BD incluye usuarios, espacios, mantenimiento y '
                           'monitoreo, no solo escribir SELECT.',
              'id': 'B4',
-             'justificacion': 'Alcance DBA alineado al plan.',
+             'justificacion': 'V. Es el alcance que abre la Clase 2: quien puede hacer que sobre '
+                              'cada objeto, mas mantenimiento, monitoreo y respaldo. Escribir '
+                              'consultas es la parte que ya traian de Bases de Datos I.',
              'pts': 5,
              'tipo': 'vf'}],
   'pts': 20,
   'titulo': 'SECCIÓN B — Verdadero / Falso'},
- {'intro': '',
-  'items': [{'enunciado': 'Escriba un procedimiento almacenado (sintaxis MySQL/PostgreSQL o SQL '
-                          'claro) sp_registrar_prestamo que reciba id_usuario, id_equipo y valide '
-                          'que el equipo esté disponible antes de insertar.',
+ {'intro': 'El dominio de esta sección no es VetCare a propósito: se evalúa el mecanismo, no '
+           'la memoria del esquema del proyecto. Asuma y declare las tablas que necesite. La '
+           'sintaxis es PL/pgSQL sobre PostgreSQL, que es el motor del curso.',
+  'items': [{'enunciado': 'Escriba un procedimiento almacenado en PL/pgSQL (PostgreSQL, el motor '
+                          'del curso) sp_registrar_prestamo que reciba id_usuario e id_equipo y '
+                          'valide que el equipo esté disponible antes de insertar.',
              'id': 'C1',
              'lineas': 6,
              'pts': 15,
-             'solucion': ['Parámetros IN; SELECT estado; IF disponible THEN INSERT; ELSE '
-                          'señal/error.',
-                          'Rúbrica: firma 4 + validación 6 + insert/error 5.'],
+             'solucion': [
+                 'Desglose: firma con los 2 parametros y LANGUAGE plpgsql 3 · leer el estado del '
+                 'equipo con SELECT ... INTO 3 · IF NOT FOUND para el equipo que no existe 3 · '
+                 'abortar con RAISE EXCEPTION cuando no esta disponible 3 · INSERT del prestamo '
+                 '3. Total 15.',
+                 'La clave conceptual: el enunciado pide validar contra OTRA tabla (el equipo), y '
+                 'por eso no sirve un CHECK, que solo puede mirar columnas de su propia fila. Es '
+                 'el argumento con el que la Clase 3 justifica el procedimiento.',
+                 'El UPDATE que marca el equipo como no disponible NO se pidio: si aparece es '
+                 'correcto y no se descuenta, pero tampoco suma por encima de 15.',
+             ],
+             'solucion_codigo': '-- Esquema minimo, para ejecutar la respuesta tal cual en ExamLab\n'
+                                'CREATE TABLE equipo (\n'
+                                '    id_equipo  INT PRIMARY KEY,\n'
+                                '    nombre     TEXT NOT NULL,\n'
+                                '    disponible BOOLEAN NOT NULL DEFAULT TRUE\n'
+                                ');\n'
+                                'CREATE TABLE prestamo (\n'
+                                '    id_prestamo SERIAL PRIMARY KEY,\n'
+                                '    id_usuario  INT NOT NULL,\n'
+                                '    id_equipo   INT NOT NULL REFERENCES equipo(id_equipo),\n'
+                                '    fecha       TIMESTAMP NOT NULL DEFAULT now()\n'
+                                ');\n'
+                                '\n'
+                                'CREATE OR REPLACE PROCEDURE sp_registrar_prestamo(\n'
+                                '    p_id_usuario INT,\n'
+                                '    p_id_equipo  INT\n'
+                                ')\n'
+                                'LANGUAGE plpgsql\n'
+                                'AS $$\n'
+                                'DECLARE\n'
+                                '    v_disponible BOOLEAN;\n'
+                                'BEGIN\n'
+                                '    SELECT disponible INTO v_disponible\n'
+                                '      FROM equipo\n'
+                                '     WHERE id_equipo = p_id_equipo;\n'
+                                '\n'
+                                '    IF NOT FOUND THEN\n'
+                                "        RAISE EXCEPTION 'El equipo % no existe', p_id_equipo;\n"
+                                '    END IF;\n'
+                                '\n'
+                                '    IF v_disponible IS NOT TRUE THEN\n'
+                                "        RAISE EXCEPTION 'El equipo % no esta disponible', p_id_equipo;\n"
+                                '    END IF;\n'
+                                '\n'
+                                '    INSERT INTO prestamo (id_usuario, id_equipo)\n'
+                                '    VALUES (p_id_usuario, p_id_equipo);\n'
+                                'END;\n'
+                                '$$;',
+             'errores': [
+                 'SELECT ... INTO sin IF NOT FOUND: si el equipo no existe, la variable queda en '
+                 'nulo, comparar nulo no da verdadero pero tampoco entra por el IF, y el '
+                 'prestamo se inserta igual. Es el error mas frecuente: cuesta los 3 puntos de '
+                 'ese IF, no los 15.',
+                 'Avisar en vez de abortar (RAISE NOTICE en lugar de RAISE EXCEPTION): el '
+                 'prestamo queda creado. Se descuentan los 3 puntos del aborto.',
+                 'Sintaxis de otro motor (DELIMITER, EXEC, o el molde de MySQL): el enunciado '
+                 'dice PL/pgSQL. Si la logica esta bien, descontar solo los 3 de la firma; no se '
+                 'anula la pregunta.',
+                 'Cuidado al calificar «yo lo corri y no dio error»: el CREATE pasa aunque los '
+                 'nombres de tabla esten mal, porque PostgreSQL no los resuelve hasta la primera '
+                 'ejecucion. En papel no se descuenta por eso, pero la evidencia es el CALL.',
+             ],
              'tipo': 'desarrollo'},
             {'enunciado': 'Proponga un trigger AFTER UPDATE sobre una tabla Prestamo que inserte '
                           'un registro en Auditoria_Prestamo con fecha y valores relevantes.',
              'id': 'C2',
              'lineas': 4,
              'pts': 10,
-             'solucion': ['AFTER UPDATE ON Prestamo FOR EACH ROW INSERT INTO Auditoria… NEW/OLD.',
-                          'Rúbrica: evento correcto 4 + cuerpo 6.'],
+             'solucion': [
+                 'Desglose: los DOS objetos —la funcion y el CREATE TRIGGER que la asocia— 4 · '
+                 'evento correcto (AFTER UPDATE ON prestamo FOR EACH ROW) 3 · cuerpo que escribe '
+                 'con OLD y NEW mas la fecha 3. Total 10.',
+                 'Es la diapositiva «Un trigger son DOS objetos» de la Clase 4: en PostgreSQL la '
+                 'funcion RETURNS TRIGGER se escribe aparte y el CREATE TRIGGER solo la asocia a '
+                 'la tabla y al evento.',
+             ],
+             'solucion_codigo': 'CREATE TABLE auditoria_prestamo (\n'
+                                '    id_auditoria SERIAL PRIMARY KEY,\n'
+                                '    id_prestamo  INT  NOT NULL,\n'
+                                '    campo        TEXT NOT NULL,\n'
+                                '    valor_viejo  TEXT,\n'
+                                '    valor_nuevo  TEXT,\n'
+                                '    quien        TEXT      NOT NULL DEFAULT current_user,\n'
+                                '    cuando       TIMESTAMP NOT NULL DEFAULT now()\n'
+                                ');\n'
+                                '\n'
+                                '-- Objeto 1 de 2: la funcion\n'
+                                'CREATE OR REPLACE FUNCTION fn_trg_audit_prestamo()\n'
+                                'RETURNS TRIGGER\n'
+                                'LANGUAGE plpgsql\n'
+                                'AS $$\n'
+                                'BEGIN\n'
+                                '    IF NEW.id_equipo IS DISTINCT FROM OLD.id_equipo THEN\n'
+                                '        INSERT INTO auditoria_prestamo\n'
+                                '               (id_prestamo, campo, valor_viejo, valor_nuevo)\n'
+                                "        VALUES (NEW.id_prestamo, 'id_equipo',\n"
+                                '                OLD.id_equipo::TEXT, NEW.id_equipo::TEXT);\n'
+                                '    END IF;\n'
+                                '    RETURN NULL;  -- en un AFTER el valor de retorno se ignora\n'
+                                'END;\n'
+                                '$$;\n'
+                                '\n'
+                                '-- Objeto 2 de 2: la asociacion\n'
+                                'CREATE TRIGGER trg_audit_prestamo\n'
+                                'AFTER UPDATE ON prestamo\n'
+                                'FOR EACH ROW\n'
+                                'EXECUTE FUNCTION fn_trg_audit_prestamo();',
+             'errores': [
+                 'Un solo objeto: el CREATE TRIGGER sin la funcion, o la funcion sin el CREATE '
+                 'TRIGGER. Falta la mitad del mecanismo: son los 4 puntos.',
+                 'BEFORE UPDATE en vez de AFTER: para auditar da igual en la practica, pero el '
+                 'enunciado pide AFTER. Descontar solo 1 de los 3 del evento.',
+                 'EXECUTE PROCEDURE en lugar de EXECUTE FUNCTION: PostgreSQL lo sigue aceptando '
+                 'por compatibilidad. No descontar.',
+                 'RETURN NEW al final de un trigger AFTER: es inofensivo, el valor se ignora. No '
+                 'descontar.',
+                 'Escribir solo el valor nuevo: el enunciado pide «valores relevantes», y una '
+                 'auditoria sin el valor viejo no permite reconstruir el cambio. Descontar 1 de '
+                 'los 3 del cuerpo.',
+             ],
              'tipo': 'desarrollo'}],
   'pts': 25,
   'titulo': 'SECCIÓN C — SQL / objetos programables'},
@@ -1016,14 +1180,79 @@ BD2_P1 = {
              'lineas': 9,
              'pts': 35,
              'requerimientos': ['a) 3 controles de acceso (roles/privilegios) (9 pts)',
-                                'b) Tipo de backup (completo/incremental/idea) y frecuencia '
-                                'justificada (10 pts)',
+                                'b) Tipo de respaldo (lógico, físico, registro continuo de '
+                                'transacciones) y frecuencia justificada (10 pts)',
                                 'c) Prueba de restauración: qué validaría (8 pts)',
                                 'd) Relacione cómo un procedimiento podría restringir operaciones '
                                 'sensibles (8 pts)'],
-             'solucion': ['Roles app_readonly/app_write/dba; backups diarios + semanal completo; '
-                          'restore drill; SP con validaciones.',
-                          'Asignar según rúbrica del enunciado.'],
+             'solucion': [
+                 'Desglose de los 35: (a) 3 controles x 3 = 9 · (b) tipos con la herramienta real '
+                 '4 + frecuencia justificada con la operacion del negocio 3 + donde se guarda y '
+                 'cuanto se conserva 3 = 10 · (c) que se restaura y donde 3 + consulta de '
+                 'verificacion con valores esperados 3 + cada cuanto se ensaya 2 = 8 · (d) '
+                 'EXECUTE sobre el procedimiento en vez del DML directo 4 + la validacion se '
+                 'cumple aunque no entre por la app 2 + SECURITY DEFINER nombrado 2 = 8.',
+                 '(a) Se piden CONTROLES, no nombres de rol: cada uno vale 3 solo si dice el '
+                 'privilegio concreto sobre el objeto concreto. «Rol de lectura» sin el SELECT '
+                 'vale 1. Tres roles razonables: app_lectura (SELECT), app_escritura (SELECT, '
+                 'INSERT, UPDATE y sin DELETE) y un dba con la gestion de roles.',
+                 '(b) Los tres tipos que se vieron en la Clase 4, con su herramienta: respaldo '
+                 'logico con pg_dump -Fc (diario, fuera del horario de atencion), copia fisica '
+                 'con pg_basebackup (semanal, para un RTO corto), y archivado de WAL (continuo, '
+                 'es lo unico que recupera lo hecho DESPUES del ultimo dump). Se acepta cualquier '
+                 'frecuencia que este justificada con la operacion del negocio; no hay una '
+                 'respuesta unica. Y falta un cuarto que casi nadie pone: pg_dumpall '
+                 '--globals-only para los roles. No exigirlo aqui, pero premiar si aparece.',
+                 '(c) La prueba se hace en una base APARTE, nunca sobre produccion, y termina en '
+                 'una consulta con valores esperados —conteos por tabla, la fila mas reciente— '
+                 'que pueda fallar sola. «Revisar que los datos esten» no es una prueba: no es '
+                 'verificable ni automatizable.',
+                 '(d) Es el amarre de la Clase 3 con la Clase 2: se le quita el INSERT directo al '
+                 'rol de la aplicacion y se le da EXECUTE sobre el procedimiento, de modo que la '
+                 'unica forma de crear un prestamo es la que pasa por la validacion. El matiz que '
+                 'vale 2 puntos: en PostgreSQL el cuerpo corre con los privilegios de QUIEN LLAMA '
+                 'salvo que el procedimiento se declare SECURITY DEFINER; sin esa clausula, dar '
+                 'EXECUTE no alcanza y la puerta no funciona.',
+                 'El caso es una pyme generica, no Huellitas, a proposito: aqui se evalua el '
+                 'criterio, y el plan de la clinica ya se califico en el taller de la Clase 4.',
+             ],
+             'solucion_codigo': '-- (a) Tres controles de acceso con minimo privilegio\n'
+                                'CREATE ROLE app_lectura;\n'
+                                'GRANT SELECT ON prestamo, equipo TO app_lectura;\n'
+                                '\n'
+                                'CREATE ROLE app_escritura;\n'
+                                '-- SIN DELETE a proposito: el borrado no lo hace la aplicacion\n'
+                                'GRANT SELECT, INSERT, UPDATE ON prestamo TO app_escritura;\n'
+                                '\n'
+                                'CREATE ROLE dba_prestamos;\n'
+                                'GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public\n'
+                                '   TO dba_prestamos;\n'
+                                '\n'
+                                '-- (d) El procedimiento como unica puerta a la operacion sensible\n'
+                                'REVOKE INSERT ON prestamo FROM app_escritura;\n'
+                                'GRANT EXECUTE ON PROCEDURE sp_registrar_prestamo(INT, INT)\n'
+                                '   TO app_escritura;\n'
+                                '-- Sin esto el cuerpo corre con los privilegios de quien llama y\n'
+                                '-- el EXECUTE no alcanza: la puerta quedaria cerrada por dentro.\n'
+                                'ALTER PROCEDURE sp_registrar_prestamo(INT, INT) SECURITY DEFINER;',
+             'errores': [
+                 'Creer que pg_dump respalda los roles y los permisos. No los respalda: pg_dump '
+                 'es de UNA base y los roles son del cluster. Es el error tecnico mas comun de '
+                 'esta pregunta; se corrige aunque el resto del plan este bien.',
+                 'Herramientas de otro motor: RMAN, exp/imp o Data Pump son de Oracle y el curso '
+                 'corre PostgreSQL. Descontar 2 de los 4 puntos de (b).',
+                 'RPO y RTO como definiciones. Si el estudiante los menciona, la pregunta es '
+                 'cuanto —en minutos u horas— y por que ese numero y no el doble. Aqui no se '
+                 'exigen explicitamente, asi que no descontar por su ausencia, pero sirven para '
+                 'decidir entre un 8 y un 10 en (b).',
+                 'Un plan con solo un dump diario que declara un RPO de 15 minutos: el RPO ES de '
+                 'hasta 24 horas, lo diga o no el documento. Un numero honesto y grande vale mas '
+                 'que uno bonito que el plan no puede cumplir.',
+                 'Tres roles con nombre y sin privilegios. Es la mitad de (a): 3 de 9.',
+                 'Responder (d) con «el procedimiento valida» sin tocar los privilegios. La '
+                 'pregunta es como se RESTRINGE: si el rol conserva el INSERT directo, la '
+                 'validacion se puede saltar. Sin la parte de privilegios son 2 de 8.',
+             ],
              'tipo': 'practica'}],
   'pts': 35,
   'titulo': 'SECCIÓN D — Caso seguridad y respaldo'}],
@@ -1372,6 +1601,15 @@ ARQ_P1 = {
                           'c) Únicamente IDEs en el navegador sin VMs',
                           'd) Un lenguaje de programación nuevo'],
              'pregunta': 'IaaS se caracteriza por ofrecer principalmente:',
+             'por_que': {
+                 'a)': 'Una aplicacion lista para el usuario final es SaaS, no IaaS. Es la '
+                       'confusion que la diapositiva de los tres modelos (Clase 2) separa.',
+                 'b)': 'CORRECTA. Computo, almacenamiento y red como servicio: el proveedor da la '
+                       'infraestructura y usted administra SO, runtime y aplicacion.',
+                 'c)': 'Un IDE en el navegador es una herramienta, no un modelo de servicio, y el '
+                       '«sin VMs» es falso: debajo hay maquinas.',
+                 'd)': 'Ningun modelo de servicio consiste en un lenguaje nuevo.',
+             },
              'pts': 5,
              'tipo': 'mcq'},
             {'clave': 'b',
@@ -1382,6 +1620,18 @@ ARQ_P1 = {
                           'c) Las VM nunca aíslan recursos',
                           'd) Los contenedores requieren un hipervisor Type-1 siempre'],
              'pregunta': 'Respecto a máquinas virtuales y contenedores:',
+             'por_que': {
+                 'a)': 'No son lo mismo: la VM virtualiza la maquina completa con su propio '
+                       'kernel; el contenedor virtualiza el proceso y reusa el del host. Es la '
+                       'comparacion de la Clase 3.',
+                 'b)': 'CORRECTA. Compartir el kernel del host es exactamente lo que los hace '
+                       'mas livianos y mas rapidos de arrancar.',
+                 'c)': 'Las VM SI aislan recursos, y de forma mas fuerte que un contenedor: es su '
+                       'principal ventaja frente a el.',
+                 'd)': 'Un contenedor no necesita hipervisor. En Windows y macOS hay una VM '
+                       'intermedia por el kernel, pero eso es un detalle de esas plataformas, no '
+                       'un requisito del modelo, y el Type-1 es de servidor.',
+             },
              'pts': 5,
              'tipo': 'mcq'},
             {'clave': 'b',
@@ -1392,6 +1642,17 @@ ARQ_P1 = {
                           'c) Eliminación total de redes',
                           'd) Un solo lenguaje obligatorio en todo el sistema'],
              'pregunta': 'Una ventaja de microservicios frente a un monolito es:',
+             'por_que': {
+                 'a)': 'Se despliegan perfectamente; lo que cambia es que hay mas piezas que '
+                       'desplegar.',
+                 'b)': 'CORRECTA, y note que la opcion correcta es la unica que nombra el costo '
+                       '(«con mayor complejidad operativa»). Es el criterio de la Clase 4: el '
+                       'beneficio es escalar y desplegar por servicio, y se paga en operacion.',
+                 'c)': 'Al contrario: aparecen mas llamadas de red, que es de donde salen los '
+                       'riesgos de la diapositiva «Distribuido implica fallos».',
+                 'd)': 'Es lo opuesto: cada servicio puede usar su propio lenguaje. Que eso sea '
+                       'buena idea en un proyecto de un semestre es otra discusion.',
+             },
              'pts': 5,
              'tipo': 'mcq'},
             {'clave': 'b',
@@ -1401,20 +1662,56 @@ ARQ_P1 = {
                           'c) Que solo haya un proceso en un solo núcleo',
                           'd) La imposibilidad de usar APIs'],
              'pregunta': 'En arquitecturas distribuidas, un desafío típico es:',
+             'por_que': {
+                 'a)': 'Justo al revés: la latencia siempre existe y no se puede volver cero. La '
+                       'Clase 4 la cuantifica al decidir si el aviso sale por cola.',
+                 'b)': 'CORRECTA. Es la diapositiva «Distribuido implica fallos»: cada flecha del '
+                       'diagrama es una llamada de red que puede tardar, perderse o llegar dos '
+                       'veces, y de ahi salen la consistencia y la coordinacion.',
+                 'c)': 'Un solo proceso en un solo nucleo describe lo contrario de un sistema '
+                       'distribuido.',
+                 'd)': 'Las APIs son precisamente el medio con el que se comunican los servicios; '
+                       'no son imposibles.',
+             },
              'pts': 5,
              'tipo': 'mcq'}],
   'pts': 20,
   'titulo': 'SECCIÓN A — Selección múltiple'},
  {'intro': '',
-  'items': [{'clave': '1-a, 2-b, 3-c, 4-d',
+  # La clave era «1-a, 2-b, 3-c, 4-d»: la permutacion identidad. Las dos columnas estaban
+  # en el mismo orden, asi que el estudiante que lo notaba se llevaba los 20 puntos sin
+  # saber el tema. Se reordena la columna B —el contenido no cambia— para que la clave
+  # quede 1-c, 2-a, 3-d, 4-b, sin ninguna pareja en su posicion original.
+  'items': [{'clave': '1-c, 2-a, 3-d, 4-b (5 pts por pareja correcta)',
              'col_a': ['1) SaaS', '2) PaaS', '3) Contenedor', '4) Hipervisor'],
-             'col_b': ['a) Aplicación consumida por el usuario final (p. ej. correo/oficina en '
+             'col_b': ['a) Plataforma para desplegar apps sin gestionar todo el SO',
+                       'b) Software que permite ejecutar máquinas virtuales',
+                       'c) Aplicación consumida por el usuario final (p. ej. correo/oficina en '
                        'nube)',
-                       'b) Plataforma para desplegar apps sin gestionar todo el SO',
-                       'c) Empaqueta app + dependencias; comparte kernel del host',
-                       'd) Software que permite ejecutar máquinas virtuales'],
+                       'd) Empaqueta app + dependencias; comparte kernel del host'],
              'id': 'B1',
              'instruccion': 'Empareje modelo/concepto con ejemplo o rasgo.',
+             'por_que': {
+                 '1-c': 'SaaS es el servicio ya terminado que se consume: correo, oficina en '
+                        'nube. No se despliega nada propio.',
+                 '2-a': 'PaaS es la plataforma donde usted despliega SU aplicacion sin '
+                        'administrar todo el SO. Es la diferencia con SaaS que mas se confunde: '
+                        'en PaaS todavia hay una aplicacion suya.',
+                 '3-d': 'El contenedor empaqueta la aplicacion con sus dependencias y comparte '
+                        'el kernel del host. De ahi que sea liviano.',
+                 '4-b': 'El hipervisor es la capa que permite ejecutar maquinas virtuales, cada '
+                        'una con su propio kernel. Es lo que el contenedor NO necesita.',
+             },
+             'errores': [
+                 'Calificacion: 5 puntos por pareja correcta, no todo-o-nada. Un estudiante con '
+                 '3 de 4 saca 15.',
+                 'La confusion tipica es PaaS con SaaS: si empareja 2 con la aplicacion lista, '
+                 'perdio esa pareja pero suele arrastrar tambien la de SaaS, porque son '
+                 'excluyentes. Se descuentan las dos que quedaron mal, no las cuatro.',
+                 'Confundir contenedor con hipervisor apunta a no haber distinguido kernel '
+                 'compartido de kernel propio, que es el eje de la Clase 3. Vale la pena '
+                 'senalarlo en la retroalimentacion, porque reaparece en el Parcial 2.',
+             ],
              'pts': 20,
              'tipo': 'match'}],
   'pts': 20,
@@ -1425,17 +1722,51 @@ ARQ_P1 = {
              'id': 'C1',
              'lineas': 5,
              'pts': 12,
-             'solucion': ['IaaS: cliente gestiona SO/runtime/app; PaaS: cliente app/datos; SaaS: '
-                          'cliente solo uso/configuración.',
-                          'Rúbrica: 4 pts por modelo bien contrastado.'],
+             'solucion': [
+                 'Desglose: 4 puntos por modelo bien contrastado. Total 12.',
+                 'Es la diapositiva de los tres modelos de la Clase 2, con estas mismas palabras: '
+                 'en IaaS usted administra SO, red y runtime y el proveedor da computo, red y '
+                 'disco; en PaaS usted despliega la aplicacion y el proveedor gestiona el runtime '
+                 'y el escalado basico; en SaaS consume el servicio listo y solo configura.',
+                 'Los 4 puntos de cada modelo se dan cuando la respuesta reparte AMBOS lados. '
+                 'Decir «en PaaS el proveedor gestiona el runtime» sin decir que queda del lado '
+                 'del cliente vale 2: la pregunta es de reparto, no de definicion.',
+                 'Decision de calificacion que viene del taller de la Clase 2: NO se acepta que '
+                 'en PaaS o SaaS el cliente «deja de responder por su aplicacion». Cambia el '
+                 'operador de la infraestructura, no el dueno del sistema. Si la respuesta lo '
+                 'afirma, se descuentan 2 de los 4 de ese modelo, aunque el resto este bien.',
+             ],
              'tipo': 'desarrollo'},
             {'enunciado': 'Explique 2 beneficios y 2 retos de adoptar microservicios en un sistema '
                           'académico pequeño.',
              'id': 'C2',
              'lineas': 4,
              'pts': 13,
-             'solucion': ['Beneficios: escalado selectivo, despliegues independientes.',
-                          'Retos: observabilidad, latencia de red, consistencia, DevOps.'],
+             'solucion': [
+                 'Desglose: 2 beneficios x 3 = 6 · 2 retos x 3 = 6 · 1 punto por aterrizarlo al '
+                 'tamano que dice el enunciado (un sistema academico pequeno). Total 13.',
+                 'Beneficios que cuentan: escalar solo el servicio que lo necesita, desplegar uno '
+                 'sin tocar los demas, aislar el fallo, y permitir que dos personas trabajen sin '
+                 'pisarse. Retos que cuentan, todos de la diapositiva «Distribuido implica '
+                 'fallos» de la Clase 4: cada llamada de red puede tardar, perderse o llegar dos '
+                 'veces; hay que saber que paso sin poder leer un solo registro; y aparece '
+                 'trabajo de operacion (despliegue, versiones, monitoreo) que un monolito no '
+                 'tiene.',
+                 'El punto del tamano se gana con una frase que reconozca que en un sistema '
+                 'academico pequeno los beneficios son limitados y el costo operativo es real. '
+                 'Una respuesta que concluya «para este tamano conviene un monolito modular» esta '
+                 'CORRECTA y se lleva el punto: es la decision que el taller de la Clase 4 pide '
+                 'tomar con criterios de equipo y acoplamiento, y no hay una respuesta unica.',
+             ],
+             'errores': [
+                 'Listar cuatro cosas sin distinguir cuales son beneficios y cuales retos: se '
+                 'califica lo que este correctamente clasificado, no la cantidad.',
+                 '«Los microservicios son mas rapidos»: no lo son por si mismos. Agregan saltos '
+                 'de red. Lo que mejora es escalar la parte que lo necesita. No es un beneficio '
+                 'valido tal como esta escrito.',
+                 'Repetir el mismo reto con dos nombres (por ejemplo «latencia» y «lentitud de la '
+                 'red») cuenta como uno: 3 puntos, no 6.',
+             ],
              'tipo': 'desarrollo'}],
   'pts': 25,
   'titulo': 'SECCIÓN C — Desarrollo'},
@@ -1450,9 +1781,59 @@ ARQ_P1 = {
                                 'b) Indique si usaría VM, contenedores o ambos (10 pts)',
                                 'c) Proponga 3 servicios/microservicios y 2 riesgos distribuidos '
                                 '(15 pts)'],
-             'solucion': ['Auth/reservas en contenedores PaaS; email SaaS; riesgos: latencia, '
-                          'fallos parciales, secretos.',
-                          'Pts según rúbrica del enunciado.'],
+             'solucion': [
+                 'Desglose: a) 10 = 3 por componente bien asignado + 1 por la justificacion mas '
+                 'clara · b) 10 = 6 por la eleccion con criterio + 4 por decir con que se compara '
+                 '· c) 15 = 3 x 3 servicios + 3 x 2 riesgos. Total 35. No hay una sola '
+                 'arquitectura correcta: se califica la JUSTIFICACION, no la coincidencia con esta '
+                 'propuesta.',
+                 'a) Referencia: autenticacion en PaaS o como identidad gestionada (es el problema '
+                 'ya resuelto por otros, y equivocarse aqui cuesta caro); reservas en PaaS, porque '
+                 'es la logica propia del negocio y es lo unico que hay que escribir; '
+                 'notificaciones por correo en SaaS, porque nadie deberia operar un servidor de '
+                 'correo para un sistema de laboratorios. Tambien es correcto poner reservas en '
+                 'IaaS si el estudiante justifica una necesidad de control del SO. Los 3 puntos de '
+                 'cada componente se dan por el PAR (modelo + razon): un modelo sin razon vale 1.',
+                 'b) Referencia: contenedores para autenticacion y reservas, porque arrancan en '
+                 'segundos, se replican por instancia y el mismo empaquetado corre en el portatil '
+                 'y en el servidor; VM solo si aparece una razon real (otro sistema operativo, un '
+                 'aislamiento exigido, software heredado). Los 4 puntos del contraste piden decir '
+                 'contra QUE se decide: «contenedores porque comparten el kernel y no arrastran un '
+                 'SO completo como la VM» los gana; «uso contenedores porque es lo moderno» no.',
+                 'c) Referencia: los tres servicios naturales son identidad, reservas y '
+                 'notificaciones; un cuarto (por ejemplo un worker de envios) solo se justifica si '
+                 'el estudiante dice por que —«el correo tarda y no debe bloquear la reserva»—, y '
+                 'ese es el criterio con el que se armo el diagrama C4 de la Clase 4.',
+                 'c) Los 2 riesgos distribuidos son los de la diapositiva «Distribuido implica '
+                 'fallos» de la Clase 4: la llamada entre servicios puede TARDAR (el usuario '
+                 'espera por una red, no por un metodo), puede PERDERSE (la reserva quedo '
+                 'guardada y el correo nunca salio: dos verdades distintas al mismo tiempo) y '
+                 'puede llegar DOS VECES (el mismo correo enviado dos veces, o la misma reserva '
+                 'creada dos veces si la operacion no es idempotente). Tambien se acepta «no puedo '
+                 'saber que paso leyendo un solo registro». Cada riesgo vale 3 puntos: 2 por '
+                 'nombrarlo y 1 por decir que se hace con el (reintento, cola, idempotencia, '
+                 'trazas correlacionadas).',
+             ],
+             'errores': [
+                 'Riesgos de seguridad —manejo de secretos, cifrado, control de acceso— NO se '
+                 'piden aqui y no otorgan los 3 puntos del riesgo: el enunciado dice «riesgos '
+                 'distribuidos», y la seguridad en la nube es el tema de la Clase 6, posterior a '
+                 'este corte. Si el estudiante nombra uno, se le reconoce por escrito pero se '
+                 'califica el riesgo distribuido que falto.',
+                 'Poner los tres componentes en un solo modelo («todo PaaS», «todo IaaS») sin '
+                 'distinguir: 4 de 10 en a). El ejercicio es de reparto por componente.',
+                 '«Notificaciones en IaaS montando un servidor de correo propio»: es tecnicamente '
+                 'posible, pero contradice el criterio de la Clase 2 (no operar lo que ya se '
+                 'consume resuelto). 1 de 3 en ese componente salvo justificacion excepcional.',
+                 'Listar servicios que son capas y no servicios («frontend, backend, base de '
+                 'datos»): no son los 3 servicios que pide c). 3 de 9 si acierta uno.',
+                 'Confundir el riesgo con su solucion («riesgo: usar una cola»): la cola es la '
+                 'respuesta, no el riesgo. 1 de 3.',
+                 'Una respuesta que elija monolito modular en b) y sostenga la eleccion con el '
+                 'tamano del equipo puede llevarse los 10 puntos de b), pero c) sigue pidiendo los '
+                 '3 servicios y los 2 riesgos: se responden como diseno objetivo, y no se '
+                 'descuenta la incoherencia si el estudiante la declara.',
+             ],
              'tipo': 'practica'}],
   'pts': 35,
   'titulo': 'SECCIÓN D — Caso de diseño'}],

@@ -280,42 +280,15 @@ La clave se lee del banco de la plataforma, asi que esta es la que se califica. 
 
 ### Respuesta esperada
 
-**Nombre del proyecto:** VetCare - Restrepo
-**Autor:** Laura Restrepo Gomez · **Codigo:** 202512345
-**Integrantes:** individual
-**Descripcion:** VetCare DB es la base de datos que soporta la operacion diaria de la
-Clinica Veterinaria «Huellitas»: agenda, historia clinica, insumos y facturacion.
+**Nombre del proyecto:** VetCare - Restrepo **Autor:** Laura Restrepo Gomez · **Codigo:** 202512345 **Integrantes:** individual **Descripcion:** VetCare DB es la base de datos que soporta la operacion diaria de la Clinica Veterinaria «Huellitas»: agenda, historia clinica, insumos y facturacion.
 
-**1) QUE SI HARA EL PI**
-Registrara duenos y sus mascotas con baja logica, para no perder historial clinico.
-Agendara citas por veterinario y franja, con estado (programada, atendida, cancelada).
-Guardara la consulta de cada cita atendida con motivo, diagnostico y tratamiento.
-Descontara insumos al facturar y dejara el detalle con el precio del dia de la venta.
-Controlara quien puede hacer que mediante roles (recepcion, veterinario, auditor).
-Auditara los cambios sensibles: precios de insumo y cancelaciones de cita.
+**1) QUE SI HARA EL PI** Registrara duenos y sus mascotas con baja logica, para no perder historial clinico. Agendara citas por veterinario y franja, con estado (programada, atendida, cancelada). Guardara la consulta de cada cita atendida con motivo, diagnostico y tratamiento. Descontara insumos al facturar y dejara el detalle con el precio del dia de la venta. Controlara quien puede hacer que mediante roles (recepcion, veterinario, auditor). Auditara los cambios sensibles: precios de insumo y cancelaciones de cita.
 
-**2) QUE NO HARA EL PI**
-No cobrara en linea ni se integrara con ninguna pasarela de pagos.
-No tendra aplicacion de escritorio ni movil: solo la capa de datos.
-No manejara nomina ni contabilidad de la clinica.
-No guardara imagenes ni resultados de laboratorio adjuntos.
+**2) QUE NO HARA EL PI** No cobrara en linea ni se integrara con ninguna pasarela de pagos. No tendra aplicacion de escritorio ni movil: solo la capa de datos. No manejara nomina ni contabilidad de la clinica. No guardara imagenes ni resultados de laboratorio adjuntos.
 
-**3) TRES REGLAS DE NEGOCIO PROPIAS (Condicion -> Accion)**
-R1. Si un veterinario ya tiene una cita en la misma franja -> entonces no se puede
-    crear otra cita para el a esa misma hora.
-    Se implementa con: UNIQUE (id_veterinario, fecha_hora)
-R2. Si una cita se cancela con menos de 2 horas de anticipacion -> entonces queda
-    marcada como cancelacion tardia para el reporte del mes.
-    Se implementa con: trigger BEFORE UPDATE sobre cita
-R3. Si el precio de un insumo cambia -> entonces las facturas ya emitidas conservan
-    el precio con el que se vendieron.
-    Se implementa con: precio_unitario almacenado en detalle_factura
+**3) TRES REGLAS DE NEGOCIO PROPIAS (Condicion -> Accion)** R1. Si un veterinario ya tiene una cita en la misma franja -> entonces no se puede crear otra cita para el a esa misma hora. Se implementa con: UNIQUE (id_veterinario, fecha_hora) R2. Si una cita se cancela con menos de 2 horas de anticipacion -> entonces queda marcada como cancelacion tardia para el reporte del mes. Se implementa con: trigger BEFORE UPDATE sobre cita R3. Si el precio de un insumo cambia -> entonces las facturas ya emitidas conservan el precio con el que se vendieron. Se implementa con: precio_unitario almacenado en detalle_factura
 
-**4) RIESGO PRINCIPAL Y MITIGACION**
-Riesgo: llegar a la Clase 8 con el esquema a medias y tener que rehacer tablas que ya
-tienen procedimientos y disparadores escritos encima.
-Mitigacion: cerrar el DDL completo en la Clase 2 y no cambiar nombres de columnas
-despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.
+**4) RIESGO PRINCIPAL Y MITIGACION** Riesgo: llegar a la Clase 8 con el esquema a medias y tener que rehacer tablas que ya tienen procedimientos y disparadores escritos encima. Mitigacion: cerrar el DDL completo en la Clase 2 y no cambiar nombres de columnas despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.
 
 ### Como calificar
 

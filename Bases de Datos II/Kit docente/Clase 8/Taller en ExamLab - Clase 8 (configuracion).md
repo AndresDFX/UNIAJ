@@ -5,7 +5,7 @@
 - **Preguntas:** 5 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Transaccion de negocio (factura + stock) + notas de tuning
-- **Entregable de la clase:** Script transaccional + checklist tuning del PI (1 pag.)
+- **Entregable de la clase:** sp_facturar + fn_descontar_stock + seccion Transacciones y tuning del informe (1 pag.)
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada

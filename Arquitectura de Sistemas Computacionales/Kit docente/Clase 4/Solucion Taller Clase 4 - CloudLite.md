@@ -11,7 +11,7 @@
 - Taller del estudiante: `Clases/Clase 4 - Microservicios y arquitecturas distribuidas/`
 - Configuracion en la plataforma: `Kit docente/Clase 4/Taller en ExamLab - Clase 4 (configuracion).md`
 - Hito del PI: Diagramar componentes/servicios de CloudLite y sus contratos
-- Entregable: Diagrama C4 Container/Componentes v0.9 + lista de APIs entre servicios
+- Entregable: Diagrama C4 Container en Mermaid + tabla de 3 contratos + 3 riesgos de distribución
 - **Estas preguntas: 25.0 puntos** en 4 preguntas.
 
 | # | Pregunta | Tipo | Puntos |
@@ -27,34 +27,17 @@
 
 ### Respuesta esperada
 
-**1. La decision**
-BiblioLite se construye como **monolito modular**: un solo despliegue de la API de
-prestamos, con tres modulos internos de frontera explicita — `catalogo`, `prestamos` y
-`notificaciones` — y una sola base de datos.
+**1. La decision** BiblioLite se construye como **monolito modular**: un solo despliegue de la API de prestamos, con tres modulos internos de frontera explicita — `catalogo`, `prestamos` y `notificaciones` — y una sola base de datos.
 
 **2. Los dos criterios**
 
-- **Tamano del equipo**: **una persona**, durante **doce semanas**, con otras cuatro
-  asignaturas encima. Partir en servicios significaria mantener tres despliegues, tres
-  pipelines y tres registros de log yo solo. El costo de operacion se multiplica por tres y
-  el tiempo de desarrollo no se divide por nada, porque el que programa sigue siendo uno.
-- **Acoplamiento**: en BiblioLite, **reservar un ejemplar y marcar ese ejemplar como no
-  disponible son el mismo cambio**. Si separo catalogo de prestamos, esas dos escrituras
-  caen en dos servicios y en dos bases distintas, y tengo que resolver a mano lo que hoy
-  resuelve una transaccion de una linea. Lo unico que de verdad cambia por separado es
-  **notificaciones**: el aviso de vencimiento se puede modificar sin tocar la regla de
-  prestamo, y por eso es el unico modulo que algun dia seria candidato a salir. Hoy no sale:
-  todavia no hay razon.
+- **Tamano del equipo**: **una persona**, durante **doce semanas**, con otras cuatro asignaturas encima. Partir en servicios significaria mantener tres despliegues, tres pipelines y tres registros de log yo solo. El costo de operacion se multiplica por tres y el tiempo de desarrollo no se divide por nada, porque el que programa sigue siendo uno.
+- **Acoplamiento**: en BiblioLite, **reservar un ejemplar y marcar ese ejemplar como no disponible son el mismo cambio**. Si separo catalogo de prestamos, esas dos escrituras caen en dos servicios y en dos bases distintas, y tengo que resolver a mano lo que hoy resuelve una transaccion de una linea. Lo unico que de verdad cambia por separado es **notificaciones**: el aviso de vencimiento se puede modificar sin tocar la regla de prestamo, y por eso es el unico modulo que algun dia seria candidato a salir. Hoy no sale: todavia no hay razon.
 
 **3. Que gano y que pierdo**
 
-- **Gano**: la regla «no se presta el ultimo ejemplar si ya esta reservado» se cumple con
-  una transaccion en una sola base. No necesito nada mas para que dos estudiantes no se
-  lleven el mismo libro.
-- **Pierdo**: no puedo escalar solo la consulta de disponibilidad, que es la operacion mas
-  usada en semana de parciales. Si esa consulta se vuelve el cuello de botella, tengo que
-  replicar toda la API. Es un precio que acepto hoy y que la Clase 13 va a revisar con
-  numeros.
+- **Gano**: la regla «no se presta el ultimo ejemplar si ya esta reservado» se cumple con una transaccion en una sola base. No necesito nada mas para que dos estudiantes no se lleven el mismo libro.
+- **Pierdo**: no puedo escalar solo la consulta de disponibilidad, que es la operacion mas usada en semana de parciales. Si esa consulta se vuelve el cuello de botella, tengo que replicar toda la API. Es un precio que acepto hoy y que la Clase 13 va a revisar con numeros.
 
 ### Como calificar
 
@@ -79,30 +62,15 @@ prestamos, con tres modulos internos de frontera explicita — `catalogo`, `pres
 
 ### Respuesta esperada
 
-**Justificacion de cada caja** (las dos preguntas obligatorias: que responsabilidad propia
-tiene y por que se despliega por separado)
+**Justificacion de cada caja** (las dos preguntas obligatorias: que responsabilidad propia tiene y por que se despliega por separado)
 
-- **Aplicacion web (React)** — responsabilidad: presentar el catalogo y capturar la reserva.
-  Se despliega por separado porque son archivos estaticos que se sirven desde un CDN y se
-  actualizan sin reiniciar la API. Es una unidad desplegable distinta de verdad, no una
-  carpeta.
-- **API de prestamos (Node.js)** — responsabilidad: las reglas de disponibilidad, reserva y
-  renovacion. Es **el** monolito modular de la pregunta 12: los tres modulos van dentro de
-  esta caja, no en cajas separadas, y eso es lo que hace coherentes las dos preguntas.
-- **Base de datos de prestamos (PostgreSQL)** — responsabilidad: guardar el estado. Se
-  despliega por separado porque tiene su propio ciclo de vida: sobrevive a cada nueva
-  version de la API y se respalda con otra frecuencia.
+- **Aplicacion web (React)** — responsabilidad: presentar el catalogo y capturar la reserva. Se despliega por separado porque son archivos estaticos que se sirven desde un CDN y se actualizan sin reiniciar la API. Es una unidad desplegable distinta de verdad, no una carpeta.
+- **API de prestamos (Node.js)** — responsabilidad: las reglas de disponibilidad, reserva y renovacion. Es **el** monolito modular de la pregunta 12: los tres modulos van dentro de esta caja, no en cajas separadas, y eso es lo que hace coherentes las dos preguntas.
+- **Base de datos de prestamos (PostgreSQL)** — responsabilidad: guardar el estado. Se despliega por separado porque tiene su propio ciclo de vida: sobrevive a cada nueva version de la API y se respalda con otra frecuencia.
 
-**Tres contenedores, no seis.** No hay caja de cache, ni de worker, ni de «servicio de
-autenticacion»: la autenticacion la delega el `idp`, que ya es un `System_Ext` y por eso no
-se dibuja adentro. Cada caja que no pueda responder las dos preguntas no se dibuja.
+**Tres contenedores, no seis.** No hay caja de cache, ni de worker, ni de «servicio de autenticacion»: la autenticacion la delega el `idp`, que ya es un `System_Ext` y por eso no se dibuja adentro. Cada caja que no pueda responder las dos preguntas no se dibuja.
 
-**Trazabilidad con el Context de la pregunta 3.** Los cinco nombres se copian tal cual:
-`Estudiante`, `Auxiliar de biblioteca`, `CloudLite App`, `Proveedor de identidad
-institucional` y `Correo transaccional SaaS`. Lo unico que cambia es que la caja que en
-Context era una sola ahora es una `System_Boundary` con tres contenedores dentro. Estos
-mismos nombres son los que la Clase 7 pone en el diagrama de despliegue y los que la Clase
-11 revisa en el checkpoint.
+**Trazabilidad con el Context de la pregunta 3.** Los cinco nombres se copian tal cual: `Estudiante`, `Auxiliar de biblioteca`, `CloudLite App`, `Proveedor de identidad institucional` y `Correo transaccional SaaS`. Lo unico que cambia es que la caja que en Context era una sola ahora es una `System_Boundary` con tres contenedores dentro. Estos mismos nombres son los que la Clase 7 pone en el diagrama de despliegue y los que la Clase 11 revisa en el checkpoint.
 
 ### Respuesta esperada (dominio de la solucion)
 
@@ -127,9 +95,9 @@ C4Container
     Rel(correo, estudiante, "Entrega el aviso 2 dias antes del vencimiento", "SMTP")
 ```
 
-### Modelo de referencia que ve el estudiante
+### Modelo de referencia del kit docente (el estudiante NO lo ve)
 
-Es el que aparece en el enunciado de la plataforma, sobre el dominio **AgendaU**. Sirve para comparar estructura y conteos, no para calificar contenido:
+Vive en `Taller en ExamLab - Clase 4 (configuracion).md` y no se pega en el enunciado; esta resuelto sobre el dominio **AgendaU**. Sirve para comparar estructura y conteos —cuantas cajas, cuales son almacenes, si toda flecha lleva protocolo y formato—, **nunca** para calificar contenido ni nombres:
 
 ```mermaid
 C4Container
@@ -183,23 +151,11 @@ C4Container
 | Validar al solicitante | API de prestamos -> Proveedor de identidad institucional | `POST /oauth2/introspect` | **403** el carne es valido pero no corresponde a un estudiante activo de este semestre |
 | Avisar el vencimiento | API de prestamos -> Correo transaccional SaaS | `POST /v1/mensajes` | **422** la direccion institucional del estudiante no existe o esta desactivada |
 
-**Por que estos tres y no otros.** Son las tres fronteras que el diagrama de la pregunta 13
-dibuja hacia afuera de la API: una desde el front, una hacia identidad y una hacia el correo.
-Los nombres de la columna del medio son literalmente los de las cajas: `Aplicacion web`,
-`API de prestamos`, `Proveedor de identidad institucional`, `Correo transaccional SaaS`.
+**Por que estos tres y no otros.** Son las tres fronteras que el diagrama de la pregunta 13 dibuja hacia afuera de la API: una desde el front, una hacia identidad y una hacia el correo. Los nombres de la columna del medio son literalmente los de las cajas: `Aplicacion web`, `API de prestamos`, `Proveedor de identidad institucional`, `Correo transaccional SaaS`.
 
-**El 409 es el que importa.** Es un conflicto, no una falla: el servidor esta perfectamente
-sano y la peticion esta bien formada, pero el mundo cambio entre que el estudiante vio
-«1 disponible» y que apreto el boton. Ese caso aparece en cuanto dos personas hacen lo mismo
-a la vez, y en semana de parciales pasa todos los dias. El 409 se retoma en la Clase 13 con
-concurrencia y escalado, y en Bases de Datos II con la transaccion que lo evita.
+**El 409 es el que importa.** Es un conflicto, no una falla: el servidor esta perfectamente sano y la peticion esta bien formada, pero el mundo cambio entre que el estudiante vio «1 disponible» y que apreto el boton. Ese caso aparece en cuanto dos personas hacen lo mismo a la vez, y en semana de parciales pasa todos los dias. El 409 se retoma en la Clase 13 con concurrencia y escalado, y en Bases de Datos II con la transaccion que lo evita.
 
-**Nota sobre el tercero.** Si el aviso de vencimiento se hiciera con una cola en vez de una
-llamada directa, este contrato se escribiria como **`evento prestamo.por_vencer`** en la
-columna del verbo, y entonces el error de negocio no seria un codigo de respuesta sino la
-politica del mensaje que no se pudo entregar. Hoy es sincrono porque el diagrama de la
-pregunta 13 no tiene cola, y el contrato tiene que describir lo que esta dibujado, no lo que
-seria elegante.
+**Nota sobre el tercero.** Si el aviso de vencimiento se hiciera con una cola en vez de una llamada directa, este contrato se escribiria como **`evento prestamo.por_vencer`** en la columna del verbo, y entonces el error de negocio no seria un codigo de respuesta sino la politica del mensaje que no se pudo entregar. Hoy es sincrono porque el diagrama de la pregunta 13 no tiene cola, y el contrato tiene que describir lo que esta dibujado, no lo que seria elegante.
 
 ### Como calificar
 
@@ -225,17 +181,9 @@ seria elegante.
 
 ### Respuesta esperada
 
-**1. Que se rompe cuando una pieza no responde**
-Si se cae el **Correo transaccional SaaS**: **deja de funcionar** la capacidad «notificar el
-vencimiento del prestamo», que es una de las cuatro de mi ficha; el estudiante no recibe el
-aviso dos dias antes y se enterara al devolver tarde. **Sigue funcionando** todo lo demas:
-consultar disponibilidad, reservar, renovar y registrar el prestamo en mostrador, porque
-ninguna de esas operaciones espera respuesta del correo. La reserva se guarda igual: lo que
-se pierde es el aviso, no la reserva. Si en cambio se cayera la **Base de datos de
-prestamos**, ahi si se cae todo, porque es la unica caja sin la cual no hay estado.
+**1. Que se rompe cuando una pieza no responde** Si se cae el **Correo transaccional SaaS**: **deja de funcionar** la capacidad «notificar el vencimiento del prestamo», que es una de las cuatro de mi ficha; el estudiante no recibe el aviso dos dias antes y se enterara al devolver tarde. **Sigue funcionando** todo lo demas: consultar disponibilidad, reservar, renovar y registrar el prestamo en mostrador, porque ninguna de esas operaciones espera respuesta del correo. La reserva se guarda igual: lo que se pierde es el aviso, no la reserva. Si en cambio se cayera la **Base de datos de prestamos**, ahi si se cae todo, porque es la unica caja sin la cual no hay estado.
 
-**2. Que latencia agrega cada salto**
-Contando una reserva completa de punta a punta, son **seis saltos de red**:
+**2. Que latencia agrega cada salto** Contando una reserva completa de punta a punta, son **seis saltos de red**:
 
 1. Estudiante -> Aplicacion web (HTTPS)
 2. Aplicacion web -> API de prestamos (HTTPS/JSON)
@@ -244,22 +192,9 @@ Contando una reserva completa de punta a punta, son **seis saltos de red**:
 5. API -> Base de datos (escribir la reserva)
 6. API -> Correo transaccional SaaS (confirmacion)
 
-**Antes eran cero.** En el prototipo de una sola pieza con un archivo local, reservar era una
-llamada de funcion y una escritura en disco: ni un salto. Dos observaciones que salen de
-contarlos: si guardo en cache las claves publicas del `idp`, el salto 3 desaparece de la
-mayoria de las peticiones; y si el correo se envia en segundo plano, el estudiante espera
-cinco saltos en vez de seis. Contar es lo que permite ver esas dos decisiones.
+**Antes eran cero.** En el prototipo de una sola pieza con un archivo local, reservar era una llamada de funcion y una escritura en disco: ni un salto. Dos observaciones que salen de contarlos: si guardo en cache las claves publicas del `idp`, el salto 3 desaparece de la mayoria de las peticiones; y si el correo se envia en segundo plano, el estudiante espera cinco saltos en vez de seis. Contar es lo que permite ver esas dos decisiones.
 
-**3. Que datos quedan expuestos a inconsistencia**
-El **estado del ejemplar** (`ejemplares.estado`) se actualiza en el mismo momento en que se
-crea la reserva: son **dos escrituras** que deben ocurrir juntas. Si la primera guarda la
-reserva y la segunda falla, el ejemplar sigue apareciendo como disponible y el siguiente
-estudiante lo reserva tambien: dos reservas sobre el mismo ejemplar fisico, y alguien llega a
-la biblioteca a un libro que no esta. Como las dos escrituras viven en la misma base
-—consecuencia directa de haber elegido monolito modular—, una transaccion las cubre.
-El dato que **no** puedo cubrir es el correo ya enviado: si la transaccion se revierte
-despues de que el aviso salio, el estudiante tiene en su bandeja la confirmacion de una
-reserva que no existe, y un correo no se puede hacer rollback.
+**3. Que datos quedan expuestos a inconsistencia** El **estado del ejemplar** (`ejemplares.estado`) se actualiza en el mismo momento en que se crea la reserva: son **dos escrituras** que deben ocurrir juntas. Si la primera guarda la reserva y la segunda falla, el ejemplar sigue apareciendo como disponible y el siguiente estudiante lo reserva tambien: dos reservas sobre el mismo ejemplar fisico, y alguien llega a la biblioteca a un libro que no esta. Como las dos escrituras viven en la misma base —consecuencia directa de haber elegido monolito modular—, una transaccion las cubre. El dato que **no** puedo cubrir es el correo ya enviado: si la transaccion se revierte despues de que el aviso salio, el estudiante tiene en su bandeja la confirmacion de una reserva que no existe, y un correo no se puede hacer rollback.
 
 ### Como calificar
 

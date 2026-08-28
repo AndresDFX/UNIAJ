@@ -5,7 +5,7 @@
 - **Preguntas:** 4 · **Total:** 25 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Diagramar componentes/servicios de CloudLite y sus contratos
-- **Entregable de la clase:** Diagrama C4 Container/Componentes v0.9 + lista de APIs entre servicios
+- **Entregable de la clase:** Diagrama C4 Container en Mermaid + tabla de 3 contratos + 3 riesgos de distribución
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada

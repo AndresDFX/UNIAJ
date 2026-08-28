@@ -4,8 +4,8 @@
 - **Taller:** Taller Clase 7 en ExamLab - Indices y particionamiento de VetCare
 - **Preguntas:** 5 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
-- **Hito del PI:** >=2 indices justificados sobre tablas calientes del PI
-- **Entregable de la clase:** Script CREATE INDEX + tabla justificacion consulta->indice
+- **Hito del PI:** 3 indices justificados (uno parcial) + historico particionado por ano
+- **Entregable de la clase:** Script CREATE INDEX + cita_hist particionada + tabla justificacion consulta->indice
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada

@@ -169,7 +169,14 @@ def portada(doc, meta: dict[str, Any], *, es_solucion: bool):
         doc,
         # meta['clase'] = numero de SESION del calendario 2026-2 (13 sesiones).
         # Las «Clase N» del material (1..15) se listan en meta['temas'].
-        f"Fecha: {meta['fecha']}  ·  Sesión {meta['clase']} de 13  ·  Modalidad: Presencial (síncrono)",
+        # La modalidad NO es parametro porque no varia: `regla_parciales` de
+        # config/calendario/semestre_2026_2.json dice «Modalidad VIRTUAL en los 4 cursos:
+        # los parciales se presentan VIRTUAL SINCRONO, no en el campus». Decia
+        # «Presencial (síncrono)» en los 12 parciales y sus 12 soluciones, que es el
+        # error factual que puede hacer que un estudiante viaje al campus el dia del
+        # examen.
+        f"Fecha: {meta['fecha']}  ·  Sesión {meta['clase']} de 13  ·  "
+        "Modalidad: virtual síncrona por Google Meet",
         size=11,
         color=GRIS,
         align=WD_ALIGN_PARAGRAPH.CENTER,
@@ -227,12 +234,20 @@ def portada(doc, meta: dict[str, Any], *, es_solucion: bool):
     bullets(doc, meta["temas"])
 
     h2(doc, "Instrucciones generales")
+    # Las dos primeras vinetas asumian examen en papel en un salon: «Escriba con letra
+    # clara» y «No se permite el uso de dispositivos electronicos». El parcial se
+    # presenta por Meet y se responde en este mismo archivo, o sea EN un dispositivo
+    # electronico: la regla anterior prohibia el unico medio de entrega que hay.
     bullets(
         doc,
         [
-            "Lea con atención cada sección antes de responder. Escriba con letra clara.",
+            "Lea con atención cada sección antes de responder. Responda en este mismo "
+            "documento, sobre las líneas marcadas, y entréguelo por el medio que el "
+            "docente indique al abrir la sesión.",
             "El parcial se califica sobre 100 puntos. Nota sobre 5.0 = (puntos obtenidos / 100) × 5.0.",
-            "No se permite el uso de dispositivos electrónicos salvo indicación explícita del docente.",
+            "Es individual: no se permite consultar con otras personas ni compartir "
+            "respuestas. El material de apoyo autorizado es el que el docente indique al "
+            "abrir la sesión.",
             "Justifique las respuestas de desarrollo. En ejercicios de código o SQL, la claridad y la corrección cuentan.",
             "Este parcial evalúa únicamente los temas del corte indicado. El desglose del Acuerdo (30%/30%/40%) se aplica a nivel de corte, no dentro de este documento.",
             f"Duración sugerida: {meta['tiempo']} dentro del bloque de 120 minutos.",
@@ -243,6 +258,45 @@ def portada(doc, meta: dict[str, Any], *, es_solucion: bool):
     for s in meta["secciones_resumen"]:
         body(doc, f"• {s}")
     body(doc, "Total: 100 puntos  →  Nota = puntos/20 sobre 5.0", space_after=10)
+
+
+def por_que_opciones(doc, item: dict[str, Any]):
+    """Justificacion de TODAS las opciones, no solo de la correcta (solo en la solucion).
+
+    Lo exige el checklist del repo para preguntas cerradas. Sin esto, el docente puede
+    senalar la «b» pero no responder por que la «c» no era, que es justo lo que el
+    estudiante pregunta cuando reclama la nota.
+    """
+    pq = item.get("por_que")
+    if not pq:
+        return
+    h3(doc, "Por qué cada opción")
+    for etiqueta, razon in pq.items():
+        add_rich(doc, [(f"    {etiqueta}  ", True), (razon, False)], size=10, space_after=2)
+
+
+def codigo_solucion(doc, item: dict[str, Any]):
+    """El codigo/SQL resuelto, docente-only.
+
+    Va aparte de `codigo`, que se imprime tambien en la version del estudiante: si la
+    respuesta se pusiera ahi, el parcial traeria la solucion impresa.
+    """
+    cod = item.get("solucion_codigo")
+    if not cod:
+        return
+    h3(doc, "Respuesta que corre tal cual")
+    for line in cod.splitlines() or [""]:
+        mono(doc, line if line else " ")
+
+
+def errores_frecuentes(doc, item: dict[str, Any]):
+    """Que llega mal y que hacer con ello: decisiones de calificacion tomadas antes."""
+    errs = item.get("errores")
+    if not errs:
+        return
+    h3(doc, "Errores frecuentes y qué hacer")
+    for e in errs:
+        body(doc, f"• {e}", space_after=2)
 
 
 def render_item(doc, item: dict[str, Any], *, es_solucion: bool):
@@ -256,6 +310,8 @@ def render_item(doc, item: dict[str, Any], *, es_solucion: bool):
             body(doc, f"    {opt}", space_after=1)
         if es_solucion:
             add_para(doc, f"    → Clave: {item['clave']}", size=10, bold=True, color=AZUL, space_after=2)
+            por_que_opciones(doc, item)
+            errores_frecuentes(doc, item)
             if item.get("nota"):
                 body(doc, f"    Nota docente: {item['nota']}", space_after=6)
         else:
@@ -272,6 +328,7 @@ def render_item(doc, item: dict[str, Any], *, es_solucion: bool):
                 color=AZUL,
                 space_after=4,
             )
+            errores_frecuentes(doc, item)
         else:
             body(doc, "    Respuesta (V / F): ________    Justificación breve: _______________________________", space_after=6)
         return
@@ -285,8 +342,14 @@ def render_item(doc, item: dict[str, Any], *, es_solucion: bool):
             body(doc, f"    {b}", space_after=1)
         if es_solucion:
             add_para(doc, f"    → Emparejamiento: {item['clave']}", size=10, bold=True, color=AZUL, space_after=4)
+            por_que_opciones(doc, item)
+            errores_frecuentes(doc, item)
         else:
-            body(doc, "    Respuestas (ej. 1-c, 2-a…): _______________________________________________", space_after=6)
+            # El marcador decia «(ej. 1-c, 2-a…)», y «1-c» es la primera pareja de la clave
+            # real del emparejamiento en el Parcial 2 de Programacion II y en el Parcial 1
+            # de Seminario: el ejemplo del formato regalaba una de las cuatro parejas. Se
+            # deja solo el formato, que no puede colisionar con ninguna clave.
+            body(doc, "    Respuestas (formato 1-x, 2-x, 3-x, 4-x): _____________________________________", space_after=6)
         return
     if tipo == "desarrollo":
         body(doc, f"{item['id']}. ({item['pts']} pts) {item['enunciado']}", space_after=2)
@@ -300,6 +363,8 @@ def render_item(doc, item: dict[str, Any], *, es_solucion: bool):
             h3(doc, "Respuesta esperada / rúbrica")
             for line in item["solucion"]:
                 body(doc, f"• {line}", space_after=2)
+            codigo_solucion(doc, item)
+            errores_frecuentes(doc, item)
         else:
             for _ in range(item.get("lineas", 4)):
                 body(doc, "_" * 78, space_after=2)
@@ -317,6 +382,8 @@ def render_item(doc, item: dict[str, Any], *, es_solucion: bool):
             h3(doc, "Solución / rúbrica breve")
             for line in item["solucion"]:
                 body(doc, f"• {line}", space_after=2)
+            codigo_solucion(doc, item)
+            errores_frecuentes(doc, item)
         else:
             for _ in range(item.get("lineas", 6)):
                 body(doc, "_" * 78, space_after=2)

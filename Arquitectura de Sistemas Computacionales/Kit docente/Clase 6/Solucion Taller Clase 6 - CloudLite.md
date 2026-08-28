@@ -34,23 +34,11 @@
 | 4 | **I** — Fuga de informacion (secretos) | La cadena de conexion de PostgreSQL y la clave del correo transaccional quedaron dentro de la imagen `bibliolite-api:0.1.0` por un `COPY . .` que arrastro el `.env`. Cualquiera que descargue la imagen del registro las lee con `docker history`, incluso si una capa posterior borro el archivo. |
 | 5 | **R** — Repudiacion | El auxiliar puede **modificar la fecha de devolucion** de un prestamo vencido con un `UPDATE` directo y despues negar haberlo hecho, porque la tabla `prestamos` guarda solo el estado actual y no existe ninguna bitacora de quien cambio que y cuando. |
 
-**Por que estas cinco y no una lista de manual.** Las cinco nombran una ruta concreta
-(`POST /titulos/{isbn}/reservas`, `GET /prestamos/17`), un actor de la ficha (estudiante,
-auxiliar de biblioteca) o un dato del dominio (historial de prestamos, cadena de conexion), y
-el camino por el que la amenaza ocurre. Esa es la diferencia que el enunciado exige: «fuga de
-informacion» es una categoria; la fila 3 es una amenaza.
+**Por que estas cinco y no una lista de manual.** Las cinco nombran una ruta concreta (`POST /titulos/{isbn}/reservas`, `GET /prestamos/17`), un actor de la ficha (estudiante, auxiliar de biblioteca) o un dato del dominio (historial de prestamos, cadena de conexion), y el camino por el que la amenaza ocurre. Esa es la diferencia que el enunciado exige: «fuga de informacion» es una categoria; la fila 3 es una amenaza.
 
-**Dos amenazas comparten la letra I y eso esta bien.** La 3 y la 4 son ambas fuga, pero una
-ocurre en tiempo de ejecucion por una autorizacion incompleta y la otra en tiempo de
-construccion por un archivo que no debia entrar en la imagen. Los controles son distintos y
-los momentos son distintos, asi que no son la misma amenaza con otras palabras. STRIDE es una
-guia de categorias, no una cuota de una por letra.
+**Dos amenazas comparten la letra I y eso esta bien.** La 3 y la 4 son ambas fuga, pero una ocurre en tiempo de ejecucion por una autorizacion incompleta y la otra en tiempo de construccion por un archivo que no debia entrar en la imagen. Los controles son distintos y los momentos son distintos, asi que no son la misma amenaza con otras palabras. STRIDE es una guia de categorias, no una cuota de una por letra.
 
-**Una sexta que quedo fuera, para tenerla en el bolsillo:** **D** — un script sin
-autenticacion golpea `GET /titulos?disponible=true` mil veces por minuto en semana de
-parciales y la base se queda sin conexiones libres. No entro en las cinco porque el impacto
-academico es menor que los otros, pero si un estudiante la elige, es perfectamente valida y
-conecta con el escalado de la Clase 13.
+**Una sexta que quedo fuera, para tenerla en el bolsillo:** **D** — un script sin autenticacion golpea `GET /titulos?disponible=true` mil veces por minuto en semana de parciales y la base se queda sin conexiones libres. No entro en las cinco porque el impacto academico es menor que los otros, pero si un estudiante la elige, es perfectamente valida y conecta con el escalado de la Clase 13.
 
 ### Como calificar
 
@@ -85,24 +73,11 @@ conecta con el escalado de la Clase 13.
 
 **Principio de menor privilegio, aplicado a un componente concreto**
 
-Lo aplico sobre la **conexion de la `API de prestamos` a la `Base de datos de prestamos`**. La
-API no se conecta como superusuario: usa el rol `bibliolite_api`, al que le concedo
-exactamente `SELECT`, `INSERT` y `UPDATE` sobre `titulos`, `ejemplares`, `reservas` y
-`prestamos`, mas `INSERT` — solo `INSERT` — sobre `auditoria`.
+Lo aplico sobre la **conexion de la `API de prestamos` a la `Base de datos de prestamos`**. La API no se conecta como superusuario: usa el rol `bibliolite_api`, al que le concedo exactamente `SELECT`, `INSERT` y `UPDATE` sobre `titulos`, `ejemplares`, `reservas` y `prestamos`, mas `INSERT` — solo `INSERT` — sobre `auditoria`.
 
-**Que deja de poder hacer al aplicarlo:** ese rol **no puede** borrar filas (`DELETE`), no
-puede alterar la estructura (`DROP`, `ALTER`), no puede leer ningun otro esquema de la misma
-instancia, y **no puede modificar ni borrar la bitacora de auditoria** que el mismo escribe.
-Eso ultimo es lo importante: si manana aparece una inyeccion de SQL en la API — la amenaza que
-Bases de Datos II trabaja con parametros —, el atacante hereda estos permisos y **no** los del
-dueno de la base. Puede hacer dano, pero no puede borrar la evidencia de haberlo hecho ni
-tumbar el esquema.
+**Que deja de poder hacer al aplicarlo:** ese rol **no puede** borrar filas (`DELETE`), no puede alterar la estructura (`DROP`, `ALTER`), no puede leer ningun otro esquema de la misma instancia, y **no puede modificar ni borrar la bitacora de auditoria** que el mismo escribe. Eso ultimo es lo importante: si manana aparece una inyeccion de SQL en la API — la amenaza que Bases de Datos II trabaja con parametros —, el atacante hereda estos permisos y **no** los del dueno de la base. Puede hacer dano, pero no puede borrar la evidencia de haberlo hecho ni tumbar el esquema.
 
-**Nota sobre la segunda columna.** Tres de los cinco controles caen en la caja `API de
-prestamos`. No es un defecto: es la consecuencia de que casi toda la autorizacion vive donde
-estan las reglas de negocio. Lo que si seria defecto es que un control cayera en la
-`Aplicacion web`: ocultar un boton no es un control, porque la peticion se puede enviar sin
-pasar por la interfaz.
+**Nota sobre la segunda columna.** Tres de los cinco controles caen en la caja `API de prestamos`. No es un defecto: es la consecuencia de que casi toda la autorizacion vive donde estan las reglas de negocio. Lo que si seria defecto es que un control cayera en la `Aplicacion web`: ocultar un boton no es un control, porque la peticion se puede enviar sin pasar por la interfaz.
 
 ### Como calificar
 
@@ -129,55 +104,32 @@ pasar por la interfaz.
 ### Respuesta esperada
 
 **1. Donde viven los secretos**
-- En la **configuracion del repositorio**: los *secrets* del proyecto en GitHub, que se
-  inyectan como variables de entorno solo durante la ejecucion del pipeline y que no se
-  pueden volver a leer desde la interfaz una vez guardados.
-- En **las variables de entorno del proveedor de PaaS** para el servicio en ejecucion, que es
-  coherente con el ADR-001 de la Clase 2.
-- En **local**, en un archivo `.env` que esta en `.gitignore` y en `.dockerignore`. Lo que si
-  se versiona es `.env.example`, con los nombres de las variables y **sin un solo valor
-  real**, para que otra persona sepa que necesita sin recibir nada.
+- En la **configuracion del repositorio**: los `secrets` del proyecto en GitHub, que se inyectan como variables de entorno solo durante la ejecucion del pipeline y que no se pueden volver a leer desde la interfaz una vez guardados.
+- En **las variables de entorno del proveedor de PaaS** para el servicio en ejecucion, que es coherente con el ADR-001 de la Clase 2.
+- En **local**, en un archivo `.env` que esta en `.gitignore` y en `.dockerignore`. Lo que si se versiona es `.env.example`, con los nombres de las variables y **sin un solo valor real**, para que otra persona sepa que necesita sin recibir nada.
 
-Los tres secretos de BiblioLite son: `DATABASE_URL`, `CORREO_API_KEY` y el secreto de cliente
-del proveedor de identidad.
+Los tres secretos de BiblioLite son: `DATABASE_URL`, `CORREO_API_KEY` y el secreto de cliente del proveedor de identidad.
 
-**2. Quien los rota**
-El **dueno del repositorio**, que en este proyecto soy yo y es la unica persona con permiso de
-administracion. Queda escrito en el `README` para que no dependa de la memoria: si manana el
-proyecto pasa a dos personas, el responsable sigue siendo un rol, no un nombre.
+**2. Quien los rota** El **dueno del repositorio**, que en este proyecto soy yo y es la unica persona con permiso de administracion. Queda escrito en el `README` para que no dependa de la memoria: si manana el proyecto pasa a dos personas, el responsable sigue siendo un rol, no un nombre.
 
 **3. Con que frecuencia**
-- Rotacion programada: **al cierre de cada corte**, es decir cada cinco semanas, y en la
-  entrega final antes de la sustentacion de la Clase 15.
-- Rotacion inmediata, sin esperar el calendario: si el secreto aparece en un log, en una
-  captura de pantalla, en un `docker history`, en el chat del grupo, o si alguien con acceso
-  deja el proyecto.
+- Rotacion programada: **al cierre de cada corte**, es decir cada cinco semanas, y en la entrega final antes de la sustentacion de la Clase 15.
+- Rotacion inmediata, sin esperar el calendario: si el secreto aparece en un log, en una captura de pantalla, en un `docker history`, en el chat del grupo, o si alguien con acceso deja el proyecto.
 
 **4. Que esta explicitamente prohibido**
-- Escribir un secreto en el `Dockerfile`, en el `README`, en el YAML del pipeline en claro o
-  en cualquier archivo que entre a git.
-- Hacer `COPY . .` sin `.dockerignore`, que es la via por la que el `.env` entra a la imagen
-  sin que nadie lo escriba a proposito.
-- Imprimir variables de entorno en el pipeline (`env`, `printenv`, `echo $DATABASE_URL`): el
-  log de la CI es publico en un repositorio publico.
-- Pegar secretos en capturas de pantalla, en la bitacora del laboratorio o en el chat del
-  grupo.
-- Commits «temporales» con la clave «que borro despues». No existe el despues: el commit ya
-  esta en el historial.
+- Escribir un secreto en el `Dockerfile`, en el `README`, en el YAML del pipeline en claro o en cualquier archivo que entre a git.
+- Hacer `COPY . .` sin `.dockerignore`, que es la via por la que el `.env` entra a la imagen sin que nadie lo escriba a proposito.
+- Imprimir variables de entorno en el pipeline (`env`, `printenv`, `echo $DATABASE_URL`): el log de la CI es publico en un repositorio publico.
+- Pegar secretos en capturas de pantalla, en la bitacora del laboratorio o en el chat del grupo.
+- Commits «temporales» con la clave «que borro despues». No existe el despues: el commit ya esta en el historial.
 
 **5. Que hago si un secreto se filtra**
-1. **Rotar la credencial**, primero y ya: generar una nueva en el proveedor e invalidar la
-   anterior. El historial ya salio del equipo y no se puede recuperar; lo unico que esta bajo
-   mi control es que la clave filtrada deje de servir.
-2. Actualizar el secreto en la configuracion del repositorio y en el PaaS, y volver a
-   despuegar.
-3. Revisar los registros de acceso del proveedor por el periodo en que la clave estuvo
-   expuesta, para saber si alguien la uso.
-4. **Solo despues**, limpiar el historial de git — y sabiendo que es cosmetico: si el
-   repositorio es publico, cualquier clon o cualquier indexador ya tiene la copia.
+1. **Rotar la credencial**, primero y ya: generar una nueva en el proveedor e invalidar la anterior. El historial ya salio del equipo y no se puede recuperar; lo unico que esta bajo mi control es que la clave filtrada deje de servir.
+2. Actualizar el secreto en la configuracion del repositorio y en el PaaS, y volver a despuegar.
+3. Revisar los registros de acceso del proveedor por el periodo en que la clave estuvo expuesta, para saber si alguien la uso.
+4. **Solo despues**, limpiar el historial de git — y sabiendo que es cosmetico: si el repositorio es publico, cualquier clon o cualquier indexador ya tiene la copia.
 
-Borrar el commit primero es el orden equivocado: da la sensacion de haber resuelto el
-problema mientras la credencial sigue siendo valida.
+Borrar el commit primero es el orden equivocado: da la sensacion de haber resuelto el problema mientras la credencial sigue siendo valida.
 
 ### Como calificar
 
@@ -225,7 +177,7 @@ No. Puede ir sobre el token del correo transaccional que solo puede enviar y no 
 
 **¿Donde pongo los secretos si todavia no tengo pipeline?**
 
-En los *secrets* del repositorio igual: se configuran hoy y el pipeline de la Clase 8 los consume sin cambiar nada. Lo que no se hace nunca es dejarlos en un archivo «mientras tanto».
+En los `secrets` del repositorio igual: se configuran hoy y el pipeline de la Clase 8 los consume sin cambiar nada. Lo que no se hace nunca es dejarlos en un archivo «mientras tanto».
 
 **¿Tengo que rotar los secretos de verdad durante el semestre?**
 

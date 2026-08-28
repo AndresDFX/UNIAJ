@@ -127,7 +127,14 @@ def _rich(paragraph, text, size, color, bold=False, italic=False):
         paragraph.runs[0].text = ""
     text = re.sub(r"@@([^@]+)@@", r"**\1**", str(text))
     text = re.sub(r"`([^`\n]+)`", r"«\1»", text)
-    parts = re.split(r"(\*\*[^*]+\*\*)", text)
+    # El contenido en negrita admite un `*` suelto: `[^*]+` no lo admitia, y una
+    # vineta con «COUNT(*)» dentro del tramo en negrita no encontraba pareja, asi
+    # que los dos asteriscos salian IMPRESOS en la diapositiva del estudiante y el
+    # tramo resaltado se corria hasta el siguiente `**` del texto. Se encontro en la
+    # Clase 6 de BD II, donde COUNT(*) contra COUNT(columna) es el nucleo de una
+    # pregunta de 20 puntos. `\*(?!\*)` acepta el asterisco solitario y sigue sin
+    # poder cruzar un cierre, y el `+?` toma el cierre mas cercano.
+    parts = re.split(r"(\*\*(?:[^*]|\*(?!\*))+?\*\*)", text)
     first = True
     for part in parts:
         if not part:
@@ -236,9 +243,19 @@ def diagram_boxes_slide(prs, title, boxes, arrows=None, sub=None, idx=None, note
             x1, x2 = sx, dx
         _arrow(s, x1, y1, x2, y2, dashed=a.get("dashed", False))
         if a.get("label"):
-            lx, ly = (x1 + x2) / 2 - 0.9, (y1 + y2) / 2 - 0.22
+            ly = (y1 + y2) / 2 - 0.22
+            if abs(x2 - x1) < 0.05:
+                # Flecha vertical: el rotulo centrado en el punto medio quedaba
+                # ATRAVESADO por la propia linea («usa · HTTPS» partido por la mitad en
+                # el C4 Containers de la Clase 4 de ARQ). Se corre al lado de la linea,
+                # y al otro lado si no cabe contra el borde derecho.
+                lx, alin = x1 + 0.12, PP_ALIGN.LEFT
+                if lx + 1.8 > MARGIN + CONTENT_W:
+                    lx, alin = x1 - 1.92, PP_ALIGN.RIGHT
+            else:
+                lx, alin = (x1 + x2) / 2 - 0.9, PP_ALIGN.CENTER
             tb = textbox(s, max(MARGIN, lx), max(top, ly), 1.8, 0.35)
-            tb.paragraphs[0].alignment = PP_ALIGN.CENTER
+            tb.paragraphs[0].alignment = alin
             _run(tb.paragraphs[0].add_run(), a["label"], 10, SOFT, italic=True)
     if legend:
         lb = textbox(s, MARGIN, SH - 1.05, CONTENT_W, 0.35)

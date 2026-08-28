@@ -687,7 +687,7 @@ Defina la politica de secretos de CloudLite respondiendo estas cuatro preguntas:
 4. **Que esta explicitamente prohibido**.
 
 > **Regla del curso:** los secretos van en la **configuracion del repositorio** (los
-> *secrets* del proyecto), **nunca** en el `Dockerfile`, en el `README` ni en el YAML en
+> `secrets` del proyecto), **nunca** en el `Dockerfile`, en el `README` ni en el YAML en
 > claro. Un secreto escrito en el Dockerfile queda en el **historial de capas** de la imagen
 > para siempre: cualquiera que tenga la imagen lo lee, aunque el archivo se borre en una
 > capa posterior.

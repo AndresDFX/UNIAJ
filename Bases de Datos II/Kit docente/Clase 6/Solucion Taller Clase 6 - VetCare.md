@@ -133,30 +133,17 @@ Version DESPUES -- 91 filas
     -------+---------+------------------
         91 |      91 |              150
 
-    **91 es el numero de la pregunta.** Es el que hay que buscar en cualquier
-    entrega, y no depende de la maquina: el 2026-03-10 tiene 150 citas —150 por dia
-    en toda la base— y de esas 91 estan PROGRAMADA, 45 ATENDIDA y 14 CANCELADA. Si
-    un estudiante reporta 150, se le olvido el filtro de estado; si reporta 0, casi
-    siempre escribio `BETWEEN '2026-03-10' AND '2026-03-10'`, que con TIMESTAMP
-    solo atrapa la medianoche exacta.
-
-    Reparto de las 91 por franja, util para verificar de un vistazo:
+    Reparto de las 91 por franja horaria (mismo dato, agrupado):
 
      08:45 -> 15    09:30 -> 15    11:00 -> 15
      11:45 -> 16    13:15 -> 15    14:00 -> 15
-
-    Son **seis** franjas y no nueve, y el detalle tiene explicacion: la base genera
-    las horas en pasos de 45 minutos y hace ATENDIDA una de cada tres citas, y las
-    tres franjas que caen en los multiplos —08:00, 10:15 y 12:30— quedan todas
-    ATENDIDA o CANCELADA. No es un error de nadie.
-
-    **Sobre el `ORDER BY`:** el enunciado pide ordenar por `c.fecha_hora`, y con eso
-    solo hay entre 15 y 16 filas **empatadas** dentro de cada franja, cuyo orden el
-    motor no garantiza. Dos corridas de la misma consulta pueden imprimir la agenda
-    en distinto orden. Por eso esta solucion agrega `, c.id_cita`: no se exige, y no
-    se descuenta por no tenerlo, pero es lo que hace que la evidencia del estudiante
-    sea reproducible y vale la pena senalarlo en la devolucion.
 ```
+
+**91 es el numero de la pregunta.** Es el que hay que buscar en cualquier entrega, y no depende de la maquina: el 2026-03-10 tiene 150 citas —150 por dia en toda la base— y de esas 91 estan PROGRAMADA, 45 ATENDIDA y 14 CANCELADA. Si un estudiante reporta 150, se le olvido el filtro de estado; si reporta 0, casi siempre escribio `BETWEEN '2026-03-10' AND '2026-03-10'`, que con TIMESTAMP solo atrapa la medianoche exacta.
+
+Son **seis** franjas y no nueve, y el detalle tiene explicacion: la base genera las horas en pasos de 45 minutos y hace ATENDIDA una de cada tres citas, y las tres franjas que caen en los multiplos —08:00, 10:15 y 12:30— quedan todas ATENDIDA o CANCELADA. No es un error de nadie.
+
+**Sobre el `ORDER BY`:** el enunciado pide ordenar por `c.fecha_hora`, y con eso solo hay entre 15 y 16 filas **empatadas** dentro de cada franja, cuyo orden el motor no garantiza. Dos corridas de la misma consulta pueden imprimir la agenda en distinto orden. Por eso esta solucion agrega `, c.id_cita`: no se exige, y no se descuenta por no tenerlo, pero es lo que hace que la evidencia del estudiante sea reproducible y vale la pena senalarlo en la devolucion.
 
 ### Como calificar
 
@@ -298,41 +285,21 @@ Version ANTES -- forma del plan (los nombres de los nodos son los que hay que
                   Rows Removed by Filter: 29919
             ->  ... los mismos tres Index Scan por llave primaria ...
     Execution Time: 41.2 ms
-
-    Los cuatro numeros que hay que saber leer en esta salida, y **solo los tres
-    primeros son deterministas**:
-
-    1. **`Rows Removed by Filter: 29919`, igual en las dos.** Es la parte incomoda y
-       es la mas instructiva: sin indice, las dos versiones leen las 30.010 filas y
-       tiran las mismas 29.919. El predicado sargable **por si solo** no evita el
-       `Seq Scan`; lo que hace es dejar la puerta abierta para el indice de la
-       Clase 7. Un estudiante que reporte «desaparecio el Seq Scan» no leyo su plan.
-    2. **`rows=1` estimadas contra `rows=91` reales, en la version ANTES.** Ese 1 no
-       es casualidad: cuando el filtro es una funcion sobre la columna, el motor no
-       tiene estadisticas y aplica una selectividad por omision del 0,5 % por cada
-       condicion; 30.010 x 0,005 x 0,005 da 0,75, que se redondea a 1. Con el
-       predicado desnudo usa el histograma de `fecha_hora` y la lista de valores
-       frecuentes de `estado`, y estima ~90 contra 91 reales.
-    3. **El plan del `LIMIT 50` conserva el `Seq Scan` completo.** Tiene que
-       conservarlo: para saber cuales son las 50 primeras por `fecha_hora` sin un
-       indice que ya venga ordenado, hay que encontrar y ordenar las 91. El `LIMIT`
-       solo ahorra el transporte de 41 filas. Es el segundo argumento para el indice
-       de la Clase 7.
-    4. **`Execution Time`.** Aqui 118 -> 41 ms, un factor de 2,9x. **Este es el unico
-       numero que cambia de maquina a maquina** y en el navegador puede variar el
-       doble entre dos corridas seguidas. Se acepta cualquier factor entre 1,5x y
-       3x; lo que no se acepta es un factor inventado.
-
-    Si el entorno rechaza la opcion `BUFFERS`, se corre `EXPLAIN ANALYZE` a secas y
-    se dice en la pregunta 5, tal como autoriza el enunciado. Cuando si funciona, el
-    dato que importa es que el `shared hit` del `Seq Scan on cita` es del mismo orden
-    en las dos versiones -- otra vez: se leen los mismos bloques.
 ```
+
+Los cuatro numeros que hay que saber leer en esta salida, y **solo los tres primeros son deterministas**:
+
+1. **`Rows Removed by Filter: 29919`, igual en las dos.** Es la parte incomoda y es la mas instructiva: sin indice, las dos versiones leen las 30.010 filas y tiran las mismas 29.919. El predicado sargable **por si solo** no evita el `Seq Scan`; lo que hace es dejar la puerta abierta para el indice de la Clase 7. Un estudiante que reporte «desaparecio el Seq Scan» no leyo su plan.
+2. **`rows=1` estimadas contra `rows=91` reales, en la version ANTES.** Ese 1 no es casualidad: cuando el filtro es una funcion sobre la columna, el motor no tiene estadisticas y aplica una selectividad por omision del 0,5 % por cada condicion; 30.010 x 0,005 x 0,005 da 0,75, que se redondea a 1. Con el predicado desnudo usa el histograma de `fecha_hora` y la lista de valores frecuentes de `estado`, y estima ~90 contra 91 reales.
+3. **El plan del `LIMIT 50` conserva el `Seq Scan` completo.** Tiene que conservarlo: para saber cuales son las 50 primeras por `fecha_hora` sin un indice que ya venga ordenado, hay que encontrar y ordenar las 91. El `LIMIT` solo ahorra el transporte de 41 filas. Es el segundo argumento para el indice de la Clase 7.
+4. **`Execution Time`.** Aqui 118 -> 41 ms, un factor de 2,9x. **Este es el unico numero que cambia de maquina a maquina** y en el navegador puede variar el doble entre dos corridas seguidas. Se acepta cualquier factor entre 1,5x y 3x; lo que no se acepta es un factor inventado.
+
+Si el entorno rechaza la opcion `BUFFERS`, se corre `EXPLAIN ANALYZE` a secas y se dice en la pregunta 5, tal como autoriza el enunciado. Cuando si funciona, el dato que importa es que el `shared hit` del `Seq Scan on cita` es del mismo orden en las dos versiones -- otra vez: se leen los mismos bloques.
 
 ### Como calificar
 
 - **6 pts — los tres `EXPLAIN` corren y corresponden.** 2 pts cada uno. El tercero, la variante con `LIMIT 50`, es el que mas se olvida y la rubrica lo nombra de forma explicita.
-- **9 pts — la tabla en comentarios, 3 pts por columna.** Nodo mas costoso, filas estimadas contra reales, y tiempo de ejecucion, para ANTES y para DESPUES. La exigencia de la rubrica es que los valores esten **tomados del plan real**: se verifica con dos anclas que no se pueden adivinar, el `Rows Removed by Filter: 29919` y las 91 filas reales.
+- **9 pts — la tabla en comentarios, 3 pts por columna.** Nodo mas costoso, filas estimadas contra reales, y tiempo de ejecucion, **para las tres versiones**: la columna se da completa cuando estan ANTES, DESPUES y DESPUES+LIM50, y vale 2 de 3 si falta la fila del `LIMIT 50`. La exigencia de la rubrica es que los valores esten **tomados del plan real**: se verifica con dos anclas que no se pueden adivinar, el `Rows Removed by Filter: 29919` y las 91 filas reales.
 - **3 pts — la linea `-- CONCLUSION:` cuantifica la mejora.** Basta un factor aproximado con los dos tiempos que lo sustentan. **Un factor pequeno y honesto vale los 3 pts completos**, y un 50x sin dos tiempos que lo respalden vale 0: en esta base, sin indices, el factor real esta entre 1,5x y 3x.
 - **2 pts — la interpretacion, no el volcado.** La rubrica descuenta si solo se pega el plan. Se dan los 2 pts cuando hay al menos una frase que explique **por que** el numero es el que es, y no solo cual es.
 - **Se reconoce como sobresaliente, sin puntos extra pero se anota en la devolucion:** senalar que el `Seq Scan` **no desaparecio** y explicar que sin indice no puede desaparecer. Es la lectura correcta del plan y es exactamente lo contrario de lo que el estudiante espera encontrar, asi que solo llega ahi quien de verdad leyo.
@@ -475,21 +442,9 @@ Version DESPUES -- 20 filas
             8 | Dueno 2        |          18
           ... hasta el id_dueno 20, todos con 18 ...
 
-    Los seis primeros son los duenos sembrados a mano, y tiene sentido: son los
-    unicos que tienen mascotas de las dos tandas —las 8 sembradas y las generadas—.
-    Del septimo hacia abajo hay **987 duenos empatados en 18**, asi que el
-    `ORDER BY total_citas DESC, d.id_dueno` no es un adorno: sin el desempate por
-    `id_dueno`, las filas 7 a 20 salen distintas en cada corrida y la evidencia del
-    estudiante no se puede comparar con nada.
-
     Equivalencia -- 0 filas
 
      (el EXCEPT en los dos sentidos no devolvio ninguna fila)
-
-    **Cero filas es el resultado correcto** y es la unica forma de afirmar que las
-    dos versiones son iguales. Si devuelve 6 filas —las de los id_dueno 2001 a
-    2006— el error esta identificado sin necesidad de leer el codigo: se uso
-    `COUNT(*)` en vez de `COUNT(c.id_cita)`.
 
     Comprobacion de los duenos sin citas -- 6 filas
 
@@ -501,19 +456,15 @@ Version DESPUES -- 20 filas
          2004 | Dueno 1998|           0
          2005 | Dueno 1999|           0
          2006 | Dueno 2000|           0
-
-    **Seis filas con 0.** Es el numero que separa las tres entregas posibles:
-    6 filas con 0 = correcto; 6 filas con **1** = se uso `COUNT(*)`;
-    **0 filas** = se uso `INNER JOIN` y esos seis duenos desaparecieron del reporte.
-    Los tres casos se distinguen con esta sola consulta.
-
-    Sobre el rendimiento: la version ANTES ejecuta el `SubPlan` **2.006 veces** y en
-    cada una recorre las 30.010 citas; el plan lo dice con `loops=2006`. La version
-    DESPUES es un `HashAggregate` sobre un solo recorrido. Aqui la diferencia si es
-    de ordenes de magnitud —de segundos a decenas de milisegundos— y no depende de
-    que haya indices, porque lo que se elimino no fue un escaneo: fueron 2.005
-    escaneos.
 ```
+
+**El ranking.** Los seis primeros son los duenos sembrados a mano, y tiene sentido: son los unicos que tienen mascotas de las dos tandas —las 8 sembradas y las generadas—. Del septimo hacia abajo hay **987 duenos empatados en 18**, asi que el `ORDER BY total_citas DESC, d.id_dueno` no es un adorno: sin el desempate por `id_dueno`, las filas 7 a 20 salen distintas en cada corrida y la evidencia del estudiante no se puede comparar con nada.
+
+**La equivalencia: cero filas es el resultado correcto**, y es la unica forma de afirmar que las dos versiones son iguales. Si devuelve 6 filas —las de los id_dueno 2001 a 2006— el error esta identificado sin necesidad de leer el codigo: se uso `COUNT(*)` en vez de `COUNT(c.id_cita)`.
+
+**Las seis filas con 0** son el numero que separa las tres entregas posibles: 6 filas con 0 = correcto; 6 filas con **1** = se uso `COUNT(*)`; **0 filas** = se uso `INNER JOIN` y esos seis duenos desaparecieron del reporte. Los tres casos se distinguen con esta sola consulta.
+
+**Sobre el rendimiento:** la version ANTES ejecuta el `SubPlan` **2.006 veces** y en cada una recorre las 30.010 citas; el plan lo dice con `loops=2006`. La version DESPUES es un `HashAggregate` sobre un solo recorrido. Aqui la diferencia si es de ordenes de magnitud —de segundos a decenas de milisegundos— y no depende de que haya indices, porque lo que se elimino no fue un escaneo: fueron 2.005 escaneos.
 
 ### Como calificar
 
@@ -595,7 +546,7 @@ La clave se lee del banco de la plataforma, asi que esta es la que se califica. 
 
 ### Como calificar
 
-- **3 pts — secciones 1 y 3, y 3 pts la seccion 5.** La 1 necesita la pantalla concreta y una **frecuencia**; «se usa mucho» no vale. La 3 necesita la afirmacion de equivalencia **y** el metodo con su resultado (91 = 91, `EXCEPT` vacio).
+- **3 pts — la seccion 1, y 3 pts la seccion 3.** La 1 necesita la pantalla concreta y una **frecuencia**; «se usa mucho» no vale. La 3 necesita la afirmacion de equivalencia **y** el metodo con su resultado (91 = 91, `EXCEPT` vacio). Con los 9 de la seccion 2, los 3 de la 4 y los 2 de la 5, el desglose suma los 20 puntos de la pregunta.
 - **9 pts — los tres cambios, 3 pts cada uno.** Cada cambio se parte en tres: 1 pt que se diga **que** se cambio, 1 pt **por que** mejora con el vocabulario correcto —sargabilidad, proyeccion, cardinalidad, numero de pasadas—, y 1 pt la **evidencia anclada al plan**: un nodo que aparecio o desaparecio, un `loops=`, un `rows=` estimado contra el real, un tiempo. Un cambio sin evidencia vale 2 de 3; una evidencia que no se puede verificar en el plan vale 0 de ese punto.
 - **3 pts — la seccion 4, el indice propuesto.** 2 pts el `CREATE INDEX` concreto sobre las columnas correctas y 1 pt **la razon tomada de su propio plan** («sigue habiendo un `Seq Scan` que descarta 29.919 filas»). Un indice propuesto «porque acelera las consultas» vale 1 de 3.
 - **2 pts — la seccion 5 reconoce los limites del entorno,** nombrando al menos dos: el volumen, la ausencia de concurrencia, el navegador como entorno de medicion, o el costo de escritura que no se midio. La rubrica pide honestidad y aqui se premia: **un informe que admite que midio poco vale mas que uno que finge haber medido produccion.**

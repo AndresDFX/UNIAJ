@@ -2,7 +2,7 @@
 
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
 - **Taller:** Actividad del Corte 2 (preguntas 11 y 12) - Costos y sostenibilidad
-- **Preguntas:** 2 · **Total:** 24 puntos
+- **Preguntas:** 2 · **Total:** 25 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Estimación cualitativa de costos + notas de sostenibilidad
 - **Entregable de la clase:** Sección Costos/Sostenibilidad del informe (bajo/medio + drivers)
@@ -91,7 +91,7 @@ costo suelen apalancarse con la misma decision.
 
 ## Al terminar de crearlo
 
-- Verifique que la suma de puntos sea la esperada: **24**.
+- Verifique que la suma de puntos sea la esperada: **25**.
 - Publique el taller y confirme la fecha limite (domingo 23:59 segun el Acuerdo).
 - Las preguntas con SQL o codigo: ejecutelas una vez usted mismo antes de publicar,
   para confirmar que el SQL de partida corre y que el starter compila.

@@ -98,21 +98,11 @@ jobs:
           echo "En este curso el despliegue se SIMULA: no se abren cuentas de nube de pago."
 ```
 
-**Coherencia con el Corte 1.** La imagen es `bibliolite-api:0.1.0` y el puerto del contenedor
-es el **3000**, exactamente los del Dockerfile de la Clase 3 y del diagrama de despliegue de la
-Clase 7. El `-p 8080:3000` publica el 3000 del contenedor en el 8080 del ejecutor, que es donde
-el `curl` entra.
+**Coherencia con el Corte 1.** La imagen es `bibliolite-api:0.1.0` y el puerto del contenedor es el **3000**, exactamente los del Dockerfile de la Clase 3 y del diagrama de despliegue de la Clase 7. El `-p 8080:3000` publica el 3000 del contenedor en el 8080 del ejecutor, que es donde el `curl` entra.
 
-**Secretos.** Los dos que el servicio necesita se referencian con `${{ secrets.NOMBRE }}` desde
-la configuracion del repositorio, se pasan al paso como variables de entorno y de ahi al
-contenedor con `-e`. **Ninguno aparece escrito en el YAML**, y el paso «Verificar que la imagen
-no lleva secretos» convierte en automatica la politica que la pregunta 3 dejo escrita: si
-manana alguien hace un `COPY . .`, el pipeline se pone rojo antes de que la imagen salga del
-equipo.
+**Secretos.** Los dos que el servicio necesita se referencian con `${{ secrets.NOMBRE }}` desde la configuracion del repositorio, se pasan al paso como variables de entorno y de ahi al contenedor con `-e`. **Ninguno aparece escrito en el YAML**, y el paso «Verificar que la imagen no lleva secretos» convierte en automatica la politica que la pregunta 3 dejo escrita: si manana alguien hace un `COPY . .`, el pipeline se pone rojo antes de que la imagen salga del equipo.
 
-**Por que el despliegue dice SIMULADO en el nombre.** Porque no despliega. Rotularlo asi no
-resta: evita prometer lo que el pipeline no hace, que es exactamente lo que la pregunta 9
-pregunta despues.
+**Por que el despliegue dice SIMULADO en el nombre.** Porque no despliega. Rotularlo asi no resta: evita prometer lo que el pipeline no hace, que es exactamente lo que la pregunta 9 pregunta despues.
 
 ### Como calificar
 
@@ -140,28 +130,15 @@ pregunta despues.
 
 ### Respuesta esperada
 
-**1. Que se instala y se construye**
-`npm ci` instala las dependencias **exactas** del `package-lock.json` — no las compatibles, las
-exactas — en el ejecutor limpio de GitHub. Despues `docker build` construye la imagen
-`bibliolite-api:0.1.0` con el mismo Dockerfile del Corte 1, asi que el pipeline valida tambien
-que el Dockerfile siga siendo valido, no solo que el codigo compile. No hay compilacion en el
-sentido estricto porque es JavaScript, y conviene decirlo asi en vez de inventar un paso de
-compilacion que no existe.
+**1. Que se instala y se construye** `npm ci` instala las dependencias **exactas** del `package-lock.json` — no las compatibles, las exactas — en el ejecutor limpio de GitHub. Despues `docker build` construye la imagen `bibliolite-api:0.1.0` con el mismo Dockerfile del Corte 1, asi que el pipeline valida tambien que el Dockerfile siga siendo valido, no solo que el codigo compile. No hay compilacion en el sentido estricto porque es JavaScript, y conviene decirlo asi en vez de inventar un paso de compilacion que no existe.
 
-**2. Que se ejecuta en la prueba y que comprueba exactamente**
-Tres cosas, en orden de menos a mas costoso:
+**2. Que se ejecuta en la prueba y que comprueba exactamente** Tres cosas, en orden de menos a mas costoso:
 
-- `npm test` corre las pruebas de las reglas de prestamo. La que importa: **no se puede
-  reservar el ultimo ejemplar disponible si ya tiene una reserva vigente**. Es la regla que
-  justifica que BiblioLite exista, asi que es la que se prueba.
-- La verificacion de que `docker history` **no menciona `.env`**: comprueba la politica de
-  secretos de la pregunta 3 sobre la imagen que se acaba de construir.
-- El contenedor se levanta de verdad y se consulta `GET /health` esperando `200` con
-  `"estado":"ok"`: comprueba que la imagen **arranca**, que el proceso escucha en el 3000 y que
-  el contrato de salud de la Clase 3 se sigue cumpliendo.
+- `npm test` corre las pruebas de las reglas de prestamo. La que importa: **no se puede reservar el ultimo ejemplar disponible si ya tiene una reserva vigente**. Es la regla que justifica que BiblioLite exista, asi que es la que se prueba.
+- La verificacion de que `docker history` **no menciona `.env`**: comprueba la politica de secretos de la pregunta 3 sobre la imagen que se acaba de construir.
+- El contenedor se levanta de verdad y se consulta `GET /health` esperando `200` con `"estado":"ok"`: comprueba que la imagen **arranca**, que el proceso escucha en el 3000 y que el contrato de salud de la Clase 3 se sigue cumpliendo.
 
-**3. Con que condicion el pipeline DEBE fallar**
-Cuatro condiciones, y todas se pueden provocar a proposito:
+**3. Con que condicion el pipeline DEBE fallar** Cuatro condiciones, y todas se pueden provocar a proposito:
 
 | Si introduzco... | el pipeline lo detecta en... |
 |---|---|
@@ -170,10 +147,41 @@ Cuatro condiciones, y todas se pueden provocar a proposito:
 | un puerto distinto en el `EXPOSE` o en el `CMD` | el `curl` a `/health`, que agota los 30 s |
 | una dependencia que no esta en el `package-lock.json` | `npm ci`, que se niega a instalarla |
 
-**La prueba de que no es decoracion verde:** si cambio la comparacion de la regla de reserva de
-`>=` a `>`, el `npm test` se pone rojo y el pipeline se detiene antes del despliegue simulado.
-Ese es el error concreto que introduciria para demostrar que el pipeline sirve, y es el que
-conviene provocar una vez a proposito para ver el check rojo con los propios ojos.
+**La prueba de que no es decoracion verde:** si cambio la comparacion de la regla de reserva de `>=` a `>`, el `npm test` se pone rojo y el pipeline se detiene antes del despliegue simulado. Ese es el error concreto que introduciria para demostrar que el pipeline sirve, y es el que conviene provocar una vez a proposito para ver el check rojo con los propios ojos.
+
+### Salida esperada
+
+```
+== RUN VERDE - el pipeline de arriba cuando pasa ==
+
+CI BiblioLite API  #7  [OK] construir-probar (ubuntu-latest)        1m 48s
+  [OK] Traer el codigo                                                 3s
+  [OK] Preparar Node 20                                                7s
+  [OK] Instalar dependencias exactas       npm ci                     22s
+  [OK] Construir la imagen del servicio    docker build ... 0.1.0     41s
+  [OK] Pruebas de las reglas de prestamo   npm test                    6s
+         3 passing  (reserva del ultimo ejemplar ya reservado: rechazada con 409)
+  [OK] Verificar que la imagen no lleva secretos                       4s
+  [OK] Levantar el contenedor y verificar el endpoint de salud        14s
+         Endpoint de salud OK
+  [OK] Despliegue SIMULADO (no despliega a ningun servidor real)       2s
+         Imagen bibliolite-api:0.1.0 construida verificada y lista para desplegar.
+
+== RUN ROJO - el mismo pipeline con la regla de reserva rota (>= cambiado por >) ==
+
+CI BiblioLite API  #8  [FALLA] construir-probar (ubuntu-latest)        52s
+  [OK]    Traer el codigo / Preparar Node 20 / Instalar dependencias exactas
+  [OK]    Construir la imagen del servicio
+  [FALLA] Pruebas de las reglas de prestamo   npm test                  5s
+            1 failing - reserva del ultimo ejemplar ya reservado:
+                        se esperaba 409 y devolvio 201
+            Error: Process completed with exit code 1
+  [-]     Verificar que la imagen no lleva secretos                omitido
+  [-]     Levantar el contenedor y verificar el endpoint de salud  omitido
+  [-]     Despliegue SIMULADO                                     omitido
+```
+
+Los segundos varian con el ejecutor y no significan nada: lo que se compara son **los nombres de los pasos, su orden y donde se detiene**. Si el estudiante describe un run que no se parece a ninguno de los dos, la diferencia esta en su `ci.yml` y ahi es donde hay que mirar. Los tres `omitido` del run rojo son el argumento entero de la pregunta: **el pipeline no publica un artefacto que no paso las pruebas.** Un run que se pone verde con la regla rota es la decoracion verde que este criterio califica con cero.
 
 ### Como calificar
 
@@ -199,44 +207,20 @@ conviene provocar una vez a proposito para ver el check rojo con los propios ojo
 
 ### Respuesta esperada
 
-**1. Que valida la integracion continua (CI) y cuando actua**
-La CI valida que **el codigo de todos integrado sigue funcionando**, y actua en el momento en
-que el codigo entra al repositorio compartido: en cada `push` a `main` y en cada solicitud de
-cambios. Su pregunta es «¿esto rompe algo?», y su respuesta es un check verde o rojo en
-minutos, no en la semana de la entrega.
+**1. Que valida la integracion continua (CI) y cuando actua** La CI valida que **el codigo de todos integrado sigue funcionando**, y actua en el momento en que el codigo entra al repositorio compartido: en cada `push` a `main` y en cada solicitud de cambios. Su pregunta es «¿esto rompe algo?», y su respuesta es un check verde o rojo en minutos, no en la semana de la entrega.
 
-**2. Que hace la entrega o el despliegue continuo (CD) y en que se diferencia**
-La CD toma el artefacto que la CI verifico y lo **lleva a un entorno**. La sigla es ambigua a
-proposito y conviene separar las dos lecturas:
+**2. Que hace la entrega o el despliegue continuo (CD) y en que se diferencia** La CD toma el artefacto que la CI verifico y lo **lleva a un entorno**. La sigla es ambigua a proposito y conviene separar las dos lecturas:
 
-- **Entrega continua**: el artefacto queda siempre listo para desplegar y el despliegue lo
-  dispara una persona con un boton.
-- **Despliegue continuo**: no hay boton; todo lo que pasa la CI llega automaticamente al
-  entorno.
+- **Entrega continua**: el artefacto queda siempre listo para desplegar y el despliegue lo dispara una persona con un boton.
+- **Despliegue continuo**: no hay boton; todo lo que pasa la CI llega automaticamente al entorno.
 
-La diferencia con la CI es el objeto: **la CI valida, la CD entrega**. Una responde si el
-codigo esta sano; la otra lo pone donde los usuarios lo alcanzan.
+La diferencia con la CI es el objeto: **la CI valida, la CD entrega**. Una responde si el codigo esta sano; la otra lo pone donde los usuarios lo alcanzan.
 
-**3. Cual construi yo y hasta que punto exacto llega**
-Construi **integracion continua**, no CD. Mi `ci.yml` llega hasta **«listo para desplegar»**:
-instala dependencias exactas, construye la imagen `bibliolite-api:0.1.0`, corre las pruebas de
-la regla de prestamo, verifica que la imagen no lleva secretos y comprueba que el contenedor
-arranca y responde `200` en `/health`. El ultimo paso se llama «Despliegue SIMULADO» y lo unico
-que hace es imprimir que la imagen quedo verificada. **No hay ningun servidor recibiendo esa
-imagen**, y el nombre del paso lo dice para no prometerlo.
+**3. Cual construi yo y hasta que punto exacto llega** Construi **integracion continua**, no CD. Mi `ci.yml` llega hasta **«listo para desplegar»**: instala dependencias exactas, construye la imagen `bibliolite-api:0.1.0`, corre las pruebas de la regla de prestamo, verifica que la imagen no lleva secretos y comprueba que el contenedor arranca y responde `200` en `/health`. El ultimo paso se llama «Despliegue SIMULADO» y lo unico que hace es imprimir que la imagen quedo verificada. **No hay ningun servidor recibiendo esa imagen**, y el nombre del paso lo dice para no prometerlo.
 
-**4. Que me faltaria para CD de verdad, y por que el curso no lo pide**
-Me faltarian cuatro cosas concretas: un **entorno destino** con su URL, un **registro de
-imagenes** donde publicar `bibliolite-api:0.1.0`, **credenciales de despliegue** guardadas como
-secretos del repositorio, y una **estrategia de reversion** para volver a la version anterior
-cuando el despliegue salga mal —porque va a salir mal alguna vez—. Ademas, una verificacion
-posterior al despliegue contra el `/health` del entorno real, no del contenedor local.
+**4. Que me faltaria para CD de verdad, y por que el curso no lo pide** Me faltarian cuatro cosas concretas: un **entorno destino** con su URL, un **registro de imagenes** donde publicar `bibliolite-api:0.1.0`, **credenciales de despliegue** guardadas como secretos del repositorio, y una **estrategia de reversion** para volver a la version anterior cuando el despliegue salga mal —porque va a salir mal alguna vez—. Ademas, una verificacion posterior al despliegue contra el `/health` del entorno real, no del contenedor local.
 
-El curso no lo pide porque las cuatro exigen una **cuenta de nube de pago con tarjeta de
-credito**, y la politica del curso —la misma que sostiene el ADR-001— es que todo se hace con
-herramientas gratuitas o en el navegador. La consecuencia pedagogica es honesta: se aprende a
-construir el pipeline y a saber donde termina, que es mas util que tener un `deploy` que nadie
-puede verificar.
+El curso no lo pide porque las cuatro exigen una **cuenta de nube de pago con tarjeta de credito**, y la politica del curso —la misma que sostiene el ADR-001— es que todo se hace con herramientas gratuitas o en el navegador. La consecuencia pedagogica es honesta: se aprende a construir el pipeline y a saber donde termina, que es mas util que tener un `deploy` que nadie puede verificar.
 
 ### Como calificar
 
@@ -271,25 +255,11 @@ puede verificar.
 | **Registro** (no numerico) | Bitacora de auditoria: una fila por cambio de estado de un prestamo con `quien`, `id_ejemplar`, `antes`, `despues` y `cuando`. Es el control de la amenaza 5 de la pregunta 1. | Objetivo: **100%** de los cambios de fecha de devolucion con fila, verificado por muestreo mensual. Retencion **1 ano**. |
 | **Registro** (no numerico) | Log de fallos de envio del `Correo transaccional SaaS`, con el motivo que devolvio el proveedor y el `id_prestamo` afectado. | Objetivo **0 fallos en 24 h**. Con **mas de 3 en un dia** se revisa la cuota del plan gratuito y las direcciones invalidas. |
 
-**Por que estas seis y en este orden.** Las cuatro primeras son las senales doradas
-aterrizadas: cada una responde una pregunta distinta que las otras no pueden responder. La
-latencia dice si duele, el trafico dice si es por volumen, los errores dicen si se rompe, y la
-saturacion dice **que recurso** se agota. Sin la cuarta, un pico de latencia no tiene
-explicacion; con ella, la explicacion suele ser el pool.
+**Por que estas seis y en este orden.** Las cuatro primeras son las senales doradas aterrizadas: cada una responde una pregunta distinta que las otras no pueden responder. La latencia dice si duele, el trafico dice si es por volumen, los errores dicen si se rompe, y la saturacion dice **que recurso** se agota. Sin la cuarta, un pico de latencia no tiene explicacion; con ella, la explicacion suele ser el pool.
 
-**Las dos que son registro y no metrica.** Un numero dice **que** algo paso; un registro
-permite reconstruir **por que**. La bitacora de auditoria existe para poder responder «¿quien
-movio esa fecha?» tres semanas despues, y el log de fallos de correo para poder decirle a un
-estudiante por que no recibio el aviso. Ninguna de las dos se puede graficar como una linea, y
-las dos son las que salvan una revision.
+**Las dos que son registro y no metrica.** Un numero dice **que** algo paso; un registro permite reconstruir **por que**. La bitacora de auditoria existe para poder responder «¿quien movio esa fecha?» tres semanas despues, y el log de fallos de correo para poder decirle a un estudiante por que no recibio el aviso. Ninguna de las dos se puede graficar como una linea, y las dos son las que salvan una revision.
 
-**Nota sobre los umbrales.** Los numeros de la tercera columna son discutibles y estan puestos
-para poder discutirlos: 400 ms sale del umbral de percepcion de «instantaneo» que la Clase 12
-trabaja, 20 conexiones es el maximo por defecto de PostgreSQL, y el pico de 150 reservas/hora
-sale de la aritmetica de servilleta —unos 900 estudiantes activos, cada uno con una reserva
-cada dos semanas, concentradas en la semana de parciales—. Lo que no es discutible es que la
-columna exista: sin umbral no se puede decidir cuando actuar, y una senal que no lleva a una
-decision no se mira nunca.
+**Nota sobre los umbrales.** Los numeros de la tercera columna son discutibles y estan puestos para poder discutirlos: 400 ms sale del umbral de percepcion de «instantaneo» que la Clase 12 trabaja, 20 conexiones es el maximo por defecto de PostgreSQL, y el pico de 150 reservas/hora sale de la aritmetica de servilleta —unos 900 estudiantes activos, cada uno con una reserva cada dos semanas, concentradas en la semana de parciales—. Lo que no es discutible es que la columna exista: sin umbral no se puede decidir cuando actuar, y una senal que no lleva a una decision no se mira nunca.
 
 ### Como calificar
 

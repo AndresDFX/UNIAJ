@@ -25,7 +25,12 @@ from docx.shared import Inches, Pt, RGBColor
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import calendario_2026_2 as cal  # noqa: E402
 from arq_fundamentos import FUNDAMENTOS  # noqa: E402
-from arq_examlab_data import EXAMLAB as TALLERES_EXAMLAB  # noqa: E402
+from arq_examlab_data import (  # noqa: E402
+    ACTIVIDAD_CORTE1,
+    ACTIVIDAD_CORTE2,
+    ACTIVIDAD_CORTE3,
+    EXAMLAB as TALLERES_EXAMLAB,
+)
 import arq_solucion_data as soluciones  # noqa: E402
 import solucion_taller  # noqa: E402
 import examlab_talleres  # noqa: E402
@@ -334,12 +339,16 @@ CLASSES = [
         "tema": "Virtualización y contenedores",
         "sub": "Lab Killercoda → stub CloudLite",
         "pi_hoy": "Contenerizar un stub del servicio principal de CloudLite",
-        "entregable": "Dockerfile (+ compose opcional) + captura/enlace lab navegador",
+        # Sin «compose opcional»: la actividad pide un servicio, un Dockerfile y un
+        # `docker run`, y la solucion docente responde que compose «hoy suma ruido».
+        # La bitacora se nombra porque son 6 de los 25 puntos de la clase.
+        "entregable": "Dockerfile del stub + bitácora de 5 comandos con la salida real + captura del lab",
         "herramienta": "Killercoda · alterna si no carga: LabEx Docker Playground",
         "objetivos": [
             "Diferenciar VM vs contenedor y el rol de la imagen.",
             "Ejecutar un contenedor en lab de **navegador** (sin Docker Desktop obligatorio).",
-            "Dejar evidencia PI: Dockerfile del stub CloudLite + captura.",
+            "Publicar el puerto y verificar el servicio con un **endpoint de salud** (ruta, código, cuerpo).",
+            "Dejar evidencia PI: Dockerfile del stub CloudLite + bitácora + captura.",
         ],
         "slides_extra": [
             ("VM vs contenedor", [
@@ -358,70 +367,136 @@ CLASSES = [
                 "sesión, pero solo **3 al día** en el plan gratuito).",
             ]),
             ("Dockerfile mínimo para el stub", [
-                "FROM imagen base ligera → COPY → EXPOSE → CMD.",
-                "No secretos en la imagen. Un proceso principal por contenedor (regla práctica).",
-                "Compose (opcional): API + fake DB solo si aporta al diagrama.",
+                "Siete instrucciones: **FROM · WORKDIR · COPY** de dependencias **· RUN · COPY** del código **· EXPOSE · CMD**.",
+                "`FROM` con **etiqueta fija** (`node:20-alpine`, `python:3.12-slim`): con `latest`, la imagen de hoy no es la de mañana.",
+                "Dependencias **antes** que el código: así cambiar una línea no reinstala nada (es la caché por capas).",
+                "@@Nunca un secreto en la imagen:@@ las capas se acumulan y `docker history` las lee aunque el archivo se borre después.",
+                "Si haces `COPY . .`, va con un **`.dockerignore`** al lado (`.env`, `node_modules`, `.git`) — y se menciona en la entrega.",
+                "`EXPOSE` **documenta**, no publica. Publicar es el `-p` del `docker run`.",
+            ]),
+            # Diapositiva anadida por el criterio rector: la pregunta 10 vale 5 puntos por
+            # el build con etiqueta, el mapeo de puertos explicado y el contrato de salud
+            # (ruta, codigo y cuerpo), y ninguna diapositiva del deck proyectaba nada de
+            # eso: el estudiante tenia que deducirlo del enunciado mientras se le calificaba.
+            ("Construir, correr y verificar el contenedor", [
+                "**Construir:** `docker build -t cloudlite-api:0.1.0 .` — nombre **y** etiqueta; sin etiqueta vale la mitad.",
+                "**Correr:** `docker run -d -p 8081:8080 --name api cloudlite-api:0.1.0`.",
+                "En `-p 8081:8080` la **izquierda es el anfitrión** (por donde entras tú) y la **derecha es el contenedor** (la del `EXPOSE`).",
+                "@@Si los inviertes,@@ `docker ps` muestra el contenedor **Up** y la petición muere sin respuesta: el síntoma no dice la causa.",
+                "**Verificar:** el contrato de salud son **tres** datos — **ruta** (`GET /health`), **código** (`200` vivo · `503` sin base) y **cuerpo** con su formato.",
+                "Un `200` con cuerpo vacío no distingue «vivo» de «vivo pero roto»: el cuerpo lleva al menos un campo verificable.",
             ]),
         ],
         "taller_titulo": "Taller Clase 3 — Contenedor stub CloudLite",
+        # Respaldo si algun dia falta TALLERES_EXAMLAB[3]["pasos"], que es lo que se
+        # publica. Se corrigio porque seguia nombrando compose y un diagrama de
+        # despliegue que la actividad no pide, y no nombraba la bitacora ni el
+        # endpoint de salud, que son 11 de los 25 puntos de la clase.
         "taller_pasos": [
             "Definan qué servicio contenerizan hoy (API stub o front estático del dominio).",
-            "En Killercoda: construyan y corran el contenedor (si no carga, LabEx como alterna).",
-            "Documenten Dockerfile (y compose si aplica) en el repo/ZIP del PI.",
-            "Capturen evidencia (PNG) o enlace de sesión + nota de caducidad.",
-            "Actualicen informe: sección Contenedores + enlace a diagrama de despliegue futuro.",
+            "Escriban el Dockerfile de siete instrucciones **y** su `.dockerignore` al lado.",
+            "En Killercoda: construyan con nombre y etiqueta, corran publicando el puerto y verifiquen `GET /health` (si no carga, LabEx como alterna).",
+            "Llenen la bitácora de 5 comandos pegando la salida real, con una fila de incidente.",
+            "Capturen evidencia (PNG con prompt, `docker ps` y hora del sistema) o enlace de sesión + nota de caducidad.",
         ],
         "quiz": [
             ("¿Qué comparte un contenedor con el host que una VM típicamente no comparte?", "El kernel del SO."),
-            ("Nombre la herramienta de lab principal del curso para contenedores.", "Killercoda (alterna: LabEx Docker Playground)."),
-            ("¿Por qué no poner secretos en el Dockerfile?", "Quedan en capas/historial de la imagen."),
+            ("En `docker run -p 8081:8080`, ¿qué lado es el anfitrión y qué lado el contenedor?",
+             "8081 es el anfitrión, por donde se entra desde fuera; 8080 es el del contenedor, el mismo del EXPOSE. Invertirlos deja el contenedor «Up» y la petición sin respuesta."),
+            ("¿Cuáles son los tres datos del contrato de un endpoint de salud?",
+             "Ruta, código de estado y cuerpo con su formato. Un 200 con cuerpo vacío no distingue «vivo» de «vivo pero roto»."),
+            ("¿Por qué no poner secretos en el Dockerfile?", "Quedan en capas/historial de la imagen: borrarlos en un paso posterior no los elimina, solo los oculta."),
         ],
     },
     {
         "n": 4,
         "slug": "Microservicios y arquitecturas distribuidas",
         "tema": "Microservicios · Arquitecturas distribuidas",
-        "sub": "C4 Componentes CloudLite",
+        # El nivel del modelo C4 que se entrega hoy es Containers, no Components: la
+        # pregunta 13 exige que la PRIMERA linea del codigo sea `C4Container`. Decir
+        # «Componentes» en el subtitulo, en el entregable y en el titulo del taller
+        # mandaba al estudiante a un nivel distinto del que se le califica.
+        "sub": "C4 Containers, contratos y riesgos",
         "pi_hoy": "Diagramar componentes/servicios de CloudLite y sus contratos",
-        "entregable": "Diagrama C4 Container/Componentes v0.9 + lista de APIs entre servicios",
-        "herramienta": "draw.io / diagrams.net",
+        "entregable": "Diagrama C4 Container en Mermaid + tabla de 3 contratos + 3 riesgos de distribución",
+        "herramienta": "draw.io o Excalidraw para bocetar · Mermaid dentro de ExamLab para entregar",
         "objetivos": [
             "Contrastar monolito vs microservicios con criterios de equipo y acoplamiento.",
-            "Modelar CloudLite en **C4 Container/Componentes** sin exceso de servicios.",
-            "Definir 3 contratos/API entre partes del sistema.",
+            "Modelar CloudLite en **C4 Container** (Mermaid) con 2–5 cajas justificadas.",
+            "Definir 3 contratos con verbo, ruta y **error de negocio**, y nombrar 3 **riesgos de distribución**.",
         ],
         "slides_extra": [
             ("Monolito vs microservicios (para el PI)", [
                 "Monolito modular ≠ malo: a menudo mejor para equipos pequeños.",
                 "Microservicio: frontera de **despliegue** e independencia de datos (ideal).",
                 "Anti-patrón: 12 microservicios para 3 estudiantes = diagrama teatro.",
-                "Regla CloudLite: 2–5 contenedores lógicos con razón clara.",
+                "La decisión se escribe en @@una sola frase@@ y se elige UNA: «un poco de los dos» no es una decisión.",
+                "Se sostiene con **dos** criterios: tamaño del equipo (con número y plazo) y acoplamiento (qué partes cambian juntas).",
+                "Y con lo que se gana **y** lo que se pierde: sin la segunda mitad, no hubo decisión.",
             ]),
-            ("C4-lite en draw.io", [
-                "Context (ya) → Containers → Components (si aporta).",
-                "Cada caja: nombre + responsabilidad + tecnología tentativas.",
-                "Flechas = protocolos (HTTPS/REST, eventos). Evite «líneas mágicas».",
-                "📸 [CAP: drawio-c4] Lienzo C4 de CloudLite.",
+            # Titulo renombrado: la herramienta de entrega no es draw.io sino Mermaid
+            # dentro de ExamLab, y el nivel es Containers. El marcador [CAP: drawio-c4]
+            # apuntaba a una captura que no existe en CAPTURAS_REALES, asi que se
+            # borraba en silencio y publicaba una vineta colgando.
+            ("C4-lite: del Context a los Containers", [
+                "Se abre la ÚNICA caja del Context de la Clase 1: los actores y los externos siguen ahí, **fuera** del sistema.",
+                "@@Tres datos por caja, obligatorios:@@ nombre · tecnología · responsabilidad en una frase.",
+                "Lo que guarda datos se marca como **almacén** (`ContainerDb`), no como una caja más.",
+                "Los nombres son **idénticos** a los del C4 Context: si allí decía «Pasarela de pagos», aquí no puede decir «Pagos».",
+                "Cada flecha lleva **protocolo Y formato** (`HTTPS/JSON`, `TCP/SQL`): una línea muda no cuenta.",
+                "Entre 2 y 5 cajas. El número tiene que ser coherente con la decisión de la diapositiva anterior.",
             ]),
+            # Diapositiva anadida por el criterio rector: la pregunta 14 vale 7 puntos
+            # por una tabla de cuatro columnas con un 409 obligatorio, y el deck no
+            # proyectaba ninguna tabla de contratos: solo la frase «listen 3 contratos».
+            ("Los tres contratos de CloudLite: cuatro datos por fila", [], {
+                "headers": ["Contrato", "Quién llama a quién", "Verbo y ruta", "Error de negocio"],
+                "rows": [
+                    ["Reservar turno", "App web → API de turnos", "POST /turnos",
+                     "409 · la franja de las 10:00 ya la tomó otro cliente"],
+                    ["Avisar al cliente", "API de turnos → Correo transaccional (SaaS)",
+                     "POST /v1/mensajes", "422 · la dirección del cliente no existe"],
+                    ["Guardar el turno", "API de turnos → Base de turnos",
+                     "INSERT INTO turno (es SQL, no una ruta REST)",
+                     "Restricción única (barbero, franja) rechaza el duplicado"],
+                ],
+                "note": "Tres pares de cajas DISTINTOS, y al menos un 409 de conflicto: sin él se descuenta. "
+                        "Un 500 no es error de negocio, es una falla.",
+                "col_w": [2.3, 3.1, 2.9, 3.83],
+                "fs_body": 11,
+            }),
             ("Distribuido implica fallos", [
-                "Latencia, reintentos, idempotencia, timeouts — anótenlos como riesgos PI.",
-                "Consistencia eventual vs fuerte: elijan según el dominio (citas ≠ likes).",
-                "Hoy no implementan saga completa: solo **reconocen** el trade-off en el informe.",
+                "Cada flecha del diagrama es una llamada de red: puede tardar, perderse o llegar dos veces.",
+                "@@Riesgo 1 · qué se cae:@@ nombra **una** caja, y di qué deja de funcionar **y qué sigue funcionando**. «Se cae todo» vale la mitad.",
+                "@@Riesgo 2 · cuántos saltos de red@@ tiene una operación de punta a punta: cuéntalos sobre tu propio diagrama.",
+                "@@Riesgo 3 · un dato escrito en dos pasos:@@ nómbralo y di qué pasa si el segundo falla.",
+                "Caja de herramientas para mitigarlos: **timeout · reintento con espera creciente · idempotencia · circuit breaker**.",
+                "«Los microservicios son más complejos» no es un riesgo: no nombra caja, ni salto, ni dato.",
             ]),
         ],
-        "taller_titulo": "Taller Clase 4 — C4 componentes CloudLite",
+        "taller_titulo": "Taller Clase 4 — C4 Containers de CloudLite",
+        # Respaldo si algun dia falta TALLERES_EXAMLAB[4]["pasos"], que es lo que se
+        # publica. Mandaba a exportar PNG y archivo .drawio, cuando la entrega es
+        # codigo Mermaid pegado en ExamLab, y no nombraba el error de negocio ni los
+        # tres riesgos, que son 10 de los 25 puntos de la clase.
         "taller_pasos": [
-            "Abran draw.io y creen diagrama Containers/Componentes de CloudLite.",
-            "Limiten a 2–5 servicios/contenedores lógicos justificados.",
-            "Listen 3 contratos (quién llama a quién, verbo HTTP o evento).",
-            "Exporten PNG + archivo .drawio al Drive/repo del PI.",
-            "En el informe: sección «Arquitectura lógica» + riesgos de distribución.",
+            "Decidan en una frase: monolito modular o microservicios, con dos criterios y lo que se gana y se pierde.",
+            "Bocetan en draw.io o Excalidraw el C4 **Containers**: 2–5 cajas justificadas, almacenes marcados como tales.",
+            "Pasen el boceto a **Mermaid** (`C4Container` en la primera línea) y péguenlo en la pregunta de diagrama de ExamLab.",
+            "Listen 3 contratos con las cuatro columnas: contrato, quién llama a quién, verbo y ruta, y error de negocio.",
+            "Nombren los 3 riesgos de distribución: qué caja se cae, cuántos saltos de red, y qué dato se escribe en dos pasos.",
         ],
         "quiz": [
             ("¿Cuándo preferiría un monolito modular en CloudLite?",
              "Equipo pequeño, dominio acotado, menos overhead operativo."),
-            ("¿Qué debe etiquetar una flecha en C4?", "Protocolo/contrato, no solo «usa»."),
-            ("Cite un riesgo de sistemas distribuidos.", "Latencia, particiones, inconsistencia, reintentos…"),
+            ("¿Qué debe etiquetar una flecha en C4?",
+             # Sin `**`: el quiz y su clave se imprimen con para(), que no interpreta
+             # negrita — los asteriscos salian a la vista en la CLAVE DOCENTE.
+             "Protocolo Y formato (`HTTPS/JSON`, `TCP/SQL`), no solo «usa». Una flecha muda no cuenta."),
+            ("¿Cómo se marca una base de datos en un C4 Container en Mermaid?",
+             "Con `ContainerDb(...)`, no con `Container(...)`: es un almacén, no un servicio."),
+            ("Cite un riesgo de sistemas distribuidos.",
+             "Debe nombrar una caja, un salto de red o un dato escrito en dos pasos. «Es más complejo» no cuenta."),
         ],
     },
     {
@@ -445,27 +520,124 @@ CLASSES = [
         "sub": "Amenazas y controles → sección PI",
         "pi_hoy": "Modelo de amenazas mínimo + controles para CloudLite",
         "entregable": "Sección Seguridad PI: 5 amenazas STRIDE-lite + controles + secretos/CI",
-        "herramienta": "Excalidraw · Google Docs",
+        # Decia «Excalidraw · Google Docs» y omitia donde se califica, que es la seccion
+        # del taller que el estudiante lee antes de empezar. Hoy no se dibuja nada nuevo:
+        # se escribe una tabla y una politica, y se senala sobre el C4 que ya existe.
+        "herramienta": "Google Docs para la tabla y la política · ExamLab para entregar",
         "objetivos": [
             "Aplicar un modelo de amenazas simple al dominio CloudLite.",
             "Mapear controles (authn/z, secretos, superficie de red) sin cloud de pago.",
             "Dejar la sección Seguridad del informe lista en borrador.",
         ],
+        # Las diapositivas 7 y 8 se anadieron porque sus puntos se calificaban sin
+        # haberse proyectado: el menor privilegio «aplicado a un componente concreto,
+        # diciendo que deja de poder hacer» (1.25 pts de la pregunta 2) estaba en el
+        # deck como las tres palabras «least privilege en roles», y de la politica de
+        # secretos (7.5 pts) solo se proyectaba donde viven — quien rota, cada cuanto y
+        # el procedimiento ante filtracion, 4.5 pts, no aparecian en ninguna
+        # diapositiva. El fundamento del guion si los explicaba, que es exactamente el
+        # defecto que el criterio rector del repo persigue: enseniado al docente, no
+        # proyectado al estudiante. Las dos estan resueltas sobre el ejemplo de turnos
+        # del C4 Containers de la Clase 4 —el unico diagrama que el estudiante ya vio
+        # proyectado— y NO sobre BiblioLite, que es el dominio en el que esta resuelta
+        # la solucion docente: el mecanismo se muestra, la respuesta no se regala.
         "slides_extra": [
             ("Amenazas que sí importan al PI", [
                 "Credenciales en repo · APIs abiertas · datos PII sin cifrado en tránsito.",
                 "STRIDE-lite: Spoofing, Tampering, Repudiation, Info disclosure, DoS, Elevation.",
                 "Elijan 5 amenazas **del dominio**, no genéricas de Internet.",
+                "La forma que se califica: **actor o dato concreto** + **el camino** por el que "
+                "ocurre. Sin esas dos partes, la amenaza vale la mitad.",
+                "«Fuga de información» es una categoría. «Un cliente lee el turno de otro porque "
+                "`GET /turnos/17` no valida a quién pertenece» **sí** es una amenaza.",
             ]),
             ("Controles prácticos (gratis)", [
-                "HTTPS en diagrama · tokens/JWT conceptual · least privilege en roles.",
-                "Secretos: variables de entorno / GitHub Actions secrets (no en Dockerfile).",
-                "Superficie: qué puertos expone el contenedor del lab.",
+                "Identidad: autenticación con token · autorización por rol · **menor privilegio**.",
+                "Red: publicar solo el punto de entrada; la base de datos sin acceso desde internet.",
+                "Aplicación: validar en el **servidor** (el formulario no cuenta) y limitar la tasa.",
+                # `_rich` no interpreta la cursiva de un asterisco y los imprimia crudos:
+                # el deck decia «en los *secrets* del repositorio». Va con acentos graves,
+                # que es lo que el motor convierte en comillas angulares.
+                "Secretos: en los `secrets` del repositorio, inyectados como variable de entorno.",
+                "Los dos que más puntos valen se abren en las siguientes dos diapositivas.",
             ]),
+            ("Menor privilegio: qué deja de poder hacer", [
+                "No es una definición, es una **resta**: se nombra el componente y lo que **deja "
+                "de poder hacer** al aplicarlo. La pregunta 2 pide las dos mitades.",
+                "Ejemplo sobre el C4 de la Clase 4: la `API de turnos` no entra a la "
+                "`Base de turnos` como dueña de la base, sino con un rol propio.",
+                "**Puede**: leer, insertar y actualizar sus tablas de turnos.",
+                "**No puede**: borrar filas, cambiar la estructura, ni leer otro esquema.",
+                "Por qué importa: si mañana hay una inyección de SQL, el atacante hereda **esos** "
+                "permisos y no los del dueño. Hace daño, pero no borra la evidencia.",
+            ]),
+            ("Política de secretos: las cuatro preguntas", [], {
+                "headers": ["Lo que se pregunta", "Respuesta concreta (así se califica)"],
+                "rows": [
+                    ["**1. Dónde viven**",
+                     "En los `secrets` del repositorio y en las variables de entorno del "
+                     "servicio. En local, un `.env` que está en `.gitignore` **y** en "
+                     "`.dockerignore`; se versiona `.env.example`, con los nombres y **ningún** valor."],
+                    ["**2. Quién los rota**",
+                     "Un **responsable con rol**, escrito en el README: el dueño del repositorio. "
+                     "«Se rotan automáticamente» no responde quién; alguien responde por que ocurra."],
+                    ["**3. Cada cuánto**",
+                     "Un número o un evento del calendario: **al cierre de cada corte**, y en la "
+                     "entrega final. «Periódicamente» no es una frecuencia."],
+                    ["**4. Qué está prohibido**",
+                     "El `Dockerfile`, el `README`, el YAML en claro — y también imprimir el "
+                     "secreto en el log del pipeline «para verificar que llegó»."],
+                    ["**Si se filtra**",
+                     "**Primero rotar**, después limpiar. Borrar el commit no arregla nada: el "
+                     "historial ya salió del equipo y sigue en cada clon."],
+                ],
+                "col_w": [2.5, 9.833],
+                "fs_body": 11,
+                "note": "Un secreto en el Dockerfile queda en el historial de capas de la imagen: "
+                        "«docker history» lo lee aunque una capa posterior borre el archivo.",
+            }),
             ("Ejercicio guiado", [
-                "Amenaza → activo → control → evidencia en diagrama/informe.",
-                "Ej.: Spoofing de API → tokens → caja Auth en C4.",
+                "Amenaza → control → dónde se ve, en el diagrama que ya tienen.",
+                "Ej.: llaman la API sin autenticar → token verificado → **flecha** «App web → API».",
             ]),
+            ("La tabla que se califica: una fila por amenaza", [], {
+                # Encabezados LITERALMENTE los tres de la pregunta 2, de la solucion
+                # docente y de la plantilla del taller. Traian una cuarta columna
+                # «STRIDE» al frente, y como la diapositiva se titula «la tabla que se
+                # califica», proyectaba una forma que no es la que se califica: la letra
+                # de STRIDE se registra con la amenaza en la pregunta 1. Se conserva
+                # como prefijo de la celda, que ensena lo mismo sin inventar columna.
+                # La columna «Donde se ve» solo admite una caja o una flecha del C4
+                # Containers o del Despliegue: en una version anterior de esta diapositiva
+                # dos de las cuatro filas ponian «.dockerignore» y «contrato del
+                # endpoint», que no son ninguna de las dos, y son los 2.5 pts que la
+                # rubrica reparte justamente por esa columna.
+                "headers": ["Amenaza", "Control", "Dónde se ve (caja o flecha)"],
+                "rows": [
+                    ["**S ·** Un cliente reserva **a nombre de otro**: `POST /turnos` toma el id "
+                     "del cuerpo de la petición.",
+                     "El id se toma del token verificado, no del cuerpo. Se prueba mandando un id "
+                     "ajeno y esperando 403.",
+                     "**Flecha** «App web → API de turnos»"],
+                    ["**T ·** Un cliente **mueve la franja** de un turno ajeno porque la API no "
+                     "revisa de quién es.",
+                     "Validar el rol y la propiedad del turno antes de aceptar el cambio.",
+                     "**Caja** «API de turnos»"],
+                    ["**I ·** La **llave del servicio de avisos** queda dentro de la imagen del "
+                     "contenedor.",
+                     "La llave vive en los `secrets` y entra como variable de entorno en ejecución.",
+                     "**Flecha** «API de turnos → Worker de avisos»"],
+                    ["**D ·** Un script sin autenticar golpea `GET /turnos` mil veces por minuto "
+                     "y agota las conexiones.",
+                     "Límite de tasa por identidad o por IP en el punto de entrada.",
+                     "**Caja** «App web» (punto de entrada)"],
+                ],
+                "col_w": [4.6, 3.9, 3.833],
+                "fs_body": 10,
+                "note": "Cuatro filas de ejemplo; el entregable pide cinco, sobre SU dominio. Una "
+                        "lista genérica de buenas prácticas no es un modelo de amenazas, y dos "
+                        "filas que dicen lo mismo con otras palabras cuentan como una.",
+            }),
         ],
         "taller_titulo": "Taller Clase 6 — Seguridad CloudLite",
         "taller_pasos": [
@@ -487,8 +659,12 @@ CLASSES = [
         "tema": "Redes y almacenamiento cloud",
         "sub": "Diagrama de despliegue CloudLite",
         "pi_hoy": "Diagrama de despliegue: red, zonas, almacenamiento",
-        "entregable": "Diagrama Deployment (draw.io) + elección de storage (objeto/bloque/relacional conceptual)",
-        "herramienta": "draw.io",
+        # El entregable decia «draw.io» y la herramienta del dia tambien, pero lo que se
+        # califica son 14 pts de **codigo Mermaid pegado en ExamLab**, con 2 pts que dependen
+        # de que renderice sin error. draw.io y Excalidraw siguen sirviendo para el boceto —
+        # es el paso 1 de la diapositiva «Del boceto a ExamLab» — pero no son la entrega.
+        "entregable": "Diagrama Deployment en Mermaid dentro de ExamLab (3 zonas + puertos) + tipo de almacenamiento por componente",
+        "herramienta": "ExamLab (Mermaid) · boceto en draw.io o Excalidraw",
         "objetivos": [
             "Modelar red lógica (cliente, edge, app, datos) sin VPC de pago.",
             "Elegir tipo de almacenamiento según el caso de uso CloudLite.",
@@ -496,26 +672,30 @@ CLASSES = [
         ],
         "slides_extra": [
             ("Red lógica para el diagrama", [
-                "Cliente → DNS/edge → balanceador conceptual → app → datos.",
-                "Segregación: frontend público vs datos privados (aunque sea «caja» en draw.io).",
+                "Cliente → edge/balanceador → app → datos: **tres zonas**, no dos.",
+                "**La base de datos va en la zona de datos**, nunca en la pública: es el error que la nota castiga.",
+                "**Frontera de confianza:** la flecha donde termina lo que tú controlas (un SaaS externo).",
                 "No inventen subnets AWS: usen zonas **Pública / Privada / Datos**.",
             ]),
             ("Almacenamiento", [
-                "Objeto (archivos/media) · Bloque (discos) · Archivo · DB gestionada conceptual.",
-                "CloudLite: justifiquen 1 primario + 1 secundario (ej. DB + object para adjuntos).",
-                "Backup/retención: una frase de política cualitativa basta.",
+                "Tres tipos y sus nombres exactos: **Relacional** · **Bloque** · **Objeto**.",
+                "Relacional: el dato se cruza con otro · Bloque: lo monta un solo proceso · Objeto: se recupera entero.",
+                "Se justifica por la **característica del dato**, no por preferencia.",
+                "Si tu dominio no maneja archivos, **declara que no necesitas objeto**: eso suma.",
             ]),
             ("Checklist del diagrama Deployment", [
-                "Nodos, redes/zonas, puertos, almacenes, relación con CI (artefacto).",
+                "Tres zonas rotuladas · cada componente en su zona · puerto de cada uno.",
+                "Fronteras de confianza marcadas · **que renderice sin error** en ExamLab.",
                 "Debe alinearse con el C4 Containers (mismos nombres).",
             ]),
         ],
         "taller_titulo": "Taller Clase 7 — Despliegue y storage CloudLite",
         "taller_pasos": [
-            "Dibujen Deployment en draw.io (zonas pública/privada/datos).",
-            "Etiqueten puertos y tipo de storage por componente.",
-            "Alineen nombres con el diagrama C4 de Clase 4.",
-            "Actualicen informe: sección Redes y almacenamiento.",
+            "Bocetén el Deployment en draw.io o Excalidraw con las **tres** zonas (pública / privada / datos).",
+            "Tradúzcanlo a **Mermaid** y péguenlo en la pregunta 4 de ExamLab: se califica el diagrama **renderizado**.",
+            "Etiqueten el puerto de cada componente y marquen las fronteras de confianza.",
+            "Clasifiquen el almacenamiento de cada componente: Relacional / Bloque / Objeto, con la característica del dato.",
+            "Llenen la tabla de correspondencia C4 Containers → Despliegue → Zona y listen los renombres.",
             "Entrega domingo 23:59.",
         ],
         "quiz": [
@@ -542,16 +722,18 @@ CLASSES = [
             ("CI/CD sin tarjeta", [
                 "CI: build + test en cada push. CD: deploy — aquí **simulado** (echo/artifact).",
                 "GitHub Actions free: runners hosted; YAML en `.github/workflows/`.",
-                "📸 [CAP: actions-yml] Workflow del stub CloudLite.",
+                "**«Ya tenemos CD» porque el YAML tiene un paso `deploy` resta puntos.** Aquí llega a «listo para desplegar».",
             ]),
             ("YAML mínimo", [
-                "on: push · jobs · steps: checkout → setup → test → upload artifact.",
-                "Secrets solo vía Settings; nunca en el YAML en claro.",
-                "Deploy stage: `echo Deploy simulado a entorno lab`.",
+                "Tres bloques que se califican: **disparadores** (`on`) · **entorno** (`runs-on`) · **pasos**.",
+                "Los pasos, en este orden: **construcción** → **prueba** → **despliegue simulado**.",
+                "Secrets solo vía Settings; nunca en el YAML en claro (**cero en la pregunta si aparece uno**).",
+                "**Un CI que solo imprime «OK» no es CI:** tienes que poder decir qué error lo pondría rojo.",
             ]),
             ("Monitoreo y optimización", [
                 "Golden signals-lite: latencia, tráfico, errores, saturación.",
-                "Logs estructurados + healthcheck del contenedor.",
+                "**Cada señal va con su umbral**: «medimos la latencia» no permite decidir nada.",
+                "Al menos una debe ser un **registro** (log), no una métrica numérica.",
                 "Optimización: caché conceptual, paginación, límites de rate (anotar en informe).",
             ]),
         ],
@@ -918,6 +1100,15 @@ def cover_slide(prs, n: int, tema: str, sub: str, pi_hoy: str, *, tipo: str = "r
             "Bloque **120 min** · sesión **síncrona** de sustentaciones · turnos consecutivos.",
             "Paquete subido a ExamLab **antes** de tu turno · defensa **en vivo**, no video grabado.",
         ]
+    elif tipo == "parcial":
+        # Tampoco hay teoría ni taller: la portada anunciaba las dos y ademas rellenaba
+        # «Hoy avanzamos el PI en:» con «Sin avance dirigido de PI», que se leia como una
+        # frase sin sentido en la primera diapositiva que ve el grupo.
+        lineas_cover = [
+            "**Hoy es solo el parcial:** no hay tema nuevo ni taller del PI.",
+            "Bloque **120 min** · sesión **virtual síncrona** por Google Meet.",
+            "El enunciado se comparte al empezar · **no** se distribuye antes.",
+        ]
     else:
         lineas_cover = [
             f"**Hoy avanzamos el PI en:** {pi_hoy}",
@@ -968,21 +1159,38 @@ DIAGRAMAS = {
         ],
         "note": "VM: cada instancia carga un SO completo (aislamiento fuerte, más pesado). Contenedor: comparte el kernel del anfitrión y solo empaqueta app + dependencias (arranca en segundos, pesa MB no GB).",
     },
+    # Los rotulos dicen ahora el TIPO de elemento C4 de cada caja (Person, Container,
+    # ContainerDb) porque la pregunta 13 califica por separado los 2 puntos de marcar
+    # los almacenes como `ContainerDb`, y el ejemplo proyectado rotulaba la base de
+    # datos como «contenedor», igual que la API. Y las flechas decian «HTTP/JSON» y
+    # «SQL»: la rubrica exige protocolo Y formato en cada una, asi que el ejemplo
+    # mostraba justo la etiqueta incompleta que se descuenta.
+    # Faltaba la «App web». El guion narra sobre ESTA diapositiva «tres contenedores:
+    # una aplicacion web, una API y una base de datos», y la cuarta caja —el worker—
+    # como la que «aparece solo si hay una razon»; el molde Mermaid de la diapositiva
+    # siguiente tambien declara `Container(spa, "App web", "React", ...)`. El dibujo
+    # mostraba tres cajas distintas (API, base y worker) con el navegador degradado a
+    # `Person`, asi que el docente decia una cosa y se proyectaba otra, y el
+    # estudiante que copiaba el ejemplo modelaba su front como actor. Los tres
+    # `Container` quedan en NAVY y solo el `ContainerDb` en CIAN: el color deja de
+    # contradecir la nota, que es la que cobra 2 puntos en la pregunta 13.
     4: {
         "titulo": "Ejemplo de diagrama C4 — nivel Containers",
-        "sub": "2–5 cajas justificadas, cada flecha con protocolo + verbo de negocio",
+        "sub": "2–5 cajas justificadas, cada flecha con protocolo Y formato",
         "boxes": [
-            {"id": "cliente", "label": "Cliente/App\n(actor)", "x": 0.9, "y": 4.3, "w": 2.6, "h": 1.0, "color": AMARILLO, "text_color": NAVY},
-            {"id": "api", "label": "API CloudLite\n(contenedor)", "x": 0.9, "y": 2.2, "w": 2.6, "h": 1.2, "color": NAVY},
-            {"id": "db", "label": "Base de datos\n(contenedor)", "x": 5.2, "y": 2.2, "w": 2.6, "h": 1.2, "color": CIAN},
-            {"id": "notif", "label": "Servicio de\nnotificaciones", "x": 9.4, "y": 2.2, "w": 2.6, "h": 1.2, "color": CIAN},
+            {"id": "spa", "label": "App web\n(Container · React)", "x": 0.9, "y": 2.2, "w": 2.6, "h": 1.2, "color": NAVY, "size": 11},
+            {"id": "api", "label": "API de turnos\n(Container · Node.js)", "x": 5.2, "y": 2.2, "w": 2.6, "h": 1.2, "color": NAVY, "size": 11},
+            {"id": "db", "label": "Base de turnos\n(ContainerDb · PostgreSQL)", "x": 9.4, "y": 2.2, "w": 2.6, "h": 1.2, "color": CIAN, "size": 11},
+            {"id": "cliente", "label": "Cliente\n(Person)", "x": 0.9, "y": 4.3, "w": 2.6, "h": 1.0, "color": AMARILLO, "text_color": NAVY},
+            {"id": "notif", "label": "Worker de avisos\n(Container · cola)", "x": 5.2, "y": 4.3, "w": 2.6, "h": 1.0, "color": NAVY, "size": 11},
         ],
         "arrows": [
-            {"src": "cliente", "dst": "api", "label": "HTTP/JSON"},
-            {"src": "api", "dst": "db", "label": "SQL"},
-            {"src": "api", "dst": "notif", "label": "evento/cola"},
+            {"src": "cliente", "dst": "spa", "label": "usa · HTTPS"},
+            {"src": "spa", "dst": "api", "label": "HTTPS/JSON"},
+            {"src": "api", "dst": "db", "label": "TCP/SQL"},
+            {"src": "api", "dst": "notif", "label": "evento/cola (AMQP)"},
         ],
-        "note": "Los nombres de estas cajas deben reaparecer igual en el diagrama de Deployment (Clase 7) — es el mismo sistema visto desde otro ángulo.",
+        "note": "Lo que guarda datos va como ContainerDb, no como un Container más. La cuarta caja (el worker) existe porque el correo tarda: sin esa razón, no va. Y estos nombres deben reaparecer igual en el Deployment (Clase 7).",
     },
     7: {
         "titulo": "Ejemplo de diagrama de despliegue (Deployment)",
@@ -993,8 +1201,12 @@ DIAGRAMAS = {
             {"id": "datos", "label": "Zona de datos\n(base de datos)", "x": 9.4, "y": 2.4, "w": 3.6, "h": 1.1, "color": CIAN},
         ],
         "arrows": [
-            {"src": "publica", "dst": "privada", "label": "solo puerto 443"},
-            {"src": "privada", "dst": "datos", "label": "solo puerto BD"},
+            # Los puertos son los de CloudLite y no otros: el 443 entra al edge desde
+            # internet, pero del edge a la API se habla por el `EXPOSE 8080` de la Clase 3.
+            # Decir «solo puerto 443» aqui contradecia el molde de Mermaid, la solucion
+            # docente y el Dockerfile del Corte 1, y los puertos valen 2 de los 14 pts.
+            {"src": "publica", "dst": "privada", "label": "solo el 8080"},
+            {"src": "privada", "dst": "datos", "label": "solo el 5432"},
         ],
         "note": "La base de datos NUNCA vive en la zona pública. Los nombres deben coincidir con los del C4 Containers (Clase 4) — mismo sistema, otro ángulo.",
     },
@@ -1023,37 +1235,132 @@ CODIGO_SLIDE = {
         "## 6. Consecuencias               <- pregunta 7: 3 ejes, cada uno con + y -",
         "Operacion + / -        Costo + / -        Aprendizaje + / -",
     ], "Sin Titulo y Estado con fecha no hay ADR que citar en la Clase 15: son 1.5 puntos de la pregunta 6."),
+    # El `.dockerignore` va en la MISMA diapositiva y no en una nota al pie: la rubrica
+    # de la pregunta 8 anula los 5 puntos del Dockerfile si se hace `COPY . .` «sin
+    # .dockerignore ni mencionarlo», y esta diapositiva proyecta justo ese `COPY . .`.
+    # Sin el archivo de al lado, el deck estaba ensenando el error que corta la nota.
     3: ("Dockerfile minimo del stub CloudLite", [
-        "FROM node:20-alpine          # base slim: arranca rapido, pesa poco",
+        "FROM node:20-alpine          # base ligera y etiqueta FIJA: nunca latest",
         "WORKDIR /app",
-        "COPY package*.json ./",
-        "RUN npm ci --omit=dev",
-        "COPY . .",
-        "EXPOSE 8080                  # el puerto que documentan en el C4",
+        "COPY package*.json ./        # dependencias PRIMERO: cambian poco",
+        "RUN npm ci --omit=dev        # se instalan DENTRO de la imagen",
+        "COPY . .                     # el codigo despues: cambia en cada commit",
+        "EXPOSE 8080                  # documenta el puerto; NO lo publica",
         'CMD ["node", "server.js"]    # UN proceso principal por contenedor',
-    ], "Nunca COPY de un .env con secretos: queda en las capas de la imagen para siempre."),
-    6: ("Amenaza -> control -> evidencia (una fila por amenaza)", [
-        "STRIDE  | Amenaza concreta del dominio      | Control            | Evidencia",
-        "--------|-----------------------------------|--------------------|-------------",
-        "Spoof   | Cualquiera llama la API sin auth   | Token/JWT          | C4: flecha 'auth'",
-        "Tamper  | Cambian el precio via API          | Rol + validacion   | Contrato del endpoint",
-        "Info    | API key dentro de la imagen        | Actions Secrets    | .dockerignore",
-        "DoS     | Pico de trafico tumba el API       | Rate limit         | Deployment: edge",
-    ], "Una lista generica de buenas practicas no es un modelo de amenazas: falta el dominio."),
+        "",
+        "# .dockerignore  <- archivo aparte, en la misma carpeta que el Dockerfile.",
+        "# Sin el, el COPY . . de arriba se lleva el .env a las capas de la imagen.",
+        "node_modules",
+        ".env",
+        ".env.*",
+        ".git",
+    ], "EXPOSE, CMD y el `-p` del run llevan el MISMO puerto. Y el `COPY . .` solo es seguro con `.dockerignore` al lado."),
+    # Diapositiva anadida por el criterio rector: la pregunta 13 vale 11 puntos y se
+    # califica sobre codigo Mermaid —primera linea exactamente `C4Container`, almacenes
+    # como `ContainerDb`, cada `Rel` con protocolo Y formato—, y el deck no proyectaba
+    # una sola linea de esa sintaxis. El estudiante la deducia del enunciado mientras
+    # se le calificaba, o se la inventaba pidiendosela a una IA sin saber que revisar.
+    # El molde tiene que ser EL MISMO sistema del ejemplo de la diapositiva anterior.
+    # Antes le faltaba el worker y la API llamaba al correo directo, que es justo el
+    # diseno que el guion acaba de descartar por heredar 300-2000 ms de latencia: dos
+    # respuestas distintas a la misma necesidad, en el mismo dominio, una diapositiva
+    # despues. Se agrega el `Container(worker...)` y el correo pasa a colgar de el. Las
+    # dos lineas en blanco se van para no pasar de 15 renglones, que es lo que cabe.
+    4: ("C4Container en Mermaid: el molde que ExamLab renderiza", [
+        "C4Container",
+        "title Diagrama de contenedores - CloudLite Turnos",
+        'Person(cliente, "Cliente de la barberia", "Reserva y consulta sus turnos")',
+        'System_Boundary(cloudlite, "CloudLite App") {',
+        '  Container(spa, "App web", "React", "Muestra franjas libres y crea la reserva")',
+        '  Container(api, "API de turnos", "Node.js", "Valida la franja y registra el turno")',
+        '  ContainerDb(db, "Base de turnos", "PostgreSQL", "Turnos, clientes y horarios")',
+        '  Container(worker, "Worker de avisos", "cola", "Envia el aviso, con reintentos")',
+        "}",
+        'System_Ext(correo, "Correo transaccional", "Entrega el correo al cliente")',
+        'Rel(cliente, spa, "Reserva un turno", "HTTPS")',
+        'Rel(spa, api, "POST /turnos", "HTTPS/JSON")',
+        'Rel(api, db, "INSERT / SELECT de turnos", "TCP/SQL")',
+        'Rel(api, worker, "Publica aviso-de-turno", "evento/cola (AMQP)")',
+        'Rel(worker, correo, "Envia la confirmacion", "API REST sobre HTTPS")',
+    ], "La base va como `ContainerDb` y cada `Rel` lleva protocolo Y formato. Los externos, FUERA del `System_Boundary`."),
+    # Antes esta diapositiva era la tabla amenaza -> control -> evidencia, que ahora
+    # vive en `slides_extra` como tabla de verdad: alli caben los encabezados exactos
+    # de la pregunta 2 y las cuatro columnas no tienen que caber en 85 caracteres de
+    # ancho fijo. Este hueco lo ocupa el artefacto de la demo del guion (paso 4 de
+    # DEMO_ARQ[6]), que no estaba proyectado en ninguna parte: es la razon tecnica de
+    # por que un secreto en el Dockerfile no se arregla borrandolo, y es la unica de
+    # las cuatro respuestas de la politica que se puede DEMOSTRAR en clase.
+    # La salida de «docker history» iba en columnas alineadas con espacios, y
+    # `pseudo_code_slide` no fija fuente monoespaciada: el motor la pinta con la
+    # tipografia proporcional del tema y las columnas se desmoronaban en pantalla.
+    # Se usa el «--format» real del comando, que emite campos separados y se lee igual
+    # en cualquier fuente. De paso corrige el orden: «docker history» lista la capa mas
+    # reciente primero, asi que el RUN va ARRIBA del ENV, y es justo lo que hay que
+    # ver — la capa que borra el archivo esta despues y no elimina la de antes.
+    # La imagen es `cloudlite-api:0.1.0`, la que el estudiante construyo en la Clase 3
+    # y la que muestra la captura de la demo de hoy: decia `turnos-api:1.0`, que no se
+    # construye en ninguna clase, y en la misma sesion el docente proyectaba la
+    # diapositiva y la captura con dos nombres distintos para el mismo comando.
+    6: ("El secreto en la imagen: por qué borrarlo no sirve", [
+        "# Dockerfile — el anti-patron",
+        'ENV CORREO_API_KEY="sk_live_9f3a...c21"   # <- queda en la capa',
+        "RUN rm -f /app/.env                       # <- NO la borra: la tapa",
+        "",
+        "$ docker history --format '{{.ID}} · {{.CreatedBy}} · {{.Size}}' cloudlite-api:0.1.0",
+        "a91d0c33 · RUN rm -f /app/.env · 12kB",
+        "b7c1e2f4 · ENV CORREO_API_KEY=sk_live_9f3a...c21 · 0B",
+        "",
+        "La capa de abajo sigue ahí: el «rm» de la de arriba no la elimina.",
+        "Cualquiera que tenga la imagen lee la llave con este mismo comando.",
+        "Lo mismo con Git: el commit borrado sigue en el historial y en cada clon.",
+    ], "Por eso el primer paso ante una filtración es **rotar** la credencial, no borrar el commit."),
+    # La pregunta 4 cobra 14 pts sobre codigo Mermaid pegado en ExamLab —3 zonas rotuladas,
+    # cada componente en su zona, el puerto de cada uno, las fronteras de confianza y 2 pts
+    # de «que renderice sin error»— y el molde no estaba proyectado en ninguna diapositiva:
+    # el estudiante veia el diagrama dibujado (DIAGRAMAS[7]) pero nunca el codigo que se
+    # entrega. Es el mismo molde que la Clase 4 ya usa para el C4Container.
+    7: ("El Despliegue en Mermaid: el molde que ExamLab renderiza", [
+        "flowchart LR",
+        # La `App web` va en la zona publica y esta en el molde a proposito: su ubicacion es
+        # parte de los 4 pts de «cada componente en su zona» y es la duda que el grupo
+        # pregunta todos los semestres. El `Cliente / navegador` NO entra aqui —cabe en 15
+        # lineas o cabe el externo, no las dos— y el guion lo resuelve: es el actor y va
+        # fuera de las tres zonas, como en la tabla de la pregunta 6.
+        '  subgraph publica["Zona publica - internet"]',
+        '    web["App web<br/>React estatico - 443"]',
+        '    edge["Edge / balanceador<br/>443 HTTPS"]',
+        "  end",
+        '  subgraph privada["Zona privada - solo desde el edge"]',
+        '    api["API CloudLite<br/>8080 HTTP"]',
+        "  end",
+        # El aviso va DENTRO del rotulo de la zona, no como comentario `%%` al final de la
+        # linea: Mermaid solo acepta comentarios en linea propia y un `%%` pegado al nodo
+        # puede tumbar el renderizado, que son 2 de los 14 pts.
+        '  subgraph datos["Zona de datos - sin internet: la BD va AQUI"]',
+        '    db[("Base de datos<br/>5432 TCP")]',
+        "  end",
+        '  web -->|"HTTPS 443"| edge',
+        '  edge -->|"HTTP 8080"| api',
+        '  api -->|"TCP 5432"| db',
+        '  api -->|"HTTPS 443 - frontera de confianza"| pagos["Pasarela de pagos externa"]',
+    ], "Una `subgraph` por zona, el puerto en cada caja y la base con `[( )]`. La flecha al externo ES la frontera de confianza. Nombres: los mismos del C4 Containers de la Clase 4."),
     8: (".github/workflows/ci.yml — CI real, no un echo", [
         "name: CI",
-        "on: [push, pull_request]",
+        "on: [push, pull_request]          # 1. disparadores",
         "jobs:",
         "  build:",
-        "    runs-on: ubuntu-latest",
+        "    runs-on: ubuntu-latest        # 2. entorno de ejecucion",
         "    steps:",
         "      - uses: actions/checkout@v4",
         "      - uses: actions/setup-node@v4",
         "        with: { node-version: '20' }",
-        "      - run: npm ci",
-        "      - run: npm test              # <- esto es lo que lo hace CI",
-        "      - run: docker build -t cloudlite-api .",
-    ], "Secretos con ${{ secrets.NOMBRE }}, NUNCA en claro dentro del YAML."),
+        "      - name: Construir",
+        "        run: npm ci && docker build -t cloudlite-api:0.1.0 .",
+        "      - name: Probar",
+        "        run: npm test              # <- si esto no puede fallar, no es CI",
+        "      - name: Despliegue SIMULADO (no despliega a ningun servidor)",
+        "        run: echo \"Artefacto cloudlite-api:0.1.0 listo para desplegar\"",
+    ], "Los tres pasos, en orden, y el ultimo rotulado como simulado. Secretos con ${{ secrets.NOMBRE }}, NUNCA en claro dentro del YAML."),
     13: ("Politica de autoescalado (tabla, no prosa)", [
         "Componente   | Tipo        | Trigger up      | Min | Max | Cooldown",
         "-------------|-------------|-----------------|-----|-----|---------",
@@ -1106,6 +1413,91 @@ ANTES_DESPUES_ARQ = {
 }
 
 
+#: Clase -> actividad de corte a la que aporta preguntas. Arquitectura no tiene una
+#: actividad por clase: cuatro clases comparten UNA sola, con numeracion continua.
+ACTIVIDAD_DE_CLASE = {
+    n: act
+    for act in (ACTIVIDAD_CORTE1, ACTIVIDAD_CORTE2, ACTIVIDAD_CORTE3)
+    for n in act["clases"]
+}
+
+
+def _cierre_de(c):
+    """Plazo real de entrega del taller de esta clase, o None si es el del domingo.
+
+    La seccion «Entrega» del taller decia «domingo 23:59 (regla del Acuerdo)» en las
+    quince clases. Es cierto solo para una actividad semanal, y en Arquitectura no hay
+    ninguna: las Clases 1-4, 6-8-10 y 11-13-15 aportan preguntas a UNA actividad por
+    corte que se entrega completa al cierre de ese corte. El estudiante de la Clase 6
+    leia dos plazos contradictorios en el mismo documento —el domingo en la seccion 10
+    y el cierre del Corte 2 en el Paso 4 y en la seccion 11— y el que aparecia primero
+    era el equivocado.
+    """
+    act = ACTIVIDAD_DE_CLASE.get(c["n"])
+    return act["cierre"] if act else None
+
+
+#: Lo del dia de parcial que NO esta en el instrumento. Todo lo que si esta —archivo,
+#: temas evaluados, secciones con sus puntos, peso en el corte, fecha— se lee de
+#: `contenido_parciales_2026_2`, que es la fuente del .docx que abre el estudiante.
+#: Copiarlo aqui era el defecto: la nota docente traia su propio `mapping` de archivos y
+#: el guion decia «selección múltiple, emparejamiento, desarrollo y caso de diseño» para
+#: los tres parciales, cuando el P2 tiene «Verdadero / Falso» y secciones C y D con otro
+#: nombre. Un docente que leyera el guion del P2 anunciaba secciones que no existen.
+#:   corte    · numero del corte que cierra; indexa ARQ_P1/P2/P3
+#:   ultima   · ultima clase dictada antes del parcial, la que el grupo tiene fresca
+#:   prep_pi  · clase donde se preparo el pitch del PI, o None si en este corte no aplica
+#:   dudas_no · tres dudas REALES de contenido de este corte, para que el ejemplo de «esto
+#:              no se responde» sea del parcial que se esta aplicando y no del primero
+PARCIALES_ARQ = {
+    5: {"corte": 1, "ultima": 4, "prep_pi": None,
+        "dudas_no": ["¿PaaS incluye el sistema operativo?",
+                     "¿los contenedores usan hipervisor?",
+                     "¿esta opción es la correcta?"]},
+    9: {"corte": 2, "ultima": 10, "prep_pi": None,
+        "dudas_no": ["¿de la seguridad se encarga el proveedor o el cliente?",
+                     "¿un bucket es almacenamiento de bloques o de objetos?",
+                     "¿esta opción es la correcta?"]},
+    14: {"corte": 3, "ultima": 13, "prep_pi": 12,
+         "dudas_no": ["¿escalar horizontal es lo mismo que subirle la RAM?",
+                      "¿la prueba de carga mide latencia o throughput?",
+                      "¿esta opción es la correcta?"]},
+}
+
+
+def _cierre_parcial_pi(n, *, hablada=False):
+    """Que pasa con el PI despues de este parcial.
+
+    El deck y el guion decian los dos «el PI continúa en la siguiente clase», que es
+    falso en el Parcial 3: lo que sigue es la sustentacion, y es justo el aviso que ese
+    dia hay que dar. Se calcula de `CLASSES` para no depender de un numero escrito a
+    mano que se rompa si el curso cambia de estructura.
+    """
+    siguiente = next((x["n"] for x in CLASSES if x["n"] > n), None)
+    if siguiente and siguiente == CLASSES[-1]["n"]:
+        return (f"En la Clase {siguiente} es la **sustentación del Proyecto Integrador**: "
+                "lo que presentan es el CloudLite que ya construyeron, no algo nuevo."
+                if hablada else
+                f"Clase {siguiente}: sustentación del PI CloudLite, no hay tema nuevo")
+    return ("El PI CloudLite continúa en la siguiente clase; hoy no hay tarea nueva."
+            if hablada else "El PI CloudLite continúa en la siguiente clase")
+
+
+def _parcial_meta(corte):
+    """Portada del instrumento del corte `corte`, leida de la fuente del .docx.
+
+    Se lee y no se copia por la misma razon que la clave de una pregunta cerrada se lee
+    del banco: si manana cambia una seccion del parcial, el guion tiene que cambiar con
+    ella o queda anunciando algo que el estudiante no va a encontrar.
+    """
+    _dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                        "parciales")
+    if _dir not in sys.path:
+        sys.path.insert(0, _dir)
+    import contenido_parciales_2026_2 as cp  # noqa: PLC0415
+    return getattr(cp, f"ARQ_P{corte}")["meta"]
+
+
 def _pasos(c):
     """Pasos del taller de esta clase.
 
@@ -1133,10 +1525,10 @@ HERRAMIENTAS_DIA = {
     3: [{"name": "Killercoda", "logo": "killercoda.png", "note": "Lab del dia · sesion 1 h"},
         {"name": "LabEx Docker Playground", "logo": "labex.png", "note": "Alterna · 3 al dia"},
         {"name": "Google Docs", "logo": "google_docs.png", "note": "Informe PI"}],
-    4: [{"name": "draw.io", "logo": "drawio.png", "note": "C4 Containers"},
+    4: [{"name": "draw.io", "logo": "drawio.png", "note": "Boceto del C4"},
         {"name": "Excalidraw", "logo": "excalidraw.png", "note": "Boceto rapido"}],
-    6: [{"name": "Excalidraw", "logo": "excalidraw.png", "note": "Tabla STRIDE"},
-        {"name": "Google Docs", "logo": "google_docs.png", "note": "Informe PI"}],
+    6: [{"name": "Google Docs", "logo": "google_docs.png", "note": "Tabla STRIDE y politica"},
+        {"name": "Excalidraw", "logo": "excalidraw.png", "note": "Marcar controles en el C4 · opcional"}],
     7: [{"name": "draw.io", "logo": "drawio.png", "note": "Deployment"},
         {"name": "Google Docs", "logo": "google_docs.png", "note": "Informe PI"}],
     8: [{"name": "GitHub Actions", "logo": "github_actions.png", "note": "CI del PI"},
@@ -1207,7 +1599,8 @@ def _slide_map(c: dict) -> list:
     n = c["n"]
     if c["tipo"] == "parcial":
         return [f"Portada · Clase {n} · {c['tema']}",
-                "Indicaciones (dia de parcial)",
+                "Que se evalua hoy",
+                "Como se responde y como se entrega",
                 f"Parcial · Clase {n}"]
     m = [f"Portada · Clase {n} · {c['tema']}",
          "Agenda de hoy (120 min)",
@@ -1317,17 +1710,38 @@ def build_pptx(c: dict) -> Path:
     out = folder / "Presentacion.pptx"
 
     if c["tipo"] == "parcial":
+        # Este deck es lo UNICO que el estudiante recibe el dia del parcial, y decia
+        # tres cosas y ninguna util: la portada anunciaba «Teoría breve · Taller PI»
+        # —que hoy no existen— y «Hoy avanzamos el PI en: Sin avance dirigido de PI»;
+        # las indicaciones afirmaban que «la prep del PI / pitch quedó en la clase
+        # regular anterior», falso en los Cortes 1 y 2; y en ninguna parte estaba el
+        # alcance, el reparto de puntos, el canal ni la hora de cierre. Todo lo que hay
+        # que anunciar al minuto 0 esta ahora proyectado, y sale de la portada del
+        # propio instrumento.
+        p = PARCIALES_ARQ[n]
+        m = _parcial_meta(p["corte"])
         prs = new_prs()
-        cover_slide(prs, n, c["tema"], "Solo evaluación · sin tema de trabajo dirigido", c["pi_hoy"])
-        content_slide(prs, "Indicaciones", [
-            "Hoy es **solo Parcial** (virtual síncrono por Meet).",
-            "No hay taller ni avance dirigido del PI en esta clase.",
-            "Material de evaluación en carpeta docente de Parciales (no se distribuye antes).",
-            "La prep del PI / pitch quedó en la clase regular anterior.",
-        ], idx=2)
+        cover_slide(prs, n, c["tema"], "Solo evaluación · sin tema ni taller dirigido",
+                    c["pi_hoy"], tipo="parcial")
+        content_slide(prs, "Qué se evalúa hoy",
+                      [f"**{s.split(' — ')[0]}** — {s.split(' — ')[1]}"
+                       for s in m["secciones_resumen"]]
+                      + [f"Total **100 puntos** · nota = puntos / 20 · "
+                         f"este parcial pesa {m['valor_corte']}."],
+                      sub="**Solo** "
+                          + " · ".join(t.split(" · ")[0] for t in m["temas"])
+                          + " — fuera de esa lista no hay nada",
+                      idx=2)
+        content_slide(prs, "Cómo se responde y cómo se entrega", [
+            f"Tiempo previsto **{m['tiempo']}** dentro del bloque de 120.",
+            "El envío **cierra en el minuto 110**: lo que llegue después no se recibe.",
+            "Canal de entrega: el que se anuncia ahora. Confirmo cada recibido por el chat.",
+            "Pregunta de **forma** sí (cuántas líneas, si pide tabla). De **contenido** no.",
+            "Si se te cae el internet: sigue respondiendo y avisa por correo al volver.",
+        ], idx=3)
         closing_slide(prs, f"Parcial · Clase {n}", [
-            "Enfocados en la evaluación del corte",
-            "PI CloudLite continúa en la siguiente clase regular/autónoma",
+            "Hoy solo se evalúa el corte",
+            _cierre_parcial_pi(n),
         ], accent="Solo evaluación")
         _verificar_mapa(c, prs)
         prs.save(str(out))
@@ -1482,6 +1896,139 @@ def build_pptx(c: dict) -> Path:
 # Ancho maximo de linea: 96 caracteres (Consolas 9 pt en la caja del docx). Mas largo
 # envuelve y descuadra las columnas de la matriz.
 PLANTILLA_TALLER = {
+    # Clase 3: la bitacora de la pregunta 11 se califica POR SU FORMA (tres columnas
+    # exactas, cinco filas en un orden dado, mas la descripcion de la captura y la fila
+    # de incidente) y el contrato de salud de la pregunta 10 se descuenta si falta
+    # cualquiera de sus tres datos. Las dos son estructura calificada, asi que la
+    # estructura se entrega. El Dockerfile y las explicaciones de la pregunta 9 no
+    # llevan plantilla: no tienen forma fija.
+    3: [
+        "A) CONTRATO DEL ENDPOINT DE SALUD   (pregunta 10)",
+        "   Los tres datos se califican por separado: si falta uno, se descuenta.",
+        "",
+        "   Ruta                 : GET /______________",
+        "   Codigo de estado     : ______  cuando ____________________________________",
+        "                          ______  cuando ____________________________________",
+        "   Cuerpo y su formato  : ______________  (di el formato: JSON, texto plano...)",
+        "",
+        "      [ pega aqui el cuerpo exacto que devuelve tu endpoint ]",
+        "",
+        "   Un 200 con el cuerpo vacio no distingue «vivo» de «vivo pero roto»: el cuerpo",
+        "   lleva al menos un campo que se pueda verificar.",
+        "",
+        "B) BITACORA DEL LABORATORIO   (pregunta 11)",
+        "   Cinco filas, en ESTE orden, una por comando. En la tercera columna va el",
+        "   FRAGMENTO TEXTUAL de la salida real (numero de capas, identificador corto,",
+        "   el 200): pegado, no parafraseado. «Salio bien» no suma nada en esa fila.",
+        "",
+        "   | Comando                          | Que esperaba          | Que salio realmente |",
+        "   |----------------------------------|-----------------------|---------------------|",
+        "   | 1. docker build -t ______:___ .  |                       |                     |",
+        "   | 2. docker images | grep ________ |                       |                     |",
+        "   | 3. docker run -d -p ___:___ ...  |                       |                     |",
+        "   | 4. docker ps                     |                       |                     |",
+        "   | 5. curl -i http://localhost:___/ |                       |                     |",
+        "",
+        "C) DESCRIPCION DE LA CAPTURA   (pregunta 11 · vale 0.5 pts cada elemento)",
+        "   Los tres se tienen que ver EN LA MISMA imagen, sin recortar:",
+        "",
+        "   [ ] Prompt del laboratorio         : ______________________________________",
+        "   [ ] Salida de docker ps            : ______________________________________",
+        "   [ ] Hora del sistema               : ______________________________________",
+        "   Truco: ejecuta `date` en la linea inmediatamente anterior al `docker ps`.",
+        "",
+        "D) FILA DE INCIDENTE   (pregunta 11)",
+        "   No se acepta en blanco. Si nada fallo, va el que estuvo a punto de fallar.",
+        "",
+        "   Comando que fallo   : ______________________________________________________",
+        "   Mensaje textual     : ______________________________________________________",
+        "   Causa               : ______________________________________________________",
+        "   Como lo resolvi     : ______________________________________________________",
+        "",
+        "E) VERIFICACION DE COHERENCIA   (1 pt de la pregunta 11, y se pierde solo)",
+        "   Los tres numeros y nombres tienen que ser LOS MISMOS en las tres preguntas.",
+        "   Escribelos una vez aqui y copialos, no los vuelvas a teclear:",
+        "",
+        "   Nombre de la imagen : ________________   Etiqueta : ____________",
+        "   Puerto del contenedor (EXPOSE = lado derecho del -p) : ____________",
+        "   Puerto del anfitrion (lado izquierdo del -p)         : ____________",
+        "",
+        "   [ ] El puerto del contenedor es el mismo en el EXPOSE (p8), en el run (p10)",
+        "       y en la bitacora (p11).",
+        "   [ ] El nombre y la etiqueta de la imagen son los mismos en el build, en el run",
+        "       y en la fila 2 de la bitacora.",
+    ],
+    # Clase 4: la pregunta 12 se califica por sus tres partes (decision de UNA frase, dos
+    # criterios, lo que se gana y lo que se pierde), la 14 por una tabla de cuatro columnas
+    # con nombres exactos, y la 15 por tres riesgos que tienen que responder tres cosas
+    # distintas. Las tres son estructura calificada. La pregunta 13 NO lleva plantilla: es
+    # un diagrama, y el molde de su codigo se proyecta en la diapositiva de Mermaid.
+    4: [
+        "A) LA DECISION DE ARQUITECTURA   (pregunta 12)",
+        "   Se elige UNA. «Un poco de los dos» vale cero: es lo que dice quien no decidio.",
+        "",
+        "   Decision, en UNA frase : ______________________________________________________",
+        "                            (monolito modular  |  microservicios  ->  tacha una)",
+        "",
+        "   Criterio 1 · tamano del equipo, CON numero y plazo:",
+        "     Somos ______ persona(s) y tenemos ______ semanas. Por eso ____________________",
+        "     ______________________________________________________________________________",
+        "",
+        "   Criterio 2 · acoplamiento: di QUE partes cambian juntas:",
+        "     Cuando cambia ______________________, tambien hay que cambiar _________________",
+        "     ______________________________________________________________________________",
+        "",
+        "   Que se GANA con esta decision  : ______________________________________________",
+        "   Que se PIERDE con esta decision: ______________________________________________",
+        "   (sin la segunda linea no hubo decision, hubo justificacion escrita despues)",
+        "",
+        "B) LOS TRES CONTRATOS   (pregunta 14)",
+        "   Cuatro columnas, tres filas. Los nombres de las cajas son los EXACTOS de tu",
+        "   diagrama de la pregunta 13, letra por letra. Los tres contratos NO pueden ser",
+        "   entre el mismo par de cajas. Al menos uno lleva un 409 de conflicto: si ninguno",
+        "   lo lleva, se descuenta. Un 500 no es error de negocio, es una falla.",
+        "",
+        "   | Contrato        | Quien llama a quien       | Verbo y ruta      | Error de negocio |",
+        "   |-----------------|---------------------------|-------------------|------------------|",
+        "   |                 |                    ->     |                   |                  |",
+        "   |                 |                           |                   |                  |",
+        "   |                 |                    ->     |                   |                  |",
+        "   |                 |                           |                   |                  |",
+        "   |                 |                    ->     |                   |                  |",
+        "   |                 |                           |                   |                  |",
+        "",
+        "   Si el contrato es con la base de datos, en «Verbo y ruta» va la sentencia (INSERT,",
+        "   SELECT...), no una ruta REST; y si es un evento, va el nombre del evento.",
+        "",
+        "C) LOS TRES RIESGOS DE DISTRIBUCION   (pregunta 15)",
+        "   Cada uno responde algo DISTINTO. «Los microservicios son mas complejos» vale cero:",
+        "   no nombra caja, ni salto, ni dato.",
+        "",
+        "   Riesgo 1 · que se cae",
+        "     Caja que falla (UNA, con su nombre): _______________________________________",
+        "     Deja de funcionar                  : _______________________________________",
+        "     SIGUE funcionando                  : _______________________________________",
+        "     («se cae todo» vale la mitad: la otra mitad es decir que sobrevive)",
+        "",
+        "   Riesgo 2 · cuantos saltos de red",
+        "     Operacion de punta a punta que elegi: _______________________________________",
+        "     Saltos, contados sobre mi diagrama  : ______   Cuales: ______________________",
+        "     ______________________________________________________________________________",
+        "",
+        "   Riesgo 3 · un dato escrito en dos pasos",
+        "     Dato                        : _______________________________________________",
+        "     Paso 1 lo escribe en        : _______________________________________________",
+        "     Paso 2 lo escribe en        : _______________________________________________",
+        "     Si el paso 2 falla, queda   : _______________________________________________",
+        "",
+        "D) VERIFICACION DE COHERENCIA   (se pierde sola, y cuesta 3 pts de la p13)",
+        "   [ ] El numero de cajas del diagrama (p13) es coherente con la decision de la p12:",
+        "       si dije monolito modular, no hay cinco servicios en el dibujo.",
+        "   [ ] Los nombres de las cajas de la p14 son identicos a los de la p13.",
+        "   [ ] Los nombres de la p13 son identicos a los del C4 Context de la pregunta 3.",
+        "   [ ] Lo que guarda datos esta como ContainerDb, no como Container.",
+        "   [ ] Ninguna flecha quedo sin protocolo Y formato.",
+    ],
     2: [
         "A) MATRIZ IaaS / PaaS / SaaS DE TU DOMINIO   (pregunta 5)",
         "   Encabezados y filas exactos, en este orden. Ninguna celda queda vacia y ninguna pasa",
@@ -1536,6 +2083,180 @@ PLANTILLA_TALLER = {
         "                    - [ ... ]",
         "      Al menos UNA de las tres negativas habla de amarre al proveedor o de perdida de",
         "      control. Marca cual: [ Operacion / Costo / Aprendizaje ]",
+    ],
+    # Clase 6: no tenia plantilla, y de los 25 puntos de la clase 18.75 se califican POR
+    # SU FORMA. La pregunta 2 pide literalmente una tabla de tres columnas —y reparte
+    # 2.5 pts solo por la tercera—, la 3 pide cuatro respuestas rotuladas mas el
+    # procedimiento ante filtracion, y la 1 califica cada amenaza por sus dos partes
+    # (actor o dato, y camino). Las tres tienen forma fija, asi que la forma se entrega.
+    # Los rotulos son los de TALLERES_EXAMLAB[6] y los de la solucion docente.
+    6: [
+        "A) LAS CINCO AMENAZAS   (pregunta 1 · 1.75 pts cada una)",
+        "   Cada amenaza necesita las DOS partes, o vale la mitad: el actor o el dato concreto",
+        "   de TU dominio, y el camino por el que ocurre. No hace falta una por cada letra.",
+        "",
+        "   1. STRIDE: ___  Quien o que dato: ______________________________________________",
+        "      Camino por el que ocurre: ______________________________________________________",
+        "   2. STRIDE: ___  Quien o que dato: ______________________________________________",
+        "      Camino por el que ocurre: ______________________________________________________",
+        "   3. STRIDE: ___  Quien o que dato: ______________________________________________",
+        "      Camino por el que ocurre: ______________________________________________________",
+        "   4. STRIDE: ___  Quien o que dato: ______________________________________________",
+        "      Camino por el que ocurre: ______________________________________________________",
+        "   5. STRIDE: ___  Quien o que dato: ______________________________________________",
+        "      Camino por el que ocurre: ______________________________________________________",
+        "",
+        "B) TABLA AMENAZA - CONTROL - DONDE SE VE   (pregunta 2 · 5 pts + 2.5 pts)",
+        "   Los encabezados son estos tres y no se cambian. La tercera columna vale 0.5 pts",
+        "   por fila y solo admite una CAJA o una FLECHA de tu C4 Containers o de tu",
+        "   Despliegue, escrita con el mismo nombre que tiene alli.",
+        "",
+        "   | Amenaza (n de A) | Control concreto y verificable | Donde se ve (caja o flecha) |",
+        "   |------------------|--------------------------------|-----------------------------|",
+        "   | 1.               |                                |                             |",
+        "   | 2.               |                                |                             |",
+        "   | 3.               |                                |                             |",
+        "   | 4.               |                                |                             |",
+        "   | 5.               |                                |                             |",
+        "",
+        "   Prueba de «verificable»: escribe en una linea que se hace para comprobar que el",
+        "   control esta puesto. Si no puedes, todavia es una intencion.",
+        "",
+        "C) MENOR PRIVILEGIO   (pregunta 2 · 1.25 pts · las dos mitades pesan igual)",
+        "   Definirlo sin aplicarlo vale la mitad. Aplicarlo sin decir que deja de poder",
+        "   hacer, la otra mitad.",
+        "",
+        "   Componente de MI sistema : ______________________________________________________",
+        "   Con que permisos entra   : ______________________________________________________",
+        "   Que DEJA DE PODER hacer  : ______________________________________________________",
+        "                              ______________________________________________________",
+        "",
+        "D) POLITICA DE SECRETOS DEL REPOSITORIO Y DE LA CI   (pregunta 3)",
+        "   Las cuatro primeras valen 1.5 pts cada una y se califican una por una. La quinta",
+        "   linea vale otros 1.5 y es la que mas se falla.",
+        "",
+        "   1. Donde viven        : ___________________________________________________________",
+        "      Mis secretos son   : ________________, ________________, ________________",
+        "   2. Quien los rota     : ________________________  (un rol responsable, no «solas»)",
+        "   3. Cada cuanto        : ________________________  (un numero o un evento fijo)",
+        "   4. Que esta prohibido, marca todo lo que aplique:",
+        "      [ ] en el Dockerfile    [ ] en el README    [ ] en el YAML en claro",
+        "      [ ] impreso en el log del pipeline          [ ] otro: _________________________",
+        "   5. Si un secreto se filtra, el PRIMER paso es: ____________________________________",
+        "      y despues: _____________________________________________________________________",
+        "",
+        "E) VERIFICACION DE COHERENCIA   (no da puntos; los quita si falla)",
+        "   [ ] La tabla de B tiene UNA fila por cada amenaza de A, con el mismo numero.",
+        "   [ ] Cada nombre de la tercera columna existe TAL CUAL en tu C4 Containers o en tu",
+        "       Despliegue. Si no lo encuentras, al diagrama le falta esa pieza.",
+        "   [ ] Ningun control cae en la aplicacion web: ocultar un boton no es un control,",
+        "       porque la peticion se puede enviar sin pasar por la interfaz.",
+        "   [ ] Ninguna de las cinco amenazas es otra de la lista con otras palabras.",
+    ],
+    # Las preguntas 5 y 6 son 11 de los 25 pts de hoy y las dos se califican por la FORMA
+    # de la respuesta: una tabla de tres columnas cada una, con encabezados fijados en el
+    # enunciado. La pregunta 4 NO lleva plantilla: es codigo Mermaid, y el molde va
+    # proyectado en la diapositiva, no como formulario.
+    7: [
+        "A) ALMACENAMIENTO DE CADA COMPONENTE   (pregunta 5 · 5.5 pts)",
+        "   Los encabezados son estos tres y no se cambian. La segunda columna solo admite una",
+        "   de TRES palabras: Relacional, Bloque u Objeto. La tercera vale 2.5 pts del total y",
+        "   tiene que nombrar la CARACTERISTICA DEL DATO, no una preferencia: «se cruza con",
+        "   otros datos», «lo monta un solo proceso», «se recupera entero». «Es mas rapido» o",
+        "   «es lo normal» no son caracteristicas del dato y no suman.",
+        "",
+        "   | Componente | Tipo       | Que caracteristica del dato lo exige |",
+        "   |------------|------------|--------------------------------------|",
+        "   |            |            |                                      |",
+        "   |            |            |                                      |",
+        "   |            |            |                                      |",
+        "   |            |            |                                      |",
+        "",
+        "   Si tu dominio NO maneja archivos, imagenes ni adjuntos, escribe esta linea y suma",
+        "   completo. Agregar un almacen de objetos «porque suena a cloud» descuenta.",
+        "   Mi dominio no necesita almacenamiento de objetos porque: ___________________________",
+        "   __________________________________________________________________________________",
+        "",
+        "B) CORRESPONDENCIA C4 CONTAINERS -> DESPLIEGUE   (pregunta 6 · 5.5 pts)",
+        "   UNA fila por componente. Se descuenta si falta un componente que SI aparece en",
+        "   alguno de los dos diagramas, asi que llena esta tabla con los dos abiertos al lado.",
+        "   La tercera columna solo admite: Publica, Privada o Datos.",
+        "",
+        "   | Componente en el C4 Containers | Componente en el Despliegue | Zona |",
+        "   |--------------------------------|-----------------------------|------|",
+        "   |                                |                             |      |",
+        "   |                                |                             |      |",
+        "   |                                |                             |      |",
+        "   |                                |                             |      |",
+        "   |                                |                             |      |",
+        "",
+        "   Por que los nombres tienen que coincidir (2 pts · en terminos de que son el MISMO",
+        "   sistema visto desde otro angulo, no dos sistemas):",
+        "   __________________________________________________________________________________",
+        "   __________________________________________________________________________________",
+        "",
+        "   Renombres que apliqué (1 pt · si no hubo ninguno, escribelo con esas palabras):",
+        "   Antes: ______________________  Ahora: ______________________",
+        "   Antes: ______________________  Ahora: ______________________",
+        "   Diagrama que actualicé para que queden iguales: ___________________________________",
+        "",
+        "C) VERIFICACION ANTES DE ENVIAR   (no da puntos; los quita si falla)",
+        "   [ ] Mi diagrama de la pregunta 4 RENDERIZO sin error dentro de ExamLab (2 pts).",
+        "   [ ] Las TRES zonas estan rotuladas: publica, privada y de datos.",
+        "   [ ] La base de datos NO esta en la zona publica. Si lo esta, pierdo 4 pts completos.",
+        "   [ ] Cada componente lleva su puerto.",
+        "   [ ] Marque la frontera de confianza: la flecha donde termina lo que yo controlo.",
+        "   [ ] No aparece ningun nombre de subred, de zona de disponibilidad ni de servicio de",
+        "       un proveedor concreto (nada de VPC, ni de nombres de marca).",
+        "   [ ] Los nombres de las cajas son los MISMOS del C4 Containers del Corte 1.",
+    ],
+    # Las preguntas 8 y 10 son 11 de los 25 pts y las dos se califican por la forma: tres
+    # campos nombrados en la 8, y una tabla de tres columnas con umbral obligatorio en la
+    # 10 («una senal sin umbral no suma»). Las preguntas 7 y 9 no llevan plantilla: la 7 es
+    # el YAML —codigo, y el molde va proyectado— y la 9 es prosa sin estructura calificada.
+    8: [
+        "A) QUE HACE DE VERDAD TU CONSTRUCCION Y TU PRUEBA   (pregunta 8 · 5 pts)",
+        "   Los tres campos se califican por separado y el tercero vale casi la mitad. Es sobre",
+        "   TU ci.yml, no sobre CI en general.",
+        "",
+        "   1. Que se compila o se instala (1.5 pts) : _________________________________________",
+        "      ______________________________________________________________________________",
+        "   2. Que se ejecuta en la prueba, y que comprueba exactamente (1.5 pts):",
+        "      ______________________________________________________________________________",
+        "      ______________________________________________________________________________",
+        "   3. Con que condicion el pipeline debe FALLAR (2 pts). Hazte la prueba mental: que",
+        "      error tendrias que introducir tu para que el check salga rojo. Si no encuentras",
+        "      ninguno, tu pipeline todavia no valida nada y este punto vale CERO.",
+        "      El check sale rojo cuando: _____________________________________________________",
+        "      ______________________________________________________________________________",
+        "",
+        "B) SENALES DE MONITOREO DE MI DOMINIO   (pregunta 10 · 6 pts)",
+        "   Entre 4 y 6 filas. Las cuatro primeras valen 1 pt cada una; la 5 y la 6 suman hasta",
+        "   1 pt mas entre las dos. La tercera columna NO es opcional: una senal sin umbral no",
+        "   suma, aunque este bien elegida. Y la segunda columna tiene que hablar de una",
+        "   operacion de TU dominio, no de «el sistema».",
+        "",
+        "   | Senal | Que se mide en MI dominio | Umbral u objetivo |",
+        "   |-------|---------------------------|-------------------|",
+        "   |       |                           |                   |",
+        "   |       |                           |                   |",
+        "   |       |                           |                   |",
+        "   |       |                           |                   |",
+        "   |       |                           |                   |",
+        "   |       |                           |                   |",
+        "",
+        "   Cual de mis filas es un REGISTRO y no una metrica numerica (1 pt · algo que se",
+        "   escribe para poder reconstruir que paso despues): fila numero ______",
+        "",
+        "C) VERIFICACION ANTES DE ENVIAR   (no da puntos; los quita si falla)",
+        "   [ ] Mi ci.yml tiene los tres bloques: on, runs-on y steps.",
+        "   [ ] Los pasos estan en orden: construccion, prueba, despliegue simulado.",
+        "   [ ] El paso de despliegue dice SIMULADO en su nombre y no promete un servidor real.",
+        "   [ ] NINGUN secreto escrito en claro en el YAML. Si hay uno, la pregunta 7 vale cero.",
+        "   [ ] La imagen y el puerto son los del Dockerfile del Corte 1, no otros.",
+        "   [ ] En la pregunta 9 digo que llego hasta «listo para desplegar». Afirmar que ya",
+        "       tengo CD descuenta la mitad de esa pregunta.",
+        "   [ ] Cada senal de la tabla B tiene umbral. Cuento las filas sin umbral: ______",
     ],
 }
 
@@ -1600,11 +2321,21 @@ TALLER_BLOQUE = {
             "Abrir Killercoda (killercoda.com, escenario Ubuntu). " + LAB_LIMITES + ".",
             "Prohibido: copiar .env / API keys a la imagen.",
         ],
+        # Una pista por pregunta, como minimo: antes eran 4 y cubrian la 8 y la 11,
+        # asi que la 9 (capas y kernel compartido) y la 10 (etiqueta, lados del -p y
+        # los tres datos del contrato de salud) llegaban sin checklist.
         "pistas": [
             "¿El Dockerfile está en tu carpeta del PI y no solo dentro del lab?",
-            "¿El puerto expuesto coincide con el que documentan?",
-            "¿Hay evidencia con timestamp (captura o enlace)?",
+            "¿Están las @@siete@@ instrucciones, y el `COPY` de dependencias antes del `COPY` del código? (p8)",
+            "¿La imagen base tiene @@etiqueta fija@@ —no `latest`— y hay un `.dockerignore` al lado del `COPY . .`? (p8)",
             "¿Secretos fuera de la imagen?",
+            "¿Nombraste @@dos@@ instrucciones de TU archivo que crean capa, y la diferencia con la VM en términos de @@kernel compartido@@? (p9)",
+            "¿El `build` lleva nombre @@y@@ etiqueta, y dijiste qué lado del `-p` es el anfitrión y qué pasa si se invierten? (p10)",
+            "¿El contrato de salud tiene los @@tres@@ datos: ruta, código de estado y cuerpo con su formato? (p10)",
+            "¿La bitácora trae las @@5 filas en orden@@ con la salida pegada textualmente, y una fila de incidente? (p11)",
+            "¿Hay evidencia con timestamp (captura o enlace)?",
+            "¿La captura muestra los tres elementos en la MISMA imagen: prompt, `docker ps` y hora del sistema? (p11)",
+            "¿El nombre de imagen, la etiqueta y el puerto son los mismos en la p8, la p10 y la p11?",
         ],
     },
     4: {
@@ -1613,14 +2344,30 @@ TALLER_BLOQUE = {
             "Anti-patrón: 12 microservicios para 3 estudiantes = teatro, no arquitectura.",
             "Regla CloudLite: 2-5 cajas justificadas + contratos etiquetados.",
         ],
+        # «escenario» y «pistas» solo se renderizan en el .docx del estudiante, y ahi
+        # add_inline_docx() entiende @@negrita@@ — no la negrita de Markdown. Con `**`
+        # los asteriscos salian impresos en la ficha PI.
         "escenario": [
-            "Partir del C4 Context (mismos nombres de sistema/actores).",
-            "draw.io o Excalidraw; vista Containers (no solo Context).",
+            "Partir del C4 Context de la pregunta 3 (mismos nombres de sistema, actores y externos).",
+            "Bocetar en draw.io o Excalidraw la vista @@Containers@@ (no solo Context)…",
+            "…y entregar el diagrama como código @@Mermaid@@ dentro de ExamLab, que es donde se renderiza y se califica.",
         ],
+        # Una pista por pregunta, como minimo: antes eran 3 y ninguna cubria la 12
+        # (la decision y sus dos criterios) ni la 15 (los tres riesgos), que juntas
+        # son 7 de los 25 puntos de la clase.
         "pistas": [
-            "¿Hay 2-5 cajas (no 1 monolito innominado ni 12 microservicios)?",
-            "¿Los nombres coincidirán luego con Deployment?",
-            "¿Cada contrato tiene error de negocio (ej. 409 conflicto)?",
+            "¿La decisión de la p12 elige @@una@@ —monolito modular o microservicios— en una sola frase?",
+            "¿Los dos criterios traen @@número y plazo@@ del equipo, y dicen qué partes cambian juntas?",
+            "¿Dijiste qué se gana @@y@@ qué se pierde? (sin la segunda mitad no hay decisión)",
+            "¿Hay 2-5 cajas (no 1 monolito innominado ni 12 microservicios), coherentes con la p12?",
+            "¿La primera línea del código del diagrama es exactamente `C4Container`?",
+            "¿Cada caja tiene sus @@tres@@ datos: nombre, tecnología y responsabilidad?",
+            "¿Lo que guarda datos está como `ContainerDb` y los externos @@fuera@@ del `System_Boundary`?",
+            "¿Cada flecha tiene protocolo @@y@@ formato (`HTTPS/JSON`, `TCP/SQL`)? ¿Ninguna quedó muda?",
+            "¿Los nombres coinciden con el C4 Context de la p3, y coincidirán luego con Deployment?",
+            "¿Los 3 contratos van entre pares de cajas @@distintos@@?",
+            "¿Cada contrato tiene error de negocio, y al menos uno es un @@409@@ de conflicto? (un 500 no cuenta)",
+            "¿Los 3 riesgos responden cosas distintas: qué caja se cae (y qué sigue vivo), cuántos saltos de red, y qué dato se escribe en dos pasos?",
         ],
     },
     6: {
@@ -1630,29 +2377,54 @@ TALLER_BLOQUE = {
             "STRIDE-lite: 5 amenazas concretas, no lista genérica de internet.",
         ],
         "escenario": [
-            "Usar dominio y Containers ya definidos.",
-            "Amenazas típicas: secrets en imagen, API sin auth, logs con tokens, PII sin TLS.",
+            "Actividad individual. Se parte del @@C4 Containers@@ del Corte 1: hoy no se dibuja nada nuevo, se señala sobre lo que ya existe.",
+            "Amenazas típicas del curso, como referencia de la @@forma@@ y no para copiarlas: secretos en la imagen, API sin autenticación, registros que guardan tokens, datos personales sin TLS.",
+            "Son tres respuestas escritas dentro de ExamLab: las cinco amenazas, la tabla de tres columnas y la política de secretos. La @@plantilla@@ de la sección siguiente trae la estructura exacta que se califica.",
         ],
+        # Eran 3 pistas para 3 preguntas de 25 puntos, y dejaban sin cubrir la mitad de
+        # la rubrica: la frecuencia de rotacion, el responsable, el procedimiento ante
+        # filtracion y la forma que se exige a cada amenaza. El checklist tiene que
+        # cubrir TODAS las preguntas, no las primeras.
         "pistas": [
-            "¿Cada amenaza tiene control + dónde se ve en el diagrama?",
-            "¿Secretos en Settings/Actions, no en Dockerfile?",
-            "¿Least privilege aparece aunque sea narrado?",
+            "¿Cada una de las cinco amenazas nombra el actor o el dato concreto de @@tu@@ dominio @@y@@ el camino por el que ocurre?",
+            "¿Ninguna es una frase de manual que sirva igual para cualquier sistema? (esa vale la mitad)",
+            "¿Ninguna repite otra con otras palabras? ¿Listaste amenazas y no controles? («falta HTTPS» es la pregunta 2)",
+            "¿Cada control es @@verificable@@: puedes decir en una línea qué se hace para comprobar que está puesto?",
+            "¿La tercera columna nombra una @@caja o una flecha@@ que existe tal cual en tu C4 Containers o en tu Despliegue? (son 2.5 pts)",
+            "¿Ningún control cae en la aplicación web? Ocultar un botón no es un control: la petición se envía sin abrir la interfaz.",
+            "¿Aparece el @@menor privilegio@@ sobre un componente concreto, diciendo qué @@deja de poder hacer@@? (las dos mitades pesan igual)",
+            "¿Dónde viven los secretos, y qué archivo se versiona @@sin@@ valores reales?",
+            "¿«Quién los rota» es un rol responsable? «Se rotan automáticamente» no responde quién.",
+            "¿«Cada cuánto» es un número o un evento del calendario? «Periódicamente» no es una frecuencia.",
+            "¿Lo prohibido incluye el `Dockerfile`, el `README` @@y@@ el YAML en claro?",
+            "¿El primer paso ante una filtración es @@rotar@@ la credencial, y no borrar el commit?",
         ],
     },
     7: {
         "contexto": [
             "@@Por qué importa al PI:@@ sin zonas, el Deployment no demuestra fronteras de confianza.",
-            "Si la BD está en zona pública, el diagrama ya falló.",
+            "Son @@tres@@ zonas: pública, privada y de datos. Si la BD queda en la pública, el diagrama ya falló.",
             "Nombres del Deployment deben = nombres del C4 Containers.",
         ],
         "escenario": [
             "Cliente -> edge -> app -> datos.",
             "Sin inventar subnets AWS; trust boundaries sí.",
+            "El diagrama se entrega como @@código Mermaid pegado en ExamLab@@, no como imagen.",
         ],
+        # El checklist cubre las TRES preguntas de hoy, criterio por criterio calificado:
+        # antes solo tenía 3 líneas y dejaba fuera puertos, fronteras, render y renombres.
         "pistas": [
-            "¿La BD está en zona de datos/privada?",
-            "¿Mismos nombres que el C4?",
-            "¿Object storage solo si el dominio lo necesita?",
+            "P4 · ¿Están las TRES zonas rotuladas: pública, privada y de datos?",
+            "P4 · ¿La base de datos quedó en la zona de datos y no en la pública?",
+            "P4 · ¿Cada componente lleva su puerto?",
+            "P4 · ¿Marcaste la frontera de confianza (la flecha hacia lo que no controlas)?",
+            "P4 · ¿Pegaste el Mermaid y lo VISTE renderizado antes de enviar?",
+            "P4 · ¿Quitaste todo nombre de subred o de servicio de un proveedor concreto?",
+            "P5 · ¿Cada fila usa una de las tres palabras: Relacional, Bloque u Objeto?",
+            "P5 · ¿Cada justificación nombra la característica del dato, no una preferencia?",
+            "P5 · Si no manejas archivos, ¿declaraste que no necesitas objeto?",
+            "P6 · ¿Hay una fila por cada componente de los DOS diagramas, con su zona?",
+            "P6 · ¿Listaste los renombres, o dijiste explícitamente que no hubo ninguno?",
         ],
     },
     8: {
@@ -1664,11 +2436,21 @@ TALLER_BLOQUE = {
         "escenario": [
             "Repo free + stub de Clase 3 (o mínimo).",
             "Secrets en Settings; nunca en el YAML en claro.",
+            "Misma imagen y mismo puerto del Dockerfile del Corte 1: @@cloudlite-api:0.1.0@@ y 8080.",
         ],
+        # Cubre las CUATRO preguntas de hoy: antes dejaba fuera el orden de los pasos, el
+        # rótulo de simulado, la condición de fallo y la señal de tipo registro.
         "pistas": [
-            "¿Hay build o test real (no solo echo vacío)?",
-            "¿Secrets fuera del repositorio?",
-            "¿Métricas con umbral u objetivo narrado?",
+            "P7 · ¿El YAML tiene los tres bloques: disparadores (on), entorno (runs-on) y pasos?",
+            "P7 · ¿Los pasos están en orden: construcción, prueba y despliegue simulado?",
+            "P7 · ¿El último paso dice SIMULADO en su propio nombre?",
+            "P7 · ¿La imagen y el puerto son los del Dockerfile del Corte 1?",
+            "P7 · ¿NINGÚN secreto escrito en claro dentro del YAML?",
+            "P8 · ¿Puedes nombrar un error concreto que pondría este check en rojo?",
+            "P9 · ¿Dices que tu pipeline llega hasta «listo para desplegar»?",
+            "P10 · ¿Las 4-6 señales se refieren a operaciones de TU dominio?",
+            "P10 · ¿CADA señal tiene umbral u objetivo?",
+            "P10 · ¿Al menos una señal es un registro y no una métrica numérica?",
         ],
     },
     10: {
@@ -1830,8 +2612,22 @@ def build_taller_docx(c: dict) -> Path | None:
                   "turno. La sustentación es en vivo (5–8 min de pitch + Q&A) en la sesión de clase; no "
                   "se reemplaza por un video grabado. " + mod(c, "entrega_unidad_note"))
     else:
-        para(doc, "Entrega en ExamLab (https://uniaj.examlab.workers.dev/ · módulo Talleres) · domingo 23:59 (regla del Acuerdo). "
-                  + mod(c, "entrega_unidad_note"))
+        _cierre = _cierre_de(c)
+        if _cierre:
+            _act = ACTIVIDAD_DE_CLASE[c["n"]]
+            # «compartida con» excluye la clase de hoy: con las cuatro dentro, el taller
+            # de la Clase 6 decia «compartida con las Clases 6, 7, 8 y 10».
+            _hermanas = [str(x) for x in _act["clases"] if x != c["n"]]
+            _otras = (" y ".join([", ".join(_hermanas[:-1]), _hermanas[-1]])
+                      if len(_hermanas) > 1 else _hermanas[0])
+            para(doc, "Entrega en ExamLab (https://uniaj.examlab.workers.dev/ · módulo Talleres). "
+                      f"Las preguntas de hoy son parte de UNA sola actividad, compartida con las "
+                      f"Clases {_otras}: se guarda el avance de hoy y la actividad se entrega "
+                      f"completa el {_cierre}. No hay entrega este domingo. "
+                      + mod(c, "entrega_unidad_note"))
+        else:
+            para(doc, "Entrega en ExamLab (https://uniaj.examlab.workers.dev/ · módulo Talleres) · domingo 23:59 (regla del Acuerdo). "
+                      + mod(c, "entrega_unidad_note"))
     if c.get("entrega_oficial_nota"):
         para(doc, c["entrega_oficial_nota"], shade="E8F4FA")
     # 10. Que encuentra en la plataforma. Antes el taller decia «suba el PNG a ExamLab»
@@ -1941,36 +2737,71 @@ DEMO_ARQ = {
         "Alternativas descartadas, exactamente dos: IaaS, porque habria que operar el sistema operativo sin tiempo para ello; SaaS como nucleo, porque no quedaria arquitectura que disenar. Aclare aqui —y no en la decision— que identidad y correo siguen siendo SaaS satelite.",
         "Consecuencias: escriba UN eje (operacion) con su + y su -, y deje los otros dos al grupo. Diga: «un ADR de una pagina que se entiende vale mas que 5 paginas que nadie lee».",
     ]),
-    3: ("Construir y correr el stub en Killercoda", [
+    # La demo es la bitacora de la pregunta 11 ejecutada delante del grupo, en el mismo
+    # orden y con los mismos cinco comandos. Antes construia un nginx sin etiqueta con
+    # `-p 80:80`: el estudiante copiaba del tablero un build que pierde 1.5 puntos (sin
+    # etiqueta) y un mapeo con los dos lados iguales, que es justo el que no permite
+    # distinguir anfitrion de contenedor cuando la pregunta 10 lo pide explicado.
+    3: ("Construir, correr y verificar el stub en Killercoda — los 5 comandos de la bitacora", [
         "Abra killercoda.com, inicie sesion con la cuenta gratuita y lance un escenario Ubuntu (advierta en voz alta: la sesion caduca a 1 h, guarden capturas antes de cerrarla).",
-        "Escriba un Dockerfile minimo en vivo: FROM nginx:alpine y COPY de un index.html de una linea.",
-        "Ejecute docker build -t cloudlite-stub . y luego docker run -d -p 80:80 cloudlite-stub.",
-        "Ejecute docker ps y senale las columnas IMAGE, STATUS y PORTS: «esta es la evidencia que entregan».",
+        "Escriba el Dockerfile del stub en vivo, en el mismo orden de la diapositiva «Dockerfile minimo del stub CloudLite»: FROM node:20-alpine, WORKDIR, COPY package*.json, RUN npm ci --omit=dev, COPY . ., EXPOSE 8080, CMD. Y cree al lado un `.dockerignore` con `.env` y `node_modules` — diga: «sin este archivo, el COPY . . se lleva el .env a la imagen y son 5 puntos».",
+        "Comando 1 — `docker build -t cloudlite-api:0.1.0 .` Senale la etiqueta `0.1.0`: «sin ella la imagen queda como latest y la de hoy no es la de manana». Senale en el log que `COPY package*.json` corre ANTES que `COPY . .`.",
+        "Comando 2 — `docker images | grep cloudlite-api` y lea en voz alta el TAG y el SIZE: «esto es lo que va en la fila 2 de la bitacora, pegado, no descrito».",
+        "Comando 3 — `docker run -d -p 8081:8080 --name api cloudlite-api:0.1.0`. Escriba en el tablero «8081 = anfitrion, por donde entro yo» y «8080 = contenedor, el del EXPOSE», y aclare por que los puse DISTINTOS: para que se vea cual es cual.",
+        "Comando 4 — `docker ps`: senale IMAGE, STATUS y la columna PORTS con `0.0.0.0:8081->8080/tcp`. Ejecute `date` justo antes: «la hora del sistema en la misma captura vale 0.5 puntos».",
+        "Comando 5 — `curl -i http://localhost:8081/health` y lea los TRES datos del contrato: la ruta, el `HTTP/1.1 200 OK` y el cuerpo JSON con su campo verificable.",
+        "Error a proposito, 60 segundos: pare el contenedor y relancelo con los puertos invertidos (`-p 8080:8081`). `docker ps` sigue diciendo Up y el `curl` se queda colgado: «el sintoma no dice la causa; por eso la pregunta 10 pide explicar que pasa si los inviertes».",
         "Si Killercoda no carga, la alterna es LabEx Docker Playground (ojo: solo 3 sesiones al dia en el plan gratuito); si falla la red, proyecte las capturas de `Kit docente/Clase 3/Capturas/`.",
     ]),
-    4: ("Convertir el Context de la Clase 1 en Containers", [
-        "Abra el diagrama C4 Context de la demo de Clase 1 y haga zoom a la caja «CloudLite App».",
-        "Reemplace esa caja por 3 cajas internas: «API (REST)», «Base de datos» y «Worker de notificaciones».",
-        "Rotule CADA flecha con protocolo y formato: «HTTPS/JSON», «TCP/SQL». Sin flechas sin etiqueta.",
-        "Pregunte al grupo por que el worker esta separado; si nadie da una razon de negocio, borrelo en vivo: «eso es microservicios teatro».",
+    # La demo termina DENTRO de ExamLab, con el Mermaid pegado y renderizado, porque
+    # es ahi donde se califica la pregunta 13 y es el paso que el estudiante no adivina.
+    # Antes cerraba en el tablero de draw.io y nadie veia nunca la sintaxis que la
+    # plataforma exige (`C4Container` en la primera linea, `ContainerDb` para la base).
+    4: ("Convertir el Context de la Clase 1 en Containers, y dejarlo renderizado en ExamLab", [
+        "Abra el diagrama C4 Context de la demo de Clase 1 y haga zoom a la caja «CloudLite App». Diga: «hoy no dibujamos otro sistema, abrimos este».",
+        "Reemplace esa caja por 3 cajas internas: «App web», «API de turnos» y «Base de turnos». Escriba en cada una sus TRES datos: nombre, tecnologia y responsabilidad en una frase.",
+        "Senale la base de datos y diga: «esta no es un Container mas, es un ALMACEN; en el codigo va como ContainerDb y son 2 puntos». Deje el cliente y el correo FUERA del recuadro del sistema.",
+        "Rotule CADA flecha con protocolo Y formato: «HTTPS/JSON», «TCP/SQL». Borre a proposito una etiqueta y pregunte que se pierde: sin ella nadie puede decir por donde se rompe.",
+        "Proponga una cuarta caja, el worker de avisos, y pida la razon de negocio. Si nadie la da, borrela en vivo: «eso es microservicios teatro». Si alguien la da (el correo tarda y puede fallar), quedese con ella y anote la razon al lado.",
+        "Verifique nombre por nombre contra el C4 Context de la Clase 1: si alli decia «Pasarela de pagos», aqui no puede decir «Pagos». Son 2 puntos de la pregunta 13.",
+        "Cierre en ExamLab: pegue el codigo Mermaid de la diapositiva del molde, cambie los nombres por los del ejemplo del tablero y proyecte el resultado RENDERIZADO. Diga: «si no renderiza, no hay diagrama; se revisa antes de enviar».",
     ]),
     6: ("De amenaza STRIDE a control verificable, en vivo", [
-        "Escriba en el tablero: «Tampering: alguien cambia el precio de un item via la API sin permiso».",
-        "Pregunte al grupo cual seria el control; guie hasta «autenticacion + validacion de rol antes de aceptar el cambio».",
-        "Agregue la columna Evidencia: «en que archivo o diagrama se ve ese control» — sin evidencia, el control no cuenta.",
-        "Demo de 1 minuto del anti-patron: muestre un Dockerfile con una API key escrita en texto plano y explique que queda en el historial de la imagen para siempre.",
+        # El paso 1 decia «alguien cambia el precio de un item»: ningun dominio del curso
+        # vende nada, y «alguien» es justo el sujeto vago que la pregunta 1 penaliza. Y el
+        # paso 3 pedia «en que archivo o diagrama se ve» — un archivo NO suma en la
+        # pregunta 2, que reparte 2.5 pts por senalar una caja o una flecha. El docente
+        # estaba modelando en vivo la respuesta que su propia rubrica descuenta.
+        "Escriba en el tablero, con las dos partes que exige la rubrica: «Tampering: un cliente mueve la franja de un turno ajeno porque la API no revisa de quien es el turno».",
+        "Pregunte al grupo cual seria el control; guie hasta «validar el rol y la propiedad del turno antes de aceptar el cambio».",
+        "Agregue la tercera columna preguntando «sobre que CAJA o sobre que FLECHA del C4 Containers cae ese control». Aqui la respuesta es la caja «API de turnos». Un nombre de archivo no vale: si no se puede senalar en el diagrama, el control todavia es una intencion.",
+        "Repita con una segunda fila cuyo control caiga en una FLECHA, para que se vea que las dos formas cuentan: «un cliente reserva a nombre de otro» -> «el id se toma del token» -> flecha «App web -> API de turnos».",
+        "Demo de 1 minuto del anti-patron, con la diapositiva del historial de capas proyectada: un Dockerfile con la llave en texto plano, el `docker history` que la lee, y el `rm` posterior que no la borra sino que la tapa.",
     ]),
-    7: ("Dibujar zonas de confianza sobre el diagrama de despliegue", [
-        "En draw.io dibuje dos rectangulos grandes rotulados «Subred publica» y «Subred privada».",
-        "Ponga el balanceador en la publica y la base de datos en la privada; dibuje la flecha API -> BD cruzando de una a otra.",
+    # La demo dibujaba DOS zonas y dejaba la base de datos en la privada. La pregunta 4
+    # califica TRES zonas y da cero en los 4 pts de ubicacion si la base de datos no esta
+    # en la zona de datos: el docente estaba proyectando el diagrama que la rubrica castiga.
+    7: ("Del boceto de tres zonas al Mermaid que se califica", [
+        "En draw.io o Excalidraw dibuje TRES rectangulos, rotulados «Zona publica», «Zona privada» y «Zona de datos».",
+        "Reparta las cajas de CloudLite: `Edge / balanceador` y `App web` en la publica, `API CloudLite` en la privada, `Base de datos` en la de datos — nunca en la publica. El `Cliente / navegador` va FUERA de las tres zonas: es el actor, no algo que usted despliegue, y esa es una de las dos filas sin par de la pregunta 6.",
+        "Etiquete cada flecha con su puerto (443 al edge, 8080 a la API, 5432 a la base de datos) y saque una flecha aparte a la `Pasarela de pagos` externa: ahi esta la frontera de confianza, y son 2 de los 14 pts.",
         "Pregunte: «si un atacante llega desde internet, con que se topa primero?» — eso es superficie de exposicion.",
+        "Traduzca ese boceto a Mermaid (el codigo de referencia esta abajo), peguelo en la pregunta 4 de ExamLab y proyectelo RENDERIZADO: 2 de los 14 pts son que renderice sin error.",
         "Verifique en voz alta que los nombres de los servicios son LOS MISMOS del C4 Containers de la Clase 4.",
     ]),
-    8: ("Un workflow de GitHub Actions que corra de verdad", [
-        "Cree `.github/workflows/ci.yml` con on: push, un job y 3 steps: checkout, setup, y un comando de prueba real.",
-        "Haga commit y push, y abra la pestana Actions del repositorio para ver el run.",
-        "Espere el check verde y senale el log del step: «esto es evidencia, no una diapositiva que dice que tenemos CI».",
-        "Aclare la frontera: el pipeline llega hasta «listo para desplegar»; no despliega a ningun servidor real en este curso.",
+    # La demo montaba «3 steps: checkout, setup y una prueba»: le faltaban los dos pasos que
+    # la pregunta 7 califica (la construccion y el despliegue simulado rotulado) y no hacia
+    # la prueba mental de la condicion de fallo, que son otros 2 pts en la pregunta 8. Los
+    # nombres de los pasos son los de la diapositiva del ci.yml, para que el codigo
+    # proyectado y la captura del kit digan lo mismo.
+    8: ("Un workflow de GitHub Actions que corra de verdad, con los tres pasos calificados", [
+        "Cree `.github/workflows/ci.yml` copiando la diapositiva del ci.yml: `on: [push, pull_request]`, `runs-on: ubuntu-latest` y los pasos en ORDEN — Construir, Probar, Despliegue SIMULADO.",
+        "Senale los tres bloques mientras los escribe: «disparadores, entorno y pasos: son 2, 1.5 y 4 puntos de la pregunta 7».",
+        "En el paso Construir use la MISMA imagen de la Clase 3: `npm ci && docker build -t cloudlite-api:0.1.0 .` — la coherencia con el Dockerfile del Corte 1 vale 1 pt.",
+        "Haga commit y push, abra la pestana Actions y espere el check verde; abra el log del paso Probar: «esto es evidencia, no una diapositiva que dice que tenemos CI».",
+        "Rompa el pipeline a proposito, 60 segundos: cambie la asercion de la prueba (o borre `server.js`), haga push y muestre el check ROJO. Diga: «esta es la respuesta de la pregunta 8: con que condicion falla. Si no pueden romperlo, no estan validando nada».",
+        "Vuelva a dejarlo verde y lea en voz alta el nombre del ultimo paso: «Despliegue SIMULADO (no despliega a ningun servidor)». Aclare la frontera: el pipeline llega hasta «listo para desplegar», y decirlo asi SUMA en la pregunta 9 — afirmar que ya hay CD resta la mitad.",
+        "Cierre en Settings > Secrets and variables > Actions: «los secretos viven aqui y se referencian por nombre. Un secreto escrito en claro dentro del YAML es cero en toda la pregunta 7».",
     ]),
     10: ("Tabla de costo cualitativo en 5 minutos", [
         "Dibuje 3 columnas: Componente | Costo (Bajo/Medio/Alto) | Driver del costo.",
@@ -2014,11 +2845,22 @@ ERRORES_ARQ = {
         "Confundir imagen con contenedor al hablar. Corrija en el momento: la imagen es el molde, el contenedor la instancia corriendo.",
         "Perder el trabajo porque la sesion del lab caduco a la hora. Es el error mas comun del dia: recuerdeles que el Dockerfile se escribe en la carpeta del PI y se PEGA en el lab, nunca al contrario."],
     4: ["Inventar 6 u 8 servicios para verse sofisticados. Pregunte por cada uno: que responsabilidad de negocio propia tiene y quien lo despliega por separado.",
-        "Flechas sin etiqueta entre servicios. Toda flecha lleva protocolo y formato de datos.",
-        "Olvidar que distribuir agrega fallos parciales: exija al menos 2 riesgos de red en la tabla."],
-    6: ["Entregar una lista generica de buenas practicas en vez de amenaza -> control -> evidencia. Devuelva la tabla si no tiene las 3 columnas.",
+        "Flechas sin etiqueta, o con media etiqueta. No basta «HTTP» ni «SQL»: toda flecha lleva protocolo Y formato de datos («HTTPS/JSON», «TCP/SQL»).",
+        "Marcar la base de datos como `Container` y no como `ContainerDb`. Son 2 puntos y se pierden en un solo caracter; revise ese renglon del codigo antes de que envien.",
+        "Renombrar las cajas respecto al C4 Context de la pregunta 3 («Pagos» donde antes decia «Pasarela de pagos»). Pidales los dos diagramas lado a lado y compare palabra por palabra.",
+        "Responder «un poco de los dos» en la decision de la pregunta 12: vale cero. Devuelvala pidiendo UNA opcion y las dos mitades del trade-off, lo que se gana y lo que se pierde.",
+        "Riesgos genericos tipo «los microservicios son mas complejos» o «puede haber latencia». No nombran caja, ni salto, ni dato: exija los tres riesgos concretos que pide el enunciado, y en el primero, que digan tambien que SIGUE funcionando."],
+    # El tercer punto decia «3 bien argumentadas»: la pregunta 1 reparte 1.75 pts por
+    # amenaza hasta CINCO, asi que el guion le estaba dando al docente un numero que le
+    # cuesta 3.5 puntos al estudiante. Y el primero hablaba de la columna «evidencia»,
+    # que en la rubrica se llama «donde se ve (caja o flecha)» y no admite un archivo.
+    6: ["Entregar una lista generica de buenas practicas en vez de amenaza -> control -> donde se ve. Devuelva la tabla si no tiene las 3 columnas con esos nombres.",
         "Escribir credenciales en el Dockerfile o en el repositorio. Es el error mas costoso y hay que cortarlo el mismo dia.",
-        "Cubrir las 6 categorias STRIDE de forma superficial en vez de 3 bien argumentadas para su dominio."],
+        "Cubrir las 6 categorias STRIDE de forma superficial en vez de las CINCO amenazas bien argumentadas que pide el enunciado. Dos amenazas de la misma letra son validas si el camino y el control son distintos.",
+        "Amenazas sin sujeto ni camino: «podrian hackear la base de datos». Valen la mitad. La prueba rapida es preguntar si esa frase se podria copiar en el trabajo de otro estudiante sin cambiar nada.",
+        "Poner un nombre de archivo en la tercera columna («.dockerignore», «el contrato del endpoint»). No suma: son 2.5 pts que se reparten por senalar una caja o una flecha del diagrama.",
+        "Menor privilegio recitado y no aplicado. Pida las dos frases: sobre que componente, y que deja de poder hacer al aplicarlo.",
+        "Politica de secretos sin responsable ni frecuencia («deberian rotarse periodicamente»). Son 3 de los 7.5 pts de la pregunta 3, y se pierden por escribir en tercera persona."],
     7: ["Dibujar «la nube» como una caja difusa. Exija las dos zonas, publica y privada, explicitas.",
         "Poner la base de datos en la subred publica «para que sea mas facil probar». Es exactamente lo que la Clase 6 acaba de prohibir.",
         "Renombrar servicios respecto al C4 Containers, con lo que los dos diagramas dejan de ser el mismo sistema."],
@@ -2054,10 +2896,16 @@ PREGUNTAS_ARQ = {
         "Que pasa con su trabajo cuando caduca la sesion del lab, y donde deberia vivir el Dockerfile?"],
     4: ["Que justifica que dos funciones vivan en servicios separados?",
         "Que cambia cuando una llamada de funcion se vuelve una llamada de red?",
-        "Como se llama en su C4 Containers el servicio que expone la API?"],
+        "Como se llama en su C4 Containers el servicio que expone la API? Se llama igual en su C4 Context de la Clase 1?",
+        "Cual de sus cajas es un almacen y como se escribe en el codigo del diagrama?",
+        "Cuantos saltos de red tiene la operacion principal de su sistema, contados sobre su propio diagrama?",
+        "Si se cae su base de datos, que deja de funcionar y que SIGUE funcionando?"],
     6: ["Que significa la T de STRIDE y una amenaza concreta de su CloudLite?",
         "Donde guardan una API key y por que NO dentro de la imagen?",
-        "Que evidencia demuestra que su control existe de verdad?"],
+        "Sobre que caja o sobre que flecha de SU diagrama cae uno de sus controles? Digalo con el nombre que tiene alli.",
+        "Quien rota los secretos de su repositorio y cada cuanto? Un rol y un evento del calendario, no «periodicamente».",
+        "Si manana se filtra su cadena de conexion, cual es el PRIMER paso y por que no es borrar el commit?",
+        "Sobre que componente aplican menor privilegio, y que deja de poder hacer ese componente al aplicarlo?"],
     7: ["Que va en la subred publica y que en la privada, y por que?",
         "Que hace un balanceador de carga en una frase?",
         "Cuando conviene object storage y cuando la base de datos?"],
@@ -2101,6 +2949,50 @@ DEMO_MERMAID = {
     Rel(usuario, cloudlite, "consulta", "HTTPS")
     Rel(admin, cloudlite, "administra", "HTTPS")
     Rel(cloudlite, pagos, "cobra", "API REST sobre HTTPS")"""),
+    # El resultado de la demo de la Clase 4 es el mismo Context de arriba con la caja
+    # del sistema abierta: los mismos actores y el mismo externo, con los mismos
+    # nombres. Es exactamente lo que la pregunta 13 cobra en sus 2 puntos de
+    # trazabilidad, y aqui queda al lado para que el docente lo pueda comparar.
+    4: ("C4 Container de la demo (el Context de la Clase 1, ya abierto)", """C4Container
+    title CloudLite App - nivel Container (demo de clase)
+    Person(usuario, "Usuario final", "Consulta y usa el servicio")
+    Person(admin, "Administrador", "Configura y opera")
+    System_Boundary(cloudlite, "CloudLite App") {
+      Container(web, "App web", "React", "Pantallas del usuario y del administrador")
+      Container(api, "API CloudLite", "Node.js", "Reglas de negocio y validaciones")
+      ContainerDb(db, "Base de datos", "PostgreSQL", "Datos del dominio")
+    }
+    System_Ext(pagos, "Pasarela de pagos", "Servicio de terceros")
+    Rel(usuario, web, "consulta", "HTTPS")
+    Rel(admin, web, "administra", "HTTPS")
+    Rel(web, api, "pide y envia datos", "HTTPS/JSON")
+    Rel(api, db, "lee y escribe", "TCP/SQL")
+    Rel(api, pagos, "cobra", "API REST sobre HTTPS")"""),
+    # Sobre CloudLite, que es el dominio que se proyecta desde la Clase 1: los nombres son
+    # los del C4 Container de la demo de la Clase 4 (`App web`, `API CloudLite`, `Base de
+    # datos`, `Pasarela de pagos`) y el puerto de la API es el `EXPOSE 8080` de la Clase 3.
+    # Antes esto estaba resuelto sobre AgendaU, que es el dominio del `mermaid_esperado` del
+    # kit — el modelo que la solucion declara que el estudiante NO ve. Proyectarlo rompia esa
+    # declaracion y ademas invitaba a copiar «API de agenda» en la pregunta 6, que cobra que
+    # los nombres sean los del propio C4 Containers.
+    7: ("Despliegue en tres zonas de CloudLite (el resultado de la demo)", """flowchart LR
+    cliente["Cliente / navegador<br/>Usuario final o Administrador"]
+    subgraph publica["Zona publica - internet"]
+        edge["Edge / balanceador<br/>443 HTTPS"]
+        web["App web<br/>React - estatico<br/>443 HTTPS"]
+    end
+    subgraph privada["Zona privada - solo alcanzable desde el edge"]
+        api["API CloudLite<br/>Node.js<br/>8080 HTTP"]
+    end
+    subgraph datos["Zona de datos - sin salida a internet"]
+        db[("Base de datos<br/>PostgreSQL<br/>5432 TCP")]
+    end
+    pagos["Pasarela de pagos<br/>externo - 443"]
+    cliente -->|"HTTPS 443 - frontera de confianza"| edge
+    cliente -->|"HTTPS 443 - descarga el bundle"| web
+    edge -->|"HTTP 8080"| api
+    api -->|"TCP 5432"| db
+    api -->|"HTTPS 443 - frontera de confianza"| pagos"""),
 }
 
 
@@ -2124,39 +3016,195 @@ def _demo_md(n: int) -> str:
     return md
 
 
-def guion_md(c: dict) -> str:
+def _guion_parcial_md(c: dict) -> str:
+    """Guion del dia de parcial.
+
+    Era un esqueleto de 1.100 caracteres que no cumplia el checklist del repo: no decia
+    la modalidad, no decia por que canal se entrega —y el propio enunciado remite a «el
+    medio que el docente indique al abrir la sesion», asi que el guion era el unico
+    lugar donde podia estar—, no decia que temas cubre el instrumento y no cerraba con
+    las dos secciones obligatorias («errores tipicos del docente» y «preguntas
+    frecuentes del grupo»). En un bloque de 120 minutos donde 90 son de silencio, lo
+    unico que el guion tiene que resolver son los 30 restantes, y eran justo los que
+    faltaban.
+    """
+    # Mismo mecanismo que el fundamento de una clase regular: el guion nombra la
+    # diapositiva por su titulo y el numero se resuelve contra el deck real, asi que si
+    # el deck del dia de parcial cambia de orden el build falla en vez de mandar al
+    # docente a proyectar la diapositiva equivocada.
+    return _resolver_slides(_guion_parcial_cuerpo(c), _slide_map(c), c["n"])
+
+
+def _guion_parcial_cuerpo(c: dict) -> str:
+    """Cuerpo del guion, con los tokens `{{slide:…}}` todavia sin resolver."""
     n = c["n"]
-    if c["tipo"] == "parcial":
-        return f"""# Guion docente — Clase {n}: {c['tema']}
+    p = PARCIALES_ARQ[n]
+    corte = p["corte"]
+    m = _parcial_meta(corte)
+    archivo = m["archivo"] + ".docx"
+    ultima = p.get("ultima")
+    prep = p.get("prep_pi")
+    nota_prep = (f"- La preparación del pitch del PI fue la **Clase {prep}**; hoy no se "
+                 "prepara nada del proyecto." if prep else
+                 "- En este corte no hay preparación de pitch: el PI se retoma en la "
+                 "siguiente clase regular.")
+    # Los tokens se arman fuera del f-string: dentro, `{{` es una llave literal
+    # escapada y el token salia como «{slide:evalua hoy}», que ni resuelve ni es
+    # detectable como marcador crudo por su forma habitual.
+    tok_alcance, tok_entrega = "{{slide:evalua hoy}}", "{{slide:Como se responde}}"
+    secciones = "\n".join(f"   - {s}" for s in m["secciones_resumen"])
+    lista_temas = "\n".join(f"   - {t}" for t in m["temas"])
+    no_resp = " · ".join(f"«{d}»" for d in p["dudas_no"])
+    # La clase que el grupo cree que no cuenta es justamente la autonoma: no hubo sesion
+    # en vivo, asi que alguien va a preguntar si entra. La portada del instrumento la
+    # marca «(sesion autonoma)», de ahi se detecta sin volver a escribir el dato. Cuando
+    # la autonoma ES la ultima clase evaluada —el caso del Parcial 2, cuya Clase 10 cayo
+    # en la sesion del festivo— la aclaracion va dentro de la misma respuesta, para no
+    # preguntar dos veces por la misma clase.
+    _auton = [f"{t.split(' · ')[0]} («{t.split(' · ', 2)[-1].replace(' (sesión autónoma)', '')}»)"
+              for t in m["temas"] if "autónoma" in t]
+    _razon = (" y se evalúa igual, aunque se haya trabajado sin sesión en vivo: es la que "
+              "más se olvida al estudiar." if _auton else ".")
+    if _auton and _auton[0].startswith(f"Clase {ultima} "):
+        faq_entra = (f"**¿Entra lo de la Clase {ultima}?** Sí, es lo más reciente que entra"
+                     + _razon)
+    else:
+        faq_entra = f"**¿Entra lo de la Clase {ultima}?** Sí, y es lo más reciente que entra."
+        if _auton:
+            faq_entra += ("\n\n**¿La clase autónoma también entra?** Sí: "
+                          + " y ".join(_auton) + " se trabajó sin sesión en vivo y se "
+                          "evalúa igual. Es la que más se olvida al estudiar.")
+    frase_cierre = _cierre_parcial_pi(n, hablada=True)
+    return f"""# Guion docente — Clase {n}: {c['tema']}
 
 ## Información de la clase
 - Asignatura: Arquitectura de Sistemas Computacionales (FI303380)
-- Duración del bloque: **120 min**
-- Tipo: **Solo evaluación (Parcial)** — sin tema de trabajo dirigido nuevo
-- Proyecto Integrador: CloudLite App (hoy **no** se avanza con taller)
+- Duración del bloque: **120 min** · **virtual síncrona por Google Meet**
+- Tipo: **Solo evaluación (Parcial {corte})** — sin tema nuevo y sin taller dirigido
+- Proyecto Integrador: CloudLite App (hoy **no** se avanza)
+- Instrumento: `Parciales/{archivo}` · la solución es el mismo nombre con «- SOLUCION» y **no se publica en `Clases/`**
+- Fecha: {m['fecha']} · tiempo de resolución previsto por el instrumento: **{m['tiempo']}**
+- Peso: **{m['valor_corte']}** · 100 puntos · nota = puntos / 20 sobre 5.0
 
 ## Objetivo del bloque
-Aplicar el instrumento de evaluación del corte. Material en `Parciales/`.
+Aplicar el **{m['titulo_parcial']}**, que evalúa **solo** estas clases de material:
+
+{lista_temas}
+
+Sus cuatro secciones y lo que vale cada una:
+
+{secciones}
+
+## Antes del bloque (10 min de preparación)
+1. Abre `Parciales/{archivo}` y **decide el canal de entrega**, porque el enunciado dice
+   «entréguelo por el medio que el docente indique al abrir la sesión» y esa frase te
+   deja la decisión a ti. Dos opciones que funcionan en Meet:
+   - **Documento editable** (recomendado): compartes el `.docx` por el chat del Meet al
+     minuto 0, cada estudiante lo llena y lo devuelve por el mismo canal o por correo.
+     Ventaja: las líneas del enunciado ya están donde se responde.
+   - **Foto de hoja escrita a mano**: solo si la conexión de alguien no aguanta el
+     documento. Entonces exige que la foto se lea y que traiga nombre en cada página.
+2. Ten el archivo de **solución a la mano pero cerrado**: hoy no se califica en vivo.
+3. Revisa que el enunciado no pregunte nada fuera de las clases listadas arriba. Si algo
+   se cuela de otro corte, se anula esa pregunta y se reparten sus puntos entre las demás,
+   no se descuenta al estudiante.
 
 ## Plan minuto a minuto (120 min)
 
-### 0–10 · Organización
-Di: «Hoy es solo Parcial. Guarden materiales del PI; no hay taller dirigido.»
-Verificar asistencia y que todos entren al Meet.
+### 0–10 · Encuadre y canal de entrega
+Di, con estas dos frases: «Hoy es **solo parcial**: no hay tema nuevo ni taller del
+proyecto.» y «El parcial se entrega **por el canal que voy a nombrar ahora** —el que
+decidiste en la preparación— **antes del minuto 110; lo que llegue después no se recibe.**»
+Verifica asistencia por lista, no por «los que están conectados».
+Proyecta la **{tok_alcance}** mientras lo dices: ahí está el alcance —las clases que
+entran— y el reparto de puntos por sección, que es lo primero que van a preguntar.
+Pasa a la **{tok_entrega}** para el canal, el minuto de cierre y qué dudas vas a
+responder; dejarla en pantalla los primeros minutos ahorra la mitad de los mensajes por
+privado.
+Comparte el enunciado y **confirma en voz alta que todos lo abrieron** antes de arrancar
+el reloj: en virtual, el que no lo pudo descargar pierde 15 minutos en silencio.
+Di también qué material está autorizado (por defecto: **nada**) y que las cámaras se
+quedan encendidas si el Acuerdo lo permite.
 
-### 10–100 · Aplicación del parcial
-Distribuir enunciado. Silencio de evaluación. Resolver dudas de enunciado (no de contenido).
+### 10–100 · Desarrollo (90 min de silencio de evaluación)
+Tú te quedas en el Meet con el micrófono abierto y la cámara encendida: es la única
+supervisión que hay. Anuncia el tiempo a los **50** y a los **80** minutos.
+**Resuelves dudas de forma, no de contenido.** La línea es esta: si la respuesta a la
+duda es un dato que la pregunta evalúa, no se responde.
+- Se responde: «¿esta pregunta pide una tabla o un párrafo?», «¿cuántas líneas?»,
+  «¿el punto b) es obligatorio?», «no puedo abrir el archivo».
+- No se responde, en este parcial: {no_resp}.
+Cuando la duda es de contenido, la respuesta es siempre la misma: «Eso es lo que la
+pregunta evalúa; responde con lo que recuerdes de la Clase correspondiente.» Dilo igual
+para todos, porque en Meet las preguntas llegan por privado y nadie ve que a otro le
+dijiste lo mismo.
 
-### 100–115 · Recolección
-Recoger evidencias / cierre de envío según modalidad del instrumento.
+### 100–110 · Cierre de envío
+Aviso de 10 minutos. Recibe las entregas y **acusa recibo por el chat, uno por uno**:
+en virtual el estudiante no tiene forma de saber que su archivo llegó, y el reclamo de
+«yo sí lo envié» se previene aquí y no después. Anota quién no entregó.
 
-### 115–120 · Cierre
-Di: «Gracias. El PI CloudLite continúa en la siguiente clase regular o autónoma según el plan.»
+### 110–120 · Cierre del bloque
+Di: «Gracias. {frase_cierre}» No adelantes respuestas ni comentes el parcial: todavía hay
+quien está subiendo el archivo, y cualquier comentario tuyo se convierte en la respuesta
+correcta.
+
+## Errores típicos del docente que no domina el tema
+- **Responder la duda de contenido porque parece inofensiva.** «{p['dudas_no'][0]}» es
+  literalmente la respuesta de una pregunta del parcial. La regla es la de arriba y se
+  aplica sin excepción: si la respuesta es lo que se evalúa, no se responde.
+- **No decidir el canal de entrega antes de empezar.** El enunciado remite a «el medio
+  que el docente indique»; si no lo indicaste al minuto 0, lo vas a improvisar al minuto
+  105 con la mitad del grupo escribiendo por privado.
+- **No acusar recibo.** Es la fuente número uno de reclamos de un parcial virtual, y se
+  resuelve escribiendo el nombre de cada uno en el chat a medida que llega el archivo.
+- **Calificar con la solución mientras el bloque corre.** Además de que no da el tiempo,
+  el archivo de solución abierto en pantalla compartida es un accidente que ya pasó.
+- **Descontar por lo que no se enseñó.** Antes de restar puntos por un término que el
+  estudiante no usó, busca la diapositiva donde se proyectó. Si no existe, el punto no se
+  descuenta: los decks explican con vocabulario concreto donde el parcial usa el término
+  de manual, y el estudiante responde con el que se le dio. Vale la respuesta que describe
+  el mecanismo correcto aunque no lo nombre.
+- **Tratar el día como clase.** Ni tema nuevo, ni avance del PI, ni «aprovechemos que
+  terminaron temprano»: el bloque es solo evaluación.
+
+## Preguntas frecuentes del grupo
+**¿Puedo usar mis apuntes?** Lo que digas al minuto 0 y nada más. Por defecto: no.
+Decídelo antes de abrir la sesión, porque cambiarlo a mitad del parcial invalida el de
+quien ya respondió sin ellos.
+
+**¿Se me cayó el internet, qué hago?** Que siga respondiendo el documento sin conexión y
+te escriba por correo al reconectarse. El tiempo perdido por una caída comprobable no se
+descuenta; el criterio se anuncia al minuto 0 para que nadie lo use como excusa después.
+
+{faq_entra} La portada del enunciado lista las clases evaluadas con su fecha; fuera de esa
+lista no hay nada.
+
+**¿Cuánto vale cada sección?** Está en la portada, y es esto:
+{secciones}
+   El total es 100 puntos y la nota es puntos / 20. Este parcial pesa
+   **{m['valor_corte']}**.
+
+**¿Puedo responder con viñetas en vez de párrafos?** Sí, salvo que la pregunta pida una
+forma concreta (una tabla, un número de filas). Lo que se califica es el contenido.
+
+**¿Cuánto tiempo tengo?** El instrumento prevé **{m['tiempo']}** y el bloque son 120: hay
+holgura, pero el envío cierra en el minuto 110 y eso no se mueve.
+
+**¿Cuándo veo la nota?** En la siguiente sesión; la retroalimentación es escrita sobre el
+mismo documento que entregaste.
 
 ## Notas
-- No mezclar «Tema · Parcial».
-- Prep de pitch/PI fue en la clase regular anterior.
+- No mezclar «Tema · Parcial»: hoy no se dicta nada.
+{nota_prep}
+- No publicar la solución en `Clases/`.
 """
+
+
+def guion_md(c: dict) -> str:
+    n = c["n"]
+    if c["tipo"] == "parcial":
+        return _guion_parcial_md(c)
 
     # El desarrollo completo del tema vive en arq_fundamentos.py (modulo de datos,
     # misma convencion que prog2_clases_data / seminario_clases_data). Antes estaba
@@ -2589,7 +3637,7 @@ def build_solucion(c: dict):
         },
         opciones=soluciones.opciones,
         mermaid_referencia=soluciones.mermaid_referencia,
-        dominio_proyectado=soluciones.DOMINIO_PROYECTADO,
+        dominio_referencia=soluciones.DOMINIO_REFERENCIA,
     )
 
     kit = CURSO / "Kit docente" / f"Clase {n}"
@@ -2601,25 +3649,50 @@ def build_solucion(c: dict):
 
 
 def build_parcial_kit_note(c: dict) -> Path:
+    """Nota de una pagina para el dia de parcial: el resumen que se lee de pie.
+
+    Los datos salen de `PARCIALES_ARQ` y no de un `mapping` local, porque el guion de la
+    misma clase los necesita iguales y tenerlos dos veces ya habia producido una
+    divergencia: la nota decia «p. ej. Clase 12 para P3» dentro del archivo de la
+    Clase 5, donde el dato correcto es que en el Corte 1 no hay preparacion de pitch.
+    """
     n = c["n"]
     kit = CURSO / "Kit docente" / f"Clase {n}"
     kit.mkdir(parents=True, exist_ok=True)
     path = kit / f"NOTA Docente - Clase {n} Parcial.md"
-    mapping = {
-        5: "Parcial 1 - Cloud virtualizacion y distribuidos.docx",
-        9: "Parcial 2 - Seguridad redes monitoreo y CI-CD.docx",
-        14: "Parcial 3 - Rendimiento escalabilidad y cierre de proyecto.docx",
-    }
-    path.write_text(
-        f"""# Clase {n} — Solo Parcial
+    p = PARCIALES_ARQ[n]
+    m = _parcial_meta(p["corte"])
+    prep = p.get("prep_pi")
+    linea_pi = (f"- El pitch del PI se preparó en la **Clase {prep}**; hoy no se avanza "
+                "en el proyecto." if prep else
+                "- En este corte no hubo preparación de pitch; hoy no se avanza en el "
+                "proyecto y el PI se retoma en la siguiente clase regular.")
+    # Las clases evaluadas se sacan de la portada del instrumento («Clase 7 · 05/10 ·
+    # …»), no de una lista escrita aqui: si el parcial cambia de cobertura, la nota
+    # cambia con el o queda mandando al docente a estudiar otro corte.
+    clases_ev = [t.split(" · ")[0].replace("Clase ", "") for t in m["temas"]]
+    lista = (", ".join(clases_ev[:-1]) + " y " + clases_ev[-1]
+             if len(clases_ev) > 1 else clases_ev[0])
+    return _escribir_nota(path, f"""# Clase {n} — Solo Parcial {p['corte']}
 
-- Bloque 120 min · virtual síncrono por Meet · **sin taller PI**.
-- Enunciado/solución: `Parciales/{mapping.get(n, "")}` (+ SOLUCION).
-- Recordar: prep de pitch/PI fue en clase regular anterior (p. ej. Clase 12 para P3).
-- No publicar solución en `Clases/`.
-""",
-        encoding="utf-8",
-    )
+- Bloque 120 min · **virtual síncrona por Google Meet** · **sin taller PI**.
+- Enunciado: `Parciales/{m['archivo']}.docx` · la solución es el mismo nombre con
+  `- SOLUCION` y **no se publica en `Clases/`**.
+- Evalúa **solo** las Clases {lista} · 100 puntos · nota = puntos / 20 ·
+  peso **{m['valor_corte']}**.
+- **Decide el canal de entrega antes del minuto 0** y anúncialo: el enunciado dice «por el
+  medio que el docente indique al abrir la sesión», así que si no lo dices, no existe.
+- Durante el parcial se responden dudas de **forma**, nunca de **contenido**.
+- Acusa recibo por el chat, uno por uno, a medida que llegan los archivos.
+{linea_pi}
+
+El detalle minuto a minuto, los errores típicos y las preguntas frecuentes están en
+`Guion Docente Clase {n} - {c['slug']}.md`.
+""")
+
+
+def _escribir_nota(path: Path, texto: str) -> Path:
+    path.write_text(texto, encoding="utf-8")
     print("OK nota parcial ->", path)
     return path
 

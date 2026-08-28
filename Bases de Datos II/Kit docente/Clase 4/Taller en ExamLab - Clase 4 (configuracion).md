@@ -5,7 +5,7 @@
 - **Preguntas:** 5 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** >=1 funcion + >=1 trigger + borrador plan de respaldo
-- **Entregable de la clase:** Scripts funcion/trigger + Plan_Backup_VetCare (1 pag.)
+- **Entregable de la clase:** fn_precio_consulta + 2 triggers corriendo en ExamLab + Plan_Backup_VetCare con sus 6 secciones (1 pag.)
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada

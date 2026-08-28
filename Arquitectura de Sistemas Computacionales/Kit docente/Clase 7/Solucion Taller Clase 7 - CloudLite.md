@@ -2,7 +2,7 @@
 
 > **DOCUMENTO DOCENTE — PRIVADO.** No publicar en `Clases/` ni en ExamLab antes del cierre de la entrega.
 
-**Resumen:** Las tres preguntas de la Clase 7 sobre **BiblioLite**, con el tercer angulo del sistema: donde se ejecuta cada pieza. La pregunta 4 vale 14 de los 25 puntos y tiene una trampa deliberada — **la base de datos en la zona publica cuesta 4 puntos completos** — y la 6 es la que cobra la trazabilidad de nombres que se viene exigiendo desde la Clase 4. Las tres se califican con el C4 Container del Corte 1 abierto al lado.
+**Resumen:** Las tres preguntas de la Clase 7 sobre **BiblioLite**, con el tercer angulo del sistema: donde se ejecuta cada pieza. La pregunta 4 vale 14 de los 25 puntos y tiene una trampa deliberada — **la base de datos en la zona publica cuesta 4 puntos completos** — y la 6 es la que cobra la trazabilidad de nombres que se viene exigiendo desde la Clase 4. Las tres se califican con el C4 Containers del Corte 1 abierto al lado.
 
 > Estas 3 preguntas valen **25 de los 100 puntos** de la actividad del Corte 2 (Clases 6, 7, 8 y 10). La 4 es de tipo **diagrama** y es la pregunta con mas puntos de toda la actividad: conviene que la peguen en la plataforma en la primera media hora del taller y no al final.
 
@@ -11,14 +11,14 @@
 - Taller del estudiante: `Clases/Clase 7 - Redes y almacenamiento cloud/`
 - Configuracion en la plataforma: `Kit docente/Clase 7/Taller en ExamLab - Clase 7 (configuracion).md`
 - Hito del PI: Diagrama de despliegue: red, zonas, almacenamiento
-- Entregable: Diagrama Deployment (draw.io) + elección de storage (objeto/bloque/relacional conceptual)
+- Entregable: Diagrama Deployment en Mermaid dentro de ExamLab (3 zonas + puertos) + tipo de almacenamiento por componente
 - **Estas preguntas: 25.0 puntos** en 3 preguntas.
 
 | # | Pregunta | Tipo | Puntos |
 |---|---|---|---|
 | 4 | Diagrama de Despliegue de BiblioLite | `diagrama` | 14.0 |
 | 5 | Tipo de almacenamiento de cada componente de BiblioLite | `abierta` | 5.5 |
-| 6 | Correspondencia entre el C4 Container y el Despliegue | `abierta` | 5.5 |
+| 6 | Correspondencia entre el C4 Containers y el Despliegue | `abierta` | 5.5 |
 
 ---
 
@@ -28,31 +28,15 @@
 
 **Las tres zonas y por que cada pieza esta donde esta**
 
-- **Zona publica** — lo que internet alcanza directamente: el `Edge / balanceador` en el 443 y
-  la `Aplicacion web`, que son archivos estaticos y por definicion publicos. Que el bundle de
-  React sea publico no es una fuga: no contiene secretos, porque los secretos viven en la API.
-- **Zona privada** — la `API de prestamos` en el **3000**, alcanzable **solo desde el edge**.
-  Nadie desde internet abre una conexion directa al 3000. Ese numero no se eligio hoy: es el
-  mismo `EXPOSE 3000` del Dockerfile de la Clase 3, y esa coherencia es parte de la nota.
-- **Zona de datos** — la `Base de datos de prestamos` en el 5432, **sin salida a internet** y
-  alcanzable unicamente desde la zona privada. No tiene puerto publicado hacia afuera ni ruta
-  de salida: ni entra ni sale.
+- **Zona publica** — lo que internet alcanza directamente: el `Edge / balanceador` en el 443 y la `Aplicacion web`, que son archivos estaticos y por definicion publicos. Que el bundle de React sea publico no es una fuga: no contiene secretos, porque los secretos viven en la API.
+- **Zona privada** — la `API de prestamos` en el **3000**, alcanzable **solo desde el edge**. Nadie desde internet abre una conexion directa al 3000. Ese numero no se eligio hoy: es el mismo `EXPOSE 3000` del Dockerfile de la Clase 3, y esa coherencia es parte de la nota.
+- **Zona de datos** — la `Base de datos de prestamos` en el 5432, **sin salida a internet** y alcanzable unicamente desde la zona privada. No tiene puerto publicado hacia afuera ni ruta de salida: ni entra ni sale.
 
-**Las fronteras de confianza**, marcadas en tres flechas: la del cliente hacia el edge (ahi
-empieza lo que yo controlo) y las dos de la API hacia el `Proveedor de identidad
-institucional` y el `Correo transaccional SaaS` (ahi termina). Los dos sistemas externos se
-dibujan **fuera de las tres zonas** a proposito: no los despliego yo, no puedo cambiar su
-configuracion y no puedo garantizar su disponibilidad — que es exactamente el riesgo 1 de la
-pregunta 15 del Corte 1.
+**Las fronteras de confianza**, marcadas en tres flechas: la del cliente hacia el edge (ahi empieza lo que yo controlo) y las dos de la API hacia el `Proveedor de identidad institucional` y el `Correo transaccional SaaS` (ahi termina). Los dos sistemas externos se dibujan **fuera de las tres zonas** a proposito: no los despliego yo, no puedo cambiar su configuracion y no puedo garantizar su disponibilidad — que es exactamente el riesgo 1 de la pregunta 15 del Corte 1.
 
-**Nada de nombres de proveedor.** No hay VPC, ni zona de disponibilidad, ni nombre de
-servicio de marca. Las zonas son conceptuales y el diagrama tiene que servir igual en
-cualquier proveedor, que es la posicion del curso desde el ADR-001: no se abren cuentas de
-nube de pago.
+**Nada de nombres de proveedor.** No hay VPC, ni zona de disponibilidad, ni nombre de servicio de marca. Las zonas son conceptuales y el diagrama tiene que servir igual en cualquier proveedor, que es la posicion del curso desde el ADR-001: no se abren cuentas de nube de pago.
 
-**Lo que cambia respecto al C4 Container.** Aparecen dos piezas que alli no existian —el
-`Cliente / navegador` y el `Edge / balanceador`— porque son infraestructura, no contenedores
-con responsabilidad de negocio. Ese detalle es justo lo que la pregunta 6 pide declarar.
+**Lo que cambia respecto al C4 Containers.** Aparecen dos piezas que alli no existian —el `Cliente / navegador` y el `Edge / balanceador`— porque son infraestructura, no contenedores con responsabilidad de negocio. Ese detalle es justo lo que la pregunta 6 pide declarar.
 
 ### Respuesta esperada (dominio de la solucion)
 
@@ -79,9 +63,9 @@ flowchart LR
     api -->|"HTTPS 443 - frontera de confianza"| correo
 ```
 
-### Modelo de referencia que ve el estudiante
+### Modelo de referencia del kit docente (el estudiante NO lo ve)
 
-Es el que aparece en el enunciado de la plataforma, sobre el dominio **AgendaU**. Sirve para comparar estructura y conteos, no para calificar contenido:
+Vive en `Taller en ExamLab - Clase 7 (configuracion).md` y no se pega en el enunciado; esta resuelto sobre el dominio **AgendaU**. Sirve para comparar estructura y conteos —cuantas cajas, cuales son almacenes, si toda flecha lleva protocolo y formato—, **nunca** para calificar contenido ni nombres:
 
 ```mermaid
 flowchart LR
@@ -119,8 +103,8 @@ flowchart LR
 - Nombres de proveedor: «VPC», «subnet-public-1a», nombres de servicios de marca. Se descuenta y se explica: el diagrama tiene que sobrevivir a un cambio de proveedor, que es lo que el ADR-001 dejo abierto.
 - Puertos inventados o repetidos: la API y la base en el mismo puerto, o el 443 en todo. Cada componente escucha en el suyo, y el de la API ya estaba decidido desde el `EXPOSE` de la Clase 3.
 - Flechas sin direccion o bidireccionales por defecto. La direccion importa: que la API llame a la base no significa que la base llame a la API, y esa asimetria es la que justifica que la zona de datos no tenga salida.
-- Renombrar las piezas respecto al C4 Container («backend», «servidor», «bd»). No se descuenta aqui, se descuenta en la pregunta 6, que es peor: alla vale 2.5 pts y ademas hay que listar los renombres.
-- Dibujar el diagrama como si fuera otro C4 Container, con `System_Boundary` y `Container(...)`. Este es un diagrama de despliegue: la pregunta es **donde se ejecuta**, y por eso se modela con zonas y puertos.
+- Renombrar las piezas respecto al C4 Containers («backend», «servidor», «bd»). No se descuenta aqui, se descuenta en la pregunta 6, que es peor: alla vale 2.5 pts y ademas hay que listar los renombres.
+- Dibujar el diagrama como si fuera otro C4 Containers, con `System_Boundary` y `Container(...)`. Este es un diagrama de despliegue: la pregunta es **donde se ejecuta**, y por eso se modela con zonas y puertos.
 
 ---
 
@@ -137,22 +121,11 @@ flowchart LR
 
 **Lo que BiblioLite NO necesita, dicho a proposito**
 
-BiblioLite **no necesita almacenamiento de objetos para datos del dominio**, y esa es una
-respuesta completa, no una omision. El bloque «fuera de alcance» de la ficha de la Clase 1 lo
-dice: el sistema **no digitaliza el contenido de los libros**. No hay PDF, ni portadas
-subidas por el usuario, ni documentos adjuntos, ni fotos de perfil. Los dos usos de objeto que
-si aparecen —el bundle estatico y los respaldos— son de infraestructura, no del dominio.
+BiblioLite **no necesita almacenamiento de objetos para datos del dominio**, y esa es una respuesta completa, no una omision. El bloque «fuera de alcance» de la ficha de la Clase 1 lo dice: el sistema **no digitaliza el contenido de los libros**. No hay PDF, ni portadas subidas por el usuario, ni documentos adjuntos, ni fotos de perfil. Los dos usos de objeto que si aparecen —el bundle estatico y los respaldos— son de infraestructura, no del dominio.
 
-Si manana el alcance cambiara y se agregara «adjuntar la portada del titulo», ahi si entraria
-un almacen de objetos del dominio, y el motivo estaria escrito: una imagen se guarda y se
-recupera entera por su nombre, no se cruza con nada. Mientras el dato no exista, agregar el
-almacen seria decorar el diagrama.
+Si manana el alcance cambiara y se agregara «adjuntar la portada del titulo», ahi si entraria un almacen de objetos del dominio, y el motivo estaria escrito: una imagen se guarda y se recupera entera por su nombre, no se cruza con nada. Mientras el dato no exista, agregar el almacen seria decorar el diagrama.
 
-**Por que el volumen del motor va aparte de la base.** Es la fila que mas se olvida y la que
-mas ensena: «relacional» describe **como se consulta** el dato, y «bloque» describe **como se
-persiste** en el disco. Son dos capas, no dos opciones que compiten. La base de datos es
-relacional **y** se apoya en un disco de bloque; decir solo lo primero deja la mitad de la
-historia sin contar.
+**Por que el volumen del motor va aparte de la base.** Es la fila que mas se olvida y la que mas ensena: «relacional» describe **como se consulta** el dato, y «bloque» describe **como se persiste** en el disco. Son dos capas, no dos opciones que compiten. La base de datos es relacional **y** se apoya en un disco de bloque; decir solo lo primero deja la mitad de la historia sin contar.
 
 ### Como calificar
 
@@ -174,47 +147,30 @@ historia sin contar.
 
 ---
 
-## Pregunta 6 · Correspondencia entre el C4 Container y el Despliegue · 5.5 pts
+## Pregunta 6 · Correspondencia entre el C4 Containers y el Despliegue · 5.5 pts
 
 ### Respuesta esperada
 
-| Componente en el C4 Container | Componente en el Despliegue | Zona |
+| Componente en el C4 Containers | Componente en el Despliegue | Zona |
 |---|---|---|
 | `Aplicacion web` (React) | `Aplicacion web` | Publica |
 | `API de prestamos` (Node.js) | `API de prestamos` | Privada |
 | `Base de datos de prestamos` (PostgreSQL) | `Base de datos de prestamos` | Datos |
 | `Proveedor de identidad institucional` (`System_Ext`) | `Proveedor de identidad institucional` | Externa — fuera de las tres zonas |
 | `Correo transaccional SaaS` (`System_Ext`) | `Correo transaccional SaaS` | Externa — fuera de las tres zonas |
-| — (no existe en el C4 Container) | `Edge / balanceador` | Publica |
-| — (no existe en el C4 Container) | `Cliente / navegador` | Fuera: es el actor `Estudiante` o `Auxiliar de biblioteca` |
+| — (no existe en el C4 Containers) | `Edge / balanceador` | Publica |
+| — (no existe en el C4 Containers) | `Cliente / navegador` | Fuera: es el actor `Estudiante` o `Auxiliar de biblioteca` |
 
-**Por que los nombres tienen que coincidir**
-Porque **no son dos sistemas: es el mismo sistema visto desde dos angulos**. El C4 Container
-responde «que piezas hay y de que se encarga cada una»; el Despliegue responde «donde se
-ejecuta cada una y por que puerto se habla». Si una pieza se llama `API de prestamos` en uno y
-`servidor-backend` en el otro, nadie que lea los dos documentos puede saber si son la misma
-cosa o si el proyecto tiene dos backends. En la sustentacion de la Clase 15 eso se lee como
-dos sistemas distintos, y en el checkpoint de la Clase 11 se marca como hallazgo de
-coherencia. El nombre es el unico hilo que une los tres diagramas del curso: Context,
-Container y Despliegue.
+**Por que los nombres tienen que coincidir** Porque **no son dos sistemas: es el mismo sistema visto desde dos angulos**. El C4 Containers responde «que piezas hay y de que se encarga cada una»; el Despliegue responde «donde se ejecuta cada una y por que puerto se habla». Si una pieza se llama `API de prestamos` en uno y `servidor-backend` en el otro, nadie que lea los dos documentos puede saber si son la misma cosa o si el proyecto tiene dos backends. En la sustentacion de la Clase 15 eso se lee como dos sistemas distintos, y en el checkpoint de la Clase 11 se marca como hallazgo de coherencia. El nombre es el unico hilo que une los tres diagramas del curso: Context, Container y Despliegue.
 
-**Renombres aplicados: ninguno.** Lo declaro explicitamente, que es lo que pide el enunciado.
-Los cinco nombres que venian del C4 Container —y antes del Context de la Clase 1— se copiaron
-letra por letra.
+**Renombres aplicados: ninguno.** Lo declaro explicitamente, que es lo que pide el enunciado. Los cinco nombres que venian del C4 Containers —y antes del Context de la Clase 1— se copiaron letra por letra.
 
-**Las dos filas sin par, que no son un error.** El `Edge / balanceador` y el
-`Cliente / navegador` aparecen solo en el Despliegue, y esa asimetria tiene explicacion:
+**Las dos filas sin par, que no son un error.** El `Edge / balanceador` y el `Cliente / navegador` aparecen solo en el Despliegue, y esa asimetria tiene explicacion:
 
-- El **edge** es infraestructura de ejecucion, no un contenedor con responsabilidad de
-  negocio propia. En el nivel Container no existe porque no implementa ninguna capacidad de
-  la ficha; en el Despliegue es imprescindible porque es lo que separa la zona publica de la
-  privada.
-- El **cliente / navegador** no es una pieza que yo despliegue: es el actor `Estudiante` o
-  `Auxiliar de biblioteca` del Context, dibujado aqui porque el diagrama de despliegue tiene
-  que mostrar de donde viene la primera peticion.
+- El **edge** es infraestructura de ejecucion, no un contenedor con responsabilidad de negocio propia. En el nivel Container no existe porque no implementa ninguna capacidad de la ficha; en el Despliegue es imprescindible porque es lo que separa la zona publica de la privada.
+- El **cliente / navegador** no es una pieza que yo despliegue: es el actor `Estudiante` o `Auxiliar de biblioteca` del Context, dibujado aqui porque el diagrama de despliegue tiene que mostrar de donde viene la primera peticion.
 
-Declararlas es mejor que esconderlas: son las dos filas que demuestran que el estudiante
-entendio para que sirve cada nivel, y no solo que copio nombres.
+Declararlas es mejor que esconderlas: son las dos filas que demuestran que el estudiante entendio para que sirve cada nivel, y no solo que copio nombres.
 
 ### Como calificar
 
@@ -222,7 +178,7 @@ entendio para que sirve cada nivel, y no solo que copio nombres.
 - 2.5 pts la tabla completa, **una fila por componente, con su zona**. Se prorratea. **Se descuenta si la tabla deja fuera algun componente que si aparece en alguno de los dos diagramas** — y eso incluye el edge y el cliente, que solo estan en el despliegue.
 - 1 pt **listar los renombres aplicados, o declarar explicitamente que no hubo ninguno**. Dejar el tema en silencio es cero en este criterio, aunque de hecho no haya renombres: la declaracion es el entregable.
 - Si hubo renombres, la respuesta completa dice **cual de los dos diagramas se actualizo** para que queden iguales. No importa cual: importa que quede uno solo de los dos nombres vivo.
-- Las filas «no existe en el C4 Container» para el edge y el cliente, con su explicacion, son la mejor version de esta respuesta. No se exige, pero si el estudiante las omite y ademas no menciona el edge en ninguna parte, descuente de los 2.5 pts de la tabla.
+- Las filas «no existe en el C4 Containers» para el edge y el cliente, con su explicacion, son la mejor version de esta respuesta. No se exige, pero si el estudiante las omite y ademas no menciona el edge en ninguna parte, descuente de los 2.5 pts de la tabla.
 - Esta pregunta se califica con los dos diagramas al lado y en dos minutos. Si un nombre no coincide, verifique tambien la pregunta 4: a veces el diagrama esta bien y la tabla mal transcrita.
 
 ### Errores frecuentes y que hacer
@@ -264,7 +220,7 @@ No en el diagrama: se descuenta. El diagrama es conceptual y tiene que servir ig
 
 Al contrario: declararlo y justificarlo suma completo. Lo que se descuenta es incluir un almacen de objetos sin un dato que lo pida.
 
-**En el despliegue tengo piezas que no estan en el C4 Container, ¿esta mal?**
+**En el despliegue tengo piezas que no estan en el C4 Containers, ¿esta mal?**
 
 No, si las declara. El edge y el cliente son los dos casos normales: son infraestructura y actor, no contenedores con responsabilidad de negocio. Declararlas es parte de la respuesta de la pregunta 6.
 

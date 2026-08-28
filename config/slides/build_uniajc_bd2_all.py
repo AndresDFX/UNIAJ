@@ -131,38 +131,47 @@ CLASES = [
   dict(n=3, slug="Procedimientos almacenados",
     titulo="Procedimientos almacenados · VetCare",
     subtitulo="Logica de negocio en la BD del PI",
-    herramienta="Oracle Live SQL",
+    # El motor es el que califica: las 5 preguntas de ExamLab son PL/pgSQL que
+    # corre en PGlite. Oracle Live SQL queda como contraste de sintaxis, no como
+    # sitio de trabajo — igual que en la Clase 2.
+    herramienta="ExamLab (PostgreSQL) + Google Docs",
     hito_pi=">=1 procedimiento de negocio (agendar cita / registrar consulta)",
-    entregable="Script proc + casos de prueba (captura o enlace Live SQL)",
-    teoria=["Un procedimiento almacenado (stored procedure) es un bloque de codigo SQL/PLSQL con nombre propio, guardado y compilado DENTRO de la base de datos, que se invoca con CALL o EXECUTE en vez de reescribir la logica cada vez.",
-            "Parametros: IN (entra un valor, ej. p_id_mascota), OUT (el proc devuelve un valor al que lo llamo, ej. p_msg con el resultado), IN OUT (ambos). A diferencia de una consulta suelta, un proc puede recibir varios parametros y ejecutar varias sentencias como una sola unidad logica.",
-            "Ventaja central para el PI: sin proc, cada pantalla de la futura app (o cada persona que toque el codigo) reescribiria la regla 'mascota inactiva no agenda' con su propio SQL, y tarde o temprano alguien la escribe distinto o la olvida. Con el proc, la regla vive UNA vez dentro de la BD; toda la app la respeta sin excepcion.",
-            "Manejo de errores controlado: en vez de dejar que la insercion falle con un error crudo de motor, el proc valida primero (SELECT activa FROM mascota) y responde con un mensaje de negocio claro ('ERROR: mascota inactiva; no se agenda'), y usa EXCEPTION/TRY-CATCH segun el motor para capturar fallos inesperados sin tumbar la transaccion completa.",
-            "Diferencia con una funcion (se vera en Clase 4): el procedimiento se ejecuta como una accion (CALL sp_algo), la funcion se invoca dentro de una expresion SQL y retorna un valor (SELECT fn_algo(x) FROM ...).",
-            "Error de docente que no domina el tema: escribir el proc sin validar nada (solo el INSERT) y llamarlo 'logica de negocio' — un proc sin reglas de validacion es solo una consulta con nombre, no resuelve el problema que motiva usar procedimientos."],
-    demo="CREATE PROCEDURE sp_agendar_cita(...) con validacion de mascota activa.",
-    taller=["Implementar sp_agendar_cita o sp_registrar_consulta en Live SQL.",
-            "Incluir validacion de negocio del PI (>=1).",
-            "Ejecutar 2 pruebas: caso OK + caso error.",
-            "Documentar firma del proc (contrato para la futura app)."],
+    entregable="2 procedimientos en PL/pgSQL corriendo en ExamLab + bateria de pruebas con su tabla resultado_prueba + contrato del proc (6 bloques)",
+    teoria=["Un procedimiento almacenado es logica de negocio guardada DENTRO de la base, y se llama con CALL. No es una consulta con nombre: recibe parametros tipados y ejecuta varias sentencias como una sola unidad logica, de modo que la regla vive UNA vez y toda la app la respeta.",
+            "El molde de PL/pgSQL es fijo: CREATE PROCEDURE nombre(params) LANGUAGE plpgsql AS $proc$ ... $proc$;. Dentro van DECLARE (variables), BEGIN y END. Los delimitadores $proc$ (dollar-quoting) existen porque el cuerpo lleva punto y coma y el motor necesita saber donde termina. Nada de IS en vez de AS, ni VARCHAR2, ni NUMBER, ni RAISE_APPLICATION_ERROR, ni la barra / final: eso es Oracle y aqui no compila.",
+            "Parametros: IN es el defecto y no se escribe; OUT e INOUT existen pero hoy no se usan para reportar errores. Los tipos son los de PostgreSQL: INT, NUMERIC, TEXT, TIMESTAMP, BOOLEAN.",
+            "La validacion no devuelve un mensaje: aborta con RAISE EXCEPTION 'ERROR: ... %', variable;. El % se sustituye en orden por las variables que siguen a la coma. Al abortar, todo lo que el procedimiento hubiera hecho se deshace, asi que es imposible que quede una cita a medias. Con un mensaje en un parametro OUT el INSERT seguiria corriendo: la regla no se cumpliria.",
+            "Un procedimiento sin prueba no esta terminado: la bateria son bloques DO que capturan el error. Cada caso va en su propio bloque DO $$ BEGIN ... EXCEPTION WHEN OTHERS THEN ... SQLERRM ... END $$;, y el resultado se escribe en una tabla resultado_prueba (caso, esperado, obtenido, paso). Un caso OK y tres casos error, mas el COUNT(*) que demuestra que la tabla cita paso de 10 a 11 filas.",
+            "Procedimiento y funcion se diferencian hoy, no en la Clase 4: CALL sp_x(...) frente a SELECT fn_x(...). El procedimiento se ejecuta como una accion y puede manejar transacciones; la funcion retorna un valor y se invoca dentro de una expresion SQL. En PostgreSQL una funcion no puede hacer COMMIT ni ROLLBACK, y eso es lo que decide cual de los dos se usa.",
+            "El contrato del proc es lo que consume la futura app: firma, precondiciones, postcondiciones y errores. Son 6 bloques: la firma exacta con tipos, un ejemplo de CALL, las precondiciones, las postcondiciones, la tabla de errores con su mensaje literal, y la decision de diseno que explica por que se aborta en vez de devolver un codigo.",
+            "Error de docente que no domina el tema: escribir el proc sin validar nada (solo el INSERT) y llamarlo 'logica de negocio' — un proc sin reglas de validacion es solo una consulta con nombre. El segundo error es dictar el molde de Oracle porque es el que uno recuerda: en ExamLab ese codigo no compila, y el estudiante pierde los 35 puntos de la pregunta 1 por sintaxis, no por no entender el tema."],
+    demo="sp_agendar_cita en PL/pgSQL dentro de ExamLab: las 3 validaciones con RAISE EXCEPTION y la bateria de bloques DO que las prueba.",
+    taller=["Escribir sp_agendar_cita en PL/pgSQL y ejecutarlo en ExamLab (LANGUAGE plpgsql, dollar-quoting, sin sintaxis de Oracle).",
+            "Incluir las 3 validaciones de negocio del PI, cada una con su RAISE EXCEPTION y su mensaje literal.",
+            "Correr la bateria de pruebas con bloques DO: 1 caso OK + 3 casos error, escritos en resultado_prueba, mas el COUNT(*) de cita antes y despues.",
+            "Escribir sp_registrar_consulta, comprobando con EXISTS antes de chocar contra la restriccion UNIQUE.",
+            "Redactar el contrato del proc en sus 6 bloques (plantilla en este documento) y pegarlo en la pregunta 5."],
     quiz=True, sql="03_procs_vetcare.sql"),
   dict(n=4, slug="Funciones disparadores seguridad respaldo",
     titulo="Funciones · Triggers · Seguridad y respaldo",
     subtitulo="Integridad + RAA1 del PI VetCare",
-    herramienta="Oracle Live SQL + Google Docs",
+    herramienta="ExamLab (PostgreSQL) + Google Docs",
     hito_pi=">=1 funcion + >=1 trigger + borrador plan de respaldo",
-    entregable="Scripts funcion/trigger + Plan_Backup_VetCare (1 pag.)",
-    teoria=["Funcion (Clase 3 vio procedimiento): retorna un valor y se usa DENTRO de una expresion SQL, ej. SELECT fn_precio_base(especie) FROM mascota. Debe ser determinista y sin efectos secundarios pesados; si necesita modificar datos y ejecutarse como accion independiente, es un procedimiento, no una funcion.",
+    entregable="fn_precio_consulta + 2 triggers corriendo en ExamLab + Plan_Backup_VetCare con sus 6 secciones (1 pag.)",
+    teoria=["Funcion (Clase 3 vio procedimiento): retorna un valor y se usa DENTRO de una expresion SQL, ej. SELECT fn_precio_consulta(especie, urgencia) FROM mascota. Su molde es CREATE FUNCTION nombre(params) RETURNS tipo LANGUAGE plpgsql AS $fn$ ... $fn$;. Si no toca datos se marca IMMUTABLE, que le dice al motor que puede memorizar el resultado. Nada de RETURN NUMBER IS: eso es Oracle.",
             "Trigger (disparador): bloque de codigo que el motor ejecuta AUTOMATICAMENTE cuando ocurre un evento (BEFORE/AFTER INSERT, UPDATE o DELETE) sobre una tabla, sin que nadie lo llame explicitamente. Dos usos tipicos aqui: auditoria (guardar quien/cuando cancelo una cita) y validacion de invariantes (que el stock nunca quede negativo tras un UPDATE).",
-            "Riesgo real de los triggers: son invisibles en el codigo de la app (un desarrollador que solo mira el INSERT no ve que ademas se dispara una auditoria), y pueden encadenarse (un trigger que dispara otro trigger) generando efectos dificiles de rastrear. Se usan para pocas reglas criticas, no para toda la logica de negocio.",
-            "Seguridad y respaldo van juntos: seguridad evita que datos se corrompan o se filtren; respaldo (backup) asume que igual algo saldra mal y prepara la recuperacion. Full backup (copia completa), incremental (solo lo que cambio desde el ultimo backup) y diferencial (todo lo que cambio desde el ultimo FULL) son las tres estrategias base.",
+            "En PostgreSQL un trigger son SIEMPRE dos objetos, no uno: la funcion y la asociacion. Primero CREATE FUNCTION fn_trg_x() RETURNS TRIGGER, que termina en RETURN NEW (o RETURN OLD si el evento es DELETE); despues CREATE TRIGGER trg_x AFTER UPDATE OF estado ON cita FOR EACH ROW EXECUTE FUNCTION fn_trg_x();. Dentro de la funcion las filas se leen como NEW y OLD, SIN los dos puntos: NEW.estado, no :NEW.estado. Escribir el cuerpo dentro del CREATE TRIGGER es la herencia de Oracle que mas cuesta puntos, porque no compila.",
+            "BEFORE o AFTER no es un detalle de estilo: un trigger que VALIDA va BEFORE, porque tiene que abortar antes de que el dato quede escrito; un trigger que AUDITA va AFTER, porque registra un hecho ya consumado. Y la clausula WHEN (OLD.estado IS DISTINCT FROM NEW.estado) evita registrar los UPDATE que no cambiaron nada: es la diferencia entre auditar 2 filas y auditar 3.",
+            "Riesgo real de los triggers: son invisibles en el codigo de la app (un desarrollador que solo mira el INSERT no ve que ademas se dispara una auditoria), y pueden encadenarse (un trigger que dispara otro trigger) generando efectos dificiles de rastrear. Se usan para pocas reglas criticas, no para toda la logica de negocio: una regla sobre una sola columna es un CHECK, una regla que compara filas es un trigger, y una regla de interfaz es de la app.",
+            "Seguridad y respaldo van juntos: seguridad evita que datos se corrompan o se filtren; respaldo (backup) asume que igual algo saldra mal y prepara la recuperacion. Full backup (copia completa), incremental (solo lo que cambio desde el ultimo backup) y diferencial (todo lo que cambio desde el ultimo FULL) son las tres estrategias base. En PostgreSQL las herramientas son pg_dump (una base), pg_dumpall --globals-only (los roles del cluster, que pg_dump NO respalda) y pg_basebackup con archivado de WAL.",
             "RPO (Recovery Point Objective) = cuantos datos se puede permitir perder, medido en tiempo ('maximo 1 hora de citas perdidas'). RTO (Recovery Time Objective) = cuanto tiempo puede estar caida la BD antes de restaurar. Un backup diario sin probar el restore no cumple ningun RPO/RTO real: un plan de respaldo sin prueba de restauracion es solo una promesa.",
-            "Error de docente que no domina el tema: presentar el backup como 'copiar el archivo de vez en cuando' sin frecuencia, retencion (cuantas copias se guardan) ni prueba de restore — eso es lo que el taller de esta clase pide explicitamente que el estudiante defina."],
-    demo="fn_precio_consulta + trg_audit_cancelacion_cita + outline backup.",
-    taller=["Crear >=1 funcion util al PI.",
-            "Crear >=1 trigger (auditoria o stock no negativo).",
-            "Redactar plan de respaldo: frecuencia, retencion, restore de prueba.",
-            "Actualizar checklist PI: seguridad/respaldo en progreso."],
+            "Error de docente que no domina el tema: presentar el backup como 'copiar el archivo de vez en cuando' sin frecuencia, retencion (cuantas copias se guardan) ni prueba de restore — eso es lo que el taller de esta clase pide explicitamente que el estudiante defina. El segundo error es dictar el trigger como en Oracle, con el cuerpo dentro del CREATE TRIGGER y :NEW/:OLD: la rubrica lo penaliza expresamente, asi que el docente estaria proyectando el codigo por el que va a descontar."],
+    demo="fn_precio_consulta + fn_trg_audit_cita con su CREATE TRIGGER ... EXECUTE FUNCTION, en ExamLab, y el esqueleto del plan de respaldo.",
+    taller=["Escribir fn_precio_consulta(especie, urgencia) RETURNS NUMERIC en PL/pgSQL y probarla con SELECT sobre las 3 especies.",
+            "Crear la tabla audit_cita y el trigger de auditoria en sus dos objetos: fn_trg_audit_cita() RETURNS TRIGGER + CREATE TRIGGER ... EXECUTE FUNCTION.",
+            "Crear el trigger de stock no negativo (BEFORE UPDATE), evidenciando primero que sin el el stock llega a -7.",
+            "Decidir donde vive cada validacion: CHECK, trigger o aplicacion (pregunta 4).",
+            "Redactar Plan_Backup_VetCare con sus 6 secciones (plantilla en este documento): que se respalda y con que, frecuencia, retencion, RPO/RTO, restore de prueba con quien firma, y que NO cubre el plan."],
     quiz=True, sql="04_func_trigger_backup.sql"),
   dict(n=5, slug=None, titulo="Parcial 1", subtitulo="Solo evaluacion — Corte 1",
     herramienta=None, hito_pi="No avanza PI", entregable=None, teoria=[], demo=None, taller=[],
@@ -170,56 +179,102 @@ CLASES = [
   dict(n=6, slug="Optimizacion de consultas",
     titulo="Optimizacion de consultas · VetCare",
     subtitulo="Antes/despues sobre el DDL del PI",
-    herramienta="DB Fiddle / SQLTest.online",
+    # El taller se resuelve y se califica en ExamLab, que corre PostgreSQL (PGlite) y
+    # trae la base con VOLUMEN sembrado: 30.010 citas, sin indices y con ANALYZE ya
+    # corrido. Decia «DB Fiddle / SQLTest.online», que es donde NO se califica, y
+    # ExamLab no aparecia en ninguna parte de la clase.
+    herramienta="ExamLab (PostgreSQL) + Google Docs",
     hito_pi="Primera pareja de consultas antes/despues del PI",
     entregable="2 consultas (antes/despues) + justificacion (media pag.)",
     teoria=["Optimizar consultas parte de entender que el motor NO ejecuta el SQL tal cual se escribe: primero lo transforma en un plan de ejecucion (que tablas leer, en que orden, con o sin indice) y ese plan es lo que realmente determina el tiempo de respuesta.",
             "Tres cuellos de botella clasicos: (1) SELECT * trae columnas que nadie usa y aumenta el trafico/memoria; (2) JOIN sin filtro temprano obliga a cruzar tablas completas antes de descartar filas; (3) aplicar una funcion sobre la columna en el WHERE (ej. WHERE UPPER(nombre)='LUNA') impide que el motor use un indice normal sobre esa columna (esto se llama 'no-sargable').",
             "Reescritura tipica: proyectar solo columnas necesarias (SELECT nombre, fecha en vez de SELECT *), aplicar el filtro mas selectivo primero (WHERE fecha >= hoy antes del JOIN si reduce mucho el conjunto), y mover comparaciones a la forma que el motor pueda usar con indice.",
-            "EXPLAIN (o EXPLAIN PLAN segun el motor) muestra COMO el motor piensa ejecutar la consulta: si dice 'Seq Scan'/'Full Table Scan' sobre una tabla grande donde se esperaba usar un indice, esa es la senal de que algo en el WHERE o el tipo de dato esta bloqueando el uso del indice.",
-            "Conexion con Clase 7: optimizar consultas y crear indices son las dos caras de la misma moneda — una consulta mal escrita no aprovecha ni el mejor indice, y el mejor indice no compensa una consulta que fuerza un escaneo completo.",
+            # El cuarto cuello de botella: es la pregunta 3 del taller (20 pts) y una de
+            # las cuatro afirmaciones correctas de la 4. No estaba en ninguna bala ni en
+            # ninguna diapositiva, asi que se evaluaban ~22 puntos sin haberlo ensenado.
+            "El cuarto cuello de botella, y el mas caro: una subconsulta correlacionada en la lista de columnas se evalua UNA VEZ POR FILA del exterior — el plan lo dice con loops=2006 —, y se elimina reescribiendola como LEFT JOIN + GROUP BY, que hace una sola pasada. Con LEFT JOIN hay que contar la columna, COUNT(c.id_cita), y no COUNT(*): el LEFT JOIN fabrica una fila de NULL por cada dueno sin citas, y COUNT(*) cuenta filas, asi que reportaria 1 donde la respuesta es 0.",
+            "Optimizar NO puede cambiar el resultado, y eso se demuestra, no se afirma: un COUNT(*) de cada version que coincida, y para conjuntos completos un EXCEPT en los DOS sentidos que devuelva cero filas (EXCEPT no es simetrico: A EXCEPT B vacio no dice nada sobre filas de mas en B).",
+            "EXPLAIN muestra el plan que el motor ESTIMA; EXPLAIN ANALYZE lo ejecuta de verdad y agrega actual rows, loops y Execution Time. En PostgreSQL el recorrido completo de tabla se llama Seq Scan (en Oracle, TABLE ACCESS FULL): verlo sobre una tabla grande donde se esperaba un indice es la senal de que el WHERE o el tipo de dato bloquea el indice.",
+            "Conexion con Clase 7: optimizar consultas y crear indices son las dos caras de la misma moneda — una consulta mal escrita no aprovecha ni el mejor indice, y el mejor indice no compensa una consulta que fuerza un escaneo completo. Hoy NO se crea ningun indice: por eso la mejora que se mide es la de filas procesadas y pasadas sobre la tabla, no un cambio de Seq Scan a Index Scan.",
             "Error de docente que no domina el tema: pedir 'la consulta más rápida' sin definir contra que se compara (volumen de datos, indices existentes) — optimizar siempre es relativo a un antes medible, por eso el taller pide guardar la version antes Y despues, no solo la version final."],
-    demo="Consulta pesada citas+mascotas+duenos -> version filtrada y proyectada.",
-    taller=["Tomar 1 consulta real del PI (citas del dia / historial).",
-            "Escribir version antes e ineficiente o real.",
-            "Reescribir despues y justificar 3 cambios.",
-            "Guardar 06_opt_antes.sql / 06_opt_despues.sql en la carpeta del PI."],
+    demo="Consulta pesada citas+mascotas+duenos -> version filtrada y proyectada, con EXPLAIN ANALYZE antes y despues, en ExamLab.",
+    taller=["Reescribir la agenda del dia corrigiendo sus 4 antipatrones (SELECT *, joins con coma, to_char sobre la fecha, UPPER sobre el estado) y probar con COUNT(*) que las dos versiones devuelven las mismas 91 filas.",
+            "Medir con EXPLAIN (ANALYZE, BUFFERS) las dos versiones, y con EXPLAIN ANALYZE una tercera que le anada LIMIT 50, y anotar las tres en comentarios: nodo mas costoso, filas estimadas vs reales y tiempo.",
+            "Matar la subconsulta correlacionada del ranking de duenos: LEFT JOIN + GROUP BY + COUNT(c.id_cita), y demostrar la equivalencia con EXCEPT en los dos sentidos.",
+            "Responder la de seleccion multiple sobre antipatrones (6 afirmaciones, 4 correctas).",
+            "Escribir la justificacion tecnica de media pagina y guardar 06_opt_antes.sql / 06_opt_despues.sql en la carpeta del PI."],
     quiz=True, sql="06_opt_consultas.sql"),
   dict(n=7, slug="Indices y particionamiento",
     titulo="Indices y particionamiento · VetCare",
     subtitulo="Diseno fisico al servicio del PI",
-    herramienta="DB Fiddle + draw.io (opcional)",
-    hito_pi=">=2 indices justificados sobre tablas calientes del PI",
-    entregable="Script CREATE INDEX + tabla justificacion consulta->indice",
+    # Decia «DB Fiddle + draw.io (opcional)», y los 100 puntos del dia se califican en
+    # ExamLab, que corre PostgreSQL sobre PGlite. En DB Fiddle no existe la base sembrada
+    # de 30.010 citas, asi que quien mida ahi no puede reproducir el cambio de plan que la
+    # rubrica exige; y el diagrama opcional se anunciaba en draw.io en esta linea y en
+    # Excalidraw en el paso 4 del taller: dos herramientas para el mismo dibujo.
+    herramienta="ExamLab (PostgreSQL/PGlite)",
+    # El hito decia «>=2 indices» y la actividad exige TRES con nombre exacto (dos de
+    # ellos compuestos en la pregunta 2) mas la tabla particionada de la pregunta 3.
+    hito_pi="3 indices justificados (uno parcial) + historico particionado por ano",
+    entregable="Script CREATE INDEX + cita_hist particionada + tabla justificacion consulta->indice",
     teoria=["Un indice es una estructura auxiliar (tipicamente un arbol B-Tree) que el motor mantiene ordenada por una o mas columnas, para encontrar filas sin recorrer toda la tabla — como el indice de un libro en vez de leer pagina por pagina.",
             "El costo no es gratis: cada INSERT/UPDATE/DELETE sobre una columna indexada obliga al motor a actualizar tambien el indice, asi que mas indices = lecturas mas rapidas pero escrituras mas lentas. Por eso 'indexar todo' es un error, no una optimizacion.",
             "Buen candidato a indice: columna usada muy frecuentemente en WHERE, JOIN u ORDER BY, con alta cardinalidad (muchos valores distintos, ej. id_dueno) — indexar una columna de baja cardinalidad (ej. un booleano activo S/N con solo 2 valores) rara vez ayuda porque el motor igual debe leer una fraccion enorme de la tabla.",
-            "Candidatos reales en VetCare: Cita(fecha_hora) para listar la agenda del dia, Mascota(id_dueno) porque cada consulta de historial parte de un dueno, DetalleFactura(id_factura) para armar el total de una factura sin escanear toda la tabla.",
-            "Particionamiento (idea conceptual, no se implementa hoy): dividir fisicamente una tabla muy grande en fragmentos (ej. Cita por mes o por anio) para que las consultas que solo piden 'las citas de este mes' lean unicamente esa porcion, no la tabla historica completa. Es una tecnica de escala, distinta del indice, mientras el indice ordena datos, la particion los separa fisicamente en bloques.",
+            # Decia «Cita(fecha_hora) ... Mascota(id_dueno) ... DetalleFactura(id_factura)».
+            # Las tablas del curso son minusculas y con guion bajo —es la convencion que la
+            # Clase 1 declara vinculante para todo el semestre, «nunca camelCase»— y el
+            # estudiante tiene que escribir `cita`, `mascota` y `detalle_factura` para que su
+            # CREATE INDEX corra. Un `DetalleFactura` proyectado aqui es un error que se
+            # copia y no compila.
+            "Candidatos reales en VetCare: cita(fecha_hora) para listar la agenda del dia, mascota(id_dueno) porque cada consulta de historial parte de un dueno, detalle_factura(id_factura) para armar el total de una factura sin escanear toda la tabla.",
+            # Decia «idea conceptual, no se implementa hoy». La pregunta 3 vale 20 puntos y
+            # se implementa entera: PARTITION BY RANGE, dos particiones, migracion, prueba
+            # de enrutamiento y poda en el plan. El docente leia que hoy no se implementa y
+            # el estudiante lo entregaba ejecutado.
+            "Particionamiento (hoy SI se implementa, y es la pregunta 3 del taller): dividir una tabla logica en fragmentos fisicos por rango de fecha, de modo que la consulta de un ano no toque los datos del otro. PostgreSQL lo hace con PARTITION BY RANGE (fecha_hora) y una particion por ano. El indice ORDENA los datos; la particion los SEPARA.",
+            "Con 5.010 filas la particion no acelera nada y hay que decirlo: lo que si se comprueba hoy es la poda de particiones en el plan (solo aparece cita_hist_2026) y el archivado, porque tirar un ano completo es un DROP TABLE de la particion en vez de un DELETE masivo.",
             "Error de docente que no domina el tema: crear un indice sobre CADA columna 'por si acaso' sin mirar que consultas realmente lo necesitan — el taller exige justificar cada indice con la consulta concreta que lo aprovecha."],
-    demo="CREATE INDEX idx_cita_fecha; consulta que lo usaria.",
-    taller=["Identificar 2 consultas frecuentes del PI.",
-            "Proponer y crear >=2 indices con nombre claro.",
-            "Justificar columna, cardinalidad y riesgo de sobre-indexar.",
-            "Opcional: diagrama tabla caliente -> indices en Excalidraw."],
+    # El nombre exacto que califica la pregunta 1 es `idx_cita_fecha_hora`. La demo decia
+    # `idx_cita_fecha`, asi que el estudiante que copiaba la demo perdia puntos por el
+    # nombre. El script 07 tambien lo decia mal y quedo corregido.
+    demo="EXPLAIN ANALYZE con Seq Scan, CREATE INDEX idx_cita_fecha_hora, ANALYZE, y el mismo EXPLAIN mostrando Index Scan.",
+    taller=["Medir la linea base con EXPLAIN ANALYZE de las dos consultas frecuentes: hay que ver Seq Scan.",
+            "Crear los tres indices con el nombre exacto, incluido el parcial idx_cita_programada_fecha, y correr ANALYZE.",
+            "Repetir los EXPLAIN y decir cual indice eligio el planeador y por que.",
+            "Construir cita_hist particionada por ano, migrar las citas y demostrar el enrutamiento y la poda.",
+            "Llenar la tabla de justificacion consulta->indice (7 columnas) y el veredicto de particionamiento."],
     quiz=True, sql="07_indices_vetcare.sql"),
   dict(n=8, slug="Tuning y transacciones",
     titulo="Tuning · Transacciones · VetCare",
     subtitulo="Atomicidad en facturacion e insumos",
-    herramienta="Oracle Live SQL / DB Fiddle",
+    # Decia «Oracle Live SQL / DB Fiddle». Las tres preguntas de SQL del dia (75 de los
+    # 100 puntos) son PL/pgSQL: `CALL`, `GET DIAGNOSTICS ... ROW_COUNT`, `RAISE EXCEPTION`
+    # y una funcion que devuelve BOOLEAN. Oracle Live SQL no ejecuta ninguna de las tres.
+    # Se anunciaba la herramienta en la que el entregable no compila.
+    herramienta="ExamLab (PostgreSQL/PGlite)",
     hito_pi="Transaccion de negocio (factura + stock) + notas de tuning",
-    entregable="Script transaccional + checklist tuning del PI (1 pag.)",
+    entregable="sp_facturar + fn_descontar_stock + seccion Transacciones y tuning del informe (1 pag.)",
     teoria=["Una transaccion agrupa varias sentencias SQL en una sola unidad de todo-o-nada: si facturar implica INSERT en factura, INSERT en detalle_factura Y UPDATE de stock en insumo, las tres deben aplicarse juntas o ninguna — nunca queda una factura sin descontar stock, ni stock descontado sin factura.",
             "Propiedades ACID en una frase cada una: Atomicidad (todo o nada, ya explicado), Consistencia (la BD pasa de un estado valido a otro, respetando reglas como stock>=0), Aislamiento (transacciones concurrentes no se pisan entre si — se profundiza en Clase 10), Durabilidad (una vez hecho COMMIT, el dato sobrevive aunque el sistema se caiga un segundo despues).",
-            "COMMIT confirma la transaccion de forma permanente; ROLLBACK deshace todo lo hecho desde el ultimo COMMIT si algo salio mal (ej. el insumo no tenia stock suficiente). Sin ROLLBACK explicito ante el error, quedaria una factura registrada sin el descuento real de stock: inconsistencia de datos.",
+            # Decia «Sin ROLLBACK explicito ante el error, quedaria una factura registrada
+            # sin el descuento real». En PostgreSQL eso es falso para el caso del dia y es
+            # justo la opcion INCORRECTA de la pregunta 4 (10 pts): el `CALL` de nivel
+            # superior es su propia transaccion, asi que la excepcion que se propaga deshace
+            # todo sin que nadie escriba ROLLBACK. Se ensenaba el distractor como respuesta.
+            "COMMIT confirma la transaccion de forma permanente; ROLLBACK deshace todo lo hecho desde que se abrio. En PostgreSQL no hace falta escribir ROLLBACK dentro del procedimiento: el CALL de nivel superior es su propia transaccion, y si la excepcion se propaga hasta afuera, el motor deshace todo lo que el procedimiento habia hecho. En Oracle si hay que escribirlo, y ese contraste es la pregunta 4 del taller.",
+            "Lo que si hay que escribir es el guardia: UPDATE insumo SET stock = stock - p_cantidades[i] WHERE id_insumo = p_insumos[i] AND stock >= p_cantidades[i], y despues GET DIAGNOSTICS v_filas = ROW_COUNT. Si v_filas es 0 no hubo stock, y ahi se decide: RAISE EXCEPTION si el fallo debe abortar la factura, o devolver FALSE si el 'no hay stock' es una respuesta y no un error.",
             "Dirty read (lectura sucia): una transaccion lee un dato que otra transaccion modifico pero AUN NO ha confirmado con COMMIT; si esa segunda transaccion hace ROLLBACK despues, la primera trabajo con un dato que nunca existio de verdad. Es uno de los problemas que el nivel de aislamiento intenta evitar.",
             "Tuning en este contexto no es magia, son habitos concretos: mantener estadisticas del optimizador actualizadas (para que EXPLAIN elija bien), apoyarse en los indices ya justificados en Clase 7, y mantener las transacciones lo mas CORTAS posible — una transaccion larga retiene bloqueos (locks) sobre filas y puede frenar a otras transacciones que esperan esas mismas filas.",
             "Error de docente que no domina el tema: envolver TODA la sesion de trabajo en una sola transaccion gigante 'para no perder nada' — eso maximiza el tiempo que otros usuarios quedan bloqueados esperando esas filas, exactamente el problema que Clase 10 (concurrencia) va a diagnosticar."],
-    demo="BEGIN... INSERT factura/detalle... UPDATE stock... COMMIT/ROLLBACK.",
-    taller=["Implementar bloque/proc que facture y descuente stock atomicamente.",
-            "Probar fallo a mitad (stock insuficiente) -> ROLLBACK.",
-            "Completar checklist tuning del PI.",
-            "Actualizar informe PI: seccion transacciones."],
+    # Los dos CALL son los del taller, con sus arreglos: el que funciona y el que falla a
+    # mitad. El segundo descuenta el insumo 3 y se estrella en el 2, y el stock del 3 vuelve
+    # solo a 40 sin que nadie escriba ROLLBACK: eso es lo que hay que ver proyectado.
+    demo="CALL sp_facturar(4, ARRAY[1,6,5], ARRAY[1,2,3]) que factura 27.400, y CALL sp_facturar(4, ARRAY[3,2], ARRAY[2,10]) que falla en la segunda linea: el stock del insumo 3 vuelve a 40 sin ROLLBACK escrito.",
+    taller=["Escribir sp_facturar(p_id_consulta, p_insumos INT[], p_cantidades INT[]) en PL/pgSQL: cabecera con total 0, bucle por linea con el guardia stock >= cantidad, y UPDATE del total al final.",
+            "Probar el fallo a mitad con ARRAY[3,2] / ARRAY[2,10] y demostrar con foto inicial y final que el stock del insumo 3 volvio a 40.",
+            "Encapsular el descuento en fn_descontar_stock, que devuelve BOOLEAN y no lanza excepcion.",
+            "Llenar la seccion Transacciones y tuning del informe: inventario de 3 transacciones y checklist de 7 items.",
+            "Declarar el gap de concurrencia: PGlite corre una sola sesion, y eso es la Clase 10."],
     quiz=True, sql="08_transacciones_vetcare.sql"),
   dict(n=9, slug=None, titulo="Parcial 2", subtitulo="Solo evaluacion — Corte 2",
     herramienta=None, hito_pi="No avanza PI", entregable=None, teoria=[], demo=None, taller=[],
@@ -447,108 +502,970 @@ RESET ROLE;   -- volver al propietario ANTES de seguir con cualquier otra cosa
 -- Baja:   REASSIGN OWNED BY ana_gomez TO admin_bd;  -- antes de borrar el rol
 --         DROP ROLE ana_gomez;                      -- falla si todavia posee objetos
 """,
-"03_procs_vetcare.sql": """-- VetCare DB · Clase 3 · Procedimiento agendar cita (Oracle Live SQL)
--- Ajustar tipos segun el schema creado por el estudiante.
+"03_procs_vetcare.sql": """-- VetCare DB · Clase 3 · Procedimientos almacenados · PostgreSQL
+-- Script de la DEMO: corre tal cual en ExamLab (PostgreSQL/PGlite en el navegador),
+-- sobre el esquema de VetCare ya creado y poblado: 8 mascotas (Rocky=3 y Kiara=8
+-- estan INACTIVAS), 4 veterinarios, 10 citas, y una cita del veterinario 1 el
+-- 2026-09-01 08:00:00.
+--
+-- NO es Oracle: nada de IS en vez de AS, VARCHAR2, NUMBER, RAISE_APPLICATION_ERROR
+-- ni barra / de terminacion. Ese codigo aqui no compila, y es la forma mas facil de
+-- perder los puntos de sintaxis de la pregunta 1.
+--
+-- Se ejecuta de arriba abajo narrando cada bloque. El bloque 3 es el que convence al
+-- grupo: es donde se VE que la validacion detiene el INSERT. Correr el script
+-- completo una vez antes de la clase.
 
-CREATE OR REPLACE PROCEDURE sp_agendar_cita (
-  p_id_cita IN NUMBER,
-  p_id_mascota IN NUMBER,
-  p_fecha IN TIMESTAMP,
-  p_msg OUT VARCHAR2
-) AS
+-- ============ 1) El procedimiento con sus 3 validaciones ============
+-- id_cita no se pasa como parametro: es SERIAL y lo genera el motor.
+CREATE OR REPLACE PROCEDURE sp_agendar_cita(
+  p_id_mascota     INT,
+  p_id_veterinario INT,
+  p_fecha_hora     TIMESTAMP
+)
+LANGUAGE plpgsql
+AS $proc$
+DECLARE
   v_activa CHAR(1);
 BEGIN
-  SELECT activa INTO v_activa FROM mascota WHERE id_mascota = p_id_mascota;
-  IF v_activa <> 'S' THEN
-    p_msg := 'ERROR: mascota inactiva; no se agenda';
-    RETURN;
+  -- Validacion 1: la mascota existe. SELECT ... INTO deja FOUND en FALSE cuando no
+  -- devolvio ninguna fila, y eso es lo que pregunta IF NOT FOUND.
+  SELECT activa INTO v_activa
+    FROM mascota
+   WHERE id_mascota = p_id_mascota;
+
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'ERROR: la mascota % no existe', p_id_mascota;
   END IF;
-  INSERT INTO cita(id_cita, id_mascota, fecha_hora, estado)
-  VALUES (p_id_cita, p_id_mascota, p_fecha, 'PROGRAMADA');
-  p_msg := 'OK: cita agendada';
-  COMMIT;
-EXCEPTION
-  WHEN NO_DATA_FOUND THEN
-    p_msg := 'ERROR: mascota no existe';
-  WHEN OTHERS THEN
-    p_msg := 'ERROR: ' || SQLERRM;
-    ROLLBACK;
-END;
-/
-""",
-"04_func_trigger_backup.sql": """-- VetCare DB · Clase 4 · Funcion + trigger auditoria (Oracle)
 
-CREATE OR REPLACE FUNCTION fn_precio_base (p_especie VARCHAR2)
-RETURN NUMBER IS
-BEGIN
-  IF UPPER(p_especie) = 'CANINO' THEN RETURN 45000; END IF;
-  IF UPPER(p_especie) = 'FELINO' THEN RETURN 40000; END IF;
-  RETURN 35000;
-END;
-/
+  -- Validacion 2: la regla de negocio del PI.
+  IF v_activa <> 'S' THEN
+    RAISE EXCEPTION 'ERROR: la mascota % esta inactiva; no se agenda cita',
+                    p_id_mascota;
+  END IF;
 
-CREATE TABLE audit_cita (
-  id_audit NUMBER PRIMARY KEY,
-  id_cita NUMBER,
-  accion VARCHAR2(30),
-  detalle VARCHAR2(200),
-  fecha_evento TIMESTAMP DEFAULT SYSTIMESTAMP
+  -- Validacion 3: la franja del veterinario esta libre. Una cita CANCELADA libera
+  -- la franja, asi que no cuenta.
+  IF EXISTS (SELECT 1 FROM cita
+              WHERE id_veterinario = p_id_veterinario
+                AND fecha_hora     = p_fecha_hora
+                AND estado <> 'CANCELADA') THEN
+    RAISE EXCEPTION 'ERROR: el veterinario % ya tiene cita en %',
+                    p_id_veterinario, p_fecha_hora;
+  END IF;
+
+  INSERT INTO cita (id_mascota, id_veterinario, fecha_hora, estado)
+  VALUES (p_id_mascota, p_id_veterinario, p_fecha_hora, 'PROGRAMADA');
+END;
+$proc$;
+
+-- ============ 2) El caso valido ============
+CALL sp_agendar_cita(1, 2, TIMESTAMP '2026-09-15 10:00:00');
+
+SELECT id_cita, id_mascota, id_veterinario, fecha_hora, estado
+  FROM cita ORDER BY id_cita DESC LIMIT 3;   -- la nueva es la primera fila
+
+-- ============ 3) Los tres errores, SENTENCIA POR SENTENCIA ============
+-- Estas tres lineas DEBEN fallar, y por eso no van en un solo tiro: la gracia es
+-- leer en pantalla el mensaje exacto que la app va a recibir. Un runner que aborta
+-- al primer error se llevaria las siguientes.
+CALL sp_agendar_cita(3,  2, TIMESTAMP '2026-09-21 08:00:00');  -- Rocky, INACTIVA
+CALL sp_agendar_cita(99, 2, TIMESTAMP '2026-09-22 08:00:00');  -- no existe
+CALL sp_agendar_cita(2,  1, TIMESTAMP '2026-09-01 08:00:00');  -- franja ocupada
+
+-- Y la prueba de que no dejaron basura: sigue habiendo 11 citas, no 14.
+SELECT COUNT(*) AS citas_totales FROM cita;
+
+-- ============ 4) La bateria: un bloque DO por caso ============
+-- Por que un bloque por caso: si los CALL van seguidos, el primero que falla aborta
+-- el resto. DO es un bloque anonimo -- se ejecuta una vez y no se guarda -- y su
+-- EXCEPTION atrapa el error y deja seguir al caso siguiente.
+CREATE TABLE IF NOT EXISTS resultado_prueba (
+  id_prueba SERIAL PRIMARY KEY,
+  caso      TEXT,
+  esperado  TEXT,
+  obtenido  TEXT,
+  paso      BOOLEAN
 );
 
-CREATE OR REPLACE TRIGGER trg_audit_cancelacion
+-- Caso POSITIVO: el exito es que NO haya excepcion.
+DO $$
+BEGIN
+  CALL sp_agendar_cita(1, 2, TIMESTAMP '2026-09-20 08:00:00');
+  INSERT INTO resultado_prueba (caso, esperado, obtenido, paso)
+  VALUES ('P1 mascota activa', 'OK: cita creada', 'OK: cita creada', TRUE);
+EXCEPTION WHEN OTHERS THEN
+  INSERT INTO resultado_prueba (caso, esperado, obtenido, paso)
+  VALUES ('P1 mascota activa', 'OK: cita creada', SQLERRM, FALSE);
+END $$;
+
+-- Caso NEGATIVO: el exito es que SI haya excepcion, y ademas que sea LA esperada.
+-- Por eso se verifica el TEXTO con ILIKE y no basta WHEN OTHERS a secas: un typo en
+-- el nombre de una columna tambien lanza excepcion, y un WHEN OTHERS pelado lo
+-- reportaria como prueba superada.
+DO $$
+BEGIN
+  CALL sp_agendar_cita(3, 2, TIMESTAMP '2026-09-21 08:00:00');
+  INSERT INTO resultado_prueba (caso, esperado, obtenido, paso)
+  VALUES ('P2 mascota inactiva', 'EXCEPCION: mascota inactiva',
+          'NO lanzo excepcion: la cita se creo', FALSE);
+EXCEPTION WHEN OTHERS THEN
+  INSERT INTO resultado_prueba (caso, esperado, obtenido, paso)
+  VALUES ('P2 mascota inactiva', 'EXCEPCION: mascota inactiva',
+          SQLERRM, SQLERRM ILIKE '%inactiva%');
+END $$;
+
+SELECT caso, esperado, obtenido, paso
+  FROM resultado_prueba ORDER BY id_prueba;
+
+-- Nota de lectura: aqui `paso` significa «el resultado coincidio con lo esperado»,
+-- asi que las dos filas quedan en t. La otra lectura -- «la operacion se completo»,
+-- que deja las negativas en f -- tambien es valida. Lo que hay que hacer es usar UNA
+-- de las dos para las cuatro filas y decir cual, porque si no, `paso` no significa
+-- nada.
+
+-- ============ 5) El contrato, que es el otro entregable ============
+-- Firma        : sp_agendar_cita(p_id_mascota INT, p_id_veterinario INT,
+--                               p_fecha_hora TIMESTAMP)
+-- Llamada      : CALL sp_agendar_cita(1, 2, TIMESTAMP '2026-09-15 10:00:00');
+-- Precondicion : la mascota existe y tiene activa = 'S'; la franja del veterinario
+--                esta libre (una cita CANCELADA no la ocupa).
+-- Postcondicion: 1 fila nueva en cita con estado 'PROGRAMADA'. Si falla, NINGUNA.
+-- Errores      : 'ERROR: la mascota % no existe'
+--                'ERROR: la mascota % esta inactiva; no se agenda cita'
+--                'ERROR: el veterinario % ya tiene cita en %'
+-- Decision     : se aborta con RAISE EXCEPTION en vez de devolver un codigo en un
+--                parametro OUT, porque abortar deshace lo hecho; un codigo que
+--                nadie revise deja la cita creada igual.
+""",
+"04_func_trigger_backup.sql": """-- VetCare DB · Clase 4 · Funcion, triggers y respaldo · PostgreSQL
+-- Script de la DEMO: corre tal cual en ExamLab (PostgreSQL/PGlite en el navegador).
+--
+-- En PostgreSQL el trigger son SIEMPRE dos objetos: una funcion que RETURNS TRIGGER
+-- y un CREATE TRIGGER que dice cuando dispararla. No existe el trigger con el cuerpo
+-- adentro que se escribe en Oracle, ni los dos puntos de :NEW y :OLD, ni
+-- RAISE_APPLICATION_ERROR. Eso aqui no compila y la rubrica lo descuenta.
+
+-- ============ 1) La funcion de precio ============
+-- IMMUTABLE: para los mismos argumentos siempre devuelve lo mismo y no lee tablas.
+-- COALESCE porque la app puede mandar NULL en la casilla de urgencia, y NULL * 1.35
+-- es NULL: la factura saldria vacia en vez de salir mal, que es peor.
+CREATE OR REPLACE FUNCTION fn_precio_consulta(
+  p_especie  TEXT,
+  p_urgencia BOOLEAN
+)
+RETURNS NUMERIC
+LANGUAGE plpgsql
+IMMUTABLE
+AS $fn$
+DECLARE
+  v_base NUMERIC;
+BEGIN
+  v_base := CASE UPPER(p_especie)
+              WHEN 'CANINO' THEN 45000
+              WHEN 'FELINO' THEN 40000
+              ELSE 35000
+            END;
+  IF COALESCE(p_urgencia, FALSE) THEN
+    v_base := v_base * 1.35;
+  END IF;
+  RETURN v_base;
+END;
+$fn$;
+
+-- Una funcion se llama con SELECT, no con CALL. Es la diferencia con la Clase 3.
+SELECT fn_precio_consulta('Canino', FALSE) AS normal,     -- 45000
+       fn_precio_consulta('Canino', TRUE)  AS urgencia,   -- 60750
+       fn_precio_consulta('canino', TRUE)  AS minusculas, -- 60750, por UPPER()
+       fn_precio_consulta('Conejo', FALSE) AS otra_especie, -- 35000
+       fn_precio_consulta('Felino', NULL)  AS urgencia_nula; -- 40000, por COALESCE
+
+-- Y donde se usa de verdad: junto a la tabla, como una columna calculada.
+SELECT m.nombre, m.especie,
+       fn_precio_consulta(m.especie, FALSE) AS precio_normal,
+       fn_precio_consulta(m.especie, TRUE)  AS precio_urgencia
+  FROM mascota m
+ WHERE m.id_mascota IN (1, 4)
+ ORDER BY m.id_mascota;
+
+-- ============ 2) Trigger de auditoria: los DOS objetos ============
+CREATE TABLE IF NOT EXISTS audit_cita (
+  id_audit        SERIAL PRIMARY KEY,
+  id_cita         INT  NOT NULL,
+  accion          TEXT NOT NULL,
+  valor_anterior  TEXT,
+  valor_nuevo     TEXT,
+  usuario_bd      TEXT      DEFAULT current_user,
+  fecha_evento    TIMESTAMP DEFAULT now()
+);
+
+-- Objeto 1: la funcion. NEW y OLD sin dos puntos, y RETURN NEW obligatorio.
+CREATE OR REPLACE FUNCTION fn_trg_audit_cita()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $fn$
+BEGIN
+  INSERT INTO audit_cita (id_cita, accion, valor_anterior, valor_nuevo)
+  VALUES (NEW.id_cita, 'CAMBIO_ESTADO', OLD.estado, NEW.estado);
+  RETURN NEW;   -- quien y cuando los pone los DEFAULT de la tabla
+END;
+$fn$;
+
+-- Objeto 2: la asociacion. AFTER porque solo se registra lo que ya paso.
+DROP TRIGGER IF EXISTS trg_audit_cita ON cita;
+CREATE TRIGGER trg_audit_cita
 AFTER UPDATE OF estado ON cita
 FOR EACH ROW
-WHEN (NEW.estado = 'CANCELADA' AND OLD.estado <> 'CANCELADA')
+WHEN (OLD.estado IS DISTINCT FROM NEW.estado)
+EXECUTE FUNCTION fn_trg_audit_cita();
+
+-- La prueba: TRES updates que dejan DOS filas de auditoria.
+UPDATE cita SET estado = 'CANCELADA'  WHERE id_cita = 1;  -- cambia  -> audita
+UPDATE cita SET estado = 'ATENDIDA'   WHERE id_cita = 3;  -- cambia  -> audita
+UPDATE cita SET estado = 'PROGRAMADA' WHERE id_cita = 6;  -- ya era  -> NO audita
+
+SELECT id_audit, id_cita, accion, valor_anterior, valor_nuevo, usuario_bd
+  FROM audit_cita ORDER BY id_audit;   -- 2 filas: citas 1 y 3
+
+-- El WHEN es lo que hace la diferencia. Sin el, la tercera fila tambien se escribe y
+-- la auditoria se llena de eventos donde no cambio nada. Con IS DISTINCT FROM y no
+-- con <> porque <> devuelve NULL si un lado es NULL, y un WHEN que da NULL no
+-- dispara: un estado que pasa de NULL a 'PROGRAMADA' se quedaria sin auditar.
+
+-- ============ 3) Trigger que IMPIDE: stock negativo ============
+-- El CHECK de la tabla se retira a proposito para mostrar el hueco que tapa el
+-- trigger. Un CHECK vigila el valor final de UNA fila; el trigger, ademas, puede
+-- mirar el valor anterior y decidir con la fila completa.
+ALTER TABLE insumo DROP CONSTRAINT IF EXISTS insumo_stock_check;
+
+-- Sin defensa: el insumo 2 (Vacuna triple felina) tiene 3 unidades.
+UPDATE insumo SET stock = stock - 10 WHERE id_insumo = 2;
+SELECT id_insumo, nombre, stock FROM insumo WHERE id_insumo = 2;   -- stock = -7 (!)
+UPDATE insumo SET stock = 3 WHERE id_insumo = 2;                   -- se restaura
+
+CREATE OR REPLACE FUNCTION fn_trg_stock_no_negativo()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $fn$
 BEGIN
-  INSERT INTO audit_cita(id_audit, id_cita, accion, detalle)
-  VALUES (NVL((SELECT MAX(id_audit) FROM audit_cita),0)+1,
-          :NEW.id_cita, 'CANCELACION', 'Cita cancelada');
+  IF NEW.stock < 0 THEN
+    RAISE EXCEPTION 'ERROR: el stock de % no puede quedar negativo (resultado: %)',
+                    OLD.nombre, NEW.stock;
+  END IF;
+  RETURN NEW;   -- BEFORE: lo que se retorna es lo que se guarda
 END;
-/
+$fn$;
 
--- Plan backup (documentar en Google Docs): diario logico scripts SQL + semanal export playground.
+-- BEFORE, no AFTER: la unica forma de impedir el cambio es correr antes de que se
+-- escriba. Un AFTER que lanza excepcion tambien deshace la transaccion, pero para
+-- cuando corre el motor ya hizo el trabajo -- y con AFTER no se puede corregir el
+-- valor, solo abortar.
+DROP TRIGGER IF EXISTS trg_stock_no_negativo ON insumo;
+CREATE TRIGGER trg_stock_no_negativo
+BEFORE UPDATE OF stock ON insumo
+FOR EACH ROW
+EXECUTE FUNCTION fn_trg_stock_no_negativo();
+
+-- Con defensa: el mismo UPDATE, ahora rechazado. RAISE NOTICE imprime el mensaje sin
+-- abortar el bloque, para que el grupo lea la excepcion en pantalla.
+DO $$
+BEGIN
+  UPDATE insumo SET stock = stock - 10 WHERE id_insumo = 2;
+  RAISE NOTICE 'FALLO LA PRUEBA: el UPDATE paso y no debia';
+EXCEPTION WHEN OTHERS THEN
+  RAISE NOTICE 'RECHAZADO (correcto): %', SQLERRM;
+END $$;
+
+-- Y el descuento legitimo sigue funcionando: no se bloqueo la operacion, se bloqueo
+-- el resultado invalido.
+DO $$
+BEGIN
+  UPDATE insumo SET stock = stock - 2 WHERE id_insumo = 2;
+  RAISE NOTICE 'ACEPTADO (correcto): quedan 1 unidades';
+EXCEPTION WHEN OTHERS THEN
+  RAISE NOTICE 'FALLO LA PRUEBA: %', SQLERRM;
+END $$;
+
+SELECT id_insumo, nombre, stock FROM insumo WHERE id_insumo = 2;   -- stock = 1
+
+-- ============ 4) El respaldo: las herramientas reales ============
+-- Estos comandos NO corren dentro de ExamLab -- son de linea de comandos, no SQL --
+-- pero son los que hay que nombrar en el plan. Se proyectan como referencia.
+--
+--   pg_dump -Fc -d vetcare -f vetcare_2026-09-15.dump   respaldo logico de LA base
+--   pg_dumpall --globals-only -f roles.sql              roles y privilegios: pg_dump
+--                                                       NO los incluye
+--   pg_basebackup -D /backup/base -Ft -z                copia fisica del cluster
+--   pg_restore -d vetcare_prueba vetcare_2026-09-15.dump   el ensayo de restauracion
+--
+-- La consulta de validacion despues de restaurar, que es lo que convierte «restaure»
+-- en «restaure bien»:
+--   SELECT (SELECT COUNT(*) FROM cita)     AS citas,
+--          (SELECT COUNT(*) FROM consulta) AS consultas,
+--          (SELECT COUNT(*) FROM factura)  AS facturas,
+--          (SELECT MAX(fecha_hora) FROM cita) AS ultima_cita;
+--
+-- Y el esqueleto del plan (1 pagina, en Google Docs): 1) que se respalda y con que
+-- herramienta cada cosa · 2) frecuencia y ventana, justificada contra el horario
+-- lunes-sabado 7:00-19:00 · 3) retencion, en >=2 ubicaciones · 4) RPO y RTO con su
+-- justificacion por impacto · 5) el ensayo de restauracion: cada cuanto, la consulta
+-- de validacion y quien firma · 6) que NO cubre este plan y cual es el riesgo
+-- residual que se asume.
 """,
-"06_opt_consultas.sql": """-- VetCare DB · Clase 6 · Antes / despues
+# El script anterior eran 14 lineas: la pareja antes/despues SIN datos, sin
+# EXPLAIN y con fecha 2026-09-01, mientras el taller pide 2026-03-10. Corrido
+# sobre la base de 20 filas de la Clase 1 devolvia 3 filas y ninguna medicion, o
+# sea exactamente el «celebrar que el tiempo bajo de 0,9 a 0,4 ms» que el propio
+# fundamento marca como el error del docente que no domina el tema. Tampoco
+# cubria la subconsulta correlacionada (pregunta 3, 20 puntos) ni la prueba de
+# equivalencia. Ahora siembra el MISMO volumen que el `setup_sql` de ExamLab, de
+# modo que los numeros de la demo son los que el estudiante va a ver.
+"06_opt_consultas.sql":"""-- VetCare DB · Clase 6 · Optimizacion de consultas (demo del docente)
+-- ============================================================================
+-- Motor: PostgreSQL. Se corre en ExamLab (PGlite en el navegador), que es donde
+-- se califica el taller. Es AUTOCONTENIDO: crea el esquema, siembra el volumen y
+-- deja las estadisticas listas, igual que el `setup_sql` de las preguntas 1, 2 y 3.
+-- Volumen resultante: 2.006 duenos · 5.008 mascotas · 16 veterinarios · 30.010 citas.
+-- SIN indices adicionales: crearlos es la Clase 7, y por eso hoy la evidencia NO es
+-- un cambio de Seq Scan a Index Scan sino menos filas y menos pasadas.
+-- ============================================================================
 
--- ANTES (anti-patron)
-SELECT * FROM cita c, mascota m, dueno d
-WHERE c.id_mascota = m.id_mascota AND m.id_dueno = d.id_dueno;
+DROP TABLE IF EXISTS cita, mascota, veterinario, dueno;
 
--- DESPUES (proyecto columnas + filtro temprano)
-SELECT c.id_cita, c.fecha_hora, m.nombre AS mascota, d.nombre AS dueno
+CREATE TABLE dueno (
+  id_dueno SERIAL PRIMARY KEY,
+  nombre   TEXT NOT NULL,
+  telefono TEXT,
+  email    TEXT,
+  ciudad   TEXT DEFAULT 'Cali'
+);
+CREATE TABLE mascota (
+  id_mascota SERIAL PRIMARY KEY,
+  id_dueno   INT NOT NULL REFERENCES dueno(id_dueno),
+  nombre     TEXT NOT NULL,
+  especie    TEXT NOT NULL,
+  fecha_nac  DATE,
+  activa     CHAR(1) NOT NULL DEFAULT 'S' CHECK (activa IN ('S','N'))
+);
+CREATE TABLE veterinario (
+  id_veterinario SERIAL PRIMARY KEY,
+  nombre         TEXT NOT NULL,
+  especialidad   TEXT,
+  activo         CHAR(1) NOT NULL DEFAULT 'S' CHECK (activo IN ('S','N'))
+);
+CREATE TABLE cita (
+  id_cita        SERIAL PRIMARY KEY,
+  id_mascota     INT NOT NULL REFERENCES mascota(id_mascota),
+  id_veterinario INT NOT NULL REFERENCES veterinario(id_veterinario),
+  fecha_hora     TIMESTAMP NOT NULL,
+  estado         TEXT NOT NULL DEFAULT 'PROGRAMADA'
+                 CHECK (estado IN ('PROGRAMADA','ATENDIDA','CANCELADA'))
+);
+
+-- Los 6 duenos, 4 veterinarios, 8 mascotas y 10 citas con nombre propio de VetCare.
+INSERT INTO dueno (nombre) VALUES
+  ('Ana Gomez'), ('Carlos Ruiz'), ('Marcela Diaz'),
+  ('Jorge Pineda'), ('Luisa Cardona'), ('Andres Vallejo');
+INSERT INTO veterinario (nombre, especialidad) VALUES
+  ('Laura Restrepo','General'), ('Diego Moreno','Cirugia'),
+  ('Paula Salazar','Dermatologia'), ('Ivan Ortiz','General');
+INSERT INTO mascota (id_dueno, nombre, especie, activa) VALUES
+  (1,'Firulais','Canino','S'), (1,'Luna','Felino','S'), (2,'Rocky','Canino','N'),
+  (3,'Mishi','Felino','S'),    (3,'Bobby','Canino','S'), (4,'Nube','Felino','S'),
+  (5,'Toby','Canino','S'),     (6,'Kiara','Canino','N');
+INSERT INTO cita (id_mascota, id_veterinario, fecha_hora, estado) VALUES
+  (1,1,TIMESTAMP '2026-09-01 08:00','PROGRAMADA'), (2,1,TIMESTAMP '2026-09-01 09:00','ATENDIDA'),
+  (4,2,TIMESTAMP '2026-09-01 10:00','PROGRAMADA'), (5,3,TIMESTAMP '2026-09-02 08:30','CANCELADA'),
+  (6,2,TIMESTAMP '2026-09-02 11:00','ATENDIDA'),   (7,4,TIMESTAMP '2026-09-03 07:45','PROGRAMADA'),
+  (1,1,TIMESTAMP '2026-09-05 15:00','ATENDIDA'),   (2,3,TIMESTAMP '2026-09-08 16:00','PROGRAMADA'),
+  (4,4,TIMESTAMP '2026-09-10 08:00','PROGRAMADA'), (6,1,TIMESTAMP '2026-09-10 09:00','ATENDIDA');
+
+-- Volumen. Sin esto la demo no se puede hacer: con 10 citas todo cabe en una
+-- pagina de 8 KB y no hay plan mas barato que leerla, asi que la consulta pesima
+-- y la optima miden lo mismo y la diferencia se esconde en el ruido de medicion.
+INSERT INTO dueno (nombre, telefono, email)
+SELECT 'Dueno '||g, '300'||LPAD(g::text,7,'0'), 'dueno'||g||'@mail.com'
+FROM generate_series(1,2000) AS g;                       -- duenos 7..2006
+
+INSERT INTO veterinario (nombre, especialidad)
+SELECT 'Veterinario '||g,
+       CASE WHEN g%3=0 THEN 'Cirugia' WHEN g%3=1 THEN 'General' ELSE 'Dermatologia' END
+FROM generate_series(1,12) AS g;                         -- veterinarios 5..16
+
+INSERT INTO mascota (id_dueno, nombre, especie, activa)
+SELECT 1+(g%2000), 'Mascota '||g,
+       CASE WHEN g%2=0 THEN 'Canino' ELSE 'Felino' END,
+       CASE WHEN g%17=0 THEN 'N' ELSE 'S' END
+FROM generate_series(1,5000) AS g;                       -- mascotas 9..5008
+
+INSERT INTO cita (id_mascota, id_veterinario, fecha_hora, estado)
+SELECT 1+(g%5000), 1+(g%12),
+       TIMESTAMP '2026-01-05 08:00' + ((g%200)*INTERVAL '1 day')
+                                    + ((g%9)*INTERVAL '45 minutes'),
+       CASE WHEN g%11=0 THEN 'CANCELADA' WHEN g%3=0 THEN 'ATENDIDA' ELSE 'PROGRAMADA' END
+FROM generate_series(1,30000) AS g;                      -- citas 11..30010
+
+-- Sin ANALYZE el optimizador trabaja con estimaciones por omision y el «estimado
+-- contra real» de la pregunta 2 sale disparatado por una razon que no es el tema.
+ANALYZE dueno; ANALYZE mascota; ANALYZE veterinario; ANALYZE cita;
+
+-- Cifras de control que conviene proyectar antes de empezar (200 dias × 150 citas):
+--   30.010 citas · 150 el 2026-03-10 · de esas 91 PROGRAMADA, 45 ATENDIDA, 14 CANCELADA.
+SELECT COUNT(*) AS total_citas FROM cita;
+SELECT estado, COUNT(*) FROM cita
+WHERE fecha_hora >= TIMESTAMP '2026-03-10' AND fecha_hora < TIMESTAMP '2026-03-11'
+GROUP BY estado ORDER BY estado;
+
+-- ============================================================================
+-- BLOQUE 1 · La agenda del dia: los 4 antipatrones (pregunta 1 del taller)
+-- ============================================================================
+
+-- ANTES. Cuatro defectos: SELECT * · joins con coma · to_char() sobre la columna
+-- · UPPER() sobre el estado. Devuelve 91 filas.
+SELECT *
+FROM cita c, mascota m, dueno d, veterinario v
+WHERE c.id_mascota = m.id_mascota
+  AND m.id_dueno = d.id_dueno
+  AND c.id_veterinario = v.id_veterinario
+  AND to_char(c.fecha_hora,'YYYY-MM-DD') = '2026-03-10'
+  AND UPPER(c.estado) = 'PROGRAMADA';
+
+-- DESPUES. Proyeccion de 6 columnas · JOIN ... ON · predicado de RANGO (sargable)
+-- · comparacion directa del estado, que el CHECK ya normalizo. Tambien 91 filas.
+SELECT c.id_cita, c.fecha_hora, m.nombre AS mascota, d.nombre AS dueno,
+       v.nombre AS veterinario, c.estado
 FROM cita c
-JOIN mascota m ON m.id_mascota = c.id_mascota
-JOIN dueno d ON d.id_dueno = m.id_dueno
-WHERE c.fecha_hora >= TIMESTAMP '2026-09-01 00:00:00'
-  AND c.fecha_hora <  TIMESTAMP '2026-09-02 00:00:00'
-  AND c.estado = 'PROGRAMADA';
-""",
-"07_indices_vetcare.sql": """-- VetCare DB · Clase 7 · Indices
+JOIN mascota m     ON m.id_mascota = c.id_mascota
+JOIN dueno d       ON d.id_dueno = m.id_dueno
+JOIN veterinario v ON v.id_veterinario = c.id_veterinario
+WHERE c.fecha_hora >= TIMESTAMP '2026-03-10 00:00:00'
+  AND c.fecha_hora <  TIMESTAMP '2026-03-11 00:00:00'
+  AND c.estado = 'PROGRAMADA'
+ORDER BY c.fecha_hora;
 
-CREATE INDEX idx_cita_fecha ON cita (fecha_hora);
+-- La evidencia (pregunta 2). Se lee: nodo mas costoso, rows= estimadas frente a
+-- actual rows=, y Execution Time. Ojo: `actual time` es POR VUELTA y el tiempo de
+-- un nodo INCLUYE el de sus hijos.
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT *
+FROM cita c, mascota m, dueno d, veterinario v
+WHERE c.id_mascota = m.id_mascota
+  AND m.id_dueno = d.id_dueno
+  AND c.id_veterinario = v.id_veterinario
+  AND to_char(c.fecha_hora,'YYYY-MM-DD') = '2026-03-10'
+  AND UPPER(c.estado) = 'PROGRAMADA';
+
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT c.id_cita, c.fecha_hora, m.nombre AS mascota, d.nombre AS dueno,
+       v.nombre AS veterinario, c.estado
+FROM cita c
+JOIN mascota m     ON m.id_mascota = c.id_mascota
+JOIN dueno d       ON d.id_dueno = m.id_dueno
+JOIN veterinario v ON v.id_veterinario = c.id_veterinario
+WHERE c.fecha_hora >= TIMESTAMP '2026-03-10 00:00:00'
+  AND c.fecha_hora <  TIMESTAMP '2026-03-11 00:00:00'
+  AND c.estado = 'PROGRAMADA'
+ORDER BY c.fecha_hora;
+
+-- Lo que la pantalla de agenda realmente necesita. El LIMIT deja de leer en
+-- cuanto tiene 50 filas: por eso baja el tiempo aunque el plan sea el mismo.
+EXPLAIN ANALYZE
+SELECT c.id_cita, c.fecha_hora, m.nombre AS mascota, d.nombre AS dueno,
+       v.nombre AS veterinario, c.estado
+FROM cita c
+JOIN mascota m     ON m.id_mascota = c.id_mascota
+JOIN dueno d       ON d.id_dueno = m.id_dueno
+JOIN veterinario v ON v.id_veterinario = c.id_veterinario
+WHERE c.fecha_hora >= TIMESTAMP '2026-03-10 00:00:00'
+  AND c.fecha_hora <  TIMESTAMP '2026-03-11 00:00:00'
+  AND c.estado = 'PROGRAMADA'
+ORDER BY c.fecha_hora
+LIMIT 50;
+
+-- ============================================================================
+-- BLOQUE 2 · La subconsulta correlacionada (pregunta 3 del taller)
+-- ============================================================================
+
+-- ANTES. La subconsulta esta en la LISTA DE COLUMNAS y menciona d.id_dueno, del
+-- exterior: no se puede calcular una vez y reusar. El plan lo delata con un nodo
+-- SubPlan y loops=2006 — un dueno, una ejecucion.
+EXPLAIN ANALYZE
+SELECT d.id_dueno, d.nombre,
+       (SELECT COUNT(*) FROM cita c JOIN mascota m ON m.id_mascota = c.id_mascota
+         WHERE m.id_dueno = d.id_dueno) AS total_citas
+FROM dueno d
+ORDER BY total_citas DESC;
+
+-- DESPUES. Una sola pasada: el SubPlan desaparece y queda un HashAggregate.
+-- COUNT(c.id_cita) y NO COUNT(*): el LEFT JOIN fabrica una fila de NULL por cada
+-- dueno sin citas, y COUNT(*) cuenta filas, asi que reportaria 1 donde va 0.
+-- Y LEFT y no INNER: el INNER es mas rapido y borra del ranking a los 6 duenos
+-- sin mascotas (2001..2006). Mas rapido devolviendo otra cosa no es optimizar.
+EXPLAIN ANALYZE
+SELECT d.id_dueno, d.nombre, COUNT(c.id_cita) AS total_citas
+FROM dueno d
+LEFT JOIN mascota m ON m.id_dueno = d.id_dueno
+LEFT JOIN cita c    ON c.id_mascota = m.id_mascota
+GROUP BY d.id_dueno, d.nombre
+ORDER BY total_citas DESC, d.id_dueno
+LIMIT 20;
+
+-- ============================================================================
+-- BLOQUE 3 · Optimizar no cambio el resultado: la prueba
+-- ============================================================================
+
+-- Prueba 1 · los dos COUNT(*) de la agenda, en la misma corrida. Las dos columnas
+-- tienen que decir 91.
+SELECT (SELECT COUNT(*) FROM cita c, mascota m, dueno d, veterinario v
+         WHERE c.id_mascota = m.id_mascota AND m.id_dueno = d.id_dueno
+           AND c.id_veterinario = v.id_veterinario
+           AND to_char(c.fecha_hora,'YYYY-MM-DD') = '2026-03-10'
+           AND UPPER(c.estado) = 'PROGRAMADA')                       AS filas_antes,
+       (SELECT COUNT(*) FROM cita c
+          JOIN mascota m ON m.id_mascota = c.id_mascota
+          JOIN dueno d ON d.id_dueno = m.id_dueno
+          JOIN veterinario v ON v.id_veterinario = c.id_veterinario
+         WHERE c.fecha_hora >= TIMESTAMP '2026-03-10 00:00:00'
+           AND c.fecha_hora <  TIMESTAMP '2026-03-11 00:00:00'
+           AND c.estado = 'PROGRAMADA')                              AS filas_despues;
+
+-- Prueba 2 · EXCEPT en los DOS sentidos, sin LIMIT. A EXCEPT B vacio NO prueba la
+-- igualdad: B puede traer filas de mas. Tiene que devolver CERO filas.
+WITH antes AS (
+  SELECT d.id_dueno,
+         (SELECT COUNT(*) FROM cita c JOIN mascota m ON m.id_mascota = c.id_mascota
+           WHERE m.id_dueno = d.id_dueno) AS total_citas
+  FROM dueno d
+), despues AS (
+  SELECT d.id_dueno, COUNT(c.id_cita) AS total_citas
+  FROM dueno d
+  LEFT JOIN mascota m ON m.id_dueno = d.id_dueno
+  LEFT JOIN cita c    ON c.id_mascota = m.id_mascota
+  GROUP BY d.id_dueno
+)
+SELECT 'sobra en ANTES' AS lado, * FROM (SELECT * FROM antes EXCEPT SELECT * FROM despues) a
+UNION ALL
+SELECT 'sobra en DESPUES', * FROM (SELECT * FROM despues EXCEPT SELECT * FROM antes) b;
+
+-- El contraejemplo que vale la pena proyectar 30 segundos: con COUNT(*) en vez de
+-- COUNT(c.id_cita), estas 6 filas dicen 1 y la respuesta correcta es 0.
+SELECT d.id_dueno, COUNT(c.id_cita) AS bien, COUNT(*) AS mal
+FROM dueno d
+LEFT JOIN mascota m ON m.id_dueno = d.id_dueno
+LEFT JOIN cita c    ON c.id_mascota = m.id_mascota
+WHERE d.id_dueno BETWEEN 2001 AND 2006
+GROUP BY d.id_dueno ORDER BY d.id_dueno;
+
+-- Lo que NO se puede medir aqui, y hay que decirlo (es la seccion 5 de la
+-- pregunta 5): tiempos con la memoria intermedia vacia —vaciarla exige
+-- privilegios de administrador—, concurrencia (eso es la Clase 10) y cualquier
+-- comparacion por encima de unos cientos de miles de filas.
+""",
+"07_indices_vetcare.sql": """-- VetCare DB · Clase 7 · Indices y particionamiento
+-- Ejecutable en PostgreSQL, incluido PGlite (la consola de ExamLab). Corre completo y
+-- EN ORDEN: el valor de la clase esta en el antes/despues, no en el CREATE INDEX.
+--
+-- Los CINCO nombres de indice de aqui son los EXACTOS que califica la actividad. No los
+-- cambie: el plan de ejecucion imprime "Index Scan using <nombre>" y la tabla de
+-- justificacion de la pregunta 5 se llena con estos nombres.
+--
+-- ATENCION: el BLOQUE 0 recrea las tablas desde cero. Correlo en una base vacia o en la
+-- consola de ExamLab, no sobre una VetCare DB con datos que quiera conservar. Si ya tiene
+-- las 30.010 citas cargadas, salte al BLOQUE 1.
+
+-- =====================================================================
+-- BLOQUE 0 · Volumen. Con 50 filas el planeador prefiere Seq Scan por
+-- muchos indices que existan: sin volumen esta clase no se puede medir.
+-- Reproduce la siembra sintetica de la actividad: 30.000 citas del
+-- 2026-01-05 al 2026-07-23, 5.000 mascotas, 2.000 duenos, 12 veterinarios.
+-- (En ExamLab hay 10 citas mas puestas a mano en septiembre: 30.010.)
+-- =====================================================================
+DROP TABLE IF EXISTS cita_hist;
+DROP TABLE IF EXISTS cita;
+DROP TABLE IF EXISTS mascota;
+DROP TABLE IF EXISTS veterinario;
+DROP TABLE IF EXISTS dueno;
+
+CREATE TABLE dueno (
+  id_dueno SERIAL PRIMARY KEY,
+  nombre   TEXT NOT NULL,
+  ciudad   TEXT DEFAULT 'Cali'
+);
+CREATE TABLE veterinario (
+  id_veterinario SERIAL PRIMARY KEY,
+  nombre         TEXT NOT NULL,
+  especialidad   TEXT
+);
+CREATE TABLE mascota (
+  id_mascota SERIAL PRIMARY KEY,
+  id_dueno   INT NOT NULL REFERENCES dueno(id_dueno),
+  nombre     TEXT NOT NULL,
+  especie    TEXT NOT NULL
+);
+CREATE TABLE cita (
+  id_cita        SERIAL PRIMARY KEY,
+  id_mascota     INT NOT NULL REFERENCES mascota(id_mascota),
+  id_veterinario INT NOT NULL REFERENCES veterinario(id_veterinario),
+  fecha_hora     TIMESTAMP NOT NULL,
+  estado         TEXT NOT NULL DEFAULT 'PROGRAMADA'
+    CHECK (estado IN ('PROGRAMADA','ATENDIDA','CANCELADA'))
+);
+
+INSERT INTO dueno (nombre) SELECT 'Dueno ' || g FROM generate_series(1, 2000) AS g;
+INSERT INTO veterinario (nombre, especialidad)
+SELECT 'Veterinario ' || g,
+       CASE WHEN g % 3 = 0 THEN 'Cirugia'
+            WHEN g % 3 = 1 THEN 'General'
+            ELSE 'Dermatologia' END
+FROM generate_series(1, 12) AS g;
+INSERT INTO mascota (id_dueno, nombre, especie)
+SELECT 1 + (g % 2000), 'Mascota ' || g,
+       CASE WHEN g % 2 = 0 THEN 'Canino' ELSE 'Felino' END
+FROM generate_series(1, 5000) AS g;
+INSERT INTO cita (id_mascota, id_veterinario, fecha_hora, estado)
+SELECT 1 + (g % 5000),
+       1 + (g % 12),
+       TIMESTAMP '2026-01-05 08:00:00'
+         + ((g % 200) * INTERVAL '1 day')
+         + ((g % 9) * INTERVAL '45 minutes'),
+       CASE WHEN g % 11 = 0 THEN 'CANCELADA'
+            WHEN g % 3  = 0 THEN 'ATENDIDA'
+            ELSE 'PROGRAMADA' END
+FROM generate_series(1, 30000) AS g;
+
+ANALYZE dueno;  ANALYZE veterinario;  ANALYZE mascota;  ANALYZE cita;
+
+-- Control: 30.000 | 18.182 PROGRAMADA | 9.091 ATENDIDA | 2.727 CANCELADA. En la base de
+-- ExamLab hay 10 citas mas sembradas a mano, y ahi el reparto es 30.010 / 18.187 / 9.095 /
+-- 2.728. Si su corrida da otros numeros, el resto del script no cuadra.
+SELECT estado, COUNT(*) FROM cita GROUP BY estado ORDER BY estado;
+
+-- =====================================================================
+-- BLOQUE 1 · LINEA BASE. Sin este paso no hay clase: el "despues" solo
+-- significa algo contra un "antes" medido. Tiene que salir Seq Scan.
+-- =====================================================================
+EXPLAIN ANALYZE   -- C1 · agenda del dia (rango de fecha + estado)
+SELECT id_cita, fecha_hora, estado
+  FROM cita
+ WHERE fecha_hora >= TIMESTAMP '2026-03-10 00:00:00'
+   AND fecha_hora <  TIMESTAMP '2026-03-11 00:00:00'
+   AND estado = 'PROGRAMADA';
+-- Esperado: Seq Scan on cita, filas devueltas = 91 (de 150 citas ese dia).
+
+EXPLAIN ANALYZE   -- C2 · mascotas de un dueno
+SELECT id_mascota, nombre, especie FROM mascota WHERE id_dueno = 1234;
+-- Esperado: Seq Scan on mascota, 2 filas devueltas (id_dueno = 1 + (g % 2000) hace que solo
+-- las mascotas g=1233 y g=3233 caigan en el dueno 1234). La FK NO crea indice sola en PostgreSQL.
+
+-- =====================================================================
+-- BLOQUE 2 · LOS TRES INDICES DE LA PREGUNTA 1
+-- =====================================================================
+-- (a) Simple: sirve a cualquier consulta por rango de fecha, con o sin estado.
+CREATE INDEX idx_cita_fecha_hora ON cita (fecha_hora);
+
+-- (b) Sobre la FK: "las mascotas de un dueno", y ademas abarata el borrado de un dueno.
 CREATE INDEX idx_mascota_dueno ON mascota (id_dueno);
+
+-- (c) PARCIAL: el WHERE es parte de la DEFINICION del indice, no de la consulta. Indexa
+--     18.182 de las 30.000 de este script (18.187 de 30.010 en ExamLab) porque la pantalla
+--     de agenda nunca pregunta por atendidas ni por canceladas.
+CREATE INDEX idx_cita_programada_fecha ON cita (fecha_hora) WHERE estado = 'PROGRAMADA';
+
+-- El paso que se salta la mitad del salon. Crear el indice NO actualiza estadisticas.
+ANALYZE cita;
+ANALYZE mascota;
+
+-- Las MISMAS dos consultas, sin cambiar una coma.
+EXPLAIN ANALYZE
+SELECT id_cita, fecha_hora, estado
+  FROM cita
+ WHERE fecha_hora >= TIMESTAMP '2026-03-10 00:00:00'
+   AND fecha_hora <  TIMESTAMP '2026-03-11 00:00:00'
+   AND estado = 'PROGRAMADA';
+-- Esperado: Index Scan using idx_cita_programada_fecha (gana el PARCIAL: recorre 91
+-- entradas y ya sabe que todas cumplen el estado; el completo recorreria 150 y tendria
+-- que descartar 59 despues de leer la tabla). Reporte el que VEA, no el que diga esto.
+
+EXPLAIN ANALYZE
+SELECT id_mascota, nombre, especie FROM mascota WHERE id_dueno = 1234;
+-- Esperado: Index Scan (o Bitmap Index Scan) using idx_mascota_dueno.
+
+-- Evidencia de que existen. indexdef devuelve el CREATE INDEX completo, asi que aqui se
+-- ve tambien el WHERE del parcial.
+SELECT indexname, tablename, indexdef
+  FROM pg_indexes
+ WHERE tablename IN ('cita','mascota')
+ ORDER BY tablename, indexname;
+
+-- =====================================================================
+-- BLOQUE 3 · ORDEN DE COLUMNAS (pregunta 2). Los dos indices llevan las
+-- MISMAS dos columnas en orden inverso, y existen para demostrar que el
+-- orden decide. Regla: igualdad primero, rango al final.
+-- =====================================================================
 CREATE INDEX idx_cita_estado_fecha ON cita (estado, fecha_hora);
+CREATE INDEX idx_cita_fecha_estado ON cita (fecha_hora, estado);
+ANALYZE cita;
 
--- Justificacion PI:
--- idx_cita_fecha: listado del dia / agenda
--- idx_mascota_dueno: busqueda de mascotas por dueno
--- idx_cita_estado_fecha: filtros combinados recepción
+EXPLAIN ANALYZE   -- Q1 · estado (igualdad) + fecha (rango) -> favorece (estado, fecha_hora)
+SELECT id_cita, fecha_hora FROM cita
+ WHERE estado = 'PROGRAMADA'
+   AND fecha_hora >= TIMESTAMP '2026-03-01' AND fecha_hora < TIMESTAMP '2026-04-01';
+
+EXPLAIN ANALYZE   -- Q2 · solo rango de fecha -> favorece (fecha_hora, estado)
+SELECT id_cita, estado FROM cita
+ WHERE fecha_hora >= TIMESTAMP '2026-03-01' AND fecha_hora < TIMESTAMP '2026-04-01';
+
+EXPLAIN ANALYZE   -- Q3 · solo estado, sin fecha -> columna lider ausente en el de fecha
+SELECT COUNT(*) FROM cita WHERE estado = 'CANCELADA';
+
+-- Fuerce el experimento: quite el que Q2 estaba usando y vuelva a medir.
+DROP INDEX idx_cita_fecha_estado;
+ANALYZE cita;
+EXPLAIN ANALYZE
+SELECT id_cita, estado FROM cita
+ WHERE fecha_hora >= TIMESTAMP '2026-03-01' AND fecha_hora < TIMESTAMP '2026-04-01';
+-- Esperado: cae en idx_cita_fecha_hora o vuelve a Seq Scan, pero NO usa
+-- idx_cita_estado_fecha: su columna lider (estado) no aparece en el WHERE.
+
+-- =====================================================================
+-- BLOQUE 4 · PARTICIONAMIENTO (pregunta 3). HOY SE IMPLEMENTA.
+-- =====================================================================
+-- La trampa: en una tabla particionada la PK DEBE incluir la columna de particion.
+-- PRIMARY KEY (id_cita) a secas no compila, y el mensaje del motor no lo dice asi.
+CREATE TABLE cita_hist (
+  id_cita        INT,
+  id_mascota     INT,
+  id_veterinario INT,
+  fecha_hora     TIMESTAMP NOT NULL,
+  estado         TEXT,
+  PRIMARY KEY (id_cita, fecha_hora)
+) PARTITION BY RANGE (fecha_hora);
+
+-- Rango cerrado por abajo, abierto por arriba: el TO de una es el FROM de la siguiente.
+CREATE TABLE cita_hist_2025 PARTITION OF cita_hist
+  FOR VALUES FROM (TIMESTAMP '2025-01-01') TO (TIMESTAMP '2026-01-01');
+CREATE TABLE cita_hist_2026 PARTITION OF cita_hist
+  FOR VALUES FROM (TIMESTAMP '2026-01-01') TO (TIMESTAMP '2027-01-01');
+
+INSERT INTO cita_hist
+SELECT id_cita, id_mascota, id_veterinario, fecha_hora, estado FROM cita;
+
+-- Prueba del enrutamiento. tableoid es la columna de sistema que dice en que tabla FISICA
+-- vive cada fila; ::regclass la traduce a nombre. Sin esto no hay evidencia: solo un
+-- INSERT que no dio error.
+SELECT tableoid::regclass AS particion, COUNT(*), MIN(fecha_hora), MAX(fecha_hora)
+  FROM cita_hist GROUP BY 1 ORDER BY 1;
+-- Con la siembra del BLOQUE 0 (todas las citas son de 2026) cae TODO en cita_hist_2026 y
+-- cita_hist_2025 queda vacia: eso ya demuestra el enrutamiento. La base de la pregunta 3
+-- en ExamLab reparte 5.010 citas entre 2025 y 2026 y ahi se ven las dos particiones.
+
+-- Poda de particiones: lo unico que mejora hoy de verdad.
+EXPLAIN ANALYZE
+SELECT COUNT(*) FROM cita_hist
+ WHERE fecha_hora >= TIMESTAMP '2026-01-01' AND fecha_hora < TIMESTAMP '2027-01-01';
+-- Esperado: en el plan aparece SOLO cita_hist_2026. El tiempo no baja de forma apreciable
+-- con este volumen, y hay que decirlo: lo que se demuestra es que el motor descarta
+-- particiones enteras ANTES de leer.
+
+-- El beneficio real es de mantenimiento: archivar un ano es DROP TABLE de su particion
+-- --una operacion de metadatos-- en vez de un DELETE masivo que toca millones de filas,
+-- infla el registro de transacciones y sostiene bloqueos largos. Eso es la Clase 8.
+-- DROP TABLE cita_hist_2025;
 """,
-"08_transacciones_vetcare.sql": """-- VetCare DB · Clase 8 · Transaccion facturacion + stock (orientativo)
+"08_transacciones_vetcare.sql": """-- VetCare DB · Clase 8 · Transaccion de facturacion + descuento de stock
+-- Ejecutable en PostgreSQL, incluido PGlite (la consola de ExamLab). Corre completo y
+-- EN ORDEN: el bloque 3 solo tiene sentido si antes se tomo la foto del bloque 2.
+--
+-- ESTO ES PL/pgSQL, NO PL/SQL DE ORACLE. Aqui no existen NUMBER, SQL%ROWCOUNT ni
+-- RAISE_APPLICATION_ERROR, y NO se escribe COMMIT ni ROLLBACK dentro del procedimiento:
+-- el CALL de nivel superior ya es su propia transaccion.
 
--- Pseudobloque / proc:
--- BEGIN
---   INSERT INTO factura ...
---   INSERT INTO detalle_factura ...
---   UPDATE insumo SET stock = stock - :cant WHERE id_insumo = :id;
---   IF stock < 0 THEN RAISE; END IF;
---   COMMIT;
--- EXCEPTION WHEN OTHERS THEN ROLLBACK; RAISE;
--- END;
+-- =====================================================================
+-- BLOQUE 0 · Esquema minimo y datos. Los stocks son los de la actividad.
+-- =====================================================================
+-- Los DROP van primero para que el script se pueda correr dos veces sin limpiar a mano.
+DROP PROCEDURE IF EXISTS sp_facturar(INT, INT[], INT[]);
+DROP FUNCTION  IF EXISTS fn_descontar_stock(INT, INT);
+DROP TABLE     IF EXISTS detalle_factura;
+DROP TABLE     IF EXISTS factura;
+DROP TABLE     IF EXISTS insumo;
 
--- Demo minima portable:
--- UPDATE insumo SET stock = stock - 1 WHERE id_insumo = 1 AND stock >= 1;
--- Si SQL%ROWCOUNT = 0 -> no habia stock -> ROLLBACK de la factura.
+CREATE TABLE insumo (
+  id_insumo   SERIAL PRIMARY KEY,
+  nombre      TEXT NOT NULL,
+  stock       INT NOT NULL CHECK (stock >= 0),
+  precio_unit NUMERIC(12,2) NOT NULL
+);
+CREATE TABLE factura (
+  id_factura  SERIAL PRIMARY KEY,
+  id_consulta INT NOT NULL,
+  total       NUMERIC(12,2) NOT NULL DEFAULT 0
+);
+CREATE TABLE detalle_factura (
+  id_detalle  SERIAL PRIMARY KEY,
+  id_factura  INT NOT NULL REFERENCES factura(id_factura),
+  id_insumo   INT NOT NULL REFERENCES insumo(id_insumo),
+  cantidad    INT NOT NULL CHECK (cantidad > 0),
+  precio_unit NUMERIC(12,2) NOT NULL
+);
+
+INSERT INTO insumo (nombre, stock, precio_unit) VALUES
+  ('Vacuna antirrabica',   12, 22000),   -- 1
+  ('Vacuna triple felina',  3, 31000),   -- 2  <- el que se va a quedar corto
+  ('Antiparasitario oral', 40,  9500),   -- 3
+  ('Suero fisiologico',    25,  7000),   -- 4
+  ('Gasa esteril',          8,  1200),   -- 5
+  ('Jeringa 5ml',          60,   900);   -- 6
+
+-- =====================================================================
+-- BLOQUE 1 · EL PROCEDIMIENTO. Una factura tiene VARIAS lineas, asi que
+-- la firma recibe dos arreglos paralelos, no un insumo suelto.
+-- =====================================================================
+CREATE PROCEDURE sp_facturar(
+  p_id_consulta INT,
+  p_insumos     INT[],
+  p_cantidades  INT[]
+)
+LANGUAGE plpgsql
+AS $proc$
+DECLARE
+  v_id_factura INT;
+  v_total   NUMERIC(12,2) := 0;
+  v_precio  NUMERIC(12,2);
+  v_filas   INT;
+  i         INT;
+BEGIN
+  -- El llamador se equivoco: se rechaza antes de tocar la base.
+  IF array_length(p_insumos, 1) IS DISTINCT FROM array_length(p_cantidades, 1) THEN
+    RAISE EXCEPTION 'ERROR: insumos y cantidades deben tener la misma longitud';
+  END IF;
+
+  -- Total en 0: todavia no se sabe. RETURNING ... INTO evita otro SELECT.
+  INSERT INTO factura (id_consulta, total) VALUES (p_id_consulta, 0)
+  RETURNING id_factura INTO v_id_factura;
+
+  FOR i IN 1 .. array_length(p_insumos, 1) LOOP
+    SELECT precio_unit INTO v_precio FROM insumo WHERE id_insumo = p_insumos[i];
+    IF NOT FOUND THEN
+      RAISE EXCEPTION 'ERROR: el insumo % no existe', p_insumos[i];
+    END IF;
+
+    -- EL GUARDIA. La comprobacion viaja DENTRO del WHERE: comprobar y escribir son
+    -- una sola sentencia atomica y nadie puede colarse entre las dos.
+    UPDATE insumo
+       SET stock = stock - p_cantidades[i]
+     WHERE id_insumo = p_insumos[i]
+       AND stock >= p_cantidades[i];
+    GET DIAGNOSTICS v_filas = ROW_COUNT;   -- 1 alcanzo, 0 no habia stock
+    IF v_filas = 0 THEN
+      RAISE EXCEPTION 'ERROR: stock insuficiente del insumo % (se pidieron %)',
+        p_insumos[i], p_cantidades[i];
+    END IF;
+
+    INSERT INTO detalle_factura (id_factura, id_insumo, cantidad, precio_unit)
+    VALUES (v_id_factura, p_insumos[i], p_cantidades[i], v_precio);
+
+    v_total := v_total + (v_precio * p_cantidades[i]);
+  END LOOP;
+
+  UPDATE factura SET total = v_total WHERE id_factura = v_id_factura;
+  RAISE NOTICE 'Factura % creada por %', v_id_factura, v_total;
+END;
+$proc$;
+
+-- =====================================================================
+-- BLOQUE 2 · CASO EXITOSO
+-- =====================================================================
+CALL sp_facturar(4, ARRAY[1, 6, 5], ARRAY[1, 2, 3]);
+-- Esperado: 22000*1 + 900*2 + 1200*3 = 27.400, y los stocks 1, 6 y 5 bajan a 11, 58 y 5.
+SELECT id_factura, id_consulta, total FROM factura ORDER BY id_factura;
+SELECT id_insumo, nombre, stock FROM insumo ORDER BY id_insumo;
+
+-- =====================================================================
+-- BLOQUE 3 · ATOMICIDAD. Aqui esta la clase entera.
+-- =====================================================================
+-- Foto inicial: estos numeros son el punto de comparacion.
+SELECT (SELECT COUNT(*) FROM factura)         AS facturas,
+       (SELECT COUNT(*) FROM detalle_factura) AS lineas,
+       (SELECT stock FROM insumo WHERE id_insumo = 3) AS stock_3,
+       (SELECT stock FROM insumo WHERE id_insumo = 2) AS stock_2;
+-- Esperado tras el bloque 2: 1 | 3 | 40 | 3
+
+-- Intento que falla A MITAD: la primera linea (2 del insumo 3, que tiene 40) SI alcanza;
+-- la segunda (10 del insumo 2, que solo tiene 3) NO. El DO ... EXCEPTION es para que el
+-- script no se detenga; el que decide sigue siendo el procedimiento.
+DO $$
+BEGIN
+  CALL sp_facturar(4, ARRAY[3, 2], ARRAY[2, 10]);
+  RAISE NOTICE 'No deberia llegar aqui';
+EXCEPTION WHEN OTHERS THEN
+  RAISE NOTICE 'Fallo esperado: %', SQLERRM;
+END $$;
+
+-- Foto final: EXACTAMENTE la misma consulta.
+SELECT (SELECT COUNT(*) FROM factura)         AS facturas,
+       (SELECT COUNT(*) FROM detalle_factura) AS lineas,
+       (SELECT stock FROM insumo WHERE id_insumo = 3) AS stock_3,
+       (SELECT stock FROM insumo WHERE id_insumo = 2) AS stock_2;
+-- Esperado: 1 | 3 | 40 | 3, identico a la foto inicial.
+--   * no quedo una factura huerfana,
+--   * no quedo ninguna linea de detalle,
+--   * y sobre todo el stock del insumo 3 VOLVIO A 40: el descuento que si habia
+--     alcanzado se deshizo. Nadie escribio ROLLBACK.
+
+-- Y ahora la misma factura con una cantidad viable del insumo 2.
+CALL sp_facturar(4, ARRAY[3, 2], ARRAY[2, 3]);
+SELECT id_factura, id_consulta, total FROM factura ORDER BY id_factura;
+SELECT id_insumo, nombre, stock FROM insumo ORDER BY id_insumo;
+-- Esperado: factura 2 por 9500*2 + 31000*3 = 112.000; insumo 3 en 38 e insumo 2 en 0.
+
+-- =====================================================================
+-- BLOQUE 4 · EL MISMO PATRON COMO FUNCION REUTILIZABLE
+-- Aqui "no hay stock" es una RESPUESTA, no un error: la funcion informa y
+-- el llamador decide. El procedimiento del bloque 1 abortaba.
+-- =====================================================================
+CREATE FUNCTION fn_descontar_stock(p_id_insumo INT, p_cantidad INT)
+RETURNS BOOLEAN
+LANGUAGE plpgsql
+AS $fn$
+DECLARE
+  v_filas INT;
+BEGIN
+  -- Una cantidad no positiva no es "no hay stock", es una llamada mal hecha.
+  IF p_cantidad <= 0 THEN
+    RAISE EXCEPTION 'ERROR: la cantidad debe ser positiva (llego %)', p_cantidad;
+  END IF;
+
+  UPDATE insumo
+     SET stock = stock - p_cantidad
+   WHERE id_insumo = p_id_insumo
+     AND stock >= p_cantidad;
+  GET DIAGNOSTICS v_filas = ROW_COUNT;
+
+  RETURN v_filas = 1;
+END;
+$fn$;
+
+-- Reiniciar los stocks para que la prueba de abajo de los valores esperados.
+UPDATE insumo SET stock = 8 WHERE id_insumo = 5;
+UPDATE insumo SET stock = 3 WHERE id_insumo = 2;
+
+SELECT fn_descontar_stock(5, 3)  AS caso_ok,
+       fn_descontar_stock(2, 10) AS caso_sin_stock,
+       fn_descontar_stock(2, 3)  AS caso_limite;
+-- Esperado: true | false | true. El tercero es el interesante: pide EXACTAMENTE el stock
+-- que queda, y con >= en el guardia tiene que pasar.
+
+SELECT id_insumo, nombre, stock FROM insumo ORDER BY id_insumo;
+-- Esperado: insumo 5 en 5, insumo 2 en 0, y NINGUN stock negativo.
+
+-- La diferencia con leer primero y decidir despues:
+--   SELECT stock ... ; IF stock >= cantidad THEN UPDATE ...
+-- deja una VENTANA entre la lectura y la escritura. Con dos recepcionistas facturando el
+-- mismo insumo, las dos leen 3, las dos deciden que alcanza, y el stock termina en -2 (o
+-- el CHECK revienta). El UPDATE con la condicion en el WHERE no tiene ventana.
+-- Aqui no se puede demostrar: PGlite corre UNA SOLA sesion. Ese es el gap que se declara
+-- en la pregunta 5 y lo que abre la Clase 10.
 """,
 "10_concurrencia_vetcare.sql": """-- VetCare DB · Clase 10 · Demo ejecutable: doble reserva y su mitigacion
 -- Ejecutar EN ORDEN: primero se ve el problema, despues la solucion.
@@ -972,45 +1889,82 @@ CODIGO_SLIDE = {
         "GRANT SELECT (id_dueno, nombre) ON dueno TO veterinario_rol;",
     ], "Un GRANT no es todo-o-nada: la vista recorta filas y columnas, y el privilegio "
        "por columna recorta columnas sin crear objeto nuevo."),
-    3: ("La validacion que justifica usar un procedimiento", [
-        "SELECT activa INTO v_activa FROM mascota",
-        " WHERE id_mascota = p_id_mascota;",
-        "",
-        "IF v_activa <> 'S' THEN",
-        "  p_msg := 'ERROR: mascota inactiva; no se agenda';",
-        "  RETURN;                       -- sale SIN insertar",
-        "END IF;",
-        "",
-        "INSERT INTO cita(...) VALUES (...);",
-    ], "Sin este IF, el proc es solo un INSERT con nombre: no resuelve nada."),
-    4: ("Trigger de auditoria: nadie tiene que acordarse de registrarlo", [
-        "CREATE OR REPLACE TRIGGER trg_audit_cancelacion_cita",
-        "AFTER UPDATE ON cita FOR EACH ROW",
-        "WHEN (NEW.estado = 'CANCELADA')",
+    # El molde completo, no solo el IF: la pregunta 1 vale 35 puntos y 6 de ellos son
+    # de sintaxis PL/pgSQL. Antes esta diapositiva proyectaba un parametro OUT con el
+    # mensaje de error, que es exactamente lo que la rubrica NO acepta.
+    3: ("El molde de PL/pgSQL y la validacion que aborta", [
+        "CREATE OR REPLACE PROCEDURE sp_agendar_cita(",
+        "  p_id_mascota INT, p_id_veterinario INT,",
+        "  p_fecha_hora TIMESTAMP)          -- id_cita es SERIAL: no se pasa",
+        "LANGUAGE plpgsql AS $proc$         -- ni IS, ni VARCHAR2, ni / final",
+        "DECLARE v_activa CHAR(1);",
         "BEGIN",
-        "  INSERT INTO auditoria_cita(id_cita, estado_ant, estado_new, usuario, fecha)",
-        "  VALUES (:NEW.id_cita, :OLD.estado, :NEW.estado, USER, SYSDATE);",
-        "END;",
-    ], "Se dispara solo. Riesgo: es invisible para quien solo lee el codigo de la app."),
-    7: ("Un indice se justifica con la consulta que lo usa", [
-        "-- Consulta frecuente: la agenda del dia",
-        "SELECT ... FROM cita WHERE fecha_hora >= :hoy;",
+        "  SELECT activa INTO v_activa FROM mascota",
+        "   WHERE id_mascota = p_id_mascota;",
+        "  IF NOT FOUND THEN",
+        "    RAISE EXCEPTION 'ERROR: la mascota % no existe', p_id_mascota;",
+        "  END IF;",
+        "  IF v_activa <> 'S' THEN",
+        "    RAISE EXCEPTION 'ERROR: la mascota % esta inactiva', p_id_mascota;",
+        "  END IF;                          -- aborta: no inserta NADA",
+        "  INSERT INTO cita(id_mascota, id_veterinario, fecha_hora, estado)",
+        "  VALUES (p_id_mascota, p_id_veterinario, p_fecha_hora, 'PROGRAMADA');",
+        "END; $proc$;",
+    ], "`RAISE EXCEPTION` aborta el CALL completo y deshace lo hecho. Con el mensaje "
+       "en un parametro OUT, el INSERT seguiria corriendo."),
+    # En PostgreSQL el trigger son DOS objetos. La rubrica de la pregunta 2 descuenta
+    # por `:NEW`/`:OLD` y por omitir `EXECUTE FUNCTION`, asi que la diapositiva tiene
+    # que proyectar la forma correcta: antes proyectaba la de Oracle.
+    4: ("Un trigger son DOS objetos: la funcion y la asociacion", [
+        "-- 1) La funcion: NEW y OLD SIN dos puntos",
+        "CREATE OR REPLACE FUNCTION fn_trg_audit_cita()",
+        "RETURNS TRIGGER LANGUAGE plpgsql AS $fn$",
+        "BEGIN",
+        "  INSERT INTO audit_cita(id_cita, accion,",
+        "                         valor_anterior, valor_nuevo)",
+        "  VALUES (NEW.id_cita, 'CAMBIO_ESTADO',",
+        "          OLD.estado, NEW.estado);   -- usuario y fecha: DEFAULT",
+        "  RETURN NEW;                        -- obligatorio",
+        "END; $fn$;",
         "",
-        "CREATE INDEX idx_cita_fecha ON cita(fecha_hora);",
+        "-- 2) La asociacion: cuando se dispara y a quien llama",
+        "CREATE TRIGGER trg_audit_cita",
+        "AFTER UPDATE OF estado ON cita FOR EACH ROW",
+        "WHEN (OLD.estado IS DISTINCT FROM NEW.estado)",
+        "EXECUTE FUNCTION fn_trg_audit_cita();",
+    ], "El `WHEN` es lo que hace que 3 UPDATE dejen 2 filas de auditoria. Se dispara "
+       "solo: el riesgo es que sea invisible para quien solo lee el codigo de la app."),
+    # El nombre del indice se proyectaba como `idx_cita_fecha` y la pregunta 1 califica
+    # `idx_cita_fecha_hora`: esta es la diapositiva de la que el estudiante copia, asi que
+    # era la que le costaba los puntos. Se agrega el parcial, que tambien se califica.
+    7: ("Un indice se justifica con la consulta que lo usa", [
+        "-- Consulta frecuente: la agenda del dia (siempre PROGRAMADA)",
+        "SELECT ... FROM cita",
+        " WHERE fecha_hora >= :hoy AND estado = 'PROGRAMADA';",
+        "",
+        "CREATE INDEX idx_cita_fecha_hora ON cita (fecha_hora);",
+        "CREATE INDEX idx_cita_programada_fecha ON cita (fecha_hora)",
+        "  WHERE estado = 'PROGRAMADA';        -- indice PARCIAL",
         "",
         "-- Mal candidato: baja cardinalidad (solo 'S' o 'N')",
         "-- CREATE INDEX idx_mascota_activa ON mascota(activa);",
-    ], "Cada indice acelera lecturas y encarece INSERT/UPDATE/DELETE. Indexar todo es un error."),
+    ], "Cada indice acelera lecturas y encarece INSERT/UPDATE/DELETE. El nombre se califica letra por letra."),
+    # Decia «ROLLBACK; -- de lo contrario: COMMIT;», que es literalmente la opcion
+    # INCORRECTA de la pregunta 4 (10 pts) proyectada como respuesta. En PostgreSQL el
+    # procedimiento no lleva control de transaccion: la excepcion que se propaga fuera del
+    # `CALL` deshace todo, y quien copiaba esta diapositiva perdia los 10 puntos.
     8: ("Todo o nada: la transaccion de facturacion", [
-        "BEGIN;",
-        "  INSERT INTO factura(...)         VALUES (...);",
-        "  INSERT INTO detalle_factura(...) VALUES (...);",
-        "  UPDATE insumo SET stock = stock - :cant",
-        "   WHERE id_insumo = :id AND stock >= :cant;   -- 0 filas si no alcanza",
-        "  -- si afecto 0 filas ->",
-        "  ROLLBACK;   -- de lo contrario: COMMIT;",
-        "END;",
-    ], "La condicion stock >= :cant evita el stock negativo; el ROLLBACK evita la factura a medias."),
+        "CREATE PROCEDURE sp_facturar(p_id_consulta INT,",
+        "        p_insumos INT[], p_cantidades INT[]) ...",
+        "  INSERT INTO factura(...) RETURNING id_factura INTO v_id_factura;",
+        "  FOR i IN 1 .. array_length(p_insumos, 1) LOOP",
+        "    UPDATE insumo SET stock = stock - p_cantidades[i]",
+        "     WHERE id_insumo = p_insumos[i]",
+        "       AND stock >= p_cantidades[i];   -- 0 filas si no alcanza",
+        "    GET DIAGNOSTICS v_filas = ROW_COUNT;",
+        "    IF v_filas = 0 THEN RAISE EXCEPTION '...'; END IF;",
+        "  END LOOP;   -- sin COMMIT y sin ROLLBACK: los pone el CALL",
+    ], "La condicion stock >= cantidad evita el stock negativo; la excepcion que sale del CALL deshace todo sola."),
     10: ("La restriccion que hace imposible la doble reserva", [
         "ALTER TABLE cita",
         "  ADD CONSTRAINT uq_cita_vet_franja",
@@ -1031,18 +1985,31 @@ CODIGO_SLIDE = {
 
 # Comparaciones antes/despues (lo que mejor se entiende visualmente).
 ANTES_DESPUES = {
+    # Decia «Plan: TABLE ACCESS FULL (~120.000 filas)» -> «INDEX RANGE SCAN (~340
+    # filas)». Dos cosas falsas en una diapositiva que ve el estudiante. Una: esos son
+    # nombres de nodo de ORACLE, y el taller corre sobre PostgreSQL (Seq Scan). Dos, y
+    # peor: hoy NO se crea ningun indice, asi que ninguna version puede dar un Index
+    # Scan — la solucion docente lo dice expresamente («sin indice las dos versiones
+    # siguen leyendo las 30.010 filas»). El estudiante que buscara el Index Scan
+    # prometido concluiria que su respuesta correcta esta mal, o lo inventaria.
     6: {
         "titulo": "Optimizar es un ANTES medible, no una opinion",
         "b_t": "Antes",
-        "b": ["`SELECT *` trae columnas que nadie usa",
-              "JOIN sin filtro: cruza el historico completo",
-              "Funcion sobre la columna del WHERE bloquea el indice",
-              "Plan: **TABLE ACCESS FULL** (~120.000 filas)"],
+        "b": ["`SELECT *` arrastra las columnas de 4 tablas por el join",
+              "`to_char(fecha_hora,…)` y `UPPER(estado)`: **funcion sobre la columna**",
+              "Joins con coma: si falta una condicion, **producto cartesiano**",
+              "Subconsulta por fila: el plan dice **loops=2006**"],
         "a_t": "Despues",
-        "a": ["Solo las columnas necesarias",
-              "Filtro por fecha ANTES del JOIN",
-              "Comparacion directa sobre la columna indexada",
-              "Plan: **INDEX RANGE SCAN** (~340 filas)"],
+        "a": ["Las 6 columnas que la pantalla de agenda usa",
+              "`>= TIMESTAMP '2026-03-10' … <` y `estado = '…'`: **sargable**",
+              # La opcion 5 de la pregunta 4 de ExamLab es «cambiar la coma por JOIN…ON por
+              # si solo hace la consulta mas rapida», y es FALSA: mismo plan. Si la
+              # diapositiva lo pusiera en la columna «Despues» sin decirlo, estaria
+              # ensenando justo la opcion que descuenta.
+              "`JOIN … ON`: **no acelera**, impide el cartesiano",
+              "`LEFT JOIN` + `GROUP BY`: de 2.006 pasadas a **una**"],
+        "sub": "Mismas **91 filas** en las dos versiones. Y sin indices no hay Index Scan "
+               "—eso es la Clase 7—: hoy se miden filas procesadas y pasadas sobre la tabla",
     },
     2: {
         "titulo": "Minimo privilegio, en concreto",
@@ -1112,6 +2079,445 @@ TEORIA_EXTRA = {
         ],
         "Cada flecha del ciclo es un GRANT o un REVOKE. La politica es lo que le pone "
         "responsable y plazo a cada uno: son las 5 secciones del entregable",
+    )],
+    # Clase 3: la bateria de pruebas vale 25 puntos y el contrato 15 — 40 de los 100.
+    # Ninguna diapositiva las mencionaba: la teoria core llegaba hasta «hay que probar
+    # el proc» y el molde del bloque DO solo existia dentro de ExamLab.
+    3: [(
+        "La bateria de pruebas: un bloque DO por caso",
+        [
+            "@@Por que un bloque por caso.@@ Si los cuatro `CALL` van seguidos, el primero que "
+            "falla @@aborta el resto@@ y la evidencia queda a medias. `DO $$ ... $$;` es un "
+            "bloque anonimo —se ejecuta una vez y no se guarda— y su `EXCEPTION` atrapa el "
+            "error y deja seguir al siguiente caso.",
+            "@@El molde de un caso error.@@ `DO $$ BEGIN CALL sp_agendar_cita(...); INSERT INTO "
+            "resultado_prueba VALUES (..., 'FALLO: no lanzo error', FALSE); EXCEPTION WHEN "
+            "OTHERS THEN INSERT INTO resultado_prueba VALUES (..., SQLERRM, TRUE); END $$;` — "
+            "`SQLERRM` es el texto del error que se acaba de capturar.",
+            "@@Ojo con la logica invertida, y con `WHEN OTHERS` a secas.@@ En un caso error, "
+            "@@llegar al final sin excepcion es el fallo@@. Y no basta con que falle: hay que "
+            "verificar @@que falle por lo esperado@@ (`SQLERRM ILIKE '%inactiva%'`), porque un "
+            "typo en un nombre de columna tambien lanza excepcion y se reportaria como prueba "
+            "superada.",
+            "@@La tabla de resultados.@@ `resultado_prueba(id_prueba SERIAL, caso TEXT, esperado "
+            "TEXT, obtenido TEXT, paso BOOLEAN)`, y un `SELECT * ... ORDER BY id_prueba;` con las "
+            "4 filas. `paso` admite dos lecturas —«coincidio con lo esperado» o «la operacion se "
+            "completo»— y las dos valen; lo que se exige es @@usar la misma para las 4 y decir "
+            "cual@@.",
+            "@@Los 4 casos, y la prueba de que si inserto.@@ 1 caso OK + mascota inexistente + "
+            "mascota inactiva + franja ocupada. Y un `COUNT(*)` sobre `cita` @@antes y "
+            "despues@@: tiene que pasar de @@10 a 11@@ filas. Sin ese conteo nada demuestra que "
+            "el caso OK hizo algo.",
+        ],
+        "Un procedimiento sin bateria no esta terminado. Son 25 de los 100 puntos y se "
+        "califican por la tabla de resultados, no por el CALL suelto",
+    ), (
+        "El contrato del procedimiento: los 6 bloques que consume la app",
+        [
+            "@@1. Firma exacta.@@ `sp_agendar_cita(p_id_mascota INT, p_id_veterinario INT, "
+            "p_fecha_hora TIMESTAMP)`: nombre, orden y @@tipo@@ de cada parametro. Sin los tipos "
+            "no es un contrato, es una descripcion. @@2. Como se llama:@@ un `CALL` de ejemplo "
+            "con valores reales, copiable tal cual.",
+            "@@3. Precondiciones@@ — lo que garantiza quien llama: la mascota existe y esta "
+            "activa, la franja del veterinario esta libre.",
+            "@@4. Postcondiciones@@ — lo que queda cierto si termina bien: una fila nueva en "
+            "`cita` con estado `PROGRAMADA`, y @@ninguna@@ si termina mal.",
+            "@@5. Tabla de errores.@@ Una fila por cada `RAISE EXCEPTION`, con el @@mensaje "
+            "literal@@ y que debe hacer la app al recibirlo. Es lo que vuelve programable el "
+            "contrato: sin el texto exacto, la app no puede distinguir un error de otro.",
+            "@@6. Decision de diseno.@@ Por que se aborta en vez de devolver un codigo en un "
+            "`OUT`: porque abortar @@deshace@@ lo hecho, y un codigo que nadie revise deja la "
+            "cita creada igual.",
+        ],
+        "Es el entregable de la pregunta 5, vale 15 puntos, y la plantilla en blanco de los "
+        "6 bloques esta en el Taller del PI",
+    ), (
+        # La pregunta 3 vale 10 puntos y contrasta PROCEDURE con FUNCTION. En las 18
+        # diapositivas no aparecia ni una vez FUNCTION, RETURNS ni «funcion»: el deck
+        # solo enseñaba procedimientos, asi que el contraste se deducia de las opciones
+        # del quiz. Cada vineta refuta uno de los cinco distractores.
+        "PROCEDURE o FUNCTION: cual se puede usar dentro de un SELECT",
+        [
+            "@@`FUNCTION`: devuelve un valor y se invoca DENTRO de una consulta.@@ "
+            "`CREATE FUNCTION fn_precio(p_especie TEXT) RETURNS NUMERIC LANGUAGE plpgsql "
+            "AS $fn$ ... RETURN v_precio; ... $fn$;` y se usa `SELECT nombre, "
+            "fn_precio(especie) FROM mascota;`. Es la @@unica de las dos@@ que cabe en la "
+            "lista de columnas de un `SELECT`, en un `WHERE` o en un `ORDER BY`.",
+            "@@`PROCEDURE`: ejecuta pasos y se invoca como sentencia suelta.@@ "
+            "`CALL sp_agendar_cita(3, 7, '2026-09-01 10:00');`. @@No@@ se puede poner en "
+            "un `SELECT`. Si lo intentas, el motor responde `sp_agendar_cita(...) is not a "
+            "function`.",
+            "@@Las dos pueden ser `LANGUAGE plpgsql`.@@ El lenguaje no decide nada: es "
+            "falso que una funcion necesite `LANGUAGE sql` para poder retornar un valor. "
+            "`sp_agendar_cita` y `fn_precio` son las dos `plpgsql`.",
+            "@@Un `PROCEDURE` si admite parametros `OUT`@@ —y aun asi @@sigue sin poder "
+            "usarse dentro de un `SELECT`@@. Devolver por `OUT` no es lo mismo que ser "
+            "invocable en una consulta, y no es «la unica forma de retornar un valor».",
+            "@@Lo que solo puede el procedimiento: manejar la transaccion.@@ Un "
+            "`PROCEDURE` puede hacer `COMMIT` o `ROLLBACK` adentro; una `FUNCTION` corre "
+            "dentro de la transaccion de quien la llamo. Por eso agendar es procedimiento "
+            "y @@la tarifa de la Clase 4 sera funcion@@.",
+        ],
+        "PROCEDURE y FUNCTION no son sinonimos: si el resultado tiene que entrar en un "
+        "SELECT, es FUNCTION. Son 10 de los 100 puntos y es la bisagra con la Clase 4",
+    )],
+    # Clase 4: la pregunta 4 (donde vive cada validacion) vale 15 y el plan de respaldo
+    # 25 — 40 de los 100. La teoria core nombraba RPO/RTO pero ninguna diapositiva decia
+    # las 6 secciones que se califican ni con que herramienta de PostgreSQL.
+    # Y la pregunta 1 vale 20: pedia escribir fn_precio_consulta con CASE, COALESCE e
+    # IMMUTABLE, y la unica sintaxis de funcion proyectada era el RETURNS TRIGGER de la
+    # diapositiva de codigo. La funcion normal solo estaba NOMBRADA en la demo y en los
+    # criterios de exito, que es enunciar el entregable, no enseñar el mecanismo.
+    4: [(
+        "La funcion de tarifas: RETURNS NUMERIC, CASE, COALESCE e IMMUTABLE",
+        [
+            "@@La firma decide todo lo demas.@@ `CREATE FUNCTION fn_precio_consulta("
+            "p_especie TEXT, p_urgencia BOOLEAN) RETURNS NUMERIC LANGUAGE plpgsql "
+            "IMMUTABLE AS $fn$ ... $fn$;`. Es `RETURNS NUMERIC`, @@no `RETURNS TRIGGER`@@: "
+            "esta funcion no se asocia a ninguna tabla, se llama desde una consulta.",
+            "@@La tabla de tarifas es un `CASE`.@@ `CASE UPPER(p_especie) WHEN 'CANINO' "
+            "THEN 45000 WHEN 'FELINO' THEN 40000 ELSE 35000 END`. El `UPPER()` es lo que "
+            "hace la comparacion @@insensible a mayusculas@@: sin el, «canino» en "
+            "minuscula cae en el `ELSE` y cobra 35000.",
+            "@@El `NULL` de la urgencia: hazlo explicito con `COALESCE`.@@ "
+            "`IF COALESCE(p_urgencia, FALSE) THEN v_base := v_base * 1.35; END IF;`. Un "
+            "`IF` a secas ya trata `NULL` como falso, pero en cuanto el booleano entra en "
+            "una @@cuenta@@ el `NULL` se propaga y la funcion devuelve `NULL`.",
+            "@@`IMMUTABLE` es una promesa que el motor cobra:@@ @@misma entrada, misma "
+            "salida, sin leer tablas@@. Por eso el filtro `WHERE m.activa = 'S'` va en la "
+            "consulta y @@no@@ dentro de la funcion. Una funcion que consulta tablas seria "
+            "`STABLE`, nunca `IMMUTABLE`.",
+            "@@Y se usa dentro del `SELECT`, que es lo que la hace funcion@@ (el contraste "
+            "de la Clase 3): `SELECT nombre, especie, fn_precio_consulta(especie, FALSE) "
+            "AS tarifa_normal, fn_precio_consulta(especie, TRUE) AS tarifa_urgencia FROM "
+            "mascota ORDER BY id_mascota;` — un canino en urgencia da @@60750@@ "
+            "(45000 × 1.35).",
+        ],
+        "Son 20 de los 100 puntos, y se pierden casi siempre por tres cosas: un RETURNS "
+        "TRIGGER copiado del trigger, el UPPER() olvidado y un IMMUTABLE que lee tablas",
+    ), (
+        "Donde vive cada validacion: CHECK, trigger o aplicacion",
+        [
+            "@@`CHECK`: una sola fila, una sola columna.@@ `stock >= 0`, `precio > 0`, `estado "
+            "IN (...)`. Es lo mas barato y lo mas dificil de saltarse, porque lo aplica el "
+            "motor sin una linea de codigo. @@Si la regla cabe en un CHECK, no se hace "
+            "trigger.@@",
+            "@@`UNIQUE` y `FK`: la relacion entre filas o entre tablas.@@ «un veterinario no "
+            "puede tener dos citas en la misma franja» es `UNIQUE (id_veterinario, "
+            "fecha_hora)`, no un trigger.",
+            "@@Trigger: cuando la regla necesita OTRA fila u OTRA tabla.@@ Comparar `OLD` con "
+            "`NEW`, mirar el stock de `insumo` mientras se actualiza otra tabla, o @@escribir "
+            "en una segunda tabla@@ (auditoria). Nada de eso cabe en un `CHECK`.",
+            "@@Aplicacion: solo lo que la base no puede saber.@@ El formato del correo, el "
+            "permiso de la pantalla, la traduccion del mensaje. Y el criterio para decidir: "
+            "@@una validacion que solo vive en la app se salta conectandose por `psql`@@.",
+            "@@BEFORE valida, AFTER audita.@@ Un trigger que rechaza corre `BEFORE`, porque "
+            "despues el dato ya esta escrito; uno que registra un hecho consumado corre "
+            "`AFTER`. Poner `AFTER` en el de stock es el error mas comun del dia.",
+        ],
+        "La pregunta 4 son 15 puntos y no pide codigo: pide ubicar cada validacion en su "
+        "capa y justificar por que ahi",
+    ), (
+        "Plan de respaldo: 6 secciones y herramientas reales de PostgreSQL",
+        [
+            "@@1. Que se respalda y con que.@@ `pg_dump -Fc -d vetcare -f "
+            "vetcare_AAAAMMDD.dump` para los datos, y `pg_dumpall --globals-only` para los "
+            "@@roles de la Clase 2@@: `pg_dump` es de UNA base y los roles son del cluster, asi "
+            "que no los respalda. Si falta, se restaura la base y ningun rol tiene permisos.",
+            "@@2. Frecuencia, con su razon.@@ No «diario»: «`pg_dump -Fc` a las 20:30 @@porque@@ "
+            "la facturacion de Huellitas cierra a las 20:00». La hora se justifica con un hecho "
+            "del negocio.",
+            "@@3. Retencion@@ —cuantas copias y donde: 7 diarias, 4 semanales, 12 mensuales, y "
+            "@@al menos una fuera del mismo servidor@@— y @@4. RPO y RTO en numeros@@: cuantos "
+            "datos se acepta perder («maximo 1 hora de citas») y cuanto puede estar caida la "
+            "base. Un dump diario implica un RPO de 24 h: si no alcanza, hace falta "
+            "@@archivado de WAL@@.",
+            "@@5. Restore de prueba@@ con `pg_restore` sobre una base vacia: fecha, duracion "
+            "medida, la consulta que confirma el conteo, cada cuanto se ensaya y quien firma. "
+            "@@Un respaldo que nunca se restauro no es un respaldo:@@ es un archivo.",
+            "@@6. Que NO cubre el plan@@ y cual es el riesgo residual que se asume: el borrado "
+            "por error que se descubre tres dias despues, la hora de citas que cabe en el RPO. "
+            "@@Es la seccion que separa un plan de una lista de comandos@@, y la que mas se olvida.",
+        ],
+        "Son 25 de los 100 puntos de la clase y se califican seccion por seccion. La "
+        "plantilla en blanco esta en el Taller del PI",
+    )],
+    # Clase 6: tres huecos del criterio rector, y los tres valian puntos.
+    #
+    # 1. LEER EL PLAN es la pregunta 2 completa — 20 de 100 — mas la afirmacion 6 de la
+    #    pregunta 4: pide el «nodo mas costoso», «filas estimadas vs reales» y el «tiempo
+    #    total» de tres EXPLAIN. Ninguna diapositiva mostraba un plan ni nombraba un solo
+    #    campo. El fundamento si lo explicaba, pero la unica bala de teoria que menciona
+    #    EXPLAIN es la sexta, y `_slide_summary` corta a 5: no se proyectaba.
+    # 2. LA SUBCONSULTA CORRELACIONADA es la pregunta 3 y una de las cuatro afirmaciones
+    #    correctas de la 4 — unos 22 de 100 —, y no aparecia en ninguna diapositiva ni en
+    #    ninguna bala de teoria. La palabra «correlacionad-» si estaba en el fundamento,
+    #    pero referida a PREDICADOS correlacionados, que es otro tema (estadisticas), asi
+    #    que el docente podia buscarla, encontrarla y creer que estaba cubierta.
+    # 3. LA PRUEBA DE EQUIVALENCIA (los dos COUNT(*) de la pregunta 1 y el EXCEPT de la 3)
+    #    suma otros 6 puntos y tampoco estaba.
+    6: [(
+        "Leer un plan: es un arbol y se lee de adentro hacia afuera",
+        [
+            "@@El orden de lectura.@@ El plan @@no@@ es una lista de pasos de arriba hacia "
+            "abajo: es un arbol. Los nodos @@mas indentados son las hojas@@ y se ejecutan "
+            "primero; cada nodo consume las filas de sus hijos. La @@primera linea impresa es "
+            "la ULTIMA operacion@@.",
+            "@@Los cuatro campos.@@ `cost=270.00..4821.50` son arranque y total en una unidad "
+            "@@relativa@@ (1.0 = leer una pagina de 8 KB), @@no@@ milisegundos; `rows=` son las "
+            "filas que el motor @@estima@@; `width=` el ancho de la fila en bytes; `loops=` "
+            "cuantas @@veces se repitio@@ ese nodo.",
+            "@@`EXPLAIN` estima, `EXPLAIN ANALYZE` ejecuta.@@ El segundo agrega `actual "
+            "time=`, `actual rows=` y el `Execution Time` final. Y ejecuta @@de verdad@@: "
+            "sobre un `UPDATE` o `DELETE` hay que envolverlo en `BEGIN` … `ROLLBACK` (eso es "
+            "la Clase 8). Con `SELECT` no hay riesgo.",
+            "@@Estimado contra real: la senal.@@ Una divergencia de 2 veces es normal; de @@10 "
+            "veces o mas@@ delata estadisticas viejas o predicados que el motor cree "
+            "independientes y no lo son. Es lo que se anota en la tabla de la pregunta 2.",
+            "@@El nodo mas costoso, sin trampa.@@ El tiempo de un nodo @@incluye el de sus "
+            "hijos@@, y `actual time` es @@por vuelta@@: hay que multiplicarlo por `loops`. Un "
+            "nodo de 0,5 ms con `loops=2006` cuesta un segundo — mas que el `Seq Scan` de "
+            "arriba que parece el culpable.",
+        ],
+        "Es la pregunta 2 completa — 20 de los 100 puntos — y se responde leyendo estos "
+        "campos, no pegando el plano tal cual",
+    ), (
+        "La subconsulta correlacionada: 2.006 pasadas o una sola",
+        [
+            "@@Que la hace correlacionada.@@ La subconsulta esta en la @@lista de columnas@@ y "
+            "menciona una columna del exterior (`WHERE m.id_dueno = d.id_dueno`). No se puede "
+            "calcular una vez y reusar: depende de la fila que se este mirando, asi que el motor "
+            "@@la ejecuta una vez por fila@@ del exterior.",
+            "@@El numero que lo delata en el plan.@@ `EXPLAIN ANALYZE` muestra un nodo `SubPlan` "
+            "con @@`loops=2006`@@ — un dueno, una ejecucion. Y cada ejecucion recorre las 30.010 "
+            "citas. `loops` es el campo que hay que buscar: es el unico lugar donde el plan dice "
+            "«esto se repitio».",
+            "@@La reescritura.@@ `dueno LEFT JOIN mascota LEFT JOIN cita` + `GROUP BY d.id_dueno, "
+            "d.nombre` + `COUNT(...)`. El `SubPlan` desaparece y en su lugar queda un solo "
+            "`HashAggregate`: @@una pasada@@. Es la unica mejora del dia que es de ordenes de "
+            "magnitud, y no necesita ningun indice — lo que se elimino no fue un escaneo, fueron "
+            "2.005 escaneos.",
+            "@@`COUNT(c.id_cita)`, nunca `COUNT(*)`.@@ El `LEFT JOIN` fabrica @@una fila llena de "
+            "`NULL`@@ por cada dueno sin citas. `COUNT(*)` cuenta filas y reporta @@1@@; `COUNT` de "
+            "una columna ignora los `NULL` y reporta @@0@@. El sintoma es exacto: los duenos sin "
+            "citas dicen 1 en vez de 0.",
+            "@@Y `LEFT`, no `INNER`.@@ Un `INNER JOIN` es mas rapido y esta @@mal@@: borra del "
+            "reporte a los duenos sin mascotas, y el ranking deja de cuadrar con el total de "
+            "clientes de la clinica. Mas rapido devolviendo otra cosa no es optimizar.",
+        ],
+        "Es la pregunta 3 del taller — 20 de los 100 puntos — y la afirmacion de la "
+        "pregunta 4 que mas se falla",
+    ), (
+        "Optimizar no cambia el resultado: como se prueba",
+        [
+            "@@La regla.@@ Correccion y tiempo son ejes @@independientes@@. Si la version DESPUES "
+            "devuelve algo distinto, no se optimizo nada: se rompio la consulta, y se rompio @@sin "
+            "avisar@@, porque ningun motor va a lanzar un error por eso.",
+            "@@Prueba 1, para una consulta con filtro: los dos `COUNT(*)`.@@ Se envuelve cada "
+            "version y se comparan los conteos en la @@misma corrida@@. En la agenda del "
+            "2026-03-10 las dos tienen que decir @@91@@. Un conteo distinto es la respuesta "
+            "equivocada, no una version mas rapida.",
+            "@@Prueba 2, para conjuntos completos: `EXCEPT` en los DOS sentidos.@@ `A EXCEPT B` "
+            "devuelve lo que esta en A y no en B. Que salga vacio @@no@@ prueba la igualdad: B "
+            "puede tener filas de mas. Se corren las dos direcciones unidas con `UNION ALL` y se "
+            "exige @@cero filas@@.",
+            "@@Sin `LIMIT` en la prueba.@@ Comparar solo las primeras 20 filas deja fuera "
+            "justamente las que fallan — las de los duenos con cero citas, que es donde "
+            "`COUNT(*)` miente. El `LIMIT` va en la consulta que se entrega, no en la que verifica.",
+            "@@Que NO sirve como prueba.@@ «Se ve igual», «trae mas o menos lo mismo» o mirar la "
+            "primera pantalla de resultados. La equivalencia se afirma con una consulta cuyo "
+            "resultado @@se conoce de antemano@@: un numero que coincide o un conjunto vacio.",
+        ],
+        "Vale puntos dos veces: los dos `COUNT(*)` de la pregunta 1 y el `EXCEPT` de la "
+        "pregunta 3",
+    )],
+    # Clase 7: el deck llegaba hasta «un indice se justifica con la consulta que lo usa» y
+    # la actividad cobraba 70 de los 100 puntos por tres mecanismos que ninguna diapositiva
+    # proyectaba. Uno: los nombres son EXACTOS y la demo ensenaba `idx_cita_fecha` cuando la
+    # pregunta 1 califica `idx_cita_fecha_hora`. Dos: el indice parcial, que la pregunta 1
+    # exige por nombre —y su rubrica descuenta si falta— y que la pregunta 4 vuelve a cobrar,
+    # no aparecia en ningun lado. Tres: el particionamiento, que la teoria core declaraba
+    # «idea conceptual, no se implementa hoy» mientras la pregunta 3 lo implementaba entero
+    # por 20 puntos. La regla del prefijo izquierdo si estaba en el fundamento; lo que
+    # faltaba era el experimento con el que la pregunta 2 la hace demostrar.
+    7: [(
+        "Los cinco indices de hoy, con su nombre exacto",
+        [
+            "@@El nombre se califica.@@ La actividad dice «nombres exactos» y los compara letra "
+            "por letra: `idx_cita_fecha_hora`, `idx_mascota_dueno`, `idx_cita_programada_fecha` "
+            "en la pregunta 1, y `idx_cita_estado_fecha` + `idx_cita_fecha_estado` en la 2. "
+            "@@`idx_cita_fecha` no es ninguno de los cinco@@: el sufijo es `_fecha_hora`, como la "
+            "columna.",
+            "@@Simple o compuesto.@@ Los tres primeros son de una columna; los dos ultimos llevan "
+            "las mismas dos columnas @@en orden inverso@@, y existen precisamente para que se vea "
+            "que el orden cambia el resultado.",
+            "@@La secuencia que hay que respetar.@@ `EXPLAIN ANALYZE` @@antes@@ (tiene que salir "
+            "`Seq Scan`) -> `CREATE INDEX` -> @@`ANALYZE cita;`@@ -> el mismo `EXPLAIN` otra vez. "
+            "Sin el `ANALYZE` intermedio el planeador sigue con las estadisticas viejas y puede "
+            "ignorar el indice que acabas de crear: la mitad de los «no me sirvio» del taller "
+            "son este paso saltado.",
+            "@@La evidencia de que existen.@@ `SELECT indexname, tablename, indexdef FROM "
+            "pg_indexes WHERE tablename IN ('cita','mascota') ORDER BY tablename, indexname;` — "
+            "`indexdef` devuelve el `CREATE INDEX` completo, asi que ahi se ve tambien el `WHERE` "
+            "del parcial.",
+            "@@Y el experimento del orden.@@ Con los dos compuestos creados se miden tres "
+            "consultas: estado + rango de fecha, solo rango, solo estado. Despues se hace `DROP "
+            "INDEX idx_cita_fecha_estado` y se vuelve a medir la del rango solo. @@La columna de "
+            "igualdad va primero y la de rango al final@@; un indice cuya columna lider no "
+            "aparece en el `WHERE` normalmente no se usa.",
+        ],
+        "Preguntas 1 y 2 del taller — 50 de los 100 puntos — y los nombres son los que se "
+        "escriben en la plantilla del entregable",
+    ), (
+        "El indice parcial: el mismo beneficio, una fraccion del tamano",
+        [
+            "@@Que es.@@ Un indice que solo contiene las filas que cumplen una condicion: "
+            "`CREATE INDEX idx_cita_programada_fecha ON cita (fecha_hora) WHERE estado = "
+            "'PROGRAMADA';`. El `WHERE` no es el de la consulta: es @@parte de la definicion del "
+            "indice@@ y decide que filas entran en el arbol.",
+            "@@Cuanto se ahorra, con los datos de hoy.@@ De las 30.010 citas sembradas, "
+            "@@18.187@@ estan `PROGRAMADA` (el 61 %): el indice completo indexa 30.010 entradas y "
+            "el parcial 18.187, cuatro de cada diez menos. Menos entradas es menos disco, menos "
+            "cache ocupada y menos trabajo en cada escritura de una cita @@que no este "
+            "programada@@.",
+            "@@La condicion para que sirva.@@ El planeador solo lo usa si puede demostrar que la "
+            "consulta @@trae la misma condicion@@ del indice. `WHERE estado = 'PROGRAMADA' AND "
+            "fecha_hora >= ...` si lo aprovecha; la misma consulta sin el filtro de estado @@no@@, "
+            "porque el indice no contiene las filas atendidas ni las canceladas.",
+            "@@El caso de VetCare que lo justifica.@@ La agenda del dia de la recepcion @@siempre@@ "
+            "filtra por `PROGRAMADA`: nadie abre la pantalla para ver las citas que ya se "
+            "atendieron. Cuando el filtro es parte del caso de uso y no del capricho de una "
+            "consulta, el parcial es la respuesta correcta.",
+            "@@Cual de los dos elige.@@ Con `idx_cita_fecha_hora` y `idx_cita_programada_fecha` "
+            "compitiendo por la misma consulta, el plan nombra al ganador: hay que leer el "
+            "`Index Scan using ...` y @@escribir cual salio@@, porque la rubrica descuenta si no "
+            "se comenta.",
+        ],
+        "La pregunta 1 lo exige por nombre y su rubrica descuenta si falta; la pregunta 4 lo "
+        "vuelve a cobrar como afirmacion correcta",
+    ), (
+        "Particionar hoy de verdad: rango por ano, poda y archivado",
+        [
+            "@@El DDL, en tres sentencias.@@ `CREATE TABLE cita_hist (... ) PARTITION BY RANGE "
+            "(fecha_hora);` y despues una particion por ano: `CREATE TABLE cita_hist_2025 "
+            "PARTITION OF cita_hist FOR VALUES FROM (TIMESTAMP '2025-01-01') TO (TIMESTAMP "
+            "'2026-01-01');`. El rango es @@cerrado por abajo y abierto por arriba@@, asi que el "
+            "`TO` de una particion es el `FROM` de la siguiente y nunca se solapan.",
+            "@@La trampa que cuesta la pregunta.@@ En una tabla particionada la clave primaria "
+            "@@debe incluir la columna de particion@@: `PRIMARY KEY (id_cita, fecha_hora)`. Un "
+            "`PRIMARY KEY (id_cita)` a secas no compila, y el error del motor no dice «te falta "
+            "la columna de particion» con esas palabras.",
+            "@@La prueba de que el reparto ocurrio.@@ `SELECT tableoid::regclass AS particion, "
+            "COUNT(*), MIN(fecha_hora), MAX(fecha_hora) FROM cita_hist GROUP BY 1 ORDER BY 1;` — "
+            "`tableoid` es la columna de sistema que dice @@en que tabla fisica vive cada fila@@, "
+            "y `::regclass` la traduce a nombre. Sin esta consulta no hay evidencia del "
+            "enrutamiento, solo un `INSERT` que no dio error.",
+            "@@La poda, que es lo unico que mejora hoy.@@ En `EXPLAIN ANALYZE` de una consulta "
+            "acotada a 2026 el plan tiene que mencionar @@solo `cita_hist_2026`@@. Con 5.010 filas "
+            "el tiempo no baja de forma apreciable y hay que decirlo: lo que se demuestra es que "
+            "el motor @@descarta particiones enteras@@ antes de leer.",
+            "@@Y el beneficio real, que es de mantenimiento.@@ Archivar 2025 es `DROP TABLE "
+            "cita_hist_2025`, una operacion de @@metadatos@@ que tarda un instante. El `DELETE "
+            "FROM cita WHERE fecha_hora < ...` equivalente toca millones de filas, infla el "
+            "registro de transacciones y sostiene bloqueos largos — el contraste conecta directo "
+            "con la Clase 8.",
+        ],
+        "Es la pregunta 3 completa —20 de los 100 puntos— y el segundo parrafo de la "
+        "pregunta 5: hoy se implementa, no se cuenta",
+    )],
+    # Clase 8: el fundamento ensenaba el procedimiento canonico en PL/SQL de Oracle
+    # (`IN NUMBER`, `SQL%ROWCOUNT`, `RAISE_APPLICATION_ERROR`, `EXCEPTION WHEN OTHERS THEN
+    # ROLLBACK`) y la actividad califica PL/pgSQL: 75 de los 100 puntos no compilan con lo
+    # que se proyectaba. Peor todavia, la pregunta 4 —10 puntos— tiene como opcion
+    # INCORRECTA «porque el procedimiento incluia un ROLLBACK explicito en su bloque
+    # EXCEPTION, igual que en Oracle», que es exactamente la forma que el guion presentaba
+    # como canonica: el estudiante que estudiaba bien marcaba mal.
+    8: [(
+        "sp_facturar en PL/pgSQL: el molde que se califica",
+        [
+            "@@La firma exacta, que se factura por lineas.@@ `CREATE PROCEDURE "
+            "sp_facturar(p_id_consulta INT, p_insumos INT[], p_cantidades INT[]) LANGUAGE "
+            "plpgsql AS $proc$ ... $proc$;` — @@dos arreglos paralelos@@, no un insumo suelto: "
+            "una factura tiene varias lineas. Se llama `CALL sp_facturar(4, ARRAY[1,6,5], "
+            "ARRAY[1,2,3]);`. Los tipos son `INT` y `NUMERIC`, no `NUMBER`. Primera linea del "
+            "cuerpo: `IF array_length(p_insumos, 1) IS DISTINCT FROM array_length(p_cantidades, 1) "
+            "THEN RAISE EXCEPTION ...` — dos arreglos de longitud distinta se rechazan @@antes de "
+            "tocar la base@@.",
+            "@@La cabecera y el id que se acaba de generar.@@ `INSERT INTO factura (id_consulta, "
+            "total) VALUES (p_id_consulta, 0) RETURNING id_factura INTO v_id_factura;` — el total "
+            "entra en @@0@@ y se corrige al final, porque todavia no se sabe. `RETURNING ... INTO` "
+            "evita ir a buscarlo con otro `SELECT`.",
+            "@@El bucle, y el guardia que es el corazon del dia.@@ `FOR i IN 1 .. "
+            "array_length(p_insumos, 1) LOOP` y dentro: `UPDATE insumo SET stock = stock - "
+            "p_cantidades[i] WHERE id_insumo = p_insumos[i] AND @@stock >= p_cantidades[i]@@;` — "
+            "la comprobacion viaja @@dentro del `WHERE`@@: comprobar y escribir son @@una sola "
+            "sentencia@@ y nadie puede colarse entre las dos.",
+            "@@Como se sabe si alcanzo, y como se aborta.@@ `GET DIAGNOSTICS v_filas = ROW_COUNT;` "
+            "guarda cuantas filas toco el `UPDATE`: `1` alcanzo, `0` no habia stock. Entonces `IF "
+            "v_filas = 0 THEN RAISE EXCEPTION 'ERROR: stock insuficiente del insumo %', "
+            "p_insumos[i]; END IF;`. @@No es `SQL%ROWCOUNT` ni `RAISE_APPLICATION_ERROR`@@: eso es "
+            "Oracle y aqui no existe.",
+            "@@Y el cierre.@@ Cada iteracion inserta su linea en `detalle_factura` con el "
+            "`precio_unit` @@vigente@@ y acumula `v_total := v_total + v_precio * "
+            "p_cantidades[i];`. Al salir del bucle, `UPDATE factura SET total = v_total WHERE "
+            "id_factura = v_id_factura;`. El caso de prueba da @@27.400@@ y deja los stocks en 11, "
+            "58 y 5.",
+        ],
+        "Es la pregunta 1 del taller — 35 de los 100 puntos — y el molde que la pregunta 2 "
+        "hace fallar a proposito",
+    ), (
+        "Por que el procedimiento no lleva COMMIT ni ROLLBACK",
+        [
+            "@@La regla de PostgreSQL.@@ Un `CALL` escrito por fuera de cualquier `BEGIN` es "
+            "@@su propia transaccion@@. Si la excepcion se propaga hasta afuera del "
+            "procedimiento, el motor deshace @@todo@@ lo que ese `CALL` habia hecho: la cabecera "
+            "de la factura, el detalle y el descuento del primer insumo. @@Nadie escribio "
+            "ROLLBACK@@ y la base queda intacta.",
+            "@@Y el savepoint que nadie declara.@@ Un bloque `BEGIN ... EXCEPTION WHEN ... END` "
+            "en PL/pgSQL crea un @@savepoint implicito@@ al entrar. Por eso, si tu capturas el "
+            "error, se revierte solo lo hecho @@dentro de ese bloque@@ y el resto sigue vivo. "
+            "Capturar no es lo mismo que dejar propagar.",
+            "@@El contraste con Oracle, que es lo que se pregunta.@@ En Oracle el procedimiento "
+            "es parte de la transaccion del llamador y ahi si se escribe `EXCEPTION WHEN OTHERS "
+            "THEN ROLLBACK; RAISE;`. En PostgreSQL ese `ROLLBACK` dentro de un procedimiento "
+            "invocado por un `CALL` de nivel superior @@ni siquiera esta permitido@@.",
+            "@@La consecuencia practica.@@ Quien decide el `COMMIT` es @@uno solo@@: el llamador. "
+            "Un procedimiento que confirma por su cuenta le quita al llamador la posibilidad de "
+            "deshacer, y es la fuente numero uno de facturas a medias cuando la Clase 12 conecte "
+            "la aplicacion.",
+            "@@El error que no se perdona.@@ Capturar la excepcion y no volver a lanzarla. "
+            "`EXCEPTION WHEN OTHERS THEN NULL;` @@convierte el fallo en silencio@@: la factura "
+            "queda registrada, el stock no se descuenta y nadie se entera hasta el inventario.",
+        ],
+        "Es la pregunta 4 del taller —10 puntos, seleccion unica— y la explicacion de por "
+        "que la pregunta 2 sale bien sin escribir un ROLLBACK",
+    ), (
+        "fn_descontar_stock: cuando «no hay stock» es una respuesta, no un error",
+        [
+            "@@La diferencia.@@ El procedimiento @@aborta@@ la factura completa; la funcion "
+            "@@informa@@ y deja que el llamador decida. La misma regla de negocio, dos contratos "
+            "distintos, y hay que saber cual se pide.",
+            "@@La firma, y su palabra clave.@@ `CREATE OR REPLACE FUNCTION "
+            "fn_descontar_stock(p_id_insumo INT, p_cantidad INT) RETURNS BOOLEAN LANGUAGE "
+            "plpgsql AS $$ ...` — @@`RETURNS BOOLEAN`@@, no `PROCEDURE`. Devuelve `TRUE` si "
+            "desconto y `FALSE` si no habia suficiente, @@sin lanzar excepcion@@ en ese segundo "
+            "caso.",
+            "@@Lo que si es un error.@@ Una cantidad negativa o cero no es «no hay stock», es una "
+            "llamada mal hecha: eso @@si@@ va con `RAISE EXCEPTION`. Distinguir el dato invalido "
+            "del resultado negativo es la mitad de la pregunta.",
+            "@@Se prueba en una sola consulta.@@ `SELECT fn_descontar_stock(5,3) AS caso_ok, "
+            "fn_descontar_stock(2,10) AS caso_sin_stock, fn_descontar_stock(2,3) AS caso_limite;` "
+            "-> @@`true`, `false`, `true`@@. El tercer caso es el interesante: pide @@exactamente@@ "
+            "el stock que queda, y con `>=` en el guardia tiene que pasar.",
+            "@@Por que no leer primero.@@ `SELECT stock ...; IF stock >= cantidad THEN UPDATE ...` "
+            "deja una @@ventana@@ entre la lectura y la escritura, y con dos recepcionistas "
+            "facturando el mismo insumo las dos leen 3, las dos deciden que alcanza y el stock "
+            "termina en @@-2@@. El `UPDATE` con la condicion en el `WHERE` no tiene ventana. Aqui "
+            "no se puede demostrar —PGlite corre @@una sola sesion@@— y ese es el gap que se "
+            "declara y que abre la Clase 10.",
+        ],
+        "Es la pregunta 3 del taller —15 puntos— y la decision documentada que pide la "
+        "pregunta 5",
     )],
 }
 
@@ -1188,8 +2594,9 @@ def _slide_map(c):
     """
     if c['tipo'] == 'parcial':
         return [f"Portada · Clase {c['n']} · {c['titulo']}",
-                "Indicaciones (dia de parcial)",
-                "Cierre"]
+                "Que se evalua hoy",
+                "Como se responde y como se entrega",
+                f"{c['titulo']} · Clase {c['n']}"]
     m = [f"Portada · Clase {c['n']} · {c['titulo']}",
          "Encuadre de hoy · Objetivo PI",
          "Mapa del bloque de hoy (120 min)"]
@@ -1318,18 +2725,37 @@ def cover_pptx(prs, c):
 
 def build_pptx(c):
     if c['tipo'] == 'parcial':
+        # Este deck es lo UNICO que el estudiante recibe el dia del parcial y no traia
+        # ninguno de los datos que se preguntan al minuto 0: ni el alcance —que clases
+        # entran—, ni el reparto de puntos por seccion, ni el peso en el corte, ni el canal
+        # de entrega, ni la hora de cierre, ni que el SQL se responde escrito. Ademas
+        # estaba sin acentos, y esto no es fuente de fundamento: es lo que se proyecta. Y
+        # el cierre afirmaba «El PI VetCare DB continua la proxima clase» tambien en el
+        # Parcial 3, cuando lo que sigue ahi es la sustentacion.
+        p = PARCIALES_BD2[c['n']]
+        m = _parcial_meta_bd2(p['corte'])
         prs = new_prs()
-        class_cover(prs, c['titulo'], subtitulo="Solo evaluacion", clase_n=c['n'], idx=1)
-        content_slide(prs, "Indicaciones", [
-            "Hoy es **solo Parcial** (virtual sincrono por Meet).",
-            "No hay tema nuevo ni taller del PI en esta sesion.",
-            "Duracion sugerida: **90-100 min** dentro del bloque de 120.",
-            "El avance del PI VetCare DB continua en la siguiente clase regular.",
-        ], idx=2)
+        class_cover(prs, c['titulo'], subtitulo="Solo evaluación · sin tema ni taller",
+                    clase_n=c['n'], idx=1)
+        content_slide(prs, "Qué se evalúa hoy",
+                      [f"**{s.split(' — ')[0]}** — {s.split(' — ')[1]}"
+                       for s in m['secciones_resumen']]
+                      + [f"Total **100 puntos** · nota = puntos / 20 · "
+                         f"este parcial pesa {m['valor_corte']}."],
+                      sub="**Solo** " + " · ".join(t.split(' · ')[0] for t in m['temas'])
+                          + " — fuera de esa lista no hay nada",
+                      idx=2)
+        content_slide(prs, "Cómo se responde y cómo se entrega", [
+            "El envío **cierra en el minuto 110**: lo que llegue después no se recibe.",
+            "Canal de entrega: el que se anuncia ahora. Confirmo cada recibido por el chat.",
+            "El SQL se escribe **como texto**: no se pide captura ni se abre ExamLab.",
+            "Pregunta de **forma** sí (cuántas líneas, si pide tabla). De **contenido** no.",
+            "Si se te cae el internet: sigue respondiendo y avisa por correo al volver.",
+        ], sub=f"Tiempo previsto **{m['tiempo']}** dentro del bloque de 120", idx=3)
         closing_slide(prs, f"{c['titulo']} · Clase {c['n']}",
-                      ["Enfocados en la evaluacion del corte",
-                       "El PI VetCare DB continua la proxima clase"],
-                      accent="Solo evaluacion")
+                      ["Hoy solo se evalúa el corte", _cierre_pi_parcial(c['n'])],
+                      accent="Solo evaluación")
+        _verificar_mapa(c, prs)
         out_dir = CLASES_DIR / f"Clase {c['n']} - {c['titulo']}"
         out_dir.mkdir(parents=True, exist_ok=True)
         out = out_dir / "Presentacion.pptx"
@@ -1395,7 +2821,10 @@ def build_pptx(c):
         idx += 1
     ad = ANTES_DESPUES.get(c['n'])
     if ad:
-        before_after_slide(prs, ad["titulo"], ad["b_t"], ad["b"], ad["a_t"], ad["a"], idx=idx)
+        # `sub` es opcional: lo usa la Clase 6 para decir en la propia diapositiva que
+        # hoy no hay indices, y que por eso la evidencia no es un cambio de nodo.
+        before_after_slide(prs, ad["titulo"], ad["b_t"], ad["b"], ad["a_t"], ad["a"],
+                           sub=ad.get("sub"), idx=idx)
         idx += 1
     cs = CODIGO_SLIDE.get(c['n'])
     if cs:
@@ -1447,7 +2876,10 @@ def build_pptx(c):
     obj = tb.get("objetivo") or c["hito_pi"]
     crit = [f"@@Exito:@@ {x}" for x in tb.get("criterios", [])] or [
         f"@@Entregable:@@ {c['entregable']}",
-        "Evidencia en playground o archivos propios del estudiante.",
+        # No hay «playground»: la evidencia vive dentro de ExamLab, que guarda la
+        # consulta y lo que devolvio la base en cada pregunta. Este texto solo se
+        # usa si la clase no tiene `criterios` en TALLER_BLOQUE.
+        "Evidencia: lo que ejecutaste y su salida quedan guardados en la pregunta de ExamLab.",
     ]
     content_slide(prs, f"{label} — objetivo y criterios", [f"@@Objetivo:@@ {obj}", *crit], idx=idx, size=15)
     idx += 1
@@ -1474,7 +2906,11 @@ def build_pptx(c):
     else:
         content_slide(prs, "Criterios de exito / entregable", [
             f"**Entregable:** {c['entregable']}",
-            "Evidencia en playground (enlace) o archivo SQL/PNG propio.",
+            # Decia «Evidencia en playground (enlace)»: no hay playground ni enlace que
+            # compartir — la entrega es dentro de ExamLab, que guarda la consulta y la
+            # salida en cada pregunta. Es una diapositiva compartida por las 15 clases.
+            "Evidencia: el SQL y su salida quedan guardados en cada pregunta de ExamLab.",
+            "Conserva copia en tu carpeta del PI (los .sql que pide el entregable).",
             "Actualizar checklist PI (que criterio de rubrica avanzo).",
             "@@Entrega en ExamLab@@ (https://uniaj.examlab.workers.dev/) — domingo 23:59 cuando aplique taller.",
         ], idx=idx); idx += 1
@@ -1615,6 +3051,305 @@ PLANTILLA_FICHA = {
         "      Diferencia entre SET ROLE y conectarse como otro usuario: [ ... ]",
         "      Lo que este entorno NO permite (un solo usuario con login): [ ... ]",
         "      Si no pude correr la prueba: por que eso es una brecha de verificacion: [ ... ]",
+    ],
+    # Clase 3: el contrato (pregunta 5) vale 15 puntos y se califica por tener los
+    # 6 bloques para CADA procedimiento y por que las firmas coincidan con el codigo
+    # de las preguntas 1 y 4. Sin plantilla, la entrega tipica trae los dos
+    # procedimientos mezclados y sin tabla de errores, que es la mitad del puntaje.
+    # Las preguntas 1 a 4 son SQL: no llevan plantilla, se entregan como codigo.
+    3: [
+        "CONTRATO DE LOS PROCEDIMIENTOS  —  pregunta 5",
+        "Los 6 bloques se llenan DOS veces, uno por procedimiento. La firma tiene que decir",
+        "exactamente lo que dice tu codigo de las preguntas 1 y 4: mismo nombre, mismo orden,",
+        "mismos tipos. Si al escribirla descubres que no coinciden, corrige el codigo o la",
+        "firma, no dejes las dos versiones.",
+        "",
+        "=========================  A) sp_agendar_cita  =========================",
+        "",
+        "1) FIRMA EXACTA  (nombre, parametros con tipo PostgreSQL y orden)",
+        "   sp_agendar_cita( ______________ ______ , ______________ ______ ,",
+        "                    ______________ ______ )",
+        "",
+        "2) COMO SE INVOCA  (CALL de ejemplo con valores reales, no con descripciones)",
+        "   CALL sp_agendar_cita( ____ , ____ , TIMESTAMP '____-__-__ __:__:__' );",
+        "",
+        "3) PRECONDICIONES  (que debe ser verdadero ANTES de llamarlo)",
+        "   - [ ... ]",
+        "   - [ ... ]",
+        "   - [ ... ]",
+        "",
+        "4) POSTCONDICIONES  (que cambia en la base si la llamada tiene exito)",
+        "   Filas insertadas: [cuantas, en que tabla, con que estado]",
+        "   Filas actualizadas: [cuales, o «ninguna»]",
+        "   Si la llamada falla: [que queda cambiado]",
+        "",
+        "5) TABLA DE ERRORES  ->  las 3 primeras filas de la tabla del final",
+        "",
+        "6) UNA DECISION DE DISENO JUSTIFICADA  (2 o 3 lineas: por que la validacion vive",
+        "   en la base de datos y no solo en la aplicacion)",
+        "   [ ... ]",
+        "",
+        "=====================  B) sp_registrar_consulta  =====================",
+        "",
+        "1) FIRMA EXACTA",
+        "   sp_registrar_consulta( ______________ ______ , ______________ ______ ,",
+        "                          ______________ ______ )",
+        "",
+        "2) COMO SE INVOCA",
+        "   CALL sp_registrar_consulta( ____ , '________________________' , ______ );",
+        "",
+        "3) PRECONDICIONES",
+        "   - [ ... ]                                        (son cuatro)",
+        "",
+        "4) POSTCONDICIONES",
+        "   Fila insertada en: [ ... ]      Fila actualizada en: [ ... ] a estado [ ... ]",
+        "   Las dos cosas o ninguna: [por que no puede quedar solo una]",
+        "",
+        "5) TABLA DE ERRORES  ->  las 4 ultimas filas de la tabla del final",
+        "",
+        "6) UNA DECISION DE DISENO JUSTIFICADA",
+        "   [ ... ]",
+        "",
+        "==============  TABLA DE ERRORES  (bloque 5 de los dos contratos)  ==============",
+        "Una fila por cada excepcion que lanzaste: 3 del primer procedimiento y 4 del",
+        "segundo. El texto del mensaje se copia del codigo, no se parafrasea.",
+        "",
+        "| Procedimiento         | Excepcion | Texto del mensaje | Que debe hacer la aplicacion |",
+        "|-----------------------|-----------|-------------------|------------------------------|",
+        "| sp_agendar_cita       |           |                   |                              |",
+        "| sp_agendar_cita       |           |                   |                              |",
+        "| sp_agendar_cita       |           |                   |                              |",
+        "| sp_registrar_consulta |           |                   |                              |",
+        "| sp_registrar_consulta |           |                   |                              |",
+        "| sp_registrar_consulta |           |                   |                              |",
+        "| sp_registrar_consulta |           |                   |                              |",
+        "",
+        "REGLA DEL PI  —  frase de cierre, obligatoria",
+        "   La aplicacion de Huellitas nunca hara ______________ directo sobre ____________",
+        "   ni sobre ____________. Su unico acceso de escritura a esas dos tablas es",
+        "   ____________ sobre ______________________ y ______________________.",
+    ],
+    # Clase 4: el Plan_Backup_VetCare (pregunta 5) vale 25 puntos, el puntaje mas alto
+    # del taller, y se califica por tener las 6 secciones con numeros y herramientas
+    # reales de PostgreSQL. Las secciones 1, 2 y 3 se responden en una sola tabla —esa
+    # es la forma que espera la solucion—, y la 6 es la que el estudiante omite si
+    # nadie le deja el renglon abierto. Las preguntas 1 a 3 son SQL y la 4 es de
+    # seleccion: no llevan plantilla.
+    4: [
+        "PLAN_BACKUP_VETCARE  —  pregunta 5   ·   maximo una pagina",
+        "Clinica Huellitas, PostgreSQL, atencion de lunes a sabado de 7:00 a 19:00.",
+        "Todo numero va justificado contra ese horario. «Diario» sin hora no se califica;",
+        "«diario a las 20:30 porque la facturacion cierra a las 19:45» si.",
+        "",
+        "SECCIONES 1, 2 y 3  —  QUE SE RESPALDA, CON QUE, CUANDO Y CUANTO SE GUARDA",
+        "Minimo 4 filas: el enunciado nombra esquema (DDL), datos, rutinas",
+        "(procedimientos / funciones / triggers) y scripts de migracion. Agrega las filas",
+        "que tu plan necesite. La retencion exige AL MENOS DOS UBICACIONES distintas.",
+        "",
+        "| Que se respalda | Herramienta | Frecuencia y ventana | Retencion y ubicacion |",
+        "|-----------------|-------------|----------------------|-----------------------|",
+        "|                 |             |                      |                       |",
+        "|                 |             |                      |                       |",
+        "|                 |             |                      |                       |",
+        "|                 |             |                      |                       |",
+        "|                 |             |                      |                       |",
+        "",
+        "4) RPO Y RTO OBJETIVO",
+        "   RPO objetivo: ______   (cuanta informacion aceptas perder, en tiempo)",
+        "     Que se pierde exactamente en esa ventana, en datos de la clinica: [ ... ]",
+        "     Por que la clinica lo tolera (o que hace falta para bajarlo): [ ... ]",
+        "   RTO objetivo: ______   (en cuanto tiempo debes estar operando de nuevo)",
+        "     Como se reparte ese tiempo:  detectar y decidir ____ + restaurar ____ +",
+        "     validar ____ + margen ____",
+        "     Impacto para la clinica si se excede: [ ... ]",
+        "",
+        "5) RESTORE DE PRUEBA",
+        "   Pasos (nunca sobre la base de produccion):",
+        "     1. [ ... ]",
+        "     2. [ ... ]",
+        "     3. [ ... ]",
+        "     4. [ ... ]",
+        "   Consulta de validacion post-restauracion, con el valor que debe salir:",
+        "     SELECT (SELECT COUNT(*) FROM ________)  AS ____________ ,  -- esperado: ____",
+        "            (SELECT COUNT(*) FROM ________)  AS ____________ ,  -- esperado: ____",
+        "            (SELECT COUNT(*) FROM ________)  AS ____________ ,  -- esperado: ____",
+        "            (SELECT ______(________) FROM ________) AS __________ ; -- esperado: ____",
+        "   Cada cuanto se ensaya: ____________     Quien firma la evidencia: ____________",
+        "   Donde queda la evidencia: ____________________________________",
+        "",
+        "6) QUE NO CUBRE ESTE PLAN, Y EL RIESGO RESIDUAL QUE SE ASUME",
+        "   No cubre: [ ... ]",
+        "   No cubre: [ ... ]",
+        "   No cubre: [ ... ]",
+        "   Riesgo residual asumido, escrito para que sea una decision y no un olvido:",
+        "   [que puede pasar]  ·  [por que se acepta]  ·  [quien lo acepta]",
+        "",
+        "CIERRE  —  CHECKLIST DEL PI  (seguridad y respaldo)",
+        "   Listo:        [ ... ]",
+        "   En progreso:  [ ... ]",
+        "   Falta:        [ ... ]",
+    ],
+    # Clase 6: dos entregables se califican POR SU ESTRUCTURA y suman 40 de los 100
+    # puntos. La mini tabla de la pregunta 2 (9 de sus 20 pts) tiene tres filas y tres
+    # columnas fijas, y la justificacion de la pregunta 5 (20 pts) se califica con «las
+    # 5 secciones estan presentes»: sin el esqueleto, la entrega tipica trae tres
+    # parrafos seguidos y pierde las secciones 4 y 5, que son las que nadie escribe si
+    # no ve el renglon. Las preguntas 1 y 3 son SQL y la 4 es de seleccion: no llevan
+    # plantilla. Los nombres de fila y de seccion son los de ExamLab, letra por letra.
+    6: [
+        "A) MINI TABLA DE LECTURA DEL PLAN  —  pregunta 2",
+        "   Va como comentarios SQL (lineas con `--`) DESPUES de los tres EXPLAIN, en el",
+        "   mismo cuadro de respuesta. Los numeros se leen del plan: se comparan `rows=`",
+        "   con `actual rows=`, no se estiman.",
+        "",
+        "-- VERSION       | nodo mas costoso | filas estimadas vs reales | tiempo total (ms)",
+        "-- ANTES         |                  |                           |",
+        "-- DESPUES       |                  |                           |",
+        "-- DESPUES+LIM50 |                  |                           |",
+        "-- CONCLUSION: factor de mejora aproximado ____x  ( ____ ms -> ____ ms )",
+        "",
+        "   La fila DESPUES+LIM50 es la que mas ensena: antes de correrla, escribe aqui que",
+        "   esperas que pase con el `LIMIT 50` y luego comprueba si acertaste.",
+        "   Esperaba: [ ... ]        Paso: [ ... ]",
+        "",
+        "B) JUSTIFICACION TECNICA DEL ANTES/DESPUES  —  pregunta 5   ·   media pagina",
+        "   Las 5 secciones se califican por estar presentes. Van con estos titulos.",
+        "",
+        "   1) CONSULTA ELEGIDA Y PARA QUE SIRVE EN HUELLITAS  (una frase)",
+        "      Pantalla o reporte que la usa: [ ... ]     Frecuencia: [veces por dia]",
+        "",
+        "   2) TRES CAMBIOS CONCRETOS",
+        "      Cambio 1 - que cambiaste: [ ... ]",
+        "         Por que mejora: [sargabilidad / proyeccion / cardinalidad / numero de pasadas]",
+        "         Evidencia del EXPLAIN ANALYZE: [nodo que desaparecio, tiempo que bajo,",
+        "                                         filas que dejaron de leerse]",
+        "      Cambio 2 - que cambiaste: [ ... ]",
+        "         Por que mejora: [ ... ]",
+        "         Evidencia del EXPLAIN ANALYZE: [ ... ]",
+        "      Cambio 3 - que cambiaste: [ ... ]",
+        "         Por que mejora: [ ... ]",
+        "         Evidencia del EXPLAIN ANALYZE: [ ... ]",
+        "",
+        "   3) QUE NO CAMBIO  (la equivalencia)",
+        "      Afirmacion: las dos versiones devuelven [ ____ ] filas, las mismas.",
+        "      Como lo verifique:  COUNT(*) ANTES = ____   ·   COUNT(*) DESPUES = ____",
+        "                          EXCEPT en los dos sentidos: ____ filas y ____ filas",
+        "",
+        "   4) QUE SIGUE  (el indice de la Clase 7)",
+        "      CREATE INDEX ______________ ON ________ ( ________________ );",
+        "      Por que ayudaria, dicho con tu propio plan: [ ... ]",
+        "",
+        "   5) LIMITES DE LA MEDICION",
+        "      Medi sobre PostgreSQL en el navegador, con 30.010 citas y sin concurrencia.",
+        "      Que cambiaria con millones de citas y varios usuarios: [ ... ]",
+        "      Si no pude usar la opcion BUFFERS, aqui es donde se dice: [ ... ]",
+    ],
+    # Clase 7: la pregunta 5 vale 20 puntos y su rubrica dice «la tabla cubre al menos 3
+    # indices con las 7 columnas». Siete columnas es justo el formato que nadie reproduce
+    # de memoria: la entrega tipica trae tres o cuatro y pierde cardinalidad, costo y
+    # veredicto, que son las que distinguen una justificacion de una lista de indices. El
+    # veredicto de particionamiento del segundo parrafo tiene tres exigencias separadas
+    # (numeros propios, la ganancia que NO es medible, y que si se comprobo), asi que va
+    # con sus renglones. Las preguntas 1, 2 y 3 son SQL y la 4 es de seleccion: sin
+    # plantilla. Los encabezados son los de ExamLab, letra por letra.
+    7: [
+        "A) TABLA DE JUSTIFICACION CONSULTA -> INDICE  —  pregunta 5",
+        "   Una fila por indice, minimo 3 (los que creaste en las preguntas 1 y 2). Las 7",
+        "   columnas se califican; una fila con 4 columnas llenas es una fila incompleta.",
+        "   Cabe en horizontal, pero si no te cabe, usa el bloque de abajo por indice.",
+        "",
+        "   | Indice | Tabla y columnas | Consulta del PI que lo usa | Cardinalidad estimada"
+        " de la columna lider | Evidencia en EXPLAIN | Costo de mantenimiento | Veredicto |",
+        "   |--------|------------------|----------------------------|----------------------"
+        "----------------|----------------------|------------------------|-----------|",
+        "   |        |                  |                            |                      "
+        "                |                      |                        |           |",
+        "",
+        "   Un bloque por indice, si prefieres escribirlo asi (repite los 7 renglones):",
+        "",
+        "   INDICE 1",
+        "     Indice ....................: ______________________________  (nombre exacto)",
+        "     Tabla y columnas ..........: ________ ( ____________________ )",
+        "     Consulta del PI que lo usa : [la pantalla o el reporte, no «varias consultas»]",
+        "     Cardinalidad de la lider ..: ______ valores distintos  ->  alta / baja",
+        "        y por que eso lo hace util o inutil: [ ... ]",
+        "     Evidencia en EXPLAIN ......: nodo: ____________________________________",
+        "        (`Index Scan using ...`, `Bitmap Heap Scan`)   tiempo: ____ ms -> ____ ms",
+        "     Costo de mantenimiento ....: que escritura de VetCare lo paga: [ ... ]",
+        "     Veredicto .................: se queda / se cambia por parcial / se cambia por",
+        "                                  compuesto / se descarta   ->  ______________",
+        "",
+        "B) REGLA DE SOBRE-INDEXACION QUE ADOPTAS  —  pregunta 5, parrafo 1",
+        "   Tiene que ser verificable: alguien debe poder mirar tu proyecto y decir si la",
+        "   cumpliste o no. «Voy a indexar con cuidado» no es una regla.",
+        "   [ ... ]",
+        "",
+        "C) PARTICIONAMIENTO: VEREDICTO PARA VETCARE  —  pregunta 5, parrafo 2",
+        "   Los tres renglones se califican por separado.",
+        "",
+        "   1) Volumen que espera Huellitas, con TUS numeros:",
+        "      ______ citas por dia  x  ______ dias de operacion al ano  =  ______ citas/ano",
+        "      A ______ anos de historia:  ______ citas en total",
+        "   2) Veredicto:   particionar cita  SI  /  NO   ->  ______",
+        "      Por que, atado al numero de arriba: [ ... ]",
+        "   3) Lo que demostraste hoy, y lo que no:",
+        "      Con 5.010 filas la ganancia de RENDIMIENTO no es apreciable  <-- decirlo suma",
+        "      Lo que si quedo comprobado: la poda de particiones en el plan (solo aparecio",
+        "      ______________________ ) y la facilidad de archivado ( DROP TABLE de la",
+        "      particion en vez de DELETE masivo ).",
+    ],
+    # Clase 8: la pregunta 5 vale 15 puntos y se califica por cuatro bloques, uno de ellos
+    # un checklist de 7 items donde la rubrica exige «estado y evidencia concreta (nombre
+    # de indice, archivo, consulta), no solo casillas marcadas». Sin los renglones de
+    # evidencia la entrega llega con siete casillas marcadas y cero evidencias, que es
+    # exactamente lo que la rubrica no acepta. El inventario pide tres campos por
+    # transaccion y el gap de concurrencia es un punto aparte. Las preguntas 1, 2 y 3 son
+    # SQL y la 4 es de seleccion unica: sin plantilla.
+    8: [
+        "SECCION «TRANSACCIONES Y TUNING» DEL INFORME DEL PI  —  pregunta 5 · 1 pagina",
+        "",
+        "A) INVENTARIO DE TRANSACCIONES DE NEGOCIO DE VETCARE",
+        "   Minimo TRES. Cada una con sus tres datos: sin el punto de fallo no es un",
+        "   inventario de transacciones, es una lista de operaciones.",
+        "",
+        "   1. Operacion .........: ____________________________________________________",
+        "      Tablas que toca ...: ____________________________________________________",
+        "      Paso que puede fallar: ______________________________________________",
+        "      Que debe pasar si falla: ____________________________________________",
+        "   2. Operacion .........: ____________________________________________________",
+        "      Tablas que toca ...: ____________________________________________________",
+        "      Paso que puede fallar: ______________________________________________",
+        "      Que debe pasar si falla: ____________________________________________",
+        "   3. Operacion .........: ____________________________________________________",
+        "      Tablas que toca ...: ____________________________________________________",
+        "      Paso que puede fallar: ______________________________________________",
+        "      Que debe pasar si falla: ____________________________________________",
+        "",
+        "B) CHECKLIST DE TUNING   ·   los 7 items, con estado Y evidencia",
+        "   Estado: listo / parcial / pendiente.  Evidencia: un nombre, un archivo o una",
+        "   consulta. Una casilla marcada sin evidencia no puntua.",
+        "",
+        "   | # | Item                                                    | Estado | Evidencia |",
+        "   |---|---------------------------------------------------------|--------|-----------|",
+        "   | 1 | indices sobre las columnas de filtro y join frecuentes  |        |           |",
+        "   | 2 | consultas sin SELECT * en los reportes del PI           |        |           |",
+        "   | 3 | predicados sargables (sin funciones sobre la columna)    |        |           |",
+        "   | 4 | transacciones cortas: nada de esperar al usuario         |        |           |",
+        "   | 5 | validaciones criticas en la base (CHECK, trigger, proc)  |        |           |",
+        "   | 6 | ANALYZE / estadisticas al dia tras cargas masivas        |        |           |",
+        "   | 7 | plan de respaldo con restore probado (viene de Clase 4)  |        |           |",
+        "",
+        "C) DECISION DOCUMENTADA   ·   una frase que puedas defender en la sustentacion",
+        "   Por que el descuento de stock se hace con",
+        "   UPDATE ... SET stock = stock - :cant WHERE id_insumo = :id AND stock >= :cant",
+        "   y NO leyendo primero el stock y decidiendo despues:",
+        "   [ ... ]",
+        "",
+        "D) GAP HONESTO   ·   lo que no se pudo comprobar y como se aborda",
+        "   No pude comprobar: ____________________________________________________",
+        "     (PostgreSQL en el navegador corre UNA SOLA sesion: dos recepcionistas",
+        "      facturando el mismo insumo al mismo tiempo no se puede montar aqui)",
+        "   Como lo abordare en la Clase 10: ______________________________________",
     ],
 }
 
@@ -1805,11 +3540,18 @@ def build_solucion_docx(c):
 CAPTURAS_CLASE = {
     1: [("Resultado del JOIN de verificacion del ER (lo que debe salir tras los INSERT)",
          "salida-join-vetcare.png")],
-    3: [("sp_agendar_cita: caso OK vs caso rechazado por mascota inactiva",
+    3: [("Bateria de pruebas de sp_agendar_cita: P1 OK y P2 rechazado por mascota inactiva",
          "salida-proc-ok-y-error.png")],
-    6: [("Plan de ejecucion ANTES vs DESPUES (FULL SCAN -> INDEX RANGE SCAN)",
+    4: [("trg_audit_cita: los 3 UPDATE dejan 2 filas de auditoria (el WHEN filtra el tercero)",
+         "cap01_demo.png")],
+    # Decia «(FULL SCAN -> INDEX RANGE SCAN)»: nombres de nodo de Oracle, y ademas
+    # una promesa que la clase no puede cumplir, porque hoy no se crea ningun indice
+    # (eso es la Clase 7). El docente que intentara producir esa captura no podia.
+    6: [("EXPLAIN ANALYZE ANTES vs DESPUES: el nodo no cambia, las pasadas si (loops 2006 -> 1)",
          "salida-explain-antes-despues.png")],
-    8: [("Transaccion con stock insuficiente: el ROLLBACK deja todo como estaba",
+    7: [("El plan de C1 antes y despues: Seq Scan -> Index Scan using idx_cita_programada_fecha",
+         "salida-indice-antes-despues.png")],
+    8: [("CALL sp_facturar que falla a mitad: foto inicial y foto final identicas, sin ROLLBACK escrito",
          "salida-rollback-stock.png")],
     10: [("Evidencia del problema: dos citas en la misma franja (sin restriccion)",
           "salida-doble-reserva.png"),
@@ -1853,32 +3595,249 @@ def _capturas_md(n, c=None):
     return "".join(f"📸 {cap} [[captura: {fn}]]\n" for cap, fn in items)
 
 
+#: Lo del dia de parcial que NO esta en el instrumento. El resto —archivo, temas,
+#: secciones con sus puntos, peso, fecha— se lee de `contenido_parciales_2026_2`.
+#:   corte    · numero del corte que cierra; indexa BD2_P1/P2/P3
+#:   ultima   · ultima clase dictada antes del parcial, la que el grupo tiene fresca
+#:   dudas_no · tres dudas REALES de contenido de ESE corte, para que el ejemplo de «esto
+#:              no se responde» sea del parcial que se esta aplicando
+PARCIALES_BD2 = {
+    5: {"corte": 1, "ultima": 4,
+        "dudas_no": ["¿la diferencia entre funcion y procedimiento es que la funcion retorna valor?",
+                     "¿GRANT y REVOKE tienen que ver con el control de acceso?",
+                     "¿esta opcion es la correcta?"]},
+    9: {"corte": 2, "ultima": 10,
+        "dudas_no": ["¿que nivel de aislamiento evita la lectura fantasma?",
+                     "¿que es un deadlock?",
+                     "¿esta opcion es la correcta?"]},
+    14: {"corte": 3, "ultima": 13,
+         "dudas_no": ["¿embeber la contraseña en el codigo pasa si el repo es privado?",
+                      "¿hay que validar las entradas de la API?",
+                      "¿esta opcion es la correcta?"]},
+}
+
+
+def _parcial_meta_bd2(corte):
+    """Portada del instrumento del corte `corte`, leida de la fuente del .docx.
+
+    Se lee y no se copia: la guia decia «Entregar enunciado (impreso / PDF)» y nada mas,
+    asi que ni el alcance ni el reparto de puntos estaban en ninguna parte del kit, y el
+    unico dato operativo que daba —«impreso»— es imposible en una sesion virtual.
+    """
+    _dir = str(ROOT / "config" / "parciales")
+    if _dir not in sys.path:
+        sys.path.insert(0, _dir)
+    import contenido_parciales_2026_2 as cp  # noqa: PLC0415
+    return getattr(cp, f"BD2_P{corte}")["meta"]
+
+
+def _cierre_pi_parcial(n, hablada=False):
+    """Que pasa con el PI despues de este parcial.
+
+    El deck y la guia decian los dos «el PI continua en la siguiente clase», que es falso
+    en el Parcial 3: lo que sigue es la sustentacion, y es justo el aviso que ese dia hay
+    que dar. Se calcula de `CLASES` para no depender de un numero escrito a mano.
+    """
+    sig = next((x['n'] for x in CLASES if x['n'] > n), None)
+    if sig and sig == CLASES[-1]['n']:
+        return (f"En la Clase {sig} es la **sustentación del Proyecto Integrador**: se "
+                "presenta el VetCare DB que ya construyeron, no algo nuevo."
+                if hablada else
+                f"Clase {sig}: sustentación del PI VetCare DB, no hay tema nuevo")
+    return ("El PI VetCare continúa en la siguiente clase; hoy no hay tarea nueva."
+            if hablada else "El PI VetCare DB continúa en la siguiente clase")
+
+
+def _guia_parcial_md(c):
+    """Guia del dia de parcial, con los `{{slide:…}}` resueltos contra el deck real.
+
+    Mismo mecanismo que el fundamento de una clase regular: la guia nombra la diapositiva
+    por su titulo y el numero se resuelve contra el deck, asi que si el deck del dia de
+    parcial cambia de orden el build falla en vez de mandar al docente a proyectar la
+    diapositiva equivocada.
+    """
+    return _resolver_slides(_guia_parcial_cuerpo(c), _slide_map(c), c['n'])
+
+
+def _guia_parcial_cuerpo(c):
+    """Guia de aplicacion del dia de parcial.
+
+    Eran 20 lineas que no cumplian el checklist del repo: no decian la modalidad, la
+    unica instruccion de reparto era «impreso / PDF» —imposible en una sesion virtual
+    sincrona por Meet—, no decian por que canal se recibe el parcial, no listaban los
+    temas ni las secciones del instrumento, y no traian ni «errores tipicos del docente»
+    ni las preguntas frecuentes del grupo. Con 90 minutos de silencio en el bloque, los
+    30 que quedan son todo lo que la guia tiene que resolver.
+    """
+    n = c['n']
+    p = PARCIALES_BD2[n]
+    m = _parcial_meta_bd2(p['corte'])
+    clases_ev = [t.split(' · ')[0].replace('Clase ', '') for t in m['temas']]
+    lista = (', '.join(clases_ev[:-1]) + ' y ' + clases_ev[-1]
+             if len(clases_ev) > 1 else clases_ev[0])
+    temas_md = '\n'.join(f'- {t}' for t in m['temas'])
+    secciones_md = '\n'.join(f'- {s}' for s in m['secciones_resumen'])
+    no_resp = ' · '.join(f'«{d}»' for d in p['dudas_no'])
+    sig = next((x['n'] for x in CLASES if x['n'] > n), None)
+    cierre_pi = _cierre_pi_parcial(n, hablada=True)
+    # Los tokens se arman fuera del f-string: dentro, `{{` es una llave literal escapada y
+    # el token saldria como «{slide:evalua hoy}», que ni resuelve ni se detecta como
+    # marcador crudo por su forma habitual.
+    tok_alcance, tok_entrega = '{{slide:evalua hoy}}', '{{slide:Como se responde}}'
+    # La clase que el grupo cree que no cuenta es la autonoma: no hubo sesion en vivo. La
+    # portada del instrumento la marca «(sesion autonoma)». Cuando la autonoma ES la ultima
+    # clase evaluada —el Parcial 2, cuya Clase 10 cayo en la sesion del festivo— la
+    # aclaracion va dentro de la misma respuesta, para no preguntar dos veces por la misma
+    # clase.
+    auton = [t.split(' · ')[0] for t in m['temas'] if 'autónoma' in t]
+    razon_auton = (" y se evalua igual, aunque se haya trabajado sin sesion en vivo: es la "
+                   "que mas se olvida al estudiar")
+    if auton and auton[0] == f"Clase {p['ultima']}":
+        faq_entra = (f"**¿Entra lo de la Clase {p['ultima']}?** Si, es lo mas reciente que "
+                     f"entra{razon_auton}.")
+        faq_auton = ""
+    else:
+        faq_entra = (f"**¿Entra lo de la Clase {p['ultima']}?** Si, y es lo mas reciente que "
+                     "entra.")
+        faq_auton = (f"\n**¿La clase autonoma tambien entra?** Si: la {auton[0]} se trabajo sin "
+                     "sesion en vivo y se evalua igual. Es la que mas se olvida al estudiar.\n"
+                     if auton else "")
+    # Las tres clases del PI se leen de `CLASES`: la nota decia «Prep PI / sustentacion:
+    # Clases 11-12» en los tres parciales, que ademas de estar escrito a mano ponia la
+    # sustentacion en la 11-12 cuando es la ultima clase del curso.
+    prep = next((x['n'] for x in CLASES if 'Prep' in x['titulo']), None)
+    sust = next((x['n'] for x in CLASES if x.get('tipo') == 'sustentacion'), None)
+    if prep and prep < n:
+        linea_pi = (f"- La preparacion de la presentacion fue la **Clase {prep}**; la "
+                    f"sustentacion del PI es la **Clase {sust}**. Hoy no se avanza en el "
+                    "proyecto.")
+    else:
+        # Detras del Parcial 2 la siguiente clase es la autonoma del festivo: si la nota
+        # dice «se retoma en la Clase 10» a secas, el docente la lee como sesion en vivo y
+        # programa un avance de PI que ese dia no tiene con quien hacerse.
+        auton_sig = next((x['n'] for x in CLASES
+                          if x['n'] == sig and x.get('tipo') == 'autonoma'), None)
+        etiqueta = f"**Clase {sig}**" + (" (sesion autonoma)" if auton_sig else "")
+        linea_pi = (f"- Hoy no se avanza en el PI: se retoma en la {etiqueta}. La "
+                    f"preparacion de la presentacion es la **Clase {prep}** y la sustentacion "
+                    f"la **Clase {sust}**.")
+    return f"""# Guia docente · Clase {n} · {c['titulo']} (solo evaluacion)
+
+> Dia de **parcial = solo evaluacion**. No hay tema nuevo ni avance de PI en clase.
+> Bloque **120 min** · **virtual sincrona por Google Meet**.
+> Enunciado: `Parciales/{c.get('parcial','')}` · la solucion es el mismo nombre con
+> «- SOLUCION» y **no se publica** en `Clases/`.
+
+## Que evalua el instrumento
+
+Solo estas clases de material (asi las lista la portada del enunciado):
+
+{temas_md}
+
+Sus cuatro secciones y lo que vale cada una:
+
+{secciones_md}
+
+Total **100 puntos** · nota = puntos / 20 sobre 5.0 · peso **{m['valor_corte']}** ·
+fecha **{m['fecha']}** · tiempo de resolucion previsto **{m['tiempo']}**.
+
+## Antes de abrir la sesion (10 min)
+
+1. Abre `Parciales/{c.get('parcial','')}` y **decide el canal de entrega**. El enunciado
+   remite a «el medio que el docente indique al abrir la sesion», asi que si no lo
+   decides tu, no existe. Lo que funciona en Meet:
+   - **Documento editable** (recomendado): compartes el .docx por el chat al minuto 0,
+     cada estudiante lo llena y lo devuelve por el mismo canal o por correo. El SQL se
+     escribe como texto; **no** se pide captura de ejecucion en el parcial.
+   - **Foto de hoja escrita a mano**: solo como plan B si a alguien no le abre el
+     documento. Exige que se lea y que traiga nombre en cada pagina.
+2. Ten la solucion **a la mano pero cerrada**: hoy no se califica en vivo, y menos con
+   la pantalla compartida.
+3. Revisa que el enunciado no pregunte nada fuera de las Clases {lista}. Si algo se cuela
+   de otro corte se anula esa pregunta y se reparten sus puntos, no se descuenta.
+
+## Checklist 120 min
+
+| Min | Accion |
+|---|---|
+| 0-10 | Asistencia por lista. Proyecta la **{tok_alcance}** (alcance y reparto de puntos, que es lo primero que preguntan) y luego la **{tok_entrega}**. Anuncia: canal de entrega, cierre en el minuto 110, que material esta autorizado (por defecto **nada**) y que las dudas de contenido no se responden. |
+| 10-15 | Comparte el enunciado y **confirma en voz alta que todos lo abrieron** antes de arrancar el reloj. Deja la **{tok_entrega}** en pantalla: ahorra la mitad de los mensajes por privado. |
+| 15-100 | Desarrollo (silencio de evaluacion). Camara y microfono abiertos: es la unica supervision que hay. Avisa el tiempo a los 50 y a los 80 minutos. |
+| 100-110 | Aviso de 10 min. Recibe las entregas y **acusa recibo por el chat, uno por uno**. Anota quien no entrego. |
+| 110-120 | Cierre. «{cierre_pi}» Sin comentarios sobre el parcial: todavia hay quien esta subiendo el archivo. |
+
+## Que se responde y que no durante el parcial
+
+La linea es una sola: **si la respuesta a la duda es un dato que la pregunta evalua, no se responde.**
+
+- Se responde: «¿esto pide una consulta o una explicacion?», «¿cuantas lineas?», «¿el
+  punto b) es obligatorio?», «no puedo abrir el archivo».
+- No se responde, en este parcial: {no_resp}.
+
+Cuando la duda es de contenido, la respuesta es siempre la misma: «Eso es lo que la
+pregunta evalua; responde con lo que recuerdes de la clase.» Dila igual para todos: en
+Meet las preguntas llegan por privado y nadie ve que a otro le dijiste lo mismo.
+
+## Errores tipicos del docente que no domina el tema
+
+- **Responder la duda de contenido porque parece inofensiva.** «{p['dudas_no'][0]}» es
+  literalmente la respuesta de una pregunta de este parcial.
+- **No decidir el canal de entrega antes de empezar.** Si no lo anunciaste al minuto 0,
+  lo vas a improvisar al minuto 105 con medio grupo escribiendo por privado.
+- **No acusar recibo.** Es la fuente numero uno de reclamos de un parcial virtual y se
+  resuelve escribiendo el nombre de cada uno en el chat cuando llega su archivo.
+- **Exigir salida de ejecucion.** El parcial se responde con SQL escrito; ExamLab no
+  interviene y nadie tiene que abrir un motor. Si un estudiante escribe una consulta
+  correcta con un nombre de tabla que no existe en el enunciado, se descuenta por el
+  nombre, no por la consulta.
+- **Descontar por el termino de manual.** Antes de restar puntos por una palabra que el
+  estudiante no uso, busca la diapositiva donde se proyecto. Vale la respuesta que
+  describe el mecanismo correcto aunque no lo nombre.
+- **Sintaxis de otro motor.** Las clases se dictan sobre **PostgreSQL**; una respuesta
+  con sintaxis de Oracle que expresa bien la idea no pierde los puntos del concepto.
+- **Tratar el dia como clase.** Ni tema nuevo, ni avance del PI, ni «aprovechemos que
+  terminaron temprano».
+
+## Preguntas frecuentes del grupo
+
+**¿Puedo usar mis apuntes?** Lo que digas al minuto 0 y nada mas. Por defecto: no.
+Decidelo antes de abrir la sesion: cambiarlo a mitad del parcial invalida el de quien ya
+respondio sin ellos.
+
+**¿Se me cayo el internet?** Que siga respondiendo el documento sin conexion y te escriba
+por correo al reconectarse. El tiempo perdido por una caida comprobable no se descuenta, y
+el criterio se anuncia al minuto 0 para que nadie lo use como excusa despues.
+
+{faq_entra} La portada del
+enunciado lista las clases evaluadas con su fecha; fuera de esa lista no hay nada.
+{faq_auton}
+**¿Tengo que ejecutar el SQL?** No. Se responde escrito y se califica la logica de la
+consulta: los alias, el JOIN, el WHERE, el orden. No se pide captura.
+
+**¿Cuanto vale cada seccion?** Esta en la portada: {' · '.join(m['secciones_resumen'])}.
+Total 100 puntos, nota = puntos / 20.
+
+**¿Cuanto tiempo tengo?** El instrumento preve {m['tiempo']} y el bloque son 120: hay
+holgura, pero el envio cierra en el minuto 110 y eso no se mueve.
+
+**¿Cuando veo la nota?** En la siguiente sesion, con la retroalimentacion escrita sobre el
+mismo documento que entregaste.
+
+## Notas
+
+- No mezclar «Tema · Parcial»: hoy no se dicta nada.
+{linea_pi}
+- Solucion privada: archivo «- SOLUCION.docx» en `Parciales/`, nunca en `Clases/`.
+"""
+
+
 def build_guion_md(c):
     kit = KIT_DIR / f"Clase {c['n']}"
     kit.mkdir(parents=True, exist_ok=True)
     (kit/"Capturas").mkdir(exist_ok=True)
     (kit/"Codigo").mkdir(exist_ok=True)
     if c['tipo']=='parcial':
-        md = f"""# Guia docente · Clase {c['n']} · {c['titulo']} (solo evaluacion)
-
-> Dia de **parcial = solo evaluacion**. No hay tema nuevo ni avance de PI en clase.
-> Enunciado/solucion: Parciales/{c.get('parcial','')}
-
-## Checklist 120 min
-
-| Min | Accion |
-|---|---|
-| 0-10 | Ingreso, asistencia, normas (sin material abierto no autorizado). |
-| 10-15 | Entregar enunciado (impreso / PDF). Aclarar tiempo y canal de dudas de forma. |
-| 15-100 | Desarrollo del parcial (silencio de trabajo). |
-| 100-110 | Aviso 10 min; revisiones de integridad. |
-| 110-120 | Cierre, recoleccion, recordatorio: PI se prepara en clases regulares (no hoy). |
-
-## Notas
-- No mezclar «Tema · Parcial».
-- Prep PI / sustentacion: Clases 11-12; cierre PI: Clase 15.
-- Solucion privada: archivo * SOLUCION.docx en Parciales/.
-"""
+        md = _guia_parcial_md(c)
         path = kit / f"Guia aplicacion {c['titulo']} - Clase {c['n']}.md"
         path.write_text(md, encoding='utf-8')
         # placeholder capturas
@@ -2184,7 +4143,7 @@ PIZARRA = {
     3: "Flujo: App → llama sp_agendar_cita → valida mascota.activa → INSERT o mensaje de error.",
     4: "Mismo ER de Clase 1 + una nota junto a Cita: 'AQUI dispara el trigger de auditoria' y junto a Mascota: 'AQUI vive la fn_precio_base'.",
     6: "Dos columnas: 'Antes' (consulta con SELECT * y JOIN sin filtro) vs 'Despues' (columnas puntuales + filtro temprano) sobre el mismo dibujo de tablas.",
-    7: "Tabla caliente (ej. Cita) con una flecha grande hacia un rectangulo 'INDICE idx_cita_fecha' y la palabra 'acelera lectura / cuesta escritura'.",
+    7: "Tabla caliente (Cita) con una flecha grande hacia un rectangulo 'INDICE idx_cita_fecha_hora' y la palabra 'acelera lectura / cuesta escritura'.",
     8: "Linea de tiempo horizontal: BEGIN → INSERT factura → INSERT detalle → UPDATE stock → COMMIT/ROLLBACK con una bifurcacion visual en el ROLLBACK.",
     10: "La MISMA linea de tiempo T1/T2 de la diapositiva de Clase 10, pero redibujada en vivo con los IDs reales que use el script de demo.",
     11: "Checklist en 2 columnas: Evidencia (ER, DDL, roles, procs, fn, triggers, opt) | Si/No/Parcial — llenar en vivo con el curso.",
@@ -2216,9 +4175,11 @@ def build_guia_practica():
         "",
         "> Cada clase = una practica con objetivo propio. La demo se apoya en un",
         "> boceto de pizarra + un script SQL completo (con datos) para que usted lo",
-        "> ejecute en vivo en Oracle Live SQL / DB Fiddle. El taller y el quiz se",
-        f"> entregan/presentan en ExamLab (`{EXAMLAB_URL}`) — no es la plataforma",
-        "> oficial de la UNIAJC, pero es la que usamos para eso en este curso.",
+        "> ejecute en vivo **en la consola de ExamLab**, que corre PostgreSQL (PGlite)",
+        "> en el navegador: es el mismo motor donde se califica el taller, y varios de",
+        "> estos scripts son PL/pgSQL que Oracle Live SQL no compila. El taller y el",
+        f"> quiz se entregan/presentan en ExamLab (`{EXAMLAB_URL}`) — no es la",
+        "> plataforma oficial de la UNIAJC, pero es la que usamos para eso en este curso.",
         "",
     ]
     for c in CLASES:

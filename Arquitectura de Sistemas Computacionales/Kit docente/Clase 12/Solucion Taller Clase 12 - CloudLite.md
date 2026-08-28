@@ -104,9 +104,9 @@ sequenceDiagram
     Note over N,Q: Suma de tramos 585 ms sobre 800 ms - margen de 215 ms
 ```
 
-### Modelo de referencia que ve el estudiante
+### Modelo de referencia del kit docente (el estudiante NO lo ve)
 
-Es el que aparece en el enunciado de la plataforma, sobre el dominio **AgendaU**. Sirve para comparar estructura y conteos, no para calificar contenido:
+Vive en `Taller en ExamLab - Clase 12 (configuracion).md` y no se pega en el enunciado; esta resuelto sobre el dominio **AgendaU**. Sirve para comparar estructura y conteos —cuantas cajas, cuales son almacenes, si toda flecha lleva protocolo y formato—, **nunca** para calificar contenido ni nombres:
 
 ```mermaid
 sequenceDiagram

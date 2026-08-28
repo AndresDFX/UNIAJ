@@ -373,7 +373,7 @@ una funcion que devolviera 0 filas para todo tambien "resiste" el ataque.
 -----------------------------------
                                  0
 
-El contraste completo, que es lo que la rubrica exige: **8 antes, 0 despues.**
+El contraste completo, que es lo que la rubrica exige: 8 antes, 0 despues.
 
 6. Despues del DROP -- 1 fila
 
@@ -706,8 +706,8 @@ ERROR:  TRUNCATE bloqueado en cita: use DELETE para que el archivo funcione
 ------------------------------
                            10
 
-Y ahi esta lo incomodo: el trigger FOR EACH ROW que se acaba de construir **no
-se dispara con TRUNCATE**, que es la sentencia mas destructiva de las dos. El
+Y ahi esta lo incomodo: el trigger FOR EACH ROW que se acaba de construir no
+se dispara con TRUNCATE, que es la sentencia mas destructiva de las dos. El
 control tenia un agujero del tamano de una palabra. El trigger de sentencia lo
 cierra, y se pudo comprobar sin perder nada porque el bloqueo funciona.
 ```

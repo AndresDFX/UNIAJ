@@ -5,7 +5,7 @@ El guion embebe automaticamente cualquier PNG que exista en esta carpeta con
 el nombre esperado. Mientras no exista, el .docx imprime la receta en su lugar.
 
 1) cap01_demo.png — salida de la demo del docente
-   - Abrir DB Fiddle / SQLTest.online y repetir la demo: Consulta pesada citas+mascotas+duenos -> version filtrada y proyectada.
+   - Abrir ExamLab (PostgreSQL) + Google Docs y repetir la demo: Consulta pesada citas+mascotas+duenos -> version filtrada y proyectada, con EXPLAIN ANALYZE antes y despues, en ExamLab.
    - Capturar solo la ventana con el resultado (no el escritorio completo).
    - Recortar a ~1200 px de ancho y guardar aqui como cap01_demo.png.
 

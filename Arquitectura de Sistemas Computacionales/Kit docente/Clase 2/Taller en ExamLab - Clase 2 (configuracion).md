@@ -2,7 +2,7 @@
 
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
 - **Taller:** Actividad del Corte 1 (preguntas 5 a 7) - Modelos de servicio y ADR-001
-- **Preguntas:** 3 · **Total:** 24 puntos
+- **Preguntas:** 3 · **Total:** 25 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Decidir modelo dominante (IaaS/PaaS/SaaS) para CloudLite + ADR breve
 - **Entregable de la clase:** ADR-001: decisión de modelo de servicio + matriz de comparación aplicada al dominio
@@ -137,7 +137,7 @@ Clase 15 va a pedir.
 
 ## Al terminar de crearlo
 
-- Verifique que la suma de puntos sea la esperada: **24**.
+- Verifique que la suma de puntos sea la esperada: **25**.
 - Publique el taller y confirme la fecha limite (domingo 23:59 segun el Acuerdo).
 - Las preguntas con SQL o codigo: ejecutelas una vez usted mismo antes de publicar,
   para confirmar que el SQL de partida corre y que el starter compila.

@@ -1968,11 +1968,16 @@ Sobre el mismo esquema de VetCare (ya creado y poblado) y **asumiendo que los ro
                                  'del plan, con estos campos por version:\n'
                                  '\n'
                                  '```\n'
-                                 '-- VERSION | nodo mas costoso | filas estimadas vs reales | '
-                                 'tiempo total (ms)\n'
-                                 '-- ANTES   | ...\n'
-                                 '-- DESPUES | ...\n'
+                                 '-- VERSION       | nodo mas costoso | filas estimadas vs '
+                                 'reales | tiempo total (ms)\n'
+                                 '-- ANTES         | ...\n'
+                                 '-- DESPUES       | ...\n'
+                                 '-- DESPUES+LIM50 | ...\n'
                                  '```\n'
+                                 '\n'
+                                 'La tercera fila es la que mas ensena: **anticipa que el '
+                                 '`LIMIT 50` no va a salvar la consulta** y comprueba si '
+                                 'acertaste.\n'
                                  '\n'
                                  'Y una linea final `-- CONCLUSION:` indicando el factor de mejora '
                                  'aproximado.\n'
@@ -1983,10 +1988,11 @@ Sobre el mismo esquema de VetCare (ya creado y poblado) y **asumiendo que los ro
                     'puntos': 20,
                     'rubrica': 'Los tres EXPLAIN corren y corresponden a las consultas indicadas. '
                                'La tabla en comentarios reporta nodo mas costoso, filas estimadas '
-                               'vs reales y tiempo de ejecucion para ANTES y DESPUES, con valores '
-                               'tomados del plan real y no inventados. La conclusion cuantifica la '
-                               'mejora. Se descuenta si solo se pega el plan sin interpretarlo o '
-                               'si falta la variante con LIMIT 50.',
+                               'vs reales y tiempo de ejecucion para las TRES versiones (ANTES, '
+                               'DESPUES y DESPUES+LIM50), con valores tomados del plan real y no '
+                               'inventados. La conclusion cuantifica la mejora. Se descuenta si '
+                               'solo se pega el plan sin interpretarlo o si falta la variante con '
+                               'LIMIT 50 en los EXPLAIN o en la tabla.',
                     'setup_sql': 'CREATE TABLE dueno (\n'
                                  '  id_dueno SERIAL PRIMARY KEY,\n'
                                  '  nombre TEXT NOT NULL,\n'
@@ -2107,6 +2113,16 @@ Sobre el mismo esquema de VetCare (ya creado y poblado) y **asumiendo que los ro
                                  '\n'
                                  'Misma base con volumen (2.006 duenos, 5.008 mascotas, 30.010 '
                                  'citas).\n'
+                                 '\n'
+                                 # El unico aviso que faltaba en la pregunta: la version ANTES son
+                                 # 2.006 pasadas sobre 30.010 filas y en el navegador puede tardar
+                                 # mas de un minuto. Sin este parrafo, el estudiante que cree que
+                                 # se colgo recarga la pagina y pierde el resto de sus respuestas.
+                                 '> **Antes de ejecutar:** la version ANTES corre 2.006 veces sobre '
+                                 '30.010 filas y **puede tardar de varios segundos a mas de un '
+                                 'minuto** en el navegador. **No esta colgada:** no recargues la '
+                                 'pagina ni cierres la pestana, perderias las respuestas de las '
+                                 'otras preguntas.\n'
                                  '\n'
                                  'Huellitas quiere el ranking de duenos por cantidad de citas. La '
                                  'version **ANTES** ejecuta una subconsulta **por cada fila** de '

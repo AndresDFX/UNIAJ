@@ -5,7 +5,7 @@
 - **Preguntas:** 4 · **Total:** 25 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Contenerizar un stub del servicio principal de CloudLite
-- **Entregable de la clase:** Dockerfile (+ compose opcional) + captura/enlace lab navegador
+- **Entregable de la clase:** Dockerfile del stub + bitácora de 5 comandos con la salida real + captura del lab
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada

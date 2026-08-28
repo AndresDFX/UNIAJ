@@ -12,7 +12,7 @@
 - Configuracion en la plataforma: `Kit docente/Clase 8/Taller en ExamLab - Clase 8 (configuracion).md`
 - Caso de estudio: `Clases/Proyecto Integrador/Anexo - Caso de estudio Clinica Huellitas - Bases de Datos II.docx`
 - Hito del PI: Transaccion de negocio (factura + stock) + notas de tuning
-- Entregable: Script transaccional + checklist tuning del PI (1 pag.)
+- Entregable: sp_facturar + fn_descontar_stock + seccion Transacciones y tuning del informe (1 pag.)
 - **Estas preguntas: 100 puntos** en 5 preguntas.
 
 | # | Pregunta | Tipo | Puntos |
