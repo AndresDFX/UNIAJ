@@ -361,12 +361,46 @@ def build_codigo(c):
     (cod / nombre).write_text(c["codigo_fuente"], encoding="utf-8")
 
 
+# ---------------------------------------------------------------------- capturas
+def _escribir_readme_capturas(c, cap):
+    """README de Capturas/ con que imagen va aqui, como tomarla y con que nombre.
+
+    La carpeta se creaba vacia en las 15 clases, y una carpeta vacia no existe en
+    git: al clonar el repo desaparecia, asi que el docente no tenia donde leer que
+    captura se espera. Es el mismo README que ya escriben Arquitectura y BD II, y
+    se reescribe en cada build para que refleje la herramienta y la demo actuales.
+    """
+    n = c["n"]
+    titulo = f"Capturas de la Clase {n} — Programacion II"
+    L = [titulo, "=" * len(titulo), ""]
+    if n in PARCIALES:
+        L += [f"Dia de {PARCIALES[n][0]}: solo evaluacion, sin demo que capturar.", "",
+              "Unica captura util, para el registro del corte:",
+              "  - La pantalla de ExamLab con el parcial cerrado y las entregas recibidas.",
+              "  - Recortar nombres y correos antes de guardar. No se proyecta.", ""]
+    else:
+        L += ["Ninguna de estas imagenes se proyecta: son el registro del docente y la",
+              "referencia del nivel esperado para el proximo semestre.", "",
+              f"1) demo-clase{n:02d}.png — la herramienta del dia en uso",
+              f"   - Abrir {c['herramienta']}.",
+              f"   - Repetir la demo del bloque 40-60: {c['demo']}",
+              "   - Capturar solo la ventana util, no el escritorio completo.",
+              "   - Recortar a ~1200 px de ancho y guardar aqui con ese nombre.", "",
+              f"2) taller-clase{n:02d}.png — evidencia de avance de un estudiante",
+              "   - Con permiso del estudiante, capturar su artefacto a medio construir.",
+              "   - Recortar nombre y correo antes de guardar.", ""]
+    L += ["Despues de agregar una imagen, regenerar el kit:",
+          "   python config/slides/build_uniajc_prog2_all.py", ""]
+    cap.mkdir(parents=True, exist_ok=True)
+    (cap / "README.txt").write_text("\n".join(L), encoding="utf-8")
+
+
 # ---------------------------------------------------------------------- guiones
 def build_guion_md(c):
     n = c["n"]
     kit = KIT_DIR / f"Clase {n}"
     kit.mkdir(parents=True, exist_ok=True)
-    (kit / "Capturas").mkdir(exist_ok=True)
+    _escribir_readme_capturas(c, kit / "Capturas")
 
     if n in PARCIALES:
         titulo, archivo = PARCIALES[n]

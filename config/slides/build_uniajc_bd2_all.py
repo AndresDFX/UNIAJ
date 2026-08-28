@@ -3836,6 +3836,18 @@ def build_guion_md(c):
     kit.mkdir(parents=True, exist_ok=True)
     (kit/"Capturas").mkdir(exist_ok=True)
     (kit/"Codigo").mkdir(exist_ok=True)
+    # Las clases sin script (parcial, autonoma, sustentacion) dejaban Codigo/ vacia,
+    # y una carpeta vacia no existe en git: al clonar el repo desaparecia y quedaba
+    # la duda de si el .sql se perdio. El README dice que no hay ninguno y por que.
+    if not c.get('sql'):
+        _titulo_cod = f"Codigo de la Clase {c['n']} — Bases de Datos II"
+        (kit/"Codigo"/"README.txt").write_text(
+            f"{_titulo_cod}\n{'=' * len(_titulo_cod)}\n\n"
+            f"Esta clase es de tipo «{c['tipo']}» y no trae script ejecutable: no falta\n"
+            "ningun archivo. Los .sql del curso viven en las clases regulares y en la\n"
+            "Clase 10; el catalogo esta en SQL_BODIES, dentro de\n"
+            "config/slides/build_uniajc_bd2_all.py.\n",
+            encoding='utf-8')
     if c['tipo']=='parcial':
         md = _guia_parcial_md(c)
         path = kit / f"Guia aplicacion {c['titulo']} - Clase {c['n']}.md"
