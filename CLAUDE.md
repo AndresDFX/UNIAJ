@@ -77,7 +77,27 @@ Referencia de tamaño: BD II C2 quedó en 15 secciones ancladas a las diapositiv
 - `nota_actividad` cuando hay una trampa que le cuesta puntos al docente.
 - Marcada como **privada**, no publicada en `Clases/`.
 
-## 4. Actividad de ExamLab
+## 4. Taller del estudiante (ficha del PI)
+
+El `Taller ... .docx` de `Clases/Clase N/` no describe la actividad: **la deja lista para
+llenar.**
+
+- **Plantilla en blanco de cada entregable**, con su estructura real. Si se pide una matriz, va
+  la tabla con sus encabezados y sus filas vacías. Si se pide una ficha, van sus bloques como
+  campos. Si se pide un documento de una página, van sus secciones. Enumerar la estructura en una
+  línea de prosa («Plantilla ficha (5 bloques): DOMINIO · PROBLEMA · …») **no** es una plantilla.
+- **Es el corolario del criterio rector aplicado al formato:** si el formato del entregable se
+  califica —«matriz de 10 objetos × 4 roles»— entonces el formato se entrega, no se adivina. Un
+  estudiante que pierde puntos por la forma de la tabla perdió puntos por algo que nunca se le dio.
+- **Los nombres de la plantilla son los exactos de la actividad y de la solución**, mayúsculas
+  incluidas. Un `VETERINARIO` en el taller y un `veterinario_rol` en la pregunta son dos
+  entregables distintos.
+- **El checklist de pistas cubre todas las preguntas**, no las primeras. Sigue siendo checklist
+  vacío: sin solución.
+- **Nada obsoleto sobrevive aquí.** Es el documento que más se olvida al corregir la clase: si se
+  cambió el motor, la herramienta o un nombre de rol, este archivo también cambió.
+
+## 5. Actividad de ExamLab
 
 - **Máximo 5 preguntas**, 100 puntos, tipos que el motor sabe calificar.
 - **Consistente consigo misma.** Fue el defecto de BD II C2: la P1 daba privilegios sobre 5
@@ -91,7 +111,7 @@ Referencia de tamaño: BD II C2 quedó en 15 secciones ancladas a las diapositiv
 - Al cerrar la clase, **reportar qué pregunta cambió, cuál se añadió y cuál se retiró**. Es un
   checklist accionable para el docente, porque ExamLab no importa preguntas desde archivo.
 
-## 5. Coherencia transversal
+## 6. Coherencia transversal
 
 - **La herramienta anunciada es la que se usa y donde se califica.** ExamLab corre PostgreSQL
   (PGlite en el navegador) y no puede correr Oracle. Las menciones a Oracle que enseñan algo
@@ -104,7 +124,7 @@ Referencia de tamaño: BD II C2 quedó en 15 secciones ancladas a las diapositiv
 - **Cero marcadores crudos** (`@@`, `**`, `{{slide`, `[CAP:`, `[[captura:`) en lo que ve el
   estudiante.
 
-## 6. Cierre
+## 7. Cierre
 
 Reporte de cambios de preguntas, y commit con mensaje de **una línea**.
 
