@@ -80,12 +80,18 @@ Referencia de tamaño: BD II C2 quedó en 15 secciones ancladas a las diapositiv
 ## 4. Taller del estudiante (ficha del PI)
 
 El `Taller ... .docx` de `Clases/Clase N/` no describe la actividad: **la deja lista para
-llenar.**
+llenar** — en lo que se pueda dejar listo.
 
-- **Plantilla en blanco de cada entregable**, con su estructura real. Si se pide una matriz, va
-  la tabla con sus encabezados y sus filas vacías. Si se pide una ficha, van sus bloques como
-  campos. Si se pide un documento de una página, van sus secciones. Enumerar la estructura en una
-  línea de prosa («Plantilla ficha (5 bloques): DOMINIO · PROBLEMA · …») **no** es una plantilla.
+- **Plantilla en blanco del entregable, cuando el entregable tiene una estructura que se
+  califica.** Si se pide una matriz, va la tabla con sus encabezados y sus filas vacías. Si se
+  pide una ficha, van sus bloques como campos. Si se pide un documento de una página, van sus
+  secciones. Enumerar la estructura en una línea de prosa («Plantilla ficha (5 bloques): DOMINIO ·
+  PROBLEMA · …») **no** es una plantilla.
+- **Se agrega solo si aplica.** El discriminante es si la forma de la respuesta se califica. Una
+  matriz, una ficha de bloques fijos o un documento con secciones exigidas **sí** llevan
+  plantilla. Una pregunta de SQL, un diagrama, una de selección múltiple o una respuesta de prosa
+  libre **no**: ahí la plantilla no ayuda y estorba. No hay que inventarle un formulario a una
+  pregunta que no tiene forma fija.
 - **Es el corolario del criterio rector aplicado al formato:** si el formato del entregable se
   califica —«matriz de 10 objetos × 4 roles»— entonces el formato se entrega, no se adivina. Un
   estudiante que pierde puntos por la forma de la tabla perdió puntos por algo que nunca se le dio.
