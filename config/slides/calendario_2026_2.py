@@ -158,7 +158,7 @@ def resumen_modalidad(key):
     c = cortes(key)
     ses_parciales = " / ".join(str(x["parcial_sesion"]) for x in c)
     return (
-        "Clase 1 y parciales (sesiones **%s**) **presencial**; resto **virtual síncrona**; "
+        "Las 13 sesiones son **virtual síncrona** por Meet, incluidos la sesión 1 y los parciales (sesiones **%s**); "
         "festivos = **clase autónoma**." % ses_parciales
     )
 

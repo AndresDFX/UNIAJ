@@ -174,7 +174,7 @@ def build_pptx(c):
         prs = new_prs()
         class_cover(prs, PARCIALES[n][0], subtitulo="Solo evaluacion", clase_n=n, idx=1)
         content_slide(prs, "Indicaciones", [
-            "Hoy es **solo Parcial** (presencial sincrono).",
+            "Hoy es **solo Parcial** (virtual sincrono por Meet).",
             "No hay tema nuevo ni taller del PI en esta sesion.",
             "Duracion sugerida: **90–100 min** dentro del bloque de 120.",
             "La preparacion del PI continua en la siguiente clase regular.",
@@ -375,7 +375,7 @@ def build_guion_md(c):
 > Dia de **parcial = solo evaluacion**. No hay tema nuevo ni avance del PI en clase.
 > Enunciado y solucion: `Parciales/{archivo}`
 
-- **Curso:** Programacion II (FI303204) · 120 min · **presencial sincrono**
+- **Curso:** Programacion II (FI303204) · 120 min · **virtual sincrono por Meet**
 
 ## Checklist 120 min
 

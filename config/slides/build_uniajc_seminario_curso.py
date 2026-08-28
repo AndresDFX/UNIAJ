@@ -243,7 +243,7 @@ def build():
 
 
 
-        'Cada jueves (120 min): **Teoría Core** → **Taller / exposición** → cierre. **13 sesiones**: sesión 1 y parciales (**5 / 9 / 13**) **presencial**; resto **virtual síncrona**; dos sesiones son **dobles** (dos temas en un bloque).',
+        'Cada jueves (120 min): **Teoría Core** → **Taller / exposición** → cierre. Modalidad **Virtual**: las **13 sesiones** son **virtual síncrona** por Google Meet, incluidos la sesión 1 y los parciales (**5 / 9 / 13**); festivos = **clase autónoma**; dos sesiones son **dobles** (dos temas en un bloque).',
 
 
 
@@ -268,7 +268,7 @@ def build():
              "desglose": [f"**Parcial 3** ({CT[2]['parcial_fecha']} · sesión {CT[2]['parcial_sesion']}) · 15%",
                           "**Proyecto Integrador** · 20%", "Asistencia · 5%"]},
         ],
-        note="Parciales presencial síncrono · nunca en festivo/autónoma. Día de parcial = solo evaluación.",
+        note="Parciales síncronos por Meet · nunca en festivo/autónoma. Día de parcial = solo evaluación.",
         idx=8,
     )
 

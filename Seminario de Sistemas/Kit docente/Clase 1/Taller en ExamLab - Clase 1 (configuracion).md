@@ -86,6 +86,15 @@ Cantidades exigidas:
 
 Reglas de sintaxis del mindmap: la jerarquia se define **solo con indentacion** (2 espacios por nivel), una idea por linea, sin guiones al inicio y sin parentesis dentro del texto de las hojas. Escriba el texto sin tildes para que el render no falle.
 
+**Pegar al final del enunciado — flujo de entrega del diagrama:**
+
+**Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
+
+- **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
+- **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `mindmap`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
+- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
+- **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
+
 **Diagrama de referencia (Mermaid):**
 
 ```mermaid

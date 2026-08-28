@@ -3,7 +3,7 @@
 > Dia de **parcial = solo evaluacion**. No hay tema nuevo ni avance del PI en clase.
 > Enunciado y solucion: `Parciales/Parcial 1 - POO colecciones e interfaces GUI.docx`
 
-- **Curso:** Programacion II (FI303204) · 120 min · **presencial sincrono**
+- **Curso:** Programacion II (FI303204) · 120 min · **virtual sincrono por Meet**
 
 ## Checklist 120 min
 

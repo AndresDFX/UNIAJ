@@ -4268,7 +4268,7 @@ enunciado, asi que la use como referencia y no como respuesta.""",
         ),
         "total": 100,
         "nota_actividad": (
-            "**Clase autonoma.** El 02/11/2026 es festivo y no hay sesion presencial: el taller "
+            "**Clase autonoma.** El 02/11/2026 es festivo y no hay sesion sincrona: el taller "
             "se resuelve en casa con el fundamento de la clase, que esta escrito para ser guia y "
             "material de estudio a la vez. **La politica es conceptual:** no se pide configurar "
             "un autoescalador real, ni abrir cuenta en ningun proveedor, ni tarjeta de credito. "
