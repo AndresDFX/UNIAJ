@@ -13,6 +13,7 @@ from __future__ import annotations
 import os
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 from docx import Document
@@ -1209,12 +1210,38 @@ def _slide_map(c: dict) -> list:
     return m
 
 
+def _plano(s: str) -> str:
+    """Minusculas y sin tildes, para comparar fragmentos con titulos de diapositiva.
+
+    Los titulos del deck llevan tildes («Que es arquitectura cloud», «Como decidir»,
+    «Rubrica de sustentacion») pero los modulos de datos se escriben SIN tildes por
+    convencion. Sin plegar los acentos, el token «{{slide:Como decidir}}» no
+    encontraba «Cómo decidir para CloudLite» y habia que buscar a mano un trozo del
+    titulo que no llevara ninguna: eso es lo que hacia los fragmentos fragiles.
+    """
+    return "".join(
+        ch for ch in unicodedata.normalize("NFD", (s or "").lower())
+        if unicodedata.category(ch) != "Mn"
+    )
+
+
 def _slide_no(mapa, *fragmentos):
-    """Numero (1-based) de la primera diapositiva cuyo titulo contiene el fragmento."""
+    """Numero (1-based) de la primera diapositiva cuyo titulo contiene el fragmento.
+
+    La portada se excluye a proposito: su titulo es «Portada · Clase N · <tema>», y
+    el tema repite justo las palabras que uno querria usar como fragmento. Sin
+    excluirla, «{{slide:Almacenamiento}}» de la Clase 7 apuntaba a la portada
+    («Redes y almacenamiento cloud») en vez de a la diapositiva 6, y lo mismo pasaba
+    con «Monitoreo y» en la 8, «Sostenibilidad» en la 10 y «Preparacion de
+    presentacion» en la 12. Ningun bloque de teoria se ancla nunca a la portada, asi
+    que descartarla no quita nada y elimina la clase entera de falsos positivos.
+    """
     for frag in fragmentos:
-        f = frag.lower()
+        f = _plano(frag)
         for i, t in enumerate(mapa, 1):
-            if f in t.lower():
+            if _plano(t).startswith("portada"):
+                continue
+            if f in _plano(t):
                 return i
     return None
 

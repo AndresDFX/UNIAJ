@@ -129,7 +129,12 @@ def render_md(n, sol, *, contexto, opciones=None, mermaid_referencia=None,
             L += [f"**{preg}**", "", resp, ""]
 
     if sol.get("cierre"):
-        L += ["---", "", "## Cierre de la clase", ""] + [f"- {x}" for x in sol["cierre"]] + [""]
+        # Se admiten las dos formas: una lista de puntos de cierre (BD II) o un
+        # parrafo corrido (Arquitectura). Sin este isinstance, un `cierre` de texto
+        # se iteraba caracter por caracter y salia una vineta por letra.
+        cie = sol["cierre"]
+        cuerpo = [cie] if isinstance(cie, str) else [f"- {x}" for x in cie]
+        L += ["---", "", "## Cierre de la clase", ""] + cuerpo + [""]
 
     L += ["---", "",
           "## Politica de entrega",

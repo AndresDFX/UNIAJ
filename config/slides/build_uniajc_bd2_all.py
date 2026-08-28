@@ -7,7 +7,7 @@ Salidas:
   Kit docente/Clase N/Guia aplicacion parcial (dias 5/9/14)
 """
 from __future__ import annotations
-import os, sys, re, subprocess
+import os, sys, re, subprocess, unicodedata
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -1117,16 +1117,36 @@ def _slide_map(c):
     return m
 
 
+def _plano(s):
+    """Minusculas y sin tildes, para comparar fragmentos con titulos de diapositiva.
+
+    Los modulos de datos se escriben SIN tildes por convencion, pero algunos titulos
+    del deck si las llevan. Sin plegar los acentos habia que buscar a mano un trozo
+    del titulo sin ninguna tilde, y eso es lo que hacia los fragmentos fragiles.
+    """
+    return "".join(
+        ch for ch in unicodedata.normalize("NFD", (s or "").lower())
+        if unicodedata.category(ch) != "Mn"
+    )
+
+
 def _slide_no(mapa, *fragmentos):
     """Numero (1-based) de la primera diapositiva cuyo titulo contiene el fragmento.
 
     Sirve para etiquetar el plan minuto a minuto con `[Slide N]` reales en vez de
     numeros escritos a mano.
+
+    La portada se excluye a proposito: su titulo es «Portada · Clase N · <tema>» y el
+    tema repite justo las palabras que uno querria usar como fragmento, asi que se
+    quedaba con matches destinados a una diapositiva de teoria. Ningun bloque del
+    fundamento se ancla nunca a la portada.
     """
     for frag in fragmentos:
-        f = frag.lower()
+        f = _plano(frag)
         for i, t in enumerate(mapa, 1):
-            if f in t.lower():
+            if _plano(t).startswith("portada"):
+                continue
+            if f in _plano(t):
                 return i
     return None
 
