@@ -65,29 +65,29 @@ Los resultados van a una tabla, no a la pantalla, y eso tambien tiene razon: una
 
 Hay un detalle de mecanica que conviene conocer porque explica por que esto funciona: un bloque de PL/pgSQL con clausula EXCEPTION abre internamente un punto de retorno, un savepoint, de modo que al capturar el error se deshace solo lo que ese bloque hizo. Tiene dos consecuencias. Una, que la captura tiene un costo y por eso no se envuelve todo el codigo en manejadores por si acaso. Dos, y es la que importa hoy, que el procedimiento del taller NO lleva COMMIT: si lo llevara, llamarlo desde dentro de un bloque con EXCEPTION fallaria, porque PostgreSQL no permite confirmar la transaccion mientras hay un savepoint activo. Es un buen momento para sembrar la Clase 8: quien confirma la transaccion es quien orquesta la operacion completa, no cada pieza por su cuenta.
 
-### Que significa la columna paso, y la trampa del WHEN OTHERS - diapositiva 7
+### Que significa la columna paso, y la trampa del WHEN OTHERS - diapositiva 8
 Aqui esta el matiz que separa una bateria que prueba algo de una que se prueba a si misma, y conviene dictarlo despacio porque la solucion docente lo califica. Capturar WHEN OTHERS y escribir paso = TRUE porque hubo excepcion es insuficiente: una excepcion tambien la lanza un nombre de columna mal escrito, un tipo que no convierte o una tabla que no existe. Con ese criterio, un procedimiento roto pasaria las tres pruebas negativas. Lo que hay que verificar es el TEXTO de la excepcion, y para eso PL/pgSQL expone la variable SQLERRM con el mensaje y SQLSTATE con el codigo. La forma es paso = SQLERRM ILIKE '%inactiva%', que es una comparacion insensible a mayusculas: se afirma que fallo Y que fallo por lo que se esperaba.
 
 La segunda mitad es que la columna paso admite dos lecturas legitimas y hay que elegir una. Si paso significa el resultado coincidio con lo esperado, las cuatro filas quedan en verdadero cuando todo esta bien, porque en un caso negativo lo esperado es la excepcion. Si paso significa la operacion se completo, los tres casos negativos quedan en falso incluso con el procedimiento perfecto. Las dos son defendibles; lo que no es defendible es no decir cual, porque entonces la columna no significa nada y el docente no puede calificar la captura. La regla del curso es explicita: se usa la misma lectura para las cuatro filas y se declara en una linea junto a la tabla. Conviene decir en voz alta la consecuencia, porque es la que evita reclamos: no se descuenta por elegir una u otra, se descuenta por las cuatro filas en verdadero sin haber verificado el texto.
 
-### El contrato del procedimiento: los 6 bloques que consume la app - diapositiva 8
+### El contrato del procedimiento: los 6 bloques que consume la app - diapositiva 9
 El ultimo entregable son quince puntos y no es codigo: es el contrato, y hay que explicar para quien se escribe, porque si no el estudiante lo redacta como un resumen del codigo. Se escribe para quien va a LLAMAR al procedimiento sin abrirlo, y en este curso esa persona existe con nombre: es el mismo estudiante en la Clase 12, o su companero de Programacion II, construyendo la aplicacion de Huellitas. Un contrato sirve si permite escribir la llamada y manejar los errores sin leer el cuerpo. Son seis bloques y cada uno responde una pregunta.
 
 La firma exacta, con los tipos y en el orden real, responde como se declara. El ejemplo de llamada, con valores concretos que funcionan, responde como se invoca; y conviene exigirlo porque es lo que convierte el contrato en algo copiable. Las precondiciones responden que tiene que ser verdad antes: la mascota existe y esta activa, la franja del veterinario esta libre. Las postcondiciones responden que queda despues, y aqui la frase importante es la del caso malo: si falla, no queda NADA. Sin ella, quien llama no sabe si tiene que limpiar algo. La tabla de errores lleva el mensaje LITERAL, no una parafrasis, porque quien llama va a comparar contra ese texto —y porque es el mismo texto que la bateria de pruebas verifica, de modo que los dos entregables tienen que coincidir palabra por palabra. Y el sexto bloque es la decision de diseno: por que se aborta en vez de devolver un codigo. Ese bloque es el que distingue documentar de pensar, y es el que la solucion docente lee primero.
 
-### Procedimiento y funcion: la diferencia se dice hoy, no en la Clase 4 - diapositiva 9
+### Procedimiento y funcion: la diferencia se dice hoy, no en la Clase 4 - diapositiva 10
 Conviene cerrar la teoria con esta distincion, y decirla HOY, porque el estudiante la va a necesitar en el taller de hoy y no la semana entrante. Un procedimiento se invoca para que HAGA algo y se llama con CALL sp_x(...); una funcion se invoca para que DEVUELVA un valor y se llama dentro de una expresion, SELECT fn_x(...). No son dos sabores del mismo objeto: en PostgreSQL una funcion no puede hacer COMMIT ni ROLLBACK y un procedimiento si, y esa es la razon tecnica por la que el objeto de hoy es un procedimiento. Otra diferencia que se nota en el taller: llamar a un procedimiento con SELECT sp_agendar_cita(...) devuelve un error explicito de PostgreSQL, que dice que sp_agendar_cita es un procedimiento y sugiere usar CALL. Vale mostrarlo a proposito, porque es un mensaje que el estudiante va a encontrar y conviene que lo reconozca en vez de asustarse. La funcion llega en la Clase 4 con fn_precio_consulta, y ahi la comparacion ya estara hecha.
 
-### Depurar sin depurador: los cuatro movimientos, en PostgreSQL - diapositiva 10
+### Depurar sin depurador: los cuatro movimientos, en PostgreSQL - diapositiva 11
 Depurar sin depurador es una habilidad concreta y se ensena en cuatro movimientos. Primero, entender que error se esta leyendo, porque hay dos momentos distintos: el error de creacion, que es de sintaxis y lo devuelve el CREATE PROCEDURE senalando linea y posicion, y el error de ejecucion, que es el que aparece con el CALL y es donde salen los nombres de tabla o columna equivocados. A diferencia de Oracle no hay que consultar ninguna vista de errores ni verificar si el objeto quedo invalido: si el CREATE no protesto, el objeto esta creado; lo que no significa que funcione. Segundo, dejar trazas con RAISE NOTICE 'llegue al paso 2, v_activa = %', v_activa; que imprime en la salida de mensajes sin abortar nada, y es el equivalente directo de lo que en Oracle se hace con la salida de servidor. Conviene mencionar que RAISE tiene niveles —NOTICE, WARNING, EXCEPTION— y que solo el ultimo aborta. Tercero, aislar: tomar el SELECT activa INTO v_activa FROM mascota WHERE id_mascota = 3 y ejecutarlo suelto con el valor que fallo, para saber si el problema esta en la consulta o en la logica que la rodea. Cuarto, probar con casos deliberados, y aqui el numero es exigible porque es el entregable: un caso correcto y tres de error, cada uno en su bloque, escritos en resultado_prueba. Un procedimiento con solo la captura del caso feliz no demuestra manejo de errores, y el Parcial 1 lo pregunta de frente.
 
-### El motor de hoy es PostgreSQL, y eso decide que se puede demostrar - diapositiva 11
+### El motor de hoy es PostgreSQL, y eso decide que se puede demostrar - diapositiva 12
 Este punto hay que decirlo con precision porque una version anterior de esta guia decia lo contrario y costaria puntos repetirla. El taller se resuelve y se califica en ExamLab, que ejecuta PostgreSQL dentro del navegador, y por lo tanto todo el codigo de hoy es PL/pgSQL. Ahi funcionan CREATE PROCEDURE, el dollar-quoting, RAISE EXCEPTION, los bloques DO, SQLERRM y SQLSTATE, y la tabla resultado_prueba: la evidencia del taller es la salida del motor y no una promesa. Oracle Live SQL sigue en el kit, pero cambia de papel y hay que decirlo sin ambiguedad: sirve como CONTRASTE de sintaxis para quien se vaya a encontrar Oracle en el trabajo, no como sitio donde se hace el taller. Vale un minuto de clase senalar las cuatro diferencias que mas cuestan —IS en lugar de AS, VARCHAR2 y NUMBER en lugar de TEXT e INT, RAISE_APPLICATION_ERROR en lugar de RAISE EXCEPTION, y la barra final que aqui es un error— y no vale mas, porque cada minuto invertido en sintaxis del otro motor es un minuto que el estudiante no dedica a lo que se le va a evaluar. La regla operativa del curso se mantiene: la fuente de verdad es el archivo sql en la carpeta del proyecto, nunca la pestana del navegador, y el estudiante va bien si reconstruye procedimiento, pruebas y datos pegando su propio guion.
 
-### El segundo procedimiento: sp_registrar_consulta y el EXISTS - diapositiva 15
+### El segundo procedimiento: sp_registrar_consulta y el EXISTS - diapositiva 16
 El taller pide un segundo procedimiento y no es relleno: es donde se practica una decision distinta. sp_registrar_consulta escribe en consulta, y la Clase 1 dejo esa tabla con id_cita NOT NULL UNIQUE, porque una consulta pertenece a una cita y una cita tiene a lo sumo una consulta. Eso significa que registrar dos veces la consulta de la misma cita ya esta impedido por el motor: el segundo INSERT choca contra la restriccion de unicidad y falla. La pregunta interesante es entonces para que escribir la validacion, si el motor ya defiende el dato. La respuesta tiene dos partes y las dos valen. La primera es el mensaje: la restriccion produce un error tecnico que menciona el nombre del indice, y un IF EXISTS (SELECT 1 FROM consulta WHERE id_cita = p_id_cita) THEN RAISE EXCEPTION 'ERROR: la cita % ya tiene consulta registrada', p_id_cita; produce el mensaje que la recepcionista puede entender. La segunda es que el procedimiento puede validar lo que la restriccion no ve: que la cita exista, y que su estado no sea 'CANCELADA', porque no se documenta la atencion de una cita que se cancelo. Conviene decir tambien lo que NO hay que hacer: quitar la restriccion porque ya esta el procedimiento. La restriccion es la ultima linea de defensa y sigue actuando cuando alguien entra por fuera; el procedimiento mejora el mensaje, no reemplaza la garantia. Esa jerarquia —declarativo primero, procedimiento encima— es exactamente lo que la Clase 4 va a formalizar.
 
-### Como amarra con las clases vecinas y con la rubrica del PI - diapositiva 18
+### Como amarra con las clases vecinas y con la rubrica del PI - diapositiva 19
 Lo de hoy no es una isla, y decirlo en voz alta le da sentido al entregable. La Clase 1 dejo el esquema, la baja logica con activa igual a 'S' o 'N' y la restriccion de unicidad sobre la franja del veterinario, que son justamente las tres cosas que las validaciones de hoy usan. La Clase 2 dejo los cuatro roles y hoy aparece el patron mas fino de todos: no dar INSERT sobre cita al rol recepcion, sino EXECUTE sobre sp_agendar_cita, de modo que el usuario solo pueda escribir a traves de la regla de negocio. La Clase 4 cuelga de este procedimiento la funcion y los dos triggers, y ahi se decide, para cada regla, si vive en un CHECK, en un trigger o en la aplicacion. La Clase 8 retoma el punto que hoy se siembra: quien confirma la transaccion. Y la Clase 12 consume estos procedimientos desde la aplicacion, que es cuando el contrato de la pregunta 5 deja de ser un documento y se vuelve la especificacion que alguien lee.
 
 ### Preguntas frecuentes del grupo - diapositiva 4
@@ -110,18 +110,19 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 5. Por que un procedimiento y no SQL en cada pantalla
 6. El molde de PL/pgSQL y la validacion que aborta
 7. La bateria de pruebas: un bloque DO por caso
-8. El contrato del procedimiento: los 6 bloques que consume la app
-9. PROCEDURE o FUNCTION: cual se puede usar dentro de un SELECT
-10. Demo del dia
-11. Herramientas de hoy
-12. Taller PI VetCare — contexto / por que importa
-13. Taller PI VetCare — objetivo y criterios
-14. Taller PI VetCare — escenario / datos de partida
-15. Taller PI VetCare — pasos guiados
-16. Taller PI VetCare — pistas (checklist vacio)
-17. Criterios de exito / entregable
-18. Para el PI esta semana
-19. Cierre · Clase 3
+8. La columna paso y la trampa de WHEN OTHERS
+9. El contrato del procedimiento: los 6 bloques que consume la app
+10. PROCEDURE o FUNCTION: cual se puede usar dentro de un SELECT
+11. Demo del dia
+12. Herramientas de hoy
+13. Taller PI VetCare — contexto / por que importa
+14. Taller PI VetCare — objetivo y criterios
+15. Taller PI VetCare — escenario / datos de partida
+16. Taller PI VetCare — pasos guiados
+17. Taller PI VetCare — pistas (checklist vacio)
+18. Criterios de exito / entregable
+19. Para el PI esta semana
+20. Cierre · Clase 3
 
 > Privado, no se proyecta: `Kit docente/Clase 3/Solucion Taller Clase 3 - VetCare.docx`
 
@@ -135,15 +136,16 @@ Pasar asistencia. Recordar herramientas gratis+nube.
 
 ### 10-35 · Teoria Core (breve) · desde [Slide 4]
 **Decir:** «Solo lo necesario para el entregable de hoy.»
-Proyecte estas diapositivas, en este orden, ~4 min cada una. Son la teoria
+Proyecte estas diapositivas, en este orden, ~3 min cada una. Son la teoria
 completa del dia: **ninguna se salta**, porque el taller cobra puntos por lo que se
 proyecta en todas ellas.
 1. **[Slide 4] Teoria Core (breve)**
 2. **[Slide 5] Por que un procedimiento y no SQL en cada pantalla**
 3. **[Slide 6] El molde de PL/pgSQL y la validacion que aborta**
 4. **[Slide 7] La bateria de pruebas: un bloque DO por caso**
-5. **[Slide 8] El contrato del procedimiento: los 6 bloques que consume la app**
-6. **[Slide 9] PROCEDURE o FUNCTION: cual se puede usar dentro de un SELECT**
+5. **[Slide 8] La columna paso y la trampa de WHEN OTHERS**
+6. **[Slide 9] El contrato del procedimiento: los 6 bloques que consume la app**
+7. **[Slide 10] PROCEDURE o FUNCTION: cual se puede usar dentro de un SELECT**
 
 El desarrollo completo de cada una esta arriba, en «Fundamento teorico», dividido por
 diapositiva: esa seccion esta escrita para dictarla sin consultar otra fuente.
@@ -158,14 +160,14 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: escribir el proc sin validar nada (solo el INSERT) y llamarlo 'logica de negocio' — un proc sin reglas de validacion es solo una consulta con nombre. El segundo error es dictar el molde de Oracle porque es el que uno recuerda: en ExamLab ese codigo no compila, y el estudiante pierde los 35 puntos de la pregunta 1 por sintaxis, no por no entender el tema.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 10]
+### 35-55 · Demo paso a paso · [Slide 11]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: sp_agendar_cita en PL/pgSQL dentro de ExamLab: las 3 validaciones con RAISE EXCEPTION y la bateria de bloques DO que las prueba.
 Herramienta: ExamLab (PostgreSQL) + Google Docs
 📸 Bateria de pruebas de sp_agendar_cita: P1 OK y P2 rechazado por mascota inactiva [[captura: salida-proc-ok-y-error.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 15]
+### 55-105 · Taller guiado = tarea del PI · [Slide 16]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -178,13 +180,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: 2 procedimientos en PL/pgSQL corriendo en ExamLab + bateria de pruebas con su tabla resultado_prueba + contrato del proc (6 bloques)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 3/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 17]
-Repasar checklist del dia con [Slide 17] «Criterios de exito / entregable».
+### 105-115 · Criterios de exito + quiz corto · [Slide 18]
+Repasar checklist del dia con [Slide 18] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 3 - VetCare.docx`. Clave para usted: `Quiz Clase 3 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 19]
+### 115-120 · Cierre · [Slide 20]
 **Decir:** «Queda avanzado: >=1 procedimiento de negocio (agendar cita / registrar consulta). Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 19] slide de cierre. Dudas finales.
+Proyectar [Slide 20] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts
