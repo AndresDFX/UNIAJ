@@ -44,7 +44,12 @@ class FakeEvent {
   getDescription() { return this.description; }
   setDescription(v) { this.cal.escrituras++; this.description = v; return this; }
   getGuestList() { return this.guests.slice(); }
+  /**
+   * Se deja en el simulacro AUNQUE el .gs ya no invite a nadie: es lo que permite afirmar
+   * «el script nunca lo llama» (`cal.addGuestLlamado === 0`) en vez de suponerlo.
+   */
   addGuest(email) {
+    this.cal.addGuestLlamado++;
     if (this.cal.fallarAddGuest) throw new Error('cuota agotada (simulado)');
     this.guests.push(new Guest(email));
     this.invitacionesEnviadas++;
@@ -66,6 +71,7 @@ class FakeCalendar {
     this.eventos = [];
     this.borrados = [];
     this.escrituras = 0;
+    this.addGuestLlamado = 0;      // debe quedarse en 0: los eventos no llevan invitados
     // interruptores para torcer el simulacro
     this.searchInutil = false;     // `search` no encuentra nada (como si Google no indexara)
     this.fallarDelete = false;
@@ -87,7 +93,11 @@ class FakeCalendar {
     }
     return out;
   }
-  /** Solo para el arnes: planta un evento sin pasar por createEvent. */
+  /**
+   * Solo para el arnes: planta un evento sin pasar por createEvent. `guests` sigue existiendo
+   * porque un evento AJENO del calendario del docente si puede tener invitados; el .gs no debe
+   * tocarlos ni contarlos como suyos.
+   */
   plantar(title, start, end, guests) {
     const e = new FakeEvent(this, title, start, end, { guests: (guests || []).join(',') });
     this.eventos.push(e);

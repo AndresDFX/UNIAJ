@@ -1,0 +1,923 @@
+{
+  "_comentario": "Fuente de verdad UNICA de Introduccion a la Ingenieria (FI300101) en 2026-2. Vive en su propio archivo y NO dentro de semestre_2026_2.json a proposito: ese calendario describe el semestre acortado de 13 sesiones de los cuatro cursos virtuales (24/08 -> 22/11, un solo grupo por curso, con carpetas de Drive y parciales 1/2/3). Este curso tampoco encaja en ese molde aunque comparta la modalidad virtual: tiene 16 sesiones de 90 min, TRES grupos con dos dias distintos, y su esquema de corte cierra en las sesiones 6/11/16 con evaluacion de corte en ExamLab en vez de parcial escrito tradicional. Meterlo en cursos{} habria roto validar_calendario.py (que valida 13 sesiones contra INICIO/FIN y exige carpetas_drive) sin ganar nada.",
+  "_actualizado": "2026-08-29",
+  "periodo": "2026-2",
+  "curso": {
+    "key": "introduccion_ingenieria",
+    "codigo": "FI300101",
+    "nombre": "Introduccion a la Ingenieria",
+    "nombre_acentos": "Introducción a la Ingeniería",
+    "folder": "Introduccion a la Ingenieria",
+    "creditos": 2,
+    "semestre_plan": "Primer semestre",
+    "tipo_asignatura": "Teórica / Práctica",
+    "habilitable": true,
+    "homologable": true,
+    "nivel": "Pregrado",
+    "facultad": "Facultad de Ingeniería",
+    "programa": "Ingeniería de Sistemas",
+    "modalidad": "Virtual",
+    "ambiente": "Virtual sincrónico por Google Meet (salas de grupo para el trabajo en equipo) + plataformas gratuitas en la nube",
+    "duracion_min": 90,
+    "n_sesiones": 16,
+    "n_temas": 16,
+    "mapa_sesion_tema": "1:1 — Sesión N dicta el tema N. No hay sesiones dobles ni renumeración de material: Sesión N = Clase N.",
+    "horas": {
+      "trabajo_dirigido": 16,
+      "trabajo_independiente_dirigido": 16,
+      "trabajo_independiente": 32
+    },
+    "_nota_horas": "El microcurrículo declara 16 h de Trabajo Dirigido, pero 16 sesiones de 90 min son 24 h de aula. La diferencia (8 h) queda anotada para el docente: o el microcurrículo cuenta solo la fracción teórica del bloque, o hay una inconsistencia que conviene aclarar con el programa. El material se construye sobre las 16 sesiones del Plan de curso, que es el documento operativo.",
+    "objeto_estudio": "Fundamentos, principios y contexto de la Ingeniería de Sistemas.",
+    "objetivo": "Reconocer los fundamentos y campos de acción de la Ingeniería de Sistemas para comprender su impacto social, ambiental y tecnológico, favoreciendo el desarrollo de soluciones sostenibles.",
+    "rap": "Desarrolla soluciones de software para necesidades tecnológicas mediante el uso eficiente de recursos y adaptación responsable al entorno.",
+    "raa": [
+      "RAA1 · Identifica los principios y campos de aplicación de la Ingeniería de Sistemas.",
+      "RAA2 · Analiza problemas tecnológicos básicos considerando el contexto social y ambiental.",
+      "RAA3 · Propone ideas iniciales de proyectos de ingeniería con criterios éticos y sostenibles."
+    ],
+    "enfoque": "Aprendizaje basado en competencia + Aprendizaje Invertido",
+    "estrategia_didactica": "ABPr — Aprendizaje Basado en Proyectos",
+    "evaluacion_enfoque": "Formativa y continua: presentaciones de proyectos, análisis de casos y participación activa.",
+    "docente": "Julian Andres Castano",
+    "correo": "julianacastano@profesores.uniajc.edu.co",
+    "bibliografia": [
+      "Pressman, R. (2014). Ingeniería de Software. McGraw-Hill.",
+      "Sommerville, I. (2011). Software Engineering (9a ed.). Pearson.",
+      "IEEE (2014). Ethically Aligned Design.",
+      "Ullman, D. G. (2010). The Mechanical Design Process. McGraw-Hill."
+    ],
+    "saberes": {
+      "conceptuales": [
+        "Fundamentos de la Ingeniería de Sistemas",
+        "Historia y evolución de la Ingeniería",
+        "Rol social y ético del ingeniero"
+      ],
+      "procedimentales": [
+        "Identifica las etapas del ciclo de vida de proyectos de ingeniería",
+        "Analiza casos de aplicación en diversos contextos",
+        "Expone propuestas iniciales de proyectos de mejora tecnológica"
+      ],
+      "actitudinales": [
+        "Demuestra responsabilidad social y ética",
+        "Valora la sostenibilidad y el impacto ambiental",
+        "Promueve el trabajo colaborativo en contextos multidisciplinares"
+      ]
+    },
+    "_nota_modalidad": "El microcurrículo describe el ambiente como «híbrido: aulas, laboratorios informáticos y plataformas en la nube», pero los tres grupos de 2026-2 se dictan VIRTUAL SINCRÓNICO por Google Meet, igual que los otros cuatro cursos del docente. Todo el material está escrito para virtual: los 5 equipos trabajan en salas de grupo de Meet, las exposiciones son con pantalla compartida y el plan B es una caída de conexión, no una sala sin red."
+  },
+  "dinamica_sesion": {
+    "_comentario": "Definida por el docente: se arranca 10 min despues de la hora oficial para esperar a que los estudiantes se conecten, 45 min de teoria con guia del docente, y el resto del bloque se va en una actividad en equipos que TODOS los equipos exponen. La cantidad de equipos es fija (5) y lo que varia es cuanta gente hay en cada uno. Curso virtual sincronico por Google Meet: la actividad corre en salas de grupo y las exposiciones son con pantalla compartida.",
+    "duracion_total_min": 90,
+    "bloques": [
+      {
+        "orden": 1,
+        "min": 10,
+        "desde": "00:00",
+        "hasta": "00:10",
+        "nombre": "Apertura",
+        "que_pasa": "Se espera a que los estudiantes se conecten. No es tiempo muerto: en pantalla compartida queda la pregunta de entrada de la sesión y quien va entrando la responde en el muro del curso. Se pide cámara encendida solo durante el saludo y en la exposición del equipo.",
+        "corto": "Pregunta de entrada en el muro mientras se conectan"
+      },
+      {
+        "orden": 2,
+        "min": 45,
+        "desde": "00:10",
+        "hasta": "00:55",
+        "nombre": "Teoría y guía del docente",
+        "que_pasa": "Bloque teórico completo de la sesión, dictado con el guion docente y sus diapositivas por pantalla compartida. Las preguntas van por chat y se responden en voz alta. Cierra enunciando la consigna de la actividad y abriendo las salas de grupo.",
+        "corto": "Teoría por pantalla compartida, preguntas por chat"
+      },
+      {
+        "orden": 3,
+        "min": 17,
+        "desde": "00:55",
+        "hasta": "01:12",
+        "nombre": "Actividad en equipos",
+        "que_pasa": "Los 5 equipos pasan a sus salas de grupo de Meet y trabajan en paralelo sobre la misma consigna, cada uno en su documento en la nube. El docente entra y sale de las cinco salas (unos 3 min en cada una). A los 15 min se avisa por el chat general y se cierran las salas.",
+        "corto": "Cinco salas de grupo en Meet, el docente rota por todas"
+      },
+      {
+        "orden": 4,
+        "min": 15,
+        "desde": "01:12",
+        "hasta": "01:27",
+        "nombre": "Exposiciones",
+        "que_pasa": "Vuelven todos a la sala principal y los 5 equipos exponen: 3 min por equipo, cronómetro proyectado, el vocero comparte pantalla con el documento YA abierto. No hay turno de preguntas por equipo; la retroalimentación va en el cierre.",
+        "corto": "5 equipos × 3 min con pantalla compartida y cronómetro"
+      },
+      {
+        "orden": 5,
+        "min": 3,
+        "desde": "01:27",
+        "hasta": "01:30",
+        "nombre": "Cierre",
+        "que_pasa": "Una idea que se llevan, el trabajo independiente de la semana y el tema de la siguiente sesión. Antes de salir, el enlace del documento de cada equipo queda pegado en el chat.",
+        "corto": "Una idea, la tarea y los enlaces en el chat"
+      }
+    ],
+    "equipos": {
+      "cantidad_fija": 5,
+      "por_que_fija": "El presupuesto de exposiciones es el que no se puede estirar: 5 equipos × 3 min = 15 min y la sesión cierra a los 90. Si se dejara fijo el tamaño del equipo (por ejemplo «de 4 en 4»), un grupo de 35 daría 9 equipos = 27 min de exposición y la sesión se pasaría 12 min. Por eso lo fijo son los 5 equipos y lo variable es cuánta gente hay en cada uno.",
+      "min_por_equipo": 3,
+      "ejemplos_tamano": [
+        {
+          "matriculados": 20,
+          "por_equipo": 4
+        },
+        {
+          "matriculados": 25,
+          "por_equipo": 5
+        },
+        {
+          "matriculados": 30,
+          "por_equipo": 6
+        },
+        {
+          "matriculados": 35,
+          "por_equipo": 7
+        }
+      ],
+      "excepcion": "Si un grupo tiene menos de 10 matriculados se baja a 4 equipos y los 3 min liberados se suman a la actividad. Es la única excepción prevista.",
+      "regla_rotacion": "Los equipos son estables todo el semestre (el proyecto de ABPr es del equipo), pero el VOCERO rota en cada sesión y se anota en la bitácora del equipo: al final del semestre todos han expuesto y todos han compartido pantalla.",
+      "salas": "Un equipo = una sala de grupo de Meet, numeradas Equipo 1 a Equipo 5. Las salas se crean una sola vez y se reutilizan las 16 sesiones, así que nadie pierde tiempo repartiéndose. El docente reparte los 15 min de actividad en unos 3 min por sala.",
+      "ausencias": "En virtual siempre falta alguien: el documento del equipo vive en Drive, así que el trabajo no se pierde si un integrante se cae de la sesión. Si el vocero del día no se conecta, expone quien siga en la lista de rotación; la nota es del equipo, no del vocero."
+    },
+    "reloj_por_grupo": {
+      "14:30": [
+        "14:30 - 14:40 Apertura",
+        "14:40 - 15:25 Teoria",
+        "15:25 - 15:42 Actividad",
+        "15:42 - 15:57 Exposiciones",
+        "15:57 - 16:00 Cierre"
+      ],
+      "18:30": [
+        "18:30 - 18:40 Apertura",
+        "18:40 - 19:25 Teoria",
+        "19:25 - 19:42 Actividad",
+        "19:42 - 19:57 Exposiciones",
+        "19:57 - 20:00 Cierre"
+      ]
+    },
+    "_nota_tildes": "Este archivo SI lleva tildes: casi todo su texto acaba proyectado en una diapositiva o impreso en un documento del docente. La convencion de escribir sin tildes aplica a los modulos de datos .py de los talleres, donde el problema era el escapado de cadenas; en JSON no existe ese riesgo.",
+    "plataforma_aula": "Google Meet — enlace fijo por grupo, el mismo las 16 sesiones. La sesión se graba solo si el grupo lo autoriza al inicio; las exposiciones sí se graban porque son evaluadas."
+  },
+  "plataformas": {
+    "_comentario": "El curso es virtual sincrónico: el aula es Google Meet y todas las actividades corren en plataformas gratuitas y en la nube. «Gratuitas» aquí significa plan gratuito permanente, no prueba de 14 días, y sin pedir tarjeta de crédito en ningún momento. «En la nube» significa que el trabajo del equipo sobrevive a que se caiga la conexión de un integrante.",
+    "reglas": [
+      "Gratis permanente, no «prueba de 14 días». Si al terminar el semestre la herramienta deja de funcionar, no sirve para este curso.",
+      "Nunca se pide tarjeta de crédito. Si una herramienta la pide, no es la que vamos a usar.",
+      "Todo desde el navegador, sin instalar nada. El curso es virtual y el estudiante tiene que poder seguir desde el computador de la casa, desde una sala de la universidad o desde el celular si hace falta.",
+      "Un solo enlace por equipo, con permiso de lectura para el docente, pegado en el chat de Meet ANTES de exponer. La exposición dura 3 min: no hay tiempo para iniciar sesión ni para buscar el archivo mientras se comparte pantalla.",
+      "No se suben datos personales de terceros (nombres, cédulas, teléfonos, fotos de personas que no dieron permiso). Si un caso los trae, se anonimizan.",
+      "El trabajo vive en la nube, no en el computador de un integrante. Si a alguien se le cae la conexión, el equipo sigue y nada se pierde: es la razón de fondo por la que este curso trabaja en documentos compartidos y no en archivos locales.",
+      "Cada uso de un asistente de IA se declara: qué se le pidió y qué se corrigió a mano. Solo en las sesiones donde el Plan de curso lo pide (3 y 11)."
+    ],
+    "stack": [
+      {
+        "nombre": "Google Meet",
+        "logo": "google_meet.png",
+        "uso": "El aula: sesión sincrónica, salas de grupo para la actividad y exposiciones con pantalla compartida",
+        "por_que": "Viene con la cuenta institucional, permite salas de grupo (una por equipo) sin plugins y el enlace del grupo es el mismo las 16 sesiones.",
+        "cuenta": "Cuenta institucional UNIAJC (ya la tienen)",
+        "gratis": "Sí, con la cuenta institucional",
+        "aviso": "Las salas de grupo las crea el docente ANTES de empezar la sesión: abrirlas en vivo consume los 17 min de la actividad."
+      },
+      {
+        "nombre": "Google Drive (Docs y Slides)",
+        "logo": "google_docs.png",
+        "uso": "Bitácora del equipo y soporte de la exposición",
+        "por_que": "Cuenta institucional ya existente, edición simultánea de los 5 integrantes y un enlace estable por equipo todo el semestre.",
+        "cuenta": "Cuenta institucional UNIAJC (ya la tienen)",
+        "gratis": "Sí, permanente"
+      },
+      {
+        "nombre": "Padlet",
+        "logo": "padlet.png",
+        "uso": "Muro de la sesión: pregunta de entrada de los 10 min de apertura",
+        "por_que": "Se responde sin crear cuenta desde el celular o desde otra pestaña, así que los 10 min en que se van conectando producen algo evaluable en vez de perderse.",
+        "cuenta": "No requiere cuenta para responder",
+        "gratis": "Sí, plan gratuito (3 muros activos; se reciclan por corte)"
+      },
+      {
+        "nombre": "diagrams.net (draw.io)",
+        "logo": "drawio.png",
+        "uso": "Línea de tiempo (sesión 2), ciclo de vida (sesiones 7 y 8), diagramas del proyecto",
+        "por_que": "Funciona sin cuenta, guarda directo en Drive y exporta PNG para pegar en la exposición.",
+        "cuenta": "No requiere cuenta",
+        "gratis": "Sí, permanente"
+      },
+      {
+        "nombre": "Excalidraw",
+        "logo": "excalidraw.png",
+        "uso": "Bocetos rápidos de los 17 min de actividad, en la sala de grupo del equipo",
+        "por_que": "Se abre en dos segundos y produce un boceto legible; para lo que se hace en 17 min es mejor que una herramienta que exige aprender su interfaz.",
+        "cuenta": "No requiere cuenta",
+        "gratis": "Sí, permanente"
+      },
+      {
+        "nombre": "Canva",
+        "logo": "canva.png",
+        "uso": "Infografía (sesión 7) y póster del proyecto final (sesiones 14 y 15)",
+        "por_que": "Plantillas listas: la nota es por el contenido de la infografía, no por saber maquetar. Canva para Educación es gratis con correo institucional.",
+        "cuenta": "Cuenta gratuita o Canva para Educación",
+        "gratis": "Sí, plan gratuito permanente",
+        "opcional": true,
+        "alternativa": "Google Slides, si el estudiante prefiere no crear otra cuenta."
+      },
+      {
+        "nombre": "ExamLab",
+        "logo": "examlab.png",
+        "uso": "Diagnóstico de la sesión 1, comprobaciones rápidas de lectura y las dos evaluaciones de corte escritas (sesiones 6 y 11)",
+        "por_que": "Califica solo y deja el resultado por escrito, que es lo que necesita una evaluación en modalidad virtual donde no hay hoja que recoger.",
+        "cuenta": "Enlace del docente",
+        "gratis": "Sí",
+        "aviso": "ExamLab NO es plataforma oficial de la UNIAJC: es un canal del docente y se usa solo para esto."
+      }
+    ],
+    "asistente_ia": {
+      "cuando": "Solo sesiones 3 (análisis del caso) y 11 (prototipado inicial), que son las dos que el Plan de curso marca.",
+      "opciones": "Gemini, Claude o ChatGPT en plan gratuito — el que el estudiante ya tenga. No se exige uno en particular.",
+      "regla": "Se entrega el prompt usado y lo que se corrigió a mano. Una respuesta de IA pegada sin revisar no puntúa: el criterio de la sesión es justamente distinguir lo que la herramienta acertó de lo que inventó.",
+      "gratis": "Sí, plan gratuito"
+    },
+    "descartadas": [
+      {
+        "que": "Google Jamboard",
+        "por_que": "Google lo descontinuó a finales de 2024. Aparece en material viejo de otros cursos; no usarlo."
+      },
+      {
+        "que": "Figma o Miro en plan de equipo",
+        "por_que": "El plan gratuito limita colaboradores por tablero y con 5 equipos se topa. Padlet y Excalidraw cubren lo mismo sin ese techo."
+      },
+      {
+        "que": "Cualquier nube que pida tarjeta de crédito (AWS, Azure, GCP free tier)",
+        "por_que": "Prohibido pedir tarjeta. Y en un curso de primer semestre no aporta nada al objeto de estudio."
+      }
+    ],
+    "reglas_proyectadas": [
+      "**Gratis permanente, no «prueba de 14 días».** Si deja de funcionar antes de diciembre, no sirve para este curso.",
+      "**Nunca se pide tarjeta de crédito.** Si una herramienta la pide, no la usamos.",
+      "**Todo desde el navegador.** Nada que instalar: computador, sala de la universidad o celular.",
+      "**Un enlace por equipo en el chat, ANTES de exponer**, con permiso de lectura para el docente.",
+      "**Sin datos personales de terceros.** Si el caso los trae, se anonimizan.",
+      "**El trabajo vive en la nube.** Si se te cae la conexión, tu equipo sigue y no se pierde nada."
+    ],
+    "_nota_mapa_sesiones": "El campo `temas[].herramientas` dice qué herramienta usa cada sesión. Es la fuente única: el LEEME del docente, el guion de cada clase y el CALENDARIO de cada grupo lo leen de aquí. «Asistente de IA» solo aparece en las sesiones 3 y 11, que son las dos que el Plan de curso marca.",
+    "plan_b": {
+      "titulo": "Plan B: se cayó la conexión",
+      "de_un_integrante": "El equipo sigue. El documento está en Drive y el trabajo hecho ya está guardado. Quien se cayó vuelve a entrar a la sala de su equipo; si no alcanza, aporta por el documento.",
+      "del_vocero": "Expone el siguiente en la lista de rotación del equipo. La nota es del equipo, no del vocero, así que no se aplaza el turno.",
+      "del_docente": "El enlace de Meet es fijo: los estudiantes se quedan en la sala. Si el docente no vuelve en 10 min, los equipos terminan la actividad, dejan el enlace en el chat y la exposición se corre al inicio de la sesión siguiente.",
+      "de_meet": "Si la plataforma falla del lado de Google, la sesión se convierte en autónoma: la consigna y el documento ya están publicados, cada equipo la termina y se expone en la sesión siguiente. Ninguna evaluación de corte se pierde por esto: se reprograma dentro de la misma semana.",
+      "regla": "Ninguna actividad de este curso requiere que las cinco personas del equipo estén conectadas al mismo tiempo. Es un requisito de diseño, no una concesión."
+    }
+  },
+  "cortes": [
+    {
+      "corte": 1,
+      "pct": "30%",
+      "sesiones": "1-6",
+      "cierra_en_sesion": 6,
+      "cierre": "Análisis de problemas tecnológicos del entorno (primer corte evaluativo)",
+      "desglose": [
+        "Evaluación de corte (sesión 6) · 10%",
+        "Exposiciones de equipo y actividades en clase · 12%",
+        "Asistencia y participación · 8%"
+      ]
+    },
+    {
+      "corte": 2,
+      "pct": "30%",
+      "sesiones": "7-11",
+      "cierra_en_sesion": 11,
+      "cierre": "Taller de prototipado inicial con IA (segundo corte evaluativo)",
+      "desglose": [
+        "Evaluación de corte (sesión 11) · 10%",
+        "Exposiciones de equipo y actividades en clase · 12%",
+        "Asistencia y participación · 8%"
+      ]
+    },
+    {
+      "corte": 3,
+      "pct": "40%",
+      "sesiones": "12-16",
+      "cierra_en_sesion": 16,
+      "cierre": "Socialización y evaluación final del curso",
+      "desglose": [
+        "Exposición final del proyecto (sesión 15) · 15%",
+        "Informe final del proyecto (sesión 16) · 20%",
+        "Asistencia y participación · 5%"
+      ]
+    }
+  ],
+  "regla_evaluacion": "Los tres cierres de corte (sesiones 6, 11 y 16) NUNCA caen en festivo ni en semana autónoma. En este calendario ninguno lo hace.",
+  "temas": [
+    {
+      "n": 1,
+      "tema": "Presentacion del curso y diagnostico inicial",
+      "tema_acentos": "Presentación del curso y diagnóstico inicial",
+      "slug": "Presentacion del curso y diagnostico inicial",
+      "tid": "Lectura del documento maestro y mapa conceptual del perfil",
+      "ti": "Revisión de la historia de la Ingeniería de Sistemas",
+      "obs": "Evaluación diagnóstica",
+      "raa": "RAA1",
+      "herramientas": [
+        "Padlet",
+        "ExamLab",
+        "Google Drive (Docs y Slides)"
+      ]
+    },
+    {
+      "n": 2,
+      "tema": "Historia y evolucion de la Ingenieria",
+      "tema_acentos": "Historia y evolución de la Ingeniería",
+      "slug": "Historia y evolucion de la Ingenieria",
+      "tid": "Investigación sobre hitos históricos",
+      "ti": "Elaboración de línea de tiempo",
+      "obs": "",
+      "raa": "RAA1",
+      "herramientas": [
+        "diagrams.net (draw.io)",
+        "Google Drive (Docs y Slides)"
+      ]
+    },
+    {
+      "n": 3,
+      "tema": "Fundamentos basicos de la Ingenieria de Sistemas",
+      "tema_acentos": "Fundamentos básicos de la Ingeniería de Sistemas",
+      "slug": "Fundamentos basicos de la Ingenieria de Sistemas",
+      "tid": "Análisis de caso práctico",
+      "ti": "Ensayo sobre impacto social",
+      "obs": "Uso de IA para análisis del caso",
+      "raa": "RAA1",
+      "herramientas": [
+        "Asistente de IA",
+        "Google Drive (Docs y Slides)",
+        "Padlet"
+      ]
+    },
+    {
+      "n": 4,
+      "tema": "Principios eticos en la Ingenieria",
+      "tema_acentos": "Principios éticos en la Ingeniería",
+      "slug": "Principios eticos en la Ingenieria",
+      "tid": "Lectura del código ético",
+      "ti": "Análisis crítico del código ético",
+      "obs": "",
+      "raa": "RAA3",
+      "herramientas": [
+        "Google Drive (Docs y Slides)",
+        "Padlet"
+      ]
+    },
+    {
+      "n": 5,
+      "tema": "El rol del ingeniero en el contexto ambiental",
+      "tema_acentos": "El rol del ingeniero en el contexto ambiental",
+      "slug": "El rol del ingeniero en el contexto ambiental",
+      "tid": "Revisión de casos de impacto ambiental",
+      "ti": "Informe sobre sostenibilidad",
+      "obs": "",
+      "raa": "RAA2",
+      "herramientas": [
+        "Excalidraw",
+        "Google Drive (Docs y Slides)"
+      ]
+    },
+    {
+      "n": 6,
+      "tema": "Analisis de problemas tecnologicos del entorno",
+      "tema_acentos": "Análisis de problemas tecnológicos del entorno",
+      "slug": "Analisis de problemas tecnologicos del entorno",
+      "tid": "Identificación de problemáticas locales",
+      "ti": "Propuesta inicial de solución",
+      "obs": "Primer corte evaluativo (30%)",
+      "raa": "RAA2",
+      "herramientas": [
+        "Excalidraw",
+        "Google Drive (Docs y Slides)"
+      ]
+    },
+    {
+      "n": 7,
+      "tema": "Ciclo de vida de los proyectos de ingenieria",
+      "tema_acentos": "Ciclo de vida de los proyectos de ingeniería",
+      "slug": "Ciclo de vida de los proyectos de ingenieria",
+      "tid": "Estudio de fases del ciclo de vida",
+      "ti": "Infografía explicativa",
+      "obs": "",
+      "raa": "RAA3",
+      "herramientas": [
+        "diagrams.net (draw.io)",
+        "Canva"
+      ]
+    },
+    {
+      "n": 8,
+      "tema": "Taller de aplicacion del ciclo de vida",
+      "tema_acentos": "Taller de aplicación del ciclo de vida",
+      "slug": "Taller de aplicacion del ciclo de vida",
+      "tid": "Discusión de ejemplos reales",
+      "ti": "Ajuste de propuestas de solución",
+      "obs": "",
+      "raa": "RAA3",
+      "herramientas": [
+        "diagrams.net (draw.io)",
+        "Google Drive (Docs y Slides)"
+      ]
+    },
+    {
+      "n": 9,
+      "tema": "Estrategias de innovacion en Ingenieria",
+      "tema_acentos": "Estrategias de innovación en Ingeniería",
+      "slug": "Estrategias de innovacion en Ingenieria",
+      "tid": "Revisión bibliográfica",
+      "ti": "Propuesta de mejora",
+      "obs": "",
+      "raa": "RAA3",
+      "herramientas": [
+        "Excalidraw",
+        "Google Drive (Docs y Slides)"
+      ]
+    },
+    {
+      "n": 10,
+      "tema": "Herramientas digitales aplicadas a la Ingenieria",
+      "tema_acentos": "Herramientas digitales aplicadas a la Ingeniería",
+      "slug": "Herramientas digitales aplicadas a la Ingenieria",
+      "tid": "Introducción a software de prototipado",
+      "ti": "Práctica básica con herramientas digitales",
+      "obs": "",
+      "raa": "RAA3",
+      "herramientas": [
+        "Excalidraw",
+        "diagrams.net (draw.io)"
+      ]
+    },
+    {
+      "n": 11,
+      "tema": "Taller de prototipado inicial con IA",
+      "tema_acentos": "Taller de prototipado inicial con IA",
+      "slug": "Taller de prototipado inicial con IA",
+      "tid": "Uso de IA para generación de ideas",
+      "ti": "Corrección del prototipo",
+      "obs": "Segundo corte evaluativo (30%)",
+      "raa": "RAA3",
+      "herramientas": [
+        "Asistente de IA",
+        "Excalidraw",
+        "Google Drive (Docs y Slides)"
+      ]
+    },
+    {
+      "n": 12,
+      "tema": "Presentacion de avances de proyectos",
+      "tema_acentos": "Presentación de avances de proyectos",
+      "slug": "Presentacion de avances de proyectos",
+      "tid": "Retroalimentación y ajustes",
+      "ti": "Revisión entre pares",
+      "obs": "",
+      "raa": "RAA3",
+      "herramientas": [
+        "Padlet",
+        "Google Drive (Docs y Slides)"
+      ]
+    },
+    {
+      "n": 13,
+      "tema": "Evaluacion de impacto social y ambiental",
+      "tema_acentos": "Evaluación de impacto social y ambiental",
+      "slug": "Evaluacion de impacto social y ambiental",
+      "tid": "Aplicación de matrices de evaluación",
+      "ti": "Informe de evaluación del impacto",
+      "obs": "",
+      "raa": "RAA2",
+      "herramientas": [
+        "Google Drive (Docs y Slides)",
+        "diagrams.net (draw.io)"
+      ]
+    },
+    {
+      "n": 14,
+      "tema": "Preparacion de la presentacion final",
+      "tema_acentos": "Preparación de la presentación final",
+      "slug": "Preparacion de la presentacion final",
+      "tid": "Diseño de presentación y recursos visuales",
+      "ti": "Ensayo general",
+      "obs": "",
+      "raa": "RAA3",
+      "herramientas": [
+        "Canva",
+        "Google Drive (Docs y Slides)"
+      ]
+    },
+    {
+      "n": 15,
+      "tema": "Exposicion final de proyectos",
+      "tema_acentos": "Exposición final de proyectos",
+      "slug": "Exposicion final de proyectos",
+      "tid": "Valoración de presentaciones",
+      "ti": "Ajustes del informe final",
+      "obs": "",
+      "raa": "RAA3",
+      "herramientas": [
+        "Canva",
+        "Google Drive (Docs y Slides)"
+      ]
+    },
+    {
+      "n": 16,
+      "tema": "Socializacion y evaluacion final del curso",
+      "tema_acentos": "Socialización y evaluación final del curso",
+      "slug": "Socializacion y evaluacion final del curso",
+      "tid": "Entrega del informe final",
+      "ti": "Autoevaluación",
+      "obs": "Evaluación final (40%)",
+      "raa": "RAA1, RAA2, RAA3",
+      "herramientas": [
+        "Google Drive (Docs y Slides)",
+        "Padlet"
+      ]
+    }
+  ],
+  "festivos_colombia_2026_en_rango": {
+    "2026-10-12": "Día de la Diversidad Étnica y Cultural (lunes)",
+    "2026-11-02": "Todos los Santos (lunes)",
+    "2026-11-16": "Independencia de Cartagena (lunes)",
+    "2026-12-08": "Inmaculada Concepción (MARTES — fecha fija, no la mueve la Ley Emiliani)",
+    "2026-12-25": "Navidad (viernes)"
+  },
+  "regla_festivos": "No se omite el festivo: la semana se marca como AUTÓNOMA con tarea concreta. Ningún cierre de corte ni sesión de exposición se programa en festivo. En este curso el único festivo que golpea un día de clase es el 08/12/2026 (martes), que afecta a SB141C y LB141F.",
+  "alerta_calendario": {
+    "titulo": "Las fechas de fin caen en diciembre y hay que confirmarlas con el programa",
+    "detalle": "Arrancando la semana del 31/08/2026, 16 sesiones semanales terminan el 17/12/2026 (jueves) y el 22/12/2026 (martes, ya contando el festivo del 08/12 como semana autónoma). Eso es casi un mes después del 22/11/2026 en que cierra el periodo 2026-2 de los otros cuatro cursos del docente. La instrucción recibida fue explícita: la fecha de fin está atada a que quepan TODAS las sesiones, así que el calendario NO se comprime. Queda por confirmar con el programa si este curso corre en un calendario distinto.",
+    "plan_b": "Si el programa exige cerrar antes, la única compresión aceptable es unir los temas 15 y 16 en una sola sesión (exposición final + socialización y cierre en el mismo bloque de 90 min, con 5 min por equipo y sin actividad nueva). Eso ahorra una semana: martes 15/12 y jueves 10/12. Comprimir más obliga a sacrificar exposiciones, que son el instrumento de evaluación del curso."
+  },
+  "grupos": [
+    {
+      "grupo": "SB141B",
+      "dia": "Jueves",
+      "horario": "14:30 - 16:00",
+      "hora_inicio_oficial": "14:30",
+      "hora_inicio_efectiva": "14:40",
+      "hora_fin": "16:00",
+      "inicio": "2026-09-03",
+      "fin": "2026-12-17",
+      "n_semanas_calendario": 16,
+      "nota": "Ningún festivo de 2026 cae en jueves dentro del rango: 16 semanas corridas, sin semana autónoma.",
+      "sesiones": [
+        {
+          "sesion": 1,
+          "fecha": "2026-09-03",
+          "tema_n": 1,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 2,
+          "fecha": "2026-09-10",
+          "tema_n": 2,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 3,
+          "fecha": "2026-09-17",
+          "tema_n": 3,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 4,
+          "fecha": "2026-09-24",
+          "tema_n": 4,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 5,
+          "fecha": "2026-10-01",
+          "tema_n": 5,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 6,
+          "fecha": "2026-10-08",
+          "tema_n": 6,
+          "tipo": "virtual",
+          "cierra_corte": 1
+        },
+        {
+          "sesion": 7,
+          "fecha": "2026-10-15",
+          "tema_n": 7,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 8,
+          "fecha": "2026-10-22",
+          "tema_n": 8,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 9,
+          "fecha": "2026-10-29",
+          "tema_n": 9,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 10,
+          "fecha": "2026-11-05",
+          "tema_n": 10,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 11,
+          "fecha": "2026-11-12",
+          "tema_n": 11,
+          "tipo": "virtual",
+          "cierra_corte": 2
+        },
+        {
+          "sesion": 12,
+          "fecha": "2026-11-19",
+          "tema_n": 12,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 13,
+          "fecha": "2026-11-26",
+          "tema_n": 13,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 14,
+          "fecha": "2026-12-03",
+          "tema_n": 14,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 15,
+          "fecha": "2026-12-10",
+          "tema_n": 15,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 16,
+          "fecha": "2026-12-17",
+          "tema_n": 16,
+          "tipo": "virtual",
+          "cierra_corte": 3
+        }
+      ],
+      "modalidad": "Virtual (síncrona) por Google Meet"
+    },
+    {
+      "grupo": "SB141C",
+      "dia": "Martes",
+      "horario": "14:30 - 16:00",
+      "hora_inicio_oficial": "14:30",
+      "hora_inicio_efectiva": "14:40",
+      "hora_fin": "16:00",
+      "inicio": "2026-09-01",
+      "fin": "2026-12-22",
+      "n_semanas_calendario": 17,
+      "nota": "17 semanas de calendario para 16 sesiones: el 08/12/2026 (Inmaculada Concepción) cae martes y se trabaja como semana autónoma de ensayo general, que es justo el trabajo independiente que el Plan de curso asigna al tema 14.",
+      "sesiones": [
+        {
+          "sesion": 1,
+          "fecha": "2026-09-01",
+          "tema_n": 1,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 2,
+          "fecha": "2026-09-08",
+          "tema_n": 2,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 3,
+          "fecha": "2026-09-15",
+          "tema_n": 3,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 4,
+          "fecha": "2026-09-22",
+          "tema_n": 4,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 5,
+          "fecha": "2026-09-29",
+          "tema_n": 5,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 6,
+          "fecha": "2026-10-06",
+          "tema_n": 6,
+          "tipo": "virtual",
+          "cierra_corte": 1
+        },
+        {
+          "sesion": 7,
+          "fecha": "2026-10-13",
+          "tema_n": 7,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 8,
+          "fecha": "2026-10-20",
+          "tema_n": 8,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 9,
+          "fecha": "2026-10-27",
+          "tema_n": 9,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 10,
+          "fecha": "2026-11-03",
+          "tema_n": 10,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 11,
+          "fecha": "2026-11-10",
+          "tema_n": 11,
+          "tipo": "virtual",
+          "cierra_corte": 2
+        },
+        {
+          "sesion": 12,
+          "fecha": "2026-11-17",
+          "tema_n": 12,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 13,
+          "fecha": "2026-11-24",
+          "tema_n": 13,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 14,
+          "fecha": "2026-12-01",
+          "tema_n": 14,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": null,
+          "fecha": "2026-12-08",
+          "tema_n": null,
+          "tipo": "autonoma_festivo",
+          "festivo": "Inmaculada Concepcion",
+          "tarea": "Ensayo general de la exposición final en el equipo, sin docente. Se sube el video o las fotos del ensayo a la carpeta del equipo antes de la sesión 15."
+        },
+        {
+          "sesion": 15,
+          "fecha": "2026-12-15",
+          "tema_n": 15,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 16,
+          "fecha": "2026-12-22",
+          "tema_n": 16,
+          "tipo": "virtual",
+          "cierra_corte": 3
+        }
+      ],
+      "modalidad": "Virtual (síncrona) por Google Meet"
+    },
+    {
+      "grupo": "LB141F",
+      "dia": "Martes",
+      "horario": "18:30 - 20:00",
+      "hora_inicio_oficial": "18:30",
+      "hora_inicio_efectiva": "18:40",
+      "hora_fin": "20:00",
+      "inicio": "2026-09-01",
+      "fin": "2026-12-22",
+      "n_semanas_calendario": 17,
+      "nota": "Mismo calendario que SB141C (los dos son martes), en la jornada de la noche. El 08/12/2026 (Inmaculada Concepción) es semana autónoma de ensayo general.",
+      "sesiones": [
+        {
+          "sesion": 1,
+          "fecha": "2026-09-01",
+          "tema_n": 1,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 2,
+          "fecha": "2026-09-08",
+          "tema_n": 2,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 3,
+          "fecha": "2026-09-15",
+          "tema_n": 3,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 4,
+          "fecha": "2026-09-22",
+          "tema_n": 4,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 5,
+          "fecha": "2026-09-29",
+          "tema_n": 5,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 6,
+          "fecha": "2026-10-06",
+          "tema_n": 6,
+          "tipo": "virtual",
+          "cierra_corte": 1
+        },
+        {
+          "sesion": 7,
+          "fecha": "2026-10-13",
+          "tema_n": 7,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 8,
+          "fecha": "2026-10-20",
+          "tema_n": 8,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 9,
+          "fecha": "2026-10-27",
+          "tema_n": 9,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 10,
+          "fecha": "2026-11-03",
+          "tema_n": 10,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 11,
+          "fecha": "2026-11-10",
+          "tema_n": 11,
+          "tipo": "virtual",
+          "cierra_corte": 2
+        },
+        {
+          "sesion": 12,
+          "fecha": "2026-11-17",
+          "tema_n": 12,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 13,
+          "fecha": "2026-11-24",
+          "tema_n": 13,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 14,
+          "fecha": "2026-12-01",
+          "tema_n": 14,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": null,
+          "fecha": "2026-12-08",
+          "tema_n": null,
+          "tipo": "autonoma_festivo",
+          "festivo": "Inmaculada Concepcion",
+          "tarea": "Ensayo general de la exposición final en el equipo, sin docente. Se sube el video o las fotos del ensayo a la carpeta del equipo antes de la sesión 15."
+        },
+        {
+          "sesion": 15,
+          "fecha": "2026-12-15",
+          "tema_n": 15,
+          "tipo": "virtual"
+        },
+        {
+          "sesion": 16,
+          "fecha": "2026-12-22",
+          "tema_n": 16,
+          "tipo": "virtual",
+          "cierra_corte": 3
+        }
+      ],
+      "modalidad": "Virtual (síncrona) por Google Meet"
+    }
+  ],
+  "pendiente": [
+    "Listas de estudiantes de los tres grupos (SB141B, SB141C, LB141F). Sin ellas no se puede fijar el tamaño de los 5 equipos ni imprimir las planillas de asistencia. NUNCA se versionan en git: son datos personales.",
+    "Confirmar con el programa las fechas de fin de diciembre (ver `alerta_calendario`).",
+    "Carpetas de Drive del curso (clases y grabadas) y su ID, una por grupo, para que MoverGrabaciones.gs archive las grabaciones de Meet como en los otros cuatro cursos. Al ser tres grupos hacen falta tres pares de carpetas.",
+    "Enlace fijo de Google Meet de cada grupo (SB141B, SB141C, LB141F) y las cinco salas de grupo creadas de una vez para las 16 sesiones."
+  ]
+}

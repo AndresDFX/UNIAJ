@@ -1,8 +1,13 @@
 'use strict';
 /**
  * Ejecuta de verdad el .gs consolidado contra el simulacro de Google y comprueba lo que
- * el script promete: que no duplica, que sincroniza invitados, que el borrado no se lleva
- * eventos ajenos, que los interruptores frenan, y que cortarse por tiempo no pierde nada.
+ * el script promete: que no duplica, que NO invita a nadie ni manda correos, que el borrado
+ * no se lleva eventos ajenos, que los interruptores frenan, y que cortarse por tiempo no
+ * pierde nada.
+ *
+ * Nada de cuentas cableadas: los numeros (cursos, sesiones, salas) se leen del propio .gs.
+ * Antes decia "4 cursos / 13 sesiones / 52 eventos" y bastaba anadir un grupo al JSON para
+ * que las pruebas fallaran sin que nada estuviera roto.
  */
 const fs = require('fs');
 const vm = require('vm');
@@ -35,23 +40,47 @@ function conMeet(cal) { return cal.eventos.filter((e) => e.conferenceData).lengt
 function invitacionesTotales(cal) {
   return cal.eventos.concat(cal.borrados).reduce((a, e) => a + e.invitacionesEnviadas, 0);
 }
+function invitadosTotales(cal) {
+  return cal.eventos.reduce((a, e) => a + e.guests.length, 0);
+}
+
+// Cifras del .gs, leidas del .gs. Se usan en todas las secciones.
+const REF = cargar().ctx;
+const NCUR = REF.CURSOS.length;
+const TOTAL = REF.CURSOS.reduce((a, c) => a + c.sesiones.length, 0);
+const SIN_MEET = REF.CURSOS.reduce((a, c) => a + c.sesiones.filter((s) => !s.meet).length, 0);
+const CON_MEET = TOTAL - SIN_MEET;
+/** Cuantas sesiones tiene el curso `key`. */
+const nses = (key) => REF.CURSOS.find((c) => c.key === key).sesiones.length;
 
 console.log('\n=== 1. Datos cargados ===');
 {
   const { ctx } = cargar();
   const cursos = ctx.CURSOS;
-  afirmar('4 cursos', cursos.length === 4, 'hay ' + cursos.length);
-  afirmar('13 sesiones por curso', cursos.every((c) => c.sesiones.length === 13),
+  console.log('       (' + NCUR + ' cursos · ' + TOTAL + ' sesiones · ' + CON_MEET +
+              ' con Meet · ' + SIN_MEET + ' autonomas)');
+  afirmar('hay cursos y todos con sesiones', NCUR > 0 && cursos.every((c) => c.sesiones.length > 0),
           cursos.map((c) => c.sesiones.length).join(','));
-  const sinMeet = cursos.reduce((a, c) => a + c.sesiones.filter((s) => !s.meet).length, 0);
-  afirmar('4 sesiones autonomas en total (sin Meet)', sinMeet === 4, 'hay ' + sinMeet);
+  afirmar('las sesiones de un curso no repiten fecha',
+          cursos.every((c) => new Set(c.sesiones.map((s) => s.fecha)).size === c.sesiones.length));
   afirmar('titulo coherente con meet',
           cursos.every((c) => c.sesiones.every((s) =>
             s.meet ? s.subject.indexOf('[SINCRONICO]') === 0 : s.subject.indexOf('[AUTONOMO]') === 0)));
   afirmar('requestId distinto por curso',
-          new Set(cursos.map((c) => c.requestId)).size === 4);
-  afirmar('sin invitados duplicados dentro de un curso',
-          cursos.every((c) => new Set(c.invitados.map((x) => x.toLowerCase())).size === c.invitados.length));
+          new Set(cursos.map((c) => c.requestId)).size === NCUR,
+          new Set(cursos.map((c) => c.requestId)).size + ' de ' + NCUR);
+  afirmar('titulo distinto entre cursos distintos',
+          new Set(cursos.reduce((a, c) => a.concat(c.sesiones.map((s) => s.subject)), [])).size === TOTAL);
+  // El corazon del cambio: son bloques del calendario del docente.
+  afirmar('ningun curso declara invitados',
+          cursos.every((c) => typeof c.invitados === 'undefined'));
+  afirmar('el .gs no menciona guests ni sendInvites como codigo',
+          !/(^|[^/*\s])\s*guests\s*:/.test(FUENTE) && !/sendInvites\s*:/.test(FUENTE));
+  afirmar('cada curso trae su propio rango (inicio/fin)',
+          cursos.every((c) => /^\d{4}-\d{2}-\d{2}$/.test(c.inicio) && /^\d{4}-\d{2}-\d{2}$/.test(c.fin)));
+  afirmar('codigoCompartido marcado si y solo si el codigo se repite',
+          cursos.every((c) => c.codigoCompartido ===
+            (cursos.filter((o) => o.codigo === c.codigo).length > 1)));
   afirmar('SIMULAR arranca en true', /var SIMULAR = true;/.test(FUENTE));
   afirmar('CONFIRMO_SEMESTRE_COMPLETO arranca en false', /var CONFIRMO_SEMESTRE_COMPLETO = false;/.test(FUENTE));
 }
@@ -65,7 +94,9 @@ console.log('\n=== 2. SIMULAR frena todo ===');
   h.ctx.recrearTodosLosCursos();
   afirmar('en simulacion no se creo ni un evento', vivos(h.cal) === 0, vivos(h.cal) + ' eventos');
   afirmar('en simulacion no se escribio nada', h.cal.escrituras === 0);
-  afirmar('verificar dice cuantas sesiones', h.log.some((l) => /TOTAL 4 curso\(s\) · 52 sesion/.test(l)));
+  afirmar('verificar dice cuantas sesiones',
+          h.log.some((l) => l.indexOf('TOTAL ' + NCUR + ' curso(s) · ' + TOTAL + ' sesion') === 0),
+          h.log.filter((l) => /^TOTAL /.test(l)).join(' / '));
 }
 
 console.log('\n=== 3. El segundo interruptor bloquea ===');
@@ -82,8 +113,9 @@ console.log('\n=== 3. El segundo interruptor bloquea ===');
 
   // Un solo curso NO necesita el segundo interruptor.
   h.ctx.crearBasesDatosII();
-  afirmar('un curso suelto si corre sin el segundo interruptor', vivos(h.cal) === 13,
-          vivos(h.cal) + ' eventos');
+  afirmar('un curso suelto si corre sin el segundo interruptor',
+          vivos(h.cal) === nses('bases_datos_ii'),
+          vivos(h.cal) + ' de ' + nses('bases_datos_ii') + ' eventos');
 }
 
 console.log('\n=== 4. Creacion completa y sala por sesion ===');
@@ -94,13 +126,15 @@ let baseline;
   h.ctx.CONFIRMO_SEMESTRE_COMPLETO = true;
   h.ctx.crearTodosLosCursos();
   baseline = h;
-  afirmar('52 eventos creados', vivos(h.cal) === 52, vivos(h.cal) + '');
-  afirmar('48 con sala de Meet (52 - 4 autonomas)', conMeet(h.cal) === 48, conMeet(h.cal) + '');
+  afirmar(TOTAL + ' eventos creados', vivos(h.cal) === TOTAL, vivos(h.cal) + '');
+  afirmar(CON_MEET + ' con sala de Meet (' + TOTAL + ' - ' + SIN_MEET + ' autonomas)',
+          conMeet(h.cal) === CON_MEET, conMeet(h.cal) + '');
   const urls = h.cal.eventos.filter((e) => e.conferenceData)
     .map((e) => e.conferenceData.entryPoints[0].uri);
-  afirmar('48 enlaces de Meet DISTINTOS', new Set(urls).size === 48, new Set(urls).size + ' distintos');
+  afirmar(CON_MEET + ' enlaces de Meet DISTINTOS', new Set(urls).size === CON_MEET,
+          new Set(urls).size + ' distintos');
   afirmar('las autonomas quedan en el calendario sin Meet',
-          h.cal.eventos.filter((e) => !e.conferenceData).length === 4);
+          h.cal.eventos.filter((e) => !e.conferenceData).length === SIN_MEET);
   afirmar('las autonomas no tienen enlace en Ubicacion',
           h.cal.eventos.filter((e) => !e.conferenceData).every((e) => e.location === ''));
   afirmar('el enlace queda tambien en Ubicacion',
@@ -109,68 +143,84 @@ let baseline;
   afirmar('el enlace queda en la descripcion',
           h.cal.eventos.filter((e) => e.conferenceData)
             .every((e) => e.description.indexOf(e.conferenceData.entryPoints[0].uri) !== -1));
-  afirmar('invitaciones enviadas al crear', invitacionesTotales(h.cal) === 52 * 0 + h.cal.eventos.reduce((a, e) => a + e.guests.length, 0),
+  afirmar('ningun evento tiene invitados', invitadosTotales(h.cal) === 0,
+          invitadosTotales(h.cal) + ' invitados');
+  afirmar('no se envio NI UNA invitacion', invitacionesTotales(h.cal) === 0,
           invitacionesTotales(h.cal) + ' invitaciones');
-  afirmar('cada evento lleva los invitados de SU curso',
-          h.ctx.CURSOS.every((c) => c.sesiones.every((s) => {
-            const e = h.cal.eventos.find((x) => x.title === s.subject);
-            return e && e.guests.length === c.invitados.length;
-          })));
+  afirmar('el .gs nunca llama a addGuest', h.cal.addGuestLlamado === 0,
+          h.cal.addGuestLlamado + ' llamadas');
+  afirmar('la sala se pide con sendUpdates none (nadie a quien notificar)',
+          h.cal.eventos.every((e) => e.notificacionesDeUpdate === 0));
 }
 
 console.log('\n=== 5. Reejecutar no duplica ===');
 {
   const h = baseline;
-  const antesEventos = vivos(h.cal), antesInv = invitacionesTotales(h.cal);
+  const antesEventos = vivos(h.cal);
   const antesUrls = h.cal.eventos.filter((e) => e.conferenceData)
     .map((e) => e.conferenceData.entryPoints[0].uri).sort().join('|');
   h.log.length = 0;
   h.ctx.crearTodosLosCursos();
-  afirmar('sigue habiendo 52 eventos', vivos(h.cal) === antesEventos, vivos(h.cal) + '');
-  afirmar('no se enviaron invitaciones nuevas', invitacionesTotales(h.cal) === antesInv,
-          (invitacionesTotales(h.cal) - antesInv) + ' de mas');
+  afirmar('sigue habiendo ' + TOTAL + ' eventos', vivos(h.cal) === antesEventos, vivos(h.cal) + '');
+  afirmar('sigue sin enviar correos', invitacionesTotales(h.cal) === 0,
+          invitacionesTotales(h.cal) + ' invitaciones');
   const ahoraUrls = h.cal.eventos.filter((e) => e.conferenceData)
     .map((e) => e.conferenceData.entryPoints[0].uri).sort().join('|');
   afirmar('los enlaces de Meet NO cambiaron', ahoraUrls === antesUrls);
-  afirmar('el log dice que reutilizo', h.log.some((l) => /52 reutilizado|reutilizado\(s\)/.test(l)));
+  afirmar('el log dice que reutilizo',
+          h.log.some((l) => l.indexOf(TOTAL + ' reutilizado') !== -1),
+          h.log.filter((l) => /reutilizado/.test(l)).join(' / '));
 }
 
-console.log('\n=== 6. Nomina nueva: sincroniza invitados ===');
+console.log('\n=== 6. Grupos que comparten codigo no se pisan ===');
 {
-  const h = baseline;
-  const c = h.ctx.CURSOS[0];
-  const antes = c.invitados.length;
-  c.invitados.push('nuevo.estudiante@estudiante.uniajc.edu.co');
-  h.log.length = 0;
-  h.ctx.crearTodosLosCursos();
-  const conNuevo = h.cal.eventos.filter((e) =>
-    e.guests.some((g) => g.getEmail() === 'nuevo.estudiante@estudiante.uniajc.edu.co')).length;
-  afirmar('el estudiante nuevo entra en las 13 sesiones de su curso', conNuevo === 13, conNuevo + '');
-  afirmar('no se creo ningun evento por eso', vivos(h.cal) === 52);
-  afirmar('el log reporta los invitados agregados',
-          h.log.some((l) => /13 invitado\(s\) agregado|agregados a eventos que ya existian: 13/.test(l)));
-  // Y si se reejecuta otra vez, no lo agrega dos veces.
-  h.ctx.crearTodosLosCursos();
-  const dobles = h.cal.eventos.filter((e) =>
-    e.guests.filter((g) => g.getEmail() === 'nuevo.estudiante@estudiante.uniajc.edu.co').length > 1).length;
-  afirmar('no lo invita dos veces', dobles === 0, dobles + ' eventos con duplicado');
-  c.invitados.length = antes;
+  // FI300101 corre en 3 grupos. Comparten codigo y nombre de asignatura; el grupo va dentro
+  // del titulo y `codigoCompartido` apaga el reconocimiento por codigo pelado. Si eso se
+  // rompe, crear un grupo se lleva los eventos de otro.
+  const grupos = REF.CURSOS.filter((c) => c.codigoCompartido);
+  if (grupos.length < 2) {
+    console.log('       (no hay codigos compartidos en este periodo: nada que probar)');
+  } else {
+    const h = cargar();
+    h.ctx.SIMULAR = false;
+    h.ctx.CONFIRMO_SEMESTRE_COMPLETO = true;
+    h.ctx.crearTodosLosCursos();
+    afirmar('cada grupo tiene sus propios eventos',
+            grupos.every((g) => h.cal.eventos.filter((e) => e.title.indexOf(g.grupo) !== -1).length
+                                === g.sesiones.length),
+            grupos.map((g) => g.grupo + '=' +
+              h.cal.eventos.filter((e) => e.title.indexOf(g.grupo) !== -1).length).join(' '));
+    // Borrar UNO no puede tocar a los otros dos, ni por titulo ni por barrido de fantasmas.
+    const uno = grupos[0];
+    const otros = grupos.slice(1).reduce((a, g) => a + g.sesiones.length, 0);
+    // El generador bautiza las funciones por curso con el grupo dentro del nombre.
+    const fn = Object.keys(h.ctx).find((k) =>
+      k.indexOf('eliminar') === 0 && k.indexOf(uno.grupo) !== -1);
+    afirmar('existe la funcion por grupo (' + fn + ')', typeof h.ctx[fn] === 'function');
+    if (typeof h.ctx[fn] === 'function') {
+      h.ctx[fn]();
+      afirmar('borro solo su grupo',
+              h.cal.eventos.filter((e) => e.title.indexOf(uno.grupo) !== -1).length === 0);
+      const quedan = grupos.slice(1).reduce((a, g) =>
+        a + h.cal.eventos.filter((e) => e.title.indexOf(g.grupo) !== -1).length, 0);
+      afirmar('los otros grupos siguen enteros', quedan === otros, quedan + ' de ' + otros);
+    }
+  }
 }
 
-console.log('\n=== 7. Un estudiante retirado NO se va solo ===');
+console.log('\n=== 7. Nadie recibe correos, ni al borrar ===');
 {
-  const h = baseline;
-  const c = h.ctx.CURSOS[0];
-  const retirado = c.invitados.pop();
-  const antesDeQuitar = h.cal.eventos.filter((e) => e.guests.some((g) => g.getEmail() === retirado)).length;
+  const h = cargar();
+  h.ctx.SIMULAR = false;
+  h.ctx.CONFIRMO_SEMESTRE_COMPLETO = true;
   h.ctx.crearTodosLosCursos();
-  const sigue = h.cal.eventos.filter((e) => e.guests.some((g) => g.getEmail() === retirado)).length;
-  afirmar('el retirado sigue invitado (limitacion conocida, documentada en el manual)',
-          sigue === antesDeQuitar && sigue > 0, sigue + ' de ' + antesDeQuitar + ' eventos');
-  // De paso: Prog II y Seminario son el mismo grupo (341C), asi que hay estudiantes en los dos.
-  const enDos = h.ctx.CURSOS[0].invitados.filter((x) => h.ctx.CURSOS[1].invitados.indexOf(x) !== -1);
-  console.log('       (nota: ' + enDos.length + ' estudiantes estan en Programacion II y Seminario)');
-  c.invitados.push(retirado);
+  h.ctx.eliminarTodosLosCursos();
+  afirmar('borro los ' + TOTAL + ' eventos', h.cal.borrados.length === TOTAL,
+          h.cal.borrados.length + '');
+  afirmar('ni una cancelacion enviada', h.cal.borrados.every((e) => !e.cancelacionEnviada));
+  afirmar('ni una invitacion en toda la corrida', invitacionesTotales(h.cal) === 0,
+          invitacionesTotales(h.cal) + '');
+  afirmar('addGuest nunca se llamo', h.cal.addGuestLlamado === 0, h.cal.addGuestLlamado + '');
 }
 
 console.log('\n=== 8. Borrado de un curso: no toca al otro del mismo dia ===');
@@ -188,10 +238,9 @@ console.log('\n=== 8. Borrado de un curso: no toca al otro del mismo dia ===');
   h.ctx.eliminarBasesDatosII();
   const quedanArq = h.cal.eventos.filter((e) => e.title.indexOf('Arquitectura') !== -1).length;
   const quedanBd = h.cal.eventos.filter((e) => e.title.indexOf('Bases de Datos II') !== -1).length;
-  afirmar('borro las 13 de BD II', quedanBd === 0, quedanBd + ' vivas');
+  afirmar('borro las ' + nses('bases_datos_ii') + ' de BD II', quedanBd === 0, quedanBd + ' vivas');
   afirmar('no toco las de Arquitectura', quedanArq === antesArq, quedanArq + ' de ' + antesArq);
-  afirmar('mando cancelaciones a los invitados de BD II',
-          h.cal.borrados.every((e) => e.cancelacionEnviada));
+  afirmar('borrar no notifico a nadie', h.cal.borrados.every((e) => !e.cancelacionEnviada));
 }
 
 console.log('\n=== 9. El barrido caza titulos viejos... y tambien eventos personales ===');
@@ -237,10 +286,10 @@ console.log('\n=== 10. Recrear: enlaces nuevos, eventos nuevos ===');
   const antes = h.cal.eventos.filter((e) => e.conferenceData)
     .map((e) => e.conferenceData.entryPoints[0].uri).sort().join('|');
   h.ctx.recrearSeminario();
-  afirmar('vuelve a haber 13 eventos', vivos(h.cal) === 13, vivos(h.cal) + '');
+  afirmar('vuelve a haber ' + nses('seminario') + ' eventos', vivos(h.cal) === nses('seminario'), vivos(h.cal) + '');
   const despues = h.cal.eventos.filter((e) => e.conferenceData)
     .map((e) => e.conferenceData.entryPoints[0].uri).sort().join('|');
-  afirmar('los eventos son otros (se borraron y recrearon)', h.cal.borrados.length === 13,
+  afirmar('los eventos son otros (se borraron y recrearon)', h.cal.borrados.length === nses('seminario'),
           h.cal.borrados.length + ' borrados');
   afirmar('el requestId es el mismo, asi que Google devuelve la MISMA sala',
           despues === antes, 'antes!=despues');
@@ -257,7 +306,7 @@ console.log('\n=== 11. Corte por tiempo: no pierde nada ===');
   afirmar('avisa del corte', h.log.some((l) => /CORTADO a los/.test(l)));
   h.ctx.MINUTOS_MAX = 25;
   h.ctx.crearTodosLosCursos();
-  afirmar('al reejecutar con plazo normal completa las 52', vivos(h.cal) === 52, vivos(h.cal) + '');
+  afirmar('al reejecutar con plazo normal completa las ' + TOTAL, vivos(h.cal) === TOTAL, vivos(h.cal) + '');
 }
 
 console.log('\n=== 12. Sin servicio avanzado de Calendar ===');
@@ -266,7 +315,7 @@ console.log('\n=== 12. Sin servicio avanzado de Calendar ===');
   h.ctx.SIMULAR = false;
   h.ctx.CONFIRMO_SEMESTRE_COMPLETO = true;
   h.ctx.crearTodosLosCursos();
-  afirmar('crea los 52 eventos igual', vivos(h.cal) === 52, vivos(h.cal) + '');
+  afirmar('crea los ' + TOTAL + ' eventos igual', vivos(h.cal) === TOTAL, vivos(h.cal) + '');
   afirmar('ninguno con Meet', conMeet(h.cal) === 0);
   afirmar('lo dice en el log', h.log.some((l) => /servicio avanzado/i.test(l)));
 }
@@ -287,11 +336,12 @@ console.log('\n=== 14. Si `search` de Calendar no encuentra (riesgo de duplicar)
   const h = cargar();
   h.ctx.SIMULAR = false;
   h.ctx.crearSeminario();
-  afirmar('primera corrida: 13 eventos', vivos(h.cal) === 13, vivos(h.cal) + '');
+  afirmar('primera corrida: ' + nses('seminario') + ' eventos', vivos(h.cal) === nses('seminario'), vivos(h.cal) + '');
   h.cal.searchInutil = true;              // Google deja de indexar los titulos
   h.ctx.crearSeminario();
-  afirmar('aunque `search` no sirva, NO duplica (ya no depende de search)', vivos(h.cal) === 13,
-          vivos(h.cal) + ' eventos (deberian ser 13)');
+  afirmar('aunque `search` no sirva, NO duplica (ya no depende de search)',
+          vivos(h.cal) === nses('seminario'),
+          vivos(h.cal) + ' eventos (deberian ser ' + nses('seminario') + ')');
   afirmar('el .gs ya no pasa `search` a getEvents', !/search: s\.subject/.test(FUENTE));
 }
 
@@ -307,24 +357,32 @@ console.log('\n=== 15. deleteEvent que falla ===');
   afirmar('reporta Eliminados=0, no exito falso',
           h.log.some((l) => /Eliminados=0/.test(l)),
           h.log.filter((l) => /Eliminados/.test(l)).join(' / '));
-  afirmar('avisa de cada fallo', h.log.filter((l) => /no pude borrar/.test(l)).length === 13);
+  afirmar('avisa de cada fallo',
+          h.log.filter((l) => /no pude borrar/.test(l)).length === nses('seminario'));
 }
 
-console.log('\n=== 16. addGuest que falla (cuota) ===');
+console.log('\n=== 16. Eventos AJENOS con invitados: el script no los toca ===');
 {
+  // Antes esta seccion probaba el fallo de cuota de addGuest. Ya no hay invitados que agregar;
+  // lo que queda por defender es lo contrario: que un evento del docente que SI tiene gente
+  // invitada (una reunion, una asesoria) no se cuele en el barrido ni pierda a nadie.
   const h = cargar();
   h.ctx.SIMULAR = false;
   h.ctx.crearSeminario();
   const c = h.ctx.CURSOS.find((x) => x.key === 'seminario');
-  c.invitados.push('otro.nuevo@estudiante.uniajc.edu.co');
-  h.cal.fallarAddGuest = true;
+  const s = c.sesiones[2];
+  const f = s.fecha.split('-').map(Number);
+  const reunion = h.cal.plantar('Reunion de area con el decano',
+    new Date(f[0], f[1] - 1, f[2], 7, 0), new Date(f[0], f[1] - 1, f[2], 8, 0),
+    ['decanatura@uniajc.edu.co']);
   h.log.length = 0;
   h.ctx.crearSeminario();
-  afirmar('no revienta con la cuota agotada', true);
-  afirmar('avisa del fallo', h.log.some((l) => /no pude invitar/.test(l)));
-  afirmar('NO cuenta como invitado agregado lo que fallo',
-          !h.log.some((l) => /agregados a eventos que ya existian: 13/.test(l)),
-          h.log.filter((l) => /agregados/.test(l)).join(' / '));
+  afirmar('no le agrego ni le quito invitados a la reunion ajena',
+          reunion.guests.length === 1 && h.cal.addGuestLlamado === 0);
+  h.ctx.eliminarSeminario();
+  afirmar('borro su serie', h.cal.eventos.filter((e) => e.title.indexOf('Seminario') !== -1).length === 0);
+  afirmar('la reunion ajena sigue viva', h.cal.eventos.includes(reunion));
+  afirmar('y no se mando ninguna cancelacion', h.cal.borrados.every((e) => !e.cancelacionEnviada));
 }
 
 console.log('\n=== 17. CALENDAR_ID vacio o equivocado ===');
@@ -371,7 +429,7 @@ console.log('\n=== 18. A - zona horaria del proyecto ===');
   const bien = cargar();
   bien.ctx.SIMULAR = false; bien.ctx.CONFIRMO_SEMESTRE_COMPLETO = true;
   bien.ctx.crearTodosLosCursos();
-  afirmar('con la zona correcta crea las 52', vivos(bien.cal) === 52, vivos(bien.cal) + '');
+  afirmar('con la zona correcta crea las ' + TOTAL, vivos(bien.cal) === TOTAL, vivos(bien.cal) + '');
 }
 
 console.log('\n=== 19. B - un titulo cambiado NO genera una segunda serie ===');
@@ -385,11 +443,11 @@ console.log('\n=== 19. B - un titulo cambiado NO genera una segunda serie ===');
   c.sesiones[6].subject = '[SINCRONICO] Parcial 2 - Seminario de Sistemas';
   h.log.length = 0;
   h.ctx.crearSeminario();
-  afirmar('NO crea el gemelo', vivos(h.cal) === 13, vivos(h.cal) + ' eventos');
+  afirmar('NO crea el gemelo', vivos(h.cal) === nses('seminario'), vivos(h.cal) + ' eventos');
   afirmar('avisa de que hay uno con otro titulo', h.log.some((l) => /con OTRO titulo/.test(l)));
   afirmar('cuenta el omitido', h.log.some((l) => /1 OMITIDO\(S\) por titulo cambiado/.test(l)));
   h.ctx.recrearSeminario();
-  afirmar('recrear deja 13 con el titulo nuevo', vivos(h.cal) === 13, vivos(h.cal) + '');
+  afirmar('recrear deja ' + nses('seminario') + ' con el titulo nuevo', vivos(h.cal) === nses('seminario'), vivos(h.cal) + '');
   afirmar('el titulo nuevo esta en el calendario',
           h.cal.eventos.some((e) => e.title === '[SINCRONICO] Parcial 2 - Seminario de Sistemas'));
   afirmar('el titulo viejo ya no esta',
@@ -497,6 +555,137 @@ console.log('\n=== 23. El .gs declara INICIO y FIN, y TZ se usa ===');
           h.ctx.CURSOS.every((c) => c.sesiones.every((s) =>
             s.fecha >= h.ctx.INICIO && s.fecha <= h.ctx.FIN)));
   afirmar('TZ se usa, no solo se declara', /Session\.getScriptTimeZone/.test(FUENTE));
+}
+
+console.log('\n=== 24. Estan TODOS los cursos del periodo (contra los dos JSON) ===');
+{
+  // Las demas secciones derivan sus cifras del propio .gs, que es lo correcto para no cablear
+  // numeros que cambian cada semestre. Pero eso deja un hueco: si el generador dejara de emitir
+  // un curso, TOTAL y NCUR bajarian con el y todo seguiria en verde. Aqui se compara contra la
+  // fuente de verdad -los dos JSON- para que una omision silenciosa falle.
+  const dir = require('path').join(__dirname, '..');
+  const leer = (n) => JSON.parse(fs.readFileSync(require('path').join(dir, n), 'utf8'));
+  const J1 = leer('semestre_2026_2.json');
+  const J2 = leer('introduccion_ingenieria_2026_2.json');
+
+  const espCursos = Object.keys(J1.cursos).length + J2.grupos.length;
+  const espSesiones = Object.keys(J1.cursos).reduce((a, k) => a + J1.cursos[k].clases.length, 0)
+                    + J2.grupos.reduce((a, g) => a + g.sesiones.length, 0);
+  const aut = (t) => String(t).indexOf('autonoma') === 0;
+  const espAutonomas = Object.keys(J1.cursos)
+        .reduce((a, k) => a + J1.cursos[k].clases.filter((c) => aut(c.tipo)).length, 0)
+      + J2.grupos.reduce((a, g) => a + g.sesiones.filter((s) => aut(s.tipo)).length, 0);
+
+  console.log('       (los JSON piden ' + espCursos + ' cursos · ' + espSesiones + ' sesiones · ' +
+              espAutonomas + ' autonomas)');
+  afirmar('el .gs declara exactamente ' + espCursos + ' cursos (7 este periodo)',
+          NCUR === espCursos, NCUR + ' declarados');
+  afirmar('y exactamente ' + espSesiones + ' sesiones', TOTAL === espSesiones, TOTAL + '');
+  afirmar('y ' + espAutonomas + ' sesiones sin Meet', SIN_MEET === espAutonomas, SIN_MEET + '');
+
+  // Uno por uno, para que el fallo diga CUAL falta y no solo que el total no cuadra.
+  const esperados = Object.keys(J1.cursos).map((k) => ({
+    codigo: J1.cursos[k].codigo, grupo: J1.cursos[k].grupo, n: J1.cursos[k].clases.length,
+  })).concat(J2.grupos.map((g) => ({
+    codigo: J2.curso.codigo, grupo: g.grupo, n: g.sesiones.length,
+  })));
+  const faltan = esperados.filter((e) =>
+    !REF.CURSOS.some((c) => c.codigo === e.codigo && c.grupo === e.grupo && c.sesiones.length === e.n));
+  afirmar('cada curso del JSON esta en el .gs con su grupo y sus sesiones',
+          faltan.length === 0,
+          faltan.map((e) => e.codigo + '/' + e.grupo + ' x' + e.n).join(' '));
+  afirmar('los 3 grupos de ' + J2.curso.codigo + ' estan los tres',
+          REF.CURSOS.filter((c) => c.codigo === J2.curso.codigo).length === J2.grupos.length,
+          REF.CURSOS.filter((c) => c.codigo === J2.curso.codigo).length + '');
+  afirmar('el .gs no trae cursos de mas',
+          REF.CURSOS.every((c) => esperados.some((e) => e.codigo === c.codigo && e.grupo === c.grupo)),
+          REF.CURSOS.filter((c) => !esperados.some((e) => e.codigo === c.codigo && e.grupo === c.grupo))
+            .map((c) => c.key).join(' '));
+  // Las 2 semanas autonomas de diciembre son el caso raro: sin numero de sesion y sin Meet.
+  const sinN = REF.CURSOS.reduce((a, c) => a.concat(
+    c.sesiones.filter((s) => s.subject.indexOf('Semana autónoma') !== -1)), []);
+  afirmar('las semanas autonomas de diciembre van sin Meet',
+          sinN.length > 0 && sinN.every((s) => !s.meet), sinN.length + ' encontradas');
+  afirmar('ningun titulo quedo con un hueco sin llenar (None/undefined/NaN)',
+          !REF.CURSOS.some((c) => c.sesiones.some((s) =>
+            /None|undefined|NaN/.test(s.subject) || /None|undefined|NaN/.test(s.desc || ''))));
+}
+
+console.log('\n=== 25. Ni un dato de estudiante en el .gs ===');
+{
+  // El .gs vive en _privado/ por historia: antes llevaba la nomina completa como invitados.
+  // Ya no debe llevar ni un correo de estudiante. Se mide sobre el texto del archivo, que es
+  // lo que de verdad se pega en el editor de Apps Script.
+  afirmar('no aparece ningun @estudiante.uniajc.edu.co',
+          FUENTE.indexOf('@estudiante.uniajc.edu.co') === -1,
+          (FUENTE.match(/@estudiante\.uniajc\.edu\.co/g) || []).length + ' apariciones');
+  const otros = (FUENTE.match(/[\w.+-]+@[\w.-]+/g) || [])
+    .filter((c) => c.indexOf('@profesores.uniajc.edu.co') === -1
+                && c.indexOf('@group.calendar.google.com') === -1
+                && c.indexOf('@uniajc.edu.co') === -1);
+  afirmar('los unicos correos que quedan son del docente / del calendario',
+          otros.length === 0, otros.join(' '));
+  afirmar('no hay ATTENDEE ni lista de invitados en el texto',
+          !/ATTENDEE/i.test(FUENTE) && !/invitados\s*:/.test(FUENTE));
+  afirmar('no queda ningun sendUpdates: all', !/sendUpdates\s*:\s*'all'/.test(FUENTE));
+  afirmar('la unica mencion de addGuest seria un error: no hay',
+          FUENTE.indexOf('addGuest') === -1);
+}
+
+console.log('\n=== 26. El barrido de fantasmas no se sale del rango DEL CURSO ===');
+{
+  // INICIO/FIN son la UNION de los rangos de los 7 cursos, asi que llegan a diciembre por los
+  // grupos de Introduccion a la Ingenieria. Los 4 cursos cortos cierran en noviembre: si el
+  // barrido usara el rango global en vez del del curso, `eliminar<Curso>` se metaria en
+  // diciembre —donde ese curso ya no tiene clases— y se llevaria apuntes personales del
+  // docente que nombren la asignatura a esa hora.
+  //
+  // Esto se prueba por COMPORTAMIENTO a proposito: comprobar que `c.inicio`/`c.fin` existen en
+  // el objeto CURSOS (seccion 1) no dice nada sobre si `_fantasmas_` los usa.
+  const h = cargar();
+  const corto = h.ctx.CURSOS.filter((c) => c.fin < h.ctx.FIN)
+                            .sort((a, b) => (a.fin < b.fin ? -1 : 1))[0];
+  if (!corto) {
+    // Con un solo rango en juego la prueba no puede distinguir las dos implementaciones.
+    afirmar('hay algun curso que cierre antes que el periodo (si no, esta prueba no aplica)',
+            false, 'todos los cursos cierran en ' + h.ctx.FIN);
+  } else {
+    // La funcion de ese curso, sacada del propio .gs (nada de nombres cableados):
+    //   function eliminarBasesDatosII() { _eliminar_(_curso_('bases_datos_ii')); }
+    const m = FUENTE.match(new RegExp(
+      "function (eliminar\\w+)\\(\\)[^\\n]*_curso_\\('" + corto.key + "'\\)"));
+    afirmar('existe la funcion de borrado de ' + corto.key, !!m, corto.key);
+    const clave = m && m[1];
+    if (!clave) throw new Error('sin funcion de borrado para ' + corto.key);
+    h.ctx.SIMULAR = false;
+    h.ctx[clave.replace('eliminar', 'crear')]();
+    // Un apunte PERSONAL del docente: fuera del rango del curso (diciembre), dentro del rango
+    // global, a la hora del curso y con el nombre de la asignatura en el titulo. Es exactamente
+    // el evento que el barrido global se llevaria.
+    const ini = corto.sesiones[0].ini.split(':').map(Number);
+    const d = new Date(Date.parse(corto.fin + 'T00:00:00') + 21 * 864e5);
+    const dentroDelGlobal = d.toISOString().slice(0, 10) <= h.ctx.FIN;
+    afirmar('la fecha de la sonda cae dentro del rango GLOBAL (si no, no prueba nada)',
+            dentroDelGlobal, d.toISOString().slice(0, 10) + ' vs ' + h.ctx.FIN);
+    const apunte = h.cal.plantar(corto.nombre + ' · repaso de vacaciones' +
+                                 (corto.codigoCompartido ? ' ' + corto.grupo : ''),
+      new Date(d.getFullYear(), d.getMonth(), d.getDate(), ini[0], ini[1]),
+      new Date(d.getFullYear(), d.getMonth(), d.getDate(), ini[0] + 1, ini[1]), []);
+    const antes = vivos(h.cal);
+    h.ctx.SIMULAR = true; h.log.length = 0;
+    h.ctx[clave]();
+    afirmar('en simulacion no lo lista como fantasma',
+            !h.log.some((l) => /fantasma:.*repaso de vacaciones/.test(l)),
+            h.log.filter((l) => /fantasma:/.test(l)).join(' | '));
+    h.ctx.SIMULAR = false;
+    h.ctx[clave]();
+    afirmar('un apunte personal POSTERIOR al fin del curso (a su hora) NO se borra',
+            h.cal.eventos.includes(apunte),
+            'quedan: ' + h.cal.eventos.map((e) => e.title).join(' | '));
+    afirmar('y si borro los eventos del curso, que era su trabajo',
+            vivos(h.cal) === antes - corto.sesiones.length,
+            vivos(h.cal) + ' de ' + (antes - corto.sesiones.length));
+  }
 }
 
 console.log('\n─────────────────────────────────────────');

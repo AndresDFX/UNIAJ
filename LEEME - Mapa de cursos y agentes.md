@@ -30,8 +30,10 @@ siquiera los parciales:
 | Festivos | **Clase autónoma** (único caso asincrónico) |
 | **Sesión 13 de lunes** (16/11, BD II y Arquitectura) | **Sustentaciones del PI**, virtual en vivo (no es parcial) |
 
-**Cada sesión tiene su propio enlace de Meet**, dentro de la invitación de Calendar de esa
-sesión: no hay un enlace único del curso (ver `Manuales/01` y `_nota_meet` en el JSON). Antes
+**Cada sesión tiene su propio enlace de Meet**: no hay un enlace único del curso (ver
+`Manuales/01` y `_nota_meet` en el JSON). El estudiante **no recibe invitación de Calendar** —los
+encuentros son bloques del calendario personal del docente, sin invitados—, así que el enlace de
+cada sesión **lo publica el docente** por el canal del curso (ExamLab). Antes
 hubo una sola sala para toda la serie, y antes de eso la oferta fue «Presencialidad asistida»
 (Sesión 1 y parciales presenciales); si un documento todavía dice cualquiera de las dos cosas,
 está desactualizado.
@@ -69,7 +71,7 @@ Festivos = **clase autónoma** (no se omiten). Si el cierre de corte cae en fest
 ```
 
 `Manuales/` (raiz de `Cursos`) tiene los procedimientos que se ejecutan **fuera del repo**:
-crear los eventos del calendario e invitar a los estudiantes, e instalar el Apps Script que
+crear los eventos del calendario con su sala de Meet por sesion, e instalar el Apps Script que
 archiva las grabaciones de Meet. Son generales: sirven para cualquier periodo.
 
 Regla del dia de parcial: **solo evaluacion**, sin tema tecnico nuevo. El material del
@@ -89,7 +91,7 @@ parcial vive en `Parciales/`, nunca en `Clases/`.
 | Skill transcribir | `.claude/skills/transcribir-video/` |
 | Limpieza `desktop.ini` de Drive | `config/git/limpiar_desktop_ini.py` (hook `SessionStart`) |
 
-## Alistar el semestre (calendario, Meet, invitaciones, grabaciones)
+## Alistar el semestre (calendario, Meet, correo, grabaciones)
 
 ```bash
 python config/calendario/generar_semestre_2026_2.py         # calendario, correo, CSV, acuerdos
@@ -99,19 +101,23 @@ python config/calendario/validar_calendario.py              # invariantes; sale 
 bash   config/calendario/pruebas_apps_script/probar.sh      # ejecuta los .gs contra un simulacro
 ```
 
-Fuente de verdad: `config/calendario/semestre_2026_2.json` (fechas, sesiones, parciales,
-festivos y carpetas de Drive). Se corrige ahi y se regenera.
+Fuentes de verdad: `config/calendario/semestre_2026_2.json` (los 4 cursos de 13 sesiones) y
+`config/calendario/introduccion_ingenieria_2026_2.json` (los **3 grupos** de FI300101, en un
+archivo aparte: 16 sesiones de 90 min, dos dias y fechas que se pasan a diciembre). **4 + 3 = 7
+cursos** en 2026-2. Se corrige ahi y se regenera.
 
-**Los encuentros no se crean importando un `.ics`**: importar deja los invitados dentro del
-evento pero Google no envia las invitaciones. Se crean con el Apps Script generado, que usa
-la API de Calendar (`sendUpdates: 'all'`) y le da a **cada sesión su propia sala de Meet**
-del curso. Las sesiones autonomas van al calendario pero sin Meet.
+**Los encuentros no se crean importando un `.ics`**: importar no le da a cada sesion su sala. Se
+crean con el Apps Script generado, que usa la API de Calendar y le da a **cada sesión su propia
+sala de Meet**. Los eventos son **bloques del calendario personal del docente**: sin invitados y
+`sendUpdates: 'none'` (no se manda ningun correo, ni al crear ni al borrar). Las sesiones
+autonomas van al calendario pero sin Meet.
 
 El generador emite **dos** `.gs` de la misma plantilla: uno por curso, en
 `<Curso>/Plan curso/<periodo>/_privado/`, y **uno consolidado** con todos los cursos del
 periodo en `_privado/<periodo>/`, con las funciones de cada curso y cuatro `*TodosLosCursos`.
-Los `.gs` llevan correos de estudiantes y no se versionan; los punteros visibles son
-`LEEME - Apps Script del curso.md` (por curso) y `LEEME - Apps Script del semestre.md` (raiz).
+Los `.gs` ya **no** llevan datos de estudiantes, pero siguen en `_privado/` (fuera de git) por
+convencion; los punteros visibles son `LEEME - Apps Script del curso.md` (por curso) y
+`LEEME - Apps Script del semestre.md` (raiz).
 
 Procedimiento paso a paso: **`Manuales/`** (01 alistar un curso · 02 archivar grabaciones).
 Estan escritos con `<periodo>` y `<Curso>`: sirven en cualquier semestre.

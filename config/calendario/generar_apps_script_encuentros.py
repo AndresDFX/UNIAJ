@@ -3,52 +3,89 @@
 
 Qué resuelve
 ------------
-Importar un `.ics` deja los invitados dentro del evento pero **Google no envía las
-invitaciones**. Este camino sí las envía: crea los eventos con la API de Calendar y
-`sendUpdates: 'all'`.
+Los encuentros quedan como **bloques del calendario personal del docente**: sin lista de
+invitados y sin enviar ningún correo. Lo que el docente necesita de este camino, y que
+importar un `.ics` no le da, es que **cada sesión tenga su propia sala de Meet**:
+N encuentros, N enlaces distintos, creados por la API de Calendar.
 
-Y le pone a **cada sesión su propia sala de Meet**: N encuentros, N enlaces distintos.
-El estudiante no tiene que guardar ningún enlace — entra por la invitación de Calendar de
-esa sesión, que ya lo trae dentro.
+El enlace de cada sesión queda en **Ubicación** y al final de la **descripción** del evento.
+No sale de ahí solo: no hay invitaciones, así que el docente publica el enlace de la sesión
+que toca por el canal que use con el grupo.
 
 Cada sala se pide con un `requestId` determinista y **distinto por sesión**
 (`uniajc-<codigo>-<grupo>-<periodo>-sNN`). Eso es lo que hace la operación repetible: volver
 a ejecutar no crea una segunda sala para la misma sesión, y el enlace de una sesión que ya
 existe no cambia por reejecutar.
 
+Dos fuentes de verdad, 7 cursos
+-------------------------------
+- `semestre_2026_2.json` -> los 4 cursos de 13 sesiones (24/08 a 22/11).
+- `introduccion_ingenieria_2026_2.json` -> los 3 GRUPOS de Introducción a la Ingeniería
+  (FI300101), cada uno con su día, su horario y su calendario propio. Van en un archivo
+  aparte a propósito (16 sesiones de 90 min, dos días distintos, fechas que se pasan a
+  diciembre): `validar_calendario.py` habría fallado con ellos dentro. Aquí NO se fusionan;
+  un adaptador (`cursos_introduccion_ingenieria`) los pasa a la forma de curso que este
+  generador ya consume, una entrada de `CURSOS` por grupo.
+
+4 + 3 = 7 cursos. La nómina **no** hace falta para generar nada de esto (los eventos no
+tienen invitados); sigue siendo necesaria para la planilla de asistencia, que la produce
+`generar_eventos_calendario.py`.
+
 Salidas
 -------
-1. Uno por curso:
+1. Uno por curso (con el grupo en el nombre cuando varios comparten carpeta):
    `<Curso>/Plan curso/<periodo>/_privado/CrearEncuentros - <Curso>.gs`
-2. Uno consolidado con los 4 cursos:
+2. Uno consolidado con los 7 cursos:
    `_privado/<periodo>/CrearEncuentros - TODO EL SEMESTRE <periodo>.gs`
 
 Los dos salen de la **misma plantilla** (`PLANTILLA` + `MOTOR`), a propósito: mantener dos
 copias del motor garantizaba que divergieran y que la desactualizada fuera la que alguien
 acabara pegando en Apps Script.
 
-Van en `_privado/` porque **llevan los correos de los estudiantes**. Está en `.gitignore`.
+Siguen en `_privado/` por convención del proyecto, aunque ya **no lleven datos personales**.
 
 Uso
 ---
     python config/calendario/generar_apps_script_encuentros.py
-
-Requiere la nómina de cada curso (la lee con el mismo lector que
-`generar_eventos_calendario.py`). Un curso sin nómina se omite y queda avisado en su LEEME.
 """
 from __future__ import annotations
 
+import io
 import json
+import re
+import sys
 from pathlib import Path
 
 import generar_eventos_calendario as ev
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = json.loads(Path(__file__).with_name("semestre_2026_2.json").read_text(encoding="utf-8"))
+DATA_II = json.loads(
+    Path(__file__).with_name("introduccion_ingenieria_2026_2.json").read_text(encoding="utf-8"))
 PERIODO = DATA["periodo"]
 DOCENTE = DATA["docente"]["nombre_completo"]
-INICIO = DATA["inicio"]
-FIN = DATA["fin"]
+
+if DATA_II["periodo"] != PERIODO:
+    raise SystemExit(
+        f"Los dos JSON no son del mismo periodo: semestre={PERIODO!r} "
+        f"introduccion_ingenieria={DATA_II['periodo']!r}. Revisa cuál está desactualizado.")
+
+#: Rango del semestre «corto» (los 4 cursos de `semestre_2026_2.json`).
+INICIO_SEM = DATA["inicio"]
+FIN_SEM = DATA["fin"]
+
+#: Rango GLOBAL del .gs: la unión de las dos fuentes.
+#:
+#: Los 3 grupos de Introducción a la Ingeniería llegan al 2026-12-17 y 2026-12-22, más de un
+#: mes después del 2026-11-22 en que cierran los otros cuatro. Si el rango global se quedara
+#: en noviembre, `_fantasmas_` no vería las últimas ~4 sesiones de cada grupo nuevo.
+#:
+#: Pero ampliarlo NO puede hacer que los 4 cursos viejos barran un mes de más del calendario
+#: personal del docente buscando títulos que los mencionen. Por eso cada curso lleva TAMBIÉN
+#: su propio `inicio`/`fin` en el array CURSOS, y `_fantasmas_` usa el del curso: el global
+#: solo es el techo del periodo (y lo que verifican las pruebas).
+INICIO = min([INICIO_SEM] + [g["inicio"] for g in DATA_II["grupos"]])
+FIN = max([FIN_SEM] + [g["fin"] for g in DATA_II["grupos"]])
 
 TZ = "America/Bogota"
 
@@ -60,6 +97,31 @@ MINUTOS_MAX = 25
 
 ROMANOS = {"i", "ii", "iii", "iv", "v"}
 
+#: Códigos de grupo tipo `SB141B` / `LB141F`, para no dejarlos como «Sb141b» en el nombre de
+#: las funciones del .gs: el docente elige la función en un desplegable y ahí es lo único que
+#: distingue un grupo de otro.
+_GRUPO_SIGLA = re.compile(r"^[a-z]{2}\d{3}[a-z]$")
+
+#: Cuántas veces aparece cada código de asignatura entre los 7 cursos del periodo. Se cuenta
+#: sobre los DOS JSON, no sobre los cursos de un .gs concreto: FI300101 lo comparten los tres
+#: grupos de Introducción a la Ingeniería aunque cada uno tenga su propio archivo.
+_CUENTA_CODIGOS: dict[str, int] = {}
+for _m in DATA["cursos"].values():
+    _CUENTA_CODIGOS[_m["codigo"]] = _CUENTA_CODIGOS.get(_m["codigo"], 0) + 1
+for _g in DATA_II["grupos"]:
+    _c = DATA_II["curso"]["codigo"]
+    _CUENTA_CODIGOS[_c] = _CUENTA_CODIGOS.get(_c, 0) + 1
+
+
+def _codigo_compartido(codigo: str) -> bool:
+    """True si otro curso del periodo usa el mismo código de asignatura.
+
+    Lo consume `_esDeEsteCurso_` en el .gs: cuando el código está compartido, un evento cuyo
+    título solo mencione `FI300101` podría ser de cualquiera de los tres grupos, y borrarlo a
+    cuenta de uno se llevaría el encuentro de otro.
+    """
+    return _CUENTA_CODIGOS.get(codigo, 0) > 1
+
 
 def js(s) -> str:
     """Literal JS de una cadena."""
@@ -67,33 +129,169 @@ def js(s) -> str:
 
 
 def nombre_js(key: str) -> str:
-    """`bases_datos_ii` -> `BasesDatosII`, para nombrar las funciones por curso."""
+    """`bases_datos_ii` -> `BasesDatosII`; `..._sb141b` -> `...SB141B`."""
     partes = []
     for p in key.split("_"):
-        partes.append(p.upper() if p.lower() in ROMANOS else p.capitalize())
+        low = p.lower()
+        if low in ROMANOS or _GRUPO_SIGLA.match(low):
+            partes.append(p.upper())
+        else:
+            partes.append(p.capitalize())
     return "".join(partes)
+
+
+# ─────────────────────────────────────────── Introducción a la Ingeniería (3 grupos)
+
+def _texto_cierre_corte(n_corte: int) -> str:
+    """Frase del cierre de corte, con el porcentaje sacado del JSON (no escrito a mano)."""
+    corte = next(c for c in DATA_II["cortes"] if c["corte"] == n_corte)
+    return f"Cierra el Corte {corte['corte']} ({corte['pct']}): {corte['cierre']}."
+
+
+def cursos_introduccion_ingenieria() -> list[tuple[str, dict]]:
+    """Los 3 grupos de FI300101 con la MISMA forma que `semestre_2026_2.json['cursos'][k]`.
+
+    Así `sesiones_de`, `bloque_curso`, `ev.titulo` y `ev.privado_de` funcionan sin ramas
+    especiales. Lo que traduce el adaptador:
+
+    - `grupos[i]['sesiones']` -> `clases[]`, con `sesion` -> `n` (y `None` en la semana
+      autónoma: NO 0, que daría «Sesión 0» en el título y se quedaría así para siempre).
+    - `tipo: 'autonoma_festivo'` -> `'autonoma'`. El motor y `ev.titulo` comparan contra
+      `'autonoma'` exacto; sin la traducción, la semana del festivo del 08/12 saldría con
+      sala de Meet y titulada `[SINCRONICO]`.
+    - `tema_n` -> `tema`, tomando el título legible de `temas[].tema_acentos` (en `temas[]`
+      NO hay clave `titulo`).
+    - `cierra_corte` -> `cierre_corte`, ya redactado. NO se usa `parcial`: este curso no
+      tiene parciales escritos y `ev.titulo` titularía los eventos «Parcial N · …».
+
+    El GRUPO va dentro de `nombre`, y eso no es cosmético:
+
+        `_esDeEsteCurso_` decide «este evento es mío» comparando el título contra
+        `c.nombre`, y los tres grupos comparten nombre y código (FI300101). SB141B es
+        jueves 14:30 y SB141C martes 14:30 — la MISMA hora. Con el nombre pelado, el
+        barrido de fantasmas de un grupo se llevaría los encuentros de otro. Y SB141C y
+        LB141F caen los dos en martes y en las mismas 17 fechas: con el mismo título,
+        `_buscarEvento_` daría los eventos de uno por «ya existentes» del otro.
+
+        No lo «simplifiques» quitando el grupo del nombre.
+    """
+    temas = {t["n"]: t["tema_acentos"] for t in DATA_II["temas"]}
+    c = DATA_II["curso"]
+    out: list[tuple[str, dict]] = []
+    for g in DATA_II["grupos"]:
+        clases = []
+        for s in g["sesiones"]:
+            tema_n = s.get("tema_n")
+            autonoma = str(s.get("tipo", "")).startswith("autonoma")
+            clases.append({
+                "n": s.get("sesion"),
+                "fecha": s["fecha"],
+                "tipo": "autonoma" if autonoma else s["tipo"],
+                "festivo": s.get("festivo"),
+                "parcial": False,
+                "clases_material": [tema_n] if tema_n else [],
+                "tema": temas.get(tema_n) or (s.get("tarea") or "Trabajo autónomo del equipo"),
+                "sesion_doble": False,
+                "cierre_corte": (_texto_cierre_corte(s["cierra_corte"])
+                                 if s.get("cierra_corte") else None),
+                "tarea": s.get("tarea"),
+            })
+        out.append((f"{c['key']}_{g['grupo'].lower()}", {
+            "folder": c["folder"],
+            # El grupo, dentro del nombre: ver el docstring. Es la identidad del curso.
+            "nombre": f"{c['nombre_acentos']} · {g['grupo']}",
+            "nombre_base": c["nombre_acentos"],
+            "codigo": c["codigo"],
+            "grupo": g["grupo"],
+            "dia": g["dia"],
+            # Raya larga como los otros 4 cursos (el JSON nuevo usa guion normal). `ev.hhmm`
+            # acepta las dos: solo busca pares HH:MM. Esto es para que la tabla del LEEME y
+            # el log no mezclen dos separadores distintos.
+            "horario": g["horario"].replace(" - ", " – "),
+            "duracion_min": c["duracion_min"],
+            "modalidad": c["modalidad"],
+            "n_clases": c["n_sesiones"],
+            # Rango PROPIO: `_fantasmas_` barre este, no el del semestre corto.
+            "inicio": g["inicio"],
+            "fin": g["fin"],
+            "clases": clases,
+        }))
+    return out
+
+
+def _titulo(meta: dict, cl: dict) -> str:
+    """Título del evento. Es la IDENTIDAD del evento para `_buscarEvento_`.
+
+    Reusa `ev.titulo` (misma cadena que el .ics y el CSV del otro generador) y solo resuelve
+    el caso que `ev.titulo` todavía no sabe expresar: la semana autónoma por festivo de
+    SB141C y LB141F, que no tiene número de sesión (`ev.titulo` diría «Sesión None»).
+    """
+    if cl.get("n") is None:
+        return f"[AUTONOMO] Semana autónoma · {meta['nombre']}"
+    return ev.titulo(meta, cl)
+
+
+def _descripcion(meta: dict, cl: dict) -> str:
+    """Descripción del evento.
+
+    Los 4 cursos del semestre corto la toman de `ev.descripcion`. Los grupos de Introducción
+    a la Ingeniería NO: esa función lleva «Sesión N de 13» cableado (diría «de 13» teniendo
+    16), no sabe de cierres de corte y no tiene rama para una sesión sin número. Se redacta
+    aquí, con el mismo estilo y el mismo orden de campos.
+    """
+    if not meta.get("nombre_base"):     # los 4 cursos de semestre_2026_2.json
+        return ev.descripcion(meta, cl)
+
+    total = meta["n_clases"]
+    if cl.get("n") is None:
+        partes = [
+            f"{meta['nombre_base']} ({meta['codigo']}) · grupo {meta['grupo']}",
+            f"Semana autónoma · {ev.TIPO_ETIQUETA['autonoma']}",
+        ]
+        if cl.get("festivo"):
+            partes.append(f"Festivo: {cl['festivo']}")
+        partes.append("No hay encuentro sincrónico: no lleva sala de Meet.")
+        if cl.get("tarea"):
+            partes.append(f"Trabajo del equipo: {cl['tarea']}")
+    else:
+        partes = [
+            f"{meta['nombre_base']} ({meta['codigo']}) · grupo {meta['grupo']}",
+            f"Sesión {cl['n']} de {total} · {ev.TIPO_ETIQUETA.get(cl['tipo'], cl['tipo'])}",
+            f"Tema: {cl['tema']}",
+            f"Material docente: Clase {cl['n']}",
+        ]
+        if cl.get("festivo"):
+            partes.append(f"Festivo: {cl['festivo']}")
+        if cl.get("cierre_corte"):
+            partes.append(cl["cierre_corte"])
+    partes.append(f"Docente: {DOCENTE} · {ev.CORREO_DOCENTE}")
+    return " | ".join(partes)
 
 
 def sesiones_de(meta: dict) -> list[dict]:
     ini, fin = ev.hhmm(meta["horario"])          # '180000', '200000'
     out = []
     for cl in meta["clases"]:
-        # Las autonomas SI van al calendario (el estudiante debe ver la fecha de cierre),
-        # pero NO llevan Meet: no hay encuentro.
+        # Las autonomas SI van al calendario (queda la fecha de cierre a la vista), pero NO
+        # llevan Meet: no hay encuentro. Vale igual para las autonomas por festivo de los
+        # grupos de Introduccion a la Ingenieria (el adaptador ya traduce el tipo).
         out.append({
-            "subject": ev.titulo(meta, cl),
+            "subject": _titulo(meta, cl),
             "fecha": cl["fecha"],
             "ini": f"{ini[:2]}:{ini[2:4]}",
             "fin": f"{fin[:2]}:{fin[2:4]}",
-            "desc": ev.descripcion(meta, cl),
+            "desc": _descripcion(meta, cl),
             "meet": cl["tipo"] != "autonoma",
         })
     return out
 
 
-def bloque_curso(key: str, meta: dict, correos: list[str], ses: list[dict]) -> str:
-    """El literal JS de un curso dentro del array CURSOS."""
-    invitados = "\n".join(f"      {js(c)}," for c in correos)
+def bloque_curso(key: str, meta: dict, ses: list[dict]) -> str:
+    """El literal JS de un curso dentro del array CURSOS.
+
+    No hay campo de invitados: los eventos son bloques del calendario del docente. Por eso
+    este archivo ya no escribe ningún dato personal en el .gs.
+    """
     sesiones = "\n".join(
         ("      {{ subject: {s}, fecha: {f}, ini: {i}, fin: {n}, meet: {m},"
          " desc: {d} }},").format(
@@ -108,12 +306,17 @@ def bloque_curso(key: str, meta: dict, correos: list[str], ses: list[dict]) -> s
     grupo:    {js(meta['grupo'])},
     dia:      {js(meta['dia'])},
     horario:  {js(meta['horario'])},
+    // Rango PROPIO del curso. `_fantasmas_` barre este, no el global: los 3 grupos de
+    // Introduccion a la Ingenieria llegan a diciembre y los otros 4 cierran el 22/11, y
+    // nadie tiene que rastrear un mes extra del calendario personal del docente.
+    inicio:   {js(meta.get('inicio') or INICIO_SEM)},
+    fin:      {js(meta.get('fin') or FIN_SEM)},
+    // true cuando OTRO curso de este periodo comparte el codigo (los 3 grupos de FI300101).
+    // Entonces el codigo solo, en un titulo, no basta para decir «este evento es mio».
+    codigoCompartido: {'true' if _codigo_compartido(meta['codigo']) else 'false'},
     // Base del requestId. Cada sesion pide su sala con requestId + '-sNN': distinto por
     // sesion, y estable entre corridas para que reejecutar no cree una segunda sala.
     requestId: {js(f"uniajc-{meta['codigo']}-{meta['grupo']}-{PERIODO}")},
-    invitados: [
-{invitados}
-    ],
     sesiones: [
 {sesiones}
     ]
@@ -133,7 +336,7 @@ MOTOR = """
  * El calendario con el que trabaja el script.
  * Preferimos un ID explicito: el «por omision» depende de la cuenta con la que se abrio
  * Apps Script, y si un dia se ejecuta con otra sesion escribe en un calendario distinto sin
- * avisar. Con los eventos ya creados e invitaciones enviadas, eso no se deshace facil.
+ * avisar. Con ~100 eventos y sus salas de Meet ya creados, eso no se deshace facil.
  */
 function _cal_() {
   if (CALENDAR_ID) {
@@ -176,8 +379,8 @@ function listarCalendarios() {
  * Importa mas de lo que parece: `_fecha()` usa `new Date(anio, mes, dia, hora, min)`, y ese
  * constructor interpreta los componentes en la zona del PROYECTO — no en la del calendario ni
  * en la del curso. Si el proyecto se creo en otra zona (Google no siempre pone la local), los
- * eventos entran corridos y las invitaciones ya salieron: no se deshace reejecutando, porque
- * el evento existe y se reutiliza.
+ * eventos entran corridos y NO se arregla reejecutando: el evento ya existe con su sala de
+ * Meet, y este script lo reutiliza tal cual.
  */
 function _zonaDelProyecto_() {
   try { return Session.getScriptTimeZone(); } catch (e) { return '(no pude leerla)'; }
@@ -196,8 +399,8 @@ function _zonaMal_(quien) {
   Logger.log('BLOQUEADO: ' + quien + ' no corre con la zona del proyecto en ' +
              _zonaDelProyecto_() + '.');
   Logger.log('Ponla en ' + TZ + ': Configuracion del proyecto (engranaje) -> Zona horaria.');
-  Logger.log('Con otra zona los eventos entrarian a otra hora, y las invitaciones ya enviadas');
-  Logger.log('no se arreglan reejecutando.');
+  Logger.log('Con otra zona los eventos entrarian a otra hora, y reejecutar NO los mueve:');
+  Logger.log('habria que borrarlos y volver a crearlos (con salas de Meet nuevas).');
   return true;
 }
 
@@ -225,7 +428,8 @@ function _sinTiempo_() {
 /**
  * Aviso de corte. `reanudarCon` es la funcion que hay que ejecutar para continuar, y NO
  * siempre es la que se corto: reejecutar una `recrear*` vuelve a borrar lo que acababa de
- * recrear, con una cancelacion por invitado y por evento. Solo `crear*` reanuda de verdad.
+ * recrear, y con cada evento se va la sala de Meet que acababa de crear. Solo `crear*`
+ * reanuda de verdad.
  */
 function _avisoDeCorte_(reanudarCon, noReejecutar) {
   Logger.log('');
@@ -233,7 +437,7 @@ function _avisoDeCorte_(reanudarCon, noReejecutar) {
   Logger.log('*** Apps Script. NO se perdio nada.');
   if (noReejecutar) {
     Logger.log('*** OJO: NO vuelvas a ejecutar ' + noReejecutar + ' — volveria a BORRAR lo que');
-    Logger.log('*** acaba de recrear, y a mandar otra cancelacion a cada invitado.');
+    Logger.log('*** acaba de recrear, y a tirar las salas de Meet que acababa de crear.');
   }
   Logger.log('*** Para continuar ejecuta: ' + (reanudarCon || 'la funcion de crear') );
   Logger.log('*** (reutiliza los eventos y las salas que ya existen).');
@@ -252,7 +456,8 @@ function _titulo_(c) {
 function _verificar_(c) {
   var cal = _cal_();
   _titulo_(c);
-  Logger.log('  Invitados        : ' + c.invitados.length);
+  Logger.log('  Tipo             : bloque de TU calendario (sin invitados, sin correos)');
+  Logger.log('  Rango del curso  : ' + c.inicio + ' .. ' + c.fin);
   Logger.log('  Meet             : uno distinto por sesion (' + _conMeet_(c) + ' de ' +
              c.sesiones.length + ' sesiones lo llevan; las autonomas no)');
   var existen = 0, conSala = 0;
@@ -281,7 +486,6 @@ function _entorno_() {
   Logger.log('Calendario       : ' + cal.getName() + '  [' + cal.getId() + ']');
   Logger.log('CALENDAR_ID      : ' + (CALENDAR_ID || '(vacio: usa listarCalendarios())'));
   Logger.log('Servicio avanzado: ' + (_apiCalendar_() ? 'activo' : 'NO ACTIVO — sin el no hay Meet'));
-  Logger.log('Enviar correos   : ' + (SEND_INVITES ? 'si' : 'no'));
   Logger.log('Zona del proyecto: ' + _zonaDelProyecto_() +
              (_zonaCorrecta_() ? '  (correcta)' : '  <-- NO ES ' + TZ));
   if (!_zonaCorrecta_()) {
@@ -295,40 +499,45 @@ function _entorno_() {
   if (!_apiCalendar_()) {
     Logger.log('');
     Logger.log('Activa el servicio avanzado: Servicios (+) -> Google Calendar API -> Anadir.');
-    Logger.log('Sin el los eventos se crean con invitados, pero SIN Meet.');
+    Logger.log('Sin el los eventos se crean, pero SIN sala de Meet.');
   }
 }
 
 // ═══════════════════════════════════════════════ MOTOR: CREAR
 
-/** Crea los encuentros del curso, cada uno con SU sala de Meet, e invita al grupo. */
+/**
+ * Crea los encuentros del curso como BLOQUES DE TU CALENDARIO, cada uno con SU sala de Meet.
+ *
+ * Los eventos no tienen invitados y no se envia ningun correo: son tus bloques de agenda. El
+ * enlace de Meet de cada sesion queda en Ubicacion y al final de la descripcion, para que lo
+ * compartas con el grupo por donde quieras.
+ */
 function _crear_(c) {
   var cal = _cal_();
   _titulo_(c);
   if (!SIMULAR && _zonaMal_('crear ' + c.nombre)) {
-    return { creados: 0, reusados: 0, invitados: 0, meet: 0, cortado: false };
+    return { creados: 0, reusados: 0, meet: 0, cortado: false };
   }
   if (SIMULAR) {
     Logger.log('  SIMULAR = true: no se creo nada. Ponlo en false cuando verificar() se vea bien.');
-    return { creados: 0, reusados: 0, invitados: 0, meet: 0, cortado: false };
+    return { creados: 0, reusados: 0, meet: 0, cortado: false };
   }
 
-  var eventos = [], creados = 0, reusados = 0, invAgregados = 0, omitidos = 0, cortado = false;
+  var eventos = [], creados = 0, reusados = 0, omitidos = 0, cortado = false;
   for (var i = 0; i < c.sesiones.length; i++) {
     if (_sinTiempo_()) { cortado = true; break; }
     var s = c.sesiones[i];
     var ya = _buscarEvento_(cal, s);
     if (ya) {
-      // El evento ya existe. Hay que SINCRONIZAR los invitados: si llego una nomina nueva,
-      // un estudiante que entro tarde no recibiria invitacion nunca (los invitados solo se
-      // pasan al crear el evento).
-      invAgregados += _sincronizarInvitados_(c, ya);
+      // El evento ya existe: se reutiliza tal cual. Eso es la idempotencia — reejecutar no
+      // duplica nada y no toca el evento. Lo unico que se le asegura es su sala de Meet,
+      // mas abajo.
       eventos.push({ ev: ya, i: i }); reusados++; continue;
     }
     // Antes de crear: mirar si ya hay un encuentro de este curso ese dia a esa hora con OTRO
     // titulo. Pasa siempre que el titulo cambia en el JSON (se marca un parcial, una sesion
     // pasa a autonoma, cambian los prefijos). Sin esto se creaba una serie entera al lado de
-    // la vieja, con dos invitaciones y dos salas para el mismo dia.
+    // la vieja, con dos bloques y dos salas de Meet para el mismo dia.
     var gemelos = _delCursoEsaHora_(cal, c, s, s.subject);
     if (gemelos.length) {
       Logger.log('  AVISO: ' + s.fecha + ' ' + s.ini + ' ya tiene un encuentro de este curso');
@@ -338,10 +547,10 @@ function _crear_(c) {
       omitidos++;
       continue;
     }
+    // Sin `guests` y sin `sendInvites`: es un bloque de TU calendario. Google no manda
+    // ningun correo porque no hay a quien mandarlo.
     var nuevo = cal.createEvent(s.subject, _fecha(s.fecha, s.ini), _fecha(s.fecha, s.fin), {
-      description: s.desc,
-      guests: c.invitados.join(','),
-      sendInvites: SEND_INVITES
+      description: s.desc
     });
     eventos.push({ ev: nuevo, i: i });
     creados++;
@@ -353,16 +562,11 @@ function _crear_(c) {
     Logger.log('  *** ' + omitidos + ' sesion(es) sin crear: hay un encuentro viejo con otro');
     Logger.log('  *** titulo en ese hueco. Ejecuta eliminar' + ' y luego crear, o recrear.');
   }
-  if (invAgregados) {
-    Logger.log('  Invitados agregados a eventos que ya existian: ' + invAgregados +
-               ' (nomina nueva).');
-  }
 
   if (!_apiCalendar_()) {
     Logger.log('  Sin enlace de Meet: el servicio avanzado de Calendar no esta activo.');
     Logger.log('  Activalo y vuelve a ejecutar: no duplica eventos ni salas.');
-    return { creados: creados, reusados: reusados, invitados: invAgregados, meet: 0,
-             cortado: cortado };
+    return { creados: creados, reusados: reusados, meet: 0, cortado: cortado };
   }
 
   // Una sala POR SESION. Cada una con su requestId, para que reejecutar no duplique.
@@ -377,49 +581,28 @@ function _crear_(c) {
   }
   Logger.log('  Meet: ' + nativos + '/' + conMeet + ' sesion(es) con su propia sala ' +
              '(las autonomas no llevan Meet a proposito).');
-  return { creados: creados, reusados: reusados, invitados: invAgregados, meet: nativos,
-           cortado: cortado };
-}
-
-/**
- * Agrega al evento los invitados del curso que todavia no esten. Devuelve cuantos agrego.
- * Necesario porque `createEvent` solo pone invitados al crear: sin esto, una nomina nueva no
- * llegaria nunca a los eventos ya creados.
- */
-function _sincronizarInvitados_(c, evento) {
-  var actuales = {};
-  var lista = evento.getGuestList();
-  for (var i = 0; i < lista.length; i++) {
-    actuales[String(lista[i].getEmail()).toLowerCase()] = true;
-  }
-  var n = 0;
-  for (var j = 0; j < c.invitados.length; j++) {
-    if (!actuales[String(c.invitados[j]).toLowerCase()]) {
-      try { evento.addGuest(c.invitados[j]); n++; }
-      catch (e) { Logger.log('  AVISO: no pude invitar a un estudiante: ' + e); }
-    }
-  }
-  return n;
+  Logger.log('  El enlace de cada sesion quedo en Ubicacion y en la descripcion del evento.');
+  return { creados: creados, reusados: reusados, meet: nativos, cortado: cortado };
 }
 
 // ═══════════════════════════════════════════════ MOTOR: ELIMINAR
 
 /**
- * Borra los encuentros de un curso. Dos pasadas:
+ * Borra los encuentros de un curso. Tres pasadas:
  *   1. Por titulo exacto de cada sesion (lo que este script creo).
  *   2. Barrido de la MISMA fecha Y HORA de cada sesion, para cazar eventos de una corrida
  *      ANTERIOR cuyo titulo ya no coincide (paso al cambiar los prefijos o la modalidad).
  *      Solo borra si empieza a la hora de la sesion Y el titulo menciona el curso o su
  *      codigo: no toca eventos ajenos, ni los de otro curso que caiga el mismo dia, ni los
  *      apuntes personales del docente que mencionen el curso a otra hora.
+ *   3. `_fantasmas_`: eventos del curso DENTRO DEL RANGO DEL CURSO que ya no caen en ninguna
+ *      fecha del .gs actual (una sesion que se movio o se quito del JSON). Ver esa funcion.
  *
- * OJO: borrar un evento con invitados le manda a cada estudiante un correo de cancelacion.
- * Si lo unico que cambio es la nomina, NO hace falta borrar: crear() ya sincroniza los
- * invitados de los eventos que existen.
+ * Borrar NO notifica a nadie: los eventos son bloques de tu calendario, sin invitados.
  *
- * Al borrar un evento se va TAMBIEN su sala de Meet. Si despues recreas, esa sesion queda
- * con un enlace NUEVO — y ese es justo el que le llega al estudiante en la invitacion, asi
- * que no hay nada que republicar en el material.
+ * Lo que si se pierde es la sala de Meet: al borrar un evento se va con el. Si despues
+ * recreas, esa sesion queda con un enlace NUEVO, asi que el que ya hubieras compartido con
+ * el grupo deja de servir.
  */
 function _eliminar_(c) {
   var cal = _cal_();
@@ -443,10 +626,10 @@ function _eliminar_(c) {
     }
   }
 
-  // Fantasmas: encuentros de este curso dentro del periodo que NO caen en ninguna fecha del
-  // .gs actual. Aparecen cuando una sesion se movio o se quito del JSON (este semestre paso de
-  // 15 a 13 sesiones): las dos pasadas de arriba solo miran las fechas que el .gs conoce, asi
-  // que sin esto quedaban en el calendario de los estudiantes y ninguna funcion los encontraba.
+  // Fantasmas: encuentros de este curso dentro del rango DEL CURSO que NO caen en ninguna
+  // fecha del .gs actual. Aparecen cuando una sesion se movio o se quito del JSON (este
+  // semestre paso de 15 a 13 sesiones): las dos primeras pasadas solo miran las fechas que
+  // el .gs conoce, asi que sin esto quedaban ahi y ninguna funcion los encontraba.
   var fantasmas = _fantasmas_(cal, c, exactos, huerfanos);
 
   Logger.log('  Por titulo exacto  : ' + exactos.length);
@@ -499,23 +682,40 @@ function _delCursoEsaHora_(cal, c, s, excluir) {
   return out;
 }
 
-/** true si el titulo es de ESTE curso (nombre o codigo), para no borrar eventos ajenos. */
+/**
+ * true si el titulo es de ESTE curso, para no borrar eventos ajenos.
+ *
+ * `c.nombre` lleva el grupo cuando el curso tiene varios (p. ej. «... · SB141B»), asi que un
+ * evento de otro grupo del mismo curso NO cuenta como propio.
+ *
+ * El codigo de asignatura vale como segunda pista — caza los apuntes que el docente nombra
+ * «FI303215 parcial 2» — pero SOLO si ningun otro curso del periodo lo comparte. Los tres
+ * grupos de Introduccion a la Ingenieria son todos FI300101: un titulo que solo mencione el
+ * codigo podria ser de cualquiera, y borrarlo por cuenta de uno se llevaria el de otro.
+ */
 function _esDeEsteCurso_(c, titulo) {
   var t = String(titulo || '').toLowerCase();
-  return t.indexOf(String(c.nombre).toLowerCase()) !== -1 ||
-         t.indexOf(String(c.codigo).toLowerCase()) !== -1;
+  if (t.indexOf(String(c.nombre).toLowerCase()) !== -1) return true;
+  if (c.codigoCompartido) return false;
+  return t.indexOf(String(c.codigo).toLowerCase()) !== -1;
 }
 
 /**
- * Encuentros de este curso dentro del periodo que no estan ya contados. Exige la HORA del
- * curso, no solo el nombre: asi un «Calificar Bases de Datos II» de un martes cualquiera no
- * entra, pero si el evento de una sesion que se movio de fecha.
+ * Encuentros de este curso dentro del rango del curso que no estan ya contados. Exige la HORA
+ * del curso, no solo el nombre: asi un «Calificar Bases de Datos II» de un martes cualquiera
+ * no entra, pero si el evento de una sesion que se movio de fecha.
+ *
+ * El rango es el DEL CURSO (`c.inicio`/`c.fin`), no el global del periodo: los grupos de
+ * Introduccion a la Ingenieria llegan a diciembre y los otros cuatro cierran el 22/11. Con un
+ * rango global de diciembre, los cuatro cursos cortos barrerian un mes extra de TU calendario
+ * personal buscando titulos que los mencionen.
  */
 function _fantasmas_(cal, c, exactos, huerfanos) {
   var out = [];
   var horas = {};
   for (var i = 0; i < c.sesiones.length; i++) horas[c.sesiones[i].ini] = true;
-  var todos = cal.getEvents(_fecha(INICIO, '00:01'), _fecha(FIN, '23:59'));
+  var todos = cal.getEvents(_fecha(c.inicio || INICIO, '00:01'),
+                            _fecha(c.fin || FIN, '23:59'));
   for (var j = 0; j < todos.length; j++) {
     var ev = todos[j];
     if (!_esDeEsteCurso_(c, ev.getTitle())) continue;
@@ -542,18 +742,18 @@ function _yaEsta_(lista, evento) {
 // ═══════════════════════════════════════════════ MOTOR: RECREAR
 
 /**
- * Borra TODO lo del curso y lo vuelve a crear, en una sola corrida. Es lo que se usa cuando
- * cambio la nomina de forma grande o se movieron fechas y se prefiere partir de cero.
+ * Borra TODO lo del curso y lo vuelve a crear, en una sola corrida. Se usa cuando se movieron
+ * fechas o cambiaron los titulos y se prefiere partir de cero.
  *
- * Manda cancelaciones y luego invitaciones nuevas a cada estudiante, y los enlaces de Meet
- * cambian (cada evento nuevo trae su propia sala). Si solo entraron o salieron algunas
- * personas, crear() sola es menos ruidosa: sincroniza invitados sin tocar los eventos.
+ * No notifica a nadie (los eventos no tienen invitados), pero los enlaces de Meet CAMBIAN:
+ * cada evento nuevo trae su propia sala. Si ya habias compartido el enlace de una sesion con
+ * el grupo, hay que volver a compartirlo.
  */
 function _recrear_(c) {
   if (SIMULAR) {
     _eliminar_(c);
-    Logger.log('  ...y despues se crearian ' + c.sesiones.length + ' evento(s) con ' +
-               c.invitados.length + ' invitado(s), cada uno con una sala de Meet NUEVA.');
+    Logger.log('  ...y despues se crearian ' + c.sesiones.length +
+               ' evento(s), cada uno con una sala de Meet NUEVA.');
     return { borrados: 0, creados: 0, cortado: false };
   }
   var borrados = _eliminar_(c);
@@ -580,21 +780,31 @@ function _fecha(fechaIso, hhmm) {
  * A proposito NO usa el parametro `search` de getEvents: esa es la busqueda de texto de
  * Google, que tokeniza y normaliza a su manera, y los titulos llevan `[SINCRONICO]`, `·` y
  * tildes. Si no casara, esta funcion devolveria null con el evento delante y el script
- * crearia un duplicado, invitando dos veces a todo el grupo. Enumerar el dia y comparar el
- * titulo exacto no depende del indice de Google y en un dia hay un punado de eventos.
+ * crearia un duplicado. Enumerar el dia y comparar el titulo exacto no depende del indice de
+ * Google y en un dia hay un punado de eventos.
+ *
+ * Cuando varios coinciden en titulo, gana el que empieza a la HORA de la sesion. Es defensa en
+ * profundidad para los cursos con varios grupos: SB141C y LB141F caen los dos en martes y en
+ * las mismas 17 fechas, y hoy solo los separa el grupo dentro del titulo. Si algun dia el
+ * titulo dejara de distinguirlos, la hora si lo hace. Si NINGUNO empieza a esa hora se cae al
+ * comportamiento de siempre (el primero con ese titulo), para seguir reutilizando un evento
+ * que el docente movio de hora a mano en vez de crearle un duplicado.
  */
 function _buscarEvento_(cal, s) {
   var delDia = cal.getEvents(_fecha(s.fecha, '00:01'), _fecha(s.fecha, '23:59'));
-  var iguales = [];
+  var iguales = [], aLaHora = [];
   for (var i = 0; i < delDia.length; i++) {
-    if (delDia[i].getTitle() === s.subject) iguales.push(delDia[i]);
+    if (delDia[i].getTitle() !== s.subject) continue;
+    iguales.push(delDia[i]);
+    if (_hhmm_(delDia[i].getStartTime()) === s.ini) aLaHora.push(delDia[i]);
   }
-  if (iguales.length > 1) {
+  var candidatos = aLaHora.length ? aLaHora : iguales;
+  if (candidatos.length > 1) {
     // Devolver el primero y callar dejaba al resto invisible para todas las funciones.
-    Logger.log('  AVISO: ' + iguales.length + ' eventos con el mismo titulo el ' + s.fecha +
+    Logger.log('  AVISO: ' + candidatos.length + ' eventos con el mismo titulo el ' + s.fecha +
                ' («' + s.subject + '»). Borra los sobrantes a mano o usa recrear.');
   }
-  return iguales.length ? iguales[0] : null;
+  return candidatos.length ? candidatos[0] : null;
 }
 
 function _uriDeConferencia_(conf) {
@@ -651,7 +861,8 @@ function _crearSala_(evento, requestId) {
       }
     }, _calId_(), id, {
       conferenceDataVersion: 1,
-      sendUpdates: SEND_INVITES ? 'all' : 'none'
+      // 'none' fijo: el evento no tiene invitados, asi que no hay a quien notificar.
+      sendUpdates: 'none'
     });
 
     var url = _uriDeConferencia_(res && res.conferenceData);
@@ -689,16 +900,18 @@ PLANTILLA = """/**
  * ARCHIVO GENERADO. No editarlo a mano: se regenera con
  *   python config/calendario/generar_apps_script_encuentros.py
  *
- * CONTIENE CORREOS DE ESTUDIANTES. Vive en _privado/ y no se versiona.
+ * NO lleva datos personales: los encuentros son bloques de TU calendario, sin invitados y
+ * sin envio de correos. Se sigue guardando en _privado/ por convencion del proyecto.
  *
  * Que hace:
 {resumen}
  *   - Le da a **cada sesion su propio enlace de Meet** (N sesiones = N salas distintas).
- *     El estudiante entra por la invitacion de Calendar de esa sesion, que lo trae dentro.
- *   - Las sesiones autonomas por festivo tambien quedan en el calendario (el estudiante
- *     debe ver la fecha de cierre), pero SIN Meet: no hay encuentro.
- *   - Invita a los estudiantes y, si SEND_INVITES = true, **les envia** el correo de
- *     invitacion (esto es lo que la importacion de un .ics no hace).
+ *     El enlace de cada sesion queda en Ubicacion y al final de la descripcion del evento.
+ *   - Las sesiones autonomas por festivo tambien quedan en el calendario (deja la fecha de
+ *     cierre a la vista), pero SIN Meet: no hay encuentro.
+ *
+ * Lo que NO hace: no invita a nadie y no manda ningun correo — ni de invitacion al crear, ni
+ * de cancelacion al borrar. El enlace de cada sesion lo compartes tu con el grupo.
  *
  * INSTALACION Y PRUEBAS: `Manuales/01 - Alistar un curso …` en la raiz de Cursos.
  */
@@ -713,24 +926,26 @@ PLANTILLA = """/**
  * sobre el calendario -> tres puntos -> «Configuracion y uso compartido» -> baja hasta
  * «Integrar calendario» -> copia «ID de calendario».
  *
- * El principal tiene el ID de tu correo; uno secundario se ve como
- * `abc123...@group.calendar.google.com`. Si usas un calendario aparte para clases, ese es el
- * que va aqui — y es tambien el que hay que poner en el script de grabaciones, para que los
- * dos miren el mismo sitio.
+ * Estos eventos son bloques de tu agenda, asi que lo normal es tu calendario principal, cuyo
+ * ID es tu propio correo. Si prefieres un calendario aparte para clases, uno secundario se ve
+ * como `abc123...@group.calendar.google.com`; ese es tambien el que hay que poner en el script
+ * de grabaciones, para que los dos miren el mismo sitio.
  */
 var CALENDAR_ID = '';
 
 /** true = no crea ni modifica nada; solo dice que haria. Empieza SIEMPRE en true. */
 var SIMULAR = true;
-
-/** true = envia los correos de invitacion al crear/actualizar. */
-var SEND_INVITES = true;
 {extra_config}
 var PERIODO = {periodo};
 var TZ = {tz};
 
-/** Rango del periodo. `_fantasmas_` lo usa para encontrar encuentros en fechas que ya no
- *  estan en el calendario del curso (una sesion que se movio o se quito del JSON). */
+/**
+ * Rango del periodo, union de las dos fuentes: los 4 cursos de `semestre_2026_2.json`
+ * (24/08 - 22/11) y los 3 grupos de `introduccion_ingenieria_2026_2.json`, que llegan a
+ * diciembre. Es el techo del periodo, no el rango de busqueda: `_fantasmas_` usa el
+ * `inicio`/`fin` DE CADA CURSO, para que los cursos que cierran en noviembre no rastreen un
+ * mes extra de tu calendario personal.
+ */
 var INICIO = {inicio};
 var FIN = {fin};
 
@@ -752,7 +967,7 @@ var CURSOS = [
 
 # ─────────────────────────────────────────────────────── funciones de entrada
 
-def funciones_un_curso(nombre_curso: str) -> str:
+def funciones_un_curso() -> str:
     """Las 4 funciones del .gs de un solo curso, con los nombres que documenta el manual."""
     return f"""
 /** SOLO LECTURA: que pasaria. Ejecutalo primero. */
@@ -761,24 +976,24 @@ function verificar() {{
   _verificar_(CURSOS[0]);
 }}
 
-/** Crea los encuentros, cada uno con su propia sala de Meet, e invita al grupo. */
+/** Crea los encuentros en TU calendario, cada uno con su propia sala de Meet. */
 function crearEncuentros() {{
   _arrancarReloj_();
   var r = _crear_(CURSOS[0]);
   if (r.cortado) _avisoDeCorte_('crearEncuentros()');
   else if (!SIMULAR) {{
     Logger.log('');
-    Logger.log('No hay enlace que pegar en el material: a cada estudiante le llega el de');
-    Logger.log('cada sesion dentro de su invitacion de Calendar.');
+    Logger.log('El enlace de cada sesion esta en el evento (Ubicacion y descripcion).');
+    Logger.log('No se envio a nadie: comparte con el grupo el de la sesion que toca.');
   }}
 }}
 
-/** Borra los encuentros de la serie. OJO: manda un correo de cancelacion a cada invitado. */
+/** Borra los encuentros de la serie. No notifica a nadie; se van sus salas de Meet. */
 function eliminarEncuentros() {{
   _eliminar_(CURSOS[0]);
 }}
 
-/** Borra y vuelve a crear, en una sola corrida. */
+/** Borra y vuelve a crear, en una sola corrida. Los enlaces de Meet cambian. */
 function recrearTodo() {{
   _arrancarReloj_();
   var r = _recrear_(CURSOS[0]);
@@ -787,90 +1002,94 @@ function recrearTodo() {{
   if (r.cortado) _avisoDeCorte_('crearEncuentros()', 'recrearTodo()');
   else if (!SIMULAR) {{
     Logger.log('');
-    Logger.log('Listo: ' + r.borrados + ' borrado(s) y la serie recreada con ' +
-               CURSOS[0].invitados.length + ' invitado(s).');
+    Logger.log('Listo: ' + r.borrados + ' borrado(s) y ' + CURSOS[0].sesiones.length +
+               ' sesion(es) recreada(s), cada una con una sala de Meet NUEVA.');
   }}
 }}
 """
 
 
-def funciones_semestre(cursos: list[tuple[str, dict]]) -> str:
-    """Las funciones del .gs consolidado: 4 por curso + 4 para todo el semestre."""
-    out = ["""
+def funciones_semestre(cursos: list[tuple[str, dict]], n_ses: int, n_meet: int) -> str:
+    """Las funciones del .gs consolidado: 4 por curso + 4 para todo el semestre.
+
+    `n_ses` y `n_meet` entran como texto ya contado por main() para que la justificacion del
+    segundo interruptor diga el numero real del periodo y no una cifra escrita a mano.
+    """
+    out = [f"""
 /** SOLO LECTURA de todo el semestre. Ejecutalo primero, siempre. */
-function verificarTodosLosCursos() {
+function verificarTodosLosCursos() {{
   _entorno_();
   var ses = 0, hay = 0;
-  for (var i = 0; i < CURSOS.length; i++) {
+  for (var i = 0; i < CURSOS.length; i++) {{
     var r = _verificar_(CURSOS[i]);
     ses += r.sesiones; hay += r.existen;
-  }
+  }}
   Logger.log('');
   Logger.log('TOTAL ' + CURSOS.length + ' curso(s) · ' + ses + ' sesion(es) · ya creadas: ' + hay);
-}
+}}
 
 /**
- * Crea los encuentros de LOS CUATRO CURSOS. Reutiliza lo que ya exista y sincroniza los
- * invitados, asi que es seguro reejecutarla.
+ * Crea los encuentros de LOS {len(cursos)} CURSOS del periodo. Reutiliza lo que ya exista, asi que es
+ * seguro reejecutarla.
  *
- * Pide CONFIRMO_SEMESTRE_COMPLETO = true ademas de SIMULAR = false: son ~52 eventos y mas de
- * mil invitaciones, y en el desplegable de Apps Script es facil elegir esta en vez de la de
- * un curso.
+ * Pide CONFIRMO_SEMESTRE_COMPLETO = true ademas de SIMULAR = false: son {n_ses} eventos y {n_meet}
+ * salas de Meet de golpe (roza la cuota diaria de Calendar y tarda), y en el desplegable de
+ * Apps Script es facil elegir esta en vez de la de un curso. La primera vez conviene ir curso
+ * por curso.
  */
-function crearTodosLosCursos() {
+function crearTodosLosCursos() {{
   if (!_confirmado_('crearTodosLosCursos')) return;
   _arrancarReloj_();
-  var creados = 0, reusados = 0, meet = 0, inv = 0, cortado = false;
-  for (var i = 0; i < CURSOS.length; i++) {
-    if (_sinTiempo_()) { cortado = true; break; }
+  var creados = 0, reusados = 0, meet = 0, cortado = false;
+  for (var i = 0; i < CURSOS.length; i++) {{
+    if (_sinTiempo_()) {{ cortado = true; break; }}
     var r = _crear_(CURSOS[i]);
-    creados += r.creados; reusados += r.reusados; meet += r.meet; inv += r.invitados;
-    if (r.cortado) { cortado = true; break; }
-  }
+    creados += r.creados; reusados += r.reusados; meet += r.meet;
+    if (r.cortado) {{ cortado = true; break; }}
+  }}
   Logger.log('');
   Logger.log('TOTAL: ' + creados + ' evento(s) creado(s) · ' + reusados + ' reutilizado(s) · ' +
-             meet + ' con sala de Meet · ' + inv + ' invitado(s) agregado(s).');
+             meet + ' con sala de Meet.');
   if (cortado) _avisoDeCorte_('crearTodosLosCursos()');
-}
+}}
 
 /**
- * Borra los encuentros de LOS CUATRO CURSOS.
+ * Borra los encuentros de LOS {len(cursos)} CURSOS del periodo.
  *
- * OJO: cada evento con invitados manda un correo de cancelacion a cada estudiante. Son ~52
- * eventos y mas de mil correos. Si lo unico que cambio es la nomina, NO uses esto:
- * crearTodosLosCursos() sincroniza los invitados sin borrar nada.
+ * No manda ningun correo (los eventos no tienen invitados), pero se lleva las {n_meet} salas de
+ * Meet: los enlaces que ya hubieras compartido con los grupos dejan de servir.
  */
-function eliminarTodosLosCursos() {
+function eliminarTodosLosCursos() {{
   if (!_confirmado_('eliminarTodosLosCursos')) return;
   var n = 0;
   for (var i = 0; i < CURSOS.length; i++) n += _eliminar_(CURSOS[i]);
   Logger.log('');
   Logger.log('TOTAL eliminados: ' + n + ' evento(s) en ' + CURSOS.length + ' curso(s).');
-}
+}}
 
-/** Borra y vuelve a crear LOS CUATRO CURSOS. Es lo mas ruidoso que hace este script. */
-function recrearTodosLosCursos() {
+/** Borra y vuelve a crear LOS {len(cursos)} CURSOS. Es lo mas ruidoso que hace este script. */
+function recrearTodosLosCursos() {{
   if (!_confirmado_('recrearTodosLosCursos')) return;
   _arrancarReloj_();
   var borrados = 0, creados = 0, cortado = false;
-  for (var i = 0; i < CURSOS.length; i++) {
-    if (_sinTiempo_()) { cortado = true; break; }
+  for (var i = 0; i < CURSOS.length; i++) {{
+    if (_sinTiempo_()) {{ cortado = true; break; }}
     var r = _recrear_(CURSOS[i]);
     borrados += r.borrados; creados += r.creados;
-    if (r.cortado) { cortado = true; break; }
-  }
+    if (r.cortado) {{ cortado = true; break; }}
+  }}
   Logger.log('');
   Logger.log('TOTAL: ' + borrados + ' borrado(s) y ' + creados + ' creado(s).');
   // Continuar con crearTodosLosCursos(): reejecutar recrearTodosLosCursos() volveria a borrar
-  // los cursos que ya habia recreado, con una cancelacion por invitado y por evento.
+  // los cursos que ya habia recreado, y con ellos las salas de Meet que acaba de crear.
   if (cortado) _avisoDeCorte_('crearTodosLosCursos()', 'recrearTodosLosCursos()');
-}
+}}
 
 /**
  * Rejilla de seguridad de las funciones de todo el semestre. En simulacion deja pasar
  * siempre (no toca nada); en real exige el segundo interruptor.
  */
-function _confirmado_(quien) {
+function _confirmado_(quien) {{
   if (SIMULAR) return true;
   if (CONFIRMO_SEMESTRE_COMPLETO) return true;
   Logger.log('BLOQUEADO: ' + quien + ' toca los ' + CURSOS.length + ' cursos a la vez.');
@@ -879,7 +1098,7 @@ function _confirmado_(quien) {
   Logger.log('    var CONFIRMO_SEMESTRE_COMPLETO = true;');
   Logger.log('Si querias un solo curso, usa la funcion de ese curso en el desplegable.');
   return false;
-}
+}}
 """]
 
     for key, meta in cursos:
@@ -895,7 +1114,7 @@ function crear{n}() {{
   if (r.cortado) _avisoDeCorte_('crear{n}()');
 }}
 
-/** OJO: manda un correo de cancelacion a cada invitado de este curso. */
+/** No notifica a nadie, pero se lleva las salas de Meet de este curso. */
 function eliminar{n}() {{ _eliminar_(_curso_({js(key)})); }}
 
 function recrear{n}() {{
@@ -909,17 +1128,33 @@ function recrear{n}() {{
 
 # ─────────────────────────────────────────────────────── punteros visibles
 
-def _puntero_curso(meta: dict, gs: Path, n_ses: int, n_inv: int, consolidado: Path) -> None:
+def _nombre_leeme(meta: dict) -> str:
+    """Nombre del LEEME visible del curso.
+
+    Los tres grupos de Introduccion a la Ingenieria comparten carpeta (`folder` es el mismo),
+    asi que si todos escribieran `LEEME - Apps Script del curso.md` el ultimo se comeria a los
+    otros dos. Solo en ese caso se le pega el grupo al nombre; los cursos con carpeta propia
+    conservan el nombre de siempre para no dejar archivos huerfanos ya versionados.
+    """
+    if _codigo_compartido(meta["codigo"]):
+        return f"LEEME - Apps Script del curso - {meta['grupo']}.md"
+    return "LEEME - Apps Script del curso.md"
+
+
+def _puntero_curso(meta: dict, gs: Path, n_ses: int, n_meet: int, consolidado: Path,
+                   n_cursos: int) -> None:
     """LEEME VISIBLE al lado de la carpeta privada del curso.
 
-    El .gs lleva los correos de los estudiantes, asi que vive en `_privado/` y no se
-    versiona: no aparece en GitHub, y en Drive una carpeta con guion bajo se pasa por alto.
-    Este puntero SI se versiona (no tiene datos personales) y dice exactamente donde esta.
+    El .gs ya NO lleva datos personales (los eventos son bloques del calendario del docente,
+    sin invitados), pero se sigue guardando en `_privado/` por convencion del proyecto: es
+    donde el manual dice que esta y donde el docente ya lo busca. Este puntero SI se versiona
+    y dice exactamente donde encontrarlo.
     """
+    autonomas = n_ses - n_meet
     L = [
         f"# Apps Script del curso - {meta['nombre']} - {PERIODO}",
         "",
-        "## Crear los encuentros en Calendar (cada sesion con su propio Meet)",
+        "## Bloquear los encuentros en TU calendario (cada sesion con su propio Meet)",
         "",
         "El script **existe** y esta aqui:",
         "",
@@ -933,18 +1168,29 @@ def _puntero_curso(meta: dict, gs: Path, n_ses: int, n_inv: int, consolidado: Pa
         gs.relative_to(ROOT).as_posix(),
         "```",
         "",
-        f"> **Por que no lo ves en GitHub:** el `.gs` incluye los correos de los {n_inv}",
-        "> estudiantes del grupo, asi que la carpeta `_privado/` esta en `.gitignore`.",
-        "> Existe en tu disco y en Drive, no en el repositorio remoto. Si no aparece,",
-        "> regeneralo:",
+        "> **Por que no lo ves en GitHub:** los `.gs` de encuentros viven en `_privado/`, que",
+        "> esta en `.gitignore`. Existe en tu disco y en Drive, no en el repositorio remoto.",
+        "> Si no aparece, regeneralo:",
         ">",
         "> ```bash",
         "> python config/calendario/generar_apps_script_encuentros.py",
         "> ```",
         "",
-        f"Crea **{n_ses} eventos** (uno por sesion) e invita a los **{n_inv} estudiantes**,",
-        "enviandoles la invitacion de verdad. Cada sesion sincronica lleva **su propia sala",
-        "de Meet**; las autonomas por festivo quedan en el calendario pero sin Meet.",
+        f"Crea **{n_ses} eventos** (uno por sesion) en **tu** calendario. **No invita a nadie y",
+        "no manda ningun correo:** son bloques tuyos, para que la agenda quede reservada y cada",
+        "sesion traiga su enlace a mano.",
+        "",
+        (f"{n_meet} eventos llevan **su propia sala de Meet**; "
+         + (f"{autonomas} es una semana autonoma por festivo, que queda"
+            if autonomas == 1 else
+            f"{autonomas} son semanas autonomas por festivo, que quedan")
+         + " en el calendario **sin Meet**."
+         if autonomas else
+         f"Los {n_meet} son sincronicos y cada uno lleva **su propia sala de Meet**."),
+        "",
+        "El enlace de cada sesion queda en **Ubicacion** y al final de la descripcion del",
+        "evento: de ahi lo copias para compartirlo con el grupo por donde de verdad les",
+        "escribes.",
         "",
         "Funciones: `verificar` · `crearEncuentros` · `eliminarEncuentros` · `recrearTodo`.",
         "",
@@ -952,10 +1198,10 @@ def _puntero_curso(meta: dict, gs: Path, n_ses: int, n_inv: int, consolidado: Pa
         "invitaciones).md` en la raiz de `Cursos`. Incluye como sacar el `CALENDAR_ID` y por",
         "que se ejecuta `verificar` antes de `crearEncuentros`.",
         "",
-        "## Si prefieres un solo script para los 4 cursos",
+        f"## Si prefieres un solo script para los {n_cursos} cursos",
         "",
         "Hay uno consolidado, con las funciones de creacion y borrado **de cada curso** mas",
-        f"las de todo el semestre. Sale de la misma plantilla que este, asi que hacen lo mismo:",
+        "las de todo el semestre. Sale de la misma plantilla que este, asi que hacen lo mismo:",
         "",
         "```",
         consolidado.relative_to(ROOT).as_posix(),
@@ -965,7 +1211,7 @@ def _puntero_curso(meta: dict, gs: Path, n_ses: int, n_inv: int, consolidado: Pa
         "",
         "## Archivar las grabaciones de Meet",
         "",
-        "Ese script es **uno solo para los 4 cursos** y vive en",
+        "Ese script es **uno solo** y vive en",
         "`config/calendario/apps_script_grabaciones/MoverGrabaciones.gs`.",
         "Paso a paso: `Manuales/02 - Instalar y probar el Apps Script de grabaciones.md`.",
         "",
@@ -974,87 +1220,50 @@ def _puntero_curso(meta: dict, gs: Path, n_ses: int, n_inv: int, consolidado: Pa
         "*Archivo generado por `config/calendario/generar_apps_script_encuentros.py`.*",
         "",
     ]
-    (gs.parent.parent / "LEEME - Apps Script del curso.md").write_text(
-        "\n".join(L), encoding="utf-8")
+    (gs.parent.parent / _nombre_leeme(meta)).write_text("\n".join(L), encoding="utf-8")
 
 
-def _avisar_sin_nomina(meta: dict, privado: Path) -> None:
-    """Marca el LEEME del curso cuando NO se pudo generar el .gs.
+def _choques(cursos: list[tuple[str, dict, int, int]]) -> list[tuple[str, str, str, str]]:
+    """Cursos del docente que se pisan en el calendario: mismo dia y horas que se cruzan.
 
-    Importa porque el .gs de una corrida anterior sigue en disco con la nómina vieja: sin
-    este aviso, se pega en Apps Script un archivo desactualizado sin que nada lo delate.
+    Sustituye a la vieja deteccion de estudiantes matriculados en dos cursos: sin invitados,
+    a nadie le llega nada por duplicado, pero el docente sigue siendo uno solo. Con 7 grupos
+    en la misma semana, dos bloques a la misma hora significan que uno de los dos horarios
+    esta mal transcrito en el JSON, y eso hay que verlo ANTES de meter 100 eventos.
     """
-    gs = privado / f"CrearEncuentros - {meta['nombre']}.gs"
-    L = [
-        f"# Apps Script del curso - {meta['nombre']} - {PERIODO}",
-        "",
-        "## ATENCION: este curso NO tiene Apps Script al dia",
-        "",
-        "La ultima regeneracion **no encontro la nomina** del grupo "
-        f"`{meta['codigo']}` / `{meta['grupo']}`, asi que no se pudo generar el `.gs`.",
-        "",
-    ]
-    if gs.exists():
-        L += [
-            "> **Hay un `.gs` viejo en `_privado/`. NO lo uses:** trae la nomina de la",
-            "> corrida anterior, asi que invitaria a los estudiantes equivocados.",
-            "",
-        ]
-    L += [
-        "Este curso tampoco entra en el script consolidado del semestre.",
-        "",
-        "### Como arreglarlo",
-        "",
-        "1. Exporta de Academusoft la **Lista de Alumnos por Grupo** de "
-        f"`{meta['codigo']}` (grupo `{meta['grupo']}`).",
-        f"2. Dejala en `{meta['folder']}/Plan curso/{PERIODO}/`.",
-        "3. Vuelve a correr, desde la raiz de `Cursos`:",
-        "",
-        "```",
-        "python config/calendario/generar_eventos_calendario.py",
-        "python config/calendario/generar_apps_script_encuentros.py",
-        "```",
-        "",
-        "Si el listado que dejaste es de OTRA asignatura, el generador lo dice y lo omite:",
-        "compara el codigo `FI######` del archivo con el del curso.",
-        "",
-        "---",
-        "",
-        "*Archivo generado por `config/calendario/generar_apps_script_encuentros.py`.*",
-        "",
-    ]
-    (privado.parent / "LEEME - Apps Script del curso.md").write_text(
-        "\n".join(L), encoding="utf-8")
+    def rango(meta: dict) -> tuple[int, int]:
+        # ev.hhmm() devuelve 'HHMMSS' ('143000'), no 'HH:MM'.
+        return tuple(int(x[:2]) * 60 + int(x[2:4]) for x in ev.hhmm(meta["horario"]))
 
-
-def _solapes(listos: list[tuple[str, dict, list[str], list[dict]]]) -> list[tuple[str, str, int]]:
-    """Pares de cursos que comparten estudiantes, con cuantos.
-
-    No es un detalle: quien esta en dos cursos recibe el doble de invitaciones y el doble de
-    cancelaciones cada vez que se hace algo «para los 4 cursos».
-    """
     out = []
-    for i in range(len(listos)):
-        for j in range(i + 1, len(listos)):
-            a = {c.lower() for c in listos[i][2]}
-            b = {c.lower() for c in listos[j][2]}
-            comunes = len(a & b)
-            if comunes:
-                out.append((listos[i][1]["nombre"], listos[j][1]["nombre"], comunes))
-    return sorted(out, key=lambda x: -x[2])
+    for i in range(len(cursos)):
+        for j in range(i + 1, len(cursos)):
+            a, b = cursos[i][1], cursos[j][1]
+            if a["dia"].strip().lower() != b["dia"].strip().lower():
+                continue
+            (ai, af), (bi, bf) = rango(a), rango(b)
+            if ai < bf and bi < af:          # se cruzan de verdad, no solo se tocan
+                out.append((a["nombre"], b["nombre"],
+                            f"{a['dia']} {a['horario']}", f"{b['dia']} {b['horario']}"))
+    return out
 
 
 def _puntero_semestre(gs: Path, cursos: list[tuple[str, dict, int, int]],
-                      faltan: list[dict],
-                      solapes: list[tuple[str, str, int]], personas: int) -> None:
+                      choques: list[tuple[str, str, str, str]]) -> None:
     """LEEME visible en la raiz para el script consolidado."""
     n_ses = sum(s for _, _, s, _ in cursos)
-    n_inv = sum(i for _, _, _, i in cursos)
+    n_meet = sum(m for _, _, _, m in cursos)
+    autonomas = n_ses - n_meet
+    al = DATA_II.get("alerta_calendario") or {}
     L = [
         f"# Apps Script del semestre - {PERIODO}",
         "",
         "Un **solo** Apps Script con los cursos del periodo y, para cada uno, sus funciones",
-        "de creacion y de borrado. Sirve cuando no quieres pegar cuatro proyectos distintos.",
+        f"de creacion y de borrado. Sirve cuando no quieres pegar {len(cursos)} proyectos distintos.",
+        "",
+        "Los eventos son **bloques de tu calendario**: reservan tu agenda y guardan el enlace",
+        "de Meet de cada sesion. **No llevan invitados y no mandan ningun correo**; el enlace",
+        "se comparte a mano por donde de verdad le escribes al grupo.",
         "",
         "El script **existe** y esta aqui:",
         "",
@@ -1062,10 +1271,9 @@ def _puntero_semestre(gs: Path, cursos: list[tuple[str, dict, int, int]],
         gs.relative_to(ROOT).as_posix(),
         "```",
         "",
-        f"> **Por que no lo ves en GitHub:** lleva los correos de los {personas} estudiantes",
-        f"> matriculados en los {len(cursos)} cursos, asi que `_privado/` esta en `.gitignore`.",
-        "> Existe en tu disco y en Drive, no en el repositorio remoto. Si no aparece,",
-        "> regeneralo:",
+        "> **Por que no lo ves en GitHub:** los `.gs` de encuentros viven en `_privado/`, que",
+        "> esta en `.gitignore`. Existe en tu disco y en Drive, no en el repositorio remoto.",
+        "> Si no aparece, regeneralo:",
         ">",
         "> ```bash",
         "> python config/calendario/generar_apps_script_encuentros.py",
@@ -1073,36 +1281,47 @@ def _puntero_semestre(gs: Path, cursos: list[tuple[str, dict, int, int]],
         "",
         "## Que trae",
         "",
-        f"`{len(cursos)}` cursos · `{n_ses}` sesiones · `{n_inv}` matriculas "
-        f"(`{personas}` personas distintas).",
+        f"`{len(cursos)}` cursos · `{n_ses}` sesiones · `{n_meet}` salas de Meet "
+        f"(`{autonomas}` semanas autonomas por festivo van al calendario sin Meet).",
         "",
-        "| Curso | Codigo | Grupo | Dia y hora | Sesiones | Invitados |",
+        "| Curso | Codigo | Grupo | Dia y hora | Sesiones | Meet |",
         "|---|---|---|---|---|---|",
     ]
-    for _, meta, s, i in cursos:
+    for _, meta, s, m in cursos:
         L.append(f"| {meta['nombre']} | `{meta['codigo']}` | `{meta['grupo']}` | "
-                 f"{meta['dia']} {meta['horario']} | {s} | {i} |")
-    if faltan:
-        L += ["", "> **Fuera del script:** " +
-              ", ".join(f"{m['nombre']} (`{m['codigo']}`)" for m in faltan) +
-              " — sin nomina en `Plan curso/" + PERIODO + "/`. Ver el "
-              "`LEEME - Apps Script del curso.md` de ese curso."]
-    if solapes:
+                 f"{meta['dia']} {meta['horario']} | {s} | {m} |")
+    L += [
+        "",
+        "## Choques en TU horario",
+        "",
+    ]
+    if choques:
         L += [
+            f"**Hay {len(choques)}.** Dos cursos caen el mismo dia a horas que se cruzan, asi que",
+            "uno de los dos horarios esta mal en el JSON o de verdad no puedes dictar los dos:",
             "",
-            "## Ojo: hay estudiantes en mas de un curso",
-            "",
-            f"Las {n_inv} matriculas son **{personas} personas**: hay quien esta en dos cursos.",
-            "",
-            "| Cursos | Estudiantes en comun |",
-            "|---|---|",
+            "| Curso | Curso | Bloque | Bloque |",
+            "|---|---|---|---|",
         ]
-        L += [f"| {a} + {b} | **{n}** |" for a, b, n in solapes]
+        L += [f"| {a} | {b} | {ha} | {hb} |" for a, b, ha, hb in choques]
+        L += ["", "Arreglalo en el JSON antes de crear nada: el script no sabe cual es el bueno."]
+    else:
+        L += [
+            f"**Ninguno.** Se compararon los {len(cursos)} cursos por pares (mismo dia + horas que",
+            "se cruzan) y no hay dos bloques encima. Se revisa en cada regeneracion, porque con",
+            f"{len(cursos)} grupos en la misma semana es facil que un horario nuevo se pise con otro.",
+        ]
+    if al:
         L += [
             "",
-            "A esas personas, **cada operacion «de los 4 cursos» les llega por duplicado**: dos",
-            "invitaciones por semana, y dos cancelaciones si se borra todo. Cuando solo hay que",
-            "arreglar un curso, usa la funcion de ese curso.",
+            f"## Aviso del calendario: {al.get('titulo', '')}",
+            "",
+            al.get("detalle", ""),
+            "",
+            f"**Plan B si el programa exige cerrar antes:** {al.get('plan_b', '')}",
+            "",
+            "> Mientras no se confirme, el script crea las fechas **tal como estan en el JSON**.",
+            "> Ninguna fecha se movio para escribir este aviso.",
         ]
     L += [
         "",
@@ -1125,10 +1344,11 @@ def _puntero_semestre(gs: Path, cursos: list[tuple[str, dict, int, int]],
         "|---|---|",
         "| `verificarTodosLosCursos` | Solo lectura. Ejecutala primero, siempre. |",
         "| `crearTodosLosCursos` | Crea lo que falte en los "
-        f"{len(cursos)} cursos y sincroniza invitados. Reejecutable. |",
+        f"{len(cursos)} cursos. Reejecutable: reutiliza lo que ya existe. |",
         "| `eliminarTodosLosCursos` | Borra los "
-        f"{n_ses} eventos. **Manda ~{n_ses * n_inv // max(len(cursos), 1)} cancelaciones.** |",
-        "| `recrearTodosLosCursos` | Borra y vuelve a crear todo. Lo mas ruidoso. |",
+        f"{n_ses} eventos. No notifica a nadie, pero se lleva las {n_meet} salas de Meet. |",
+        "| `recrearTodosLosCursos` | Borra y vuelve a crear todo. Lo mas ruidoso: **todos** los "
+        "enlaces de Meet cambian. |",
         "| `listarCalendarios` | Imprime los IDs de calendario, para llenar `CALENDAR_ID`. |",
         "",
         "## Antes que nada: la zona horaria del proyecto",
@@ -1137,8 +1357,8 @@ def _puntero_semestre(gs: Path, cursos: list[tuple[str, dict, int, int]],
         "",
         "Las horas de los eventos las construye Apps Script con la zona del **proyecto**, no con",
         "la del calendario. Si el proyecto queda en otra (Google no siempre pone la local), los",
-        f"{n_ses} eventos entran corridos y las invitaciones ya salieron. `verificar*` imprime la",
-        "zona, y si no es la correcta **crear y borrar quedan bloqueados**.",
+        f"{n_ses} eventos entran corridos y con ellos las {n_meet} salas de Meet. `verificar*`",
+        "imprime la zona, y si no es la correcta **crear y borrar quedan bloqueados**.",
         "",
         "## Dos interruptores antes de que toque nada",
         "",
@@ -1152,9 +1372,13 @@ def _puntero_semestre(gs: Path, cursos: list[tuple[str, dict, int, int]],
         "«fantasmas» (los que quedaron en una fecha que ya no esta en el calendario del curso).",
         "Para ejecutar de verdad se pone en `false`.",
         "",
-        "El segundo interruptor lo piden **solo** las cuatro funciones `*TodosLosCursos`, "
-        f"porque tocan `{n_ses}` eventos y mas de mil correos de golpe, y en el desplegable es",
-        "facil elegir esa en vez de la de un curso. Las funciones por curso no lo necesitan.",
+        "El segundo interruptor lo piden **solo** las cuatro funciones `*TodosLosCursos`. Ya no",
+        "hay correos que enviar, pero sigue teniendo sentido: de un golpe tocan "
+        f"`{n_ses}` eventos y",
+        f"crean o destruyen `{n_meet}` salas de Meet, roza la cuota diaria de Calendar, tarda lo",
+        "suyo, y en el desplegable de Apps Script es facil elegir una de esas en vez de la de un",
+        "curso. Deshacerlo a mano son "
+        f"{n_ses} borrados. Las funciones por curso no lo necesitan.",
         "",
         "## Si se corta a la mitad",
         "",
@@ -1174,7 +1398,9 @@ def _puntero_semestre(gs: Path, cursos: list[tuple[str, dict, int, int]],
         "Salen de la **misma plantilla** que este, asi que hacen exactamente lo mismo; solo",
         "cambian los nombres de las funciones (`verificar`, `crearEncuentros`,",
         "`eliminarEncuentros`, `recrearTodo`). Cada curso tiene su",
-        "`LEEME - Apps Script del curso.md` visible en `Plan curso/" + PERIODO + "/`.",
+        "`LEEME - Apps Script del curso.md` visible en `Plan curso/" + PERIODO + "/`. Los grupos",
+        "que comparten asignatura (y por tanto carpeta) llevan el grupo en el nombre:",
+        "`LEEME - Apps Script del curso - <GRUPO>.md`.",
         "",
         "**Paso a paso:** `Manuales/01 - Alistar un curso (encuentros, Meet, correo e",
         "invitaciones).md`.",
@@ -1202,63 +1428,74 @@ def _puntero_semestre(gs: Path, cursos: list[tuple[str, dict, int, int]],
 
 # ─────────────────────────────────────────────────────── main
 
+def _nombre_archivo(meta: dict) -> str:
+    """Nombre del .gs por curso, con el grupo cuando la asignatura lo comparte.
+
+    `nombre` de los grupos nuevos trae el separador ' · ', que en un nombre de archivo queda
+    raro; se cambia por ' - '. Sin esto los 3 grupos de FI300101 escribirian el MISMO archivo
+    en la MISMA carpeta y solo sobreviviria el ultimo.
+    """
+    return f"CrearEncuentros - {meta['nombre'].replace(' · ', ' - ')}.gs"
+
+
 def main() -> None:
-    listos: list[tuple[str, dict, list[str], list[dict]]] = []
-    faltan: list[dict] = []
-
-    for key, meta in DATA["cursos"].items():
-        privado = ev.privado_de(meta)
-        info = ev.cargar_nomina(meta, key, ev.cargar_correos_manuales(meta))
-        if not info:
-            print(f"  {meta['nombre']}: sin nómina -> no se genera el .gs")
-            _avisar_sin_nomina(meta, privado)
-            faltan.append(meta)
-            continue
-        correos = sorted({e["correo"] for e in info["estudiantes"] if e["correo"]})
-        listos.append((key, meta, correos, sesiones_de(meta)))
-
-    if not listos:
-        raise SystemExit("Ningún curso tiene nómina: no hay nada que generar.")
+    # Dos fuentes de verdad, sin mezclarlas: semestre_2026_2.json (los 4 cursos de siempre) e
+    # introduccion_ingenieria_2026_2.json (3 grupos de la misma asignatura). El adaptador
+    # traduce los grupos al mismo contrato que ya consume el generador, asi que de aqui para
+    # abajo un grupo es un curso mas.
+    declarados = len(DATA["cursos"]) + len(DATA_II["grupos"])
+    listos: list[tuple[str, dict, list[dict]]] = [
+        (key, meta, sesiones_de(meta))
+        for key, meta in list(DATA["cursos"].items()) + cursos_introduccion_ingenieria()
+    ]
+    # La nomina ya no hace falta aqui: los eventos no llevan invitados. Sigue haciendo falta
+    # para la planilla de asistencia, que la genera generar_eventos_calendario.py.
+    if len(listos) != declarados:
+        raise SystemExit(f"Se armaron {len(listos)} cursos y los JSON declaran {declarados}.")
 
     consolidado = ROOT / "_privado" / PERIODO / f"CrearEncuentros - TODO EL SEMESTRE {PERIODO}.gs"
 
     # ── uno por curso ────────────────────────────────────────────────────────
-    for key, meta, correos, ses in listos:
+    for key, meta, ses in listos:
         privado = ev.privado_de(meta)
+        n_meet = sum(1 for s in ses if s["meet"])
         gs = PLANTILLA.format(
             titulo=f"{meta['nombre']} — encuentros del periodo {PERIODO} en Google Calendar.",
-            resumen=(f" *   - Crea {len(ses)} eventos, uno por sesion, e invita a los "
-                     f"{len(correos)} estudiantes\n *     del grupo {meta['grupo']}."),
+            resumen=(f" *   - Crea {len(ses)} eventos (uno por sesion) en TU calendario, "
+                     f"{n_meet} con sala de Meet.\n"
+                     f" *     Grupo {meta['grupo']}. Sin invitados: no se envia ningun correo."),
             extra_config="",
             periodo=js(PERIODO),
             tz=js(TZ),
             inicio=js(INICIO),
             fin=js(FIN),
             minutos_max=MINUTOS_MAX,
-            cursos=bloque_curso(key, meta, correos, ses),
-            funciones=funciones_un_curso(meta["nombre"]),
+            cursos=bloque_curso(key, meta, ses),
+            funciones=funciones_un_curso(),
             motor=MOTOR,
         )
         privado.mkdir(parents=True, exist_ok=True)
-        destino = privado / f"CrearEncuentros - {meta['nombre']}.gs"
+        destino = privado / _nombre_archivo(meta)
         destino.write_text(gs, encoding="utf-8")
-        _puntero_curso(meta, destino, len(ses), len(correos), consolidado)
-        print(f"  {meta['nombre'][:34]:<34} {len(ses)} sesiones · {len(correos)} invitados")
+        _puntero_curso(meta, destino, len(ses), n_meet, consolidado, len(listos))
+        print(f"  {meta['nombre'][:38]:<38} {len(ses)} sesiones · {n_meet} con Meet")
 
     # ── consolidado ──────────────────────────────────────────────────────────
-    n_ses = sum(len(s) for _, _, _, s in listos)
-    n_inv = sum(len(c) for _, _, c, _ in listos)
+    n_ses = sum(len(s) for _, _, s in listos)
+    n_meet = sum(1 for _, _, ses in listos for s in ses if s["meet"])
     gs = PLANTILLA.format(
         titulo=f"TODO EL SEMESTRE {PERIODO} — encuentros de los {len(listos)} cursos.",
-        resumen=(f" *   - Crea {n_ses} eventos ({len(listos)} cursos x sus sesiones) e invita\n"
-                 f" *     a {n_inv} estudiantes en total.\n"
+        resumen=(f" *   - Crea {n_ses} eventos ({len(listos)} cursos x sus sesiones) en TU\n"
+                 f" *     calendario, {n_meet} de ellos con su propia sala de Meet.\n"
+                 " *   - Sin invitados y sin correos: son bloques de tu agenda.\n"
                  " *   - Trae funciones POR CURSO (crear/eliminar/recrear cada uno) y para\n"
                  " *     todo el semestre de una vez."),
-        extra_config="""
+        extra_config=f"""
 /**
- * Segundo interruptor, exigido SOLO por las funciones *TodosLosCursos. Esas tocan todos los
- * cursos de golpe (decenas de eventos, mas de mil correos) y en el desplegable de Apps
- * Script es facil elegir una de esas en vez de la de un curso.
+ * Segundo interruptor, exigido SOLO por las funciones *TodosLosCursos. No es por los correos
+ * (los eventos no tienen invitados): es porque esas funciones tocan {n_ses} eventos y {n_meet} salas
+ * de Meet de una sola vez, y en el desplegable de Apps Script es facil elegir una de esas en
+ * vez de la de un curso.
  */
 var CONFIRMO_SEMESTRE_COMPLETO = false;
 """,
@@ -1267,33 +1504,60 @@ var CONFIRMO_SEMESTRE_COMPLETO = false;
         inicio=js(INICIO),
         fin=js(FIN),
         minutos_max=MINUTOS_MAX,
-        cursos="\n".join(bloque_curso(k, m, c, s) for k, m, c, s in listos),
-        funciones=funciones_semestre([(k, m) for k, m, _, _ in listos]),
+        cursos="\n".join(bloque_curso(k, m, s) for k, m, s in listos),
+        funciones=funciones_semestre([(k, m) for k, m, _ in listos], n_ses, n_meet),
         motor=MOTOR,
     )
     consolidado.parent.mkdir(parents=True, exist_ok=True)
     consolidado.write_text(gs, encoding="utf-8")
-    solapes = _solapes(listos)
-    personas = len({c.lower() for _, _, correos, _ in listos for c in correos})
-    _puntero_semestre(consolidado,
-                      [(k, m, len(s), len(c)) for k, m, c, s in listos], faltan,
-                      solapes, personas)
-    for a, b, n in solapes:
-        print(f"  AVISO: {n} estudiante(s) estan en «{a}» y «{b}» a la vez:")
-        print(f"         una operacion de todo el semestre les llega por duplicado.")
 
-    print(f"\n  CONSOLIDADO  {len(listos)} cursos · {n_ses} sesiones · {n_inv} invitados")
+    tabla = [(k, m, len(s), sum(1 for x in s if x["meet"])) for k, m, s in listos]
+    choques = _choques(tabla)
+    _puntero_semestre(consolidado, tabla, choques)
+    if choques:
+        for a, b, ha, hb in choques:
+            print(f"  CHOQUE DE HORARIO: «{a}» ({ha}) se cruza con «{b}» ({hb}).")
+            print("         Revisa el JSON: no puedes dictar los dos a la vez.")
+    else:
+        print(f"\n  Horario del docente: sin choques entre los {len(listos)} cursos "
+              "(mismo día + horas cruzadas).")
+
+    print(f"\n  CONSOLIDADO  {len(listos)} cursos · {n_ses} sesiones · {n_meet} con Meet "
+          f"· {n_ses - n_meet} autónomas sin Meet")
     print(f"      {consolidado}")
-    print(f"\nOK: {len(listos)}/{len(DATA['cursos'])} cursos.")
-    print("Los .gs viven en _privado/: llevan los correos de los estudiantes, asi que NO se")
-    print("versionan y NO aparecen en GitHub. Al lado, visibles, quedan los LEEME con la ruta:")
+    print(f"\nOK: {len(listos)}/{declarados} cursos.")
+    print("Los eventos son bloques de TU calendario: sin invitados y sin envío de correos.")
+    print("Los .gs se siguen guardando en _privado/ (está en .gitignore) por convención del")
+    print("proyecto, aunque ya no lleven datos personales. Al lado, visibles, los LEEME:")
     print("  <Curso>/Plan curso/<periodo>/LEEME - Apps Script del curso.md")
-    print("  LEEME - Apps Script del semestre.md   (raiz de Cursos)")
+    print("  (los grupos que comparten carpeta llevan el grupo en el nombre del LEEME)")
+    print("  LEEME - Apps Script del semestre.md   (raíz de Cursos)")
     print("")
-    print("Instalación y pruebas: Manuales/01. Cada sesión lleva SU propio enlace de Meet,")
-    print("así que no hay ningún enlace que pegar de vuelta en el material: al estudiante le")
-    print("llega dentro de la invitación de Calendar de cada sesión.")
+    print("Instalación y pruebas: Manuales/01. Cada sesión lleva SU propio enlace de Meet, que")
+    print("queda en Ubicación y en la descripción del evento: de ahí lo copias para compartirlo")
+    print("con el grupo. Las semanas autónomas por festivo van al calendario SIN Meet.")
+    al = DATA_II.get("alerta_calendario") or {}
+    if al:
+        print("")
+        print(f"AVISO ({DATA_II['curso']['codigo']}): {al.get('titulo', '')}")
+        print("  Las fechas de diciembre pasan del cierre institucional 2026-11-22 y están")
+        print("  PENDIENTES de confirmar con el programa. No se movió ninguna fecha.")
+        print("  Detalle y plan B: LEEME - Apps Script del semestre.md")
+    # La nómina no bloquea este generador, pero sí la planilla de asistencia del otro script.
+    # Se avisa solo si de verdad no hay ningún listado, para que la nota no envejezca mintiendo.
+    plan = ROOT / DATA_II["curso"]["folder"] / "Plan curso" / PERIODO
+    if not any(plan.glob("*.xls*")) and not any(plan.glob("*.csv")):
+        print("")
+        print(f"Nota: en {plan.as_posix()} no hay ningún listado de")
+        print(f"Academusoft, así que los {len(DATA_II['grupos'])} grupos de "
+              f"{DATA_II['curso']['codigo']} no tienen planilla de asistencia todavía.")
+        print("Eso no bloquea estos .gs (ya no necesitan nómina); la planilla la genera")
+        print("generar_eventos_calendario.py cuando aparezca el listado.")
 
 
 if __name__ == "__main__":
+    # Sin esto, en la consola de Windows (cp1252) un print con tildes revienta o sale
+    # ilegible, y aquí eso se come justo el AVISO de las fechas de diciembre que el docente
+    # tiene que leer. Igual que en generar_eventos_calendario.py.
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     main()

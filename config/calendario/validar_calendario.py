@@ -21,6 +21,23 @@ B. Coherencia con lo derivado:
   10. El CSV importable a Google Calendar tiene 13 eventos y fechas coincidentes.
   11. El CALENDARIO_2026-2.md menciona cada fecha del curso.
 
+C. Introduccion a la Ingenieria (`introduccion_ingenieria_2026_2.json`), BLOQUE APARTE:
+   Ese curso no cabe en las reglas de arriba y por eso vive en otro archivo: son 16 sesiones
+   (no 13), sin sesiones dobles, sin parciales escritos y llegando hasta diciembre. Meterlo en
+   `validar_curso` habria obligado a llenar esa funcion de excepciones, con el riesgo de aflojar
+   las reglas de los otros cuatro. Se valida entonces con sus propias reglas:
+  12. Cada grupo tiene sus 16 sesiones numeradas 1..16, una por semana, en su dia.
+  13. La primera cae en la semana de su `inicio` y la ultima es exactamente su `fin`.
+  14. Los 16 temas se dictan 1:1 (`tema_n`), sin duplicados ni faltantes.
+  15. Ningun festivo del rango que caiga en el dia de clase queda como sesion normal: tiene
+      que estar declarado como semana autonoma (`autonoma_festivo`) con su tarea.
+  16. Ninguna sesion se marca como parcial (este curso evalua por exposiciones).
+  17. Los cortes cubren 1..16 sin solaparse, y cierran en una sesion que existe.
+  18. El CSV importable y el `CALENDARIO_<periodo> - <grupo>.md` de cada grupo coinciden con
+      el JSON (los tres grupos comparten carpeta, por eso llevan el grupo en el nombre).
+  Las fechas que pasan del cierre institucional del 22/11 salen como AVISO, no como fallo:
+  estan pendientes de confirmar con el programa y la instruccion fue no comprimirlas.
+
 Uso
 ---
     python config/calendario/validar_calendario.py
@@ -29,6 +46,7 @@ from __future__ import annotations
 
 import csv
 import datetime as dt
+import io
 import json
 import re
 import sys
@@ -43,6 +61,12 @@ FIN = dt.date.fromisoformat(DATA["fin"])
 FESTIVOS = {dt.date.fromisoformat(k): v for k, v in DATA["festivos_en_rango"].items()}
 N_TEMAS = 15
 N_SESIONES = 13
+
+# Introduccion a la Ingenieria: otro archivo, otras reglas. Si el archivo no esta, el bloque C
+# se salta con un aviso en vez de reventar: los otros cuatro cursos se siguen validando.
+JSON_II = Path(__file__).with_name("introduccion_ingenieria_2026_2.json")
+DATA_II = json.loads(JSON_II.read_text(encoding="utf-8")) if JSON_II.exists() else None
+CIERRE_INSTITUCIONAL = FIN      # el 22/11 de los otros cuatro cursos
 
 DIA_IDX = {"Lunes": 0, "Martes": 1, "Miércoles": 2, "Jueves": 3, "Viernes": 4,
            "Sábado": 5, "Domingo": 6}
@@ -173,6 +197,147 @@ def validar_curso(key: str, meta: dict) -> None:
         avisos.append(f"{nombre}: falta {md.name}")
 
 
+# --------------------------------------------------------------------------- bloque C
+
+def validar_grupo_introduccion(g: dict) -> None:
+    """Un grupo de Introduccion a la Ingenieria, con las reglas de SU curso.
+
+    Deliberadamente separado de `validar_curso`: aqui son 16 sesiones 1:1 con los temas, sin
+    sesiones dobles y sin parciales, y el calendario se estira hasta diciembre. Las dos
+    funciones no comparten ni una constante para que aflojar una no afloje la otra.
+    """
+    cur = DATA_II["curso"]
+    nombre = f"{cur['nombre_acentos']} · {g['grupo']}"
+    n_ses = cur["n_sesiones"]
+    n_temas = cur["n_temas"]
+    ini_g = dt.date.fromisoformat(g["inicio"])
+    fin_g = dt.date.fromisoformat(g["fin"])
+    ses = g["sesiones"]
+    fechas = [dt.date.fromisoformat(s["fecha"]) for s in ses]
+
+    # 12. numeracion: solo las sesiones reales llevan numero; las semanas autonomas van con
+    #     `sesion: null` y NO consumen numero (por eso hay grupos con 17 entradas y 16 sesiones).
+    numeradas = [s["sesion"] for s in ses if s.get("sesion") is not None]
+    check(numeradas == list(range(1, n_ses + 1)),
+          f"{nombre}: la numeracion no es 1..{n_ses} consecutiva (es {numeradas})")
+    autonomas = [s for s in ses if str(s.get("tipo", "")).startswith("autonoma")]
+    check(all(s.get("sesion") is None for s in autonomas),
+          f"{nombre}: alguna semana autonoma lleva numero de sesion; debe ir con sesion: null")
+
+    idx = DIA_IDX.get(g["dia"])
+    check(idx is not None, f"{nombre}: dia '{g['dia']}' no reconocido")
+    if idx is not None:
+        malas = [f.isoformat() for f in fechas if f.weekday() != idx]
+        check(not malas, f"{nombre}: estas fechas no caen en {g['dia']}: {malas}")
+
+    saltos = [(fechas[i + 1] - fechas[i]).days for i in range(len(fechas) - 1)]
+    check(all(s == 7 for s in saltos),
+          f"{nombre}: hay semanas que no estan separadas 7 dias: {saltos}")
+
+    # 13. ventana propia del grupo
+    check(semana_de(fechas[0]) == semana_de(ini_g),
+          f"{nombre}: la sesion 1 ({fechas[0]}) no cae en la semana de su inicio ({ini_g})")
+    check(fechas[-1] == fin_g,
+          f"{nombre}: la ultima semana ({fechas[-1]}) no coincide con su fin declarado ({fin_g})")
+    check(len(ses) == g["n_semanas_calendario"],
+          f"{nombre}: {len(ses)} entradas de calendario, pero declara "
+          f"n_semanas_calendario={g['n_semanas_calendario']}")
+
+    # 14. los 16 temas, 1:1
+    temas = [s["tema_n"] for s in ses if s.get("tema_n") is not None]
+    check(sorted(temas) == list(range(1, n_temas + 1)),
+          f"{nombre}: los temas dictados no son 1..{n_temas} exactos (son {sorted(temas)})")
+    check(temas == sorted(temas),
+          f"{nombre}: los temas no se dictan en orden: {temas}")
+
+    # 15. festivos: el peligro real es programar clase un festivo sin darse cuenta. El 08/12/2026
+    #     es martes y fecha fija (no la mueve la Ley Emiliani), asi que golpea a SB141C y LB141F.
+    festivos_ii = {dt.date.fromisoformat(k): v
+                   for k, v in DATA_II["festivos_colombia_2026_en_rango"].items()}
+    for f, festivo in festivos_ii.items():
+        if not (ini_g <= f <= fin_g) or (idx is not None and f.weekday() != idx):
+            continue
+        cae = [s for s, fe in zip(ses, fechas) if fe == f]
+        check(bool(cae),
+              f"{nombre}: el festivo {f} ({festivo}) cae en {g['dia']} dentro del rango pero "
+              f"no hay ninguna entrada de calendario para esa semana")
+        for s in cae:
+            check(str(s.get("tipo", "")).startswith("autonoma"),
+                  f"{nombre}: {f} es festivo ({festivo}) y la entrada es de tipo "
+                  f"'{s.get('tipo')}': tendria clase en festivo")
+            check(bool(s.get("festivo")),
+                  f"{nombre}: la semana del {f} no declara el festivo")
+            check(bool(s.get("tarea")),
+                  f"{nombre}: la semana autonoma del {f} no trae tarea concreta "
+                  f"(la regla_festivos del JSON la exige)")
+
+    # 16. sin parciales escritos: este curso evalua por exposiciones y cortes en sesion
+    con_parcial = [s.get("sesion") for s in ses if s.get("parcial")]
+    check(not con_parcial,
+          f"{nombre}: hay sesiones marcadas como parcial ({con_parcial}); este curso no tiene "
+          f"parciales escritos, evalua por exposiciones")
+
+    # 18. el CSV importable del grupo. Lleva el grupo en el nombre porque los 3 comparten carpeta.
+    periodo_dir = ROOT / cur["folder"] / "Plan curso" / DATA_II["periodo"]
+    csv_goo = periodo_dir / f"eventos_calendario_{DATA_II['periodo']} - {g['grupo']}.csv"
+    if csv_goo.exists():
+        with csv_goo.open(encoding="utf-8-sig", newline="") as fh:
+            filas = list(csv.DictReader(fh))
+        check(len(filas) == len(ses),
+              f"{nombre}: {csv_goo.name} tiene {len(filas)} eventos, se esperaban {len(ses)}")
+        conv = set()
+        for r in filas:
+            m, d, y = r["Start Date"].split("/")
+            conv.add(f"{y}-{m}-{d}")
+        check(conv == {f.isoformat() for f in fechas},
+              f"{nombre}: las fechas de {csv_goo.name} no coinciden con el JSON")
+    else:
+        avisos.append(f"{nombre}: falta {csv_goo.name} "
+                      f"(se genera con generar_eventos_calendario.py)")
+
+    md = periodo_dir / f"CALENDARIO_{DATA_II['periodo']} - {g['grupo']}.md"
+    if md.exists():
+        txt = md.read_text(encoding="utf-8")
+        faltan = [f.strftime("%d/%m/%Y") for f in fechas if f.strftime("%d/%m/%Y") not in txt]
+        check(not faltan, f"{nombre}: {md.name} no menciona las fechas {faltan}")
+    else:
+        avisos.append(f"{nombre}: falta {md.name}")
+
+    if fin_g > CIERRE_INSTITUCIONAL:
+        avisos.append(f"{nombre}: cierra el {fin_g}, despues del {CIERRE_INSTITUCIONAL} en que "
+                      f"cierran los otros cursos. PENDIENTE de confirmar con el programa "
+                      f"(ver alerta_calendario en el JSON). No es un fallo: no se comprime.")
+
+
+def validar_introduccion() -> None:
+    """Bloque C completo: los cortes del curso y despues cada grupo."""
+    cur = DATA_II["curso"]
+    n_ses = cur["n_sesiones"]
+
+    # 17. cortes: mismo invariante que en los otros cursos, con su propio total de sesiones.
+    cubierto: list[int] = []
+    for c in DATA_II["cortes"]:
+        a, b = c["sesiones"].split("-")
+        cubierto.extend(range(int(a), int(b) + 1))
+        check(int(a) <= c["cierra_en_sesion"] <= int(b),
+              f"{cur['codigo']}: el corte {c['corte']} cierra en la sesion "
+              f"{c['cierra_en_sesion']}, fuera de su rango {c['sesiones']}")
+    check(sorted(cubierto) == list(range(1, n_ses + 1)),
+          f"{cur['codigo']}: los cortes no cubren 1..{n_ses} sin solaparse "
+          f"({[c['sesiones'] for c in DATA_II['cortes']]})")
+    check(len(DATA_II["temas"]) == cur["n_temas"],
+          f"{cur['codigo']}: hay {len(DATA_II['temas'])} temas y el curso declara "
+          f"n_temas={cur['n_temas']}")
+
+    for g in DATA_II["grupos"]:
+        validar_grupo_introduccion(g)
+        reales = [s for s in g["sesiones"] if s.get("sesion") is not None]
+        aut = len(g["sesiones"]) - len(reales)
+        print(f"  {(cur['nombre_acentos'] + ' · ' + g['grupo'])[:38]:<38} {g['dia']:<10} "
+              f"S1={reales[0]['fecha']}  S{len(reales)}={reales[-1]['fecha']}  "
+              f"autonomas={aut}")
+
+
 def validar_carpetas_drive() -> None:
     """Las carpetas de Drive del JSON deben estar completas y coincidir con el Apps Script.
 
@@ -235,6 +400,17 @@ def main() -> int:
         par = "/".join(str(c["n"]) for c in meta["clases"] if c.get("parcial"))
         print(f"  {meta['nombre'][:38]:<38} {meta['dia']:<10} S1={f0}  S13={fN}  parciales={par}")
 
+    # Bloque C: otro JSON, otras reglas, otro bloque. Nada de lo de arriba se toco.
+    n_grupos = 0
+    if DATA_II is None:
+        avisos.append(f"no existe {JSON_II.name}: no se validaron los grupos de "
+                      f"Introduccion a la Ingenieria")
+    else:
+        print(f"\nIntroduccion a la Ingenieria ({DATA_II['curso']['codigo']}), "
+              f"{DATA_II['curso']['n_sesiones']} sesiones, JSON aparte:")
+        validar_introduccion()
+        n_grupos = len(DATA_II["grupos"])
+
     print()
     for a in avisos:
         print(f"AVISO: {a}")
@@ -243,9 +419,12 @@ def main() -> int:
         for f in fallos:
             print(f"  - {f}")
         return 1
-    print(f"OK: {len(DATA['cursos'])} cursos validados, sin fallos.")
+    print(f"OK: {len(DATA['cursos'])} cursos + {n_grupos} grupos de Introduccion validados, "
+          f"sin fallos.")
     return 0
 
 
 if __name__ == "__main__":
+    # Sin esto, en la consola de Windows (cp1252) un print con tildes revienta o sale ilegible.
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.exit(main())

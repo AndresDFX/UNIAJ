@@ -1,6 +1,6 @@
 # Apps Script del curso - Seminario de Sistemas - 2026-2
 
-## Crear los encuentros en Calendar (cada sesion con su propio Meet)
+## Bloquear los encuentros en TU calendario (cada sesion con su propio Meet)
 
 El script **existe** y esta aqui:
 
@@ -14,18 +14,23 @@ Ruta completa desde la raiz de `Cursos`:
 Seminario de Sistemas/Plan curso/2026-2/_privado/CrearEncuentros - Seminario de Sistemas.gs
 ```
 
-> **Por que no lo ves en GitHub:** el `.gs` incluye los correos de los 22
-> estudiantes del grupo, asi que la carpeta `_privado/` esta en `.gitignore`.
-> Existe en tu disco y en Drive, no en el repositorio remoto. Si no aparece,
-> regeneralo:
+> **Por que no lo ves en GitHub:** los `.gs` de encuentros viven en `_privado/`, que
+> esta en `.gitignore`. Existe en tu disco y en Drive, no en el repositorio remoto.
+> Si no aparece, regeneralo:
 >
 > ```bash
 > python config/calendario/generar_apps_script_encuentros.py
 > ```
 
-Crea **13 eventos** (uno por sesion) e invita a los **22 estudiantes**,
-enviandoles la invitacion de verdad. Cada sesion sincronica lleva **su propia sala
-de Meet**; las autonomas por festivo quedan en el calendario pero sin Meet.
+Crea **13 eventos** (uno por sesion) en **tu** calendario. **No invita a nadie y
+no manda ningun correo:** son bloques tuyos, para que la agenda quede reservada y cada
+sesion traiga su enlace a mano.
+
+Los 13 son sincronicos y cada uno lleva **su propia sala de Meet**.
+
+El enlace de cada sesion queda en **Ubicacion** y al final de la descripcion del
+evento: de ahi lo copias para compartirlo con el grupo por donde de verdad les
+escribes.
 
 Funciones: `verificar` · `crearEncuentros` · `eliminarEncuentros` · `recrearTodo`.
 
@@ -33,7 +38,7 @@ Funciones: `verificar` · `crearEncuentros` · `eliminarEncuentros` · `recrearT
 invitaciones).md` en la raiz de `Cursos`. Incluye como sacar el `CALENDAR_ID` y por
 que se ejecuta `verificar` antes de `crearEncuentros`.
 
-## Si prefieres un solo script para los 4 cursos
+## Si prefieres un solo script para los 7 cursos
 
 Hay uno consolidado, con las funciones de creacion y borrado **de cada curso** mas
 las de todo el semestre. Sale de la misma plantilla que este, asi que hacen lo mismo:
@@ -46,7 +51,7 @@ Puntero visible: `LEEME - Apps Script del semestre.md` en la raiz de `Cursos`.
 
 ## Archivar las grabaciones de Meet
 
-Ese script es **uno solo para los 4 cursos** y vive en
+Ese script es **uno solo** y vive en
 `config/calendario/apps_script_grabaciones/MoverGrabaciones.gs`.
 Paso a paso: `Manuales/02 - Instalar y probar el Apps Script de grabaciones.md`.
 

@@ -43,8 +43,8 @@ Los otros dos generadores vivos de esta carpeta:
 
 | Script | Qué produce |
 |---|---|
-| `generar_eventos_calendario.py` | Por curso: CSV de eventos, `.ics` con invitados, nómina y planilla de asistencia (los tres últimos en `<Curso>/Plan curso/<periodo>/_privado/`) |
-| `generar_apps_script_encuentros.py` | Los Apps Script que **crean** los encuentros en Calendar (cada sesión con su propia sala de Meet) y **envían** las invitaciones: uno por curso y uno consolidado del periodo |
+| `generar_eventos_calendario.py` | Por curso: CSV de eventos, `bloques_<curso>.ics` (**sin invitados**, `METHOD:PUBLISH`), nómina y planilla de asistencia (los tres últimos en `<Curso>/Plan curso/<periodo>/_privado/`) |
+| `generar_apps_script_encuentros.py` | Los Apps Script que **crean** los encuentros en Calendar como **bloques del calendario del docente** (cada sesión con su propia sala de Meet, **sin invitados y sin enviar correos**): uno por curso y uno consolidado del periodo |
 | `validar_calendario.py` | Comprueba invariantes y coherencia; sale con código 1 si algo falla |
 
 Procedimiento operativo: carpeta `Manuales/` en la raíz de `Cursos`.

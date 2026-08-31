@@ -22,6 +22,8 @@ import csv
 import io
 import json
 import re
+import sys
+import zipfile
 from pathlib import Path
 
 from docx import Document
@@ -431,6 +433,54 @@ APROBACION = (
 
 # ---------------------------------------------------------------- docx helpers
 
+# Fecha fija para las entradas del zip del .docx. Un .docx es un zip, y python-docx sella
+# cada entrada con la hora de la corrida: sin esto, dos corridas con el MISMO contenido dan
+# dos binarios distintos y los 4 ACUERDO PEDAGOGICO*.docx (que si estan versionados)
+# aparecen modificados en git sin haber cambiado nada, justo cuando hay que revisar el diff.
+ZIP_FECHA_FIJA = (2026, 1, 1, 0, 0, 0)
+
+
+def docx_bytes(doc) -> bytes:
+    """Serializa el documento a bytes REPRODUCIBLES (timestamps del zip normalizados)."""
+    crudo = io.BytesIO()
+    doc.save(crudo)
+    crudo.seek(0)
+    salida = io.BytesIO()
+    with zipfile.ZipFile(crudo) as zin:
+        with zipfile.ZipFile(salida, "w", zipfile.ZIP_DEFLATED) as zout:
+            for item in zin.infolist():
+                nuevo = zipfile.ZipInfo(item.filename, date_time=ZIP_FECHA_FIJA)
+                nuevo.compress_type = item.compress_type
+                nuevo.create_system = item.create_system
+                nuevo.external_attr = item.external_attr
+                nuevo.internal_attr = item.internal_attr
+                zout.writestr(nuevo, zin.read(item.filename))
+    return salida.getvalue()
+
+
+def partes_docx(datos: bytes) -> dict[str, bytes]:
+    """Contenido real del .docx: nombre de cada parte del zip -> sus bytes (sin metadatos)."""
+    with zipfile.ZipFile(io.BytesIO(datos)) as z:
+        return {i.filename: z.read(i.filename) for i in z.infolist()}
+
+
+def escribir_docx(path: Path, doc) -> bool:
+    """Escribe el .docx solo si su CONTENIDO cambio. Devuelve True si tocó el archivo.
+
+    La comparacion es parte por parte, no byte a byte del zip: asi un archivo que ya existe
+    con los timestamps de una corrida vieja pero el mismo contenido se deja quieto, en vez de
+    reescribirse para nada.
+    """
+    datos = docx_bytes(doc)
+    if path.exists():
+        try:
+            if partes_docx(path.read_bytes()) == partes_docx(datos):
+                return False
+        except (zipfile.BadZipFile, KeyError):
+            pass                                  # ilegible o truncado: se reescribe
+    path.write_bytes(datos)
+    return True
+
 
 def set_cell_text(cell, text: str) -> None:
     paras = cell.paragraphs
@@ -458,7 +508,7 @@ def set_merged_row_value(row, start_col: int, text: str, end_col: int | None = N
         set_cell_text(row.cells[i], text)
 
 
-def fill_acuerdo(key: str, meta: dict) -> Path:
+def fill_acuerdo(key: str, meta: dict) -> tuple[Path, bool]:
     extra = ACUERDO_EXTRA[key]
     doc = Document(str(TEMPLATE))
     t0 = doc.tables[0]
@@ -509,8 +559,8 @@ def fill_acuerdo(key: str, meta: dict) -> Path:
         / f'ACUERDO PEDAGOGICO - {meta["nombre"]} - 2026-2.docx'
     )
     out.parent.mkdir(parents=True, exist_ok=True)
-    doc.save(str(out))
-    return out
+    cambio = escribir_docx(out, doc)
+    return out, cambio
 
 
 # ---------------------------------------------------------------- markdown
@@ -945,28 +995,34 @@ def fechas_clave_md(meta: dict) -> str:
             f"una por semana, de {dmy(primera['fecha'])} a {dmy(ultima['fecha'])}.",
             ""]
 
-    # Los eventos del calendario llevan el tipo de encuentro al principio del título.
     autonomas = [cl for cl in clases if cl["tipo"] == "autonoma"]
-    # No hay un enlace unico del curso: cada sesion tiene su propia sala, y el estudiante
-    # la recibe dentro de la invitacion de esa sesion. Por eso el correo no publica ninguna
-    # URL de Meet — publicar una sola seria mandarlos a la sala equivocada.
-    out += ["**Les va a llegar a este mismo correo institucional una invitación de Google "
-            "Calendar por cada sesión del curso**, y **cada una trae adentro su propio "
-            "enlace de Google Meet**. Acéptenlas: así les queda todo el horario en su "
-            "calendario y el día de clase entran desde el evento de ese día, sin buscar "
-            "ningún enlace.",
+    # Los encuentros son BLOQUES DEL CALENDARIO DEL DOCENTE: los eventos no tienen invitados
+    # y no se envia ningun correo, asi que el estudiante NO recibe invitacion de Calendar y
+    # este correo tiene que decirle por donde le llega el enlace de cada sesion.
+    # Sigue sin publicarse ninguna URL de Meet, y ahora por dos razones: cada sesion tiene su
+    # propia sala (publicar una sola seria mandarlos a la sala equivocada en las demas), y las
+    # salas no existen hasta que el docente corre el Apps Script, despues de este correo.
+    out += ["**No les va a llegar ninguna invitación de Google Calendar.** El horario del "
+            "curso es el de la tabla de arriba: **guárdenlo ustedes** en su calendario si "
+            "les sirve, y el **enlace de Google Meet se lo comparto yo antes de cada "
+            "encuentro**.",
             "",
-            "> No guarden un enlace fijo: **el de cada sesión es distinto**. El que sirve "
-            "siempre es el del evento de ese día en su calendario.",
+            "**¿Dónde busco el enlace del día?** En **ExamLab**, en el curso: ahí publico el "
+            "enlace de la sesión antes de que empiece. Si ese día algo falla, lo mando "
+            "también por el grupo de WhatsApp, por medio del vocero.",
+            "",
+            "> No guarden un enlace fijo: **cada sesión tiene su propio enlace de Meet**, así "
+            "que el de la semana pasada ya no sirve. El que vale es el que publico para ese "
+            "día.",
             ""]
     out += [
-            "Cada evento empieza con el tipo de encuentro, para que sepan de un vistazo si "
-            "tienen que conectarse a esa hora:", "",
-            "- **`[SINCRONICO]`** — hay encuentro en vivo por Meet en el horario del curso: "
+            "Las sesiones son de dos tipos, para que sepan de un vistazo si tienen que "
+            "conectarse a esa hora:", "",
+            "- **Sincrónica** — hay encuentro en vivo por Meet en el horario del curso: "
             "virtual en vivo, parcial o sustentación. **Deben asistir.**",
-            "- **`[AUTONOMO]`** — **no hay encuentro**. Es trabajo independiente guiado: "
-            "les dejo el material y la actividad, y ustedes la resuelven por su cuenta "
-            "antes de la fecha de cierre."]
+            "- **Autónoma** — **no hay encuentro** y por eso **no hay enlace ese día**. Es "
+            "trabajo independiente guiado: les dejo el material y la actividad, y ustedes la "
+            "resuelven por su cuenta antes de la fecha de cierre."]
     if autonomas:
         det = " y ".join(f"{dmy(cl['fecha'])} ({cl['festivo']})" for cl in autonomas)
         out += ["",
@@ -1145,7 +1201,7 @@ def main() -> None:
         write_csv(Path(__file__).with_name(CSV_CONFIG_NAME[key]), rows)
         todos.extend(rows)
 
-        acuerdo = fill_acuerdo(key, meta)
+        acuerdo, acuerdo_cambio = fill_acuerdo(key, meta)
         # El correo de bienvenida es material de PLANEACION del curso, no una entrega a
         # la universidad: vive en Plan curso/<periodo>/. En "Entregas docente/" va solo lo
         # que el docente le entrega a la institucion (acuerdo, diagnostico).
@@ -1168,8 +1224,12 @@ def main() -> None:
             f"OK {meta['nombre']}: {len(meta['clases'])} sesiones "
             f"({auton} autónomas · {dobles} dobles · {N_TEMAS} temas)"
         )
-        for p in (cal_path, crono_path, plan_path, acuerdo):
+        for p in (cal_path, crono_path, plan_path):
             print(f"  - {p.relative_to(ROOT)}")
+        # El .docx solo se reescribe si su contenido cambio: reejecutar no debe ensuciar el
+        # arbol de git con binarios identicos (ver docx_bytes / escribir_binario).
+        print(f"  - {acuerdo.relative_to(ROOT)}"
+              f"{'' if acuerdo_cambio else '   (sin cambios)'}")
         print(f"  - {'correo actualizado' if ok_correo else 'CORREO NO ENCONTRADO'}: {correo.name}")
 
     write_csv(Path(__file__).with_name("eventos_todos_cursos_2026-2.csv"), todos)
@@ -1178,4 +1238,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    # Sin esto, en la consola de Windows (cp1252) un print con tildes revienta o sale
+    # ilegible. Igual que en los otros dos generadores de config/calendario/.
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     main()

@@ -1,4 +1,10 @@
-# 01 — Alistar un curso: encuentros, Meet, correo e invitaciones
+# 01 — Alistar un curso: encuentros, Meet y correo de bienvenida
+
+> **Los encuentros ya no invitan a nadie.** Son **bloques de tu calendario personal**: sin
+> lista de invitados, sin correos de invitación y sin correos de cancelación al borrar. Cada
+> sesión sigue teniendo **su propia sala de Meet**, y **el enlace lo publicas tú** por el canal
+> del curso (ExamLab). El archivo conserva su nombre viejo —con «invitaciones»— porque los
+> `LEEME` generados apuntan a él por ruta exacta.
 
 Procedimiento **general**: sirve para cualquier periodo y cualquier curso. Donde aparece
 `<periodo>` va la etiqueta del semestre (`2026-2`, `2027-1`, …) y donde aparece `<Curso>` la
@@ -13,17 +19,20 @@ que se corre desde `config/` son los scripts que generan esos archivos.
 
 ```
 0. Regenerar y validar
-1. Enviar el correo de bienvenida     → avisa que va a llegar la invitación de Calendar
-2. Crear los encuentros en Calendar   → se envían las invitaciones, cada una con SU Meet
+1. Enviar el correo de bienvenida     → dice el horario y por dónde publicas el enlace
+2. Crear los encuentros en Calendar   → tus bloques, cada uno con SU sala de Meet
 3. Dejar el archivado de grabaciones  → manual 02
 ```
 
-**Cada sesión tiene su propio enlace de Meet**, así que no hay ningún enlace que copiar del
-calendario al correo: al estudiante le llega dentro de la invitación de cada sesión. Por eso
-el correo va **primero** — llega antes que las 13 invitaciones y explica qué son.
+**Cada sesión tiene su propio enlace de Meet**, así que no hay un enlace único del curso que
+copiar al correo. El estudiante **no recibe invitación de Calendar**: el enlace de la sesión lo
+publicas tú antes de cada encuentro (el correo de bienvenida dice que va por **ExamLab**). Por
+eso el correo va **primero** — deja claro el horario y dónde buscar el enlace del día.
 
-El paso 2 crea los eventos con la API de Calendar, no importando un archivo, y por eso **sí
-envía las invitaciones** — que es justo lo que la importación de un `.ics` no hace.
+El paso 2 crea los eventos con la API de Calendar, no importando un archivo, y por eso **cada
+sesión tiene su propia sala de Meet** — que es justo lo que la importación de un `.ics` no da.
+Después del paso 2, el log te lista sesión por sesión con su enlace: **de ahí sale lo que
+publicas**.
 
 ---
 
@@ -42,28 +51,36 @@ mano se pierde en la siguiente corrida.
 
 El tercer script emite **dos cosas**: un `.gs` por curso y **uno consolidado con todos los
 cursos del periodo**. Los dos salen de la misma plantilla, así que hacen lo mismo; eliges uno
-de los dos caminos (ver *Un proyecto o cuatro*, más abajo).
+de los dos caminos (ver *Un proyecto o uno por curso*, más abajo).
 
-El segundo script imprime por curso cuántos estudiantes hay y cuántos son **invitables**.
-**Lee esa línea:** si dice `invitables: 13` de 16, esas 3 personas no recibirán la invitación
-(ver *Problemas frecuentes*).
+El segundo script imprime por curso cuántos estudiantes hay y cuántos traen **correo
+institucional**. Eso ya **no** afecta a los encuentros (los eventos no tienen invitados): es
+para la **planilla de asistencia** y para saber a quién le puedes escribir el correo de
+bienvenida. Si dice `estudiantes: 16 · con correo: 13`, a esas 3 personas no hay por dónde
+escribirles (ver *Problemas frecuentes*). Un curso **sin listado** igual queda con su CSV, su
+`.ics` y su `.gs`; lo único que le falta es la planilla.
 
 ### Lo que queda en la carpeta de cada curso
 
 ```
 <Curso>/Plan curso/<periodo>/
 ├── LEEME - Apps Script del curso.md             ← dice dónde está el .gs (visible)
-├── CORREO_BIENVENIDA - <Curso> - <periodo>.md   ← paso 3
-├── eventos_calendario_<periodo>.csv             ← alternativa manual (sin invitados)
+├── CORREO_BIENVENIDA - <Curso> - <periodo>.md   ← paso 1
+├── eventos_calendario_<periodo>.csv             ← alternativa manual (camino manual)
 ├── CALENDARIO_<periodo>.md · Cronograma · PLAN_DE_CURSO
 ├── LISTA_DE_ALUMNOS_POR_GRUPOS*.xls             ← la nómina que descargas del sistema
-└── _privado/                                    ← datos personales · fuera de git
-    ├── CrearEncuentros - <Curso>.gs             ← paso 1
-    ├── invitaciones_<curso>.ics                 ← alternativa manual
-    ├── nomina_<curso>.csv                       ← correos para el paso 3
+└── _privado/                                    ← fuera de git (aquí vive la nómina)
+    ├── CrearEncuentros - <Curso>.gs             ← paso 2
+    ├── bloques_<curso>.ics                      ← alternativa manual (sin invitados)
+    ├── nomina_<curso>.csv                       ← correos para el paso 1 (CCO)
     ├── asistencia_<curso>.csv                   ← planilla de asistencia
     └── correos_manuales.csv                     ← si lo creas tú (ver más abajo)
 ```
+
+> **Cuando varios grupos comparten la carpeta del curso** (en `2026-2`, los tres grupos de
+> `FI300101`), el grupo va **en el nombre** de cada archivo: `CALENDARIO_<periodo> - SB141B.md`,
+> `eventos_calendario_<periodo> - SB141B.csv`, `CrearEncuentros - <Curso> - SB141B.gs`,
+> `LEEME - Apps Script del curso - SB141B.md`. Si no, el tercer grupo pisaría a los otros dos.
 
 Y, una sola vez para todo el periodo, en la raíz de `Cursos`:
 
@@ -84,11 +101,11 @@ Archivo:
 ```
 
 Se genera solo y ya trae: fechas clave con la **fecha de la primera clase** (que no siempre
-coincide con el inicio del periodo), el aviso de que va a llegar **una invitación de Google
-Calendar por sesión con su propio enlace de Meet**, la explicación de `[SINCRONICO]` /
-`[AUTONOMO]`, las carpetas de Drive, el bloque de ExamLab —con la verificación de acceso y la
-**encuesta de inicio de semestre**, las dos cosas que el estudiante tiene que hacer **antes de
-la primera clase**— y la petición al vocero.
+coincide con el inicio del periodo), el aviso de que **no va a llegar ninguna invitación de
+Google Calendar** y de que el **enlace de Meet lo publicas tú en ExamLab antes de cada
+sesión**, qué sesiones son sincrónicas y cuáles autónomas, las carpetas de Drive, el bloque de
+ExamLab —con la verificación de acceso y la **encuesta de inicio de semestre**, las dos cosas
+que el estudiante tiene que hacer **antes de la primera clase**— y la petición al vocero.
 
 **Antes de enviar completa lo único que el repo no puede saber:**
 
@@ -99,22 +116,27 @@ la primera clase**— y la petición al vocero.
 Destinatarios: columna `correo` de `_privado/nomina_<curso>.csv`. Ponlos en **CCO** para no
 exponer los correos del grupo entre ellos.
 
-El correo **no publica ningún enlace de Meet**, a propósito: no existe uno solo del curso.
-Publicar uno fijo mandaría al grupo a la sala equivocada en las otras 12 sesiones.
+El correo **no publica ningún enlace de Meet**, y por dos razones: no existe uno solo del curso
+—publicar uno fijo mandaría al grupo a la sala equivocada en las demás sesiones— y las salas
+**todavía no existen** cuando se envía el correo: las crea el paso 2.
+
+> **Compromiso que este correo te deja:** dice que el enlace de cada sesión aparece en ExamLab.
+> Nadie lo publica por ti. Después del paso 2, saca los enlaces del log (`verificar` los imprime
+> sesión por sesión, cuando ya existen) y déjalos en el curso de ExamLab.
 
 ---
 
-## Un proyecto o cuatro
+## Un proyecto o uno por curso
 
 Hay dos caminos para el paso 2, y **son equivalentes**: los `.gs` salen de la misma plantilla.
 
 | Camino | Archivo | Cuándo conviene |
 |---|---|---|
-| **Cuatro proyectos** | `<Curso>/Plan curso/<periodo>/_privado/CrearEncuentros - <Curso>.gs` | Cuando alistas los cursos de a uno, en semanas distintas. El desplegable de Apps Script solo muestra las 4 funciones de ese curso, así que no hay dónde equivocarse. |
-| **Un proyecto** | `_privado/<periodo>/CrearEncuentros - TODO EL SEMESTRE <periodo>.gs` | Cuando alistas el semestre completo de una sentada, o cuando hay que rehacer varios cursos. Un solo `CALENDAR_ID` que pegar, un solo permiso que aceptar. |
+| **Un proyecto por curso** | `<Curso>/Plan curso/<periodo>/_privado/CrearEncuentros - <Curso>.gs` | Cuando alistas los cursos de a uno, en semanas distintas. El desplegable de Apps Script solo muestra las 4 funciones de ese curso, así que no hay dónde equivocarse. |
+| **Un proyecto para todo** | `_privado/<periodo>/CrearEncuentros - TODO EL SEMESTRE <periodo>.gs` | Cuando alistas el semestre completo de una sentada, o cuando hay que rehacer varios cursos. Un solo `CALENDAR_ID` que pegar, un solo permiso que aceptar. |
 
-En el consolidado las funciones llevan el nombre del curso, y además hay cuatro que abarcan
-todo el periodo:
+En el consolidado las funciones llevan el nombre del curso —y el **grupo**, cuando varios
+comparten código— y además hay cuatro que abarcan todo el periodo. En `2026-2` son **7 cursos**:
 
 | Función | Alcance |
 |---|---|
@@ -122,25 +144,32 @@ todo el periodo:
 | `verificarSeminario` · `crearSeminario` · `eliminarSeminario` · `recrearSeminario` | solo ese curso |
 | `verificarBasesDatosII` · `crearBasesDatosII` · `eliminarBasesDatosII` · `recrearBasesDatosII` | solo ese curso |
 | `verificarArquitectura` · `crearArquitectura` · `eliminarArquitectura` · `recrearArquitectura` | solo ese curso |
-| `verificarTodosLosCursos` | **los 4** · solo lectura |
-| `crearTodosLosCursos` | **los 4** · crea lo que falte y sincroniza invitados |
-| `eliminarTodosLosCursos` | **los 4** · borra todo |
-| `recrearTodosLosCursos` | **los 4** · borra y vuelve a crear |
+| `verificarIntroduccionIngenieriaSB141B` · `crear…` · `eliminar…` · `recrear…` | solo ese **grupo** |
+| `verificarIntroduccionIngenieriaSB141C` · `crear…` · `eliminar…` · `recrear…` | solo ese **grupo** |
+| `verificarIntroduccionIngenieriaLB141F` · `crear…` · `eliminar…` · `recrear…` | solo ese **grupo** |
+| `verificarTodosLosCursos` | **los 7** · solo lectura |
+| `crearTodosLosCursos` | **los 7** · crea lo que falte y le asegura su sala a cada sesión |
+| `eliminarTodosLosCursos` | **los 7** · borra todo |
+| `recrearTodosLosCursos` | **los 7** · borra y vuelve a crear |
 
 Las cuatro `*TodosLosCursos` piden **un segundo interruptor** además de `SIMULAR = false`:
 
 ```js
-var CONFIRMO_SEMESTRE_COMPLETO = false;   // ponlo en true para las funciones de los 4 cursos
+var CONFIRMO_SEMESTRE_COMPLETO = false;   // ponlo en true para las funciones de todo el periodo
 ```
 
-Existe porque esas cuatro tocan 52 eventos y más de mil correos, y en el desplegable de Apps
-Script es fácil elegir `crearTodosLosCursos` cuando querías `crearSeminario`. Si está en
+Ya no es por los correos —no se manda ninguno—: existe porque esas cuatro tocan **102 eventos y
+96 salas de Meet** de golpe (roza la cuota diaria de Calendar y tarda), y en el desplegable de
+Apps Script es fácil elegir `crearTodosLosCursos` cuando querías `crearSeminario`. Si está en
 `false`, la función se detiene y te dice qué hacer, sin haber tocado nada. Las funciones de un
 curso suelto no lo necesitan.
 
-> **Ojo con Programación II y Seminario de Sistemas:** son el **mismo grupo (341C)**, así que
-> hay estudiantes matriculados en los dos. Cualquier cosa que hagas «para los 4 cursos» les
-> llega por duplicado a esas personas.
+> **Ojo con los cursos que caen el mismo día:** Bases de Datos II y Arquitectura son los dos
+> **lunes**, y los grupos `SB141C` y `LB141F` de Introducción a la Ingeniería son los dos
+> **martes** con el mismo código. Cualquier cosa que hagas «para todos los cursos» los toca a
+> todos: si solo querías uno, usa su función. Lo que ya **no** pasa es que a un estudiante
+> matriculado en dos de tus cursos le llegue nada por duplicado — los eventos no invitan a
+> nadie.
 
 El resto del paso 2 es idéntico en los dos caminos: solo cambian los nombres de las funciones.
 Donde el manual dice `verificar`, `crearEncuentros`, `eliminarEncuentros` o `recrearTodo`, en
@@ -155,13 +184,14 @@ Archivo, según el camino que elegiste arriba:
 
 ```
 <Curso>/Plan curso/<periodo>/_privado/CrearEncuentros - <Curso>.gs          ← un curso
-_privado/<periodo>/CrearEncuentros - TODO EL SEMESTRE <periodo>.gs          ← los 4
+_privado/<periodo>/CrearEncuentros - TODO EL SEMESTRE <periodo>.gs          ← todos
 ```
 
 Es un **Google Apps Script**: corre en tu cuenta, no en el repo.
 
-> **Si no lo encuentras:** contiene los correos de los estudiantes, así que `_privado/` está
-> en `.gitignore` — **existe en tu disco y en Drive, pero no en GitHub**. Al lado, ya visibles,
+> **Si no lo encuentras:** vive en `_privado/`, que está en `.gitignore` — **existe en tu disco
+> y en Drive, pero no en GitHub**. (Ya no lleva ningún dato de estudiante; sigue ahí por
+> convención, junto a la nómina.) Al lado, ya visibles,
 > quedan los punteros con la ruta exacta: `LEEME - Apps Script del curso.md` en la carpeta del
 > curso, y `LEEME - Apps Script del semestre.md` en la raíz de `Cursos`. Si de verdad falta el
 > archivo, lo regenera `python config/calendario/generar_apps_script_encuentros.py`, que
@@ -177,9 +207,9 @@ Es un **Google Apps Script**: corre en tu cuenta, no en el repo.
 
 > **El paso 4 no es cosmético.** Las horas de los eventos las construye Apps Script con la
 > zona **del proyecto**, no con la del calendario ni la del curso. Google no siempre pone la
-> local: si el proyecto queda en UTC o en `America/New_York`, las 13 sesiones entran corridas
-> una o cinco horas **con las invitaciones ya enviadas**, y reejecutar no lo arregla porque el
-> evento existe y se reutiliza. Peor con Nueva York: allí hay horario de verano y en Bogotá no,
+> local: si el proyecto queda en UTC o en `America/New_York`, todas las sesiones entran corridas
+> una o cinco horas —y con ellas **las salas de Meet que ya publicaste**—, y reejecutar no lo
+> arregla porque el evento existe y se reutiliza. Peor con Nueva York: allí hay horario de verano y en Bogotá no,
 > así que el desfase cambia a mitad de semestre y la serie queda inconsistente consigo misma.
 >
 > El script se defiende: `verificar` imprime la zona y, si no es `America/Bogota`, **crear y
@@ -189,8 +219,8 @@ Es un **Google Apps Script**: corre en tu cuenta, no en el repo.
 
 **Servicios (+)** en el panel izquierdo → **Google Calendar API** → **Añadir**.
 
-Sin esto los eventos se crean con invitados pero **sin Meet**: las salas se crean con la API
-avanzada, no con `CalendarApp`.
+Sin esto los eventos se crean, pero **sin Meet**: las salas se crean con la API avanzada, no
+con `CalendarApp`. Y la sala es justo lo que este camino aporta.
 
 ### 2.3 Pegar el ID del calendario
 
@@ -202,7 +232,7 @@ var CALENDAR_ID = '';   // <- pega aquí el ID del calendario
 
 Se pide explícito y no se usa el calendario "por omisión" porque ese depende de la cuenta con
 la que se abrió Apps Script: si un día se ejecuta con otra sesión, escribiría los eventos en
-otro calendario sin avisar — y con las invitaciones ya enviadas eso no se deshace fácil.
+otro calendario sin avisar — y con ~100 eventos y sus salas ya creados eso no se deshace fácil.
 
 **Cómo obtener el ID, dos caminos:**
 
@@ -242,8 +272,10 @@ La primera vez Google pide permisos y muestra *"Google no ha verificado esta apl
 es esperado, es tu propio script: **Configuración avanzada → Ir a (proyecto) → Permitir**.
 
 Revisa en el log: que el **calendario** sea el tuyo, que la **zona del proyecto** diga
-`America/Bogota (correcta)`, que el **servicio avanzado** diga `activo`, el número de
-**invitados**, y la lista de sesiones (`se crearía` / `YA EXISTE`).
+`America/Bogota (correcta)`, que el **servicio avanzado** diga `activo`, que el tipo diga
+`bloque de TU calendario (sin invitados, sin correos)`, el **rango del curso**, y la lista de
+sesiones (`se crearía` / `YA EXISTE`). De las que ya existen imprime **su enlace de Meet**: esta
+es la función a la que vuelves cuando toca publicar los enlaces.
 
 ### 2.5 Crear de verdad
 
@@ -255,10 +287,12 @@ var SIMULAR = true;    // ponlo en false
 
 Guarda y ejecuta **`crearEncuentros`**. Qué hace:
 
-- Crea un evento por sesión, con los estudiantes como invitados y **enviándoles la
-  invitación** (`SEND_INVITES = true`).
+- Crea un evento por sesión **en tu calendario**: sin lista de invitados y **sin enviar ningún
+  correo**. Son tus bloques de agenda.
 - Le da a **cada sesión sincrónica su propia sala de Meet**: 13 sesiones = 13 enlaces
-  distintos. El log los imprime uno por línea, junto a su fecha.
+  distintos. El log los imprime uno por línea, junto a su fecha, y el enlace queda además en
+  **Ubicación** y al final de la **descripción** del evento. **De ahí lo copias para publicarlo**
+  (paso 1: el correo dice que va en ExamLab).
 - Las sesiones **autónomas** también quedan en el calendario (para que vean la fecha de
   cierre) pero **sin Meet**, porque no hay encuentro.
 - Si en un hueco ya hay un encuentro del curso **con otro título**, no crea nada ahí y lo dice
@@ -266,8 +300,9 @@ Guarda y ejecuta **`crearEncuentros`**. Qué hace:
   parcial, una sesión pasó a autónoma— y evita dejar dos eventos y dos salas el mismo día. La
   salida es `recrear…`, que borra el viejo y crea el nuevo.
 
-**No hay nada que copiar al material.** El enlace de cada sesión vive en su evento y le llega
-al estudiante dentro de la invitación. No existe un enlace único del curso.
+**No hay nada que copiar al material del curso**, porque no existe un enlace único: el de cada
+sesión vive en su evento. Lo que sí hay que hacer, cada semana o de una vez al arrancar, es
+**publicar el enlace de la sesión** en ExamLab; nadie lo hace por ti.
 
 > Volver a ejecutarlo **no duplica**: reutiliza los eventos que ya existen, y si una sesión ya
 > tiene sala la respeta. Cada sesión pide la suya con un `requestId` propio y estable
@@ -282,8 +317,9 @@ el log te dice **qué función ejecutar para continuar**. No se pierde nada.
 
 Hazle caso al nombre que te dé, porque no siempre es la que se cortó: si lo que se cortó fue
 una `recrear…`, hay que continuar con la `crear…` correspondiente. Reejecutar la `recrear…`
-volvería a **borrar** lo que acababa de recrear, con una cancelación por invitado y por evento.
-El propio log lo advierte en mayúsculas.
+volvería a **borrar** lo que acababa de recrear, y con cada evento se va la sala de Meet que
+acababa de crear (los enlaces que ya publicaste dejan de servir). El log lo advierte en
+mayúsculas.
 
 ### 2.6 Borrar todo y volver a crear
 
@@ -301,11 +337,19 @@ Las tres pasadas del borrado, y qué caza cada una:
 |---|---|---|
 | Título exacto | Los eventos tal como se llaman **ahora** | `Por titulo exacto` |
 | Misma fecha **y hora** de cada sesión | Eventos de una corrida anterior cuyo **título** ya no coincide (cambiaron los prefijos, la modalidad, se marcó un parcial) | `Huerfanos del curso` |
-| Todo el periodo, a la hora del curso | Eventos en **fechas que ya no están** en el calendario del curso: una sesión que se movió o se quitó del JSON | `Fantasmas` |
+| El **rango de ese curso**, a la hora del curso | Eventos en **fechas que ya no están** en el calendario del curso: una sesión que se movió o se quitó del JSON | `Fantasmas` |
 
 Las tres exigen que el título mencione el curso **y** que la hora sea la del curso, así que no
 se llevan tus eventos personales que nombren la asignatura a otra hora, ni los del otro curso
-que caiga el mismo día (Bases de Datos II y Arquitectura son los dos lunes).
+que caiga el mismo día (Bases de Datos II y Arquitectura son los dos lunes; `SB141C` y `LB141F`,
+los dos martes, se distinguen además por la hora).
+
+> **La tercera pasada barre el rango del curso, no el del periodo.** Cada curso lleva su propio
+> `inicio`/`fin` en el `.gs` (`Rango del curso` en el log de `verificar`). Importa porque en
+> `2026-2` los grupos de Introducción a la Ingeniería llegan hasta **diciembre**: si el barrido
+> usara el rango global, `eliminarBasesDatosII` se metería en diciembre —donde Bases de Datos II
+> ya no tiene clases— y se llevaría **tus** apuntes personales que mencionen la asignatura a esa
+> hora. Hay una prueba que lo verifica (sección final).
 
 Con `SIMULAR = true` las tres se **listan una por una** antes de borrar nada. Léelas: es la
 única oportunidad de ver qué se va.
@@ -316,34 +360,36 @@ el periodo (`eliminarTodosLosCursos` / `recrearTodosLosCursos`, con el segundo i
 Con `SIMULAR = true` las dos **solo listan** lo que harían — incluidos los "huérfanos" que
 encontró. Corre así primero, siempre.
 
-> **Borrar manda correos de cancelación** a cada estudiante, y crear manda invitaciones otra
-> vez: son ~26 correos por curso. Y como cada evento nuevo trae **una sala de Meet nueva**,
-> los enlaces cambian (no importa para el estudiante, que entra por su invitación).
+> **Borrar no notifica a nadie** —los eventos no tienen invitados—, pero **cada evento nuevo trae
+> una sala de Meet nueva**: los enlaces cambian. Si ya los habías publicado en ExamLab, hay que
+> **volver a publicarlos**, o el grupo entra a una sala que ya no existe.
 >
-> **Si lo único que cambió es la nómina, no borres nada:** `crearEncuentros` sincroniza los
-> invitados de los eventos que ya existen (ver *Cuando algo cambia*).
+> **Si lo único que cambió es la nómina, no borres nada:** la nómina ya no entra en los eventos.
+> Solo afecta a la planilla de asistencia, que la regenera `generar_eventos_calendario.py` (ver
+> *Cuando algo cambia*).
 
 ---
 
 ## Paso 3 — Archivado de grabaciones
 
-Una sola vez por cuenta, sirve para los 4 cursos y los periodos siguientes:
+Una sola vez por cuenta, sirve para todos los cursos y los periodos siguientes:
 **[manual 02](02%20-%20Instalar%20y%20probar%20el%20Apps%20Script%20de%20grabaciones.md)**.
 
 ---
 
 ## Camino manual (sin Apps Script)
 
-Si prefieres no usar Apps Script, puedes importar los archivos, con dos límites que conviene
-saber de antemano:
+Si prefieres no usar Apps Script, puedes importar los archivos. Los dos dejan **los mismos
+bloques en tu agenda**, sin invitados:
 
 | Archivo | Qué logra | Límite |
 |---|---|---|
-| `eventos_calendario_<periodo>.csv` | Los bloques en **tu** agenda | Sin invitados |
-| `_privado/invitaciones_<curso>.ics` | Eventos **con** invitados | **Google no envía las invitaciones al importar**: hay que abrir y guardar cada evento para que pregunte *"¿Enviar correos de invitación?"* |
+| `eventos_calendario_<periodo>.csv` | Los bloques en **tu** agenda | Formato CSV de Google: título, fecha, hora y descripción, nada más |
+| `_privado/bloques_<curso>.ics` | Lo mismo, en formato de calendario (`METHOD:PUBLISH`) | Reimportar **actualiza** los eventos en vez de duplicarlos, porque los `UID` son estables |
 
 Y en ninguno de los dos casos hay enlace de Meet: la sala la crea Google, así que habría que
-añadir una a mano en cada evento. Por eso el camino recomendado es el paso 2.
+añadir una a mano en cada evento. Por eso el camino recomendado es el paso 2 — es el único que
+le da a **cada sesión su propia sala**.
 
 Importar: Google Calendar → **⚙ Configuración → Importar y exportar → Importar**.
 
@@ -351,19 +397,22 @@ Importar: Google Calendar → **⚙ Configuración → Importar y exportar → I
 
 ## Lista de verificación (por curso)
 
-- [ ] Nómina descargada del sistema en `<Curso>/Plan curso/<periodo>/`
+- [ ] Nómina descargada del sistema en `<Curso>/Plan curso/<periodo>/` (con el **grupo** en el
+      nombre si varios grupos comparten el código)
 - [ ] Los 4 scripts del paso 0 corridos · validador en `OK`
-- [ ] `invitables` = total de estudiantes (si no, ver *Problemas frecuentes*)
+- [ ] `con correo` = total de estudiantes (si no, ver *Problemas frecuentes*)
 - [ ] **Zona horaria del proyecto** de Apps Script en `America/Bogota` (paso 2.1)
 - [ ] `CALENDAR_ID` pegado en el `.gs` (el mismo del manual 02)
-- [ ] `verificar` revisado: zona `correcta`, servicio avanzado `activo`, invitados = total
+- [ ] `verificar` revisado: zona `correcta`, servicio avanzado `activo`, rango del curso
 - [ ] Carpetas de Drive (**Clases** y **Clases grabadas**) compartidas con el grupo
 - [ ] Contraseña temporal de ExamLab escrita en el correo
 - [ ] Encuesta de inicio de semestre publicada en el correo (la trae el bloque de
       ExamLab; sale de `semestre_<periodo>.json → encuesta_inicio_semestre`)
 - [ ] Correo de bienvenida enviado en CCO
-- [ ] `crearEncuentros` ejecutado con `SIMULAR = false` → invitaciones enviadas
+- [ ] `crearEncuentros` ejecutado con `SIMULAR = false`
 - [ ] En el log, cada sesión sincrónica con su enlace de Meet
+- [ ] **Enlaces de Meet publicados en ExamLab** (es lo que el correo prometió, y el estudiante
+      no tiene otra forma de entrar)
 - [ ] Archivado de grabaciones instalado (manual 02) · `simulacro` revisado
 
 ---
@@ -373,10 +422,11 @@ Importar: Google Calendar → **⚙ Configuración → Importar y exportar → I
 | Cambió | Qué hacer |
 |---|---|
 | Un parcial, una sesión que pasa a autónoma | Cambia el **título** del evento. `crearEncuentros` lo detecta, **no** crea un duplicado y lo dice (`OMITIDO por título cambiado`). Para aplicarlo: `recrearTodo` (o `recrear<Curso>`), que borra el viejo y crea el nuevo. |
-| Una fecha o una hora | Editar el JSON, correr el paso 0, volver a pegar el `.gs` y ejecutar `recrearTodo`. El evento viejo queda en una fecha que ya no está en el calendario del curso: lo caza la tercera pasada del borrado (`Fantasmas`, paso 2.6). Con `crearEncuentros` sola te quedarían los dos. |
+| Una fecha o una hora | Editar el JSON, correr el paso 0, volver a pegar el `.gs` y ejecutar `recrearTodo`. El evento viejo queda en una fecha que ya no está en el calendario del curso: lo caza la tercera pasada del borrado (`Fantasmas`, paso 2.6). Con `crearEncuentros` sola te quedarían los dos. Recuerda **volver a publicar** los enlaces: al recrear cambian. |
 | Un festivo nuevo | Igual que una fecha: el título pasa a `[AUTONOMO]` y la sesión deja de llevar Meet. `recrearTodo`. |
-| Llegó una nómina nueva | Reemplazar el `.xls`, correr los scripts del paso 0, volver a pegar el `.gs` y ejecutar `crearEncuentros`: reutiliza los eventos que ya existen y **agrega los invitados que faltaban** (lo informa como «Invitados agregados a eventos que ya existían»). **No borra a nadie**: si alguien se retiró, quítalo a mano en Calendar. Esta es la vía barata — no hace falta `recrearTodo`. |
-| La nómina que dejaste es de otra asignatura | El generador lo detecta por el código `FI######`, la omite y **no genera el `.gs`**. Deja dicho en el `LEEME - Apps Script del curso.md` del curso que el `.gs` que hay en `_privado/` es el viejo y **no debe usarse**. Consigue el export correcto y vuelve a correr el paso 0. |
+| Llegó una nómina nueva | Reemplazar el `.xls` y correr `generar_eventos_calendario.py`. **No toca los encuentros**: los eventos no tienen invitados, así que no hay nada que sincronizar en Calendar. Lo que se regenera es la **nómina** y la **planilla de asistencia**. No hace falta volver a pegar el `.gs` ni ejecutar nada en Apps Script. |
+| La nómina que dejaste es de otra asignatura | `generar_eventos_calendario.py` lo detecta por el código `FI######` y la **omite**: el curso se queda sin planilla (lo dice en consola), pero el CSV, el `.ics` y el `.gs` se generan igual. Consigue el export correcto y vuelve a correr el paso 0. |
+| El listado no dice de qué grupo es, y varios grupos comparten el código | Se **rechaza a propósito** (`no dice <GRUPO> y este codigo lo usan varios grupos`): no hay forma de saber a quién pertenece, y una planilla cruzada es peor que ninguna. Renombra el archivo con el grupo al principio, p. ej. `SB141B - INTRODUCCION A LA INGENIERIA.xls`. |
 | Cambió una carpeta de Drive | Actualizar `carpetas_drive` en el JSON; si es la de grabaciones, actualizar también el script del manual 02. El validador avisa si divergen. |
 | Arranca un periodo nuevo | Crear `Plan curso/<periodo nuevo>/`; el anterior se queda donde está, no se borra. |
 
@@ -384,8 +434,9 @@ Importar: Google Calendar → **⚙ Configuración → Importar y exportar → I
 
 ## Problemas frecuentes
 
-**«invitables: 13» de 16 estudiantes.**
-El export académico no trae correo institucional para algunos. Dos salidas: pedirlos a
+**«estudiantes: 16 · con correo: 13».**
+El export académico no trae correo institucional para algunos. No afecta a los encuentros, pero
+sí al correo de bienvenida: a esas personas no hay por dónde escribirles. Dos salidas: pedirlos a
 Registro Académico (el script deja `_privado/pendientes_correo_<curso>.csv` con nombre y
 documento), o crear `<Curso>/Plan curso/<periodo>/_privado/correos_manuales.csv` con
 encabezado `documento,correo,nota` — se cruza por documento y esos correos quedan marcados
@@ -397,13 +448,18 @@ como `personal (manual)` en la nómina. Cuando lleguen los institucionales, actu
 **Los eventos quedaron sin enlace de Meet.** O falta el servicio avanzado, o Google todavía
 no había devuelto el enlace: vuelve a ejecutar `crearEncuentros`, no duplica nada.
 
-**Cada sesión tiene un enlace de Meet distinto.** Es a propósito: una sala por encuentro. El
-estudiante no necesita guardar ninguno — entra desde el evento de ese día en su calendario.
+**Cada sesión tiene un enlace de Meet distinto.** Es a propósito: una sala por encuentro. Por eso
+lo que se publica es **el de la sesión que toca**, no un enlace del curso.
 
-**Un estudiante pregunta cuál es «el link de la clase».** No hay uno solo. Que abra el evento
-de esa sesión en su Google Calendar: el botón de Meet está ahí, y también en la descripción.
+**Un estudiante pregunta cuál es «el link de la clase».** No hay uno solo, y **el estudiante no
+ve tus eventos**: los encuentros son bloques de tu calendario, sin invitados. Publica el enlace
+de esa sesión en ExamLab (lo saca del log de `verificar`, o de la Ubicación del evento).
 
-**«BLOQUEADO: crearTodosLosCursos toca los 4 cursos a la vez».** Es la rejilla de seguridad,
+**«No me llegó ninguna invitación de Calendar».** Es lo esperado, y el correo de bienvenida ya lo
+dice: no se envían invitaciones. El horario está en el correo y el enlace de cada sesión se
+publica en ExamLab.
+
+**«BLOQUEADO: crearTodosLosCursos toca los 7 cursos a la vez».** Es la rejilla de seguridad,
 no un error. O pones `CONFIRMO_SEMESTRE_COMPLETO = true`, o usas la función del curso que
 querías.
 
@@ -413,13 +469,14 @@ el JSON en medio). Borra los sobrantes a mano o usa `recrear…`, que parte de c
 
 **Un estudiante dice que el link de Drive le pide acceso.** La carpeta no está compartida.
 
-**Importé el `.ics` y nadie recibió nada.** Es lo esperado: ver *Camino manual*.
+**Importé el `.ics` y nadie recibió nada.** Es lo esperado: `bloques_<curso>.ics` no tiene
+invitados (`METHOD:PUBLISH`), solo deja los bloques en tu agenda. Ver *Camino manual*.
 
 **El script dice «es de otro periodo -> omitido».** Correcto: ignora una nómina que cuelga de
 la carpeta de un periodo anterior.
 
-**El validador falla.** Arréglalo antes de crear eventos o enviar correos: todo esto es de
-cara al estudiante, y corregir aquí es más barato que retirar invitaciones ya enviadas.
+**El validador falla.** Arréglalo antes de crear eventos o enviar el correo: todo esto es de
+cara al estudiante, y corregir aquí es más barato que corregir un horario ya publicado.
 
 ---
 
@@ -433,6 +490,7 @@ bash config/calendario/pruebas_apps_script/probar.sh
 ```
 
 Comprueban lo que este manual promete —que reejecutar no duplica, que hay una sala por sesión,
-que el borrado no se lleva nada ajeno, que los interruptores frenan—. Córrelas después de
+que el borrado no se lleva nada ajeno **ni se sale del rango del curso**, que ningún evento
+lleva invitados ni manda correos, que los interruptores frenan—. Córrelas después de
 cualquier cambio en `generar_apps_script_encuentros.py`, **antes** de pegar el `.gs` en Apps
 Script. Detalle: `config/calendario/pruebas_apps_script/LEEME.md`.

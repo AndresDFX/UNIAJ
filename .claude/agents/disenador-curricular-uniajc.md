@@ -413,10 +413,21 @@ Reglas:
 
 ### Encuentros en Calendar y Meet (uno por sesión)
 
-- Los encuentros del semestre **no se crean importando un `.ics`**: importar deja los
-  invitados dentro del evento pero **Google no envía las invitaciones**. Se crean con el
-  Apps Script que emite `config/calendario/generar_apps_script_encuentros.py`, que usa la
-  API de Calendar con `sendUpdates: 'all'` y **sí** notifica.
+- **Dos fuentes de verdad, no una.** `config/calendario/semestre_2026_2.json` tiene los **4**
+  cursos de 13 sesiones; `config/calendario/introduccion_ingenieria_2026_2.json` tiene los **3
+  grupos** de FI300101 (`SB141B`, `SB141C`, `LB141F`: 16 sesiones de 90 min, dos días distintos
+  y fechas que se pasan a diciembre). **4 + 3 = 7 cursos** en 2026-2, y el generador falla a
+  propósito si no le salen 7. Todo lo que este documento dice de «13 sesiones / 15 temas / 2
+  dobles» aplica a los 4 primeros, **no** a Introducción a la Ingeniería, que tiene su propio
+  JSON y sus propios builders (`config/slides/build_uniajc_intro_ing_*.py`).
+- Los encuentros del semestre **no se crean importando un `.ics`**: importar no le da a cada
+  sesión su propia sala de Meet. Se crean con el Apps Script que emite
+  `config/calendario/generar_apps_script_encuentros.py`, que usa la API de Calendar.
+- Los eventos son **bloques del calendario personal del docente**: **sin invitados** y con
+  `sendUpdates: 'none'`, así que Google **no manda ningún correo a nadie**, ni al crear ni al
+  borrar. El `.ics` que se emite al lado (`bloques_<curso>.ics`) va con `METHOD:PUBLISH` y sin
+  un solo `ATTENDEE`. **No volver a meter la nómina en los eventos**: fue una decisión
+  explícita del docente, no un descuido.
 - Ese script le da a **cada sesión su propia sala de Meet**: N encuentros, N enlaces
   distintos. Cada una se pide con un `requestId` determinista y **distinto por sesión**
   (`…-s01`, `…-s02`, …), así reejecutar no crea una segunda sala para la misma sesión ni
@@ -424,24 +435,35 @@ Reglas:
 - Las sesiones **autónomas** por festivo van al calendario (el estudiante tiene que ver la
   fecha de cierre) pero **sin Meet**: no hay encuentro.
 - El correo de bienvenida **no publica ninguna URL de Meet**, a propósito: publicar una sola
-  mandaría al grupo a la sala equivocada en las demás sesiones. Dice que cada invitación de
-  Calendar trae su propio enlace. **Nunca inventar ni pegar a mano un enlace de Meet.**
+  mandaría al grupo a la sala equivocada en las demás sesiones. Y como **al estudiante no le
+  llega ninguna invitación de Calendar**, el correo se lo dice de frente: el horario es la
+  tabla del correo y **el docente comparte el enlace de cada sesión antes del encuentro**. Ese
+  párrafo es la única forma que tiene el estudiante de saber cómo entrar: si se quita, el curso
+  queda sin puerta de entrada. **Nunca inventar ni pegar a mano un enlace de Meet.**
 - Por lo mismo, el correo puede salir **antes** de crear los encuentros: no depende de ellos.
   Orden del manual 01: regenerar → correo → encuentros → grabaciones.
-- Para rehacer la serie: `eliminarEncuentros()` (dos pasadas: título exacto + barrido de la
-  misma **fecha y hora** para cazar eventos de una corrida anterior con título viejo) y
-  `recrearTodo()`. Ambas respetan `SIMULAR`. Borrar **manda cancelaciones** a los invitados; si
-  lo único que cambió es la nómina, `crearEncuentros()` sola sincroniza los invitados sin
-  tocar nada.
+- Para rehacer la serie: `eliminarEncuentros()` y `recrearTodo()`, ambas respetan `SIMULAR`.
+  Borrar hace **tres** pasadas: (1) título exacto de cada sesión; (2) barrido de la misma
+  **fecha y hora** para cazar eventos de una corrida anterior con título viejo; (3)
+  `_fantasmas_`, para sesiones que se movieron o se quitaron del JSON, que barre el **rango
+  propio del curso** (`c.inicio`/`c.fin`) y no el del periodo. Ese rango por curso es un
+  seguro, no un detalle: con el rango global, borrar un curso que termina en noviembre barrería
+  los apuntes personales del docente de diciembre que caigan a la hora de clase. Hay prueba que
+  lo cubre (bloque 26 de `probar.js` y `probar_curso.js`).
+- Borrar **no notifica a nadie** —no hay invitados—, pero **se pierde la sala de Meet**: al
+  recrear, esa sesión queda con un enlace nuevo y el que ya se hubiera compartido con el grupo
+  deja de servir. Eso es lo que hay que advertir antes de proponer un borrado, no las
+  cancelaciones.
 - El generador emite **dos** cosas de la misma plantilla: un `.gs` por curso y **uno
   consolidado** en `_privado/<periodo>/CrearEncuentros - TODO EL SEMESTRE <periodo>.gs`, con
   las funciones de cada curso (`crearSeminario`, `eliminarArquitectura`, …) más cuatro que
   abarcan el periodo (`*TodosLosCursos`). Esas cuatro exigen un segundo interruptor,
-  `CONFIRMO_SEMESTRE_COMPLETO`, porque tocan decenas de eventos y más de mil correos.
-  Puntero visible: `LEEME - Apps Script del semestre.md` en la raíz.
+  `CONFIRMO_SEMESTRE_COMPLETO`, porque tocan de golpe todos los eventos del periodo (102 en
+  2026-2, los 7 cursos). Puntero visible: `LEEME - Apps Script del semestre.md` en la raíz.
 - **Programación II y Seminario de Sistemas son el mismo grupo (341C)**: hay estudiantes en los
-  dos, así que toda operación «de los 4 cursos» les llega por duplicado. Decirlo cuando se
-  proponga una acción masiva.
+  dos, así que todo lo que se les manda por correo (bienvenida, avisos) les llega por duplicado.
+  Ya **no** aplica a los eventos de Calendar, que no mandan nada; sigue aplicando a cualquier
+  comunicación que se redacte. Decirlo cuando se proponga un envío masivo.
 - El generador tiene pruebas que ejecutan el `.gs` contra un simulacro de las APIs de Google:
   `bash config/calendario/pruebas_apps_script/probar.sh`. Correrlas tras cualquier cambio en
   `generar_apps_script_encuentros.py`, antes de pegar nada en Apps Script.
@@ -459,7 +481,7 @@ Reglas:
 |---|---|---|
 | Correo de bienvenida, calendario, cronograma, plan, CSV de eventos | `<Curso>/Plan curso/<periodo>/` | Sí |
 | Nómina del sistema académico | `<Curso>/Plan curso/<periodo>/` | **No** (`.gitignore`) |
-| `CrearEncuentros - <Curso>.gs`, `.ics`, nómina normalizada, planilla de asistencia | `<Curso>/Plan curso/<periodo>/_privado/` | **No** (regla `_privado/`) |
+| `CrearEncuentros - <Curso>.gs`, `bloques_<curso>.ics`, nómina normalizada, planilla de asistencia | `<Curso>/Plan curso/<periodo>/_privado/` | **No** (regla `_privado/`) |
 | Acuerdo pedagógico y diagnóstico | `<Curso>/Entregas docente/<periodo>/` | Sí |
 
 En `config/` quedan **solo los scripts**. Nunca dejar salidas de un curso ahí.

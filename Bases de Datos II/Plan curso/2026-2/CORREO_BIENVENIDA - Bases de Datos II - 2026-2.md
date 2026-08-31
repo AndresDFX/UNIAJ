@@ -34,14 +34,16 @@ Les doy la bienvenida al curso **Bases de Datos II** (código **FI303215**, grup
 
 > El curso son **13 sesiones de lunes**, una por semana, de 24/08/2026 a 16/11/2026.
 
-**Les va a llegar a este mismo correo institucional una invitación de Google Calendar por cada sesión del curso**, y **cada una trae adentro su propio enlace de Google Meet**. Acéptenlas: así les queda todo el horario en su calendario y el día de clase entran desde el evento de ese día, sin buscar ningún enlace.
+**No les va a llegar ninguna invitación de Google Calendar.** El horario del curso es el de la tabla de arriba: **guárdenlo ustedes** en su calendario si les sirve, y el **enlace de Google Meet se lo comparto yo antes de cada encuentro**.
 
-> No guarden un enlace fijo: **el de cada sesión es distinto**. El que sirve siempre es el del evento de ese día en su calendario.
+**¿Dónde busco el enlace del día?** En **ExamLab**, en el curso: ahí publico el enlace de la sesión antes de que empiece. Si ese día algo falla, lo mando también por el grupo de WhatsApp, por medio del vocero.
 
-Cada evento empieza con el tipo de encuentro, para que sepan de un vistazo si tienen que conectarse a esa hora:
+> No guarden un enlace fijo: **cada sesión tiene su propio enlace de Meet**, así que el de la semana pasada ya no sirve. El que vale es el que publico para ese día.
 
-- **`[SINCRONICO]`** — hay encuentro en vivo por Meet en el horario del curso: virtual en vivo, parcial o sustentación. **Deben asistir.**
-- **`[AUTONOMO]`** — **no hay encuentro**. Es trabajo independiente guiado: les dejo el material y la actividad, y ustedes la resuelven por su cuenta antes de la fecha de cierre.
+Las sesiones son de dos tipos, para que sepan de un vistazo si tienen que conectarse a esa hora:
+
+- **Sincrónica** — hay encuentro en vivo por Meet en el horario del curso: virtual en vivo, parcial o sustentación. **Deben asistir.**
+- **Autónoma** — **no hay encuentro** y por eso **no hay enlace ese día**. Es trabajo independiente guiado: les dejo el material y la actividad, y ustedes la resuelven por su cuenta antes de la fecha de cierre.
 
 En este curso hay **2 sesiones autónomas**, porque caen en festivo: 12/10/2026 (Día de la Diversidad Étnica y Cultural) y 02/11/2026 (Todos los Santos). **No se pierden**: la clase existe, con material y entrega, solo que sin encuentro en vivo.
 

@@ -1,11 +1,25 @@
 # -*- coding: utf-8 -*-
-"""Genera los eventos de calendario del semestre a partir de las listas REALES de estudiantes.
+"""Genera los eventos de calendario del semestre y las herramientas de asistencia.
+
+Los eventos son **bloques del calendario personal del docente**: no llevan invitados y
+nada de lo que sale de aquí envía un correo. El estudiante no entra por el calendario;
+el docente le comparte el enlace de la sesión por el canal que use con el grupo.
+
+Los **datos de estudiantes** siguen haciendo falta, pero solo para las herramientas de
+asistencia (nómina y planilla). Ya no alimentan ningún evento.
 
 Entradas
 --------
-1. `config/calendario/semestre_2026_2.json` — fuente de verdad del calendario
-   (13 sesiones por curso, fechas, tipo, parciales, sesiones dobles, sustentación).
-2. El listado de estudiantes de cada curso, descargado del sistema académico.
+1. `config/calendario/semestre_2026_2.json` — fuente de verdad de 4 de los 7 cursos
+   (13 sesiones, fechas, tipo, parciales, sesiones dobles, sustentación).
+2. `config/calendario/introduccion_ingenieria_2026_2.json` — los 3 GRUPOS de
+   Introducción a la Ingeniería (FI300101), 16 sesiones de 90 min, con fechas que llegan a
+   diciembre. Vive aparte a propósito (ver su `_comentario`) y NO se fusiona: se adapta con
+   `cursos_introduccion_ingenieria()` de `generar_apps_script_encuentros.py`, que es el
+   MISMO adaptador que usa el Apps Script. Se reusa en vez de copiarlo porque el título del
+   evento es su identidad: si los dos generadores lo escribieran distinto, el evento del
+   `.ics` y el que crea el Apps Script no se reconocerían y quedarían duplicados.
+3. El listado de estudiantes de cada curso, descargado del sistema académico.
    Se detecta automáticamente y se aceptan DOS formatos:
 
    a) **Academusoft "Lista de Alumnos por Grupo"** (`LISTA_DE_ALUMNOS_POR_GRUPOS*.xls`,
@@ -16,26 +30,33 @@ Entradas
       `DOCUM · NOMBRE · CORREO · INSTITUCIONAL_ESTUDIANTE · COD_MATE · GRUPO · …`.
 
    Se valida que el código de materia del archivo coincida con el del curso en el JSON;
-   si no coincide, el curso se omite (evita cruzar nóminas entre asignaturas).
+   si no coincide, el curso se omite (evita cruzar nóminas entre asignaturas). Cuando
+   VARIOS cursos comparten código —los 3 grupos de FI300101— el código solo no distingue
+   un grupo de otro, así que además se exige que el nombre del archivo diga el grupo; si no
+   lo dice, se rechaza en vez de arriesgar la planilla de asistencia de otro grupo.
 
 Salidas
 -------
-* `<Curso>/Plan curso/2026-2/eventos_calendario_2026-2.csv` — **sin datos personales**.
-  Formato de importación de Google Calendar (Subject, Start Date, …). Versionable.
-* `<Curso>/Plan curso/2026-2/_privado/` — **CON datos personales, NO se versiona**
-  (la regla `_privado/` está en .gitignore). Todo lo del curso vive en la carpeta del curso:
-    - `invitaciones_<curso>.ics`  · un evento por sesión con los estudiantes como ATTENDEE
-    - `nomina_<curso>.csv`        · nómina normalizada (documento, nombre, correo, origen)
-    - `asistencia_<curso>.csv`    · planilla estudiantes × sesiones (la nota de asistencia)
+* `<Curso>/Plan curso/2026-2/eventos_calendario_2026-2[ - <grupo>].csv` — **sin datos
+  personales**. Formato de importación de Google Calendar (Subject, Start Date, …).
+  Versionable. Lleva el grupo en el nombre cuando varios grupos comparten carpeta.
+* `<Curso>/Plan curso/2026-2/_privado/`:
+    - `bloques_<curso>.ics`      · un bloque por sesión, **sin invitados** (antes se llamaba
+      `invitaciones_<curso>.ics` y metía a cada estudiante como ATTENDEE). Sin datos
+      personales; se queda en `_privado/` por convención del proyecto.
+    - `nomina_<curso>.csv`       · **CON datos personales** (documento, nombre, correo, origen)
+    - `asistencia_<curso>.csv`   · **CON datos personales**: planilla estudiantes × sesiones
     - `pendientes_correo_<curso>.csv` · solo si alguien no trae correo institucional
+  La regla `_privado/` está en .gitignore: nada de esa carpeta se versiona.
 
 Entrada opcional que mantiene el docente, en la misma carpeta privada:
 `correos_manuales.csv` (`documento,correo,nota`) para completar los correos que el export
 academico no trae. Se cruza por documento.
 
-Ojo: importar el .ics NO envia las invitaciones (Google no lo hace al importar). Para que
-lleguen, usa el Apps Script que genera `generar_apps_script_encuentros.py`, que además deja
-una sala de Meet propia por sesión. Procedimiento: carpeta `Manuales/` en la raíz.
+El `.ics` y el CSV son el camino manual. El recomendado sigue siendo el Apps Script de
+`generar_apps_script_encuentros.py`, por una razón que no tiene que ver con invitaciones:
+es el único que le da a **cada sesión su propia sala de Meet**. Procedimiento: carpeta
+`Manuales/` en la raíz.
 
 Uso
 ---
@@ -50,9 +71,11 @@ from __future__ import annotations
 
 import csv
 import glob
+import io
 import json
 import os
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -81,6 +104,10 @@ TIPO_ETIQUETA = {
     "presencial": "Presencial",   # sin uso en 2026-2 (modalidad Virtual)
     "virtual": "Virtual sincrónica",
     "autonoma": "Autónoma (festivo)",
+    # `introduccion_ingenieria_2026_2.json` llama `autonoma_festivo` a lo que este modulo
+    # llama `autonoma`. El adaptador lo traduce antes de llegar aqui; el alias esta para que,
+    # si algun dia entra sin traducir, la etiqueta salga en castellano y no como slug crudo.
+    "autonoma_festivo": "Autónoma (festivo)",
     "sustentacion": "Sustentaciones del Proyecto Integrador",
 }
 
@@ -275,13 +302,23 @@ def cargar_nomina(meta: dict, key: str, manuales: dict) -> dict | None:
 def titulo(meta: dict, cl: dict) -> str:
     """Título del evento, con el tipo de encuentro al principio.
 
-    El estudiante ve el prefijo antes que nada en su calendario, así que ahí va lo único
-    que necesita decidir de un vistazo: si tiene que conectarse/asistir a esa hora o no.
-    `[SINCRONICO]` = hay encuentro en vivo (virtual por Meet, parcial o sustentación);
-    `[AUTONOMO]` = no hay encuentro, es trabajo independiente guiado con fecha de cierre.
+    El prefijo es lo primero que se ve en el calendario, así que ahí va lo único que hay que
+    decidir de un vistazo: si a esa hora hay encuentro o no. `[SINCRONICO]` = encuentro en
+    vivo (virtual por Meet, parcial o sustentación); `[AUTONOMO]` = no hay encuentro, es
+    trabajo independiente guiado con fecha de cierre.
+
+    OJO: este título es la IDENTIDAD del evento. El Apps Script busca «su» evento comparando
+    el título exacto (`_buscarEvento_`), así que tiene que salir byte a byte igual que el que
+    escribe `generar_apps_script_encuentros._titulo`, que delega en esta función. Si divergen,
+    el `.ics` importado y los eventos del Apps Script no se reconocen y el calendario acaba
+    con dos series por sesión.
     """
-    prefijo = "[AUTONOMO]" if cl["tipo"] == "autonoma" else "[SINCRONICO]"
-    if cl.get("parcial"):
+    prefijo = "[AUTONOMO]" if str(cl["tipo"]).startswith("autonoma") else "[SINCRONICO]"
+    if cl.get("n") is None:
+        # Semana autonoma por festivo de los grupos de Introduccion a la Ingenieria: no tiene
+        # numero de sesion (`sesion: null` en el JSON). Sin esta rama saldria «Sesion None».
+        cuerpo = f"Semana autónoma · {meta['nombre']}"
+    elif cl.get("parcial"):
         cuerpo = f"Parcial {cl['parcial_n']} · {meta['nombre']}"
     elif cl["tipo"] == "sustentacion":
         cuerpo = f"Sustentaciones PI · {meta['nombre']}"
@@ -297,7 +334,7 @@ def ubicacion(cl: dict) -> str:
     contrario. Si un periodo futuro vuelve a tener sesiones presenciales, el tipo
     `presencial` del JSON las distingue aquí.
     """
-    if cl["tipo"] == "autonoma":
+    if str(cl["tipo"]).startswith("autonoma"):
         return "Trabajo autónomo (sin encuentro)"
     if cl["tipo"] == "presencial":
         return "UNIAJC (presencial)"
@@ -310,15 +347,46 @@ def material(cl: dict) -> str:
 
 
 def descripcion(meta: dict, cl: dict) -> str:
+    """Descripción del evento, en una línea con las partes separadas por ' | '.
+
+    Tres cosas que antes estaban cableadas y ahora salen del curso, porque hay 7 cursos y no
+    todos tienen 13 sesiones de 120 min:
+
+    - el total de sesiones sale de `n_clases` (13 en los 4 cursos del semestre corto,
+      16 en los grupos de Introducción a la Ingeniería). Estaba escrito «de 13» a mano, así
+      que la sesión 16 de un grupo decía «Sesión 16 de 13»;
+    - el encabezado usa `nombre_base` si el curso lo trae, para no repetir el grupo dos veces
+      («… · SB141C (FI300101) · grupo SB141C»);
+    - la semana autónoma por festivo no tiene número de sesión (`n is None`) y lleva su
+      propia redacción, con la tarea del equipo.
+
+    El cierre de corte va como parte opcional (`cierre_corte`) y NO como `parcial`: en
+    Introducción a la Ingeniería no hay parciales escritos, y marcarlo como parcial haría que
+    `titulo()` bautizara el evento «Parcial N · …».
+    """
+    total = meta.get("n_clases") or len(meta["clases"])
+    cab = (f"{meta.get('nombre_base') or meta['nombre']} ({meta['codigo']})"
+           f" · grupo {meta['grupo']}")
+    if cl.get("n") is None:
+        partes = [cab, f"Semana autónoma · {TIPO_ETIQUETA['autonoma']}"]
+        if cl.get("festivo"):
+            partes.append(f"Festivo: {cl['festivo']}")
+        partes.append("No hay encuentro sincrónico: no lleva sala de Meet.")
+        if cl.get("tarea"):
+            partes.append(f"Trabajo del equipo: {cl['tarea']}")
+        partes.append(f"Docente: {DOCENTE} · {CORREO_DOCENTE}")
+        return " | ".join(partes)
     partes = [
-        f"{meta['nombre']} ({meta['codigo']}) · grupo {meta['grupo']}",
-        f"Sesión {cl['n']} de 13 · {TIPO_ETIQUETA.get(cl['tipo'], cl['tipo'])}",
+        cab,
+        f"Sesión {cl['n']} de {total} · {TIPO_ETIQUETA.get(cl['tipo'], cl['tipo'])}",
         f"Tema: {_tema_txt(cl)}",
         f"Material docente: {material(cl)}" + (" (sesión doble)" if cl.get("sesion_doble") else ""),
     ]
     if cl.get("festivo"):
         partes.append(f"Festivo: {cl['festivo']}")
-    if cl["tipo"] == "autonoma":
+    if cl.get("cierre_corte"):
+        partes.append(cl["cierre_corte"])
+    if str(cl["tipo"]).startswith("autonoma"):
         partes.append("Clase autónoma: trabajo independiente guiado, sin encuentro sincrónico.")
     if cl.get("parcial"):
         partes.append("Día de parcial = solo evaluación (virtual síncrono).")
@@ -328,14 +396,30 @@ def descripcion(meta: dict, cl: dict) -> str:
     return " | ".join(partes)
 
 
-def hhmm(horario: str) -> tuple[str, str]:
+def hhmm(horario: str, quien: str = "") -> tuple[str, str]:
+    """`'18:00 – 20:00'` -> `('180000', '200000')`.
+
+    El separador da igual (los 4 cursos usan raya larga y los 3 grupos guion normal): la
+    expresión solo busca pares HH:MM. Lo que sí importa es que haya DOS: antes esto
+    desempaquetaba a ciegas y una cadena mal escrita abortaba con un IndexError que no decía
+    de qué curso venía.
+    """
     h = re.findall(r"(\d{1,2}):(\d{2})", horario)
+    if len(h) < 2:
+        raise ValueError(f"horario sin hora de inicio y fin{f' ({quien})' if quien else ''}: "
+                         f"{horario!r}")
     (h1, m1), (h2, m2) = h[0], h[1]
     return f"{int(h1):02d}{m1}00", f"{int(h2):02d}{m2}00"
 
 
 def csv_google(meta: dict) -> list[list[str]]:
-    ini, fin = [x[:2] + ":" + x[2:4] for x in hhmm(meta["horario"])]
+    """Las 9 columnas del importador CSV de Google Calendar. Ni una de invitados.
+
+    No es una omisión que se pueda arreglar: el importador CSV/TSV de Google no soporta
+    invitados (solo el `.ics` o la API). Este CSV ya era un bloque personal antes del cambio.
+    El único correo que aparece es el del docente, dentro de `Description`.
+    """
+    ini, fin = [x[:2] + ":" + x[2:4] for x in hhmm(meta["horario"], meta["nombre"])]
     rows = [["Subject", "Start Date", "Start Time", "End Date", "End Time",
              "All Day Event", "Description", "Location", "Private"]]
     for cl in meta["clases"]:
@@ -347,13 +431,31 @@ def csv_google(meta: dict) -> list[list[str]]:
     return rows
 
 
-def ics(meta: dict, estudiantes: list[dict]) -> str:
-    ini, fin = hhmm(meta["horario"])
+def ics(meta: dict) -> str:
+    """Los bloques del curso para el calendario PERSONAL del docente. Sin invitados.
+
+    Antes cada VEVENT llevaba un `ATTENDEE` por estudiante (la nómina completa repetida 13
+    veces en el archivo) y el calendario se declaraba `METHOD:REQUEST`, o sea invitación
+    iTIP: Outlook y Thunderbird lo presentan como «solicitud de reunión» con botones de RSVP.
+    Ahora:
+
+    - **no hay `ATTENDEE`**: el archivo no contiene datos personales de nadie;
+    - `METHOD:PUBLISH`, que es lo que corresponde a un calendario que solo se publica;
+    - **no hay `ORGANIZER`**: con organizador y sin invitados, Google y Outlook pintan el
+      evento como «reunión organizada por otro» en vez de como bloque propio.
+
+    Lo que queda es lo mismo de antes: título, descripción, lugar, fecha, hora y zona.
+    """
+    ini, fin = hhmm(meta["horario"], meta["nombre"])
+    # El nombre de los 3 grupos de FI300101 ya trae el grupo dentro («… · SB141C»), asi que
+    # el slug distingue los tres y sus UID no se pisan. Importar dos .ics con el mismo UID
+    # hace que el segundo SOBRESCRIBA los eventos del primero: mismo UID = mismo evento.
     slug = re.sub(r"[^a-z0-9]+", "-", meta["nombre"].lower()).strip("-")
     L = [
         "BEGIN:VCALENDAR", "VERSION:2.0",
-        "PRODID:-//UNIAJC//Calendario 2026-2//ES",
-        "CALSCALE:GREGORIAN", "METHOD:REQUEST",
+        f"PRODID:-//UNIAJC//Calendario {PERIODO}//ES",
+        "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
+        f"X-WR-CALNAME:{_esc(meta['nombre'])} {PERIODO}",
         "BEGIN:VTIMEZONE", f"TZID:{TZID}",
         "BEGIN:STANDARD", "DTSTART:19930403T000000",
         f"TZOFFSETFROM:{UTC_OFFSET}", f"TZOFFSETTO:{UTC_OFFSET}",
@@ -361,26 +463,24 @@ def ics(meta: dict, estudiantes: list[dict]) -> str:
     ]
     for cl in meta["clases"]:
         stamp = cl["fecha"].replace("-", "")
+        # La semana autonoma por festivo no tiene numero de sesion: sin esto, las dos que hay
+        # (SB141C y LB141F) saldrian con UID `...-sNone-...`, y dos UID iguales en dos .ics.
+        ident = f"s{cl['n']}" if cl.get("n") is not None else f"aut{stamp}"
         L += [
             "BEGIN:VEVENT",
-            f"UID:{slug}-s{cl['n']}-2026-2@uniajc.edu.co",
+            f"UID:{slug}-{ident}-{PERIODO}@uniajc.edu.co",
             f"DTSTAMP:{stamp}T000000Z",
             f"DTSTART;TZID={TZID}:{stamp}T{ini}",
             f"DTEND;TZID={TZID}:{stamp}T{fin}",
             f"SUMMARY:{_esc(titulo(meta, cl))}",
             f"DESCRIPTION:{_esc(descripcion(meta, cl))}",
-            f"LOCATION:{ubicacion(cl)}",
-            f"ORGANIZER;CN={_esc(DOCENTE)}:mailto:{CORREO_DOCENTE}",
+            # `_esc` aunque hoy los dos valores posibles no traigan coma ni punto y coma: en
+            # iCalendar una coma sin escapar parte el valor en dos y el evento llega raro.
+            f"LOCATION:{_esc(ubicacion(cl))}",
             # las autónomas no bloquean agenda: no hay encuentro sincrónico
-            "TRANSP:TRANSPARENT" if cl["tipo"] == "autonoma" else "TRANSP:OPAQUE",
+            "TRANSP:TRANSPARENT" if str(cl["tipo"]).startswith("autonoma") else "TRANSP:OPAQUE",
+            "END:VEVENT",
         ]
-        for e in estudiantes:
-            if e["correo"]:
-                L.append(
-                    "ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;"
-                    f"CN={_esc(e['nombre'])}:mailto:{e['correo']}"
-                )
-        L.append("END:VEVENT")
     L.append("END:VCALENDAR")
     return "\r\n".join(_fold(x) for x in L) + "\r\n"
 
@@ -410,33 +510,126 @@ def escribir_csv(path: Path, rows: list[list[str]], bom: bool = True) -> None:
         csv.writer(fh).writerows(rows)
 
 
+# ----------------------------------------------------------------- los 7 cursos del periodo
+
+def cursos_del_periodo() -> list[tuple[str, dict]]:
+    """Los 7 cursos: los 4 de `semestre_2026_2.json` + los 3 grupos de FI300101.
+
+    Los grupos se traen del adaptador de `generar_apps_script_encuentros`, que ya los pasa a
+    esta misma forma (`clases[]` con `n`/`fecha`/`tipo`/`tema`). Se reusa y no se copia: el
+    título del evento es su identidad, y dos adaptadores en dos archivos acabarían
+    escribiéndolo distinto.
+
+    El import es perezoso a propósito: ese módulo importa ESTE (`import
+    generar_eventos_calendario as ev`), así que un import arriba sería un ciclo. Ejecutando
+    este archivo como script se cargan dos copias del módulo (`__main__` y la importada); es
+    inofensivo porque aquí no hay estado mutable, solo los JSON leídos otra vez.
+    """
+    cursos = list(DATA["cursos"].items())
+    try:
+        from generar_apps_script_encuentros import cursos_introduccion_ingenieria
+    except Exception as e:      # el otro generador no debe poder tumbar a este
+        print(f"AVISO: no pude cargar los grupos de Introduccion a la Ingenieria ({e}).")
+        print("       Se generan solo los cursos de semestre_2026_2.json.")
+        return cursos
+    return cursos + cursos_introduccion_ingenieria()
+
+
+def alerta_introduccion() -> dict:
+    """El aviso de fechas por confirmar que trae `introduccion_ingenieria_2026_2.json`.
+
+    Las 16 sesiones de esos 3 grupos se pasan a diciembre, más de un mes después del cierre de
+    los otros cuatro cursos. No se mueve ninguna fecha: solo se repite el aviso, para que no se
+    imprima una salida verde sobre fechas que el programa todavía no ha confirmado.
+    """
+    try:
+        from generar_apps_script_encuentros import DATA_II
+        return DATA_II.get("alerta_calendario") or {}
+    except Exception:
+        return {}
+
+
+def _sufijo_grupo(meta: dict, folders: dict[str, int]) -> str:
+    """`' - SB141B'` cuando varios cursos comparten carpeta; `''` en el resto.
+
+    Los 3 grupos de FI300101 son 3 cursos distintos (día, hora y calendario propios) dentro de
+    UNA carpeta. Sin el sufijo, el CSV del tercero pisa al del primero sin decir nada.
+    """
+    return f" - {meta['grupo']}" if folders.get(meta["folder"], 0) > 1 else ""
+
+
+def _borrar_ics_viejos(privado: Path) -> None:
+    """Se lleva los `invitaciones_*.ics` de corridas anteriores.
+
+    Esos archivos llevaban un ATTENDEE por estudiante en cada VEVENT (la nómina completa,
+    repetida una vez por sesión). Al renombrar la salida a `bloques_*.ics` dejarían de
+    sobrescribirse y se quedarían en disco como copias huérfanas de la nómina.
+    """
+    for viejo in sorted(privado.glob("invitaciones_*.ics")):
+        viejo.unlink()
+        print(f"   - borrado {viejo.name} (llevaba la nomina como ATTENDEE)")
+
+
 # ----------------------------------------------------------------- main
 
 def main() -> None:
-    total_ok = 0
-    for key, meta in DATA["cursos"].items():
+    cursos = cursos_del_periodo()
+    folders: dict[str, int] = {}
+    for _, m in cursos:
+        folders[m["folder"]] = folders.get(m["folder"], 0) + 1
+    con_eventos = con_nomina = 0
+
+    for key, meta in cursos:
         print(f"\n== {meta['nombre']} ({meta['codigo']} · grupo {meta['grupo']})")
-        slug = key
+        slug = key                      # unico por curso Y por grupo
+        suf = _sufijo_grupo(meta, folders)
 
         # 1) CSV de eventos sin datos personales (versionable)
-        destino = ROOT / meta["folder"] / "Plan curso" / "2026-2" / "eventos_calendario_2026-2.csv"
+        destino = (ROOT / meta["folder"] / "Plan curso" / PERIODO_DIR
+                   / f"eventos_calendario_{PERIODO_DIR}{suf}.csv")
         escribir_csv(destino, csv_google(meta))
         print(f"   eventos (sin nomina) -> {destino.relative_to(ROOT)}")
 
-        # 2) Salidas con nómina real, en la carpeta privada DEL CURSO
         privado = privado_de(meta)
         privado.mkdir(parents=True, exist_ok=True)
         (privado / "LEEME.txt").write_text(
-            "Datos personales de estudiantes (nombre, documento, correo).\n"
+            "Aqui viven las herramientas de asistencia del curso.\n"
+            "nomina_*.csv y asistencia_*.csv llevan datos personales de estudiantes\n"
+            "(nombre, documento, correo). bloques_*.ics NO: son bloques de calendario\n"
+            "sin invitados, y se quedan aqui por convencion del proyecto.\n"
             "Esta carpeta esta en .gitignore: NO se versiona ni se comparte.\n"
             "Se regenera con: python config/calendario/generar_eventos_calendario.py\n"
             "Procedimiento: ver la carpeta Manuales/ en la raiz de Cursos.\n",
             encoding="utf-8",
         )
+
+        # 2) .ics de bloques del calendario personal: ya NO depende de la nomina, porque ya
+        #    no lleva invitados. Antes se escribia despues del porton de la nomina, asi que un
+        #    curso sin listado se quedaba tambien sin eventos.
+        #    newline="" es obligatorio: el .ics ya trae CRLF (RFC 5545) y sin esto Windows
+        #    traduciria cada \n y dejaria \r\r\n, que algunos clientes rechazan.
+        _borrar_ics_viejos(privado)
+        with (privado / f"bloques_{slug}.ics").open("w", encoding="utf-8", newline="") as fh:
+            fh.write(ics(meta))
+        print(f"   bloques (sin invitados) -> {privado.relative_to(ROOT)}/bloques_{slug}.ics")
+        con_eventos += 1
+
+        # 3) Herramientas de asistencia: estas SI necesitan la nomina real
         manuales = cargar_correos_manuales(meta)
         info = cargar_nomina(meta, key, manuales)
+        if info and folders.get(meta["folder"], 0) > 1 \
+                and meta["grupo"].lower() not in info["archivo"].name.lower():
+            # `buscar_listado` no sabe de grupos y el filtro de seguridad de `cargar_nomina`
+            # solo compara el codigo de materia, que los 3 grupos de FI300101 comparten: el
+            # primer archivo en orden alfabetico ganaria para los tres y dos grupos acabarian
+            # con la planilla de asistencia de otro.
+            print(f"   ! {info['archivo'].name} no dice {meta['grupo']} y este codigo lo usan "
+                  f"{folders[meta['folder']]} grupos: no lo uso (podria ser de otro grupo).")
+            print(f"     renombra el listado con el grupo, p.ej. '{meta['grupo']} - "
+                  f"INTRODUCCION A LA INGENIERIA.xls'")
+            info = None
         if not info:
-            print("   sin listado de estudiantes: no se generan .ics ni planillas.")
+            print("   sin listado de estudiantes: quedan el CSV y el .ics; falta la planilla.")
             print("   coloca el export del sistema academico en la carpeta del curso y re-ejecuta.")
             continue
 
@@ -447,11 +640,11 @@ def main() -> None:
         manual = sum(1 for e in ests if e.get("correo_manual"))
         inst = len(con_correo) - manual
         detalle_correo = f"institucional {inst}" + (f" + personal {manual}" if manual else "")
-        print(f"   estudiantes: {len(ests)} · invitables: {len(con_correo)} ({detalle_correo})"
+        print(f"   estudiantes: {len(ests)} · con correo: {len(con_correo)} ({detalle_correo})"
               + (f" · repitentes: {sum(e['repitente'] for e in ests)}" if ests else ""))
         sin_correo = [e for e in ests if not e["correo"]]
         if sin_correo:
-            print(f"   ! {len(sin_correo)} sin correo institucional: NO reciben invitación.")
+            print(f"   ! {len(sin_correo)} sin correo institucional: no hay por donde escribirles.")
             escribir_csv(privado / f"pendientes_correo_{slug}.csv",
                          [["documento", "nombre", "accion"]]
                          + [[e["documento"], e["nombre"],
@@ -459,12 +652,6 @@ def main() -> None:
                             for e in sin_correo])
             print(f"     -> pendientes_correo_{slug}.csv (para pedirlos a Registro Académico)")
 
-        # newline="" es obligatorio: el .ics ya trae CRLF (RFC 5545) y sin esto Windows
-        # traduciria cada \n y dejaria \r\r\n, que algunos clientes rechazan.
-        with (privado / f"invitaciones_{slug}.ics").open(
-            "w", encoding="utf-8", newline=""
-        ) as fh:
-            fh.write(ics(meta, con_correo))
         escribir_csv(privado / f"nomina_{slug}.csv",
                      [["documento", "nombre", "correo", "origen_correo", "repitente"]]
                      + [[e["documento"], e["nombre"], e["correo"],
@@ -472,24 +659,36 @@ def main() -> None:
                          "si" if e["repitente"] else "no"]
                         for e in ests])
 
+        # Las semanas autónomas no tienen número de sesión (`n` es None): sin este caso la
+        # cabecera decía "SNone" y el docente no sabía a qué fecha pasar lista.
         cab = ["documento", "nombre"] + [
-            f"S{cl['n']} {cl['fecha']}"
-            + ("(P)" if cl.get("parcial") else "(A)" if cl["tipo"] == "autonoma" else "")
+            (f"S{cl['n']} {cl['fecha']}" if cl.get("n") is not None else f"Aut {cl['fecha']}")
+            + ("(P)" if cl.get("parcial")
+               else "(A)" if str(cl["tipo"]).startswith("autonoma") else "")
             for cl in meta["clases"]
         ]
         escribir_csv(privado / f"asistencia_{slug}.csv",
                      [cab] + [[e["documento"], e["nombre"]] + [""] * len(meta["clases"])
                               for e in ests])
-        print(f"   .ics + nomina + planilla -> {privado.relative_to(ROOT)}/")
-        total_ok += 1
+        print(f"   nomina + planilla de asistencia -> {privado.relative_to(ROOT)}/")
+        con_nomina += 1
 
-    print(f"\nOK. Cursos con nomina real: {total_ok}/{len(DATA['cursos'])}")
-    print("OJO: importar el .ics NO envia las invitaciones (Google no lo hace al importar).")
-    print("Para que lleguen y para que cada sesion tenga SU sala de Meet, usa el Apps Script:")
+    print(f"\nOK. Cursos con eventos: {con_eventos}/{len(cursos)}"
+          f" · con nomina real: {con_nomina}/{len(cursos)}")
+    print("Los eventos son bloques de TU calendario: sin invitados y sin correos a nadie.")
+    print("El .ics sirve de respaldo; el camino recomendado sigue siendo el Apps Script,")
+    print("que es el unico que le da a cada sesion su propia sala de Meet:")
     print("  python config/calendario/generar_apps_script_encuentros.py")
-    print("y ejecuta crearEncuentros(). Procedimiento: carpeta Manuales/ en la raiz.")
-    print("Recuerda: las carpetas Plan curso/<periodo>/_privado/ NO se versionan (datos personales).")
+    al = alerta_introduccion()
+    if al:
+        print(f"\nAVISO (Introducción a la Ingeniería): {al.get('titulo', '')}")
+        print("  Las fechas de diciembre pasan del cierre institucional 2026-11-22 y están")
+        print("  PENDIENTES de confirmar con el programa. No se movió ninguna fecha.")
+        print("  Detalle y plan B: LEEME - Apps Script del semestre.md")
+    print("\nRecuerda: Plan curso/<periodo>/_privado/ NO se versiona (ahi vive la nomina).")
 
 
 if __name__ == "__main__":
+    # Sin esto, en la consola de Windows (cp1252) un print con tildes revienta o sale ilegible.
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     main()

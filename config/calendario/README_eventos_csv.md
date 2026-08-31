@@ -12,37 +12,52 @@ UTF-8 con BOM, 14 columnas. La columna de notas NO lleva nómina de estudiantes 
 Una fila = una sesión; `es_parcial=si` marca parciales síncronos;
 `tipo_clase` = `presencial` | `virtual` | `autonoma` | `sustentacion`.
 
-## Eventos de calendario a partir de la nómina real
+## Bloques de calendario y herramientas de asistencia
 
 ```bash
 python config/calendario/generar_eventos_calendario.py
 ```
 
-Lee `semestre_2026_2.json` + el **listado real de estudiantes** de cada curso (lo detecta solo;
-acepta el export Academusoft `LISTA_DE_ALUMNOS_POR_GRUPOS*.xls` y el formato
+Cubre los **7 cursos del periodo**: los 4 de `semestre_2026_2.json` más los 3 grupos de
+Introducción a la Ingeniería (`introduccion_ingenieria_2026_2.json`, 16 sesiones cada uno).
+Los dos JSON son fuentes de verdad separadas y el script lee las dos.
+
+Para la planilla de asistencia usa además el **listado real de estudiantes** de cada curso (lo
+detecta solo; acepta el export Academusoft `LISTA_DE_ALUMNOS_POR_GRUPOS*.xls` y el formato
 `<grupo> - <MATERIA>.xls[x]`, y valida que el código `FI######` del archivo coincida con el del
-curso para no cruzar nóminas). Requiere `xlrd` y `openpyxl`.
+curso para no cruzar nóminas). Requiere `xlrd` y `openpyxl`. Cuando varios grupos comparten
+código —los 3 de `FI300101`— exige además que el nombre del archivo diga el grupo: si no lo
+dice, no lo usa, porque el código solo no distingue a SB141B de SB141C.
 
 Produce dos clases de salida, deliberadamente separadas. **Todo lo de un curso vive en la
 carpeta del curso**; en `config/` quedan solo los scripts.
 
-| Salida | Nómina | Ruta | Para qué |
+| Salida | Datos personales | Ruta | Para qué |
 |---|---|---|---|
-| `eventos_calendario_<periodo>.csv` | **No** | `<Curso>/Plan curso/<periodo>/` | Importar los bloques a tu calendario |
-| `invitaciones_<curso>.ics` | **Sí** | `<Curso>/Plan curso/<periodo>/_privado/` | Eventos con los estudiantes como `ATTENDEE` |
+| `eventos_calendario_<periodo>[ - <grupo>].csv` | **No** | `<Curso>/Plan curso/<periodo>/` | Importar los bloques a tu calendario |
+| `bloques_<curso>.ics` | **No** | `<Curso>/Plan curso/<periodo>/_privado/` | Los mismos bloques como `.ics` (respaldo del Apps Script) |
 | `nomina_<curso>.csv` | **Sí** | idem | documento, nombre, correo, `origen_correo`, repitente |
 | `asistencia_<curso>.csv` | **Sí** | idem | Planilla estudiantes × sesiones (nota de asistencia) |
 | `pendientes_correo_<curso>.csv` | **Sí** | idem (solo si aplica) | Quién no trae correo institucional |
 
-La regla `_privado/` está en `.gitignore`: son datos personales de estudiantes (nombre,
-documento, correo) y **no se versionan ni se comparten**. El CSV de eventos que sí se versiona
-no lleva nómina, y el script no imprime nombres ni correos en consola, solo conteos.
+El sufijo ` - <grupo>` aparece solo cuando varios cursos comparten carpeta (los 3 grupos de
+Introducción a la Ingeniería). Sin él, el CSV del tercer grupo pisaba al del primero.
 
-### El camino recomendado no es el .ics
+La regla `_privado/` está en `.gitignore`: ahí viven los datos personales de estudiantes
+(nombre, documento, correo) y **no se versionan ni se comparten**. El `.ics` ya no lleva
+ninguno —se queda ahí por convención, junto al resto de las salidas del curso—. El script no
+imprime nombres ni correos en consola, solo conteos.
 
-**Importar un `.ics` no envía las invitaciones**: Google deja a los invitados dentro del
-evento pero no les manda nada. Para que lleguen, y para que cada sesión tenga **su propia
-sala de Meet**, se usa el Apps Script que genera:
+### Los eventos son bloques de TU calendario
+
+Los eventos **no llevan invitados y no mandan ningún correo**, ni al crearlos, ni al
+actualizarlos, ni al borrarlos. Reservan tu agenda y guardan el enlace de Meet de cada sesión;
+ese enlace se comparte a mano, por donde de verdad le escribes al grupo. En el `.ics` esto se
+traduce en que no hay ni un `ATTENDEE`, no hay `ORGANIZER` y el calendario se declara
+`METHOD:PUBLISH` (publicación) en vez de `METHOD:REQUEST` (invitación iTIP).
+
+El camino recomendado sigue siendo el Apps Script, porque es el único que le da a cada sesión
+**su propia sala de Meet**:
 
 ```bash
 python config/calendario/generar_apps_script_encuentros.py
@@ -50,13 +65,13 @@ python config/calendario/generar_apps_script_encuentros.py
 
 Emite un `.gs` por curso en `<Curso>/Plan curso/<periodo>/_privado/` y uno consolidado del
 periodo en `_privado/<periodo>/`, los dos de la misma plantilla. Crean la serie con la API de
-Calendar (`sendUpdates: 'all'`) y le dan a cada sesión sincrónica una sala de Meet distinta
+Calendar (`sendUpdates: 'none'`) y le dan a cada sesión sincrónica una sala de Meet distinta
 (`requestId` propio por sesión, así reejecutar no duplica). Las autónomas por festivo van al
 calendario pero **sin Meet**, porque no hay encuentro.
 
-No hay ningún enlace que pegar de vuelta en el material: al estudiante le llega el de cada
-sesión dentro de su invitación de Calendar. Los `.gs` traen también las funciones para borrar
-y rehacer la serie desde cero — por curso y, en el consolidado, para todo el periodo.
+El enlace de cada sesión queda en `Ubicación` y en la descripción del evento: de ahí se copia
+para compartirlo con el grupo. Los `.gs` traen también las funciones para borrar y rehacer la
+serie desde cero — por curso y, en el consolidado, para todo el periodo.
 
 Se prueban ejecutándolos contra un simulacro de las APIs de Google:
 
@@ -64,8 +79,8 @@ Se prueban ejecutándolos contra un simulacro de las APIs de Google:
 bash config/calendario/pruebas_apps_script/probar.sh
 ```
 
-El `.ics` y el CSV quedan como camino manual alternativo. Las sesiones autónomas van en el
-`.ics` como `TRANSP:TRANSPARENT` porque no bloquean agenda.
+El `.ics` y el CSV quedan como camino manual alternativo, sin Meet. Las sesiones autónomas van
+en el `.ics` como `TRANSP:TRANSPARENT` porque no bloquean agenda.
 
 **Procedimiento completo:** carpeta `Manuales/` en la raíz de `Cursos`.
 
@@ -86,6 +101,14 @@ festivo o sesión autónoma, cortes que cubren todas las sesiones), que los CSV 
 `CALENDARIO_<periodo>.md` derivados coincidan con el JSON, y que las carpetas de Drive del
 JSON coincidan con las del Apps Script de grabaciones. Devuelve código 1 si algo falla.
 
+Los 3 grupos de Introducción a la Ingeniería se validan en un **bloque aparte** (el C), con sus
+propias reglas: 16 sesiones 1:1 con los 16 temas, sin sesiones dobles, sin parciales escritos,
+y el festivo del 08/12/2026 —martes, fecha fija— declarado como semana autónoma con tarea. Va
+separado a propósito: meterlo en la validación de los cursos de 13 sesiones habría obligado a
+llenarla de excepciones, con el riesgo de aflojar las reglas de los otros cuatro. Que las
+fechas lleguen a diciembre sale como **aviso**, no como fallo: están pendientes de confirmar
+con el programa y la instrucción fue no comprimirlas.
+
 Si cambia el calendario o llega un listado actualizado: vuelve a correr el script; es idempotente.
 
 Todo se regenera con `python config/calendario/generar_semestre_2026_2.py`, que **lee**
@@ -99,6 +122,14 @@ Todo se regenera con `python config/calendario/generar_semestre_2026_2.py`, que 
 | **Seminario** (jue 18:00–20:00) | Presencialidad asistida | Sesión 1 + parciales **5/9/13** presencial; resto virtual; sin festivos; sesiones dobles **8 y 10** |
 | **Arquitectura** (lun 10:00–12:00 · 6303C) | Presencialidad asistida | Sesión 1 + parciales **5/9/12** presencial; sesiones **8 y 11 autónomas** (festivos 12/10 y 02/11); **sesión 13 = sustentaciones del PI** (16/11); sesiones dobles **7 y 10** |
 | **BD II** (lun 18:00–20:00 · 641A-2) | Presencialidad asistida | Igual que Arquitectura: parciales **5/9/12**; autónomas **8 y 11**; **sesión 13 = sustentaciones del PI**; sesiones dobles **7 y 10** |
+
+Los 3 grupos de **Introducción a la Ingeniería** (FI300101) están en
+`introduccion_ingenieria_2026_2.json`, que es otro archivo a propósito: **16 sesiones** de 90 min
+1:1 con los 16 temas, sin sesiones dobles y **sin parciales escritos** (evalúa por exposiciones y
+un cierre evaluativo por corte). SB141B jueves 14:30–16:00 (16 semanas corridas, ningún festivo
+en jueves); SB141C y LB141F martes 14:30–16:00 y 18:30–20:00, con la semana del **08/12/2026**
+como autónoma por el festivo de la Inmaculada. Ese JSON **no se fusiona** con
+`semestre_2026_2.json`: los generadores leen los dos.
 
 ## Nombres de archivo y periodos
 
