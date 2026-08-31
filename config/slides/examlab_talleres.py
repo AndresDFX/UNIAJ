@@ -317,30 +317,54 @@ def _primera_frase(texto, tope=150):
     return t.rstrip(".") + "."
 
 
-def guia_docente_md(n, taller, curso, hito=None, entregable=None):
-    """Documento del Kit docente para armar este taller en ExamLab."""
+def guia_docente_md(n, taller, curso, hito=None, entregable=None, *,
+                    kind="Taller", modulo="Talleres", cierre_lineas=None,
+                    meta_extra=None, resumen_etiqueta="Que produce el estudiante",
+                    nota_import=None):
+    """Documento del Kit docente para armar este taller en ExamLab.
+
+    Los seis parametros opcionales existen porque no todo lo que se arma en ExamLab es
+    un taller de equipo con entrega el domingo: Introduccion a la Ingenieria aplica DOS
+    evaluaciones de corte individuales, dentro de la sesion y con cronometro. Los
+    valores por defecto reproducen el texto de los cuatro cursos que ya usan esta
+    funcion, asi que su salida no cambia.
+
+      - `kind` / `modulo`      · «Taller» y «Talleres» en el titulo y la cabecera.
+      - `meta_extra`           · lista de (etiqueta, valor) que se suma a los bullets de
+                                 cabecera, igual que `hito` y `entregable` — que son
+                                 exactamente eso, dos bullets fijos. Para lo que una
+                                 evaluacion necesita y un taller no: duracion, si es a
+                                 libro abierto, cuanto pesa, fecha por grupo.
+      - `resumen_etiqueta`     · «Que produce el estudiante» describe un taller; una
+                                 evaluacion no produce nada, se responde.
+      - `nota_import`          · la advertencia de que ExamLab no importa desde archivo.
+                                 El texto por defecto habla del SQL de partida y del
+                                 codigo base, que existen en los cuatro cursos tecnicos
+                                 y no en una evaluacion de primer semestre.
+      - `cierre_lineas`        · la lista de «Al terminar de crearlo».
+    """
     preguntas = taller.get("preguntas", [])
     L = [
-        f"# Taller de la Clase {n} en ExamLab - configuracion",
+        f"# {kind} de la Clase {n} en ExamLab - configuracion",
         "",
         f"- **Curso:** {curso}",
-        f"- **Taller:** {taller.get('titulo', f'Clase {n}')}",
+        f"- **{kind}:** {taller.get('titulo', f'Clase {n}')}",
         f"- **Preguntas:** {len(preguntas)} · **Total:** {total_puntos(taller)} puntos",
-        f"- **Plataforma:** ExamLab ({EXAMLAB_URL}) · modulo Talleres",
+        f"- **Plataforma:** ExamLab ({EXAMLAB_URL}) · modulo {modulo}",
     ]
     if hito:
         L.append(f"- **Hito del PI:** {hito}")
     if entregable:
         L.append(f"- **Entregable de la clase:** {entregable}")
-    L += [
-        "",
+    for etiqueta, valor in meta_extra or []:
+        L.append(f"- **{etiqueta}:** {valor}")
+    L += [""] + (nota_import or [
         "> ExamLab no importa preguntas desde archivo: el alta se hace en la UI del",
         "> docente (o con la pestana de IA). Este documento trae el texto exacto de cada",
         "> campo para copiar y pegar, incluidos el SQL de partida y el codigo base.",
-        "",
-    ]
+    ]) + [""]
     if taller.get("resumen"):
-        L += [f"**Que produce el estudiante:** {taller['resumen']}", ""]
+        L += [f"**{resumen_etiqueta}:** {taller['resumen']}", ""]
     L += ["---", ""]
 
     for i, p in enumerate(preguntas, 1):
@@ -396,9 +420,11 @@ def guia_docente_md(n, taller, curso, hito=None, entregable=None):
         "",
         "- Verifique que la suma de puntos sea la esperada: "
         f"**{total_puntos(taller)}**.",
+    ]
+    L += cierre_lineas or [
         "- Publique el taller y confirme la fecha limite (domingo 23:59 segun el Acuerdo).",
         "- Las preguntas con SQL o codigo: ejecutelas una vez usted mismo antes de publicar,",
         "  para confirmar que el SQL de partida corre y que el starter compila.",
-        "",
     ]
+    L += [""]
     return "\n".join(L)

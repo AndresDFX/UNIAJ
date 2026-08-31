@@ -564,8 +564,14 @@ def tutor_slide(prs, nombre, credenciales, correo, rol=None, idx=None):
     footer_num(s, idx)
     return s
 
-def block_timeline_slide(prs, title, slots, sub=None, idx=None):
-    """Timeline del bloque de HOY (no mapa del curso). slots: [(minutos, etiqueta), ...] o dicts."""
+def block_timeline_slide(prs, title, slots, sub=None, idx=None, nota=None):
+    """Timeline del bloque de HOY (no mapa del curso). slots: [(minutos, etiqueta), ...] o dicts.
+
+    ``nota``: pie del timeline. El valor por omision dice «120 min» porque los cuatro
+    cursos virtuales tienen bloques de 120; Introduccion a la Ingenieria los tiene de
+    **90**, y con el texto clavado en el codigo la diapositiva mentia sobre su propia
+    duracion. Pasar ``nota`` para cualquier curso que no sea de 120 min.
+    """
     s = blank(prs)
     bg_white(s)
     top = title_block(s, title, sub)
@@ -597,7 +603,8 @@ def block_timeline_slide(prs, title, slots, sub=None, idx=None):
     # nota inferior
     tn = textbox(s, MARGIN, SH - 1.0, CONTENT_W, 0.4)
     tn.paragraphs[0].alignment = PP_ALIGN.CENTER
-    _rich(tn.paragraphs[0], "Solo el bloque de **esta** clase · 120 min", 12, SOFT, italic=True)
+    _rich(tn.paragraphs[0], nota or "Solo el bloque de **esta** clase · 120 min",
+          12, SOFT, italic=True)
     footer_num(s, idx)
     return s
 
