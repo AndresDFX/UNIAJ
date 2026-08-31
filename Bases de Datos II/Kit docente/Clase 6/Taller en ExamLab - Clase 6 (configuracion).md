@@ -187,10 +187,13 @@ Genera la **evidencia cuantitativa** de la optimizacion. Escribe, en este orden:
 Despues de los tres `EXPLAIN`, escribe **como comentarios SQL** (lineas que empiezan con `--`) una mini tabla con lo que leiste del plan, con estos campos por version:
 
 ```
--- VERSION | nodo mas costoso | filas estimadas vs reales | tiempo total (ms)
--- ANTES   | ...
--- DESPUES | ...
+-- VERSION       | nodo mas costoso | filas estimadas vs reales | tiempo total (ms)
+-- ANTES         | ...
+-- DESPUES       | ...
+-- DESPUES+LIM50 | ...
 ```
+
+La tercera fila es la que mas ensena: **anticipa que el `LIMIT 50` no va a salvar la consulta** y comprueba si acertaste.
 
 Y una linea final `-- CONCLUSION:` indicando el factor de mejora aproximado.
 
@@ -311,7 +314,7 @@ ANALYZE cita;
 
 **Rubrica esperada (campo Rubrica):**
 
-Los tres EXPLAIN corren y corresponden a las consultas indicadas. La tabla en comentarios reporta nodo mas costoso, filas estimadas vs reales y tiempo de ejecucion para ANTES y DESPUES, con valores tomados del plan real y no inventados. La conclusion cuantifica la mejora. Se descuenta si solo se pega el plan sin interpretarlo o si falta la variante con LIMIT 50.
+Los tres EXPLAIN corren y corresponden a las consultas indicadas. La tabla en comentarios reporta nodo mas costoso, filas estimadas vs reales y tiempo de ejecucion para las TRES versiones (ANTES, DESPUES y DESPUES+LIM50), con valores tomados del plan real y no inventados. La conclusion cuantifica la mejora. Se descuenta si solo se pega el plan sin interpretarlo o si falta la variante con LIMIT 50 en los EXPLAIN o en la tabla.
 
 ---
 
@@ -324,6 +327,8 @@ Los tres EXPLAIN corren y corresponden a las consultas indicadas. La tabla en co
 ## 3. Matar la subconsulta correlacionada del reporte de duenos
 
 Misma base con volumen (2.006 duenos, 5.008 mascotas, 30.010 citas).
+
+> **Antes de ejecutar:** la version ANTES corre 2.006 veces sobre 30.010 filas y **puede tardar de varios segundos a mas de un minuto** en el navegador. **No esta colgada:** no recargues la pagina ni cierres la pestana, perderias las respuestas de las otras preguntas.
 
 Huellitas quiere el ranking de duenos por cantidad de citas. La version **ANTES** ejecuta una subconsulta **por cada fila** de `dueno` (2.006 veces):
 

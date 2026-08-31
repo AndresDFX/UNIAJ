@@ -3,7 +3,7 @@
 > Dia de **parcial = solo evaluacion**. No hay tema nuevo ni avance del PI en clase.
 > Enunciado y solucion: `Parciales/Parcial 3 - UML avanzado interfaces y proyecto.docx`
 
-- **Curso:** Seminario de Sistemas (FI303301) · 120 min · **presencial sincrono**
+- **Curso:** Seminario de Sistemas (FI303301) · 120 min · **virtual sincrono por Meet**
 
 ## Checklist 120 min
 

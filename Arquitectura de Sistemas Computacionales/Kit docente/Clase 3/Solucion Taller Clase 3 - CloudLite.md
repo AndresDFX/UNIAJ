@@ -11,7 +11,7 @@
 - Taller del estudiante: `Clases/Clase 3 - Virtualizacion y contenedores/`
 - Configuracion en la plataforma: `Kit docente/Clase 3/Taller en ExamLab - Clase 3 (configuracion).md`
 - Hito del PI: Contenerizar un stub del servicio principal de CloudLite
-- Entregable: Dockerfile (+ compose opcional) + captura/enlace lab navegador
+- Entregable: Dockerfile del stub + bitácora de 5 comandos con la salida real + captura del lab
 - **Estas preguntas: 25.0 puntos** en 4 preguntas.
 
 | # | Pregunta | Tipo | Puntos |
@@ -27,13 +27,7 @@
 
 ### Respuesta esperada
 
-**Primera parte — la eleccion**
-Contenedorizo la **API de prestamos**, que es la caja `api-prestamos` del C4 Context. Elijo
-esa y no el front porque es la que tiene la regla de negocio del dominio: decide si un
-ejemplar esta disponible y si una renovacion es valida. Tener esa API corriendo en un
-contenedor demuestra que la logica de BiblioLite se ejecuta de forma reproducible en
-cualquier maquina, que es lo que el front por si solo no demostraria: un front estatico
-corriendo solo prueba que se sirven archivos.
+**Primera parte — la eleccion** Contenedorizo la **API de prestamos**, que es la caja `api-prestamos` del C4 Context. Elijo esa y no el front porque es la que tiene la regla de negocio del dominio: decide si un ejemplar esta disponible y si una renovacion es valida. Tener esa API corriendo en un contenedor demuestra que la logica de BiblioLite se ejecuta de forma reproducible en cualquier maquina, que es lo que el front por si solo no demostraria: un front estatico corriendo solo prueba que se sirven archivos.
 
 **Segunda parte — el Dockerfile**
 
@@ -47,12 +41,9 @@ EXPOSE 3000
 CMD ["node", "src/server.js"]
 ```
 
-**Puerto** — `EXPOSE 3000`, el servidor de `src/server.js` escucha en `3000`, y `3000` es el
-puerto del contenedor que se documenta en la pregunta 10. Un solo numero en los tres sitios.
+**Puerto** — `EXPOSE 3000`, el servidor de `src/server.js` escucha en `3000`, y `3000` es el puerto del contenedor que se documenta en la pregunta 10. Un solo numero en los tres sitios.
 
-**Secretos** — no hay `COPY .` de todo el directorio: se copian `package.json`,
-`package-lock.json` y la carpeta `src`, y nada mas. Aun asi existe `.dockerignore` como
-segunda barrera, con:
+**Secretos** — no hay `COPY .` de todo el directorio: se copian `package.json`, `package-lock.json` y la carpeta `src`, y nada mas. Aun asi existe `.dockerignore` como segunda barrera, con:
 
 ```text
 node_modules
@@ -63,9 +54,7 @@ capturas/
 *.md
 ```
 
-Ni `.env` ni ninguna clave entra en la imagen. La cadena de conexion a la base y la clave del
-proveedor de correo se inyectan al ejecutar, con `-e` o con las variables de entorno del
-proveedor de PaaS, que es coherente con el ADR-001.
+Ni `.env` ni ninguna clave entra en la imagen. La cadena de conexion a la base y la clave del proveedor de correo se inyectan al ejecutar, con `-e` o con las variables de entorno del proveedor de PaaS, que es coherente con el ADR-001.
 
 ### Como calificar
 
@@ -91,33 +80,13 @@ proveedor de PaaS, que es coherente con el ADR-001.
 
 ### Respuesta esperada
 
-**1. Imagen y contenedor**
-La imagen es `bibliolite-api:0.1.0`, el molde: un paquete inmutable con Alpine, Node 20, mis
-dependencias y mi carpeta `src`. El contenedor es la instancia que corre de ese molde; de esa
-misma imagen puedo levantar dos contenedores a la vez, uno en el puerto 8080 y otro en el
-8081 del anfitrion, y cada uno tiene su propio sistema de archivos escribible y su propio
-proceso.
+**1. Imagen y contenedor** La imagen es `bibliolite-api:0.1.0`, el molde: un paquete inmutable con Alpine, Node 20, mis dependencias y mi carpeta `src`. El contenedor es la instancia que corre de ese molde; de esa misma imagen puedo levantar dos contenedores a la vez, uno en el puerto 8080 y otro en el 8081 del anfitrion, y cada uno tiene su propio sistema de archivos escribible y su propio proceso.
 
-**2. Que instrucciones de mi Dockerfile crean capa**
-`RUN npm ci --omit=dev` crea una capa con los `node_modules` instalados, y `COPY src ./src`
-crea otra con mi codigo. Tambien crean capa los dos `COPY` y el `FROM` trae las capas de la
-imagen base. Importa porque cada capa se cachea por separado y se identifica por su
-contenido: si la capa no cambio, el build la reutiliza y no la vuelve a construir.
+**2. Que instrucciones de mi Dockerfile crean capa** `RUN npm ci --omit=dev` crea una capa con los `node_modules` instalados, y `COPY src ./src` crea otra con mi codigo. Tambien crean capa los dos `COPY` y el `FROM` trae las capas de la imagen base. Importa porque cada capa se cachea por separado y se identifica por su contenido: si la capa no cambio, el build la reutiliza y no la vuelve a construir.
 
-**3. Por que el `COPY` de dependencias va antes**
-Porque cambio `src/server.js` muchas veces al dia y el `package.json` casi nunca. Con este
-orden, al cambiar una linea de codigo el build reutiliza la capa del `npm ci` — que es la
-lenta, la que descarga paquetes — e invalida solo la capa del codigo: el rebuild tarda
-segundos. En el orden inverso, con `COPY . .` antes del `RUN`, cualquier cambio de una linea
-invalida la capa que contiene el `package.json` y todas las siguientes, asi que el `npm ci`
-se vuelve a ejecutar completo cada vez.
+**3. Por que el `COPY` de dependencias va antes** Porque cambio `src/server.js` muchas veces al dia y el `package.json` casi nunca. Con este orden, al cambiar una linea de codigo el build reutiliza la capa del `npm ci` — que es la lenta, la que descarga paquetes — e invalida solo la capa del codigo: el rebuild tarda segundos. En el orden inverso, con `COPY . .` antes del `RUN`, cualquier cambio de una linea invalida la capa que contiene el `package.json` y todas las siguientes, asi que el `npm ci` se vuelve a ejecutar completo cada vez.
 
-**4. Una diferencia con una maquina virtual**
-Mi contenedor **comparte el kernel** del anfitrion: dentro solo esta Alpine como sistema de
-archivos y mi proceso de Node, no hay otro sistema operativo arrancando. Una maquina virtual
-carga su propio kernel y su propio sistema operativo completo sobre un hipervisor, y por eso
-arranca en decenas de segundos y ocupa gigas, mientras mi contenedor arranca en menos de un
-segundo.
+**4. Una diferencia con una maquina virtual** Mi contenedor **comparte el kernel** del anfitrion: dentro solo esta Alpine como sistema de archivos y mi proceso de Node, no hay otro sistema operativo arrancando. Una maquina virtual carga su propio kernel y su propio sistema operativo completo sobre un hipervisor, y por eso arranca en decenas de segundos y ocupa gigas, mientras mi contenedor arranca en menos de un segundo.
 
 ### Como calificar
 
@@ -145,29 +114,20 @@ segundo.
 ```bash
 docker build -t bibliolite-api:0.1.0 .
 ```
-Nombre `bibliolite-api` y etiqueta `0.1.0`. La etiqueta es una version, no `latest`: asi
-puedo tener dos versiones a la vez y saber cual estoy ejecutando.
+Nombre `bibliolite-api` y etiqueta `0.1.0`. La etiqueta es una version, no `latest`: asi puedo tener dos versiones a la vez y saber cual estoy ejecutando.
 
 **2. Ejecucion**
 ```bash
 docker run -d --name bibliolite-api -p 8080:3000 \
   -e DATABASE_URL="postgres://..." bibliolite-api:0.1.0
 ```
-En `-p 8080:3000`, el numero de la **izquierda es el del anfitrion** (la maquina de
-Killercoda, donde entro yo con el navegador o con `curl`) y el de la **derecha es el del
-contenedor** (donde escucha Node, el mismo del `EXPOSE`). Si los invierto y escribo
-`-p 3000:8080`, Docker publica el 3000 del anfitrion hacia el 8080 del contenedor, donde no
-hay nada escuchando: el contenedor aparece vivo en `docker ps` y la peticion muere con
-`Connection reset by peer` o se queda colgada. El sintoma no dice cual es la causa, y por eso
-este es el error que mas tiempo hace perder.
+En `-p 8080:3000`, el numero de la **izquierda es el del anfitrion** (la maquina de Killercoda, donde entro yo con el navegador o con `curl`) y el de la **derecha es el del contenedor** (donde escucha Node, el mismo del `EXPOSE`). Si los invierto y escribo `-p 3000:8080`, Docker publica el 3000 del anfitrion hacia el 8080 del contenedor, donde no hay nada escuchando: el contenedor aparece vivo en `docker ps` y la peticion muere con `Connection reset by peer` o se queda colgada. El sintoma no dice cual es la causa, y por eso este es el error que mas tiempo hace perder.
 
-La clave de la base y la del correo entran aqui, con `-e`, en tiempo de ejecucion: no estan
-en la imagen.
+La clave de la base y la del correo entran aqui, con `-e`, en tiempo de ejecucion: no estan en la imagen.
 
 **3. Verificacion — contrato del endpoint de salud**
 - **Ruta**: `GET /health`
-- **Codigo de estado**: `200` cuando el servicio esta vivo **y** alcanza la base de datos;
-  `503` cuando el proceso responde pero la base no contesta.
+- **Codigo de estado**: `200` cuando el servicio esta vivo **y** alcanza la base de datos; `503` cuando el proceso responde pero la base no contesta.
 - **Cuerpo**: JSON, con esta forma exacta:
 
 ```json
@@ -183,9 +143,7 @@ Se verifica con:
 curl -i http://localhost:8080/health
 ```
 
-El cuerpo lleva las dependencias a proposito: un `200` con el cuerpo vacio no distingue «vivo»
-de «vivo pero roto», y es justo lo que la Clase 7 va a consultar desde el balanceador y la
-Clase 8 desde el pipeline.
+El cuerpo lleva las dependencias a proposito: un `200` con el cuerpo vacio no distingue «vivo» de «vivo pero roto», y es justo lo que la Clase 7 va a consultar desde el balanceador y la Clase 8 desde el pipeline.
 
 ### Como calificar
 
@@ -213,28 +171,14 @@ Clase 8 desde el pipeline.
 | Comando | Que esperaba | Que salio realmente |
 |---|---|---|
 | `docker build -t bibliolite-api:0.1.0 .` | Que construya sin error y que se vean las capas de cada paso. | `=> [4/6] RUN npm ci --omit=dev` ... `Successfully tagged bibliolite-api:0.1.0`. **7 pasos**, el mas lento el `npm ci` con 21.4s. |
-| `docker images | grep bibliolite` | Una fila con mi imagen, etiqueta 0.1.0. | `bibliolite-api   0.1.0   9f2c1a4be7d3   58 seconds ago   142MB` |
+| `docker images \| grep bibliolite` | Una fila con mi imagen, etiqueta 0.1.0. | `bibliolite-api   0.1.0   9f2c1a4be7d3   58 seconds ago   142MB` |
 | `docker run -d --name bibliolite-api -p 8080:3000 bibliolite-api:0.1.0` | Que imprima el identificador largo del contenedor. | `9d41c7e8b2a5f0c3...` (64 caracteres). Sin salida de error. |
 | `docker ps` | Una fila, estado Up, puertos 0.0.0.0:8080->3000/tcp. | `9d41c7e8b2a5   bibliolite-api:0.1.0   "node src/server.js"   12 seconds ago   Up 11 seconds   0.0.0.0:8080->3000/tcp   bibliolite-api` |
 | `curl -i http://localhost:8080/health` | 200 y el JSON con estado, version y dependencias. | `HTTP/1.1 200 OK` · `content-type: application/json` · `{"estado":"ok","version":"0.1.0","dependencias":{"bd":"ok"}}` |
 
-**Descripcion de la captura**
-La captura es una sola imagen de la ventana del escenario Ubuntu de Killercoda en la que se
-ven al mismo tiempo las tres cosas exigidas: el **prompt del laboratorio**
-(`controlplane $`), la **salida completa de `docker ps`** con la fila del contenedor
-`bibliolite-api` y el mapeo `0.0.0.0:8080->3000/tcp`, y la **hora del sistema** que imprimi
-con `date` en la linea inmediatamente anterior (`Mon Sep  7 14:22:10 UTC 2026`). No es un
-recorte: se ve la terminal completa, para que se pueda verificar que las tres cosas son de la
-misma sesion.
+**Descripcion de la captura** La captura es una sola imagen de la ventana del escenario Ubuntu de Killercoda en la que se ven al mismo tiempo las tres cosas exigidas: el **prompt del laboratorio** (`controlplane $`), la **salida completa de `docker ps`** con la fila del contenedor `bibliolite-api` y el mapeo `0.0.0.0:8080->3000/tcp`, y la **hora del sistema** que imprimi con `date` en la linea inmediatamente anterior (`Mon Sep  7 14:22:10 UTC 2026`). No es un recorte: se ve la terminal completa, para que se pueda verificar que las tres cosas son de la misma sesion.
 
-**Fila de incidente**
-El primer `docker run` fallo con
-`docker: Error response from daemon: driver failed programming external connectivity on
-endpoint bibliolite-api: Bind for 0.0.0.0:8080 failed: port is already allocated`. Causa: en
-un intento anterior habia dejado un contenedor con el mismo puerto publicado, detenido pero
-no eliminado. Lo resolvi con `docker rm -f bibliolite-api` y volvi a ejecutar el `run`.
-Verifique antes con `docker ps -a`, que es donde aparecen los detenidos y donde no habia
-mirado.
+**Fila de incidente** El primer `docker run` fallo con `docker: Error response from daemon: driver failed programming external connectivity on endpoint bibliolite-api: Bind for 0.0.0.0:8080 failed: port is already allocated`. Causa: en un intento anterior habia dejado un contenedor con el mismo puerto publicado, detenido pero no eliminado. Lo resolvi con `docker rm -f bibliolite-api` y volvi a ejecutar el `run`. Verifique antes con `docker ps -a`, que es donde aparecen los detenidos y donde no habia mirado.
 
 ### Como calificar
 

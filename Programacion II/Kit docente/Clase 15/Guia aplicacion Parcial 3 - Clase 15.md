@@ -3,7 +3,7 @@
 > Dia de **parcial = solo evaluacion**. No hay tema nuevo ni avance del PI en clase.
 > Enunciado y solucion: `Parciales/Parcial 3 - Integracion excepciones y cierre de proyecto.docx`
 
-- **Curso:** Programacion II (FI303204) · 120 min · **presencial sincrono**
+- **Curso:** Programacion II (FI303204) · 120 min · **virtual sincrono por Meet**
 
 ## Checklist 120 min
 

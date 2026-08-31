@@ -44,19 +44,34 @@ def shade_cell(c, fill):
     shd = OxmlElement('w:shd'); shd.set(qn('w:val'), 'clear'); shd.set(qn('w:fill'), fill)
     tcPr.append(shd)
 
-def add_inline(p, text, base_size=11, base_color=GRAY, base_bold=False):
-    """Parseo inline: **negrita**, @@negrita@@ (convención usada en datos de taller) y `código`."""
-    for part in re.split(r'(\*\*.*?\*\*|@@.*?@@|`[^`]+`)', text):
+def _runs_codigo(p, text, size, color, bold):
+    """Emite los `código` de un tramo que ya sabe si va en negrita o no."""
+    for part in re.split(r'(`[^`]+`)', text):
         if not part:
             continue
         r = p.add_run()
-        if (part.startswith('**') and part.endswith('**')) or (part.startswith('@@') and part.endswith('@@')):
-            r.text = part[2:-2]; r.bold = True; r.font.size = Pt(base_size); r.font.color.rgb = base_color
-        elif part.startswith('`') and part.endswith('`'):
-            r.text = part[1:-1]; r.font.name = MONO; r.font.size = Pt(base_size - 0.5)
-            r.font.color.rgb = RGBColor(0x11, 0x11, 0x11)
+        if part.startswith('`') and part.endswith('`'):
+            r.text = part[1:-1]; r.font.name = MONO; r.font.size = Pt(size - 0.5)
+            r.font.color.rgb = RGBColor(0x11, 0x11, 0x11); r.bold = bold
         else:
-            r.text = part; r.bold = base_bold; r.font.size = Pt(base_size); r.font.color.rgb = base_color
+            r.text = part; r.bold = bold; r.font.size = Pt(size); r.font.color.rgb = color
+
+
+def add_inline(p, text, base_size=11, base_color=GRAY, base_bold=False):
+    """Parseo inline: **negrita**, @@negrita@@ (convención usada en datos de taller) y `código`.
+
+    La negrita se resuelve primero y el `código` se busca DENTRO de ella, porque van
+    anidados: con una sola alternancia, el `INSERT` de «**5 pts — el `INSERT` del caso
+    valido**» quedaba dentro del tramo de negrita y salia con los acentos graves
+    impresos. Pasaba en cada linea del desglose de puntos de las soluciones docentes.
+    """
+    for part in re.split(r'(\*\*.*?\*\*|@@.*?@@)', text):
+        if not part:
+            continue
+        if (part.startswith('**') and part.endswith('**')) or (part.startswith('@@') and part.endswith('@@')):
+            _runs_codigo(p, part[2:-2], base_size, base_color, True)
+        else:
+            _runs_codigo(p, part, base_size, base_color, base_bold)
 
 def find_capture(caption):
     c = caption.lower()
@@ -139,7 +154,11 @@ def screenshot_box(doc, caption, explicit=None, receta=None):
     # Caja marcador + imagen real si coincide (token explícito o por palabra clave).
     p = doc.add_paragraph(); shade_par(p, "FFF4EC")
     p.paragraph_format.space_before = Pt(4); p.paragraph_format.space_after = Pt(2)
-    r = p.add_run("📸  " + caption); r.bold = True; r.font.size = Pt(10.5); r.font.color.rgb = ORANGE
+    # El rotulo es un solo run en negrita: un `docker ps` saldria con los acentos
+    # graves impresos, asi que aqui el span va a «». Se convierte solo para pintar;
+    # find_capture() sigue viendo el caption original, que es con el que casa el PNG.
+    rotulo = re.sub(r'`([^`\n]+)`', r'«\1»', caption)
+    r = p.add_run("📸  " + rotulo); r.bold = True; r.font.size = Pt(10.5); r.font.color.rgb = ORANGE
     img = None
     if explicit:
         cand = os.path.join(CAPTURAS, explicit)
@@ -184,7 +203,11 @@ def is_table_sep(line):
 
 def parse_table_row(line):
     line = line.strip().strip('|')
-    return [c.strip() for c in line.split('|')]
+    # Se parte en los | que NO vengan escapados. Una celda puede llevar un pipe
+    # literal —«docker images \| grep bibliolite»— y sin esto se volvia dos celdas:
+    # corria el resto de la fila y partia en dos el span de codigo, que salia con
+    # los acentos graves impresos a cada lado.
+    return [c.strip().replace('\\|', '|') for c in re.split(r'(?<!\\)\|', line)]
 
 def convert(md_path, out_path):
     global CAPTURAS

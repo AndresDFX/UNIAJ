@@ -4,7 +4,7 @@
 
 **Resumen:** Taller propio de 100 puntos en cinco preguntas, de la clase autonoma del 02/11/2026. La politica se escribe componente por componente con disparadores numericos, minimos, maximos y enfriamiento; se dibuja como maquina de decision que cierra el ciclo; se declara con nombre y razon tecnica lo que **no** escala —y ahi esta el hallazgo de la clase: el maximo de replicas de la API no lo decide la API, lo decide el limite de 20 conexiones del motor—; y se enlaza con la tabla de costos de la Clase 10 en tres escenarios.
 
-> **Clase autonoma.** El 02/11/2026 es festivo y no hay sesion presencial: el taller se resuelve en casa con el fundamento de la clase, que esta escrito para ser guia y material de estudio a la vez. **La politica es conceptual:** no se pide configurar un autoescalador real, ni abrir cuenta en ningun proveedor, ni tarjeta de credito. Lo que se califica es la tabla, el diagrama y los argumentos. Los numeros deben ser **los mismos** que el estudiante ya escribio en la Clase 12 (presupuesto de latencia) y en la Clase 8 (tabla de senales): la coherencia entre los tres documentos es la mitad de la nota.
+> **Clase autonoma.** El 02/11/2026 es festivo y no hay sesion sincrona: el taller se resuelve en casa con el fundamento de la clase, que esta escrito para ser guia y material de estudio a la vez. **La politica es conceptual:** no se pide configurar un autoescalador real, ni abrir cuenta en ningun proveedor, ni tarjeta de credito. Lo que se califica es la tabla, el diagrama y los argumentos. Los numeros deben ser **los mismos** que el estudiante ya escribio en la Clase 12 (presupuesto de latencia) y en la Clase 8 (tabla de senales): la coherencia entre los tres documentos es la mitad de la nota.
 
 ## Alineacion con el taller
 
@@ -97,9 +97,9 @@ flowchart TD
     noesc -.->|"limite del diseno"| obs
 ```
 
-### Modelo de referencia que ve el estudiante
+### Modelo de referencia del kit docente (el estudiante NO lo ve)
 
-Es el que aparece en el enunciado de la plataforma, sobre el dominio **AgendaU**. Sirve para comparar estructura y conteos, no para calificar contenido:
+Vive en `Taller en ExamLab - Clase 13 (configuracion).md` y no se pega en el enunciado; esta resuelto sobre el dominio **AgendaU**. Sirve para comparar estructura y conteos —cuantas cajas, cuales son almacenes, si toda flecha lleva protocolo y formato—, **nunca** para calificar contenido ni nombres:
 
 ```mermaid
 flowchart TD

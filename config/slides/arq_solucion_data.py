@@ -28,11 +28,14 @@ from __future__ import annotations
 
 from arq_examlab_data import EXAMLAB
 
-#: Dominio de referencia que se proyecta en clase. La solucion NO lo reutiliza a
-#: proposito: si el estudiante entrega este mismo, la rubrica le quita los puntos
-#: de «hablar de su dominio», y el docente necesita ver como se ve una respuesta
-#: sobre otro dominio para poder calificar la diferencia.
-DOMINIO_PROYECTADO = "AgendaU"
+#: Dominio del `mermaid_esperado` del banco: el modelo de referencia que queda en la
+#: ficha de configuracion del kit docente. NO se proyecta y NO se pega en el
+#: enunciado —se llamaba DOMINIO_PROYECTADO y eso hacia que la solucion afirmara que
+#: el estudiante lo ve—. La solucion no lo reutiliza a proposito: si el estudiante
+#: entrega este mismo, la rubrica le quita los puntos de «hablar de su dominio», y el
+#: docente necesita ver como se ve una respuesta sobre otro dominio para poder
+#: calificar la diferencia.
+DOMINIO_REFERENCIA = "AgendaU"
 DOMINIO_SOLUCION = "BiblioLite"
 
 #: Dudas que el ESTUDIANTE trae al taller, con la respuesta corta. Van dentro de su
@@ -438,12 +441,20 @@ ADR-001 Modelo de servicio dominante de CloudLite App
 **2. Estado**
 Aceptado — 31 de agosto de 2026
 
-**3. Decision** (una sola frase, un unico modelo dominante)
+**3. Contexto**
+BiblioLite gestiona los prestamos de la biblioteca universitaria: unos 400 prestamos al mes,
+con un pico en la semana de matricula, y 38 devoluciones tardias el semestre pasado. El
+proyecto lo sostiene **una sola persona durante doce semanas**, **sin presupuesto de nube y
+sin tarjeta de credito**, y tiene que estar en linea el dia de la sustentacion de la Clase 15.
+La unica capacidad que pide algo del sistema operativo es la lectura del codigo de barras del
+lomo del libro, que necesitaria una libreria nativa.
+
+**4. Decision** (una sola frase, un unico modelo dominante)
 La aplicacion de BiblioLite se desplegara sobre **PaaS**: se entrega el codigo de la API de
 prestamos y del front al proveedor, que opera el sistema operativo y el runtime, mientras el
 equipo conserva la responsabilidad del codigo, de los permisos y de los datos de prestamo.
 
-**4. Alternativas descartadas** (exactamente 2, con el motivo en terminos del dominio)
+**5. Alternativas descartadas** (exactamente 2, con el motivo en terminos del dominio)
 
 - **IaaS.** Se descarta porque el proyecto lo sostiene una sola persona durante doce
   semanas, y en IaaS esa persona tendria que operar el sistema operativo: parchear la
@@ -460,19 +471,28 @@ equipo conserva la responsabilidad del codigo, de los permisos y de los datos de
   las 38 devoluciones tardias del semestre pasado se resolverian con la regla que traiga el
   producto, no con la que la biblioteca necesita.
 
-**Nota de alcance** (no es una quinta seccion; se escribe dentro de las alternativas)
+**Nota de alcance** (no es una seccion aparte; se escribe dentro de las alternativas)
 Identidad y correo se siguen consumiendo como **SaaS satelite**, tal como quedaron en el C4
 Context de la pregunta 3. Eso no rompe la decision: el modelo dominante se refiere a **la
-aplicacion propia**.""",
+aplicacion propia**.
+
+La **seccion 6, Consecuencias**, es la pregunta 7 y esta resuelta ahi mismo. El ADR completo
+del curso son esas seis secciones; ninguna otra.""",
                 "como_calificar": [
-                    "2 pts titulo y estado. El estado tiene que traer **fecha**; «Aceptado» "
-                    "solo, sin fecha, vale la mitad de este criterio.",
-                    "4 pts la decision en **una frase** con **un** modelo dominante. "
+                    "1.5 pts titulo y estado. El titulo tiene que traer el **numero** del "
+                    "ADR y el estado tiene que traer **fecha**; «Aceptado» solo, sin fecha, "
+                    "vale la mitad de este criterio.",
+                    "2 pts el **contexto**: nombra el dominio, el plazo y al menos una "
+                    "restriccion real de quien sostiene el proyecto (una persona, sin "
+                    "presupuesto, sin tarjeta). **Cero en este criterio** si es teoria "
+                    "general o un resumen del tema de la clase. La prueba rapida: si el "
+                    "contexto no permite deducir por que se descarto IaaS, no es contexto.",
+                    "3.5 pts la decision en **una frase** con **un** modelo dominante. "
                     "**Cero en este criterio si nombra dos o mas modelos**: «un poco de PaaS "
                     "y un poco de IaaS» no es una decision, es no haber decidido. Es el "
                     "criterio que hay que revisar primero, antes de leer el resto.",
-                    "6.5 pts las dos alternativas descartadas con el motivo atado al "
-                    "dominio: **3.25 pts cada una**. Se pierde **la mitad de cada una** si "
+                    "5.5 pts las dos alternativas descartadas con el motivo atado al "
+                    "dominio: **2.75 pts cada una**. Se pierde **la mitad de cada una** si "
                     "el motivo es generico («es mas caro», «es mas complejo») sin decir mas "
                     "caro o mas complejo **para que** de su sistema.",
                     "**Exactamente dos** alternativas. Con una sola, el ADR no documenta una "
@@ -490,8 +510,13 @@ aplicacion propia**.""",
                 ],
                 "errores": [
                     "Decision con dos modelos. Es el error mas frecuente y el mas caro: "
-                    "cuesta 4 de los 12.5 puntos. Suele venir de querer no equivocarse. "
+                    "cuesta 3.5 de los 12.5 puntos. Suele venir de querer no equivocarse. "
                     "Devuelvala con una sola instruccion: «tache uno».",
+                    "Contexto escrito como resumen del tema: «los modelos de servicio son "
+                    "IaaS, PaaS y SaaS y hay que elegir uno». Eso no es contexto, es apunte "
+                    "de clase, y vale 0 de los 2 pts. La instruccion que lo corrige es una "
+                    "pregunta: «¿que tienes tu que no tiene otro equipo, y cuanto tiempo "
+                    "tienes?». Lo que responda es el contexto.",
                     "Alternativas descartadas con motivo de folleto: «IaaS es mas complejo». "
                     "Pregunte «mas complejo para hacer que, en BiblioLite» y la respuesta "
                     "que dé el estudiante es exactamente lo que debia haber escrito.",
@@ -501,9 +526,12 @@ aplicacion propia**.""",
                     "Estado «Propuesto» o «En estudio». El enunciado pide `Aceptado` con "
                     "fecha porque el ADR tiene que quedar cerrado hoy: las Clases 3, 7 y 15 "
                     "construyen sobre esta decision y no puede seguir abierta.",
-                    "Agregar secciones que no se pidieron (contexto, participantes, "
-                    "diagramas). No es un error conceptual, pero el enunciado dice cuatro "
-                    "secciones y sin agregar otras: se descuenta del formato.",
+                    "Agregar secciones que no se pidieron (participantes, diagramas, "
+                    "riesgos, opciones consideradas). No es un error conceptual, pero el "
+                    "enunciado dice cinco secciones y sin agregar otras: se descuenta del "
+                    "formato. Ojo con «Opciones consideradas»: en este curso las opciones "
+                    "son la matriz de la pregunta 5, y lo que va en el ADR son las dos "
+                    "**descartadas**.",
                     "ADR que contradice la matriz de la pregunta 5. Si la matriz dijo que "
                     "PaaS no sirve porque hace falta la libreria nativa, y el ADR elige PaaS "
                     "sin resolver eso, hay una incoherencia que la sustentacion de la Clase "
@@ -604,6 +632,19 @@ aplicacion propia**.""",
              "La de hoy, la de la sesion en que se decide. El ADR es un documento fechado: "
              "sirve precisamente para que en seis meses se sepa cuando se decidio y con que "
              "informacion."),
+            ("¿Cuantas secciones tiene el ADR y donde va cada una?",
+             "**Seis**, y son las mismas en todo el curso: Titulo, Estado, Contexto, "
+             "Decision, Alternativas descartadas y Consecuencias. Las cinco primeras se "
+             "entregan en la pregunta 6 y la sexta en la pregunta 7, pero es **un solo "
+             "documento**: el que se cita en la sustentacion de la Clase 15 y el que sirve de "
+             "molde para el ADR-002 en adelante. No hay seccion de «Opciones consideradas»: "
+             "ese analisis es la matriz de la pregunta 5."),
+            ("El contexto y la matriz de la pregunta 5, ¿no son lo mismo?",
+             "No, y conviene decirlo antes de que empiecen a escribir. La matriz **compara** "
+             "los tres modelos sobre las capacidades del dominio; el contexto son las "
+             "**restricciones** bajo las que se decide: quien sostiene el proyecto, cuanto "
+             "tiempo hay y con que presupuesto. La matriz es el analisis, el contexto es el "
+             "terreno. Si el contexto repite la matriz, no cumple."),
             ("¿Las consecuencias pueden ser las mismas para los tres ejes?",
              "No. Si la misma frase sirve para operacion, costo y aprendizaje, es una frase "
              "generica. Cada eje pregunta algo distinto: que hago, que pago y que tengo que "
@@ -821,8 +862,9 @@ docker run -d --name bibliolite-api -p 8080:3000 \\
   -e DATABASE_URL="postgres://..." bibliolite-api:0.1.0
 ```
 En `-p 8080:3000`, el numero de la **izquierda es el del anfitrion** (la maquina de
-Killercoda, donde entro yo con el navegador o con `curl`) y el de la **derecha es el del
-contenedor** (donde escucha Node, el mismo del `EXPOSE`). Si los invierto y escribo
+Killercoda, donde entro yo con el navegador o con `curl`) y el de la
+**derecha es el del contenedor** (donde escucha Node, el mismo del `EXPOSE`).
+Si los invierto y escribo
 `-p 3000:8080`, Docker publica el 3000 del anfitrion hacia el 8080 del contenedor, donde no
 hay nada escuchando: el contenedor aparece vivo en `docker ps` y la peticion muere con
 `Connection reset by peer` o se queda colgada. El sintoma no dice cual es la causa, y por eso
@@ -904,7 +946,9 @@ Clase 8 desde el pipeline.""",
                          "`=> [4/6] RUN npm ci --omit=dev` ... "
                          "`Successfully tagged bibliolite-api:0.1.0`. **7 pasos**, el mas "
                          "lento el `npm ci` con 21.4s."],
-                        ["`docker images | grep bibliolite`",
+                        # Pipe escapado: la celda va dentro de una tabla Markdown y un |
+                        # crudo la partia en dos.
+                        [r"`docker images \| grep bibliolite`",
                          "Una fila con mi imagen, etiqueta 0.1.0.",
                          "`bibliolite-api   0.1.0   9f2c1a4be7d3   58 seconds ago   "
                          "142MB`"],
@@ -935,8 +979,8 @@ misma sesion.
 
 **Fila de incidente**
 El primer `docker run` fallo con
-`docker: Error response from daemon: driver failed programming external connectivity on
-endpoint bibliolite-api: Bind for 0.0.0.0:8080 failed: port is already allocated`. Causa: en
+`docker: Error response from daemon: driver failed programming external connectivity on endpoint bibliolite-api: Bind for 0.0.0.0:8080 failed: port is already allocated`.
+Causa: en
 un intento anterior habia dejado un contenedor con el mismo puerto publicado, detenido pero
 no eliminado. Lo resolvi con `docker rm -f bibliolite-api` y volvi a ejecutar el `run`.
 Verifique antes con `docker ps -a`, que es donde aparecen los detenidos y donde no habia
@@ -1067,8 +1111,9 @@ prestamos, con tres modulos internos de frontera explicita — `catalogo`, `pres
   asignaturas encima. Partir en servicios significaria mantener tres despliegues, tres
   pipelines y tres registros de log yo solo. El costo de operacion se multiplica por tres y
   el tiempo de desarrollo no se divide por nada, porque el que programa sigue siendo uno.
-- **Acoplamiento**: en BiblioLite, **reservar un ejemplar y marcar ese ejemplar como no
-  disponible son el mismo cambio**. Si separo catalogo de prestamos, esas dos escrituras
+- **Acoplamiento**: en BiblioLite,
+  **reservar un ejemplar y marcar ese ejemplar como no disponible son el mismo cambio**.
+  Si separo catalogo de prestamos, esas dos escrituras
   caen en dos servicios y en dos bases distintas, y tengo que resolver a mano lo que hoy
   resuelve una transaccion de una linea. Lo unico que de verdad cambia por separado es
   **notificaciones**: el aviso de vencimiento se puede modificar sin tocar la regla de
@@ -1167,8 +1212,9 @@ autenticacion»: la autenticacion la delega el `idp`, que ya es un `System_Ext` 
 se dibuja adentro. Cada caja que no pueda responder las dos preguntas no se dibuja.
 
 **Trazabilidad con el Context de la pregunta 3.** Los cinco nombres se copian tal cual:
-`Estudiante`, `Auxiliar de biblioteca`, `CloudLite App`, `Proveedor de identidad
-institucional` y `Correo transaccional SaaS`. Lo unico que cambia es que la caja que en
+`Estudiante`, `Auxiliar de biblioteca`, `CloudLite App`,
+`Proveedor de identidad institucional` y `Correo transaccional SaaS`.
+Lo unico que cambia es que la caja que en
 Context era una sola ahora es una `System_Boundary` con tres contenedores dentro. Estos
 mismos nombres son los que la Clase 7 pone en el diagrama de despliegue y los que la Clase
 11 revisa en el checkpoint.""",
@@ -1323,8 +1369,9 @@ vencimiento del prestamo», que es una de las cuatro de mi ficha; el estudiante 
 aviso dos dias antes y se enterara al devolver tarde. **Sigue funcionando** todo lo demas:
 consultar disponibilidad, reservar, renovar y registrar el prestamo en mostrador, porque
 ninguna de esas operaciones espera respuesta del correo. La reserva se guarda igual: lo que
-se pierde es el aviso, no la reserva. Si en cambio se cayera la **Base de datos de
-prestamos**, ahi si se cae todo, porque es la unica caja sin la cual no hay estado.
+se pierde es el aviso, no la reserva. Si en cambio se cayera la
+**Base de datos de prestamos**, ahi si se cae todo, porque es la unica caja sin la
+cual no hay estado.
 
 **2. Que latencia agrega cada salto**
 Contando una reserva completa de punta a punta, son **seis saltos de red**:
@@ -1680,7 +1727,7 @@ pasar por la interfaz.""",
                 "tipo": "abierta",
                 "puntos": 7.5,
                 "respuesta": """**1. Donde viven los secretos**
-- En la **configuracion del repositorio**: los *secrets* del proyecto en GitHub, que se
+- En la **configuracion del repositorio**: los `secrets` del proyecto en GitHub, que se
   inyectan como variables de entorno solo durante la ejecucion del pipeline y que no se
   pueden volver a leer desde la interfaz una vez guardados.
 - En **las variables de entorno del proveedor de PaaS** para el servicio en ejecucion, que es
@@ -1798,7 +1845,7 @@ problema mientras la credencial sigue siendo valida.""",
              "leer la bandeja, o sobre el usuario del pipeline. Lo obligatorio es que sea un "
              "componente concreto y que diga **que deja de poder hacer**."),
             ("¿Donde pongo los secretos si todavia no tengo pipeline?",
-             "En los *secrets* del repositorio igual: se configuran hoy y el pipeline de la "
+             "En los `secrets` del repositorio igual: se configuran hoy y el pipeline de la "
              "Clase 8 los consume sin cambiar nada. Lo que no se hace nunca es dejarlos en un "
              "archivo «mientras tanto»."),
             ("¿Tengo que rotar los secretos de verdad durante el semestre?",
@@ -1829,7 +1876,7 @@ problema mientras la credencial sigue siendo valida.""",
             "sistema: donde se ejecuta cada pieza. La pregunta 4 vale 14 de los 25 puntos y "
             "tiene una trampa deliberada — **la base de datos en la zona publica cuesta 4 "
             "puntos completos** — y la 6 es la que cobra la trazabilidad de nombres que se "
-            "viene exigiendo desde la Clase 4. Las tres se califican con el C4 Container del "
+            "viene exigiendo desde la Clase 4. Las tres se califican con el C4 Containers del "
             "Corte 1 abierto al lado."
         ),
         "total": 25.0,
@@ -1889,7 +1936,7 @@ servicio de marca. Las zonas son conceptuales y el diagrama tiene que servir igu
 cualquier proveedor, que es la posicion del curso desde el ADR-001: no se abren cuentas de
 nube de pago.
 
-**Lo que cambia respecto al C4 Container.** Aparecen dos piezas que alli no existian —el
+**Lo que cambia respecto al C4 Containers.** Aparecen dos piezas que alli no existian —el
 `Cliente / navegador` y el `Edge / balanceador`— porque son infraestructura, no contenedores
 con responsabilidad de negocio. Ese detalle es justo lo que la pregunta 6 pide declarar.""",
                 "como_calificar": [
@@ -1932,10 +1979,10 @@ con responsabilidad de negocio. Ese detalle es justo lo que la pregunta 6 pide d
                     "Flechas sin direccion o bidireccionales por defecto. La direccion importa: "
                     "que la API llame a la base no significa que la base llame a la API, y esa "
                     "asimetria es la que justifica que la zona de datos no tenga salida.",
-                    "Renombrar las piezas respecto al C4 Container («backend», «servidor», "
+                    "Renombrar las piezas respecto al C4 Containers («backend», «servidor», "
                     "«bd»). No se descuenta aqui, se descuenta en la pregunta 6, que es "
                     "peor: alla vale 2.5 pts y ademas hay que listar los renombres.",
-                    "Dibujar el diagrama como si fuera otro C4 Container, con "
+                    "Dibujar el diagrama como si fuera otro C4 Containers, con "
                     "`System_Boundary` y `Container(...)`. Este es un diagrama de despliegue: "
                     "la pregunta es **donde se ejecuta**, y por eso se modela con zonas y "
                     "puertos.",
@@ -2040,11 +2087,11 @@ historia sin contar.""",
             },
             {
                 "n": 6,
-                "titulo": "Correspondencia entre el C4 Container y el Despliegue",
+                "titulo": "Correspondencia entre el C4 Containers y el Despliegue",
                 "tipo": "abierta",
                 "puntos": 5.5,
                 "tabla": {
-                    "headers": ["Componente en el C4 Container",
+                    "headers": ["Componente en el C4 Containers",
                                 "Componente en el Despliegue", "Zona"],
                     "rows": [
                         ["`Aplicacion web` (React)", "`Aplicacion web`", "Publica"],
@@ -2057,14 +2104,14 @@ historia sin contar.""",
                         ["`Correo transaccional SaaS` (`System_Ext`)",
                          "`Correo transaccional SaaS`",
                          "Externa — fuera de las tres zonas"],
-                        ["— (no existe en el C4 Container)", "`Edge / balanceador`",
+                        ["— (no existe en el C4 Containers)", "`Edge / balanceador`",
                          "Publica"],
-                        ["— (no existe en el C4 Container)", "`Cliente / navegador`",
+                        ["— (no existe en el C4 Containers)", "`Cliente / navegador`",
                          "Fuera: es el actor `Estudiante` o `Auxiliar de biblioteca`"],
                     ],
                 },
                 "respuesta": """**Por que los nombres tienen que coincidir**
-Porque **no son dos sistemas: es el mismo sistema visto desde dos angulos**. El C4 Container
+Porque **no son dos sistemas: es el mismo sistema visto desde dos angulos**. El C4 Containers
 responde «que piezas hay y de que se encarga cada una»; el Despliegue responde «donde se
 ejecuta cada una y por que puerto se habla». Si una pieza se llama `API de prestamos` en uno y
 `servidor-backend` en el otro, nadie que lea los dos documentos puede saber si son la misma
@@ -2074,7 +2121,7 @@ coherencia. El nombre es el unico hilo que une los tres diagramas del curso: Con
 Container y Despliegue.
 
 **Renombres aplicados: ninguno.** Lo declaro explicitamente, que es lo que pide el enunciado.
-Los cinco nombres que venian del C4 Container —y antes del Context de la Clase 1— se copiaron
+Los cinco nombres que venian del C4 Containers —y antes del Context de la Clase 1— se copiaron
 letra por letra.
 
 **Las dos filas sin par, que no son un error.** El `Edge / balanceador` y el
@@ -2105,7 +2152,7 @@ entendio para que sirve cada nivel, y no solo que copio nombres.""",
                     "Si hubo renombres, la respuesta completa dice **cual de los dos diagramas "
                     "se actualizo** para que queden iguales. No importa cual: importa que "
                     "quede uno solo de los dos nombres vivo.",
-                    "Las filas «no existe en el C4 Container» para el edge y el cliente, con "
+                    "Las filas «no existe en el C4 Containers» para el edge y el cliente, con "
                     "su explicacion, son la mejor version de esta respuesta. No se exige, pero "
                     "si el estudiante las omite y ademas no menciona el edge en ninguna parte, "
                     "descuente de los 2.5 pts de la tabla.",
@@ -2161,7 +2208,7 @@ entendio para que sirve cada nivel, y no solo que copio nombres.""",
             ("Mi dominio no maneja archivos, ¿pierdo puntos por no tener objeto?",
              "Al contrario: declararlo y justificarlo suma completo. Lo que se descuenta es "
              "incluir un almacen de objetos sin un dato que lo pida."),
-            ("En el despliegue tengo piezas que no estan en el C4 Container, ¿esta mal?",
+            ("En el despliegue tengo piezas que no estan en el C4 Containers, ¿esta mal?",
              "No, si las declara. El edge y el cliente son los dos casos normales: son "
              "infraestructura y actor, no contenedores con responsabilidad de negocio. "
              "Declararlas es parte de la respuesta de la pregunta 6."),
@@ -2380,6 +2427,43 @@ Cuatro condiciones, y todas se pueden provocar a proposito:
 `>=` a `>`, el `npm test` se pone rojo y el pipeline se detiene antes del despliegue simulado.
 Ese es el error concreto que introduciria para demostrar que el pipeline sirve, y es el que
 conviene provocar una vez a proposito para ver el check rojo con los propios ojos.""",
+                # La pregunta se califica contra un run que el docente no tiene por que
+                # ejecutar: aqui van los dos logs —el verde y el rojo— en el campo `salida`,
+                # que es el que el renderizador emite en cerca para comparar contra lo que
+                # el estudiante describe. La prosa de criterio va en `nota_salida`, fuera.
+                "salida": """== RUN VERDE - el pipeline de arriba cuando pasa ==
+
+CI BiblioLite API  #7  [OK] construir-probar (ubuntu-latest)        1m 48s
+  [OK] Traer el codigo                                                 3s
+  [OK] Preparar Node 20                                                7s
+  [OK] Instalar dependencias exactas       npm ci                     22s
+  [OK] Construir la imagen del servicio    docker build ... 0.1.0     41s
+  [OK] Pruebas de las reglas de prestamo   npm test                    6s
+         3 passing  (reserva del ultimo ejemplar ya reservado: rechazada con 409)
+  [OK] Verificar que la imagen no lleva secretos                       4s
+  [OK] Levantar el contenedor y verificar el endpoint de salud        14s
+         Endpoint de salud OK
+  [OK] Despliegue SIMULADO (no despliega a ningun servidor real)       2s
+         Imagen bibliolite-api:0.1.0 construida verificada y lista para desplegar.
+
+== RUN ROJO - el mismo pipeline con la regla de reserva rota (>= cambiado por >) ==
+
+CI BiblioLite API  #8  [FALLA] construir-probar (ubuntu-latest)        52s
+  [OK]    Traer el codigo / Preparar Node 20 / Instalar dependencias exactas
+  [OK]    Construir la imagen del servicio
+  [FALLA] Pruebas de las reglas de prestamo   npm test                  5s
+            1 failing - reserva del ultimo ejemplar ya reservado:
+                        se esperaba 409 y devolvio 201
+            Error: Process completed with exit code 1
+  [-]     Verificar que la imagen no lleva secretos                omitido
+  [-]     Levantar el contenedor y verificar el endpoint de salud  omitido
+  [-]     Despliegue SIMULADO                                     omitido""",
+                "nota_salida": """Los segundos varian con el ejecutor y no significan nada: lo que
+se compara son **los nombres de los pasos, su orden y donde se detiene**. Si el estudiante
+describe un run que no se parece a ninguno de los dos, la diferencia esta en su `ci.yml` y ahi
+es donde hay que mirar. Los tres `omitido` del run rojo son el argumento entero de la pregunta:
+**el pipeline no publica un artefacto que no paso las pruebas.** Un run que se pone verde con la
+regla rota es la decoracion verde que este criterio califica con cero.""",
                 "como_calificar": [
                     "1.5 pts **que se compila o instala**, dicho sobre su propio archivo. Si el "
                     "proyecto es JavaScript y no hay compilacion, decirlo explicitamente es la "
@@ -4184,7 +4268,7 @@ enunciado, asi que la use como referencia y no como respuesta.""",
         ),
         "total": 100,
         "nota_actividad": (
-            "**Clase autonoma.** El 02/11/2026 es festivo y no hay sesion presencial: el taller "
+            "**Clase autonoma.** El 02/11/2026 es festivo y no hay sesion sincrona: el taller "
             "se resuelve en casa con el fundamento de la clase, que esta escrito para ser guia y "
             "material de estudio a la vez. **La politica es conceptual:** no se pide configurar "
             "un autoescalador real, ni abrir cuenta en ningun proveedor, ni tarjeta de credito. "

@@ -2,10 +2,10 @@
 
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
 - **Taller:** Actividad del Corte 2 (preguntas 4 a 6) - Despliegue, almacenamiento y nombres
-- **Preguntas:** 3 · **Total:** 24 puntos
+- **Preguntas:** 3 · **Total:** 25 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Diagrama de despliegue: red, zonas, almacenamiento
-- **Entregable de la clase:** Diagrama Deployment (draw.io) + elección de storage (objeto/bloque/relacional conceptual)
+- **Entregable de la clase:** Diagrama Deployment en Mermaid dentro de ExamLab (3 zonas + puertos) + tipo de almacenamiento por componente
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
@@ -143,7 +143,7 @@ cual de los dos diagramas actualizo para que queden iguales.
 
 ## Al terminar de crearlo
 
-- Verifique que la suma de puntos sea la esperada: **24**.
+- Verifique que la suma de puntos sea la esperada: **25**.
 - Publique el taller y confirme la fecha limite (domingo 23:59 segun el Acuerdo).
 - Las preguntas con SQL o codigo: ejecutelas una vez usted mismo antes de publicar,
   para confirmar que el SQL de partida corre y que el starter compila.

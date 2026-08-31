@@ -27,15 +27,9 @@
 
 ### Respuesta esperada
 
-**DOMINIO**
-BiblioLite: prestamo y devolucion de libros de la biblioteca de la universidad.
+**DOMINIO** BiblioLite: prestamo y devolucion de libros de la biblioteca de la universidad.
 
-**PROBLEMA** (3 frases: quien lo sufre y como se mide)
-El auxiliar de biblioteca lleva los prestamos en una planilla de Excel que solo el puede
-abrir, y las renovaciones le llegan por WhatsApp a su numero personal. Los estudiantes que
-necesitan un libro de reserva no saben si esta disponible sin ir hasta el mostrador. El
-semestre pasado se registraron 38 libros devueltos tarde sin cobro de multa, porque nadie
-noto el vencimiento.
+**PROBLEMA** (3 frases: quien lo sufre y como se mide) El auxiliar de biblioteca lleva los prestamos en una planilla de Excel que solo el puede abrir, y las renovaciones le llegan por WhatsApp a su numero personal. Los estudiantes que necesitan un libro de reserva no saben si esta disponible sin ir hasta el mostrador. El semestre pasado se registraron 38 libros devueltos tarde sin cobro de multa, porque nadie noto el vencimiento.
 
 ### Como calificar
 
@@ -58,18 +52,15 @@ noto el vencimiento.
 
 ### Respuesta esperada
 
-**DOMINIO**
-BiblioLite: prestamo y devolucion de libros de la biblioteca de la universidad.
+**DOMINIO** BiblioLite: prestamo y devolucion de libros de la biblioteca de la universidad.
 
-**PROBLEMA**
-(el mismo de la pregunta 1, repetido para que la ficha se lea completa)
+**PROBLEMA** (el mismo de la pregunta 1, repetido para que la ficha se lea completa)
 
 **ACTORES** (2 a 3, con lo que espera cada uno, y los sistemas externos)
 - Estudiante: quiere saber si el libro esta libre sin caminar hasta la biblioteca.
 - Auxiliar de biblioteca: quiere registrar un prestamo en menos de 30 segundos.
 - Coordinador de la biblioteca: quiere saber que titulos se agotan cada semestre.
-- Sistemas externos: proveedor de identidad institucional (valida que quien reserva es
-  estudiante activo) y correo transaccional SaaS (envia el aviso de vencimiento).
+- Sistemas externos: proveedor de identidad institucional (valida que quien reserva es estudiante activo) y correo transaccional SaaS (envia el aviso de vencimiento).
 
 **CAPACIDADES** (3 a 5, verbo + objeto de negocio)
 - Consultar disponibilidad de un titulo
@@ -119,9 +110,9 @@ C4Context
     Rel(correo, estudiante, "Entrega el aviso 2 dias antes del vencimiento", "SMTP")
 ```
 
-### Modelo de referencia que ve el estudiante
+### Modelo de referencia del kit docente (el estudiante NO lo ve)
 
-Es el que aparece en el enunciado de la plataforma, sobre el dominio **AgendaU**. Sirve para comparar estructura y conteos, no para calificar contenido:
+Vive en `Taller en ExamLab - Clase 1 (configuracion).md` y no se pega en el enunciado; esta resuelto sobre el dominio **AgendaU**. Sirve para comparar estructura y conteos —cuantas cajas, cuales son almacenes, si toda flecha lleva protocolo y formato—, **nunca** para calificar contenido ni nombres:
 
 ```mermaid
 C4Context
@@ -161,25 +152,11 @@ C4Context
 
 ### Respuesta esperada
 
-**Atributo 1 — Disponibilidad**
-Por que pesa en BiblioLite: la semana de matricula todos buscan los libros de reserva a la
-vez, y si el sistema no responde el estudiante vuelve al mostrador, que es justo el
-problema que veniamos a resolver.
-Como lo mediria: el sistema responde el 99,5 % del mes, es decir que acepto hasta unas 3
-horas y media de caida, siempre que no caigan en la semana de matricula.
+**Atributo 1 — Disponibilidad** Por que pesa en BiblioLite: la semana de matricula todos buscan los libros de reserva a la vez, y si el sistema no responde el estudiante vuelve al mostrador, que es justo el problema que veniamos a resolver. Como lo mediria: el sistema responde el 99,5 % del mes, es decir que acepto hasta unas 3 horas y media de caida, siempre que no caigan en la semana de matricula.
 
-**Atributo 2 — Rendimiento**
-Por que pesa en BiblioLite: la consulta de disponibilidad es la accion que mas se repite y
-compite contra la alternativa de caminar hasta la biblioteca; si tarda, nadie la usa.
-Como lo mediria: el listado de disponibilidad de un titulo responde en menos de 400 ms
-para el 95 % de las consultas.
+**Atributo 2 — Rendimiento** Por que pesa en BiblioLite: la consulta de disponibilidad es la accion que mas se repite y compite contra la alternativa de caminar hasta la biblioteca; si tarda, nadie la usa. Como lo mediria: el listado de disponibilidad de un titulo responde en menos de 400 ms para el 95 % de las consultas.
 
-**Conflicto**
-Sacrifico disponibilidad antes que rendimiento. Prefiero un sistema que a veces este caido
-pero que cuando responda sea inmediato, porque el estudiante que encuentra el sistema
-caido camina hasta la biblioteca igual que hoy, mientras que uno que espera diez segundos
-deja de confiar en el dato y tampoco vuelve. A cambio acepto no montar redundancia, que es
-lo que me permite sostener el proyecto sin presupuesto.
+**Conflicto** Sacrifico disponibilidad antes que rendimiento. Prefiero un sistema que a veces este caido pero que cuando responda sea inmediato, porque el estudiante que encuentra el sistema caido camina hasta la biblioteca igual que hoy, mientras que uno que espera diez segundos deja de confiar en el dato y tampoco vuelve. A cambio acepto no montar redundancia, que es lo que me permite sostener el proyecto sin presupuesto.
 
 ### Como calificar
 

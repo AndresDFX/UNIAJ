@@ -16,7 +16,7 @@ Toda entrega intermedia cierra el **domingo 23:59 siguiente** a la sesión corre
 |---|---|---|---|---|
 | S10 (doble) | 26/10/2026 | Clases 11 + 12 | Avance PI — diagramas v1 · Pruebas de rendimiento · **preparación de la sustentación** | dom 01/11/2026 23:59 |
 | S11 (autónoma) | 02/11/2026 | Clase 13 | Escalabilidad automática aplicada al PI | dom 08/11/2026 23:59 |
-| S12 | 09/11/2026 | Clase 14 | **Parcial 3** (presencial · solo evaluación) | **paquete final:** dom 15/11/2026 23:59 |
+| S12 | 09/11/2026 | Clase 14 | **Parcial 3** (virtual síncrono por Meet · solo evaluación) | **paquete final:** dom 15/11/2026 23:59 |
 | S13 | 16/11/2026 | Clase 15 | **Sustentación en vivo del PI** + cierre (sesión síncrona) | — (el paquete ya está entregado) |
 
 > S13 cae en festivo (Independencia de Cartagena), pero por decisión docente es sesión de

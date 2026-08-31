@@ -889,7 +889,7 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
                 ],
             },
             {
-                "n": 5, "titulo": "Politica de altas y bajas de usuarios (y limites del entorno)",
+                "n": 5, "titulo": "Politica de altas y bajas de usuarios (y la prueba negativa)",
                 "tipo": "abierta", "puntos": 15,
                 "respuesta": (
                     "Version de referencia, en una pagina. Lo que se califica no es la redaccion "
@@ -931,20 +931,22 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
                     "`admin_bd` prepara la evidencia pero no se autoaprueba, porque eso rompe la "
                     "separacion de funciones que la matriz defiende. Toda diferencia se corrige o "
                     "se documenta como excepcion con fecha de vencimiento.\n\n"
-                    "**5. Limite del entorno de practica.** En ExamLab la base es PostgreSQL "
-                    "corriendo en el navegador, con **una sola sesion y un solo usuario**. Eso "
-                    "alcanza para todo lo que es DDL de permisos — crear los cuatro roles, "
-                    "otorgar, revocar, crear la vista, recortar por columna — y para verificarlo "
-                    "con `information_schema`, porque esas consultas describen el estado del "
-                    "catalogo y no requieren cambiar de identidad. Lo que **no** se puede hacer es "
-                    "la prueba negativa: conectarse como `recepcion` e intentar un `DELETE FROM "
-                    "cita` para ver el rechazo. En un servidor real se hace sin cambiar de "
-                    "conexion, con `SET ROLE recepcion;` seguido de `DELETE FROM cita WHERE "
-                    "id_cita = 1;`, y el resultado esperado es el error `permission denied for "
-                    "table cita`; despues se vuelve con `RESET ROLE`. La ausencia de esa prueba es "
-                    "una brecha de verificacion concreta en esta entrega: se comprobo que el "
-                    "permiso **esta escrito** como se decidio, no que el motor **lo hace "
-                    "cumplir**. Son dos afirmaciones distintas y solo una quedo demostrada."
+                    "**5. Prueba negativa y limite del entorno.** En ExamLab la base es PostgreSQL "
+                    "corriendo en el navegador (PGlite), con **una sola sesion y un solo usuario "
+                    "de conexion**. Eso no impide la prueba negativa, y aqui esta corrida: `SET "
+                    "ROLE recepcion;` cambia el rol efectivo de la sesion, y desde esa linea el "
+                    "motor evalua los permisos como `recepcion`. Entonces `DELETE FROM cita WHERE "
+                    "id_cita = 1;` responde `ERROR: permission denied for table cita`, y `RESET "
+                    "ROLE;` devuelve la sesion al rol propietario. El limite real es otro, y "
+                    "conviene decirlo con precision: `SET ROLE` cambia el rol **dentro** de la "
+                    "sesion ya abierta, no abre una sesion nueva; los cuatro roles se crearon "
+                    "`NOLOGIN` justamente porque son paquetes de permisos y no identidades de "
+                    "conexion, asi que lo que ExamLab no permite probar es el **login** de "
+                    "`recepcion` ni la concurrencia entre dos personas. Lo que si quedo demostrado "
+                    "es lo que importa de la pregunta 1: que el motor **hace cumplir** la matriz, "
+                    "no solo que esta escrita. Y si en la maquina de alguien el `SET ROLE` "
+                    "fallara, ese mensaje se pega tal cual y ahi si aparece la brecha de "
+                    "verificacion: se habria comprobado la configuracion y no el cumplimiento."
                 ),
                 "como_calificar": [
                     "**8 pts — las cinco secciones, con responsable y plazo.** 1,6 por seccion. "
@@ -955,10 +957,14 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
                     "dice que se otorga el nuevo, no se dan.",
                     "**2 pts — la baja resuelve el destino de los objetos** (`REASSIGN OWNED` o "
                     "equivalente razonado) y dice cuanto se conserva la traza.",
-                    "**3 pts — la seccion 5.** 1 pt por identificar bien la limitacion (una sola "
-                    "sesion, no «no se pueden crear roles»), 1 pt por proponer `SET ROLE` u otra "
-                    "conexion como prueba negativa, y 1 pt por nombrar la consecuencia: que sin "
-                    "esa prueba lo verificado es la configuracion y no el cumplimiento.",
+                    "**3 pts — la seccion 5.** 1 pt por la prueba negativa corrida (`SET ROLE`, la "
+                    "sentencia que fallo, `RESET ROLE`), 1 pt por el mensaje del motor pegado "
+                    "literal — `permission denied for table cita` — y no parafraseado, y 1 pt por "
+                    "distinguir `SET ROLE` de conectarse como otro usuario y nombrar el limite "
+                    "verdadero del entorno: un solo usuario de conexion, sin login de `recepcion` "
+                    "ni concurrencia. Si el `SET ROLE` le fallo y pego el mensaje mas la brecha de "
+                    "verificacion, se dan los 3 igual: lo que se califica es que haya intentado "
+                    "comprobar y haya reportado lo que vio.",
                     "**Extension.** Una pagina es el techo, no la meta. Tres parrafos que "
                     "resuelven las cinco secciones valen mas que dos paginas de generalidades, y "
                     "no se descuenta por brevedad si esta todo.",
@@ -978,6 +984,15 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
                     "**Proponer como prueba negativa «abrir otra pestana y entrar como "
                     "recepcion».** No sirve: no hay segundo usuario ni segunda sesion. Lo que se "
                     "pide es el comando concreto de PostgreSQL, y es `SET ROLE`.",
+                    "**Afirmar que «en ExamLab no se puede hacer la prueba negativa» sin haberla "
+                    "intentado.** Es falso, y hay que saberlo antes de calificar: PGlite conecta "
+                    "como el superusuario `postgres`, asi que `SET ROLE recepcion;` funciona y el "
+                    "`DELETE` rebota de verdad. Si la entrega lo afirma, se le pide la corrida; "
+                    "sin evidencia no hay seccion 5.",
+                    "**Correr el `SET ROLE` y olvidar el `RESET ROLE;`.** Todo lo que el "
+                    "estudiante escriba despues se sigue ejecutando como `recepcion` y falla por "
+                    "una razon que no es la del ejercicio. Cuando alguien reporta que «se le "
+                    "rompio el resto del taller», es esto casi siempre.",
                     "**Permitir cuentas compartidas** («la cuenta recepcion1 la usan las tres "
                     "recepcionistas»). Rompe toda la auditoria de la Clase 4 antes de escribirla: "
                     "el disparador registrara siempre el mismo nombre y ninguna investigacion "
@@ -1006,10 +1021,13 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
              "dar la vista y revocar la tabla en el mismo script, y el rol sigue viendo el telefono "
              "pero ya no el correo."),
             ("¿Puedo demostrar que a recepcion le rebota el DELETE?",
-             "No en ExamLab, porque hay una sola sesion. En un servidor real, sin abrir otra "
-             "conexion: `SET ROLE recepcion;` y luego `DELETE FROM cita WHERE id_cita = 1;`, que "
-             "debe responder `permission denied for table cita`; se vuelve con `RESET ROLE`. Esa es "
-             "la respuesta que vale puntos en la pregunta 5."),
+             "Si, y sin abrir otra conexion: `SET ROLE recepcion;` y luego `DELETE FROM cita WHERE "
+             "id_cita = 1;`, que debe responder `permission denied for table cita`; se vuelve con "
+             "`RESET ROLE;`. Funciona en ExamLab porque PGlite conecta como superusuario y `SET "
+             "ROLE` cambia el rol efectivo de la sesion, no la conexion. Lo que no se puede es "
+             "conectarse *como* `recepcion`: hay un solo usuario de conexion y, de hecho, los "
+             "cuatro roles se crearon `NOLOGIN`. Esa es la respuesta que vale puntos en la "
+             "pregunta 5."),
             ("¿Rol y usuario son lo mismo?",
              "En PostgreSQL si: un usuario es un rol con el atributo `LOGIN`, y `CREATE USER` es "
              "literalmente un alias de `CREATE ROLE ... LOGIN`. Por eso los cuatro roles del taller "
@@ -1158,7 +1176,7 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
           10 |          6 |              1 | 2026-09-10 09:00:00 | ATENDIDA
            9 |          4 |              4 | 2026-09-10 08:00:00 | PROGRAMADA
 
-    La comprobacion de un golpe es el **11**: la base venia con 10 citas sembradas,
+    La comprobacion de un golpe es el 11: la base venia con 10 citas sembradas,
     asi que el id 11 y el estado PROGRAMADA en la primera fila demuestran que el
     procedimiento inserto y que lo hizo con el estado correcto. Si la primera fila
     dice 10, el CALL no inserto nada y hay que revisar si alguna validacion esta
@@ -1177,7 +1195,7 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
       -- ERROR:  ERROR: el veterinario 1 ya tiene cita en 2026-09-01 08:00:00
 
     Y la que confirma que CANCELADA libera la franja: el veterinario 3 tiene la cita
-    4 CANCELADA el 2026-09-02 08:30:00, asi que esta debe **funcionar**.
+    4 CANCELADA el 2026-09-02 08:30:00, asi que esta debe funcionar.
 
       CALL sp_agendar_cita(1, 3, TIMESTAMP '2026-09-02 08:30:00');
       -- CALL (sin error): inserta la cita 12""",
@@ -1349,15 +1367,15 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
     Los cuatro numeros de la derecha son la respuesta a la pregunta del enunciado
     -- "las 3 pruebas negativas no dejaron basura" -- y son mas fuertes que el
     total: 11 = 10 sembradas + 1 de P1; cero citas de Rocky (P2 no inserto); cero
-    citas el 22 de septiembre (P3 no inserto); y **1, no 2**, en la franja del
+    citas el 22 de septiembre (P3 no inserto); y 1, no 2, en la franja del
     veterinario 1 el 1 de septiembre, que es lo que demuestra que P4 no duplico.
 
-    Sobre la columna `paso`: aqui las 4 filas quedan en **t** porque `paso` se
+    Sobre la columna `paso`: aqui las 4 filas quedan en «t» porque `paso` se
     definio como "el resultado coincidio con lo esperado", y en las pruebas
     negativas lo esperado ES la excepcion. Es la semantica que usa cualquier
     framework de pruebas. La plantilla del enunciado deja las negativas en `f`,
     leyendo `paso` como "la operacion se completo": tambien es correcta y vale los
-    mismos puntos, **siempre que el estudiante escriba cual de las dos usa**. Lo
+    mismos puntos, siempre que el estudiante escriba cual de las dos usa. Lo
     que no se acepta es que las cuatro filas digan `t` sin haber verificado el
     texto de la excepcion, porque entonces `paso` no significa nada.""",
                 "como_calificar": [
@@ -1605,12 +1623,12 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
 
     Las tres comprobaciones que hay que buscar en esta salida, en este orden:
 
-    1. **La fila 1** paso de PROGRAMADA a ATENDIDA y trae diagnostico y precio: el
+    1. La fila 1 paso de PROGRAMADA a ATENDIDA y trae diagnostico y precio: el
        procedimiento hizo sus dos escrituras.
-    2. **La fila 4** sigue en CANCELADA y con las dos columnas vacias: la validacion
-       2 impidio la consulta y, muy importante, **no** cambio el estado. Si la fila 4
+    2. La fila 4 sigue en CANCELADA y con las dos columnas vacias: la validacion
+       2 impidio la consulta y, muy importante, no cambio el estado. Si la fila 4
        apareciera en ATENDIDA, el UPDATE se hizo antes de validar.
-    3. **La fila 2** conserva su diagnostico original, `Vacunacion triple felina`, no
+    3. La fila 2 conserva su diagnostico original, `Vacunacion triple felina`, no
        `Duplicada`: la validacion 3 rechazo el segundo registro sin sobrescribir el
        primero.
 
@@ -2030,11 +2048,11 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
      Toby     | Canino  |      45000.00 |        60750.00
      Kiara    | Canino  |      45000.00 |        60750.00
 
-    Las 8 mascotas, incluidas Rocky y Kiara que estan **inactivas**: la funcion no
+    Las 8 mascotas, incluidas Rocky y Kiara que estan inactivas: la funcion no
     filtra por `activa` y esta bien que no lo haga. Una funcion IMMUTABLE no puede
     leer tablas; quien quiera excluirlas pone el `WHERE m.activa = 'S'` en la
     consulta, no dentro de la funcion. El numero que confirma el recargo es el
-    **60750.00** (45000 x 1.35).
+    60750.00 (45000 x 1.35).
 
     Consulta 2 -- 4 filas
 
@@ -2045,9 +2063,9 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
                3 |       7 | Firulais | Canino  |       55000.00 |    45000.00 |   10000.00
                4 |      10 | Nube     | Felino  |       35000.00 |    40000.00 |   -5000.00
 
-    Solo **una** de las cuatro consultas cobro exactamente la tarifa. Dos cobraron
+    Solo una de las cuatro consultas cobro exactamente la tarifa. Dos cobraron
     por debajo y una por encima, y la suma de las diferencias es +3000. La lectura
-    que hay que dejar dicha: la funcion es la tarifa **de referencia**, no lo
+    que hay que dejar dicha: la funcion es la tarifa de referencia, no lo
     facturado; el negocio ajusta caso por caso. Ese hueco entre lo esperado y lo
     cobrado es lo que la Clase 6 va a convertir en una vista de control.
 
@@ -2215,14 +2233,14 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
             1 |       1 | CAMBIO_ESTADO | PROGRAMADA     | CANCELADA   | postgres
             2 |       3 | CAMBIO_ESTADO | PROGRAMADA     | ATENDIDA    | postgres
 
-    **Dos filas, no tres.** Es el resultado que la pregunta pide demostrar. Y el
-    detalle que hay que subrayar en la devolucion: el tercer `UPDATE` **si se
-    ejecuto** -- el motor respondio `UPDATE 1`, no `UPDATE 0` -- y aun asi no dejo
+    Dos filas, no tres. Es el resultado que la pregunta pide demostrar. Y el
+    detalle que hay que subrayar en la devolucion: el tercer `UPDATE` si se
+    ejecuto -- el motor respondio `UPDATE 1`, no `UPDATE 0` -- y aun asi no dejo
     rastro, porque la clausula `WHEN` se evalua por fila y descarto ese disparo.
 
     El valor de `usuario_bd` depende de con que usuario se conecte el entorno; en
     ExamLab sale `postgres`. No se califica el nombre, se califica que la columna
-    tenga `DEFAULT current_user` y que el trigger **no** lo escriba a mano.
+    tenga `DEFAULT current_user` y que el trigger no lo escriba a mano.
 
     Prueba adicional -- 1 fila
 
@@ -2230,7 +2248,7 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
     -----------------+-----------+----------+------------+--------------------
                    2 | CANCELADA | ATENDIDA | PROGRAMADA |                  0
 
-    Ese **0** de la derecha es la prueba mas limpia de que el filtro es el que
+    Ese 0 de la derecha es la prueba mas limpia de que el filtro es el que
     trabaja, y no la casualidad.""",
                 "como_calificar": [
                     "**5 pts — `audit_cita` con las 7 columnas** y los dos `DEFAULT`: "
@@ -2407,10 +2425,10 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
     ----------------------+---------------------
                         0 |                   1
 
-    Las tres cosas que hay que ver, en este orden: el **-7** existio (el problema es
-    real, no una advertencia teorica), el aviso de la prueba 1 trae el **nombre del
-    insumo** y el **valor rechazado** (el mensaje sirve para actuar, no solo para
-    saber que algo fallo), y el insumo 2 quedo en **1** y no en 3 -- si quedara en 3,
+    Las tres cosas que hay que ver, en este orden: el -7 existio (el problema es
+    real, no una advertencia teorica), el aviso de la prueba 1 trae el nombre del
+    insumo y el valor rechazado (el mensaje sirve para actuar, no solo para
+    saber que algo fallo), y el insumo 2 quedo en 1 y no en 3 -- si quedara en 3,
     el trigger esta bloqueando tambien los descuentos validos, casi siempre por
     haber escrito `NEW.stock <= 0`.""",
                 "como_calificar": [
@@ -2993,29 +3011,28 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
     -------+---------+------------------
         91 |      91 |              150
 
-    **91 es el numero de la pregunta.** Es el que hay que buscar en cualquier
-    entrega, y no depende de la maquina: el 2026-03-10 tiene 150 citas —150 por dia
-    en toda la base— y de esas 91 estan PROGRAMADA, 45 ATENDIDA y 14 CANCELADA. Si
-    un estudiante reporta 150, se le olvido el filtro de estado; si reporta 0, casi
-    siempre escribio `BETWEEN '2026-03-10' AND '2026-03-10'`, que con TIMESTAMP
-    solo atrapa la medianoche exacta.
-
-    Reparto de las 91 por franja, util para verificar de un vistazo:
+    Reparto de las 91 por franja horaria (mismo dato, agrupado):
 
      08:45 -> 15    09:30 -> 15    11:00 -> 15
-     11:45 -> 16    13:15 -> 15    14:00 -> 15
+     11:45 -> 16    13:15 -> 15    14:00 -> 15""",
+                "nota_salida": """**91 es el numero de la pregunta.** Es el que hay que buscar en cualquier
+entrega, y no depende de la maquina: el 2026-03-10 tiene 150 citas —150 por dia en
+toda la base— y de esas 91 estan PROGRAMADA, 45 ATENDIDA y 14 CANCELADA. Si un
+estudiante reporta 150, se le olvido el filtro de estado; si reporta 0, casi siempre
+escribio `BETWEEN '2026-03-10' AND '2026-03-10'`, que con TIMESTAMP solo atrapa la
+medianoche exacta.
 
-    Son **seis** franjas y no nueve, y el detalle tiene explicacion: la base genera
-    las horas en pasos de 45 minutos y hace ATENDIDA una de cada tres citas, y las
-    tres franjas que caen en los multiplos —08:00, 10:15 y 12:30— quedan todas
-    ATENDIDA o CANCELADA. No es un error de nadie.
+Son **seis** franjas y no nueve, y el detalle tiene explicacion: la base genera las
+horas en pasos de 45 minutos y hace ATENDIDA una de cada tres citas, y las tres
+franjas que caen en los multiplos —08:00, 10:15 y 12:30— quedan todas ATENDIDA o
+CANCELADA. No es un error de nadie.
 
-    **Sobre el `ORDER BY`:** el enunciado pide ordenar por `c.fecha_hora`, y con eso
-    solo hay entre 15 y 16 filas **empatadas** dentro de cada franja, cuyo orden el
-    motor no garantiza. Dos corridas de la misma consulta pueden imprimir la agenda
-    en distinto orden. Por eso esta solucion agrega `, c.id_cita`: no se exige, y no
-    se descuenta por no tenerlo, pero es lo que hace que la evidencia del estudiante
-    sea reproducible y vale la pena senalarlo en la devolucion.""",
+**Sobre el `ORDER BY`:** el enunciado pide ordenar por `c.fecha_hora`, y con eso solo
+hay entre 15 y 16 filas **empatadas** dentro de cada franja, cuyo orden el motor no
+garantiza. Dos corridas de la misma consulta pueden imprimir la agenda en distinto
+orden. Por eso esta solucion agrega `, c.id_cita`: no se exige, y no se descuenta por
+no tenerlo, pero es lo que hace que la evidencia del estudiante sea reproducible y
+vale la pena senalarlo en la devolucion.""",
                 "como_calificar": [
                     "**16 pts — los cuatro antipatrones corregidos, 4 pts cada uno.** "
                     "(1) La proyeccion con las seis columnas y los alias `mascota`, `dueno`, "
@@ -3190,44 +3207,44 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
                            AND (estado = 'PROGRAMADA'::text))
                   Rows Removed by Filter: 29919
             ->  ... los mismos tres Index Scan por llave primaria ...
-    Execution Time: 41.2 ms
+    Execution Time: 41.2 ms""",
+                "nota_salida": """Los cuatro numeros que hay que saber leer en esta salida, y **solo los tres
+primeros son deterministas**:
 
-    Los cuatro numeros que hay que saber leer en esta salida, y **solo los tres
-    primeros son deterministas**:
+1. **`Rows Removed by Filter: 29919`, igual en las dos.** Es la parte incomoda y es
+   la mas instructiva: sin indice, las dos versiones leen las 30.010 filas y tiran
+   las mismas 29.919. El predicado sargable **por si solo** no evita el `Seq Scan`;
+   lo que hace es dejar la puerta abierta para el indice de la Clase 7. Un estudiante
+   que reporte «desaparecio el Seq Scan» no leyo su plan.
+2. **`rows=1` estimadas contra `rows=91` reales, en la version ANTES.** Ese 1 no es
+   casualidad: cuando el filtro es una funcion sobre la columna, el motor no tiene
+   estadisticas y aplica una selectividad por omision del 0,5 % por cada condicion;
+   30.010 x 0,005 x 0,005 da 0,75, que se redondea a 1. Con el predicado desnudo usa
+   el histograma de `fecha_hora` y la lista de valores frecuentes de `estado`, y
+   estima ~90 contra 91 reales.
+3. **El plan del `LIMIT 50` conserva el `Seq Scan` completo.** Tiene que conservarlo:
+   para saber cuales son las 50 primeras por `fecha_hora` sin un indice que ya venga
+   ordenado, hay que encontrar y ordenar las 91. El `LIMIT` solo ahorra el transporte
+   de 41 filas. Es el segundo argumento para el indice de la Clase 7.
+4. **`Execution Time`.** Aqui 118 -> 41 ms, un factor de 2,9x. **Este es el unico
+   numero que cambia de maquina a maquina** y en el navegador puede variar el doble
+   entre dos corridas seguidas. Se acepta cualquier factor entre 1,5x y 3x; lo que no
+   se acepta es un factor inventado.
 
-    1. **`Rows Removed by Filter: 29919`, igual en las dos.** Es la parte incomoda y
-       es la mas instructiva: sin indice, las dos versiones leen las 30.010 filas y
-       tiran las mismas 29.919. El predicado sargable **por si solo** no evita el
-       `Seq Scan`; lo que hace es dejar la puerta abierta para el indice de la
-       Clase 7. Un estudiante que reporte «desaparecio el Seq Scan» no leyo su plan.
-    2. **`rows=1` estimadas contra `rows=91` reales, en la version ANTES.** Ese 1 no
-       es casualidad: cuando el filtro es una funcion sobre la columna, el motor no
-       tiene estadisticas y aplica una selectividad por omision del 0,5 % por cada
-       condicion; 30.010 x 0,005 x 0,005 da 0,75, que se redondea a 1. Con el
-       predicado desnudo usa el histograma de `fecha_hora` y la lista de valores
-       frecuentes de `estado`, y estima ~90 contra 91 reales.
-    3. **El plan del `LIMIT 50` conserva el `Seq Scan` completo.** Tiene que
-       conservarlo: para saber cuales son las 50 primeras por `fecha_hora` sin un
-       indice que ya venga ordenado, hay que encontrar y ordenar las 91. El `LIMIT`
-       solo ahorra el transporte de 41 filas. Es el segundo argumento para el indice
-       de la Clase 7.
-    4. **`Execution Time`.** Aqui 118 -> 41 ms, un factor de 2,9x. **Este es el unico
-       numero que cambia de maquina a maquina** y en el navegador puede variar el
-       doble entre dos corridas seguidas. Se acepta cualquier factor entre 1,5x y
-       3x; lo que no se acepta es un factor inventado.
-
-    Si el entorno rechaza la opcion `BUFFERS`, se corre `EXPLAIN ANALYZE` a secas y
-    se dice en la pregunta 5, tal como autoriza el enunciado. Cuando si funciona, el
-    dato que importa es que el `shared hit` del `Seq Scan on cita` es del mismo orden
-    en las dos versiones -- otra vez: se leen los mismos bloques.""",
+Si el entorno rechaza la opcion `BUFFERS`, se corre `EXPLAIN ANALYZE` a secas y se
+dice en la pregunta 5, tal como autoriza el enunciado. Cuando si funciona, el dato que
+importa es que el `shared hit` del `Seq Scan on cita` es del mismo orden en las dos
+versiones -- otra vez: se leen los mismos bloques.""",
                 "como_calificar": [
                     "**6 pts — los tres `EXPLAIN` corren y corresponden.** 2 pts cada uno. El "
                     "tercero, la variante con `LIMIT 50`, es el que mas se olvida y la rubrica lo "
                     "nombra de forma explicita.",
                     "**9 pts — la tabla en comentarios, 3 pts por columna.** Nodo mas costoso, "
-                    "filas estimadas contra reales, y tiempo de ejecucion, para ANTES y para "
-                    "DESPUES. La exigencia de la rubrica es que los valores esten **tomados del "
-                    "plan real**: se verifica con dos anclas que no se pueden adivinar, el "
+                    "filas estimadas contra reales, y tiempo de ejecucion, **para las tres "
+                    "versiones**: la columna se da completa cuando estan ANTES, DESPUES y "
+                    "DESPUES+LIM50, y vale 2 de 3 si falta la fila del `LIMIT 50`. La exigencia "
+                    "de la rubrica es que los valores esten **tomados del plan real**: se "
+                    "verifica con dos anclas que no se pueden adivinar, el "
                     "`Rows Removed by Filter: 29919` y las 91 filas reales.",
                     "**3 pts — la linea `-- CONCLUSION:` cuantifica la mejora.** Basta un factor "
                     "aproximado con los dos tiempos que lo sustentan. **Un factor pequeno y "
@@ -3395,21 +3412,9 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
             8 | Dueno 2        |          18
           ... hasta el id_dueno 20, todos con 18 ...
 
-    Los seis primeros son los duenos sembrados a mano, y tiene sentido: son los
-    unicos que tienen mascotas de las dos tandas —las 8 sembradas y las generadas—.
-    Del septimo hacia abajo hay **987 duenos empatados en 18**, asi que el
-    `ORDER BY total_citas DESC, d.id_dueno` no es un adorno: sin el desempate por
-    `id_dueno`, las filas 7 a 20 salen distintas en cada corrida y la evidencia del
-    estudiante no se puede comparar con nada.
-
     Equivalencia -- 0 filas
 
      (el EXCEPT en los dos sentidos no devolvio ninguna fila)
-
-    **Cero filas es el resultado correcto** y es la unica forma de afirmar que las
-    dos versiones son iguales. Si devuelve 6 filas —las de los id_dueno 2001 a
-    2006— el error esta identificado sin necesidad de leer el codigo: se uso
-    `COUNT(*)` en vez de `COUNT(c.id_cita)`.
 
     Comprobacion de los duenos sin citas -- 6 filas
 
@@ -3420,19 +3425,29 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
          2003 | Dueno 1997|           0
          2004 | Dueno 1998|           0
          2005 | Dueno 1999|           0
-         2006 | Dueno 2000|           0
+         2006 | Dueno 2000|           0""",
+                "nota_salida": """**El ranking.** Los seis primeros son los duenos sembrados a mano, y tiene
+sentido: son los unicos que tienen mascotas de las dos tandas —las 8 sembradas y las
+generadas—. Del septimo hacia abajo hay **987 duenos empatados en 18**, asi que el
+`ORDER BY total_citas DESC, d.id_dueno` no es un adorno: sin el desempate por
+`id_dueno`, las filas 7 a 20 salen distintas en cada corrida y la evidencia del
+estudiante no se puede comparar con nada.
 
-    **Seis filas con 0.** Es el numero que separa las tres entregas posibles:
-    6 filas con 0 = correcto; 6 filas con **1** = se uso `COUNT(*)`;
-    **0 filas** = se uso `INNER JOIN` y esos seis duenos desaparecieron del reporte.
-    Los tres casos se distinguen con esta sola consulta.
+**La equivalencia: cero filas es el resultado correcto**, y es la unica forma de
+afirmar que las dos versiones son iguales. Si devuelve 6 filas —las de los id_dueno
+2001 a 2006— el error esta identificado sin necesidad de leer el codigo: se uso
+`COUNT(*)` en vez de `COUNT(c.id_cita)`.
 
-    Sobre el rendimiento: la version ANTES ejecuta el `SubPlan` **2.006 veces** y en
-    cada una recorre las 30.010 citas; el plan lo dice con `loops=2006`. La version
-    DESPUES es un `HashAggregate` sobre un solo recorrido. Aqui la diferencia si es
-    de ordenes de magnitud —de segundos a decenas de milisegundos— y no depende de
-    que haya indices, porque lo que se elimino no fue un escaneo: fueron 2.005
-    escaneos.""",
+**Las seis filas con 0** son el numero que separa las tres entregas posibles: 6 filas
+con 0 = correcto; 6 filas con **1** = se uso `COUNT(*)`; **0 filas** = se uso
+`INNER JOIN` y esos seis duenos desaparecieron del reporte. Los tres casos se
+distinguen con esta sola consulta.
+
+**Sobre el rendimiento:** la version ANTES ejecuta el `SubPlan` **2.006 veces** y en
+cada una recorre las 30.010 citas; el plan lo dice con `loops=2006`. La version
+DESPUES es un `HashAggregate` sobre un solo recorrido. Aqui la diferencia si es de
+ordenes de magnitud —de segundos a decenas de milisegundos— y no depende de que haya
+indices, porque lo que se elimino no fue un escaneo: fueron 2.005 escaneos.""",
                 "como_calificar": [
                     "**7 pts — la version DESPUES elimina la correlacion.** 3 pts los dos "
                     "`LEFT JOIN`, 2 pts el `GROUP BY d.id_dueno, d.nombre` y 2 pts "
@@ -3669,10 +3684,16 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
                     "en la Clase 7 hay que poder comparar contra el de hoy."
                 ),
                 "como_calificar": [
-                    "**3 pts — secciones 1 y 3, y 3 pts la seccion 5.** La 1 necesita la pantalla "
+                    # Decia «3 pts secciones 1 y 3, y 3 pts la seccion 5», y la seccion 5 ya
+                    # tiene sus 2 pts en la cuarta vinneta: quien calificara al pie de la
+                    # letra le daba 5 pts a la 5, dejaba la 3 sin calificar y llegaba a 22
+                    # sobre 20. El cuerpo de la vinneta solo explica la 1 y la 3, que es lo
+                    # que confirma cual de los dos numeros era el equivocado.
+                    "**3 pts — la seccion 1, y 3 pts la seccion 3.** La 1 necesita la pantalla "
                     "concreta y una **frecuencia**; «se usa mucho» no vale. La 3 necesita la "
                     "afirmacion de equivalencia **y** el metodo con su resultado (91 = 91, "
-                    "`EXCEPT` vacio).",
+                    "`EXCEPT` vacio). Con los 9 de la seccion 2, los 3 de la 4 y los 2 de la 5, "
+                    "el desglose suma los 20 puntos de la pregunta.",
                     "**9 pts — los tres cambios, 3 pts cada uno.** Cada cambio se parte en tres: "
                     "1 pt que se diga **que** se cambio, 1 pt **por que** mejora con el "
                     "vocabulario correcto —sargabilidad, proyeccion, cardinalidad, numero de "

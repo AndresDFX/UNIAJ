@@ -5,7 +5,7 @@ El guion embebe automaticamente cualquier PNG que exista en esta carpeta con
 el nombre esperado. Mientras no exista, el .docx imprime la receta en su lugar.
 
 1) cap01_demo.png — salida de la demo del docente
-   - Abrir Oracle Live SQL / DB Fiddle y repetir la demo: BEGIN... INSERT factura/detalle... UPDATE stock... COMMIT/ROLLBACK.
+   - Abrir ExamLab (PostgreSQL/PGlite) y repetir la demo: CALL sp_facturar(4, ARRAY[1,6,5], ARRAY[1,2,3]) que factura 27.400, y CALL sp_facturar(4, ARRAY[3,2], ARRAY[2,10]) que falla en la segunda linea: el stock del insumo 3 vuelve a 40 sin ROLLBACK escrito.
    - Capturar solo la ventana con el resultado (no el escritorio completo).
    - Recortar a ~1200 px de ancho y guardar aqui como cap01_demo.png.
 

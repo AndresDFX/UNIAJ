@@ -740,8 +740,8 @@ K1 - Carga por veterinario (5 filas, con Sara Quintero ya insertada)
  Sara Quintero   |           0 |         0 |          0 |             0.0
 
 La fila que importa es la ultima, y es la que la semilla original no permitia
-ver: 0 citas, 0 atendidas, 0 canceladas y 0.0 de porcentaje **sin que la
-consulta reviente**. Sin el NULLIF esa fila no sale mal: la consulta entera
+ver: 0 citas, 0 atendidas, 0 canceladas y 0.0 de porcentaje sin que la
+consulta reviente. Sin el NULLIF esa fila no sale mal: la consulta entera
 falla con "division by zero" y no hay diapositiva. Y sin el LEFT JOIN, Sara
 simplemente no aparece y el reporte afirma que la clinica tiene 4 veterinarios.
 
@@ -796,7 +796,7 @@ K3 - Top insumos consumidos (7 filas, con Collar isabelino ya insertado)
  Collar isabelino        |                 0 |           0.00 |             15
 
 Dos cosas para la sustentacion. La ultima fila es la que prueba el LEFT JOIN con
-COALESCE: 0 unidades, 0.00 de valor, y **aparece**. Con un JOIN interno se
+COALESCE: 0 unidades, 0.00 de valor, y aparece. Con un JOIN interno se
 perderia justo el insumo del que interesa saber que no rota.
 
 Y el orden: la gasa esteril encabeza por unidades con 4.800 de valor, mientras

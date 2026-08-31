@@ -11,8 +11,8 @@
 - Taller del estudiante: `Clases/Clase 7 - Indices y particionamiento/Taller PI - Clase 7 - VetCare.docx`
 - Configuracion en la plataforma: `Kit docente/Clase 7/Taller en ExamLab - Clase 7 (configuracion).md`
 - Caso de estudio: `Clases/Proyecto Integrador/Anexo - Caso de estudio Clinica Huellitas - Bases de Datos II.docx`
-- Hito del PI: >=2 indices justificados sobre tablas calientes del PI
-- Entregable: Script CREATE INDEX + tabla justificacion consulta->indice
+- Hito del PI: 3 indices justificados (uno parcial) + historico particionado por ano
+- Entregable: Script CREATE INDEX + cita_hist particionada + tabla justificacion consulta->indice
 - **Estas preguntas: 100 puntos** en 5 preguntas.
 
 | # | Pregunta | Tipo | Puntos |
@@ -168,24 +168,24 @@ PASO 1 -- linea base, las dos con Seq Scan
 
     Los cuatro hechos que hay que reconocer en esa salida:
 
-    1. **Desaparecio el `Rows Removed by Filter`.** En C1 pasa de 29.919 a **nada**:
+    1. Desaparecio el «Rows Removed by Filter». En C1 pasa de 29.919 a nada:
        el motor ya no lee las 30.010 filas para tirar 29.919, va directo a las 91.
        Esta es la diferencia con la Clase 6, donde el predicado sargable por si solo
-       no habia conseguido esto. **El indice es lo que faltaba.**
-    2. **`Index Cond` en vez de `Filter`.** No es un detalle de vocabulario: un
-       `Index Cond` se resuelve **dentro** del indice, sin tocar la tabla; un `Filter`
-       se evalua **despues** de leer la fila. Cuando un estudiante ve su condicion en
-       `Filter`, el indice no le esta sirviendo para esa condicion.
-    3. **El planeador eligio el indice PARCIAL para C1**, no el completo. Es la
+       no habia conseguido esto. El indice es lo que faltaba.
+    2. «Index Cond» en vez de «Filter». No es un detalle de vocabulario: un
+       «Index Cond» se resuelve dentro del indice, sin tocar la tabla; un «Filter»
+       se evalua despues de leer la fila. Cuando un estudiante ve su condicion en
+       «Filter», el indice no le esta sirviendo para esa condicion.
+    3. El planeador eligio el indice PARCIAL para C1, no el completo. Es la
        respuesta a la pregunta del enunciado. Tambien puede aparecer
-       `Bitmap Index Scan` seguido de `Bitmap Heap Scan`: es igual de correcto, y
+       «Bitmap Index Scan» seguido de «Bitmap Heap Scan»: es igual de correcto, y
        significa que el motor prefirio recoger primero todas las direcciones de fila
        y ordenarlas antes de ir a la tabla.
-    4. **`estado` ya no aparece en la condicion.** Con el indice parcial no hace
+    4. «estado» ya no aparece en la condicion. Con el indice parcial no hace
        falta: la definicion del indice garantiza que todo lo que hay dentro es
-       `PROGRAMADA`. Eso es exactamente lo que lo hace mas barato que el completo.
+       «PROGRAMADA». Eso es exactamente lo que lo hace mas barato que el completo.
 
-    PASO 5 -- pg_indexes: **4 filas** (3 indices creados + la PK de cada tabla = 5;
+    PASO 5 -- pg_indexes: 4 filas (3 indices creados + la PK de cada tabla = 5;
     aqui se listan las de las dos tablas pedidas)
 
      indexname                  | tablename |  indexdef
@@ -202,7 +202,7 @@ PASO 1 -- linea base, las dos con Seq Scan
      mascota_pkey               | mascota   | CREATE UNIQUE INDEX mascota_pkey ON
                                 |           |   public.mascota USING btree (id_mascota)
 
-    **Lo que hay que mirar en el `indexdef` del parcial es la clausula `WHERE`.** Si
+    Lo que hay que mirar en el «indexdef» del parcial es la clausula «WHERE». Si
     no esta, el estudiante creo un indice completo con nombre de parcial, y eso es lo
     que el enunciado penaliza de forma explicita.
 
@@ -212,15 +212,15 @@ PASO 1 -- linea base, las dos con Seq Scan
     --------------------+-------------------+---------------------------------+-----------------------------
                   30010 |             18187 |                             150 |                          91
 
-    Ahi esta el argumento del indice parcial en cuatro numeros: es **39 % mas
-    pequeno** (18.187 contra 30.010 entradas) y para la agenda del dia lee **91
-    entradas en vez de 150**. Y ahi esta tambien su limite, que va en la pregunta 5:
-    solo sirve cuando la consulta trae `estado = 'PROGRAMADA'`. La pantalla que
+    Ahi esta el argumento del indice parcial en cuatro numeros: es 39 % mas
+    pequeno (18.187 contra 30.010 entradas) y para la agenda del dia lee 91
+    entradas en vez de 150. Y ahi esta tambien su limite, que va en la pregunta 5:
+    solo sirve cuando la consulta trae «estado = 'PROGRAMADA'». La pantalla que
     muestre el historico completo de un dia va a usar el otro.
 
-    **C2 devuelve 2 filas** —`(1241, Mascota 1233, Felino)` y
-    `(3241, Mascota 3233, Felino)`—: 2 de 5.008, que es el caso ideal para un indice.
-    Si alguien reporta 0 filas, casi siempre confundio `id_dueno` con `id_mascota`.
+    C2 devuelve 2 filas —«(1241, Mascota 1233, Felino)» y
+    «(3241, Mascota 3233, Felino)»—: 2 de 5.008, que es el caso ideal para un indice.
+    Si alguien reporta 0 filas, casi siempre confundio «id_dueno» con «id_mascota».
 ```
 
 ### Como calificar
@@ -390,7 +390,7 @@ PASO 2 -- que indice eligio cada consulta
                    AND (fecha_hora < '2026-03-11 00:00:00'::timestamp))
           Rows Removed by Filter: 29860
         Execution Time: 11.4 ms
-        --> **Este es el resultado de la pregunta.** El indice
+        --> Este es el resultado de la pregunta. El indice
             idx_cita_estado_fecha sigue existiendo y CONTIENE fecha_hora, y aun
             asi el motor volvio al recorrido completo: de 0,5 ms a 11,4 ms, unas
             20 veces mas lento. La columna lider es la puerta de entrada al
@@ -404,7 +404,7 @@ PASO 2 -- que indice eligio cada consulta
 
     Los tres numeros explican las tres decisiones del planeador sin necesidad de
     teoria: 91 de 30.010 (0,3 %) es un caso ideal para un indice; 150 de 30.010
-    (0,5 %) tambien; **18.187 de 30.010 (61 %) no lo es**, y por eso Q3 recorre la
+    (0,5 %) tambien; 18.187 de 30.010 (61 %) no lo es, y por eso Q3 recorre la
     tabla. La regla de bolsillo que se puede dar en clase: por debajo de un 5 % a un
     10 % de la tabla el indice suele ganar; por encima de un tercio, casi nunca.
 ```
@@ -561,16 +561,16 @@ PASO 4 -- enrutamiento: 2 filas
      cita_hist_2025  |  2620 | 2025-01-06 08:00:00 | 2025-12-31 15:00:00
      cita_hist_2026  |  2390 | 2026-01-01 08:00:00 | 2026-12-06 15:00:00
 
-    **2.620 + 2.390 = 5.010.** Son los dos numeros de la pregunta y los que hay que
+    2.620 + 2.390 = 5.010. Son los dos numeros de la pregunta y los que hay que
     buscar al calificar. Tres cosas se leen de esta tabla sola:
 
-    - **Los rangos no se solapan y encajan sin hueco:** 2025 termina el 31 de
+    - Los rangos no se solapan y encajan sin hueco: 2025 termina el 31 de
       diciembre y 2026 empieza el 1 de enero. Eso es lo que consigue el limite
-      superior **exclusivo** de `FROM ... TO ...`.
-    - **2026 tiene 2.390 y no 2.380** porque ademas de las citas sintetizadas se
-      lleva las **10 citas sembradas a mano** de septiembre de 2026 —las de
+      superior exclusivo de «FROM ... TO ...».
+    - 2026 tiene 2.390 y no 2.380 porque ademas de las citas sintetizadas se
+      lleva las 10 citas sembradas a mano de septiembre de 2026 —las de
       Firulais, Luna y compania—.
-    - **El reparto es desigual a proposito** (2.620 contra 2.390): la historia
+    - El reparto es desigual a proposito (2.620 contra 2.390): la historia
       sintetica arranca el 6 de enero de 2025 y termina el 6 de diciembre de 2026,
       asi que 2025 esta completo y 2026 le faltan tres semanas y media.
 
@@ -584,9 +584,9 @@ PASO 4 -- enrutamiento: 2 filas
                          AND (fecha_hora < '2027-01-01 00:00:00'::timestamp))
         Execution Time: 1.2 ms
 
-    **`cita_hist_2025` no aparece en ninguna parte del plan.** Eso es la poda, y es
+    «cita_hist_2025» no aparece en ninguna parte del plan. Eso es la poda, y es
     lo que la pregunta pide demostrar. Con una sola particula en el plan puede que ni
-    siquiera salga el nodo `Append`: cuando queda una sola relacion, el motor lo
+    siquiera salga el nodo «Append»: cuando queda una sola relacion, el motor lo
     elimina.
 
     Contraprueba, sin filtro -- 1 fila: 5010
@@ -596,11 +596,11 @@ PASO 4 -- enrutamiento: 2 filas
                 ->  Seq Scan on cita_hist_2025 cita_hist_1  (actual rows=2620 loops=1)
                 ->  Seq Scan on cita_hist_2026 cita_hist_2  (actual rows=2390 loops=1)
 
-    Aqui **si** aparecen las dos, bajo un `Append`. Tener las dos salidas al lado es
+    Aqui si aparecen las dos, bajo un «Append». Tener las dos salidas al lado es
     lo que convierte «se podo» en evidencia: sin la contraprueba no se sabe si la
     particion de 2025 falto por la poda o porque nunca hubo nada dentro.
 
-    Con `EXTRACT(YEAR FROM fecha_hora) = 2026` -- 1 fila: 2390, pero:
+    Con «EXTRACT(YEAR FROM fecha_hora) = 2026» -- 1 fila: 2390, pero:
 
         Aggregate
           ->  Append  (actual rows=2390 loops=1)
@@ -609,7 +609,7 @@ PASO 4 -- enrutamiento: 2 filas
                       Rows Removed by Filter: 2620
                 ->  Seq Scan on cita_hist_2026 ...  (actual rows=2390 loops=1)
 
-    **El resultado es correcto y la poda se perdio.** Las dos particiones se leen y
+    El resultado es correcto y la poda se perdio. Las dos particiones se leen y
     2025 aporta 0 filas despues de descartar 2.620. Es la misma leccion de la
     Clase 6 en otro escenario: envolver la columna en una funcion le quita al motor
     la informacion que necesita para decidir, y aqui lo que pierde no es un indice,

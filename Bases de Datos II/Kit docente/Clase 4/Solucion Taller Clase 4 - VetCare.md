@@ -12,7 +12,7 @@
 - Configuracion en la plataforma: `Kit docente/Clase 4/Taller en ExamLab - Clase 4 (configuracion).md`
 - Caso de estudio: `Clases/Proyecto Integrador/Anexo - Caso de estudio Clinica Huellitas - Bases de Datos II.docx`
 - Hito del PI: >=1 funcion + >=1 trigger + borrador plan de respaldo
-- Entregable: Scripts funcion/trigger + Plan_Backup_VetCare (1 pag.)
+- Entregable: fn_precio_consulta + 2 triggers corriendo en ExamLab + Plan_Backup_VetCare con sus 6 secciones (1 pag.)
 - **Estas preguntas: 100 puntos** en 5 preguntas.
 
 | # | Pregunta | Tipo | Puntos |
@@ -127,11 +127,11 @@ Consulta 1 -- 8 filas
      Toby     | Canino  |      45000.00 |        60750.00
      Kiara    | Canino  |      45000.00 |        60750.00
 
-    Las 8 mascotas, incluidas Rocky y Kiara que estan **inactivas**: la funcion no
-    filtra por `activa` y esta bien que no lo haga. Una funcion IMMUTABLE no puede
-    leer tablas; quien quiera excluirlas pone el `WHERE m.activa = 'S'` en la
+    Las 8 mascotas, incluidas Rocky y Kiara que estan inactivas: la funcion no
+    filtra por «activa» y esta bien que no lo haga. Una funcion IMMUTABLE no puede
+    leer tablas; quien quiera excluirlas pone el «WHERE m.activa = 'S'» en la
     consulta, no dentro de la funcion. El numero que confirma el recargo es el
-    **60750.00** (45000 x 1.35).
+    60750.00 (45000 x 1.35).
 
     Consulta 2 -- 4 filas
 
@@ -142,9 +142,9 @@ Consulta 1 -- 8 filas
                3 |       7 | Firulais | Canino  |       55000.00 |    45000.00 |   10000.00
                4 |      10 | Nube     | Felino  |       35000.00 |    40000.00 |   -5000.00
 
-    Solo **una** de las cuatro consultas cobro exactamente la tarifa. Dos cobraron
+    Solo una de las cuatro consultas cobro exactamente la tarifa. Dos cobraron
     por debajo y una por encima, y la suma de las diferencias es +3000. La lectura
-    que hay que dejar dicha: la funcion es la tarifa **de referencia**, no lo
+    que hay que dejar dicha: la funcion es la tarifa de referencia, no lo
     facturado; el negocio ajusta caso por caso. Ese hueco entre lo esperado y lo
     cobrado es lo que la Clase 6 va a convertir en una vista de control.
 
@@ -279,14 +279,14 @@ UPDATE cita SET estado = 'CANCELADA'  WHERE id_cita = 1;   -- UPDATE 1
             1 |       1 | CAMBIO_ESTADO | PROGRAMADA     | CANCELADA   | postgres
             2 |       3 | CAMBIO_ESTADO | PROGRAMADA     | ATENDIDA    | postgres
 
-    **Dos filas, no tres.** Es el resultado que la pregunta pide demostrar. Y el
-    detalle que hay que subrayar en la devolucion: el tercer `UPDATE` **si se
-    ejecuto** -- el motor respondio `UPDATE 1`, no `UPDATE 0` -- y aun asi no dejo
-    rastro, porque la clausula `WHEN` se evalua por fila y descarto ese disparo.
+    Dos filas, no tres. Es el resultado que la pregunta pide demostrar. Y el
+    detalle que hay que subrayar en la devolucion: el tercer «UPDATE» si se
+    ejecuto -- el motor respondio «UPDATE 1», no «UPDATE 0» -- y aun asi no dejo
+    rastro, porque la clausula «WHEN» se evalua por fila y descarto ese disparo.
 
-    El valor de `usuario_bd` depende de con que usuario se conecte el entorno; en
-    ExamLab sale `postgres`. No se califica el nombre, se califica que la columna
-    tenga `DEFAULT current_user` y que el trigger **no** lo escriba a mano.
+    El valor de «usuario_bd» depende de con que usuario se conecte el entorno; en
+    ExamLab sale «postgres». No se califica el nombre, se califica que la columna
+    tenga «DEFAULT current_user» y que el trigger no lo escriba a mano.
 
     Prueba adicional -- 1 fila
 
@@ -294,7 +294,7 @@ UPDATE cita SET estado = 'CANCELADA'  WHERE id_cita = 1;   -- UPDATE 1
     -----------------+-----------+----------+------------+--------------------
                    2 | CANCELADA | ATENDIDA | PROGRAMADA |                  0
 
-    Ese **0** de la derecha es la prueba mas limpia de que el filtro es el que
+    Ese 0 de la derecha es la prueba mas limpia de que el filtro es el que
     trabaja, y no la casualidad.
 ```
 
@@ -440,12 +440,12 @@ Paso 1 -- el problema, antes del trigger
     ----------------------+---------------------
                         0 |                   1
 
-    Las tres cosas que hay que ver, en este orden: el **-7** existio (el problema es
-    real, no una advertencia teorica), el aviso de la prueba 1 trae el **nombre del
-    insumo** y el **valor rechazado** (el mensaje sirve para actuar, no solo para
-    saber que algo fallo), y el insumo 2 quedo en **1** y no en 3 -- si quedara en 3,
+    Las tres cosas que hay que ver, en este orden: el -7 existio (el problema es
+    real, no una advertencia teorica), el aviso de la prueba 1 trae el nombre del
+    insumo y el valor rechazado (el mensaje sirve para actuar, no solo para
+    saber que algo fallo), y el insumo 2 quedo en 1 y no en 3 -- si quedara en 3,
     el trigger esta bloqueando tambien los descuentos validos, casi siempre por
-    haber escrito `NEW.stock <= 0`.
+    haber escrito «NEW.stock <= 0».
 ```
 
 ### Como calificar

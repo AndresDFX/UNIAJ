@@ -39,7 +39,7 @@ En PostgreSQL un **rol** es la unidad de permisos (`CREATE ROLE`), y los permiso
 3. Ejecute un `REVOKE` **explicito y documentado** que quite `DELETE` sobre `cita` a `recepcion` (deja la sentencia aunque sea redundante: es la evidencia de la decision de diseno).
 4. Termine con una consulta de **verificacion** sobre `information_schema.role_table_grants` que muestre `grantee`, `table_name` y `privilege_type` para los cuatro roles, ordenada por `grantee, table_name, privilege_type`.
 
-**Nota tecnica importante:** ExamLab ejecuta PostgreSQL en el navegador con **una sola sesion de un unico usuario**. Por eso puedes crear roles y otorgar privilegios (es DDL real y verificable), pero **no** puedes conectarte simultaneamente como `recepcion` y comprobar en vivo que le rebotan las sentencias. Esa parte se analiza en la pregunta 5.
+**Nota tecnica importante:** ExamLab ejecuta PostgreSQL en el navegador con **una sola sesion y un solo usuario de conexion**, asi que no puedes abrir una segunda sesion y entrar como `recepcion`. Lo que **si** puedes es cambiar el rol efectivo dentro de la misma sesion con `SET ROLE recepcion;`: desde esa linea el motor evalua los permisos como `recepcion`, un `DELETE FROM cita WHERE id_cita = 1;` responde `permission denied for table cita`, y `RESET ROLE;` te devuelve a tu rol. **No lo agregues a este SQL:** esa sentencia tiene que fallar a proposito, y un runner que se detiene en el primer error se llevaria la verificacion del punto 4. La prueba negativa se corre aparte y se documenta en la pregunta 5.
 
 **SQL de partida (`options.db.setupSql`)** - corre antes del SQL del
 estudiante, sobre una base limpia. PostgreSQL, no Oracle:
@@ -357,7 +357,7 @@ La matriz cubre los 10 objetos x 4 roles, sin celdas vacias, y es internamente c
 
 **Enunciado (campo Contenido):**
 
-## 5. Politica de altas y bajas de usuarios (y limites del entorno)
+## 5. Politica de altas y bajas de usuarios (y la prueba negativa)
 
 Redacta la politica de gestion de usuarios de VetCare DB, maximo una pagina, con estas secciones:
 
@@ -365,11 +365,11 @@ Redacta la politica de gestion de usuarios de VetCare DB, maximo una pagina, con
 2. **Cambio de rol**: que pasa cuando una recepcionista pasa a ser auxiliar veterinaria (que se otorga y, sobre todo, **que se revoca**).
 3. **Baja**: pasos al desvincular a una persona el mismo dia (revocar roles, deshabilitar login, que hacer con los objetos que era dueno, cuanto se conserva la traza de auditoria).
 4. **Revision periodica**: cada cuanto se audita la matriz, con que consulta de `information_schema` se saca la evidencia y quien firma.
-5. **Limite del entorno de practica**: explica por que en ExamLab (PostgreSQL en el navegador, **una sola sesion y un solo usuario**) pudiste crear roles y verificar la matriz con `information_schema`, pero **no** pudiste conectarte como `recepcion` y ver el error de permiso. Indica que comando de PostgreSQL usarias en un servidor real para hacer esa prueba negativa (por ejemplo `SET ROLE recepcion;` seguido de un `DELETE FROM cita ...` que debe fallar con *permission denied*), y por que la ausencia de esa prueba es una brecha de verificacion en tu entregable.
+5. **Prueba negativa y limite del entorno**: comprueba que el permiso que quitaste **de verdad no esta**. En la misma sesion ejecuta `SET ROLE recepcion;`, luego una sentencia que deba fallar (`DELETE FROM cita WHERE id_cita = 1;`) y despues `RESET ROLE;`. Pega el mensaje **exacto** que devolvio el motor, y compara: que error esperabas y que obtuviste. Explica en dos lineas la diferencia entre `SET ROLE` y conectarse como otro usuario, y cual es el limite real de ExamLab: hay una sola sesion y un solo usuario de conexion, asi que se cambia el rol efectivo pero no se prueba el login de `recepcion` ni la concurrencia entre dos personas. Si el entorno te rechaza el `SET ROLE`, pega ese mensaje y nombra esa parte como **brecha de verificacion**: quedaria demostrado que el permiso esta escrito como lo decidiste, no que el motor lo hace cumplir.
 
 **Rubrica esperada (campo Rubrica):**
 
-Estan las 5 secciones con responsables y tiempos concretos, no genericos. La baja incluye revocar/deshabilitar y el destino de los objetos, y la revision periodica nombra la consulta de information_schema como evidencia. La seccion 5 reconoce correctamente la limitacion de una sola sesion en PGlite y propone SET ROLE (o conexion como otro usuario) como prueba negativa en un servidor real.
+Estan las 5 secciones con responsables y tiempos concretos, no genericos. La baja incluye revocar/deshabilitar y el destino de los objetos, y la revision periodica nombra la consulta de information_schema como evidencia. La seccion 5 trae la prueba negativa corrida — SET ROLE, la sentencia que fallo, el mensaje real del motor y RESET ROLE — y distingue SET ROLE de conectarse como otro usuario, nombrando el limite verdadero del entorno: un solo usuario de conexion, sin login ni concurrencia. Si el entorno rechazo el SET ROLE, se acepta con el mensaje pegado y la brecha de verificacion nombrada; lo que no se acepta es afirmar sin evidencia que la prueba era imposible.
 
 ---
 

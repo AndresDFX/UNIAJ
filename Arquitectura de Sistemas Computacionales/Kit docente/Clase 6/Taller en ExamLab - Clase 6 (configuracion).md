@@ -2,7 +2,7 @@
 
 - **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
 - **Taller:** Actividad del Corte 2 (preguntas 1 a 3) - Amenazas, controles y secretos
-- **Preguntas:** 3 · **Total:** 23 puntos
+- **Preguntas:** 3 · **Total:** 25 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Modelo de amenazas mínimo + controles para CloudLite
 - **Entregable de la clase:** Sección Seguridad PI: 5 amenazas STRIDE-lite + controles + secretos/CI
@@ -99,7 +99,7 @@ Defina la politica de secretos de CloudLite respondiendo estas cuatro preguntas:
 4. **Que esta explicitamente prohibido**.
 
 > **Regla del curso:** los secretos van en la **configuracion del repositorio** (los
-> *secrets* del proyecto), **nunca** en el `Dockerfile`, en el `README` ni en el YAML en
+> `secrets` del proyecto), **nunca** en el `Dockerfile`, en el `README` ni en el YAML en
 > claro. Un secreto escrito en el Dockerfile queda en el **historial de capas** de la imagen
 > para siempre: cualquiera que tenga la imagen lo lee, aunque el archivo se borre en una
 > capa posterior.
@@ -117,7 +117,7 @@ commit, es **rotar la credencial**, porque el historial ya salio del equipo.
 
 ## Al terminar de crearlo
 
-- Verifique que la suma de puntos sea la esperada: **23**.
+- Verifique que la suma de puntos sea la esperada: **25**.
 - Publique el taller y confirme la fecha limite (domingo 23:59 segun el Acuerdo).
 - Las preguntas con SQL o codigo: ejecutelas una vez usted mismo antes de publicar,
   para confirmar que el SQL de partida corre y que el starter compila.

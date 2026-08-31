@@ -331,8 +331,8 @@ Estado de cita 1 y 11 -- 2 filas
        1 |          1 |              1 | 2026-09-01 08:00:00 | ATENDIDA
       11 |          1 |              2 | 2026-10-01 09:00:00 | PROGRAMADA
 
-Aqui esta la sorpresa que hay que explicar: la cita **1** paso a ATENDIDA y la
-**11** sigue PROGRAMADA. La tercera llamada del enunciado es
+Aqui esta la sorpresa que hay que explicar: la cita 1 paso a ATENDIDA y la
+11 sigue PROGRAMADA. La tercera llamada del enunciado es
 api_registrar_consulta(1, ...), o sea sobre la cita 1, no sobre la que se acabo
 de crear. Las seis llamadas son seis casos de prueba independientes, no un flujo
 encadenado -- el flujo encadenado es lo que se arma en la pregunta 2 con
@@ -827,7 +827,7 @@ routine_privileges -- 6 filas
 Dos filas por funcion y las dos son correctas: app_vetcare porque se le acaba de
 otorgar, y el propietario porque un propietario conserva EXECUTE sobre lo suyo.
 El nombre del propietario depende del entorno -- en ExamLab suele ser postgres --
-y no es lo que se califica. Lo que se califica es que **PUBLIC ya no aparece**:
+y no es lo que se califica. Lo que se califica es que PUBLIC ya no aparece:
 antes del REVOKE habia una fila con el grantee vacio o PUBLIC por cada funcion, y
 esa era la puerta abierta.
 
@@ -841,7 +841,7 @@ role_table_grants para app_vetcare -- 4 filas
  app_vetcare | veterinario | SELECT
 
 Cuatro filas, las cuatro SELECT, y aqui esta el detalle mas fino de la pregunta:
-**la evidencia del REVOKE de escritura es una ausencia.** No hay ninguna fila que
+la evidencia del REVOKE de escritura es una ausencia. No hay ninguna fila que
 diga "INSERT revocado"; lo que prueba el blindaje es que en estas 4 filas no
 aparece ni un INSERT, ni un UPDATE, ni un DELETE, y que consulta, factura,
 detalle_factura e insumo no aparecen en absoluto. Al calificar se cuenta: 4 filas
@@ -884,7 +884,7 @@ INSERT INTO cita ...
 ERROR:  permission denied for table cita
 
 Y ese par de resultados es la arquitectura completa en dos lineas: la aplicacion
-**puede hacer el negocio** y **no puede hacer nada mas**. El id 11 es el que
+puede hacer el negocio y no puede hacer nada mas. El id 11 es el que
 corresponde en una base recien sembrada; si en tu corrida sale 12, es porque el
 intento rechazado alcanzo a pedir el nextval antes del chequeo de permisos. El
 numero no es lo que se califica.

@@ -5,7 +5,7 @@ El guion embebe automaticamente cualquier PNG que exista en esta carpeta con
 el nombre esperado. Mientras no exista, el .docx imprime la receta en su lugar.
 
 1) cap01_demo.png — salida de la demo del docente
-   - Abrir Oracle Live SQL y repetir la demo: CREATE PROCEDURE sp_agendar_cita(...) con validacion de mascota activa.
+   - Abrir ExamLab (PostgreSQL) + Google Docs y repetir la demo: sp_agendar_cita en PL/pgSQL dentro de ExamLab: las 3 validaciones con RAISE EXCEPTION y la bateria de bloques DO que las prueba.
    - Capturar solo la ventana con el resultado (no el escritorio completo).
    - Recortar a ~1200 px de ancho y guardar aqui como cap01_demo.png.
 

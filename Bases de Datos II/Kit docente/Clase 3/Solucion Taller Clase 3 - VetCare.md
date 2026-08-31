@@ -12,7 +12,7 @@
 - Configuracion en la plataforma: `Kit docente/Clase 3/Taller en ExamLab - Clase 3 (configuracion).md`
 - Caso de estudio: `Clases/Proyecto Integrador/Anexo - Caso de estudio Clinica Huellitas - Bases de Datos II.docx`
 - Hito del PI: >=1 procedimiento de negocio (agendar cita / registrar consulta)
-- Entregable: Script proc + casos de prueba (captura o enlace Live SQL)
+- Entregable: 2 procedimientos en PL/pgSQL corriendo en ExamLab + bateria de pruebas con su tabla resultado_prueba + contrato del proc (6 bloques)
 - **Estas preguntas: 100 puntos** en 5 preguntas.
 
 | # | Pregunta | Tipo | Puntos |
@@ -113,7 +113,7 @@ CALL sp_agendar_cita(1, 2, TIMESTAMP '2026-09-15 10:00:00');   -- CALL, sin fila
           10 |          6 |              1 | 2026-09-10 09:00:00 | ATENDIDA
            9 |          4 |              4 | 2026-09-10 08:00:00 | PROGRAMADA
 
-    La comprobacion de un golpe es el **11**: la base venia con 10 citas sembradas,
+    La comprobacion de un golpe es el 11: la base venia con 10 citas sembradas,
     asi que el id 11 y el estado PROGRAMADA en la primera fila demuestran que el
     procedimiento inserto y que lo hizo con el estado correcto. Si la primera fila
     dice 10, el CALL no inserto nada y hay que revisar si alguna validacion esta
@@ -132,7 +132,7 @@ CALL sp_agendar_cita(1, 2, TIMESTAMP '2026-09-15 10:00:00');   -- CALL, sin fila
       -- ERROR:  ERROR: el veterinario 1 ya tiene cita en 2026-09-01 08:00:00
 
     Y la que confirma que CANCELADA libera la franja: el veterinario 3 tiene la cita
-    4 CANCELADA el 2026-09-02 08:30:00, asi que esta debe **funcionar**.
+    4 CANCELADA el 2026-09-02 08:30:00, asi que esta debe funcionar.
 
       CALL sp_agendar_cita(1, 3, TIMESTAMP '2026-09-02 08:30:00');
       -- CALL (sin error): inserta la cita 12
@@ -270,17 +270,17 @@ SELECT caso, esperado, obtenido, paso FROM resultado_prueba ORDER BY id_prueba; 
     Los cuatro numeros de la derecha son la respuesta a la pregunta del enunciado
     -- "las 3 pruebas negativas no dejaron basura" -- y son mas fuertes que el
     total: 11 = 10 sembradas + 1 de P1; cero citas de Rocky (P2 no inserto); cero
-    citas el 22 de septiembre (P3 no inserto); y **1, no 2**, en la franja del
+    citas el 22 de septiembre (P3 no inserto); y 1, no 2, en la franja del
     veterinario 1 el 1 de septiembre, que es lo que demuestra que P4 no duplico.
 
-    Sobre la columna `paso`: aqui las 4 filas quedan en **t** porque `paso` se
+    Sobre la columna «paso»: aqui las 4 filas quedan en «t» porque «paso» se
     definio como "el resultado coincidio con lo esperado", y en las pruebas
     negativas lo esperado ES la excepcion. Es la semantica que usa cualquier
-    framework de pruebas. La plantilla del enunciado deja las negativas en `f`,
-    leyendo `paso` como "la operacion se completo": tambien es correcta y vale los
-    mismos puntos, **siempre que el estudiante escriba cual de las dos usa**. Lo
-    que no se acepta es que las cuatro filas digan `t` sin haber verificado el
-    texto de la excepcion, porque entonces `paso` no significa nada.
+    framework de pruebas. La plantilla del enunciado deja las negativas en «f»,
+    leyendo «paso» como "la operacion se completo": tambien es correcta y vale los
+    mismos puntos, siempre que el estudiante escriba cual de las dos usa. Lo
+    que no se acepta es que las cuatro filas digan «t» sin haber verificado el
+    texto de la excepcion, porque entonces «paso» no significa nada.
 ```
 
 ### Como calificar
@@ -457,17 +457,17 @@ Los dos avisos de los bloques DO (van al panel de mensajes, no a la grilla):
 
     Las tres comprobaciones que hay que buscar en esta salida, en este orden:
 
-    1. **La fila 1** paso de PROGRAMADA a ATENDIDA y trae diagnostico y precio: el
+    1. La fila 1 paso de PROGRAMADA a ATENDIDA y trae diagnostico y precio: el
        procedimiento hizo sus dos escrituras.
-    2. **La fila 4** sigue en CANCELADA y con las dos columnas vacias: la validacion
-       2 impidio la consulta y, muy importante, **no** cambio el estado. Si la fila 4
+    2. La fila 4 sigue en CANCELADA y con las dos columnas vacias: la validacion
+       2 impidio la consulta y, muy importante, no cambio el estado. Si la fila 4
        apareciera en ATENDIDA, el UPDATE se hizo antes de validar.
-    3. **La fila 2** conserva su diagnostico original, `Vacunacion triple felina`, no
-       `Duplicada`: la validacion 3 rechazo el segundo registro sin sobrescribir el
+    3. La fila 2 conserva su diagnostico original, «Vacunacion triple felina», no
+       «Duplicada»: la validacion 3 rechazo el segundo registro sin sobrescribir el
        primero.
 
-    El precio sale con dos decimales porque la columna es `NUMERIC(12,2)`, aunque el
-    `CALL` recibio `45000` sin decimales. No es un error del estudiante.
+    El precio sale con dos decimales porque la columna es «NUMERIC(12,2)», aunque el
+    «CALL» recibio «45000» sin decimales. No es un error del estudiante.
 ```
 
 ### Como calificar
