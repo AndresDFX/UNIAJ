@@ -9,7 +9,9 @@
  *   1. Por el evento de calendario que la generó: busca en Calendar un evento que se
  *      solape con la hora de la grabación y cuyo título contenga el nombre del curso.
  *      Es el método fiable, porque los eventos ya se llaman
- *      "[SINCRONICO] Sesión N · <Curso>".
+ *      "[SINCRONICO] <GRUPO> - <Curso> - Sesión N". Lo que se busca es el NOMBRE DEL CURSO,
+ *      en cualquier posición del título: este script no depende del prefijo ni del orden de
+ *      los campos, así que un cambio de esquema de títulos no lo rompe.
  *   2. Si el paso 1 no encuentra nada (grabación de una reunión sin evento, o evento
  *      borrado), cae al horario fijo del curso: día de la semana + ventana de hora.
  *

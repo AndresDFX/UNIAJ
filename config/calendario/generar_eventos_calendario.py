@@ -299,13 +299,28 @@ def cargar_nomina(meta: dict, key: str, manuales: dict) -> dict | None:
 
 # ----------------------------------------------------------------- eventos
 
-def titulo(meta: dict, cl: dict) -> str:
-    """Título del evento, con el tipo de encuentro al principio.
+def curso_sin_grupo(meta: dict) -> str:
+    """Nombre de la asignatura, sin el grupo pegado.
 
-    El prefijo es lo primero que se ve en el calendario, así que ahí va lo único que hay que
-    decidir de un vistazo: si a esa hora hay encuentro o no. `[SINCRONICO]` = encuentro en
-    vivo (virtual por Meet, parcial o sustentación); `[AUTONOMO]` = no hay encuentro, es
-    trabajo independiente guiado con fecha de cierre.
+    `meta['nombre']` trae el grupo cuando el curso corre en varios («Introducción a la
+    Ingeniería · SB141B»), porque ahí es la etiqueta con la que se distinguen en los
+    listados. En el título del evento el grupo va en su propio campo, así que aquí hace
+    falta la asignatura pelada para no repetirlo dos veces.
+    """
+    return meta.get("nombre_base") or meta["nombre"]
+
+
+def titulo(meta: dict, cl: dict) -> str:
+    """Título del evento: «[SINCRONICO] GRUPO - Curso - Sesión N».
+
+    Dos cosas que el docente tiene que leer sin abrir el evento, en este orden:
+
+    1. El prefijo `[SINCRONICO]` / `[AUTONOMO]`: si a esa hora hay encuentro o no. Va
+       primero porque es lo único que cambia lo que hay que hacer ese día, y porque las
+       `[AUTONOMO]` son las únicas que NO llevan sala de Meet.
+    2. El GRUPO: los tres grupos de FI300101 comparten nombre de asignatura, así que con
+       el nombre pelado no se distinguen. Delante del curso, la agenda lee «SB141C - …» y
+       «LB141F - …» de un golpe.
 
     OJO: este título es la IDENTIDAD del evento. El Apps Script busca «su» evento comparando
     el título exacto (`_buscarEvento_`), así que tiene que salir byte a byte igual que el que
@@ -317,14 +332,14 @@ def titulo(meta: dict, cl: dict) -> str:
     if cl.get("n") is None:
         # Semana autonoma por festivo de los grupos de Introduccion a la Ingenieria: no tiene
         # numero de sesion (`sesion: null` en el JSON). Sin esta rama saldria «Sesion None».
-        cuerpo = f"Semana autónoma · {meta['nombre']}"
+        cola = "Semana autónoma"
     elif cl.get("parcial"):
-        cuerpo = f"Parcial {cl['parcial_n']} · {meta['nombre']}"
+        cola = f"Sesión {cl['n']} · Parcial {cl['parcial_n']}"
     elif cl["tipo"] == "sustentacion":
-        cuerpo = f"Sustentaciones PI · {meta['nombre']}"
+        cola = f"Sesión {cl['n']} · Sustentaciones PI"
     else:
-        cuerpo = f"Sesión {cl['n']} · {meta['nombre']}"
-    return f"{prefijo} {cuerpo}"
+        cola = f"Sesión {cl['n']}"
+    return f"{prefijo} {meta['grupo']} - {curso_sin_grupo(meta)} - {cola}"
 
 
 def ubicacion(cl: dict) -> str:

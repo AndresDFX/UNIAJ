@@ -63,9 +63,17 @@ console.log('\n=== 1. Datos cargados ===');
           cursos.map((c) => c.sesiones.length).join(','));
   afirmar('las sesiones de un curso no repiten fecha',
           cursos.every((c) => new Set(c.sesiones.map((s) => s.fecha)).size === c.sesiones.length));
+  // Esquema «[SINCRONICO] GRUPO - Curso - Sesion N». El prefijo dice si a esa hora hay
+  // encuentro (las [AUTONOMO] son las unicas sin sala de Meet) y el grupo va delante del
+  // curso, que es lo que distingue a los 3 grupos de FI300101.
   afirmar('titulo coherente con meet',
           cursos.every((c) => c.sesiones.every((s) =>
             s.meet ? s.subject.indexOf('[SINCRONICO]') === 0 : s.subject.indexOf('[AUTONOMO]') === 0)));
+  afirmar('titulo con el esquema GRUPO - Curso - Sesion',
+          cursos.every((c) => c.sesiones.every((s) =>
+            s.subject.indexOf('] ' + c.grupo + ' - ' + c.cursoBase + ' - ') !== -1)));
+  afirmar('las sesiones con Meet numeran la sesion',
+          cursos.every((c) => c.sesiones.every((s) => !s.meet || /- Sesión \d+/.test(s.subject))));
   afirmar('requestId distinto por curso',
           new Set(cursos.map((c) => c.requestId)).size === NCUR,
           new Set(cursos.map((c) => c.requestId)).size + ' de ' + NCUR);

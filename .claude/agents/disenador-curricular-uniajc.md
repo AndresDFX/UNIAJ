@@ -471,9 +471,17 @@ Reglas:
   sale vacío a propósito y debe ser **el mismo en los dos**. No usan el calendario por
   omisión porque depende de la cuenta con la que se abrió Apps Script; la línea queda
   comentada como alternativa. `listarCalendarios()` imprime los IDs disponibles.
-- Los títulos de los eventos llevan el tipo de encuentro al principio:
-  `[SINCRONICO] Sesión N · <Curso>` / `[AUTONOMO] Sesión N · <Curso>`. No es decorativo: es
-  lo que el estudiante lee primero, y el script de grabaciones lo usa para clasificar.
+- Esquema del título del evento: **`[SINCRONICO] <GRUPO> - <Curso> - Sesión N`** (y
+  `[AUTONOMO] …` cuando no hay encuentro). Los dos primeros campos son los que el docente
+  lee sin abrir el evento: el prefijo dice si ese día hay clase —las `[AUTONOMO]` son las
+  únicas **sin** sala de Meet— y el grupo va delante del curso porque los tres grupos de
+  FI300101 comparten nombre de asignatura. Las variantes van al final: `· Parcial N`,
+  `· Sustentaciones PI`, `Semana autónoma`.
+- Ese título es la **identidad** del evento: lo produce `ev.titulo()` y de ahí lo toman el
+  CSV, el `.ics` y los `.gs`, que tienen que salir byte a byte iguales. Cambiar el esquema
+  obliga a revisar `_esDeEsteCurso_`, que reconoce «este evento es mío» buscando `cursoBase`
+  y —cuando el código está compartido— también el grupo. El script de grabaciones **no**
+  depende del esquema: busca el nombre del curso en cualquier posición.
 
 ### Dónde vive cada salida (todo lo del curso, en la carpeta del curso)
 

@@ -25,8 +25,10 @@ transcripción, chat) a la carpeta de grabaciones del curso al que pertenece.
 Para decidir el curso usa tres criterios en orden:
 
 1. **El evento de calendario** que se solapa con la hora de la grabación. Es el fiable,
-   porque los eventos se llaman `[SINCRONICO] Sesión N · <Curso>`. Busca de −3 h a +1 h,
-   porque el archivo se crea **al terminar** la reunión, no al empezar.
+   porque los eventos se llaman `[SINCRONICO] <GRUPO> - <Curso> - Sesión N`. Lo que busca es
+   el **nombre del curso** en cualquier posición, así que no depende del prefijo ni del orden
+   de los campos. Busca de −3 h a +1 h, porque el archivo se crea **al terminar** la reunión,
+   no al empezar.
 2. **El nombre del archivo**, si menciona el curso, su código `FI######` o un alias.
 3. **El horario fijo** del curso (día de la semana + ventana de hora), como último recurso.
 

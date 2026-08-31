@@ -227,7 +227,7 @@ def _titulo(meta: dict, cl: dict) -> str:
     SB141C y LB141F, que no tiene número de sesión (`ev.titulo` diría «Sesión None»).
     """
     if cl.get("n") is None:
-        return f"[AUTONOMO] Semana autónoma · {meta['nombre']}"
+        return f"[AUTONOMO] {meta['grupo']} - {ev.curso_sin_grupo(meta)} - Semana autónoma"
     return ev.titulo(meta, cl)
 
 
@@ -302,6 +302,11 @@ def bloque_curso(key: str, meta: dict, ses: list[dict]) -> str:
     return f"""  {{
     key:      {js(key)},
     nombre:   {js(meta['nombre'])},
+    // La asignatura SIN el grupo pegado. El titulo del evento lleva grupo y curso en
+    // campos separados («SB141B - Introduccion a la Ingenieria - Sesion 3»), asi que
+    // `nombre` —que para los 3 grupos de FI300101 trae «... · SB141B»— ya no aparece
+    // literal en ningun titulo y no sirve para reconocerlo. Ver `_esDeEsteCurso_`.
+    cursoBase: {js(ev.curso_sin_grupo(meta))},
     codigo:   {js(meta['codigo'])},
     grupo:    {js(meta['grupo'])},
     dia:      {js(meta['dia'])},
@@ -685,18 +690,25 @@ function _delCursoEsaHora_(cal, c, s, excluir) {
 /**
  * true si el titulo es de ESTE curso, para no borrar eventos ajenos.
  *
- * `c.nombre` lleva el grupo cuando el curso tiene varios (p. ej. «... · SB141B»), asi que un
- * evento de otro grupo del mismo curso NO cuenta como propio.
+ * Los titulos son «GRUPO - Curso - Sesion N», con el grupo y la asignatura en campos
+ * separados. Antes el grupo venia pegado al nombre («... · SB141B») y bastaba con buscar
+ * `c.nombre` dentro del titulo; con el esquema nuevo esa cadena ya no aparece literal en
+ * ningun titulo, asi que se comprueban las dos partes por separado.
+ *
+ * Codigo compartido = varios grupos de la MISMA asignatura (los 3 de FI300101). Ahi el
+ * nombre del curso no distingue nada, y ademas SB141C y LB141F caen los dos en martes: se
+ * exige TAMBIEN el grupo. Sin eso, borrar un grupo se lleva los encuentros de otro.
  *
  * El codigo de asignatura vale como segunda pista — caza los apuntes que el docente nombra
- * «FI303215 parcial 2» — pero SOLO si ningun otro curso del periodo lo comparte. Los tres
- * grupos de Introduccion a la Ingenieria son todos FI300101: un titulo que solo mencione el
- * codigo podria ser de cualquiera, y borrarlo por cuenta de uno se llevaria el de otro.
+ * «FI303215 parcial 2» — pero SOLO si ningun otro curso del periodo lo comparte.
  */
 function _esDeEsteCurso_(c, titulo) {
   var t = String(titulo || '').toLowerCase();
-  if (t.indexOf(String(c.nombre).toLowerCase()) !== -1) return true;
-  if (c.codigoCompartido) return false;
+  var curso = t.indexOf(String(c.cursoBase || c.nombre).toLowerCase()) !== -1;
+  if (c.codigoCompartido) {
+    return curso && t.indexOf(String(c.grupo).toLowerCase()) !== -1;
+  }
+  if (curso) return true;
   return t.indexOf(String(c.codigo).toLowerCase()) !== -1;
 }
 
