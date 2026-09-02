@@ -21,7 +21,7 @@
 
 **Ficha de avance con los hallazgos de la prueba, y el plan de ajustes que sale de la retroalimentación del curso**
 
-**Entregable concreto:** la ficha de avance en el documento del equipo, y —al cerrar— las dos cosas que van a ajustar escritas en su columna del muro de Padlet
+**Entregable concreto:** la ficha de avance de cinco bloques en el documento del equipo —el quinto, el plan de ajustes, se llena al cerrar— y las dos cosas que van a ajustar escritas también en su columna del muro, para que el curso las vea
 
 **Herramientas de esta sesión:** Padlet · Google Drive (Docs y Slides)
 

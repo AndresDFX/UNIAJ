@@ -48,7 +48,29 @@ Un número que se pueda medir al final del semestre para saber si la decisión f
 
 > **Se revisa que:** tiene unidad y se puede medir con lo que ustedes van a construir. «Ser sostenibles» no es un indicador.
 
+## Dónde se entrega: en ExamLab
+
+El taller se **trabaja en equipo** en el documento del equipo y se **entrega en ExamLab** (https://uniaj.examlab.workers.dev/), en el módulo Talleres. El enlace lo comparte el docente en el chat de la reunión al empezar la actividad.
+
+- Son **5 preguntas**, una por cada bloque de arriba y en el mismo orden, y suman **100 puntos**.
+- Todas son de tipo **Respuesta escrita**: Un cuadro de texto. Se escribe directamente en la plataforma; no se sube archivo.
+- **La entrega es individual aunque el trabajo sea en equipo:** cada integrante pega en su entrega lo que el equipo acordó. Es la forma de que quede constancia de que usted estuvo, y de que nadie pierda la nota porque el vocero se cayó de la sesión.
+- **Cierra al terminar la sesión.** Esto se califica como actividad en clase, no como tarea con plazo: se hace en la sala de grupo y se expone el mismo día.
+- Si un bloque pide un **dibujo** (un árbol, una línea de tiempo, una pantalla), pegue el **enlace** al dibujo en la carpeta del equipo y escriba en la respuesta los elementos que el bloque pide. La caja de texto no recibe imágenes.
+
+> **ExamLab no es una plataforma oficial de la UNIAJC:** es un canal del docente y se usa solo para esto. No pide datos personales suyos más allá de su nombre.
+
 ## Cómo se califica
+
+| # | Bloque | Peso |
+|---|---|---|
+| 1 | EL RECORRIDO DIBUJADO | **20 %** |
+| 2 | LO QUE SE REPITE | **15 %** |
+| 3 | LA ETAPA QUE MÁS PESA | **20 %** |
+| 4 | DOS DECISIONES DE DISEÑO | **25 %** |
+| 5 | EL INDICADOR | **20 %** |
+
+**Qué se revisa en cada uno:**
 
 | Criterio | Peso |
 |---|---|

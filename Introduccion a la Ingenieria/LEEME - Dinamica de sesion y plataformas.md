@@ -106,7 +106,7 @@ El curso es virtual sincrónico: el aula es Google Meet y todas las actividades 
 
 ### ExamLab
 
-- **Para qué:** Diagnóstico de la sesión 1, comprobaciones rápidas de lectura y las dos evaluaciones de corte escritas (sesiones 6 y 11)
+- **Para qué:** Entrega del taller de equipo de las 16 sesiones (5 preguntas, 100 puntos), el diagnóstico de la sesión 1 y las dos evaluaciones de corte escritas (sesiones 6 y 11)
 - **Por qué esta y no otra:** Califica solo y deja el resultado por escrito, que es lo que necesita una evaluación en modalidad virtual donde no hay hoja que recoger.
 - **Cuenta:** Enlace del docente · **Gratis:** Sí
 - ⚠️ **ExamLab NO es plataforma oficial de la UNIAJC: es un canal del docente y se usa solo para esto.**
@@ -156,6 +156,8 @@ Se explican completas el primer día y quedan como acuerdo del curso. La versió
 | 16 | Socialización y evaluación final del curso | Google Drive (Docs y Slides) · Padlet | Entrega del informe final |
 
 > El campo `temas[].herramientas` dice qué herramienta usa cada sesión. Es la fuente única: el LEEME del docente, el guion de cada clase y el CALENDARIO de cada grupo lo leen de aquí. «Asistente de IA» solo aparece en las sesiones 3 y 11, que son las dos que el Plan de curso marca.
+
+> **Dónde se entrega, en las 16 sesiones: ExamLab.** La columna «Herramientas» dice con qué se *construye* el entregable (el documento del equipo, el diagrama, el prototipo). El taller se *entrega* siempre en ExamLab, en el módulo Talleres: **5 preguntas, una por bloque de la ficha, 100 puntos**. El trabajo es en equipo y la entrega es individual — cada integrante pega lo que el equipo acordó.
 
 ---
 

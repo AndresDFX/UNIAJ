@@ -12,11 +12,11 @@ Con los resultados de la prueba que ya hicieron, armen la ficha de avance: **tre
 
 - **Tiempo de trabajo:** 12 min, en la sala de grupo de su equipo.
 - **Exposición:** 5 min por equipo, habla el vocero con la pantalla ya compartida.
-- **Entregable:** la ficha de avance en el documento del equipo, y —al cerrar— las dos cosas que van a ajustar escritas en su columna del muro de Padlet
+- **Entregable:** la ficha de avance de cinco bloques en el documento del equipo —el quinto, el plan de ajustes, se llena al cerrar— y las dos cosas que van a ajustar escritas también en su columna del muro, para que el curso las vea
 
 > **Ritmo sugerido dentro de la sala (12 min):** 5 min escribir los tres hallazgos como **lo que la persona hizo** · 3 min clasificarlos y marcar el patrón · 4 min decidir qué se arregla, qué no y **cuál es la pregunta para el curso**. El bloque es corto porque el trabajo grueso —la prueba— ya venía hecho de la sesión 11.
 
-## Los 4 bloques que tiene que llenar
+## Los 5 bloques que tiene que llenar
 
 ### 1. LOS TRES HALLAZGOS
 
@@ -42,7 +42,35 @@ Una pregunta abierta, concreta, sobre una decisión que el equipo no logra tomar
 
 > **Se revisa que:** es una pregunta de verdad y no un «¿qué opinan?». Debe tener al menos dos alternativas identificadas.
 
+### 5. EL PLAN DE AJUSTES
+
+Las **dos cosas** que el equipo va a ajustar con lo que oyó en la retroalimentación, y **qué lo motivó**: quién lo dijo y qué dijo. Se llena en los últimos minutos de la sesión, no antes.
+
+> **Se revisa que:** las dos cosas salen de lo que se oyó y no de lo que el equipo ya traía pensado. Un plan idéntico a la lista de «qué arreglamos» significa que la retroalimentación no se usó.
+
+## Dónde se entrega: en ExamLab
+
+El taller se **trabaja en equipo** en el documento del equipo y se **entrega en ExamLab** (https://uniaj.examlab.workers.dev/), en el módulo Talleres. El enlace lo comparte el docente en el chat de la reunión al empezar la actividad.
+
+- Son **5 preguntas**, una por cada bloque de arriba y en el mismo orden, y suman **100 puntos**.
+- Todas son de tipo **Respuesta escrita**: Un cuadro de texto. Se escribe directamente en la plataforma; no se sube archivo.
+- **La entrega es individual aunque el trabajo sea en equipo:** cada integrante pega en su entrega lo que el equipo acordó. Es la forma de que quede constancia de que usted estuvo, y de que nadie pierda la nota porque el vocero se cayó de la sesión.
+- **Cierra al terminar la sesión.** Esto se califica como actividad en clase, no como tarea con plazo: se hace en la sala de grupo y se expone el mismo día.
+- Si un bloque pide un **dibujo** (un árbol, una línea de tiempo, una pantalla), pegue el **enlace** al dibujo en la carpeta del equipo y escriba en la respuesta los elementos que el bloque pide. La caja de texto no recibe imágenes.
+
+> **ExamLab no es una plataforma oficial de la UNIAJC:** es un canal del docente y se usa solo para esto. No pide datos personales suyos más allá de su nombre.
+
 ## Cómo se califica
+
+| # | Bloque | Peso |
+|---|---|---|
+| 1 | LOS TRES HALLAZGOS | **30 %** |
+| 2 | LA CLASIFICACIÓN Y EL PATRÓN | **20 %** |
+| 3 | QUÉ ARREGLAMOS Y QUÉ NO | **25 %** |
+| 4 | LA PREGUNTA PARA EL CURSO | **15 %** |
+| 5 | EL PLAN DE AJUSTES | **10 %** |
+
+**Qué se revisa en cada uno:**
 
 | Criterio | Peso |
 |---|---|

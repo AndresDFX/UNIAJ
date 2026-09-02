@@ -15,6 +15,7 @@ Uso:
     python build_uniajc_intro_ing_curso.py SB141C     # uno solo
 """
 import os
+import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -319,6 +320,156 @@ def build_calendario(codigo):
 
 # ----------------------------------------------------------------------- LEEME
 
+def build_correo(codigo):
+    """`CORREO_BIENVENIDA - <Curso> - <GRUPO> - <periodo>.md`, uno por grupo.
+
+    Por que existe: los otros cuatro cursos del semestre tienen su correo de bienvenida y
+    este no tenia ninguno, porque el generador del semestre solo lee
+    `semestre_2026_2.json` y los tres grupos de FI300101 viven en su propio archivo. El
+    hueco no era cosmetico: los eventos de Calendar son bloques del calendario del docente
+    —sin invitados— y NINGUN documento publica una URL de Meet. Sin este correo, el
+    estudiante de estos tres grupos no tenia el horario ni sabia como entrar a la sesion.
+
+    Va uno por grupo porque lo que cambia es justo lo que el estudiante necesita: el dia, la
+    hora y las fechas. El resto del curso es identico en los tres.
+    """
+    c = D.curso()
+    g = D.grupo(codigo)
+    ct = D.cortes_slide(codigo)
+    pl = D.plataformas()
+    din = D.dinamica()
+    eq = din["equipos"]
+
+    L = [
+        "# Correo de bienvenida — %s · %s · %s" % (c["nombre_acentos"], codigo,
+                                                   D.load()["periodo"]),
+        "",
+        "> Para pegar en el correo institucional. Un correo por grupo: el horario y las "
+        "fechas cambian, el resto no.",
+        "",
+        "**Asunto:** %s (%s) · grupo %s — cómo arranca el curso"
+        % (c["nombre_acentos"], c["codigo"], codigo),
+        "",
+        "---",
+        "",
+        "Buen día,",
+        "",
+        "Soy %s y voy a acompañarlos en **%s** (%s) este semestre, en el grupo **%s**. "
+        "Este correo trae lo que necesitan para el primer encuentro; no hay que responder "
+        "nada todavía." % (D.DOCENTE, c["nombre_acentos"], c["codigo"], codigo),
+        "",
+        "### Cuándo nos vemos",
+        "",
+        "| | |",
+        "|---|---|",
+        "| **Día y hora** | %s %s |" % (g["dia"], g["horario"].replace(" - ", " – ")),
+        "| **Inicio efectivo** | %s — arranco 10 min después de la hora oficial para "
+        "esperar a que se conecten |" % g["hora_inicio_efectiva"],
+        "| **Modalidad** | Virtual **síncrona** por Google Meet |",
+        "| **Sesiones** | %d, una por semana · %d min cada una |"
+        % (c["n_sesiones"], c["duracion_min"]),
+        "| **Primera sesión** | %s |" % D.ddmmyyyy(D.fecha_de_sesion(codigo, 1)),
+        "| **Última sesión** | %s |" % D.ddmmyyyy(D.fecha_de_sesion(codigo,
+                                                                    c["n_sesiones"])),
+        "",
+        "**No les va a llegar ninguna invitación de Google Calendar.** El horario es el de "
+        "la tabla de arriba: **guárdenlo ustedes** en su calendario si les sirve, y el "
+        "**enlace de Google Meet se lo comparto yo antes de cada encuentro**.",
+        "",
+        "**¿Dónde busco el enlace del día?** En **ExamLab**, en el curso: ahí lo publico "
+        "antes de que empiece la sesión. Si algo falla ese día, lo mando también por el "
+        "grupo de WhatsApp por medio del vocero. **Cada sesión tiene su propio enlace**, "
+        "así que no sirve guardar el de la semana pasada.",
+        "",
+        "### Fechas que conviene anotar ya",
+        "",
+        "| Corte | Qué se califica | Cuándo | Vale |",
+        "|---|---|---|---|",
+    ]
+    for x in ct:
+        for linea in x["desglose"]:
+            if "sistencia" in linea:          # asistencia no tiene fecha: es todo el corte
+                continue
+            que, _, peso = linea.rpartition("·")
+            # El desglose dice en que sesion cae cada cosa («(sesión 15)»), y no siempre es
+            # la del cierre del corte: la exposicion final es la 15 y el corte cierra en la 16.
+            m = re.search(r"sesi[oó]n\s+(\d+)", que)
+            ses = int(m.group(1)) if m else x["cierre_sesion"]
+            f = D.fecha_de_sesion(codigo, ses)
+            L.append("| **%d** (%s) | %s | sesión %d · %s | %s |"
+                     % (x["corte"], x["pct"],
+                        re.sub(r"\s*\(sesi[oó]n\s+\d+\)", "", que).strip(),
+                        ses, D.ddmmyyyy(f) if f else "—", peso.strip()))
+    L += [
+        "",
+        "> **No hay examen final escrito.** El corte 3 se califica con la **exposición "
+        "final del proyecto** (sesión 15) y el **informe final** (sesión 16).",
+        "",
+        "### Cómo es una sesión",
+        "",
+        "Los %d minutos van así, todas las semanas:" % c["duracion_min"],
+        "",
+    ]
+    for b in din["bloques"]:
+        L.append("- **%s min · %s** — %s" % (b["min"], b["nombre"], b["corto"]))
+    L += [
+        "",
+        "El curso entero cuelga de **un proyecto por equipo**: eligen un problema real de "
+        "su entorno en las primeras sesiones y lo van armando hasta sustentarlo en la "
+        "sesión 15. Somos **%d equipos fijos** todo el semestre, y el **vocero rota**: "
+        "todos exponen alguna vez." % eq["cantidad_fija"],
+        "",
+        "> **Por qué %d equipos y no equipos de tamaño fijo:** las exposiciones son %d min "
+        "por equipo y la sesión cierra a los %d. Con equipos de cuatro, un grupo grande "
+        "daría nueve equipos y no cabrían." % (eq["cantidad_fija"], 3, c["duracion_min"]),
+        "",
+        "### Con qué vamos a trabajar",
+        "",
+        "Todo **gratis y desde el navegador**. No hay que instalar nada ni pagar nada, y "
+        "**nunca les voy a pedir una tarjeta de crédito**: si una herramienta la pide, no "
+        "es la que usamos.",
+        "",
+        "| Herramienta | Para qué |",
+        "|---|---|",
+    ]
+    for p in pl["stack"]:
+        L.append("| **%s** | %s |" % (p["nombre"], p["uso"]))
+    L += [
+        "",
+        "> ⚠️ **ExamLab no es una plataforma oficial de la UNIAJC:** es un canal mío y se "
+        "usa solo para este curso. No les pide datos personales más allá del nombre. La "
+        "universidad no tiene campus virtual propio, así que lo demás vive en la carpeta "
+        "compartida del equipo en Drive.",
+        "",
+        "**Asistente de IA:** %s %s" % (pl["asistente_ia"]["cuando"],
+                                        pl["asistente_ia"]["opciones"]),
+        "",
+        "### Dos reglas desde el primer día",
+        "",
+        "1. **No se suben datos personales de terceros** —nombres, cédulas, teléfonos ni "
+        "fotos— a ninguna de estas herramientas. Se usa el rol: «la dueña de la "
+        "papelería», «el auxiliar de la biblioteca». Es una regla de la profesión, no una "
+        "formalidad del curso.",
+        "2. **Si se les cae la conexión**, el documento del equipo está en Drive: lo "
+        "escrito no se pierde. Vuelven a entrar a la sala de su equipo, y si el que se cayó "
+        "era el vocero, expone el siguiente de la rotación.",
+        "",
+        "Nos vemos el %s. Cualquier duda, a este correo."
+        % D.ddmmyyyy(D.fecha_de_sesion(codigo, 1)),
+        "",
+        "%s" % D.DOCENTE,
+        "`%s`" % D.CORREO,
+        "",
+    ]
+    out = os.path.join(OUT_PLAN, "CORREO_BIENVENIDA - %s - %s - %s.md"
+                       % (c["folder"], codigo, D.load()["periodo"]))
+    os.makedirs(OUT_PLAN, exist_ok=True)
+    with open(out, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(L))
+    print("OK -> " + os.path.relpath(out, ROOT))
+    return out
+
+
 def build_leeme():
     """`LEEME - Dinamica de sesion y plataformas.md`, en la raiz del curso.
 
@@ -466,6 +617,16 @@ def build_leeme():
         "",
         "> %s" % plat["_nota_mapa_sesiones"],
         "",
+        # La columna «Herramientas» sale del microcurriculo y dice con QUE se hace el
+        # entregable, no DONDE se entrega. Sin esta nota parecia que ExamLab solo se usa en
+        # las tres sesiones donde el microcurriculo lo menciona, cuando el taller de las 16
+        # se entrega ahi.
+        "> **Dónde se entrega, en las 16 sesiones: ExamLab.** La columna «Herramientas» dice "
+        "con qué se *construye* el entregable (el documento del equipo, el diagrama, el "
+        "prototipo). El taller se *entrega* siempre en ExamLab, en el módulo Talleres: "
+        "**5 preguntas, una por bloque de la ficha, 100 puntos**. El trabajo es en equipo y "
+        "la entrega es individual — cada integrante pega lo que el equipo acordó.",
+        "",
         "---",
         "",
         "## 6. Descartadas, y por qué",
@@ -521,6 +682,7 @@ def build(codigos=None):
         hechos += [p, c]
         print("OK ->", os.path.relpath(p, ROOT))
         print("OK ->", os.path.relpath(c, ROOT))
+        hechos.append(build_correo(codigo))
     leeme = build_leeme()
     hechos.append(leeme)
     print("OK ->", os.path.relpath(leeme, ROOT))

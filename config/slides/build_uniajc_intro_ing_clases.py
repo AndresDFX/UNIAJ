@@ -45,6 +45,7 @@ from uniajc_slides_engine import (  # noqa: E402
 from guion_md_a_docx import convert  # noqa: E402
 import intro_ing_datos as D  # noqa: E402
 import intro_ing_temas_data as TD  # noqa: E402
+import examlab_talleres  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 CURSO = os.path.join(ROOT, D.curso()["folder"])
@@ -518,7 +519,41 @@ def md_taller(n):
             "",
         ]
 
-    L += ["## Cómo se califica", "",
+    # Donde se entrega. Iba solo el «documento del equipo en Drive», y el taller se califica
+    # en ExamLab: el estudiante tenia que adivinar que su trabajo de equipo se entrega otra
+    # vez, individualmente, en otra plataforma. La tabla es el corolario de formato: si los
+    # cinco bloques se califican con esos pesos, el estudiante ve los cinco con sus pesos.
+    tipo_abierta = examlab_talleres.TIPOS["abierta"]
+    L += [
+        "## Dónde se entrega: en ExamLab",
+        "",
+        "El taller se **trabaja en equipo** en el documento del equipo y se **entrega en "
+        "ExamLab** (%s), en el módulo Talleres. El enlace lo comparte el docente en el chat "
+        "de la reunión al empezar la actividad." % examlab_talleres.EXAMLAB_URL,
+        "",
+        "- Son **%d preguntas**, una por cada bloque de arriba y en el mismo orden, y suman "
+        "**100 puntos**." % len(tl["bloques"]),
+        "- Todas son de tipo **%s**: %s" % (tipo_abierta[0], tipo_abierta[1]),
+        "- **La entrega es individual aunque el trabajo sea en equipo:** cada integrante pega "
+        "en su entrega lo que el equipo acordó. Es la forma de que quede constancia de que "
+        "usted estuvo, y de que nadie pierda la nota porque el vocero se cayó de la sesión.",
+        "- **Cierra al terminar la sesión.** Esto se califica como actividad en clase, no como "
+        "tarea con plazo: se hace en la sala de grupo y se expone el mismo día.",
+        "- Si un bloque pide un **dibujo** (un árbol, una línea de tiempo, una pantalla), pegue "
+        "el **enlace** al dibujo en la carpeta del equipo y escriba en la respuesta los "
+        "elementos que el bloque pide. La caja de texto no recibe imágenes.",
+        "",
+        "> **ExamLab no es una plataforma oficial de la UNIAJC:** es un canal del docente y se "
+        "usa solo para esto. No pide datos personales suyos más allá de su nombre.",
+        "",
+        "## Cómo se califica",
+        "",
+        "| # | Bloque | Peso |",
+        "|---|---|---|",
+    ]
+    for i, (b, item) in enumerate(zip(tl["bloques"], t["rubrica"]), 1):
+        L.append("| %d | %s | **%d %%** |" % (i, b["clave"], item[1]))
+    L += ["", "**Qué se revisa en cada uno:**", "",
           "| Criterio | Peso |", "|---|---|"]
     for cr, peso, _ in t["rubrica"]:
         L.append("| %s | **%d %%** |" % (cr, peso))

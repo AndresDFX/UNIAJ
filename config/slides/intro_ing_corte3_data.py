@@ -374,9 +374,13 @@ TEMAS[12] = {
                     "**tres hallazgos contados por lo que la persona hizo**, su clasificación y "
                     "gravedad, qué se arregla y qué no, y **la pregunta abierta que le hacen al "
                     "curso**. Después de la retroalimentación, el plan de ajustes.",
-        "entregable": "la ficha de avance en el documento del equipo, y —al cerrar— las dos cosas que "
-                      "van a ajustar escritas en su columna del muro de Padlet",
-        "entregable_corto": "ficha de avance + las dos cosas que se van a ajustar en el muro",
+        # El plan de ajustes se escribe en la columna del muro para que los otros equipos lo
+        # vean en el momento, PERO el registro que se califica es el bloque 5 de la ficha:
+        # vale 10 puntos y un muro no es un canal de entrega.
+        "entregable": "la ficha de avance de cinco bloques en el documento del equipo —el quinto, "
+                      "el plan de ajustes, se llena al cerrar— y las dos cosas que van a ajustar "
+                      "escritas también en su columna del muro, para que el curso las vea",
+        "entregable_corto": "ficha de avance de 5 bloques, con el plan de ajustes al cerrar",
         "reparto_titulo": "Ritmo sugerido dentro de la sala (12 min):",
         "reparto": "5 min escribir los tres hallazgos como **lo que la persona hizo** · 3 min "
                    "clasificarlos y marcar el patrón · 4 min decidir qué se arregla, qué no y **cuál "
@@ -400,6 +404,18 @@ TEMAS[12] = {
              "pide": "Una pregunta abierta, concreta, sobre una decisión que el equipo no logra "
                      "tomar. Es lo que hace útiles los tres minutos de retroalimentación.",
              "check": "es una pregunta de verdad y no un «¿qué opinan?». Debe tener al menos dos alternativas identificadas."},
+            # Este bloque se llena AL FINAL, despues de la retroalimentacion, y por eso no
+            # existia: el compromiso se anotaba en una columna del muro. Pero vale 10 de los
+            # 100 puntos de la rubrica, asi que el estudiante tenia que adivinar donde
+            # escribir algo que se le califica. Va aqui, en la ficha, que es donde se
+            # entrega y donde se corrige.
+            {"clave": "EL PLAN DE AJUSTES",
+             "pide": "Las **dos cosas** que el equipo va a ajustar con lo que oyó en la "
+                     "retroalimentación, y **qué lo motivó**: quién lo dijo y qué dijo. Se llena "
+                     "en los últimos minutos de la sesión, no antes.",
+             "check": "las dos cosas salen de lo que se oyó y no de lo que el equipo ya traía "
+                      "pensado. Un plan idéntico a la lista de «qué arreglamos» significa que la "
+                      "retroalimentación no se usó."},
         ],
         "expo": [
             ("30 s · Recordatorio mínimo", "El problema en **una frase**. Nada más: el curso ya conoce su proyecto."),
@@ -589,6 +605,27 @@ TEMAS[12] = {
                                   "pro y su contra— (3). Un «¿qué le mejorarían?» vale 3 y hay que "
                                   "decir por qué: convierte los tres minutos en comentarios genéricos "
                                   "y desperdicia a los otros cuatro equipos."
+            },
+            {
+                "clave": "EL PLAN DE AJUSTES",
+                "respuesta": "**Lo que el equipo escribió al cerrar:**\n\n"
+                             "> **1.** Cambiar el mensaje de «no encontrado» por «No encontramos «X» "
+                             "en la lista. Puede haber otros libros en el estante — pregunte en el "
+                             "mostrador». Lo motivó el equipo 3, que dijo que la duda real de la "
+                             "persona no es si el libro existe sino si vale la pena caminar.\n>\n"
+                             "> **2.** Poner la fecha de la última actualización visible en la "
+                             "pantalla de resultados. Lo motivó la profesora, que preguntó cómo sabe "
+                             "alguien si la lista está al día; no se nos había ocurrido y es una línea "
+                             "de texto.\n\n"
+                             "**Por qué este plan está bien hecho:** las dos cosas salen de algo que "
+                             "se **oyó**, cada una dice **quién lo dijo**, y las dos son pequeñas y "
+                             "verificables en la sesión 14. Un plan que repite lo que el equipo ya "
+                             "traía en «qué arreglamos» no usó la retroalimentación, y ahí es donde "
+                             "se descuenta.",
+                "como_calificar": "10 pts. Dos cosas ajustables y verificables (4), cada una con el "
+                                  "origen de lo que se oyó —quién y qué dijo— (4), y que no sean una "
+                                  "copia de la lista de «qué arreglamos» (2). Un equipo que escribe "
+                                  "«mejorar el diseño» vale 2: no es verificable en la sesión 14."
             },
         ],
         "variantes": [

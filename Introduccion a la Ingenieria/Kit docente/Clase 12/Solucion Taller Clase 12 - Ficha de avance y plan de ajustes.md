@@ -18,7 +18,7 @@ Prototipo v2 de la sesión 11: tres pantallas —consultar, resultado con sus tr
 
 > Con los resultados de la prueba que ya hicieron, armen la ficha de avance: **tres hallazgos contados por lo que la persona hizo**, su clasificación y gravedad, qué se arregla y qué no, y **la pregunta abierta que le hacen al curso**. Después de la retroalimentación, el plan de ajustes.
 
-**Entregable:** la ficha de avance en el documento del equipo, y —al cerrar— las dos cosas que van a ajustar escritas en su columna del muro de Padlet · **12 min de trabajo · 5 min de exposición**
+**Entregable:** la ficha de avance de cinco bloques en el documento del equipo —el quinto, el plan de ajustes, se llena al cerrar— y las dos cosas que van a ajustar escritas también en su columna del muro, para que el curso las vea · **12 min de trabajo · 5 min de exposición**
 
 ## Respuesta bloque por bloque
 
@@ -117,6 +117,22 @@ La columna izquierda tiene tres problemas: **es una opinión, no un hecho**; **m
 **Lo que el curso respondió** (útil para el docente como ejemplo de retroalimentación bien dada): un equipo observó que la duda real de la persona no es «existe o no existe» sino «camino o no camino», así que la respuesta tiene que incluir **qué hacer**: «No encontramos «X» en la lista. Puede haber otros libros en el estante — pregunte en el mostrador». Es la opción B recortada, y aplica la regla de la sesión 10: un mensaje de error dice qué hacer.
 
 **Cómo calificar:** 15 pts. Tres cosas: que sea una pregunta **concreta** y no un «¿qué opinan?» (6), que tenga **al menos dos alternativas** identificadas (6), y que el equipo muestre que ya pensó —cada alternativa con su pro y su contra— (3). Un «¿qué le mejorarían?» vale 3 y hay que decir por qué: convierte los tres minutos en comentarios genéricos y desperdicia a los otros cuatro equipos.
+
+### 5. EL PLAN DE AJUSTES
+
+**Se pedía:** Las **dos cosas** que el equipo va a ajustar con lo que oyó en la retroalimentación, y **qué lo motivó**: quién lo dijo y qué dijo. Se llena en los últimos minutos de la sesión, no antes.
+
+**Respuesta modelo:**
+
+**Lo que el equipo escribió al cerrar:**
+
+> **1.** Cambiar el mensaje de «no encontrado» por «No encontramos «X» en la lista. Puede haber otros libros en el estante — pregunte en el mostrador». Lo motivó el equipo 3, que dijo que la duda real de la persona no es si el libro existe sino si vale la pena caminar.
+>
+> **2.** Poner la fecha de la última actualización visible en la pantalla de resultados. Lo motivó la profesora, que preguntó cómo sabe alguien si la lista está al día; no se nos había ocurrido y es una línea de texto.
+
+**Por qué este plan está bien hecho:** las dos cosas salen de algo que se **oyó**, cada una dice **quién lo dijo**, y las dos son pequeñas y verificables en la sesión 14. Un plan que repite lo que el equipo ya traía en «qué arreglamos» no usó la retroalimentación, y ahí es donde se descuenta.
+
+**Cómo calificar:** 10 pts. Dos cosas ajustables y verificables (4), cada una con el origen de lo que se oyó —quién y qué dijo— (4), y que no sean una copia de la lista de «qué arreglamos» (2). Un equipo que escribe «mejorar el diseño» vale 2: no es verificable en la sesión 14.
 
 ## Rúbrica del taller
 

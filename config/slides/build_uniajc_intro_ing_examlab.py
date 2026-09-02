@@ -37,6 +37,7 @@ from guion_md_a_docx import convert  # noqa: E402
 import examlab_talleres as X  # noqa: E402
 import intro_ing_datos as D  # noqa: E402
 import intro_ing_examlab_data as ED  # noqa: E402
+import intro_ing_temas_data as TD  # noqa: E402
 
 if hasattr(sys.stdout, "buffer"):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
@@ -437,6 +438,131 @@ def _md(carpeta, nombre, texto, docx=True):
     return hechos
 
 
+# ───────────────────────────────────────── talleres de equipo en ExamLab (16 sesiones)
+#
+# Por que se GENERA y no se escribe: cada sesion ya tiene los tres pedazos alineados uno a
+# uno en `intro_ing_temas_data` — `taller["bloques"]` (que se pide), `rubrica` (que vale) y
+# `solucion["bloques"]` (la respuesta modelo)—, con las mismas claves y en el mismo orden.
+# Escribir a mano 80 preguntas a partir de eso era garantizar que se desincronizaran: se
+# cambia un bloque del taller y la pregunta de la plataforma queda pidiendo otra cosa. Asi
+# el taller que recibe el estudiante, la solucion del docente y la actividad de ExamLab
+# salen de la MISMA fuente y no pueden discrepar.
+#
+# Los cinco bloques dan exactamente las 5 preguntas que ExamLab admite como maximo, y la
+# rubrica ya suma 100 puntos, que es el total que pide la propuesta del curso.
+
+
+def _partes_taller(n):
+    """`(taller, rubrica, bloques_solucion)` de la sesion `n`, de donde vivan.
+
+    La Clase 1 no esta en `TEMAS`: su actividad y su solucion viven en
+    `intro_ing_clase1_data`, porque esa sesion lleva ademas la prueba diagnostica.
+    """
+    if n == 1:
+        import intro_ing_clase1_data as C1
+        sol = getattr(C1, "SOLUCION", None) or {}
+        return C1.ACTIVIDAD, C1.RUBRICA, sol.get("bloques") or []
+    tema = TD.TEMAS[n]
+    return tema["taller"], tema["rubrica"], tema["solucion"]["bloques"]
+
+
+def taller_examlab(n):
+    """Especificacion del taller de la sesion `n` para `examlab_talleres`.
+
+    Una pregunta `abierta` por bloque. Todas abiertas a proposito: el entregable de este
+    curso es criterio redactado —una frase de problema, una cifra con su metodo, una razon—
+    y no hay forma de calificar eso con opciones. Tampoco se usa el tipo `diagrama`, que
+    espera codigo Mermaid: los diagramas de este curso se dibujan en Excalidraw o draw.io y
+    Mermaid no se enseña en ninguna sesion, asi que pedirlo evaluaria algo no enseñado. En
+    los bloques de diagrama se pide el enlace del dibujo MAS los elementos que la rubrica
+    revisa, que es lo que de verdad se califica.
+    """
+    taller, rubrica, sol = _partes_taller(n)
+    bloques = taller["bloques"]
+    if not (len(bloques) == len(rubrica) == len(sol)):
+        raise SystemExit(
+            "Sesion %d: el taller tiene %d bloques, la rubrica %d items y la solucion %d. "
+            "Los tres tienen que ir uno a uno: la pregunta k de ExamLab es el bloque k."
+            % (n, len(bloques), len(rubrica), len(sol)))
+    claves_b = [b["clave"] for b in bloques]
+    claves_s = [b["clave"] for b in sol]
+    if claves_b != claves_s:
+        raise SystemExit(
+            "Sesion %d: los bloques del taller y los de la solucion no van en el mismo "
+            "orden.\n  taller:   %s\n  solucion: %s" % (n, claves_b, claves_s))
+
+    preguntas = []
+    for i, (bl, item) in enumerate(zip(bloques, rubrica), 1):
+        criterio, puntos = item[0], item[1]
+        enunciado = ["## %d. %s" % (i, bl["clave"]), "", bl["pide"]]
+        if bl.get("check"):
+            enunciado += ["", "**Se revisa que** " + bl["check"]]
+        preguntas.append({
+            "tipo": "abierta",
+            "puntos": puntos,
+            "enunciado": "\n".join(enunciado),
+            # La rubrica de la plataforma junta las dos vistas que ya existian: el criterio
+            # con el que se reparten los puntos y la comprobacion concreta del bloque.
+            "rubrica": "%s (%d pts).\n\nComprobacion: %s" % (criterio, puntos,
+                                                             bl.get("check") or "—"),
+        })
+    return {
+        "titulo": "%s — %s" % (taller["titulo"], D.tema(n)["tema_acentos"]),
+        "resumen": taller.get("consigna", ""),
+        "preguntas": preguntas,
+    }
+
+
+def md_taller(n):
+    """Documento del Kit docente para montar el taller de la sesion `n` en ExamLab."""
+    taller_datos, _, _ = _partes_taller(n)
+    t = taller_examlab(n)
+    curso = "%s (%s)" % (D.curso()["nombre_acentos"], D.curso()["codigo"])
+    md = X.guia_docente_md(
+        n, t, curso,
+        entregable=taller_datos.get("entregable", ""),
+        resumen_etiqueta="Consigna del equipo",
+        nota_import=[
+            "> ExamLab no importa preguntas desde archivo: el alta se hace en la UI del",
+            "> docente. Este documento trae el texto exacto de cada campo para copiar y pegar.",
+            "> Las cinco preguntas son los cinco bloques de la ficha, en el mismo orden y con",
+            "> los mismos puntos que la rubrica del taller.",
+        ],
+        meta_extra=[
+            ("Trabajo", "en equipo (%d min en salas de grupo) · **la entrega en ExamLab es "
+                        "individual**: cada integrante pega lo que su equipo acordo"
+             % taller_datos.get("min", 17)),
+            ("Exposicion", "%d min por equipo, habla el vocero"
+             % taller_datos.get("exposicion", 3)),
+            ("Fechas por grupo", _fechas(n)),
+        ],
+        cierre_lineas=[
+            "- Publique el taller **al empezar** la actividad en equipos, no antes: los cinco",
+            "  bloques son la guia de la sesion y adelantarlos vacia el trabajo de la sala.",
+            "- **Cierre al terminar la sesion.** Este curso califica esto como «actividades en",
+            "  clase» dentro del corte, no como tarea con plazo: el trabajo se hace en la sala",
+            "  de grupo y se expone el mismo dia. Si decide dar margen a un equipo que se quedo",
+            "  corto, digalo en voz alta y aplique el mismo margen a los cinco.",
+            "- Al calificar, la respuesta modelo de cada bloque esta en «Solucion Taller",
+            "  Clase %d», con su reparto de puntos bloque por bloque." % n,
+        ],
+    )
+    return md
+
+
+def build_taller(n):
+    _, dir_kit = _dirs(n)
+    t = taller_examlab(n)
+    hechos = _md(dir_kit, "Taller en ExamLab - Clase %d (configuracion)" % n,
+                 md_taller(n), docx=False)
+    print("Taller sesión %2d · %d preguntas · %d puntos · %s" % (
+        n, len(t["preguntas"]), X.total_puntos(t),
+        "/".join(str(p["puntos"]) for p in t["preguntas"])))
+    for h in hechos:
+        print("   " + os.path.relpath(h, ROOT))
+    return hechos
+
+
 def build_evaluacion(n):
     ev = ED.EVALUACIONES[n]
     cj = _corte_json(n)
@@ -466,16 +592,21 @@ def build_evaluacion(n):
 
 
 def build(ns=None):
-    ns = ns or sorted(ED.EVALUACIONES)
-    for n in ns:
-        if n not in ED.EVALUACIONES:
-            raise SystemExit(
-                "La sesion %d no tiene evaluacion de corte. Las que hay: %s."
-                % (n, ", ".join(str(x) for x in sorted(ED.EVALUACIONES)))
-            )
+    """Todo lo que va a ExamLab: los 16 talleres de equipo y las 2 evaluaciones de corte.
+
+    `ns` limita a unas sesiones concretas. Sin argumentos hace el curso completo, que es lo
+    que hay que correr antes de montar la plataforma.
+    """
+    sesiones = ns or list(range(1, D.curso()["n_sesiones"] + 1))
     todo = []
-    for n in ns:
-        todo += build_evaluacion(n)
+    print("== Talleres de equipo (uno por sesión)")
+    for n in sesiones:
+        todo += build_taller(n)
+    cortes = [n for n in sesiones if n in ED.EVALUACIONES]
+    if cortes:
+        print("\n== Evaluaciones de corte")
+        for n in cortes:
+            todo += build_evaluacion(n)
     print("\n%d archivos." % len(todo))
     return todo
 

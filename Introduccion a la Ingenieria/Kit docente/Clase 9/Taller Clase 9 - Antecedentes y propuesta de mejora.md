@@ -48,7 +48,29 @@ Qué de lo que ya existe piensan aprovechar: una idea de diseño, una forma de o
 
 > **Se revisa que:** hay al menos una cosa concreta que se reusa. «Nada» significa que no leyeron lo que ficharon.
 
+## Dónde se entrega: en ExamLab
+
+El taller se **trabaja en equipo** en el documento del equipo y se **entrega en ExamLab** (https://uniaj.examlab.workers.dev/), en el módulo Talleres. El enlace lo comparte el docente en el chat de la reunión al empezar la actividad.
+
+- Son **5 preguntas**, una por cada bloque de arriba y en el mismo orden, y suman **100 puntos**.
+- Todas son de tipo **Respuesta escrita**: Un cuadro de texto. Se escribe directamente en la plataforma; no se sube archivo.
+- **La entrega es individual aunque el trabajo sea en equipo:** cada integrante pega en su entrega lo que el equipo acordó. Es la forma de que quede constancia de que usted estuvo, y de que nadie pierda la nota porque el vocero se cayó de la sesión.
+- **Cierra al terminar la sesión.** Esto se califica como actividad en clase, no como tarea con plazo: se hace en la sala de grupo y se expone el mismo día.
+- Si un bloque pide un **dibujo** (un árbol, una línea de tiempo, una pantalla), pegue el **enlace** al dibujo en la carpeta del equipo y escriba en la respuesta los elementos que el bloque pide. La caja de texto no recibe imágenes.
+
+> **ExamLab no es una plataforma oficial de la UNIAJC:** es un canal del docente y se usa solo para esto. No pide datos personales suyos más allá de su nombre.
+
 ## Cómo se califica
+
+| # | Bloque | Peso |
+|---|---|---|
+| 1 | LA PREGUNTA DE BÚSQUEDA | **15 %** |
+| 2 | TRES ANTECEDENTES FICHADOS | **30 %** |
+| 3 | QUÉ BUSCAMOS Y NO ENCONTRAMOS | **15 %** |
+| 4 | LA PROPUESTA DE MEJORA | **25 %** |
+| 5 | LO QUE VAMOS A REUSAR | **15 %** |
+
+**Qué se revisa en cada uno:**
 
 | Criterio | Peso |
 |---|---|
