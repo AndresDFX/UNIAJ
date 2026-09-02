@@ -863,7 +863,6 @@ TEMAS[13] = {
                 "«Añade **10 minutos diarios** de trabajo a la voluntaria del cierre.»",
             ],
             "sub": "Nótese que las dos últimas líneas de la derecha son impactos NEGATIVOS, y son las que hacen creíble a todas las demás",
-            "size": 13,
         },
         {
             "tipo": "box",
@@ -1664,7 +1663,6 @@ TEMAS[14] = {
                 "Letra grande: si no cabe, **es que hay que quitar contenido**, no reducir la letra.",
             ],
             "sub": "El público no puede leer y escuchar a la vez. Si la diapositiva lo dice todo, usted está de sobra",
-            "size": 13,
         },
         {
             "tipo": "box",
@@ -3206,7 +3204,6 @@ TEMAS[16] = {
                 "«Hay **afectados que nunca la usan** y que quedan peor que antes.»",
             ],
             "sub": "No es una lista de frases aprendidas: cada una está sostenida por una sección de su propio informe",
-            "size": 13,
         },
     ],
 

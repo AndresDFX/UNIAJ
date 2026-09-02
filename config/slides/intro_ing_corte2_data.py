@@ -108,7 +108,6 @@ TEMAS[7] = {
                 "Es lo que va a hacer este curso: **una vuelta corta en las sesiones 10–11 y otra en las 12–14**.",
             ],
             "sub": "Las fases son las mismas en los dos. Lo que cambia es cuántas veces se recorren y cuándo aparece el usuario",
-            "size": 13,
         },
         {
             "tipo": "cards",
@@ -3058,7 +3057,6 @@ TEMAS[11] = {
                 "«No encontramos «X» en la lista. Pregunte en el mostrador o intente con el autor.»",
             ],
             "sub": "Ninguna de las cinco propuestas era absurda. Las cinco eran incorrectas para este proyecto, y el asistente no tenía manera de saberlo",
-            "size": 13,
         },
         {
             "tipo": "box",

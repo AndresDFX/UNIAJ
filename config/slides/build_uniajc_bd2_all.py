@@ -2733,29 +2733,6 @@ def cover_pptx(prs, c):
     """Portada limpia: marca + título + subtítulo. Meta PI/agenda → 2ª slide."""
     class_cover(prs, c['titulo'], subtitulo=c['subtitulo'], clase_n=c['n'], idx=1)
 
-#: Cuerpo de las diapositivas de CONTENIDO, por clase. `{n: puntos}`.
-#:
-#: Por que existe: el deck se escribio con cuerpos de 13 a 16 pt, que se leen bien en
-#: el monitor de quien lo arma y mal en una clase virtual, donde el estudiante recibe
-#: una ventana compartida y recomprimida —a veces en un telefono—. La clase que
-#: aparece aqui usa este tamano en TODAS sus diapositivas de contenido, en vez del
-#: que trae cada llamada.
-#:
-#: Solo afecta a `content_slide`, que es el molde de vinetas de prosa. Los moldes con
-#: geometria propia (codigo, checklist, pasos numerados, cajas de nota, diagrama,
-#: antes/despues) NO se tocan: sus cajas estan dimensionadas para su tipografia y
-#: subirles el cuerpo desborda el texto fuera de la caja en vez de agrandarlo.
-#: Comprobado en la Clase 3: la caja del checklist mide 0.44 pulgadas de alto.
-CUERPO_PT = {
-    3: 20,
-}
-
-
-def _cuerpo(c, por_defecto):
-    """Puntos del cuerpo de una diapositiva de contenido de la clase `c`."""
-    return CUERPO_PT.get(c['n'], por_defecto)
-
-
 def build_pptx(c):
     if c['tipo'] == 'parcial':
         # Este deck es lo UNICO que el estudiante recibe el dia del parcial y no traia
@@ -2805,7 +2782,7 @@ def build_pptx(c):
             f"**Entregable de hoy:** {c['entregable']}",
             "Sube el paquete a ExamLab **antes** de tu turno: presentando no se sube nada.",
             "La sustentación es **en vivo** y con preguntas: no se reemplaza por video grabado.",
-        ], idx=idx, size=_cuerpo(c, 16)); idx += 1
+        ], idx=idx); idx += 1
     else:
         content_slide(prs, "Encuadre de hoy · Objetivo PI", [
             f"**Hoy avanzamos el PI en:** {c['hito_pi']}",
@@ -2814,7 +2791,7 @@ def build_pptx(c):
             "Gratis + navegador · free tier · sin software de pago obligatorio.",
             "La teoría no es un tema aislado: alimenta evidencias de la rúbrica del PI.",
             "Al salir: avance concreto en su paquete VetCare.",
-        ], idx=idx, size=_cuerpo(c, 16)); idx += 1
+        ], idx=idx); idx += 1
     if c['tipo'] == 'sustentacion':
         # El bloque no se reparte en teoría + taller: son turnos de sustentación.
         block_timeline_slide(prs, "Mapa del bloque de hoy (120 min)", [
@@ -2843,9 +2820,9 @@ def build_pptx(c):
             "hacen más lento el agendamiento. Ahí están las decisiones de diseño del semestre.",
             "@@Caso completo:@@ anexo «Caso de estudio Clínica Huellitas» en "
             "Clases/Proyecto Integrador — 8 entidades, 3 reglas y el elenco de nombres.",
-        ], sub=NOMENCLATURA, idx=idx, size=_cuerpo(c, 14)); idx += 1
+        ], sub=NOMENCLATURA, idx=idx); idx += 1
     content_slide(prs, "Teoria Core (breve)", _slide_summary(c['teoria']), idx=idx,
-                  size=_cuerpo(c, 15)); idx += 1
+                  ); idx += 1
     dg = DIAGRAMAS_BD2.get(c['n'])
     if dg:
         diagram_boxes_slide(
@@ -2867,7 +2844,7 @@ def build_pptx(c):
     for extra in TEORIA_EXTRA.get(c['n'], []):
         content_slide(prs, extra[0], extra[1],
                       sub=(extra[2] if len(extra) > 2 else None), idx=idx,
-                      size=_cuerpo(c, 13))
+                      )
         idx += 1
     if c['tipo'] == 'sustentacion':
         # Hoy no hay demo del docente: el que demuestra es el estudiante, en su turno.
@@ -2877,14 +2854,14 @@ def build_pptx(c):
             f"Ten listo: **{c['entregable']}**",
             "En tu turno muestra una **ejecución real** (procedimiento OK + caso rechazado), no solo capturas.",
             "Mientras otros presentan, escuchas: el cierre del curso se hace con todo el grupo.",
-        ], idx=idx, size=_cuerpo(c, 16)); idx += 1
+        ], idx=idx); idx += 1
     else:
         content_slide(prs, "Demo del dia", [
             f"**Herramienta:** {c['herramienta']}",
             f"**Demo:** {c['demo']}",
             "Sigan el mismo dominio VetCare (no inventen otro caso).",
             "Al final de la demo: dejar enlace/script compartible al grupo.",
-        ], idx=idx, size=_cuerpo(c, 16)); idx += 1
+        ], idx=idx); idx += 1
     tools = HERRAMIENTAS_DIA.get(c["n"])
     if tools:
         herramientas_slide(prs, tools, title="Herramientas de hoy",
@@ -2907,7 +2884,7 @@ def build_pptx(c):
              "sustentacion": "Sustentacion del PI"}.get(c["tipo"], "Taller PI VetCare")
     if tb.get("contexto"):
         content_slide(prs, f"{label} — contexto / por que importa", tb["contexto"], idx=idx,
-                      size=_cuerpo(c, 16))
+                      )
         idx += 1
     obj = tb.get("objetivo") or c["hito_pi"]
     crit = [f"@@Exito:@@ {x}" for x in tb.get("criterios", [])] or [
@@ -2918,11 +2895,11 @@ def build_pptx(c):
         "Evidencia: lo que ejecutaste y su salida quedan guardados en la pregunta de ExamLab.",
     ]
     content_slide(prs, f"{label} — objetivo y criterios", [f"@@Objetivo:@@ {obj}", *crit], idx=idx,
-                  size=_cuerpo(c, 15))
+                  )
     idx += 1
     if tb.get("escenario"):
         content_slide(prs, f"{label} — escenario / datos de partida", tb["escenario"], idx=idx,
-                      size=_cuerpo(c, 16))
+                      )
         idx += 1
     steps_visual_slide(prs, f"{label} — pasos guiados", [(t, "") for t in c["taller"]], idx=idx)
     idx += 1
@@ -2935,7 +2912,7 @@ def build_pptx(c):
             "Evidencia ejecutable en pantalla durante tu turno (no solo capturas).",
             "Puedes explicar **cualquier** parte de tu modelo en 60 segundos.",
             "@@Entrega en ExamLab@@ (https://uniaj.examlab.workers.dev/ · módulo Proyectos) — **antes** de tu turno.",
-        ], idx=idx, size=_cuerpo(c, 16)); idx += 1
+        ], idx=idx); idx += 1
         box_note_slide(prs, "Cierre del PI", [
             ("info", f"Hito: {c['hito_pi']}"),
             ("aclaracion", "Enunciado completo y rubrica: Clases/Proyecto Integrador/ (VetCare DB)."),
@@ -2951,7 +2928,7 @@ def build_pptx(c):
             "Conserva copia en tu carpeta del PI (los .sql que pide el entregable).",
             "Actualizar checklist PI (que criterio de rubrica avanzo).",
             "@@Entrega en ExamLab@@ (https://uniaj.examlab.workers.dev/) — domingo 23:59 cuando aplique taller.",
-        ], idx=idx, size=_cuerpo(c, 16)); idx += 1
+        ], idx=idx); idx += 1
         box_note_slide(prs, "Para el PI esta semana", [
             ("info", f"Hito: {c['hito_pi']}"),
             ("aclaracion", "Enunciado completo: Clases/Proyecto Integrador/ (VetCare DB)."),

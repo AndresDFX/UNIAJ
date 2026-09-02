@@ -205,7 +205,7 @@ def build_pptx(c):
         ("60-105", "Taller guiado = avance del PI"),
         ("105-120", "Criterios de exito y cierre"),
     ], idx=idx); idx += 1
-    content_slide(prs, "Teoria Core", _resumen(c["teoria"]), idx=idx, size=15); idx += 1
+    content_slide(prs, "Teoria Core", _resumen(c["teoria"]), idx=idx); idx += 1
     if c.get("codigo_slide_lineas"):
         pseudo_code_slide(prs, c.get("codigo_slide_titulo", "Codigo de hoy"),
                           c["codigo_slide_lineas"],
@@ -216,9 +216,9 @@ def build_pptx(c):
         "Mismo dominio VetCare — no otro ejemplo.",
     ], idx=idx); idx += 1
     if c.get("contexto"):
-        content_slide(prs, "Taller PI — por que importa", c["contexto"], idx=idx, size=16); idx += 1
+        content_slide(prs, "Taller PI — por que importa", c["contexto"], idx=idx); idx += 1
     if c.get("escenario"):
-        content_slide(prs, "Taller PI — punto de partida", c["escenario"], idx=idx, size=16); idx += 1
+        content_slide(prs, "Taller PI — punto de partida", c["escenario"], idx=idx); idx += 1
     steps_visual_slide(prs, "Taller PI — pasos guiados",
                        [(t, "") for t in c["taller"]], idx=idx); idx += 1
     if c.get("pistas"):

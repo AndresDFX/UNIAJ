@@ -65,7 +65,6 @@ TEMAS[2] = {
                 "El primer método formal es de **1970**, y nació de un artículo crítico.",
                 "Los problemas viejos **siguen abiertos**: plazo, costo y requisitos que cambian.",
             ],
-            "size": 13,
         },
         {
             "tipo": "content",
@@ -87,7 +86,6 @@ TEMAS[2] = {
                 "**Ahí nace la disciplina:** no de un invento, sino del reconocimiento público de "
                 "que el trabajo se estaba haciendo mal y nadie sabía cómo hacerlo bien.",
             ],
-            "size": 14,
         },
         {
             "tipo": "cards",
@@ -741,7 +739,6 @@ TEMAS[3] = {
                 "El éxito es que **el problema del entorno se redujo**, y se puede medir.",
                 "Lo que pasa antes y después de la pantalla es parte del sistema.",
             ],
-            "size": 13,
         },
         {
             "tipo": "cards",
@@ -1382,7 +1379,6 @@ TEMAS[4] = {
                 "El que firma responde, y **el que ejecuta también**: hay ingenieros presos.",
                 "La ley es el **mínimo**. Muchas cosas legales son indefendibles.",
             ],
-            "size": 13,
         },
         {
             "tipo": "cards",
@@ -2189,7 +2185,6 @@ TEMAS[5] = {
                 "Se usa el `if`. **La IA cuesta energía en cada llamada.**",
             ],
             "sub": "Ninguna de las cinco decisiones de la derecha es un sacrificio de calidad: son decisiones de ingeniería",
-            "size": 13,
         },
         {
             "tipo": "content",
@@ -2213,7 +2208,6 @@ TEMAS[5] = {
                 "puede tomar un equipo de este curso casi nunca es «consumir menos batería». Es "
                 "**no obligar a cambiar de aparato** y **no mover datos que no hacen falta**.",
             ],
-            "size": 13,
         },
         {
             "tipo": "steps",
@@ -2885,7 +2879,6 @@ TEMAS[6] = {
                 "**Casi.** «Manual» describe el cómo; falta a quién le cuesta qué.",
             ],
             "sub": "Un problema bien escrito dice: a QUIÉN le pasa QUÉ, con qué CONSECUENCIA, y trae una CIFRA",
-            "size": 13,
         },
         {
             "tipo": "steps",
@@ -2919,7 +2912,6 @@ TEMAS[6] = {
                 "@@Si el problema no tiene cifra posible@@, es señal de que está mal delimitado: "
                 "casi siempre es demasiado grande. Bájenlo hasta que se pueda contar algo.",
             ],
-            "size": 13,
         },
         {
             "tipo": "cards",

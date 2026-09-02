@@ -207,7 +207,7 @@ def build():
 
 
 
-    ], idx=5, size=15)
+    ], idx=5)
 
 
 
@@ -227,7 +227,7 @@ def build():
 
 
 
-    ], idx=6, size=15)
+    ], idx=6)
 
 
 

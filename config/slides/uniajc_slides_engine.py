@@ -16,6 +16,8 @@ from pptx.oxml import parse_xml
 from pptx.oxml.ns import qn
 from pptx.util import Inches, Pt
 
+import metrica_texto
+
 NAVY = RGBColor(0x09, 0x52, 0x92)
 CIAN = RGBColor(0x26, 0x9C, 0xCB)
 AMARILLO = RGBColor(0xFF, 0xD0, 0x00)
@@ -33,6 +35,32 @@ SW = 13.333
 SH = 7.5
 MARGIN = 0.5
 CONTENT_W = SW - 2 * MARGIN
+
+# ─────────────────────────────────────────────────────── cuerpo de las diapositivas
+#
+#: Tamano OBJETIVO del cuerpo de una diapositiva de contenido, en puntos.
+#:
+#: Los cinco cursos venian con el cuerpo escrito llamada por llamada: `size=13` en las
+#: diapositivas densas, `size=16` en las sueltas, y unos 200 numeros distintos repartidos
+#: por los builders. Esos numeros no eran una decision de diseno, eran ajuste manual: el
+#: autor bajaba el tamano hasta que el texto entrara en la caja. Se leen bien en el monitor
+#: de quien arma el deck y mal en una clase virtual, donde el estudiante recibe una ventana
+#: compartida y recomprimida, a veces en un telefono.
+#:
+#: Ahora el tamano lo decide `bullets()`: parte de aqui y baja solo si el texto no cabe
+#: (ver `CUERPO_MINIMO`). Para subir el cuerpo de TODOS los cursos se cambia este numero.
+CUERPO_PT = 20
+
+#: Suelo del ajuste. Por debajo no se baja: si el texto no cabe ni a 15 pt, lo que sobra es
+#: texto en la diapositiva y no falta tamano de letra. Encogerlo mas taparia el problema;
+#: `verificar_desborde.py` lo denuncia como choque para que se corrija el contenido.
+CUERPO_MINIMO = 15
+
+#: El bloque de codigo (`pseudo_code_slide`) va en su propia escala: son lineas que no se
+#: pueden partir sin cambiar lo que dicen, en la caja mas apretada del motor. 14 pt es lo que
+#: usaba fijo; el suelo es 11 porque por debajo un nombre de variable proyectado no se lee.
+CODIGO_PT = 14
+CODIGO_MINIMO = 11
 
 ASSETS = Path(__file__).resolve().parent / "assets"
 BRAND_PATH = Path(__file__).resolve().parents[1] / "universidades" / "uniajc.json"
@@ -110,6 +138,18 @@ def _run(run, text, size, color, bold=False, italic=False):
     run.font.name = "Calibri"
     return run
 
+def normalizar_inline(text):
+    """Conversiones de marcado que hace `_rich` ANTES de pintar el texto.
+
+    Existe aparte porque medir cuanto ocupa una vineta exige medir el texto que de verdad
+    se va a pintar: `@@label@@` se convierte en negrita —que en Calibri es mas ancha— y un
+    `code span` pasa a «comillas angulares», que cambian el numero de caracteres. Midiendo
+    la cadena cruda, `bullets()` elegiria el tamano contra un texto que no es el final.
+    """
+    text = re.sub(r"@@([^@]+)@@", r"**\1**", str(text))
+    return re.sub(r"`([^`\n]+)`", r"«\1»", text)
+
+
 def _rich(paragraph, text, size, color, bold=False, italic=False):
     """Soporta **negrita** y marcadores @@label@@ (negrita) en fragmentos.
 
@@ -125,8 +165,7 @@ def _rich(paragraph, text, size, color, bold=False, italic=False):
             pass
     if paragraph.runs:
         paragraph.runs[0].text = ""
-    text = re.sub(r"@@([^@]+)@@", r"**\1**", str(text))
-    text = re.sub(r"`([^`\n]+)`", r"«\1»", text)
+    text = normalizar_inline(text)
     # El contenido en negrita admite un `*` suelto: `[^*]+` no lo admitia, y una
     # vineta con «COUNT(*)» dentro del tramo en negrita no encontraba pareja, asi
     # que los dos asteriscos salian IMPRESOS en la diapositiva del estudiante y el
@@ -165,22 +204,71 @@ def title_block(slide, title, sub=None):
     return bar_h + 0.18
 
 
-def bullets(slide, items, top=1.4, size=15, width=None, left=None):
-    """Lista de viñetas con soporte **negrita** y @@label@@."""
+ESPACIO_VINETA_PT = 8         # `space_after` entre viñetas
+
+
+def ajustar(lineas, ancho, alto, objetivo, minimo, space_after_pt=0.0):
+    """El tamaño más grande, de `objetivo` hacia abajo, con el que `lineas` cabe en la caja.
+
+    Envoltorio de `metrica_texto.tamano_que_cabe` que normaliza el marcado inline primero:
+    lo que se mide tiene que ser el texto que de verdad se va a pintar. Sin métrica
+    disponible devuelve `objetivo`, que es el comportamiento de siempre.
+
+    Los moldes que la usan son los tres que tenían texto pisando lo de abajo: las viñetas de
+    contenido, el bloque de código y las columnas del mapa del bloque. No es cosmética: el
+    motor no tiene autoajuste y PowerPoint dibuja el texto sobrante ENCIMA del pie o del
+    borde, así que sin medir el deck se publica con líneas tapadas.
+    """
+    return metrica_texto.tamano_que_cabe(
+        [normalizar_inline(x) for x in lineas], ancho, alto, objetivo, minimo,
+        space_after_pt=space_after_pt)
+
+
+def _con_vineta(item):
+    """El texto de la viñeta tal como se va a pintar, con su guion si le falta."""
+    raw = str(item)
+    prefix = "" if raw.lstrip().startswith(("–", "-", "●", "•", "**1", "1.")) else "–   "
+    return prefix + raw
+
+
+def bullets(slide, items, top=1.4, size=None, width=None, left=None, minimo=None):
+    """Lista de viñetas con soporte **negrita** y @@label@@, ajustada a su caja.
+
+    `size=None` (lo normal) significa «el cuerpo del curso»: arranca en `CUERPO_PT` y baja
+    de punto en punto hasta que el texto entre en la caja, sin pasar de `CUERPO_MINIMO`.
+    Pasar un `size` explícito desactiva el ajuste y es lo que hacen los moldes con
+    tipografía propia (código, notas, pasos numerados).
+
+    Por qué se ajusta aquí y no a ojo en cada llamada: el motor no tiene autoajuste y
+    PowerPoint dibuja el texto que no cabe **encima** de lo que haya debajo. Con el cuerpo
+    en 20 pt eso le pasaba a decenas de diapositivas repartidas por los cinco cursos. El
+    ajuste las deja todas dentro; las que ni al mínimo caben las denuncia
+    `verificar_desborde.py`, porque ahí lo que sobra es texto, no tamaño de letra.
+    """
     left = MARGIN if left is None else left
     width = CONTENT_W if width is None else width
-    tf = textbox(slide, left, top, width, max(0.8, SH - top - 0.5))
-    for i, item in enumerate(items or []):
+    alto = max(0.8, SH - top - 0.5)
+    lineas = [_con_vineta(x) for x in (items or [])]
+    if size is None:
+        size = metrica_texto.tamano_que_cabe(
+            [normalizar_inline(x) for x in lineas],
+            width, alto, CUERPO_PT, CUERPO_MINIMO if minimo is None else minimo,
+            space_after_pt=ESPACIO_VINETA_PT)
+    tf = textbox(slide, left, top, width, alto)
+    for i, linea in enumerate(lineas):
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
-        p.space_after = Pt(8)
-        raw = str(item)
-        prefix = "" if raw.lstrip().startswith(("–", "-", "●", "•", "**1", "1.")) else "–   "
-        _rich(p, prefix + raw, size, GRAY)
+        p.space_after = Pt(ESPACIO_VINETA_PT)
+        _rich(p, linea, size, GRAY)
     return tf
 
 
-def content_slide(prs, title, items, sub=None, idx=None, size=16):
-    """Diapositiva de contenido con título UNIAJC + viñetas."""
+def content_slide(prs, title, items, sub=None, idx=None, size=None):
+    """Diapositiva de contenido con título UNIAJC + viñetas.
+
+    `size=None` deja que `bullets()` elija el cuerpo (ver `CUERPO_PT`). Los builders ya no
+    pasan el tamaño: los `size=13/14/15/16` que traían eran ajuste manual del autor para
+    que el texto entrara, y ahora eso lo hace la medición.
+    """
     s = blank(prs)
     bg_white(s)
     top = title_block(s, title, sub)
@@ -620,15 +708,26 @@ def block_timeline_slide(prs, title, slots, sub=None, idx=None, nota=None):
         p = tt.paragraphs[0]
         p.alignment = PP_ALIGN.CENTER
         _run(p.add_run(), str(t), 13, NAVY, bold=True)
-        tb = textbox(s, MARGIN + slot_w * i + 0.05, y_line + 0.45, slot_w - 0.1, 2.8)
+        # La etiqueta de la columna llevaba 2.8 de alto fijo y 13 pt fijos, en una columna de
+        # menos de 2 pulgadas de ancho: con 6 tramos y textos largos se metia por debajo de la
+        # nota inferior. Ahora la caja llega hasta donde de verdad hay sitio —justo encima de
+        # la nota— y el tamano se ajusta si aun asi no cabe.
+        alto_lbl = max(0.8, (SH - 1.05) - (y_line + 0.45))
+        ancho_lbl = slot_w - 0.1
+        tb = textbox(s, MARGIN + slot_w * i + 0.05, y_line + 0.45, ancho_lbl, alto_lbl)
         pb = tb.paragraphs[0]
         pb.alignment = PP_ALIGN.CENTER
-        _rich(pb, label, 13, GRAY)
-    # nota inferior
-    tn = textbox(s, MARGIN, SH - 1.0, CONTENT_W, 0.4)
+        _rich(pb, label, ajustar([label], ancho_lbl, alto_lbl, 13, 11), GRAY)
+    # Nota inferior. Llevaba 0.4 de alto y 12 pt fijos, pensada para una linea; las notas
+    # que explican el reparto de una sesion ocupan tres y se metian sobre el numero de
+    # pagina. La caja llega ahora hasta justo encima del pie y el tamano se ajusta.
+    txt_nota = nota or "Solo el bloque de **esta** clase · 120 min"
+    y_nota = SH - 1.15
+    alto_nota = (SH - 0.45) - y_nota
+    tn = textbox(s, MARGIN, y_nota, CONTENT_W, alto_nota)
     tn.paragraphs[0].alignment = PP_ALIGN.CENTER
-    _rich(tn.paragraphs[0], nota or "Solo el bloque de **esta** clase · 120 min",
-          12, SOFT, italic=True)
+    _rich(tn.paragraphs[0], txt_nota,
+          ajustar([txt_nota], CONTENT_W, alto_nota, 12, 10), SOFT, italic=True)
     footer_num(s, idx)
     return s
 
@@ -1110,6 +1209,27 @@ def link_callout_slide(prs, title, headline, url, notes=None, idx=None):
     footer_num(s, idx)
     return s
 
+def _partir_codigo(lineas):
+    """Parte una lista de lineas de codigo en dos mitades por un limite de bloque.
+
+    Busca el corte mas cercano a la mitad en el que las llaves estan equilibradas, para que
+    una clase o una funcion no quede cortada entre columnas. Si no hay ningun punto asi
+    —codigo sin llaves— parte por la mitad exacta.
+    """
+    n = len(lineas)
+    medio = (n + 1) // 2
+    saldo, candidatos = 0, []
+    for i, ln in enumerate(lineas):
+        saldo += ln.count("{") - ln.count("}")
+        if saldo == 0:
+            candidatos.append(i + 1)          # se puede cortar DESPUES de esta linea
+    if candidatos:
+        corte = min(candidatos, key=lambda c: (abs(c - medio), c))
+        if 0 < corte < n:
+            return lineas[:corte], lineas[corte:]
+    return lineas[:medio], lineas[medio:]
+
+
 def pseudo_code_slide(prs, title, lines, sub=None, idx=None, caption=None):
     """Bloque estilo terminal / pseudo-código visual (ADR, YAML, flujo)."""
     s = blank(prs)
@@ -1121,11 +1241,40 @@ def pseudo_code_slide(prs, title, lines, sub=None, idx=None, caption=None):
     rect(s, MARGIN, y, CONTENT_W, 0.35, NAVY)
     td = textbox(s, MARGIN + 0.25, y + 0.05, CONTENT_W - 0.5, 0.28, anchor=MSO_ANCHOR.MIDDLE)
     _run(td.paragraphs[0].add_run(), "● ● ●", 10, CIAN, bold=True)
-    tf = textbox(s, MARGIN + 0.35, y + 0.5, CONTENT_W - 0.7, h - 0.7)
-    for i, ln in enumerate(lines or []):
-        p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
-        p.space_after = Pt(4)
-        _run(p.add_run(), ln, 14, WHITE)
+    # El bloque de codigo tambien se ajusta: es la caja mas apretada del motor y la que mas
+    # se pasaba. Un `classDiagram` de 29 lineas a 14 pt pedia 6.9 pulgadas en una caja de
+    # 4.5, asi que un tercio del diagrama salia encima del pie o fuera de la diapositiva —y
+    # lo que se caia eran las multiplicidades, que era justo lo que la diapositiva ensenaba.
+    # El `space_after` baja con el tamano: 4 pt entre 29 lineas son 1.5 pulgadas solo de aire.
+    #
+    # Si ni al minimo cabe en una columna, se parte en DOS antes de seguir encogiendo: a
+    # 9 pt un nombre de variable proyectado no se lee, y perder o encoger el codigo es peor
+    # que leerlo en dos mitades. Se parte por un limite de bloque (llaves equilibradas) para
+    # no cortar una clase por la mitad.
+    lineas = [str(x) for x in (lines or [])]
+    ancho_cod, alto_cod = CONTENT_W - 0.7, h - 0.7
+    size = metrica_texto.tamano_que_cabe(lineas, ancho_cod, alto_cod,
+                                         CODIGO_PT, CODIGO_MINIMO, space_after_pt=4)
+    columnas = [lineas]
+    cabe = metrica_texto.alto_parrafos(lineas, ancho_cod, size, space_after_pt=4) <= alto_cod
+    if lineas and not cabe:
+        izq, der = _partir_codigo(lineas)
+        ancho_col = (ancho_cod - 0.3) / 2
+        size2 = min(
+            metrica_texto.tamano_que_cabe(izq, ancho_col, alto_cod, CODIGO_PT,
+                                          CODIGO_MINIMO, space_after_pt=4),
+            metrica_texto.tamano_que_cabe(der, ancho_col, alto_cod, CODIGO_PT,
+                                          CODIGO_MINIMO, space_after_pt=4))
+        if size2 > size:
+            columnas, size, ancho_cod = [izq, der], size2, ancho_col
+    espacio = 4 * size / CODIGO_PT
+    for col, trozo in enumerate(columnas):
+        x = MARGIN + 0.35 + col * (ancho_cod + 0.3)
+        tf = textbox(s, x, y + 0.5, ancho_cod, alto_cod)
+        for i, ln in enumerate(trozo):
+            p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+            p.space_after = Pt(espacio)
+            _run(p.add_run(), ln, size, WHITE)
     if caption:
         tc = textbox(s, MARGIN, SH - 0.85, CONTENT_W, 0.35)
         tc.paragraphs[0].alignment = PP_ALIGN.CENTER
@@ -1161,12 +1310,29 @@ def steps_visual_slide(prs, title, steps, sub=None, idx=None):
         tn = textbox(s, MARGIN + 0.15, yy + (row_h - 0.48) / 2, 0.48, 0.48, anchor=MSO_ANCHOR.MIDDLE)
         tn.paragraphs[0].alignment = PP_ALIGN.CENTER
         _run(tn.paragraphs[0].add_run(), str(i + 1), 16, WHITE, bold=True)
-        tf = textbox(s, MARGIN + 0.8, yy + 0.1, CONTENT_W - 1.1, row_h - 0.18, anchor=MSO_ANCHOR.MIDDLE)
-        _rich(tf.paragraphs[0], f"**{head}**", 15, NAVY, bold=True)
+        ancho_f, alto_f = CONTENT_W - 1.1, row_h - 0.18
+        # El paso llevaba 15/13 pt fijos en una fila de alto calculado a partir del NUMERO de
+        # pasos, no de lo largo que sean: un «Paso 1. Arme en Google Docs el guion
+        # cronometrado de doce minutos con...» pedia cinco lineas en una caja de dos y se
+        # metia en la fila siguiente. El detalle va dos puntos por debajo del titulo, como
+        # antes, y las dos bajan juntas.
+        s_head = 15
+        while s_head > 11:
+            alto = metrica_texto.alto_parrafos([normalizar_inline(f"**{head}**")],
+                                               ancho_f, s_head)
+            if detail:
+                alto += metrica_texto.alto_parrafos([normalizar_inline(detail)],
+                                                    ancho_f, s_head - 2) \
+                        - metrica_texto.INSET_V + 2 / 72
+            if alto <= alto_f:
+                break
+            s_head -= 1
+        tf = textbox(s, MARGIN + 0.8, yy + 0.1, ancho_f, alto_f, anchor=MSO_ANCHOR.MIDDLE)
+        _rich(tf.paragraphs[0], f"**{head}**", s_head, NAVY, bold=True)
         if detail:
             p2 = tf.add_paragraph()
             p2.space_before = Pt(2)
-            _rich(p2, detail, 13, GRAY)
+            _rich(p2, detail, s_head - 2, GRAY)
     footer_num(s, idx)
     return s
 

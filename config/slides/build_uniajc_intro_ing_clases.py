@@ -173,7 +173,7 @@ def _slide_teoria(prs, spec, idx, t_reg):
     tit = t_reg(spec["titulo"])
     if tipo == "content":
         content_slide(prs, tit, spec["items"], sub=spec.get("sub"), idx=idx,
-                      size=spec.get("size", 16))
+                      )
     elif tipo == "cards":
         cards_grid_slide(prs, tit, spec["cards"], sub=spec.get("sub"),
                          columns=spec.get("columns"), idx=idx)
