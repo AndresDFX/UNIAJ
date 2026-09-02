@@ -41,11 +41,11 @@ _privado/2026-2/CrearEncuentros - TODO EL SEMESTRE 2026-2.gs
 se cruzan) y no hay dos bloques encima. Se revisa en cada regeneracion, porque con
 7 grupos en la misma semana es facil que un horario nuevo se pise con otro.
 
-## Aviso del calendario: Las fechas de fin caen en diciembre y hay que confirmarlas con el programa
+## Aviso del calendario: Las fechas de fin caen en la semana de Navidad
 
-Arrancando la semana del 31/08/2026, 16 sesiones semanales terminan el 17/12/2026 (jueves) y el 22/12/2026 (martes, ya contando el festivo del 08/12 como semana autónoma). Eso es casi un mes después del 22/11/2026 en que cierra el periodo 2026-2 de los otros cuatro cursos del docente. La instrucción recibida fue explícita: la fecha de fin está atada a que quepan TODAS las sesiones, así que el calendario NO se comprime. Queda por confirmar con el programa si este curso corre en un calendario distinto.
+El inicio se corrió una semana a peticion del docente (2026-09-02): los grupos de martes arrancan el 08/09/2026 y el de jueves el 10/09/2026. Con 16 sesiones semanales eso lleva el cierre al 2026-12-24 (jueves, SB141B) y al 2026-12-29 (martes, SB141C y LB141F, ya contando el festivo del 08/12 como semana autónoma). Las dos fechas caen DENTRO del receso de Navidad: el 24/12 es vispera de Navidad y el 29/12 esta entre Navidad y Año Nuevo. Ademas siguen mas de un mes despues del 22/11/2026 en que cierran los otros cuatro cursos del semestre. NINGUNA de las dos es dictable tal cual, y el corte 3 —exposicion final e informe— es justo lo que cae ahi.
 
-**Plan B si el programa exige cerrar antes:** Si el programa exige cerrar antes, la única compresión aceptable es unir los temas 15 y 16 en una sola sesión (exposición final + socialización y cierre en el mismo bloque de 90 min, con 5 min por equipo y sin actividad nueva). Eso ahorra una semana: martes 15/12 y jueves 10/12. Comprimir más obliga a sacrificar exposiciones, que son el instrumento de evaluación del curso.
+**Plan B si el programa exige cerrar antes:** Dos opciones, las dos pendientes de confirmar con el programa. (A) Fusionar los temas 15 y 16 en una sola sesion: quedan 15 sesiones y el cierre pasa al 17/12 (jueves) y al 22/12 (martes), antes de Navidad. Cuesta que la socializacion y la autoevaluacion del tema 16 se hacen en el mismo bloque que las exposiciones. (B) Adelantar la exposicion final y el informe a las sesiones 13 y 14, dejando 15 y 16 como semanas autonomas de cierre. Cuesta que el proyecto se sustenta con dos semanas menos de trabajo. No se ha aplicado ninguna: las fechas de este archivo son las del corrimiento pedido, sin comprimir.
 
 > Mientras no se confirme, el script crea las fechas **tal como estan en el JSON**.
 > Ninguna fecha se movio para escribir este aviso.
