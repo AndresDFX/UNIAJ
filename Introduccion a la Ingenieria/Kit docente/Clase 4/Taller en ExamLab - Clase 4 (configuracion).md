@@ -7,7 +7,7 @@
 - **Entregable de la clase:** un acta de comité de cinco bloques en el documento del equipo, con al menos un numeral de código o de norma citado literalmente
 - **Trabajo:** en equipo (17 min en salas de grupo) · **la entrega en ExamLab es individual**: cada integrante pega lo que su equipo acordo
 - **Exposicion:** 3 min por equipo, habla el vocero
-- **Fechas por grupo:** **SB141B** jueves 24/09/2026 (14:30–16:00) · **SB141C** martes 22/09/2026 (14:30–16:00) · **LB141F** martes 22/09/2026 (18:30–20:00)
+- **Fechas por grupo:** **SB141B** jueves 01/10/2026 (14:30–16:00) · **SB141C** martes 29/09/2026 (14:30–16:00) · **LB141F** martes 29/09/2026 (18:30–20:00)
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente. Este documento trae el texto exacto de cada campo para copiar y pegar.

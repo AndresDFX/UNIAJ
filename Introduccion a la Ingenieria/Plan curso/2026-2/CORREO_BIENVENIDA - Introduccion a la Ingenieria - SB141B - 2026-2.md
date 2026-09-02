@@ -18,8 +18,8 @@ Soy Julian Andres Castaño y voy a acompañarlos en **Introducción a la Ingenie
 | **Inicio efectivo** | 14:40 — arranco 10 min después de la hora oficial para esperar a que se conecten |
 | **Modalidad** | Virtual **síncrona** por Google Meet |
 | **Sesiones** | 16, una por semana · 90 min cada una |
-| **Primera sesión** | 03/09/2026 |
-| **Última sesión** | 17/12/2026 |
+| **Primera sesión** | 10/09/2026 |
+| **Última sesión** | 24/12/2026 |
 
 **No les va a llegar ninguna invitación de Google Calendar.** El horario es el de la tabla de arriba: **guárdenlo ustedes** en su calendario si les sirve, y el **enlace de Google Meet se lo comparto yo antes de cada encuentro**.
 
@@ -29,12 +29,12 @@ Soy Julian Andres Castaño y voy a acompañarlos en **Introducción a la Ingenie
 
 | Corte | Qué se califica | Cuándo | Vale |
 |---|---|---|---|
-| **1** (30%) | Evaluación de corte | sesión 6 · 08/10/2026 | 10% |
-| **1** (30%) | Exposiciones de equipo y actividades en clase | sesión 6 · 08/10/2026 | 12% |
-| **2** (30%) | Evaluación de corte | sesión 11 · 12/11/2026 | 10% |
-| **2** (30%) | Exposiciones de equipo y actividades en clase | sesión 11 · 12/11/2026 | 12% |
-| **3** (40%) | Exposición final del proyecto | sesión 15 · 10/12/2026 | 15% |
-| **3** (40%) | Informe final del proyecto | sesión 16 · 17/12/2026 | 20% |
+| **1** (30%) | Evaluación de corte | sesión 6 · 15/10/2026 | 10% |
+| **1** (30%) | Exposiciones de equipo y actividades en clase | sesión 6 · 15/10/2026 | 12% |
+| **2** (30%) | Evaluación de corte | sesión 11 · 19/11/2026 | 10% |
+| **2** (30%) | Exposiciones de equipo y actividades en clase | sesión 11 · 19/11/2026 | 12% |
+| **3** (40%) | Exposición final del proyecto | sesión 15 · 17/12/2026 | 15% |
+| **3** (40%) | Informe final del proyecto | sesión 16 · 24/12/2026 | 20% |
 
 > **No hay examen final escrito.** El corte 3 se califica con la **exposición final del proyecto** (sesión 15) y el **informe final** (sesión 16).
 
@@ -75,7 +75,7 @@ Todo **gratis y desde el navegador**. No hay que instalar nada ni pagar nada, y 
 1. **No se suben datos personales de terceros** —nombres, cédulas, teléfonos ni fotos— a ninguna de estas herramientas. Se usa el rol: «la dueña de la papelería», «el auxiliar de la biblioteca». Es una regla de la profesión, no una formalidad del curso.
 2. **Si se les cae la conexión**, el documento del equipo está en Drive: lo escrito no se pierde. Vuelven a entrar a la sala de su equipo, y si el que se cayó era el vocero, expone el siguiente de la rotación.
 
-Nos vemos el 03/09/2026. Cualquier duda, a este correo.
+Nos vemos el 10/09/2026. Cualquier duda, a este correo.
 
 Julian Andres Castaño
 `julianacastano@profesores.uniajc.edu.co`

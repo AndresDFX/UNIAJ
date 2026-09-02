@@ -7,7 +7,7 @@
 - **Entregable de la clase:** el prototipo de tres pantallas en Excalidraw o draw.io (PNG en la carpeta del equipo) y el guion de prueba en el documento del equipo
 - **Trabajo:** en equipo (17 min en salas de grupo) · **la entrega en ExamLab es individual**: cada integrante pega lo que su equipo acordo
 - **Exposicion:** 3 min por equipo, habla el vocero
-- **Fechas por grupo:** **SB141B** jueves 05/11/2026 (14:30–16:00) · **SB141C** martes 03/11/2026 (14:30–16:00) · **LB141F** martes 03/11/2026 (18:30–20:00)
+- **Fechas por grupo:** **SB141B** jueves 12/11/2026 (14:30–16:00) · **SB141C** martes 10/11/2026 (14:30–16:00) · **LB141F** martes 10/11/2026 (18:30–20:00)
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente. Este documento trae el texto exacto de cada campo para copiar y pegar.

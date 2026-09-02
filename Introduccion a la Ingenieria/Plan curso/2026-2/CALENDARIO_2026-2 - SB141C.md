@@ -2,20 +2,20 @@
 
 - **Código:** FI300101
 - **Grupo:** SB141C
-- **Periodo:** 2026-2 · **01/09/2026 – 22/12/2026**
+- **Periodo:** 2026-2 · **08/09/2026 – 29/12/2026**
 - **Horario:** Martes **14:30 – 16:00** (90 min) · **inicio efectivo 14:40** (se arranca 10 min después de la hora oficial para esperar a que los estudiantes se conecten)
 - **Modalidad:** Virtual (síncrona) por Google Meet · actividades en plataformas gratuitas en la nube
 - **Docente:** Julian Andres Castaño · `julianacastano@profesores.uniajc.edu.co`
 - **Total sesiones:** 16 · **temas del microcurrículo:** 16 — correspondencia **1:1** (Sesión N = Clase N, no hay sesiones dobles)
 - **Semanas de calendario:** 17
 
-> 17 semanas de calendario para 16 sesiones: el 08/12/2026 (Inmaculada Concepción) cae martes y se trabaja como semana autónoma de ensayo general, que es justo el trabajo independiente que el Plan de curso asigna al tema 14.
+> 17 semanas de calendario para 16 sesiones: el 08/12/2026 (Inmaculada Concepción) cae martes y se trabaja como semana autónoma, entre la sesión 13 y la 14. El trabajo independiente de esa semana es cerrar el informe de impacto del tema 13, que es la materia prima de la sesión 14.
 
 ## Aviso sobre las fechas de fin
 
-**Las fechas de fin caen en diciembre y hay que confirmarlas con el programa.** Arrancando la semana del 31/08/2026, 16 sesiones semanales terminan el 17/12/2026 (jueves) y el 22/12/2026 (martes, ya contando el festivo del 08/12 como semana autónoma). Eso es casi un mes después del 22/11/2026 en que cierra el periodo 2026-2 de los otros cuatro cursos del docente. La instrucción recibida fue explícita: la fecha de fin está atada a que quepan TODAS las sesiones, así que el calendario NO se comprime. Queda por confirmar con el programa si este curso corre en un calendario distinto.
+**Las fechas de fin caen en la semana de Navidad.** El inicio se corrió una semana a peticion del docente (2026-09-02): los grupos de martes arrancan el 08/09/2026 y el de jueves el 10/09/2026. Con 16 sesiones semanales eso lleva el cierre al 2026-12-24 (jueves, SB141B) y al 2026-12-29 (martes, SB141C y LB141F, ya contando el festivo del 08/12 como semana autónoma). Las dos fechas caen DENTRO del receso de Navidad: el 24/12 es vispera de Navidad y el 29/12 esta entre Navidad y Año Nuevo. Ademas siguen mas de un mes despues del 22/11/2026 en que cierran los otros cuatro cursos del semestre. NINGUNA de las dos es dictable tal cual, y el corte 3 —exposicion final e informe— es justo lo que cae ahi.
 
-> **Plan B si el programa exige cerrar antes:** Si el programa exige cerrar antes, la única compresión aceptable es unir los temas 15 y 16 en una sola sesión (exposición final + socialización y cierre en el mismo bloque de 90 min, con 5 min por equipo y sin actividad nueva). Eso ahorra una semana: martes 15/12 y jueves 10/12. Comprimir más obliga a sacrificar exposiciones, que son el instrumento de evaluación del curso.
+> **Plan B si el programa exige cerrar antes:** Dos opciones, las dos pendientes de confirmar con el programa. (A) Fusionar los temas 15 y 16 en una sola sesion: quedan 15 sesiones y el cierre pasa al 17/12 (jueves) y al 22/12 (martes), antes de Navidad. Cuesta que la socializacion y la autoevaluacion del tema 16 se hacen en el mismo bloque que las exposiciones. (B) Adelantar la exposicion final y el informe a las sesiones 13 y 14, dejando 15 y 16 como semanas autonomas de cierre. Cuesta que el proyecto se sustenta con dos semanas menos de trabajo. No se ha aplicado ninguna: las fechas de este archivo son las del corrimiento pedido, sin comprimir.
 
 ## Dinámica de la sesión (90 min)
 
@@ -43,9 +43,9 @@
 
 | Corte | % | Ventana | Sesiones | Cierre de corte | Desglose |
 |---|---|---|---|---|---|
-| Corte 1 | 30% | 01/09 – 06/10/2026 | 1-6 | Sesión 6 · 06/10/2026 | Evaluación de corte (sesión 6) · 10% · Exposiciones de equipo y actividades en clase · 12% · Asistencia y participación · 8% |
-| Corte 2 | 30% | 13/10 – 10/11/2026 | 7-11 | Sesión 11 · 10/11/2026 | Evaluación de corte (sesión 11) · 10% · Exposiciones de equipo y actividades en clase · 12% · Asistencia y participación · 8% |
-| Corte 3 | 40% | 17/11 – 22/12/2026 | 12-16 | Sesión 16 · 22/12/2026 | Exposición final del proyecto (sesión 15) · 15% · Informe final del proyecto (sesión 16) · 20% · Asistencia y participación · 5% |
+| Corte 1 | 30% | 08/09 – 13/10/2026 | 1-6 | Sesión 6 · 13/10/2026 | Evaluación de corte (sesión 6) · 10% · Exposiciones de equipo y actividades en clase · 12% · Asistencia y participación · 8% |
+| Corte 2 | 30% | 20/10 – 17/11/2026 | 7-11 | Sesión 11 · 17/11/2026 | Evaluación de corte (sesión 11) · 10% · Exposiciones de equipo y actividades en clase · 12% · Asistencia y participación · 8% |
+| Corte 3 | 40% | 24/11 – 29/12/2026 | 12-16 | Sesión 16 · 29/12/2026 | Exposición final del proyecto (sesión 15) · 15% · Informe final del proyecto (sesión 16) · 20% · Asistencia y participación · 5% |
 
 > Los tres cierres de corte (sesiones 6, 11 y 16) NUNCA caen en festivo ni en semana autónoma. En este calendario ninguno lo hace.
 
@@ -55,23 +55,23 @@
 
 | Sesión | Fecha | Tipo | Clase de material | Tema | Trabajo independiente | Nota |
 |---|---|---|---|---|---|---|
-| 1 | 01/09/2026 | Virtual (síncrona) | Clase 1 | Presentación del curso y diagnóstico inicial | Revisión de la historia de la Ingeniería de Sistemas | — |
-| 2 | 08/09/2026 | Virtual (síncrona) | Clase 2 | Historia y evolución de la Ingeniería | Elaboración de línea de tiempo | — |
-| 3 | 15/09/2026 | Virtual (síncrona) | Clase 3 | Fundamentos básicos de la Ingeniería de Sistemas | Ensayo sobre impacto social | — |
-| 4 | 22/09/2026 | Virtual (síncrona) | Clase 4 | Principios éticos en la Ingeniería | Análisis crítico del código ético | — |
-| 5 | 29/09/2026 | Virtual (síncrona) | Clase 5 | El rol del ingeniero en el contexto ambiental | Informe sobre sostenibilidad | — |
-| 6 | 06/10/2026 | Virtual (síncrona) | Clase 6 | Análisis de problemas tecnológicos del entorno | Propuesta inicial de solución | cierra Corte 1 (30%) |
-| 7 | 13/10/2026 | Virtual (síncrona) | Clase 7 | Ciclo de vida de los proyectos de ingeniería | Infografía explicativa | — |
-| 8 | 20/10/2026 | Virtual (síncrona) | Clase 8 | Taller de aplicación del ciclo de vida | Ajuste de propuestas de solución | — |
-| 9 | 27/10/2026 | Virtual (síncrona) | Clase 9 | Estrategias de innovación en Ingeniería | Propuesta de mejora | — |
-| 10 | 03/11/2026 | Virtual (síncrona) | Clase 10 | Herramientas digitales aplicadas a la Ingeniería | Práctica básica con herramientas digitales | — |
-| 11 | 10/11/2026 | Virtual (síncrona) | Clase 11 | Taller de prototipado inicial con IA | Corrección del prototipo | cierra Corte 2 (30%) |
-| 12 | 17/11/2026 | Virtual (síncrona) | Clase 12 | Presentación de avances de proyectos | Revisión entre pares | — |
-| 13 | 24/11/2026 | Virtual (síncrona) | Clase 13 | Evaluación de impacto social y ambiental | Informe de evaluación del impacto | — |
-| 14 | 01/12/2026 | Virtual (síncrona) | Clase 14 | Preparación de la presentación final | Ensayo general | — |
-| — | 08/12/2026 | Autónoma (festivo) | — | Ensayo general de la exposición final | Subir el ensayo (video o fotos) a la carpeta del equipo | festivo: Inmaculada Concepcion |
-| 15 | 15/12/2026 | Virtual (síncrona) | Clase 15 | Exposición final de proyectos | Ajustes del informe final | — |
-| 16 | 22/12/2026 | Virtual (síncrona) | Clase 16 | Socialización y evaluación final del curso | Autoevaluación | cierra Corte 3 (40%) |
+| 1 | 08/09/2026 | Virtual (síncrona) | Clase 1 | Presentación del curso y diagnóstico inicial | Revisión de la historia de la Ingeniería de Sistemas | — |
+| 2 | 15/09/2026 | Virtual (síncrona) | Clase 2 | Historia y evolución de la Ingeniería | Elaboración de línea de tiempo | — |
+| 3 | 22/09/2026 | Virtual (síncrona) | Clase 3 | Fundamentos básicos de la Ingeniería de Sistemas | Ensayo sobre impacto social | — |
+| 4 | 29/09/2026 | Virtual (síncrona) | Clase 4 | Principios éticos en la Ingeniería | Análisis crítico del código ético | — |
+| 5 | 06/10/2026 | Virtual (síncrona) | Clase 5 | El rol del ingeniero en el contexto ambiental | Informe sobre sostenibilidad | — |
+| 6 | 13/10/2026 | Virtual (síncrona) | Clase 6 | Análisis de problemas tecnológicos del entorno | Propuesta inicial de solución | cierra Corte 1 (30%) |
+| 7 | 20/10/2026 | Virtual (síncrona) | Clase 7 | Ciclo de vida de los proyectos de ingeniería | Infografía explicativa | — |
+| 8 | 27/10/2026 | Virtual (síncrona) | Clase 8 | Taller de aplicación del ciclo de vida | Ajuste de propuestas de solución | — |
+| 9 | 03/11/2026 | Virtual (síncrona) | Clase 9 | Estrategias de innovación en Ingeniería | Propuesta de mejora | — |
+| 10 | 10/11/2026 | Virtual (síncrona) | Clase 10 | Herramientas digitales aplicadas a la Ingeniería | Práctica básica con herramientas digitales | — |
+| 11 | 17/11/2026 | Virtual (síncrona) | Clase 11 | Taller de prototipado inicial con IA | Corrección del prototipo | cierra Corte 2 (30%) |
+| 12 | 24/11/2026 | Virtual (síncrona) | Clase 12 | Presentación de avances de proyectos | Revisión entre pares | — |
+| 13 | 01/12/2026 | Virtual (síncrona) | Clase 13 | Evaluación de impacto social y ambiental | Informe de evaluación del impacto | — |
+| — | 08/12/2026 | Autónoma (festivo) | — | Ensayo general de la exposición final | Subir el ensayo (video o fotos) a la carpeta del equipo | festivo: Inmaculada Concepción |
+| 14 | 15/12/2026 | Virtual (síncrona) | Clase 14 | Preparación de la presentación final | Ensayo general | — |
+| 15 | 22/12/2026 | Virtual (síncrona) | Clase 15 | Exposición final de proyectos | Ajustes del informe final | — |
+| 16 | 29/12/2026 | Virtual (síncrona) | Clase 16 | Socialización y evaluación final del curso | Autoevaluación | cierra Corte 3 (40%) |
 
 ## Festivos Colombia 2026 (rango del periodo)
 

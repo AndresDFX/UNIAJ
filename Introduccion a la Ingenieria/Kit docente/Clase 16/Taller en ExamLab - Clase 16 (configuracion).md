@@ -7,7 +7,7 @@
 - **Entregable de la clase:** el informe final en PDF y el enlace del documento en la carpeta del equipo, la columna del equipo en la galería del muro, y la autoevaluación individual entregada solo al docente
 - **Trabajo:** en equipo (24 min en salas de grupo) · **la entrega en ExamLab es individual**: cada integrante pega lo que su equipo acordo
 - **Exposicion:** 3 min por equipo, habla el vocero
-- **Fechas por grupo:** **SB141B** jueves 17/12/2026 (14:30–16:00) · **SB141C** martes 22/12/2026 (14:30–16:00) · **LB141F** martes 22/12/2026 (18:30–20:00)
+- **Fechas por grupo:** **SB141B** jueves 24/12/2026 (14:30–16:00) · **SB141C** martes 29/12/2026 (14:30–16:00) · **LB141F** martes 29/12/2026 (18:30–20:00)
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente. Este documento trae el texto exacto de cada campo para copiar y pegar.

@@ -7,7 +7,7 @@
 - **Entregable de la clase:** la matriz de decisión, el alcance mínimo con su lista de exclusiones y el plan de validación en el documento del equipo, más el flujo de la alternativa elegida en draw.io
 - **Trabajo:** en equipo (40 min en salas de grupo) · **la entrega en ExamLab es individual**: cada integrante pega lo que su equipo acordo
 - **Exposicion:** 3 min por equipo, habla el vocero
-- **Fechas por grupo:** **SB141B** jueves 22/10/2026 (14:30–16:00) · **SB141C** martes 20/10/2026 (14:30–16:00) · **LB141F** martes 20/10/2026 (18:30–20:00)
+- **Fechas por grupo:** **SB141B** jueves 29/10/2026 (14:30–16:00) · **SB141C** martes 27/10/2026 (14:30–16:00) · **LB141F** martes 27/10/2026 (18:30–20:00)
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente. Este documento trae el texto exacto de cada campo para copiar y pegar.

@@ -7,7 +7,7 @@
 - **Entregable de la clase:** la exposición sustentada, y la ficha de valoración de los otros cuatro equipos en el muro
 - **Trabajo:** en equipo (60 min en salas de grupo) · **la entrega en ExamLab es individual**: cada integrante pega lo que su equipo acordo
 - **Exposicion:** 9 min por equipo, habla el vocero
-- **Fechas por grupo:** **SB141B** jueves 10/12/2026 (14:30–16:00) · **SB141C** martes 15/12/2026 (14:30–16:00) · **LB141F** martes 15/12/2026 (18:30–20:00)
+- **Fechas por grupo:** **SB141B** jueves 17/12/2026 (14:30–16:00) · **SB141C** martes 22/12/2026 (14:30–16:00) · **LB141F** martes 22/12/2026 (18:30–20:00)
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente. Este documento trae el texto exacto de cada campo para copiar y pegar.

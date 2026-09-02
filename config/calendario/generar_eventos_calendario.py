@@ -264,9 +264,24 @@ def cargar_correos_manuales(meta: dict | None = None) -> dict[tuple[str, str], d
     return out
 
 
-def cargar_nomina(meta: dict, key: str, manuales: dict) -> dict | None:
+def cargar_nomina(meta: dict, key: str, manuales: dict,
+                  exigir_grupo: bool = False) -> dict | None:
+    """La nomina del curso, o None.
+
+    `exigir_grupo` hace falta cuando varios grupos comparten carpeta y codigo de materia
+    (los tres de FI300101). El filtro de abajo solo compara el codigo, asi que el primer
+    listado en orden alfabetico ganaba para los tres: con el de LB141F en la carpeta, SB141B
+    y SB141C recibian ese archivo. Quien llamaba lo detectaba por el nombre y lo descartaba,
+    pero ahi se quedaba —era un callejon sin salida, no un filtro— y el listado correcto,
+    que estaba en la misma carpeta, no se llegaba a probar. Filtrando ANTES de cargar, cada
+    grupo encuentra el suyo.
+    """
     carpeta = ROOT / meta["folder"]
     for path in buscar_listado(carpeta, meta["grupo"]):
+        if exigir_grupo and meta["grupo"].lower() not in path.name.lower():
+            print(f"   . {path.name}: no dice {meta['grupo']} y ese codigo lo usan varios "
+                  f"grupos -> no puede ser el de este grupo")
+            continue
         try:
             filas = leer_filas(path)
         except Exception as e:  # archivo corrupto o formato inesperado
@@ -631,20 +646,21 @@ def main() -> None:
 
         # 3) Herramientas de asistencia: estas SI necesitan la nomina real
         manuales = cargar_correos_manuales(meta)
-        info = cargar_nomina(meta, key, manuales)
-        if info and folders.get(meta["folder"], 0) > 1 \
-                and meta["grupo"].lower() not in info["archivo"].name.lower():
-            # `buscar_listado` no sabe de grupos y el filtro de seguridad de `cargar_nomina`
-            # solo compara el codigo de materia, que los 3 grupos de FI300101 comparten: el
-            # primer archivo en orden alfabetico ganaria para los tres y dos grupos acabarian
-            # con la planilla de asistencia de otro.
-            print(f"   ! {info['archivo'].name} no dice {meta['grupo']} y este codigo lo usan "
-                  f"{folders[meta['folder']]} grupos: no lo uso (podria ser de otro grupo).")
-            print(f"     renombra el listado con el grupo, p.ej. '{meta['grupo']} - "
-                  f"INTRODUCCION A LA INGENIERIA.xls'")
-            info = None
+        # Con varios grupos en la misma carpeta hay que exigir el grupo en el nombre del
+        # archivo: el codigo de materia no los distingue. Ver `cargar_nomina`.
+        comparten = folders.get(meta["folder"], 0) > 1
+        info = cargar_nomina(meta, key, manuales, exigir_grupo=comparten)
+        # Red de seguridad: si algo cambiara y colara un listado de otro grupo, la planilla de
+        # asistencia de dos grupos saldria con los estudiantes de un tercero.
+        assert not (info and comparten
+                    and meta["grupo"].lower() not in info["archivo"].name.lower()), \
+            "%s recibio el listado %s, que no dice %s" % (
+                meta["grupo"], info["archivo"].name if info else "?", meta["grupo"])
         if not info:
             print("   sin listado de estudiantes: quedan el CSV y el .ics; falta la planilla.")
+            if comparten:
+                print(f"     el archivo tiene que decir {meta['grupo']} en el nombre, p.ej. "
+                      f"'{meta['grupo']} - INTRODUCCION A LA INGENIERIA.xls'")
             print("   coloca el export del sistema academico en la carpeta del curso y re-ejecuta.")
             continue
 

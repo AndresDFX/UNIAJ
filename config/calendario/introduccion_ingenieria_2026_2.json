@@ -1,6 +1,6 @@
 {
   "_comentario": "Fuente de verdad UNICA de Introduccion a la Ingenieria (FI300101) en 2026-2. Vive en su propio archivo y NO dentro de semestre_2026_2.json a proposito: ese calendario describe el semestre acortado de 13 sesiones de los cuatro cursos virtuales (24/08 -> 22/11, un solo grupo por curso, con carpetas de Drive y parciales 1/2/3). Este curso tampoco encaja en ese molde aunque comparta la modalidad virtual: tiene 16 sesiones de 90 min, TRES grupos con dos dias distintos, y su esquema de corte cierra en las sesiones 6/11/16 con evaluacion de corte en ExamLab en vez de parcial escrito tradicional. Meterlo en cursos{} habria roto validar_calendario.py (que valida 13 sesiones contra INICIO/FIN y exige carpetas_drive) sin ganar nada.",
-  "_actualizado": "2026-08-29",
+  "_actualizado": "2026-09-02",
   "periodo": "2026-2",
   "curso": {
     "key": "introduccion_ingenieria",
@@ -550,9 +550,9 @@
   },
   "regla_festivos": "No se omite el festivo: la semana se marca como AUTÓNOMA con tarea concreta. Ningún cierre de corte ni sesión de exposición se programa en festivo. En este curso el único festivo que golpea un día de clase es el 08/12/2026 (martes), que afecta a SB141C y LB141F.",
   "alerta_calendario": {
-    "titulo": "Las fechas de fin caen en diciembre y hay que confirmarlas con el programa",
-    "detalle": "Arrancando la semana del 31/08/2026, 16 sesiones semanales terminan el 17/12/2026 (jueves) y el 22/12/2026 (martes, ya contando el festivo del 08/12 como semana autónoma). Eso es casi un mes después del 22/11/2026 en que cierra el periodo 2026-2 de los otros cuatro cursos del docente. La instrucción recibida fue explícita: la fecha de fin está atada a que quepan TODAS las sesiones, así que el calendario NO se comprime. Queda por confirmar con el programa si este curso corre en un calendario distinto.",
-    "plan_b": "Si el programa exige cerrar antes, la única compresión aceptable es unir los temas 15 y 16 en una sola sesión (exposición final + socialización y cierre en el mismo bloque de 90 min, con 5 min por equipo y sin actividad nueva). Eso ahorra una semana: martes 15/12 y jueves 10/12. Comprimir más obliga a sacrificar exposiciones, que son el instrumento de evaluación del curso."
+    "titulo": "Las fechas de fin caen en la semana de Navidad",
+    "detalle": "El inicio se corrió una semana a peticion del docente (2026-09-02): los grupos de martes arrancan el 08/09/2026 y el de jueves el 10/09/2026. Con 16 sesiones semanales eso lleva el cierre al 2026-12-24 (jueves, SB141B) y al 2026-12-29 (martes, SB141C y LB141F, ya contando el festivo del 08/12 como semana autónoma). Las dos fechas caen DENTRO del receso de Navidad: el 24/12 es vispera de Navidad y el 29/12 esta entre Navidad y Año Nuevo. Ademas siguen mas de un mes despues del 22/11/2026 en que cierran los otros cuatro cursos del semestre. NINGUNA de las dos es dictable tal cual, y el corte 3 —exposicion final e informe— es justo lo que cae ahi.",
+    "plan_b": "Dos opciones, las dos pendientes de confirmar con el programa. (A) Fusionar los temas 15 y 16 en una sola sesion: quedan 15 sesiones y el cierre pasa al 17/12 (jueves) y al 22/12 (martes), antes de Navidad. Cuesta que la socializacion y la autoevaluacion del tema 16 se hacen en el mismo bloque que las exposiciones. (B) Adelantar la exposicion final y el informe a las sesiones 13 y 14, dejando 15 y 16 como semanas autonomas de cierre. Cuesta que el proyecto se sustenta con dos semanas menos de trabajo. No se ha aplicado ninguna: las fechas de este archivo son las del corrimiento pedido, sin comprimir."
   },
   "grupos": [
     {
@@ -562,106 +562,106 @@
       "hora_inicio_oficial": "14:30",
       "hora_inicio_efectiva": "14:40",
       "hora_fin": "16:00",
-      "inicio": "2026-09-03",
-      "fin": "2026-12-17",
+      "inicio": "2026-09-10",
+      "fin": "2026-12-24",
       "n_semanas_calendario": 16,
-      "nota": "Ningún festivo de 2026 cae en jueves dentro del rango: 16 semanas corridas, sin semana autónoma.",
+      "nota": "16 semanas de calendario para 16 sesiones: ningún festivo de 2026 cae en jueves, así que este grupo no tiene semana autónoma.",
       "sesiones": [
         {
           "sesion": 1,
-          "fecha": "2026-09-03",
+          "fecha": "2026-09-10",
           "tema_n": 1,
           "tipo": "virtual"
         },
         {
           "sesion": 2,
-          "fecha": "2026-09-10",
+          "fecha": "2026-09-17",
           "tema_n": 2,
           "tipo": "virtual"
         },
         {
           "sesion": 3,
-          "fecha": "2026-09-17",
+          "fecha": "2026-09-24",
           "tema_n": 3,
           "tipo": "virtual"
         },
         {
           "sesion": 4,
-          "fecha": "2026-09-24",
+          "fecha": "2026-10-01",
           "tema_n": 4,
           "tipo": "virtual"
         },
         {
           "sesion": 5,
-          "fecha": "2026-10-01",
+          "fecha": "2026-10-08",
           "tema_n": 5,
           "tipo": "virtual"
         },
         {
           "sesion": 6,
-          "fecha": "2026-10-08",
+          "fecha": "2026-10-15",
           "tema_n": 6,
           "tipo": "virtual",
           "cierra_corte": 1
         },
         {
           "sesion": 7,
-          "fecha": "2026-10-15",
+          "fecha": "2026-10-22",
           "tema_n": 7,
           "tipo": "virtual"
         },
         {
           "sesion": 8,
-          "fecha": "2026-10-22",
+          "fecha": "2026-10-29",
           "tema_n": 8,
           "tipo": "virtual"
         },
         {
           "sesion": 9,
-          "fecha": "2026-10-29",
+          "fecha": "2026-11-05",
           "tema_n": 9,
           "tipo": "virtual"
         },
         {
           "sesion": 10,
-          "fecha": "2026-11-05",
+          "fecha": "2026-11-12",
           "tema_n": 10,
           "tipo": "virtual"
         },
         {
           "sesion": 11,
-          "fecha": "2026-11-12",
+          "fecha": "2026-11-19",
           "tema_n": 11,
           "tipo": "virtual",
           "cierra_corte": 2
         },
         {
           "sesion": 12,
-          "fecha": "2026-11-19",
+          "fecha": "2026-11-26",
           "tema_n": 12,
           "tipo": "virtual"
         },
         {
           "sesion": 13,
-          "fecha": "2026-11-26",
+          "fecha": "2026-12-03",
           "tema_n": 13,
           "tipo": "virtual"
         },
         {
           "sesion": 14,
-          "fecha": "2026-12-03",
+          "fecha": "2026-12-10",
           "tema_n": 14,
           "tipo": "virtual"
         },
         {
           "sesion": 15,
-          "fecha": "2026-12-10",
+          "fecha": "2026-12-17",
           "tema_n": 15,
           "tipo": "virtual"
         },
         {
           "sesion": 16,
-          "fecha": "2026-12-17",
+          "fecha": "2026-12-24",
           "tema_n": 16,
           "tipo": "virtual",
           "cierra_corte": 3
@@ -676,95 +676,89 @@
       "hora_inicio_oficial": "14:30",
       "hora_inicio_efectiva": "14:40",
       "hora_fin": "16:00",
-      "inicio": "2026-09-01",
-      "fin": "2026-12-22",
+      "inicio": "2026-09-08",
+      "fin": "2026-12-29",
       "n_semanas_calendario": 17,
-      "nota": "17 semanas de calendario para 16 sesiones: el 08/12/2026 (Inmaculada Concepción) cae martes y se trabaja como semana autónoma de ensayo general, que es justo el trabajo independiente que el Plan de curso asigna al tema 14.",
+      "nota": "17 semanas de calendario para 16 sesiones: el 08/12/2026 (Inmaculada Concepción) cae martes y se trabaja como semana autónoma, entre la sesión 13 y la 14. El trabajo independiente de esa semana es cerrar el informe de impacto del tema 13, que es la materia prima de la sesión 14.",
       "sesiones": [
         {
           "sesion": 1,
-          "fecha": "2026-09-01",
+          "fecha": "2026-09-08",
           "tema_n": 1,
           "tipo": "virtual"
         },
         {
           "sesion": 2,
-          "fecha": "2026-09-08",
+          "fecha": "2026-09-15",
           "tema_n": 2,
           "tipo": "virtual"
         },
         {
           "sesion": 3,
-          "fecha": "2026-09-15",
+          "fecha": "2026-09-22",
           "tema_n": 3,
           "tipo": "virtual"
         },
         {
           "sesion": 4,
-          "fecha": "2026-09-22",
+          "fecha": "2026-09-29",
           "tema_n": 4,
           "tipo": "virtual"
         },
         {
           "sesion": 5,
-          "fecha": "2026-09-29",
+          "fecha": "2026-10-06",
           "tema_n": 5,
           "tipo": "virtual"
         },
         {
           "sesion": 6,
-          "fecha": "2026-10-06",
+          "fecha": "2026-10-13",
           "tema_n": 6,
           "tipo": "virtual",
           "cierra_corte": 1
         },
         {
           "sesion": 7,
-          "fecha": "2026-10-13",
+          "fecha": "2026-10-20",
           "tema_n": 7,
           "tipo": "virtual"
         },
         {
           "sesion": 8,
-          "fecha": "2026-10-20",
+          "fecha": "2026-10-27",
           "tema_n": 8,
           "tipo": "virtual"
         },
         {
           "sesion": 9,
-          "fecha": "2026-10-27",
+          "fecha": "2026-11-03",
           "tema_n": 9,
           "tipo": "virtual"
         },
         {
           "sesion": 10,
-          "fecha": "2026-11-03",
+          "fecha": "2026-11-10",
           "tema_n": 10,
           "tipo": "virtual"
         },
         {
           "sesion": 11,
-          "fecha": "2026-11-10",
+          "fecha": "2026-11-17",
           "tema_n": 11,
           "tipo": "virtual",
           "cierra_corte": 2
         },
         {
           "sesion": 12,
-          "fecha": "2026-11-17",
+          "fecha": "2026-11-24",
           "tema_n": 12,
           "tipo": "virtual"
         },
         {
           "sesion": 13,
-          "fecha": "2026-11-24",
-          "tema_n": 13,
-          "tipo": "virtual"
-        },
-        {
-          "sesion": 14,
           "fecha": "2026-12-01",
-          "tema_n": 14,
+          "tema_n": 13,
           "tipo": "virtual"
         },
         {
@@ -772,18 +766,24 @@
           "fecha": "2026-12-08",
           "tema_n": null,
           "tipo": "autonoma_festivo",
-          "festivo": "Inmaculada Concepcion",
-          "tarea": "Ensayo general de la exposición final en el equipo, sin docente. Se sube el video o las fotos del ensayo a la carpeta del equipo antes de la sesión 15."
+          "festivo": "Inmaculada Concepción",
+          "tarea": "Cerrar el informe de evaluación del impacto del tema 13 —la matriz con sus indicadores y las mitigaciones— y dejarlo en la carpeta del equipo. Es el material con el que se arma la presentación final en la sesión 14, así que llegar sin él cuesta la sesión siguiente."
+        },
+        {
+          "sesion": 14,
+          "fecha": "2026-12-15",
+          "tema_n": 14,
+          "tipo": "virtual"
         },
         {
           "sesion": 15,
-          "fecha": "2026-12-15",
+          "fecha": "2026-12-22",
           "tema_n": 15,
           "tipo": "virtual"
         },
         {
           "sesion": 16,
-          "fecha": "2026-12-22",
+          "fecha": "2026-12-29",
           "tema_n": 16,
           "tipo": "virtual",
           "cierra_corte": 3
@@ -798,95 +798,89 @@
       "hora_inicio_oficial": "18:30",
       "hora_inicio_efectiva": "18:40",
       "hora_fin": "20:00",
-      "inicio": "2026-09-01",
-      "fin": "2026-12-22",
+      "inicio": "2026-09-08",
+      "fin": "2026-12-29",
       "n_semanas_calendario": 17,
-      "nota": "Mismo calendario que SB141C (los dos son martes), en la jornada de la noche. El 08/12/2026 (Inmaculada Concepción) es semana autónoma de ensayo general.",
+      "nota": "Mismo calendario que SB141C (los dos son martes), en la jornada de la noche. El 08/12/2026 (Inmaculada Concepción) es semana autónoma entre la sesión 13 y la 14: se cierra el informe de impacto del tema 13.",
       "sesiones": [
         {
           "sesion": 1,
-          "fecha": "2026-09-01",
+          "fecha": "2026-09-08",
           "tema_n": 1,
           "tipo": "virtual"
         },
         {
           "sesion": 2,
-          "fecha": "2026-09-08",
+          "fecha": "2026-09-15",
           "tema_n": 2,
           "tipo": "virtual"
         },
         {
           "sesion": 3,
-          "fecha": "2026-09-15",
+          "fecha": "2026-09-22",
           "tema_n": 3,
           "tipo": "virtual"
         },
         {
           "sesion": 4,
-          "fecha": "2026-09-22",
+          "fecha": "2026-09-29",
           "tema_n": 4,
           "tipo": "virtual"
         },
         {
           "sesion": 5,
-          "fecha": "2026-09-29",
+          "fecha": "2026-10-06",
           "tema_n": 5,
           "tipo": "virtual"
         },
         {
           "sesion": 6,
-          "fecha": "2026-10-06",
+          "fecha": "2026-10-13",
           "tema_n": 6,
           "tipo": "virtual",
           "cierra_corte": 1
         },
         {
           "sesion": 7,
-          "fecha": "2026-10-13",
+          "fecha": "2026-10-20",
           "tema_n": 7,
           "tipo": "virtual"
         },
         {
           "sesion": 8,
-          "fecha": "2026-10-20",
+          "fecha": "2026-10-27",
           "tema_n": 8,
           "tipo": "virtual"
         },
         {
           "sesion": 9,
-          "fecha": "2026-10-27",
+          "fecha": "2026-11-03",
           "tema_n": 9,
           "tipo": "virtual"
         },
         {
           "sesion": 10,
-          "fecha": "2026-11-03",
+          "fecha": "2026-11-10",
           "tema_n": 10,
           "tipo": "virtual"
         },
         {
           "sesion": 11,
-          "fecha": "2026-11-10",
+          "fecha": "2026-11-17",
           "tema_n": 11,
           "tipo": "virtual",
           "cierra_corte": 2
         },
         {
           "sesion": 12,
-          "fecha": "2026-11-17",
+          "fecha": "2026-11-24",
           "tema_n": 12,
           "tipo": "virtual"
         },
         {
           "sesion": 13,
-          "fecha": "2026-11-24",
-          "tema_n": 13,
-          "tipo": "virtual"
-        },
-        {
-          "sesion": 14,
           "fecha": "2026-12-01",
-          "tema_n": 14,
+          "tema_n": 13,
           "tipo": "virtual"
         },
         {
@@ -894,18 +888,24 @@
           "fecha": "2026-12-08",
           "tema_n": null,
           "tipo": "autonoma_festivo",
-          "festivo": "Inmaculada Concepcion",
-          "tarea": "Ensayo general de la exposición final en el equipo, sin docente. Se sube el video o las fotos del ensayo a la carpeta del equipo antes de la sesión 15."
+          "festivo": "Inmaculada Concepción",
+          "tarea": "Cerrar el informe de evaluación del impacto del tema 13 —la matriz con sus indicadores y las mitigaciones— y dejarlo en la carpeta del equipo. Es el material con el que se arma la presentación final en la sesión 14, así que llegar sin él cuesta la sesión siguiente."
+        },
+        {
+          "sesion": 14,
+          "fecha": "2026-12-15",
+          "tema_n": 14,
+          "tipo": "virtual"
         },
         {
           "sesion": 15,
-          "fecha": "2026-12-15",
+          "fecha": "2026-12-22",
           "tema_n": 15,
           "tipo": "virtual"
         },
         {
           "sesion": 16,
-          "fecha": "2026-12-22",
+          "fecha": "2026-12-29",
           "tema_n": 16,
           "tipo": "virtual",
           "cierra_corte": 3

@@ -12,7 +12,7 @@
 - **Modalidad:** Individual · dentro de la sesión sincrónica
 - **Libro abierto:** **Sí**, sobre los documentos del propio equipo (no internet)
 - **Reparto:** 6 cerradas (51 pts) y 4 abiertas (49 pts)
-- **Fechas por grupo:** **SB141B** jueves 12/11/2026 (14:30–16:00) · **SB141C** martes 10/11/2026 (14:30–16:00) · **LB141F** martes 10/11/2026 (18:30–20:00)
+- **Fechas por grupo:** **SB141B** jueves 19/11/2026 (14:30–16:00) · **SB141C** martes 17/11/2026 (14:30–16:00) · **LB141F** martes 17/11/2026 (18:30–20:00)
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestaña de IA). Este documento trae el texto exacto de

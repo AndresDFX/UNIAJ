@@ -7,7 +7,7 @@
 - **Entregable de la clase:** la ficha de avance de cinco bloques en el documento del equipo —el quinto, el plan de ajustes, se llena al cerrar— y las dos cosas que van a ajustar escritas también en su columna del muro, para que el curso las vea
 - **Trabajo:** en equipo (12 min en salas de grupo) · **la entrega en ExamLab es individual**: cada integrante pega lo que su equipo acordo
 - **Exposicion:** 5 min por equipo, habla el vocero
-- **Fechas por grupo:** **SB141B** jueves 19/11/2026 (14:30–16:00) · **SB141C** martes 17/11/2026 (14:30–16:00) · **LB141F** martes 17/11/2026 (18:30–20:00)
+- **Fechas por grupo:** **SB141B** jueves 26/11/2026 (14:30–16:00) · **SB141C** martes 24/11/2026 (14:30–16:00) · **LB141F** martes 24/11/2026 (18:30–20:00)
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente. Este documento trae el texto exacto de cada campo para copiar y pegar.
