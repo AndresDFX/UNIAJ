@@ -39,6 +39,22 @@ class FakeEvent {
   getId() { return this.id + '@google.com'; }
   getStartTime() { return this.start; }
   getEndTime() { return this.end; }
+  /**
+   * Cambiar la hora de un evento que YA existe. Lo usa `AjustarHoraInicio.gs` para mover el
+   * inicio sin recrear el evento, que es lo que conserva la sala de Meet: por eso el
+   * simulacro NO toca `conferenceData` aqui, igual que Google.
+   */
+  setTime(start, end) {
+    if (this.cal.fallarSetTime) throw new Error('no se pudo cambiar la hora (simulado)');
+    this.cal.escrituras++;
+    this.cal.setTimeLlamado++;
+    this.start = start;
+    this.end = end;
+    if (this.guests.length) this.notificacionesDeUpdate++;   // sin invitados no notifica a nadie
+    return this;
+  }
+  /** El simulacro no maneja eventos de dia completo salvo que se planten como tal. */
+  isAllDayEvent() { return !!this.diaCompleto; }
   getLocation() { return this.location; }
   setLocation(v) { this.cal.escrituras++; this.location = v; return this; }
   getDescription() { return this.description; }
@@ -72,10 +88,12 @@ class FakeCalendar {
     this.borrados = [];
     this.escrituras = 0;
     this.addGuestLlamado = 0;      // debe quedarse en 0: los eventos no llevan invitados
+    this.setTimeLlamado = 0;
     // interruptores para torcer el simulacro
     this.searchInutil = false;     // `search` no encuentra nada (como si Google no indexara)
     this.fallarDelete = false;
     this.fallarAddGuest = false;
+    this.fallarSetTime = false;
   }
   getId() { return this.id; }
   getName() { return this.name; }
