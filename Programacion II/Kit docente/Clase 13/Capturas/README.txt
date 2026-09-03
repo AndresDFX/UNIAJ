@@ -5,7 +5,7 @@ Ninguna de estas imagenes se proyecta: son el registro del docente y la
 referencia del nivel esperado para el proximo semestre.
 
 1) demo-clase13.png — la herramienta del dia en uso
-   - Abrir Apache NetBeans.
+   - Abrir Visual Studio Code (Java).
    - Repetir la demo del bloque 40-60: El docente escribe 'tres' en el campo edad, muestra la aplicacion reventando con el stack trace rojo, y en vivo la envuelve en try-catch hasta que responde con un aviso amable.
    - Capturar solo la ventana util, no el escritorio completo.
    - Recortar a ~1200 px de ancho y guardar aqui con ese nombre.

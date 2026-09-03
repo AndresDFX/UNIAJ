@@ -127,7 +127,10 @@ def build():
 
 
 
-    prs = new_prs()
+    # La Presentacion del Curso es el UNICO deck que nombra la plataforma de entrega y
+    # su URL: es donde se explica una vez como se entrega. Los decks de clase nacen en
+    # modo generico, porque ahi lo unico fijo es el tema. Ver `new_prs` en el motor.
+    prs = new_prs(generico=False)
 
 
 

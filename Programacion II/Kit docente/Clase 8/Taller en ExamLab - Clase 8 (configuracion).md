@@ -23,7 +23,7 @@
 
 ## Javadoc en el dominio: `Mascota` y `Cita`
 
-Documentar no es adornar: el Javadoc es lo que vera dentro de seis meses quien abra el proyecto (usted mismo, probablemente) y lo que aparece en el autocompletado de NetBeans.
+Documentar no es adornar: el Javadoc es lo que vera dentro de seis meses quien abra el proyecto (usted mismo, probablemente) y lo que aparece en el autocompletado de VS Code.
 
 El codigo funciona y no debe cambiarlo. Escriba **el Javadoc que falta** en cada lugar marcado con `TODO`:
 
@@ -44,7 +44,7 @@ Kira puede agendar: true
 Rocky puede agendar: false
 ```
 
-Adjunte tambien, en el mismo campo de codigo y como comentario al final del archivo, el comando o los pasos exactos que uso en NetBeans para generar el HTML (`clic derecho sobre el proyecto > Generate Javadoc`) y la ruta donde quedo la carpeta generada.
+Adjunte tambien, en el mismo campo de codigo y como comentario al final del archivo, el comando o los pasos exactos que uso en la terminal integrada de VS Code para generar el HTML (por ejemplo `javadoc -d docs -private src/vetcare/*.java`) y la ruta donde quedo la carpeta generada.
 
 **Lenguaje:** `java`
 
@@ -320,7 +320,7 @@ agendar valida en el orden pedido y lanza NoSuchElementException e IllegalStateE
 
 Una regla sin prueba es una promesa. Escriba las cuatro pruebas de `AgendaService`.
 
-> **Nota sobre la herramienta:** en ExamLab no hay JUnit disponible, asi que usamos el **mismo diseño** con un mini-arnes ya escrito: el metodo `verificar(String nombrePrueba, boolean condicion)` imprime `[OK]` o `[FALLO]` y lleva la cuenta. En NetBeans usted llevara estas mismas cuatro pruebas a `Test Packages` con `@Test` y `assertEquals` / `assertThrows`: el nombre y el escenario no cambian.
+> **Nota sobre la herramienta:** en ExamLab no hay JUnit disponible, asi que usamos el **mismo diseño** con un mini-arnes ya escrito: el metodo `verificar(String nombrePrueba, boolean condicion)` imprime `[OK]` o `[FALLO]` y lleva la cuenta. En su proyecto usted llevara estas mismas cuatro pruebas a la carpeta `test/` con `@Test` y `assertEquals` / `assertThrows`: el nombre y el escenario no cambian.
 
 `AgendaService` ya viene completo y correcto. El metodo `nuevaAgenda()` prepara el escenario **de cero en cada prueba** (M-001 Kira activa, M-002 Michi activa, M-009 Rocky inactiva): ninguna prueba puede depender de otra.
 
@@ -516,9 +516,9 @@ Correctas: opciones 0, 2 y 4. Se califica por afirmaciones acertadas menos las m
 
 ## Rojo, verde y lo que ninguna prueba puede ver
 
-**(a) Rojo y verde (obligatorio).** Comente a proposito la validacion de la mascota inactiva en `agendar`, ejecute las pruebas y luego restaurela. Reporte: que prueba se puso en `[FALLO]`, el texto exacto que imprimio el arnes en rojo, y el resultado despues de restaurar. Adjunte las dos capturas (rojo y verde) en su entrega de NetBeans.
+**(a) Rojo y verde (obligatorio).** Comente a proposito la validacion de la mascota inactiva en `agendar`, ejecute las pruebas y luego restaurela. Reporte: que prueba se puso en `[FALLO]`, el texto exacto que imprimio el arnes en rojo, y el resultado despues de restaurar. Adjunte las dos capturas (rojo y verde) en su entrega.
 
-**(b) Refactor > Rename.** Liste los **tres identificadores pobres** que renombro en su proyecto con `Refactor > Rename` de NetBeans (por ejemplo `validar` -> `agendar`, `b` -> `mascotaActiva`, `dato1` -> `idMascota`), en cuantos archivos se propago cada cambio y por que el nombre nuevo es mejor.
+**(b) Rename Symbol (F2).** Liste los **tres identificadores pobres** que renombro en su proyecto con `Rename Symbol` (F2) de VS Code (por ejemplo `validar` -> `agendar`, `b` -> `mascotaActiva`, `dato1` -> `idMascota`), en cuantos archivos se propago cada cambio y por que el nombre nuevo es mejor.
 
 **(c) Dos pruebas manuales.** Escriba **dos comportamientos de VetCare que NO se pueden automatizar** con pruebas de codigo, y para cada uno indique los pasos exactos que hara la persona que lo verifique y el resultado esperado. Explique en una linea por que la automatizacion no aplica en esos dos casos.
 

@@ -472,7 +472,7 @@ Correctas: opciones 0, 2 y 4. Se califica por afirmaciones acertadas menos las m
 
 ## Tabla de evidencia de las cinco pruebas y justificacion
 
-**(a) Tabla de evidencia (obligatoria).** Ejecute su formulario de NetBeans con las cinco entradas de edad y llene esta tabla, copiando el mensaje **textual** que mostro la aplicacion:
+**(a) Tabla de evidencia (obligatoria).** Ejecute su formulario de VS Code con las cinco entradas de edad y llene esta tabla, copiando el mensaje **textual** que mostro la aplicacion:
 
 | Entrada | Mensaje mostrado (textual) | ¿Se agrego la mascota? | Estado de la aplicacion |
 |---------|---------------------------|------------------------|--------------------------|
@@ -482,7 +482,7 @@ Correctas: opciones 0, 2 y 4. Se califica por afirmaciones acertadas menos las m
 | `150` | | | |
 | `4` | | | |
 
-En la ultima columna escriba si la aplicacion siguio abierta y si aparecio alguna traza roja en la consola de NetBeans. Adjunte en su entrega las cinco capturas.
+En la ultima columna escriba si la aplicacion siguio abierta y si aparecio alguna traza roja en la consola de VS Code. Adjunte en su entrega las cinco capturas.
 
 **(b) Checked contra unchecked.** `DatoInvalidoException` extiende `Exception` (checked) y no `RuntimeException`. Explique que le obliga a hacer eso a quien llama al setter y por que en VetCare **conviene** esa obligacion.
 

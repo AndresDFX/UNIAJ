@@ -5,8 +5,8 @@ Ninguna de estas imagenes se proyecta: son el registro del docente y la
 referencia del nivel esperado para el proximo semestre.
 
 1) demo-clase06.png — la herramienta del dia en uso
-   - Abrir Apache NetBeans.
-   - Repetir la demo del bloque 40-60: El docente oprime el boton en NetBeans y muestra en vivo como la mascota pasa del formulario al ArrayList, incluyendo que pasa cuando la edad se escribe como texto.
+   - Abrir Visual Studio Code (Java).
+   - Repetir la demo del bloque 40-60: El docente oprime el boton de la ventana ya corriendo y muestra en vivo como la mascota pasa del formulario al ArrayList, incluyendo que pasa cuando la edad se escribe como texto.
    - Capturar solo la ventana util, no el escritorio completo.
    - Recortar a ~1200 px de ancho y guardar aqui con ese nombre.
 

@@ -14,7 +14,7 @@ import java.util.Scanner;
  * 3) Ensayo cronometrado de 5 a 8 minutos.
  * Trabajo individual por defecto: si el docente autoriza equipo, agregue los nombres
  * en PRESENTADORES y el reparto de bloques se hace automatico.
- * Ejecutar en Apache NetBeans: clic derecho sobre el archivo y luego Run File.
+ * Ejecutar en VS Code: el boton Run sobre el metodo main, o Ctrl+F5.
  */
 public class EnsayoSustentacionVetCare {
 

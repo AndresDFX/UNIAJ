@@ -380,7 +380,7 @@ El valor por defecto 0 desaparecio y el catch ya no ignora el error. Los dos cas
 
 ## Entrega: el proyecto VetCare integrado
 
-Suba el **ZIP del proyecto NetBeans `VetCare`** (o el JAR mas el codigo fuente) con la integracion terminada:
+Suba el **ZIP del proyecto `VetCare`** (o el JAR mas el codigo fuente) con la integracion terminada:
 
 **Estructura obligatoria de paquetes:**
 - `vetcare.modelo` — `Mascota`, `Dueno`, `Cita`

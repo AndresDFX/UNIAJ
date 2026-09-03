@@ -5,7 +5,7 @@
 - **Preguntas:** 5 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Entorno de desarrollo listo y la primera clase del dominio VetCare escrita
-- **Entregable de la clase:** Proyecto NetBeans con la clase Mascota (atributos privados, constructor y toString) y un main que crea dos objetos distintos
+- **Entregable de la clase:** Proyecto Java con la clase Mascota (atributos privados, constructor y toString) y un main que crea dos objetos distintos
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
@@ -47,7 +47,7 @@ Mascota M-003 -> Rocky (canino, 9 anios), dueno: Luisa Perez
 
 > Escribimos `anios` y `dueno` sin tilde ni ene a proposito: asi la salida de consola es identica en cualquier maquina y se puede comparar caracter por caracter.
 
-> En NetBeans usted tendra `Mascota.java` y la clase de arranque en archivos separados dentro del paquete `vetcare`. En ExamLab todo va en un solo archivo: la clase publica `Main` con el `main` y debajo `Mascota` sin `public`.
+> En VS Code usted tendra `Mascota.java` y la clase de arranque en archivos separados dentro del paquete `vetcare`. En ExamLab todo va en un solo archivo: la clase publica `Main` con el `main` y debajo `Mascota` sin `public`.
 
 **Lenguaje:** `java`
 
@@ -63,7 +63,7 @@ public class Main {
     }
 }
 
-// En NetBeans esta clase va en su propio archivo Mascota.java, dentro del paquete vetcare.
+// En su proyecto esta clase va en su propio archivo Mascota.java, dentro del paquete vetcare.
 // En ExamLab la dejamos en el mismo archivo, sin la palabra public.
 class Mascota {
 
@@ -185,7 +185,7 @@ setEdad valida el rango 0 a 30 antes de asignar. Tras el intento con -2 el atrib
 
 ## La linea fea que todos ven la primera vez
 
-Un compañero ejecuta su proyecto VetCare y en la consola de NetBeans aparece:
+Un compañero ejecuta su proyecto VetCare y en la consola de VS Code aparece:
 
 ```
 vetcare.Mascota@6d06d69c
@@ -279,7 +279,7 @@ Responda las tres partes. Sea breve y concreto.
 
 **(a) Entorno funcionando (obligatorio).** Escriba:
 - La version del JDK que le devuelve `java -version` en la terminal.
-- La version de Apache NetBeans que instalo.
+- La version de VS Code y del Extension Pack for Java que instalo.
 - El nombre del proyecto y del paquete que creo (debe ser proyecto `VetCare`, paquete `vetcare`) y la ruta donde quedo en su disco.
 
 **(b) Clase y objeto.** Explique con las fichas M-001 Firulais y M-003 Rocky la diferencia entre la **clase** `Mascota` y un **objeto** `Mascota`. Use la palabra *molde* y diga cuantos moldes y cuantos objetos hay en su programa.
@@ -288,7 +288,7 @@ Responda las tres partes. Sea breve y concreto.
 
 **Rubrica esperada (campo Rubrica):**
 
-(a) Reporta version de JDK, version de NetBeans y nombre de proyecto/paquete concretos, no genericos. (b) Distingue clase de objeto con las fichas del escenario e identifica un molde y dos objetos. (c) Explica que con atributos publicos se pierde el control de las reglas del dominio y conecta esa perdida con el setter validado de la pregunta 2.
+(a) Reporta version de JDK, version de VS Code y nombre de proyecto/paquete concretos, no genericos. (b) Distingue clase de objeto con las fichas del escenario e identifica un molde y dos objetos. (c) Explica que con atributos publicos se pierde el control de las reglas del dominio y conecta esa perdida con el setter validado de la pregunta 2.
 
 ---
 

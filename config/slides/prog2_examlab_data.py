@@ -53,7 +53,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                  'la salida de consola es identica en cualquier maquina y se puede '
                                  'comparar caracter por caracter.\n'
                                  '\n'
-                                 '> En NetBeans usted tendra `Mascota.java` y la clase de arranque '
+                                 '> En VS Code usted tendra `Mascota.java` y la clase de arranque '
                                  'en archivos separados dentro del paquete `vetcare`. En ExamLab '
                                  'todo va en un solo archivo: la clase publica `Main` con el '
                                  '`main` y debajo `Mascota` sin `public`.',
@@ -75,7 +75,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                '    }\n'
                                '}\n'
                                '\n'
-                               '// En NetBeans esta clase va en su propio archivo Mascota.java, '
+                               '// En su proyecto esta clase va en su propio archivo Mascota.java, '
                                'dentro del paquete vetcare.\n'
                                '// En ExamLab la dejamos en el mismo archivo, sin la palabra '
                                'public.\n'
@@ -196,7 +196,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                     'enunciado': '## La linea fea que todos ven la primera vez\n'
                                  '\n'
                                  'Un compañero ejecuta su proyecto VetCare y en la consola de '
-                                 'NetBeans aparece:\n'
+                                 'VS Code aparece:\n'
                                  '\n'
                                  '```\n'
                                  'vetcare.Mascota@6d06d69c\n'
@@ -272,7 +272,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                  '**(a) Entorno funcionando (obligatorio).** Escriba:\n'
                                  '- La version del JDK que le devuelve `java -version` en la '
                                  'terminal.\n'
-                                 '- La version de Apache NetBeans que instalo.\n'
+                                 '- La version de VS Code y del Extension Pack for Java que instalo.\n'
                                  '- El nombre del proyecto y del paquete que creo (debe ser '
                                  'proyecto `VetCare`, paquete `vetcare`) y la ruta donde quedo en '
                                  'su disco.\n'
@@ -288,7 +288,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                  'atributos y como lo evita el setter validado que escribio en la '
                                  'pregunta 2.',
                     'puntos': 20,
-                    'rubrica': '(a) Reporta version de JDK, version de NetBeans y nombre de '
+                    'rubrica': '(a) Reporta version de JDK, version de VS Code y nombre de '
                                'proyecto/paquete concretos, no genericos. (b) Distingue clase de '
                                'objeto con las fichas del escenario e identifica un molde y dos '
                                'objetos. (c) Explica que con atributos publicos se pierde el '
@@ -782,7 +782,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                     'tipo': 'cerrada'},
                    {'enunciado': '## Entrega del proyecto: menu de consola de VetCare\n'
                                  '\n'
-                                 'Suba un **ZIP del proyecto NetBeans `VetCare`** (paquete '
+                                 'Suba un **ZIP del proyecto `VetCare`** (paquete '
                                  '`vetcare`) que contenga, ahora en archivos separados:\n'
                                  '\n'
                                  '- `Mascota.java` con atributos privados, constructor, getters y '
@@ -812,7 +812,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                  'listado final de las seis fichas (`captura_listado.png`).',
                     'lenguaje': 'java',
                     'puntos': 10,
-                    'rubrica': 'El ZIP contiene un proyecto NetBeans compilable con Mascota y '
+                    'rubrica': 'El ZIP contiene un proyecto Java compilable con Mascota y '
                                'RegistroMascotas en archivos separados dentro del paquete vetcare. '
                                'El menu con Scanner y while ofrece las cinco opciones, ejecuta '
                                'cada una y no se cae con una opcion invalida. Incluye la captura '
@@ -2508,7 +2508,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                  'arquitectura\n'
                                  '\n'
                                  '**(a) Evidencia (obligatoria).** Describa, caso por caso, lo que '
-                                 'observo al ejecutar su ventana en NetBeans. Para cada uno: que '
+                                 'observo al ejecutar su ventana. Para cada uno: que '
                                  'escribio en cada campo, el **texto exacto** del cuadro de '
                                  'dialogo que aparecio, que quedo en el `JTextArea` y cual era el '
                                  'total despues.\n'
@@ -2982,7 +2982,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                  '\n'
                                  'Documentar no es adornar: el Javadoc es lo que vera dentro de '
                                  'seis meses quien abra el proyecto (usted mismo, probablemente) y '
-                                 'lo que aparece en el autocompletado de NetBeans.\n'
+                                 'lo que aparece en el autocompletado de VS Code.\n'
                                  '\n'
                                  'El codigo funciona y no debe cambiarlo. Escriba **el Javadoc que '
                                  'falta** en cada lugar marcado con `TODO`:\n'
@@ -3017,8 +3017,9 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                  '\n'
                                  'Adjunte tambien, en el mismo campo de codigo y como comentario '
                                  'al final del archivo, el comando o los pasos exactos que uso en '
-                                 'NetBeans para generar el HTML (`clic derecho sobre el proyecto > '
-                                 'Generate Javadoc`) y la ruta donde quedo la carpeta generada.',
+                                 'la terminal integrada de VS Code para generar el HTML (por ejemplo '
+                                 '`javadoc -d docs -private src/vetcare/*.java`) y la ruta donde '
+                                 'quedo la carpeta generada.',
                     'lenguaje': 'java',
                     'puntos': 25,
                     'rubrica': 'Cada clase, constructor y getter publico tiene su bloque /** */ '
@@ -3326,8 +3327,8 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                  'disponible, asi que usamos el **mismo diseño** con un mini-arnes '
                                  'ya escrito: el metodo `verificar(String nombrePrueba, boolean '
                                  'condicion)` imprime `[OK]` o `[FALLO]` y lleva la cuenta. En '
-                                 'NetBeans usted llevara estas mismas cuatro pruebas a `Test '
-                                 'Packages` con `@Test` y `assertEquals` / `assertThrows`: el '
+                                 'su proyecto usted llevara estas mismas cuatro pruebas a la carpeta '
+                                 '`test/` con `@Test` y `assertEquals` / `assertThrows`: el '
                                  'nombre y el escenario no cambian.\n'
                                  '\n'
                                  '`AgendaService` ya viene completo y correcto. El metodo '
@@ -3550,11 +3551,11 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                  'pruebas y luego restaurela. Reporte: que prueba se puso en '
                                  '`[FALLO]`, el texto exacto que imprimio el arnes en rojo, y el '
                                  'resultado despues de restaurar. Adjunte las dos capturas (rojo y '
-                                 'verde) en su entrega de NetBeans.\n'
+                                 'verde) en su entrega.\n'
                                  '\n'
-                                 '**(b) Refactor > Rename.** Liste los **tres identificadores '
-                                 'pobres** que renombro en su proyecto con `Refactor > Rename` de '
-                                 'NetBeans (por ejemplo `validar` -> `agendar`, `b` -> '
+                                 '**(b) Rename Symbol (F2).** Liste los **tres identificadores '
+                                 'pobres** que renombro en su proyecto con `Rename Symbol` (F2) de '
+                                 'VS Code (por ejemplo `validar` -> `agendar`, `b` -> '
                                  '`mascotaActiva`, `dato1` -> `idMascota`), en cuantos archivos se '
                                  'propago cada cambio y por que el nombre nuevo es mejor.\n'
                                  '\n'
@@ -3958,7 +3959,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                     'tipo': 'codigo'},
                    {'enunciado': '## Entrega: el ciclo de vida conectado\n'
                                  '\n'
-                                 'Suba el **ZIP del proyecto NetBeans `VetCare`** con la '
+                                 'Suba el **ZIP del proyecto `VetCare`** con la '
                                  'persistencia integrada al ciclo de vida de la aplicacion:\n'
                                  '\n'
                                  '1. Paquete `vetcare.datos` con `RepositorioMascotasCSV` (los '
@@ -4882,7 +4883,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                      'tipo': 'codigo'},
                     {'enunciado': '## Entrega: el proyecto VetCare integrado\n'
                                   '\n'
-                                  'Suba el **ZIP del proyecto NetBeans `VetCare`** (o el JAR mas '
+                                  'Suba el **ZIP del proyecto `VetCare`** (o el JAR mas '
                                   'el codigo fuente) con la integracion terminada:\n'
                                   '\n'
                                   '**Estructura obligatoria de paquetes:**\n'
@@ -5532,7 +5533,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                     {'enunciado': '## Tabla de evidencia de las cinco pruebas y justificacion\n'
                                   '\n'
                                   '**(a) Tabla de evidencia (obligatoria).** Ejecute su formulario '
-                                  'de NetBeans con las cinco entradas de edad y llene esta tabla, '
+                                  'de VS Code con las cinco entradas de edad y llene esta tabla, '
                                   'copiando el mensaje **textual** que mostro la aplicacion:\n'
                                   '\n'
                                   '| Entrada | Mensaje mostrado (textual) | ¿Se agrego la mascota? '
@@ -5545,7 +5546,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                   '| `4` | | | |\n'
                                   '\n'
                                   'En la ultima columna escriba si la aplicacion siguio abierta y '
-                                  'si aparecio alguna traza roja en la consola de NetBeans. '
+                                  'si aparecio alguna traza roja en la consola de VS Code. '
                                   'Adjunte en su entrega las cinco capturas.\n'
                                   '\n'
                                   '**(b) Checked contra unchecked.** `DatoInvalidoException` '
@@ -5821,7 +5822,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                     {'enunciado': '## Plan B: el video que salva la sustentacion\n'
                                   '\n'
                                   'El dia de la sustentacion se cae el wifi, el portatil no '
-                                  'proyecta o NetBeans decide actualizarse. El plan B se prepara '
+                                  'proyecta o VS Code decide actualizarse. El plan B se prepara '
                                   '**antes**, no se improvisa.\n'
                                   '\n'
                                   'Reporte:\n'
@@ -5871,7 +5872,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                   'Dedicar cinco de los ocho minutos a explicar la teoria de POO y '
                                   'dejar la demo para el final, sin tiempo.',
                                   'No tener plan B y depender de que el proyector, el wifi y '
-                                  'NetBeans funcionen a la primera.',
+                                  'VS Code funcionen a la primera.',
                                   'Ensayar de pie y con cronometro antes de sustentar.',
                                   'Dejar un bloque del guion sin responsable ni evidencia (o, en '
                                   'trabajo en equipo, un integrante sin ningun bloque asignado que '

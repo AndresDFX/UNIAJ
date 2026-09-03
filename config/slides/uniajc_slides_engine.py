@@ -78,7 +78,83 @@ def load_brand():
             return {}
     return {}
 
-def new_prs():
+# ───────────────────────────────────────── modo generico de las diapositivas de clase
+#
+# Que problema resuelve: una diapositiva de clase no puede dar por hecho lo que el docente
+# decide semana a semana. Los decks nombraban la plataforma de entrega con su URL, anunciaban
+# «taller domingo 23:59» y mencionaban quices, cuando el docente pone taller o no lo pone, y
+# lo unico fijo de una sesion es EL TEMA. Proyectar un plazo que despues no se aplica es peor
+# que no decir nada: el estudiante lo toma como compromiso.
+#
+# Donde SI se nombra la plataforma: en la Presentacion del Curso, que es el documento donde se
+# explica una vez como se entrega. Por eso el modo generico esta ENCENDIDO por omision y son
+# los cinco builders de `*_curso.py` los que lo apagan con `new_prs(generico=False)`. Al
+# revés —apagado por omision— cualquier deck nuevo nacería nombrando la plataforma.
+#
+# Se aplica en `normalizar_inline` y en `_run`, que son los dos sitios por donde pasa TODO el
+# texto que llega a una diapositiva. En `normalizar_inline` a proposito, y no solo al pintar:
+# `bullets()` mide el texto para elegir el tamano, y tiene que medir el texto final.
+GENERICO = True
+
+_URL_PLATAFORMA = r"\s*\(\s*https?://[^)]*examlab[^)]*\)"
+
+#: (patron, reemplazo), en orden: de lo mas especifico a lo mas general. El verificador
+#: `verificar_generico.py` comprueba el resultado, asi que una regla que se quede corta se
+#: detecta en vez de publicarse.
+_REGLAS_GENERICO = [
+    # 1. La herramienta del dia: lo que importa es el motor, no la plataforma que lo hospeda.
+    (r"ExamLab\s*\(PostgreSQL[^)]*\)", "PostgreSQL en el navegador"),
+    # 2. La URL y el modulo: nunca en una diapositiva.
+    (_URL_PLATAFORMA, ""),
+    # 3. El taller semanal, frase COMPLETA y antes que nada. Si la parte primero la regla
+    #    del plazo queda «…esta semana: en la fecha que indique el docente», con «docente»
+    #    dos veces y sin decir nada.
+    (r"(?i)Taller de la semana en ExamLab[^.]*\.",
+     "Si el docente asigna taller esta semana, él indica el canal y la fecha."),
+    # 4. El plazo fijo. «(regla del Acuerdo)» y «cuando aplique» viajan pegados.
+    (r"(?i)domingo 23:59\s*(\(regla del Acuerdo\))?\s*(cuando aplique(\s+el)?(\s+taller)?)?",
+     "en la fecha que indique el docente"),
+    (r"(?i)cuando aplique(\s+taller)?", "si el docente lo asigna"),
+    (r"Entrega del taller en ExamLab", "Entrega del taller, si el docente lo asigna"),
+    # 5. Los quices no se anuncian al estudiante.
+    (r"\btaller y quiz\b", "taller"),
+    (r"\bquices?\b", "las comprobaciones que el docente aplique"),
+    # 6. Lo que quede del nombre propio.
+    (r"\bExamLab\b", "la plataforma del curso"),
+]
+
+
+def texto_generico(t):
+    """Quita de un texto de diapositiva lo que el docente decide cada semana.
+
+    Idempotente: aplicarla dos veces da lo mismo, porque ninguna regla vuelve a introducir
+    el patron de otra. Hace falta porque el texto pasa por `normalizar_inline` al medir y
+    otra vez al pintar.
+    """
+    s = str(t)
+    for pat, rep in _REGLAS_GENERICO:
+        s = re.sub(pat, rep, s)
+    # NO se colapsan los espacios repetidos: el prefijo de vineta que pone `bullets()` es
+    # «–   » con tres espacios, y colapsarlo dejaba todas las vinetas de los decks de clase
+    # con la sangria de un espacio mientras las de la Presentacion del Curso —que no pasa por
+    # aqui— conservaban la de tres. Las reglas de arriba ya absorben el espacio que precede a
+    # lo que borran, asi que no queda hueco doble que limpiar.
+    #
+    # La puntuacion se pega al texto solo cuando de verdad cierra la frase: sin el lookahead,
+    # un «los .sql que pide el entregable» quedaba como «los.sql», porque la extension de
+    # archivo empieza por punto y no es puntuacion.
+    return re.sub(r"[ \t]+([.,;:])(?=\s|$)", r"\1", s)
+
+
+def new_prs(generico=True):
+    """Presentacion vacia 16:9. `generico=False` solo en la Presentacion del Curso.
+
+    Es un interruptor global y no un atributo de la presentacion porque el texto se pinta
+    desde `_run`/`_rich`, que reciben el parrafo y no la presentacion. Se fija al crear el
+    deck, que es cuando se sabe de que tipo es, y cada builder construye un deck a la vez.
+    """
+    global GENERICO
+    GENERICO = bool(generico)
     prs = Presentation()
     prs.slide_width = Inches(SW)
     prs.slide_height = Inches(SH)
@@ -130,7 +206,7 @@ def textbox(slide, l, t, w, h, anchor=None):
     return tf
 
 def _run(run, text, size, color, bold=False, italic=False):
-    run.text = text
+    run.text = texto_generico(text) if GENERICO else str(text)
     run.font.size = Pt(size)
     run.font.color.rgb = color
     run.font.bold = bold
@@ -146,7 +222,8 @@ def normalizar_inline(text):
     `code span` pasa a «comillas angulares», que cambian el numero de caracteres. Midiendo
     la cadena cruda, `bullets()` elegiria el tamano contra un texto que no es el final.
     """
-    text = re.sub(r"@@([^@]+)@@", r"**\1**", str(text))
+    text = texto_generico(text) if GENERICO else str(text)
+    text = re.sub(r"@@([^@]+)@@", r"**\1**", text)
     return re.sub(r"`([^`\n]+)`", r"«\1»", text)
 
 

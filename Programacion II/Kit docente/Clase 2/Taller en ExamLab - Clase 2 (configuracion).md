@@ -5,7 +5,7 @@
 - **Preguntas:** 6 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** El registro de mascotas de VetCare deja de vivir en un arreglo de tamano fijo y pasa a un ArrayList<Mascota> que crece con la clinica.
-- **Entregable de la clase:** Proyecto NetBeans con las clases Mascota y RegistroMascotas y un menu de consola que agrega, lista, busca por ID y elimina mascotas, comprimido y subido a ExamLab.
+- **Entregable de la clase:** Proyecto Java con las clases Mascota y RegistroMascotas y un menu de consola que agrega, lista, busca por ID y elimina mascotas, comprimido y subido a ExamLab.
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
@@ -479,7 +479,7 @@ Respuesta correcta: el fragmento A, porque el for-each usa internamente un itera
 
 ## Entrega del proyecto: menu de consola de VetCare
 
-Suba un **ZIP del proyecto NetBeans `VetCare`** (paquete `vetcare`) que contenga, ahora en archivos separados:
+Suba un **ZIP del proyecto `VetCare`** (paquete `vetcare`) que contenga, ahora en archivos separados:
 
 - `Mascota.java` con atributos privados, constructor, getters y `toString()`.
 - `RegistroMascotas.java` con `agregar`, `listar`, `buscarPorId`, `eliminarPorId`, `pasarAGeriatria` y `cantidad`.
@@ -504,7 +504,7 @@ Requisitos de la entrega:
 
 **Rubrica esperada (campo Rubrica):**
 
-El ZIP contiene un proyecto NetBeans compilable con Mascota y RegistroMascotas en archivos separados dentro del paquete vetcare. El menu con Scanner y while ofrece las cinco opciones, ejecuta cada una y no se cae con una opcion invalida. Incluye la captura de la consola con el listado de las seis fichas.
+El ZIP contiene un proyecto Java compilable con Mascota y RegistroMascotas en archivos separados dentro del paquete vetcare. El menu con Scanner y while ofrece las cinco opciones, ejecuta cada una y no se cae con una opcion invalida. Incluye la captura de la consola con el listado de las seis fichas.
 
 ---
 

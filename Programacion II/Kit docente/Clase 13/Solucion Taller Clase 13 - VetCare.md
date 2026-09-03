@@ -16,7 +16,7 @@
 - [ ] Tabla de evidencia con las cinco pruebas, sin cierres de la aplicacion ni catch vacios (2)
 
 ## Errores frecuentes
-- Poner catch (Exception e) antes de catch (NumberFormatException e), o catch (IOException e) antes de catch (FileNotFoundException e): NetBeans marca 'exception has already been caught' y el proyecto no compila; los catch van del mas especifico al mas general.
+- Poner catch (Exception e) antes de catch (NumberFormatException e), o catch (IOException e) antes de catch (FileNotFoundException e): VS Code marca 'exception has already been caught' y el proyecto no compila; los catch van del mas especifico al mas general.
 - Dejar el add a la lista fuera del try o antes de los setters: la mascota entra a la coleccion sin edad ni peso y el error aparece despues, al guardar el CSV, con una linea que dice ';;0;0.0'.
 - Mostrar e.getMessage() de la NumberFormatException original al usuario: el cliente de la clinica lee 'For input string: tres', que no le dice que hacer; hay que traducir la excepcion tecnica a un mensaje del negocio.
 

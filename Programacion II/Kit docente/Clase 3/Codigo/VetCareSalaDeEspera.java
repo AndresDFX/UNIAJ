@@ -8,7 +8,7 @@ import java.util.Queue;
 /**
  * VetCare - Clase 3: sala de espera (cola FIFO) e historial reciente (pila LIFO).
  * Clinica Veterinaria Huellitas.
- * Archivo unico: clic derecho sobre el archivo > Run File (Shift+F6) en NetBeans.
+ * Archivo unico: en VS Code, el boton Run que aparece sobre el metodo main (o Ctrl+F5).
  */
 public class VetCareSalaDeEspera {
 

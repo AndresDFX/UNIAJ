@@ -11,7 +11,7 @@ import java.util.Scanner;
 /**
  * VetCare - Clinica Veterinaria Huellitas
  * Clase 13: control de excepciones (checked vs unchecked, try-catch-finally, throw / throws).
- * Ejecutar en Apache NetBeans: clic derecho sobre el archivo y luego Run File.
+ * Ejecutar en VS Code: el boton Run sobre el metodo main, o Ctrl+F5.
  */
 public class DemoExcepcionesVetCare {
 

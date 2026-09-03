@@ -8,7 +8,7 @@ import java.util.Scanner;
 /**
  * VetCare - Clase 2: de arreglos fijos a ArrayList.
  * Clinica Veterinaria Huellitas.
- * Archivo unico: clic derecho sobre el archivo > Run File (Shift+F6) en NetBeans.
+ * Archivo unico: en VS Code, el boton Run que aparece sobre el metodo main (o Ctrl+F5).
  * Los bloques 1 a 4 corren solos; el bloque 5 abre el menu y pide datos por consola.
  */
 public class VetCareRegistroMascotas {

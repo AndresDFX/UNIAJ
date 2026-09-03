@@ -135,7 +135,7 @@ Proyectar el editor y escribir en vivo, sin copiar-pegar:
 distintos. Eso es clase contra objeto.»
 
 ### 85-110 · Laboratorio: entorno listo + primera clase propia
-Cada estudiante deja funcionando su entorno (JDK + NetBeans o el IDE del curso) y
+Cada estudiante deja funcionando su entorno (JDK 17+ y VS Code con el Extension Pack for Java) y
 escribe su propia clase con al menos dos atributos y un constructor.
 Circular por los puestos: el objetivo real de este bloque es que **nadie se quede sin
 entorno**, porque arrastrar eso a la Clase 2 bloquea todo el curso.

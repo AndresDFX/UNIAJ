@@ -3,8 +3,8 @@
 - **Curso:** Programacion II (FI303204) · 120 min
 - **Hilo:** Proyecto Integrador **VetCare** (aplicacion Java de la clinica «Huellitas»)
 - **Hoy avanzamos el PI en:** Entorno de desarrollo listo y la primera clase del dominio VetCare escrita
-- **Entregable de hoy:** Proyecto NetBeans con la clase Mascota (atributos privados, constructor y toString) y un main que crea dos objetos distintos
-- **Herramienta:** Apache NetBeans
+- **Entregable de hoy:** Proyecto Java con la clase Mascota (atributos privados, constructor y toString) y un main que crea dos objetos distintos
+- **Herramienta:** Visual Studio Code (Java)
 - **Slides:** `Clases/Clase 1 - Introduccion a POO/Presentacion.pptx`
 
 > Sin mapa del curso, sin bio del docente, sin fechas de periodo: eso vive en la Sesion 0.
@@ -64,13 +64,13 @@ Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 ### 60-105 · Taller guiado = avance del PI
 **Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
-1. Instale y verifique el entorno (JDK + Apache NetBeans) y cree un proyecto Java Application llamado VetCare con paquete vetcare. Este paso es el objetivo real del bloque: nadie puede quedarse sin entorno funcionando.
+1. Instale y verifique el entorno (JDK 17+ y VS Code con el Extension Pack for Java) y cree un proyecto Java llamado VetCare con paquete vetcare. Este paso es el objetivo real del bloque: nadie puede quedarse sin entorno funcionando.
 2. Escriba la clase Mascota con al menos tres atributos privados (id, nombre, especie) y un constructor que los reciba todos.
 3. Agregue al menos un getter y sobreescriba toString() para que la mascota se imprima de forma legible.
 4. En el main, cree DOS objetos Mascota con datos distintos e imprimalos: debe verse que salen del mismo molde pero con valores diferentes.
 5. Si termina antes: agregue un setter que valide (por ejemplo, que rechace una edad negativa) y pruebelo desde el main.
 Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
-Entregable: Proyecto NetBeans con la clase Mascota (atributos privados, constructor y toString) y un main que crea dos objetos distintos
+Entregable: Proyecto Java con la clase Mascota (atributos privados, constructor y toString) y un main que crea dos objetos distintos
 
 ### 105-120 · Criterios de exito y cierre
 Repasar el checklist de la slide de criterios.

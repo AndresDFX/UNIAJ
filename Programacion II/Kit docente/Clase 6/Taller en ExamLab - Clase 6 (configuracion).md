@@ -565,7 +565,7 @@ Respuesta correcta: la B. A mete conversion, validacion y la coleccion dentro de
 
 ## Evidencia de los tres casos y justificacion de la arquitectura
 
-**(a) Evidencia (obligatoria).** Describa, caso por caso, lo que observo al ejecutar su ventana en NetBeans. Para cada uno: que escribio en cada campo, el **texto exacto** del cuadro de dialogo que aparecio, que quedo en el `JTextArea` y cual era el total despues.
+**(a) Evidencia (obligatoria).** Describa, caso por caso, lo que observo al ejecutar su ventana. Para cada uno: que escribio en cada campo, el **texto exacto** del cuadro de dialogo que aparecio, que quedo en el `JTextArea` y cual era el total despues.
 1. Registro valido de **M-001 Kira, felino, 3**.
 2. Edad escrita como **tres**.
 3. **ID repetido M-001**.

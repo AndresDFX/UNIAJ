@@ -50,7 +50,10 @@ CREDS = [
 
 
 def build():
-    prs = new_prs()
+    # La Presentacion del Curso es el UNICO deck que nombra la plataforma de entrega y
+    # su URL: es donde se explica una vez como se entrega. Los decks de clase nacen en
+    # modo generico, porque ahi lo unico fijo es el tema. Ver `new_prs` en el motor.
+    prs = new_prs(generico=False)
 
     course_cover(
         prs,
@@ -145,7 +148,7 @@ def build():
     content_slide(
         prs, "Recursos",
         [
-            "IDE recomendado: IntelliJ IDEA / VS Code / NetBeans (Java 17+).",
+            "IDE del curso: **Visual Studio Code** con el Extension Pack for Java (JDK 17+).",
             "@@ExamLab@@ (https://uniaj.examlab.workers.dev/): entrega de talleres + quices/parciales del curso.",
             "Bibliografía (microcurrículo): Deitel & Deitel · Design Patterns (GoF) · Head First Design Patterns · JavaFX Docs.",
             "Material de clase: carpeta `Clases/Clase N` + talleres; guiones en `Guiones/` / `Kit docente/`.",
@@ -168,7 +171,7 @@ def build():
         [
             {"name": "IntelliJ IDEA", "logo": "intellij.png", "note": "IDE recomendado"},
             {"name": "VS Code", "logo": "vscode.png", "note": "IDE alterno"},
-            {"name": "NetBeans", "logo": "netbeans.png", "note": "IDE alterno"},
+            {"name": "Visual Studio Code", "logo": "vscode.png", "note": "IDE del curso (Extension Pack for Java)"},
             {"name": "Java", "logo": "java.png", "note": "JDK 17+"},
             {"name": "ExamLab", "logo": "examlab.png", "note": "Talleres + quices/parciales"},
         ],

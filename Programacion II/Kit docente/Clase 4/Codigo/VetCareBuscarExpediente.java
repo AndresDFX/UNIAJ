@@ -21,7 +21,7 @@ import javax.swing.SwingUtilities;
  * VetCare - Clase 4: HashMap + HashSet + primera ventana Swing.
  * Clinica Veterinaria Huellitas.
  * Ventana escrita A MANO (sin el disenador visual) para entender la jerarquia.
- * Archivo unico: clic derecho sobre el archivo > Run File (Shift+F6) en NetBeans.
+ * Archivo unico: en VS Code, el boton Run que aparece sobre el metodo main (o Ctrl+F5).
  */
 public class VetCareBuscarExpediente extends JFrame {
 

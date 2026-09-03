@@ -5,7 +5,7 @@ Ninguna de estas imagenes se proyecta: son el registro del docente y la
 referencia del nivel esperado para el proximo semestre.
 
 1) demo-clase14.png — la herramienta del dia en uso
-   - Abrir Apache NetBeans.
+   - Abrir Visual Studio Code (Java).
    - Repetir la demo del bloque 40-60: El docente sustenta VetCare en 6 minutos delante del grupo, provoca a proposito un error de edad para mostrar la validacion, y luego repite la misma demo con la lista vacia para que se vea el desastre de no sembrar datos.
    - Capturar solo la ventana util, no el escritorio completo.
    - Recortar a ~1200 px de ancho y guardar aqui con ese nombre.

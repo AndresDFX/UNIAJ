@@ -14,7 +14,7 @@ import java.util.List;
  * Clinica Veterinaria Huellitas.
  *
  * Ejecutar desde consola:  java VetCarePersistencia.java
- * (o crear el proyecto en NetBeans y ejecutar la clase principal)
+ * (o abrir la carpeta en VS Code y ejecutar la clase principal con el boton Run)
  *
  * Corra el programa DOS veces seguidas: la segunda vez debe recuperar lo que
  * escribio la primera. Esa es toda la leccion.

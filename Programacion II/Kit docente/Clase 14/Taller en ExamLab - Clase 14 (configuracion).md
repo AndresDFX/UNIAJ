@@ -219,7 +219,7 @@ La planilla trae minutos planeados y reales de los dos ensayos por bloque con la
 
 ## Plan B: el video que salva la sustentacion
 
-El dia de la sustentacion se cae el wifi, el portatil no proyecta o NetBeans decide actualizarse. El plan B se prepara **antes**, no se improvisa.
+El dia de la sustentacion se cae el wifi, el portatil no proyecta o VS Code decide actualizarse. El plan B se prepara **antes**, no se improvisa.
 
 Reporte:
 
@@ -261,7 +261,7 @@ Marque **todas** las situaciones que, segun lo visto en clase, hacen fracasar un
 - [x] Arrancar la demo con la lista vacia, sin datos sembrados, y perder dos minutos registrando fichas a mano.
 - [ ] Provocar a proposito un error de validacion para mostrar el mensaje controlado.
 - [x] Dedicar cinco de los ocho minutos a explicar la teoria de POO y dejar la demo para el final, sin tiempo.
-- [x] No tener plan B y depender de que el proyector, el wifi y NetBeans funcionen a la primera.
+- [x] No tener plan B y depender de que el proyector, el wifi y VS Code funcionen a la primera.
 - [ ] Ensayar de pie y con cronometro antes de sustentar.
 - [x] Dejar un bloque del guion sin responsable ni evidencia (o, en trabajo en equipo, un integrante sin ningun bloque asignado que solo aparece a responder preguntas).
 

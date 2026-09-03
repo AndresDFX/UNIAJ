@@ -4,7 +4,7 @@
 - **Hilo:** Proyecto Integrador **VetCare** (aplicacion Java de la clinica «Huellitas»)
 - **Hoy avanzamos el PI en:** VetCare queda con guion de sustentacion, juego de datos de demostracion sembrado y ensayo cronometrado dentro de la ventana de 5 a 8 minutos.
 - **Entregable de hoy:** Guion de sustentacion con bloques, minutos y evidencia que se muestra (mas el responsable nominal solo si el docente autorizo equipo), mas la planilla de tiempos de dos ensayos y el video de respaldo de la ruta feliz, subido a ExamLab.
-- **Herramienta:** Apache NetBeans
+- **Herramienta:** Visual Studio Code (Java)
 - **Slides:** `Clases/Clase 14 - Preparacion de la presentacion final/Presentacion.pptx`
 
 > Sin mapa del curso, sin bio del docente, sin fechas de periodo: eso vive en la Sesion 0.

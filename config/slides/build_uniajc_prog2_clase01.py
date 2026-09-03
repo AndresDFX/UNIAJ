@@ -118,7 +118,7 @@ def build():
         prs, "Laboratorio: entorno listo",
         [
             "Verificar **JDK 17+** (`java -version`, `javac -version`).",
-            "Abrir el IDE (IntelliJ / VS Code / NetBeans) y crear proyecto `Prog2_Clase01`.",
+            "Abrir **VS Code** con el Extension Pack for Java y crear el proyecto `Prog2_Clase01`.",
             "Crear paquete `co.edu.uniajc.prog2` y clase `HolaPOO` con `main`.",
             "Compilar y ejecutar. Captura/ok verbal al docente = listo.",
             "Independiente dirigido de la semana: terminar configuración y lectura de conceptos previos.",

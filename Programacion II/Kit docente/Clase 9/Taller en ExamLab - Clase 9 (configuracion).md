@@ -343,7 +343,7 @@ cargar devuelve lista vacia con aviso cuando el archivo no existe, sin lanzar ex
 
 ## Entrega: el ciclo de vida conectado
 
-Suba el **ZIP del proyecto NetBeans `VetCare`** con la persistencia integrada al ciclo de vida de la aplicacion:
+Suba el **ZIP del proyecto `VetCare`** con la persistencia integrada al ciclo de vida de la aplicacion:
 
 1. Paquete `vetcare.datos` con `RepositorioMascotasCSV` (los metodos `guardar` y `cargar` que acaba de escribir, ya en archivos separados).
 2. **Al arrancar**: `cargar()` se llama **antes** de mostrar la ventana o el menu, y lo cargado es lo que se muestra.

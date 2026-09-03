@@ -4,7 +4,7 @@
 - **Hilo:** Proyecto Integrador **VetCare** (aplicacion Java de la clinica «Huellitas»)
 - **Hoy avanzamos el PI en:** Cada estudiante recibe un informe externo con hallazgos priorizados y deja escrito su plan de corrección de VetCare antes de la integración final.
 - **Entregable de hoy:** Informe de revisión de una página sobre el proyecto asignado (el de otro estudiante; si el docente autorizó equipos, el de otro equipo): checklist diligenciado con evidencia archivo:línea y cinco hallazgos priorizados con formato Evidencia + Impacto + Sugerencia, subido a ExamLab.
-- **Herramienta:** Apache NetBeans
+- **Herramienta:** Visual Studio Code (Java)
 - **Slides:** `Clases/Clase 11 - Revision de codigo cruzada/Presentacion.pptx`
 
 > Sin mapa del curso, sin bio del docente, sin fechas de periodo: eso vive en la Sesion 0.
@@ -46,7 +46,7 @@ Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 ### 60-105 · Taller guiado = avance del PI
 **Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
-1. Intercambien proyectos: cada estudiante entrega su carpeta comprimida más un archivo de tres líneas con las instrucciones de ejecución, y recibe el proyecto de otro compañero (si el docente autorizó equipos, el de otro equipo; la revisión funciona igual); lo primero es abrirlo en NetBeans y ejecutarlo, anotando si arrancó y, si no, el mensaje de error exacto copiado tal cual.
+1. Intercambien proyectos: cada estudiante entrega su carpeta comprimida más un archivo de tres líneas con las instrucciones de ejecución, y recibe el proyecto de otro compañero (si el docente autorizó equipos, el de otro equipo; la revisión funciona igual); lo primero es abrirlo en VS Code y ejecutarlo, anotando si arrancó y, si no, el mensaje de error exacto copiado tal cual.
 2. Recorran el proyecto recibido con el checklist de doce ítems (clase de dominio, encapsulamiento, colección, interfaz gráfica, try-catch en fronteras, persistencia, catch vacío, métodos largos, duplicación, nombres, números mágicos, validación de casos borde) marcando cumple / no cumple / no aplica y escribiendo la evidencia archivo:línea en cada 'no cumple'.
 3. Provoquen a propósito los cuatro casos borde de VetCare (edad con letras, campos vacíos, buscar un ID inexistente, borrar o dañar una línea de mascotas.csv) y registren qué hizo la aplicación en cada uno, con el texto del mensaje o de la excepción.
 4. Redacten cinco hallazgos priorizados como bloqueante, mayor o menor, cada uno con el formato Evidencia + Impacto + Sugerencia, todos referidos al código y ninguno a la persona; incluyan al menos un bloqueante si existe.

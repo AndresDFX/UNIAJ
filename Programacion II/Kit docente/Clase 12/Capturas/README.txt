@@ -5,7 +5,7 @@ Ninguna de estas imagenes se proyecta: son el registro del docente y la
 referencia del nivel esperado para el proximo semestre.
 
 1) demo-clase12.png — la herramienta del dia en uso
-   - Abrir Apache NetBeans.
+   - Abrir Visual Studio Code (Java).
    - Repetir la demo del bloque 40-60: El docente corre el guion de humo completo (abrir, registrar, buscar, cerrar, reabrir) y luego pone un breakpoint en el botón Registrar para mostrar con el debugger por qué una edad vacía estaba entrando como cero.
    - Capturar solo la ventana util, no el escritorio completo.
    - Recortar a ~1200 px de ancho y guardar aqui con ese nombre.
