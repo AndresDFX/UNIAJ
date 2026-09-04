@@ -414,10 +414,9 @@ def build_correo(codigo):
                         ses, D.ddmmyyyy(f) if f else "—", peso.strip()))
     L += [
         "",
-        "> **No hay un examen final acumulativo.** Cada corte tiene su propia "
-        "evaluación de 20 minutos sobre las clases de ESE corte, y el corte 3 se "
-        "cierra además con la **exposición final del proyecto** y el **informe "
-        "final**, los dos en la última sesión (sesión %d, doble)." % c["n_sesiones"],
+        "> **No hay examen final escrito.** El corte 3 se califica con la "
+        "**exposición final del proyecto** y el **informe final**, los dos en la "
+        "última sesión (sesión %d, doble)." % c["n_sesiones"],
         "",
         "### Cómo es una sesión",
         "",

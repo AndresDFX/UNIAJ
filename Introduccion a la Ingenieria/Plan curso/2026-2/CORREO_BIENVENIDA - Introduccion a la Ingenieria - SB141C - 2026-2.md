@@ -33,11 +33,10 @@ Soy Julian Andres Castaño y voy a acompañarlos en **Introducción a la Ingenie
 | **1** (30%) | Exposiciones de equipo y actividades en clase | sesión 4 · 29/09/2026 | 12% |
 | **2** (30%) | Evaluación de corte | sesión 7 · 20/10/2026 | 10% |
 | **2** (30%) | Exposiciones de equipo y actividades en clase | sesión 7 · 20/10/2026 | 12% |
-| **3** (40%) | Evaluación de corte | sesión 10 · 10/11/2026 | 10% |
-| **3** (40%) | Exposición final del proyecto — Clase 15 | sesión 11 · 17/11/2026 | 10% |
-| **3** (40%) | Informe final del proyecto — Clase 16 | sesión 11 · 17/11/2026 | 15% |
+| **3** (40%) | Exposición final del proyecto — Clase 15 | sesión 11 · 17/11/2026 | 15% |
+| **3** (40%) | Informe final del proyecto — Clase 16 | sesión 11 · 17/11/2026 | 20% |
 
-> **No hay un examen final acumulativo.** Cada corte tiene su propia evaluación de 20 minutos sobre las clases de ESE corte, y el corte 3 se cierra además con la **exposición final del proyecto** y el **informe final**, los dos en la última sesión (sesión 11, doble).
+> **No hay examen final escrito.** El corte 3 se califica con la **exposición final del proyecto** y el **informe final**, los dos en la última sesión (sesión 11, doble).
 
 ### Cómo es una sesión
 
