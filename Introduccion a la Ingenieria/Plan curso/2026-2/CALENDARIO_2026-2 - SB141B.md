@@ -2,20 +2,20 @@
 
 - **Código:** FI300101
 - **Grupo:** SB141B
-- **Periodo:** 2026-2 · **10/09/2026 – 24/12/2026**
+- **Periodo:** 2026-2 · **10/09/2026 – 19/11/2026**
 - **Horario:** Jueves **14:30 – 16:00** (90 min) · **inicio efectivo 14:40** (se arranca 10 min después de la hora oficial para esperar a que los estudiantes se conecten)
 - **Modalidad:** Virtual (síncrona) por Google Meet · actividades en plataformas gratuitas en la nube
 - **Docente:** Julian Andres Castaño · `julianacastano@profesores.uniajc.edu.co`
-- **Total sesiones:** 16 · **temas del microcurrículo:** 16 — correspondencia **1:1** (Sesión N = Clase N, no hay sesiones dobles)
-- **Semanas de calendario:** 16
+- **Total sesiones:** 11 · **temas del microcurrículo:** 16 — N:1 con 5 excepciones — 11 sesiones de calendario cubren los 16 temas del microcurrículo. La correspondencia por defecto es Sesión N = Clase N (Sesión 1 = Clase 1, Sesión 4 = Clase 6, Sesión 7 = Clase 11, etc.), y en 5 sesiones «dobles» se dictan DOS clases en el mismo bloque de 90 min (Sesión 2 = Clases 2+3, Sesión 3 = Clases 4+5, Sesión 5 = Clases 7+8, Sesión 6 = Clases 9+10, Sesión 11 = Clases 15+16). El mapeo exacto vive en `grupos[].sesiones[].clases_material`; las carpetas `Clases/Clase N - …` y `Kit docente/Clase N/` NO se renumeran — es el mismo patrón que ya usan los otros cuatro cursos (`semestre_2026_2.json`, campo `clases_material` + `sesion_doble`).
+- **Semanas de calendario:** 11
 
-> 16 semanas de calendario para 16 sesiones: ningún festivo de 2026 cae en jueves, así que este grupo no tiene semana autónoma.
+> 11 semanas de calendario para 11 sesiones, cerrando antes de la semana institucional del 22/11/2026. Ningún festivo de 2026 cae en jueves, así que no hay semana autónoma. Las sesiones 2, 3, 5, 6, 11 son dobles: cada una dicta dos Clases del microcurrículo en el mismo bloque de 90 min.
 
-## Aviso sobre las fechas de fin
+## Fechas de fin
 
-**Las fechas de fin caen en la semana de Navidad.** El inicio se corrió una semana a peticion del docente (2026-09-02): los grupos de martes arrancan el 08/09/2026 y el de jueves el 10/09/2026. Con 16 sesiones semanales eso lleva el cierre al 2026-12-24 (jueves, SB141B) y al 2026-12-29 (martes, SB141C y LB141F, ya contando el festivo del 08/12 como semana autónoma). Las dos fechas caen DENTRO del receso de Navidad: el 24/12 es vispera de Navidad y el 29/12 esta entre Navidad y Año Nuevo. Ademas siguen mas de un mes despues del 22/11/2026 en que cierran los otros cuatro cursos del semestre. NINGUNA de las dos es dictable tal cual, y el corte 3 —exposicion final e informe— es justo lo que cae ahi.
+**RESUELTO — el curso se comprimió a 11 sesiones para cerrar el 19-20/11.** El 2026-09-04 el docente confirmó que la última semana de clases es la del 20/11/2026, igual que los otros cuatro cursos del semestre (cierre institucional 22/11/2026). Con el inicio corrido una semana (08/09 martes, 10/09 jueves) solo caben 11 sesiones semanales antes de esa fecha, no las 16 que pedían los 16 temas del microcurrículo. Se aprobó fusionar 5 parejas de temas afines en un solo bloque de 90 min cada una (ver `mapa_sesion_tema` en `curso` y `clases_material`/`sesion_doble` en cada sesión), dejando los 16 temas cubiertos en 11 sesiones. El material de cada Clase (guion, taller, ExamLab) NO se reescribió: sigue completo por Clase, solo cambió cuándo se dicta.
 
-> **Plan B si el programa exige cerrar antes:** Dos opciones, las dos pendientes de confirmar con el programa. (A) Fusionar los temas 15 y 16 en una sola sesion: quedan 15 sesiones y el cierre pasa al 17/12 (jueves) y al 22/12 (martes), antes de Navidad. Cuesta que la socializacion y la autoevaluacion del tema 16 se hacen en el mismo bloque que las exposiciones. (B) Adelantar la exposicion final y el informe a las sesiones 13 y 14, dejando 15 y 16 como semanas autonomas de cierre. Cuesta que el proyecto se sustenta con dos semanas menos de trabajo. No se ha aplicado ninguna: las fechas de este archivo son las del corrimiento pedido, sin comprimir.
+> Ya aplicado: no queda plan B pendiente. Si el programa pidiera MÁS compresión todavía, la siguiente candidata sería fusionar Sesión 8+9 (Clases 12+13, avance y evaluación de impacto), que hoy quedaron sueltas a propósito para no recargar una sola sesión con tres bloques de proyecto seguidos.
 
 ## Dinámica de la sesión (90 min)
 
@@ -43,11 +43,11 @@
 
 | Corte | % | Ventana | Sesiones | Cierre de corte | Desglose |
 |---|---|---|---|---|---|
-| Corte 1 | 30% | 10/09 – 15/10/2026 | 1-6 | Sesión 6 · 15/10/2026 | Evaluación de corte (sesión 6) · 10% · Exposiciones de equipo y actividades en clase · 12% · Asistencia y participación · 8% |
-| Corte 2 | 30% | 22/10 – 19/11/2026 | 7-11 | Sesión 11 · 19/11/2026 | Evaluación de corte (sesión 11) · 10% · Exposiciones de equipo y actividades en clase · 12% · Asistencia y participación · 8% |
-| Corte 3 | 40% | 26/11 – 24/12/2026 | 12-16 | Sesión 16 · 24/12/2026 | Exposición final del proyecto (sesión 15) · 15% · Informe final del proyecto (sesión 16) · 20% · Asistencia y participación · 5% |
+| Corte 1 | 30% | 10/09 – 01/10/2026 | 1-4 | Sesión 4 · 01/10/2026 | Evaluación de corte (sesión 4) · 10% · Exposiciones de equipo y actividades en clase · 12% · Asistencia y participación · 8% |
+| Corte 2 | 30% | 08/10 – 22/10/2026 | 5-7 | Sesión 7 · 22/10/2026 | Evaluación de corte (sesión 7) · 10% · Exposiciones de equipo y actividades en clase · 12% · Asistencia y participación · 8% |
+| Corte 3 | 40% | 29/10 – 19/11/2026 | 8-11 | Sesión 11 · 19/11/2026 | Exposición final del proyecto — Clase 15 (sesión 11) · 15% · Informe final del proyecto — Clase 16 (sesión 11) · 20% · Asistencia y participación · 5% |
 
-> Los tres cierres de corte (sesiones 6, 11 y 16) NUNCA caen en festivo ni en semana autónoma. En este calendario ninguno lo hace.
+> Los tres cierres de corte (sesiones 4, 7 y 11) NUNCA caen en festivo. En este calendario ninguno lo hace: los tres festivos de 2026 en el rango del curso (12/10, 02/11, 16/11) son lunes, y las 11 sesiones semanales son todas martes o jueves.
 
 ## Sesiones
 
@@ -56,21 +56,16 @@
 | Sesión | Fecha | Tipo | Clase de material | Tema | Trabajo independiente | Nota |
 |---|---|---|---|---|---|---|
 | 1 | 10/09/2026 | Virtual (síncrona) | Clase 1 | Presentación del curso y diagnóstico inicial | Revisión de la historia de la Ingeniería de Sistemas | — |
-| 2 | 17/09/2026 | Virtual (síncrona) | Clase 2 | Historia y evolución de la Ingeniería | Elaboración de línea de tiempo | — |
-| 3 | 24/09/2026 | Virtual (síncrona) | Clase 3 | Fundamentos básicos de la Ingeniería de Sistemas | Ensayo sobre impacto social | — |
-| 4 | 01/10/2026 | Virtual (síncrona) | Clase 4 | Principios éticos en la Ingeniería | Análisis crítico del código ético | — |
-| 5 | 08/10/2026 | Virtual (síncrona) | Clase 5 | El rol del ingeniero en el contexto ambiental | Informe sobre sostenibilidad | — |
-| 6 | 15/10/2026 | Virtual (síncrona) | Clase 6 | Análisis de problemas tecnológicos del entorno | Propuesta inicial de solución | cierra Corte 1 (30%) |
-| 7 | 22/10/2026 | Virtual (síncrona) | Clase 7 | Ciclo de vida de los proyectos de ingeniería | Infografía explicativa | — |
-| 8 | 29/10/2026 | Virtual (síncrona) | Clase 8 | Taller de aplicación del ciclo de vida | Ajuste de propuestas de solución | — |
-| 9 | 05/11/2026 | Virtual (síncrona) | Clase 9 | Estrategias de innovación en Ingeniería | Propuesta de mejora | — |
-| 10 | 12/11/2026 | Virtual (síncrona) | Clase 10 | Herramientas digitales aplicadas a la Ingeniería | Práctica básica con herramientas digitales | — |
-| 11 | 19/11/2026 | Virtual (síncrona) | Clase 11 | Taller de prototipado inicial con IA | Corrección del prototipo | cierra Corte 2 (30%) |
-| 12 | 26/11/2026 | Virtual (síncrona) | Clase 12 | Presentación de avances de proyectos | Revisión entre pares | — |
-| 13 | 03/12/2026 | Virtual (síncrona) | Clase 13 | Evaluación de impacto social y ambiental | Informe de evaluación del impacto | — |
-| 14 | 10/12/2026 | Virtual (síncrona) | Clase 14 | Preparación de la presentación final | Ensayo general | — |
-| 15 | 17/12/2026 | Virtual (síncrona) | Clase 15 | Exposición final de proyectos | Ajustes del informe final | — |
-| 16 | 24/12/2026 | Virtual (síncrona) | Clase 16 | Socialización y evaluación final del curso | Autoevaluación | cierra Corte 3 (40%) |
+| 2 | 17/09/2026 | Virtual (síncrona) | Clase 2 y 3 | Historia y evolución de la Ingeniería + Fundamentos básicos de la Ingeniería de Sistemas | Elaboración de línea de tiempo + Ensayo sobre impacto social | sesión doble |
+| 3 | 24/09/2026 | Virtual (síncrona) | Clase 4 y 5 | Principios éticos en la Ingeniería + El rol del ingeniero en el contexto ambiental | Análisis crítico del código ético + Informe sobre sostenibilidad | sesión doble |
+| 4 | 01/10/2026 | Virtual (síncrona) | Clase 6 | Análisis de problemas tecnológicos del entorno | Propuesta inicial de solución | cierra Corte 1 (30%) |
+| 5 | 08/10/2026 | Virtual (síncrona) | Clase 7 y 8 | Ciclo de vida de los proyectos de ingeniería + Taller de aplicación del ciclo de vida | Infografía explicativa + Ajuste de propuestas de solución | sesión doble |
+| 6 | 15/10/2026 | Virtual (síncrona) | Clase 9 y 10 | Estrategias de innovación en Ingeniería + Herramientas digitales aplicadas a la Ingeniería | Propuesta de mejora + Práctica básica con herramientas digitales | sesión doble |
+| 7 | 22/10/2026 | Virtual (síncrona) | Clase 11 | Taller de prototipado inicial con IA | Corrección del prototipo | cierra Corte 2 (30%) |
+| 8 | 29/10/2026 | Virtual (síncrona) | Clase 12 | Presentación de avances de proyectos | Revisión entre pares | — |
+| 9 | 05/11/2026 | Virtual (síncrona) | Clase 13 | Evaluación de impacto social y ambiental | Informe de evaluación del impacto | — |
+| 10 | 12/11/2026 | Virtual (síncrona) | Clase 14 | Preparación de la presentación final | Ensayo general | — |
+| 11 | 19/11/2026 | Virtual (síncrona) | Clase 15 y 16 | Exposición final de proyectos + Socialización y evaluación final del curso | Ajustes del informe final + Autoevaluación | sesión doble · cierra Corte 3 (40%) |
 
 ## Festivos Colombia 2026 (rango del periodo)
 
@@ -80,13 +75,11 @@
 - 08/12/2026 — Inmaculada Concepción (MARTES — fecha fija, no la mueve la Ley Emiliani) — no cae en día de clase de este grupo
 - 25/12/2026 — Navidad (viernes) — no cae en día de clase de este grupo
 
-> No se omite el festivo: la semana se marca como AUTÓNOMA con tarea concreta. Ningún cierre de corte ni sesión de exposición se programa en festivo. En este curso el único festivo que golpea un día de clase es el 08/12/2026 (martes), que afecta a SB141C y LB141F.
+> No se omite el festivo: si un festivo cayera en día de clase, la semana se marcaría como AUTÓNOMA con tarea concreta. En el calendario de 11 sesiones (08/09–19/11) ningún festivo de 2026 cae en martes ni en jueves, así que este curso no tiene ninguna semana autónoma.
 
 ## Pendiente
 
-- Listas de estudiantes de los tres grupos (SB141B, SB141C, LB141F). Sin ellas no se puede fijar el tamaño de los 5 equipos ni imprimir las planillas de asistencia. NUNCA se versionan en git: son datos personales.
-- Confirmar con el programa las fechas de fin de diciembre (ver `alerta_calendario`).
 - Carpetas de Drive del curso (clases y grabadas) y su ID, una por grupo, para que MoverGrabaciones.gs archive las grabaciones de Meet como en los otros cuatro cursos. Al ser tres grupos hacen falta tres pares de carpetas.
-- Enlace fijo de Google Meet de cada grupo (SB141B, SB141C, LB141F) y las cinco salas de grupo creadas de una vez para las 16 sesiones.
+- Enlace fijo de Google Meet de cada grupo (SB141B, SB141C, LB141F) y las cinco salas de grupo creadas de una vez para las 11 sesiones.
 
 Fuente: `config/calendario/introduccion_ingenieria_2026_2.json` (generado por `config/slides/build_uniajc_intro_ing_curso.py`).

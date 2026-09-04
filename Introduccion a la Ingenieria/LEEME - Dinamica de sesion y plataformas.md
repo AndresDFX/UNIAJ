@@ -3,7 +3,7 @@
 > Documento del docente. Responde dos cosas de una vez: **cómo es una sesión de este curso** y **en qué plataformas se trabaja**. Aplica igual a los tres grupos (SB141B, SB141C, LB141F).
 
 - **Código:** FI300101 · **Créditos:** 2 · **Modalidad:** Virtual
-- **Bloque:** 90 min · **16 sesiones** · correspondencia 1:1 Sesión N = Clase N
+- **Bloque:** 90 min · **11 sesiones** para 16 Clases (5 sesiones dobles)
 - **Estrategia:** ABPr — Aprendizaje Basado en Proyectos · **Enfoque:** Aprendizaje basado en competencia + Aprendizaje Invertido
 - **Fuente única de este documento:** `config/calendario/introduccion_ingenieria_2026_2.json`
 
@@ -33,7 +33,7 @@ Toda sesión tiene los mismos cinco bloques y suman exactamente 90 minutos. No h
 
 > **Por qué se arranca 10 minutos después de la hora oficial.** El curso es virtual y entrar a la sesión nunca es instantáneo: hay quien viene de trabajar, quien pelea con el micrófono y quien entra desde el celular. Arrancar a la hora exacta obliga a repetir la primera explicación cinco veces. Esos 10 minutos **no son de descanso**: la pregunta de entrada queda en pantalla compartida y se responde en el muro del curso. A la hora efectiva (14:40 en SB141B / 14:40 en SB141C / 18:40 en LB141F) se arranca el bloque teórico y ahí sí no se espera a nadie.
 
-> **El aula.** Google Meet — enlace fijo por grupo, el mismo las 16 sesiones. La sesión se graba solo si el grupo lo autoriza al inicio; las exposiciones sí se graban porque son evaluadas.
+> **El aula.** Google Meet — enlace fijo por grupo, el mismo las 11 sesiones. La sesión se graba solo si el grupo lo autoriza al inicio; las exposiciones sí se graban porque son evaluadas.
 
 ---
 
@@ -43,7 +43,7 @@ Toda sesión tiene los mismos cinco bloques y suman exactamente 90 minutos. No h
 
 El presupuesto de exposiciones es el que no se puede estirar: 5 equipos × 3 min = 15 min y la sesión cierra a los 90. Si se dejara fijo el tamaño del equipo (por ejemplo «de 4 en 4»), un grupo de 35 daría 9 equipos = 27 min de exposición y la sesión se pasaría 12 min. Por eso lo fijo son los 5 equipos y lo variable es cuánta gente hay en cada uno.
 
-**Una sala de Meet por equipo.** Un equipo = una sala de grupo de Meet, numeradas Equipo 1 a Equipo 5. Las salas se crean una sola vez y se reutilizan las 16 sesiones, así que nadie pierde tiempo repartiéndose. El docente reparte los 15 min de actividad en unos 3 min por sala.
+**Una sala de Meet por equipo.** Un equipo = una sala de grupo de Meet, numeradas Equipo 1 a Equipo 5. Las salas se crean una sola vez y se reutilizan las 11 sesiones, así que nadie pierde tiempo repartiéndose. El docente reparte los 15 min de actividad en unos 3 min por sala.
 
 | Matriculados | Integrantes por equipo | Minutos de exposición |
 |---|---|---|
@@ -87,7 +87,7 @@ El curso es virtual sincrónico: el aula es Google Meet y todas las actividades 
 
 ### diagrams.net (draw.io)
 
-- **Para qué:** Línea de tiempo (sesión 2), ciclo de vida (sesiones 7 y 8), diagramas del proyecto
+- **Para qué:** Línea de tiempo (Clase 2), ciclo de vida (Clases 7 y 8), diagramas del proyecto
 - **Por qué esta y no otra:** Funciona sin cuenta, guarda directo en Drive y exporta PNG para pegar en la exposición.
 - **Cuenta:** No requiere cuenta · **Gratis:** Sí, permanente
 
@@ -99,21 +99,21 @@ El curso es virtual sincrónico: el aula es Google Meet y todas las actividades 
 
 ### Canva
 
-- **Para qué:** Infografía (sesión 7) y póster del proyecto final (sesiones 14 y 15)
+- **Para qué:** Infografía (Clase 7) y póster del proyecto final (Clases 14 y 15)
 - **Por qué esta y no otra:** Plantillas listas: la nota es por el contenido de la infografía, no por saber maquetar. Canva para Educación es gratis con correo institucional.
 - **Cuenta:** Cuenta gratuita o Canva para Educación · **Gratis:** Sí, plan gratuito permanente
 - **Alternativa:** Google Slides, si el estudiante prefiere no crear otra cuenta.
 
 ### ExamLab
 
-- **Para qué:** Entrega del taller de equipo de las 16 sesiones (5 preguntas, 100 puntos), el diagnóstico de la sesión 1 y las dos evaluaciones de corte escritas (sesiones 6 y 11)
+- **Para qué:** Entrega del taller de equipo de las 16 Clases del curso (repartidas en 11 sesiones de calendario), el diagnóstico de la Clase 1 y las dos evaluaciones de corte escritas (sesiones 4 y 7 del calendario, Clases 6 y 11)
 - **Por qué esta y no otra:** Califica solo y deja el resultado por escrito, que es lo que necesita una evaluación en modalidad virtual donde no hay hoja que recoger.
 - **Cuenta:** Enlace del docente · **Gratis:** Sí
 - ⚠️ **ExamLab NO es plataforma oficial de la UNIAJC: es un canal del docente y se usa solo para esto.**
 
 ### Asistente de IA
 
-- **Cuándo:** Solo sesiones 3 (análisis del caso) y 11 (prototipado inicial), que son las dos que el Plan de curso marca.
+- **Cuándo:** Solo Clase 3 (análisis del caso, dentro de la sesión doble 2) y Clase 11 (prototipado inicial, sesión 7), que son las dos que el Plan de curso marca.
 - **Cuál:** Gemini, Claude o ChatGPT en plan gratuito — el que el estudiante ya tenga. No se exige uno en particular.
 - **Regla:** Se entrega el prompt usado y lo que se corrigió a mano. Una respuesta de IA pegada sin revisar no puntúa: el criterio de la sesión es justamente distinguir lo que la herramienta acertó de lo que inventó.
 - **Gratis:** Sí, plan gratuito
@@ -155,9 +155,9 @@ Se explican completas el primer día y quedan como acuerdo del curso. La versió
 | 15 | Exposición final de proyectos | Canva · Google Drive (Docs y Slides) | Valoración de presentaciones |
 | 16 | Socialización y evaluación final del curso | Google Drive (Docs y Slides) · Padlet | Entrega del informe final |
 
-> El campo `temas[].herramientas` dice qué herramienta usa cada sesión. Es la fuente única: el LEEME del docente, el guion de cada clase y el CALENDARIO de cada grupo lo leen de aquí. «Asistente de IA» solo aparece en las sesiones 3 y 11, que son las dos que el Plan de curso marca.
+> El campo `temas[].herramientas` dice qué herramienta usa cada CLASE (no sesión de calendario: desde que hay sesiones dobles, una sesión puede usar las herramientas de dos clases distintas). Es la fuente única: el LEEME del docente, el guion de cada clase y el CALENDARIO de cada grupo lo leen de aquí.
 
-> **Dónde se entrega, en las 16 sesiones: ExamLab.** La columna «Herramientas» dice con qué se *construye* el entregable (el documento del equipo, el diagrama, el prototipo). El taller se *entrega* siempre en ExamLab, en el módulo Talleres: **5 preguntas, una por bloque de la ficha, 100 puntos**. El trabajo es en equipo y la entrega es individual — cada integrante pega lo que el equipo acordó.
+> **Dónde se entrega, en las 16 Clases: ExamLab.** La columna «Herramientas» dice con qué se *construye* el entregable (el documento del equipo, el diagrama, el prototipo). El taller de cada Clase se *entrega* siempre en ExamLab, en el módulo Talleres: **5 preguntas, una por bloque de la ficha, 100 puntos**. En una sesión doble se entregan los dos talleres de esa sesión, cada uno por su cuenta. El trabajo es en equipo y la entrega es individual — cada integrante pega lo que el equipo acordó.
 
 ---
 
@@ -188,9 +188,7 @@ En un curso virtual la pregunta no es «¿y si no hay red en la sala?» sino **�
 
 ## 8. Pendiente
 
-- Listas de estudiantes de los tres grupos (SB141B, SB141C, LB141F). Sin ellas no se puede fijar el tamaño de los 5 equipos ni imprimir las planillas de asistencia. NUNCA se versionan en git: son datos personales.
-- Confirmar con el programa las fechas de fin de diciembre (ver `alerta_calendario`).
 - Carpetas de Drive del curso (clases y grabadas) y su ID, una por grupo, para que MoverGrabaciones.gs archive las grabaciones de Meet como en los otros cuatro cursos. Al ser tres grupos hacen falta tres pares de carpetas.
-- Enlace fijo de Google Meet de cada grupo (SB141B, SB141C, LB141F) y las cinco salas de grupo creadas de una vez para las 16 sesiones.
+- Enlace fijo de Google Meet de cada grupo (SB141B, SB141C, LB141F) y las cinco salas de grupo creadas de una vez para las 11 sesiones.
 
 Fuente: `config/calendario/introduccion_ingenieria_2026_2.json` (generado por `config/slides/build_uniajc_intro_ing_curso.py`).

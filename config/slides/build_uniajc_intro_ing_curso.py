@@ -83,7 +83,7 @@ def build_pptx(codigo):
         ["@@RAP del programa:@@ %s" % c["rap"]]
         + ["**%s** · %s" % tuple(r.split(" · ", 1)) for r in c["raa"]]
         + ["@@Cómo se demuestran:@@ no con un examen final, sino con el **proyecto del equipo** "
-           "que se construye desde la sesión 6 y se expone en la 15."],
+           "que se construye desde el análisis de problemas y se expone en la última sesión."],
         idx=5,
     )
 
@@ -91,8 +91,8 @@ def build_pptx(codigo):
         prs,
         "Así es cada sesión",
         D.timeline_slots(codigo),
-        sub=("Las 16 sesiones tienen la misma estructura. La conocen desde hoy para "
-             "que nadie llegue a los 45 min pensando que todavía hay tiempo."),
+        sub=("Las %d sesiones tienen la misma estructura. La conocen desde hoy para "
+             "que nadie llegue a los 45 min pensando que todavía hay tiempo." % c["n_sesiones"]),
         idx=6,
         nota="Bloque de **%d min** · %s **%s** · inicio efectivo **%s**"
              % (c["duracion_min"], g["dia"], g["horario"].replace(" - ", " – "),
@@ -171,8 +171,8 @@ def build_pptx(codigo):
 
     items = D.contenido_items(codigo)
     aut = D.semanas_autonomas(codigo)
-    sub = "Sesión 0 + **16 sesiones** de 90 min · %s · %s a %s" % (
-        g["dia"], D.ddmmyyyy(g["inicio"]), D.ddmmyyyy(g["fin"]))
+    sub = "Sesión 0 + **%d sesiones** de 90 min · %s · %s a %s" % (
+        c["n_sesiones"], g["dia"], D.ddmmyyyy(g["inicio"]), D.ddmmyyyy(g["fin"]))
     if aut:
         sub += " · incluye **1 semana autónoma** por el festivo del %s" % D.ddmm(aut[0]["fecha"])
     contenido_clases_slide(prs, items, title="CONTENIDO", sub=sub, idx=12, size=12)
@@ -223,17 +223,17 @@ def build_calendario(codigo):
            g["hora_inicio_efectiva"]),
         "- **Modalidad:** Virtual (síncrona) por Google Meet · actividades en plataformas gratuitas en la nube",
         "- **Docente:** %s · `%s`" % (D.DOCENTE, D.CORREO),
-        "- **Total sesiones:** %d · **temas del microcurrículo:** %d — correspondencia "
-        "**1:1** (Sesión N = Clase N, no hay sesiones dobles)" % (c["n_sesiones"], c["n_temas"]),
+        "- **Total sesiones:** %d · **temas del microcurrículo:** %d — %s"
+        % (c["n_sesiones"], c["n_temas"], c["mapa_sesion_tema"]),
         "- **Semanas de calendario:** %d" % g["n_semanas_calendario"],
         "",
         "> %s" % g["nota"],
         "",
-        "## Aviso sobre las fechas de fin",
+        "## Fechas de fin",
         "",
         "**%s.** %s" % (al["titulo"], al["detalle"]),
         "",
-        "> **Plan B si el programa exige cerrar antes:** %s" % al["plan_b"],
+        "> %s" % al["plan_b"],
         "",
         "## Dinámica de la sesión (90 min)",
         "",
@@ -289,10 +289,18 @@ def build_calendario(codigo):
                         "Subir el ensayo (video o fotos) a la carpeta del equipo",
                         s.get("festivo", "festivo")))
             continue
-        t = D.tema(s["tema_n"])
-        nota = "cierra Corte %d (%s)" % (cierres[n]["corte"], cierres[n]["pct"]) if n in cierres else "—"
-        L.append("| %d | %s | Virtual (síncrona) | Clase %d | %s | %s | %s |"
-                 % (n, D.ddmmyyyy(s["fecha"]), s["tema_n"], ta[s["tema_n"]], t["ti"], nota))
+        clases = s["clases_material"]
+        etiqueta_clase = "Clase " + " y ".join(str(c) for c in clases)
+        tema_txt = " + ".join(ta[c] for c in clases)
+        ti_txt = " + ".join(D.tema(c)["ti"] for c in clases)
+        notas = []
+        if s.get("sesion_doble"):
+            notas.append("sesión doble")
+        if n in cierres:
+            notas.append("cierra Corte %d (%s)" % (cierres[n]["corte"], cierres[n]["pct"]))
+        L.append("| %d | %s | Virtual (síncrona) | %s | %s | %s | %s |"
+                 % (n, D.ddmmyyyy(s["fecha"]), etiqueta_clase, tema_txt, ti_txt,
+                    " · ".join(notas) if notas else "—"))
 
     L += ["", "## Festivos Colombia 2026 (rango del periodo)", ""]
     fechas_grupo = {s["fecha"] for s in D.sesiones(codigo)}
@@ -406,7 +414,8 @@ def build_correo(codigo):
     L += [
         "",
         "> **No hay examen final escrito.** El corte 3 se califica con la **exposición "
-        "final del proyecto** (sesión 15) y el **informe final** (sesión 16).",
+        "final del proyecto** y el **informe final**, los dos en la última sesión "
+        "(sesión %d, doble)." % c["n_sesiones"],
         "",
         "### Cómo es una sesión",
         "",
@@ -495,7 +504,7 @@ def build_leeme():
         "",
         "- **Código:** %s · **Créditos:** %d · **Modalidad:** %s"
         % (c["codigo"], c["creditos"], c["modalidad"]),
-        "- **Bloque:** %d min · **%d sesiones** · correspondencia 1:1 Sesión N = Clase N"
+        "- **Bloque:** %d min · **%d sesiones** para 16 Clases (5 sesiones dobles)"
         % (c["duracion_min"], c["n_sesiones"]),
         "- **Estrategia:** %s · **Enfoque:** %s" % (c["estrategia_didactica"], c["enfoque"]),
         "- **Fuente única de este documento:** "
@@ -622,13 +631,15 @@ def build_leeme():
         "",
         # La columna «Herramientas» sale del microcurriculo y dice con QUE se hace el
         # entregable, no DONDE se entrega. Sin esta nota parecia que ExamLab solo se usa en
-        # las tres sesiones donde el microcurriculo lo menciona, cuando el taller de las 16
+        # las tres clases donde el microcurriculo lo menciona, cuando el taller de las 16
         # se entrega ahi.
-        "> **Dónde se entrega, en las 16 sesiones: ExamLab.** La columna «Herramientas» dice "
+        "> **Dónde se entrega, en las 16 Clases: ExamLab.** La columna «Herramientas» dice "
         "con qué se *construye* el entregable (el documento del equipo, el diagrama, el "
-        "prototipo). El taller se *entrega* siempre en ExamLab, en el módulo Talleres: "
-        "**5 preguntas, una por bloque de la ficha, 100 puntos**. El trabajo es en equipo y "
-        "la entrega es individual — cada integrante pega lo que el equipo acordó.",
+        "prototipo). El taller de cada Clase se *entrega* siempre en ExamLab, en el módulo "
+        "Talleres: **5 preguntas, una por bloque de la ficha, 100 puntos**. En una sesión "
+        "doble se entregan los dos talleres de esa sesión, cada uno por su cuenta. El "
+        "trabajo es en equipo y la entrega es individual — cada integrante pega lo que el "
+        "equipo acordó.",
         "",
         "---",
         "",

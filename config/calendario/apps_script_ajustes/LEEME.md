@@ -67,3 +67,36 @@ min**. Este script cambia el calendario, **no el JSON**. Consecuencias:
 
 Cambiar el JSON obliga a decidir qué pasa con esos 30 minutos de material, así que se dejó
 sin tocar a propósito.
+
+## Introducción a la Ingeniería: por qué NO hay un script de ajuste aquí
+
+Hasta el 2026-09-04 hubo un `AjustarFechaIntroIng.gs` que corría una semana las 50 fechas
+de los tres grupos (16-17 sesiones cada uno, terminando en diciembre). Se **borró** ese
+mismo día: el curso pasó de 16 a **11 sesiones de calendario** (5 sesiones dobles, dos
+Clases del microcurrículo en un mismo bloque de 90 min) para cerrar dentro de la ventana
+institucional, y el mapeo sesión-a-fecha que ese script conocía quedó completamente
+obsoleto — no es que las fechas se corrieran otra semana, es que la mitad de las sesiones
+que existían ya no existen como tales (ahora cubren dos Clases cada una) y las fechas de
+diciembre desaparecieron del todo.
+
+Intentar escribir un mapeo fino evento-por-evento entre el calendario viejo (16-17
+sesiones hasta diciembre) y el nuevo (11 sesiones hasta el 17-19/11) es la clase de
+ejercicio donde un error de un día se nota tarde. La instrucción correcta, dado el tamaño
+del cambio, es la más simple y la más segura: **borrar los tres grupos y crearlos de
+nuevo** con el `.gs` consolidado ya regenerado.
+
+```
+eliminarIntroduccionIngenieriaSB141B()
+eliminarIntroduccionIngenieriaSB141C()
+eliminarIntroduccionIngenieriaLB141F()
+
+crearIntroduccionIngenieriaSB141B()
+crearIntroduccionIngenieriaSB141C()
+crearIntroduccionIngenieriaLB141F()
+```
+
+Esto **sí genera salas de Meet nuevas** para las 33 sesiones de los tres grupos —es
+inevitable: el calendario cambió de forma, no de posición—, así que los enlaces que ya se
+hubieran compartido con los tres grupos dejan de servir y hay que volver a compartirlos.
+Sigue sin invitar a nadie ni mandar ningún correo: son bloques del calendario personal del
+docente, igual que siempre.

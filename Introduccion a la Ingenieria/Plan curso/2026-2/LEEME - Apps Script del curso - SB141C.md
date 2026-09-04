@@ -22,11 +22,11 @@ Introduccion a la Ingenieria/Plan curso/2026-2/_privado/CrearEncuentros - Introd
 > python config/calendario/generar_apps_script_encuentros.py
 > ```
 
-Crea **17 eventos** (uno por sesion) en **tu** calendario. **No invita a nadie y
+Crea **11 eventos** (uno por sesion) en **tu** calendario. **No invita a nadie y
 no manda ningun correo:** son bloques tuyos, para que la agenda quede reservada y cada
 sesion traiga su enlace a mano.
 
-16 eventos llevan **su propia sala de Meet**; 1 es una semana autonoma por festivo, que queda en el calendario **sin Meet**.
+Los 11 son sincronicos y cada uno lleva **su propia sala de Meet**.
 
 El enlace de cada sesion queda en **Ubicacion** y al final de la descripcion del
 evento: de ahi lo copias para compartirlo con el grupo por donde de verdad les

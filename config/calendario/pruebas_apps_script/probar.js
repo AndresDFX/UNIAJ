@@ -609,11 +609,18 @@ console.log('\n=== 24. Estan TODOS los cursos del periodo (contra los dos JSON) 
           REF.CURSOS.every((c) => esperados.some((e) => e.codigo === c.codigo && e.grupo === c.grupo)),
           REF.CURSOS.filter((c) => !esperados.some((e) => e.codigo === c.codigo && e.grupo === c.grupo))
             .map((c) => c.key).join(' '));
-  // Las 2 semanas autonomas de diciembre son el caso raro: sin numero de sesion y sin Meet.
+  // Las semanas autonomas son el caso raro: sin numero de sesion y sin Meet. Antes las
+  // ponian los grupos de Introduccion a la Ingenieria por el festivo del 08/12, pero desde
+  // que sus 11 sesiones cierran en noviembre ningun festivo de 2026 cae en su dia de clase:
+  // hoy no hay ninguna. Se prueba condicional para que la regla se siga comprobando el dia
+  // que un festivo vuelva a caer en dia de clase, sin fallar mientras tanto.
   const sinN = REF.CURSOS.reduce((a, c) => a.concat(
     c.sesiones.filter((s) => s.subject.indexOf('Semana autónoma') !== -1)), []);
-  afirmar('las semanas autonomas de diciembre van sin Meet',
-          sinN.length > 0 && sinN.every((s) => !s.meet), sinN.length + ' encontradas');
+  if (sinN.length > 0) {
+    afirmar('las semanas autonomas van sin Meet', sinN.every((s) => !s.meet), sinN.length + ' encontradas');
+  } else {
+    console.log('       (0 semanas autonomas en este periodo: nada que probar)');
+  }
   afirmar('ningun titulo quedo con un hueco sin llenar (None/undefined/NaN)',
           !REF.CURSOS.some((c) => c.sesiones.some((s) =>
             /None|undefined|NaN/.test(s.subject) || /None|undefined|NaN/.test(s.desc || ''))));
@@ -667,11 +674,23 @@ console.log('\n=== 26. El barrido de fantasmas no se sale del rango DEL CURSO ==
     if (!clave) throw new Error('sin funcion de borrado para ' + corto.key);
     h.ctx.SIMULAR = false;
     h.ctx[clave.replace('eliminar', 'crear')]();
-    // Un apunte PERSONAL del docente: fuera del rango del curso (diciembre), dentro del rango
-    // global, a la hora del curso y con el nombre de la asignatura en el titulo. Es exactamente
-    // el evento que el barrido global se llevaria.
+    // Un apunte PERSONAL del docente: fuera del rango del curso, dentro del rango global, a
+    // la hora del curso y con el nombre de la asignatura en el titulo. Es exactamente el
+    // evento que el barrido global se llevaria.
+    //
+    // El offset NO es fijo: antes el hueco entre el fin de un curso corto y el FIN global
+    // eran semanas (Introduccion a la Ingenieria llegaba a diciembre), pero desde que sus 11
+    // sesiones cierran dentro de la ventana institucional el hueco puede ser de pocos dias.
+    // Un offset fijo mas grande que el hueco disponible plantaria la sonda FUERA del rango
+    // global y la prueba dejaria de probar nada sin que nadie lo notara.
     const ini = corto.sesiones[0].ini.split(':').map(Number);
-    const d = new Date(Date.parse(corto.fin + 'T00:00:00') + 21 * 864e5);
+    const gapDias = Math.round((Date.parse(h.ctx.FIN) - Date.parse(corto.fin)) / 864e5);
+    if (gapDias < 1) {
+      afirmar('hay margen entre el fin de un curso corto y el FIN global (si no, esta prueba no aplica)',
+              false, 'gap=' + gapDias + ' dias entre ' + corto.fin + ' y ' + h.ctx.FIN);
+    }
+    const offset = Math.max(1, Math.min(21, gapDias));
+    const d = new Date(Date.parse(corto.fin + 'T00:00:00') + offset * 864e5);
     const dentroDelGlobal = d.toISOString().slice(0, 10) <= h.ctx.FIN;
     afirmar('la fecha de la sonda cae dentro del rango GLOBAL (si no, no prueba nada)',
             dentroDelGlobal, d.toISOString().slice(0, 10) + ' vs ' + h.ctx.FIN);

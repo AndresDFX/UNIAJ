@@ -1,9 +1,9 @@
-# CLAVE DOCENTE · Evaluación del Corte 2 (sesión 11)
+# CLAVE DOCENTE · Evaluación del Corte 2 (sesión 7)
 
 > **Documento interno.** No va en `Clases/` ni se comparte con el grupo. Contiene las respuestas y las bandas de calificación.
 
 - **Curso:** Introducción a la Ingeniería (FI300101)
-- **Cubre:** las sesiones 7 a 11 · **Total:** 100 puntos
+- **Cubre:** las Clases 7 a 11 · **Total:** 100 puntos
 - **Peso:** 10% de la nota final del curso
 - **Reparto:** 6 cerradas (51 pts) y 4 abiertas (49 pts)
 
@@ -11,7 +11,7 @@ Las **6 cerradas** las califica la plataforma. Lo que exige tiempo del docente s
 
 ---
 
-## Pregunta 1 · Seleccion unica · 7 pts · sale de la sesión 7
+## Pregunta 1 · Seleccion unica · 7 pts · sale de la Clase 7
 
 **Donde cuesta mas corregir un requisito mal escrito**
 
@@ -36,7 +36,7 @@ Marcar la cuarta. Confunde el tamaño del texto con el costo del cambio, que es 
 
 ---
 
-## Pregunta 2 · Seleccion multiple · 8 pts · sale de la sesión 7
+## Pregunta 2 · Seleccion multiple · 8 pts · sale de la Clase 7
 
 **Requisito funcional o no funcional**
 
@@ -62,7 +62,7 @@ Marcar la cuarta porque incluye «sin ir a la biblioteca» y suena a condición.
 
 ---
 
-## Pregunta 3 · Respuesta escrita · 13 pts · sale de la sesión 7
+## Pregunta 3 · Respuesta escrita · 13 pts · sale de la Clase 7
 
 **Un requisito de su proyecto, con su criterio de aceptacion**
 
@@ -98,7 +98,7 @@ Copiar el requisito y poner como criterio el mismo requisito en otras palabras. 
 
 ---
 
-## Pregunta 4 · Seleccion unica · 8 pts · sale de la sesión 8
+## Pregunta 4 · Seleccion unica · 8 pts · sale de la Clase 8
 
 **Para que sirve la matriz de criterios**
 
@@ -123,7 +123,7 @@ Marcar la segunda. Es la trampa de la sesión 8: la matriz ordena el razonamient
 
 ---
 
-## Pregunta 5 · Respuesta escrita · 14 pts · sale de la sesión 8
+## Pregunta 5 · Respuesta escrita · 14 pts · sale de la Clase 8
 
 **Que quedo fuera del alcance minimo de su proyecto**
 
@@ -161,7 +161,7 @@ Probar con un integrante del equipo. Quien construyó sabe dónde tocar, así qu
 
 ---
 
-## Pregunta 6 · Seleccion multiple · 10 pts · sale de la sesión 9
+## Pregunta 6 · Seleccion multiple · 10 pts · sale de la Clase 9
 
 **Que hace utilizable una fuente**
 
@@ -187,7 +187,7 @@ Dejar sin marcar la segunda. Cuesta creer que «no encontramos nada» puntúe, p
 
 ---
 
-## Pregunta 7 · Respuesta escrita · 12 pts · sale de la sesión 9
+## Pregunta 7 · Respuesta escrita · 12 pts · sale de la Clase 9
 
 **Uno de sus antecedentes, y que van a hacer distinto**
 
@@ -223,7 +223,7 @@ Traer una ficha sin el «qué le falta». Es el único de los seis campos que ob
 
 ---
 
-## Pregunta 8 · Seleccion unica · 8 pts · sale de la sesión 10
+## Pregunta 8 · Seleccion unica · 8 pts · sale de la Clase 10
 
 **Que nivel de fidelidad conviene**
 
@@ -248,7 +248,7 @@ Marcar la segunda. Es la intuición natural y es exactamente la que la sesión 1
 
 ---
 
-## Pregunta 9 · Seleccion multiple · 10 pts · sale de la sesión 10
+## Pregunta 9 · Seleccion multiple · 10 pts · sale de la Clase 10
 
 **Que se califica de un prototipo**
 
@@ -274,7 +274,7 @@ Dejar sin marcar la tercera. La regla de datos inventados se lee como una formal
 
 ---
 
-## Pregunta 10 · Respuesta escrita · 10 pts · sale de la sesión 11
+## Pregunta 10 · Respuesta escrita · 10 pts · sale de la Clase 11
 
 **Una correccion que le hicieron al asistente**
 

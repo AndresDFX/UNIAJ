@@ -159,8 +159,9 @@ def cursos_introduccion_ingenieria() -> list[tuple[str, dict]]:
     - `tipo: 'autonoma_festivo'` -> `'autonoma'`. El motor y `ev.titulo` comparan contra
       `'autonoma'` exacto; sin la traducción, la semana del festivo del 08/12 saldría con
       sala de Meet y titulada `[SINCRONICO]`.
-    - `tema_n` -> `tema`, tomando el título legible de `temas[].tema_acentos` (en `temas[]`
-      NO hay clave `titulo`).
+    - `clases_material` (una o dos Clases) -> `tema`, uniendo los títulos legibles de
+      `temas[].tema_acentos` con « + » cuando la sesión es doble (en `temas[]` NO hay clave
+      `titulo`). `sesion_doble` se copia tal cual: ya viene del JSON.
     - `cierra_corte` -> `cierre_corte`, ya redactado. NO se usa `parcial`: este curso no
       tiene parciales escritos y `ev.titulo` titularía los eventos «Parcial N · …».
 
@@ -181,7 +182,7 @@ def cursos_introduccion_ingenieria() -> list[tuple[str, dict]]:
     for g in DATA_II["grupos"]:
         clases = []
         for s in g["sesiones"]:
-            tema_n = s.get("tema_n")
+            clases_material = s.get("clases_material") or []
             autonoma = str(s.get("tipo", "")).startswith("autonoma")
             clases.append({
                 "n": s.get("sesion"),
@@ -189,9 +190,10 @@ def cursos_introduccion_ingenieria() -> list[tuple[str, dict]]:
                 "tipo": "autonoma" if autonoma else s["tipo"],
                 "festivo": s.get("festivo"),
                 "parcial": False,
-                "clases_material": [tema_n] if tema_n else [],
-                "tema": temas.get(tema_n) or (s.get("tarea") or "Trabajo autónomo del equipo"),
-                "sesion_doble": False,
+                "clases_material": clases_material,
+                "tema": (" + ".join(temas[cn] for cn in clases_material)
+                         if clases_material else (s.get("tarea") or "Trabajo autónomo del equipo")),
+                "sesion_doble": bool(s.get("sesion_doble")),
                 "cierre_corte": (_texto_cierre_corte(s["cierra_corte"])
                                  if s.get("cierra_corte") else None),
                 "tarea": s.get("tarea"),

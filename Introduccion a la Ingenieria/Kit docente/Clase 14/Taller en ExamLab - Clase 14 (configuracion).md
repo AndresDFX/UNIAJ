@@ -7,7 +7,7 @@
 - **Entregable de la clase:** el guion con tiempos en el documento del equipo, las diapositivas, y en la carpeta del equipo: la presentación en PDF y las capturas de cada paso de la demostración
 - **Trabajo:** en equipo (27 min en salas de grupo) · **la entrega en ExamLab es individual**: cada integrante pega lo que su equipo acordo
 - **Exposicion:** 4 min por equipo, habla el vocero
-- **Fechas por grupo:** **SB141B** jueves 10/12/2026 (14:30–16:00) · **SB141C** martes 15/12/2026 (14:30–16:00) · **LB141F** martes 15/12/2026 (18:30–20:00)
+- **Fechas por grupo:** **SB141B** jueves sin fecha (14:30–16:00) · **SB141C** martes sin fecha (14:30–16:00) · **LB141F** martes sin fecha (18:30–20:00)
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente. Este documento trae el texto exacto de cada campo para copiar y pegar.

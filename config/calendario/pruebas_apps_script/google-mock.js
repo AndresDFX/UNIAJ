@@ -23,6 +23,7 @@ class FakeEvent {
     this.description = (opts && opts.description) || '';
     this.location = '';
     this.guests = [];
+    this.tags = {};
     this.id = 'ev' + (++SEQ);
     this.deleted = false;
     this.conferenceData = null;
@@ -36,6 +37,17 @@ class FakeEvent {
     }
   }
   getTitle() { return this.title; }
+  /** Renombrar un evento que ya existe. Lo usa `AjustarFechaIntroIng.gs` para el caso que
+   * cambia de tipo (Sesión <-> Semana autónoma): no borra el evento, solo su título. */
+  setTitle(v) { this.cal.escrituras++; this.title = v; return this; }
+  /** `CalendarEvent.setTag/getTag` reales de Apps Script: metadato invisible por evento,
+   * key-value, que no toca titulo/descripcion/ubicacion. `AjustarFechaIntroIng.gs` lo usa
+   * para saber «ya migre este evento», porque el dato NO se puede sacar solo de la fecha:
+   * la tabla de fechas esta encadenada (la fecha nueva de una sesion ES la fecha vieja de
+   * la siguiente), y comparar solo por fecha no distingue un evento ya migrado de uno que
+   * todavia no le tocaba, si los dos terminan coincidiendo en la misma casilla del calendario. */
+  setTag(k, v) { this.cal.escrituras++; this.tags[k] = String(v); return this; }
+  getTag(k) { return Object.prototype.hasOwnProperty.call(this.tags, k) ? this.tags[k] : null; }
   getId() { return this.id + '@google.com'; }
   getStartTime() { return this.start; }
   getEndTime() { return this.end; }

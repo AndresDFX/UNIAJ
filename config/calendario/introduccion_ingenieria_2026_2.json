@@ -1,6 +1,6 @@
 {
-  "_comentario": "Fuente de verdad UNICA de Introduccion a la Ingenieria (FI300101) en 2026-2. Vive en su propio archivo y NO dentro de semestre_2026_2.json a proposito: ese calendario describe el semestre acortado de 13 sesiones de los cuatro cursos virtuales (24/08 -> 22/11, un solo grupo por curso, con carpetas de Drive y parciales 1/2/3). Este curso tampoco encaja en ese molde aunque comparta la modalidad virtual: tiene 16 sesiones de 90 min, TRES grupos con dos dias distintos, y su esquema de corte cierra en las sesiones 6/11/16 con evaluacion de corte en ExamLab en vez de parcial escrito tradicional. Meterlo en cursos{} habria roto validar_calendario.py (que valida 13 sesiones contra INICIO/FIN y exige carpetas_drive) sin ganar nada.",
-  "_actualizado": "2026-09-02",
+  "_comentario": "Fuente de verdad UNICA de Introduccion a la Ingenieria (FI300101) en 2026-2. Vive en su propio archivo y NO dentro de semestre_2026_2.json a proposito: ese calendario describe el semestre acortado de 13 sesiones de los cuatro cursos virtuales (24/08 -> 22/11, un solo grupo por curso, con carpetas de Drive y parciales 1/2/3). Este curso tampoco encaja en ese molde aunque comparta la modalidad virtual: tiene 11 sesiones de 90 min (16 temas, 5 sesiones dobles), TRES grupos con dos dias distintos, y su esquema de corte cierra en las sesiones 4/7/11 con evaluacion de corte en ExamLab en vez de parcial escrito tradicional. Meterlo en cursos{} habria roto validar_calendario.py (que valida 13 sesiones contra INICIO/FIN y exige carpetas_drive) sin ganar nada.",
+  "_actualizado": "2026-09-04",
   "periodo": "2026-2",
   "curso": {
     "key": "introduccion_ingenieria",
@@ -19,15 +19,15 @@
     "modalidad": "Virtual",
     "ambiente": "Virtual sincrónico por Google Meet (salas de grupo para el trabajo en equipo) + plataformas gratuitas en la nube",
     "duracion_min": 90,
-    "n_sesiones": 16,
+    "n_sesiones": 11,
     "n_temas": 16,
-    "mapa_sesion_tema": "1:1 — Sesión N dicta el tema N. No hay sesiones dobles ni renumeración de material: Sesión N = Clase N.",
+    "mapa_sesion_tema": "N:1 con 5 excepciones — 11 sesiones de calendario cubren los 16 temas del microcurrículo. La correspondencia por defecto es Sesión N = Clase N (Sesión 1 = Clase 1, Sesión 4 = Clase 6, Sesión 7 = Clase 11, etc.), y en 5 sesiones «dobles» se dictan DOS clases en el mismo bloque de 90 min (Sesión 2 = Clases 2+3, Sesión 3 = Clases 4+5, Sesión 5 = Clases 7+8, Sesión 6 = Clases 9+10, Sesión 11 = Clases 15+16). El mapeo exacto vive en `grupos[].sesiones[].clases_material`; las carpetas `Clases/Clase N - …` y `Kit docente/Clase N/` NO se renumeran — es el mismo patrón que ya usan los otros cuatro cursos (`semestre_2026_2.json`, campo `clases_material` + `sesion_doble`).",
     "horas": {
       "trabajo_dirigido": 16,
       "trabajo_independiente_dirigido": 16,
       "trabajo_independiente": 32
     },
-    "_nota_horas": "El microcurrículo declara 16 h de Trabajo Dirigido, pero 16 sesiones de 90 min son 24 h de aula. La diferencia (8 h) queda anotada para el docente: o el microcurrículo cuenta solo la fracción teórica del bloque, o hay una inconsistencia que conviene aclarar con el programa. El material se construye sobre las 16 sesiones del Plan de curso, que es el documento operativo.",
+    "_nota_horas": "El microcurrículo declara 16 h de Trabajo Dirigido; 11 sesiones de 90 min son 16.5 h de aula, la cifra más cercana de las dos versiones de calendario que tuvo este curso. El material (guiones, talleres, ExamLab) sigue construido sobre los 16 temas originales; lo que cambió es cuántas sesiones de calendario los reparten.",
     "objeto_estudio": "Fundamentos, principios y contexto de la Ingeniería de Sistemas.",
     "objetivo": "Reconocer los fundamentos y campos de acción de la Ingeniería de Sistemas para comprender su impacto social, ambiental y tecnológico, favoreciendo el desarrollo de soluciones sostenibles.",
     "rap": "Desarrolla soluciones de software para necesidades tecnológicas mediante el uso eficiente de recursos y adaptación responsable al entorno.",
@@ -140,7 +140,7 @@
       ],
       "excepcion": "Si un grupo tiene menos de 10 matriculados se baja a 4 equipos y los 3 min liberados se suman a la actividad. Es la única excepción prevista.",
       "regla_rotacion": "Los equipos son estables todo el semestre (el proyecto de ABPr es del equipo), pero el VOCERO rota en cada sesión y se anota en la bitácora del equipo: al final del semestre todos han expuesto y todos han compartido pantalla.",
-      "salas": "Un equipo = una sala de grupo de Meet, numeradas Equipo 1 a Equipo 5. Las salas se crean una sola vez y se reutilizan las 16 sesiones, así que nadie pierde tiempo repartiéndose. El docente reparte los 15 min de actividad en unos 3 min por sala.",
+      "salas": "Un equipo = una sala de grupo de Meet, numeradas Equipo 1 a Equipo 5. Las salas se crean una sola vez y se reutilizan las 11 sesiones, así que nadie pierde tiempo repartiéndose. El docente reparte los 15 min de actividad en unos 3 min por sala.",
       "ausencias": "En virtual siempre falta alguien: el documento del equipo vive en Drive, así que el trabajo no se pierde si un integrante se cae de la sesión. Si el vocero del día no se conecta, expone quien siga en la lista de rotación; la nota es del equipo, no del vocero."
     },
     "reloj_por_grupo": {
@@ -160,7 +160,7 @@
       ]
     },
     "_nota_tildes": "Este archivo SI lleva tildes: casi todo su texto acaba proyectado en una diapositiva o impreso en un documento del docente. La convencion de escribir sin tildes aplica a los modulos de datos .py de los talleres, donde el problema era el escapado de cadenas; en JSON no existe ese riesgo.",
-    "plataforma_aula": "Google Meet — enlace fijo por grupo, el mismo las 16 sesiones. La sesión se graba solo si el grupo lo autoriza al inicio; las exposiciones sí se graban porque son evaluadas."
+    "plataforma_aula": "Google Meet — enlace fijo por grupo, el mismo las 11 sesiones. La sesión se graba solo si el grupo lo autoriza al inicio; las exposiciones sí se graban porque son evaluadas."
   },
   "plataformas": {
     "_comentario": "El curso es virtual sincrónico: el aula es Google Meet y todas las actividades corren en plataformas gratuitas y en la nube. «Gratuitas» aquí significa plan gratuito permanente, no prueba de 14 días, y sin pedir tarjeta de crédito en ningún momento. «En la nube» significa que el trabajo del equipo sobrevive a que se caiga la conexión de un integrante.",
@@ -202,7 +202,7 @@
       {
         "nombre": "diagrams.net (draw.io)",
         "logo": "drawio.png",
-        "uso": "Línea de tiempo (sesión 2), ciclo de vida (sesiones 7 y 8), diagramas del proyecto",
+        "uso": "Línea de tiempo (Clase 2), ciclo de vida (Clases 7 y 8), diagramas del proyecto",
         "por_que": "Funciona sin cuenta, guarda directo en Drive y exporta PNG para pegar en la exposición.",
         "cuenta": "No requiere cuenta",
         "gratis": "Sí, permanente"
@@ -218,7 +218,7 @@
       {
         "nombre": "Canva",
         "logo": "canva.png",
-        "uso": "Infografía (sesión 7) y póster del proyecto final (sesiones 14 y 15)",
+        "uso": "Infografía (Clase 7) y póster del proyecto final (Clases 14 y 15)",
         "por_que": "Plantillas listas: la nota es por el contenido de la infografía, no por saber maquetar. Canva para Educación es gratis con correo institucional.",
         "cuenta": "Cuenta gratuita o Canva para Educación",
         "gratis": "Sí, plan gratuito permanente",
@@ -228,7 +228,7 @@
       {
         "nombre": "ExamLab",
         "logo": "examlab.png",
-        "uso": "Entrega del taller de equipo de las 16 sesiones (5 preguntas, 100 puntos), el diagnóstico de la sesión 1 y las dos evaluaciones de corte escritas (sesiones 6 y 11)",
+        "uso": "Entrega del taller de equipo de las 16 Clases del curso (repartidas en 11 sesiones de calendario), el diagnóstico de la Clase 1 y las dos evaluaciones de corte escritas (sesiones 4 y 7 del calendario, Clases 6 y 11)",
         "por_que": "Califica solo y deja el resultado por escrito, que es lo que necesita una evaluación en modalidad virtual donde no hay hoja que recoger.",
         "cuenta": "Enlace del docente",
         "gratis": "Sí",
@@ -236,7 +236,7 @@
       }
     ],
     "asistente_ia": {
-      "cuando": "Solo sesiones 3 (análisis del caso) y 11 (prototipado inicial), que son las dos que el Plan de curso marca.",
+      "cuando": "Solo Clase 3 (análisis del caso, dentro de la sesión doble 2) y Clase 11 (prototipado inicial, sesión 7), que son las dos que el Plan de curso marca.",
       "opciones": "Gemini, Claude o ChatGPT en plan gratuito — el que el estudiante ya tenga. No se exige uno en particular.",
       "regla": "Se entrega el prompt usado y lo que se corrigió a mano. Una respuesta de IA pegada sin revisar no puntúa: el criterio de la sesión es justamente distinguir lo que la herramienta acertó de lo que inventó.",
       "gratis": "Sí, plan gratuito"
@@ -263,7 +263,7 @@
       "**Sin datos personales de terceros.** Si el caso los trae, se anonimizan.",
       "**El trabajo vive en la nube.** Si se te cae la conexión, tu equipo sigue y no se pierde nada."
     ],
-    "_nota_mapa_sesiones": "El campo `temas[].herramientas` dice qué herramienta usa cada sesión. Es la fuente única: el LEEME del docente, el guion de cada clase y el CALENDARIO de cada grupo lo leen de aquí. «Asistente de IA» solo aparece en las sesiones 3 y 11, que son las dos que el Plan de curso marca.",
+    "_nota_mapa_sesiones": "El campo `temas[].herramientas` dice qué herramienta usa cada CLASE (no sesión de calendario: desde que hay sesiones dobles, una sesión puede usar las herramientas de dos clases distintas). Es la fuente única: el LEEME del docente, el guion de cada clase y el CALENDARIO de cada grupo lo leen de aquí.",
     "plan_b": {
       "titulo": "Plan B: se cayó la conexión",
       "de_un_integrante": "El equipo sigue. El documento está en Drive y el trabajo hecho ya está guardado. Quien se cayó vuelve a entrar a la sala de su equipo; si no alcanza, aporta por el documento.",
@@ -277,11 +277,11 @@
     {
       "corte": 1,
       "pct": "30%",
-      "sesiones": "1-6",
-      "cierra_en_sesion": 6,
-      "cierre": "Análisis de problemas tecnológicos del entorno (primer corte evaluativo)",
+      "sesiones": "1-4",
+      "cierra_en_sesion": 4,
+      "cierre": "Análisis de problemas tecnológicos del entorno — Clase 6 (primer corte evaluativo)",
       "desglose": [
-        "Evaluación de corte (sesión 6) · 10%",
+        "Evaluación de corte (sesión 4) · 10%",
         "Exposiciones de equipo y actividades en clase · 12%",
         "Asistencia y participación · 8%"
       ]
@@ -289,11 +289,11 @@
     {
       "corte": 2,
       "pct": "30%",
-      "sesiones": "7-11",
-      "cierra_en_sesion": 11,
-      "cierre": "Taller de prototipado inicial con IA (segundo corte evaluativo)",
+      "sesiones": "5-7",
+      "cierra_en_sesion": 7,
+      "cierre": "Taller de prototipado inicial con IA — Clase 11 (segundo corte evaluativo)",
       "desglose": [
-        "Evaluación de corte (sesión 11) · 10%",
+        "Evaluación de corte (sesión 7) · 10%",
         "Exposiciones de equipo y actividades en clase · 12%",
         "Asistencia y participación · 8%"
       ]
@@ -301,17 +301,17 @@
     {
       "corte": 3,
       "pct": "40%",
-      "sesiones": "12-16",
-      "cierra_en_sesion": 16,
-      "cierre": "Socialización y evaluación final del curso",
+      "sesiones": "8-11",
+      "cierra_en_sesion": 11,
+      "cierre": "Socialización y evaluación final del curso — Clases 15+16 (sesión doble de cierre)",
       "desglose": [
-        "Exposición final del proyecto (sesión 15) · 15%",
-        "Informe final del proyecto (sesión 16) · 20%",
+        "Exposición final del proyecto — Clase 15 (sesión 11) · 15%",
+        "Informe final del proyecto — Clase 16 (sesión 11) · 20%",
         "Asistencia y participación · 5%"
       ]
     }
   ],
-  "regla_evaluacion": "Los tres cierres de corte (sesiones 6, 11 y 16) NUNCA caen en festivo ni en semana autónoma. En este calendario ninguno lo hace.",
+  "regla_evaluacion": "Los tres cierres de corte (sesiones 4, 7 y 11) NUNCA caen en festivo. En este calendario ninguno lo hace: los tres festivos de 2026 en el rango del curso (12/10, 02/11, 16/11) son lunes, y las 11 sesiones semanales son todas martes o jueves.",
   "temas": [
     {
       "n": 1,
@@ -548,11 +548,11 @@
     "2026-12-08": "Inmaculada Concepción (MARTES — fecha fija, no la mueve la Ley Emiliani)",
     "2026-12-25": "Navidad (viernes)"
   },
-  "regla_festivos": "No se omite el festivo: la semana se marca como AUTÓNOMA con tarea concreta. Ningún cierre de corte ni sesión de exposición se programa en festivo. En este curso el único festivo que golpea un día de clase es el 08/12/2026 (martes), que afecta a SB141C y LB141F.",
+  "regla_festivos": "No se omite el festivo: si un festivo cayera en día de clase, la semana se marcaría como AUTÓNOMA con tarea concreta. En el calendario de 11 sesiones (08/09–19/11) ningún festivo de 2026 cae en martes ni en jueves, así que este curso no tiene ninguna semana autónoma.",
   "alerta_calendario": {
-    "titulo": "Las fechas de fin caen en la semana de Navidad",
-    "detalle": "El inicio se corrió una semana a peticion del docente (2026-09-02): los grupos de martes arrancan el 08/09/2026 y el de jueves el 10/09/2026. Con 16 sesiones semanales eso lleva el cierre al 2026-12-24 (jueves, SB141B) y al 2026-12-29 (martes, SB141C y LB141F, ya contando el festivo del 08/12 como semana autónoma). Las dos fechas caen DENTRO del receso de Navidad: el 24/12 es vispera de Navidad y el 29/12 esta entre Navidad y Año Nuevo. Ademas siguen mas de un mes despues del 22/11/2026 en que cierran los otros cuatro cursos del semestre. NINGUNA de las dos es dictable tal cual, y el corte 3 —exposicion final e informe— es justo lo que cae ahi.",
-    "plan_b": "Dos opciones, las dos pendientes de confirmar con el programa. (A) Fusionar los temas 15 y 16 en una sola sesion: quedan 15 sesiones y el cierre pasa al 17/12 (jueves) y al 22/12 (martes), antes de Navidad. Cuesta que la socializacion y la autoevaluacion del tema 16 se hacen en el mismo bloque que las exposiciones. (B) Adelantar la exposicion final y el informe a las sesiones 13 y 14, dejando 15 y 16 como semanas autonomas de cierre. Cuesta que el proyecto se sustenta con dos semanas menos de trabajo. No se ha aplicado ninguna: las fechas de este archivo son las del corrimiento pedido, sin comprimir."
+    "titulo": "RESUELTO — el curso se comprimió a 11 sesiones para cerrar el 19-20/11",
+    "detalle": "El 2026-09-04 el docente confirmó que la última semana de clases es la del 20/11/2026, igual que los otros cuatro cursos del semestre (cierre institucional 22/11/2026). Con el inicio corrido una semana (08/09 martes, 10/09 jueves) solo caben 11 sesiones semanales antes de esa fecha, no las 16 que pedían los 16 temas del microcurrículo. Se aprobó fusionar 5 parejas de temas afines en un solo bloque de 90 min cada una (ver `mapa_sesion_tema` en `curso` y `clases_material`/`sesion_doble` en cada sesión), dejando los 16 temas cubiertos en 11 sesiones. El material de cada Clase (guion, taller, ExamLab) NO se reescribió: sigue completo por Clase, solo cambió cuándo se dicta.",
+    "plan_b": "Ya aplicado: no queda plan B pendiente. Si el programa pidiera MÁS compresión todavía, la siguiente candidata sería fusionar Sesión 8+9 (Clases 12+13, avance y evaluación de impacto), que hoy quedaron sueltas a propósito para no recargar una sola sesión con tres bloques de proyecto seguidos."
   },
   "grupos": [
     {
@@ -563,106 +563,114 @@
       "hora_inicio_efectiva": "14:40",
       "hora_fin": "16:00",
       "inicio": "2026-09-10",
-      "fin": "2026-12-24",
-      "n_semanas_calendario": 16,
-      "nota": "16 semanas de calendario para 16 sesiones: ningún festivo de 2026 cae en jueves, así que este grupo no tiene semana autónoma.",
+      "fin": "2026-11-19",
+      "n_semanas_calendario": 11,
+      "nota": "11 semanas de calendario para 11 sesiones, cerrando antes de la semana institucional del 22/11/2026. Ningún festivo de 2026 cae en jueves, así que no hay semana autónoma. Las sesiones 2, 3, 5, 6, 11 son dobles: cada una dicta dos Clases del microcurrículo en el mismo bloque de 90 min.",
       "sesiones": [
         {
           "sesion": 1,
           "fecha": "2026-09-10",
-          "tema_n": 1,
+          "clases_material": [
+            1
+          ],
+          "sesion_doble": false,
           "tipo": "virtual"
         },
         {
           "sesion": 2,
           "fecha": "2026-09-17",
-          "tema_n": 2,
+          "clases_material": [
+            2,
+            3
+          ],
+          "sesion_doble": true,
           "tipo": "virtual"
         },
         {
           "sesion": 3,
           "fecha": "2026-09-24",
-          "tema_n": 3,
+          "clases_material": [
+            4,
+            5
+          ],
+          "sesion_doble": true,
           "tipo": "virtual"
         },
         {
           "sesion": 4,
           "fecha": "2026-10-01",
-          "tema_n": 4,
-          "tipo": "virtual"
+          "clases_material": [
+            6
+          ],
+          "sesion_doble": false,
+          "tipo": "virtual",
+          "cierra_corte": 1
         },
         {
           "sesion": 5,
           "fecha": "2026-10-08",
-          "tema_n": 5,
+          "clases_material": [
+            7,
+            8
+          ],
+          "sesion_doble": true,
           "tipo": "virtual"
         },
         {
           "sesion": 6,
           "fecha": "2026-10-15",
-          "tema_n": 6,
-          "tipo": "virtual",
-          "cierra_corte": 1
+          "clases_material": [
+            9,
+            10
+          ],
+          "sesion_doble": true,
+          "tipo": "virtual"
         },
         {
           "sesion": 7,
           "fecha": "2026-10-22",
-          "tema_n": 7,
-          "tipo": "virtual"
+          "clases_material": [
+            11
+          ],
+          "sesion_doble": false,
+          "tipo": "virtual",
+          "cierra_corte": 2
         },
         {
           "sesion": 8,
           "fecha": "2026-10-29",
-          "tema_n": 8,
+          "clases_material": [
+            12
+          ],
+          "sesion_doble": false,
           "tipo": "virtual"
         },
         {
           "sesion": 9,
           "fecha": "2026-11-05",
-          "tema_n": 9,
+          "clases_material": [
+            13
+          ],
+          "sesion_doble": false,
           "tipo": "virtual"
         },
         {
           "sesion": 10,
           "fecha": "2026-11-12",
-          "tema_n": 10,
+          "clases_material": [
+            14
+          ],
+          "sesion_doble": false,
           "tipo": "virtual"
         },
         {
           "sesion": 11,
           "fecha": "2026-11-19",
-          "tema_n": 11,
-          "tipo": "virtual",
-          "cierra_corte": 2
-        },
-        {
-          "sesion": 12,
-          "fecha": "2026-11-26",
-          "tema_n": 12,
-          "tipo": "virtual"
-        },
-        {
-          "sesion": 13,
-          "fecha": "2026-12-03",
-          "tema_n": 13,
-          "tipo": "virtual"
-        },
-        {
-          "sesion": 14,
-          "fecha": "2026-12-10",
-          "tema_n": 14,
-          "tipo": "virtual"
-        },
-        {
-          "sesion": 15,
-          "fecha": "2026-12-17",
-          "tema_n": 15,
-          "tipo": "virtual"
-        },
-        {
-          "sesion": 16,
-          "fecha": "2026-12-24",
-          "tema_n": 16,
+          "clases_material": [
+            15,
+            16
+          ],
+          "sesion_doble": true,
           "tipo": "virtual",
           "cierra_corte": 3
         }
@@ -677,114 +685,114 @@
       "hora_inicio_efectiva": "14:40",
       "hora_fin": "16:00",
       "inicio": "2026-09-08",
-      "fin": "2026-12-29",
-      "n_semanas_calendario": 17,
-      "nota": "17 semanas de calendario para 16 sesiones: el 08/12/2026 (Inmaculada Concepción) cae martes y se trabaja como semana autónoma, entre la sesión 13 y la 14. El trabajo independiente de esa semana es cerrar el informe de impacto del tema 13, que es la materia prima de la sesión 14.",
+      "fin": "2026-11-17",
+      "n_semanas_calendario": 11,
+      "nota": "11 semanas de calendario para 11 sesiones, cerrando antes de la semana institucional del 22/11/2026. Ningún festivo de 2026 cae en martes, así que no hay semana autónoma. Las sesiones 2, 3, 5, 6, 11 son dobles: cada una dicta dos Clases del microcurrículo en el mismo bloque de 90 min.",
       "sesiones": [
         {
           "sesion": 1,
           "fecha": "2026-09-08",
-          "tema_n": 1,
+          "clases_material": [
+            1
+          ],
+          "sesion_doble": false,
           "tipo": "virtual"
         },
         {
           "sesion": 2,
           "fecha": "2026-09-15",
-          "tema_n": 2,
+          "clases_material": [
+            2,
+            3
+          ],
+          "sesion_doble": true,
           "tipo": "virtual"
         },
         {
           "sesion": 3,
           "fecha": "2026-09-22",
-          "tema_n": 3,
+          "clases_material": [
+            4,
+            5
+          ],
+          "sesion_doble": true,
           "tipo": "virtual"
         },
         {
           "sesion": 4,
           "fecha": "2026-09-29",
-          "tema_n": 4,
-          "tipo": "virtual"
+          "clases_material": [
+            6
+          ],
+          "sesion_doble": false,
+          "tipo": "virtual",
+          "cierra_corte": 1
         },
         {
           "sesion": 5,
           "fecha": "2026-10-06",
-          "tema_n": 5,
+          "clases_material": [
+            7,
+            8
+          ],
+          "sesion_doble": true,
           "tipo": "virtual"
         },
         {
           "sesion": 6,
           "fecha": "2026-10-13",
-          "tema_n": 6,
-          "tipo": "virtual",
-          "cierra_corte": 1
+          "clases_material": [
+            9,
+            10
+          ],
+          "sesion_doble": true,
+          "tipo": "virtual"
         },
         {
           "sesion": 7,
           "fecha": "2026-10-20",
-          "tema_n": 7,
-          "tipo": "virtual"
+          "clases_material": [
+            11
+          ],
+          "sesion_doble": false,
+          "tipo": "virtual",
+          "cierra_corte": 2
         },
         {
           "sesion": 8,
           "fecha": "2026-10-27",
-          "tema_n": 8,
+          "clases_material": [
+            12
+          ],
+          "sesion_doble": false,
           "tipo": "virtual"
         },
         {
           "sesion": 9,
           "fecha": "2026-11-03",
-          "tema_n": 9,
+          "clases_material": [
+            13
+          ],
+          "sesion_doble": false,
           "tipo": "virtual"
         },
         {
           "sesion": 10,
           "fecha": "2026-11-10",
-          "tema_n": 10,
+          "clases_material": [
+            14
+          ],
+          "sesion_doble": false,
           "tipo": "virtual"
         },
         {
           "sesion": 11,
           "fecha": "2026-11-17",
-          "tema_n": 11,
-          "tipo": "virtual",
-          "cierra_corte": 2
-        },
-        {
-          "sesion": 12,
-          "fecha": "2026-11-24",
-          "tema_n": 12,
-          "tipo": "virtual"
-        },
-        {
-          "sesion": 13,
-          "fecha": "2026-12-01",
-          "tema_n": 13,
-          "tipo": "virtual"
-        },
-        {
-          "sesion": null,
-          "fecha": "2026-12-08",
-          "tema_n": null,
-          "tipo": "autonoma_festivo",
-          "festivo": "Inmaculada Concepción",
-          "tarea": "Cerrar el informe de evaluación del impacto del tema 13 —la matriz con sus indicadores y las mitigaciones— y dejarlo en la carpeta del equipo. Es el material con el que se arma la presentación final en la sesión 14, así que llegar sin él cuesta la sesión siguiente."
-        },
-        {
-          "sesion": 14,
-          "fecha": "2026-12-15",
-          "tema_n": 14,
-          "tipo": "virtual"
-        },
-        {
-          "sesion": 15,
-          "fecha": "2026-12-22",
-          "tema_n": 15,
-          "tipo": "virtual"
-        },
-        {
-          "sesion": 16,
-          "fecha": "2026-12-29",
-          "tema_n": 16,
+          "clases_material": [
+            15,
+            16
+          ],
+          "sesion_doble": true,
           "tipo": "virtual",
           "cierra_corte": 3
         }
@@ -799,114 +807,114 @@
       "hora_inicio_efectiva": "18:40",
       "hora_fin": "20:00",
       "inicio": "2026-09-08",
-      "fin": "2026-12-29",
-      "n_semanas_calendario": 17,
-      "nota": "Mismo calendario que SB141C (los dos son martes), en la jornada de la noche. El 08/12/2026 (Inmaculada Concepción) es semana autónoma entre la sesión 13 y la 14: se cierra el informe de impacto del tema 13.",
+      "fin": "2026-11-17",
+      "n_semanas_calendario": 11,
+      "nota": "11 semanas de calendario para 11 sesiones, cerrando antes de la semana institucional del 22/11/2026. Ningún festivo de 2026 cae en martes, así que no hay semana autónoma. Las sesiones 2, 3, 5, 6, 11 son dobles: cada una dicta dos Clases del microcurrículo en el mismo bloque de 90 min.",
       "sesiones": [
         {
           "sesion": 1,
           "fecha": "2026-09-08",
-          "tema_n": 1,
+          "clases_material": [
+            1
+          ],
+          "sesion_doble": false,
           "tipo": "virtual"
         },
         {
           "sesion": 2,
           "fecha": "2026-09-15",
-          "tema_n": 2,
+          "clases_material": [
+            2,
+            3
+          ],
+          "sesion_doble": true,
           "tipo": "virtual"
         },
         {
           "sesion": 3,
           "fecha": "2026-09-22",
-          "tema_n": 3,
+          "clases_material": [
+            4,
+            5
+          ],
+          "sesion_doble": true,
           "tipo": "virtual"
         },
         {
           "sesion": 4,
           "fecha": "2026-09-29",
-          "tema_n": 4,
-          "tipo": "virtual"
+          "clases_material": [
+            6
+          ],
+          "sesion_doble": false,
+          "tipo": "virtual",
+          "cierra_corte": 1
         },
         {
           "sesion": 5,
           "fecha": "2026-10-06",
-          "tema_n": 5,
+          "clases_material": [
+            7,
+            8
+          ],
+          "sesion_doble": true,
           "tipo": "virtual"
         },
         {
           "sesion": 6,
           "fecha": "2026-10-13",
-          "tema_n": 6,
-          "tipo": "virtual",
-          "cierra_corte": 1
+          "clases_material": [
+            9,
+            10
+          ],
+          "sesion_doble": true,
+          "tipo": "virtual"
         },
         {
           "sesion": 7,
           "fecha": "2026-10-20",
-          "tema_n": 7,
-          "tipo": "virtual"
+          "clases_material": [
+            11
+          ],
+          "sesion_doble": false,
+          "tipo": "virtual",
+          "cierra_corte": 2
         },
         {
           "sesion": 8,
           "fecha": "2026-10-27",
-          "tema_n": 8,
+          "clases_material": [
+            12
+          ],
+          "sesion_doble": false,
           "tipo": "virtual"
         },
         {
           "sesion": 9,
           "fecha": "2026-11-03",
-          "tema_n": 9,
+          "clases_material": [
+            13
+          ],
+          "sesion_doble": false,
           "tipo": "virtual"
         },
         {
           "sesion": 10,
           "fecha": "2026-11-10",
-          "tema_n": 10,
+          "clases_material": [
+            14
+          ],
+          "sesion_doble": false,
           "tipo": "virtual"
         },
         {
           "sesion": 11,
           "fecha": "2026-11-17",
-          "tema_n": 11,
-          "tipo": "virtual",
-          "cierra_corte": 2
-        },
-        {
-          "sesion": 12,
-          "fecha": "2026-11-24",
-          "tema_n": 12,
-          "tipo": "virtual"
-        },
-        {
-          "sesion": 13,
-          "fecha": "2026-12-01",
-          "tema_n": 13,
-          "tipo": "virtual"
-        },
-        {
-          "sesion": null,
-          "fecha": "2026-12-08",
-          "tema_n": null,
-          "tipo": "autonoma_festivo",
-          "festivo": "Inmaculada Concepción",
-          "tarea": "Cerrar el informe de evaluación del impacto del tema 13 —la matriz con sus indicadores y las mitigaciones— y dejarlo en la carpeta del equipo. Es el material con el que se arma la presentación final en la sesión 14, así que llegar sin él cuesta la sesión siguiente."
-        },
-        {
-          "sesion": 14,
-          "fecha": "2026-12-15",
-          "tema_n": 14,
-          "tipo": "virtual"
-        },
-        {
-          "sesion": 15,
-          "fecha": "2026-12-22",
-          "tema_n": 15,
-          "tipo": "virtual"
-        },
-        {
-          "sesion": 16,
-          "fecha": "2026-12-29",
-          "tema_n": 16,
+          "clases_material": [
+            15,
+            16
+          ],
+          "sesion_doble": true,
           "tipo": "virtual",
           "cierra_corte": 3
         }
@@ -915,9 +923,7 @@
     }
   ],
   "pendiente": [
-    "Listas de estudiantes de los tres grupos (SB141B, SB141C, LB141F). Sin ellas no se puede fijar el tamaño de los 5 equipos ni imprimir las planillas de asistencia. NUNCA se versionan en git: son datos personales.",
-    "Confirmar con el programa las fechas de fin de diciembre (ver `alerta_calendario`).",
     "Carpetas de Drive del curso (clases y grabadas) y su ID, una por grupo, para que MoverGrabaciones.gs archive las grabaciones de Meet como en los otros cuatro cursos. Al ser tres grupos hacen falta tres pares de carpetas.",
-    "Enlace fijo de Google Meet de cada grupo (SB141B, SB141C, LB141F) y las cinco salas de grupo creadas de una vez para las 16 sesiones."
+    "Enlace fijo de Google Meet de cada grupo (SB141B, SB141C, LB141F) y las cinco salas de grupo creadas de una vez para las 11 sesiones."
   ]
 }

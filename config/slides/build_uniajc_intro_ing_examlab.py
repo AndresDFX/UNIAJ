@@ -130,7 +130,7 @@ def md_configuracion(n):
              if ev["libro_abierto"] else "No. Se responde sin consultar material")
 
     guia = X.guia_docente_md(
-        n, ev, "%s (%s)" % (D.curso()["nombre_acentos"], D.curso()["codigo"]),
+        ev["clase"], ev, "%s (%s)" % (D.curso()["nombre_acentos"], D.curso()["codigo"]),
         kind="Evaluación de corte",
         modulo="Evaluaciones",
         resumen_etiqueta="Qué se evalúa",
@@ -142,7 +142,7 @@ def md_configuracion(n):
         meta_extra=[
             ("Corte", "%d de 3 · el corte vale %s del curso" % (cj["corte"], cj["pct"])),
             ("Peso de esta evaluación", "%s de la nota final del curso" % _peso(cj)),
-            ("Cubre", "las sesiones %s" % ev["cubre"]),
+            ("Cubre", "las Clases %s" % ev["cubre"]),
             ("Cuándo", ev["cierre"]),
             ("Duración", "%d minutos, cronometrados" % ev["minutos"]),
             ("Modalidad", "Individual · dentro de la sesión sincrónica"),
@@ -175,8 +175,8 @@ def md_configuracion(n):
         "",
         ev["por_que_asi"],
         "",
-        "> Solo hay **dos** evaluaciones escritas en el curso, esta y la de la otra sesión "
-        "de cierre. El corte 3 no tiene evaluación escrita: se evalúa con la exposición "
+        "> Solo hay **dos** evaluaciones escritas en el curso, esta y la del otro corte. "
+        "El corte 3 no tiene evaluación escrita: se evalúa con la exposición "
         "final, el informe final y la asistencia. No es una omisión.",
         "",
     ])
@@ -201,7 +201,7 @@ def md_clave(n):
         "las respuestas y las bandas de calificación.",
         "",
         "- **Curso:** %s (%s)" % (D.curso()["nombre_acentos"], D.curso()["codigo"]),
-        "- **Cubre:** las sesiones %s · **Total:** %d puntos" % (
+        "- **Cubre:** las Clases %s · **Total:** %d puntos" % (
             ev["cubre"], X.total_puntos(ev)),
         "- **Peso:** %s de la nota final del curso" % _peso(cj),
         "- **Reparto:** %s" % _reparto(ev),
@@ -221,7 +221,7 @@ def md_clave(n):
     for i, p in enumerate(ev["preguntas"], 1):
         etiqueta, _ = X._tipo(p["tipo"])
         L += [
-            "## Pregunta %d · %s · %d pts · sale de la sesión %d" % (
+            "## Pregunta %d · %s · %d pts · sale de la Clase %d" % (
                 i, etiqueta, p["puntos"], p["sesion"]),
             "",
         ]
@@ -377,14 +377,14 @@ def md_estudiante(n):
         "que una corta que sí. Con %d minutos para %d preguntas, escribir de más es lo que "
         "hace que la última quede en blanco." % (ev["minutos"], len(ev["preguntas"])),
         "",
-        "## Qué repasar, sesión por sesión",
+        "## Qué repasar, clase por clase",
         "",
-        "Todas las sesiones del corte entran. Esta lista está en orden y es completa: si "
+        "Todas las clases del corte entran. Esta lista está en orden y es completa: si "
         "repasa esto, puede responder la evaluación.",
         "",
     ]
     for r in ev["repaso"]:
-        L += ["### Sesión %d · %s" % (r["sesion"], r["tema"]), ""]
+        L += ["### Clase %d · %s" % (r["sesion"], r["tema"]), ""]
         for item in r["revise"]:
             L.append("- %s" % item)
         if r.get("abrir"):
@@ -564,9 +564,12 @@ def build_taller(n):
 
 
 def build_evaluacion(n):
+    """`n` es la SESION de calendario en que se entrega (clave de `ED.EVALUACIONES`,
+    hoy 4 o 7). Los archivos van en la carpeta de la CLASE (`ev["clase"]`, hoy 6 o 11),
+    que es estable aunque el calendario vuelva a moverse."""
     ev = ED.EVALUACIONES[n]
     cj = _corte_json(n)
-    dir_clase, dir_kit = _dirs(n)
+    dir_clase, dir_kit = _dirs(ev["clase"])
     hechos = []
 
     # Kit docente: configuracion y clave. La clave NO sale de aqui.
@@ -584,29 +587,37 @@ def build_evaluacion(n):
     convert(os.path.join(dir_kit, nombre_est + ".md"), dx)
     hechos.append(dx)
 
-    print("Corte %d · sesión %d · %d preguntas · %d puntos · %s" % (
-        cj["corte"], n, len(ev["preguntas"]), X.total_puntos(ev), _reparto(ev)))
+    print("Corte %d · Clase %d, entrega en sesión %d · %d preguntas · %d puntos · %s" % (
+        cj["corte"], ev["clase"], n, len(ev["preguntas"]), X.total_puntos(ev), _reparto(ev)))
     for h in hechos:
         print("   " + os.path.relpath(h, ROOT))
     return hechos
 
 
-def build(ns=None):
+def build(clases=None):
     """Todo lo que va a ExamLab: los 16 talleres de equipo y las 2 evaluaciones de corte.
 
-    `ns` limita a unas sesiones concretas. Sin argumentos hace el curso completo, que es lo
-    que hay que correr antes de montar la plataforma.
+    `clases` son numeros de CLASE (1-16, estables: son las carpetas), no sesiones de
+    calendario — desde que hay sesiones dobles, una sesion de calendario puede cubrir dos
+    clases, y `curso()["n_sesiones"]` (11) ya NO es cuantas clases hay. Sin argumentos hace
+    las 16 clases completas, que es lo que hay que correr antes de montar la plataforma.
+
+    Las evaluaciones de corte se incluyen solas cuando su Clase (`ev["clase"]`, no la
+    sesion en que se entregan) esta en `clases`: asi `build([6])` sigue construyendo el
+    taller de la Clase 6 Y la evaluacion del corte 1, igual que antes de que sesion y clase
+    se separaran.
     """
-    sesiones = ns or list(range(1, D.curso()["n_sesiones"] + 1))
+    clases = clases or list(range(1, D.curso()["n_temas"] + 1))
     todo = []
-    print("== Talleres de equipo (uno por sesión)")
-    for n in sesiones:
+    print("== Talleres de equipo (uno por clase)")
+    for n in clases:
         todo += build_taller(n)
-    cortes = [n for n in sesiones if n in ED.EVALUACIONES]
-    if cortes:
+    evaluaciones = sorted(n_sesion for n_sesion, ev in ED.EVALUACIONES.items()
+                          if ev["clase"] in clases)
+    if evaluaciones:
         print("\n== Evaluaciones de corte")
-        for n in cortes:
-            todo += build_evaluacion(n)
+        for n_sesion in evaluaciones:
+            todo += build_evaluacion(n_sesion)
     print("\n%d archivos." % len(todo))
     return todo
 

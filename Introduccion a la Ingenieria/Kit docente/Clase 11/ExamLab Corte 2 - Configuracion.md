@@ -6,19 +6,19 @@
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Evaluaciones
 - **Corte:** 2 de 3 · el corte vale 30% del curso
 - **Peso de esta evaluación:** 10% de la nota final del curso
-- **Cubre:** las sesiones 7 a 11
-- **Cuándo:** los últimos 20 minutos de la sesión 11, después de las exposiciones
+- **Cubre:** las Clases 7 a 11
+- **Cuándo:** los últimos 20 minutos de la sesión 7 del calendario (Clase 11), después de las exposiciones
 - **Duración:** 20 minutos, cronometrados
 - **Modalidad:** Individual · dentro de la sesión sincrónica
 - **Libro abierto:** **Sí**, sobre los documentos del propio equipo (no internet)
 - **Reparto:** 6 cerradas (51 pts) y 4 abiertas (49 pts)
-- **Fechas por grupo:** **SB141B** jueves 19/11/2026 (14:30–16:00) · **SB141C** martes 17/11/2026 (14:30–16:00) · **LB141F** martes 17/11/2026 (18:30–20:00)
+- **Fechas por grupo:** **SB141B** jueves 22/10/2026 (14:30–16:00) · **SB141C** martes 20/10/2026 (14:30–16:00) · **LB141F** martes 20/10/2026 (18:30–20:00)
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestaña de IA). Este documento trae el texto exacto de
 > cada campo para copiar y pegar, con las opciones correctas ya marcadas.
 
-**Qué se evalúa:** Diez preguntas sobre las sesiones 7 a 11: ciclo de vida y costo del cambio, requisitos y criterios de aceptación, decisión entre alternativas y alcance mínimo, antecedentes y calidad de las fuentes, prototipado y niveles de fidelidad, y uso responsable de un asistente de IA. Es individual y **a libro abierto sobre los documentos de su propio equipo**: cuatro preguntas piden abrirlos y copiar de ahí.
+**Qué se evalúa:** Diez preguntas sobre las Clases 7 a 11: ciclo de vida y costo del cambio, requisitos y criterios de aceptación, decisión entre alternativas y alcance mínimo, antecedentes y calidad de las fuentes, prototipado y niveles de fidelidad, y uso responsable de un asistente de IA. Es individual y **a libro abierto sobre los documentos de su propio equipo**: cuatro preguntas piden abrirlos y copiar de ahí.
 
 ---
 
@@ -289,4 +289,4 @@ Si la «corrección» es de redacción o de estilo, la primera mitad vale la mit
 
 A libro abierto, y sobre los propios documentos, no sobre internet. Cuatro preguntas (3, 5, 7 y 10) piden datos que solo existen en el documento del equipo: el requisito con su criterio de aceptación, el alcance mínimo y lo que quedó fuera, una ficha de antecedente, y una corrección hecha al asistente. Quien documentó las responde copiando y ajustando en cuatro minutos; quien no documentó no tiene de dónde. Esa es la medición que interesa en el corte 2, y es coherente con lo que el cierre de la sesión 11 le dice al grupo: documentar no fue un trámite, fue construir el criterio.
 
-> Solo hay **dos** evaluaciones escritas en el curso, esta y la de la otra sesión de cierre. El corte 3 no tiene evaluación escrita: se evalúa con la exposición final, el informe final y la asistencia. No es una omisión.
+> Solo hay **dos** evaluaciones escritas en el curso, esta y la del otro corte. El corte 3 no tiene evaluación escrita: se evalúa con la exposición final, el informe final y la asistencia. No es una omisión.

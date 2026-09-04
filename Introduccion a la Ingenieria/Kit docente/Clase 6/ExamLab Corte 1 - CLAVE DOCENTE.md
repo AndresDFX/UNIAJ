@@ -1,9 +1,9 @@
-# CLAVE DOCENTE · Evaluación del Corte 1 (sesión 6)
+# CLAVE DOCENTE · Evaluación del Corte 1 (sesión 4)
 
 > **Documento interno.** No va en `Clases/` ni se comparte con el grupo. Contiene las respuestas y las bandas de calificación.
 
 - **Curso:** Introducción a la Ingeniería (FI300101)
-- **Cubre:** las sesiones 1 a 6 · **Total:** 100 puntos
+- **Cubre:** las Clases 1 a 6 · **Total:** 100 puntos
 - **Peso:** 10% de la nota final del curso
 - **Reparto:** 7 cerradas (62 pts) y 3 abiertas (38 pts)
 
@@ -11,7 +11,7 @@ Las **7 cerradas** las califica la plataforma. Lo que exige tiempo del docente s
 
 ---
 
-## Pregunta 1 · Seleccion unica · 7 pts · sale de la sesión 1
+## Pregunta 1 · Seleccion unica · 7 pts · sale de la Clase 1
 
 **Cuando hay ingenieria y cuando hay un deseo**
 
@@ -36,7 +36,7 @@ Marcar la segunda. Elegir tecnología se siente como «lo técnico», pero la te
 
 ---
 
-## Pregunta 2 · Seleccion multiple · 8 pts · sale de la sesión 1
+## Pregunta 2 · Seleccion multiple · 8 pts · sale de la Clase 1
 
 **Que es falso sobre el oficio**
 
@@ -62,7 +62,7 @@ Marcar la cuarta. Suena a acusación y por eso parece falsa, pero es exactamente
 
 ---
 
-## Pregunta 3 · Seleccion unica · 7 pts · sale de la sesión 2
+## Pregunta 3 · Seleccion unica · 7 pts · sale de la Clase 2
 
 **Que paso en 1968 y por que importa**
 
@@ -87,7 +87,7 @@ Marcar la tercera. Los tres distractores son hitos reales de otras fechas (Fortr
 
 ---
 
-## Pregunta 4 · Respuesta escrita · 13 pts · sale de la sesión 2
+## Pregunta 4 · Respuesta escrita · 13 pts · sale de la Clase 2
 
 **Un hito, y la parte del problema que sigue viva**
 
@@ -127,7 +127,7 @@ Contestar «ya se resolvió». Es justo lo que la sesión 2 marcó como falso: l
 
 ---
 
-## Pregunta 5 · Seleccion multiple · 10 pts · sale de la sesión 3
+## Pregunta 5 · Seleccion multiple · 10 pts · sale de la Clase 3
 
 **Los elementos de un sistema**
 
@@ -156,7 +156,7 @@ Marcar «base de datos» e «interfaz de usuario». Es el error que da nombre a 
 
 ---
 
-## Pregunta 6 · Respuesta escrita · 15 pts · sale de la sesión 3
+## Pregunta 6 · Respuesta escrita · 15 pts · sale de la Clase 3
 
 **El sistema no es el software**
 
@@ -194,7 +194,7 @@ Poner «el sistema» o «la app» como actor. Un actor es una persona o un grupo
 
 ---
 
-## Pregunta 7 · Seleccion unica · 10 pts · sale de la sesión 4
+## Pregunta 7 · Seleccion unica · 10 pts · sale de la Clase 4
 
 **Que norma colombiana aplica**
 
@@ -219,7 +219,7 @@ Marcar la 1273. Las dos son de datos, pero la 1273 castiga acceder o interceptar
 
 ---
 
-## Pregunta 8 · Seleccion multiple · 10 pts · sale de la sesión 4
+## Pregunta 8 · Seleccion multiple · 10 pts · sale de la Clase 4
 
 **La defensa que no funciona**
 
@@ -245,7 +245,7 @@ Marcar la cuarta. Es la confusión central de la sesión: legal y ético no son 
 
 ---
 
-## Pregunta 9 · Seleccion multiple · 10 pts · sale de la sesión 5
+## Pregunta 9 · Seleccion multiple · 10 pts · sale de la Clase 5
 
 **Las etapas de la huella de un sistema**
 
@@ -272,7 +272,7 @@ Marcar el enfriamiento. Se nombró mucho en clase porque cambia la cuenta, y por
 
 ---
 
-## Pregunta 10 · Respuesta escrita · 10 pts · sale de la sesión 6
+## Pregunta 10 · Respuesta escrita · 10 pts · sale de la Clase 6
 
 **Sintoma, problema o solucion disfrazada**
 

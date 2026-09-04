@@ -23,7 +23,7 @@ _privado/2026-2/CrearEncuentros - TODO EL SEMESTRE 2026-2.gs
 
 ## Que trae
 
-`7` cursos · `102` sesiones · `96` salas de Meet (`6` semanas autonomas por festivo van al calendario sin Meet).
+`7` cursos · `85` sesiones · `81` salas de Meet (`4` semanas autonomas por festivo van al calendario sin Meet).
 
 | Curso | Codigo | Grupo | Dia y hora | Sesiones | Meet |
 |---|---|---|---|---|---|
@@ -31,9 +31,9 @@ _privado/2026-2/CrearEncuentros - TODO EL SEMESTRE 2026-2.gs
 | Seminario de Sistemas | `FI303301` | `341C` | Jueves 18:00 – 20:00 | 13 | 13 |
 | Bases de Datos II | `FI303215` | `641A-2` | Lunes 18:00 – 20:00 | 13 | 11 |
 | Arquitectura de Sistemas Computacionales | `FI303380` | `6303C` | Lunes 10:00 – 12:00 | 13 | 11 |
-| Introducción a la Ingeniería · SB141B | `FI300101` | `SB141B` | Jueves 14:30 – 16:00 | 16 | 16 |
-| Introducción a la Ingeniería · SB141C | `FI300101` | `SB141C` | Martes 14:30 – 16:00 | 17 | 16 |
-| Introducción a la Ingeniería · LB141F | `FI300101` | `LB141F` | Martes 18:30 – 20:00 | 17 | 16 |
+| Introducción a la Ingeniería · SB141B | `FI300101` | `SB141B` | Jueves 14:30 – 16:00 | 11 | 11 |
+| Introducción a la Ingeniería · SB141C | `FI300101` | `SB141C` | Martes 14:30 – 16:00 | 11 | 11 |
+| Introducción a la Ingeniería · LB141F | `FI300101` | `LB141F` | Martes 18:30 – 20:00 | 11 | 11 |
 
 ## Choques en TU horario
 
@@ -41,11 +41,11 @@ _privado/2026-2/CrearEncuentros - TODO EL SEMESTRE 2026-2.gs
 se cruzan) y no hay dos bloques encima. Se revisa en cada regeneracion, porque con
 7 grupos en la misma semana es facil que un horario nuevo se pise con otro.
 
-## Aviso del calendario: Las fechas de fin caen en la semana de Navidad
+## Aviso del calendario: RESUELTO — el curso se comprimió a 11 sesiones para cerrar el 19-20/11
 
-El inicio se corrió una semana a peticion del docente (2026-09-02): los grupos de martes arrancan el 08/09/2026 y el de jueves el 10/09/2026. Con 16 sesiones semanales eso lleva el cierre al 2026-12-24 (jueves, SB141B) y al 2026-12-29 (martes, SB141C y LB141F, ya contando el festivo del 08/12 como semana autónoma). Las dos fechas caen DENTRO del receso de Navidad: el 24/12 es vispera de Navidad y el 29/12 esta entre Navidad y Año Nuevo. Ademas siguen mas de un mes despues del 22/11/2026 en que cierran los otros cuatro cursos del semestre. NINGUNA de las dos es dictable tal cual, y el corte 3 —exposicion final e informe— es justo lo que cae ahi.
+El 2026-09-04 el docente confirmó que la última semana de clases es la del 20/11/2026, igual que los otros cuatro cursos del semestre (cierre institucional 22/11/2026). Con el inicio corrido una semana (08/09 martes, 10/09 jueves) solo caben 11 sesiones semanales antes de esa fecha, no las 16 que pedían los 16 temas del microcurrículo. Se aprobó fusionar 5 parejas de temas afines en un solo bloque de 90 min cada una (ver `mapa_sesion_tema` en `curso` y `clases_material`/`sesion_doble` en cada sesión), dejando los 16 temas cubiertos en 11 sesiones. El material de cada Clase (guion, taller, ExamLab) NO se reescribió: sigue completo por Clase, solo cambió cuándo se dicta.
 
-**Plan B si el programa exige cerrar antes:** Dos opciones, las dos pendientes de confirmar con el programa. (A) Fusionar los temas 15 y 16 en una sola sesion: quedan 15 sesiones y el cierre pasa al 17/12 (jueves) y al 22/12 (martes), antes de Navidad. Cuesta que la socializacion y la autoevaluacion del tema 16 se hacen en el mismo bloque que las exposiciones. (B) Adelantar la exposicion final y el informe a las sesiones 13 y 14, dejando 15 y 16 como semanas autonomas de cierre. Cuesta que el proyecto se sustenta con dos semanas menos de trabajo. No se ha aplicado ninguna: las fechas de este archivo son las del corrimiento pedido, sin comprimir.
+**Plan B si el programa exige cerrar antes:** Ya aplicado: no queda plan B pendiente. Si el programa pidiera MÁS compresión todavía, la siguiente candidata sería fusionar Sesión 8+9 (Clases 12+13, avance y evaluación de impacto), que hoy quedaron sueltas a propósito para no recargar una sola sesión con tres bloques de proyecto seguidos.
 
 > Mientras no se confirme, el script crea las fechas **tal como estan en el JSON**.
 > Ninguna fecha se movio para escribir este aviso.
@@ -70,7 +70,7 @@ Y **para todo el semestre**:
 |---|---|
 | `verificarTodosLosCursos` | Solo lectura. Ejecutala primero, siempre. |
 | `crearTodosLosCursos` | Crea lo que falte en los 7 cursos. Reejecutable: reutiliza lo que ya existe. |
-| `eliminarTodosLosCursos` | Borra los 102 eventos. No notifica a nadie, pero se lleva las 96 salas de Meet. |
+| `eliminarTodosLosCursos` | Borra los 85 eventos. No notifica a nadie, pero se lleva las 81 salas de Meet. |
 | `recrearTodosLosCursos` | Borra y vuelve a crear todo. Lo mas ruidoso: **todos** los enlaces de Meet cambian. |
 | `listarCalendarios` | Imprime los IDs de calendario, para llenar `CALENDAR_ID`. |
 
@@ -80,7 +80,7 @@ En Apps Script, **Configuracion del proyecto -> Zona horaria -> `America/Bogota`
 
 Las horas de los eventos las construye Apps Script con la zona del **proyecto**, no con
 la del calendario. Si el proyecto queda en otra (Google no siempre pone la local), los
-102 eventos entran corridos y con ellos las 96 salas de Meet. `verificar*`
+85 eventos entran corridos y con ellos las 81 salas de Meet. `verificar*`
 imprime la zona, y si no es la correcta **crear y borrar quedan bloqueados**.
 
 ## Dos interruptores antes de que toque nada
@@ -96,10 +96,10 @@ los eventos «huerfanos» (los de una corrida anterior con el titulo viejo) y lo
 Para ejecutar de verdad se pone en `false`.
 
 El segundo interruptor lo piden **solo** las cuatro funciones `*TodosLosCursos`. Ya no
-hay correos que enviar, pero sigue teniendo sentido: de un golpe tocan `102` eventos y
-crean o destruyen `96` salas de Meet, roza la cuota diaria de Calendar, tarda lo
+hay correos que enviar, pero sigue teniendo sentido: de un golpe tocan `85` eventos y
+crean o destruyen `81` salas de Meet, roza la cuota diaria de Calendar, tarda lo
 suyo, y en el desplegable de Apps Script es facil elegir una de esas en vez de la de un
-curso. Deshacerlo a mano son 102 borrados. Las funciones por curso no lo necesitan.
+curso. Deshacerlo a mano son 85 borrados. Las funciones por curso no lo necesitan.
 
 ## Si se corta a la mitad
 

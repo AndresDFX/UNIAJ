@@ -196,12 +196,14 @@ def contenido_items(codigo):
             })
             continue
         tags = []
+        if s.get("sesion_doble"):
+            tags.append("sesión doble")
         if n in cierres:
             tags.append("cierra Corte %d (%s)" % (cierres[n]["corte"], cierres[n]["pct"]))
         items.append({
             "n": n,
             "label": "Sesión %d" % n,
-            "tema": ta[s["tema_n"]],
+            "tema": " + ".join(ta[c] for c in s["clases_material"]),
             "fecha": ddmm(s["fecha"]),
             "tag": " · ".join(tags) if tags else None,
         })

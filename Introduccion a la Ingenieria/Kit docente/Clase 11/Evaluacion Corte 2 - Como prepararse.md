@@ -6,7 +6,7 @@ Este documento no es la evaluación: es lo que necesita saber para llegar prepar
 
 ## Cuándo y cómo
 
-- **Cuándo:** los últimos 20 minutos de la sesión 11, después de las exposiciones.
+- **Cuándo:** los últimos 20 minutos de la sesión 7 del calendario (Clase 11), después de las exposiciones.
 - **Cuánto dura:** 20 minutos, cronometrados.
 - **Dónde:** en ExamLab. El enlace se pega en el chat de la reunión al empezar la evaluación, no antes.
 - **Cuántas preguntas:** 10, que suman 100 puntos — 6 cerradas (51 pts) y 4 abiertas (49 pts).
@@ -27,11 +27,11 @@ Este documento no es la evaluación: es lo que necesita saber para llegar prepar
 
 Las abiertas piden respuestas **cortas**: dos, tres o cuatro líneas, y cada una dice cuántas. Una respuesta larga que no contesta lo que se preguntó no puntúa más que una corta que sí. Con 20 minutos para 10 preguntas, escribir de más es lo que hace que la última quede en blanco.
 
-## Qué repasar, sesión por sesión
+## Qué repasar, clase por clase
 
-Todas las sesiones del corte entran. Esta lista está en orden y es completa: si repasa esto, puede responder la evaluación.
+Todas las clases del corte entran. Esta lista está en orden y es completa: si repasa esto, puede responder la evaluación.
 
-### Sesión 7 · Ciclo de vida y requisitos
+### Clase 7 · Ciclo de vida y requisitos
 
 - Por qué un error de requisitos cuesta órdenes de magnitud más tarde que temprano, y en qué momento cuesta más.
 - Cómo distinguir un requisito funcional de uno no funcional. Practique con los requisitos de su propio proyecto.
@@ -39,7 +39,7 @@ Todas las sesiones del corte entran. Esta lista está en orden y es completa: si
 
 **Tenga abierto:** El documento de requisitos de su equipo, con los criterios de aceptación.
 
-### Sesión 8 · Decisión entre alternativas y alcance mínimo
+### Clase 8 · Decisión entre alternativas y alcance mínimo
 
 - Para qué sirve de verdad la matriz de criterios, y por qué los pesos se fijan ANTES de mirar las alternativas.
 - Qué hace que un alcance mínimo sea mínimo de verdad: que resuelva algo por sí solo y se pueda probar con alguien de afuera.
@@ -47,7 +47,7 @@ Todas las sesiones del corte entran. Esta lista está en orden y es completa: si
 
 **Tenga abierto:** La matriz de criterios y la definición del alcance mínimo de su equipo, con lo que quedó fuera.
 
-### Sesión 9 · Antecedentes y calidad de las fuentes
+### Clase 9 · Antecedentes y calidad de las fuentes
 
 - Los criterios para filtrar una fuente: autor, año, dónde se publicó, si se puede verificar. No la posición en el buscador.
 - Los cinco datos de una ficha de antecedente, y por qué el «qué le falta para nuestro caso» es el que se olvida y el que más pesa.
@@ -55,14 +55,14 @@ Todas las sesiones del corte entran. Esta lista está en orden y es completa: si
 
 **Tenga abierto:** Las fichas de antecedentes de su equipo, con sus enlaces. Verifique HOY que abren: si uno no abre, tráigalo declarado.
 
-### Sesión 10 · Prototipado y niveles de fidelidad
+### Clase 10 · Prototipado y niveles de fidelidad
 
 - La paradoja de la fidelidad: por qué un prototipo que se ve terminado recibe peor retroalimentación que un dibujo a lápiz.
 - Qué se califica de un prototipo: estado vacío, estado de error, textos reales, y datos inventados por la Ley 1581 de 2012.
 
 **Tenga abierto:** El prototipo de su equipo, con las pantallas que ya tenga.
 
-### Sesión 11 · Uso responsable de un asistente de IA
+### Clase 11 · Uso responsable de un asistente de IA
 
 - Qué dato no se le puede pasar nunca a un asistente de IA, y por qué.
 - La diferencia entre corregir por criterio y corregir la redacción. Solo lo primero cuenta.

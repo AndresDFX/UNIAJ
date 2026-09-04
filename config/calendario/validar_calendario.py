@@ -22,21 +22,25 @@ B. Coherencia con lo derivado:
   11. El CALENDARIO_2026-2.md menciona cada fecha del curso.
 
 C. Introduccion a la Ingenieria (`introduccion_ingenieria_2026_2.json`), BLOQUE APARTE:
-   Ese curso no cabe en las reglas de arriba y por eso vive en otro archivo: son 16 sesiones
-   (no 13), sin sesiones dobles, sin parciales escritos y llegando hasta diciembre. Meterlo en
-   `validar_curso` habria obligado a llenar esa funcion de excepciones, con el riesgo de aflojar
-   las reglas de los otros cuatro. Se valida entonces con sus propias reglas:
-  12. Cada grupo tiene sus 16 sesiones numeradas 1..16, una por semana, en su dia.
+   Ese curso no cabe en las reglas de arriba y por eso vive en otro archivo: son 11 sesiones
+   (no 13), CON 5 sesiones dobles (dos Clases del microcurriculo en un mismo bloque de 90
+   min, mismo patron `clases_material`/`sesion_doble` de `semestre_2026_2.json`), sin
+   parciales escritos, y desde 2026-09-04 cierra dentro de la ventana institucional (antes
+   llegaba a diciembre). Meterlo en `validar_curso` habria obligado a llenar esa funcion de
+   excepciones, con el riesgo de aflojar las reglas de los otros cuatro. Se valida entonces
+   con sus propias reglas:
+  12. Cada grupo tiene sus 11 sesiones numeradas 1..11, una por semana, en su dia.
   13. La primera cae en la semana de su `inicio` y la ultima es exactamente su `fin`.
-  14. Los 16 temas se dictan 1:1 (`tema_n`), sin duplicados ni faltantes.
+  14. Los 16 temas del microcurriculo se dictan por `clases_material`, sin duplicados ni
+      faltantes y en orden; las sesiones dobles son exactamente las que declaran 2 clases.
   15. Ningun festivo del rango que caiga en el dia de clase queda como sesion normal: tiene
-      que estar declarado como semana autonoma (`autonoma_festivo`) con su tarea.
+      que estar declarado como semana autonoma (`autonoma_festivo`) con su tarea. En el
+      calendario de 11 sesiones ninguno cae, asi que esta regla no tiene nada que marcar.
   16. Ninguna sesion se marca como parcial (este curso evalua por exposiciones).
-  17. Los cortes cubren 1..16 sin solaparse, y cierran en una sesion que existe.
+  17. Los cortes cubren 1..11 sin solaparse, y cierran en una sesion que existe.
   18. El CSV importable y el `CALENDARIO_<periodo> - <grupo>.md` de cada grupo coinciden con
       el JSON (los tres grupos comparten carpeta, por eso llevan el grupo en el nombre).
-  Las fechas que pasan del cierre institucional del 22/11 salen como AVISO, no como fallo:
-  estan pendientes de confirmar con el programa y la instruccion fue no comprimirlas.
+  Ya no hay AVISO por cierre institucional: las 11 sesiones caben antes del 22/11.
 
 Uso
 ---
@@ -202,9 +206,10 @@ def validar_curso(key: str, meta: dict) -> None:
 def validar_grupo_introduccion(g: dict) -> None:
     """Un grupo de Introduccion a la Ingenieria, con las reglas de SU curso.
 
-    Deliberadamente separado de `validar_curso`: aqui son 16 sesiones 1:1 con los temas, sin
-    sesiones dobles y sin parciales, y el calendario se estira hasta diciembre. Las dos
-    funciones no comparten ni una constante para que aflojar una no afloje la otra.
+    Deliberadamente separado de `validar_curso`: aqui son 11 sesiones para 16 temas (5
+    dobles), sin parciales, y desde 2026-09-04 el calendario cierra dentro de la ventana
+    institucional. Las dos funciones no comparten ni una constante para que aflojar una no
+    afloje la otra.
     """
     cur = DATA_II["curso"]
     nombre = f"{cur['nombre_acentos']} · {g['grupo']}"
@@ -216,7 +221,8 @@ def validar_grupo_introduccion(g: dict) -> None:
     fechas = [dt.date.fromisoformat(s["fecha"]) for s in ses]
 
     # 12. numeracion: solo las sesiones reales llevan numero; las semanas autonomas van con
-    #     `sesion: null` y NO consumen numero (por eso hay grupos con 17 entradas y 16 sesiones).
+    #     `sesion: null` y NO consumen numero (asi un grupo con una autonoma tendria mas
+    #     entradas que sesiones numeradas). En el calendario de 11 sesiones no hay ninguna.
     numeradas = [s["sesion"] for s in ses if s.get("sesion") is not None]
     check(numeradas == list(range(1, n_ses + 1)),
           f"{nombre}: la numeracion no es 1..{n_ses} consecutiva (es {numeradas})")
@@ -243,12 +249,21 @@ def validar_grupo_introduccion(g: dict) -> None:
           f"{nombre}: {len(ses)} entradas de calendario, pero declara "
           f"n_semanas_calendario={g['n_semanas_calendario']}")
 
-    # 14. los 16 temas, 1:1
-    temas = [s["tema_n"] for s in ses if s.get("tema_n") is not None]
-    check(sorted(temas) == list(range(1, n_temas + 1)),
-          f"{nombre}: los temas dictados no son 1..{n_temas} exactos (son {sorted(temas)})")
-    check(temas == sorted(temas),
-          f"{nombre}: los temas no se dictan en orden: {temas}")
+    # 14. las clases_material cubren los n_temas del microcurriculo, sin duplicados ni
+    #     faltantes, en orden — y las sesiones dobles son exactamente las que declaran 2.
+    clases = [c for s in ses for c in (s.get("clases_material") or [])]
+    check(sorted(clases) == list(range(1, n_temas + 1)),
+          f"{nombre}: las clases dictadas no son 1..{n_temas} exactas (son {sorted(clases)})")
+    check(clases == sorted(clases),
+          f"{nombre}: las clases no se dictan en orden: {clases}")
+    for s in ses:
+        n_clases = len(s.get("clases_material") or [])
+        marcada = bool(s.get("sesion_doble"))
+        check((n_clases == 2) == marcada,
+              f"{nombre}: sesion {s.get('sesion')} dicta {n_clases} clase(s) pero "
+              f"sesion_doble={marcada}")
+        check(n_clases in (0, 1, 2),
+              f"{nombre}: sesion {s.get('sesion')} dicta {n_clases} clases, ni 1 ni 2")
 
     # 15. festivos: el peligro real es programar clase un festivo sin darse cuenta. El 08/12/2026
     #     es martes y fecha fija (no la mueve la Ley Emiliani), asi que golpea a SB141C y LB141F.

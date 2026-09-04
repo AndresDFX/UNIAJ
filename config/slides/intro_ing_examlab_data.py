@@ -3,10 +3,21 @@
 
 Son dos y solo dos. No es una omision:
 
-  - Corte 1 · sesion 6  · cubre las sesiones 1 a 6  · 20 min dentro de la sesion
-  - Corte 2 · sesion 11 · cubre las sesiones 7 a 11 · 20 min dentro de la sesion
-  - Corte 3 · sesion 16 · NO tiene evaluacion escrita. El 40 % del corte se reparte en
-    exposicion final 15 % (sesion 15) + informe final 20 % (sesion 16) + asistencia 5 %.
+  - Corte 1 · se entrega en la sesion de calendario 4 (Clase 6) · cubre las Clases 1 a 6
+    · 20 min dentro de la sesion
+  - Corte 2 · se entrega en la sesion de calendario 7 (Clase 11) · cubre las Clases 7 a 11
+    · 20 min dentro de la sesion
+  - Corte 3 · se cierra en la sesion de calendario 11 (Clases 15+16, doble) · NO tiene
+    evaluacion escrita. El 40 % del corte se reparte en exposicion final 15 % (Clase 15)
+    + informe final 20 % (Clase 16) + asistencia 5 %.
+
+OJO con el vocabulario: desde que el curso paso de 16 a 11 sesiones de calendario (5
+sesiones dobles, ver `clases_material`/`sesion_doble` en el JSON), «Sesion» (calendario,
+1-11) y «Clase» (contenido del microcurriculo, 1-16) YA NO SON LO MISMO. Los numeros de
+este archivo —el campo `sesion` de cada pregunta, `cubre`, `repaso[].sesion`— son
+SIEMPRE numero de CLASE (contenido), estable pase lo que pase con el calendario. El unico
+campo que es numero de SESION de calendario es `CORTE1["sesion"]`/`CORTE2["sesion"]` (la
+fecha en que se entrega), y por eso lleva su propio comentario en la definicion.
 
 Eso esta declarado en `config/calendario/introduccion_ingenieria_2026_2.json` (clave
 `cortes`) y explicado en el docstring de `intro_ing_corte3_data.py`. Si alguien viene a
@@ -14,7 +25,7 @@ agregar una tercera evaluacion, la respuesta es que el corte 3 se evalua con pro
 no con examen.
 
 Restricciones que vienen del material ya construido y que NO se pueden cambiar aqui
-sin cambiar tambien el deck y el guion de las sesiones 6 y 11:
+sin cambiar tambien el deck y el guion de las Clases 6 y 11:
 
   - Son **20 minutos** cronometrados, al final de la sesion, despues de las
     exposiciones. Lo dicen la agenda del deck (`agenda_slots`) y el plan minuto a
@@ -43,9 +54,10 @@ hito de 1968, la Ley 1273 y la Ley 1672 como distractores de la Ley 1581). Un
 distractor inventado se descarta por absurdo; uno verdadero fuera de lugar obliga a
 discriminar, que es lo que se quiere medir.
 
-Cada pregunta declara `sesion`, que es de donde sale. Sirve para dos cosas: revisar de
-un vistazo que la evaluacion cubre todas las sesiones del corte, y responderle al
-estudiante que reclama «eso no lo vimos» con el numero de sesion.
+Cada pregunta declara `sesion` (numero de CLASE, no de sesion de calendario: ver la nota
+de vocabulario arriba), que es de donde sale. Sirve para dos cosas: revisar de un vistazo
+que la evaluacion cubre todas las clases del corte, y responderle al estudiante que
+reclama «eso no lo vimos» con el numero de clase.
 
 Consume este modulo `build_uniajc_intro_ing_examlab.py`, que produce por corte:
     Kit docente/Clase N/ExamLab Corte X - Configuracion.md / .docx
@@ -55,18 +67,19 @@ Consume este modulo `build_uniajc_intro_ing_examlab.py`, que produce por corte:
 """
 
 # =============================================================================
-# CORTE 1 · sesion 6 · sesiones 1 a 6 · 20 min · individual · de memoria
+# CORTE 1 · entrega en sesion 4 (Clase 6) · cubre Clases 1 a 6 · 20 min · individual · de memoria
 # =============================================================================
 
 CORTE1 = {
     "corte": 1,
-    "sesion": 6,
-    "cubre": "1 a 6",
+    "clase": 6,    # numero de CLASE (carpeta Kit docente/Clases): NO cambia con el calendario
+    "sesion": 4,   # sesion de CALENDARIO en que se entrega (Clase 6, ver clases_material)
+    "cubre": "1 a 6",   # rango de CLASES (contenido), no de sesiones de calendario
     "minutos": 20,
     "libro_abierto": False,
     "titulo": "Evaluacion del Corte 1 - Que es la ingenieria, el sistema, la etica y el problema",
     "resumen": (
-        "Diez preguntas sobre las sesiones 1 a 6: qué es y qué no es la ingeniería, historia "
+        "Diez preguntas sobre las Clases 1 a 6: qué es y qué no es la ingeniería, historia "
         "y hitos, los cinco elementos de un sistema, principios éticos y normas colombianas, "
         "la huella ambiental de un sistema, y la diferencia entre problema, síntoma y solución "
         "disfrazada. Es individual, se responde en los últimos 20 minutos de la sesión y no "
@@ -79,7 +92,7 @@ CORTE1 = {
         "se sabe si las distinguen o si saben buscar en el documento. La del corte 2 sí es a "
         "libro abierto, y ahí el criterio cambia: lo que se mide es que el equipo documentó."
     ),
-    "cierre": "los últimos 20 minutos de la sesión 6, después de las exposiciones",
+    "cierre": "los últimos 20 minutos de la sesión 4 del calendario (Clase 6), después de las exposiciones",
     # Lo que recibe el ESTUDIANTE. No es el listado de las diez preguntas: publicar los
     # diez titulos cinco sesiones antes convierte una evaluacion de criterio en la
     # memorizacion de diez respuestas. Es una guia de repaso por sesion, y esta escrita
@@ -536,23 +549,24 @@ CORTE1 = {
 
 
 # =============================================================================
-# CORTE 2 · sesion 11 · sesiones 7 a 11 · 20 min · individual · LIBRO ABIERTO
+# CORTE 2 · entrega en sesion 7 (Clase 11) · cubre Clases 7 a 11 · 20 min · individual · LIBRO ABIERTO
 # =============================================================================
 # Cuatro de las diez preguntas piden abrir el documento del equipo. Es deliberado: la
-# sesion 11 cierra el corte con la idea de que «el equipo pudo corregir al asistente
+# la Clase 11 (sesion 7 del calendario) cierra el corte con la idea de que «el equipo pudo corregir al asistente
 # porque tenia sus decisiones escritas», y una evaluacion a libro abierto es la unica
 # que premia eso de verdad. El equipo que no documento no encuentra qué copiar, y esa
 # es la informacion que la evaluacion tiene que dar.
 
 CORTE2 = {
     "corte": 2,
-    "sesion": 11,
-    "cubre": "7 a 11",
+    "clase": 11,   # numero de CLASE (carpeta Kit docente/Clases): NO cambia con el calendario
+    "sesion": 7,   # sesion de CALENDARIO en que se entrega (Clase 11, ver clases_material)
+    "cubre": "7 a 11",   # rango de CLASES (contenido), no de sesiones de calendario
     "minutos": 20,
     "libro_abierto": True,
     "titulo": "Evaluacion del Corte 2 - Ciclo de vida, requisitos, decision, antecedentes y prototipo",
     "resumen": (
-        "Diez preguntas sobre las sesiones 7 a 11: ciclo de vida y costo del cambio, "
+        "Diez preguntas sobre las Clases 7 a 11: ciclo de vida y costo del cambio, "
         "requisitos y criterios de aceptación, decisión entre alternativas y alcance mínimo, "
         "antecedentes y calidad de las fuentes, prototipado y niveles de fidelidad, y uso "
         "responsable de un asistente de IA. Es individual y **a libro abierto sobre los "
@@ -567,7 +581,7 @@ CORTE2 = {
         "la medición que interesa en el corte 2, y es coherente con lo que el cierre de la "
         "sesión 11 le dice al grupo: documentar no fue un trámite, fue construir el criterio."
     ),
-    "cierre": "los últimos 20 minutos de la sesión 11, después de las exposiciones",
+    "cierre": "los últimos 20 minutos de la sesión 7 del calendario (Clase 11), después de las exposiciones",
     # En el corte 2 el repaso incluye QUE TENER ABIERTO, porque cuatro preguntas se
     # responden copiando del documento del equipo. Quien llegue sin el documento pierde
     # 49 de los 100 puntos, y eso hay que decirlo con anticipacion, no el mismo dia.

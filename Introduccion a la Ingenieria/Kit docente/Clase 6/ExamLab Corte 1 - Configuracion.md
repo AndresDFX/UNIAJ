@@ -6,19 +6,19 @@
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Evaluaciones
 - **Corte:** 1 de 3 · el corte vale 30% del curso
 - **Peso de esta evaluación:** 10% de la nota final del curso
-- **Cubre:** las sesiones 1 a 6
-- **Cuándo:** los últimos 20 minutos de la sesión 6, después de las exposiciones
+- **Cubre:** las Clases 1 a 6
+- **Cuándo:** los últimos 20 minutos de la sesión 4 del calendario (Clase 6), después de las exposiciones
 - **Duración:** 20 minutos, cronometrados
 - **Modalidad:** Individual · dentro de la sesión sincrónica
 - **Libro abierto:** No. Se responde sin consultar material
 - **Reparto:** 7 cerradas (62 pts) y 3 abiertas (38 pts)
-- **Fechas por grupo:** **SB141B** jueves 15/10/2026 (14:30–16:00) · **SB141C** martes 13/10/2026 (14:30–16:00) · **LB141F** martes 13/10/2026 (18:30–20:00)
+- **Fechas por grupo:** **SB141B** jueves 01/10/2026 (14:30–16:00) · **SB141C** martes 29/09/2026 (14:30–16:00) · **LB141F** martes 29/09/2026 (18:30–20:00)
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestaña de IA). Este documento trae el texto exacto de
 > cada campo para copiar y pegar, con las opciones correctas ya marcadas.
 
-**Qué se evalúa:** Diez preguntas sobre las sesiones 1 a 6: qué es y qué no es la ingeniería, historia y hitos, los cinco elementos de un sistema, principios éticos y normas colombianas, la huella ambiental de un sistema, y la diferencia entre problema, síntoma y solución disfrazada. Es individual, se responde en los últimos 20 minutos de la sesión y no se consulta material.
+**Qué se evalúa:** Diez preguntas sobre las Clases 1 a 6: qué es y qué no es la ingeniería, historia y hitos, los cinco elementos de un sistema, principios éticos y normas colombianas, la huella ambiental de un sistema, y la diferencia entre problema, síntoma y solución disfrazada. Es individual, se responde en los últimos 20 minutos de la sesión y no se consulta material.
 
 ---
 
@@ -300,4 +300,4 @@ Que la cifra sea distinta a la del modelo no resta: lo que resta es que no se pu
 
 La evaluación del corte 1 es **de memoria** porque lo que mide son las distinciones que el estudiante tiene que llevar puestas el resto del semestre: problema contra síntoma, sistema contra software, ético contra legal. Si se responde consultando, no se sabe si las distinguen o si saben buscar en el documento. La del corte 2 sí es a libro abierto, y ahí el criterio cambia: lo que se mide es que el equipo documentó.
 
-> Solo hay **dos** evaluaciones escritas en el curso, esta y la de la otra sesión de cierre. El corte 3 no tiene evaluación escrita: se evalúa con la exposición final, el informe final y la asistencia. No es una omisión.
+> Solo hay **dos** evaluaciones escritas en el curso, esta y la del otro corte. El corte 3 no tiene evaluación escrita: se evalúa con la exposición final, el informe final y la asistencia. No es una omisión.
