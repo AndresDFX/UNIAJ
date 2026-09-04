@@ -402,8 +402,9 @@ def build_correo(codigo):
             if "sistencia" in linea:          # asistencia no tiene fecha: es todo el corte
                 continue
             que, _, peso = linea.rpartition("·")
-            # El desglose dice en que sesion cae cada cosa («(sesión 15)»), y no siempre es
-            # la del cierre del corte: la exposicion final es la 15 y el corte cierra en la 16.
+            # El desglose dice en que sesion cae cada cosa («(sesión N)»), y no siempre es
+            # la del cierre del corte — aunque desde que el corte 3 quedo en una sola sesion
+            # doble (exposicion final + informe, ambos en la sesion 11) coinciden.
             m = re.search(r"sesi[oó]n\s+(\d+)", que)
             ses = int(m.group(1)) if m else x["cierre_sesion"]
             f = D.fecha_de_sesion(codigo, ses)
@@ -428,8 +429,8 @@ def build_correo(codigo):
         "",
         "El curso entero cuelga de **un proyecto por equipo**: eligen un problema real de "
         "su entorno en las primeras sesiones y lo van armando hasta sustentarlo en la "
-        "sesión 15. Somos **%d equipos fijos** todo el semestre, y el **vocero rota**: "
-        "todos exponen alguna vez." % eq["cantidad_fija"],
+        "última sesión (sesión %d). Somos **%d equipos fijos** todo el semestre, y el "
+        "**vocero rota**: todos exponen alguna vez." % (c["n_sesiones"], eq["cantidad_fija"]),
         "",
         "> **Por qué %d equipos y no equipos de tamaño fijo:** las exposiciones son %d min "
         "por equipo y la sesión cierra a los %d. Con equipos de cuatro, un grupo grande "

@@ -48,7 +48,7 @@ Los 90 minutos van así, todas las semanas:
 - **15 min · Exposiciones** — 5 equipos × 3 min con pantalla compartida y cronómetro
 - **3 min · Cierre** — Una idea, la tarea y los enlaces en el chat
 
-El curso entero cuelga de **un proyecto por equipo**: eligen un problema real de su entorno en las primeras sesiones y lo van armando hasta sustentarlo en la sesión 15. Somos **5 equipos fijos** todo el semestre, y el **vocero rota**: todos exponen alguna vez.
+El curso entero cuelga de **un proyecto por equipo**: eligen un problema real de su entorno en las primeras sesiones y lo van armando hasta sustentarlo en la última sesión (sesión 11). Somos **5 equipos fijos** todo el semestre, y el **vocero rota**: todos exponen alguna vez.
 
 > **Por qué 5 equipos y no equipos de tamaño fijo:** las exposiciones son 3 min por equipo y la sesión cierra a los 90. Con equipos de cuatro, un grupo grande daría nueve equipos y no cabrían.
 
