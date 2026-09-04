@@ -3,8 +3,8 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 9 de 11 · corresponde al tema 13 del microcurrículo
-- Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
+- Tipo: Clase virtual sincrónica por Microsoft Teams · Sesión 9 de 11 · corresponde al tema 13 del microcurrículo
+- Modalidad: **Virtual (síncrona)** por Microsoft Teams · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **3** (40%) · RAA: **RAA2**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
 - Enfoque: Aprendizaje basado en competencia + Aprendizaje Invertido · Estrategia: ABPr — Aprendizaje Basado en Proyectos

@@ -4,7 +4,7 @@
 - **Grupo:** SB141C
 - **Periodo:** 2026-2 · **08/09/2026 – 17/11/2026**
 - **Horario:** Martes **14:30 – 16:00** (90 min) · **inicio efectivo 14:40** (se arranca 10 min después de la hora oficial para esperar a que los estudiantes se conecten)
-- **Modalidad:** Virtual (síncrona) por Google Meet · actividades en plataformas gratuitas en la nube
+- **Modalidad:** Virtual (síncrona) por Microsoft Teams · actividades en plataformas gratuitas en la nube
 - **Docente:** Julian Andres Castaño · `julianacastano@profesores.uniajc.edu.co`
 - **Total sesiones:** 11 · **temas del microcurrículo:** 16 — N:1 con 5 excepciones — 11 sesiones de calendario cubren los 16 temas del microcurrículo. La correspondencia por defecto es Sesión N = Clase N (Sesión 1 = Clase 1, Sesión 4 = Clase 6, Sesión 7 = Clase 11, etc.), y en 5 sesiones «dobles» se dictan DOS clases en el mismo bloque de 90 min (Sesión 2 = Clases 2+3, Sesión 3 = Clases 4+5, Sesión 5 = Clases 7+8, Sesión 6 = Clases 9+10, Sesión 11 = Clases 15+16). El mapeo exacto vive en `grupos[].sesiones[].clases_material`; las carpetas `Clases/Clase N - …` y `Kit docente/Clase N/` NO se renumeran — es el mismo patrón que ya usan los otros cuatro cursos (`semestre_2026_2.json`, campo `clases_material` + `sesion_doble`).
 - **Semanas de calendario:** 11
@@ -23,7 +23,7 @@
 |---|---|---|---|
 | 14:30 – 14:40 | 10 min | Apertura | Se espera a que los estudiantes se conecten. No es tiempo muerto: en pantalla compartida queda la pregunta de entrada de la sesión y quien va entrando la responde en el muro del curso. Se pide cámara encendida solo durante el saludo y en la exposición del equipo. |
 | 14:40 – 15:25 | 45 min | Teoría y guía del docente | Bloque teórico completo de la sesión, dictado con el guion docente y sus diapositivas por pantalla compartida. Las preguntas van por chat y se responden en voz alta. Cierra enunciando la consigna de la actividad y abriendo las salas de grupo. |
-| 15:25 – 15:42 | 17 min | Actividad en equipos | Los 5 equipos pasan a sus salas de grupo de Meet y trabajan en paralelo sobre la misma consigna, cada uno en su documento en la nube. El docente entra y sale de las cinco salas (unos 3 min en cada una). A los 15 min se avisa por el chat general y se cierran las salas. |
+| 15:25 – 15:42 | 17 min | Actividad en equipos | Los 5 equipos pasan a sus salas de grupo de Teams y trabajan en paralelo sobre la misma consigna, cada uno en su documento en la nube. El docente entra y sale de las cinco salas (unos 3 min en cada una). A los 15 min se avisa por el chat general y se cierran las salas. |
 | 15:42 – 15:57 | 15 min | Exposiciones | Vuelven todos a la sala principal y los 5 equipos exponen: 3 min por equipo, cronómetro proyectado, el vocero comparte pantalla con el documento YA abierto. No hay turno de preguntas por equipo; la retroalimentación va en el cierre. |
 | 15:57 – 16:00 | 3 min | Cierre | Una idea que se llevan, el trabajo independiente de la semana y el tema de la siguiente sesión. Antes de salir, el enlace del documento de cada equipo queda pegado en el chat. |
 
@@ -79,7 +79,7 @@
 
 ## Pendiente
 
-- Carpetas de Drive del curso (clases y grabadas) y su ID, una por grupo, para que MoverGrabaciones.gs archive las grabaciones de Meet como en los otros cuatro cursos. Al ser tres grupos hacen falta tres pares de carpetas.
-- Enlace fijo de Google Meet de cada grupo (SB141B, SB141C, LB141F) y las cinco salas de grupo creadas de una vez para las 11 sesiones.
+- Carpetas de Drive del curso (clases y grabadas) y su ID, una por grupo, para que MoverGrabaciones.gs archive las grabaciones de Teams como en los otros cuatro cursos. Al ser tres grupos hacen falta tres pares de carpetas.
+- Enlace fijo de Microsoft Teams de cada grupo (SB141B, SB141C, LB141F) y las cinco salas de grupo creadas de una vez para las 11 sesiones.
 
 Fuente: `config/calendario/introduccion_ingenieria_2026_2.json` (generado por `config/slides/build_uniajc_intro_ing_curso.py`).

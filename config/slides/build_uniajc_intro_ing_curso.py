@@ -54,7 +54,7 @@ def build_pptx(codigo):
             "Código: **%s** · Grupo: **%s** · Periodo: **%s**" % (c["codigo"], codigo, D.load()["periodo"]),
             "Programa: %s · %s · UNIAJC" % ("Ingeniería de Sistemas", "Facultad de Ingeniería"),
             D.linea_horario(codigo),
-            "Modalidad: **Virtual sincrónica** por **Google Meet** · Actividades en **plataformas gratuitas en la nube**",
+            "Modalidad: **Virtual sincrónica** por **Microsoft Teams** · Actividades en **plataformas gratuitas en la nube**",
             "Docente: %s" % D.DOCENTE,
         ],
         inicio_clase=g["hora_inicio_efectiva"],
@@ -185,7 +185,7 @@ def build_pptx(codigo):
             "%s **%s** · inicio efectivo **%s** · Periodo **%s**"
             % (g["dia"], g["horario"].replace(" - ", " – "), g["hora_inicio_efectiva"],
                D.load()["periodo"]),
-            "UNIAJC · Ingeniería de Sistemas · Virtual sincrónica por Google Meet",
+            "UNIAJC · Ingeniería de Sistemas · Virtual sincrónica por Microsoft Teams",
         ],
         accent="Ingeniería es decidir con criterio, no solo saber cómo",
     )
@@ -221,7 +221,7 @@ def build_calendario(codigo):
         "después de la hora oficial para esperar a que los estudiantes se conecten)"
         % (g["dia"], g["horario"].replace(" - ", " – "), c["duracion_min"],
            g["hora_inicio_efectiva"]),
-        "- **Modalidad:** Virtual (síncrona) por Google Meet · actividades en plataformas gratuitas en la nube",
+        "- **Modalidad:** Virtual (síncrona) por Microsoft Teams · actividades en plataformas gratuitas en la nube",
         "- **Docente:** %s · `%s`" % (D.DOCENTE, D.CORREO),
         "- **Total sesiones:** %d · **temas del microcurrículo:** %d — %s"
         % (c["n_sesiones"], c["n_temas"], c["mapa_sesion_tema"]),
@@ -338,7 +338,7 @@ def build_correo(codigo):
     este no tenia ninguno, porque el generador del semestre solo lee
     `semestre_2026_2.json` y los tres grupos de FI300101 viven en su propio archivo. El
     hueco no era cosmetico: los eventos de Calendar son bloques del calendario del docente
-    —sin invitados— y NINGUN documento publica una URL de Meet. Sin este correo, el
+    —sin invitados— y NINGUN documento publica una URL de Teams. Sin este correo, el
     estudiante de estos tres grupos no tenia el horario ni sabia como entrar a la sesion.
 
     Va uno por grupo porque lo que cambia es justo lo que el estudiante necesita: el dia, la
@@ -376,7 +376,7 @@ def build_correo(codigo):
         "| **Día y hora** | %s %s |" % (g["dia"], g["horario"].replace(" - ", " – ")),
         "| **Inicio efectivo** | %s — arranco 10 min después de la hora oficial para "
         "esperar a que se conecten |" % g["hora_inicio_efectiva"],
-        "| **Modalidad** | Virtual **síncrona** por Google Meet |",
+        "| **Modalidad** | Virtual **síncrona** por Microsoft Teams |",
         "| **Sesiones** | %d, una por semana · %d min cada una |"
         % (c["n_sesiones"], c["duracion_min"]),
         "| **Primera sesión** | %s |" % D.ddmmyyyy(D.fecha_de_sesion(codigo, 1)),
@@ -385,7 +385,7 @@ def build_correo(codigo):
         "",
         "**No les va a llegar ninguna invitación de Google Calendar.** El horario es el de "
         "la tabla de arriba: **guárdenlo ustedes** en su calendario si les sirve, y el "
-        "**enlace de Google Meet se lo comparto yo antes de cada encuentro**.",
+        "**enlace de Microsoft Teams se lo comparto yo antes de cada encuentro**.",
         "",
         "**¿Dónde busco el enlace del día?** En **ExamLab**, en el curso: ahí lo publico "
         "antes de que empiece la sesión. Si algo falla ese día, lo mando también por el "
@@ -459,7 +459,7 @@ def build_correo(codigo):
         "",
         "### Cómo entrar a ExamLab (antes de la primera sesión)",
         "",
-        "Ahí publico **el enlace de Meet de cada sesión**, el material de la clase y las "
+        "Ahí publico **el enlace de Teams de cada sesión**, el material de la clase y las "
         "entregas, así que conviene entrar antes del primer encuentro y no ese mismo día.",
         "",
         "| | |",
@@ -587,7 +587,7 @@ def build_leeme():
         "",
         eq["por_que_fija"],
         "",
-        "**Una sala de Meet por equipo.** %s" % eq["salas"],
+        "**Una sala de Teams por equipo.** %s" % eq["salas"],
         "",
         "| Matriculados | Integrantes por equipo | Minutos de exposición |",
         "|---|---|---|",
@@ -696,7 +696,7 @@ def build_leeme():
         "| Un integrante del equipo | %s |" % plat["plan_b"]["de_un_integrante"],
         "| El vocero del día | %s |" % plat["plan_b"]["del_vocero"],
         "| El docente | %s |" % plat["plan_b"]["del_docente"],
-        "| Google Meet | %s |" % plat["plan_b"]["de_meet"],
+        "| Microsoft Teams | %s |" % plat["plan_b"]["de_meet"],
         "",
         "> **Regla de diseño:** %s" % plat["plan_b"]["regla"],
         "",

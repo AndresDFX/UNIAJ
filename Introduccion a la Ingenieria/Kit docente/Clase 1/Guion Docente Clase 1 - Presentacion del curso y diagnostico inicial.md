@@ -3,8 +3,8 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 1 de 11 · corresponde al tema 1 del microcurrículo
-- Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
+- Tipo: Clase virtual sincrónica por Microsoft Teams · Sesión 1 de 11 · corresponde al tema 1 del microcurrículo
+- Modalidad: **Virtual (síncrona)** por Microsoft Teams · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
 - Enfoque: Aprendizaje basado en competencia + Aprendizaje Invertido · Estrategia: ABPr — Aprendizaje Basado en Proyectos
 
@@ -121,13 +121,13 @@ Numeración real del deck `Clases/Clase 1 - Presentacion del curso y diagnostico
 ## Plan de clase minuto a minuto (90 min)
 
 ### 00:00–00:10 · Apertura · [Slide 4]
-Entre a Meet 5 min antes, comparta pantalla con la pregunta de entrada **antes** de que entre el primer estudiante y déjela ahí los diez minutos:
+Entre a Teams 5 min antes, comparta pantalla con la pregunta de entrada **antes** de que entre el primer estudiante y déjela ahí los diez minutos:
 
 > «En una frase: ¿qué crees que hace un ingeniero de sistemas en su trabajo un martes cualquiera a las 10 de la mañana?»
 
-**[Nota docente]:** abra el muro del curso en Padlet y pegue el enlace en el chat de Meet (y el QR en pantalla, para quien esté en el celular). Se responde sin crear cuenta. No corrija ninguna respuesta en voz alta ni señale a quien la escribió: es el primer día de universidad de varios y el muro tiene que quedar como un sitio donde se puede escribir sin costo.
+**[Nota docente]:** abra el muro del curso en Padlet y pegue el enlace en el chat de Teams (y el QR en pantalla, para quien esté en el celular). Se responde sin crear cuenta. No corrija ninguna respuesta en voz alta ni señale a quien la escribió: es el primer día de universidad de varios y el muro tiene que quedar como un sitio donde se puede escribir sin costo.
 
-**[Nota docente]:** mientras entran, anote cuántos hay conectados desde la lista de participantes de Meet. Ese número decide el tamaño de los cinco equipos y lo necesita en el minuto 55. Verifique también que las **cinco salas de grupo** ya estén creadas: crearlas en vivo se come la actividad.
+**[Nota docente]:** mientras entran, anote cuántos hay conectados desde la lista de participantes de Teams. Ese número decide el tamaño de los cinco equipos y lo necesita en el minuto 55. Verifique también que las **cinco salas de grupo** ya estén creadas: crearlas en vivo se come la actividad.
 
 ### 00:10–00:40 · Encuadre del curso + tema · deck «Presentación del Curso» y [Slide 6][Slide 7][Slide 8]
 Los primeros **12 min** son el deck «Presentación del Curso» del grupo (`Clases/Presentacion del Curso - Introduccion a la Ingenieria - <GRUPO>.pptx`): encuadre, dinámica de la sesión, cinco equipos, plataformas, evaluación y contenido. No lo lea entero: proyecte la dinámica, los equipos, las reglas de las plataformas y los cortes, y remita el resto al calendario del grupo.
@@ -145,7 +145,7 @@ El desarrollo completo de cada uno está arriba, en «Fundamento teórico para e
 ### 00:40–00:55 · Evaluación diagnóstica · [Slide 5]
 Diga las tres cosas de la diapositiva **antes** de repartirlo, sin adornos: no tiene nota; no se espera que sepan; responder lo que creen que el profesor quiere leer arruina el instrumento porque con esto se planean las 15 sesiones siguientes.
 
-**[Nota docente]:** se aplica en ExamLab: el enlace se pega en el chat de Meet y se responde en la misma sesión. La versión en documento está en `Clases/Clase 1 - …/Prueba Diagnostica - Introduccion a la Ingenieria.docx` para quien no logre abrir ExamLab. Los 13 ítems y lo que revela cada uno están en `Kit docente/Clase 1/Prueba Diagnostica - CLAVE DOCENTE.docx`.
+**[Nota docente]:** se aplica en ExamLab: el enlace se pega en el chat de Teams y se responde en la misma sesión. La versión en documento está en `Clases/Clase 1 - …/Prueba Diagnostica - Introduccion a la Ingenieria.docx` para quien no logre abrir ExamLab. Los 13 ítems y lo que revela cada uno están en `Kit docente/Clase 1/Prueba Diagnostica - CLAVE DOCENTE.docx`.
 
 **[Nota docente]:** las tres últimas preguntas (computador, conexión, horas de trabajo) son las que usa en el minuto 55 para conformar los equipos. Revíselas mientras el grupo termina; son de conteo, no de ficha individual.
 

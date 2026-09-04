@@ -248,10 +248,10 @@ def md_guion(titulos):
         "## Información de la clase",
         "- Asignatura: %s (%s)" % (c["nombre_acentos"], c["codigo"]),
         "- Duración del bloque: **%d min**" % c["duracion_min"],
-        "- Tipo: Clase virtual sincrónica por Google Meet · Sesión 1 de %d · corresponde al tema 1 "
+        "- Tipo: Clase virtual sincrónica por Microsoft Teams · Sesión 1 de %d · corresponde al tema 1 "
         "del microcurrículo"
         % c["n_sesiones"],
-        "- Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas "
+        "- Modalidad: **Virtual (síncrona)** por Microsoft Teams · actividades en plataformas "
         "gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**",
         "- **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni "
         "horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.",
@@ -296,19 +296,19 @@ def md_guion(titulos):
 
     L += [
         "### 00:00–00:10 · Apertura · [Slide 4]",
-        "Entre a Meet 5 min antes, comparta pantalla con la pregunta de entrada **antes** de que "
+        "Entre a Teams 5 min antes, comparta pantalla con la pregunta de entrada **antes** de que "
         "entre el primer estudiante y déjela ahí los diez minutos:",
         "",
         "> «%s»" % C1.PREGUNTA_ENTRADA,
         "",
-        "**[Nota docente]:** abra el muro del curso en Padlet y pegue el enlace en el chat de Meet "
+        "**[Nota docente]:** abra el muro del curso en Padlet y pegue el enlace en el chat de Teams "
         "(y el QR en pantalla, para quien esté en el celular). Se responde sin crear cuenta. No "
         "corrija ninguna respuesta en voz alta ni señale a "
         "quien la escribió: es el primer día de universidad de varios y el muro tiene que quedar "
         "como un sitio donde se puede escribir sin costo.",
         "",
         "**[Nota docente]:** mientras entran, anote cuántos hay conectados desde la lista de "
-        "participantes de Meet. Ese número decide el tamaño de los cinco equipos y lo necesita en "
+        "participantes de Teams. Ese número decide el tamaño de los cinco equipos y lo necesita en "
         "el minuto 55. Verifique también que las **cinco salas de grupo** ya estén creadas: "
         "crearlas en vivo se come la actividad.",
         "",
@@ -339,7 +339,7 @@ def md_guion(titulos):
         "no se espera que sepan; responder lo que creen que el profesor quiere leer arruina el "
         "instrumento porque con esto se planean las 15 sesiones siguientes.",
         "",
-        "**[Nota docente]:** se aplica en ExamLab: el enlace se pega en el chat de Meet y se "
+        "**[Nota docente]:** se aplica en ExamLab: el enlace se pega en el chat de Teams y se "
         "responde en la misma sesión. La versión en documento está en `Clases/Clase 1 - …/%s.docx` "
         "para quien no logre abrir ExamLab. Los 13 ítems y lo que "
         "revela cada uno están en `Kit docente/Clase 1/%s.docx`." % (NOMBRE_DIAG, NOMBRE_CLAVE),

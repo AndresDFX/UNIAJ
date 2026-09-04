@@ -156,7 +156,7 @@ def md_configuracion(n):
             "- Configure el cierre a los **%d minutos**. Si la plataforma no permite"
             % ev["minutos"],
             "  cronómetro, avise el minuto de cierre en voz alta y cierre usted la actividad.",
-            "- Pegue el enlace **en el chat de Meet**, nunca en la diapositiva: ExamLab no es",
+            "- Pegue el enlace **en el chat de Teams**, nunca en la diapositiva: ExamLab no es",
             "  plataforma oficial de la UNIAJC y el enlace no debe quedar en material publicado.",
             "- Recuerde en voz alta que es individual, y (si aplica) qué se puede consultar.",
             "- **Si ExamLab falla:** no se pierde la evaluación. Se reprograma dentro de la",

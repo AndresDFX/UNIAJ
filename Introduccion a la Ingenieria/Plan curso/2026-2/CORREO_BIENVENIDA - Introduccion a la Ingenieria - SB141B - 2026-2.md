@@ -16,12 +16,12 @@ Soy Julian Andres Castaño y voy a acompañarlos en **Introducción a la Ingenie
 |---|---|
 | **Día y hora** | Jueves 14:30 – 16:00 |
 | **Inicio efectivo** | 14:40 — arranco 10 min después de la hora oficial para esperar a que se conecten |
-| **Modalidad** | Virtual **síncrona** por Google Meet |
+| **Modalidad** | Virtual **síncrona** por Microsoft Teams |
 | **Sesiones** | 11, una por semana · 90 min cada una |
 | **Primera sesión** | 10/09/2026 |
 | **Última sesión** | 19/11/2026 |
 
-**No les va a llegar ninguna invitación de Google Calendar.** El horario es el de la tabla de arriba: **guárdenlo ustedes** en su calendario si les sirve, y el **enlace de Google Meet se lo comparto yo antes de cada encuentro**.
+**No les va a llegar ninguna invitación de Google Calendar.** El horario es el de la tabla de arriba: **guárdenlo ustedes** en su calendario si les sirve, y el **enlace de Microsoft Teams se lo comparto yo antes de cada encuentro**.
 
 **¿Dónde busco el enlace del día?** En **ExamLab**, en el curso: ahí lo publico antes de que empiece la sesión. Si algo falla ese día, lo mando también por el grupo de WhatsApp por medio del vocero. **Cada sesión tiene su propio enlace**, así que no sirve guardar el de la semana pasada.
 
@@ -44,7 +44,7 @@ Los 90 minutos van así, todas las semanas:
 
 - **10 min · Apertura** — Pregunta de entrada en el muro mientras se conectan
 - **45 min · Teoría y guía del docente** — Teoría por pantalla compartida, preguntas por chat
-- **17 min · Actividad en equipos** — Cinco salas de grupo en Meet, el docente rota por todas
+- **17 min · Actividad en equipos** — Cinco salas de grupo en Teams, el docente rota por todas
 - **15 min · Exposiciones** — 5 equipos × 3 min con pantalla compartida y cronómetro
 - **3 min · Cierre** — Una idea, la tarea y los enlaces en el chat
 
@@ -58,7 +58,7 @@ Todo **gratis y desde el navegador**. No hay que instalar nada ni pagar nada, y 
 
 | Herramienta | Para qué |
 |---|---|
-| **Google Meet** | El aula: sesión sincrónica, salas de grupo para la actividad y exposiciones con pantalla compartida |
+| **Microsoft Teams** | El aula: sesión sincrónica, salas de grupo para la actividad y exposiciones con pantalla compartida |
 | **Google Drive (Docs y Slides)** | Bitácora del equipo y soporte de la exposición |
 | **Padlet** | Muro de la sesión: pregunta de entrada de los 10 min de apertura |
 | **diagrams.net (draw.io)** | Línea de tiempo (Clase 2), ciclo de vida (Clases 7 y 8), diagramas del proyecto |
@@ -72,7 +72,7 @@ Todo **gratis y desde el navegador**. No hay que instalar nada ni pagar nada, y 
 
 ### Cómo entrar a ExamLab (antes de la primera sesión)
 
-Ahí publico **el enlace de Meet de cada sesión**, el material de la clase y las entregas, así que conviene entrar antes del primer encuentro y no ese mismo día.
+Ahí publico **el enlace de Teams de cada sesión**, el material de la clase y las entregas, así que conviene entrar antes del primer encuentro y no ese mismo día.
 
 | | |
 |---|---|

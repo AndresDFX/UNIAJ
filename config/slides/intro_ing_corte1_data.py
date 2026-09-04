@@ -292,11 +292,11 @@ TEMAS[2] = {
         {
             "titulo": "00:00–00:10 · Apertura · [Slide 4]",
             "cuerpo": [
-                "Entre a Meet 5 min antes y comparta pantalla con la pregunta de entrada antes de "
+                "Entre a Teams 5 min antes y comparta pantalla con la pregunta de entrada antes de "
                 "que entre el primer estudiante:",
                 "> «Un proyecto de software se pasa del plazo y del presupuesto. ¿Es un problema "
                 "de 2026 o de 1968?»",
-                "**[Nota docente]:** el enlace del muro de Padlet va en el chat de Meet. No "
+                "**[Nota docente]:** el enlace del muro de Padlet va en el chat de Teams. No "
                 "corrija ninguna respuesta ahora: el valor de este muro está en releerlo en el "
                 "minuto 25, cuando ya se haya contado Garmisch.",
                 "**[Nota docente]:** confirme que las cinco salas de grupo están creadas y que "

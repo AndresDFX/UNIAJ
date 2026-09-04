@@ -344,9 +344,9 @@ def md_guion(n, titulos):
         "## Información de la clase",
         "- Asignatura: %s (%s)" % (c["nombre_acentos"], c["codigo"]),
         "- Duración del bloque: **%d min**" % c["duracion_min"],
-        "- Tipo: Clase virtual sincrónica por Google Meet · Sesión %d de %d%s · corresponde al "
+        "- Tipo: Clase virtual sincrónica por Microsoft Teams · Sesión %d de %d%s · corresponde al "
         "tema %d del microcurrículo" % (sesion, c["n_sesiones"], doble_txt, n),
-        "- Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas "
+        "- Modalidad: **Virtual (síncrona)** por Microsoft Teams · actividades en plataformas "
         "gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**",
         "- Corte **%d** (%s) · RAA: **%s**%s"
         % (corte["corte"], corte["pct"], tm["raa"],

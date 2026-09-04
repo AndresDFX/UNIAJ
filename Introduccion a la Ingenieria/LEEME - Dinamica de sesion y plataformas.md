@@ -17,7 +17,7 @@ Toda sesión tiene los mismos cinco bloques y suman exactamente 90 minutos. No h
 |---|---|---|---|
 | 1 | **10 min** | Apertura | Se espera a que los estudiantes se conecten. No es tiempo muerto: en pantalla compartida queda la pregunta de entrada de la sesión y quien va entrando la responde en el muro del curso. Se pide cámara encendida solo durante el saludo y en la exposición del equipo. |
 | 2 | **45 min** | Teoría y guía del docente | Bloque teórico completo de la sesión, dictado con el guion docente y sus diapositivas por pantalla compartida. Las preguntas van por chat y se responden en voz alta. Cierra enunciando la consigna de la actividad y abriendo las salas de grupo. |
-| 3 | **17 min** | Actividad en equipos | Los 5 equipos pasan a sus salas de grupo de Meet y trabajan en paralelo sobre la misma consigna, cada uno en su documento en la nube. El docente entra y sale de las cinco salas (unos 3 min en cada una). A los 15 min se avisa por el chat general y se cierran las salas. |
+| 3 | **17 min** | Actividad en equipos | Los 5 equipos pasan a sus salas de grupo de Teams y trabajan en paralelo sobre la misma consigna, cada uno en su documento en la nube. El docente entra y sale de las cinco salas (unos 3 min en cada una). A los 15 min se avisa por el chat general y se cierran las salas. |
 | 4 | **15 min** | Exposiciones | Vuelven todos a la sala principal y los 5 equipos exponen: 3 min por equipo, cronómetro proyectado, el vocero comparte pantalla con el documento YA abierto. No hay turno de preguntas por equipo; la retroalimentación va en el cierre. |
 | 5 | **3 min** | Cierre | Una idea que se llevan, el trabajo independiente de la semana y el tema de la siguiente sesión. Antes de salir, el enlace del documento de cada equipo queda pegado en el chat. |
 
@@ -33,7 +33,7 @@ Toda sesión tiene los mismos cinco bloques y suman exactamente 90 minutos. No h
 
 > **Por qué se arranca 10 minutos después de la hora oficial.** El curso es virtual y entrar a la sesión nunca es instantáneo: hay quien viene de trabajar, quien pelea con el micrófono y quien entra desde el celular. Arrancar a la hora exacta obliga a repetir la primera explicación cinco veces. Esos 10 minutos **no son de descanso**: la pregunta de entrada queda en pantalla compartida y se responde en el muro del curso. A la hora efectiva (14:40 en SB141B / 14:40 en SB141C / 18:40 en LB141F) se arranca el bloque teórico y ahí sí no se espera a nadie.
 
-> **El aula.** Google Meet — enlace fijo por grupo, el mismo las 11 sesiones. La sesión se graba solo si el grupo lo autoriza al inicio; las exposiciones sí se graban porque son evaluadas.
+> **El aula.** Microsoft Teams — enlace fijo por grupo, el mismo las 11 sesiones. La sesión se graba solo si el grupo lo autoriza al inicio; las exposiciones sí se graban porque son evaluadas.
 
 ---
 
@@ -43,7 +43,7 @@ Toda sesión tiene los mismos cinco bloques y suman exactamente 90 minutos. No h
 
 El presupuesto de exposiciones es el que no se puede estirar: 5 equipos × 3 min = 15 min y la sesión cierra a los 90. Si se dejara fijo el tamaño del equipo (por ejemplo «de 4 en 4»), un grupo de 35 daría 9 equipos = 27 min de exposición y la sesión se pasaría 12 min. Por eso lo fijo son los 5 equipos y lo variable es cuánta gente hay en cada uno.
 
-**Una sala de Meet por equipo.** Un equipo = una sala de grupo de Meet, numeradas Equipo 1 a Equipo 5. Las salas se crean una sola vez y se reutilizan las 11 sesiones, así que nadie pierde tiempo repartiéndose. El docente reparte los 15 min de actividad en unos 3 min por sala.
+**Una sala de Teams por equipo.** Un equipo = una sala de grupo de Teams, numeradas Equipo 1 a Equipo 5. Las salas se crean una sola vez y se reutilizan las 11 sesiones, así que nadie pierde tiempo repartiéndose. El docente reparte los 15 min de actividad en unos 3 min por sala.
 
 | Matriculados | Integrantes por equipo | Minutos de exposición |
 |---|---|---|
@@ -64,9 +64,9 @@ El presupuesto de exposiciones es el que no se puede estirar: 5 equipos × 3 min
 
 ## 3. Las plataformas: qué significa «gratuitas y en la nube»
 
-El curso es virtual sincrónico: el aula es Google Meet y todas las actividades corren en plataformas gratuitas y en la nube. «Gratuitas» aquí significa plan gratuito permanente, no prueba de 14 días, y sin pedir tarjeta de crédito en ningún momento. «En la nube» significa que el trabajo del equipo sobrevive a que se caiga la conexión de un integrante.
+El curso es virtual sincrónico: el aula es Microsoft Teams y todas las actividades corren en plataformas gratuitas y en la nube. «Gratuitas» aquí significa plan gratuito permanente, no prueba de 14 días, y sin pedir tarjeta de crédito en ningún momento. «En la nube» significa que el trabajo del equipo sobrevive a que se caiga la conexión de un integrante.
 
-### Google Meet
+### Microsoft Teams
 
 - **Para qué:** El aula: sesión sincrónica, salas de grupo para la actividad y exposiciones con pantalla compartida
 - **Por qué esta y no otra:** Viene con la cuenta institucional, permite salas de grupo (una por equipo) sin plugins y el enlace del grupo es el mismo las 16 sesiones.
@@ -127,7 +127,7 @@ Se explican completas el primer día y quedan como acuerdo del curso. La versió
 1. Gratis permanente, no «prueba de 14 días». Si al terminar el semestre la herramienta deja de funcionar, no sirve para este curso.
 2. Nunca se pide tarjeta de crédito. Si una herramienta la pide, no es la que vamos a usar.
 3. Todo desde el navegador, sin instalar nada. El curso es virtual y el estudiante tiene que poder seguir desde el computador de la casa, desde una sala de la universidad o desde el celular si hace falta.
-4. Un solo enlace por equipo, con permiso de lectura para el docente, pegado en el chat de Meet ANTES de exponer. La exposición dura 3 min: no hay tiempo para iniciar sesión ni para buscar el archivo mientras se comparte pantalla.
+4. Un solo enlace por equipo, con permiso de lectura para el docente, pegado en el chat de Teams ANTES de exponer. La exposición dura 3 min: no hay tiempo para iniciar sesión ni para buscar el archivo mientras se comparte pantalla.
 5. No se suben datos personales de terceros (nombres, cédulas, teléfonos, fotos de personas que no dieron permiso). Si un caso los trae, se anonimizan.
 6. El trabajo vive en la nube, no en el computador de un integrante. Si a alguien se le cae la conexión, el equipo sigue y nada se pierde: es la razón de fondo por la que este curso trabaja en documentos compartidos y no en archivos locales.
 7. Cada uso de un asistente de IA se declara: qué se le pidió y qué se corrigió a mano. Solo en las sesiones donde el Plan de curso lo pide (3 y 11).
@@ -179,8 +179,8 @@ En un curso virtual la pregunta no es «¿y si no hay red en la sala?» sino **�
 |---|---|
 | Un integrante del equipo | El equipo sigue. El documento está en Drive y el trabajo hecho ya está guardado. Quien se cayó vuelve a entrar a la sala de su equipo; si no alcanza, aporta por el documento. |
 | El vocero del día | Expone el siguiente en la lista de rotación del equipo. La nota es del equipo, no del vocero, así que no se aplaza el turno. |
-| El docente | El enlace de Meet es fijo: los estudiantes se quedan en la sala. Si el docente no vuelve en 10 min, los equipos terminan la actividad, dejan el enlace en el chat y la exposición se corre al inicio de la sesión siguiente. |
-| Google Meet | Si la plataforma falla del lado de Google, la sesión se convierte en autónoma: la consigna y el documento ya están publicados, cada equipo la termina y se expone en la sesión siguiente. Ninguna evaluación de corte se pierde por esto: se reprograma dentro de la misma semana. |
+| El docente | El enlace de Teams es fijo: los estudiantes se quedan en la sala. Si el docente no vuelve en 10 min, los equipos terminan la actividad, dejan el enlace en el chat y la exposición se corre al inicio de la sesión siguiente. |
+| Microsoft Teams | Si la plataforma falla del lado de Google, la sesión se convierte en autónoma: la consigna y el documento ya están publicados, cada equipo la termina y se expone en la sesión siguiente. Ninguna evaluación de corte se pierde por esto: se reprograma dentro de la misma semana. |
 
 > **Regla de diseño:** Ninguna actividad de este curso requiere que las cinco personas del equipo estén conectadas al mismo tiempo. Es un requisito de diseño, no una concesión.
 
@@ -188,7 +188,7 @@ En un curso virtual la pregunta no es «¿y si no hay red en la sala?» sino **�
 
 ## 8. Pendiente
 
-- Carpetas de Drive del curso (clases y grabadas) y su ID, una por grupo, para que MoverGrabaciones.gs archive las grabaciones de Meet como en los otros cuatro cursos. Al ser tres grupos hacen falta tres pares de carpetas.
-- Enlace fijo de Google Meet de cada grupo (SB141B, SB141C, LB141F) y las cinco salas de grupo creadas de una vez para las 11 sesiones.
+- Carpetas de Drive del curso (clases y grabadas) y su ID, una por grupo, para que MoverGrabaciones.gs archive las grabaciones de Teams como en los otros cuatro cursos. Al ser tres grupos hacen falta tres pares de carpetas.
+- Enlace fijo de Microsoft Teams de cada grupo (SB141B, SB141C, LB141F) y las cinco salas de grupo creadas de una vez para las 11 sesiones.
 
 Fuente: `config/calendario/introduccion_ingenieria_2026_2.json` (generado por `config/slides/build_uniajc_intro_ing_curso.py`).

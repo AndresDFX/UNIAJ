@@ -3,8 +3,8 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 2 de 11 (sesión doble junto con la Clase 3) · corresponde al tema 2 del microcurrículo
-- Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
+- Tipo: Clase virtual sincrónica por Microsoft Teams · Sesión 2 de 11 (sesión doble junto con la Clase 3) · corresponde al tema 2 del microcurrículo
+- Modalidad: **Virtual (síncrona)** por Microsoft Teams · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **1** (30%) · RAA: **RAA1**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
 - Enfoque: Aprendizaje basado en competencia + Aprendizaje Invertido · Estrategia: ABPr — Aprendizaje Basado en Proyectos
@@ -96,11 +96,11 @@ Numeración real del deck `Clases/Clase 2 - Historia y evolucion de la Ingenieri
 
 ### 00:00–00:10 · Apertura · [Slide 4]
 
-Entre a Meet 5 min antes y comparta pantalla con la pregunta de entrada antes de que entre el primer estudiante:
+Entre a Teams 5 min antes y comparta pantalla con la pregunta de entrada antes de que entre el primer estudiante:
 
 > «Un proyecto de software se pasa del plazo y del presupuesto. ¿Es un problema de 2026 o de 1968?»
 
-**[Nota docente]:** el enlace del muro de Padlet va en el chat de Meet. No corrija ninguna respuesta ahora: el valor de este muro está en releerlo en el minuto 25, cuando ya se haya contado Garmisch.
+**[Nota docente]:** el enlace del muro de Padlet va en el chat de Teams. No corrija ninguna respuesta ahora: el valor de este muro está en releerlo en el minuto 25, cuando ya se haya contado Garmisch.
 
 **[Nota docente]:** confirme que las cinco salas de grupo están creadas y que cada equipo tiene su documento de la sesión 1 a mano — hoy se trabaja en el mismo documento, en una pestaña nueva.
 

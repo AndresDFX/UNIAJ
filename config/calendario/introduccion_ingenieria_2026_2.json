@@ -17,7 +17,7 @@
     "facultad": "Facultad de Ingeniería",
     "programa": "Ingeniería de Sistemas",
     "modalidad": "Virtual",
-    "ambiente": "Virtual sincrónico por Google Meet (salas de grupo para el trabajo en equipo) + plataformas gratuitas en la nube",
+    "ambiente": "Virtual sincrónico por Microsoft Teams (salas de grupo para el trabajo en equipo) + plataformas gratuitas en la nube",
     "duracion_min": 90,
     "n_sesiones": 11,
     "n_temas": 16,
@@ -64,10 +64,10 @@
         "Promueve el trabajo colaborativo en contextos multidisciplinares"
       ]
     },
-    "_nota_modalidad": "El microcurrículo describe el ambiente como «híbrido: aulas, laboratorios informáticos y plataformas en la nube», pero los tres grupos de 2026-2 se dictan VIRTUAL SINCRÓNICO por Google Meet, igual que los otros cuatro cursos del docente. Todo el material está escrito para virtual: los 5 equipos trabajan en salas de grupo de Meet, las exposiciones son con pantalla compartida y el plan B es una caída de conexión, no una sala sin red."
+    "_nota_modalidad": "El microcurrículo describe el ambiente como «híbrido: aulas, laboratorios informáticos y plataformas en la nube», pero los tres grupos de 2026-2 se dictan VIRTUAL SINCRÓNICO por Microsoft Teams, igual que los otros cuatro cursos del docente. Todo el material está escrito para virtual: los 5 equipos trabajan en salas de grupo de Teams, las exposiciones son con pantalla compartida y el plan B es una caída de conexión, no una sala sin red."
   },
   "dinamica_sesion": {
-    "_comentario": "Definida por el docente: se arranca 10 min despues de la hora oficial para esperar a que los estudiantes se conecten, 45 min de teoria con guia del docente, y el resto del bloque se va en una actividad en equipos que TODOS los equipos exponen. La cantidad de equipos es fija (5) y lo que varia es cuanta gente hay en cada uno. Curso virtual sincronico por Google Meet: la actividad corre en salas de grupo y las exposiciones son con pantalla compartida.",
+    "_comentario": "Definida por el docente: se arranca 10 min despues de la hora oficial para esperar a que los estudiantes se conecten, 45 min de teoria con guia del docente, y el resto del bloque se va en una actividad en equipos que TODOS los equipos exponen. La cantidad de equipos es fija (5) y lo que varia es cuanta gente hay en cada uno. Curso virtual sincronico por Microsoft Teams: la actividad corre en salas de grupo y las exposiciones son con pantalla compartida.",
     "duracion_total_min": 90,
     "bloques": [
       {
@@ -94,8 +94,8 @@
         "desde": "00:55",
         "hasta": "01:12",
         "nombre": "Actividad en equipos",
-        "que_pasa": "Los 5 equipos pasan a sus salas de grupo de Meet y trabajan en paralelo sobre la misma consigna, cada uno en su documento en la nube. El docente entra y sale de las cinco salas (unos 3 min en cada una). A los 15 min se avisa por el chat general y se cierran las salas.",
-        "corto": "Cinco salas de grupo en Meet, el docente rota por todas"
+        "que_pasa": "Los 5 equipos pasan a sus salas de grupo de Teams y trabajan en paralelo sobre la misma consigna, cada uno en su documento en la nube. El docente entra y sale de las cinco salas (unos 3 min en cada una). A los 15 min se avisa por el chat general y se cierran las salas.",
+        "corto": "Cinco salas de grupo en Teams, el docente rota por todas"
       },
       {
         "orden": 4,
@@ -140,7 +140,7 @@
       ],
       "excepcion": "Si un grupo tiene menos de 10 matriculados se baja a 4 equipos y los 3 min liberados se suman a la actividad. Es la única excepción prevista.",
       "regla_rotacion": "Los equipos son estables todo el semestre (el proyecto de ABPr es del equipo), pero el VOCERO rota en cada sesión y se anota en la bitácora del equipo: al final del semestre todos han expuesto y todos han compartido pantalla.",
-      "salas": "Un equipo = una sala de grupo de Meet, numeradas Equipo 1 a Equipo 5. Las salas se crean una sola vez y se reutilizan las 11 sesiones, así que nadie pierde tiempo repartiéndose. El docente reparte los 15 min de actividad en unos 3 min por sala.",
+      "salas": "Un equipo = una sala de grupo de Teams, numeradas Equipo 1 a Equipo 5. Las salas se crean una sola vez y se reutilizan las 11 sesiones, así que nadie pierde tiempo repartiéndose. El docente reparte los 15 min de actividad en unos 3 min por sala.",
       "ausencias": "En virtual siempre falta alguien: el documento del equipo vive en Drive, así que el trabajo no se pierde si un integrante se cae de la sesión. Si el vocero del día no se conecta, expone quien siga en la lista de rotación; la nota es del equipo, no del vocero."
     },
     "reloj_por_grupo": {
@@ -160,22 +160,22 @@
       ]
     },
     "_nota_tildes": "Este archivo SI lleva tildes: casi todo su texto acaba proyectado en una diapositiva o impreso en un documento del docente. La convencion de escribir sin tildes aplica a los modulos de datos .py de los talleres, donde el problema era el escapado de cadenas; en JSON no existe ese riesgo.",
-    "plataforma_aula": "Google Meet — enlace fijo por grupo, el mismo las 11 sesiones. La sesión se graba solo si el grupo lo autoriza al inicio; las exposiciones sí se graban porque son evaluadas."
+    "plataforma_aula": "Microsoft Teams — enlace fijo por grupo, el mismo las 11 sesiones. La sesión se graba solo si el grupo lo autoriza al inicio; las exposiciones sí se graban porque son evaluadas."
   },
   "plataformas": {
-    "_comentario": "El curso es virtual sincrónico: el aula es Google Meet y todas las actividades corren en plataformas gratuitas y en la nube. «Gratuitas» aquí significa plan gratuito permanente, no prueba de 14 días, y sin pedir tarjeta de crédito en ningún momento. «En la nube» significa que el trabajo del equipo sobrevive a que se caiga la conexión de un integrante.",
+    "_comentario": "El curso es virtual sincrónico: el aula es Microsoft Teams y todas las actividades corren en plataformas gratuitas y en la nube. «Gratuitas» aquí significa plan gratuito permanente, no prueba de 14 días, y sin pedir tarjeta de crédito en ningún momento. «En la nube» significa que el trabajo del equipo sobrevive a que se caiga la conexión de un integrante.",
     "reglas": [
       "Gratis permanente, no «prueba de 14 días». Si al terminar el semestre la herramienta deja de funcionar, no sirve para este curso.",
       "Nunca se pide tarjeta de crédito. Si una herramienta la pide, no es la que vamos a usar.",
       "Todo desde el navegador, sin instalar nada. El curso es virtual y el estudiante tiene que poder seguir desde el computador de la casa, desde una sala de la universidad o desde el celular si hace falta.",
-      "Un solo enlace por equipo, con permiso de lectura para el docente, pegado en el chat de Meet ANTES de exponer. La exposición dura 3 min: no hay tiempo para iniciar sesión ni para buscar el archivo mientras se comparte pantalla.",
+      "Un solo enlace por equipo, con permiso de lectura para el docente, pegado en el chat de Teams ANTES de exponer. La exposición dura 3 min: no hay tiempo para iniciar sesión ni para buscar el archivo mientras se comparte pantalla.",
       "No se suben datos personales de terceros (nombres, cédulas, teléfonos, fotos de personas que no dieron permiso). Si un caso los trae, se anonimizan.",
       "El trabajo vive en la nube, no en el computador de un integrante. Si a alguien se le cae la conexión, el equipo sigue y nada se pierde: es la razón de fondo por la que este curso trabaja en documentos compartidos y no en archivos locales.",
       "Cada uso de un asistente de IA se declara: qué se le pidió y qué se corrigió a mano. Solo en las sesiones donde el Plan de curso lo pide (3 y 11)."
     ],
     "stack": [
       {
-        "nombre": "Google Meet",
+        "nombre": "Microsoft Teams",
         "logo": "google_meet.png",
         "uso": "El aula: sesión sincrónica, salas de grupo para la actividad y exposiciones con pantalla compartida",
         "por_que": "Viene con la cuenta institucional, permite salas de grupo (una por equipo) sin plugins y el enlace del grupo es el mismo las 16 sesiones.",
@@ -268,7 +268,7 @@
       "titulo": "Plan B: se cayó la conexión",
       "de_un_integrante": "El equipo sigue. El documento está en Drive y el trabajo hecho ya está guardado. Quien se cayó vuelve a entrar a la sala de su equipo; si no alcanza, aporta por el documento.",
       "del_vocero": "Expone el siguiente en la lista de rotación del equipo. La nota es del equipo, no del vocero, así que no se aplaza el turno.",
-      "del_docente": "El enlace de Meet es fijo: los estudiantes se quedan en la sala. Si el docente no vuelve en 10 min, los equipos terminan la actividad, dejan el enlace en el chat y la exposición se corre al inicio de la sesión siguiente.",
+      "del_docente": "El enlace de Teams es fijo: los estudiantes se quedan en la sala. Si el docente no vuelve en 10 min, los equipos terminan la actividad, dejan el enlace en el chat y la exposición se corre al inicio de la sesión siguiente.",
       "de_meet": "Si la plataforma falla del lado de Google, la sesión se convierte en autónoma: la consigna y el documento ya están publicados, cada equipo la termina y se expone en la sesión siguiente. Ninguna evaluación de corte se pierde por esto: se reprograma dentro de la misma semana.",
       "regla": "Ninguna actividad de este curso requiere que las cinco personas del equipo estén conectadas al mismo tiempo. Es un requisito de diseño, no una concesión."
     }
@@ -675,7 +675,7 @@
           "cierra_corte": 3
         }
       ],
-      "modalidad": "Virtual (síncrona) por Google Meet"
+      "modalidad": "Virtual (síncrona) por Microsoft Teams"
     },
     {
       "grupo": "SB141C",
@@ -797,7 +797,7 @@
           "cierra_corte": 3
         }
       ],
-      "modalidad": "Virtual (síncrona) por Google Meet"
+      "modalidad": "Virtual (síncrona) por Microsoft Teams"
     },
     {
       "grupo": "LB141F",
@@ -919,11 +919,11 @@
           "cierra_corte": 3
         }
       ],
-      "modalidad": "Virtual (síncrona) por Google Meet"
+      "modalidad": "Virtual (síncrona) por Microsoft Teams"
     }
   ],
   "pendiente": [
-    "Carpetas de Drive del curso (clases y grabadas) y su ID, una por grupo, para que MoverGrabaciones.gs archive las grabaciones de Meet como en los otros cuatro cursos. Al ser tres grupos hacen falta tres pares de carpetas.",
-    "Enlace fijo de Google Meet de cada grupo (SB141B, SB141C, LB141F) y las cinco salas de grupo creadas de una vez para las 11 sesiones."
+    "Carpetas de Drive del curso (clases y grabadas) y su ID, una por grupo, para que MoverGrabaciones.gs archive las grabaciones de Teams como en los otros cuatro cursos. Al ser tres grupos hacen falta tres pares de carpetas.",
+    "Enlace fijo de Microsoft Teams de cada grupo (SB141B, SB141C, LB141F) y las cinco salas de grupo creadas de una vez para las 11 sesiones."
   ]
 }
