@@ -682,6 +682,15 @@ def main() -> None:
                              "solicitar correo institucional a Registro Académico"]
                             for e in sin_correo])
             print(f"     -> pendientes_correo_{slug}.csv (para pedirlos a Registro Académico)")
+        else:
+            # El archivo solo se ESCRIBE cuando falta algún correo, así que sin este borrado
+            # se queda pidiéndole a Registro Académico un correo que el curso ya tiene. Pasó
+            # con SB141C: el correo llegó por `correos_manuales.csv`, la nómina lo tomó, y el
+            # archivo de pendientes seguía nombrando a la misma persona.
+            viejo = privado / f"pendientes_correo_{slug}.csv"
+            if viejo.exists():
+                viejo.unlink()
+                print(f"     -> ya no falta ningún correo: se borró pendientes_correo_{slug}.csv")
 
         escribir_csv(privado / f"nomina_{slug}.csv",
                      [["documento", "nombre", "correo", "origen_correo", "repitente"]]
