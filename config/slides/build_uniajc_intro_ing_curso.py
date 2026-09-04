@@ -414,9 +414,10 @@ def build_correo(codigo):
                         ses, D.ddmmyyyy(f) if f else "—", peso.strip()))
     L += [
         "",
-        "> **No hay examen final escrito.** El corte 3 se califica con la **exposición "
-        "final del proyecto** y el **informe final**, los dos en la última sesión "
-        "(sesión %d, doble)." % c["n_sesiones"],
+        "> **No hay un examen final acumulativo.** Cada corte tiene su propia "
+        "evaluación de 20 minutos sobre las clases de ESE corte, y el corte 3 se "
+        "cierra además con la **exposición final del proyecto** y el **informe "
+        "final**, los dos en la última sesión (sesión %d, doble)." % c["n_sesiones"],
         "",
         "### Cómo es una sesión",
         "",
@@ -456,6 +457,37 @@ def build_correo(codigo):
         "",
         "**Asistente de IA:** %s %s" % (pl["asistente_ia"]["cuando"],
                                         pl["asistente_ia"]["opciones"]),
+        "",
+        "### Cómo entrar a ExamLab (antes de la primera sesión)",
+        "",
+        "Ahí publico **el enlace de Meet de cada sesión**, el material de la clase y las "
+        "entregas, así que conviene entrar antes del primer encuentro y no ese mismo día.",
+        "",
+        "| | |",
+        "|---|---|",
+        "| **Dirección** | https://uniaj.examlab.workers.dev |",
+        "| **Usuario** | Su correo institucional `@estudiante.uniajc.edu.co` |",
+        "| **Contraseña** | `Temporal#123` — la aplicación les pide cambiarla al entrar |",
+        "",
+        "La cuenta ya está creada y ya están matriculados en el grupo **%s**: no hay que "
+        "registrarse. Si el correo institucional todavía no les llegó de Registro "
+        "Académico, escríbanme y les habilito el acceso." % codigo,
+        "",
+        "**Al entrar van a encontrar dos cosas pendientes, y las dos toman pocos minutos:**",
+        "",
+        "1. **Firmar el Acuerdo Pedagógico** del curso — aparece en «Firmas pendientes». Es "
+        "el documento donde quedan la metodología y la evaluación que acabo de describir.",
+        "2. **Responder la encuesta de inicio de semestre** (bienestar y conectividad) — la "
+        "usa la universidad para saber con qué condiciones estamos trabajando.",
+        "",
+        "> **Las dos son requisito para que les quede registrada la asistencia de la primera "
+        "sesión.** No es un trámite: sin el acuerdo firmado no hay constancia de que "
+        "conocen las reglas del curso, y la encuesta define cómo armo el trabajo "
+        "independiente. Se pueden hacer desde el celular.",
+        "",
+        "En la primera sesión, además, van a responder en la plataforma un **diagnóstico de "
+        "13 preguntas que NO tiene nota** — no suma ni resta. Sirve para ajustar las "
+        "sesiones que siguen, así que lo útil es responder lo que de verdad piensan.",
         "",
         "### Dos reglas desde el primer día",
         "",

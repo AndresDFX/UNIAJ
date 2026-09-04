@@ -33,10 +33,11 @@ Soy Julian Andres Castaño y voy a acompañarlos en **Introducción a la Ingenie
 | **1** (30%) | Exposiciones de equipo y actividades en clase | sesión 4 · 01/10/2026 | 12% |
 | **2** (30%) | Evaluación de corte | sesión 7 · 22/10/2026 | 10% |
 | **2** (30%) | Exposiciones de equipo y actividades en clase | sesión 7 · 22/10/2026 | 12% |
-| **3** (40%) | Exposición final del proyecto — Clase 15 | sesión 11 · 19/11/2026 | 15% |
-| **3** (40%) | Informe final del proyecto — Clase 16 | sesión 11 · 19/11/2026 | 20% |
+| **3** (40%) | Evaluación de corte | sesión 10 · 12/11/2026 | 10% |
+| **3** (40%) | Exposición final del proyecto — Clase 15 | sesión 11 · 19/11/2026 | 10% |
+| **3** (40%) | Informe final del proyecto — Clase 16 | sesión 11 · 19/11/2026 | 15% |
 
-> **No hay examen final escrito.** El corte 3 se califica con la **exposición final del proyecto** y el **informe final**, los dos en la última sesión (sesión 11, doble).
+> **No hay un examen final acumulativo.** Cada corte tiene su propia evaluación de 20 minutos sobre las clases de ESE corte, y el corte 3 se cierra además con la **exposición final del proyecto** y el **informe final**, los dos en la última sesión (sesión 11, doble).
 
 ### Cómo es una sesión
 
@@ -69,6 +70,27 @@ Todo **gratis y desde el navegador**. No hay que instalar nada ni pagar nada, y 
 > ⚠️ **ExamLab no es una plataforma oficial de la UNIAJC:** es un canal mío y se usa solo para este curso. No les pide datos personales más allá del nombre. La universidad no tiene campus virtual propio, así que lo demás vive en la carpeta compartida del equipo en Drive.
 
 **Asistente de IA:** Solo Clase 3 (análisis del caso, dentro de la sesión doble 2) y Clase 11 (prototipado inicial, sesión 7), que son las dos que el Plan de curso marca. Gemini, Claude o ChatGPT en plan gratuito — el que el estudiante ya tenga. No se exige uno en particular.
+
+### Cómo entrar a ExamLab (antes de la primera sesión)
+
+Ahí publico **el enlace de Meet de cada sesión**, el material de la clase y las entregas, así que conviene entrar antes del primer encuentro y no ese mismo día.
+
+| | |
+|---|---|
+| **Dirección** | https://uniaj.examlab.workers.dev |
+| **Usuario** | Su correo institucional `@estudiante.uniajc.edu.co` |
+| **Contraseña** | `Temporal#123` — la aplicación les pide cambiarla al entrar |
+
+La cuenta ya está creada y ya están matriculados en el grupo **SB141B**: no hay que registrarse. Si el correo institucional todavía no les llegó de Registro Académico, escríbanme y les habilito el acceso.
+
+**Al entrar van a encontrar dos cosas pendientes, y las dos toman pocos minutos:**
+
+1. **Firmar el Acuerdo Pedagógico** del curso — aparece en «Firmas pendientes». Es el documento donde quedan la metodología y la evaluación que acabo de describir.
+2. **Responder la encuesta de inicio de semestre** (bienestar y conectividad) — la usa la universidad para saber con qué condiciones estamos trabajando.
+
+> **Las dos son requisito para que les quede registrada la asistencia de la primera sesión.** No es un trámite: sin el acuerdo firmado no hay constancia de que conocen las reglas del curso, y la encuesta define cómo armo el trabajo independiente. Se pueden hacer desde el celular.
+
+En la primera sesión, además, van a responder en la plataforma un **diagnóstico de 13 preguntas que NO tiene nota** — no suma ni resta. Sirve para ajustar las sesiones que siguen, así que lo útil es responder lo que de verdad piensan.
 
 ### Dos reglas desde el primer día
 

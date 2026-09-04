@@ -45,7 +45,7 @@
 |---|---|---|---|---|---|
 | Corte 1 | 30% | 08/09 – 29/09/2026 | 1-4 | Sesión 4 · 29/09/2026 | Evaluación de corte (sesión 4) · 10% · Exposiciones de equipo y actividades en clase · 12% · Asistencia y participación · 8% |
 | Corte 2 | 30% | 06/10 – 20/10/2026 | 5-7 | Sesión 7 · 20/10/2026 | Evaluación de corte (sesión 7) · 10% · Exposiciones de equipo y actividades en clase · 12% · Asistencia y participación · 8% |
-| Corte 3 | 40% | 27/10 – 17/11/2026 | 8-11 | Sesión 11 · 17/11/2026 | Exposición final del proyecto — Clase 15 (sesión 11) · 15% · Informe final del proyecto — Clase 16 (sesión 11) · 20% · Asistencia y participación · 5% |
+| Corte 3 | 40% | 27/10 – 17/11/2026 | 8-11 | Sesión 11 · 17/11/2026 | Evaluación de corte (sesión 10) · 10% · Exposición final del proyecto — Clase 15 (sesión 11) · 10% · Informe final del proyecto — Clase 16 (sesión 11) · 15% · Asistencia y participación · 5% |
 
 > Los tres cierres de corte (sesiones 4, 7 y 11) NUNCA caen en festivo. En este calendario ninguno lo hace: los tres festivos de 2026 en el rango del curso (12/10, 02/11, 16/11) son lunes, y las 11 sesiones semanales son todas martes o jueves.
 
