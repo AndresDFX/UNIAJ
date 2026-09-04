@@ -10,7 +10,7 @@ Este documento trae la **lista de verificación completa de las doce secciones**
 
 **La biblioteca del barrio · el informe final armado**
 
-Mismo equipo de todo el corte. Todo el material existe desde las sesiones 3 a 13; el trabajo de hoy es reunirlo, encontrar los huecos y escribir media página nueva. Lo que sigue es cómo quedó, sección por sección, y qué se descubrió que faltaba.
+Mismo equipo de todo el corte. Todo el material existe desde las Clases 3 a 13; el trabajo de hoy es reunirlo, encontrar los huecos y escribir media página nueva. Lo que sigue es cómo quedó, sección por sección, y qué se descubrió que faltaba.
 
 > Porque muestra el resultado de haber escrito en cada sesión: al armar el documento aparecieron **tres huecos y no doce**. Y los tres huecos son los mismos que aparecen en casi todos los equipos, así que sirven de aviso: el resumen, la declaración de uso de IA y las referencias en formato.
 
@@ -33,17 +33,17 @@ Mismo equipo de todo el corte. Todo el material existe desde las sesiones 3 a 13
 | # | Sección | Tiene que contener | ¿De dónde? |
 |---|---|---|---|
 | 1 | Portada y **resumen** | Título, integrantes, curso. Resumen de ½ pág: problema con su número, solución en dos frases, impacto principal. | **Nuevo hoy** |
-| 2 | El problema | La cifra, **cómo se obtuvo**, a quién le pasa y las causas principales. | Sesión 6 |
-| 3 | Actores y afectados | Usuarios, quien opera, **y al menos un afectado que no es usuario**. | Sesiones 3 y 13 |
-| 4 | Antecedentes | Tres soluciones que ya existen, qué hace cada una y **por qué no sirve aquí**. | Sesión 9 |
-| 5 | Requisitos y criterios | Funcionales, no funcionales, y **cómo se verifica cada criterio**. | Sesión 7 |
-| 6 | Alternativas y decisión | Al menos dos alternativas, los criterios, la elegida **y qué se sacrificó**. | Sesión 8 |
-| 7 | La solución y el prototipo | Descripción, **capturas** y el recorrido principal paso a paso. | Sesiones 10 y 11 |
-| 8 | Prueba y hallazgos | Con quién se probó (**solo el rol, no el nombre**), qué hizo, la clasificación y el patrón. | Sesión 12 |
-| 9 | Impacto | Positivos con indicador **y negativos con mitigación**. | Sesión 13 |
-| 10 | Limitaciones y siguiente paso | Lo que se decidió **no** hacer, con el motivo, y por dónde seguiría. | Sesiones 12 y 13 |
-| 11 | Declaración del uso de IA | Qué se pidió, qué se corrigió, **qué no se le entregó**. | Sesiones 3 y 11 |
-| 12 | Referencias | Lo que se citó, en el formato acordado. **Nada que no se haya leído.** | Sesión 9 |
+| 2 | El problema | La cifra, **cómo se obtuvo**, a quién le pasa y las causas principales. | Clase 6 |
+| 3 | Actores y afectados | Usuarios, quien opera, **y al menos un afectado que no es usuario**. | Clases 3 y 13 |
+| 4 | Antecedentes | Tres soluciones que ya existen, qué hace cada una y **por qué no sirve aquí**. | Clase 9 |
+| 5 | Requisitos y criterios | Funcionales, no funcionales, y **cómo se verifica cada criterio**. | Clase 7 |
+| 6 | Alternativas y decisión | Al menos dos alternativas, los criterios, la elegida **y qué se sacrificó**. | Clase 8 |
+| 7 | La solución y el prototipo | Descripción, **capturas** y el recorrido principal paso a paso. | Clases 10 y 11 |
+| 8 | Prueba y hallazgos | Con quién se probó (**solo el rol, no el nombre**), qué hizo, la clasificación y el patrón. | Clase 12 |
+| 9 | Impacto | Positivos con indicador **y negativos con mitigación**. | Clase 13 |
+| 10 | Limitaciones y siguiente paso | Lo que se decidió **no** hacer, con el motivo, y por dónde seguiría. | Clases 12 y 13 |
+| 11 | Declaración del uso de IA | Qué se pidió, qué se corrigió, **qué no se le entregó**. | Clases 3 y 11 |
+| 12 | Referencias | Lo que se citó, en el formato acordado. **Nada que no se haya leído.** | Clase 9 |
 
 **Extensión total: 9 a 11 páginas.** Si un equipo pregunta si puede ser más largo, la respuesta es que **la extensión no es una virtud**: un informe donde la decisión está en la página 18 es un informe que no se va a leer.
 
@@ -55,7 +55,7 @@ Mismo equipo de todo el corte. Todo el material existe desde las sesiones 3 a 13
 
 **Y un hueco que apareció al revisar la sección 8:** el informe decía «probamos con don Óscar, el vecino del 302». **Eso hay que corregirlo en el momento**: en el informe va **el rol, no el nombre** —«un vecino de 34 años, ajeno al equipo»—. Es la regla del curso desde la sesión 4 y la sección 8 es donde más se rompe.
 
-**Cómo calificar:** 30 pts, y es el bloque de más peso. Cuente secciones: las doce presentes y no vacías valen 18; los otros 12 se reparten en **calidad del contenido tomado de su sesión** —¿la sección 6 dice qué se sacrificó? ¿la 9 tiene negativos? ¿la 8 describe comportamiento y no opiniones?—. **Si la sección 10 dice «ninguna», reste 5 y escríbalo:** después de la sesión 12 todos los equipos tienen limitaciones reales. Y revise la sección 8 buscando **nombres de personas**: si aparecen, pídalo corregido antes de cerrar la nota.
+**Cómo calificar:** 30 pts, y es el bloque de más peso. Cuente secciones: las doce presentes y no vacías valen 18; los otros 12 se reparten en **calidad del contenido tomado de su sesión** —¿la sección 6 dice qué se sacrificó? ¿la 9 tiene negativos? ¿la 8 describe comportamiento y no opiniones?—. **Si la sección 10 dice «ninguna», reste 5 y escríbalo:** después de la Clase 12 todos los equipos tienen limitaciones reales. Y revise la sección 8 buscando **nombres de personas**: si aparecen, pídalo corregido antes de cerrar la nota.
 
 ### 2. LO QUE FALTABA Y SE COMPLETÓ HOY
 
@@ -127,7 +127,7 @@ Mismo equipo de todo el corte. Todo el material existe desde las sesiones 3 a 13
 | **¿Qué hice yo concretamente?** | «Ayudé en todo lo que pude y siempre estuve pendiente del grupo.» | «Escribí las secciones 4 y 9, hice la prueba con la señora de 61 años y expuse el tramo 4.» |
 | **¿Qué aprendí a hacer que no sabía?** | «Aprendí mucho sobre ingeniería y trabajo en equipo.» | «Aprendí a separar lo que una persona **hace** de lo que **dice**: en la prueba anoté que abandonó, no que «le pareció difícil».» |
 | **¿En qué fallé?** | «En nada, cumplí con todo.» | «Entregué mi sección tarde dos veces y Camila tuvo que cubrirme el día del prototipo.» |
-| **¿Qué haría distinto?** | «Organizarme mejor con el tiempo.» | «Probaría el prototipo con alguien de afuera **antes** de la sesión 12: los dos hallazgos grandes salieron en veinte minutos y pudimos haberlos tenido dos semanas antes.» |
+| **¿Qué haría distinto?** | «Organizarme mejor con el tiempo.» | «Probaría el prototipo con alguien de afuera **antes** de la Clase 12: los dos hallazgos grandes salieron en veinte minutos y pudimos haberlos tenido dos semanas antes.» |
 
 **La diferencia entre las dos columnas no es la extensión: es la verificabilidad.** Todo lo de la derecha se puede comprobar en el documento del equipo o en el historial del muro. Todo lo de la izquierda podría haberlo escrito cualquier estudiante de cualquier curso, y por eso no vale.
 
@@ -159,7 +159,7 @@ Mismo equipo de todo el corte. Todo el material existe desde las sesiones 3 a 13
 | «Es muy desorganizado.» | «Cambió el archivo del prototipo sin avisar y perdimos las capturas del lunes.» |
 | «Trabaja súper bien, es lo máximo.» | «Hizo las dos pruebas con personas de afuera, que era lo más incómodo del proyecto.» |
 
-**Por qué la regla importa y no es formalismo:** un hecho verificable **se puede responder** —la persona puede explicar, corregir o comprometerse—; una etiqueta solo se puede resentir. Es exactamente la regla de retroalimentación de la sesión 12, aplicada al equipo, y ese es el punto: la coevaluación no es un desahogo, es retroalimentación.
+**Por qué la regla importa y no es formalismo:** un hecho verificable **se puede responder** —la persona puede explicar, corregir o comprometerse—; una etiqueta solo se puede resentir. Es exactamente la regla de retroalimentación de la Clase 12, aplicada al equipo, y ese es el punto: la coevaluación no es un desahogo, es retroalimentación.
 
 **Cómo se usa esto al calificar, y conviene tenerlo decidido antes:** si **tres coevaluaciones independientes** señalan a la misma persona **con hechos**, es información válida y puede diferenciar la nota individual del promedio del equipo. **Una sola coevaluación negativa, o varias sin hechos, no alcanza.** Y no se resuelve en público: se recogen, se leen después y se ajusta con criterio.
 
@@ -175,13 +175,13 @@ Mismo equipo de todo el corte. Todo el material existe desde las sesiones 3 a 13
 | Los huecos se completaron y el resumen tiene el problema con su número | **20 %** | El resumen es lo único nuevo del día y es lo primero que lee quien evalúa: media página decide la impresión del informe. |
 | La declaración del uso de IA dice qué se corrigió y qué no se le entregó | **15 %** | Declarar es la norma del curso, y el «qué no se le entregó» protege datos de terceros: la regla desde la sesión 4. |
 | La autoevaluación individual responde con evidencia verificable, incluido un fallo | **20 %** | Lo que se evalúa es la capacidad de mirar el propio trabajo con honestidad, no la nota que uno se pone. |
-| La coevaluación usa observaciones y no adjetivos sobre las personas | **15 %** | Un hecho verificable se puede responder; una etiqueta solo se puede resentir. Es la regla de la sesión 12. |
+| La coevaluación usa observaciones y no adjetivos sobre las personas | **15 %** | Un hecho verificable se puede responder; una etiqueta solo se puede resentir. Es la regla de la Clase 12. |
 
 > Suma **100 %**. La nota es del equipo, no del vocero.
 
 ## Si el equipo trabajó otro caso
 
-**Equipos que llegan con las secciones dispersas en cinco archivos.** Es el escenario que se avisó en la sesión 15 y aun así pasa. Que **repartan el copiar y pegar entre los integrantes en paralelo** —cada uno pega tres secciones en el documento compartido— en vez de hacerlo uno solo mientras los demás miran. Con cuatro personas trabajando a la vez, veinticuatro minutos alcanzan; con una sola, no. Y no permita que reescriban: hoy se pega, no se redacta de nuevo.
+**Equipos que llegan con las secciones dispersas en cinco archivos.** Es el escenario que se avisó en la Clase 15 y aun así pasa. Que **repartan el copiar y pegar entre los integrantes en paralelo** —cada uno pega tres secciones en el documento compartido— en vez de hacerlo uno solo mientras los demás miran. Con cuatro personas trabajando a la vez, veinticuatro minutos alcanzan; con una sola, no. Y no permita que reescriban: hoy se pega, no se redacta de nuevo.
 
 **Un equipo al que le falta media sección entera.** Lo más frecuente es la 4 (antecedentes) o la 9 (impacto), cuando no terminaron el taller de esa sesión. Que escriban **lo que sí tienen y una línea honesta de lo que falta**: «solo alcanzamos a revisar dos antecedentes». Una sección incompleta y declarada vale más que una inventada hoy en cinco minutos, y así se lo puede decir: **inventar contenido en la última sesión es lo único que no se puede recuperar después**.
 
@@ -196,7 +196,7 @@ Mismo equipo de todo el corte. Todo el material existe desde las sesiones 3 a 13
 - **«Empecemos por la portada y el resumen»** → El resumen exige tener todo lo demás decidido: escribirlo primero obliga a reescribirlo, y los 24 minutos no alcanzan. Pegar las once secciones que ya existen, revisar, y el resumen al final. Aunque vaya primero en el documento.
 - **Ir marcando en la lista lo que ya está hecho** → Se termina con una lista de logros y sin saber qué falta, que es justo lo que se necesita para repartir el trabajo. Marcar en rojo **lo que falta**. La lista de tareas aparece sola y se reparte en cuatro minutos.
 - **«Probamos con don Óscar, el vecino del 302»** → Es un dato personal de un tercero en un documento que se entrega. Es la regla del curso desde la sesión 4. El rol, no el nombre: «un vecino de 34 años, ajeno al equipo». La sección 8 es donde más se rompe esta regla.
-- **«Limitaciones: ninguna»** → Después de la sesión 12 todos los equipos tienen limitaciones reales, así que «ninguna» dice que no se probó con nadie. Lo que se decidió no arreglar, con el motivo. Declararlo sube la nota; ocultarlo la baja.
+- **«Limitaciones: ninguna»** → Después de la Clase 12 todos los equipos tienen limitaciones reales, así que «ninguna» dice que no se probó con nadie. Lo que se decidió no arreglar, con el motivo. Declararlo sube la nota; ocultarlo la baja.
 - **«En qué fallé: en nada, cumplí con todo»** → Lo que se evalúa es la capacidad de mirar el propio trabajo con honestidad, y esa respuesta demuestra lo contrario. Un hecho verificable: «entregué mi sección tarde dos veces y otro integrante tuvo que cubrirme».
 
 ## Cierre: qué decir en los 3 minutos finales
@@ -205,4 +205,4 @@ Veinte minutos de cierre, y la tentación es usarlos en un discurso de despedida
 
 ## Con qué se conecta
 
-Hacia atrás, esta sesión cobra el curso completo y de forma literal: **once de las doce secciones del informe se escribieron en las sesiones 3, 6, 7, 8, 9, 10, 11, 12 y 13**, y la tabla de secciones lo hace visible fila por fila. La regla de la sección 8 —el rol y no el nombre— viene de la **sesión 4**; la declaración de uso de IA, de las **sesiones 3 y 11**; la exigencia de observación en vez de adjetivo en la coevaluación, de la **sesión 12**; el resumen retoma los cinco tramos de la exposición de la **sesión 14**; y las preguntas que el curso no resolvió en la **sesión 15** fueron la lista de tareas de hoy. Hacia adelante, fuera del curso: el método —definir con evidencia, revisar antecedentes, decidir con criterios, probar con personas, valorar impacto— es el mismo de cualquier proyecto de ingeniería, y el informe queda como evidencia de portafolio.
+Hacia atrás, esta sesión cobra el curso completo y de forma literal: **once de las doce secciones del informe se escribieron en las sesiones 3, 6, 7, 8, 9, 10, 11, 12 y 13**, y la tabla de secciones lo hace visible fila por fila. La regla de la sección 8 —el rol y no el nombre— viene de la **sesión 4**; la declaración de uso de IA, de las **sesiones 3 y 11**; la exigencia de observación en vez de adjetivo en la coevaluación, de la **Clase 12**; el resumen retoma los cinco tramos de la exposición de la **Clase 14**; y las preguntas que el curso no resolvió en la **Clase 15** fueron la lista de tareas de hoy. Hacia adelante, fuera del curso: el método —definir con evidencia, revisar antecedentes, decidir con criterios, probar con personas, valorar impacto— es el mismo de cualquier proyecto de ingeniería, y el informe queda como evidencia de portafolio.

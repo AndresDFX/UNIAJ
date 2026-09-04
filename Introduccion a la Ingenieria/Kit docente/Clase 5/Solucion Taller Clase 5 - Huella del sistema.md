@@ -16,7 +16,7 @@ El sistema: los pacientes piden cita desde el celular, la secretaria administra 
 
 ## Consigna que se les dio
 
-> Dibujen en Excalidraw la **huella material** del sistema de su proyecto: por dónde pasa la energía, la materia y el residuo en las cuatro etapas. Marquen cuál etapa pesa más, propongan **dos decisiones de diseño** que la bajen y definan **un indicador medible** que se pueda revisar en la sesión 16.
+> Dibujen en Excalidraw la **huella material** del sistema de su proyecto: por dónde pasa la energía, la materia y el residuo en las cuatro etapas. Marquen cuál etapa pesa más, propongan **dos decisiones de diseño** que la bajen y definan **un indicador medible** que se pueda revisar en la Clase 16.
 
 **Entregable:** un diagrama de huella en Excalidraw exportado a PNG en la carpeta del equipo, más las dos decisiones y el indicador escritos en el documento del equipo · **17 min de trabajo · 3 min de exposición**
 
@@ -90,11 +90,11 @@ Las dos cifras están calculadas a partir de datos que el equipo puede medir en 
 - «**Kilobytes transferidos por pantalla.** Hoy ~2.000 KB por la imagen. Meta: menos de 200 KB. Se mide con las herramientas del navegador.»
 - «**El sistema funciona en el computador de siete años del consultorio: sí / no.** Se verifica abriéndolo ahí antes de cada entrega.»
 
-Los tres tienen unidad (o son un sí/no verificable), se miden con algo que el equipo va a tener, y se pueden revisar en la sesión 16.
+Los tres tienen unidad (o son un sí/no verificable), se miden con algo que el equipo va a tener, y se pueden revisar en la Clase 16.
 
 **Indicadores mal formulados y por qué:** «reducir el consumo energético» (no tiene unidad ni línea base); «ser un sistema sostenible» (no es medible); «bajar las emisiones de CO₂ en un 30 %» (el equipo no puede medir eso, y para calcularlo necesitaría el factor de emisiones y datos del centro de datos que no tiene).
 
-**Cómo calificar:** 20 pts. Tres requisitos: **unidad, línea base o valor de hoy, y cómo se mide**. Si falta el «cómo se mide», máximo 10: es el requisito que convierte el indicador en algo revisable. El indicador de emisiones de CO₂ vale 5 aunque suene ambicioso, y hay que explicar por qué: proponer medir lo que no se puede medir es peor que proponer algo modesto y verificable. **Anote los cinco indicadores**: se revisan en la sesión 16.
+**Cómo calificar:** 20 pts. Tres requisitos: **unidad, línea base o valor de hoy, y cómo se mide**. Si falta el «cómo se mide», máximo 10: es el requisito que convierte el indicador en algo revisable. El indicador de emisiones de CO₂ vale 5 aunque suene ambicioso, y hay que explicar por qué: proponer medir lo que no se puede medir es peor que proponer algo modesto y verificable. **Anote los cinco indicadores**: se revisan en la Clase 16.
 
 ## Rúbrica del taller
 
@@ -104,7 +104,7 @@ Los tres tienen unidad (o son un sí/no verificable), se miden con algo que el e
 | Hay una operación repetida con una estimación declarada como estimación | **15 %** | Estimar y decir que se está estimando es la habilidad honesta que reemplaza a inventar cifras. |
 | Se eligió UNA etapa como la más pesada, con argumento | **20 %** | Elegir es el trabajo del ingeniero. «Todo importa» no permite actuar. |
 | Las dos decisiones son de diseño y están bajo control del equipo | **25 %** | Es lo que convierte la conciencia ambiental en ingeniería. |
-| El indicador tiene unidad y se puede medir en la sesión 16 | **20 %** | Sin indicador no hay forma de saber si la decisión sirvió, y el informe final lo pide. |
+| El indicador tiene unidad y se puede medir en la Clase 16 | **20 %** | Sin indicador no hay forma de saber si la decisión sirvió, y el informe final lo pide. |
 
 > Suma **100 %**. La nota es del equipo, no del vocero.
 
@@ -124,7 +124,7 @@ Los tres tienen unidad (o son un sí/no verificable), se miden con algo que el e
 - **«Vamos a pedirle al usuario que ahorre energía»** → No es una decisión de diseño: es comportamiento de otra persona, fuera de su control. Algo que ellos puedan decidir en su propio sistema: cada cuánto consulta, cuánto pesa lo que envía, qué dispositivos soporta.
 - **«Todas las etapas pesan igual»** → Significa que no eligieron, y sin elegir no se puede actuar. Una sola etapa y el argumento, aunque sea aproximado.
 - **«Cada consulta a la IA gasta X litros de agua»** → Las cifras que circulan varían por órdenes de magnitud y casi nunca dicen de qué sistema ni de qué año son. Fuente, año y alcance. Si no lo tienen, que midan lo que sí pueden contar: el número de llamadas.
-- **«Ser un sistema sostenible» como indicador** → No tiene unidad y no se puede revisar en la sesión 16. Un número con unidad, el valor de hoy y cómo se va a medir.
+- **«Ser un sistema sostenible» como indicador** → No tiene unidad y no se puede revisar en la Clase 16. Un número con unidad, el valor de hoy y cómo se va a medir.
 
 ## Cierre: qué decir en los 3 minutos finales
 
@@ -132,4 +132,4 @@ Tres minutos, una idea: **el software no es inmaterial.** Tiene cuatro etapas �
 
 ## Con qué se conecta
 
-Hacia atrás: la sesión 3 dio la frontera del sistema, y hoy la huella obligó a estirarla hasta la fabricación y el residuo, que casi nadie mete dentro; la sesión 4 dio el afectado con nombre, y hoy apareció el afectado sin nombre. Hacia adelante: el **indicador** de hoy entra en la ficha del problema de la **sesión 6** y se revisa en el informe final de la **sesión 16**; la eficiencia como decisión de diseño reaparece en la **sesión 7** (ciclo de vida) y en la **sesión 10**; y la **sesión 13** retoma impacto social y ambiental con el prototipo ya construido.
+Hacia atrás: la sesión 3 dio la frontera del sistema, y hoy la huella obligó a estirarla hasta la fabricación y el residuo, que casi nadie mete dentro; la sesión 4 dio el afectado con nombre, y hoy apareció el afectado sin nombre. Hacia adelante: el **indicador** de hoy entra en la ficha del problema de la **Clase 6** y se revisa en el informe final de la **Clase 16**; la eficiencia como decisión de diseño reaparece en la **Clase 7** (ciclo de vida) y en la **Clase 10**; y la **Clase 13** retoma impacto social y ambiental con el prototipo ya construido.

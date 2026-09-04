@@ -7,12 +7,12 @@ Nunca usar comillas dobles escapadas dentro de estos textos: se usan « ».
 Material general para los tres grupos: nada de fechas, horas de pared ni codigos de grupo.
 
 Hilo del corte 3 (40%): el prototipo de la sesion 11 se convierte en un proyecto presentable
-y en un informe. Sesion 12 la prueba con una persona ajena y la retroalimentacion entre pares,
-sesion 13 el impacto social y ambiental, sesion 14 la preparacion de la presentacion final,
-sesion 15 la exposicion final (15%), sesion 16 el informe final (20%) y la autoevaluacion.
+y en un informe. Clase 12 la prueba con una persona ajena y la retroalimentacion entre pares,
+Clase 13 el impacto social y ambiental, Clase 14 la preparacion de la presentacion final,
+Clase 15 la exposicion final (15%), Clase 16 el informe final (20%) y la autoevaluacion.
 
 OJO con el desglose del corte 3: NO hay evaluacion escrita. El 40% se reparte en
-exposicion final 15% (sesion 15) + informe final 20% (sesion 16) + asistencia 5%.
+exposicion final 15% (Clase 15) + informe final 20% (Clase 16) + asistencia 5%.
 Las dos evaluaciones escritas del semestre son las de los cortes 1 y 2 (sesiones 6 y 11).
 
 Cuatro de las cinco sesiones rompen el reparto estandar de bloques y usan `agenda_slots`,
@@ -78,7 +78,7 @@ TEMAS[12] = {
                 ("2 · Escriba el tropiezo, no la solución", "«Buscó el botón de volver en la esquina de arriba» es un hallazgo. «Hay que poner un botón arriba» es una conclusión, y es prematura."),
                 ("3 · Clasifique cada tropiezo", "¿No entendió una palabra? ¿Se perdió en el flujo? ¿Esperaba algo que no existe? ¿Falló por una suposición nuestra? Cada tipo se arregla distinto."),
                 ("4 · Busque el patrón", "Un tropiezo de una persona puede ser casualidad. **El mismo tropiezo en dos de tres personas es un defecto de diseño**, y esos son los que se arreglan primero."),
-                ("5 · Decida qué NO se arregla", "No todo cabe antes de la sesión 14. Lo que se deja fuera **se escribe**, con su razón: eso es una decisión de ingeniería, no un olvido."),
+                ("5 · Decida qué NO se arregla", "No todo cabe antes de la Clase 14. Lo que se deja fuera **se escribe**, con su razón: eso es una decisión de ingeniería, no un olvido."),
             ],
             "sub": "La persona que prueba nunca se equivoca: si se perdió, el diseño la perdió",
         },
@@ -100,7 +100,7 @@ TEMAS[12] = {
                  "Falló algo que dábamos por obvio: que tiene datos, que sabe leer una tabla.",
                  "La **restricción**. Es el hallazgo más caro y el más valioso de todos."],
             ],
-            "note": "Los dos primeros tipos se arreglan antes de la sesión 14. Los dos últimos, a "
+            "note": "Los dos primeros tipos se arreglan antes de la Clase 14. Los dos últimos, a "
                     "veces, se declaran en el informe final y se dejan como trabajo siguiente.",
             "col_w": [2.1, 4.0, 3.7],
         },
@@ -119,7 +119,7 @@ TEMAS[12] = {
                  "cuatro equipos les sirven de algo. Sin pregunta, la retroalimentación es vacía."),
                 ("Un avance ADMITE lo pendiente",
                  "Lo que todavía no está, dicho sin rodeos. **Esconder lo pendiente hoy es pagarlo "
-                 "en la sesión 15**, delante de todo el mundo y con nota."),
+                 "en la Clase 15**, delante de todo el mundo y con nota."),
             ],
             "columns": 2,
         },
@@ -180,7 +180,7 @@ TEMAS[12] = {
                 "Y aquí conviene ser directo, porque es la primera sesión del corte 3 y las reglas "
                 "se fijan hoy: **un equipo que no hizo la prueba no tiene avance que presentar.** No "
                 "se le puede improvisar retroalimentación a un avance inexistente. Si ocurre, "
-                "dígalo, deje que expongan lo que tengan y que hagan la prueba antes de la sesión "
+                "dígalo, deje que expongan lo que tengan y que hagan la prueba antes de la Clase "
                 "13 — pero que quede claro que arrancaron el corte con desventaja.",
             ],
         },
@@ -219,7 +219,7 @@ TEMAS[12] = {
                 "una sola persona, dígale que el hallazgo sigue valiendo, pero que no sabe si es "
                 "patrón.",
                 "**Paso 5: decidir qué no se arregla.** Es el paso que separa a un equipo que "
-                "entendió el curso de uno que no. No todo cabe antes de la sesión 14, y **lo que se "
+                "entendió el curso de uno que no. No todo cabe antes de la Clase 14, y **lo que se "
                 "deja fuera se escribe con su razón**. Eso ya lo practicaron con el alcance mínimo "
                 "de la sesión 8 y con los descartes de la sesión 11: es la misma disciplina.",
             ],
@@ -246,9 +246,9 @@ TEMAS[12] = {
                 "diferencia.",
                 "Por último, la parte incómoda: **admitir lo pendiente**. Los equipos tienden a "
                 "maquillar el avance porque hay compañeros mirando. El argumento que funciona no es "
-                "moral sino de conveniencia: **esconder lo pendiente hoy es pagarlo en la sesión "
+                "moral sino de conveniencia: **esconder lo pendiente hoy es pagarlo en la Clase "
                 "15**, cuando ya hay nota de por medio y ya no hay tiempo de arreglarlo. Hoy la "
-                "retroalimentación es gratis; en la sesión 15 vale el 15 % del curso.",
+                "retroalimentación es gratis; en la Clase 15 vale el 15 % del curso.",
             ],
         },
         {
@@ -358,7 +358,7 @@ TEMAS[12] = {
                 "que oyó hoy. Dos minutos, y queda el compromiso por escrito.",
                 "Una idea: **la persona que prueba nunca se equivoca; si se perdió, el diseño la "
                 "perdió.**",
-                "Anuncie la sesión 13: **el impacto social y ambiental** del proyecto — a quién más "
+                "Anuncie la Clase 13: **el impacto social y ambiental** del proyecto — a quién más "
                 "afecta esto, aunque no lo use. Vuelve el listado de actores no usuarios de la "
                 "sesión 3.",
             ],
@@ -397,7 +397,7 @@ TEMAS[12] = {
                      "si se repitió en más de una persona.",
              "check": "los tipos están bien asignados y se dice explícitamente cuáles son patrón y cuáles casos aislados."},
             {"clave": "QUÉ ARREGLAMOS Y QUÉ NO",
-             "pide": "Lo que se arregla antes de la sesión 14, y **lo que no se arregla con su "
+             "pide": "Lo que se arregla antes de la Clase 14, y **lo que no se arregla con su "
                      "razón**: fuera del alcance, no alcanza el tiempo, o cambia una restricción.",
              "check": "hay al menos una cosa en la lista de «no se arregla», con razón. Un equipo que dice que va a arreglar todo no priorizó."},
             {"clave": "LA PREGUNTA PARA EL CURSO",
@@ -422,7 +422,7 @@ TEMAS[12] = {
             ("2 min · Los tres hallazgos", "Lo que la persona **hizo**. Es el corazón del avance."),
             ("1 min · Qué arreglan y qué no", "Y por qué lo que queda fuera queda fuera."),
             ("1 min · La pregunta para el curso", "Con las dos alternativas que están considerando."),
-            ("30 s · Cierre", "Qué van a tener listo para la sesión 14."),
+            ("30 s · Cierre", "Qué van a tener listo para la Clase 14."),
         ],
     },
 
@@ -533,7 +533,7 @@ TEMAS[12] = {
             },
             {
                 "clave": "QUÉ ARREGLAMOS Y QUÉ NO",
-                "respuesta": "**Se arregla antes de la sesión 14:**\n\n"
+                "respuesta": "**Se arregla antes de la Clase 14:**\n\n"
                              "1. **El estado «Prestado» deja de parecer un botón** y pasa a ser una "
                              "etiqueta gris sin borde, con el texto «Prestado · no sabemos cuándo "
                              "vuelve». *Hallazgo 1, el patrón.* Nótese que **no agregamos la función, "
@@ -619,20 +619,20 @@ TEMAS[12] = {
                              "de texto.\n\n"
                              "**Por qué este plan está bien hecho:** las dos cosas salen de algo que "
                              "se **oyó**, cada una dice **quién lo dijo**, y las dos son pequeñas y "
-                             "verificables en la sesión 14. Un plan que repite lo que el equipo ya "
+                             "verificables en la Clase 14. Un plan que repite lo que el equipo ya "
                              "traía en «qué arreglamos» no usó la retroalimentación, y ahí es donde "
                              "se descuenta.",
                 "como_calificar": "10 pts. Dos cosas ajustables y verificables (4), cada una con el "
                                   "origen de lo que se oyó —quién y qué dijo— (4), y que no sean una "
                                   "copia de la lista de «qué arreglamos» (2). Un equipo que escribe "
-                                  "«mejorar el diseño» vale 2: no es verificable en la sesión 14."
+                                  "«mejorar el diseño» vale 2: no es verificable en la Clase 14."
             },
         ],
         "variantes": [
             {"caso": "Equipos que no hicieron la prueba",
              "clave": "Va a pasar con uno o dos equipos, y hay que manejarlo sin drama y sin "
                       "premiarlo. Que expongan lo que tengan —el prototipo v2 y su pregunta— y que "
-                      "hagan la prueba **antes de la sesión 13**, con dos personas. Dígalo claro: "
+                      "hagan la prueba **antes de la Clase 13**, con dos personas. Dígalo claro: "
                       "los hallazgos son insumo obligatorio del informe final, así que no es un "
                       "entregable que se pueda saltar, solo se puede atrasar. Y señale el costo "
                       "real: perdieron los tres minutos de retroalimentación del curso sobre lo que "
@@ -659,23 +659,23 @@ TEMAS[12] = {
         "cierre": "Diez minutos, y conviene usarlos bien porque cierran la primera sesión del corte "
                   "3. Pida que cada equipo escriba en su columna del muro **las dos cosas que va a "
                   "ajustar** con lo que oyó: dos minutos, y el compromiso queda por escrito y "
-                  "verificable en la sesión 14. Después, la idea de la sesión, dicha completa: **la "
+                  "verificable en la Clase 14. Después, la idea de la sesión, dicha completa: **la "
                   "persona que prueba nunca se equivoca; si se perdió, el diseño la perdió.** Vale la "
                   "pena agregar la versión profesional de eso, porque les va a servir toda la "
                   "carrera: en ingeniería el trabajo no se evalúa por lo que el autor cree que "
                   "quedó claro, sino por lo que un tercero logra hacer con él. Y cierre con la "
-                  "cuenta que importa: **la retroalimentación de hoy fue gratis; la de la sesión 15 "
-                  "vale el 15 % del curso.** Anuncie la sesión 13 —el impacto social y ambiental, "
+                  "cuenta que importa: **la retroalimentación de hoy fue gratis; la de la Clase 15 "
+                  "vale el 15 % del curso.** Anuncie la Clase 13 —el impacto social y ambiental, "
                   "donde vuelve el listado de actores no usuarios de la sesión 3— y recuerde que el "
-                  "prototipo ajustado se necesita para la sesión 14, no para la 15.",
+                  "prototipo ajustado se necesita para la Clase 14, no para la 15.",
         "conexion": "Hacia atrás: la **sesión 11** dejó el prototipo v2 y la tarea de probarlo; la "
                     "**sesión 10** dejó la regla de los textos reales y de los mensajes que dicen qué "
                     "hacer, que hoy resuelve dos de los tres hallazgos; la **sesión 8** dejó el "
                     "alcance mínimo, que es la razón por la que un hallazgo **no** se arregla; la "
                     "**sesión 5** dejó el límite de 200 KB; la **sesión 4** dejó la Ley 1581, que "
-                    "cierra la puerta a la función de avisos. Hacia adelante: la **sesión 13** evalúa "
-                    "el impacto social y ambiental de la solución; la **sesión 14** convierte todo "
-                    "esto en la presentación final; y en el **informe final de la sesión 16** los "
+                    "cierra la puerta a la función de avisos. Hacia adelante: la **Clase 13** evalúa "
+                    "el impacto social y ambiental de la solución; la **Clase 14** convierte todo "
+                    "esto en la presentación final; y en el **informe final de la Clase 16** los "
                     "hallazgos de hoy son la sección de resultados de la prueba, y la lista de «no se "
                     "arregla» es la sección de limitaciones conocidas.",
     },
@@ -690,7 +690,7 @@ TEMAS[12] = {
         {"dice": "Un hallazgo que ya viene con la solución adentro",
          "por_que": "Si se anota «hay que poner un botón arriba» y se pierde el hecho, ya no se puede pensar otra solución mejor.",
          "pida": "Primero el hecho, después la decisión. Son dos columnas distintas de la ficha."},
-        {"dice": "«Vamos a arreglar todo antes de la sesión 14»",
+        {"dice": "«Vamos a arreglar todo antes de la Clase 14»",
          "por_que": "No cabe, y decirlo es no haber priorizado. Priorizar es una decisión de ingeniería, no una rendición.",
          "pida": "Qué queda fuera y por qué: fuera del alcance, excede la capacidad del equipo, o rompe una restricción."},
         {"dice": "«¿Qué le mejorarían a nuestro proyecto?»",
@@ -717,8 +717,8 @@ TEMAS[12] = {
               "tener. Después, en el documento del equipo, escriben qué van a aplicar y qué no, con "
               "su razón. **Descartar retroalimentación con argumento es perfectamente válido**; "
               "descartarla en el momento y sin pensarla, no."},
-        {"p": "¿Los ajustes de hoy tienen que estar listos para la sesión 15?",
-         "r": "Para la **sesión 14**, no para la 15. La sesión 14 es la preparación de la "
+        {"p": "¿Los ajustes de hoy tienen que estar listos para la Clase 15?",
+         "r": "Para la **Clase 14**, no para la 15. La Clase 14 es la preparación de la "
               "presentación final y el ensayo general: si el prototipo no está ajustado, van a "
               "ensayar con la versión vieja y el ensayo no sirve. La 15 es la exposición con nota, y "
               "ahí ya no hay margen."},
@@ -741,7 +741,7 @@ TEMAS[12] = {
         "el otro equipo tomó decisiones documentadas que quien comenta no vio.",
         "Recuerde a quien recibe: **anotar, no responder.** Una vez basta si se dice antes de la "
         "primera exposición.",
-        "Los ajustes se necesitan para la **sesión 14** —el ensayo general—, no para la 15.",
+        "Los ajustes se necesitan para la **Clase 14** —el ensayo general—, no para la 15.",
     ],
 
     "ti_siguiente": {
@@ -753,12 +753,12 @@ TEMAS[12] = {
               "y expectativa, una sola cosa importante cada una.",
         "adelanto": "vemos el **impacto social y ambiental** del proyecto: a quién más afecta esto "
                     "aunque no lo use, y cómo se mide.",
-        "aviso": "Traigan a la sesión 13 el **listado de actores no usuarios de la sesión 3** y el "
+        "aviso": "Traigan a la Clase 13 el **listado de actores no usuarios de la Clase 3** y el "
                  "**indicador ambiental de la sesión 5**: los dos se usan directamente en el taller. "
                  "Si los perdieron, recupérenlos del documento del equipo antes de la sesión.",
     },
 
-    "cierre_titulo": "Nos vemos en la sesión 13",
+    "cierre_titulo": "Nos vemos en la Clase 13",
     "cierre_frase": "La persona que prueba nunca se equivoca: si se perdió, el diseño la perdió",
 }
 
@@ -789,7 +789,7 @@ TEMAS[13] = {
         "Teoría y guía del docente": "Impacto, afectados, la matriz y cómo se califica",
         "Actividad en equipos": "Matriz de impacto del proyecto, en salas de grupo",
         "Exposiciones": "5 equipos × 3 min — el impacto negativo y su mitigación",
-        "Cierre": "Lo que queda amarrado para la sesión 14",
+        "Cierre": "Lo que queda amarrado para la Clase 14",
     },
     "herramienta_nota": "La matriz se llena en una tabla del **documento del equipo** en Google "
                         "Drive; si quieren dibujar el mapa de afectados, **draw.io** con la "
@@ -1078,7 +1078,7 @@ TEMAS[13] = {
                 "funcional en la sesión 7, sirvió para descartar imágenes en las sesiones 10 y 11, y "
                 "hoy entra a la matriz como **medida de mitigación ambiental**. Un requisito no "
                 "funcional bien elegido es, a la vez, una mitigación — y eso no se puede improvisar "
-                "en la sesión 13 si no se escribió en la 5.",
+                "en la Clase 13 si no se escribió en la 5.",
             ],
         },
     ],
@@ -1152,8 +1152,8 @@ TEMAS[13] = {
                 "Una idea: **los usuarios eligieron usarla; los afectados no eligieron nada.**",
                 "Recuerde la conexión que cierra cuatro sesiones: el límite de 200 KB de la sesión 5 "
                 "es hoy una **medida de mitigación ambiental**. Documentar fue una inversión.",
-                "Anuncie la sesión 14: **la preparación de la presentación final** y el **ensayo "
-                "general cronometrado**. Y avise que la exposición de la sesión 15 vale el **15 %**.",
+                "Anuncie la Clase 14: **la preparación de la presentación final** y el **ensayo "
+                "general cronometrado**. Y avise que la exposición de la Clase 15 vale el **15 %**.",
             ],
         },
     ],
@@ -1475,11 +1475,11 @@ TEMAS[13] = {
                   "definieron en la sesión 5 como indicador ambiental se convirtió en requisito no "
                   "funcional en la sesión 7, sirvió para descartar imágenes en las sesiones 10 y 11, "
                   "y hoy entra a la matriz como **medida de mitigación**. No se puede improvisar en "
-                  "la sesión 13 lo que no se escribió en la 5 — y es la tercera vez en el corte que "
+                  "la Clase 13 lo que no se escribió en la 5 — y es la tercera vez en el corte que "
                   "el curso lo demuestra. Termine con la otra lección, la que más los va a "
                   "sorprender: **la mejor mitigación de este proyecto no es digital**, es una hoja "
-                  "impresa en la puerta. Anuncie la sesión 14 —preparación de la presentación final "
-                  "y ensayo general cronometrado— y recuerde que la exposición de la sesión 15 vale "
+                  "impresa en la puerta. Anuncie la Clase 14 —preparación de la presentación final "
+                  "y ensayo general cronometrado— y recuerde que la exposición de la Clase 15 vale "
                   "el **15 %** del curso.",
         "conexion": "Hacia atrás: la **sesión 3** dejó el listado de actores no usuarios, que es la "
                     "mitad del taller de hoy; la **sesión 5** dejó el indicador ambiental, que hoy es "
@@ -1487,11 +1487,11 @@ TEMAS[13] = {
                     "indicadores de impacto; la **sesión 7** dejó el criterio de los 20 segundos, que "
                     "resultó ser una mitigación; la **sesión 9** dejó la exigencia de no citar lo que "
                     "no se puede defender, que hoy evita el cálculo inventado de emisiones; la "
-                    "**sesión 12** dejó la lista de limitaciones conocidas, donde entra el riesgo de "
-                    "sostenibilidad. Hacia adelante: la **sesión 14** convierte esto en dos "
+                    "**Clase 12** dejó la lista de limitaciones conocidas, donde entra el riesgo de "
+                    "sostenibilidad. Hacia adelante: la **Clase 14** convierte esto en dos "
                     "diapositivas de la presentación final —el impacto positivo con su número y el "
-                    "negativo con su mitigación—; en la **sesión 15** el impacto es uno de los cinco "
-                    "tramos calificados; y en el **informe final de la sesión 16** la matriz completa "
+                    "negativo con su mitigación—; en la **Clase 15** el impacto es uno de los cinco "
+                    "tramos calificados; y en el **informe final de la Clase 16** la matriz completa "
                     "es una sección propia.",
     },
 
@@ -1538,7 +1538,7 @@ TEMAS[13] = {
     ],
 
     "notas_operativas": [
-        "**Avise en la sesión 12 que hay que traer dos cosas:** el listado de actores no usuarios de "
+        "**Avise en la Clase 12 que hay que traer dos cosas:** el listado de actores no usuarios de "
         "la **sesión 3** y el indicador ambiental de la **sesión 5**. Sin ellos, el taller de 17 "
         "minutos no alcanza.",
         "En la apertura, pida en el muro **un afectado que no sea usuario** por equipo. Es el "
@@ -1554,7 +1554,7 @@ TEMAS[13] = {
         "una convención con un dato, que es un error frecuente en informes técnicos.",
         "Premie públicamente al equipo que declare el negativo más incómodo y al que proponga una "
         "**mitigación no digital**: son las dos conductas que quiere ver en el informe final.",
-        "Recuerde que la exposición de la **sesión 15 vale el 15 %** y el informe final de la 16 el "
+        "Recuerde que la exposición de la **Clase 15 vale el 15 %** y el informe final de la 16 el "
         "**20 %**. Desde hoy conviene que lo tengan presente.",
     ],
 
@@ -1566,12 +1566,12 @@ TEMAS[13] = {
               "de dos diapositivas de la presentación final.",
         "adelanto": "preparamos la **presentación final**: la estructura de 8 minutos, las "
                     "diapositivas, el reparto entre integrantes y el **ensayo general cronometrado**.",
-        "aviso": "Para la sesión 14 el **prototipo tiene que estar ya ajustado** con lo que salió de "
-                 "la sesión 12: si ensayan con la versión vieja, el ensayo no sirve. Traigan también "
+        "aviso": "Para la Clase 14 el **prototipo tiene que estar ya ajustado** con lo que salió de "
+                 "la Clase 12: si ensayan con la versión vieja, el ensayo no sirve. Traigan también "
                  "la cuenta de Canva o Google Slides lista y **quién va a hablar de qué**.",
     },
 
-    "cierre_titulo": "Nos vemos en la sesión 14",
+    "cierre_titulo": "Nos vemos en la Clase 14",
     "cierre_frase": "Los usuarios eligieron usarla; los afectados no eligieron nada",
 }
 
@@ -1587,7 +1587,7 @@ TEMAS[14] = {
     "n": 14,
     "titulo": "Preparación de la presentación final",
     "subtitulo": "Nueve minutos, ocho diapositivas y un plan B para cuando falle internet",
-    "hook": "En la sesión 15 tienen nueve minutos y se corta al llegar a cero. "
+    "hook": "En la Clase 15 tienen nueve minutos y se corta al llegar a cero. "
             "¿Cuánto creen que dura contar el problema, los actores y el árbol de causas?",
     "hook_lines": [
         "Más de nueve minutos. Por eso hoy se decide qué NO se cuenta.",
@@ -1604,7 +1604,7 @@ TEMAS[14] = {
         ("Teoría y guía del docente", 22, "Los cinco tramos, las diapositivas, el reparto y el plan B"),
         ("Actividad en equipos", 27, "Armar el guion, las diapositivas y la demostración"),
         ("Ensayo cronometrado", 30, "5 equipos × 6 min — 4 de ensayo del arranque y 2 de corrección"),
-        ("Cierre", 5, "Lo que falta antes de la sesión 15"),
+        ("Cierre", 5, "Lo que falta antes de la Clase 15"),
     ],
     "agenda_sub": "Hoy nadie expone para lucirse: se ensaya con cronómetro y se corrige. La "
                   "presentación con nota es la próxima sesión",
@@ -1612,7 +1612,7 @@ TEMAS[14] = {
                    "equipo ensaya **los primeros 4 minutos** frente al cronómetro y recibe 2 minutos "
                    "de corrección. Se ensaya solo el arranque porque **es donde todos los equipos se "
                    "pasan de tiempo**: quien controla los primeros cuatro minutos casi siempre llega "
-                   "bien al final. El resto se ensaya en equipo, fuera de clase, antes de la sesión "
+                   "bien al final. El resto se ensaya en equipo, fuera de clase, antes de la Clase "
                    "15.",
     "agenda": {},
     "herramienta_nota": "Las diapositivas en **Canva** o en **Google Slides**, como prefieran: las "
@@ -1623,7 +1623,7 @@ TEMAS[14] = {
                         "PDF** y **capturas de cada paso del prototipo**, guardadas en la carpeta del "
                         "equipo antes de salir de clase.",
     "avance_proyecto": "Guion de nueve minutos, diapositivas, reparto entre integrantes, "
-                       "demostración preparada y plan B técnico — todo listo para la sesión 15",
+                       "demostración preparada y plan B técnico — todo listo para la Clase 15",
 
     "teoria": [
         {
@@ -1737,7 +1737,7 @@ TEMAS[14] = {
                 "De ahí sale la idea que ordena toda la sesión y que conviene decir literalmente: "
                 "**una presentación no se acorta hablando rápido, se acorta eligiendo.** Es la misma "
                 "operación del alcance mínimo de la sesión 8 aplicada al tiempo en vez del producto. "
-                "Los equipos que fracasan en la sesión 15 no fracasan por hablar mal: fracasan porque "
+                "Los equipos que fracasan en la Clase 15 no fracasan por hablar mal: fracasan porque "
                 "intentaron contarlo todo y se les acabó el tiempo en el tramo 2, dejando fuera "
                 "precisamente el prototipo y los hallazgos, que es lo único que el jurado no conoce.",
                 "En el muro, cada equipo escribe **qué va a dejar fuera**. Es una pregunta incómoda y "
@@ -1758,14 +1758,14 @@ TEMAS[14] = {
                 "La estructura de cinco tramos no es un formato arbitrario: es el orden en que un "
                 "lector técnico necesita la información —problema, decisión, solución, evidencia, "
                 "consecuencias— y coincide con la estructura de cualquier informe de ingeniería. Vale "
-                "la pena decirlo, porque el mismo esqueleto les va a servir en la sesión 16 para el "
+                "la pena decirlo, porque el mismo esqueleto les va a servir en la Clase 16 para el "
                 "informe y en toda la carrera para cualquier sustentación.",
                 "**Tramo 1 · el problema con su cifra, 1 minuto.** El error universal es empezar con "
                 "presentaciones personales y agradecimientos: «buenas tardes, somos el equipo tal, "
                 "integrado por…». Eso consume el minuto más valioso de los nueve. **El nombre del "
                 "equipo está en la diapositiva**; se arranca con el problema y su número.",
                 "**Tramo 2 · a quién le pasa y qué decidimos, 2 minutos.** Aquí entra un afectado que "
-                "no es usuario —trabajo de la sesión 13— y, sobre todo, **la decisión de la matriz de "
+                "no es usuario —trabajo de la Clase 13— y, sobre todo, **la decisión de la matriz de "
                 "la sesión 8 con lo que se sacrificó**. Decir «elegimos la lista publicada y "
                 "sacrificamos tener la información al minuto» en diez segundos comunica más madurez "
                 "que cinco minutos de descripción.",
@@ -1780,7 +1780,7 @@ TEMAS[14] = {
                 "genera desconfianza inmediata, porque nadie cree que un prototipo de primer semestre "
                 "funcionó a la primera.",
                 "**Tramo 5 · impacto y siguiente paso, 1 minuto.** El positivo con su número, **el "
-                "negativo con su mitigación** —de nuevo la sesión 13— y qué haría quien continúe el "
+                "negativo con su mitigación** —de nuevo la Clase 13— y qué haría quien continúe el "
                 "proyecto. Cerrar con el siguiente paso deja la sensación de trabajo vivo y no de "
                 "tarea entregada.",
             ],
@@ -1849,7 +1849,7 @@ TEMAS[14] = {
                 "pasa en el tramo 2 ya no tiene manera de recuperarse. Ensayar el arranque con "
                 "cronómetro es la intervención con mejor rendimiento por minuto invertido. El resto "
                 "se ensaya en equipo, fuera de clase, y hay que decirlo con claridad: **quien no "
-                "ensaye completo antes de la sesión 15 se va a pasar de tiempo, y a los nueve minutos "
+                "ensaye completo antes de la Clase 15 se va a pasar de tiempo, y a los nueve minutos "
                 "se corta.**",
             ],
         },
@@ -1860,7 +1860,7 @@ TEMAS[14] = {
             "titulo": "00:00–00:06 · Apertura · [Slide 4]",
             "cuerpo": [
                 "Comparta pantalla antes de que entre el primero:",
-                "> «En la sesión 15 tienen nueve minutos y se corta al llegar a cero. ¿Cuánto creen "
+                "> «En la Clase 15 tienen nueve minutos y se corta al llegar a cero. ¿Cuánto creen "
                 "que dura contar el problema, los actores y el árbol de causas?»",
                 "En el muro, cada equipo escribe **qué va a dejar fuera**. Es el trabajo de hoy en "
                 "una línea.",
@@ -1900,7 +1900,7 @@ TEMAS[14] = {
                 "**[Nota docente]:** entre a las cinco salas con una sola pregunta: **«¿cuánto dura "
                 "su tramo 2?»**. Si no lo saben, no tienen guion: tienen intenciones.",
                 "**[Nota docente]:** verifique el plan B equipo por equipo **antes de que termine el "
-                "bloque**. Después ya no hay tiempo, y en la sesión 15 es tarde.",
+                "bloque**. Después ya no hay tiempo, y en la Clase 15 es tarde.",
             ],
         },
         {
@@ -1909,7 +1909,7 @@ TEMAS[14] = {
                 "5 equipos × 6 min: **4 minutos de ensayo del arranque** (tramos 1, 2 y el comienzo "
                 "del 3) y **2 minutos de corrección**. Cronómetro en pantalla, visible para todos.",
                 "**[Nota docente]:** corte exactamente a los 4 minutos, incluso en mitad de una "
-                "frase. Es incómodo y es el aprendizaje: en la sesión 15 va a pasar lo mismo.",
+                "frase. Es incómodo y es el aprendizaje: en la Clase 15 va a pasar lo mismo.",
                 "**[Nota docente]:** en los 2 minutos de corrección, diga **una sola cosa** — la que "
                 "más les cambie la presentación. Lo más frecuente, en orden: se presentaron en vez de "
                 "empezar por el problema; leyeron la diapositiva; se pasaron en el tramo 2; la misma "
@@ -1923,11 +1923,11 @@ TEMAS[14] = {
         {
             "titulo": "01:25–01:30 · Cierre · [Slide 12][Slide 13]",
             "cuerpo": [
-                "Verifique en voz alta la lista de la sesión 15: **guion con tiempos, ocho "
+                "Verifique en voz alta la lista de la Clase 15: **guion con tiempos, ocho "
                 "diapositivas, reparto, demostración ensayada, PDF descargado y capturas en la "
                 "carpeta.**",
                 "Una idea: **una presentación no se acorta hablando rápido, se acorta eligiendo.**",
-                "Recuerde lo que vale: la exposición de la sesión 15 es el **15 %** del curso, y "
+                "Recuerde lo que vale: la exposición de la Clase 15 es el **15 %** del curso, y "
                 "**se corta a los nueve minutos**. Quien no ensaye completo se va a pasar.",
             ],
         },
@@ -1977,7 +1977,7 @@ TEMAS[14] = {
             ("Tramo 1 · 1 min", "El problema con su cifra. **Sin presentaciones personales.**"),
             ("Tramo 2 · 2 min", "Los afectados y la decisión de la matriz, con lo que se sacrificó."),
             ("Comienzo del tramo 3 · 1 min", "Arrancar la demostración: hasta donde llegue en el minuto."),
-            ("Corte a los 4 min", "Se corta en mitad de la frase. En la sesión 15 pasa igual."),
+            ("Corte a los 4 min", "Se corta en mitad de la frase. En la Clase 15 pasa igual."),
             ("2 min de corrección", "El docente dice **una sola cosa**, la que más cambie la presentación."),
         ],
     },
@@ -2068,7 +2068,7 @@ TEMAS[14] = {
                              "—se mencionan en una frase: «revisamos qué existía y encontramos "
                              "software libre maduro que no servía para este caso»—, las quince filas "
                              "de la matriz, el prototipo v1, y toda la matriz de impacto salvo dos "
-                             "números. **Todo eso va en el informe final de la sesión 16.**\n\n"
+                             "números. **Todo eso va en el informe final de la Clase 16.**\n\n"
                              "*Tiempos: 1 + 2 + 3 + 2 + 1 = 9 minutos exactos. En el ensayo real, "
                              "este guion dio 10:40 la primera vez y 9:10 la tercera.*",
                 "como_calificar": "25 pts: 10 por los cinco tramos con **tiempos que sumen 9**, 8 por "
@@ -2198,7 +2198,7 @@ TEMAS[14] = {
                              "hoy, no improvisado ese día.\n\n"
                              "**Por qué esto vale 15 puntos y no es burocracia:** la demostración es "
                              "el tramo de 3 minutos, un tercio de la presentación y 25 de los 100 "
-                             "puntos de la rúbrica de la sesión 15. Un equipo que no puede mostrar su "
+                             "puntos de la rúbrica de la Clase 15. Un equipo que no puede mostrar su "
                              "prototipo porque «no cargó» **pierde un tercio de su nota por algo que "
                              "se prevenía en cinco minutos**. Y en sesiones virtuales esto no es "
                              "hipotético: pasa todos los semestres, en al menos un equipo.\n\n"
@@ -2208,7 +2208,7 @@ TEMAS[14] = {
                                   "mañana: 6 por el PDF descargado, 6 por las capturas de cada paso, "
                                   "3 por el acuerdo escrito de quién comparte. Revíselo equipo por "
                                   "equipo **antes de que termine el bloque de taller** — después no "
-                                  "hay tiempo y en la sesión 15 es tarde. Un equipo que dice «lo "
+                                  "hay tiempo y en la Clase 15 es tarde. Un equipo que dice «lo "
                                   "hacemos en casa» vale 0 en este bloque, y conviene decirlo sin "
                                   "dramatismo: es la parte más fácil de los cien puntos del día."
             },
@@ -2249,18 +2249,18 @@ TEMAS[14] = {
                   "acorta eligiendo** — es la misma operación del alcance mínimo de la sesión 8, "
                   "aplicada al tiempo en vez del producto, y es una habilidad que van a usar en cada "
                   "sustentación de su carrera. Cierre con los dos datos que importan: la exposición "
-                  "de la sesión 15 vale el **15 %** del curso y **se corta a los nueve minutos**; "
+                  "de la Clase 15 vale el **15 %** del curso y **se corta a los nueve minutos**; "
                   "quien no ensaye completo, hablando y con cronómetro, se va a pasar. Y recuerde que "
-                  "el informe final de la sesión 16 vale el **20 %** y que casi todo su contenido ya "
+                  "el informe final de la Clase 16 vale el **20 %** y que casi todo su contenido ya "
                   "está escrito desde las sesiones anteriores.",
         "conexion": "Hacia atrás: la **sesión 6** dio la cifra del problema que abre el tramo 1; la "
                     "**sesión 8** dio la decisión y el sacrificio del tramo 2, y su lógica de recorte "
                     "es la misma que hoy se aplica al tiempo; la **sesión 7** dio el criterio de "
                     "aceptación que se cronometra en vivo en el tramo 3; la **sesión 11** dio el "
-                    "prototipo v2; la **sesión 12** dio los hallazgos del tramo 4 y la lista de lo "
-                    "que no se arregla; la **sesión 13** dio los dos números del tramo 5. Hacia "
-                    "adelante: la **sesión 15** es esta misma presentación, con nota y con corte a "
-                    "los nueve minutos; y el **informe final de la sesión 16** recibe todo lo que hoy "
+                    "prototipo v2; la **Clase 12** dio los hallazgos del tramo 4 y la lista de lo "
+                    "que no se arregla; la **Clase 13** dio los dos números del tramo 5. Hacia "
+                    "adelante: la **Clase 15** es esta misma presentación, con nota y con corte a "
+                    "los nueve minutos; y el **informe final de la Clase 16** recibe todo lo que hoy "
                     "quedó fuera de la presentación — el árbol de causas, la matriz completa, los "
                     "antecedentes y la matriz de impacto entera.",
     },
@@ -2279,14 +2279,14 @@ TEMAS[14] = {
          "por_que": "Narrar la interfaz consume los tres minutos del tramo más importante sin mostrar nada que funcione.",
          "pida": "Mostrar una tarea cumpliéndose: alguien encontrando un libro, alguien marcando un préstamo en 14 segundos."},
         {"dice": "«El plan B lo hacemos en casa»",
-         "por_que": "Es la parte más fácil de los cien puntos del día y la que se olvida siempre. En la sesión 15 ya es tarde.",
+         "por_que": "Es la parte más fácil de los cien puntos del día y la que se olvida siempre. En la Clase 15 ya es tarde.",
          "pida": "El PDF y las capturas en la carpeta hoy, antes de salir, y el acuerdo de quién comparte pantalla."},
     ],
 
     "dudas": [
         {"p": "¿Nueve minutos exactos? ¿Qué pasa si nos pasamos?",
          "r": "Se corta al llegar a cero, y hoy lo van a experimentar en el ensayo con los 4 minutos "
-              "del arranque. No es rigidez por rigidez: en la sesión 15 hay cinco equipos y un "
+              "del arranque. No es rigidez por rigidez: en la Clase 15 hay cinco equipos y un "
               "bloque de 90 minutos, así que el tiempo que un equipo se pasa lo pierde el último. En "
               "la vida profesional funciona igual — en una sustentación o en una reunión de comité, "
               "el tiempo asignado es el tiempo que hay."},
@@ -2302,7 +2302,7 @@ TEMAS[14] = {
               "seguir sin perder los tres minutos del tramo. Es exactamente para eso el plan B, y por "
               "eso vale 15 puntos hoy."},
         {"p": "¿Y todo lo que no alcanzamos a contar?",
-         "r": "Va en el **informe final de la sesión 16**, que vale el 20 %. El árbol de causas "
+         "r": "Va en el **informe final de la Clase 16**, que vale el 20 %. El árbol de causas "
               "completo, la matriz de decisión con sus quince filas, los tres antecedentes, la matriz "
               "de impacto entera: todo eso es material de informe. Distinguir qué va en la "
               "presentación y qué va en el informe es una habilidad profesional, y es media hora de "
@@ -2327,7 +2327,7 @@ TEMAS[14] = {
         "veces. Es el consejo que más tiempo les ahorra.",
         "Los equipos que observan anotan **una cosa que van a copiar y una que van a evitar**, y lo "
         "dejan en el muro **sin nombres**.",
-        "Recuerde los dos pesos: exposición de la sesión 15 = **15 %**, informe final de la 16 = "
+        "Recuerde los dos pesos: exposición de la Clase 15 = **15 %**, informe final de la 16 = "
         "**20 %**.",
     ],
 
@@ -2339,13 +2339,13 @@ TEMAS[14] = {
               "cuenta: dura la mitad.",
         "adelanto": "es la **exposición final**, con nota: nueve minutos por equipo y tres de "
                     "preguntas. Vale el **15 %** del curso.",
-        "aviso": "En la sesión 15 **se corta a los nueve minutos**, sin excepción. Conéctense cinco "
+        "aviso": "En la Clase 15 **se corta a los nueve minutos**, sin excepción. Conéctense cinco "
                  "minutos antes con la presentación y el prototipo ya abiertos, y con las capturas a "
                  "mano. El orden de exposición se sortea al empezar, así que todos los equipos deben "
                  "estar listos desde el primer minuto.",
     },
 
-    "cierre_titulo": "Nos vemos en la sesión 15",
+    "cierre_titulo": "Nos vemos en la Clase 15",
     "cierre_frase": "Una presentación no se acorta hablando rápido: se acorta eligiendo",
 }
 
@@ -2388,7 +2388,7 @@ TEMAS[15] = {
     "agenda": {},
     "herramienta_nota": "Cada equipo comparte su propia pantalla. **Antes de empezar, todos** dejan "
                         "en la carpeta del equipo la presentación **en PDF** y las **capturas del "
-                        "prototipo** — es el plan B de la sesión 14 y hoy es el día en que sirve. La "
+                        "prototipo** — es el plan B de la Clase 14 y hoy es el día en que sirve. La "
                         "**ficha de valoración entre pares** se llena en el muro, con una columna por "
                         "equipo. **Hoy no se usa asistente de IA.**",
     "avance_proyecto": "Exposición final sustentada y calificada (15 % del curso), y la lista de "
@@ -2461,7 +2461,7 @@ TEMAS[15] = {
                  "**El PDF y las capturas, en la carpeta, ahora.** No al final, no «después de "
                  "exponer». Si el prototipo no carga en vivo, el equipo narra el mismo recorrido "
                  "sobre las capturas y **no pierde el tramo de 25 puntos**. Es literalmente para hoy "
-                 "que se preparó eso en la sesión 14."),
+                 "que se preparó eso en la Clase 14."),
                 ("info",
                  "**Se corta a los nueve minutos y no es rigidez por rigidez:** con cinco equipos en "
                  "90 minutos, cada minuto que un equipo se pasa lo pierde el último en exponer. En "
@@ -2469,7 +2469,7 @@ TEMAS[15] = {
                  "todo el tiempo que hay."),
                 ("aclaracion",
                  "**Nada de esto termina hoy.** De cada exposición sale una lista de ajustes para el "
-                 "**informe final de la sesión 16, que vale el 20 %**. Anoten lo que el curso no "
+                 "**informe final de la Clase 16, que vale el 20 %**. Anoten lo que el curso no "
                  "entendió: eso es exactamente lo que hay que escribir mejor en el informe."),
             ],
         },
@@ -2577,7 +2577,7 @@ TEMAS[15] = {
                 "Devuelva **una observación por equipo, dicha en público y en una frase** —lo que más "
                 "sumó y la única cosa que cambiaría—. La retroalimentación detallada va después, por "
                 "escrito, con las frases que anotó mientras calificaba. En público, una sola cosa: es "
-                "la misma regla de la sesión 12 sobre retroalimentación útil.",
+                "la misma regla de la Clase 12 sobre retroalimentación útil.",
                 "Y cierre nombrando lo que efectivamente pasó, sin discurso: hace quince sesiones "
                 "estos equipos tenían una ocurrencia; hoy sustentaron un problema con evidencia, una "
                 "decisión con criterios, un prototipo probado con personas reales y un impacto con "
@@ -2632,7 +2632,7 @@ TEMAS[15] = {
             "cuerpo": [
                 "Cada equipo completa en el muro, en la columna de los **otros cuatro** equipos: lo "
                 "más fuerte · lo que no quedó claro · una pregunta que se queda sin responder.",
-                "**[Nota docente]:** recuerde las reglas de la sesión 12 — **observación, no "
+                "**[Nota docente]:** recuerde las reglas de la Clase 12 — **observación, no "
                 "adjetivo; una sola cosa; no rediseñar el proyecto ajeno**. «Estuvo bien» no cuenta "
                 "como valoración.",
                 "**[Nota docente]:** esta ficha **se califica** dentro de la nota de exposiciones del "
@@ -2649,7 +2649,7 @@ TEMAS[15] = {
                 "La instrucción que convierte hoy en trabajo: **anoten lo que el curso no entendió de "
                 "su proyecto — eso es lo que hay que escribir mejor en el informe.** Una pregunta "
                 "repetida es un diagnóstico gratis.",
-                "Recuerde: el **informe final de la sesión 16 vale el 20 %**, y **once de sus doce "
+                "Recuerde: el **informe final de la Clase 16 vale el 20 %**, y **once de sus doce "
                 "secciones ya están escritas** desde las sesiones anteriores.",
                 "Y dígalo una vez, corto y en serio: hace quince sesiones tenían una ocurrencia; hoy "
                 "sustentaron un problema con evidencia, una decisión con criterios, un prototipo "
@@ -2663,7 +2663,7 @@ TEMAS[15] = {
         "titulo": "Exposición final del proyecto",
         "min": 60,
         "exposicion": 9,
-        "consigna": "Sustenten el proyecto en **nueve minutos**, con los cinco tramos de la sesión "
+        "consigna": "Sustenten el proyecto en **nueve minutos**, con los cinco tramos de la Clase "
                     "14, **mostrando el prototipo funcionando** y los hallazgos de la prueba con "
                     "personas reales. Después, **tres minutos de preguntas**: responde quien tiene el "
                     "tramo. Vale el **15 %** del curso.",
@@ -2753,7 +2753,7 @@ TEMAS[15] = {
                              "| **0–4** | No queda claro qué problema resuelve el proyecto. |\n\n"
                              "**El error más común, y hay que anotarlo sin dramatismo:** gastar el "
                              "minuto en «buenas tardes, somos el equipo 3, integrado por…». Se avisó "
-                             "en la sesión 14 y aun así lo hacen dos o tres equipos. Cuesta puntos "
+                             "en la Clase 14 y aun así lo hacen dos o tres equipos. Cuesta puntos "
                              "porque consume el minuto más valioso en información que ya está en la "
                              "diapositiva.\n\n"
                              "**La pregunta útil si el tramo queda flojo:** «¿ese 40 % de dónde salió?». "
@@ -2772,7 +2772,7 @@ TEMAS[15] = {
                              "junta bien:\n\n"
                              "1. **Un afectado que no es usuario.** En el caso de la biblioteca: la "
                              "voluntaria del cierre, a quien le llega trabajo nuevo, y el vecino sin "
-                             "datos móviles, que queda atrás en el mostrador. Salió de la sesión 13.\n"
+                             "datos móviles, que queda atrás en el mostrador. Salió de la Clase 13.\n"
                              "2. **La decisión con su sacrificio.** «Ganó la lista publicada una vez "
                              "al día, **y perdimos la información al minuto**. Aceptamos eso porque "
                              "la alternativa exigía un computador en el mostrador, que no existe.»\n\n"
@@ -2789,7 +2789,7 @@ TEMAS[15] = {
                              "señalarlo en el cierre para que el curso entero lo oiga.\n\n"
                              "**La pregunta útil:** «¿qué pasa con alguien que no tiene datos "
                              "móviles?» — destapa en diez segundos si el equipo pensó en los "
-                             "afectados no usuarios de la sesión 13 o solo en su usuario ideal.",
+                             "afectados no usuarios de la Clase 13 o solo en su usuario ideal.",
                 "como_calificar": "20 pts: 10 por el afectado no usuario, 10 por la decisión con su "
                                   "sacrificio. La distinción que importa al calificar: **«no lo "
                                   "hicimos porque no alcanzamos» no es un sacrificio, es una "
@@ -2803,7 +2803,7 @@ TEMAS[15] = {
                              "recorrido de tres pasos donde **se ve una tarea cumpliéndose**:\n\n"
                              "- buscar un libro que está disponible, y ver **la fecha del dato**;\n"
                              "- buscar uno prestado, y ver que el estado **ya no parece un botón** "
-                             "(hallazgo de la sesión 12);\n"
+                             "(hallazgo de la Clase 12);\n"
                              "- la pantalla de la voluntaria marcando un préstamo, **cronometrado en "
                              "vivo: catorce segundos** contra un criterio de aceptación de treinta, "
                              "definido en la sesión 7.\n\n"
@@ -2820,7 +2820,7 @@ TEMAS[15] = {
                              "**Importante y hay que ser justo aquí:** un equipo que muestra el "
                              "recorrido **sobre las capturas del plan B porque el prototipo no cargó** "
                              "**no pierde puntos** si narra la tarea igual. Para eso se preparó el "
-                             "plan B en la sesión 14, y usarlo bien es competencia, no fracaso. Lo "
+                             "plan B en la Clase 14, y usarlo bien es competencia, no fracaso. Lo "
                              "que sí cuesta puntos es no tener capturas y perder dos minutos "
                              "buscando la pestaña.\n\n"
                              "**El error a cazar:** narrar la interfaz en vez de mostrar una tarea. "
@@ -2867,7 +2867,7 @@ TEMAS[15] = {
                              "define el puntaje del tramo en quince segundos: si la persona es del "
                              "equipo, no fue una prueba; si la respuesta es «le pareció bien», "
                              "escucharon opiniones en vez de observar comportamiento —la distinción "
-                             "de la sesión 12—.",
+                             "de la Clase 12—.",
                 "como_calificar": "20 pts: 8 por hallazgos concretos de **personas ajenas** y "
                                   "descritos como comportamiento, 7 por los cambios derivados, 5 por "
                                   "**al menos una limitación declarada con su motivo**. El puntaje "
@@ -2894,11 +2894,11 @@ TEMAS[15] = {
                              "**La señal que hay que premiar:** que el número negativo aparezca con "
                              "**el mismo peso** que el positivo. Un equipo que dice «y esto le cuesta "
                              "diez minutos diarios a una persona» está haciendo ingeniería, no "
-                             "publicidad. Es exactamente lo que se trabajó en la sesión 13, y el "
+                             "publicidad. Es exactamente lo que se trabajó en la Clase 13, y el "
                              "tramo existe para verificar que quedó.\n\n"
                              "**El error frecuente:** volver al adjetivo. «Genera conciencia "
                              "ambiental» no es un impacto: es una intención. La corrección es la de "
-                             "la sesión 13 — **un impacto se declara con un indicador que alguien más "
+                             "la Clase 13 — **un impacto se declara con un indicador que alguien más "
                              "podría ir a verificar**.\n\n"
                              "**La pregunta útil:** «si tuvieran una semana más, ¿qué harían "
                              "primero?». Destapa si el equipo tiene criterio de prioridad o solo una "
@@ -2907,7 +2907,7 @@ TEMAS[15] = {
                                   "negativo **con mitigación**, 3 por el siguiente paso. Si todos los "
                                   "impactos son positivos, el máximo es 10, y la razón hay que "
                                   "decirla: toda solución le cambia algo a alguien que no la pidió. "
-                                  "Rechace los adjetivos sin número — con la corrección de la sesión "
+                                  "Rechace los adjetivos sin número — con la corrección de la Clase "
                                   "13 en la mano, no como opinión del docente."
             },
         ],
@@ -2920,24 +2920,24 @@ TEMAS[15] = {
                       "impacto». Si reclaman, el argumento es aritmético: cinco equipos por 12 "
                       "minutos son 60, y el tiempo que uno se pasa lo pierde el último."},
             {"caso": "Falta un integrante el día de la exposición",
-             "clave": "El equipo aplica el orden de emergencia que decidió en la sesión 14: los "
+             "clave": "El equipo aplica el orden de emergencia que decidió en la Clase 14: los "
                       "tramos del ausente los asume quien sigue en la tabla de reparto. **No "
                       "descuente al equipo por la ausencia**, pero sí evalúe la exposición completa "
                       "—si faltan tramos, faltan puntos—. Al ausente se le califica aparte, con una "
-                      "sustentación individual corta en la sesión 16 o en horario de asesoría; no "
+                      "sustentación individual corta en la Clase 16 o en horario de asesoría; no "
                       "hereda la nota del equipo sin haber hablado."},
             {"caso": "Al equipo no le carga el prototipo en vivo",
              "clave": "Dígale de inmediato **«usen las capturas»** y no le descuente el tiempo "
                       "perdido buscando. Si narra el recorrido sobre las capturas y se entiende la "
                       "tarea, **el tramo vale completo**: usar el plan B es competencia, no fracaso, "
-                      "y así se anunció en la sesión 14. Lo que sí cuesta puntos es no tener "
+                      "y así se anunció en la Clase 14. Lo que sí cuesta puntos es no tener "
                       "capturas — y eso se verificó al empezar la clase, así que no debería pasar."},
             {"caso": "Un equipo presenta un proyecto claramente más débil que los otros",
              "clave": "Califique con la misma rúbrica, sin ajustar el criterio por comparación — es "
                       "justamente lo que la planilla previene. Pero en la retroalimentación pública "
                       "busque lo que sí hicieron bien, que casi siempre existe: un hallazgo de la "
                       "prueba, un afectado bien identificado. Y en la privada, sea concreto sobre "
-                      "qué falta, porque **el informe final de la sesión 16 vale 20 % y todavía se "
+                      "qué falta, porque **el informe final de la Clase 16 vale 20 % y todavía se "
                       "puede recuperar mucho ahí**."},
             {"caso": "Nadie del curso pregunta nada",
              "clave": "Pasa, sobre todo con el primer equipo. Tenga dos preguntas propias listas por "
@@ -2968,14 +2968,14 @@ TEMAS[15] = {
                     "**10 y 11**; los hallazgos y las limitaciones del tramo 4, de la **12**; los dos "
                     "números del tramo 5, de la **13**; la estructura, el reparto y el plan B, de la "
                     "**14**; y las reglas de la valoración entre pares, de la **12**. Hacia adelante: "
-                    "el **informe final de la sesión 16** recibe todo lo que no cupo en nueve "
+                    "el **informe final de la Clase 16** recibe todo lo que no cupo en nueve "
                     "minutos, y las preguntas que hoy quedaron sin responder son su lista de tareas.",
     },
 
     "errores": [
         {"dice": "«Buenas tardes, somos el equipo 3, integrado por…»",
          "por_que": "Gasta el minuto más valioso de los nueve en información que ya está en la primera diapositiva.",
-         "pida": "Arrancar con el problema y su número. Se avisó en la sesión 14 y cuesta puntos."},
+         "pida": "Arrancar con el problema y su número. Se avisó en la Clase 14 y cuesta puntos."},
         {"dice": "«Aquí arriba tenemos un campo de búsqueda, y a la derecha un botón…»",
          "por_que": "Narrar la interfaz consume los tres minutos del tramo de más puntos sin mostrar nada funcionando.",
          "pida": "No describa la pantalla: muestre a alguien logrando algo, y cronometre si hay criterio de aceptación."},
@@ -2983,7 +2983,7 @@ TEMAS[15] = {
          "por_que": "En un prototipo de primer semestre significa casi siempre que no se probó con nadie ajeno al equipo.",
          "pida": "Un hallazgo concreto de una persona real y una limitación declarada. La honestidad sube la nota, no la baja."},
         {"dice": "«Nuestro proyecto genera conciencia y mejora la calidad de vida»",
-         "por_que": "Es una intención, no un impacto: nadie puede ir a verificarlo. Se corrigió en la sesión 13.",
+         "por_que": "Es una intención, no un impacto: nadie puede ir a verificarlo. Se corrigió en la Clase 13.",
          "pida": "Un indicador que alguien más podría medir, y el impacto negativo con su mitigación."},
         {"dice": "Un solo integrante responde las tres preguntas",
          "por_que": "Destapa que uno hizo el trabajo y los demás leyeron un guion. Es un descuento anunciado de hasta 10 puntos.",
@@ -2997,7 +2997,7 @@ TEMAS[15] = {
               "Tampoco hay descuento adicional por pasarse — el castigo es que los tramos que "
               "quedaron fuera valen cero, y suelen ser el 4 y el 5, que juntos son 35 puntos."},
         {"p": "¿Qué pasa si el prototipo no carga?",
-         "r": "Usan las capturas del plan B que dejaron en la carpeta desde la sesión 14, narran el "
+         "r": "Usan las capturas del plan B que dejaron en la carpeta desde la Clase 14, narran el "
               "mismo recorrido sobre ellas y **el tramo vale completo**. Usar bien el plan B es "
               "competencia, no fracaso. Lo que sí cuesta puntos es no tener capturas y perder dos "
               "minutos buscando la pestaña."},
@@ -3012,7 +3012,7 @@ TEMAS[15] = {
               "demás. Es la misma lección de la sesión 5 sobre datos con fuente y de la 11 sobre el "
               "asistente que inventa con seguridad."},
         {"p": "¿Con esto ya terminamos el curso?",
-         "r": "No. Falta el **informe final de la sesión 16, que vale el 20 %** —más que la "
+         "r": "No. Falta el **informe final de la Clase 16, que vale el 20 %** —más que la "
               "exposición— y la autoevaluación. La buena noticia es que **once de sus doce secciones "
               "ya están escritas** desde las sesiones anteriores: la próxima sesión es de armar y "
               "revisar, no de empezar de cero."},
@@ -3036,7 +3036,7 @@ TEMAS[15] = {
         "anunciado que más enseña.",
         "La **ficha de valoración entre pares se califica** dentro de la nota de exposiciones del "
         "corte. Dígalo antes de que la llenen, no después.",
-        "Si falta un integrante, el equipo aplica su **orden de emergencia** de la sesión 14; al "
+        "Si falta un integrante, el equipo aplica su **orden de emergencia** de la Clase 14; al "
         "ausente se le sustenta aparte y **no hereda la nota sin haber hablado**.",
         "En el cierre, **una observación por equipo en una frase**. La retroalimentación detallada va "
         "después por escrito, con las frases que anotó al calificar.",
@@ -3052,13 +3052,13 @@ TEMAS[15] = {
               "entendió** hoy de su proyecto.",
         "adelanto": "es la última: se **entrega el informe final (20 %)**, se socializa la galería de "
                     "proyectos del curso y se hace la **autoevaluación y coevaluación**.",
-        "aviso": "El informe se entrega **en la sesión 16, dentro de la clase**: se revisa y se "
+        "aviso": "El informe se entrega **en la Clase 16, dentro de la clase**: se revisa y se "
                  "completa ahí mismo, con la lista de verificación. Lleguen con el documento armado "
                  "—no con las secciones dispersas en cinco archivos— porque los 24 minutos de "
                  "revisión no alcanzan para copiar y pegar el curso entero.",
     },
 
-    "cierre_titulo": "Nos vemos en la sesión 16 · la última",
+    "cierre_titulo": "Nos vemos en la Clase 16 · la última",
     "cierre_frase": "Hace quince sesiones era una ocurrencia; hoy es un proyecto sustentado",
 }
 
@@ -3097,7 +3097,7 @@ TEMAS[16] = {
     "agenda_sub": "Última sesión. No hay evaluación escrita: lo que se califica hoy es el informe "
                   "final (20 %) y la autoevaluación",
     "nota_bloque": "**No hay examen final escrito en este curso.** El 40 % del corte 3 se reparte en "
-                   "exposición final 15 % (sesión 15) + **informe final 20 % (hoy)** + asistencia "
+                   "exposición final 15 % (Clase 15) + **informe final 20 % (hoy)** + asistencia "
                    "5 %. El informe **se entrega dentro de la clase**: se arma, se revisa con la "
                    "lista de verificación y se sube antes de terminar la sesión.",
     "agenda": {},
@@ -3123,7 +3123,7 @@ TEMAS[16] = {
                  "Ficha del problema · **sesión 6**. Con la cifra y cómo se obtuvo.",
                  "½ pág"],
                 ["3 · Actores y afectados",
-                 "Mapa de actores · **sesión 3** + los afectados que no son usuarios · **sesión 13**.",
+                 "Mapa de actores · **Clase 3** + los afectados que no son usuarios · **Clase 13**.",
                  "½ pág"],
                 ["4 · Antecedentes: qué existía ya",
                  "Las tres fichas de antecedentes · **sesión 9**, con la brecha que justifica el proyecto.",
@@ -3147,13 +3147,13 @@ TEMAS[16] = {
                  "**Sesiones 10 y 11**, con capturas de las pantallas y el recorrido principal.",
                  "1–2 pág"],
                 ["8 · Prueba con usuarios y hallazgos",
-                 "**Sesión 12**. Los hallazgos, la clasificación y el patrón.",
+                 "**Clase 12**. Los hallazgos, la clasificación y el patrón.",
                  "1 pág"],
                 ["9 · Impacto social y ambiental",
-                 "Matriz de impacto y mitigaciones · **sesión 13**. Positivos **y** negativos.",
+                 "Matriz de impacto y mitigaciones · **Clase 13**. Positivos **y** negativos.",
                  "1 pág"],
                 ["10 · Limitaciones y trabajo siguiente",
-                 "Lo que se decidió **no** arreglar · **sesiones 12 y 13**, con el motivo.",
+                 "Lo que se decidió **no** arreglar · **Clases 12 y 13**, con el motivo.",
                  "½ pág"],
                 ["11 · Declaración del uso de IA",
                  "**Sesiones 3 y 11**: qué se le pidió, qué se corrigió y **qué no se le entregó**.",
@@ -3192,7 +3192,7 @@ TEMAS[16] = {
                  "**Cite lo que leyó**; lo demás es relleno y es fácil de comprobar."),
                 ("Un informe sin limitaciones",
                  "La sección 10 vacía o con «ninguna» dice que el equipo no probó nada con nadie. "
-                 "Después de la sesión 12, todos los equipos tienen limitaciones reales."),
+                 "Después de la Clase 12, todos los equipos tienen limitaciones reales."),
                 ("Todo escrito por una sola persona",
                  "Se reconoce en el cambio de tono entre secciones y en las secciones que quedaron "
                  "vacías. Reparto: **cada integrante responde por al menos dos secciones**."),
@@ -3212,7 +3212,7 @@ TEMAS[16] = {
                 ("aclaracion",
                  "**La coevaluación es del trabajo, no de la persona.** Se valora cumplimiento de "
                  "acuerdos, aporte al proyecto y disposición para ayudar — **no simpatía**. Se "
-                 "escribe con la misma regla de la sesión 12: **observación, no adjetivo**. «No "
+                 "escribe con la misma regla de la Clase 12: **observación, no adjetivo**. «No "
                  "aportó» no sirve; «no entregó su sección en las tres últimas sesiones» sí."),
                 ("advertencia",
                  "**La autoevaluación individual se entrega solo al docente**, no al muro y no al "
@@ -3232,7 +3232,7 @@ TEMAS[16] = {
                 "«Investigar es buscar en internet.»",
                 "«El impacto es que la gente lo use.»",
             ],
-            "after_title": "Sesión 16 · con su propio proyecto como prueba",
+            "after_title": "Clase 16 · con su propio proyecto como prueba",
             "after": [
                 "«La ingeniería **decide bajo restricciones**, y toda decisión sacrifica algo.»",
                 "«Un problema **se define antes de resolverse**: causas, actores y evidencia.»",
@@ -3306,15 +3306,15 @@ TEMAS[16] = {
             "slide": "{{slide:Cuatro cosas que bajan la nota}}",
             "cuerpo": [
                 "Los veinte minutos de socialización **no son una segunda ronda de exposiciones** — "
-                "eso fue la sesión 15 y ya tiene nota. Aquí el formato es una **galería**: cada "
+                "eso fue la Clase 15 y ya tiene nota. Aquí el formato es una **galería**: cada "
                 "equipo deja en su columna del muro tres imágenes —una pantalla del prototipo, la "
                 "matriz de impacto y la diapositiva del problema— y **cinco líneas**: el problema, la "
                 "decisión, un hallazgo, un número de impacto y el siguiente paso.",
                 "El reparto son 3 minutos por equipo para presentar la columna, y los 5 restantes "
                 "para **recorrido libre**: cada estudiante entra a la columna de otro equipo y deja "
-                "un comentario. Es rápido, es de baja presión —después de la sesión 15 el curso está "
+                "un comentario. Es rápido, es de baja presión —después de la Clase 15 el curso está "
                 "cansado— y deja un registro del semestre que se puede mostrar el año siguiente.",
-                "**Por qué vale la pena y no es relleno:** en la sesión 15 cada equipo escuchó cuatro "
+                "**Por qué vale la pena y no es relleno:** en la Clase 15 cada equipo escuchó cuatro "
                 "exposiciones de nueve minutos, y a esa velocidad casi nadie retiene los detalles de "
                 "los otros proyectos. La galería deja los cinco proyectos **lado a lado y por "
                 "escrito**, y ahí sí se ven las comparaciones: cinco maneras distintas de definir un "
@@ -3323,7 +3323,7 @@ TEMAS[16] = {
                 "Aproveche los cuatro errores del informe [Slide 8] durante este bloque, mientras los "
                 "equipos terminan de subir la columna: son las cuatro cosas que va a encontrar "
                 "calificando y decirlas ahora les da tiempo de corregirlas. **La más frecuente es la "
-                "sección 10 vacía** —«ninguna limitación»—, que después de la sesión 12 no es "
+                "sección 10 vacía** —«ninguna limitación»—, que después de la Clase 12 no es "
                 "creíble en ningún equipo.",
             ],
         },
@@ -3343,7 +3343,7 @@ TEMAS[16] = {
                 "se busca.",
                 "La coevaluación es más delicada y necesita una regla dura: **se evalúa el trabajo, "
                 "no la persona.** Tres criterios —cumplimiento de acuerdos, aporte al proyecto, "
-                "disposición para ayudar— y la misma exigencia de la sesión 12: **observación, no "
+                "disposición para ayudar— y la misma exigencia de la Clase 12: **observación, no "
                 "adjetivo**. «No aportó» no sirve como coevaluación; «no entregó su sección en las "
                 "tres últimas sesiones» sí, porque es verificable y porque la persona puede "
                 "responder a un hecho y no a una etiqueta.",
@@ -3433,11 +3433,11 @@ TEMAS[16] = {
                 "**3 min por equipo** para presentar la columna, y **5 min de recorrido libre**: cada "
                 "estudiante comenta en la columna de otro equipo.",
                 "**[Nota docente]:** aclare que **esto no es exponer otra vez** — la nota fue la "
-                "sesión 15. Es dejar los cinco proyectos lado a lado, que es la única vez en el "
+                "Clase 15. Es dejar los cinco proyectos lado a lado, que es la única vez en el "
                 "semestre en que el curso ve su propio trabajo completo.",
                 "**[Nota docente]:** mientras suben las columnas, comente los **cuatro errores del "
                 "informe** [Slide 8]. El más frecuente es la **sección 10 vacía**: después de la "
-                "sesión 12, «ninguna limitación» no es creíble en ningún equipo. Decirlo ahora les da "
+                "Clase 12, «ninguna limitación» no es creíble en ningún equipo. Decirlo ahora les da "
                 "tiempo de corregirlo.",
             ],
         },
@@ -3538,7 +3538,7 @@ TEMAS[16] = {
         ("La autoevaluación individual responde con evidencia verificable, incluido un fallo", 20,
          "Lo que se evalúa es la capacidad de mirar el propio trabajo con honestidad, no la nota que uno se pone."),
         ("La coevaluación usa observaciones y no adjetivos sobre las personas", 15,
-         "Un hecho verificable se puede responder; una etiqueta solo se puede resentir. Es la regla de la sesión 12."),
+         "Un hecho verificable se puede responder; una etiqueta solo se puede resentir. Es la regla de la Clase 12."),
     ],
 
     "solucion": {
@@ -3549,7 +3549,7 @@ TEMAS[16] = {
                     "alcanza a leer un bloque, que sea **LA LISTA DE VERIFICACIÓN**: es lo que se "
                     "proyecta y lo que estructura los veinticuatro minutos.",
         "caso_titulo": "La biblioteca del barrio · el informe final armado",
-        "caso": "Mismo equipo de todo el corte. Todo el material existe desde las sesiones 3 a 13; el "
+        "caso": "Mismo equipo de todo el corte. Todo el material existe desde las Clases 3 a 13; el "
                 "trabajo de hoy es reunirlo, encontrar los huecos y escribir media página nueva. Lo "
                 "que sigue es cómo quedó, sección por sección, y qué se descubrió que faltaba.",
         "por_que_este_caso": "Porque muestra el resultado de haber escrito en cada sesión: al armar "
@@ -3564,17 +3564,17 @@ TEMAS[16] = {
                              "| # | Sección | Tiene que contener | ¿De dónde? |\n"
                              "|---|---|---|---|\n"
                              "| 1 | Portada y **resumen** | Título, integrantes, curso. Resumen de ½ pág: problema con su número, solución en dos frases, impacto principal. | **Nuevo hoy** |\n"
-                             "| 2 | El problema | La cifra, **cómo se obtuvo**, a quién le pasa y las causas principales. | Sesión 6 |\n"
-                             "| 3 | Actores y afectados | Usuarios, quien opera, **y al menos un afectado que no es usuario**. | Sesiones 3 y 13 |\n"
-                             "| 4 | Antecedentes | Tres soluciones que ya existen, qué hace cada una y **por qué no sirve aquí**. | Sesión 9 |\n"
-                             "| 5 | Requisitos y criterios | Funcionales, no funcionales, y **cómo se verifica cada criterio**. | Sesión 7 |\n"
-                             "| 6 | Alternativas y decisión | Al menos dos alternativas, los criterios, la elegida **y qué se sacrificó**. | Sesión 8 |\n"
-                             "| 7 | La solución y el prototipo | Descripción, **capturas** y el recorrido principal paso a paso. | Sesiones 10 y 11 |\n"
-                             "| 8 | Prueba y hallazgos | Con quién se probó (**solo el rol, no el nombre**), qué hizo, la clasificación y el patrón. | Sesión 12 |\n"
-                             "| 9 | Impacto | Positivos con indicador **y negativos con mitigación**. | Sesión 13 |\n"
-                             "| 10 | Limitaciones y siguiente paso | Lo que se decidió **no** hacer, con el motivo, y por dónde seguiría. | Sesiones 12 y 13 |\n"
-                             "| 11 | Declaración del uso de IA | Qué se pidió, qué se corrigió, **qué no se le entregó**. | Sesiones 3 y 11 |\n"
-                             "| 12 | Referencias | Lo que se citó, en el formato acordado. **Nada que no se haya leído.** | Sesión 9 |\n\n"
+                             "| 2 | El problema | La cifra, **cómo se obtuvo**, a quién le pasa y las causas principales. | Clase 6 |\n"
+                             "| 3 | Actores y afectados | Usuarios, quien opera, **y al menos un afectado que no es usuario**. | Clases 3 y 13 |\n"
+                             "| 4 | Antecedentes | Tres soluciones que ya existen, qué hace cada una y **por qué no sirve aquí**. | Clase 9 |\n"
+                             "| 5 | Requisitos y criterios | Funcionales, no funcionales, y **cómo se verifica cada criterio**. | Clase 7 |\n"
+                             "| 6 | Alternativas y decisión | Al menos dos alternativas, los criterios, la elegida **y qué se sacrificó**. | Clase 8 |\n"
+                             "| 7 | La solución y el prototipo | Descripción, **capturas** y el recorrido principal paso a paso. | Clases 10 y 11 |\n"
+                             "| 8 | Prueba y hallazgos | Con quién se probó (**solo el rol, no el nombre**), qué hizo, la clasificación y el patrón. | Clase 12 |\n"
+                             "| 9 | Impacto | Positivos con indicador **y negativos con mitigación**. | Clase 13 |\n"
+                             "| 10 | Limitaciones y siguiente paso | Lo que se decidió **no** hacer, con el motivo, y por dónde seguiría. | Clases 12 y 13 |\n"
+                             "| 11 | Declaración del uso de IA | Qué se pidió, qué se corrigió, **qué no se le entregó**. | Clases 3 y 11 |\n"
+                             "| 12 | Referencias | Lo que se citó, en el formato acordado. **Nada que no se haya leído.** | Clase 9 |\n\n"
                              "**Extensión total: 9 a 11 páginas.** Si un equipo pregunta si puede ser "
                              "más largo, la respuesta es que **la extensión no es una virtud**: un "
                              "informe donde la decisión está en la página 18 es un informe que no se "
@@ -3598,7 +3598,7 @@ TEMAS[16] = {
                                   "**calidad del contenido tomado de su sesión** —¿la sección 6 dice "
                                   "qué se sacrificó? ¿la 9 tiene negativos? ¿la 8 describe "
                                   "comportamiento y no opiniones?—. **Si la sección 10 dice "
-                                  "«ninguna», reste 5 y escríbalo:** después de la sesión 12 todos "
+                                  "«ninguna», reste 5 y escríbalo:** después de la Clase 12 todos "
                                   "los equipos tienen limitaciones reales. Y revise la sección 8 "
                                   "buscando **nombres de personas**: si aparecen, pídalo corregido "
                                   "antes de cerrar la nota."
@@ -3707,7 +3707,7 @@ TEMAS[16] = {
                              "| **¿Qué hice yo concretamente?** | «Ayudé en todo lo que pude y siempre estuve pendiente del grupo.» | «Escribí las secciones 4 y 9, hice la prueba con la señora de 61 años y expuse el tramo 4.» |\n"
                              "| **¿Qué aprendí a hacer que no sabía?** | «Aprendí mucho sobre ingeniería y trabajo en equipo.» | «Aprendí a separar lo que una persona **hace** de lo que **dice**: en la prueba anoté que abandonó, no que «le pareció difícil».» |\n"
                              "| **¿En qué fallé?** | «En nada, cumplí con todo.» | «Entregué mi sección tarde dos veces y Camila tuvo que cubrirme el día del prototipo.» |\n"
-                             "| **¿Qué haría distinto?** | «Organizarme mejor con el tiempo.» | «Probaría el prototipo con alguien de afuera **antes** de la sesión 12: los dos hallazgos grandes salieron en veinte minutos y pudimos haberlos tenido dos semanas antes.» |\n\n"
+                             "| **¿Qué haría distinto?** | «Organizarme mejor con el tiempo.» | «Probaría el prototipo con alguien de afuera **antes** de la Clase 12: los dos hallazgos grandes salieron en veinte minutos y pudimos haberlos tenido dos semanas antes.» |\n\n"
                              "**La diferencia entre las dos columnas no es la extensión: es la "
                              "verificabilidad.** Todo lo de la derecha se puede comprobar en el "
                              "documento del equipo o en el historial del muro. Todo lo de la "
@@ -3749,7 +3749,7 @@ TEMAS[16] = {
                              "**Por qué la regla importa y no es formalismo:** un hecho verificable **se "
                              "puede responder** —la persona puede explicar, corregir o "
                              "comprometerse—; una etiqueta solo se puede resentir. Es exactamente la "
-                             "regla de retroalimentación de la sesión 12, aplicada al equipo, y ese "
+                             "regla de retroalimentación de la Clase 12, aplicada al equipo, y ese "
                              "es el punto: la coevaluación no es un desahogo, es retroalimentación.\n\n"
                              "**Cómo se usa esto al calificar, y conviene tenerlo decidido antes:** si "
                              "**tres coevaluaciones independientes** señalan a la misma persona **con "
@@ -3775,7 +3775,7 @@ TEMAS[16] = {
         ],
         "variantes": [
             {"caso": "Equipos que llegan con las secciones dispersas en cinco archivos",
-             "clave": "Es el escenario que se avisó en la sesión 15 y aun así pasa. Que **repartan "
+             "clave": "Es el escenario que se avisó en la Clase 15 y aun así pasa. Que **repartan "
                       "el copiar y pegar entre los integrantes en paralelo** —cada uno pega tres "
                       "secciones en el documento compartido— en vez de hacerlo uno solo mientras los "
                       "demás miran. Con cuatro personas trabajando a la vez, veinticuatro minutos "
@@ -3835,9 +3835,9 @@ TEMAS[16] = {
                     "10, 11, 12 y 13**, y la tabla de secciones lo hace visible fila por fila. La "
                     "regla de la sección 8 —el rol y no el nombre— viene de la **sesión 4**; la "
                     "declaración de uso de IA, de las **sesiones 3 y 11**; la exigencia de "
-                    "observación en vez de adjetivo en la coevaluación, de la **sesión 12**; el "
-                    "resumen retoma los cinco tramos de la exposición de la **sesión 14**; y las "
-                    "preguntas que el curso no resolvió en la **sesión 15** fueron la lista de tareas "
+                    "observación en vez de adjetivo en la coevaluación, de la **Clase 12**; el "
+                    "resumen retoma los cinco tramos de la exposición de la **Clase 14**; y las "
+                    "preguntas que el curso no resolvió en la **Clase 15** fueron la lista de tareas "
                     "de hoy. Hacia adelante, fuera del curso: el método —definir con evidencia, "
                     "revisar antecedentes, decidir con criterios, probar con personas, valorar "
                     "impacto— es el mismo de cualquier proyecto de ingeniería, y el informe queda "
@@ -3855,7 +3855,7 @@ TEMAS[16] = {
          "por_que": "Es un dato personal de un tercero en un documento que se entrega. Es la regla del curso desde la sesión 4.",
          "pida": "El rol, no el nombre: «un vecino de 34 años, ajeno al equipo». La sección 8 es donde más se rompe esta regla."},
         {"dice": "«Limitaciones: ninguna»",
-         "por_que": "Después de la sesión 12 todos los equipos tienen limitaciones reales, así que «ninguna» dice que no se probó con nadie.",
+         "por_que": "Después de la Clase 12 todos los equipos tienen limitaciones reales, así que «ninguna» dice que no se probó con nadie.",
          "pida": "Lo que se decidió no arreglar, con el motivo. Declararlo sube la nota; ocultarlo la baja."},
         {"dice": "«En qué fallé: en nada, cumplí con todo»",
          "por_que": "Lo que se evalúa es la capacidad de mirar el propio trabajo con honestidad, y esa respuesta demuestra lo contrario.",
@@ -3865,7 +3865,7 @@ TEMAS[16] = {
     "dudas": [
         {"p": "¿Hay examen final?",
          "r": "**No.** En este curso no hay evaluación escrita en el corte 3: el 40 % se reparte en la "
-              "exposición final de la sesión 15 (15 %), el **informe final de hoy (20 %)** y "
+              "exposición final de la Clase 15 (15 %), el **informe final de hoy (20 %)** y "
               "asistencia (5 %). Las dos evaluaciones escritas del semestre fueron las de los cortes "
               "1 y 2, en las sesiones 6 y 11."},
         {"p": "¿El informe se entrega hoy o después?",
@@ -3909,7 +3909,7 @@ TEMAS[16] = {
         "sesión 4: va el rol, no el nombre. Pídalo corregido antes de cerrar la nota.",
         "**Verifique la entrega antes de pasar a la galería:** PDF en la carpeta del equipo y enlace "
         "del documento. Después del bloque ya nadie vuelve al informe.",
-        "Aclare que la galería **no es exponer otra vez** —la nota fue la sesión 15— y que sirve para "
+        "Aclare que la galería **no es exponer otra vez** —la nota fue la Clase 15— y que sirve para "
         "ver los cinco proyectos lado a lado, que es la única vez en el semestre.",
         "**Proyecte la tabla de respuestas que sirven y que no sirven ANTES de que escriban la "
         "autoevaluación**: reduce a la mitad las respuestas genéricas.",
@@ -3925,10 +3925,10 @@ TEMAS[16] = {
 
     # El builder usa `ti_siguiente` para la diapositiva «Cierre del curso» de la ultima
     # sesion: tid = lo que queda entregado, ti = autoevaluacion, adelanto = frase de cierre,
-    # aviso = lo ultimo que hay que decir. No existe una sesion 17.
+    # aviso = lo ultimo que hay que decir. No existe una Clase 17.
     "ti_siguiente": {
         "tid": "el **informe final** con sus doce secciones (20 %), la **exposición final** de la "
-               "sesión 15 (15 %), el prototipo probado con personas reales y la galería del curso.",
+               "Clase 15 (15 %), el prototipo probado con personas reales y la galería del curso.",
         "ti": "queda hecha, con evidencia y no con impresiones — junto con la coevaluación del equipo.",
         "adelanto": "Lo que se llevan es un método, no un tema: definir un problema con evidencia, "
                     "revisar qué ya existe, decidir con criterios, probar con personas reales y mirar "

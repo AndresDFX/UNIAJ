@@ -3,7 +3,7 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 1 de 16 · corresponde al tema 1 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 1 de 11 · corresponde al tema 1 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
 - Enfoque: Aprendizaje basado en competencia + Aprendizaje Invertido · Estrategia: ABPr — Aprendizaje Basado en Proyectos
@@ -157,7 +157,7 @@ Luego los **14 min de ficha**, con los equipos ya en sus salas de grupo. No se q
 **[Nota docente]:** las tres correcciones en caliente, sin discusión — «los usuarios» → pida un rol concreto y no acepte avance hasta que esté escrito; «se pierde mucho tiempo» → pida un número aunque sea estimado; «el problema es que no tienen una app» → recuerde que el problema es lo que pasa hoy **sin** el sistema.
 
 ### 01:12–01:27 · Exposiciones · [Slide 13]
-De vuelta en la sala principal: cinco equipos × 3 min, cronómetro en pantalla, habla el vocero con su documento ya compartido. **Se corta a los 3 min desde la primera sesión:** si hoy se permite estirar, en la sesión 15 las exposiciones finales no caben en el bloque.
+De vuelta en la sala principal: cinco equipos × 3 min, cronómetro en pantalla, habla el vocero con su documento ya compartido. **Se corta a los 3 min desde la primera sesión:** si hoy se permite estirar, en la Clase 15 las exposiciones finales no caben en el bloque.
 
 **[Nota docente]:** no dé retroalimentación equipo por equipo — cinco rondas de comentarios no caben en 15 min. Anote y guarde todo para el cierre.
 
@@ -231,7 +231,7 @@ Porque el curso es virtual y conectarse nunca es instantáneo: hay quien viene d
 
 **¿Hay examen final?**
 
-No hay examen escrito en todo el curso. El tercer corte, que vale el 40 %, son la exposición final del proyecto en la sesión 15 y el informe en la sesión 16. Lo que más pesa en los dos primeros cortes es lo que se hace en clase cada semana.
+No hay examen escrito en todo el curso. El tercer corte, que vale el 40 %, son la exposición final del proyecto en la Clase 15 y el informe en la Clase 16. Lo que más pesa en los dos primeros cortes es lo que se hace en clase cada semana.
 
 ## Preguntas de comprobación oral (no son de evaluación)
 Úselas durante la rotación por los equipos, a personas distintas y al azar.

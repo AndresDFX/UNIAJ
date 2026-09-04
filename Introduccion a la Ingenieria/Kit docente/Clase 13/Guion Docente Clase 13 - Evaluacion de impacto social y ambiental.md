@@ -3,7 +3,7 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 13 de 16 · corresponde al tema 13 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 9 de 11 · corresponde al tema 13 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **3** (40%) · RAA: **RAA2**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
@@ -83,7 +83,7 @@ De las tres honestidades, la primera es la que hay que repetir hasta que se inst
 
 La segunda desactiva la excusa más común: si no se puede medir, **se describe con precisión y se dice cómo se podría medir**. «No sabemos cuántos vecinos no tienen datos móviles; se sabría con una encuesta de diez casas» es una respuesta profesional, y de hecho es el tipo de frase que aparece en informes reales. Lo que no es profesional es un «no aplica» sin razón.
 
-La tercera cierra el arco del curso: **el software también consume.** Datos que alguien paga, energía, hardware que se vuelve residuo. Y aquí hay un hallazgo que vale la pena hacerles ver, porque conecta cuatro sesiones: el límite de 200 KB por consulta que definieron en la sesión 5 como indicador, se volvió requisito no funcional en la sesión 7, sirvió para descartar imágenes en las sesiones 10 y 11, y hoy entra a la matriz como **medida de mitigación ambiental**. Un requisito no funcional bien elegido es, a la vez, una mitigación — y eso no se puede improvisar en la sesión 13 si no se escribió en la 5.
+La tercera cierra el arco del curso: **el software también consume.** Datos que alguien paga, energía, hardware que se vuelve residuo. Y aquí hay un hallazgo que vale la pena hacerles ver, porque conecta cuatro sesiones: el límite de 200 KB por consulta que definieron en la sesión 5 como indicador, se volvió requisito no funcional en la sesión 7, sirvió para descartar imágenes en las sesiones 10 y 11, y hoy entra a la matriz como **medida de mitigación ambiental**. Un requisito no funcional bien elegido es, a la vez, una mitigación — y eso no se puede improvisar en la Clase 13 si no se escribió en la 5.
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 13 - Evaluacion de impacto social y ambiental/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -100,8 +100,8 @@ Numeración real del deck `Clases/Clase 13 - Evaluacion de impacto social y ambi
 10. Tres honestidades sobre el impacto
 11. Taller de hoy: Matriz de impacto social y ambiental
 12. Cómo se expone en 3 minutos
-13. Para la sesión 14
-14. Cierre · Nos vemos en la sesión 14
+13. Para la Clase 14
+14. Cierre · Nos vemos en la Clase 14
 
 ## Plan de clase minuto a minuto (90 min)
 
@@ -163,7 +163,7 @@ Una idea: **los usuarios eligieron usarla; los afectados no eligieron nada.**
 
 Recuerde la conexión que cierra cuatro sesiones: el límite de 200 KB de la sesión 5 es hoy una **medida de mitigación ambiental**. Documentar fue una inversión.
 
-Anuncie la sesión 14: **la preparación de la presentación final** y el **ensayo general cronometrado**. Y avise que la exposición de la sesión 15 vale el **15 %**.
+Anuncie la Clase 14: **la preparación de la presentación final** y el **ensayo general cronometrado**. Y avise que la exposición de la Clase 15 vale el **15 %**.
 
 ## Errores frecuentes y cómo cortarlos en caliente
 
@@ -195,14 +195,14 @@ Sí, y muchas veces **es la mejor**. En el caso de la biblioteca, la mitigación
 
 ## Notas operativas
 
-- **Avise en la sesión 12 que hay que traer dos cosas:** el listado de actores no usuarios de la **sesión 3** y el indicador ambiental de la **sesión 5**. Sin ellos, el taller de 17 minutos no alcanza.
+- **Avise en la Clase 12 que hay que traer dos cosas:** el listado de actores no usuarios de la **sesión 3** y el indicador ambiental de la **sesión 5**. Sin ellos, el taller de 17 minutos no alcanza.
 - En la apertura, pida en el muro **un afectado que no sea usuario** por equipo. Es el diagnóstico más rápido de quién trajo el material y quién no.
 - En las salas, entre con una sola pregunta: **«¿quién queda peor?»**. Si responden «nadie», use el paso 3 y aparece en un minuto.
 - El error de calibración más común es **adjetivo donde va un número**. Pida el indicador en voz alta: «beneficia a la comunidad» → ¿cuántas personas, cuántas veces al mes?
 - **No deje pasar un «no tenemos impactos negativos»**, y no humille al equipo: pregunte quién trabaja más por su solución. Hágalo delante del curso, es el intercambio del que más se aprende.
 - Diga en voz alta el límite del método: **la escala ordena, no mide.** Evita que confundan una convención con un dato, que es un error frecuente en informes técnicos.
 - Premie públicamente al equipo que declare el negativo más incómodo y al que proponga una **mitigación no digital**: son las dos conductas que quiere ver en el informe final.
-- Recuerde que la exposición de la **sesión 15 vale el 15 %** y el informe final de la 16 el **20 %**. Desde hoy conviene que lo tengan presente.
+- Recuerde que la exposición de la **Clase 15 vale el 15 %** y el informe final de la 16 el **20 %**. Desde hoy conviene que lo tengan presente.
 
 ## Material de esta clase
 

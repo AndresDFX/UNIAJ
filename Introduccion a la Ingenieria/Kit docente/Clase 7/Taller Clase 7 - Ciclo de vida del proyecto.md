@@ -8,7 +8,7 @@ Vocero de hoy: ____________________  ·  Enlace del documento: _________________
 
 ## Qué hay que hacer
 
-Ubiquen su proyecto en el ciclo de vida y escriban lo que falta para avanzar: en qué **fase** están, **tres requisitos funcionales** y **dos no funcionales** con su **criterio de aceptación**, la decisión de hoy que sería carísima cambiar después, y el **plan de hitos** hasta la sesión 15.
+Ubiquen su proyecto en el ciclo de vida y escriban lo que falta para avanzar: en qué **fase** están, **tres requisitos funcionales** y **dos no funcionales** con su **criterio de aceptación**, la decisión de hoy que sería carísima cambiar después, y el **plan de hitos** hasta la Clase 15.
 
 - **Tiempo de trabajo:** 17 min, en la sala de grupo de su equipo.
 - **Exposición:** 3 min por equipo, habla el vocero con la pantalla ya compartida.
@@ -44,9 +44,9 @@ Para cada uno de los cinco requisitos: cómo se comprueba, con un caso concreto 
 
 ### 5. EL PLAN DE HITOS
 
-Qué queda **terminado y verificable** en cada una de las sesiones 8, 9, 10, 11, 12 y 14. Y la decisión de hoy que sería carísima cambiar en la sesión 14.
+Qué queda **terminado y verificable** en cada una de las sesiones 8, 9, 10, 11, 12 y 14. Y la decisión de hoy que sería carísima cambiar en la Clase 14.
 
-> **Se revisa que:** cada hito es verificable y el trabajo está repartido. Si todo cae en la sesión 14, el plan está mal.
+> **Se revisa que:** cada hito es verificable y el trabajo está repartido. Si todo cae en la Clase 14, el plan está mal.
 
 ## Dónde se entrega: en ExamLab
 
@@ -85,7 +85,7 @@ El taller se **trabaja en equipo** en el documento del equipo y se **entrega en 
 1. **30 s · La fase** — En qué fase están y qué falta para cerrarla. Es el minuto obligatorio.
 2. **50 s · Los requisitos** — Uno funcional y uno no funcional, leídos tal cual.
 3. **50 s · El criterio de aceptación** — De ese requisito: cómo se comprueba y con qué umbral.
-4. **40 s · El plan de hitos** — Qué queda listo en la sesión 10 y en la 12.
+4. **40 s · El plan de hitos** — Qué queda listo en la Clase 10 y en la 12.
 5. **10 s · La decisión costosa** — Qué sería carísimo cambiar después.
 
 > **Si se cae la conexión de alguien:** el documento del equipo está en Drive, así que lo escrito no se pierde. Quien se cayó vuelve a entrar a la sala de su equipo o aporta por el documento; si era el vocero, expone el siguiente de la lista. La nota es del equipo.

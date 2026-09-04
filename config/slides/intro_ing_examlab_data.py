@@ -797,7 +797,7 @@ CORTE2 = {
                 "1. El **alcance mínimo** en una frase: lo más pequeño que ya resuelve algo del "
                 "problema y se puede probar con un usuario real.\n"
                 "2. **Dos cosas que quedaron FUERA**, y por qué cada una.\n"
-                "3. **Con quién** van a probar en la sesión 12 y **qué tarea** le van a pedir. "
+                "3. **Con quién** van a probar en la Clase 12 y **qué tarea** le van a pedir. "
                 "No «¿le gusta?»: una tarea.\n\n"
                 "Si su alcance mínimo no resuelve nada por sí solo, no se va a poder probar. Si "
                 "está así, dígalo y corríjalo aquí."

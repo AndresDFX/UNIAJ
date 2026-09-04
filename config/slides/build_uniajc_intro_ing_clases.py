@@ -110,13 +110,36 @@ def _dirs(n):
     return dir_clase, dir_kit, os.path.join(dir_kit, "Capturas")
 
 
+def _sesion_de_clase(n):
+    """La sesion de CALENDARIO que entrega la Clase n (misma para los 3 grupos: el
+
+    mapa Clase->sesion es del microcurriculo, no del calendario de cada grupo)."""
+    codigo = D.codigos_grupo()[0]
+    for s in D.sesiones_reales(codigo):
+        if n in s["clases_material"]:
+            return s["sesion"]
+    raise SystemExit("La Clase %d no aparece en clases_material de ninguna sesion." % n)
+
+
+def _companeras_de_clase(n):
+    """Las otras Clases que comparten la sesion doble de la Clase n, o [] si es sola."""
+    codigo = D.codigos_grupo()[0]
+    for s in D.sesiones_reales(codigo):
+        if n in s["clases_material"]:
+            return [c for c in s["clases_material"] if c != n]
+    return []
+
+
 def _corte_de(n):
-    """El corte al que pertenece la sesion n, leyendo `sesiones: "1-6"` del JSON."""
+    """El corte al que pertenece la Clase n: se busca la sesion de calendario que la
+
+    entrega y se ubica esa sesion en `sesiones: "1-4"` del JSON."""
+    sesion = _sesion_de_clase(n)
     for x in D.cortes():
         a, b = (int(v) for v in x["sesiones"].split("-"))
-        if a <= n <= b:
+        if a <= sesion <= b:
             return x
-    raise SystemExit("La sesion %d no cae en ningun corte del JSON." % n)
+    raise SystemExit("La sesion %d (Clase %d) no cae en ningun corte del JSON." % (sesion, n))
 
 
 def _nombres(n, t):
@@ -137,7 +160,7 @@ def _agenda(t):
     clase a horas distintas y el material es comun. El reloj de pared de cada grupo esta
     en su CALENDARIO.
 
-    Las sesiones 15 y 16 rompen la estructura de cinco bloques (una es la exposicion final y
+    Las Clases 15 y 16 rompen la estructura de cinco bloques (una es la exposicion final y
     la otra el cierre del curso), asi que pueden declarar `agenda_slots` con su propio reparto.
     El builder verifica que siga sumando el bloque completo.
     """
@@ -255,15 +278,15 @@ def build_pptx(n):
     )
     idx += 1
 
-    if n < c["n_sesiones"]:
+    if n < c["n_temas"]:
         sig = D.tema(n + 1)
         content_slide(
-            prs, t_reg("Para la sesión %d" % (n + 1)),
+            prs, t_reg("Para la Clase %d" % (n + 1)),
             [
                 "@@Trabajo dirigido:@@ %s" % t["ti_siguiente"]["tid"],
                 "@@Trabajo independiente:@@ %s" % t["ti_siguiente"]["ti"],
-                "**Sesión %d · %s** — %s" % (n + 1, sig["tema_acentos"],
-                                             t["ti_siguiente"]["adelanto"]),
+                "**Clase %d · %s** — %s" % (n + 1, sig["tema_acentos"],
+                                            t["ti_siguiente"]["adelanto"]),
                 "@@Aviso:@@ %s" % t["ti_siguiente"]["aviso"],
                 "**Antes de salir:** el enlace del documento del equipo en el chat, con permiso "
                 "de lectura para el docente, y el nombre del vocero de hoy.",
@@ -310,6 +333,10 @@ def md_guion(n, titulos):
     tl = t["taller"]
     nom = _nombres(n, t)
     corte = _corte_de(n)
+    sesion = _sesion_de_clase(n)
+    companeras = _companeras_de_clase(n)
+    doble_txt = (" (sesión doble junto con la Clase %s)" % " y ".join(str(x) for x in companeras)
+                 if companeras else "")
 
     L = [
         "# Guion docente — Clase %d: %s" % (n, t["titulo"]),
@@ -317,13 +344,13 @@ def md_guion(n, titulos):
         "## Información de la clase",
         "- Asignatura: %s (%s)" % (c["nombre_acentos"], c["codigo"]),
         "- Duración del bloque: **%d min**" % c["duracion_min"],
-        "- Tipo: Clase virtual sincrónica por Google Meet · Sesión %d de %d · corresponde al "
-        "tema %d del microcurrículo" % (n, c["n_sesiones"], n),
+        "- Tipo: Clase virtual sincrónica por Google Meet · Sesión %d de %d%s · corresponde al "
+        "tema %d del microcurrículo" % (sesion, c["n_sesiones"], doble_txt, n),
         "- Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas "
         "gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**",
         "- Corte **%d** (%s) · RAA: **%s**%s"
         % (corte["corte"], corte["pct"], tm["raa"],
-           " · **cierra el corte**" if corte["cierra_en_sesion"] == n else ""),
+           " · **cierra el corte**" if corte["cierra_en_sesion"] == _sesion_de_clase(n) else ""),
         "- **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni "
         "horarios de reloj. El reloj de pared de cada grupo está en su "
         "`CALENDARIO_2026-2 - <GRUPO>.md`.",

@@ -192,13 +192,13 @@ METODO = [
 
 PROYECTO = [
     "@@Este curso no se aprueba con un examen final.@@ Se aprueba con un **proyecto de equipo** "
-    "que arranca hoy y se expone en la sesión 15.",
+    "que arranca hoy y se expone en la Clase 15.",
     "**Qué es:** una propuesta de mejora tecnológica para un problema real del entorno de ustedes "
     "—el barrio, la universidad, el trabajo, la casa—. No hay que programarla: hay que **diseñarla "
     "y defenderla**.",
-    "**Cómo se construye:** sesión 6, el problema y la propuesta inicial (cierra Corte 1) · "
-    "sesiones 7 a 11, el ciclo de vida y un prototipo (cierra Corte 2) · sesiones 12 a 14, "
-    "evaluación de impacto y ensayo · sesión 15, exposición final · sesión 16, informe.",
+    "**Cómo se construye:** Clase 6, el problema y la propuesta inicial (cierra Corte 1) · "
+    "Clases 7 a 11, el ciclo de vida y un prototipo (cierra Corte 2) · Clases 12 a 14, "
+    "evaluación de impacto y ensayo · Clase 15, exposición final · Clase 16, informe.",
     "@@La semilla es la actividad de hoy:@@ el problema del entorno que su equipo escriba en los "
     "próximos 17 minutos es el candidato número uno a ser el proyecto del semestre.",
     "**Estrategia del curso:** ABPr, Aprendizaje Basado en Proyectos. La teoría de cada sesión "
@@ -612,7 +612,7 @@ FAQ = [
     {
         "p": "¿Hay examen final?",
         "r": "No hay examen escrito en todo el curso. El tercer corte, que vale el 40 %, son la "
-             "exposición final del proyecto en la sesión 15 y el informe en la sesión 16. Lo que "
+             "exposición final del proyecto en la Clase 15 y el informe en la Clase 16. Lo que "
              "más pesa en los dos primeros cortes es lo que se hace en clase cada semana.",
     },
 ]

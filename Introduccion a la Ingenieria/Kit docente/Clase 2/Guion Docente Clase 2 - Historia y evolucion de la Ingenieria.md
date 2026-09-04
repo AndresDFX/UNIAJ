@@ -3,7 +3,7 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 2 de 16 · corresponde al tema 2 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 2 de 11 (sesión doble junto con la Clase 3) · corresponde al tema 2 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **1** (30%) · RAA: **RAA1**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
@@ -57,7 +57,7 @@ La tarjeta de 1945–1957 se cuenta rápido: arquitectura de von Neumann (progra
 
 1991–2001 junta software libre (Linux, y con él la idea de que miles de personas que no se conocen pueden construir algo serio si el proceso es público) y el Manifiesto Ágil de 2001. El problema que atacan es el mismo: **los requisitos cambian mientras se construye**, y un plan de dos años escrito el primer día es una obra de ficción. Ágil no elimina las fases, cambia su tamaño.
 
-2006 en adelante es la nube y los datos. Aquí el problema muda otra vez y es importante que el estudiante lo note, porque es el problema de su generación: cuando alquilar mil servidores por hora cuesta poco y una biblioteca de IA se instala en un comando, la pregunta técnica «¿se puede construir?» deja de ser la difícil. La difícil es **«¿se debe construir, a quién afecta y quién responde?»**. Esa pregunta es el hilo de las sesiones 4, 5 y 13.
+2006 en adelante es la nube y los datos. Aquí el problema muda otra vez y es importante que el estudiante lo note, porque es el problema de su generación: cuando alquilar mil servidores por hora cuesta poco y una biblioteca de IA se instala en un comando, la pregunta técnica «¿se puede construir?» deja de ser la difícil. La difícil es **«¿se debe construir, a quién afecta y quién responde?»**. Esa pregunta es el hilo de las Clases 4, 5 y 13.
 
 ### El método de lectura de un hito y por qué la cuarta pregunta es la que se califica - diapositivas 8 y 9
 
@@ -89,7 +89,7 @@ Numeración real del deck `Clases/Clase 2 - Historia y evolucion de la Ingenieri
 9. Tres cosas que se repiten y son falsas
 10. Taller de hoy: Línea de tiempo del periodo
 11. Cómo se expone en 3 minutos
-12. Para la sesión 3
+12. Para la Clase 3
 13. Cierre · Nos vemos en la sesión 3
 
 ## Plan de clase minuto a minuto (90 min)
@@ -177,7 +177,7 @@ La completa. Cada equipo expone su tramo y con los cinco tramos se arma la líne
 - Las cinco salas de grupo se crean **antes** de empezar la sesión: abrirlas en vivo se come los 17 min del taller.
 - El periodo de cada equipo se asigna por número de equipo, **no se sortea**, para que las exposiciones queden en orden histórico y el grupo se lleve una narración y no cinco fragmentos.
 - Si un equipo pelea con draw.io más de dos minutos, mándelo a Google Slides. La herramienta no es lo evaluado.
-- Esta clase es la primera vez que se exige fuente con autor y año. Dígalo explícitamente: es un criterio que se va a repetir en las sesiones 9 y 13.
+- Esta clase es la primera vez que se exige fuente con autor y año. Dígalo explícitamente: es un criterio que se va a repetir en las Clases 9 y 13.
 - El muro de Padlet de la apertura se relee en el minuto 25. Si no se relee, los diez minutos de apertura se desperdiciaron.
 
 ## Material de esta clase

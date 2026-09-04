@@ -3,7 +3,7 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 7 de 16 · corresponde al tema 7 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 5 de 11 (sesión doble junto con la Clase 8) · corresponde al tema 7 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **2** (30%) · RAA: **RAA3**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
@@ -55,7 +55,7 @@ Esta tabla es el corazón cuantitativo de la sesión y hay que manejarla con el 
 
 **Lo que no conviene afirmar: los múltiplos exactos.** Circulan tablas con «1× / 5× / 10× / 100×» presentadas como leyes de la naturaleza, y hay literatura que discute si en desarrollo iterativo la curva es tan pronunciada. Diga eso explícitamente en clase: es una oportunidad de oro para mostrar que un ingeniero puede usar un resultado clásico sin exagerarlo. La dirección de la curva no está en discusión; la pendiente sí.
 
-El uso práctico de la tabla es una pregunta que los equipos van a responder en el taller: *¿qué decisión que estamos tomando hoy sería carísima cambiar en la sesión 14?* Casi siempre la respuesta es un requisito mal entendido o una restricción ignorada, y hacer la pregunta hoy es lo que la vuelve barata.
+El uso práctico de la tabla es una pregunta que los equipos van a responder en el taller: *¿qué decisión que estamos tomando hoy sería carísima cambiar en la Clase 14?* Casi siempre la respuesta es un requisito mal entendido o una restricción ignorada, y hacer la pregunta hoy es lo que la vuelve barata.
 
 Hay un segundo uso, más sutil, que vale la pena señalar si el grupo responde bien: la curva explica por qué las revisiones tempranas —que se sienten como pérdida de tiempo porque todavía no hay nada construido— son la actividad más rentable del proyecto. En el Therac-25 de la sesión 4, la revisión independiente del software que nunca se hizo era justamente eso.
 
@@ -65,7 +65,7 @@ En la sesión 2 apareció Royce y su artículo de 1970. Hoy se cierra el punto, 
 
 La comparación que importa para el curso no es «cascada mala, ágil bueno» —esa es una caricatura y hay que evitarla—. Es esta: **las fases son las mismas en los dos; lo que cambia es cuántas veces se recorren y cuándo aparece el usuario**. La cascada de una pasada es razonable cuando el problema es conocido, estable y el costo de equivocarse al final es asumible. El enfoque iterativo es mejor cuando hay incertidumbre sobre qué necesita el usuario, que es la situación normal y en particular la de todos los proyectos de este curso.
 
-Aterrícelo en el calendario, porque eso les hace sentir la diferencia: **este curso va a hacer dos vueltas completas**. Una corta en las sesiones 10 y 11 —prototipo de baja fidelidad, prueba, corrección— y otra en las sesiones 12 a 14, con la retroalimentación de la presentación de avances. No es una decisión estética del docente: es la manera de que el error de requisitos aparezca en la sesión 10 y no en la 15, cuando ya no hay tiempo.
+Aterrícelo en el calendario, porque eso les hace sentir la diferencia: **este curso va a hacer dos vueltas completas**. Una corta en las sesiones 10 y 11 —prototipo de baja fidelidad, prueba, corrección— y otra en las Clases 12 a 14, con la retroalimentación de la presentación de avances. No es una decisión estética del docente: es la manera de que el error de requisitos aparezca en la sesión 10 y no en la 15, cuando ya no hay tiempo.
 
 Si alguien pregunta por el Manifiesto Ágil de 2001, que salió en la sesión 2: la respuesta honesta es que reordenó prioridades —software funcionando sobre documentación, colaboración sobre contrato— y que no eliminó las fases. Un equipo ágil sigue definiendo el problema, escribiendo requisitos, diseñando, construyendo y validando; lo hace en ciclos cortos y con menos ceremonia.
 
@@ -77,7 +77,7 @@ Si alguien pregunta por el Manifiesto Ágil de 2001, que salió en la sesión 2:
 
 **Criterio de aceptación** es la parte que casi nadie escribe y la que vuelve verificable el proyecto: cómo se comprueba que el requisito se cumple, con un caso concreto y un umbral. «Un usuario que no conoce el sistema encuentra la disponibilidad de un libro en menos de un minuto, sin ayuda» se puede ejecutar delante de alguien. «El sistema debe ser fácil de usar» no se puede ejecutar, y por lo tanto no sirve. La regla que conviene dictar: **si no se puede convertir en una prueba que alguien haga, no es un criterio**.
 
-**Hito** es un punto del calendario donde algo queda terminado y verificable. Es el concepto que salva el proyecto de la última semana: «vamos avanzando» no es un hito; «en la sesión 10 hay tres pantallas probadas con un usuario» sí. En el taller de hoy se les pide el plan de hitos hasta la sesión 15, y conviene revisarlo con severidad, porque un plan con todo el trabajo en la sesión 14 es un proyecto que va a fallar y todavía se puede corregir.
+**Hito** es un punto del calendario donde algo queda terminado y verificable. Es el concepto que salva el proyecto de la última semana: «vamos avanzando» no es un hito; «en la sesión 10 hay tres pantallas probadas con un usuario» sí. En el taller de hoy se les pide el plan de hitos hasta la Clase 15, y conviene revisarlo con severidad, porque un plan con todo el trabajo en la Clase 14 es un proyecto que va a fallar y todavía se puede corregir.
 
 Los tres malentendidos de la última diapositiva son los que aparecen en las salas. El primero —que las fases son burocracia— se responde con la tabla del costo. El segundo —que iterativo significa no planear— se responde señalando que se planea más seguido, no menos. El tercero conviene decirlo porque tranquiliza: **las fases no son departamentos ni personas**; en un equipo de cinco, las seis fases las recorren los mismos cinco, y lo que cambia es la pregunta que están respondiendo.
 
@@ -95,7 +95,7 @@ Numeración real del deck `Clases/Clase 7 - Ciclo de vida de los proyectos de in
 9. Tres malentendidos que salen caros
 10. Taller de hoy: Ciclo de vida del proyecto
 11. Cómo se expone en 3 minutos
-12. Para la sesión 8
+12. Para la Clase 8
 13. Cierre · Nos vemos en la sesión 8
 
 ## Plan de clase minuto a minuto (90 min)
@@ -134,7 +134,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** el error a cortar en caliente es el requisito escrito desde la tecnología («el sistema tendrá una base de datos»). Pregunte «¿y eso qué le permite hacer al usuario?» y reescríbalo con ellos.
 
-**[Nota docente]:** revise el plan de hitos con severidad. Si todo el trabajo cae en la sesión 14, dígalo ahora: es un proyecto que va a fallar y todavía hay nueve sesiones para arreglarlo.
+**[Nota docente]:** revise el plan de hitos con severidad. Si todo el trabajo cae en la Clase 14, dígalo ahora: es un proyecto que va a fallar y todavía hay nueve sesiones para arreglarlo.
 
 ### 01:12–01:27 · Exposiciones · [Slide 11]
 
@@ -158,7 +158,7 @@ Anuncie la sesión 8: se aplica esto a **casos reales de proyectos que se saltar
 | «El sistema debe ser fácil de usar» | No se puede convertir en una prueba que alguien ejecute, así que no se puede validar. | Un actor, una acción, una condición y un umbral: «una persona que no lo conoce logra X en menos de Y, sin ayuda». |
 | «Estamos en construcción» sin requisitos escritos | Es construir para rehacer: el error de requisitos descubierto en construcción cuesta decenas de veces más. | Los requisitos por escrito primero. Lo ya construido no se tira: se usa como prototipo de la sesión 10. |
 | «Debe ser escalable / usar la nube» como requisito no funcional | No sale de ninguna restricción del proyecto: entró por moda y no por análisis. | Que señalen la restricción del árbol de la sesión 6 de donde sale cada requisito no funcional. |
-| Un plan con todo el trabajo en la sesión 14 | Es el patrón exacto de los proyectos que no se entregan, y desperdicia la retroalimentación gratis de la sesión 12. | Un hito verificable en la sesión 10, aunque sea mínimo. La sesión 14 se reserva para ensayar, no para construir. |
+| Un plan con todo el trabajo en la Clase 14 | Es el patrón exacto de los proyectos que no se entregan, y desperdicia la retroalimentación gratis de la Clase 12. | Un hito verificable en la Clase 10, aunque sea mínimo. La Clase 14 se reserva para ensayar, no para construir. |
 
 ## Dudas frecuentes del estudiante
 
@@ -168,11 +168,11 @@ Ninguna de las dos como dogma. Las fases son las mismas; lo que cambia es cuánt
 
 **¿Cuántos requisitos hay que tener?**
 
-Hoy, cinco: tres funcionales y dos no funcionales. Y es a propósito. Un proyecto de primer semestre con veinte requisitos no cumple ninguno; con cinco bien escritos y con criterio de aceptación se puede demostrar en la sesión 16 que funcionan. Se califica que sean verificables, no que sean muchos.
+Hoy, cinco: tres funcionales y dos no funcionales. Y es a propósito. Un proyecto de primer semestre con veinte requisitos no cumple ninguno; con cinco bien escritos y con criterio de aceptación se puede demostrar en la Clase 16 que funcionan. Se califica que sean verificables, no que sean muchos.
 
 **¿Y si el usuario cambia de opinión después?**
 
-Va a pasar, y no es una falla del usuario: es la razón de ser del enfoque iterativo. Por eso el prototipo de la sesión 10 es de baja fidelidad y se prueba con alguien ajeno: para que el cambio de opinión ocurra cuando corregir cuesta un dibujo. Lo que no se puede es enterarse en la sesión 15.
+Va a pasar, y no es una falla del usuario: es la razón de ser del enfoque iterativo. Por eso el prototipo de la sesión 10 es de baja fidelidad y se prueba con alguien ajeno: para que el cambio de opinión ocurra cuando corregir cuesta un dibujo. Lo que no se puede es enterarse en la Clase 15.
 
 **¿La fase de operación y retiro nos toca a nosotros?**
 

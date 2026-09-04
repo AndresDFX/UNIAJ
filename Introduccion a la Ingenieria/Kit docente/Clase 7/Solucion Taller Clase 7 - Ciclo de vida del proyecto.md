@@ -4,7 +4,7 @@
 
 ## Para qué sirve este documento
 
-Este documento trae el ciclo de vida completo del caso de la biblioteca, con los cinco requisitos escritos y sus criterios de aceptación, más el plan de hitos hasta la sesión 15. Es el modelo que hay que tener a mano en las salas, porque el criterio de aceptación es lo que ningún equipo escribe solo. Si el docente solo alcanza a leer un bloque, que sea **LOS CRITERIOS DE ACEPTACIÓN**.
+Este documento trae el ciclo de vida completo del caso de la biblioteca, con los cinco requisitos escritos y sus criterios de aceptación, más el plan de hitos hasta la Clase 15. Es el modelo que hay que tener a mano en las salas, porque el criterio de aceptación es lo que ningún equipo escribe solo. Si el docente solo alcanza a leer un bloque, que sea **LOS CRITERIOS DE ACEPTACIÓN**.
 
 ## El caso que se resuelve aquí
 
@@ -16,7 +16,7 @@ Se retoma la ficha cerrada en la sesión 6: los usuarios no pueden saber si un l
 
 ## Consigna que se les dio
 
-> Ubiquen su proyecto en el ciclo de vida y escriban lo que falta para avanzar: en qué **fase** están, **tres requisitos funcionales** y **dos no funcionales** con su **criterio de aceptación**, la decisión de hoy que sería carísima cambiar después, y el **plan de hitos** hasta la sesión 15.
+> Ubiquen su proyecto en el ciclo de vida y escriban lo que falta para avanzar: en qué **fase** están, **tres requisitos funcionales** y **dos no funcionales** con su **criterio de aceptación**, la decisión de hoy que sería carísima cambiar después, y el **plan de hitos** hasta la Clase 15.
 
 **Entregable:** el mapa del ciclo de vida del proyecto en draw.io (PNG en la carpeta del equipo) más la tabla de requisitos y el plan de hitos en el documento del equipo · **17 min de trabajo · 3 min de exposición**
 
@@ -93,7 +93,7 @@ Los seis tienen la misma forma: **un actor, una acción, una condición y un umb
 
 ### 5. EL PLAN DE HITOS
 
-**Se pedía:** Qué queda **terminado y verificable** en cada una de las sesiones 8, 9, 10, 11, 12 y 14. Y la decisión de hoy que sería carísima cambiar en la sesión 14.
+**Se pedía:** Qué queda **terminado y verificable** en cada una de las sesiones 8, 9, 10, 11, 12 y 14. Y la decisión de hoy que sería carísima cambiar en la Clase 14.
 
 **Respuesta modelo:**
 
@@ -101,12 +101,12 @@ Los seis tienen la misma forma: **un actor, una acción, una condición y un umb
 **Sesión 9** · Tres antecedentes fichados con fuente verificable, y la propuesta de mejora respecto a lo que ya existe.
 **Sesión 10** · Prototipo de baja fidelidad de las tres pantallas o pasos del flujo principal, y el guion de prueba escrito.
 **Sesión 11** · Prototipo v2 corregido, con el registro del uso de IA y las correcciones hechas a mano. *Cierra el corte 2.*
-**Sesión 12** · Prototipo probado **con una persona ajena al equipo** y la lista de lo que falló, para la presentación de avances.
-**Sesión 14** · Presentación final ensayada y el informe escrito al 80 %. *En la sesión 14 no se construye: se ensaya.*
+**Clase 12** · Prototipo probado **con una persona ajena al equipo** y la lista de lo que falló, para la presentación de avances.
+**Clase 14** · Presentación final ensayada y el informe escrito al 80 %. *En la Clase 14 no se construye: se ensaya.*
 
-**La decisión de hoy que sería carísima cambiar en la sesión 14:** *que la solución funcione sin computador en el mostrador.* Si en la sesión 12 se descubre que la voluntaria no puede usar su celular durante la atención, hay que rediseñar el flujo completo, y con él el prototipo y la prueba. Por eso se confirma con la coordinadora **esta semana**, no en la 12: hoy cuesta una pregunta.
+**La decisión de hoy que sería carísima cambiar en la Clase 14:** *que la solución funcione sin computador en el mostrador.* Si en la Clase 12 se descubre que la voluntaria no puede usar su celular durante la atención, hay que rediseñar el flujo completo, y con él el prototipo y la prueba. Por eso se confirma con la coordinadora **esta semana**, no en la 12: hoy cuesta una pregunta.
 
-**Cómo calificar:** 15 pts. Dos verificaciones: (a) **¿cada hito es verificable?** «Avanzar en el prototipo» no es un hito; (b) **¿está repartido?** Si las sesiones 8 a 12 están vacías y todo aparece en la 14, vale 5 y hay que decirlo en voz alta en la sala: es el patrón exacto de los proyectos que no se entregan. Valore que la sesión 14 esté reservada para ensayar y no para construir.
+**Cómo calificar:** 15 pts. Dos verificaciones: (a) **¿cada hito es verificable?** «Avanzar en el prototipo» no es un hito; (b) **¿está repartido?** Si las Clases 8 a 12 están vacías y todo aparece en la 14, vale 5 y hay que decirlo en voz alta en la sala: es el patrón exacto de los proyectos que no se entregan. Valore que la Clase 14 esté reservada para ensayar y no para construir.
 
 ## Rúbrica del taller
 
@@ -115,7 +115,7 @@ Los seis tienen la misma forma: **un actor, una acción, una condición y un umb
 | La fase está identificada y se dice qué entregable falta para cerrarla | **15 %** | Cerrar una fase con un entregable, y no con una sensación de avance, es la disciplina que ordena el proyecto. |
 | Los tres requisitos funcionales están escritos desde el usuario y sin tecnología | **25 %** | Un requisito escrito desde la tecnología toma una decisión de diseño en la fase equivocada. |
 | Los dos requisitos no funcionales se rastrean a restricciones ya escritas | **20 %** | Es lo que conecta el análisis de las sesiones 5 y 6 con la construcción: las restricciones son insumo, no adorno. |
-| Cada requisito tiene un criterio de aceptación ejecutable por otra persona | **25 %** | Sin criterio de aceptación no hay validación posible, y la sesión 16 pide demostrar, no afirmar. |
+| Cada requisito tiene un criterio de aceptación ejecutable por otra persona | **25 %** | Sin criterio de aceptación no hay validación posible, y la Clase 16 pide demostrar, no afirmar. |
 | El plan de hitos reparte el trabajo y cada hito es verificable | **15 %** | Un plan con todo al final es la causa más común de proyectos que no se entregan. |
 
 > Suma **100 %**. La nota es del equipo, no del vocero.
@@ -128,7 +128,7 @@ Los seis tienen la misma forma: **un actor, una acción, una condición y un umb
 
 **Equipos con requisitos escritos desde la tecnología.** Es el error más frecuente y no hay que pelearlo: reescriba uno con ellos en la sala, en voz alta, y deje que ellos reescriban los otros dos. La pregunta que lo resuelve siempre es «¿y eso qué le permite hacer al usuario?». La decisión técnica que querían escribir no se pierde: se anota aparte, como candidata de la fase de diseño de la sesión 8.
 
-**Equipos cuyo plan de hitos deja todo en la sesión 14.** Es el hallazgo más valioso de la sesión y hay que actuar hoy. Obligue a definir un hito verificable para la sesión 10, aunque sea mínimo — tres pantallas dibujadas a mano y probadas con una persona—. La razón que funciona con estudiantes: en la sesión 12 hay presentación de avances con retroalimentación, y llegar sin nada a esa sesión desperdicia la única corrección gratis del semestre.
+**Equipos cuyo plan de hitos deja todo en la Clase 14.** Es el hallazgo más valioso de la sesión y hay que actuar hoy. Obligue a definir un hito verificable para la sesión 10, aunque sea mínimo — tres pantallas dibujadas a mano y probadas con una persona—. La razón que funciona con estudiantes: en la Clase 12 hay presentación de avances con retroalimentación, y llegar sin nada a esa sesión desperdicia la única corrección gratis del semestre.
 
 ## Errores que hay que ver y no dejar pasar
 
@@ -136,12 +136,12 @@ Los seis tienen la misma forma: **un actor, una acción, una condición y un umb
 - **«El sistema debe ser fácil de usar»** → No se puede convertir en una prueba que alguien ejecute, así que no se puede validar. Un actor, una acción, una condición y un umbral: «una persona que no lo conoce logra X en menos de Y, sin ayuda».
 - **«Estamos en construcción» sin requisitos escritos** → Es construir para rehacer: el error de requisitos descubierto en construcción cuesta decenas de veces más. Los requisitos por escrito primero. Lo ya construido no se tira: se usa como prototipo de la sesión 10.
 - **«Debe ser escalable / usar la nube» como requisito no funcional** → No sale de ninguna restricción del proyecto: entró por moda y no por análisis. Que señalen la restricción del árbol de la sesión 6 de donde sale cada requisito no funcional.
-- **Un plan con todo el trabajo en la sesión 14** → Es el patrón exacto de los proyectos que no se entregan, y desperdicia la retroalimentación gratis de la sesión 12. Un hito verificable en la sesión 10, aunque sea mínimo. La sesión 14 se reserva para ensayar, no para construir.
+- **Un plan con todo el trabajo en la Clase 14** → Es el patrón exacto de los proyectos que no se entregan, y desperdicia la retroalimentación gratis de la Clase 12. Un hito verificable en la Clase 10, aunque sea mínimo. La Clase 14 se reserva para ensayar, no para construir.
 
 ## Cierre: qué decir en los 3 minutos finales
 
-Tres minutos y una idea: **el orden de las fases no es burocracia, es economía.** El error barato es el que se encuentra temprano, y todo lo que hicieron hoy —requisitos, criterios, hitos— existe para que los errores aparezcan ahora y no en la sesión 15. Diga en voz alta las dos cosas que conectan el curso: la fase 1 la cerraron en la sesión 6, y los requisitos no funcionales de hoy salieron de las restricciones que escribieron entonces; nada de lo que han hecho fue un ejercicio suelto. Cierre con la advertencia sobre Royce, porque es memorable: el dibujo más famoso de la ingeniería de software —la cascada de una sola pasada— aparece en un artículo que decía que hacerlo así invita al fracaso, y la profesión se quedó con el dibujo y perdió la advertencia. Anuncie la sesión 8: casos reales de proyectos que se saltaron una fase, y la decisión entre sus dos alternativas de solución.
+Tres minutos y una idea: **el orden de las fases no es burocracia, es economía.** El error barato es el que se encuentra temprano, y todo lo que hicieron hoy —requisitos, criterios, hitos— existe para que los errores aparezcan ahora y no en la Clase 15. Diga en voz alta las dos cosas que conectan el curso: la fase 1 la cerraron en la sesión 6, y los requisitos no funcionales de hoy salieron de las restricciones que escribieron entonces; nada de lo que han hecho fue un ejercicio suelto. Cierre con la advertencia sobre Royce, porque es memorable: el dibujo más famoso de la ingeniería de software —la cascada de una sola pasada— aparece en un artículo que decía que hacerlo así invita al fracaso, y la profesión se quedó con el dibujo y perdió la advertencia. Anuncie la sesión 8: casos reales de proyectos que se saltaron una fase, y la decisión entre sus dos alternativas de solución.
 
 ## Con qué se conecta
 
-Hacia atrás: la **sesión 6** entregó la ficha del problema, que es el entregable de la fase 1, y sus restricciones son los requisitos no funcionales de hoy; la **sesión 5** aportó el indicador ambiental, que hoy se vuelve requisito; la **sesión 2** dejó a Royce, que hoy se cierra. Hacia adelante: la **sesión 8** decide la alternativa y fija el alcance mínimo; la **sesión 9** busca antecedentes; la **sesión 10** prototipa contra estos requisitos; la **sesión 11** corrige y cierra el corte; la **sesión 12** prueba con una persona ajena; y el **informe final de la sesión 16** se estructura sobre estos criterios de aceptación.
+Hacia atrás: la **sesión 6** entregó la ficha del problema, que es el entregable de la fase 1, y sus restricciones son los requisitos no funcionales de hoy; la **sesión 5** aportó el indicador ambiental, que hoy se vuelve requisito; la **sesión 2** dejó a Royce, que hoy se cierra. Hacia adelante: la **sesión 8** decide la alternativa y fija el alcance mínimo; la **sesión 9** busca antecedentes; la **Clase 10** prototipa contra estos requisitos; la **Clase 11** corrige y cierra el corte; la **Clase 12** prueba con una persona ajena; y el **informe final de la Clase 16** se estructura sobre estos criterios de aceptación.

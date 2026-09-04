@@ -3,7 +3,7 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 11 de 16 · corresponde al tema 11 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 7 de 11 · corresponde al tema 11 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **2** (30%) · RAA: **RAA3** · **cierra el corte**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
@@ -47,7 +47,7 @@ Conviene ser preciso y no moralizante, porque estos estudiantes van a trabajar c
 
 **Hace bien: variantes.** Pedir tres maneras distintas de organizar una pantalla o diez nombres para un botón es un uso excelente. La razón es concreta: un equipo que lleva dos horas mirando su propio dibujo pierde la capacidad de ver alternativas, y abrir opciones es justo lo que más cuesta en ese momento.
 
-**Hace bien: textos y casos de prueba.** Rótulos, mensajes de error y, sobre todo, **listas de casos que a nadie se le ocurrieron** — «¿qué pasa si el usuario escribe el título con una tilde de más?», «¿qué pasa si dos personas piden el mismo libro el mismo día?». Aquí la IA es genuinamente superior a un equipo de primer semestre, porque enumerar casos es exactamente lo que hace bien. Vale la pena decírselo, porque es el uso que más les va a servir en la sesión 12.
+**Hace bien: textos y casos de prueba.** Rótulos, mensajes de error y, sobre todo, **listas de casos que a nadie se le ocurrieron** — «¿qué pasa si el usuario escribe el título con una tilde de más?», «¿qué pasa si dos personas piden el mismo libro el mismo día?». Aquí la IA es genuinamente superior a un equipo de primer semestre, porque enumerar casos es exactamente lo que hace bien. Vale la pena decírselo, porque es el uso que más les va a servir en la Clase 12.
 
 **Hace mal: el contexto local.** No sabe que no hay computador en el mostrador, que las voluntarias rotan, que el presupuesto es cero, que la conexión es intermitente. Y como no lo sabe, propone para un contexto que no es el suyo.
 
@@ -88,8 +88,8 @@ Numeración real del deck `Clases/Clase 11 - Taller de prototipado inicial con I
 8. Cómo cierra el corte 2 hoy
 9. Taller de hoy: Prototipo v2 con IA
 10. Cómo se expone en 3 minutos
-11. Para la sesión 12
-12. Cierre · Cierra el corte 2 · Nos vemos en la sesión 12
+11. Para la Clase 12
+12. Cierre · Cierra el corte 2 · Nos vemos en la Clase 12
 
 ## Plan de clase minuto a minuto (90 min)
 
@@ -157,7 +157,7 @@ Quédese con la cámara encendida y el micrófono abierto para dudas de enunciad
 
 Una idea: **pudieron corregir al asistente porque tenían sus decisiones escritas.** Eso es lo que hicieron en el corte 2.
 
-Anuncie el corte 3: empieza con la **presentación de avances** de la sesión 12, donde el prototipo se prueba con una persona ajena al equipo. Es la única retroalimentación gratis del semestre.
+Anuncie el corte 3: empieza con la **presentación de avances** de la Clase 12, donde el prototipo se prueba con una persona ajena al equipo. Es la única retroalimentación gratis del semestre.
 
 ## Errores frecuentes y cómo cortarlos en caliente
 

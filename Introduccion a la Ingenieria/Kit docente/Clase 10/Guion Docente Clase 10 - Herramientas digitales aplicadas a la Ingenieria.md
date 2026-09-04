@@ -3,7 +3,7 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 10 de 16 · corresponde al tema 10 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 6 de 11 (sesión doble junto con la Clase 9) · corresponde al tema 10 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **2** (30%) · RAA: **RAA3**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
@@ -55,7 +55,7 @@ La tabla de fidelidad no es una escala de calidad, y hay que decirlo explícitam
 
 **Baja fidelidad** —papel, Excalidraw— responde *¿el flujo tiene sentido?, ¿la gente entiende qué hacer?*, y se cambia en un minuto. **Media** —draw.io, diapositivas enlazadas— responde *¿se puede completar la tarea sin ayuda?, ¿faltan pasos?*, y se cambia en minutos. **Alta** —Canva, herramientas de diseño— responde *¿se ve confiable?*, cuesta horas, y tiene el efecto secundario de la paradoja: la gente deja de criticarlo. **Funcional** ya no es prototipo: es construcción, y responde *¿aguanta?, ¿sirve en el celular viejo?*.
 
-La regla del curso, que hay que dejar clara para que nadie pierda el fin de semana: **el prototipo del corte 2 es de baja o media fidelidad**. La alta aparece en la sesión 14, y solo para la presentación final. Un equipo que llega a la sesión 11 con una pantalla preciosa y sin estado de error entendió mal la sesión.
+La regla del curso, que hay que dejar clara para que nadie pierda el fin de semana: **el prototipo del corte 2 es de baja o media fidelidad**. La alta aparece en la Clase 14, y solo para la presentación final. Un equipo que llega a la Clase 11 con una pantalla preciosa y sin estado de error entendió mal la sesión.
 
 Vale la pena conectarlo con la curva de la sesión 7: los niveles de fidelidad son esa misma curva vista desde el diseño. Prototipar en baja fidelidad es exactamente «descubrir el error en la fase donde cuesta un borrador».
 
@@ -71,7 +71,7 @@ Estos cinco pasos son el método operativo del taller y cada uno esconde una dec
 
 **Dibujar el estado vacío y el de error** es el paso que casi nadie hace y donde se cae la mayoría de los prototipos. ¿Qué se ve la primera vez, cuando no hay datos? ¿Qué se ve cuando no se encuentra lo que se buscó? ¿Qué se ve cuando algo falla? Un prototipo que solo muestra el camino feliz no sirve para probar nada, porque en la vida real el camino feliz es la minoría de los casos. Aquí hay un puente con la sesión 8: la tarea (3) del plan de validación —«dígame qué haría si el libro que busca no aparece»— exige justamente esta pantalla.
 
-**Decir qué pasa al tocar cada cosa**: una flecha y una palabra por botón. Un botón sin destino escrito es una decisión que nadie tomó, y en la sesión 12 la va a tomar el usuario por ustedes, mal.
+**Decir qué pasa al tocar cada cosa**: una flecha y una palabra por botón. Un botón sin destino escrito es una decisión que nadie tomó, y en la Clase 12 la va a tomar el usuario por ustedes, mal.
 
 ### Elegir la herramienta por la pregunta, y las dos advertencias - diapositivas 8 y 9
 
@@ -81,9 +81,9 @@ La tabla de herramientas hay que recorrerla rápido, con la idea que la ordena: 
 
 **Google Slides como prototipo navegable es el truco más útil de la sesión y hay que demostrarlo en vivo, no describirlo**: una diapositiva por pantalla, y en cada botón un enlace hacia la diapositiva de destino. En modo presentación se recorre como si funcionara. Con eso un equipo de primer semestre puede probar un flujo completo con un usuario real sin escribir una línea de código. Dedíquele dos minutos de pantalla compartida: es lo que más van a agradecer.
 
-**Canva** queda reservado para la sesión 14 y para material que verá alguien externo. Y **papel con una foto** es perfectamente válido en este curso: es lo más rápido que existe y hay que decirlo, porque hay equipos que se paralizan buscando la herramienta perfecta.
+**Canva** queda reservado para la Clase 14 y para material que verá alguien externo. Y **papel con una foto** es perfectamente válido en este curso: es lo más rápido que existe y hay que decirlo, porque hay equipos que se paralizan buscando la herramienta perfecta.
 
-Las dos advertencias del cierre son operativas. **No pulir el prototipo**: se califica que el flujo se entienda, que los textos sean reales y que existan el estado vacío y el de error; un equipo que gasta el taller eligiendo colores llega a la sesión 12 sin nada que probar. Y **si el prototipo lleva datos, que sean inventados**: ningún nombre, cédula, teléfono, dirección ni foto de una persona real, ni de ellos mismos. Es la regla del curso y es la Ley 1581 de 2012 de la sesión 4 aplicada al lugar donde de verdad se incumple — los datos de prueba se inventan.
+Las dos advertencias del cierre son operativas. **No pulir el prototipo**: se califica que el flujo se entienda, que los textos sean reales y que existan el estado vacío y el de error; un equipo que gasta el taller eligiendo colores llega a la Clase 12 sin nada que probar. Y **si el prototipo lleva datos, que sean inventados**: ningún nombre, cédula, teléfono, dirección ni foto de una persona real, ni de ellos mismos. Es la regla del curso y es la Ley 1581 de 2012 de la sesión 4 aplicada al lugar donde de verdad se incumple — los datos de prueba se inventan.
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 10 - Herramientas digitales aplicadas a la Ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -99,7 +99,7 @@ Numeración real del deck `Clases/Clase 10 - Herramientas digitales aplicadas a 
 9. La paradoja de la fidelidad, y dos advertencias
 10. Taller de hoy: Prototipo de baja fidelidad
 11. Cómo se expone en 3 minutos
-12. Para la sesión 11
+12. Para la Clase 11
 13. Cierre · Nos vemos en la sesión 11
 
 ## Plan de clase minuto a minuto (90 min)
@@ -136,7 +136,7 @@ Reparto sugerido de los 45 min:
 
 **15 min** en salas. Entre a las cinco con **una sola pregunta: ¿qué se ve cuando no se encuentra nada?** Es el estado de error y falta siempre.
 
-**[Nota docente]:** corte en caliente a quien esté eligiendo colores o buscando íconos. Dígalo sin rodeos: eso no se califica hoy y les está costando la sesión 12.
+**[Nota docente]:** corte en caliente a quien esté eligiendo colores o buscando íconos. Dígalo sin rodeos: eso no se califica hoy y les está costando la Clase 12.
 
 **[Nota docente]:** si un equipo tiene proyecto de proceso sin pantallas, las «tres pantallas» son **tres pasos del proceso o el formato que se va a llenar**. Los cinco pasos aplican igual.
 
@@ -146,7 +146,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** los cinco enlaces en el chat antes de arrancar.
 
-**[Nota docente]:** haga una pregunta de usuario a cada equipo mientras exponen —«soy la voluntaria y no sé qué es esto, ¿qué toco?»—. Diez segundos, y es la mejor preparación posible para la sesión 12.
+**[Nota docente]:** haga una pregunta de usuario a cada equipo mientras exponen —«soy la voluntaria y no sé qué es esto, ¿qué toco?»—. Diez segundos, y es la mejor preparación posible para la Clase 12.
 
 **[Nota docente]:** anote qué le falta a cada prototipo. En la sesión 11 se corrige exactamente eso, con IA y a mano.
 
@@ -165,7 +165,7 @@ Anuncie la sesión 11: **prototipo v2 con IA**, y **cierra el corte 2** con la e
 | Un prototipo con «texto aquí» y botones sin nombre | El relleno esconde los problemas: un botón que no se supo cómo llamar es una función que no está definida. | Los rótulos reales, y la pregunta «¿por qué este botón se llama así?» para cada uno. |
 | Solo el camino feliz, sin búsqueda vacía ni error | En la vida real el camino feliz es la minoría de los casos, así que el prototipo no prueba nada. | «Busco algo que no existe, ¿qué veo?». Que lo dibujen en la sala, con el mensaje exacto. |
 | «Error» o «No hay resultados» como mensaje | Informa que algo salió mal y no ofrece salida: es una puerta cerrada con un letrero. | Un mensaje que diga **qué hacer ahora**, aunque la salida sea fuera del sistema. |
-| Media hora eligiendo colores y tipografías | La fidelidad alta reduce la crítica útil: pulir hoy es perder información en la sesión 12. | El estado de error y los textos reales. Los colores, en la sesión 14. |
+| Media hora eligiendo colores y tipografías | La fidelidad alta reduce la crítica útil: pulir hoy es perder información en la Clase 12. | El estado de error y los textos reales. Los colores, en la Clase 14. |
 | Datos de personas reales en el prototipo, «porque es solo de prueba» | Es tratamiento de datos personales sin autorización: la Ley 1581 de 2012 no distingue entre prueba y producción. | Datos inventados, siempre. Y en las notas de la prueba, el rol y no el nombre. |
 
 ## Dudas frecuentes del estudiante
@@ -192,8 +192,8 @@ No, y ahí está la ventaja. Un prototipo navegable en Google Slides —una diap
 - **Demuestre en vivo el prototipo navegable en Google Slides** (dos minutos de pantalla compartida): una diapositiva por pantalla, un enlace en cada botón, modo presentación. Es lo que más van a usar.
 - Pida que abran el **alcance mínimo de la sesión 8** en la apertura. Hoy se dibuja eso; si aparecen funciones de la lista de «versión siguiente», hay que cortarlo.
 - En las salas, la pregunta única es **«¿qué se ve cuando no se encuentra nada?»**. El estado de error falta siempre y vale 20 puntos.
-- **Corte en caliente a quien esté eligiendo colores.** Use el argumento de la paradoja de la fidelidad, no la orden: pulir hoy es perder crítica útil en la sesión 12.
-- Haga **una pregunta de usuario a cada equipo durante su exposición** —«soy la voluntaria y no sé qué es esto, ¿qué toco?»—. Diez segundos y es el mejor ensayo para la sesión 12.
+- **Corte en caliente a quien esté eligiendo colores.** Use el argumento de la paradoja de la fidelidad, no la orden: pulir hoy es perder crítica útil en la Clase 12.
+- Haga **una pregunta de usuario a cada equipo durante su exposición** —«soy la voluntaria y no sé qué es esto, ¿qué toco?»—. Diez segundos y es el mejor ensayo para la Clase 12.
 - **Anote qué le falta a cada prototipo.** En la sesión 11 se corrige exactamente eso, y la lista permite verificar si el equipo corrigió o solo generó variantes nuevas.
 - Repita la regla de datos: **inventados siempre**, ni siquiera los propios. Es donde de verdad se incumple la Ley 1581 en trabajos de estudiantes.
 - **Publique hoy** el documento «Evaluación del Corte 2 — cómo prepararse» (está con el material de la sesión 11) y subraye una cosa en el cierre: esa evaluación es **a libro abierto sobre los documentos del propio equipo**, y cuatro preguntas valen 49 de los 100 puntos copiando de ahí. El equipo que llegue sin sus documentos abiertos no las puede responder, y avisarlo hoy es lo que hace justa esa regla. Las preguntas y la clave están en el Kit docente de la sesión 11: **esos dos no se comparten**.

@@ -3,7 +3,7 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 8 de 16 · corresponde al tema 8 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 5 de 11 (sesión doble junto con la Clase 7) · corresponde al tema 8 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **2** (30%) · RAA: **RAA3**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
@@ -69,7 +69,7 @@ Y el paso 5 es el que separa una decisión profesional de una preferencia: **tod
 
 **El alcance mínimo** es el concepto que salva los proyectos de primer semestre, y hay que definirlo con precisión porque se confunde con «hacer poco». Es la versión más pequeña de la solución que **ya resuelve algo** del problema y se puede probar con un usuario real. La prueba para saber si está bien definido: *si construimos solo esto y lo ponemos delante de la persona que vive el problema, ¿le sirve de algo?* Si la respuesta es no, no es un alcance mínimo, es un pedazo.
 
-El método concreto que hay que dictarles: **se toma un requisito funcional —el que ataca la causa elegida en el árbol de la sesión 6— y se construye solo eso, cumpliendo los requisitos no funcionales**. Los otros dos requisitos se escriben en una lista titulada «versión siguiente». Esa lista no es una derrota: es la prueba de que el equipo sabe lo que dejó fuera, y en la sesión 15 se muestra. Vale la pena decírselo con estas palabras: **un proyecto que no declara lo que dejó fuera parece incompleto; uno que lo declara parece dirigido.**
+El método concreto que hay que dictarles: **se toma un requisito funcional —el que ataca la causa elegida en el árbol de la sesión 6— y se construye solo eso, cumpliendo los requisitos no funcionales**. Los otros dos requisitos se escriben en una lista titulada «versión siguiente». Esa lista no es una derrota: es la prueba de que el equipo sabe lo que dejó fuera, y en la Clase 15 se muestra. Vale la pena decírselo con estas palabras: **un proyecto que no declara lo que dejó fuera parece incompleto; uno que lo declara parece dirigido.**
 
 **El plan de validación** se escribe hoy y eso es deliberado: escribir cómo se va a probar algo antes de construirlo cambia lo que se construye. Son tres cosas: con quién se prueba —una persona ajena al equipo—, qué tareas se le piden —las de los criterios de aceptación de la sesión 7—, y qué se va a observar.
 
@@ -88,7 +88,7 @@ Numeración real del deck `Clases/Clase 8 - Taller de aplicacion del ciclo de vi
 8. El plan de validación, y dos trampas
 9. Taller de hoy: Decisión de la solución y alcance mínimo
 10. Cómo se expone en 3 minutos
-11. Para la sesión 9
+11. Para la Clase 9
 12. Cierre · Nos vemos en la sesión 9
 
 ## Plan de clase minuto a minuto (90 min)
@@ -113,7 +113,7 @@ Reparto estricto:
 
 - **5 min** · Alcance mínimo [Slide 7]. Dicte la prueba: *si construimos solo esto, ¿le sirve de algo a la persona que vive el problema?*
 
-- **3 min** · El plan de validación y las dos trampas [Slide 8]. **No lo recorte**: es lo que va a decidir la calidad de la sesión 12.
+- **3 min** · El plan de validación y las dos trampas [Slide 8]. **No lo recorte**: es lo que va a decidir la calidad de la Clase 12.
 
 **[Nota docente]:** si va retrasado, recorte los casos a cuatro minutos y quédese con el del aeropuerto (requisitos) y el de la firma financiera (operación).
 
@@ -147,7 +147,7 @@ Reparto estricto:
 
 Una idea: **decidir no es acertar.** Una decisión de ingeniería se defiende con criterios escritos antes, con una justificación por criterio y con la lista de lo que se sacrificó.
 
-Recuerde las dos trampas de la validación —no probar con el equipo, no preguntar «¿le gusta?»— porque se van a aplicar en la sesión 12.
+Recuerde las dos trampas de la validación —no probar con el equipo, no preguntar «¿le gusta?»— porque se van a aplicar en la Clase 12.
 
 Anuncie la sesión 9: **antecedentes y fuentes**. Antes de construir hay que saber qué ya existe y quién lo intentó, con fuentes que se puedan verificar.
 
@@ -169,7 +169,7 @@ Entonces los criterios están mal elegidos o los pesos no reflejan sus restricci
 
 **¿Podemos cambiar la decisión después?**
 
-Sí, y por eso se escribe la matriz: si en la sesión 10 aparece un dato nuevo, se cambia una calificación y se ve si la decisión se mueve. Eso es rediseñar con argumento. Lo que no funciona es cambiar de idea sin registro, porque en la sesión 15 nadie va a poder explicar por qué se hizo lo que se hizo.
+Sí, y por eso se escribe la matriz: si en la Clase 10 aparece un dato nuevo, se cambia una calificación y se ve si la decisión se mueve. Eso es rediseñar con argumento. Lo que no funciona es cambiar de idea sin registro, porque en la Clase 15 nadie va a poder explicar por qué se hizo lo que se hizo.
 
 **¿El alcance mínimo no nos va a dejar con un proyecto muy pobre?**
 

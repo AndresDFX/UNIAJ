@@ -3,7 +3,7 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 12 de 16 · corresponde al tema 12 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 8 de 11 · corresponde al tema 12 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **3** (40%) · RAA: **RAA3**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
@@ -39,7 +39,7 @@ El giro que hay que hacer explícito, y que es el eje de la sesión: **cada inte
 
 Aproveche la apertura para tomar el pulso operativo: en el muro, cada equipo escribe **cuántas veces tuvo que intervenir**. Ese número, además de romper el hielo, le dice de inmediato quién hizo la prueba y quién no. Un equipo que responde «ninguna, quedó perfecto» casi siempre no probó, o probó con la mamá de un integrante mientras le explicaba todo.
 
-Y aquí conviene ser directo, porque es la primera sesión del corte 3 y las reglas se fijan hoy: **un equipo que no hizo la prueba no tiene avance que presentar.** No se le puede improvisar retroalimentación a un avance inexistente. Si ocurre, dígalo, deje que expongan lo que tengan y que hagan la prueba antes de la sesión 13 — pero que quede claro que arrancaron el corte con desventaja.
+Y aquí conviene ser directo, porque es la primera sesión del corte 3 y las reglas se fijan hoy: **un equipo que no hizo la prueba no tiene avance que presentar.** No se le puede improvisar retroalimentación a un avance inexistente. Si ocurre, dígalo, deje que expongan lo que tengan y que hagan la prueba antes de la Clase 13 — pero que quede claro que arrancaron el corte con desventaja.
 
 ### Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso - diapositivas 5 y 6
 
@@ -51,7 +51,7 @@ Y aquí conviene ser directo, porque es la primera sesión del corte 3 y las reg
 
 Sobre el patrón, dé el criterio operativo sin pretensiones de rigor estadístico: **un tropiezo en una persona puede ser casualidad; el mismo tropiezo en dos de tres personas es un defecto de diseño.** Con tres o cinco pruebas no se hace estadística, y hay que decirlo — pero sí se hace ingeniería: la práctica profesional de pruebas de usabilidad trabaja con muy pocos usuarios justamente porque los defectos gruesos aparecen con los primeros. Si algún equipo probó con una sola persona, dígale que el hallazgo sigue valiendo, pero que no sabe si es patrón.
 
-**Paso 5: decidir qué no se arregla.** Es el paso que separa a un equipo que entendió el curso de uno que no. No todo cabe antes de la sesión 14, y **lo que se deja fuera se escribe con su razón**. Eso ya lo practicaron con el alcance mínimo de la sesión 8 y con los descartes de la sesión 11: es la misma disciplina.
+**Paso 5: decidir qué no se arregla.** Es el paso que separa a un equipo que entendió el curso de uno que no. No todo cabe antes de la Clase 14, y **lo que se deja fuera se escribe con su razón**. Eso ya lo practicaron con el alcance mínimo de la sesión 8 y con los descartes de la sesión 11: es la misma disciplina.
 
 ### Qué es un avance: cinco minutos que no repiten nada - diapositiva 7
 
@@ -61,7 +61,7 @@ Lo que sí es un avance: **los tres hallazgos de la prueba**, contados por lo qu
 
 Y una exigencia que cambia radicalmente la calidad de la sesión: **cada avance tiene que traer una pregunta abierta.** «Tenemos dos maneras de arreglar esto y no nos decidimos» convierte los tres minutos de retroalimentación en algo útil; sin pregunta, los otros equipos improvisan comentarios genéricos. Exíjala explícitamente al repartir el taller —es uno de los cuatro bloques de la ficha— y verá la diferencia.
 
-Por último, la parte incómoda: **admitir lo pendiente**. Los equipos tienden a maquillar el avance porque hay compañeros mirando. El argumento que funciona no es moral sino de conveniencia: **esconder lo pendiente hoy es pagarlo en la sesión 15**, cuando ya hay nota de por medio y ya no hay tiempo de arreglarlo. Hoy la retroalimentación es gratis; en la sesión 15 vale el 15 % del curso.
+Por último, la parte incómoda: **admitir lo pendiente**. Los equipos tienden a maquillar el avance porque hay compañeros mirando. El argumento que funciona no es moral sino de conveniencia: **esconder lo pendiente hoy es pagarlo en la Clase 15**, cuando ya hay nota de por medio y ya no hay tiempo de arreglarlo. Hoy la retroalimentación es gratis; en la Clase 15 vale el 15 % del curso.
 
 ### Dar y recibir: la única revisión externa gratis del semestre - diapositivas 8 y 9
 
@@ -87,8 +87,8 @@ Numeración real del deck `Clases/Clase 12 - Presentacion de avances de proyecto
 9. Tres trampas de la retroalimentación entre pares
 10. Taller de hoy: Ficha de avance y plan de ajustes
 11. Cómo se expone en 5 minutos
-12. Para la sesión 13
-13. Cierre · Nos vemos en la sesión 13
+12. Para la Clase 13
+13. Cierre · Nos vemos en la Clase 13
 
 ## Plan de clase minuto a minuto (90 min)
 
@@ -150,7 +150,7 @@ Cada equipo escribe en su columna del muro **las dos cosas que va a ajustar** co
 
 Una idea: **la persona que prueba nunca se equivoca; si se perdió, el diseño la perdió.**
 
-Anuncie la sesión 13: **el impacto social y ambiental** del proyecto — a quién más afecta esto, aunque no lo use. Vuelve el listado de actores no usuarios de la sesión 3.
+Anuncie la Clase 13: **el impacto social y ambiental** del proyecto — a quién más afecta esto, aunque no lo use. Vuelve el listado de actores no usuarios de la sesión 3.
 
 ## Errores frecuentes y cómo cortarlos en caliente
 
@@ -159,7 +159,7 @@ Anuncie la sesión 13: **el impacto social y ambiental** del proyecto — a qui�
 | «Le pareció confusa la pantalla» | Es una opinión, no se puede verificar y no dice qué cambiar. Además suele ser la versión amable de lo que en realidad pasó. | La acción: «tocó el estado dos veces esperando que se abriera algo». Eso sí se puede volver a probar. |
 | «Dijo que estaba todo clarísimo» | La gente es amable con quien le muestra su trabajo. Lo que dijo es cortesía; lo que hizo es el dato. | Lo que hizo mientras usaba: dónde dudó, dónde se equivocó, qué preguntó. Y si hay contradicción, que la anoten: es el mejor hallazgo. |
 | Un hallazgo que ya viene con la solución adentro | Si se anota «hay que poner un botón arriba» y se pierde el hecho, ya no se puede pensar otra solución mejor. | Primero el hecho, después la decisión. Son dos columnas distintas de la ficha. |
-| «Vamos a arreglar todo antes de la sesión 14» | No cabe, y decirlo es no haber priorizado. Priorizar es una decisión de ingeniería, no una rendición. | Qué queda fuera y por qué: fuera del alcance, excede la capacidad del equipo, o rompe una restricción. |
+| «Vamos a arreglar todo antes de la Clase 14» | No cabe, y decirlo es no haber priorizado. Priorizar es una decisión de ingeniería, no una rendición. | Qué queda fuera y por qué: fuera del alcance, excede la capacidad del equipo, o rompe una restricción. |
 | «¿Qué le mejorarían a nuestro proyecto?» | Como pregunta al curso es demasiado abierta: produce comentarios genéricos y desperdicia a los otros cuatro equipos. | Una decisión concreta con dos alternativas, cada una con su pro y su contra. |
 
 ## Dudas frecuentes del estudiante
@@ -176,9 +176,9 @@ Es el hallazgo más importante de todos, y hay que registrarlo así: **abandono*
 
 En los tres minutos, no: se **anota y no se responde**, y solo se pregunta para entender —«¿en qué momento se perdió?»—. No es una regla de sumisión, es de eficiencia: defenderse consume el único tiempo de revisión externa gratis que van a tener. Después, en el documento del equipo, escriben qué van a aplicar y qué no, con su razón. **Descartar retroalimentación con argumento es perfectamente válido**; descartarla en el momento y sin pensarla, no.
 
-**¿Los ajustes de hoy tienen que estar listos para la sesión 15?**
+**¿Los ajustes de hoy tienen que estar listos para la Clase 15?**
 
-Para la **sesión 14**, no para la 15. La sesión 14 es la preparación de la presentación final y el ensayo general: si el prototipo no está ajustado, van a ensayar con la versión vieja y el ensayo no sirve. La 15 es la exposición con nota, y ahí ya no hay margen.
+Para la **Clase 14**, no para la 15. La Clase 14 es la preparación de la presentación final y el ensayo general: si el prototipo no está ajustado, van a ensayar con la versión vieja y el ensayo no sirve. La 15 es la exposición con nota, y ahí ya no hay margen.
 
 ## Notas operativas
 
@@ -190,7 +190,7 @@ Para la **sesión 14**, no para la 15. La sesión 14 es la preparación de la pr
 - Cronómetro en pantalla y corte estricto: cinco equipos por ocho minutos no perdona. Si un equipo se pasa, el que pierde tiempo es el último.
 - Si alguien empieza a **rediseñar el proyecto ajeno**, córtelo con respeto y explique por qué: el otro equipo tomó decisiones documentadas que quien comenta no vio.
 - Recuerde a quien recibe: **anotar, no responder.** Una vez basta si se dice antes de la primera exposición.
-- Los ajustes se necesitan para la **sesión 14** —el ensayo general—, no para la 15.
+- Los ajustes se necesitan para la **Clase 14** —el ensayo general—, no para la 15.
 
 ## Material de esta clase
 

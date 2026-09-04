@@ -3,7 +3,7 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 4 de 16 · corresponde al tema 4 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 3 de 11 (sesión doble junto con la Clase 5) · corresponde al tema 4 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **1** (30%) · RAA: **RAA3**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
@@ -91,7 +91,7 @@ Numeración real del deck `Clases/Clase 4 - Principios eticos en la Ingenieria/P
 9. Cinco preguntas para decidir sin ser experto
 10. Taller de hoy: Comité de ética
 11. Cómo se expone en 3 minutos
-12. Para la sesión 5
+12. Para la Clase 5
 13. Cierre · Nos vemos en la sesión 5
 
 ## Plan de clase minuto a minuto (90 min)

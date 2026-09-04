@@ -60,7 +60,7 @@ Las dos son aceptables y la diferencia hay que enseñarla: la primera es una **m
 
 **Cómo se consigue esto sin presupuesto, que es la pregunta real de los equipos:** tres preguntas a la persona que hace el trabajo, un conteo de una semana con una hoja, o el tiempo de un caso medido con el cronómetro del celular. Nada de esto necesita permiso institucional ni encuesta científica.
 
-**Cómo calificar:** 25 pts, y es el bloque donde se cae la mayoría. Tres requisitos: **número, unidad y método**. Sin método, máximo 10, sin importar lo verosímil que suene la cifra — y dígalo con el argumento, porque es la lección: una cifra sin origen no se puede volver a medir en la sesión 16, así que no sirve. Una estimación bien declarada («estimado por la coordinadora») vale los 25 completos: se califica la honestidad del método, no la precisión.
+**Cómo calificar:** 25 pts, y es el bloque donde se cae la mayoría. Tres requisitos: **número, unidad y método**. Sin método, máximo 10, sin importar lo verosímil que suene la cifra — y dígalo con el argumento, porque es la lección: una cifra sin origen no se puede volver a medir en la Clase 16, así que no sirve. Una estimación bien declarada («estimado por la coordinadora») vale los 25 completos: se califica la honestidad del método, no la precisión.
 
 ### 3. EL ÁRBOL DE CAUSAS
 
@@ -121,20 +121,20 @@ Declarar lo que queda fuera es lo que evita que el proyecto crezca sin control e
 
 **Causa atacada:** la 1 — que el registro solo se puede consultar en el mostrador.
 
-**Por qué este criterio funciona:** usa **la misma medición** de la línea base, así que es comparable; tiene un valor de partida y uno de llegada; y se puede ejecutar en la sesión 16 con lo que el equipo tiene. Nótese que no promete cero: prometer la eliminación total del problema es una señal de que el equipo no lo entendió.
+**Por qué este criterio funciona:** usa **la misma medición** de la línea base, así que es comparable; tiene un valor de partida y uno de llegada; y se puede ejecutar en la Clase 16 con lo que el equipo tiene. Nótese que no promete cero: prometer la eliminación total del problema es una señal de que el equipo no lo entendió.
 
-**Criterio secundario, más barato de verificar:** «la coordinadora puede decir qué está prestado sin abrir el cuaderno, en menos de 30 segundos». Es un sí/no cronometrable y sirve como verificación intermedia en la sesión 12.
+**Criterio secundario, más barato de verificar:** «la coordinadora puede decir qué está prestado sin abrir el cuaderno, en menos de 30 segundos». Es un sí/no cronometrable y sirve como verificación intermedia en la Clase 12.
 
 **Criterios que se rechazan:** «que la biblioteca funcione mejor» (no medible); «que el 100 % de los usuarios encuentren su libro» (imposible: algunos libros simplemente están prestados); «que la app tenga 200 usuarios» (mide adopción de la solución, no la resolución del problema — es la trampa más frecuente y hay que nombrarla).
 
-**Cómo calificar:** 15 pts. El requisito duro es que **use la misma medición de la línea base**: si mide otra cosa, máximo 6, porque no habrá comparación posible en la sesión 16. Rechace los criterios que miden la solución en vez del problema («cantidad de descargas», «usuarios registrados») y explique el porqué en voz alta: es un error que arrastran hasta el informe final. Prometer el 100 % resta: indica que no entendieron el problema.
+**Cómo calificar:** 15 pts. El requisito duro es que **use la misma medición de la línea base**: si mide otra cosa, máximo 6, porque no habrá comparación posible en la Clase 16. Rechace los criterios que miden la solución en vez del problema («cantidad de descargas», «usuarios registrados») y explique el porqué en voz alta: es un error que arrastran hasta el informe final. Prometer el 100 % resta: indica que no entendieron el problema.
 
 ## Rúbrica del taller
 
 | Criterio | Peso | Por qué pesa eso |
 |---|---|---|
 | El problema está en una frase, con la fórmula, y sin ninguna tecnología dentro | **25 %** | Es la habilidad central del corte: un problema con la solución adentro cierra el diseño antes de empezar. |
-| La línea base tiene número, unidad y método declarado | **25 %** | Sin línea base el informe final de la sesión 16 no puede demostrar nada. |
+| La línea base tiene número, unidad y método declarado | **25 %** | Sin línea base el informe final de la Clase 16 no puede demostrar nada. |
 | El árbol tiene dos niveles de causas y al menos una restricción marcada | **20 %** | Distinguir la causa que se puede tocar de la que no es lo que vuelve el proyecto realizable. |
 | Hay un actor concreto al que se le puede preguntar esta semana y una frontera declarada | **15 %** | El acceso a los actores es el criterio que más proyectos imposibles descarta. |
 | El criterio de éxito es verificable con la misma medición de la línea base | **15 %** | Cierra el ciclo: el proyecto queda con una manera de saber si sirvió. |
@@ -155,14 +155,14 @@ Declarar lo que queda fuera es lo que evita que el proyecto crezca sin control e
 
 - **«Falta una app / un sistema para X»** → Es una solución disfrazada de problema: cierra el diseño antes de empezar y hace que cualquier app «resuelva» el problema. Que respondan «¿esto se podría resolver sin ninguna app?». Si es sí, el problema es otro y hay que escribirlo.
 - **«La gente se queja» / «se pierden libros»** → Es un síntoma: la señal visible. Atacar el síntoma produce soluciones cosméticas. A quién le pasa qué, con qué consecuencia. Y la cifra.
-- **Una cifra sin decir de dónde salió** → No se puede volver a medir en la sesión 16, así que no sirve como línea base. Número, unidad y método: preguntando a quién, contando qué, o cronometrando cuándo.
+- **Una cifra sin decir de dónde salió** → No se puede volver a medir en la Clase 16, así que no sirve como línea base. Número, unidad y método: preguntando a quién, contando qué, o cronometrando cuándo.
 - **Un árbol con diez raíces** → Es una lista de todo lo que se les ocurrió, no un análisis, y con eso no se puede decidir qué atacar. Dos o tres causas directas, su segundo nivel, y las que no pueden cambiar marcadas como restricciones.
 - **«El éxito es tener 200 usuarios en la app»** → Mide la adopción de la solución, no la resolución del problema. Se puede tener 200 usuarios y el problema intacto. El criterio con la misma medición de la línea base: de X a Y, medido así.
 
 ## Cierre: qué decir en los 3 minutos finales
 
-Tres minutos y una idea, con estas palabras: **el problema ya está escrito, y de aquí en adelante todo se hace sobre esa ficha.** El corte 1 no cierra con una nota: cierra con un producto que gobierna diez sesiones. Muestre la progresión de la frase de la biblioteca en sus tres versiones —sesión 1, sesión 3, sesión 6— porque es la prueba visible de que aprendieron algo en cinco semanas. Recuerde las dos exigencias que se van a cobrar en la sesión 16: la **línea base con método** y el **criterio de éxito con la misma medición**. Y anuncie la sesión 7 sin misterio: arranca el corte 2 con el ciclo de vida de los proyectos de ingeniería, aplicado a este problema, no en abstracto.
+Tres minutos y una idea, con estas palabras: **el problema ya está escrito, y de aquí en adelante todo se hace sobre esa ficha.** El corte 1 no cierra con una nota: cierra con un producto que gobierna diez sesiones. Muestre la progresión de la frase de la biblioteca en sus tres versiones —sesión 1, sesión 3, sesión 6— porque es la prueba visible de que aprendieron algo en cinco semanas. Recuerde las dos exigencias que se van a cobrar en la Clase 16: la **línea base con método** y el **criterio de éxito con la misma medición**. Y anuncie la sesión 7 sin misterio: arranca el corte 2 con el ciclo de vida de los proyectos de ingeniería, aplicado a este problema, no en abstracto.
 
 ## Con qué se conecta
 
-Este documento cierra el corte 1 y es el que más hacia adelante mira. Hacia atrás recoge las cuatro sesiones: el problema inicial de la **sesión 1**, la frontera y los actores de la **sesión 3**, el afectado y la regla ética de la **sesión 4**, el indicador ambiental de la **sesión 5**. Hacia adelante: la **sesión 7** aplica el ciclo de vida a esta ficha; la **sesión 8** ajusta la propuesta de solución sobre la causa elegida; las **sesiones 10 y 11** prototipan respetando las restricciones marcadas hoy; la **sesión 13** evalúa el impacto de esa solución; y el **informe final de la sesión 16** compara contra la línea base de hoy. Una ficha vaga hoy es un semestre difícil.
+Este documento cierra el corte 1 y es el que más hacia adelante mira. Hacia atrás recoge las cuatro sesiones: el problema inicial de la **sesión 1**, la frontera y los actores de la **sesión 3**, el afectado y la regla ética de la **sesión 4**, el indicador ambiental de la **sesión 5**. Hacia adelante: la **sesión 7** aplica el ciclo de vida a esta ficha; la **sesión 8** ajusta la propuesta de solución sobre la causa elegida; las **sesiones 10 y 11** prototipan respetando las restricciones marcadas hoy; la **Clase 13** evalúa el impacto de esa solución; y el **informe final de la Clase 16** compara contra la línea base de hoy. Una ficha vaga hoy es un semestre difícil.

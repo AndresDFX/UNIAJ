@@ -3,9 +3,9 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 15 de 16 · corresponde al tema 15 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 11 de 11 (sesión doble junto con la Clase 16) · corresponde al tema 15 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
-- Corte **3** (40%) · RAA: **RAA3**
+- Corte **3** (40%) · RAA: **RAA3** · **cierra el corte**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
 - Enfoque: Aprendizaje basado en competencia + Aprendizaje Invertido · Estrategia: ABPr — Aprendizaje Basado en Proyectos
 
@@ -25,7 +25,7 @@
 
 **Herramientas de esta sesión:** Canva · Google Drive (Docs y Slides)
 
-> Cada equipo comparte su propia pantalla. **Antes de empezar, todos** dejan en la carpeta del equipo la presentación **en PDF** y las **capturas del prototipo** — es el plan B de la sesión 14 y hoy es el día en que sirve. La **ficha de valoración entre pares** se llena en el muro, con una columna por equipo. **Hoy no se usa asistente de IA.**
+> Cada equipo comparte su propia pantalla. **Antes de empezar, todos** dejan en la carpeta del equipo la presentación **en PDF** y las **capturas del prototipo** — es el plan B de la Clase 14 y hoy es el día en que sirve. La **ficha de valoración entre pares** se llena en el muro, con una columna por equipo. **Hoy no se usa asistente de IA.**
 
 ## Fundamento teórico para el docente
 
@@ -71,7 +71,7 @@ Los ocho minutos de cierre no son para felicitar. Son para **convertir las cinco
 
 La instrucción operativa para cada equipo es una: **anoten lo que el curso no entendió de su proyecto, porque eso es exactamente lo que hay que escribir mejor en el informe.** Si tres personas preguntaron cómo se actualiza la lista, la sección de la solución no está clara. Una pregunta repetida es un diagnóstico gratis.
 
-Devuelva **una observación por equipo, dicha en público y en una frase** —lo que más sumó y la única cosa que cambiaría—. La retroalimentación detallada va después, por escrito, con las frases que anotó mientras calificaba. En público, una sola cosa: es la misma regla de la sesión 12 sobre retroalimentación útil.
+Devuelva **una observación por equipo, dicha en público y en una frase** —lo que más sumó y la única cosa que cambiaría—. La retroalimentación detallada va después, por escrito, con las frases que anotó mientras calificaba. En público, una sola cosa: es la misma regla de la Clase 12 sobre retroalimentación útil.
 
 Y cierre nombrando lo que efectivamente pasó, sin discurso: hace quince sesiones estos equipos tenían una ocurrencia; hoy sustentaron un problema con evidencia, una decisión con criterios, un prototipo probado con personas reales y un impacto con sus costos. **Eso es el ciclo completo de un proyecto de ingeniería**, y lo hicieron en primer semestre. Vale decirlo una vez, en serio y corto.
 
@@ -88,8 +88,8 @@ Numeración real del deck `Clases/Clase 15 - Exposicion final de proyectos/Prese
 8. Tres cosas antes de empezar
 9. Taller de hoy: Exposición final del proyecto
 10. Cómo se expone en 9 minutos
-11. Para la sesión 16
-12. Cierre · Nos vemos en la sesión 16 · la última
+11. Para la Clase 16
+12. Cierre · Nos vemos en la Clase 16 · la última
 
 ## Plan de clase minuto a minuto (90 min)
 
@@ -129,7 +129,7 @@ Una línea por equipo en el muro. Sirve para bajar la ansiedad y para recordar q
 
 Cada equipo completa en el muro, en la columna de los **otros cuatro** equipos: lo más fuerte · lo que no quedó claro · una pregunta que se queda sin responder.
 
-**[Nota docente]:** recuerde las reglas de la sesión 12 — **observación, no adjetivo; una sola cosa; no rediseñar el proyecto ajeno**. «Estuvo bien» no cuenta como valoración.
+**[Nota docente]:** recuerde las reglas de la Clase 12 — **observación, no adjetivo; una sola cosa; no rediseñar el proyecto ajeno**. «Estuvo bien» no cuenta como valoración.
 
 **[Nota docente]:** esta ficha **se califica** dentro de la nota de exposiciones del corte. Dígalo antes de que empiecen a llenarla, no después.
 
@@ -141,7 +141,7 @@ Lea en voz alta **dos o tres observaciones anónimas** que sean buenas. Enseña 
 
 La instrucción que convierte hoy en trabajo: **anoten lo que el curso no entendió de su proyecto — eso es lo que hay que escribir mejor en el informe.** Una pregunta repetida es un diagnóstico gratis.
 
-Recuerde: el **informe final de la sesión 16 vale el 20 %**, y **once de sus doce secciones ya están escritas** desde las sesiones anteriores.
+Recuerde: el **informe final de la Clase 16 vale el 20 %**, y **once de sus doce secciones ya están escritas** desde las sesiones anteriores.
 
 Y dígalo una vez, corto y en serio: hace quince sesiones tenían una ocurrencia; hoy sustentaron un problema con evidencia, una decisión con criterios, un prototipo probado y un impacto con sus costos. **Eso es un proyecto de ingeniería completo.**
 
@@ -149,10 +149,10 @@ Y dígalo una vez, corto y en serio: hace quince sesiones tenían una ocurrencia
 
 | Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |
 |---|---|---|
-| «Buenas tardes, somos el equipo 3, integrado por…» | Gasta el minuto más valioso de los nueve en información que ya está en la primera diapositiva. | Arrancar con el problema y su número. Se avisó en la sesión 14 y cuesta puntos. |
+| «Buenas tardes, somos el equipo 3, integrado por…» | Gasta el minuto más valioso de los nueve en información que ya está en la primera diapositiva. | Arrancar con el problema y su número. Se avisó en la Clase 14 y cuesta puntos. |
 | «Aquí arriba tenemos un campo de búsqueda, y a la derecha un botón…» | Narrar la interfaz consume los tres minutos del tramo de más puntos sin mostrar nada funcionando. | No describa la pantalla: muestre a alguien logrando algo, y cronometre si hay criterio de aceptación. |
 | «Todo funcionó bien, no tuvimos problemas» | En un prototipo de primer semestre significa casi siempre que no se probó con nadie ajeno al equipo. | Un hallazgo concreto de una persona real y una limitación declarada. La honestidad sube la nota, no la baja. |
-| «Nuestro proyecto genera conciencia y mejora la calidad de vida» | Es una intención, no un impacto: nadie puede ir a verificarlo. Se corrigió en la sesión 13. | Un indicador que alguien más podría medir, y el impacto negativo con su mitigación. |
+| «Nuestro proyecto genera conciencia y mejora la calidad de vida» | Es una intención, no un impacto: nadie puede ir a verificarlo. Se corrigió en la Clase 13. | Un indicador que alguien más podría medir, y el impacto negativo con su mitigación. |
 | Un solo integrante responde las tres preguntas | Destapa que uno hizo el trabajo y los demás leyeron un guion. Es un descuento anunciado de hasta 10 puntos. | Que responda quien tuvo el tramo. Si preguntan por la prueba, responde quien la hizo. |
 
 ## Dudas frecuentes del estudiante
@@ -163,7 +163,7 @@ Sí, y aunque quede una frase a medias. No es rigidez por rigidez: cinco equipos
 
 **¿Qué pasa si el prototipo no carga?**
 
-Usan las capturas del plan B que dejaron en la carpeta desde la sesión 14, narran el mismo recorrido sobre ellas y **el tramo vale completo**. Usar bien el plan B es competencia, no fracaso. Lo que sí cuesta puntos es no tener capturas y perder dos minutos buscando la pestaña.
+Usan las capturas del plan B que dejaron en la carpeta desde la Clase 14, narran el mismo recorrido sobre ellas y **el tramo vale completo**. Usar bien el plan B es competencia, no fracaso. Lo que sí cuesta puntos es no tener capturas y perder dos minutos buscando la pestaña.
 
 **¿Nos baja la nota contar que algo nos falló?**
 
@@ -175,7 +175,7 @@ Se dice **«no tenemos ese dato»**, y no pasa nada. Lo que hunde una sustentaci
 
 **¿Con esto ya terminamos el curso?**
 
-No. Falta el **informe final de la sesión 16, que vale el 20 %** —más que la exposición— y la autoevaluación. La buena noticia es que **once de sus doce secciones ya están escritas** desde las sesiones anteriores: la próxima sesión es de armar y revisar, no de empezar de cero.
+No. Falta el **informe final de la Clase 16, que vale el 20 %** —más que la exposición— y la autoevaluación. La buena noticia es que **once de sus doce secciones ya están escritas** desde las sesiones anteriores: la próxima sesión es de armar y revisar, no de empezar de cero.
 
 ## Notas operativas
 
@@ -187,7 +187,7 @@ No. Falta el **informe final de la sesión 16, que vale el 20 %** —más que la
 - Tenga **dos preguntas propias listas por equipo**. Las tres más útiles: «¿con quién lo probaron y qué hizo esa persona?» · «¿qué pasa con alguien que no tiene datos móviles?» · «si tuvieran una semana más, ¿qué harían primero?».
 - Si el mismo integrante responde todo, **redirija al dueño del tramo**. Es el descuento anunciado que más enseña.
 - La **ficha de valoración entre pares se califica** dentro de la nota de exposiciones del corte. Dígalo antes de que la llenen, no después.
-- Si falta un integrante, el equipo aplica su **orden de emergencia** de la sesión 14; al ausente se le sustenta aparte y **no hereda la nota sin haber hablado**.
+- Si falta un integrante, el equipo aplica su **orden de emergencia** de la Clase 14; al ausente se le sustenta aparte y **no hereda la nota sin haber hablado**.
 - En el cierre, **una observación por equipo en una frase**. La retroalimentación detallada va después por escrito, con las frases que anotó al calificar.
 - Recuerde el peso de lo que falta: **informe final = 20 %**, más que la exposición de hoy.
 

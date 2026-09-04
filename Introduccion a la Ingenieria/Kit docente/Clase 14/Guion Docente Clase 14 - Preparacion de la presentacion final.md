@@ -3,13 +3,13 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 14 de 16 · corresponde al tema 14 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 10 de 11 · corresponde al tema 14 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **3** (40%) · RAA: **RAA3**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
 - Enfoque: Aprendizaje basado en competencia + Aprendizaje Invertido · Estrategia: ABPr — Aprendizaje Basado en Proyectos
 
-> **El bloque de exposiciones de hoy es un ensayo**, no una presentación: cada equipo ensaya **los primeros 4 minutos** frente al cronómetro y recibe 2 minutos de corrección. Se ensaya solo el arranque porque **es donde todos los equipos se pasan de tiempo**: quien controla los primeros cuatro minutos casi siempre llega bien al final. El resto se ensaya en equipo, fuera de clase, antes de la sesión 15.
+> **El bloque de exposiciones de hoy es un ensayo**, no una presentación: cada equipo ensaya **los primeros 4 minutos** frente al cronómetro y recibe 2 minutos de corrección. Se ensaya solo el arranque porque **es donde todos los equipos se pasan de tiempo**: quien controla los primeros cuatro minutos casi siempre llega bien al final. El resto se ensaya en equipo, fuera de clase, antes de la Clase 15.
 
 ## Objetivos de la clase
 - Armar un guion de **nueve minutos en cinco tramos**, con el tiempo asignado a cada uno.
@@ -19,7 +19,7 @@
 
 ## Hoy avanzamos el proyecto en…
 
-**Guion de nueve minutos, diapositivas, reparto entre integrantes, demostración preparada y plan B técnico — todo listo para la sesión 15**
+**Guion de nueve minutos, diapositivas, reparto entre integrantes, demostración preparada y plan B técnico — todo listo para la Clase 15**
 
 **Entregable concreto:** el guion con tiempos en el documento del equipo, las diapositivas, y en la carpeta del equipo: la presentación en PDF y las capturas de cada paso de la demostración
 
@@ -35,7 +35,7 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 La apertura de hoy es una pregunta con trampa aritmética, y funciona porque la respuesta la descubren ellos: **¿cuánto dura contar el problema, los actores y el árbol de causas?** Más de nueve minutos. Solo el árbol de causas de la sesión 6, contado como lo contaron entonces, se lleva cuatro.
 
-De ahí sale la idea que ordena toda la sesión y que conviene decir literalmente: **una presentación no se acorta hablando rápido, se acorta eligiendo.** Es la misma operación del alcance mínimo de la sesión 8 aplicada al tiempo en vez del producto. Los equipos que fracasan en la sesión 15 no fracasan por hablar mal: fracasan porque intentaron contarlo todo y se les acabó el tiempo en el tramo 2, dejando fuera precisamente el prototipo y los hallazgos, que es lo único que el jurado no conoce.
+De ahí sale la idea que ordena toda la sesión y que conviene decir literalmente: **una presentación no se acorta hablando rápido, se acorta eligiendo.** Es la misma operación del alcance mínimo de la sesión 8 aplicada al tiempo en vez del producto. Los equipos que fracasan en la Clase 15 no fracasan por hablar mal: fracasan porque intentaron contarlo todo y se les acabó el tiempo en el tramo 2, dejando fuera precisamente el prototipo y los hallazgos, que es lo único que el jurado no conoce.
 
 En el muro, cada equipo escribe **qué va a dejar fuera**. Es una pregunta incómoda y es exactamente el trabajo de hoy: dejar fuera el árbol de causas completo, la revisión bibliográfica extensa, la historia de cómo se conocieron, las quince filas de la matriz.
 
@@ -43,17 +43,17 @@ Y una advertencia de encuadre para el docente: hoy nadie expone para lucirse. El
 
 ### Los cinco tramos, y por qué el tramo 4 es el que sube la nota - diapositiva 5
 
-La estructura de cinco tramos no es un formato arbitrario: es el orden en que un lector técnico necesita la información —problema, decisión, solución, evidencia, consecuencias— y coincide con la estructura de cualquier informe de ingeniería. Vale la pena decirlo, porque el mismo esqueleto les va a servir en la sesión 16 para el informe y en toda la carrera para cualquier sustentación.
+La estructura de cinco tramos no es un formato arbitrario: es el orden en que un lector técnico necesita la información —problema, decisión, solución, evidencia, consecuencias— y coincide con la estructura de cualquier informe de ingeniería. Vale la pena decirlo, porque el mismo esqueleto les va a servir en la Clase 16 para el informe y en toda la carrera para cualquier sustentación.
 
 **Tramo 1 · el problema con su cifra, 1 minuto.** El error universal es empezar con presentaciones personales y agradecimientos: «buenas tardes, somos el equipo tal, integrado por…». Eso consume el minuto más valioso de los nueve. **El nombre del equipo está en la diapositiva**; se arranca con el problema y su número.
 
-**Tramo 2 · a quién le pasa y qué decidimos, 2 minutos.** Aquí entra un afectado que no es usuario —trabajo de la sesión 13— y, sobre todo, **la decisión de la matriz de la sesión 8 con lo que se sacrificó**. Decir «elegimos la lista publicada y sacrificamos tener la información al minuto» en diez segundos comunica más madurez que cinco minutos de descripción.
+**Tramo 2 · a quién le pasa y qué decidimos, 2 minutos.** Aquí entra un afectado que no es usuario —trabajo de la Clase 13— y, sobre todo, **la decisión de la matriz de la sesión 8 con lo que se sacrificó**. Decir «elegimos la lista publicada y sacrificamos tener la información al minuto» en diez segundos comunica más madurez que cinco minutos de descripción.
 
 **Tramo 3 · la solución y el prototipo en vivo, 3 minutos.** Es el tramo más largo y la regla es una: **se muestra funcionando, no se describe.** Un recorrido de tres pasos por la pantalla, narrado por una persona mientras otra maneja el mouse.
 
 **Tramo 4 · lo que falló, 2 minutos.** Este es el tramo que hay que defender con insistencia, porque **todos los equipos quieren saltárselo** y es el que más sube la nota. Contar que una persona ajena abandonó la tarea, que se arregló el rótulo y que se decidió **no** arreglar la búsqueda tolerante, es lo que distingue un proyecto de una idea bonita. Un jurado técnico premia eso; un equipo que presenta todo perfecto genera desconfianza inmediata, porque nadie cree que un prototipo de primer semestre funcionó a la primera.
 
-**Tramo 5 · impacto y siguiente paso, 1 minuto.** El positivo con su número, **el negativo con su mitigación** —de nuevo la sesión 13— y qué haría quien continúe el proyecto. Cerrar con el siguiente paso deja la sensación de trabajo vivo y no de tarea entregada.
+**Tramo 5 · impacto y siguiente paso, 1 minuto.** El positivo con su número, **el negativo con su mitigación** —de nuevo la Clase 13— y qué haría quien continúe el proyecto. Cerrar con el siguiente paso deja la sensación de trabajo vivo y no de tarea entregada.
 
 ### Diapositivas que se miran, y el reparto que reparte de verdad - diapositivas 6, 7 y 8
 
@@ -73,7 +73,7 @@ Sobre el reparto, hay dos exigencias que evitan los dos fracasos típicos. La pr
 
 Las otras dos trampas: **no leer** —se lleva una tarjeta con cuatro palabras clave por tramo, no un texto, porque leer mata el contacto con el público y además suena peor— y **no improvisar el arranque**. Las dos primeras frases se aprenden de memoria: son las que más nervios dan y las que fijan el tono de los nueve minutos. Es un consejo pequeño y funciona.
 
-**Por qué hoy se ensayan solo los primeros 4 minutos**, y conviene explicarlo para que no parezca un recorte: cinco equipos por nueve minutos son 45 minutos y no caben con corrección. Pero además **el arranque es donde se pierde el tiempo**: el equipo que controla los tramos 1 y 2 casi siempre llega bien al final, y el que se pasa en el tramo 2 ya no tiene manera de recuperarse. Ensayar el arranque con cronómetro es la intervención con mejor rendimiento por minuto invertido. El resto se ensaya en equipo, fuera de clase, y hay que decirlo con claridad: **quien no ensaye completo antes de la sesión 15 se va a pasar de tiempo, y a los nueve minutos se corta.**
+**Por qué hoy se ensayan solo los primeros 4 minutos**, y conviene explicarlo para que no parezca un recorte: cinco equipos por nueve minutos son 45 minutos y no caben con corrección. Pero además **el arranque es donde se pierde el tiempo**: el equipo que controla los tramos 1 y 2 casi siempre llega bien al final, y el que se pasa en el tramo 2 ya no tiene manera de recuperarse. Ensayar el arranque con cronómetro es la intervención con mejor rendimiento por minuto invertido. El resto se ensaya en equipo, fuera de clase, y hay que decirlo con claridad: **quien no ensaye completo antes de la Clase 15 se va a pasar de tiempo, y a los nueve minutos se corta.**
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 14 - Preparacion de la presentacion final/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -89,8 +89,8 @@ Numeración real del deck `Clases/Clase 14 - Preparacion de la presentacion fina
 9. El plan B técnico, y tres trampas del ensayo
 10. Taller de hoy: Guion de nueve minutos y plan B
 11. Cómo se expone en 4 minutos
-12. Para la sesión 15
-13. Cierre · Nos vemos en la sesión 15
+12. Para la Clase 15
+13. Cierre · Nos vemos en la Clase 15
 
 ## Plan de clase minuto a minuto (90 min)
 
@@ -98,7 +98,7 @@ Numeración real del deck `Clases/Clase 14 - Preparacion de la presentacion fina
 
 Comparta pantalla antes de que entre el primero:
 
-> «En la sesión 15 tienen nueve minutos y se corta al llegar a cero. ¿Cuánto creen que dura contar el problema, los actores y el árbol de causas?»
+> «En la Clase 15 tienen nueve minutos y se corta al llegar a cero. ¿Cuánto creen que dura contar el problema, los actores y el árbol de causas?»
 
 En el muro, cada equipo escribe **qué va a dejar fuera**. Es el trabajo de hoy en una línea.
 
@@ -134,13 +134,13 @@ Ritmo sugerido dentro de la sala:
 
 **[Nota docente]:** entre a las cinco salas con una sola pregunta: **«¿cuánto dura su tramo 2?»**. Si no lo saben, no tienen guion: tienen intenciones.
 
-**[Nota docente]:** verifique el plan B equipo por equipo **antes de que termine el bloque**. Después ya no hay tiempo, y en la sesión 15 es tarde.
+**[Nota docente]:** verifique el plan B equipo por equipo **antes de que termine el bloque**. Después ya no hay tiempo, y en la Clase 15 es tarde.
 
 ### 00:55–01:25 · Ensayo cronometrado (30 min) · [Slide 11]
 
 5 equipos × 6 min: **4 minutos de ensayo del arranque** (tramos 1, 2 y el comienzo del 3) y **2 minutos de corrección**. Cronómetro en pantalla, visible para todos.
 
-**[Nota docente]:** corte exactamente a los 4 minutos, incluso en mitad de una frase. Es incómodo y es el aprendizaje: en la sesión 15 va a pasar lo mismo.
+**[Nota docente]:** corte exactamente a los 4 minutos, incluso en mitad de una frase. Es incómodo y es el aprendizaje: en la Clase 15 va a pasar lo mismo.
 
 **[Nota docente]:** en los 2 minutos de corrección, diga **una sola cosa** — la que más les cambie la presentación. Lo más frecuente, en orden: se presentaron en vez de empezar por el problema; leyeron la diapositiva; se pasaron en el tramo 2; la misma persona narraba y manejaba la pantalla.
 
@@ -150,11 +150,11 @@ Los demás equipos observan y anotan una cosa que van a copiar y una que van a e
 
 ### 01:25–01:30 · Cierre · [Slide 12][Slide 13]
 
-Verifique en voz alta la lista de la sesión 15: **guion con tiempos, ocho diapositivas, reparto, demostración ensayada, PDF descargado y capturas en la carpeta.**
+Verifique en voz alta la lista de la Clase 15: **guion con tiempos, ocho diapositivas, reparto, demostración ensayada, PDF descargado y capturas en la carpeta.**
 
 Una idea: **una presentación no se acorta hablando rápido, se acorta eligiendo.**
 
-Recuerde lo que vale: la exposición de la sesión 15 es el **15 %** del curso, y **se corta a los nueve minutos**. Quien no ensaye completo se va a pasar.
+Recuerde lo que vale: la exposición de la Clase 15 es el **15 %** del curso, y **se corta a los nueve minutos**. Quien no ensaye completo se va a pasar.
 
 ## Errores frecuentes y cómo cortarlos en caliente
 
@@ -164,13 +164,13 @@ Recuerde lo que vale: la exposición de la sesión 15 es el **15 %** del curso, 
 | Una diapositiva con el texto completo de lo que se va a decir | El público lo lee más rápido de lo que usted lo dice y deja de escucharlo justo en lo importante. | Rótulos de cinco palabras. El contenido lo pone la voz. |
 | «No cabe, mejor le bajo el tamaño de la letra» | En una pantalla compartida por video todo se ve más pequeño y borroso de lo que se ve en el computador propio. | Quitar contenido. Si no cabe con letra grande, es que hay dos ideas en una diapositiva. |
 | «Aquí arriba tenemos un campo de búsqueda, y a la derecha un botón que dice buscar…» | Narrar la interfaz consume los tres minutos del tramo más importante sin mostrar nada que funcione. | Mostrar una tarea cumpliéndose: alguien encontrando un libro, alguien marcando un préstamo en 14 segundos. |
-| «El plan B lo hacemos en casa» | Es la parte más fácil de los cien puntos del día y la que se olvida siempre. En la sesión 15 ya es tarde. | El PDF y las capturas en la carpeta hoy, antes de salir, y el acuerdo de quién comparte pantalla. |
+| «El plan B lo hacemos en casa» | Es la parte más fácil de los cien puntos del día y la que se olvida siempre. En la Clase 15 ya es tarde. | El PDF y las capturas en la carpeta hoy, antes de salir, y el acuerdo de quién comparte pantalla. |
 
 ## Dudas frecuentes del estudiante
 
 **¿Nueve minutos exactos? ¿Qué pasa si nos pasamos?**
 
-Se corta al llegar a cero, y hoy lo van a experimentar en el ensayo con los 4 minutos del arranque. No es rigidez por rigidez: en la sesión 15 hay cinco equipos y un bloque de 90 minutos, así que el tiempo que un equipo se pasa lo pierde el último. En la vida profesional funciona igual — en una sustentación o en una reunión de comité, el tiempo asignado es el tiempo que hay.
+Se corta al llegar a cero, y hoy lo van a experimentar en el ensayo con los 4 minutos del arranque. No es rigidez por rigidez: en la Clase 15 hay cinco equipos y un bloque de 90 minutos, así que el tiempo que un equipo se pasa lo pierde el último. En la vida profesional funciona igual — en una sustentación o en una reunión de comité, el tiempo asignado es el tiempo que hay.
 
 **¿Tenemos que hablar todos?**
 
@@ -182,7 +182,7 @@ En vivo, siempre que se pueda: mostrar una tarea cumpliéndose convence mucho m�
 
 **¿Y todo lo que no alcanzamos a contar?**
 
-Va en el **informe final de la sesión 16**, que vale el 20 %. El árbol de causas completo, la matriz de decisión con sus quince filas, los tres antecedentes, la matriz de impacto entera: todo eso es material de informe. Distinguir qué va en la presentación y qué va en el informe es una habilidad profesional, y es media hora de trabajo ganado para la próxima sesión.
+Va en el **informe final de la Clase 16**, que vale el 20 %. El árbol de causas completo, la matriz de decisión con sus quince filas, los tres antecedentes, la matriz de impacto entera: todo eso es material de informe. Distinguir qué va en la presentación y qué va en el informe es una habilidad profesional, y es media hora de trabajo ganado para la próxima sesión.
 
 ## Notas operativas
 
@@ -194,7 +194,7 @@ Va en el **informe final de la sesión 16**, que vale el 20 %. El árbol de caus
 - En las salas, entre con una sola pregunta: **«¿cuánto dura su tramo 2?»**. Si no lo saben, no tienen guion.
 - Diga que **no se empieza por las diapositivas**: sin guion, las diapositivas se hacen dos veces. Es el consejo que más tiempo les ahorra.
 - Los equipos que observan anotan **una cosa que van a copiar y una que van a evitar**, y lo dejan en el muro **sin nombres**.
-- Recuerde los dos pesos: exposición de la sesión 15 = **15 %**, informe final de la 16 = **20 %**.
+- Recuerde los dos pesos: exposición de la Clase 15 = **15 %**, informe final de la 16 = **20 %**.
 
 ## Material de esta clase
 

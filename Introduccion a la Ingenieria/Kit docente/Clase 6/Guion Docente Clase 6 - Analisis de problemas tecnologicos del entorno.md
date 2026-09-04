@@ -3,7 +3,7 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 6 de 16 · corresponde al tema 6 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 4 de 11 · corresponde al tema 6 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **1** (30%) · RAA: **RAA2** · **cierra el corte**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
@@ -64,13 +64,13 @@ Un detalle metodológico que ahorra discusiones: si una causa no se puede afecta
 
 ### La línea base y los cuatro criterios de viabilidad - diapositivas 7 y 8
 
-**La línea base** es la exigencia que más resistencia genera y la que más valor tiene. Es una cifra sobre el problema **como está hoy**, antes de que el equipo toque nada, y su función es simple: sin ella no hay forma de saber si el proyecto sirvió. En la sesión 16 el informe final va a pedir comparar, y un equipo sin línea base solo puede escribir «mejoramos el proceso», que es una afirmación vacía.
+**La línea base** es la exigencia que más resistencia genera y la que más valor tiene. Es una cifra sobre el problema **como está hoy**, antes de que el equipo toque nada, y su función es simple: sin ella no hay forma de saber si el proyecto sirvió. En la Clase 16 el informe final va a pedir comparar, y un equipo sin línea base solo puede escribir «mejoramos el proceso», que es una afirmación vacía.
 
 Hay que quitarles de encima la idea de que medir requiere presupuesto o estadística. La línea base de un proyecto de este curso se consigue de tres maneras: **preguntando** a la persona que hace el trabajo, **contando** durante una semana, o **midiendo con un cronómetro** un caso. «La secretaria dedica unas dos horas diarias a confirmar citas por teléfono, según lo que ella misma estima» es una línea base perfectamente aceptable, siempre que se diga que es una estimación y de quién viene. La regla de honestidad es la de la sesión 5, aplicada de nuevo: **cifra con método y fecha, o no va**.
 
 Y hay un diagnóstico gratis escondido en esta exigencia: **si el problema no admite ninguna cifra, está mal delimitado**, y casi siempre es porque es demasiado grande. «La deserción estudiantil» no se puede medir con lo que tiene un equipo de primer semestre; «cuántos de los 30 compañeros de mi grupo no saben en qué semestre pierden el beneficio de la beca» sí. Bajar el problema hasta que se pueda contar algo es la manera más rápida de volverlo abordable.
 
-**Los cuatro criterios** son un filtro y hay que aplicarlos en voz alta a cada problema propuesto, uno por uno. *Abordable* con navegador y herramientas gratuitas: nada que exija comprar equipos, contratar servicios de pago o conseguir permisos institucionales que no van a llegar en un semestre. *Medible*: existe la cifra. *Con acceso a los actores*: pueden hablar esta semana con alguien que vive el problema, sin trámites; este criterio es el que descarta más propuestas y hay que ser firme, porque un proyecto sobre una entidad a la que nadie puede preguntarle nada termina siendo un ejercicio de imaginación con aspecto de proyecto. *Con dueño del problema*: hay una persona o un grupo concreto al que le duele y que reconocería la mejora; si el afectado es «la sociedad», no hay a quién mostrarle el resultado en la sesión 15.
+**Los cuatro criterios** son un filtro y hay que aplicarlos en voz alta a cada problema propuesto, uno por uno. *Abordable* con navegador y herramientas gratuitas: nada que exija comprar equipos, contratar servicios de pago o conseguir permisos institucionales que no van a llegar en un semestre. *Medible*: existe la cifra. *Con acceso a los actores*: pueden hablar esta semana con alguien que vive el problema, sin trámites; este criterio es el que descarta más propuestas y hay que ser firme, porque un proyecto sobre una entidad a la que nadie puede preguntarle nada termina siendo un ejercicio de imaginación con aspecto de proyecto. *Con dueño del problema*: hay una persona o un grupo concreto al que le duele y que reconocería la mejora; si el afectado es «la sociedad», no hay a quién mostrarle el resultado en la Clase 15.
 
 Una advertencia sobre el ánimo del grupo: aplicar estos criterios va a matar algunas ideas ambiciosas y eso frustra. Vale la pena decirles por qué se hace: **es mejor resolver algo pequeño de verdad que simular algo grande**, y en un primer semestre el objetivo es que aprendan a formular y a demostrar, no que salven la ciudad. Un proyecto pequeño y verificable saca mejor nota que uno grandioso e imposible, y hay que decirlo hoy, antes de que se enamoren de la idea.
 
@@ -78,7 +78,7 @@ Una advertencia sobre el ánimo del grupo: aplicar estos criterios va a matar al
 
 El reparto del tiempo de hoy es distinto al de las otras sesiones y hay que respetarlo: **teoría 25 minutos**, no 45. El corte se cierra con dos entregas y las dos ocurren en clase, así que quedarse largo en la explicación significa aplicar la evaluación con la gente apurada, que es la peor manera de evaluar.
 
-**La ficha del problema** es el producto del corte 1 y conviene decirle al grupo exactamente qué peso tiene en el semestre: a partir de la sesión 7 todo se hace sobre ella. El ciclo de vida de la sesión 7 se aplica a ese problema; el prototipo de las sesiones 10 y 11 resuelve ese problema; la evaluación de impacto de la sesión 13 evalúa esa solución; el informe final de la sesión 16 compara contra esa línea base. Un equipo que hoy escriba una ficha vaga va a arrastrar el problema diez sesiones.
+**La ficha del problema** es el producto del corte 1 y conviene decirle al grupo exactamente qué peso tiene en el semestre: a partir de la sesión 7 todo se hace sobre ella. El ciclo de vida de la sesión 7 se aplica a ese problema; el prototipo de las sesiones 10 y 11 resuelve ese problema; la evaluación de impacto de la Clase 13 evalúa esa solución; el informe final de la Clase 16 compara contra esa línea base. Un equipo que hoy escriba una ficha vaga va a arrastrar el problema diez sesiones.
 
 **La evaluación de corte** son los últimos veinte minutos, en ExamLab, individual, y cubre las sesiones 1 a 6. Tres cosas operativas: el enlace va en el chat de la reunión, hay que decir explícitamente que **ExamLab no es una plataforma oficial de la universidad** sino la herramienta que usa este curso, y hay que pedir que cualquier problema para abrirlo se avise **en el chat, en el momento**, no al día siguiente por correo. En un curso virtual el problema técnico no reportado se vuelve un reclamo de nota dos semanas después.
 
@@ -98,7 +98,7 @@ Numeración real del deck `Clases/Clase 6 - Analisis de problemas tecnologicos d
 9. Cómo cierra el corte 1 hoy
 10. Taller de hoy: Ficha del problema del proyecto
 11. Cómo se expone en 3 minutos
-12. Para la sesión 7
+12. Para la Clase 7
 13. Cierre · Cerró el corte 1 · nos vemos en la sesión 7
 
 ## Plan de clase minuto a minuto (90 min)
@@ -171,7 +171,7 @@ Anuncie la sesión 7: arranca el corte 2 con el **ciclo de vida de los proyectos
 |---|---|---|
 | «Falta una app / un sistema para X» | Es una solución disfrazada de problema: cierra el diseño antes de empezar y hace que cualquier app «resuelva» el problema. | Que respondan «¿esto se podría resolver sin ninguna app?». Si es sí, el problema es otro y hay que escribirlo. |
 | «La gente se queja» / «se pierden libros» | Es un síntoma: la señal visible. Atacar el síntoma produce soluciones cosméticas. | A quién le pasa qué, con qué consecuencia. Y la cifra. |
-| Una cifra sin decir de dónde salió | No se puede volver a medir en la sesión 16, así que no sirve como línea base. | Número, unidad y método: preguntando a quién, contando qué, o cronometrando cuándo. |
+| Una cifra sin decir de dónde salió | No se puede volver a medir en la Clase 16, así que no sirve como línea base. | Número, unidad y método: preguntando a quién, contando qué, o cronometrando cuándo. |
 | Un árbol con diez raíces | Es una lista de todo lo que se les ocurrió, no un análisis, y con eso no se puede decidir qué atacar. | Dos o tres causas directas, su segundo nivel, y las que no pueden cambiar marcadas como restricciones. |
 | «El éxito es tener 200 usuarios en la app» | Mide la adopción de la solución, no la resolución del problema. Se puede tener 200 usuarios y el problema intacto. | El criterio con la misma medición de la línea base: de X a Y, medido así. |
 
@@ -179,7 +179,7 @@ Anuncie la sesión 7: arranca el corte 2 con el **ciclo de vida de los proyectos
 
 **Nuestro problema es muy grande y nos dijeron que lo bajemos. ¿No es peor un proyecto pequeño?**
 
-No: saca mejor nota. En este curso se evalúa que sepan formular, medir y demostrar, no el tamaño de la ambición. Un problema pequeño resuelto y medido de verdad es un proyecto completo; uno grande simulado es una presentación bonita sin evidencia. Y el informe final de la sesión 16 pide comparar con la línea base: eso solo se puede hacer con algo acotado.
+No: saca mejor nota. En este curso se evalúa que sepan formular, medir y demostrar, no el tamaño de la ambición. Un problema pequeño resuelto y medido de verdad es un proyecto completo; uno grande simulado es una presentación bonita sin evidencia. Y el informe final de la Clase 16 pide comparar con la línea base: eso solo se puede hacer con algo acotado.
 
 **¿Cómo conseguimos una cifra si no tenemos acceso a datos?**
 
@@ -187,7 +187,7 @@ Preguntando, contando o cronometrando. Tres preguntas a la persona que hace el t
 
 **¿Podemos cambiar el problema después?**
 
-Sí, pero cuesta. Todo lo que sigue se construye sobre esta ficha: el ciclo de vida de la sesión 7, el prototipo de la 10 y la 11, el impacto de la 13, el informe de la 16. Un cambio en la sesión 8 es un ajuste; en la sesión 12 es empezar de nuevo. Por eso vale la pena discutirlo hoy hasta que quede.
+Sí, pero cuesta. Todo lo que sigue se construye sobre esta ficha: el ciclo de vida de la Clase 7, el prototipo de la 10 y la 11, el impacto de la 13, el informe de la 16. Un cambio en la Clase 8 es un ajuste; en la Clase 12 es empezar de nuevo. Por eso vale la pena discutirlo hoy hasta que quede.
 
 **¿Y si ya sabemos qué tecnología queremos usar?**
 

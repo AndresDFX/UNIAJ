@@ -105,7 +105,7 @@ TEMAS[7] = {
                 "El usuario ve algo **en cada vuelta** y corrige temprano.",
                 "El requisito mal escrito se cae en la primera iteración, barato.",
                 "Funciona cuando hay incertidumbre — es decir, casi siempre.",
-                "Es lo que va a hacer este curso: **una vuelta corta en las sesiones 10–11 y otra en las 12–14**.",
+                "Es lo que va a hacer este curso: **una vuelta corta en las Clases 10-11 y otra en las 12-14**.",
             ],
             "sub": "Las fases son las mismas en los dos. Lo que cambia es cuántas veces se recorren y cuándo aparece el usuario",
         },
@@ -220,7 +220,7 @@ TEMAS[7] = {
                 "puede usar un resultado clásico sin exagerarlo. La dirección de la curva no está "
                 "en discusión; la pendiente sí.",
                 "El uso práctico de la tabla es una pregunta que los equipos van a responder en el "
-                "taller: *¿qué decisión que estamos tomando hoy sería carísima cambiar en la sesión "
+                "taller: *¿qué decisión que estamos tomando hoy sería carísima cambiar en la Clase "
                 "14?* Casi siempre la respuesta es un requisito mal entendido o una restricción "
                 "ignorada, y hacer la pregunta hoy es lo que la vuelve barata.",
                 "Hay un segundo uso, más sutil, que vale la pena señalar si el grupo responde bien: "
@@ -249,7 +249,7 @@ TEMAS[7] = {
                 "particular la de todos los proyectos de este curso.",
                 "Aterrícelo en el calendario, porque eso les hace sentir la diferencia: **este "
                 "curso va a hacer dos vueltas completas**. Una corta en las sesiones 10 y 11 "
-                "—prototipo de baja fidelidad, prueba, corrección— y otra en las sesiones 12 a 14, "
+                "—prototipo de baja fidelidad, prueba, corrección— y otra en las Clases 12 a 14, "
                 "con la retroalimentación de la presentación de avances. No es una decisión "
                 "estética del docente: es la manera de que el error de requisitos aparezca en la "
                 "sesión 10 y no en la 15, cuando ya no hay tiempo.",
@@ -287,8 +287,8 @@ TEMAS[7] = {
                 "**Hito** es un punto del calendario donde algo queda terminado y verificable. Es "
                 "el concepto que salva el proyecto de la última semana: «vamos avanzando» no es un "
                 "hito; «en la sesión 10 hay tres pantallas probadas con un usuario» sí. En el "
-                "taller de hoy se les pide el plan de hitos hasta la sesión 15, y conviene revisarlo "
-                "con severidad, porque un plan con todo el trabajo en la sesión 14 es un proyecto "
+                "taller de hoy se les pide el plan de hitos hasta la Clase 15, y conviene revisarlo "
+                "con severidad, porque un plan con todo el trabajo en la Clase 14 es un proyecto "
                 "que va a fallar y todavía se puede corregir.",
                 "Los tres malentendidos de la última diapositiva son los que aparecen en las salas. "
                 "El primero —que las fases son burocracia— se responde con la tabla del costo. El "
@@ -344,7 +344,7 @@ TEMAS[7] = {
                 "tecnología («el sistema tendrá una base de datos»). Pregunte «¿y eso qué le permite "
                 "hacer al usuario?» y reescríbalo con ellos.",
                 "**[Nota docente]:** revise el plan de hitos con severidad. Si todo el trabajo cae "
-                "en la sesión 14, dígalo ahora: es un proyecto que va a fallar y todavía hay nueve "
+                "en la Clase 14, dígalo ahora: es un proyecto que va a fallar y todavía hay nueve "
                 "sesiones para arreglarlo.",
             ],
         },
@@ -379,7 +379,7 @@ TEMAS[7] = {
         "consigna": "Ubiquen su proyecto en el ciclo de vida y escriban lo que falta para avanzar: "
                     "en qué **fase** están, **tres requisitos funcionales** y **dos no "
                     "funcionales** con su **criterio de aceptación**, la decisión de hoy que sería "
-                    "carísima cambiar después, y el **plan de hitos** hasta la sesión 15.",
+                    "carísima cambiar después, y el **plan de hitos** hasta la Clase 15.",
         "entregable": "el mapa del ciclo de vida del proyecto en draw.io (PNG en la carpeta del "
                       "equipo) más la tabla de requisitos y el plan de hitos en el documento del "
                       "equipo",
@@ -410,14 +410,14 @@ TEMAS[7] = {
              "check": "cada criterio es una prueba que alguien puede hacer delante de ustedes. «Debe ser fácil de usar» no es un criterio."},
             {"clave": "EL PLAN DE HITOS",
              "pide": "Qué queda **terminado y verificable** en cada una de las sesiones 8, 9, 10, "
-                     "11, 12 y 14. Y la decisión de hoy que sería carísima cambiar en la sesión 14.",
-             "check": "cada hito es verificable y el trabajo está repartido. Si todo cae en la sesión 14, el plan está mal."},
+                     "11, 12 y 14. Y la decisión de hoy que sería carísima cambiar en la Clase 14.",
+             "check": "cada hito es verificable y el trabajo está repartido. Si todo cae en la Clase 14, el plan está mal."},
         ],
         "expo": [
             ("30 s · La fase", "En qué fase están y qué falta para cerrarla. Es el minuto obligatorio."),
             ("50 s · Los requisitos", "Uno funcional y uno no funcional, leídos tal cual."),
             ("50 s · El criterio de aceptación", "De ese requisito: cómo se comprueba y con qué umbral."),
-            ("40 s · El plan de hitos", "Qué queda listo en la sesión 10 y en la 12."),
+            ("40 s · El plan de hitos", "Qué queda listo en la Clase 10 y en la 12."),
             ("10 s · La decisión costosa", "Qué sería carísimo cambiar después."),
         ],
     },
@@ -430,7 +430,7 @@ TEMAS[7] = {
         ("Los dos requisitos no funcionales se rastrean a restricciones ya escritas", 20,
          "Es lo que conecta el análisis de las sesiones 5 y 6 con la construcción: las restricciones son insumo, no adorno."),
         ("Cada requisito tiene un criterio de aceptación ejecutable por otra persona", 25,
-         "Sin criterio de aceptación no hay validación posible, y la sesión 16 pide demostrar, no afirmar."),
+         "Sin criterio de aceptación no hay validación posible, y la Clase 16 pide demostrar, no afirmar."),
         ("El plan de hitos reparte el trabajo y cada hito es verificable", 15,
          "Un plan con todo al final es la causa más común de proyectos que no se entregan."),
     ],
@@ -438,7 +438,7 @@ TEMAS[7] = {
     "solucion": {
         "para_que": "Este documento trae el ciclo de vida completo del caso de la biblioteca, con "
                     "los cinco requisitos escritos y sus criterios de aceptación, más el plan de "
-                    "hitos hasta la sesión 15. Es el modelo que hay que tener a mano en las salas, "
+                    "hitos hasta la Clase 15. Es el modelo que hay que tener a mano en las salas, "
                     "porque el criterio de aceptación es lo que ningún equipo escribe solo. Si el "
                     "docente solo alcanza a leer un bloque, que sea **LOS CRITERIOS DE "
                     "ACEPTACIÓN**.",
@@ -578,22 +578,22 @@ TEMAS[7] = {
                              "pasos del flujo principal, y el guion de prueba escrito.\n"
                              "**Sesión 11** · Prototipo v2 corregido, con el registro del uso de IA "
                              "y las correcciones hechas a mano. *Cierra el corte 2.*\n"
-                             "**Sesión 12** · Prototipo probado **con una persona ajena al equipo** "
+                             "**Clase 12** · Prototipo probado **con una persona ajena al equipo** "
                              "y la lista de lo que falló, para la presentación de avances.\n"
-                             "**Sesión 14** · Presentación final ensayada y el informe escrito al "
-                             "80 %. *En la sesión 14 no se construye: se ensaya.*\n\n"
-                             "**La decisión de hoy que sería carísima cambiar en la sesión 14:** "
+                             "**Clase 14** · Presentación final ensayada y el informe escrito al "
+                             "80 %. *En la Clase 14 no se construye: se ensaya.*\n\n"
+                             "**La decisión de hoy que sería carísima cambiar en la Clase 14:** "
                              "*que la solución funcione sin computador en el mostrador.* Si en la "
-                             "sesión 12 se descubre que la voluntaria no puede usar su celular "
+                             "Clase 12 se descubre que la voluntaria no puede usar su celular "
                              "durante la atención, hay que rediseñar el flujo completo, y con él el "
                              "prototipo y la prueba. Por eso se confirma con la coordinadora **esta "
                              "semana**, no en la 12: hoy cuesta una pregunta.",
                 "como_calificar": "15 pts. Dos verificaciones: (a) **¿cada hito es verificable?** "
                                   "«Avanzar en el prototipo» no es un hito; (b) **¿está repartido?** "
-                                  "Si las sesiones 8 a 12 están vacías y todo aparece en la 14, "
+                                  "Si las Clases 8 a 12 están vacías y todo aparece en la 14, "
                                   "vale 5 y hay que decirlo en voz alta en la sala: es el patrón "
                                   "exacto de los proyectos que no se entregan. Valore que la "
-                                  "sesión 14 esté reservada para ensayar y no para construir."
+                                  "Clase 14 esté reservada para ensayar y no para construir."
             },
         ],
         "variantes": [
@@ -615,18 +615,18 @@ TEMAS[7] = {
                       "que lo resuelve siempre es «¿y eso qué le permite hacer al usuario?». La "
                       "decisión técnica que querían escribir no se pierde: se anota aparte, como "
                       "candidata de la fase de diseño de la sesión 8."},
-            {"caso": "Equipos cuyo plan de hitos deja todo en la sesión 14",
+            {"caso": "Equipos cuyo plan de hitos deja todo en la Clase 14",
              "clave": "Es el hallazgo más valioso de la sesión y hay que actuar hoy. Obligue a "
                       "definir un hito verificable para la sesión 10, aunque sea mínimo — tres "
                       "pantallas dibujadas a mano y probadas con una persona—. La razón que "
-                      "funciona con estudiantes: en la sesión 12 hay presentación de avances con "
+                      "funciona con estudiantes: en la Clase 12 hay presentación de avances con "
                       "retroalimentación, y llegar sin nada a esa sesión desperdicia la única "
                       "corrección gratis del semestre."},
         ],
         "cierre": "Tres minutos y una idea: **el orden de las fases no es burocracia, es "
                   "economía.** El error barato es el que se encuentra temprano, y todo lo que "
                   "hicieron hoy —requisitos, criterios, hitos— existe para que los errores "
-                  "aparezcan ahora y no en la sesión 15. Diga en voz alta las dos cosas que "
+                  "aparezcan ahora y no en la Clase 15. Diga en voz alta las dos cosas que "
                   "conectan el curso: la fase 1 la cerraron en la sesión 6, y los requisitos no "
                   "funcionales de hoy salieron de las restricciones que escribieron entonces; nada "
                   "de lo que han hecho fue un ejercicio suelto. Cierre con la advertencia sobre "
@@ -640,9 +640,9 @@ TEMAS[7] = {
                     "de hoy; la **sesión 5** aportó el indicador ambiental, que hoy se vuelve "
                     "requisito; la **sesión 2** dejó a Royce, que hoy se cierra. Hacia adelante: la "
                     "**sesión 8** decide la alternativa y fija el alcance mínimo; la **sesión 9** "
-                    "busca antecedentes; la **sesión 10** prototipa contra estos requisitos; la "
-                    "**sesión 11** corrige y cierra el corte; la **sesión 12** prueba con una "
-                    "persona ajena; y el **informe final de la sesión 16** se estructura sobre "
+                    "busca antecedentes; la **Clase 10** prototipa contra estos requisitos; la "
+                    "**Clase 11** corrige y cierra el corte; la **Clase 12** prueba con una "
+                    "persona ajena; y el **informe final de la Clase 16** se estructura sobre "
                     "estos criterios de aceptación.",
     },
 
@@ -659,9 +659,9 @@ TEMAS[7] = {
         {"dice": "«Debe ser escalable / usar la nube» como requisito no funcional",
          "por_que": "No sale de ninguna restricción del proyecto: entró por moda y no por análisis.",
          "pida": "Que señalen la restricción del árbol de la sesión 6 de donde sale cada requisito no funcional."},
-        {"dice": "Un plan con todo el trabajo en la sesión 14",
-         "por_que": "Es el patrón exacto de los proyectos que no se entregan, y desperdicia la retroalimentación gratis de la sesión 12.",
-         "pida": "Un hito verificable en la sesión 10, aunque sea mínimo. La sesión 14 se reserva para ensayar, no para construir."},
+        {"dice": "Un plan con todo el trabajo en la Clase 14",
+         "por_que": "Es el patrón exacto de los proyectos que no se entregan, y desperdicia la retroalimentación gratis de la Clase 12.",
+         "pida": "Un hito verificable en la Clase 10, aunque sea mínimo. La Clase 14 se reserva para ensayar, no para construir."},
     ],
 
     "dudas": [
@@ -673,13 +673,13 @@ TEMAS[7] = {
         {"p": "¿Cuántos requisitos hay que tener?",
          "r": "Hoy, cinco: tres funcionales y dos no funcionales. Y es a propósito. Un proyecto de "
               "primer semestre con veinte requisitos no cumple ninguno; con cinco bien escritos y "
-              "con criterio de aceptación se puede demostrar en la sesión 16 que funcionan. Se "
+              "con criterio de aceptación se puede demostrar en la Clase 16 que funcionan. Se "
               "califica que sean verificables, no que sean muchos."},
         {"p": "¿Y si el usuario cambia de opinión después?",
          "r": "Va a pasar, y no es una falla del usuario: es la razón de ser del enfoque iterativo. "
               "Por eso el prototipo de la sesión 10 es de baja fidelidad y se prueba con alguien "
               "ajeno: para que el cambio de opinión ocurra cuando corregir cuesta un dibujo. Lo que "
-              "no se puede es enterarse en la sesión 15."},
+              "no se puede es enterarse en la Clase 15."},
         {"p": "¿La fase de operación y retiro nos toca a nosotros?",
          "r": "En el informe final, sí, en una versión corta: qué pasaría si su solución se deja de "
               "usar y **qué pasa con los datos**. Es la Ley 1581 de 2012 de la sesión 4 aplicada al "
@@ -820,7 +820,7 @@ TEMAS[8] = {
                 ("Qué NO es",
                  "No es «la primera parte de todo lo que soñamos». Un alcance mínimo que no "
                  "resuelve nada por sí solo no se puede probar, y entonces no sirve para aprender "
-                 "nada en la sesión 12."),
+                 "nada en la Clase 12."),
                 ("Cómo se fija",
                  "Se toma **un** requisito funcional —el que ataca la causa elegida— y se construye "
                  "solo eso, cumpliendo los requisitos no funcionales. Los otros dos requisitos "
@@ -955,7 +955,7 @@ TEMAS[8] = {
                 "ataca la causa elegida en el árbol de la sesión 6— y se construye solo eso, "
                 "cumpliendo los requisitos no funcionales**. Los otros dos requisitos se escriben "
                 "en una lista titulada «versión siguiente». Esa lista no es una derrota: es la "
-                "prueba de que el equipo sabe lo que dejó fuera, y en la sesión 15 se muestra. Vale "
+                "prueba de que el equipo sabe lo que dejó fuera, y en la Clase 15 se muestra. Vale "
                 "la pena decírselo con estas palabras: **un proyecto que no declara lo que dejó "
                 "fuera parece incompleto; uno que lo declara parece dirigido.**",
                 "**El plan de validación** se escribe hoy y eso es deliberado: escribir cómo se va "
@@ -1000,7 +1000,7 @@ TEMAS[8] = {
                 "- **5 min** · Alcance mínimo [Slide 7]. Dicte la prueba: *si construimos solo esto, "
                 "¿le sirve de algo a la persona que vive el problema?*",
                 "- **3 min** · El plan de validación y las dos trampas [Slide 8]. **No lo recorte**: "
-                "es lo que va a decidir la calidad de la sesión 12.",
+                "es lo que va a decidir la calidad de la Clase 12.",
                 "**[Nota docente]:** si va retrasado, recorte los casos a cuatro minutos y quédese "
                 "con el del aeropuerto (requisitos) y el de la firma financiera (operación).",
             ],
@@ -1042,7 +1042,7 @@ TEMAS[8] = {
                 "criterios escritos antes, con una justificación por criterio y con la lista de lo "
                 "que se sacrificó.",
                 "Recuerde las dos trampas de la validación —no probar con el equipo, no preguntar "
-                "«¿le gusta?»— porque se van a aplicar en la sesión 12.",
+                "«¿le gusta?»— porque se van a aplicar en la Clase 12.",
                 "Anuncie la sesión 9: **antecedentes y fuentes**. Antes de construir hay que saber "
                 "qué ya existe y quién lo intentó, con fuentes que se puedan verificar.",
             ],
@@ -1112,7 +1112,7 @@ TEMAS[8] = {
         ("Se nombra concretamente qué se pierde con la decisión", 15,
          "Reconocer el sacrificio es lo que distingue decidir de preferir."),
         ("El alcance mínimo resuelve algo por sí solo y el plan de validación usa una persona ajena", 25,
-         "Es lo que hace posible aprender algo real en la sesión 12, en vez de una demostración entre amigos."),
+         "Es lo que hace posible aprender algo real en la Clase 12, en vez de una demostración entre amigos."),
     ],
 
     "solucion": {
@@ -1278,7 +1278,7 @@ TEMAS[8] = {
                                   "problema?»; si la respuesta es no, es un pedazo y vale 5; (b) "
                                   "**la persona de la prueba es ajena al equipo** (13 pts). Si "
                                   "planean probar entre ellos, corríjalo en la sala, no en la "
-                                  "nota: es la trampa que arruina la sesión 12. Valore mucho que "
+                                  "nota: es la trampa que arruina la Clase 12. Valore mucho que "
                                   "haya una tarea sobre el caso en que el sistema no tiene la "
                                   "respuesta."
             },
@@ -1295,7 +1295,7 @@ TEMAS[8] = {
              "clave": "Puede ser legítimo y no hay que forzar el resultado de la biblioteca. La "
                       "verificación es si los pesos son coherentes: si «construible en las sesiones "
                       "que quedan» pesa 1 y la alternativa exige diez semanas de trabajo, el "
-                      "problema no es la matriz, es el peso. Pregunte «¿qué pasa si en la sesión 12 "
+                      "problema no es la matriz, es el peso. Pregunte «¿qué pasa si en la Clase 12 "
                       "no está listo?» y deje que ajusten el peso ellos."},
             {"caso": "Proyectos de proceso o gestión, sin pantallas",
              "clave": "El alcance mínimo suele ser **un formato más un acuerdo de quién lo llena y "
@@ -1319,7 +1319,7 @@ TEMAS[8] = {
                   "palabras: **la alternativa que sonaba más profesional perdió**, porque las "
                   "restricciones del contexto son reales y ellos mismos les habían puesto el peso "
                   "más alto. Tercero, las dos trampas de la validación —no probar con el equipo, no "
-                  "preguntar «¿le gusta?»— porque se aplican en la sesión 12 y es donde se gana o "
+                  "preguntar «¿le gusta?»— porque se aplican en la Clase 12 y es donde se gana o "
                   "se pierde el corte 3. Anuncie la sesión 9: antes de construir hay que saber qué "
                   "ya existe y quién lo intentó, con fuentes verificables — y una respuesta de "
                   "asistente de IA no es una fuente.",
@@ -1329,10 +1329,10 @@ TEMAS[8] = {
                     "altos; la **sesión 5** dejó el indicador ambiental, que es un criterio más; la "
                     "**sesión 4** dejó el Therac-25, que es el argumento contra evaluarse a sí "
                     "mismo. Hacia adelante: la **sesión 9** busca antecedentes de la alternativa "
-                    "elegida; la **sesión 10** prototipa exactamente el alcance mínimo de hoy; la "
-                    "**sesión 11** lo corrige y cierra el corte 2; la **sesión 12** ejecuta este "
+                    "elegida; la **Clase 10** prototipa exactamente el alcance mínimo de hoy; la "
+                    "**Clase 11** lo corrige y cierra el corte 2; la **Clase 12** ejecuta este "
                     "plan de validación con una persona ajena; y la lista de «versión siguiente» se "
-                    "muestra en la **exposición final de la sesión 15**.",
+                    "muestra en la **exposición final de la Clase 15**.",
     },
 
     "errores": [
@@ -1360,9 +1360,9 @@ TEMAS[8] = {
               "cumple, y ahí se rompe el empate. Y si de verdad empatan, elijan la más simple: es "
               "la que se puede construir y probar en el tiempo que queda."},
         {"p": "¿Podemos cambiar la decisión después?",
-         "r": "Sí, y por eso se escribe la matriz: si en la sesión 10 aparece un dato nuevo, se "
+         "r": "Sí, y por eso se escribe la matriz: si en la Clase 10 aparece un dato nuevo, se "
               "cambia una calificación y se ve si la decisión se mueve. Eso es rediseñar con "
-              "argumento. Lo que no funciona es cambiar de idea sin registro, porque en la sesión "
+              "argumento. Lo que no funciona es cambiar de idea sin registro, porque en la Clase "
               "15 nadie va a poder explicar por qué se hizo lo que se hizo."},
         {"p": "¿El alcance mínimo no nos va a dejar con un proyecto muy pobre?",
          "r": "Al contrario. Se califica lo que funciona y se puede demostrar, más lo que ustedes "
@@ -1567,7 +1567,7 @@ TEMAS[9] = {
                 "argumento**. Un equipo que dice «esto no existe» está apostando; un equipo que "
                 "dice «existen estas tres soluciones, ninguna funciona sin computador en el "
                 "mostrador, y nosotros resolvemos justamente eso» tiene una posición defendible "
-                "ante cualquiera. La segunda frase es la que se califica en la sesión 15.",
+                "ante cualquiera. La segunda frase es la que se califica en la Clase 15.",
                 "Aproveche el muro para recoger las respuestas y luego voltee la pregunta: *¿qué "
                 "sería peor, descubrir hoy que ya existe, o descubrirlo el día de la exposición "
                 "final cuando alguien del público lo diga?* Esa reformulación convierte la sesión "
@@ -1759,7 +1759,7 @@ TEMAS[9] = {
                 "**[Nota docente]:** haga que muestren **el documento abierto**, no la referencia "
                 "escrita. Diez segundos de pantalla compartida valen más que cualquier declaración.",
                 "**[Nota docente]:** anote la propuesta de mejora de cada equipo. Es el eje del "
-                "informe final de la sesión 16 y de la exposición de la 15.",
+                "informe final de la Clase 16 y de la exposición de la 15.",
             ],
         },
         {
@@ -2007,7 +2007,7 @@ TEMAS[9] = {
                              "quitaron son exactamente las tres restricciones del árbol de la sesión "
                              "6. La mejora no es una idea suelta: **es la brecha del campo «qué le "
                              "falta» convertida en decisión de diseño.** Eso es lo que la vuelve "
-                             "defendible ante cualquiera en la sesión 15.\n\n"
+                             "defendible ante cualquiera en la Clase 15.\n\n"
                              "**Comparación con una propuesta débil**, útil para mostrar en clase: "
                              "«nuestra mejora es que va a ser más fácil de usar y más moderna». No "
                              "se apoya en ninguna brecha escrita, no nombra ninguna operación, y no "
@@ -2038,7 +2038,7 @@ TEMAS[9] = {
                              "**De la norma (ficha 2): el argumento del informe final.** Sirve para "
                              "sustentar por qué el acceso a la información es un servicio esperable "
                              "y no un lujo, que es exactamente lo que va a pedir la evaluación de "
-                             "impacto social de la sesión 13.\n\n"
+                             "impacto social de la Clase 13.\n\n"
                              "Escribir esto explícitamente tiene un efecto adicional que vale la "
                              "pena señalarles: **es lo contrario del plagio.** Usar lo que otros "
                              "resolvieron, diciendo de dónde salió, es la práctica normal de la "
@@ -2082,7 +2082,7 @@ TEMAS[9] = {
         ],
         "cierre": "Tres minutos y una idea que vale para toda la carrera: **nadie parte de cero, y "
                   "decirlo es una fortaleza.** Contraste las dos frases en voz alta, porque la "
-                  "diferencia es lo que se califica en la sesión 15: «esto no existe» es una "
+                  "diferencia es lo que se califica en la Clase 15: «esto no existe» es una "
                   "apuesta; «existen estas tres soluciones, ninguna funciona sin computador en el "
                   "mostrador ni sin administrador, y nosotros resolvemos justamente eso» es una "
                   "posición defendible ante cualquier jurado. Repita la regla de integridad, que es "
@@ -2100,8 +2100,8 @@ TEMAS[9] = {
                     "exigencia de citar fuente, año y alcance; la **sesión 3** ya había dicho que la "
                     "IA no responde por lo que dice. Hacia adelante: la **sesión 10** reusa el "
                     "diseño de pantallas que ficharon hoy; la **sesión 11** usa IA con la "
-                    "verificación que hoy se practicó; la **sesión 13** usa la fuente normativa para "
-                    "el impacto social; y el **informe final de la sesión 16** se construye sobre "
+                    "verificación que hoy se practicó; la **Clase 13** usa la fuente normativa para "
+                    "el impacto social; y el **informe final de la Clase 16** se construye sobre "
                     "estas tres fichas, la brecha y la propuesta de mejora.",
     },
 
@@ -2260,7 +2260,7 @@ TEMAS[10] = {
                  "**Días.** Es la fase de construcción, no de prototipo."],
             ],
             "note": "En este curso el prototipo del corte 2 es de **baja o media** fidelidad. La alta "
-                    "aparece en la sesión 14, solo para la presentación final.",
+                    "aparece en la Clase 14, solo para la presentación final.",
             "col_w": [1.7, 2.7, 2.9, 2.5],
         },
         {
@@ -2320,7 +2320,7 @@ TEMAS[10] = {
                 ("advertencia",
                  "**No pulan el prototipo: no es lo que se califica.** Se califica que el flujo se "
                  "entienda, que los textos sean reales y que existan el estado vacío y el de error. "
-                 "Un equipo que gasta el taller eligiendo colores llega a la sesión 12 sin nada que "
+                 "Un equipo que gasta el taller eligiendo colores llega a la Clase 12 sin nada que "
                  "probar."),
                 ("advertencia",
                  "**Si el prototipo lleva datos, que sean inventados.** Ningún nombre, cédula, "
@@ -2394,7 +2394,7 @@ TEMAS[10] = {
                 "responde *¿aguanta?, ¿sirve en el celular viejo?*.",
                 "La regla del curso, que hay que dejar clara para que nadie pierda el fin de semana: "
                 "**el prototipo del corte 2 es de baja o media fidelidad**. La alta aparece en la "
-                "sesión 14, y solo para la presentación final. Un equipo que llega a la sesión 11 "
+                "Clase 14, y solo para la presentación final. Un equipo que llega a la Clase 11 "
                 "con una pantalla preciosa y sin estado de error entendió mal la sesión.",
                 "Vale la pena conectarlo con la curva de la sesión 7: los niveles de fidelidad son "
                 "esa misma curva vista desde el diseño. Prototipar en baja fidelidad es exactamente "
@@ -2428,7 +2428,7 @@ TEMAS[10] = {
                 "la sesión 8: la tarea (3) del plan de validación —«dígame qué haría si el libro que "
                 "busca no aparece»— exige justamente esta pantalla.",
                 "**Decir qué pasa al tocar cada cosa**: una flecha y una palabra por botón. Un botón "
-                "sin destino escrito es una decisión que nadie tomó, y en la sesión 12 la va a "
+                "sin destino escrito es una decisión que nadie tomó, y en la Clase 12 la va a "
                 "tomar el usuario por ustedes, mal.",
             ],
         },
@@ -2450,14 +2450,14 @@ TEMAS[10] = {
                 "como si funcionara. Con eso un equipo de primer semestre puede probar un flujo "
                 "completo con un usuario real sin escribir una línea de código. Dedíquele dos "
                 "minutos de pantalla compartida: es lo que más van a agradecer.",
-                "**Canva** queda reservado para la sesión 14 y para material que verá alguien "
+                "**Canva** queda reservado para la Clase 14 y para material que verá alguien "
                 "externo. Y **papel con una foto** es perfectamente válido en este curso: es lo más "
                 "rápido que existe y hay que decirlo, porque hay equipos que se paralizan buscando "
                 "la herramienta perfecta.",
                 "Las dos advertencias del cierre son operativas. **No pulir el prototipo**: se "
                 "califica que el flujo se entienda, que los textos sean reales y que existan el "
                 "estado vacío y el de error; un equipo que gasta el taller eligiendo colores llega "
-                "a la sesión 12 sin nada que probar. Y **si el prototipo lleva datos, que sean "
+                "a la Clase 12 sin nada que probar. Y **si el prototipo lleva datos, que sean "
                 "inventados**: ningún nombre, cédula, teléfono, dirección ni foto de una persona "
                 "real, ni de ellos mismos. Es la regla del curso y es la Ley 1581 de 2012 de la "
                 "sesión 4 aplicada al lugar donde de verdad se incumple — los datos de prueba se "
@@ -2508,7 +2508,7 @@ TEMAS[10] = {
                 "**15 min** en salas. Entre a las cinco con **una sola pregunta: ¿qué se ve cuando "
                 "no se encuentra nada?** Es el estado de error y falta siempre.",
                 "**[Nota docente]:** corte en caliente a quien esté eligiendo colores o buscando "
-                "íconos. Dígalo sin rodeos: eso no se califica hoy y les está costando la sesión 12.",
+                "íconos. Dígalo sin rodeos: eso no se califica hoy y les está costando la Clase 12.",
                 "**[Nota docente]:** si un equipo tiene proyecto de proceso sin pantallas, las «tres "
                 "pantallas» son **tres pasos del proceso o el formato que se va a llenar**. Los "
                 "cinco pasos aplican igual.",
@@ -2522,7 +2522,7 @@ TEMAS[10] = {
                 "**[Nota docente]:** los cinco enlaces en el chat antes de arrancar.",
                 "**[Nota docente]:** haga una pregunta de usuario a cada equipo mientras exponen "
                 "—«soy la voluntaria y no sé qué es esto, ¿qué toco?»—. Diez segundos, y es la mejor "
-                "preparación posible para la sesión 12.",
+                "preparación posible para la Clase 12.",
                 "**[Nota docente]:** anote qué le falta a cada prototipo. En la sesión 11 se corrige "
                 "exactamente eso, con IA y a mano.",
             ],
@@ -2594,13 +2594,13 @@ TEMAS[10] = {
         ("El flujo son tres pasos con una frase de propósito por pantalla, cada una haciendo una sola cosa", 20,
          "Una pantalla que hace dos cosas confunde al usuario y esconde una decisión de diseño no tomada."),
         ("Las tres pantallas están dibujadas, con el camino principal destacado y cada botón con destino", 25,
-         "Un botón sin destino es una decisión que va a tomar el usuario por ustedes, mal, en la sesión 12."),
+         "Un botón sin destino es una decisión que va a tomar el usuario por ustedes, mal, en la Clase 12."),
         ("Existen el estado vacío y el de error, con el texto exacto del mensaje", 20,
          "El camino feliz es la minoría de los casos reales: un prototipo sin errores no prueba nada."),
         ("Todos los textos son reales, sin relleno", 15,
          "Los textos falsos esconden los problemas: el rótulo que no se sabe escribir es una función que no está definida."),
         ("El guion de prueba tiene tres tareas ejecutables y una cubre el caso sin respuesta", 20,
-         "Es lo que hace posible la validación de la sesión 12: se pide hacer, no opinar."),
+         "Es lo que hace posible la validación de la Clase 12: se pide hacer, no opinar."),
     ],
 
     "solucion": {
@@ -2763,7 +2763,7 @@ TEMAS[10] = {
                              "inmediato o hay un momento de publicación?—. **Eso es exactamente lo "
                              "que hacen los textos reales**: obligan a decidir lo que el relleno "
                              "permite postergar. Si hubieran escrito «botón aquí», la pregunta no "
-                             "habría aparecido hasta la sesión 12, con un usuario delante.",
+                             "habría aparecido hasta la Clase 12, con un usuario delante.",
                 "como_calificar": "15 pts. Verificación literal: **recorra el dibujo buscando "
                                   "«texto», «botón», «aquí va», «lorem ipsum»**. Cada uno resta 4. Y "
                                   "haga la pregunta que enseña: «¿por qué este botón se llama "
@@ -2809,7 +2809,7 @@ TEMAS[10] = {
                                   "20 por sí sola, porque es la que prueba el estado de error; (c) "
                                   "**¿la persona es ajena al equipo?** Si planean probar entre "
                                   "ellos, corríjalo hoy — es la trampa de la sesión 8 reapareciendo "
-                                  "y arruina la sesión 12. Valore que estén escritas las reglas del "
+                                  "y arruina la Clase 12. Valore que estén escritas las reglas del "
                                   "que aplica la prueba: sin ellas, el equipo ayuda al usuario sin "
                                   "darse cuenta y la prueba no mide nada."
             },
@@ -2818,7 +2818,7 @@ TEMAS[10] = {
             {"caso": "Equipos que se ponen a elegir colores, íconos y tipografías",
              "clave": "Es el desperdicio de taller más común de esta sesión. Córtelo en caliente y "
                       "con el argumento, no con la orden: la paradoja de la fidelidad dice que "
-                      "cuanto más terminado se vea, menos crítica útil van a recibir en la sesión "
+                      "cuanto más terminado se vea, menos crítica útil van a recibir en la Clase "
                       "12, así que **pulir hoy es perder información mañana**. Redirija con la "
                       "pregunta del estado de error, que es lo que les falta."},
             {"caso": "Proyectos de proceso o gestión, sin pantallas",
@@ -2843,7 +2843,7 @@ TEMAS[10] = {
         "cierre": "Tres minutos y una idea que hay que dejar bien plantada: **el prototipo no es una "
                   "maqueta, es una pregunta**, y se hace feo a propósito para que la gente se atreva "
                   "a decir lo que está mal. Repita las tres exigencias concretas, porque son las que "
-                  "van a definir la nota y la calidad de la sesión 12: textos reales, estado de "
+                  "van a definir la nota y la calidad de la Clase 12: textos reales, estado de "
                   "error con salida, datos inventados. Vale la pena cerrar con el hallazgo del caso "
                   "modelo, que es pequeño y memorable: la línea «lista actualizada el viernes a las "
                   "6:00 p. m.» es la manera de ser honesto en la interfaz con el sacrificio que el "
@@ -2858,8 +2858,8 @@ TEMAS[10] = {
                     "pantalla que se reusa de los antecedentes; la **sesión 7** dejó los criterios de "
                     "aceptación, que son las tareas de la prueba; la **sesión 4** dejó la Ley 1581, "
                     "que es la regla de datos inventados. Hacia adelante: la **sesión 11** genera "
-                    "variantes de estas pantallas con IA y corrige a mano; la **sesión 12** ejecuta "
-                    "este guion con una persona ajena; la **sesión 14** sube la fidelidad solo para "
+                    "variantes de estas pantallas con IA y corrige a mano; la **Clase 12** ejecuta "
+                    "este guion con una persona ajena; la **Clase 14** sube la fidelidad solo para "
                     "la presentación; y el **informe final** documenta la evolución del prototipo.",
     },
 
@@ -2874,8 +2874,8 @@ TEMAS[10] = {
          "por_que": "Informa que algo salió mal y no ofrece salida: es una puerta cerrada con un letrero.",
          "pida": "Un mensaje que diga **qué hacer ahora**, aunque la salida sea fuera del sistema."},
         {"dice": "Media hora eligiendo colores y tipografías",
-         "por_que": "La fidelidad alta reduce la crítica útil: pulir hoy es perder información en la sesión 12.",
-         "pida": "El estado de error y los textos reales. Los colores, en la sesión 14."},
+         "por_que": "La fidelidad alta reduce la crítica útil: pulir hoy es perder información en la Clase 12.",
+         "pida": "El estado de error y los textos reales. Los colores, en la Clase 14."},
         {"dice": "Datos de personas reales en el prototipo, «porque es solo de prueba»",
          "por_que": "Es tratamiento de datos personales sin autorización: la Ley 1581 de 2012 no distingue entre prueba y producción.",
          "pida": "Datos inventados, siempre. Y en las notas de la prueba, el rol y no el nombre."},
@@ -2913,9 +2913,9 @@ TEMAS[10] = {
         "En las salas, la pregunta única es **«¿qué se ve cuando no se encuentra nada?»**. El estado "
         "de error falta siempre y vale 20 puntos.",
         "**Corte en caliente a quien esté eligiendo colores.** Use el argumento de la paradoja de la "
-        "fidelidad, no la orden: pulir hoy es perder crítica útil en la sesión 12.",
+        "fidelidad, no la orden: pulir hoy es perder crítica útil en la Clase 12.",
         "Haga **una pregunta de usuario a cada equipo durante su exposición** —«soy la voluntaria y "
-        "no sé qué es esto, ¿qué toco?»—. Diez segundos y es el mejor ensayo para la sesión 12.",
+        "no sé qué es esto, ¿qué toco?»—. Diez segundos y es el mejor ensayo para la Clase 12.",
         "**Anote qué le falta a cada prototipo.** En la sesión 11 se corrige exactamente eso, y la "
         "lista permite verificar si el equipo corrigió o solo generó variantes nuevas.",
         "Repita la regla de datos: **inventados siempre**, ni siquiera los propios. Es donde de "
@@ -3127,7 +3127,7 @@ TEMAS[11] = {
                 "el título con una tilde de más?», «¿qué pasa si dos personas piden el mismo libro "
                 "el mismo día?». Aquí la IA es genuinamente superior a un equipo de primer semestre, "
                 "porque enumerar casos es exactamente lo que hace bien. Vale la pena decírselo, "
-                "porque es el uso que más les va a servir en la sesión 12.",
+                "porque es el uso que más les va a servir en la Clase 12.",
                 "**Hace mal: el contexto local.** No sabe que no hay computador en el mostrador, que "
                 "las voluntarias rotan, que el presupuesto es cero, que la conexión es intermitente. "
                 "Y como no lo sabe, propone para un contexto que no es el suyo.",
@@ -3294,7 +3294,7 @@ TEMAS[11] = {
             "cuerpo": [
                 "Una idea: **pudieron corregir al asistente porque tenían sus decisiones "
                 "escritas.** Eso es lo que hicieron en el corte 2.",
-                "Anuncie el corte 3: empieza con la **presentación de avances** de la sesión 12, "
+                "Anuncie el corte 3: empieza con la **presentación de avances** de la Clase 12, "
                 "donde el prototipo se prueba con una persona ajena al equipo. Es la única "
                 "retroalimentación gratis del semestre.",
             ],
@@ -3617,7 +3617,7 @@ TEMAS[11] = {
                       "distintas de organizar el formato o la secuencia de pasos**. El asistente es "
                       "especialmente útil aquí para pedir **casos que no se previeron** —«¿qué pasa "
                       "si el paso 2 se hizo pero el 1 no?»—, y esa lista es un insumo directo para "
-                      "la prueba de la sesión 12."},
+                      "la prueba de la Clase 12."},
         ],
         "cierre": "Tres minutos, y hay dos cosas que decir. La primera es la idea del corte: **el "
                   "equipo pudo corregir al asistente porque tenía sus decisiones escritas.** Las "
@@ -3630,7 +3630,7 @@ TEMAS[11] = {
                   "es operativa: recuerde que la evaluación del corte 2 viene inmediatamente "
                   "después de las exposiciones, en ExamLab, individual y a libro abierto sobre sus "
                   "propios documentos — que sea a libro abierto premia exactamente al equipo que "
-                  "documentó—. Y anuncie el corte 3, que empieza con la sesión 12: el prototipo se "
+                  "documentó—. Y anuncie el corte 3, que empieza con la Clase 12: el prototipo se "
                   "prueba **con una persona ajena al equipo**, y es la única retroalimentación "
                   "gratis del semestre.",
         "conexion": "Hacia atrás: la **sesión 10** dejó el prototipo que hoy se mejora; la **sesión "
@@ -3638,10 +3638,10 @@ TEMAS[11] = {
                     "dejó los requisitos no funcionales que se copian en el prompt; la **sesión 5** "
                     "dejó el límite de datos; la **sesión 4** dejó la Ley 1581, que hoy se aplica "
                     "dos veces; la **sesión 3** dejó la regla de entregar el prompt y las "
-                    "correcciones. Hacia adelante: la **sesión 12** prueba este prototipo v2 con una "
-                    "persona ajena; la **sesión 13** evalúa el impacto social y ambiental de la "
-                    "solución; la **sesión 14** sube la fidelidad para la presentación; y el "
-                    "**informe final de la sesión 16** incluye la declaración del uso de IA que hoy "
+                    "correcciones. Hacia adelante: la **Clase 12** prueba este prototipo v2 con una "
+                    "persona ajena; la **Clase 13** evalúa el impacto social y ambiental de la "
+                    "solución; la **Clase 14** sube la fidelidad para la presentación; y el "
+                    "**informe final de la Clase 16** incluye la declaración del uso de IA que hoy "
                     "quedó escrita.",
     },
 
@@ -3722,11 +3722,11 @@ TEMAS[11] = {
               "probarlo — solo el rol, no el nombre.",
         "adelanto": "arranca el **corte 3** con la **presentación de avances**: el prototipo se prueba "
                     "con una persona ajena al equipo y se recibe retroalimentación entre pares.",
-        "aviso": "Para la sesión 12 traigan el prototipo v2 navegable **y la prueba ya hecha con una "
+        "aviso": "Para la Clase 12 traigan el prototipo v2 navegable **y la prueba ya hecha con una "
                  "persona ajena al equipo**, con la lista de lo que falló. Sin esa lista no hay nada "
-                 "que presentar: la sesión 12 es sobre lo que salió mal, no sobre lo que se planeó.",
+                 "que presentar: la Clase 12 es sobre lo que salió mal, no sobre lo que se planeó.",
     },
 
-    "cierre_titulo": "Cierra el corte 2 · Nos vemos en la sesión 12",
+    "cierre_titulo": "Cierra el corte 2 · Nos vemos en la Clase 12",
     "cierre_frase": "Pudieron corregir al asistente porque tenían sus decisiones escritas",
 }

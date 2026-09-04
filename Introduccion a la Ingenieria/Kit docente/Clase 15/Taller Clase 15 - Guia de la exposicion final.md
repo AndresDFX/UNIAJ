@@ -8,7 +8,7 @@ Vocero de hoy: ____________________  ·  Enlace del documento: _________________
 
 ## Qué hay que hacer
 
-Sustenten el proyecto en **nueve minutos**, con los cinco tramos de la sesión 14, **mostrando el prototipo funcionando** y los hallazgos de la prueba con personas reales. Después, **tres minutos de preguntas**: responde quien tiene el tramo. Vale el **15 %** del curso.
+Sustenten el proyecto en **nueve minutos**, con los cinco tramos de la Clase 14, **mostrando el prototipo funcionando** y los hallazgos de la prueba con personas reales. Después, **tres minutos de preguntas**: responde quien tiene el tramo. Vale el **15 %** del curso.
 
 - **Tiempo de trabajo:** 60 min, en la sala de grupo de su equipo.
 - **Exposición:** 9 min por equipo, habla el vocero con la pantalla ya compartida.

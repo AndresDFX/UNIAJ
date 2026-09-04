@@ -3,7 +3,7 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 3 de 16 · corresponde al tema 3 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 2 de 11 (sesión doble junto con la Clase 2) · corresponde al tema 3 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **1** (30%) · RAA: **RAA1**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
@@ -53,7 +53,7 @@ De ahí sale el criterio de éxito que se usa en todo el semestre y que hay que 
 
 ### Actores, requisitos y retroalimentación: los tres que se olvidan - diapositiva 7
 
-El concepto de actor hay que estirarlo más allá del usuario, porque ahí está la falla que más cuesta. En el sistema de citas los actores obvios son el paciente y la secretaria. Los que se olvidan son el médico (cuya agenda se llena distinto), quien paga el servicio (que quiere menos cupos perdidos) y **el vecino que antes conseguía cita madrugando y ahora no la consigue**. Ese último es el más importante para el curso, porque es un actor al que el sistema le empeoró la vida sin que nadie lo consultara. La sesión 13, sobre impacto social, es básicamente una hora dedicada a buscar a ese actor.
+El concepto de actor hay que estirarlo más allá del usuario, porque ahí está la falla que más cuesta. En el sistema de citas los actores obvios son el paciente y la secretaria. Los que se olvidan son el médico (cuya agenda se llena distinto), quien paga el servicio (que quiere menos cupos perdidos) y **el vecino que antes conseguía cita madrugando y ahora no la consigue**. Ese último es el más importante para el curso, porque es un actor al que el sistema le empeoró la vida sin que nadie lo consultara. La Clase 13, sobre impacto social, es básicamente una hora dedicada a buscar a ese actor.
 
 Requisito contra deseo es la distinción práctica que más van a usar. La regla es operativa: es requisito si sin eso el sistema no cumple su propósito; es deseo si lo mejora. Y hay que advertir el fenómeno social: **todo el mundo presenta sus deseos como requisitos**, no por mala fe, sino porque desde dentro de su trabajo todo parece indispensable. Separarlos no es un trámite: es lo que permite entregar algo en un semestre en vez de nada en dos años.
 
@@ -83,7 +83,7 @@ Numeración real del deck `Clases/Clase 3 - Fundamentos basicos de la Ingenieria
 9. El asistente de IA: qué hace bien y en qué miente
 10. Taller de hoy: Anatomía del sistema
 11. Cómo se expone en 3 minutos
-12. Para la sesión 4
+12. Para la Clase 4
 13. Cierre · Nos vemos en la sesión 4
 
 ## Plan de clase minuto a minuto (90 min)
@@ -130,7 +130,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** los cinco enlaces en el chat antes de la primera exposición.
 
-**[Nota docente]:** anote los actores olvidados que aparezcan. Son material directo para la sesión 13 y conviene tener la lista.
+**[Nota docente]:** anote los actores olvidados que aparezcan. Son material directo para la Clase 13 y conviene tener la lista.
 
 ### 01:27–01:30 · Cierre · [Slide 12][Slide 13]
 
@@ -171,7 +171,7 @@ Sí, hoy sí. La idea es que ese problema madure: en la sesión 6 se entrega la 
 - Las cinco salas de grupo se crean **antes** de la sesión.
 - Es la primera de las dos sesiones con IA autorizada. Diga la regla completa **antes** de abrir las salas, no después: prompt + correcciones, o no puntúa.
 - El error más útil de cazar en las salas es la **cifra inventada**. Si aparece un porcentaje o un promedio en el documento, pregunte de dónde salió.
-- Anote los actores no-usuarios que aparezcan en las cinco exposiciones: es la lista de entrada de la sesión 13 y no se vuelve a tener tan fácil.
+- Anote los actores no-usuarios que aparezcan en las cinco exposiciones: es la lista de entrada de la Clase 13 y no se vuelve a tener tan fácil.
 - Ningún equipo debe subir nombres de funcionarios ni de personas reales. Si el sistema es de la propia universidad, se usa el rol.
 
 ## Material de esta clase

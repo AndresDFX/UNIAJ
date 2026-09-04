@@ -14,7 +14,7 @@
 > Las cinco preguntas son los cinco bloques de la ficha, en el mismo orden y con
 > los mismos puntos que la rubrica del taller.
 
-**Consigna del equipo:** Dibujen en Excalidraw la **huella material** del sistema de su proyecto: por dónde pasa la energía, la materia y el residuo en las cuatro etapas. Marquen cuál etapa pesa más, propongan **dos decisiones de diseño** que la bajen y definan **un indicador medible** que se pueda revisar en la sesión 16.
+**Consigna del equipo:** Dibujen en Excalidraw la **huella material** del sistema de su proyecto: por dónde pasa la energía, la materia y el residuo en las cuatro etapas. Marquen cuál etapa pesa más, propongan **dos decisiones de diseño** que la bajen y definan **un indicador medible** que se pueda revisar en la Clase 16.
 
 ---
 
@@ -112,7 +112,7 @@ Un número que se pueda medir al final del semestre para saber si la decisión f
 
 **Rubrica esperada (campo Rubrica):**
 
-El indicador tiene unidad y se puede medir en la sesión 16 (20 pts).
+El indicador tiene unidad y se puede medir en la Clase 16 (20 pts).
 
 Comprobacion: tiene unidad y se puede medir con lo que ustedes van a construir. «Ser sostenibles» no es un indicador.
 

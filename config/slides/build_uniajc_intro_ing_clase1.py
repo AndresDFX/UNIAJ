@@ -174,7 +174,7 @@ def build_pptx():
         prs,
         t("El método del curso: de un problema del entorno a una propuesta"),
         C1.METODO,
-        sub="Los mismos cuatro pasos, de la actividad de hoy al proyecto de la sesión 15",
+        sub="Los mismos cuatro pasos, de la actividad de hoy al proyecto de la Clase 15",
         idx=9,
     )
 
@@ -368,7 +368,7 @@ def md_guion(titulos):
         "### 01:12–01:27 · Exposiciones · [Slide 13]",
         "De vuelta en la sala principal: cinco equipos × 3 min, cronómetro en pantalla, habla el "
         "vocero con su documento ya compartido. **Se corta a los 3 min "
-        "desde la primera sesión:** si hoy se permite estirar, en la sesión 15 las exposiciones "
+        "desde la primera sesión:** si hoy se permite estirar, en la Clase 15 las exposiciones "
         "finales no caben en el bloque.",
         "",
         "**[Nota docente]:** no dé retroalimentación equipo por equipo — cinco rondas de "

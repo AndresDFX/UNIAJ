@@ -14,7 +14,7 @@
 > Las cinco preguntas son los cinco bloques de la ficha, en el mismo orden y con
 > los mismos puntos que la rubrica del taller.
 
-**Consigna del equipo:** Sustenten el proyecto en **nueve minutos**, con los cinco tramos de la sesión 14, **mostrando el prototipo funcionando** y los hallazgos de la prueba con personas reales. Después, **tres minutos de preguntas**: responde quien tiene el tramo. Vale el **15 %** del curso.
+**Consigna del equipo:** Sustenten el proyecto en **nueve minutos**, con los cinco tramos de la Clase 14, **mostrando el prototipo funcionando** y los hallazgos de la prueba con personas reales. Después, **tres minutos de preguntas**: responde quien tiene el tramo. Vale el **15 %** del curso.
 
 ---
 

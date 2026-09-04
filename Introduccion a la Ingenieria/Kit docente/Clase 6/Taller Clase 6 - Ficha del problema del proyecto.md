@@ -46,7 +46,7 @@ Quién vive el problema (el dueño del problema), quién más se afecta sin ser 
 
 Una frase de la forma: «el proyecto sirvió si <la cifra de la línea base> pasa de X a Y, medido así». Y la causa del árbol que van a atacar.
 
-> **Se revisa que:** el criterio se puede verificar en la sesión 16 con la misma medición de la línea base, y ataca una causa, no un efecto.
+> **Se revisa que:** el criterio se puede verificar en la Clase 16 con la misma medición de la línea base, y ataca una causa, no un efecto.
 
 ## Dónde se entrega: en ExamLab
 

@@ -66,7 +66,7 @@ Comprobacion: los tipos están bien asignados y se dice explícitamente cuáles 
 
 ## 3. QUÉ ARREGLAMOS Y QUÉ NO
 
-Lo que se arregla antes de la sesión 14, y **lo que no se arregla con su razón**: fuera del alcance, no alcanza el tiempo, o cambia una restricción.
+Lo que se arregla antes de la Clase 14, y **lo que no se arregla con su razón**: fuera del alcance, no alcanza el tiempo, o cambia una restricción.
 
 **Se revisa que** hay al menos una cosa en la lista de «no se arregla», con razón. Un equipo que dice que va a arreglar todo no priorizó.
 

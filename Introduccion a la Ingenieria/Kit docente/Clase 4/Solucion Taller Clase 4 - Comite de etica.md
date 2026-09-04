@@ -96,7 +96,7 @@ Ejemplos de reglas verificables que salen bien de este caso:
 
 Las tres son comprobables por otra persona, que es el requisito. La primera es la que más se parece al caso; la segunda es la más fácil de cumplir y aun así rara.
 
-**Cómo calificar:** 10 pts. El único criterio es **que se pueda comprobar**. Lea la regla y pregúntese: ¿podría yo revisar el documento del equipo en la sesión 12 y decir si la cumplieron? Si la respuesta es no, es una intención, no una regla, y vale 3.
+**Cómo calificar:** 10 pts. El único criterio es **que se pueda comprobar**. Lea la regla y pregúntese: ¿podría yo revisar el documento del equipo en la Clase 12 y decir si la cumplieron? Si la respuesta es no, es una intención, no una regla, y vale 3.
 
 ## Rúbrica del taller
 
@@ -134,4 +134,4 @@ Tres minutos, una idea, dicha con estas palabras: **en los cuatro casos el softw
 
 ## Con qué se conecta
 
-Hacia atrás: la sesión 3 dejó identificado el **actor no-usuario** de cada sistema —el afectado que no lo usa—, y hoy ese actor es exactamente quien aparece en los cuatro casos. Hacia adelante: la **sesión 5** extiende el análisis al afectado ambiental, que no tiene voz; la **sesión 6** exige que la ficha del problema del proyecto declare a quién puede perjudicar; la **sesión 13** vuelve sobre impacto social con el proyecto ya construido; y todo el manejo de datos del proyecto queda amarrado a la Ley 1581 desde hoy.
+Hacia atrás: la sesión 3 dejó identificado el **actor no-usuario** de cada sistema —el afectado que no lo usa—, y hoy ese actor es exactamente quien aparece en los cuatro casos. Hacia adelante: la **sesión 5** extiende el análisis al afectado ambiental, que no tiene voz; la **sesión 6** exige que la ficha del problema del proyecto declare a quién puede perjudicar; la **Clase 13** vuelve sobre impacto social con el proyecto ya construido; y todo el manejo de datos del proyecto queda amarrado a la Ley 1581 desde hoy.

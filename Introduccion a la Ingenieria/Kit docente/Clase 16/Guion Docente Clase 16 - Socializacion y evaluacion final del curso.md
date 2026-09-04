@@ -3,13 +3,13 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 16 de 16 · corresponde al tema 16 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 11 de 11 (sesión doble junto con la Clase 15) · corresponde al tema 16 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **3** (40%) · RAA: **RAA1, RAA2, RAA3** · **cierra el corte**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
 - Enfoque: Aprendizaje basado en competencia + Aprendizaje Invertido · Estrategia: ABPr — Aprendizaje Basado en Proyectos
 
-> **No hay examen final escrito en este curso.** El 40 % del corte 3 se reparte en exposición final 15 % (sesión 15) + **informe final 20 % (hoy)** + asistencia 5 %. El informe **se entrega dentro de la clase**: se arma, se revisa con la lista de verificación y se sube antes de terminar la sesión.
+> **No hay examen final escrito en este curso.** El 40 % del corte 3 se reparte en exposición final 15 % (Clase 15) + **informe final 20 % (hoy)** + asistencia 5 %. El informe **se entrega dentro de la clase**: se arma, se revisa con la lista de verificación y se sube antes de terminar la sesión.
 
 ## Objetivos de la clase
 - Armar y entregar el **informe final** con sus doce secciones (**20 %**).
@@ -55,13 +55,13 @@ Sobre la **sección 11, la declaración del uso de IA**: es un cuarto de página
 
 ### La galería, y por qué socializar no es exponer otra vez - diapositiva 8
 
-Los veinte minutos de socialización **no son una segunda ronda de exposiciones** — eso fue la sesión 15 y ya tiene nota. Aquí el formato es una **galería**: cada equipo deja en su columna del muro tres imágenes —una pantalla del prototipo, la matriz de impacto y la diapositiva del problema— y **cinco líneas**: el problema, la decisión, un hallazgo, un número de impacto y el siguiente paso.
+Los veinte minutos de socialización **no son una segunda ronda de exposiciones** — eso fue la Clase 15 y ya tiene nota. Aquí el formato es una **galería**: cada equipo deja en su columna del muro tres imágenes —una pantalla del prototipo, la matriz de impacto y la diapositiva del problema— y **cinco líneas**: el problema, la decisión, un hallazgo, un número de impacto y el siguiente paso.
 
-El reparto son 3 minutos por equipo para presentar la columna, y los 5 restantes para **recorrido libre**: cada estudiante entra a la columna de otro equipo y deja un comentario. Es rápido, es de baja presión —después de la sesión 15 el curso está cansado— y deja un registro del semestre que se puede mostrar el año siguiente.
+El reparto son 3 minutos por equipo para presentar la columna, y los 5 restantes para **recorrido libre**: cada estudiante entra a la columna de otro equipo y deja un comentario. Es rápido, es de baja presión —después de la Clase 15 el curso está cansado— y deja un registro del semestre que se puede mostrar el año siguiente.
 
-**Por qué vale la pena y no es relleno:** en la sesión 15 cada equipo escuchó cuatro exposiciones de nueve minutos, y a esa velocidad casi nadie retiene los detalles de los otros proyectos. La galería deja los cinco proyectos **lado a lado y por escrito**, y ahí sí se ven las comparaciones: cinco maneras distintas de definir un problema, cinco matrices de decisión, cinco listas de afectados. Es la única vez en el semestre en que el curso ve su propio trabajo completo.
+**Por qué vale la pena y no es relleno:** en la Clase 15 cada equipo escuchó cuatro exposiciones de nueve minutos, y a esa velocidad casi nadie retiene los detalles de los otros proyectos. La galería deja los cinco proyectos **lado a lado y por escrito**, y ahí sí se ven las comparaciones: cinco maneras distintas de definir un problema, cinco matrices de decisión, cinco listas de afectados. Es la única vez en el semestre en que el curso ve su propio trabajo completo.
 
-Aproveche los cuatro errores del informe [Slide 8] durante este bloque, mientras los equipos terminan de subir la columna: son las cuatro cosas que va a encontrar calificando y decirlas ahora les da tiempo de corregirlas. **La más frecuente es la sección 10 vacía** —«ninguna limitación»—, que después de la sesión 12 no es creíble en ningún equipo.
+Aproveche los cuatro errores del informe [Slide 8] durante este bloque, mientras los equipos terminan de subir la columna: son las cuatro cosas que va a encontrar calificando y decirlas ahora les da tiempo de corregirlas. **La más frecuente es la sección 10 vacía** —«ninguna limitación»—, que después de la Clase 12 no es creíble en ningún equipo.
 
 ### Autoevaluación y coevaluación: cómo evitar que sea un trámite - diapositiva 9
 
@@ -69,7 +69,7 @@ La autoevaluación se degrada en trámite cuando se pide una nota. **Pedir cuatr
 
 Y hay que decir la consecuencia con claridad, porque cambia el resultado: **ponerse la nota máxima sin evidencia baja el puntaje.** Lo que se evalúa no es la autoestima: es **la capacidad de mirar el propio trabajo con honestidad**, que es una competencia profesional. El estudiante que escribe «no entregué mi sección a tiempo dos veces y el equipo tuvo que cubrirme» está demostrando exactamente lo que se busca.
 
-La coevaluación es más delicada y necesita una regla dura: **se evalúa el trabajo, no la persona.** Tres criterios —cumplimiento de acuerdos, aporte al proyecto, disposición para ayudar— y la misma exigencia de la sesión 12: **observación, no adjetivo**. «No aportó» no sirve como coevaluación; «no entregó su sección en las tres últimas sesiones» sí, porque es verificable y porque la persona puede responder a un hecho y no a una etiqueta.
+La coevaluación es más delicada y necesita una regla dura: **se evalúa el trabajo, no la persona.** Tres criterios —cumplimiento de acuerdos, aporte al proyecto, disposición para ayudar— y la misma exigencia de la Clase 12: **observación, no adjetivo**. «No aportó» no sirve como coevaluación; «no entregó su sección en las tres últimas sesiones» sí, porque es verificable y porque la persona puede responder a un hecho y no a una etiqueta.
 
 **La autoevaluación individual se entrega solo al docente**, no al muro ni al equipo. Sin esa garantía nadie escribe nada honesto, y el ejercicio se vuelve un intercambio de cortesías. Dígalo antes de que empiecen a escribir.
 
@@ -141,9 +141,9 @@ Cada equipo deja en su columna del muro **tres imágenes** —una pantalla del p
 
 **3 min por equipo** para presentar la columna, y **5 min de recorrido libre**: cada estudiante comenta en la columna de otro equipo.
 
-**[Nota docente]:** aclare que **esto no es exponer otra vez** — la nota fue la sesión 15. Es dejar los cinco proyectos lado a lado, que es la única vez en el semestre en que el curso ve su propio trabajo completo.
+**[Nota docente]:** aclare que **esto no es exponer otra vez** — la nota fue la Clase 15. Es dejar los cinco proyectos lado a lado, que es la única vez en el semestre en que el curso ve su propio trabajo completo.
 
-**[Nota docente]:** mientras suben las columnas, comente los **cuatro errores del informe** [Slide 8]. El más frecuente es la **sección 10 vacía**: después de la sesión 12, «ninguna limitación» no es creíble en ningún equipo. Decirlo ahora les da tiempo de corregirlo.
+**[Nota docente]:** mientras suben las columnas, comente los **cuatro errores del informe** [Slide 8]. El más frecuente es la **sección 10 vacía**: después de la Clase 12, «ninguna limitación» no es creíble en ningún equipo. Decirlo ahora les da tiempo de corregirlo.
 
 ### 00:50–01:10 · Autoevaluación y coevaluación (20 min) · [Slide 9]
 
@@ -176,14 +176,14 @@ Y la despedida práctica: **el siguiente paso de su proyecto está escrito en la
 | «Empecemos por la portada y el resumen» | El resumen exige tener todo lo demás decidido: escribirlo primero obliga a reescribirlo, y los 24 minutos no alcanzan. | Pegar las once secciones que ya existen, revisar, y el resumen al final. Aunque vaya primero en el documento. |
 | Ir marcando en la lista lo que ya está hecho | Se termina con una lista de logros y sin saber qué falta, que es justo lo que se necesita para repartir el trabajo. | Marcar en rojo **lo que falta**. La lista de tareas aparece sola y se reparte en cuatro minutos. |
 | «Probamos con don Óscar, el vecino del 302» | Es un dato personal de un tercero en un documento que se entrega. Es la regla del curso desde la sesión 4. | El rol, no el nombre: «un vecino de 34 años, ajeno al equipo». La sección 8 es donde más se rompe esta regla. |
-| «Limitaciones: ninguna» | Después de la sesión 12 todos los equipos tienen limitaciones reales, así que «ninguna» dice que no se probó con nadie. | Lo que se decidió no arreglar, con el motivo. Declararlo sube la nota; ocultarlo la baja. |
+| «Limitaciones: ninguna» | Después de la Clase 12 todos los equipos tienen limitaciones reales, así que «ninguna» dice que no se probó con nadie. | Lo que se decidió no arreglar, con el motivo. Declararlo sube la nota; ocultarlo la baja. |
 | «En qué fallé: en nada, cumplí con todo» | Lo que se evalúa es la capacidad de mirar el propio trabajo con honestidad, y esa respuesta demuestra lo contrario. | Un hecho verificable: «entregué mi sección tarde dos veces y otro integrante tuvo que cubrirme». |
 
 ## Dudas frecuentes del estudiante
 
 **¿Hay examen final?**
 
-**No.** En este curso no hay evaluación escrita en el corte 3: el 40 % se reparte en la exposición final de la sesión 15 (15 %), el **informe final de hoy (20 %)** y asistencia (5 %). Las dos evaluaciones escritas del semestre fueron las de los cortes 1 y 2, en las sesiones 6 y 11.
+**No.** En este curso no hay evaluación escrita en el corte 3: el 40 % se reparte en la exposición final de la Clase 15 (15 %), el **informe final de hoy (20 %)** y asistencia (5 %). Las dos evaluaciones escritas del semestre fueron las de los cortes 1 y 2, en las sesiones 6 y 11.
 
 **¿El informe se entrega hoy o después?**
 
@@ -214,7 +214,7 @@ Al contrario: **ponerse la nota máxima sin evidencia baja el puntaje**. Lo que 
 - Recuerde en voz alta la sección que más se olvida: **la 11**, y dentro de ella **la lluvia de ideas asistida de la sesión 3**, que casi todos declaran solo del prototipo de la 11.
 - **Revise la sección 8 buscando nombres de personas.** Es donde más se rompe la regla de la sesión 4: va el rol, no el nombre. Pídalo corregido antes de cerrar la nota.
 - **Verifique la entrega antes de pasar a la galería:** PDF en la carpeta del equipo y enlace del documento. Después del bloque ya nadie vuelve al informe.
-- Aclare que la galería **no es exponer otra vez** —la nota fue la sesión 15— y que sirve para ver los cinco proyectos lado a lado, que es la única vez en el semestre.
+- Aclare que la galería **no es exponer otra vez** —la nota fue la Clase 15— y que sirve para ver los cinco proyectos lado a lado, que es la única vez en el semestre.
 - **Proyecte la tabla de respuestas que sirven y que no sirven ANTES de que escriban la autoevaluación**: reduce a la mitad las respuestas genéricas.
 - Diga que **la autoevaluación individual llega solo al docente**, antes de que empiecen. Sin esa garantía, «¿en qué fallé?» se responde siempre con «en nada».
 - **Si estalla un conflicto en la coevaluación, no lo resuelva en público.** Recoja, cierre el bloque y hable después por separado.

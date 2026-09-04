@@ -32,7 +32,7 @@ El tipo de cada hallazgo —lenguaje, flujo, expectativa o suposición nuestra�
 
 ### 3. QUÉ ARREGLAMOS Y QUÉ NO
 
-Lo que se arregla antes de la sesión 14, y **lo que no se arregla con su razón**: fuera del alcance, no alcanza el tiempo, o cambia una restricción.
+Lo que se arregla antes de la Clase 14, y **lo que no se arregla con su razón**: fuera del alcance, no alcanza el tiempo, o cambia una restricción.
 
 > **Se revisa que:** hay al menos una cosa en la lista de «no se arregla», con razón. Un equipo que dice que va a arreglar todo no priorizó.
 
@@ -86,7 +86,7 @@ El taller se **trabaja en equipo** en el documento del equipo y se **entrega en 
 2. **2 min · Los tres hallazgos** — Lo que la persona **hizo**. Es el corazón del avance.
 3. **1 min · Qué arreglan y qué no** — Y por qué lo que queda fuera queda fuera.
 4. **1 min · La pregunta para el curso** — Con las dos alternativas que están considerando.
-5. **30 s · Cierre** — Qué van a tener listo para la sesión 14.
+5. **30 s · Cierre** — Qué van a tener listo para la Clase 14.
 
 > **Si se cae la conexión de alguien:** el documento del equipo está en Drive, así que lo escrito no se pierde. Quien se cayó vuelve a entrar a la sala de su equipo o aporta por el documento; si era el vocero, expone el siguiente de la lista. La nota es del equipo.
 

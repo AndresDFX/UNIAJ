@@ -3,7 +3,7 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 5 de 16 · corresponde al tema 5 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 3 de 11 (sesión doble junto con la Clase 4) · corresponde al tema 5 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **1** (30%) · RAA: **RAA2**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
@@ -65,7 +65,7 @@ Esta es la diapositiva que salva la clase de volverse un discurso. Las cinco par
 
 La primera —pedir la ubicación cada cinco segundos o cada cinco minutos— es la más fácil de entender y toca batería y red a la vez. La tercera —guardar el resultado en vez de recalcular el reporte completo en cada consulta— es la que más sorprende, porque el estudiante todavía no tiene la intuición de que el cómputo cuesta energía; sirve para conectar con la sesión 7 y con la idea de que la eficiencia no es coquetería de programador. La cuarta —sostener dispositivos viejos— es la de mayor impacto real por lo dicho sobre la fabricación. Y la quinta es la más contemporánea y hay que decirla sin miedo: **agregarle un asistente de IA a una función que resolvía una condición simple gasta energía en cada llamada, para siempre**. Es una decisión de arquitectura, y hoy se toma con frecuencia por moda.
 
-El método de cinco pasos es el del taller. El paso 2 —buscar lo que se repite— es el que enseña a estimar: lo que ocurre una vez no mueve la aguja, lo que ocurre mil veces al día sí. Y el paso 5 —definir un indicador medible— es el que separa una intención de una decisión de ingeniería. «Vamos a ser sostenibles» no se puede verificar; «vamos a mover menos de 200 KB por consulta» sí, y en la sesión 16 se puede mirar si se cumplió.
+El método de cinco pasos es el del taller. El paso 2 —buscar lo que se repite— es el que enseña a estimar: lo que ocurre una vez no mueve la aguja, lo que ocurre mil veces al día sí. Y el paso 5 —definir un indicador medible— es el que separa una intención de una decisión de ingeniería. «Vamos a ser sostenibles» no se puede verificar; «vamos a mover menos de 200 KB por consulta» sí, y en la Clase 16 se puede mirar si se cumplió.
 
 ### Colombia, y la honestidad con las cifras - diapositivas 8 y 10
 
@@ -92,7 +92,7 @@ Numeración real del deck `Clases/Clase 5 - El rol del ingeniero en el contexto 
 10. Dos trampas de esta clase
 11. Taller de hoy: Huella del sistema
 12. Cómo se expone en 3 minutos
-13. Para la sesión 6
+13. Para la Clase 6
 14. Cierre · Nos vemos en la sesión 6 — cierra el corte 1
 
 ## Plan de clase minuto a minuto (90 min)
@@ -141,7 +141,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** los cinco enlaces (o los PNG) en el chat antes de arrancar.
 
-**[Nota docente]:** anote los cinco indicadores. En la sesión 16 se revisa si se cumplieron, y tener la lista de hoy es lo que hace posible esa revisión.
+**[Nota docente]:** anote los cinco indicadores. En la Clase 16 se revisa si se cumplieron, y tener la lista de hoy es lo que hace posible esa revisión.
 
 ### 01:27–01:30 · Cierre · [Slide 13][Slide 14]
 
@@ -157,7 +157,7 @@ Anuncie la sesión 6: **cierra el corte 1** y sale la ficha del problema del pro
 | «Vamos a pedirle al usuario que ahorre energía» | No es una decisión de diseño: es comportamiento de otra persona, fuera de su control. | Algo que ellos puedan decidir en su propio sistema: cada cuánto consulta, cuánto pesa lo que envía, qué dispositivos soporta. |
 | «Todas las etapas pesan igual» | Significa que no eligieron, y sin elegir no se puede actuar. | Una sola etapa y el argumento, aunque sea aproximado. |
 | «Cada consulta a la IA gasta X litros de agua» | Las cifras que circulan varían por órdenes de magnitud y casi nunca dicen de qué sistema ni de qué año son. | Fuente, año y alcance. Si no lo tienen, que midan lo que sí pueden contar: el número de llamadas. |
-| «Ser un sistema sostenible» como indicador | No tiene unidad y no se puede revisar en la sesión 16. | Un número con unidad, el valor de hoy y cómo se va a medir. |
+| «Ser un sistema sostenible» como indicador | No tiene unidad y no se puede revisar en la Clase 16. | Un número con unidad, el valor de hoy y cómo se va a medir. |
 
 ## Dudas frecuentes del estudiante
 
@@ -182,7 +182,7 @@ No está mal ni bien por sí solo: es una decisión con un costo. Lo que sí es 
 - Las cinco salas de grupo se crean **antes** de la sesión.
 - Hoy **no se usa IA**: es la sesión donde más inventa cifras. Si un equipo la usa, verifique cualquier número contra una fuente con año.
 - La falla más frecuente del taller es proponer **comportamiento del usuario** en vez de decisiones de diseño. Córtela en la primera sala, no en la calificación.
-- **Anote los cinco indicadores** que salgan de las exposiciones. Se revisan en la sesión 16 y esta es la única oportunidad de tenerlos todos juntos.
+- **Anote los cinco indicadores** que salgan de las exposiciones. Se revisan en la Clase 16 y esta es la única oportunidad de tenerlos todos juntos.
 - Si algún equipo pide fuentes, las útiles y verificables son: los datos de generación de XM para Colombia, la Ley 1672 de 2013 para RAEE, y el Global E-waste Monitor para residuos globales. Pida siempre el año de la edición.
 - **Publique hoy** el documento «Evaluación del Corte 1 — cómo prepararse» (está con el material de la sesión 6) y dígalo en voz alta en el cierre. Trae la lista de qué repasar por sesión; entregarlo el mismo día de la evaluación no sirve de nada. Las preguntas y la clave están en el Kit docente de la sesión 6: **esos dos no se comparten**.
 

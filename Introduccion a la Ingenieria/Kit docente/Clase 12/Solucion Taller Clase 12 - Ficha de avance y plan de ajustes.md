@@ -76,11 +76,11 @@ La columna izquierda tiene tres problemas: **es una opinión, no un hecho**; **m
 
 ### 3. QUÉ ARREGLAMOS Y QUÉ NO
 
-**Se pedía:** Lo que se arregla antes de la sesión 14, y **lo que no se arregla con su razón**: fuera del alcance, no alcanza el tiempo, o cambia una restricción.
+**Se pedía:** Lo que se arregla antes de la Clase 14, y **lo que no se arregla con su razón**: fuera del alcance, no alcanza el tiempo, o cambia una restricción.
 
 **Respuesta modelo:**
 
-**Se arregla antes de la sesión 14:**
+**Se arregla antes de la Clase 14:**
 
 1. **El estado «Prestado» deja de parecer un botón** y pasa a ser una etiqueta gris sin borde, con el texto «Prestado · no sabemos cuándo vuelve». *Hallazgo 1, el patrón.* Nótese que **no agregamos la función, hacemos honesta la pantalla**: es la misma decisión que tomamos con la fecha de actualización en la sesión 10.
 2. **El rótulo de la fecha cambia** de «Lista actualizada el viernes a las 6:00 p. m.» a «Esta información es del viernes a las 6:00 p. m.». *Hallazgo 2.* Cuatro palabras, cinco minutos de trabajo.
@@ -130,9 +130,9 @@ La columna izquierda tiene tres problemas: **es una opinión, no un hecho**; **m
 >
 > **2.** Poner la fecha de la última actualización visible en la pantalla de resultados. Lo motivó la profesora, que preguntó cómo sabe alguien si la lista está al día; no se nos había ocurrido y es una línea de texto.
 
-**Por qué este plan está bien hecho:** las dos cosas salen de algo que se **oyó**, cada una dice **quién lo dijo**, y las dos son pequeñas y verificables en la sesión 14. Un plan que repite lo que el equipo ya traía en «qué arreglamos» no usó la retroalimentación, y ahí es donde se descuenta.
+**Por qué este plan está bien hecho:** las dos cosas salen de algo que se **oyó**, cada una dice **quién lo dijo**, y las dos son pequeñas y verificables en la Clase 14. Un plan que repite lo que el equipo ya traía en «qué arreglamos» no usó la retroalimentación, y ahí es donde se descuenta.
 
-**Cómo calificar:** 10 pts. Dos cosas ajustables y verificables (4), cada una con el origen de lo que se oyó —quién y qué dijo— (4), y que no sean una copia de la lista de «qué arreglamos» (2). Un equipo que escribe «mejorar el diseño» vale 2: no es verificable en la sesión 14.
+**Cómo calificar:** 10 pts. Dos cosas ajustables y verificables (4), cada una con el origen de lo que se oyó —quién y qué dijo— (4), y que no sean una copia de la lista de «qué arreglamos» (2). Un equipo que escribe «mejorar el diseño» vale 2: no es verificable en la Clase 14.
 
 ## Rúbrica del taller
 
@@ -148,7 +148,7 @@ La columna izquierda tiene tres problemas: **es una opinión, no un hecho**; **m
 
 ## Si el equipo trabajó otro caso
 
-**Equipos que no hicieron la prueba.** Va a pasar con uno o dos equipos, y hay que manejarlo sin drama y sin premiarlo. Que expongan lo que tengan —el prototipo v2 y su pregunta— y que hagan la prueba **antes de la sesión 13**, con dos personas. Dígalo claro: los hallazgos son insumo obligatorio del informe final, así que no es un entregable que se pueda saltar, solo se puede atrasar. Y señale el costo real: perdieron los tres minutos de retroalimentación del curso sobre lo que más importaba.
+**Equipos que no hicieron la prueba.** Va a pasar con uno o dos equipos, y hay que manejarlo sin drama y sin premiarlo. Que expongan lo que tengan —el prototipo v2 y su pregunta— y que hagan la prueba **antes de la Clase 13**, con dos personas. Dígalo claro: los hallazgos son insumo obligatorio del informe final, así que no es un entregable que se pueda saltar, solo se puede atrasar. Y señale el costo real: perdieron los tres minutos de retroalimentación del curso sobre lo que más importaba.
 
 **Equipos que probaron con un familiar y le explicaron mientras usaba.** El resultado es una prueba sin información, y hay que explicar por qué sin regañar: si usted explica, está probando su explicación, no el prototipo. La salida es corta: una segunda prueba de cinco minutos con alguien más, con la regla de **dar una tarea y callarse**. Cinco minutos de silencio dan más datos que media hora de acompañamiento.
 
@@ -161,13 +161,13 @@ La columna izquierda tiene tres problemas: **es una opinión, no un hecho**; **m
 - **«Le pareció confusa la pantalla»** → Es una opinión, no se puede verificar y no dice qué cambiar. Además suele ser la versión amable de lo que en realidad pasó. La acción: «tocó el estado dos veces esperando que se abriera algo». Eso sí se puede volver a probar.
 - **«Dijo que estaba todo clarísimo»** → La gente es amable con quien le muestra su trabajo. Lo que dijo es cortesía; lo que hizo es el dato. Lo que hizo mientras usaba: dónde dudó, dónde se equivocó, qué preguntó. Y si hay contradicción, que la anoten: es el mejor hallazgo.
 - **Un hallazgo que ya viene con la solución adentro** → Si se anota «hay que poner un botón arriba» y se pierde el hecho, ya no se puede pensar otra solución mejor. Primero el hecho, después la decisión. Son dos columnas distintas de la ficha.
-- **«Vamos a arreglar todo antes de la sesión 14»** → No cabe, y decirlo es no haber priorizado. Priorizar es una decisión de ingeniería, no una rendición. Qué queda fuera y por qué: fuera del alcance, excede la capacidad del equipo, o rompe una restricción.
+- **«Vamos a arreglar todo antes de la Clase 14»** → No cabe, y decirlo es no haber priorizado. Priorizar es una decisión de ingeniería, no una rendición. Qué queda fuera y por qué: fuera del alcance, excede la capacidad del equipo, o rompe una restricción.
 - **«¿Qué le mejorarían a nuestro proyecto?»** → Como pregunta al curso es demasiado abierta: produce comentarios genéricos y desperdicia a los otros cuatro equipos. Una decisión concreta con dos alternativas, cada una con su pro y su contra.
 
 ## Cierre: qué decir en los 3 minutos finales
 
-Diez minutos, y conviene usarlos bien porque cierran la primera sesión del corte 3. Pida que cada equipo escriba en su columna del muro **las dos cosas que va a ajustar** con lo que oyó: dos minutos, y el compromiso queda por escrito y verificable en la sesión 14. Después, la idea de la sesión, dicha completa: **la persona que prueba nunca se equivoca; si se perdió, el diseño la perdió.** Vale la pena agregar la versión profesional de eso, porque les va a servir toda la carrera: en ingeniería el trabajo no se evalúa por lo que el autor cree que quedó claro, sino por lo que un tercero logra hacer con él. Y cierre con la cuenta que importa: **la retroalimentación de hoy fue gratis; la de la sesión 15 vale el 15 % del curso.** Anuncie la sesión 13 —el impacto social y ambiental, donde vuelve el listado de actores no usuarios de la sesión 3— y recuerde que el prototipo ajustado se necesita para la sesión 14, no para la 15.
+Diez minutos, y conviene usarlos bien porque cierran la primera sesión del corte 3. Pida que cada equipo escriba en su columna del muro **las dos cosas que va a ajustar** con lo que oyó: dos minutos, y el compromiso queda por escrito y verificable en la Clase 14. Después, la idea de la sesión, dicha completa: **la persona que prueba nunca se equivoca; si se perdió, el diseño la perdió.** Vale la pena agregar la versión profesional de eso, porque les va a servir toda la carrera: en ingeniería el trabajo no se evalúa por lo que el autor cree que quedó claro, sino por lo que un tercero logra hacer con él. Y cierre con la cuenta que importa: **la retroalimentación de hoy fue gratis; la de la Clase 15 vale el 15 % del curso.** Anuncie la Clase 13 —el impacto social y ambiental, donde vuelve el listado de actores no usuarios de la sesión 3— y recuerde que el prototipo ajustado se necesita para la Clase 14, no para la 15.
 
 ## Con qué se conecta
 
-Hacia atrás: la **sesión 11** dejó el prototipo v2 y la tarea de probarlo; la **sesión 10** dejó la regla de los textos reales y de los mensajes que dicen qué hacer, que hoy resuelve dos de los tres hallazgos; la **sesión 8** dejó el alcance mínimo, que es la razón por la que un hallazgo **no** se arregla; la **sesión 5** dejó el límite de 200 KB; la **sesión 4** dejó la Ley 1581, que cierra la puerta a la función de avisos. Hacia adelante: la **sesión 13** evalúa el impacto social y ambiental de la solución; la **sesión 14** convierte todo esto en la presentación final; y en el **informe final de la sesión 16** los hallazgos de hoy son la sección de resultados de la prueba, y la lista de «no se arregla» es la sección de limitaciones conocidas.
+Hacia atrás: la **sesión 11** dejó el prototipo v2 y la tarea de probarlo; la **sesión 10** dejó la regla de los textos reales y de los mensajes que dicen qué hacer, que hoy resuelve dos de los tres hallazgos; la **sesión 8** dejó el alcance mínimo, que es la razón por la que un hallazgo **no** se arregla; la **sesión 5** dejó el límite de 200 KB; la **sesión 4** dejó la Ley 1581, que cierra la puerta a la función de avisos. Hacia adelante: la **Clase 13** evalúa el impacto social y ambiental de la solución; la **Clase 14** convierte todo esto en la presentación final; y en el **informe final de la Clase 16** los hallazgos de hoy son la sección de resultados de la prueba, y la lista de «no se arregla» es la sección de limitaciones conocidas.

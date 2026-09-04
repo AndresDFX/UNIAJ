@@ -108,13 +108,13 @@ Comprobacion: hay un actor con el que se puede hablar esta semana, y hay algo de
 
 Una frase de la forma: «el proyecto sirvió si <la cifra de la línea base> pasa de X a Y, medido así». Y la causa del árbol que van a atacar.
 
-**Se revisa que** el criterio se puede verificar en la sesión 16 con la misma medición de la línea base, y ataca una causa, no un efecto.
+**Se revisa que** el criterio se puede verificar en la Clase 16 con la misma medición de la línea base, y ataca una causa, no un efecto.
 
 **Rubrica esperada (campo Rubrica):**
 
 El criterio de éxito es verificable con la misma medición de la línea base (15 pts).
 
-Comprobacion: el criterio se puede verificar en la sesión 16 con la misma medición de la línea base, y ataca una causa, no un efecto.
+Comprobacion: el criterio se puede verificar en la Clase 16 con la misma medición de la línea base, y ataca una causa, no un efecto.
 
 ---
 

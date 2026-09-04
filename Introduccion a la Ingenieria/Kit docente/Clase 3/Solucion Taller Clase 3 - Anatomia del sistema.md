@@ -108,7 +108,7 @@ El auxiliar anota los préstamos en un cuaderno: nombre, libro y fecha. No hay r
 |---|---|---|
 | La frontera está definida con al menos una exclusión justificada | **20 %** | Sin frontera defendible, el proyecto del semestre no cabe en un semestre. |
 | Entradas, proceso y salidas, con el software ubicado como una parte | **15 %** | Es la verificación de que entendieron que el sistema no es el software. |
-| Hay un actor afectado que no usa el sistema | **25 %** | Es el actor que se olvida siempre y el que más problemas causa. Alimenta la sesión 13. |
+| Hay un actor afectado que no usa el sistema | **25 %** | Es el actor que se olvida siempre y el que más problemas causa. Alimenta la Clase 13. |
 | Las tres correcciones a la IA, con su razón | **30 %** | Es el criterio propio de esta sesión: verificar en vez de copiar. Sin esto no hay trabajo de ingeniería que evaluar. |
 | La exposición cupo en 3 min e incluyó el minuto de la IA | **10 %** | El minuto de la IA es obligatorio: es lo que distingue esta exposición de un resumen teórico. |
 
@@ -138,4 +138,4 @@ Tres minutos, una idea: **el sistema no es el software.** Muéstrelo con el caso
 
 ## Con qué se conecta
 
-Hacia atrás: la sesión 1 dejó el problema del entorno y la sesión 2 mostró que los proyectos fracasan por no entenderlo. Hacia adelante: la frontera y los actores de hoy son dos de los cinco campos de la ficha del problema que se entrega en la **sesión 6** (cierre del corte 1); el actor no-usuario es el insumo directo de la **sesión 13** (impacto social y ambiental); y el uso declarado de IA se vuelve a exigir, con más nivel, en la **sesión 11**.
+Hacia atrás: la sesión 1 dejó el problema del entorno y la sesión 2 mostró que los proyectos fracasan por no entenderlo. Hacia adelante: la frontera y los actores de hoy son dos de los cinco campos de la ficha del problema que se entrega en la **sesión 6** (cierre del corte 1); el actor no-usuario es el insumo directo de la **Clase 13** (impacto social y ambiental); y el uso declarado de IA se vuelve a exigir, con más nivel, en la **sesión 11**.

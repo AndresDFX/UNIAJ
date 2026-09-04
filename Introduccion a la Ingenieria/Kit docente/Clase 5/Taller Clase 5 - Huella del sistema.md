@@ -8,7 +8,7 @@ Vocero de hoy: ____________________  ·  Enlace del documento: _________________
 
 ## Qué hay que hacer
 
-Dibujen en Excalidraw la **huella material** del sistema de su proyecto: por dónde pasa la energía, la materia y el residuo en las cuatro etapas. Marquen cuál etapa pesa más, propongan **dos decisiones de diseño** que la bajen y definan **un indicador medible** que se pueda revisar en la sesión 16.
+Dibujen en Excalidraw la **huella material** del sistema de su proyecto: por dónde pasa la energía, la materia y el residuo en las cuatro etapas. Marquen cuál etapa pesa más, propongan **dos decisiones de diseño** que la bajen y definan **un indicador medible** que se pueda revisar en la Clase 16.
 
 - **Tiempo de trabajo:** 17 min, en la sala de grupo de su equipo.
 - **Exposición:** 3 min por equipo, habla el vocero con la pantalla ya compartida.
@@ -78,7 +78,7 @@ El taller se **trabaja en equipo** en el documento del equipo y se **entrega en 
 | Hay una operación repetida con una estimación declarada como estimación | **15 %** |
 | Se eligió UNA etapa como la más pesada, con argumento | **20 %** |
 | Las dos decisiones son de diseño y están bajo control del equipo | **25 %** |
-| El indicador tiene unidad y se puede medir en la sesión 16 | **20 %** |
+| El indicador tiene unidad y se puede medir en la Clase 16 | **20 %** |
 
 ## Cómo se expone
 

@@ -133,7 +133,7 @@ Marcar la segunda. Es la trampa de la sesión 8: la matriz ordena el razonamient
 >
 > 1. El **alcance mínimo** en una frase: lo más pequeño que ya resuelve algo del problema y se puede probar con un usuario real.
 > 2. **Dos cosas que quedaron FUERA**, y por qué cada una.
-> 3. **Con quién** van a probar en la sesión 12 y **qué tarea** le van a pedir. No «¿le gusta?»: una tarea.
+> 3. **Con quién** van a probar en la Clase 12 y **qué tarea** le van a pedir. No «¿le gusta?»: una tarea.
 >
 > Si su alcance mínimo no resuelve nada por sí solo, no se va a poder probar. Si está así, dígalo y corríjalo aquí.
 

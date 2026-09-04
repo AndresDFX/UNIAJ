@@ -85,7 +85,7 @@ El taller se **trabaja en equipo** en el documento del equipo y se **entrega en 
 1. **Tramo 1 · 1 min** — El problema con su cifra. **Sin presentaciones personales.**
 2. **Tramo 2 · 2 min** — Los afectados y la decisión de la matriz, con lo que se sacrificó.
 3. **Comienzo del tramo 3 · 1 min** — Arrancar la demostración: hasta donde llegue en el minuto.
-4. **Corte a los 4 min** — Se corta en mitad de la frase. En la sesión 15 pasa igual.
+4. **Corte a los 4 min** — Se corta en mitad de la frase. En la Clase 15 pasa igual.
 5. **2 min de corrección** — El docente dice **una sola cosa**, la que más cambie la presentación.
 
 > **Si se cae la conexión de alguien:** el documento del equipo está en Drive, así que lo escrito no se pierde. Quien se cayó vuelve a entrar a la sala de su equipo o aporta por el documento; si era el vocero, expone el siguiente de la lista. La nota es del equipo.

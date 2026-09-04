@@ -3,7 +3,7 @@
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
-- Tipo: Clase virtual sincrónica por Google Meet · Sesión 9 de 16 · corresponde al tema 9 del microcurrículo
+- Tipo: Clase virtual sincrónica por Google Meet · Sesión 6 de 11 (sesión doble junto con la Clase 10) · corresponde al tema 9 del microcurrículo
 - Modalidad: **Virtual (síncrona)** por Google Meet · actividades en plataformas gratuitas en la nube · los 5 equipos trabajan en **salas de grupo**
 - Corte **2** (30%) · RAA: **RAA3**
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
@@ -33,7 +33,7 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 La pregunta es deliberadamente incómoda y funciona porque casi todos los equipos llegan a esta altura del semestre convencidos de que su solución es original. La respuesta estadística es dura: en un mundo con millones de ingenieros y cincuenta años de software publicado, la probabilidad de que un problema común —disponibilidad, inventario, turnos, avisos— no tenga antecedentes es prácticamente cero.
 
-Lo que hay que evitar es que el grupo lo lea como un desaire. El encuadre que funciona: **buscar antecedentes no le quita mérito al proyecto, le da argumento**. Un equipo que dice «esto no existe» está apostando; un equipo que dice «existen estas tres soluciones, ninguna funciona sin computador en el mostrador, y nosotros resolvemos justamente eso» tiene una posición defendible ante cualquiera. La segunda frase es la que se califica en la sesión 15.
+Lo que hay que evitar es que el grupo lo lea como un desaire. El encuadre que funciona: **buscar antecedentes no le quita mérito al proyecto, le da argumento**. Un equipo que dice «esto no existe» está apostando; un equipo que dice «existen estas tres soluciones, ninguna funciona sin computador en el mostrador, y nosotros resolvemos justamente eso» tiene una posición defendible ante cualquiera. La segunda frase es la que se califica en la Clase 15.
 
 Aproveche el muro para recoger las respuestas y luego voltee la pregunta: *¿qué sería peor, descubrir hoy que ya existe, o descubrirlo el día de la exposición final cuando alguien del público lo diga?* Esa reformulación convierte la sesión en una protección y no en una tarea.
 
@@ -97,7 +97,7 @@ Numeración real del deck `Clases/Clase 9 - Estrategias de innovacion en Ingenie
 9. Tres reglas sobre las fuentes
 10. Taller de hoy: Antecedentes y propuesta de mejora
 11. Cómo se expone en 3 minutos
-12. Para la sesión 10
+12. Para la Clase 10
 13. Cierre · Nos vemos en la sesión 10
 
 ## Plan de clase minuto a minuto (90 min)
@@ -146,7 +146,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** haga que muestren **el documento abierto**, no la referencia escrita. Diez segundos de pantalla compartida valen más que cualquier declaración.
 
-**[Nota docente]:** anote la propuesta de mejora de cada equipo. Es el eje del informe final de la sesión 16 y de la exposición de la 15.
+**[Nota docente]:** anote la propuesta de mejora de cada equipo. Es el eje del informe final de la Clase 16 y de la exposición de la 15.
 
 ### 01:27–01:30 · Cierre · [Slide 12][Slide 13]
 

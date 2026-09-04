@@ -235,7 +235,7 @@ TEMAS[2] = {
                 "cuando alquilar mil servidores por hora cuesta poco y una biblioteca de IA se "
                 "instala en un comando, la pregunta técnica «¿se puede construir?» deja de ser la "
                 "difícil. La difícil es **«¿se debe construir, a quién afecta y quién "
-                "responde?»**. Esa pregunta es el hilo de las sesiones 4, 5 y 13.",
+                "responde?»**. Esa pregunta es el hilo de las Clases 4, 5 y 13.",
             ],
         },
         {
@@ -652,7 +652,7 @@ TEMAS[2] = {
         "Si un equipo pelea con draw.io más de dos minutos, mándelo a Google Slides. La "
         "herramienta no es lo evaluado.",
         "Esta clase es la primera vez que se exige fuente con autor y año. Dígalo explícitamente: "
-        "es un criterio que se va a repetir en las sesiones 9 y 13.",
+        "es un criterio que se va a repetir en las Clases 9 y 13.",
         "El muro de Padlet de la apertura se relee en el minuto 25. Si no se relee, los diez "
         "minutos de apertura se desperdiciaron.",
     ],
@@ -878,7 +878,7 @@ TEMAS[3] = {
                 "quien paga el servicio (que quiere menos cupos perdidos) y **el vecino que antes "
                 "conseguía cita madrugando y ahora no la consigue**. Ese último es el más "
                 "importante para el curso, porque es un actor al que el sistema le empeoró la "
-                "vida sin que nadie lo consultara. La sesión 13, sobre impacto social, es "
+                "vida sin que nadie lo consultara. La Clase 13, sobre impacto social, es "
                 "básicamente una hora dedicada a buscar a ese actor.",
                 "Requisito contra deseo es la distinción práctica que más van a usar. La regla es "
                 "operativa: es requisito si sin eso el sistema no cumple su propósito; es deseo si "
@@ -983,7 +983,7 @@ TEMAS[3] = {
                 "parte que hace la sesión distinta de una clase de teoría de sistemas.",
                 "**[Nota docente]:** los cinco enlaces en el chat antes de la primera exposición.",
                 "**[Nota docente]:** anote los actores olvidados que aparezcan. Son material "
-                "directo para la sesión 13 y conviene tener la lista.",
+                "directo para la Clase 13 y conviene tener la lista.",
             ],
         },
         {
@@ -1052,7 +1052,7 @@ TEMAS[3] = {
         ("Entradas, proceso y salidas, con el software ubicado como una parte", 15,
          "Es la verificación de que entendieron que el sistema no es el software."),
         ("Hay un actor afectado que no usa el sistema", 25,
-         "Es el actor que se olvida siempre y el que más problemas causa. Alimenta la sesión 13."),
+         "Es el actor que se olvida siempre y el que más problemas causa. Alimenta la Clase 13."),
         ("Las tres correcciones a la IA, con su razón", 30,
          "Es el criterio propio de esta sesión: verificar en vez de copiar. Sin esto no hay trabajo de ingeniería que evaluar."),
         ("La exposición cupo en 3 min e incluyó el minuto de la IA", 10,
@@ -1255,7 +1255,7 @@ TEMAS[3] = {
                     "los proyectos fracasan por no entenderlo. Hacia adelante: la frontera y los "
                     "actores de hoy son dos de los cinco campos de la ficha del problema que se "
                     "entrega en la **sesión 6** (cierre del corte 1); el actor no-usuario es el "
-                    "insumo directo de la **sesión 13** (impacto social y ambiental); y el uso "
+                    "insumo directo de la **Clase 13** (impacto social y ambiental); y el uso "
                     "declarado de IA se vuelve a exigir, con más nivel, en la **sesión 11**.",
     },
 
@@ -1304,7 +1304,7 @@ TEMAS[3] = {
         "El error más útil de cazar en las salas es la **cifra inventada**. Si aparece un "
         "porcentaje o un promedio en el documento, pregunte de dónde salió.",
         "Anote los actores no-usuarios que aparezcan en las cinco exposiciones: es la lista de "
-        "entrada de la sesión 13 y no se vuelve a tener tan fácil.",
+        "entrada de la Clase 13 y no se vuelve a tener tan fácil.",
         "Ningún equipo debe subir nombres de funcionarios ni de personas reales. Si el sistema es "
         "de la propia universidad, se usa el rol.",
     ],
@@ -1946,7 +1946,7 @@ TEMAS[4] = {
                              "de cumplir y aun así rara.",
                 "como_calificar": "10 pts. El único criterio es **que se pueda comprobar**. Lea la "
                                   "regla y pregúntese: ¿podría yo revisar el documento del equipo "
-                                  "en la sesión 12 y decir si la cumplieron? Si la respuesta es "
+                                  "en la Clase 12 y decir si la cumplieron? Si la respuesta es "
                                   "no, es una intención, no una regla, y vale 3."
             },
         ],
@@ -2018,7 +2018,7 @@ TEMAS[4] = {
                     "aparece en los cuatro casos. Hacia adelante: la **sesión 5** extiende el "
                     "análisis al afectado ambiental, que no tiene voz; la **sesión 6** exige que "
                     "la ficha del problema del proyecto declare a quién puede perjudicar; la "
-                    "**sesión 13** vuelve sobre impacto social con el proyecto ya construido; y "
+                    "**Clase 13** vuelve sobre impacto social con el proyecto ya construido; y "
                     "todo el manejo de datos del proyecto queda amarrado a la Ley 1581 desde hoy.",
     },
 
@@ -2355,7 +2355,7 @@ TEMAS[5] = {
                 "mil veces al día sí. Y el paso 5 —definir un indicador medible— es el que "
                 "separa una intención de una decisión de ingeniería. «Vamos a ser sostenibles» no "
                 "se puede verificar; «vamos a mover menos de 200 KB por consulta» sí, y en la "
-                "sesión 16 se puede mirar si se cumplió.",
+                "Clase 16 se puede mirar si se cumplió.",
             ],
         },
         {
@@ -2452,7 +2452,7 @@ TEMAS[5] = {
                 "5 equipos × 3 min con el diagrama compartido. **El minuto obligatorio es «la etapa "
                 "que más pesa y por qué»**, y el cierre de cada exposición es el indicador.",
                 "**[Nota docente]:** los cinco enlaces (o los PNG) en el chat antes de arrancar.",
-                "**[Nota docente]:** anote los cinco indicadores. En la sesión 16 se revisa si se "
+                "**[Nota docente]:** anote los cinco indicadores. En la Clase 16 se revisa si se "
                 "cumplieron, y tener la lista de hoy es lo que hace posible esa revisión.",
             ],
         },
@@ -2477,7 +2477,7 @@ TEMAS[5] = {
         "consigna": "Dibujen en Excalidraw la **huella material** del sistema de su proyecto: por "
                     "dónde pasa la energía, la materia y el residuo en las cuatro etapas. Marquen "
                     "cuál etapa pesa más, propongan **dos decisiones de diseño** que la bajen y "
-                    "definan **un indicador medible** que se pueda revisar en la sesión 16.",
+                    "definan **un indicador medible** que se pueda revisar en la Clase 16.",
         "entregable": "un diagrama de huella en Excalidraw exportado a PNG en la carpeta del equipo, "
                       "más las dos decisiones y el indicador escritos en el documento del equipo",
         "entregable_corto": "diagrama de huella + 2 decisiones + 1 indicador",
@@ -2526,7 +2526,7 @@ TEMAS[5] = {
          "Elegir es el trabajo del ingeniero. «Todo importa» no permite actuar."),
         ("Las dos decisiones son de diseño y están bajo control del equipo", 25,
          "Es lo que convierte la conciencia ambiental en ingeniería."),
-        ("El indicador tiene unidad y se puede medir en la sesión 16", 20,
+        ("El indicador tiene unidad y se puede medir en la Clase 16", 20,
          "Sin indicador no hay forma de saber si la decisión sirvió, y el informe final lo pide."),
     ],
 
@@ -2663,7 +2663,7 @@ TEMAS[5] = {
                              "consultorio: sí / no.** Se verifica abriéndolo ahí antes de cada "
                              "entrega.»\n\n"
                              "Los tres tienen unidad (o son un sí/no verificable), se miden con "
-                             "algo que el equipo va a tener, y se pueden revisar en la sesión 16.\n\n"
+                             "algo que el equipo va a tener, y se pueden revisar en la Clase 16.\n\n"
                              "**Indicadores mal formulados y por qué:** «reducir el consumo "
                              "energético» (no tiene unidad ni línea base); «ser un sistema "
                              "sostenible» (no es medible); «bajar las emisiones de CO₂ en un 30 %» "
@@ -2675,7 +2675,7 @@ TEMAS[5] = {
                                   "indicador de emisiones de CO₂ vale 5 aunque suene ambicioso, y "
                                   "hay que explicar por qué: proponer medir lo que no se puede "
                                   "medir es peor que proponer algo modesto y verificable. **Anote "
-                                  "los cinco indicadores**: se revisan en la sesión 16."
+                                  "los cinco indicadores**: se revisan en la Clase 16."
             },
         ],
         "variantes": [
@@ -2727,9 +2727,9 @@ TEMAS[5] = {
                     "estirarla hasta la fabricación y el residuo, que casi nadie mete dentro; la "
                     "sesión 4 dio el afectado con nombre, y hoy apareció el afectado sin nombre. "
                     "Hacia adelante: el **indicador** de hoy entra en la ficha del problema de la "
-                    "**sesión 6** y se revisa en el informe final de la **sesión 16**; la eficiencia "
-                    "como decisión de diseño reaparece en la **sesión 7** (ciclo de vida) y en la "
-                    "**sesión 10**; y la **sesión 13** retoma impacto social y ambiental con el "
+                    "**Clase 6** y se revisa en el informe final de la **Clase 16**; la eficiencia "
+                    "como decisión de diseño reaparece en la **Clase 7** (ciclo de vida) y en la "
+                    "**Clase 10**; y la **Clase 13** retoma impacto social y ambiental con el "
                     "prototipo ya construido.",
     },
 
@@ -2747,7 +2747,7 @@ TEMAS[5] = {
          "por_que": "Las cifras que circulan varían por órdenes de magnitud y casi nunca dicen de qué sistema ni de qué año son.",
          "pida": "Fuente, año y alcance. Si no lo tienen, que midan lo que sí pueden contar: el número de llamadas."},
         {"dice": "«Ser un sistema sostenible» como indicador",
-         "por_que": "No tiene unidad y no se puede revisar en la sesión 16.",
+         "por_que": "No tiene unidad y no se puede revisar en la Clase 16.",
          "pida": "Un número con unidad, el valor de hoy y cómo se va a medir."},
     ],
 
@@ -2779,7 +2779,7 @@ TEMAS[5] = {
         "cualquier número contra una fuente con año.",
         "La falla más frecuente del taller es proponer **comportamiento del usuario** en vez de "
         "decisiones de diseño. Córtela en la primera sala, no en la calificación.",
-        "**Anote los cinco indicadores** que salgan de las exposiciones. Se revisan en la sesión 16 "
+        "**Anote los cinco indicadores** que salgan de las exposiciones. Se revisan en la Clase 16 "
         "y esta es la única oportunidad de tenerlos todos juntos.",
         "Si algún equipo pide fuentes, las útiles y verificables son: los datos de generación de XM "
         "para Colombia, la Ley 1672 de 2013 para RAEE, y el Global E-waste Monitor para residuos "
@@ -2900,7 +2900,7 @@ TEMAS[6] = {
                 "por teléfono.» «De 40 libros prestados al mes, unos 12 vuelven tarde.»",
                 "@@Por qué es obligatoria.@@ Sin línea base **no se puede saber si el proyecto "
                 "sirvió**. Un informe final que dice «mejoramos el proceso» no demuestra nada; uno "
-                "que dice «pasó de 2 horas a 20 minutos» sí. En la sesión 16 se les va a pedir "
+                "que dice «pasó de 2 horas a 20 minutos» sí. En la Clase 16 se les va a pedir "
                 "exactamente eso.",
                 "@@Cómo se consigue sin presupuesto.@@ Preguntando, contando y midiendo con un "
                 "cronómetro. Tres preguntas a la persona que hace el trabajo, un conteo de una "
@@ -3049,7 +3049,7 @@ TEMAS[6] = {
                 "**La línea base** es la exigencia que más resistencia genera y la que más valor "
                 "tiene. Es una cifra sobre el problema **como está hoy**, antes de que el equipo "
                 "toque nada, y su función es simple: sin ella no hay forma de saber si el proyecto "
-                "sirvió. En la sesión 16 el informe final va a pedir comparar, y un equipo sin "
+                "sirvió. En la Clase 16 el informe final va a pedir comparar, y un equipo sin "
                 "línea base solo puede escribir «mejoramos el proceso», que es una afirmación "
                 "vacía.",
                 "Hay que quitarles de encima la idea de que medir requiere presupuesto o "
@@ -3076,7 +3076,7 @@ TEMAS[6] = {
                 "nadie puede preguntarle nada termina siendo un ejercicio de imaginación con "
                 "aspecto de proyecto. *Con dueño del problema*: hay una persona o un grupo concreto "
                 "al que le duele y que reconocería la mejora; si el afectado es «la sociedad», no "
-                "hay a quién mostrarle el resultado en la sesión 15.",
+                "hay a quién mostrarle el resultado en la Clase 15.",
                 "Una advertencia sobre el ánimo del grupo: aplicar estos criterios va a matar "
                 "algunas ideas ambiciosas y eso frustra. Vale la pena decirles por qué se hace: **es "
                 "mejor resolver algo pequeño de verdad que simular algo grande**, y en un primer "
@@ -3097,7 +3097,7 @@ TEMAS[6] = {
                 "exactamente qué peso tiene en el semestre: a partir de la sesión 7 todo se hace "
                 "sobre ella. El ciclo de vida de la sesión 7 se aplica a ese problema; el "
                 "prototipo de las sesiones 10 y 11 resuelve ese problema; la evaluación de impacto "
-                "de la sesión 13 evalúa esa solución; el informe final de la sesión 16 compara "
+                "de la Clase 13 evalúa esa solución; el informe final de la Clase 16 compara "
                 "contra esa línea base. Un equipo que hoy escriba una ficha vaga va a arrastrar el "
                 "problema diez sesiones.",
                 "**La evaluación de corte** son los últimos veinte minutos, en ExamLab, individual, "
@@ -3245,7 +3245,7 @@ TEMAS[6] = {
             {"clave": "EL CRITERIO DE ÉXITO",
              "pide": "Una frase de la forma: «el proyecto sirvió si <la cifra de la línea base> "
                      "pasa de X a Y, medido así». Y la causa del árbol que van a atacar.",
-             "check": "el criterio se puede verificar en la sesión 16 con la misma medición de la línea base, y ataca una causa, no un efecto."},
+             "check": "el criterio se puede verificar en la Clase 16 con la misma medición de la línea base, y ataca una causa, no un efecto."},
         ],
         "expo": [
             ("40 s · El problema en una frase", "Léanla tal cual está escrita. Sin tecnología dentro."),
@@ -3260,7 +3260,7 @@ TEMAS[6] = {
         ("El problema está en una frase, con la fórmula, y sin ninguna tecnología dentro", 25,
          "Es la habilidad central del corte: un problema con la solución adentro cierra el diseño antes de empezar."),
         ("La línea base tiene número, unidad y método declarado", 25,
-         "Sin línea base el informe final de la sesión 16 no puede demostrar nada."),
+         "Sin línea base el informe final de la Clase 16 no puede demostrar nada."),
         ("El árbol tiene dos niveles de causas y al menos una restricción marcada", 20,
          "Distinguir la causa que se puede tocar de la que no es lo que vuelve el proyecto realizable."),
         ("Hay un actor concreto al que se le puede preguntar esta semana y una frontera declarada", 15,
@@ -3350,7 +3350,7 @@ TEMAS[6] = {
                                   "**número, unidad y método**. Sin método, máximo 10, sin importar "
                                   "lo verosímil que suene la cifra — y dígalo con el argumento, "
                                   "porque es la lección: una cifra sin origen no se puede volver a "
-                                  "medir en la sesión 16, así que no sirve. Una estimación bien "
+                                  "medir en la Clase 16, así que no sirve. Una estimación bien "
                                   "declarada («estimado por la coordinadora») vale los 25 "
                                   "completos: se califica la honestidad del método, no la precisión."
             },
@@ -3436,13 +3436,13 @@ TEMAS[6] = {
                              "el mostrador.\n\n"
                              "**Por qué este criterio funciona:** usa **la misma medición** de la "
                              "línea base, así que es comparable; tiene un valor de partida y uno de "
-                             "llegada; y se puede ejecutar en la sesión 16 con lo que el equipo "
+                             "llegada; y se puede ejecutar en la Clase 16 con lo que el equipo "
                              "tiene. Nótese que no promete cero: prometer la eliminación total del "
                              "problema es una señal de que el equipo no lo entendió.\n\n"
                              "**Criterio secundario, más barato de verificar:** «la coordinadora "
                              "puede decir qué está prestado sin abrir el cuaderno, en menos de 30 "
                              "segundos». Es un sí/no cronometrable y sirve como verificación "
-                             "intermedia en la sesión 12.\n\n"
+                             "intermedia en la Clase 12.\n\n"
                              "**Criterios que se rechazan:** «que la biblioteca funcione mejor» (no "
                              "medible); «que el 100 % de los usuarios encuentren su libro» "
                              "(imposible: algunos libros simplemente están prestados); «que la app "
@@ -3450,7 +3450,7 @@ TEMAS[6] = {
                              "del problema — es la trampa más frecuente y hay que nombrarla).",
                 "como_calificar": "15 pts. El requisito duro es que **use la misma medición de la "
                                   "línea base**: si mide otra cosa, máximo 6, porque no habrá "
-                                  "comparación posible en la sesión 16. Rechace los criterios que "
+                                  "comparación posible en la Clase 16. Rechace los criterios que "
                                   "miden la solución en vez del problema («cantidad de descargas», "
                                   "«usuarios registrados») y explique el porqué en voz alta: es un "
                                   "error que arrastran hasta el informe final. Prometer el 100 % "
@@ -3499,7 +3499,7 @@ TEMAS[6] = {
                   "nota: cierra con un producto que gobierna diez sesiones. Muestre la progresión "
                   "de la frase de la biblioteca en sus tres versiones —sesión 1, sesión 3, sesión "
                   "6— porque es la prueba visible de que aprendieron algo en cinco semanas. "
-                  "Recuerde las dos exigencias que se van a cobrar en la sesión 16: la **línea base "
+                  "Recuerde las dos exigencias que se van a cobrar en la Clase 16: la **línea base "
                   "con método** y el **criterio de éxito con la misma medición**. Y anuncie la "
                   "sesión 7 sin misterio: arranca el corte 2 con el ciclo de vida de los proyectos "
                   "de ingeniería, aplicado a este problema, no en abstracto.",
@@ -3509,8 +3509,8 @@ TEMAS[6] = {
                     "**sesión 4**, el indicador ambiental de la **sesión 5**. Hacia adelante: la "
                     "**sesión 7** aplica el ciclo de vida a esta ficha; la **sesión 8** ajusta la "
                     "propuesta de solución sobre la causa elegida; las **sesiones 10 y 11** "
-                    "prototipan respetando las restricciones marcadas hoy; la **sesión 13** evalúa "
-                    "el impacto de esa solución; y el **informe final de la sesión 16** compara "
+                    "prototipan respetando las restricciones marcadas hoy; la **Clase 13** evalúa "
+                    "el impacto de esa solución; y el **informe final de la Clase 16** compara "
                     "contra la línea base de hoy. Una ficha vaga hoy es un semestre difícil.",
     },
 
@@ -3522,7 +3522,7 @@ TEMAS[6] = {
          "por_que": "Es un síntoma: la señal visible. Atacar el síntoma produce soluciones cosméticas.",
          "pida": "A quién le pasa qué, con qué consecuencia. Y la cifra."},
         {"dice": "Una cifra sin decir de dónde salió",
-         "por_que": "No se puede volver a medir en la sesión 16, así que no sirve como línea base.",
+         "por_que": "No se puede volver a medir en la Clase 16, así que no sirve como línea base.",
          "pida": "Número, unidad y método: preguntando a quién, contando qué, o cronometrando cuándo."},
         {"dice": "Un árbol con diez raíces",
          "por_que": "Es una lista de todo lo que se les ocurrió, no un análisis, y con eso no se puede decidir qué atacar.",
@@ -3537,7 +3537,7 @@ TEMAS[6] = {
          "r": "No: saca mejor nota. En este curso se evalúa que sepan formular, medir y demostrar, no "
               "el tamaño de la ambición. Un problema pequeño resuelto y medido de verdad es un "
               "proyecto completo; uno grande simulado es una presentación bonita sin evidencia. Y "
-              "el informe final de la sesión 16 pide comparar con la línea base: eso solo se puede "
+              "el informe final de la Clase 16 pide comparar con la línea base: eso solo se puede "
               "hacer con algo acotado."},
         {"p": "¿Cómo conseguimos una cifra si no tenemos acceso a datos?",
          "r": "Preguntando, contando o cronometrando. Tres preguntas a la persona que hace el "
@@ -3546,8 +3546,8 @@ TEMAS[6] = {
               "es y de dónde viene**. Lo que no se acepta es un número sin origen."},
         {"p": "¿Podemos cambiar el problema después?",
          "r": "Sí, pero cuesta. Todo lo que sigue se construye sobre esta ficha: el ciclo de vida "
-              "de la sesión 7, el prototipo de la 10 y la 11, el impacto de la 13, el informe de la "
-              "16. Un cambio en la sesión 8 es un ajuste; en la sesión 12 es empezar de nuevo. Por "
+              "de la Clase 7, el prototipo de la 10 y la 11, el impacto de la 13, el informe de la "
+              "16. Un cambio en la Clase 8 es un ajuste; en la Clase 12 es empezar de nuevo. Por "
               "eso vale la pena discutirlo hoy hasta que quede."},
         {"p": "¿Y si ya sabemos qué tecnología queremos usar?",
          "r": "Perfecto, pero no va en el enunciado del problema. Escriban el problema sin "

@@ -14,7 +14,7 @@
 > Las cinco preguntas son los cinco bloques de la ficha, en el mismo orden y con
 > los mismos puntos que la rubrica del taller.
 
-**Consigna del equipo:** Ubiquen su proyecto en el ciclo de vida y escriban lo que falta para avanzar: en qué **fase** están, **tres requisitos funcionales** y **dos no funcionales** con su **criterio de aceptación**, la decisión de hoy que sería carísima cambiar después, y el **plan de hitos** hasta la sesión 15.
+**Consigna del equipo:** Ubiquen su proyecto en el ciclo de vida y escriban lo que falta para avanzar: en qué **fase** están, **tres requisitos funcionales** y **dos no funcionales** con su **criterio de aceptación**, la decisión de hoy que sería carísima cambiar después, y el **plan de hitos** hasta la Clase 15.
 
 ---
 
@@ -106,15 +106,15 @@ Comprobacion: cada criterio es una prueba que alguien puede hacer delante de ust
 
 ## 5. EL PLAN DE HITOS
 
-Qué queda **terminado y verificable** en cada una de las sesiones 8, 9, 10, 11, 12 y 14. Y la decisión de hoy que sería carísima cambiar en la sesión 14.
+Qué queda **terminado y verificable** en cada una de las sesiones 8, 9, 10, 11, 12 y 14. Y la decisión de hoy que sería carísima cambiar en la Clase 14.
 
-**Se revisa que** cada hito es verificable y el trabajo está repartido. Si todo cae en la sesión 14, el plan está mal.
+**Se revisa que** cada hito es verificable y el trabajo está repartido. Si todo cae en la Clase 14, el plan está mal.
 
 **Rubrica esperada (campo Rubrica):**
 
 El plan de hitos reparte el trabajo y cada hito es verificable (15 pts).
 
-Comprobacion: cada hito es verificable y el trabajo está repartido. Si todo cae en la sesión 14, el plan está mal.
+Comprobacion: cada hito es verificable y el trabajo está repartido. Si todo cae en la Clase 14, el plan está mal.
 
 ---
 
