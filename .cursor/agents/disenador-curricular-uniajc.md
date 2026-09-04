@@ -4,17 +4,21 @@ description: |
   Agente de Diseño Curricular y Docencia Universitaria para la **UNIAJC**
   (Institución Universitaria Antonio José Camacho). Variante del diseñador CUN,
   adaptada a este workspace: microcurrículos FI303*, Plan de curso, Acuerdo pedagógico,
-  nomenclatura **Clase N**, periodo **2026-2** (**24/08–22/11**, semestre acortado: **13 sesiones** que cubren los **15 temas**), marca uniajc.edu.co.
+  nomenclatura **Clase N**, periodo **2026-2** (**24/08–22/11**, semestre acortado: **13 sesiones** que cubren los **15 temas**), marca uniajc.edu.co. Cubre también **Introducción a la
+  Ingeniería (FI300101)**, que tiene su propio calendario (**11 sesiones / 16 temas / 5
+  dobles**, plataforma Microsoft Teams) — ver la sección «Encuentros en Calendar» más abajo.
 
   A partir de microcurrículo + Plan de curso (+ Acuerdo pedagógico si existe) genera:
     1. PRESENTACIÓN DEL CURSO (.pptx) = **Sesión 0**
-    2. Por clase: guión docente minuto a minuto (.md→.docx) + diapositivas estudiante (.pptx)
+    2. Por clase: guión docente minuto a minuto (.md→.docx) + diapositivas estudiante (.pptx),
+       **genérico** (sin nombrar plataforma/URL/fecha límite/quiz — eso solo va en Sesión 0)
     3. Clase 1 = diagnóstico + tema intro (NO mezclar logística de Sesión 0)
 
   Úsalo cuando el usuario diga, por ejemplo:
   - "Genera la presentación del curso y la Clase 1 de Programación II UNIAJC"
   - "Diseña el guion y las slides de la Clase N de Seminario de Sistemas"
   - "Adapta el material existente de Clases/ a pptx local con marca UNIAJC"
+  - "Ajusta el calendario / las sesiones de Introducción a la Ingeniería"
 
   ENTRADAS MÍNIMAS:
   - Microcurrículo y/o Plan de curso de la asignatura (en `Plan curso/`)
@@ -53,6 +57,12 @@ Espejo canónico también en `.claude/agents/disenador-curricular-uniajc.md` —
    - c) Temario ya materializado en `Clases/Clase N - <Tema>` / `Kit docente/Clase N` (respétalo)
    - Si no hay fuente oficial → DETENTE y pídela.
 3. Duración/horario real del periodo (`uniajc.json` + calendario 2026-2). Todos los cursos activos = **120 min**. No asumas 60 min CUN.
+   > **Ojo (Prog II / Seminario, 2026-09):** el Calendar real de esos dos cursos arranca a las
+   > **18:30**, no 18:00 — se movió con `AjustarHoraInicio.gs` (ver
+   > `config/calendario/apps_script_ajustes/LEEME.md`). El JSON y el material siguen
+   > declarando **18:00–20:00 / 120 min** a propósito: cambiarlo obliga a decidir qué pasa con
+   > esos 30 minutos de contenido, y esa decisión no se ha tomado. No «corregir» el JSON a
+   > 18:30 sin que el docente lo pida explícitamente.
 4. Modalidad — **regla única, idéntica en los 4 cursos** (`config/calendario/semestre_2026_2.json` → `regla_modalidad_sesion`; el CSV del curso trae el tipo por sesión):
 
    | Sesión | Modalidad |
@@ -145,6 +155,26 @@ confirmar que la slide de Herramientas muestra logos y NO las iniciales de
 respaldo (`DF`, `OL`, …). Si aparece la inicial, el asset no existe o el nombre no
 resuelve. `add_picture` requiere `str(path)`, no `Path`.
 
+## Material de CLASE es genérico; solo la Presentación del Curso es específica (regla 2026-09)
+
+**El material de una Clase (deck `.pptx` y taller/enunciado `.docx` del estudiante) NO nombra
+la plataforma de entrega, ni da fecha límite fija, ni menciona «quiz» como algo que siempre
+existe.** Eso es variable: el docente decide clase a clase si hay taller, si hay quiz, y por
+dónde se entrega — fijo es solo el **tema**. Únicamente la **Presentación del Curso (Sesión
+0)** nombra ExamLab, su URL y sus reglas de acceso (ver sección siguiente): es el único lugar
+donde se explica, una vez, cómo se entrega.
+
+- En diapositivas, esto lo aplica `new_prs(generico=True)` de `uniajc_slides_engine.py` (los 5
+  builders `*_curso.py` de Sesión 0 llaman `new_prs(generico=False)` a propósito, para poder
+  seguir nombrando la plataforma ahí). Verificable con `config/slides/verificar_generico.py`.
+- Al escribir el **texto de origen** de un taller/enunciado `.docx` de clase
+  (`<curso>_clases_data.py`, `<curso>_examlab_data.py`, etc.), no hardcodear «suba esto a
+  ExamLab», «antes del domingo a las 23:59» ni «revise el quiz»: usar lenguaje genérico
+  («entregue por el canal que indique el docente», «revise el plazo que dé el docente»).
+- Esto **no** cambia el Kit docente: la configuración de ExamLab para el docente (preguntas,
+  puntos, `setupSql`, starter code) sigue siendo tan específica como siempre — la regla es
+  sobre lo que ve el estudiante, no sobre cómo el docente prepara la plataforma.
+
 ## Plataforma: ExamLab (no institucional)
 
 **Nunca** escribir “Campus Virtual”, “LMS” ni una URL de plataforma institucional:
@@ -232,6 +262,10 @@ starter code—, no un archivo importable. Eso lo hace
 Y el taller del estudiante debe cerrar con una sección **«Qué vas a resolver en
 ExamLab»**: cuántas preguntas, cuántos puntos, y de qué tipo es cada una, para que
 llegue sabiendo la forma de la respuesta.
+
+> **Ojo (regla 2026-09):** esto describe cómo preparar la evaluación en el Kit docente,
+> siempre específica. El taller del **estudiante** en `Clases/` sigue la regla genérica de
+> arriba: no nombra ExamLab ahí — ese detalle vive solo en la Presentación del Curso.
 
 **Nunca incluir el listado de estudiantes** en presentaciones ni documentos
 generados: es información privada. Tampoco dejar el placeholder
@@ -415,11 +449,23 @@ Reglas:
 
 - **Dos fuentes de verdad, no una.** `config/calendario/semestre_2026_2.json` tiene los **4**
   cursos de 13 sesiones; `config/calendario/introduccion_ingenieria_2026_2.json` tiene los **3
-  grupos** de FI300101 (`SB141B`, `SB141C`, `LB141F`: 16 sesiones de 90 min, dos días distintos
-  y fechas que se pasan a diciembre). **4 + 3 = 7 cursos** en 2026-2, y el generador falla a
-  propósito si no le salen 7. Todo lo que este documento dice de «13 sesiones / 15 temas / 2
-  dobles» aplica a los 4 primeros, **no** a Introducción a la Ingeniería, que tiene su propio
-  JSON y sus propios builders (`config/slides/build_uniajc_intro_ing_*.py`).
+  grupos** de FI300101 (`SB141B`, `SB141C`, `LB141F`: **11 sesiones de 90 min** para los **16
+  temas** del microcurrículo, **5 sesiones dobles** — cierra dentro de la ventana institucional
+  (17-19/11), ya **no** se pasa a diciembre). **4 + 3 = 7 cursos** en 2026-2, y el generador
+  falla a propósito si no le salen 7. Todo lo que este documento dice de «13 sesiones / 15
+  temas / 2 dobles» aplica a los 4 primeros, **no** a Introducción a la Ingeniería, que tiene su
+  propio JSON y sus propios builders (`config/slides/build_uniajc_intro_ing_*.py`).
+- **Introducción a la Ingeniería es el único de los 7 cursos que se dicta por Microsoft
+  Teams, no por Meet** (decisión del docente, 2026-09): el material (correo, calendario,
+  guiones, ExamLab) nombra «Teams», pero el `.gs` de encuentros **no cambió** — sigue creando
+  el bloque en el Calendar personal del docente igual que los demás seis cursos, sin generar
+  ningún enlace de Teams automático. No copiar «Meet» de los otros cursos al tocar este.
+- En Introducción a la Ingeniería, **«Sesión N» y «Clase N» NO son el mismo número** para 5 de
+  las 11 sesiones (las «sesiones dobles»: Sesión 2 = Clases 2+3, Sesión 3 = Clases 4+5, Sesión
+  5 = Clases 7+8, Sesión 6 = Clases 9+10, Sesión 11 = Clases 15+16). El mapa exacto vive en
+  `clases_material` de cada sesión del JSON. Al redactar o corregir contenido de ese curso,
+  «Clase N» es la referencia estable (temario, ExamLab); «Sesión N» es solo la fecha de
+  calendario — no usarlas como sinónimos.
 - Los encuentros del semestre **no se crean importando un `.ics`**: importar no le da a cada
   sesión su propia sala de Meet. Se crean con el Apps Script que emite
   `config/calendario/generar_apps_script_encuentros.py`, que usa la API de Calendar.
@@ -537,4 +583,4 @@ importar CSV, colas IA): eso es operación, no diseño pedagógico.
 
 ---
 
-*v2.1 — UNIAJC · 2026-2 (24/08–22/11 · **13 sesiones / 15 temas · 2 sesiones dobles** · sesión 13 de lunes = sustentaciones PI) · Sesión 0 ≠ Clase 1 (y Sesión 0 socializa el PI) · densidad máx. 5 bullets · evaluación en tarjetas · CONTENIDO en 1 slide · diagramas reales · logos verificados · scripts ejecutables · un dominio narrativo por curso · verificación final obligatoria · capturas de salida esperada (mockups.py) · helpers before_after/pseudo_code · modalidad regla unica (Clase 1 y parciales presencial · resto virtual · festivos autonoma) · quiz SOLO en Kit docente · SIN Campus Virtual (no existe; entrega en ExamLab) · sin listado de estudiantes · PI en los 4 cursos · Motor `uniajc_slides_engine.py`.*
+*v2.2 — UNIAJC · 2026-2 (24/08–22/11 · **13 sesiones / 15 temas · 2 sesiones dobles** · sesión 13 de lunes = sustentaciones PI) · Sesión 0 ≠ Clase 1 (y Sesión 0 socializa el PI) · densidad máx. 5 bullets · evaluación en tarjetas · CONTENIDO en 1 slide · diagramas reales · logos verificados · scripts ejecutables · un dominio narrativo por curso · verificación final obligatoria · capturas de salida esperada (mockups.py) · helpers before_after/pseudo_code · modalidad regla unica (Clase 1 y parciales presencial · resto virtual · festivos autonoma) · quiz SOLO en Kit docente · SIN Campus Virtual (no existe; entrega en ExamLab) · sin listado de estudiantes · PI en los 4 cursos · Motor `uniajc_slides_engine.py` · **material de Clase genérico, solo Sesión 0 nombra ExamLab** (`verificar_generico.py`) · Introducción a la Ingeniería (FI300101) es un 7º/5º curso aparte: **11 sesiones / 16 temas / 5 dobles**, plataforma **Microsoft Teams** (no Meet), Sesión≠Clase en 5 sesiones — JSON y builders propios.*

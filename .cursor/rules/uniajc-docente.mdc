@@ -24,8 +24,8 @@ alwaysApply: true
 
 | Curso | Oferta | Por sesión |
 |---|---|---|
-| **Programación II** (mié 18:00–20:00) | **Virtual** | Todas las sesiones virtual síncrona por Meet, incluidos la Sesión 1 y los parciales (5/9/13); sin festivos en miércoles |
-| **Seminario** (jue 18:00–20:00) | **Virtual** | Todas las sesiones virtual síncrona por Meet, incluidos la Sesión 1 y los parciales (5/9/13); sin festivos en jueves |
+| **Programación II** (mié 18:00–20:00 en el JSON; **18:30** en el Calendar real desde 2026-09) | **Virtual** | Todas las sesiones virtual síncrona por Meet, incluidos la Sesión 1 y los parciales (5/9/13); sin festivos en miércoles |
+| **Seminario** (jue 18:00–20:00 en el JSON; **18:30** en el Calendar real desde 2026-09) | **Virtual** | Todas las sesiones virtual síncrona por Meet, incluidos la Sesión 1 y los parciales (5/9/13); sin festivos en jueves |
 | **Arquitectura** (lun 10:00–12:00 · 6303C) | **Virtual** | Todas las sesiones virtual síncrona por Meet, incluidos la Sesión 1 y los parciales (5/9/12); sesiones **8 y 11 autónomas**; **sesión 13 = sustentaciones PI** |
 | **BD II** (lun **18:00–20:00** · 641A-2) | **Virtual** | Todas las sesiones virtual síncrona por Meet, incluidos la Sesión 1 y los parciales (5/9/12); sesiones **8 y 11 autónomas**; **sesión 13 = sustentaciones PI** |
 
@@ -43,6 +43,11 @@ Cortes teóricos (validar en Acuerdo): **30% / 30% / 40%**
 3. **Bases de Datos II** (FI303215 · grupo **641A-2** · lun **18:00–20:00** · **120 min** · Virtual)
 4. **Arquitectura de Sistemas Computacionales** (FI303380 · grupo **6303C** · lun **10:00–12:00** · **120 min**)
 5. **0. Base** — plantillas institucionales / Ingeniería de Software 1 (referencia)
+6. **Introducción a la Ingeniería** (FI300101 · 3 grupos SB141B/SB141C/LB141F) — **NO** sigue las
+   cifras de este documento: tiene su propio calendario
+   `config/calendario/introduccion_ingenieria_2026_2.json` con **11 sesiones / 16 temas / 5
+   sesiones dobles** (Sesión N ≠ Clase N en 5 de ellas), cierra 17-19/11, y se dicta por
+   **Microsoft Teams** en vez de Meet. Builders propios: `build_uniajc_intro_ing_*.py`.
 
 Cualquier ajuste general de marca/diseño/nomenclatura UNIAJC se aplica a los cursos activos (no copiar estándares CUN: CDigital, Sesión NN, 60 min, etc.).
 
@@ -65,6 +70,12 @@ Cualquier ajuste general de marca/diseño/nomenclatura UNIAJC se aplica a los cu
 5. Slide **Herramientas del curso** (`herramientas_slide`): **3–4 principales**, logos **grandes** (~2×); no saturar.
 6. Quizzes proyectables: **sin** «no proyectar claves» en subtítulo estudiante; subtítulo tipo `Individual · 8–10 min`. Opciones OM **una por línea**. Helpers: `config/slides/uniajc_quiz_helpers.py`.
 7. Plataforma = **ExamLab** (`https://uniaj.examlab.workers.dev/`), que **no es plataforma oficial de la UNIAJC**. Encuesta de inicio de semestre (una para los 4 cursos, a llenar **antes de la primera clase**): `https://uniaj.examlab.workers.dev/encuesta/e7610f29ce21b0019305054857ac83d0`, en `semestre_<periodo>.json → encuesta_inicio_semestre`. **Nunca** escribir «Campus Virtual», «LMS» ni una URL institucional: mandaría al estudiante a un sitio que no existe. Nunca «CDigital» (eso es CUN).
+   - **Regla 2026-09 — solo la Sesión 0 nombra la plataforma.** El material de **Clase**
+     (deck `.pptx` y taller/enunciado `.docx` del estudiante) es **genérico**: no dice
+     ExamLab, no da URL, no da fecha límite fija, no menciona «quiz» como algo fijo — eso es
+     variable, lo decide el docente clase a clase. Se aplica con `new_prs(generico=True)` en
+     `uniajc_slides_engine.py`; se verifica con `config/slides/verificar_generico.py`. El Kit
+     docente (privado) no cambia: sigue siendo específico.
 8. Presentación del curso (estudiantes): grupo(s), docente, recursos, evaluación, CONTENIDO (Sesión 0 + las **13 sesiones** en **una** diapositiva vía `contenido_clases_slide`), Padlet, herramientas, cierre. **Sin** checklist docente ni Clear posts. **Sin** placeholder Campus Virtual ni listado.
 9. Datos de oferta del periodo en **negrita** (grupo, periodo, horario). **No** forzar negrita en docente/correo, temario ni textos pedagógicos.
 10. Marca: `#095292` / `#269CCB` / `#FFD000` — ver `config/universidades/uniajc.json`.
