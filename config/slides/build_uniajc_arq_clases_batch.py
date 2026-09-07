@@ -306,6 +306,15 @@ CLASSES = [
                 "Si el dominio exige mucho control de red → justifique IaaS *simulado* en diagrama.",
                 "SaaS solo como **satélite** (auth, email, analytics) — no como toda la app.",
             ]),
+            # La responsabilidad compartida y el vendor lock-in ya estaban en el
+            # fundamento del guion (varios parrafos) pero nunca se proyectaban: el
+            # docente los explicaba sin que el estudiante los viera en pantalla.
+            ("Responsabilidad compartida: quién responde por qué", [
+                "@@Regla que hay que memorizar:@@ el proveedor responde por la seguridad **DE** la nube (centro de datos, hipervisor, cifrado en reposo); usted responde por la seguridad **EN** la nube (contraseñas, permisos, datos, configuración).",
+                "La causa dominante de incidentes en la nube **no** es una falla del proveedor: es una configuración del cliente (un bucket público, una credencial en el repo, un puerto de base de datos expuesto).",
+                "@@Vendor lock-in@@ (costo de mudarse de proveedor): **bajo** en IaaS (una VM Linux se parece a cualquier otra) · **medio** en PaaS (el archivo de configuración y algún servicio son propietarios) · **potencialmente alto** en SaaS (datos y lógica viven dentro del producto ajeno).",
+                "Mitigación para CloudLite: no evitar SaaS, **acotarlo** — si el envío de correos vive detrás de una interfaz propia (`Notificador.enviar()`), cambiar de proveedor toca un archivo, no cuarenta.",
+            ]),
             # Las 6 secciones son EXACTAMENTE las que califican las preguntas 6 y 7, y van
             # en la diapositiva porque el formato del ADR vale 18.75 de los 25 puntos de la
             # clase: titulo y estado no aparecian en ningun deck y se cobraban igual.
@@ -1633,8 +1642,7 @@ def _slide_map(c: dict) -> list:
                 f"Parcial · Clase {n}"]
     m = [f"Portada · Clase {n} · {c['tema']}",
          "Agenda de hoy (120 min)",
-         "Objetivos de la clase",
-         "PI CloudLite — entregable de hoy"]
+         "Objetivos de la clase"]
     m += [x[0] for x in c.get("slides_extra", [])]
     dg = DIAGRAMAS.get(n)
     if dg:
@@ -1649,8 +1657,9 @@ def _slide_map(c: dict) -> list:
         m.append("Herramientas de hoy")
     if _tiene_diagrama(n):
         m.append(FLUJO_SLIDE_TITULO)
+    m.append("PI CloudLite — entregable de hoy")
     m.append("Sustentación (paso a paso)" if c["tipo"] == "sustentacion"
-             else "Taller PI (paso a paso)")
+             else "Manos a la obra (paso a paso)")
     m.append("Para continuar (PI)")
     m.append(f"Clase {n} · cierre del PI CloudLite" if c["tipo"] == "sustentacion"
              else f"Clase {n} · PI en movimiento")
@@ -1795,7 +1804,7 @@ def build_pptx(c: dict) -> Path:
         agenda = [
             "**0–10** Encuadre: hoy avanzamos el PI en… + entregable concreto.",
             "**10–40** Teoría Core breve (solo lo necesario para el taller PI).",
-            f"**40–100** Taller guiado PI (demo en vivo + {mod(c, 'agenda_taller_nota')}).",
+            f"**40–100** Trabajo guiado del PI (demo en vivo + {mod(c, 'agenda_taller_nota')}).",
             "**100–115** Revisión de evidencias del PI.",
             "**115–120** Cierre: criterio de éxito + plazo domingo 23:59.",
         ]
@@ -1803,6 +1812,10 @@ def build_pptx(c: dict) -> Path:
     idx += 1
     content_slide(prs, "Objetivos de la clase", c["objetivos"], idx=idx)
     idx += 1
+    # El bloque evaluativo (que se entrega, con que herramienta) se construye aqui
+    # pero se PROYECTA mas abajo, justo antes de la practica: anunciarlo antes de la
+    # teoria hacia que la clase sonara a "esto es lo que califica" en vez de "esto es
+    # lo que se aprende", y adelantaba una nota que todavia no tenia contexto.
     entregable_bullets = [
         f"@@Entregable:@@ {c['entregable']}",
         f"Herramienta: **{c['herramienta']}**",
@@ -1813,8 +1826,6 @@ def build_pptx(c: dict) -> Path:
     ]
     if c.get("ficha_bloques_note"):
         entregable_bullets[-1:-1] = [c["ficha_bloques_note"]]
-    content_slide(prs, "PI CloudLite — entregable de hoy", entregable_bullets, idx=idx)
-    idx += 1
     for extra in c["slides_extra"]:
         # Una entrada es (titulo, vinetas) o (titulo, vinetas, tabla). La tercera
         # forma existe porque hay conceptos que son una comparacion y salen mejor
@@ -1866,8 +1877,10 @@ def build_pptx(c: dict) -> Path:
             sub="El diagrama se entrega como código Mermaid dentro de ExamLab, no como imagen",
             idx=idx)
         idx += 1
+    content_slide(prs, "PI CloudLite — entregable de hoy", entregable_bullets, idx=idx)
+    idx += 1
     pasos_titulo = ("Sustentación (paso a paso)" if c["tipo"] == "sustentacion"
-                    else "Taller PI (paso a paso)")
+                    else "Manos a la obra (paso a paso)")
     content_slide(prs, pasos_titulo, [f"**{i+1}.** {p}" for i, p in enumerate(_pasos(c))], idx=idx)
     idx += 1
     if c["tipo"] == "sustentacion":
