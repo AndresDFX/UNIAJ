@@ -1140,6 +1140,35 @@ DIAGRAMAS = {
         ],
         "note": "Nivel Context: el sistema es UNA caja (sin abrir por dentro). Actores a la izquierda, sistemas externos a la derecha. El interior se dibuja en Clase 4 (Containers).",
     },
+    # Antes la Clase 2 explicaba IaaS/PaaS/SaaS solo con bullets (diapositiva 5) y no
+    # tenia ni un diagrama ni un nombre real de producto: el estudiante memorizaba tres
+    # definiciones sin ver nunca la pila de responsabilidad ni un ejemplo reconocible.
+    # Esta es la pila clasica que se enseña en cualquier curso de cloud, con las cuatro
+    # capas que la diapositiva 5 ya nombra (computo/red/disco, SO, runtime, app/datos) y
+    # un producto gratis-friendly por columna para que el termino deje de ser abstracto.
+    2: {
+        "titulo": "Quién administra cada capa — IaaS vs PaaS vs SaaS",
+        "sub": "Misma aplicación, distinto reparto de responsabilidad entre usted y el proveedor",
+        "boxes": [
+            {"id": "h_iaas", "label": "IaaS\n(DigitalOcean, AWS EC2)", "x": 0.6, "y": 1.45, "w": 3.6, "h": 0.75, "color": NAVY, "size": 12},
+            {"id": "h_paas", "label": "PaaS\n(Render, Railway, Heroku)", "x": 4.55, "y": 1.45, "w": 3.6, "h": 0.75, "color": NAVY, "size": 12},
+            {"id": "h_saas", "label": "SaaS\n(Gmail, Notion, Slack)", "x": 8.5, "y": 1.45, "w": 3.6, "h": 0.75, "color": NAVY, "size": 12},
+            {"id": "i_app", "label": "Aplicación y datos", "x": 0.6, "y": 2.3, "w": 3.6, "h": 0.6, "color": AMARILLO, "text_color": NAVY, "size": 11},
+            {"id": "i_run", "label": "Runtime / middleware", "x": 0.6, "y": 3.0, "w": 3.6, "h": 0.6, "color": AMARILLO, "text_color": NAVY, "size": 11},
+            {"id": "i_so", "label": "Sistema operativo", "x": 0.6, "y": 3.7, "w": 3.6, "h": 0.6, "color": AMARILLO, "text_color": NAVY, "size": 11},
+            {"id": "i_infra", "label": "Infraestructura\n(cómputo, red, disco)", "x": 0.6, "y": 4.4, "w": 3.6, "h": 0.6, "color": CIAN, "size": 10.5},
+            {"id": "p_app", "label": "Aplicación y datos", "x": 4.55, "y": 2.3, "w": 3.6, "h": 0.6, "color": AMARILLO, "text_color": NAVY, "size": 11},
+            {"id": "p_run", "label": "Runtime / middleware", "x": 4.55, "y": 3.0, "w": 3.6, "h": 0.6, "color": CIAN, "size": 11},
+            {"id": "p_so", "label": "Sistema operativo", "x": 4.55, "y": 3.7, "w": 3.6, "h": 0.6, "color": CIAN, "size": 11},
+            {"id": "p_infra", "label": "Infraestructura\n(cómputo, red, disco)", "x": 4.55, "y": 4.4, "w": 3.6, "h": 0.6, "color": CIAN, "size": 10.5},
+            {"id": "s_app", "label": "Aplicación y datos\n(usted solo configura)", "x": 8.5, "y": 2.3, "w": 3.6, "h": 0.6, "color": AMARILLO, "text_color": NAVY, "size": 10.5},
+            {"id": "s_run", "label": "Runtime / middleware", "x": 8.5, "y": 3.0, "w": 3.6, "h": 0.6, "color": CIAN, "size": 11},
+            {"id": "s_so", "label": "Sistema operativo", "x": 8.5, "y": 3.7, "w": 3.6, "h": 0.6, "color": CIAN, "size": 11},
+            {"id": "s_infra", "label": "Infraestructura\n(cómputo, red, disco)", "x": 8.5, "y": 4.4, "w": 3.6, "h": 0.6, "color": CIAN, "size": 10.5},
+        ],
+        "legend": "Amarillo = lo administra usted · Celeste = lo administra el proveedor",
+        "note": "Suba en la pila y sube el control, pero también lo que tiene que operar usted: parches, escalado, disponibilidad. Para el MVP de CloudLite, PaaS es el punto medio: usted solo responde por su aplicación y sus datos.",
+    },
     3: {
         "titulo": "Máquinas virtuales vs. contenedores",
         "sub": "Misma capacidad de cómputo, distinto nivel de aislamiento",
@@ -1808,7 +1837,7 @@ def build_pptx(c: dict) -> Path:
     if dg:
         diagram_boxes_slide(
             prs, dg["titulo"], dg["boxes"], arrows=dg.get("arrows"),
-            sub=dg.get("sub"), note=dg.get("note"), idx=idx,
+            sub=dg.get("sub"), note=dg.get("note"), legend=dg.get("legend"), idx=idx,
         )
         idx += 1
     ad = ANTES_DESPUES_ARQ.get(n)

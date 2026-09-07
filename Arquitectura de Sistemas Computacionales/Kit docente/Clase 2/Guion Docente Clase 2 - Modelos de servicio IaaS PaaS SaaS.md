@@ -36,7 +36,9 @@ El concepto que unifica todo esto se llama modelo de responsabilidad compartida 
 El entregable concreto es el ADR-001. Un ADR (Architecture Decision Record, registro de decision arquitectonica) es un documento corto, de media pagina a una pagina, que registra UNA sola decision. En este curso tiene SEIS secciones rotuladas, siempre las mismas y en este orden, y hay que dictarlas tal cual porque son las que la actividad califica: 1) Titulo, con el numero consecutivo del ADR; 2) Estado, que hoy es «Aceptado» mas la fecha de la sesion; 3) Contexto, o sea las restricciones bajo las que se decide; 4) Decision, en una sola frase y con un unico modelo dominante; 5) Alternativas descartadas, exactamente dos y con el motivo atado al dominio; 6) Consecuencias, con lo bueno y lo malo que se acepta. El reparto en la plataforma es que las cinco primeras van en la pregunta 6 y la sexta en la pregunta 7, pero es UN solo documento, y conviene decirlo en voz alta porque el estudiante que lo entienda como dos ejercicios sueltos repite la decision en las consecuencias y pierde puntos. No hay seccion de «opciones consideradas»: ese analisis es la matriz de la pregunta 5, y en el ADR solo quedan las dos alternativas que se descartaron. La regla de una decision por documento no es burocracia: es lo que permite que meses despues alguien lea por que se eligio algo sin depender de la memoria de nadie.
 
 Conviene mostrar la diferencia entre contexto y analisis con el ejemplo, porque es donde se pierde la seccion 3 completa. Un ADR-001 aceptable para CloudLite Turnos diria en CONTEXTO: la barberia agenda por mensajeria y pierde alrededor de tres turnos diarios por doble reserva; el proyecto lo sostiene un desarrollador (o un equipo de dos o tres, si el docente lo autorizo) durante doce semanas, sin presupuesto ni tarjeta de credito, y el sistema tiene que estar disponible el dia de la sustentacion. Eso es contexto: son restricciones, no teoria. «Existen tres modelos de servicio y hay que elegir uno» NO es contexto, es el apunte de clase, y esa confusion es el error dominante de la pregunta 6. La prueba que el docente puede aplicar en voz alta mientras pasa por los grupos es una sola: si del contexto no se puede deducir por que se descarta IaaS, todavia no es contexto. En DECISION va una frase: la aplicacion de CloudLite Turnos se despliega sobre PaaS. En ALTERNATIVAS DESCARTADAS van dos y solo dos: IaaS con maquina virtual propia, descartada porque habria que asumir parches y respaldos del sistema operativo sin tiempo para ello; y SaaS de agendamiento ya existente, descartada porque el proyecto perderia su objeto, ya que no habria arquitectura que disenar sino solo configuracion. Que identidad y correo se consuman como SaaS satelite se aclara aqui y no en la decision, porque el modelo dominante se refiere a la aplicacion propia. Y en CONSECUENCIAS, que es la seccion que los estudiantes dejan a medias, deben aparecer tambien las malas: se acepta un arranque en frio de varios segundos tras inactividad, se acepta no poder afinar el sistema operativo y se acepta un amarre medio al proveedor, mitigado con contenedores.
-### Preguntas frecuentes y cierre conceptual (de la diapositiva 5 a la diapositiva 8)
+### La pila dibujada: nombres reales para IaaS, PaaS y SaaS - diapositiva 8
+Proyecte la diapositiva 8 inmediatamente despues de fijar la plantilla del ADR: es el mismo corte de responsabilidades que se acaba de explicar en prosa, ahora dibujado y con un producto reconocible en cada columna. Recorrala de abajo hacia arriba y no al reves: senale primero que las tres columnas comparten la misma base (infraestructura), y que lo unico que cambia es hasta donde sube el color amarillo. En IaaS el estudiante ya conoce DigitalOcean o AWS EC2 de oidas aunque no tenga cuenta; en PaaS, Render, Railway o Heroku son los que de verdad va a usar en el taller de hoy y en la Clase 3; en SaaS, Gmail o Notion le sirven para entender que «usted solo configura» no es un eufemismo, de verdad no hay nada que desplegar. Pregunte en voz alta, senalando la columna de PaaS: «por que la fila de Sistema operativo es celeste aqui y amarilla en IaaS?» La respuesta correcta es que el proveedor la absorbio, no que desaparecio: es el error mas comun, creer que en PaaS el sistema operativo deja de existir en vez de que alguien mas lo administra.
+### Preguntas frecuentes y cierre conceptual (de la diapositiva 5 a la diapositiva 9)
 Tres preguntas salen en voz alta en esta clase casi sin falta y conviene tener la respuesta lista, porque las tres se contestan en treinta segundos y desbloquean el taller. Cual de los tres modelos es el mejor: ninguno; la pregunta correcta es cual conviene para este componente, con este equipo y en este plazo, y responder que PaaS es mejor sin decir para que es la senal de que el ADR sera de relleno. Donde encaja serverless o las funciones como servicio: es una variante extrema de PaaS en la que no se administra ninguna instancia siempre encendida, se paga por invocacion y el codigo debe tolerar arrancar en frio; para efectos del curso se clasifica como PaaS anotando la diferencia. Y la mas comun: si elegimos PaaS, para que aprendemos Docker en la Clase 3 si la plataforma se encarga de todo. Respuesta: porque la plataforma construye internamente una imagen de contenedor con el codigo entregado, de modo que entender contenedores es entender que hace la plataforma por debajo, y porque el contenedor es precisamente el artefacto que vuelve reversible la decision de hoy. La Clase 4 usara este mismo ADR para justificar cuantas piezas tendra el sistema, y el Parcial 1 de la Clase 5 evalua la capacidad de ubicar la linea de responsabilidad en cada modelo.
 
 Error tipico del docente que no domina el tema: presentar IaaS, PaaS y SaaS como catalogos de marcas y no como un modelo conceptual de responsabilidad, con lo cual el estudiante memoriza nombres de productos que cambiaran en dos periodos y no aprende a preguntar quien administra que capa; aguas abajo, en la Clase 6 sera incapaz de decir de que es responsable el en materia de seguridad, y en la Clase 10 no podra explicar por que su factura hipotetica sube o baja. El segundo error es dejar pasar ADR sin consecuencias negativas, y como esta clase tiene encuentro sincronico no hay excusa para no corregirlo en el momento: al pasar por los grupos en el tramo de taller, pregunte «que perdieron al elegir eso» antes de que el documento se suba. Un ADR que solo lista beneficios no es una decision, es una justificacion escrita despues de los hechos, y quien lo entrega asi llegara a la Clase 11 sin poder explicar ningun trade-off de su arquitectura, que es justamente lo que se le exigira sustentar en la Clase 15.
@@ -52,11 +54,12 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 5. IaaS · PaaS · SaaS (sin cloud de pago)
 6. Cómo decidir para CloudLite
 7. Plantilla ADR-001
-8. ADR-001 — las 6 secciones caben en una pagina
-9. Herramientas de hoy
-10. Taller PI (paso a paso)
-11. Para continuar (PI)
-12. Clase 2 · PI en movimiento
+8. Quién administra cada capa — IaaS vs PaaS vs SaaS
+9. ADR-001 — las 6 secciones caben en una pagina
+10. Herramientas de hoy
+11. Taller PI (paso a paso)
+12. Para continuar (PI)
+13. Clase 2 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -80,7 +83,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 8]
+### 40–55 · Demo en vivo · [Slide 9]
 Herramienta del día: **Google Docs · draw.io (opcional)**.
 **Demo que usted debe poder repetir:** Llenar un ADR-001 delante del grupo, con sus 6 secciones rotuladas
 
@@ -91,11 +94,11 @@ Herramienta del día: **Google Docs · draw.io (opcional)**.
 5. Alternativas descartadas, exactamente dos: IaaS, porque habria que operar el sistema operativo sin tiempo para ello; SaaS como nucleo, porque no quedaria arquitectura que disenar. Aclare aqui —y no en la decision— que identidad y correo siguen siendo SaaS satelite.
 6. Consecuencias: escriba UN eje (operacion) con su + y su -, y deje los otros dos al grupo. Diga: «un ADR de una pagina que se entiende vale mas que 5 paginas que nadie lee».
 
-Narra los clics en voz alta. Si falla la red, proyecta la [Slide 8], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
+Narra los clics en voz alta. Si falla la red, proyecta la [Slide 9], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 10]
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 11]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -108,7 +111,7 @@ Aplica el quiz corto de `Kit docente/Clase 2/Quiz Clase 2 - Modelos de servicio 
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 12]
+### 115–120 · Cierre · [Slide 13]
 Di: «Queda avanzado: Decidir modelo dominante (IaaS/PaaS/SaaS) para CloudLite + ADR breve.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
