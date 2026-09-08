@@ -935,15 +935,17 @@ MARCA_VOCERO = ("<!-- vocero: generado -->", "<!-- /vocero -->")
 MARCA_EXAMLAB = ("<!-- examlab: generado -->", "<!-- /examlab -->")
 MARCA_CARPETAS = ("<!-- carpetas: generado -->", "<!-- /carpetas -->")
 
-EXAMLAB_AUTH = "https://uniaj.examlab.workers.dev/"
-EXAMLAB_MANUAL = (
-    "https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/"
-    "help-docs/manual-estudiante.pdf"
-)
-EXAMLAB_VIDEO = (
-    "https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/public/"
-    "help-videos/serie-estudiante.mp4"
-)
+# Las URLs de ExamLab viven en la plantilla comun del correo (`config/correos/`), no aqui:
+# este generador y esa plantilla emiten correos distintos —los cuatro cursos de 2026-2 usan
+# bloques gestionados que se actualizan en sitio, la plantilla se usa para los cursos nuevos—
+# pero la direccion de la plataforma tiene que ser la misma en los dos o el estudiante recibe
+# una URL vieja segun el curso.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "correos"))
+import correo_bienvenida as _cb  # noqa: E402
+
+EXAMLAB_AUTH = _cb.EXAMLAB_URL + "/"
+EXAMLAB_MANUAL = _cb.EXAMLAB_MANUAL
+EXAMLAB_VIDEO = _cb.EXAMLAB_VIDEO
 # Encuesta de inicio de semestre: una sola para los 4 cursos, en el JSON para no repetirla.
 ENCUESTA = (DATA.get("encuesta_inicio_semestre") or {}).get("url", "")
 

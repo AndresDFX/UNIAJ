@@ -27,6 +27,12 @@ from uniajc_slides_engine import (  # noqa: E402
 )
 import intro_ing_datos as D  # noqa: E402
 
+# La plantilla del correo de bienvenida es comun a todos los cursos y vive fuera de
+# config/slides, porque no tiene nada que ver con las diapositivas.
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "..", "correos"))
+import correo_bienvenida as cb  # noqa: E402
+
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 CURSO = os.path.join(ROOT, D.curso()["folder"])
 OUT_CLASES = os.path.join(CURSO, "Clases")
@@ -329,33 +335,18 @@ def build_calendario(codigo):
     return out
 
 
-# Material de apoyo de ExamLab. Mismos valores que en `generar_semestre_2026_2.py`,
-# que es el que emite los correos de los otros cuatro cursos.
-EXAMLAB_MANUAL = ("https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/"
-                  "public/help-docs/manual-estudiante.pdf")
-EXAMLAB_VIDEO = ("https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/"
-                 "public/help-videos/serie-estudiante.mp4")
-
 # ----------------------------------------------------------------------- LEEME
 
 def build_correo(codigo):
     """`CORREO_BIENVENIDA - <Curso> - <GRUPO> - <periodo>.md`, uno por grupo.
 
-    Por que existe: los otros cuatro cursos del semestre tienen su correo de bienvenida y
-    este no tenia ninguno, porque el generador del semestre solo lee
-    `semestre_2026_2.json` y los tres grupos de FI300101 viven en su propio archivo. El
-    hueco no era cosmetico: los eventos de Calendar son bloques del calendario del docente
-    —sin invitados— y NINGUN documento publica una URL de Teams. Sin este correo, el
-    estudiante de estos tres grupos no tenia el horario ni sabia como entrar a la sesion.
+    El texto NO esta aqui: esta en `config/correos/correo_bienvenida.py`, que es la plantilla
+    comun a todos los cursos. Aqui solo se traducen los datos de este curso al `spec` que esa
+    plantilla espera. Es a proposito: cuando el correo de un curso lleva su propio texto, a
+    los seis meses cinco correos dicen cinco cosas distintas del mismo ExamLab.
 
     Va uno por grupo porque lo que cambia es justo lo que el estudiante necesita: el dia, la
     hora y las fechas. El resto del curso es identico en los tres.
-
-    Tono: el mismo molde escueto de los otros cuatro cursos. Aqui va lo que el estudiante
-    tiene que SABER y HACER antes del primer encuentro, y nada mas. La dinamica de la sesion,
-    el porque de los 5 equipos, el stack de herramientas y las reglas de aula estan en el
-    Acuerdo Pedagogico, en el Plan de curso y en el «LEEME - Dinamica de sesion y
-    plataformas»: repetirlos aqui solo entierra el horario y el acceso a la plataforma.
     """
     c = D.curso()
     g = D.grupo(codigo)
@@ -363,141 +354,64 @@ def build_correo(codigo):
     dia = g["dia"].lower()
     f1 = D.fecha_de_sesion(codigo, 1)
     fN = D.fecha_de_sesion(codigo, c["n_sesiones"])
-    horario = g["horario"].replace(" - ", " – ")
 
-    # Cuando cae cada evaluacion de corte, leido del desglose (no cableado): el corte 3 no
-    # tiene evaluacion escrita, asi que solo salen los dos primeros.
-    evaluaciones = []
+    # Cuando cae cada evaluacion de corte, leido del desglose y no cableado. El corte 3 no
+    # tiene evaluacion escrita (se califica con la exposicion y el informe), asi que de aqui
+    # salen solo las dos primeras.
+    filas = [("**Primera sesión** (%s)" % g["dia"], "**%s**" % D.ddmmyyyy(f1),
+              "Sesión 1 · presentación del curso y diagnóstico **sin nota**")]
     for x in ct:
         for linea in x["desglose"]:
             if not linea.lower().startswith("evaluaci"):
                 continue
             m = re.search(r"sesi[oó]n\s+(\d+)", linea)
             ses = int(m.group(1)) if m else x["cierre_sesion"]
-            evaluaciones.append((x["corte"], ses, D.fecha_de_sesion(codigo, ses)))
+            f = D.fecha_de_sesion(codigo, ses)
+            filas.append(("Evaluación de corte %d" % x["corte"],
+                          D.ddmmyyyy(f) if f else "—",
+                          "Sesión %d · en ExamLab" % ses))
+    filas.append(("Última sesión (%s)" % g["dia"], "**%s**" % D.ddmmyyyy(fN),
+                  "Sesión %d (doble) · exposición final del proyecto e informe"
+                  % c["n_sesiones"]))
 
-    L = [
-        "# Correo de bienvenida — %s · %s · %s" % (c["nombre_acentos"], codigo,
-                                                   D.load()["periodo"]),
-        "",
-        "**Para:** estudiantes del grupo %s" % codigo,
-        "**De:** %s · %s" % (D.DOCENTE, D.CORREO),
-        "**Asunto sugerido:** Bienvenida · %s (%s · %s) · %s · Virtual · %s %s"
-        % (c["nombre_acentos"], c["codigo"], codigo, D.load()["periodo"], dia[:3], horario),
-        "",
-        "> Un correo por grupo: cambian el día, la hora y las fechas; el resto es igual en "
-        "los tres.",
-        "",
-        "---",
-        "",
-        "Estimados estudiantes:",
-        "",
-        "Les doy la bienvenida al curso **%s** (código **%s**, grupo **%s**) del periodo "
-        "**%s** (del **%s** al **%s**)."
-        % (c["nombre_acentos"], c["codigo"], codigo, D.load()["periodo"],
-           D.ddmmyyyy(f1), D.ddmmyyyy(fN)),
-        "",
-        "- **Modalidad:** Virtual",
-        "- **Modalidad por sesión:** todas las sesiones son **virtual síncrona** por "
-        "**Microsoft Teams**, incluidas las evaluaciones de corte y la sustentación final.",
-        "- **Calendario:** %d sesiones de %s, una por semana, de %d min, que cubren los %d "
-        "temas del curso; 5 sesiones son **dobles** (dos temas en el mismo bloque). Ningún "
-        "festivo cae en %s: **no hay semanas autónomas**."
-        % (c["n_sesiones"], dia, c["duracion_min"], c["n_temas"], dia),
-        "- **Horario:** %s **%s** (inicio práctico de clase: **%s**)"
-        % (dia, horario, g["hora_inicio_efectiva"]),
-        "- **Docente:** %s · %s" % (D.DOCENTE, D.CORREO),
-        "",
-        "### Fechas clave",
-        "",
-        "| Hito | Fecha | Detalle |",
-        "|---|---|---|",
-        "| **Primera sesión** (%s) | **%s** | Sesión 1 · presentación del curso y "
-        "diagnóstico **sin nota** |" % (g["dia"], D.ddmmyyyy(f1)),
-    ]
-    for corte, ses, f in evaluaciones:
-        L.append("| Evaluación de corte %d | %s | Sesión %d · en ExamLab |"
-                 % (corte, D.ddmmyyyy(f) if f else "—", ses))
-    L += [
-        "| Última sesión (%s) | **%s** | Sesión %d (doble) · exposición final del proyecto "
-        "e informe |" % (g["dia"], D.ddmmyyyy(fN), c["n_sesiones"]),
-        "",
-        "> **No hay examen final escrito.** El corte 3 (%s) se califica con la **exposición "
-        "final del proyecto** y el **informe final**, los dos en la última sesión."
-        % ct[-1]["pct"],
-        "",
-        "**No les va a llegar ninguna invitación de Google Calendar.** El horario del curso "
-        "es el de arriba: **guárdenlo ustedes** en su calendario si les sirve, y el "
-        "**enlace de Microsoft Teams se lo comparto yo antes de cada encuentro**.",
-        "",
-        "**¿Dónde busco el enlace del día?** En **ExamLab**, en el curso: ahí lo publico "
-        "antes de que empiece la sesión. Si ese día algo falla, lo mando también por el "
-        "grupo de WhatsApp, por medio del vocero.",
-        "",
-        "> No guarden un enlace fijo: **cada sesión tiene su propio enlace**, así que el de "
-        "la semana pasada ya no sirve.",
-        "",
-        "### Plataforma del curso — ExamLab",
-        "",
-        "Trabajaremos en **ExamLab**: https://uniaj.examlab.workers.dev",
-        "",
-        "**No es una plataforma oficial de la UNIAJC**, pero es donde se desarrolla todo lo "
-        "del curso: el **enlace de Teams de cada sesión**, el material, las **entregas de "
-        "los talleres**, la **asistencia** y las **dos evaluaciones de corte**.",
-        "",
-        "**Por favor verifiquen que pueden entrar ANTES de la primera sesión**, no ese mismo "
-        "día:",
-        "",
-        "| | |",
-        "|---|---|",
-        "| **Dirección** | https://uniaj.examlab.workers.dev |",
-        "| **Usuario** | Su correo institucional `@estudiante.uniajc.edu.co` |",
-        "| **Contraseña temporal** | `Temporal#123` — la aplicación les pide cambiarla al "
-        "entrar |",
-        "",
-        "La cuenta ya está creada y ya están matriculados en el grupo **%s**: no hay que "
-        "registrarse. Si el correo institucional todavía no les llegó de Registro "
-        "Académico, escríbanme y les habilito el acceso." % codigo,
-        "",
-        "Material de apoyo para usar la plataforma:",
-        "",
-        "- **Manual del estudiante (PDF):** " + EXAMLAB_MANUAL,
-        "- **Todas las funcionalidades (video):** " + EXAMLAB_VIDEO,
-        "",
-        "#### Dos cosas pendientes al entrar",
-        "",
-        "1. **Firmar el Acuerdo Pedagógico** del curso — aparece en «Firmas pendientes». Es "
-        "donde quedan la metodología y la evaluación.",
-        "2. **Responder la encuesta de inicio de semestre** (bienestar y conectividad).",
-        "",
-        "> **Las dos son requisito para que les quede registrada la asistencia de la primera "
-        "sesión.** Toman pocos minutos y se pueden hacer desde el celular.",
-        "",
-        "Todas las herramientas del curso son **gratis y desde el navegador**: no hay que "
-        "instalar ni pagar nada, y **nunca les voy a pedir una tarjeta de crédito**. Si una "
-        "herramienta la pide, no es la que usamos.",
-        "",
-        "**Una cosa que necesito de ustedes:** que el **vocero del grupo** me **responda "
-        "este correo con su número de WhatsApp**. Lo uso solo para avisos urgentes del curso "
-        "—que el enlace de Teams falle, una caída de la plataforma el día de una "
-        "evaluación— y para tener un canal directo con el grupo. Si todavía no han elegido "
-        "vocero, lo definimos en la primera sesión y me escribe después.",
-        "",
-        "Nos vemos el %s. Cualquier duda, respondiendo a este correo."
-        % D.ddmmyyyy(f1),
-        "",
-        "Cordialmente,",
-        "",
-        D.DOCENTE,
-        "Ingeniero de Sistemas · Candidato a MsC en IA",
-        D.CORREO,
-        "",
-    ]
+    spec = {
+        "curso": c["nombre_acentos"],
+        "codigo": c["codigo"],
+        "grupo": codigo,
+        "periodo": D.load()["periodo"],
+        "docente": D.DOCENTE,
+        "correo_docente": D.CORREO,
+        "dia": g["dia"],
+        "horario": g["horario"].replace(" - ", " – "),
+        "inicio_efectivo": g["hora_inicio_efectiva"],
+        "primera": D.ddmmyyyy(f1),
+        "ultima": D.ddmmyyyy(fN),
+        "plataforma_encuentro": "Microsoft Teams",
+        "nota_grupos": "Un correo por grupo: cambian el día, la hora y las fechas; el resto "
+                       "es igual en los tres.",
+        "linea_modalidad_sesion":
+            "todas las sesiones son **virtual síncrona** por **Microsoft Teams**, incluidas "
+            "las evaluaciones de corte y la sustentación final.",
+        "linea_calendario":
+            "%d sesiones de %s, una por semana, de %d min, que cubren los %d temas del "
+            "curso; 5 sesiones son **dobles** (dos temas en el mismo bloque). Ningún festivo "
+            "cae en %s: **no hay semanas autónomas**."
+            % (c["n_sesiones"], dia, c["duracion_min"], c["n_temas"], dia),
+        "fechas_clave": filas,
+        # Este curso no tiene carpetas de Drive propias: el material vive en ExamLab y en la
+        # carpeta compartida de cada equipo.
+        "carpetas_drive": None,
+        "examlab": {
+            "que_hay_ahi": "el material de cada clase, las **entregas de los talleres**, la "
+                           "**asistencia** y las **dos evaluaciones de corte**.",
+            "contrasena": "Temporal#123",
+            "cuentas_creadas": True,
+        },
+    }
+
     out = os.path.join(OUT_PLAN, "CORREO_BIENVENIDA - %s - %s - %s.md"
                        % (c["folder"], codigo, D.load()["periodo"]))
-    os.makedirs(OUT_PLAN, exist_ok=True)
-    with open(out, "w", encoding="utf-8") as fh:
-        fh.write("\n".join(L))
+    cb.escribir(spec, out)
     print("OK -> " + os.path.relpath(out, ROOT))
     return out
 
