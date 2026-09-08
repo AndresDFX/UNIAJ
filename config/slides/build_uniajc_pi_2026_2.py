@@ -167,7 +167,8 @@ def portada_estudiante(doc, meta):
          align=WD_ALIGN_PARAGRAPH.CENTER, space_before=8)
     para(doc, f"Código {meta['codigo']}  ·  Grupo {meta['grupo']}  ·  Periodo {meta['periodo']}",
          size=11, bold=True, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER)
-    para(doc, f"Horario: {meta['horario']}  ·  Modalidad: Virtual (sesiones por Meet)",
+    para(doc, f"Horario: {meta['horario']}  ·  Modalidad: "
+              f"{meta.get('modalidad_texto', 'Virtual (sesiones por Meet)')}",
          size=11, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER)
     para(doc, f"Docente: {DOCENTE}  ·  {CORREO}",
          size=10, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
@@ -993,6 +994,260 @@ def anexo_caso_estudio(doc, meta: dict):
               "ficha en vez de intentar construirla.", size=10)
 
 
+# ---------------------------------------------------------------------------
+# Introduccion a la Ingenieria — proyecto de equipo, sin dominio fijo
+#
+# Este curso NO tiene un producto ficticio compartido (no hay VetCare ni
+# CloudLite): cada EQUIPO elige su propio problema real del entorno (barrio,
+# universidad, trabajo, casa) desde la ficha semilla de la Clase 1. Los tres
+# grupos (SB141B, SB141C, LB141F) comparten el mismo enunciado, la misma
+# rubrica y el mismo calendario POR SESION -- solo cambian el dia y las
+# fechas de cada grupo, que ya estan en su propio CALENDARIO_2026-2. Por eso
+# este documento no fecha nada: ancla todo a la sesion y remite al
+# calendario del grupo para la fecha real.
+# ---------------------------------------------------------------------------
+
+INTRO_ING_META = {
+    "titulo": "Proyecto Integrador 2026-2 — Proyecto de equipo",
+    "titulo_docente": "Guía docente · Proyecto de equipo — Introducción a la Ingeniería",
+    "asignatura": "Introducción a la Ingeniería",
+    "codigo": "FI300101",
+    "grupo": "SB141B · SB141C · LB141F",
+    "periodo": "2026-2",
+    "horario": "Cada grupo tiene su propio día y horario (ver su CALENDARIO_2026-2)",
+    "modalidad_texto": "Virtual (sesiones por Microsoft Teams)",
+    "dominio": "Un problema real del entorno, elegido por cada equipo",
+}
+
+
+def enunciado_intro_ing(doc):
+    portada_estudiante(doc, INTRO_ING_META)
+
+    h2(doc, "1. Propósito")
+    para(doc,
+         "Este curso no se aprueba con un examen final: se aprueba con un proyecto de "
+         "equipo que arranca en la Clase 1 y se defiende en la Clase 15. Es una propuesta "
+         "de mejora tecnológica para un problema real del entorno de ustedes. No hay que "
+         "programarla: hay que diseñarla y defenderla con evidencia.")
+    para(doc,
+         "Peso: 40% del Corte 3 (exposición final 15% + informe final 20% + asistencia "
+         "5%), más una parte de las exposiciones y actividades en clase de los Cortes 1 y "
+         "2 (ver el desglose completo en el Acuerdo Pedagógico y en su CALENDARIO_2026-2).")
+
+    h2(doc, "2. De dónde sale el tema: la ficha semilla")
+    para(doc,
+         "En la Clase 1, en equipo, llenan una ficha sobre uno de los cinco campos de "
+         "acción de la Ingeniería de Sistemas: qué hace ese campo, un día de trabajo "
+         "típico, un problema real del entorno que podría mejorar (con quién lo sufre y "
+         "una cifra que lo mida), una confusión frecuente sobre ese campo y una "
+         "consecuencia concreta de hacerlo mal. Esa ficha queda guardada.")
+    para(doc,
+         "En la Clase 6 las cinco fichas del equipo vuelven a la mesa: el equipo elige "
+         "de ahí el problema real que va a trabajar todo el semestre. El campo sorteado "
+         "en la Clase 1 es solo el objeto de esa actividad — no compromete el tema del "
+         "proyecto.")
+
+    h2(doc, "3. Cómo se construye, sesión por sesión")
+    table(doc,
+          ["Etapa", "Sesiones", "Qué queda listo"],
+          [
+              ["Problema y propuesta inicial", "1 a 4",
+               "Problema del entorno con su cifra, a quién le pasa y las causas "
+               "principales (cierra el Corte 1 en la Clase 6)."],
+              ["Ciclo de vida y prototipo", "5 a 7",
+               "Requisitos, alternativas y decisión, prototipo de baja fidelidad probado "
+               "con una persona ajena al equipo (cierra el Corte 2 en la Clase 11)."],
+              ["Evaluación de impacto y ensayo", "8 a 10",
+               "Impacto positivo y negativo con mitigación, limitaciones y siguiente "
+               "paso, guion y ensayo de la exposición final."],
+              ["Exposición final e informe", "11 (doble)",
+               "Defensa en vivo del proyecto (Clase 15) e informe final armado en clase "
+               "(Clase 16)."],
+          ])
+    para(doc,
+         "Las fechas exactas de cada sesión son las de SU grupo: revise el "
+         "CALENDARIO_2026-2 de SB141B, SB141C o LB141F, según corresponda.")
+
+    h2(doc, "4. El informe final — 12 secciones (Clase 16, 20% del curso)")
+    table(doc,
+          ["#", "Sección", "Tiene que contener"],
+          [
+              ["1", "Portada y resumen",
+               "Título, integrantes, curso. Resumen de ½ pág: problema con su número, "
+               "solución en dos frases, impacto principal."],
+              ["2", "El problema",
+               "La cifra, cómo se obtuvo, a quién le pasa y las causas principales."],
+              ["3", "Actores y afectados",
+               "Usuarios, quien opera, y al menos un afectado que no es usuario."],
+              ["4", "Antecedentes",
+               "Tres soluciones que ya existen, qué hace cada una y por qué no sirve aquí."],
+              ["5", "Requisitos y criterios",
+               "Funcionales, no funcionales, y cómo se verifica cada criterio."],
+              ["6", "Alternativas y decisión",
+               "Al menos dos alternativas, los criterios, la elegida y qué se sacrificó."],
+              ["7", "La solución y el prototipo",
+               "Descripción, capturas y el recorrido principal paso a paso."],
+              ["8", "Prueba y hallazgos",
+               "Con quién se probó (solo el rol, no el nombre), qué hizo, la "
+               "clasificación y el patrón."],
+              ["9", "Impacto", "Positivos con indicador y negativos con mitigación."],
+              ["10", "Limitaciones y siguiente paso",
+               "Lo que se decidió no hacer, con el motivo, y por dónde seguiría."],
+              ["11", "Declaración del uso de IA",
+               "Qué se pidió, qué se corrigió, qué no se le entregó."],
+              ["12", "Referencias",
+               "Lo que se citó, en el formato acordado. Nada que no se haya leído."],
+          ])
+    para(doc, "Extensión total: 9 a 11 páginas. La extensión no es una virtud: un informe "
+              "donde la decisión está en la página 18 es un informe que no se va a leer.",
+         size=10)
+
+    h2(doc, "5. La exposición final (Clase 15, 15% del curso)")
+    bullets(doc, [
+        "9 minutos de exposición + 3 minutos de preguntas, por equipo. Se corta a los 9 "
+        "minutos sin excepción.",
+        "Formato: comparte pantalla un integrante; plan B = PDF/capturas en la carpeta "
+        "del equipo, subidos antes de exponer.",
+        "Todos los integrantes tienen que hablar, y quien responda una pregunta debe "
+        "responder sobre SU propio tramo.",
+    ])
+    table(doc,
+          ["Tramo", "Qué se busca", "Pts"],
+          [
+              ["1 · El problema con su cifra",
+               "Arranca por el problema, no por presentaciones. Trae un número y de "
+               "dónde salió.", "20"],
+              ["2 · Los afectados y la decisión",
+               "Incluye un afectado que no es usuario y dice qué se sacrificó.", "20"],
+              ["3 · La solución y el prototipo en vivo",
+               "Muestra una tarea cumpliéndose, no describe la pantalla.", "25"],
+              ["4 · Lo que falló y lo que aprendimos",
+               "Hallazgos con personas reales, qué se arregló y qué se decidió no "
+               "arreglar.", "20"],
+              ["5 · Impacto y siguiente paso",
+               "Impacto positivo con número y el negativo con su mitigación.", "15"],
+          ])
+
+    h2(doc, "6. Herramientas (gratis + navegador)")
+    bullets(doc, [
+        "Bitácora y soporte de la exposición: Google Drive (Docs y Slides).",
+        "Diagramas y línea de tiempo: diagrams.net (draw.io) · Excalidraw para bocetos.",
+        "Póster/infografía (opcional): Canva, alternativa Google Slides.",
+        "Asistente de IA (Gemini/Claude/ChatGPT, plan gratuito): solo en las Clases 3 y "
+        "11, con declaración de qué se pidió y qué se corrigió a mano.",
+        "Entrega de talleres, diagnóstico y evaluaciones de corte: ExamLab.",
+    ])
+    para(doc,
+         "Prohibido como requisito: cualquier nube que pida tarjeta de crédito. Nada de "
+         "software de pago ni instalaciones obligatorias.",
+         shade="FBE4E4", space_after=8)
+
+    h2(doc, "7. Modalidad de trabajo")
+    bullets(doc, [
+        "Es un proyecto DE EQUIPO, no individual: los 5 equipos de cada grupo son fijos "
+        "todo el semestre.",
+        "El vocero rota en cada sesión y se anota en la bitácora: al final del semestre "
+        "todos han expuesto al menos dos veces.",
+        "La autoevaluación individual de la Clase 16 sí se entrega solo al docente, uno "
+        "por integrante.",
+    ])
+
+    h2(doc, "8. Qué NO es este proyecto")
+    bullets(doc, [
+        "No es un examen final escrito: el Corte 3 no tiene evaluación escrita, se "
+        "califica con producto (exposición + informe).",
+        "No hay que programarlo ni implementarlo: es una propuesta diseñada y defendida, "
+        "no un sistema en producción.",
+        "No reemplaza las evaluaciones de corte de ExamLab de las Clases 6 y 11 (Cortes "
+        "1 y 2): son evaluaciones distintas del mismo semestre.",
+        "No tiene un dominio fijo: no es «CloudLite» ni ningún otro producto de otro "
+        "curso — el problema lo elige cada equipo.",
+    ])
+
+
+def guia_intro_ing(doc):
+    portada_docente(doc, INTRO_ING_META)
+    h2(doc, "Contexto")
+    para(doc,
+         "Tres grupos (SB141B, SB141C, LB141F), 11 sesiones cada uno, 16 Clases de "
+         "microcurrículo (5 sesiones dobles). El proyecto es de EQUIPO, sin dominio fijo: "
+         "cada equipo elige su problema real desde la ficha semilla de la Clase 1. Ver "
+         "`config/calendario/introduccion_ingenieria_2026_2.json` para el calendario real "
+         "de cada grupo — este documento ancla todo a la sesión, no a la fecha.")
+    h2(doc, "Hitos docentes (por sesión — igual en los 3 grupos)")
+    table(doc,
+          ["Sesión", "Clase(s)", "Rol docente"],
+          [
+              ["4", "Clase 6",
+               "Cierra el Corte 1. Evaluación de corte en ExamLab (últimos 20 min) + "
+               "revisar que el problema del entorno traiga cifra y a quién le pasa."],
+              ["7", "Clase 11",
+               "Cierra el Corte 2. Evaluación de corte en ExamLab (últimos 20 min) + "
+               "verificar que el prototipo se haya probado con una persona ajena al "
+               "equipo."],
+              ["8 a 10", "Clases 12 a 14",
+               "Revisar impacto/mitigación y bloquear equipos que lleguen sin línea "
+               "base o sin criterio de aceptación verificable."],
+              ["11 (doble)", "Clases 15+16",
+               "Sustentaciones (9+3 min por equipo) e informe armado en clase; cierre "
+               "del proyecto."],
+          ])
+    h2(doc, "Rúbrica detallada")
+    bullets(doc, [
+        "Exposición final (100 pts → 15% del curso): 5 tramos de 20/20/25/20/15 — ver "
+        "tabla completa en el enunciado del estudiante.",
+        "Informe final (100 pts → 20% del curso): 30 pts las 12 secciones completas · "
+        "20 huecos resueltos y resumen · 15 declaración de uso de IA · 20 "
+        "autoevaluación con evidencia · 15 coevaluación con observaciones.",
+        "Penalice con -10 pts de exposición si no hablan todos los integrantes, y otros "
+        "-10 si nadie responde una pregunta de su propio tramo.",
+    ])
+    h2(doc, "Errores frecuentes")
+    bullets(doc, [
+        "Un equipo que redacta el problema como «existen varios modelos de servicio» en "
+        "vez de nombrar la cifra y a quién le pasa — es el error dominante del informe.",
+        "Alternativas descartadas que no tienen motivo atado al dominio del equipo.",
+        "Consecuencias/impacto que solo listan lo positivo: exigir siempre lo negativo "
+        "con su mitigación.",
+        "Equipos que dejan la prueba con persona ajena para el final: sin ella no hay "
+        "hallazgos que mostrar en la exposición.",
+    ])
+    para(doc, "Enunciado del estudiante en `Clases/Proyecto Integrador/`, común a los "
+              "tres grupos.", size=10)
+
+
+MD_INTRO_ING = """# Guía docente — Proyecto de equipo · Introducción a la Ingeniería · 2026-2
+
+**Privado docente** · No compartir en `Clases/`.
+
+## Producto
+No hay dominio fijo: cada EQUIPO elige su propio problema real del entorno desde la
+ficha semilla de la Clase 1 (cinco campos de acción, retomada en la Clase 6). Común a
+los tres grupos SB141B, SB141C, LB141F.
+
+## Hitos (por sesión — igual en los 3 grupos; fecha real en el CALENDARIO de cada grupo)
+
+| Sesión | Clase(s) | Qué cierra |
+|---|---|---|
+| 4 | Clase 6 | Corte 1: problema y propuesta inicial + evaluación de corte en ExamLab |
+| 7 | Clase 11 | Corte 2: ciclo de vida y prototipo probado + evaluación de corte en ExamLab |
+| 11 (doble) | Clases 15+16 | Corte 3: exposición final (15%) e informe final (20%) |
+
+## Rúbrica
+- Exposición final: 100 pts → 15% (tramos 20/20/25/20/15).
+- Informe final: 100 pts → 20% (30/20/15/20/15).
+
+## Errores frecuentes
+- Problema sin cifra ni "a quién le pasa" (el error dominante).
+- Alternativas descartadas sin motivo atado al dominio propio.
+- Consecuencias que solo listan lo positivo.
+- Prototipo sin probar con una persona ajena al equipo.
+
+Entrega en **ExamLab**. Enunciado del estudiante en `Clases/Proyecto Integrador/`,
+común a los tres grupos.
+"""
+
+
 def build_one(curso_dir: Path, meta: dict, build_est, build_doc, md_text: str, slug: str):
     est_dir = curso_dir / "Clases" / "Proyecto Integrador"
     kit_dir = curso_dir / "Kit docente" / "Proyecto Integrador"
@@ -1116,6 +1371,7 @@ CURSOS = [
     ("Arquitectura de Sistemas Computacionales", "ARQ_META", "enunciado_arq", "guia_arq", "MD_ARQ"),
     ("Programacion II", "PROG2_META", "enunciado_prog2", "guia_prog2", "MD_PROG2"),
     ("Seminario de Sistemas", "SEMIN_META", "enunciado_seminario", "guia_seminario", "MD_SEMIN"),
+    ("Introduccion a la Ingenieria", "INTRO_ING_META", "enunciado_intro_ing", "guia_intro_ing", "MD_INTRO_ING"),
 ]
 
 
