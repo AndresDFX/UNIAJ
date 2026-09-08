@@ -329,6 +329,13 @@ def build_calendario(codigo):
     return out
 
 
+# Material de apoyo de ExamLab. Mismos valores que en `generar_semestre_2026_2.py`,
+# que es el que emite los correos de los otros cuatro cursos.
+EXAMLAB_MANUAL = ("https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/"
+                  "public/help-docs/manual-estudiante.pdf")
+EXAMLAB_VIDEO = ("https://uxxpzfsfcnqiwwdxoelm.supabase.co/storage/v1/object/"
+                 "public/help-videos/serie-estudiante.mp4")
+
 # ----------------------------------------------------------------------- LEEME
 
 def build_correo(codigo):
@@ -343,166 +350,147 @@ def build_correo(codigo):
 
     Va uno por grupo porque lo que cambia es justo lo que el estudiante necesita: el dia, la
     hora y las fechas. El resto del curso es identico en los tres.
+
+    Tono: el mismo molde escueto de los otros cuatro cursos. Aqui va lo que el estudiante
+    tiene que SABER y HACER antes del primer encuentro, y nada mas. La dinamica de la sesion,
+    el porque de los 5 equipos, el stack de herramientas y las reglas de aula estan en el
+    Acuerdo Pedagogico, en el Plan de curso y en el «LEEME - Dinamica de sesion y
+    plataformas»: repetirlos aqui solo entierra el horario y el acceso a la plataforma.
     """
     c = D.curso()
     g = D.grupo(codigo)
     ct = D.cortes_slide(codigo)
-    pl = D.plataformas()
-    din = D.dinamica()
-    eq = din["equipos"]
+    dia = g["dia"].lower()
+    f1 = D.fecha_de_sesion(codigo, 1)
+    fN = D.fecha_de_sesion(codigo, c["n_sesiones"])
+    horario = g["horario"].replace(" - ", " – ")
+
+    # Cuando cae cada evaluacion de corte, leido del desglose (no cableado): el corte 3 no
+    # tiene evaluacion escrita, asi que solo salen los dos primeros.
+    evaluaciones = []
+    for x in ct:
+        for linea in x["desglose"]:
+            if not linea.lower().startswith("evaluaci"):
+                continue
+            m = re.search(r"sesi[oó]n\s+(\d+)", linea)
+            ses = int(m.group(1)) if m else x["cierre_sesion"]
+            evaluaciones.append((x["corte"], ses, D.fecha_de_sesion(codigo, ses)))
 
     L = [
         "# Correo de bienvenida — %s · %s · %s" % (c["nombre_acentos"], codigo,
                                                    D.load()["periodo"]),
         "",
-        "> Para pegar en el correo institucional. Un correo por grupo: el horario y las "
-        "fechas cambian, el resto no.",
+        "**Para:** estudiantes del grupo %s" % codigo,
+        "**De:** %s · %s" % (D.DOCENTE, D.CORREO),
+        "**Asunto sugerido:** Bienvenida · %s (%s · %s) · %s · Virtual · %s %s"
+        % (c["nombre_acentos"], c["codigo"], codigo, D.load()["periodo"], dia[:3], horario),
         "",
-        "**Asunto:** %s (%s) · grupo %s — cómo arranca el curso"
-        % (c["nombre_acentos"], c["codigo"], codigo),
+        "> Un correo por grupo: cambian el día, la hora y las fechas; el resto es igual en "
+        "los tres.",
         "",
         "---",
         "",
-        "Buen día,",
+        "Estimados estudiantes:",
         "",
-        "Soy %s y voy a acompañarlos en **%s** (%s) este semestre, en el grupo **%s**. "
-        "Este correo trae lo que necesitan para el primer encuentro; no hay que responder "
-        "nada todavía." % (D.DOCENTE, c["nombre_acentos"], c["codigo"], codigo),
+        "Les doy la bienvenida al curso **%s** (código **%s**, grupo **%s**) del periodo "
+        "**%s** (del **%s** al **%s**)."
+        % (c["nombre_acentos"], c["codigo"], codigo, D.load()["periodo"],
+           D.ddmmyyyy(f1), D.ddmmyyyy(fN)),
         "",
-        "### Cuándo nos vemos",
+        "- **Modalidad:** Virtual",
+        "- **Modalidad por sesión:** todas las sesiones son **virtual síncrona** por "
+        "**Microsoft Teams**, incluidas las evaluaciones de corte y la sustentación final.",
+        "- **Calendario:** %d sesiones de %s, una por semana, de %d min, que cubren los %d "
+        "temas del curso; 5 sesiones son **dobles** (dos temas en el mismo bloque). Ningún "
+        "festivo cae en %s: **no hay semanas autónomas**."
+        % (c["n_sesiones"], dia, c["duracion_min"], c["n_temas"], dia),
+        "- **Horario:** %s **%s** (inicio práctico de clase: **%s**)"
+        % (dia, horario, g["hora_inicio_efectiva"]),
+        "- **Docente:** %s · %s" % (D.DOCENTE, D.CORREO),
         "",
-        "| | |",
-        "|---|---|",
-        "| **Día y hora** | %s %s |" % (g["dia"], g["horario"].replace(" - ", " – ")),
-        "| **Inicio efectivo** | %s — arranco 10 min después de la hora oficial para "
-        "esperar a que se conecten |" % g["hora_inicio_efectiva"],
-        "| **Modalidad** | Virtual **síncrona** por Microsoft Teams |",
-        "| **Sesiones** | %d, una por semana · %d min cada una |"
-        % (c["n_sesiones"], c["duracion_min"]),
-        "| **Primera sesión** | %s |" % D.ddmmyyyy(D.fecha_de_sesion(codigo, 1)),
-        "| **Última sesión** | %s |" % D.ddmmyyyy(D.fecha_de_sesion(codigo,
-                                                                    c["n_sesiones"])),
+        "### Fechas clave",
         "",
-        "**No les va a llegar ninguna invitación de Google Calendar.** El horario es el de "
-        "la tabla de arriba: **guárdenlo ustedes** en su calendario si les sirve, y el "
+        "| Hito | Fecha | Detalle |",
+        "|---|---|---|",
+        "| **Primera sesión** (%s) | **%s** | Sesión 1 · presentación del curso y "
+        "diagnóstico **sin nota** |" % (g["dia"], D.ddmmyyyy(f1)),
+    ]
+    for corte, ses, f in evaluaciones:
+        L.append("| Evaluación de corte %d | %s | Sesión %d · en ExamLab |"
+                 % (corte, D.ddmmyyyy(f) if f else "—", ses))
+    L += [
+        "| Última sesión (%s) | **%s** | Sesión %d (doble) · exposición final del proyecto "
+        "e informe |" % (g["dia"], D.ddmmyyyy(fN), c["n_sesiones"]),
+        "",
+        "> **No hay examen final escrito.** El corte 3 (%s) se califica con la **exposición "
+        "final del proyecto** y el **informe final**, los dos en la última sesión."
+        % ct[-1]["pct"],
+        "",
+        "**No les va a llegar ninguna invitación de Google Calendar.** El horario del curso "
+        "es el de arriba: **guárdenlo ustedes** en su calendario si les sirve, y el "
         "**enlace de Microsoft Teams se lo comparto yo antes de cada encuentro**.",
         "",
         "**¿Dónde busco el enlace del día?** En **ExamLab**, en el curso: ahí lo publico "
-        "antes de que empiece la sesión. Si algo falla ese día, lo mando también por el "
-        "grupo de WhatsApp por medio del vocero. **Cada sesión tiene su propio enlace**, "
-        "así que no sirve guardar el de la semana pasada.",
+        "antes de que empiece la sesión. Si ese día algo falla, lo mando también por el "
+        "grupo de WhatsApp, por medio del vocero.",
         "",
-        "### Fechas que conviene anotar ya",
+        "> No guarden un enlace fijo: **cada sesión tiene su propio enlace**, así que el de "
+        "la semana pasada ya no sirve.",
         "",
-        "| Corte | Qué se califica | Cuándo | Vale |",
-        "|---|---|---|---|",
-    ]
-    for x in ct:
-        for linea in x["desglose"]:
-            if "sistencia" in linea:          # asistencia no tiene fecha: es todo el corte
-                continue
-            que, _, peso = linea.rpartition("·")
-            # El desglose dice en que sesion cae cada cosa («(sesión N)»), y no siempre es
-            # la del cierre del corte — aunque desde que el corte 3 quedo en una sola sesion
-            # doble (exposicion final + informe, ambos en la sesion 11) coinciden.
-            m = re.search(r"sesi[oó]n\s+(\d+)", que)
-            ses = int(m.group(1)) if m else x["cierre_sesion"]
-            f = D.fecha_de_sesion(codigo, ses)
-            L.append("| **%d** (%s) | %s | sesión %d · %s | %s |"
-                     % (x["corte"], x["pct"],
-                        re.sub(r"\s*\(sesi[oó]n\s+\d+\)", "", que).strip(),
-                        ses, D.ddmmyyyy(f) if f else "—", peso.strip()))
-    L += [
+        "### Plataforma del curso — ExamLab",
         "",
-        "> **No hay examen final escrito.** El corte 3 se califica con la "
-        "**exposición final del proyecto** y el **informe final**, los dos en la "
-        "última sesión (sesión %d, doble)." % c["n_sesiones"],
+        "Trabajaremos en **ExamLab**: https://uniaj.examlab.workers.dev",
         "",
-        "### Cómo es una sesión",
+        "**No es una plataforma oficial de la UNIAJC**, pero es donde se desarrolla todo lo "
+        "del curso: el **enlace de Teams de cada sesión**, el material, las **entregas de "
+        "los talleres**, la **asistencia** y las **dos evaluaciones de corte**.",
         "",
-        "Los %d minutos van así, todas las semanas:" % c["duracion_min"],
-        "",
-    ]
-    for b in din["bloques"]:
-        L.append("- **%s min · %s** — %s" % (b["min"], b["nombre"], b["corto"]))
-    L += [
-        "",
-        "El curso entero cuelga de **un proyecto por equipo**: eligen un problema real de "
-        "su entorno en las primeras sesiones y lo van armando hasta sustentarlo en la "
-        "última sesión (sesión %d). Somos **%d equipos fijos** todo el semestre, y el "
-        "**vocero rota**: todos exponen alguna vez." % (c["n_sesiones"], eq["cantidad_fija"]),
-        "",
-        "> **Por qué %d equipos y no equipos de tamaño fijo:** las exposiciones son %d min "
-        "por equipo y la sesión cierra a los %d. Con equipos de cuatro, un grupo grande "
-        "daría nueve equipos y no cabrían." % (eq["cantidad_fija"], 3, c["duracion_min"]),
-        "",
-        "### Con qué vamos a trabajar",
-        "",
-        "Todo **gratis y desde el navegador**. No hay que instalar nada ni pagar nada, y "
-        "**nunca les voy a pedir una tarjeta de crédito**: si una herramienta la pide, no "
-        "es la que usamos.",
-        "",
-        "| Herramienta | Para qué |",
-        "|---|---|",
-    ]
-    for p in pl["stack"]:
-        L.append("| **%s** | %s |" % (p["nombre"], p["uso"]))
-    L += [
-        "",
-        "> ⚠️ **ExamLab no es una plataforma oficial de la UNIAJC:** es un canal mío y se "
-        "usa solo para este curso. No les pide datos personales más allá del nombre. La "
-        "universidad no tiene campus virtual propio, así que lo demás vive en la carpeta "
-        "compartida del equipo en Drive.",
-        "",
-        "**Asistente de IA:** %s %s" % (pl["asistente_ia"]["cuando"],
-                                        pl["asistente_ia"]["opciones"]),
-        "",
-        "### Cómo entrar a ExamLab (antes de la primera sesión)",
-        "",
-        "Ahí publico **el enlace de Teams de cada sesión**, el material de la clase y las "
-        "entregas, así que conviene entrar antes del primer encuentro y no ese mismo día.",
+        "**Por favor verifiquen que pueden entrar ANTES de la primera sesión**, no ese mismo "
+        "día:",
         "",
         "| | |",
         "|---|---|",
         "| **Dirección** | https://uniaj.examlab.workers.dev |",
         "| **Usuario** | Su correo institucional `@estudiante.uniajc.edu.co` |",
-        "| **Contraseña** | `Temporal#123` — la aplicación les pide cambiarla al entrar |",
+        "| **Contraseña temporal** | `Temporal#123` — la aplicación les pide cambiarla al "
+        "entrar |",
         "",
         "La cuenta ya está creada y ya están matriculados en el grupo **%s**: no hay que "
         "registrarse. Si el correo institucional todavía no les llegó de Registro "
         "Académico, escríbanme y les habilito el acceso." % codigo,
         "",
-        "**Al entrar van a encontrar dos cosas pendientes, y las dos toman pocos minutos:**",
+        "Material de apoyo para usar la plataforma:",
+        "",
+        "- **Manual del estudiante (PDF):** " + EXAMLAB_MANUAL,
+        "- **Todas las funcionalidades (video):** " + EXAMLAB_VIDEO,
+        "",
+        "#### Dos cosas pendientes al entrar",
         "",
         "1. **Firmar el Acuerdo Pedagógico** del curso — aparece en «Firmas pendientes». Es "
-        "el documento donde quedan la metodología y la evaluación que acabo de describir.",
-        "2. **Responder la encuesta de inicio de semestre** (bienestar y conectividad) — la "
-        "usa la universidad para saber con qué condiciones estamos trabajando.",
+        "donde quedan la metodología y la evaluación.",
+        "2. **Responder la encuesta de inicio de semestre** (bienestar y conectividad).",
         "",
         "> **Las dos son requisito para que les quede registrada la asistencia de la primera "
-        "sesión.** No es un trámite: sin el acuerdo firmado no hay constancia de que "
-        "conocen las reglas del curso, y la encuesta define cómo armo el trabajo "
-        "independiente. Se pueden hacer desde el celular.",
+        "sesión.** Toman pocos minutos y se pueden hacer desde el celular.",
         "",
-        "En la primera sesión, además, van a responder en la plataforma un **diagnóstico de "
-        "13 preguntas que NO tiene nota** — no suma ni resta. Sirve para ajustar las "
-        "sesiones que siguen, así que lo útil es responder lo que de verdad piensan.",
+        "Todas las herramientas del curso son **gratis y desde el navegador**: no hay que "
+        "instalar ni pagar nada, y **nunca les voy a pedir una tarjeta de crédito**. Si una "
+        "herramienta la pide, no es la que usamos.",
         "",
-        "### Dos reglas desde el primer día",
+        "**Una cosa que necesito de ustedes:** que el **vocero del grupo** me **responda "
+        "este correo con su número de WhatsApp**. Lo uso solo para avisos urgentes del curso "
+        "—que el enlace de Teams falle, una caída de la plataforma el día de una "
+        "evaluación— y para tener un canal directo con el grupo. Si todavía no han elegido "
+        "vocero, lo definimos en la primera sesión y me escribe después.",
         "",
-        "1. **No se suben datos personales de terceros** —nombres, cédulas, teléfonos ni "
-        "fotos— a ninguna de estas herramientas. Se usa el rol: «la dueña de la "
-        "papelería», «el auxiliar de la biblioteca». Es una regla de la profesión, no una "
-        "formalidad del curso.",
-        "2. **Si se les cae la conexión**, el documento del equipo está en Drive: lo "
-        "escrito no se pierde. Vuelven a entrar a la sala de su equipo, y si el que se cayó "
-        "era el vocero, expone el siguiente de la rotación.",
+        "Nos vemos el %s. Cualquier duda, respondiendo a este correo."
+        % D.ddmmyyyy(f1),
         "",
-        "Nos vemos el %s. Cualquier duda, a este correo."
-        % D.ddmmyyyy(D.fecha_de_sesion(codigo, 1)),
+        "Cordialmente,",
         "",
-        "%s" % D.DOCENTE,
-        "`%s`" % D.CORREO,
+        D.DOCENTE,
+        "Ingeniero de Sistemas · Candidato a MsC en IA",
+        D.CORREO,
         "",
     ]
     out = os.path.join(OUT_PLAN, "CORREO_BIENVENIDA - %s - %s - %s.md"
