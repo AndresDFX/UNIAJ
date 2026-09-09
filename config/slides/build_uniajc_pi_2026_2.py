@@ -1026,9 +1026,10 @@ def enunciado_intro_ing(doc):
     h2(doc, "1. Propósito")
     para(doc,
          "Este curso no se aprueba con un examen final: se aprueba con un proyecto de "
-         "equipo que arranca en la Clase 1 y se defiende en la Clase 15. Es una propuesta "
-         "de mejora tecnológica para un problema real del entorno de ustedes. No hay que "
-         "programarla: hay que diseñarla y defenderla con evidencia.")
+         "equipo que arranca desde la primera sesión y se defiende en la última semana "
+         "de clases. Es una propuesta de mejora tecnológica para un problema real del "
+         "entorno de ustedes. No hay que programarla: hay que diseñarla y defenderla con "
+         "evidencia.")
     para(doc,
          "Peso: 40% del Corte 3 (exposición final 15% + informe final 20% + asistencia "
          "5%), más una parte de las exposiciones y actividades en clase de los Cortes 1 y "
@@ -1036,39 +1037,38 @@ def enunciado_intro_ing(doc):
 
     h2(doc, "2. De dónde sale el tema: la ficha semilla")
     para(doc,
-         "En la Clase 1, en equipo, llenan una ficha sobre uno de los cinco campos de "
-         "acción de la Ingeniería de Sistemas: qué hace ese campo, un día de trabajo "
-         "típico, un problema real del entorno que podría mejorar (con quién lo sufre y "
-         "una cifra que lo mida), una confusión frecuente sobre ese campo y una "
+         "Al comienzo del curso, en equipo, llenan una ficha sobre uno de los cinco "
+         "campos de acción de la Ingeniería de Sistemas: qué hace ese campo, un día de "
+         "trabajo típico, un problema real del entorno que podría mejorar (con quién lo "
+         "sufre y una cifra que lo mida), una confusión frecuente sobre ese campo y una "
          "consecuencia concreta de hacerlo mal. Esa ficha queda guardada.")
     para(doc,
-         "En la Clase 6 las cinco fichas del equipo vuelven a la mesa: el equipo elige "
-         "de ahí el problema real que va a trabajar todo el semestre. El campo sorteado "
-         "en la Clase 1 es solo el objeto de esa actividad — no compromete el tema del "
-         "proyecto.")
+         "Al cerrar la primera etapa del curso, las cinco fichas del equipo vuelven a la "
+         "mesa: el equipo elige de ahí el problema real que va a trabajar todo el "
+         "semestre. El campo sorteado al comienzo es solo el objeto de esa actividad — "
+         "no compromete el tema del proyecto.")
 
-    h2(doc, "3. Cómo se construye, sesión por sesión")
+    h2(doc, "3. Cómo se construye, etapa por etapa")
     table(doc,
-          ["Etapa", "Sesiones", "Qué queda listo"],
+          ["Etapa", "Qué queda listo"],
           [
-              ["Problema y propuesta inicial", "1 a 4",
+              ["1 · Problema y propuesta inicial",
                "Problema del entorno con su cifra, a quién le pasa y las causas "
-               "principales (cierra el Corte 1 en la Clase 6)."],
-              ["Ciclo de vida y prototipo", "5 a 7",
+               "principales. Con esto cierra el Corte 1."],
+              ["2 · Ciclo de vida y prototipo",
                "Requisitos, alternativas y decisión, prototipo de baja fidelidad probado "
-               "con una persona ajena al equipo (cierra el Corte 2 en la Clase 11)."],
-              ["Evaluación de impacto y ensayo", "8 a 10",
+               "con una persona ajena al equipo. Con esto cierra el Corte 2."],
+              ["3 · Evaluación de impacto y ensayo",
                "Impacto positivo y negativo con mitigación, limitaciones y siguiente "
                "paso, guion y ensayo de la exposición final."],
-              ["Exposición final e informe", "11 (doble)",
-               "Defensa en vivo del proyecto (Clase 15) e informe final armado en clase "
-               "(Clase 16)."],
+              ["4 · Exposición final e informe",
+               "Defensa en vivo del proyecto y el informe final armado en clase. Con "
+               "esto cierra el Corte 3 y el curso."],
           ])
     para(doc,
-         "Las fechas exactas de cada sesión son las de SU grupo: revise el "
-         "CALENDARIO_2026-2 de SB141B, SB141C o LB141F, según corresponda.")
+         "Las fechas exactas de cada etapa están en el calendario de su grupo.")
 
-    h2(doc, "4. El informe final — 12 secciones (Clase 16, 20% del curso)")
+    h2(doc, "4. El informe final — 12 secciones (20% del curso)")
     table(doc,
           ["#", "Sección", "Tiene que contener"],
           [
@@ -1102,7 +1102,7 @@ def enunciado_intro_ing(doc):
               "donde la decisión está en la página 18 es un informe que no se va a leer.",
          size=10)
 
-    h2(doc, "5. La exposición final (Clase 15, 15% del curso)")
+    h2(doc, "5. La exposición final (15% del curso)")
     bullets(doc, [
         "9 minutos de exposición + 3 minutos de preguntas, por equipo. Se corta a los 9 "
         "minutos sin excepción.",
@@ -1133,8 +1133,9 @@ def enunciado_intro_ing(doc):
         "Bitácora y soporte de la exposición: Google Drive (Docs y Slides).",
         "Diagramas y línea de tiempo: diagrams.net (draw.io) · Excalidraw para bocetos.",
         "Póster/infografía (opcional): Canva, alternativa Google Slides.",
-        "Asistente de IA (Gemini/Claude/ChatGPT, plan gratuito): solo en las Clases 3 y "
-        "11, con declaración de qué se pidió y qué se corrigió a mano.",
+        "Asistente de IA (Gemini/Claude/ChatGPT, plan gratuito): solo en los momentos "
+        "puntuales que anuncie el docente, con declaración de qué se pidió y qué se "
+        "corrigió a mano.",
         "Entrega de talleres, diagnóstico y evaluaciones de corte: ExamLab.",
     ])
     para(doc,
@@ -1148,8 +1149,8 @@ def enunciado_intro_ing(doc):
         "todo el semestre.",
         "El vocero rota en cada sesión y se anota en la bitácora: al final del semestre "
         "todos han expuesto al menos dos veces.",
-        "La autoevaluación individual de la Clase 16 sí se entrega solo al docente, uno "
-        "por integrante.",
+        "La autoevaluación individual del cierre del proyecto sí se entrega solo al "
+        "docente, uno por integrante.",
     ])
 
     h2(doc, "8. Qué NO es este proyecto")
@@ -1158,8 +1159,8 @@ def enunciado_intro_ing(doc):
         "califica con producto (exposición + informe).",
         "No hay que programarlo ni implementarlo: es una propuesta diseñada y defendida, "
         "no un sistema en producción.",
-        "No reemplaza las evaluaciones de corte de ExamLab de las Clases 6 y 11 (Cortes "
-        "1 y 2): son evaluaciones distintas del mismo semestre.",
+        "No reemplaza las evaluaciones de corte de ExamLab de los Cortes 1 y 2: son "
+        "evaluaciones distintas del mismo semestre.",
         "No tiene un dominio fijo: no es «CloudLite» ni ningún otro producto de otro "
         "curso — el problema lo elige cada equipo.",
     ])
