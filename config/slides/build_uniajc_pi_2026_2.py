@@ -1035,20 +1035,7 @@ def enunciado_intro_ing(doc):
          "5%), más una parte de las exposiciones y actividades en clase de los Cortes 1 y "
          "2 (ver el desglose completo en el Acuerdo Pedagógico y en su CALENDARIO_2026-2).")
 
-    h2(doc, "2. De dónde sale el tema: la ficha semilla")
-    para(doc,
-         "Al comienzo del curso, en equipo, llenan una ficha sobre uno de los cinco "
-         "campos de acción de la Ingeniería de Sistemas: qué hace ese campo, un día de "
-         "trabajo típico, un problema real del entorno que podría mejorar (con quién lo "
-         "sufre y una cifra que lo mida), una confusión frecuente sobre ese campo y una "
-         "consecuencia concreta de hacerlo mal. Esa ficha queda guardada.")
-    para(doc,
-         "Al cerrar la primera etapa del curso, las cinco fichas del equipo vuelven a la "
-         "mesa: el equipo elige de ahí el problema real que va a trabajar todo el "
-         "semestre. El campo sorteado al comienzo es solo el objeto de esa actividad — "
-         "no compromete el tema del proyecto.")
-
-    h2(doc, "3. Cómo se construye, etapa por etapa")
+    h2(doc, "2. Cómo se construye, etapa por etapa")
     table(doc,
           ["Etapa", "Qué queda listo"],
           [
@@ -1068,7 +1055,7 @@ def enunciado_intro_ing(doc):
     para(doc,
          "Las fechas exactas de cada etapa están en el calendario de su grupo.")
 
-    h2(doc, "4. El informe final — 12 secciones (20% del curso)")
+    h2(doc, "3. El informe final — 12 secciones (20% del curso)")
     table(doc,
           ["#", "Sección", "Tiene que contener"],
           [
@@ -1102,7 +1089,7 @@ def enunciado_intro_ing(doc):
               "donde la decisión está en la página 18 es un informe que no se va a leer.",
          size=10)
 
-    h2(doc, "5. La exposición final (15% del curso)")
+    h2(doc, "4. La exposición final (15% del curso)")
     bullets(doc, [
         "9 minutos de exposición + 3 minutos de preguntas, por equipo. Se corta a los 9 "
         "minutos sin excepción.",
@@ -1128,7 +1115,7 @@ def enunciado_intro_ing(doc):
                "Impacto positivo con número y el negativo con su mitigación.", "15"],
           ])
 
-    h2(doc, "6. Herramientas (gratis + navegador)")
+    h2(doc, "5. Herramientas (gratis + navegador)")
     bullets(doc, [
         "Bitácora y soporte de la exposición: Google Drive (Docs y Slides).",
         "Diagramas y línea de tiempo: diagrams.net (draw.io) · Excalidraw para bocetos.",
@@ -1143,7 +1130,7 @@ def enunciado_intro_ing(doc):
          "software de pago ni instalaciones obligatorias.",
          shade="FBE4E4", space_after=8)
 
-    h2(doc, "7. Modalidad de trabajo")
+    h2(doc, "6. Modalidad de trabajo")
     bullets(doc, [
         "Es un proyecto DE EQUIPO, no individual: los 5 equipos de cada grupo son fijos "
         "todo el semestre.",
@@ -1153,7 +1140,7 @@ def enunciado_intro_ing(doc):
         "docente, uno por integrante.",
     ])
 
-    h2(doc, "8. Qué NO es este proyecto")
+    h2(doc, "7. Qué NO es este proyecto")
     bullets(doc, [
         "No es un examen final escrito: el Corte 3 no tiene evaluación escrita, se "
         "califica con producto (exposición + informe).",
