@@ -20,28 +20,39 @@
 **Herramienta:** Google Docs · draw.io (opcional)
 
 ## Fundamento teórico para el docente
-### De que se parte y que se decide hoy - diapositiva 11
-Esta clase se dicta en sesion virtual sincrona, en el mismo bloque de 120 minutos de siempre: hay explicacion en vivo, taller acompanado y tiempo para preguntar, asi que este fundamento es material del docente para dictar y no una lectura que reemplace la clase. El punto de partida es lo definido en la Clase 1: cada estudiante ya tiene un dominio para CloudLite App, tres a cinco capacidades, sus actores y un diagrama de contexto. La pregunta de hoy es la siguiente en orden logico: si ese sistema va a vivir en la nube, quien administra cada capa de la maquinaria que lo sostiene. No hay una sola respuesta, hay tres respuestas estandar que la industria llama IaaS, PaaS y SaaS, y elegir entre ellas es una decision de arquitectura con consecuencias medibles en costo, velocidad de entrega, seguridad y libertad futura.
-### La pila de responsabilidades: donde se corta la linea - diapositiva 4
-Para entender los tres modelos hay que ver primero la pila completa de responsabilidades que existe debajo de cualquier aplicacion, de abajo hacia arriba: el edificio y la energia electrica, el hardware fisico (servidores, discos, cableado de red), la capa de virtualizacion que parte ese hardware en maquinas logicas, el sistema operativo de cada maquina, el runtime o entorno de ejecucion (por ejemplo Node.js, Python o la maquina virtual de Java) junto con servicios de apoyo como la base de datos, y finalmente el codigo de la aplicacion, sus datos y la administracion de usuarios y permisos. Son ocho o nueve capas segun como se cuente. En el modelo tradicional, llamado on-premise porque los equipos son propios y estan en las instalaciones de la organizacion, todas son responsabilidad del cliente. Los tres modelos de servicio se distinguen exactamente por donde se traza la linea que separa lo que administra el proveedor de lo que administra el cliente. Nada mas y nada menos: si el estudiante entiende esa frase, entendio la clase.
-### IaaS, PaaS y SaaS: los tres cortes, uno por uno - diapositiva 4
-IaaS, infraestructura como servicio, corta la linea justo encima de la virtualizacion: el proveedor entrega maquinas virtuales, redes y discos, y el cliente recibe una maquina practicamente vacia con un sistema operativo que debe actualizar, endurecer, monitorear y respaldar el mismo. Lo que gana es control total, porque puede instalar cualquier version de cualquier cosa, abrir los puertos que quiera y afinar el sistema. Lo que paga es trabajo operativo permanente, que en la practica se mide en horas de persona por semana dedicadas a aplicar parches de seguridad, rotar certificados y vigilar el espacio en disco. Para CloudLite Turnos, el ejemplo de la barberia con agendamiento de citas, elegir IaaS significaria que el estudiante se compromete a administrar el sistema operativo donde corren la API y la base de datos; en un curso de doce semanas, y trabajando solo o con dos companeros, eso consume justamente el tiempo que deberia dedicarse a disenar la arquitectura y a sustentarla.
+## Apoyo por diapositiva
 
-PaaS, plataforma como servicio, sube la linea dos escalones: el proveedor administra tambien el sistema operativo y el runtime, y el cliente entrega su codigo mas un archivo de configuracion; la plataforma lo construye, lo empaqueta y lo pone a correr. El cliente pierde el acceso a la maquina, porque ya no hay un servidor donde entrar por consola, y gana velocidad: un despliegue que en IaaS implica preparar una imagen, configurar el servicio y probar la red, en PaaS se reduce a subir el codigo al repositorio. Los niveles gratuitos tipicos de este modelo ofrecen del orden de 512 MB de memoria por instancia, una cantidad limitada de horas de ejecucion al mes y suspension automatica del servicio tras unos 15 minutos sin trafico, lo que produce el efecto conocido como arranque en frio: la primera peticion despues de la inactividad puede tardar varios segundos en lugar de milisegundos. Esos numeros son ordenes de magnitud tipicos que varian entre proveedores, no constantes; lo estructural es el patron, porque gratis siempre implica limites de memoria, de horas y de latencia en frio, y el estudiante debe anticiparlo en su diseno en vez de descubrirlo la noche antes de la sustentacion.
+Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-SaaS, software como servicio, lleva la linea hasta arriba: el proveedor administra la aplicacion completa y el cliente solo la configura y la usa, sin desplegar nada. El correo corporativo, un servicio de envio de mensajes transaccionales, un proveedor de identidad que resuelve el inicio de sesion o un servicio de almacenamiento y transformacion de imagenes son SaaS desde la perspectiva de quien construye CloudLite. Y aqui esta el punto que casi siempre se pierde: los tres modelos no son excluyentes y un sistema real los combina. La arquitectura probable de CloudLite Turnos es hibrida: la API desplegada como PaaS, la base de datos como servicio gestionado (que es PaaS en su variante de datos), el envio de recordatorios delegado a un SaaS de correo y el almacenamiento de fotos de perfil a un SaaS de archivos. El entregable de hoy no pide elegir un modelo unico para todo el sistema; pide elegir por componente y justificar cada eleccion, que es exactamente como se decide en la industria.
-### Responsabilidad compartida: quien responde por que - diapositiva 5
-El concepto que unifica todo esto se llama modelo de responsabilidad compartida y se resume en una frase que conviene memorizar: el proveedor es responsable de la seguridad DE la nube y el cliente de la seguridad EN la nube. El proveedor garantiza que el centro de datos no se incendie, que la capa de virtualizacion este parcheada y que los discos esten cifrados en reposo; el cliente sigue siendo responsable de sus contrasenas, sus permisos, sus datos y su configuracion. Importa porque la causa dominante de los incidentes de seguridad en la nube no son fallas del proveedor sino configuraciones erradas del cliente: un almacenamiento de archivos dejado publico, una credencial subida al repositorio en texto plano, un puerto de base de datos expuesto a internet. Subir de IaaS a PaaS reduce la superficie de responsabilidad del cliente, pero nunca la elimina, y esa idea es el punto de partida literal de la Clase 6. De ahi sale el trade-off central, que se escribe como regla practica: a mas abstraccion, menos control y menos trabajo operativo. Pero hay un tercer eje que el estudiante no ve solo, el amarre al proveedor o vendor lock-in, que es el costo de mudarse a otro proveedor mas adelante: bajo en IaaS, porque una maquina virtual con Linux se parece a cualquier otra; medio en PaaS, porque el archivo de configuracion y algunos servicios son propietarios; potencialmente alto en SaaS, porque los datos y parte de la logica viven dentro de un producto ajeno. Para CloudLite la mitigacion no es evitar SaaS sino acotarlo: si el envio de correos se encapsula detras de una interfaz propia, por ejemplo un modulo Notificador con un solo metodo enviar, cambiar de proveedor toca un archivo y no cuarenta.
-### El ADR-001: seis secciones rotuladas y una sola decision - diapositiva 7
-El entregable concreto es el ADR-001. Un ADR (Architecture Decision Record, registro de decision arquitectonica) es un documento corto, de media pagina a una pagina, que registra UNA sola decision. En este curso tiene SEIS secciones rotuladas, siempre las mismas y en este orden, y hay que dictarlas tal cual porque son las que la actividad califica: 1) Titulo, con el numero consecutivo del ADR; 2) Estado, que hoy es «Aceptado» mas la fecha de la sesion; 3) Contexto, o sea las restricciones bajo las que se decide; 4) Decision, en una sola frase y con un unico modelo dominante; 5) Alternativas descartadas, exactamente dos y con el motivo atado al dominio; 6) Consecuencias, con lo bueno y lo malo que se acepta. El reparto en la plataforma es que las cinco primeras van en la pregunta 6 y la sexta en la pregunta 7, pero es UN solo documento, y conviene decirlo en voz alta porque el estudiante que lo entienda como dos ejercicios sueltos repite la decision en las consecuencias y pierde puntos. No hay seccion de «opciones consideradas»: ese analisis es la matriz de la pregunta 5, y en el ADR solo quedan las dos alternativas que se descartaron. La regla de una decision por documento no es burocracia: es lo que permite que meses despues alguien lea por que se eligio algo sin depender de la memoria de nadie.
+**[Slide 8] De que se parte y que se decide hoy** — 5 vinetas.
 
-Conviene mostrar la diferencia entre contexto y analisis con el ejemplo, porque es donde se pierde la seccion 3 completa. Un ADR-001 aceptable para CloudLite Turnos diria en CONTEXTO: la barberia agenda por mensajeria y pierde alrededor de tres turnos diarios por doble reserva; el proyecto lo sostiene un desarrollador (o un equipo de dos o tres, si el docente lo autorizo) durante doce semanas, sin presupuesto ni tarjeta de credito, y el sistema tiene que estar disponible el dia de la sustentacion. Eso es contexto: son restricciones, no teoria. «Existen tres modelos de servicio y hay que elegir uno» NO es contexto, es el apunte de clase, y esa confusion es el error dominante de la pregunta 6. La prueba que el docente puede aplicar en voz alta mientras pasa por los grupos es una sola: si del contexto no se puede deducir por que se descarta IaaS, todavia no es contexto. En DECISION va una frase: la aplicacion de CloudLite Turnos se despliega sobre PaaS. En ALTERNATIVAS DESCARTADAS van dos y solo dos: IaaS con maquina virtual propia, descartada porque habria que asumir parches y respaldos del sistema operativo sin tiempo para ello; y SaaS de agendamiento ya existente, descartada porque el proyecto perderia su objeto, ya que no habria arquitectura que disenar sino solo configuracion. Que identidad y correo se consuman como SaaS satelite se aclara aqui y no en la decision, porque el modelo dominante se refiere a la aplicacion propia. Y en CONSECUENCIAS, que es la seccion que los estudiantes dejan a medias, deben aparecer tambien las malas: se acepta un arranque en frio de varios segundos tras inactividad, se acepta no poder afinar el sistema operativo y se acepta un amarre medio al proveedor, mitigado con contenedores.
-### La pila dibujada: nombres reales para IaaS, PaaS y SaaS - diapositiva 8
-Proyecte la diapositiva 8 inmediatamente despues de fijar la plantilla del ADR: es el mismo corte de responsabilidades que se acaba de explicar en prosa, ahora dibujado y con un producto reconocible en cada columna. Recorrala de abajo hacia arriba y no al reves: senale primero que las tres columnas comparten la misma base (infraestructura), y que lo unico que cambia es hasta donde sube el color amarillo. En IaaS el estudiante ya conoce DigitalOcean o AWS EC2 de oidas aunque no tenga cuenta; en PaaS, Render, Railway o Heroku son los que de verdad va a usar en el taller de hoy y en la Clase 3; en SaaS, Gmail o Notion le sirven para entender que «usted solo configura» no es un eufemismo, de verdad no hay nada que desplegar. Pregunte en voz alta, senalando la columna de PaaS: «por que la fila de Sistema operativo es celeste aqui y amarilla en IaaS?» La respuesta correcta es que el proveedor la absorbio, no que desaparecio: es el error mas comun, creer que en PaaS el sistema operativo deja de existir en vez de que alguien mas lo administra.
-### Preguntas frecuentes y cierre conceptual (de la diapositiva 4 a la diapositiva 9)
-Tres preguntas salen en voz alta en esta clase casi sin falta y conviene tener la respuesta lista, porque las tres se contestan en treinta segundos y desbloquean el taller. Cual de los tres modelos es el mejor: ninguno; la pregunta correcta es cual conviene para este componente, con este equipo y en este plazo, y responder que PaaS es mejor sin decir para que es la senal de que el ADR sera de relleno. Donde encaja serverless o las funciones como servicio: es una variante extrema de PaaS en la que no se administra ninguna instancia siempre encendida, se paga por invocacion y el codigo debe tolerar arrancar en frio; para efectos del curso se clasifica como PaaS anotando la diferencia. Y la mas comun: si elegimos PaaS, para que aprendemos Docker en la Clase 3 si la plataforma se encarga de todo. Respuesta: porque la plataforma construye internamente una imagen de contenedor con el codigo entregado, de modo que entender contenedores es entender que hace la plataforma por debajo, y porque el contenedor es precisamente el artefacto que vuelve reversible la decision de hoy. La Clase 4 usara este mismo ADR para justificar cuantas piezas tendra el sistema, y el Parcial 1 de la Clase 5 evalua la capacidad de ubicar la linea de responsabilidad en cada modelo.
+**[Slide 9] La pila de responsabilidades: donde se corta la linea** — 8 vinetas.
 
-Error tipico del docente que no domina el tema: presentar IaaS, PaaS y SaaS como catalogos de marcas y no como un modelo conceptual de responsabilidad, con lo cual el estudiante memoriza nombres de productos que cambiaran en dos periodos y no aprende a preguntar quien administra que capa; aguas abajo, en la Clase 6 sera incapaz de decir de que es responsable el en materia de seguridad, y en la Clase 10 no podra explicar por que su factura hipotetica sube o baja. El segundo error es dejar pasar ADR sin consecuencias negativas, y como esta clase tiene encuentro sincronico no hay excusa para no corregirlo en el momento: al pasar por los grupos en el tramo de taller, pregunte «que perdieron al elegir eso» antes de que el documento se suba. Un ADR que solo lista beneficios no es una decision, es una justificacion escrita despues de los hechos, y quien lo entrega asi llegara a la Clase 11 sin poder explicar ningun trade-off de su arquitectura, que es justamente lo que se le exigira sustentar en la Clase 15.
+**[Slide 10] IaaS, PaaS y SaaS: los tres cortes, uno por uno (1/3)** — 7 vinetas.
+
+**[Slide 11] IaaS, PaaS y SaaS: los tres cortes, uno por uno (2/3)** — 7 vinetas.
+
+**[Slide 12] IaaS, PaaS y SaaS: los tres cortes, uno por uno (3/3)** — 5 vinetas.
+
+**[Slide 13] Responsabilidad compartida: quien responde por que (1/2)** — 5 vinetas.
+
+**[Slide 14] Responsabilidad compartida: quien responde por que (2/2)** — 4 vinetas.
+
+**[Slide 15] El ADR-001: seis secciones rotuladas y una sola decision (1/3)** — 7 vinetas.
+  - Conviene mostrar la diferencia entre contexto y analisis con el ejemplo, porque es donde se pierde la seccion 3 completa.
+  - La prueba que el docente puede aplicar en voz alta mientras pasa por los grupos es una sola: si del contexto no se puede deducir por que se descarta IaaS, todavia no es contexto.
+
+**[Slide 16] El ADR-001: seis secciones rotuladas y una sola decision (2/3)** — 7 vinetas.
+
+**[Slide 17] El ADR-001: seis secciones rotuladas y una sola decision (3/3)** — 5 vinetas.
+
+**[Slide 18] La pila dibujada: nombres reales para IaaS, PaaS y SaaS** — 6 vinetas.
+
+**[Slide 19] Preguntas frecuentes y cierre conceptual () (1/2)** — 7 vinetas.
+  - Tres preguntas salen en voz alta en esta clase casi sin falta y conviene tener la respuesta lista, porque las tres se contestan en treinta segundos y desbloquean el taller.
+
+**[Slide 20] Preguntas frecuentes y cierre conceptual () (2/2)** — 7 vinetas.
+
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 2 - Modelos de servicio IaaS PaaS SaaS/Presentacion.pptx` (solo tema
@@ -54,17 +65,30 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 5. Cómo decidir para CloudLite
 6. Responsabilidad compartida: quién responde por qué
 7. Plantilla ADR-001
-8. Quién administra cada capa — IaaS vs PaaS vs SaaS
-9. ADR-001 — las 6 secciones caben en una pagina
-10. Herramientas de hoy
-11. PI CloudLite — entregable de hoy
-12. Manos a la obra (paso a paso)
-13. Para continuar (PI)
-14. Clase 2 · PI en movimiento
+8. De que se parte y que se decide hoy
+9. La pila de responsabilidades: donde se corta la linea
+10. IaaS, PaaS y SaaS: los tres cortes, uno por uno (1/3)
+11. IaaS, PaaS y SaaS: los tres cortes, uno por uno (2/3)
+12. IaaS, PaaS y SaaS: los tres cortes, uno por uno (3/3)
+13. Responsabilidad compartida: quien responde por que (1/2)
+14. Responsabilidad compartida: quien responde por que (2/2)
+15. El ADR-001: seis secciones rotuladas y una sola decision (1/3)
+16. El ADR-001: seis secciones rotuladas y una sola decision (2/3)
+17. El ADR-001: seis secciones rotuladas y una sola decision (3/3)
+18. La pila dibujada: nombres reales para IaaS, PaaS y SaaS
+19. Preguntas frecuentes y cierre conceptual () (1/2)
+20. Preguntas frecuentes y cierre conceptual () (2/2)
+21. Quién administra cada capa — IaaS vs PaaS vs SaaS
+22. ADR-001 — las 6 secciones caben en una pagina
+23. Herramientas de hoy
+24. PI CloudLite — entregable de hoy
+25. Manos a la obra (paso a paso)
+26. Para continuar (PI)
+27. Clase 2 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 11]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 24]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Decidir modelo dominante (IaaS/PaaS/SaaS) para CloudLite + ADR breve**.
 Entregable concreto: ADR-001: decisión de modelo de servicio + matriz de comparación aplicada al dominio.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -85,7 +109,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 9]
+### 40–55 · Demo en vivo · [Slide 22]
 Herramienta del día: **Google Docs · draw.io (opcional)**.
 **Demo que usted debe poder repetir:** Llenar un ADR-001 delante del grupo, con sus 6 secciones rotuladas
 
@@ -96,11 +120,11 @@ Herramienta del día: **Google Docs · draw.io (opcional)**.
 5. Alternativas descartadas, exactamente dos: IaaS, porque habria que operar el sistema operativo sin tiempo para ello; SaaS como nucleo, porque no quedaria arquitectura que disenar. Aclare aqui —y no en la decision— que identidad y correo siguen siendo SaaS satelite.
 6. Consecuencias: escriba UN eje (operacion) con su + y su -, y deje los otros dos al grupo. Diga: «un ADR de una pagina que se entiende vale mas que 5 paginas que nadie lee».
 
-Narra los clics en voz alta. Si falla la red, proyecta la [Slide 9], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
+Narra los clics en voz alta. Si falla la red, proyecta la [Slide 22], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 12]
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 25]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -113,7 +137,7 @@ Aplica el quiz corto de `Kit docente/Clase 2/Quiz Clase 2 - Modelos de servicio 
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 14]
+### 115–120 · Cierre · [Slide 27]
 Di: «Queda avanzado: Decidir modelo dominante (IaaS/PaaS/SaaS) para CloudLite + ADR breve.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»

@@ -31,55 +31,25 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: la curva del costo del cambio - diapositiva 4
 
-La analogía de la pared es la más eficiente que existe para esta clase porque nadie necesita saber de software para responderla. Mover una pared en el plano cuesta un borrador; en el ladrillo cuesta tumbar y volver a levantar; en la casa entregada cuesta la obra, la mudanza y el enojo del dueño. Todo el mundo lo intuye, y esa intuición es exactamente la curva del costo del cambio.
-
-Lo que hay que hacer explícito en el minuto 12 es que **en software la curva es igual pero se ve menos**, y ahí está el problema. En una casa, una pared mal puesta se ve; en un sistema, un requisito mal entendido no se ve hasta que alguien lo usa. Por eso en ingeniería de software hubo que inventar fases, revisiones y criterios de aceptación: son el equivalente a mirar el plano antes de pedir el cemento.
-
-Recoja las respuestas en el muro. Van a salir cifras espontáneas —«mil veces más caro»— y conviene no corregirlas ahí, sino usarlas cuando llegue la tabla: la dirección de la curva es correcta y los múltiplos exactos son discutibles, lo cual es una buena lección sobre cómo se citan los datos.
+Proyectado en la lamina «La pregunta de entrada: la curva del costo del cambio» (8 vinetas).
 
 ### Las seis fases, y por qué el orden importa - diapositiva 5
 
-Conviene presentar las fases como una cadena de preguntas, no como una lista de etapas administrativas. Cada fase responde una pregunta y produce lo que la siguiente necesita para no adivinar.
+Proyectado en la lamina «Las seis fases, y por qué el orden importa (1/2)» (5 vinetas).
 
-**Definición del problema** responde *qué se va a resolver y para quién*, y hay que decir en voz alta que **esa fase ya la hicieron en la sesión 6**: la ficha del problema es el entregable de la primera fase del ciclo de vida de su propio proyecto. Eso reordena la percepción del curso: no estaban haciendo un ejercicio, estaban cerrando una fase.
-
-**Requisitos** responde *qué tiene que hacer la solución para resolver eso, y cómo sabremos que lo hace*. Es la fase de hoy y la que más se salta la gente.
-
-**Diseño** responde *cómo va a estar construido*: las partes, el flujo, las pantallas o los pasos. **Construcción** es la única fase que el estudiante reconoce como «el proyecto», y vale la pena decirle que es una de seis, y no la más determinante. **Validación** responde *funciona contra los criterios y con el usuario real*; la trampa clásica es probar con el propio equipo, que ya sabe cómo se usa. Y **operación y retiro** es la fase que nadie enseña en primer semestre y que conviene nombrar por dos razones: la mayor parte de la vida de un sistema ocurre ahí, y el retiro —qué pasa con los datos cuando el sistema se apaga— es un asunto ético y legal que ya vieron en la sesión 4 con la Ley 1581.
-
-El punto que amarra todo: **el orden no es burocracia, es economía**. Cada fase existe porque descubrir un error en ella cuesta menos que descubrirlo en la siguiente. Quien se salta requisitos no ahorra tiempo: mueve el costo hacia adelante y lo multiplica.
+- Conviene presentar las fases como una cadena de preguntas, no como una lista de etapas administrativas.
 
 ### La curva del costo del cambio: qué se puede afirmar y qué no - diapositiva 6
 
-Esta tabla es el corazón cuantitativo de la sesión y hay que manejarla con el mismo rigor que se les exigió en la sesión 5 con las cifras ambientales. **Lo que se puede afirmar con seguridad: el costo de corregir un error crece con la fase en que se descubre, y crece por órdenes de magnitud entre los extremos.** La forma de esa curva la documentó Barry Boehm en los años setenta a partir de datos de proyectos reales, y se ha vuelto a medir muchas veces desde entonces.
-
-**Lo que no conviene afirmar: los múltiplos exactos.** Circulan tablas con «1× / 5× / 10× / 100×» presentadas como leyes de la naturaleza, y hay literatura que discute si en desarrollo iterativo la curva es tan pronunciada. Diga eso explícitamente en clase: es una oportunidad de oro para mostrar que un ingeniero puede usar un resultado clásico sin exagerarlo. La dirección de la curva no está en discusión; la pendiente sí.
-
-El uso práctico de la tabla es una pregunta que los equipos van a responder en el taller: *¿qué decisión que estamos tomando hoy sería carísima cambiar en la Clase 14?* Casi siempre la respuesta es un requisito mal entendido o una restricción ignorada, y hacer la pregunta hoy es lo que la vuelve barata.
-
-Hay un segundo uso, más sutil, que vale la pena señalar si el grupo responde bien: la curva explica por qué las revisiones tempranas —que se sienten como pérdida de tiempo porque todavía no hay nada construido— son la actividad más rentable del proyecto. En el Therac-25 de la sesión 4, la revisión independiente del software que nunca se hizo era justamente eso.
+Proyectado en la lamina «Las seis fases, y por qué el orden importa (2/2)» (5 vinetas).
 
 ### Cascada, iterativo, y lo que Royce dijo de verdad - diapositiva 7
 
-En la sesión 2 apareció Royce y su artículo de 1970. Hoy se cierra el punto, porque es una de las confusiones más extendidas de la profesión: **el diagrama de cascada de una sola pasada suele atribuirse a Royce como su propuesta, y en el mismo texto él lo presentó como el modo riesgoso y advirtió que hacerlo así invita al fracaso**. Su propuesta incluía volver atrás, prototipar y hacer el trabajo dos veces. La profesión se quedó con el dibujo y perdió la advertencia.
-
-La comparación que importa para el curso no es «cascada mala, ágil bueno» —esa es una caricatura y hay que evitarla—. Es esta: **las fases son las mismas en los dos; lo que cambia es cuántas veces se recorren y cuándo aparece el usuario**. La cascada de una pasada es razonable cuando el problema es conocido, estable y el costo de equivocarse al final es asumible. El enfoque iterativo es mejor cuando hay incertidumbre sobre qué necesita el usuario, que es la situación normal y en particular la de todos los proyectos de este curso.
-
-Aterrícelo en el calendario, porque eso les hace sentir la diferencia: **este curso va a hacer dos vueltas completas**. Una corta en las sesiones 10 y 11 —prototipo de baja fidelidad, prueba, corrección— y otra en las Clases 12 a 14, con la retroalimentación de la presentación de avances. No es una decisión estética del docente: es la manera de que el error de requisitos aparezca en la sesión 10 y no en la 15, cuando ya no hay tiempo.
-
-Si alguien pregunta por el Manifiesto Ágil de 2001, que salió en la sesión 2: la respuesta honesta es que reordenó prioridades —software funcionando sobre documentación, colaboración sobre contrato— y que no eliminó las fases. Un equipo ágil sigue definiendo el problema, escribiendo requisitos, diseñando, construyendo y validando; lo hace en ciclos cortos y con menos ceremonia.
+Proyectado en la lamina «La curva del costo del cambio: qué se puede afirmar y qué no (1/2)» (5 vinetas).
 
 ### Requisitos, criterios de aceptación y hitos: lo que se entrega hoy - diapositivas 8 y 9
 
-**Requisito funcional** es algo que la solución hace, escrito desde el usuario: «el usuario puede consultar si un libro está disponible sin ir a la biblioteca». El error típico de primer semestre es escribirlo desde la tecnología —«el sistema tendrá una base de datos MySQL»—, que no es un requisito sino una decisión de diseño disfrazada, y encima toma la decisión en la fase equivocada.
-
-**Requisito no funcional** es una condición que la solución debe cumplir: funcionar en un computador viejo, abrir sin crear cuenta, responder en menos de tanto, no guardar datos personales. Aquí hay una conexión que hay que hacer explícita y que le da sentido a dos sesiones anteriores: **los requisitos no funcionales de sus proyectos salen de las restricciones que marcaron en el árbol de la sesión 6 y del indicador ambiental de la sesión 5**. Si la biblioteca no tiene computador en el mostrador, «funciona desde el celular de la voluntaria» es un requisito no funcional, no un detalle.
-
-**Criterio de aceptación** es la parte que casi nadie escribe y la que vuelve verificable el proyecto: cómo se comprueba que el requisito se cumple, con un caso concreto y un umbral. «Un usuario que no conoce el sistema encuentra la disponibilidad de un libro en menos de un minuto, sin ayuda» se puede ejecutar delante de alguien. «El sistema debe ser fácil de usar» no se puede ejecutar, y por lo tanto no sirve. La regla que conviene dictar: **si no se puede convertir en una prueba que alguien haga, no es un criterio**.
-
-**Hito** es un punto del calendario donde algo queda terminado y verificable. Es el concepto que salva el proyecto de la última semana: «vamos avanzando» no es un hito; «en la sesión 10 hay tres pantallas probadas con un usuario» sí. En el taller de hoy se les pide el plan de hitos hasta la Clase 15, y conviene revisarlo con severidad, porque un plan con todo el trabajo en la Clase 14 es un proyecto que va a fallar y todavía se puede corregir.
-
-Los tres malentendidos de la última diapositiva son los que aparecen en las salas. El primero —que las fases son burocracia— se responde con la tabla del costo. El segundo —que iterativo significa no planear— se responde señalando que se planea más seguido, no menos. El tercero conviene decirlo porque tranquiliza: **las fases no son departamentos ni personas**; en un equipo de cinco, las seis fases las recorren los mismos cinco, y lo que cambia es la pregunta que están respondiendo.
+Proyectado en la lamina «La curva del costo del cambio: qué se puede afirmar y qué no (2/2)» (4 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 7 - Ciclo de vida de los proyectos de ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -93,10 +63,20 @@ Numeración real del deck `Clases/Clase 7 - Ciclo de vida de los proyectos de in
 7. Una sola pasada o varias vueltas
 8. Cuatro cosas que se entregan y no son código
 9. Tres malentendidos que salen caros
-10. Taller de hoy: Ciclo de vida del proyecto
-11. Cómo se expone en 3 minutos
-12. Para la Clase 8
-13. Cierre · Nos vemos en la sesión 8
+10. La pregunta de entrada: la curva del costo del cambio
+11. Las seis fases, y por qué el orden importa (1/2)
+12. Las seis fases, y por qué el orden importa (2/2)
+13. La curva del costo del cambio: qué se puede afirmar y qué no (1/2)
+14. La curva del costo del cambio: qué se puede afirmar y qué no (2/2)
+15. Cascada, iterativo, y lo que Royce dijo de verdad (1/2)
+16. Cascada, iterativo, y lo que Royce dijo de verdad (2/2)
+17. Requisitos, criterios de aceptación y hitos: lo que se entrega hoy (1/3)
+18. Requisitos, criterios de aceptación y hitos: lo que se entrega hoy (2/3)
+19. Requisitos, criterios de aceptación y hitos: lo que se entrega hoy (3/3)
+20. Taller de hoy: Ciclo de vida del proyecto
+21. Cómo se expone en 3 minutos
+22. Para la Clase 8
+23. Cierre · Nos vemos en la sesión 8
 
 ## Plan de clase minuto a minuto (90 min)
 

@@ -33,59 +33,25 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: el pago de haber escrito en cada sesión - diapositiva 4
 
-La apertura de la última sesión tiene una función precisa: **quitar el pánico y hacer visible una lección de método**. La pregunta —«el informe tiene doce secciones y vale el 20 %, ¿cuántas van a escribir hoy desde cero?»— produce respuestas de «ocho», «todas», y la respuesta real es **una**.
+Proyectado en la lamina «La pregunta de entrada: el pago de haber escrito en cada sesión» (6 vinetas).
 
-Vale la pena detenerse ahí treinta segundos, porque es una de las lecciones más transferibles del curso: **el informe no se escribió hoy, se escribió en dieciséis sesiones.** La ficha del problema de la sesión 6 es la sección 2; la matriz de la 8 es la sección 6; los hallazgos de la 12 son la sección 8. Ningún equipo tuvo que escribir un informe: tuvieron que **armarlo**.
-
-Dígalo con el contraste explícito, porque es lo que se van a llevar a las otras asignaturas: **la alternativa era llegar hoy con veinticuatro minutos y doce secciones en blanco.** Es exactamente lo que le pasa a quien deja la documentación para el final, y no es un problema de tiempo sino de método.
-
-Después, en un minuto, diga qué se hace hoy y qué **no**: se arma y se entrega el informe, se socializa, se autoevalúan y se cierra el curso. **No hay examen final escrito** — conviene decirlo explícitamente porque la mitad del curso llega esperándolo, y saberlo cambia cómo usan los veinticuatro minutos del informe.
+- Vale la pena detenerse ahí treinta segundos, porque es una de las lecciones más transferibles del curso: **el informe no se escribió hoy, se escribió en dieciséis sesiones.** La ficha del problema de la sesión 6 es la sección 2; la matriz de la 8 es la sección 6; los hallazgos de la 12 son la sección 8.
 
 ### Las doce secciones, y el orden correcto para armarlas - diapositivas 5, 6 y 7
 
-Las dos tablas de secciones son el corazón de la sesión y hay que proyectarlas juntas, porque el efecto está en la columna del medio: **casi todas las filas dicen una sesión.** No las lea completas —son doce filas y aburre—; señale tres o cuatro y deje que el curso vea el patrón.
-
-El **largo por sección** está en la tabla y sirve para dos cosas: evita el informe de veinticinco páginas donde nadie encuentra nada, y evita el de tres donde no cabe el trabajo. En total son unas **9 a 11 páginas**, que es una extensión razonable para un proyecto de primer semestre. Si un equipo pregunta si puede ser más largo, la respuesta es que **la extensión no es una virtud**: un informe donde la decisión está en la página 18 es un informe que no se va a leer.
-
-**El orden de armado importa y es contraintuitivo**, así que hay que insistir: **pegar primero, revisar después, y el resumen al final.** El error que hace que no alcancen los veinticuatro minutos es empezar por el resumen —o peor, por la portada— porque el resumen exige tener todo lo demás decidido. Se escribe último aunque vaya primero. Esta regla es general para cualquier documento técnico y vale la pena nombrarla como tal.
-
-**El paso 2 tiene un detalle que cambia el resultado: marcar lo que falta, no lo que está.** Un equipo que va marcando lo hecho termina con una lista de logros y sin saber qué le falta. Marcando en rojo los huecos, la lista de tareas aparece sola, y el paso 3 —repartir los huecos, uno por integrante— se hace en cuatro minutos.
-
-Sobre la **sección 11, la declaración del uso de IA**: es un cuarto de página y es la que más se olvida. Tiene que decir qué se le pidió al asistente, qué se corrigió a mano y **qué no se le entregó** —ningún dato personal de terceros, que es la regla del curso desde la sesión 4 y que se trabajó en la 11—. Los equipos que no usaron IA también escriben la sección: dicen que no la usaron. Declarar es la norma, usarla o no es la decisión.
+Proyectado en la lamina «Las doce secciones, y el orden correcto para armarlas (1/2)» (6 vinetas).
 
 ### La galería, y por qué socializar no es exponer otra vez - diapositiva 8
 
-Los veinte minutos de socialización **no son una segunda ronda de exposiciones** — eso fue la Clase 15 y ya tiene nota. Aquí el formato es una **galería**: cada equipo deja en su columna del muro tres imágenes —una pantalla del prototipo, la matriz de impacto y la diapositiva del problema— y **cinco líneas**: el problema, la decisión, un hallazgo, un número de impacto y el siguiente paso.
-
-El reparto son 3 minutos por equipo para presentar la columna, y los 5 restantes para **recorrido libre**: cada estudiante entra a la columna de otro equipo y deja un comentario. Es rápido, es de baja presión —después de la Clase 15 el curso está cansado— y deja un registro del semestre que se puede mostrar el año siguiente.
-
-**Por qué vale la pena y no es relleno:** en la Clase 15 cada equipo escuchó cuatro exposiciones de nueve minutos, y a esa velocidad casi nadie retiene los detalles de los otros proyectos. La galería deja los cinco proyectos **lado a lado y por escrito**, y ahí sí se ven las comparaciones: cinco maneras distintas de definir un problema, cinco matrices de decisión, cinco listas de afectados. Es la única vez en el semestre en que el curso ve su propio trabajo completo.
-
-Aproveche los cuatro errores del informe [Slide 8] durante este bloque, mientras los equipos terminan de subir la columna: son las cuatro cosas que va a encontrar calificando y decirlas ahora les da tiempo de corregirlas. **La más frecuente es la sección 10 vacía** —«ninguna limitación»—, que después de la Clase 12 no es creíble en ningún equipo.
+Proyectado en la lamina «Las doce secciones, y el orden correcto para armarlas (2/2)» (8 vinetas).
 
 ### Autoevaluación y coevaluación: cómo evitar que sea un trámite - diapositiva 9
 
-La autoevaluación se degrada en trámite cuando se pide una nota. **Pedir cuatro respuestas con evidencia lo evita**: qué hice yo concretamente —secciones que escribí, prueba que hice, tramo que expuse—, qué aprendí a hacer que no sabía, en qué fallé, qué haría distinto. Todo verificable en el documento del equipo.
-
-Y hay que decir la consecuencia con claridad, porque cambia el resultado: **ponerse la nota máxima sin evidencia baja el puntaje.** Lo que se evalúa no es la autoestima: es **la capacidad de mirar el propio trabajo con honestidad**, que es una competencia profesional. El estudiante que escribe «no entregué mi sección a tiempo dos veces y el equipo tuvo que cubrirme» está demostrando exactamente lo que se busca.
-
-La coevaluación es más delicada y necesita una regla dura: **se evalúa el trabajo, no la persona.** Tres criterios —cumplimiento de acuerdos, aporte al proyecto, disposición para ayudar— y la misma exigencia de la Clase 12: **observación, no adjetivo**. «No aportó» no sirve como coevaluación; «no entregó su sección en las tres últimas sesiones» sí, porque es verificable y porque la persona puede responder a un hecho y no a una etiqueta.
-
-**La autoevaluación individual se entrega solo al docente**, no al muro ni al equipo. Sin esa garantía nadie escribe nada honesto, y el ejercicio se vuelve un intercambio de cortesías. Dígalo antes de que empiecen a escribir.
-
-Un caso que aparece casi siempre: un equipo donde uno trabajó mucho menos. Si tres coevaluaciones independientes lo señalan **con hechos**, es información válida y puede diferenciar la nota individual. Si es una sola persona señalando y sin hechos, no alcanza. Y no resuelva el conflicto en público: recoja las coevaluaciones, léalas después y ajuste con criterio.
+Proyectado en la lamina «La galería, y por qué socializar no es exponer otra vez (1/2)» (5 vinetas).
 
 ### El cierre del curso: veinte minutos que no son un discurso - diapositiva 10
 
-Los últimos veinte minutos se pueden desperdiciar fácilmente en un discurso de despedida. **Úselos para hacer visible el aprendizaje, con evidencia.** La diapositiva de antes y después es la herramienta: en la columna izquierda están las respuestas reales de la prueba diagnóstica de la sesión 1 —vale la pena tenerlas a mano de verdad, no parafraseadas— y en la derecha lo que hoy pueden sostener.
-
-El punto que hay que hacer explícito, y que es la diferencia entre una clase y un curso: **cada frase de la columna derecha está sostenida por una sección de su propio informe.** «Toda decisión sacrifica algo» no es una frase aprendida: está en la sección 6, escrita por ellos, con una matriz detrás. «Hay afectados que nunca la usan» está en la sección 9, con la voluntaria que trabaja diez minutos más. Eso es lo que distingue haber entendido de haber memorizado, y conviene nombrarlo.
-
-Conecte con los tres RAA sin recitar códigos: reconocer la ingeniería como práctica que decide bajo restricciones (RAA1), aplicar un método para definir y resolver un problema con evidencia (RAA2), y valorar las consecuencias sociales y ambientales de una solución (RAA3). Los tres se pueden verificar en el informe que acaban de entregar, y esa verificabilidad es el sentido de haber trabajado por proyecto.
-
-Cierre con dos cosas concretas y ninguna solemne. La primera: **lo que se llevan es un método, no un tema.** Definir un problema con evidencia, revisar qué existe, decidir con criterios, probar con personas reales y mirar a quién afecta — eso sirve igual para un trabajo de otra asignatura, para un proyecto de grado y para el primer empleo. La segunda: **el proyecto queda como evidencia.** Es un trabajo completo, documentado y con su propio prototipo, hecho en primer semestre; el documento y las capturas quedan en la carpeta y valen para un portafolio.
-
-Y una recomendación práctica de despedida, corta: **el siguiente paso de su proyecto está escrito en la sección 10.** Si alguno quiere continuarlo, no tiene que empezar por decidir qué hacer; ya lo decidió.
+Proyectado en la lamina «La galería, y por qué socializar no es exponer otra vez (2/2)» (3 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 16 - Socializacion y evaluacion final del curso/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -100,10 +66,19 @@ Numeración real del deck `Clases/Clase 16 - Socializacion y evaluacion final de
 8. Cuatro cosas que bajan la nota del informe
 9. La autoevaluación y la coevaluación, en serio
 10. Lo que decían en la sesión 1 y lo que pueden sostener hoy
-11. Taller de hoy: Informe final y autoevaluación
-12. Cómo se expone en 3 minutos
-13. Cierre del curso
-14. Cierre · Gracias · Introducción a la Ingeniería
+11. La pregunta de entrada: el pago de haber escrito en cada sesión
+12. Las doce secciones, y el orden correcto para armarlas (1/2)
+13. Las doce secciones, y el orden correcto para armarlas (2/2)
+14. La galería, y por qué socializar no es exponer otra vez (1/2)
+15. La galería, y por qué socializar no es exponer otra vez (2/2)
+16. Autoevaluación y coevaluación: cómo evitar que sea un trámite (1/2)
+17. Autoevaluación y coevaluación: cómo evitar que sea un trámite (2/2)
+18. El cierre del curso: veinte minutos que no son un discurso (1/2)
+19. El cierre del curso: veinte minutos que no son un discurso (2/2)
+20. Taller de hoy: Informe final y autoevaluación
+21. Cómo se expone en 3 minutos
+22. Cierre del curso
+23. Cierre · Gracias · Introducción a la Ingeniería
 
 ## Plan de clase minuto a minuto (90 min)
 

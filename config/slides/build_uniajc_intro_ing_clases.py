@@ -46,6 +46,7 @@ from guion_md_a_docx import convert  # noqa: E402
 import intro_ing_datos as D  # noqa: E402
 import intro_ing_temas_data as TD  # noqa: E402
 import examlab_talleres  # noqa: E402
+import teoria_a_slides as TS  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 CURSO = os.path.join(ROOT, D.curso()["folder"])
@@ -79,6 +80,17 @@ def _slide_no(titulos, frag, n):
     hits = [i for i, t in enumerate(titulos, 1)
             if not _plano(t).startswith("portada") and fp in _plano(t)]
     if len(hits) == 1:
+        return hits[0]
+    # Desde que el deck proyecta tambien el DESARROLLO del tema, un fragmento puede aparecer
+    # dentro del titulo de la lamina autorada Y del de su desarrollo («Pregunta de entrada»
+    # esta dentro de «La pregunta de entrada y para que sirve incomodar con una fecha»). El
+    # ancla apunta a la lamina autorada, que es la que el fragmento nombra EXACTAMENTE.
+    exactos = [i for i in hits if _plano(titulos[i - 1]) == fp]
+    if len(exactos) == 1:
+        return exactos[0]
+    # Si no hay igualdad exacta, gana la primera: el desarrollo va siempre DETRAS de la
+    # lamina que desarrolla, asi que la primera es la que el guion quiere nombrar.
+    if hits:
         return hits[0]
     raise SystemExit(
         "Clase %d: el fragmento {{slide:%s}} coincide con %d diapositivas.\n"
@@ -191,6 +203,21 @@ def _agenda(t):
 
 # ---------------------------------------------------------------- diapositivas
 
+def _slides_desarrollo(t):
+    """Las laminas de DESARROLLO del tema, una por bloque de `fundamento`.
+
+    Los bloques ya venian escritos uno por concepto y anclados a la lamina que acompanan;
+    lo que faltaba era proyectar su contenido, que hasta ahora solo leia el docente.
+    """
+    out = []
+    for b in t.get("fundamento", []):
+        cuerpo = "\n\n".join(b.get("cuerpo", []))
+        if not cuerpo.strip():
+            continue
+        out += TS.slides_de_seccion(b["titulo"], cuerpo)
+    return out
+
+
 def _slide_teoria(prs, spec, idx, t_reg):
     """Emite una diapositiva de teoria segun su `tipo` y registra su titulo."""
     tipo = spec["tipo"]
@@ -259,6 +286,11 @@ def build_pptx(n):
 
     for spec in t["teoria"]:
         _slide_teoria(prs, spec, idx, t_reg)
+        idx += 1
+
+    # El desarrollo del tema, proyectado: hasta ahora vivia solo en el guion.
+    for _tit, _vin, _ in _slides_desarrollo(t):
+        content_slide(prs, t_reg(_tit), _vin, idx=idx)
         idx += 1
 
     tl = t["taller"]
@@ -379,9 +411,13 @@ def md_guion(n, titulos):
         "dividida por diapositiva: cada bloque dice a qué diapositiva corresponde.",
         "",
     ]
-    for b in t["fundamento"]:
+    # El contenido de cada bloque esta PROYECTADO (una lamina de desarrollo por bloque).
+    # Aqui queda lo que no cabe en pantalla: donde esta cada cosa y que subrayar.
+    for b, (_tit, _vin, _notas) in zip(t["fundamento"], _slides_desarrollo(t)):
         L += ["### %s - %s" % (b["titulo"], _etiqueta_slides(titulos, b["slide"], n)), ""]
-        L += [p for par in b["cuerpo"] for p in (par, "")]
+        L += ["Proyectado en la lamina «%s» (%d vinetas)." % (_tit, len(_vin)), ""]
+        for x in _notas:
+            L += ["- %s" % x, ""]
 
     L += [
         "## Referencias a diapositivas",

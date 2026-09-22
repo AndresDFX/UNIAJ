@@ -33,47 +33,19 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: 45 minutos y una fase saltada - diapositiva 4
 
-El caso de la firma financiera de 2012 es el mejor gancho posible para esta sesión porque desarma la idea de que los desastres los causa código malo. El código llevaba años funcionando. Lo que falló fue el **paso controlado de una fase a la siguiente**: un despliegue que dejó una versión antigua activa en uno de los servidores, un sistema automático operando a velocidad de máquina, y ninguna manera de frenar rápido cuando empezó a hacer daño. En cuestión de minutos las pérdidas fueron enormes y la firma no sobrevivió como empresa independiente.
-
-La pregunta del muro —«¿en qué fase estaba el error?»— va a producir respuestas que dicen «en la programación», y ahí está la lección: **el error no estaba en el código, estaba en la operación**. Es la fase que en la sesión 7 se nombró de pasada y que nadie enseña en primer semestre. Sirve además para introducir una idea que vale para todo el semestre: cada transición entre fases es un lugar donde se rompen los proyectos, y por eso las fases tienen entregables.
-
-Recomendación de manejo: no dé el nombre de la empresa en la apertura. La fuerza está en la pregunta, y el nombre lo pueden buscar ellos cuando se les pida citar la fuente.
+Proyectado en la lamina «La pregunta de entrada: 45 minutos y una fase saltada (1/2)» (5 vinetas).
 
 ### Los cuatro casos: qué contar y cómo exigir la fuente - diapositiva 5
 
-Cuatro casos, cinco minutos en total, un minuto y algo por caso. La tabla es densa a propósito: hoy la teoría son 20 minutos y el peso está en el taller.
-
-**El sistema de equipajes del aeropuerto** es el caso de requisitos y diseño. Un sistema automatizado de manejo de maletas de una escala sin precedentes, contratado con el plazo de apertura ya fijado y sin pruebas a escala real; retrasó la apertura del aeropuerto muchos meses, funcionó parcialmente durante años y terminó abandonado. La lección: **el plazo se fijó antes de saber si era posible**, y ningún esfuerzo de construcción arregla eso.
-
-**El sistema de expedientes de la agencia federal** es el caso de requisitos puros: años de desarrollo, requisitos que cambiaban permanentemente, ninguna definición estable de qué debía hacer el sistema, y un abandono sin haber entrado en operación. Es el ejemplo perfecto de que **sin criterios de aceptación no hay manera de terminar**: un proyecto que no puede decir cuándo está listo, no está listo nunca.
-
-**El portal público de salud en su lanzamiento** es el caso de validación. La demanda del primer día era perfectamente previsible —una fecha anunciada, una población conocida— y aun así el sitio no aguantó. La lección para sus proyectos: **probar que algo funciona con un usuario no es probar que funciona con muchos**, y el volumen es un requisito no funcional que se valida aparte.
-
-**La firma financiera** es el caso de operación, y es el que rompe el prejuicio sobre el código. Súmele el detalle que lo hace inolvidable: **el problema no fue escribir el software, fue instalarlo**, y no existía una forma rápida de detenerlo.
-
-Y una exigencia metodológica que hay que repetir porque es la marca del curso: los cuatro casos son públicos y están documentados en informes oficiales y en prensa especializada, pero **las cifras circulan con variaciones**. Quien cite un monto o una fecha en la exposición tiene que decir de dónde salió y de qué año es. Es la misma regla de la sesión 5 con las cifras ambientales y de la sesión 4 con los numerales.
+Proyectado en la lamina «La pregunta de entrada: 45 minutos y una fase saltada (2/2)» (4 vinetas).
 
 ### La matriz de decisión: cómo se decide sin que la decisión ya estuviera tomada - diapositiva 6
 
-La matriz de decisión es una herramienta simple con una trampa sutil, y enseñar la trampa es más valioso que enseñar la herramienta.
-
-Los cinco pasos son: escribir las dos alternativas en una frase cada una; elegir de tres a cinco criterios; ponerle peso a cada criterio; calificar cada alternativa criterio por criterio con una escala corta y **una media línea de justificación**; y decidir, escribiendo qué se pierde.
-
-**La trampa está en el paso 3, y hay que decirla explícitamente: los pesos se deciden antes de mirar las alternativas.** Si se deciden después, el equipo —sin mala intención— acomoda los pesos para que gane la alternativa que ya quería. Es el sesgo más común en decisiones de ingeniería y produce documentos que parecen análisis y son justificaciones. La regla práctica en la sala: primero se escriben los criterios y los pesos en el documento, y solo después se califica.
-
-**Los criterios no son gustos: salen de los requisitos no funcionales y de las restricciones.** Para el caso de la biblioteca: funciona sin computador en el mostrador, se aprende sin manual, se puede construir en las sesiones que quedan, cumple el requisito de datos ligeros, no exige que alguien atienda en horario fijo. Si un equipo pone «lo que más nos gusta» o «lo más innovador» como criterio, hay que reemplazarlo: no se puede calificar y no se puede defender.
-
-Y el paso 5 es el que separa una decisión profesional de una preferencia: **toda decisión sacrifica algo, y nombrarlo es lo que la vuelve defendible**. «Elegimos la lista publicada en vez de la aplicación; perdemos la actualización en tiempo real y ganamos que funcione sin conexión y sin capacitar a nadie.» Un equipo que puede decir qué perdió entendió que estaba decidiendo, no acertando.
+Proyectado en la lamina «Los cuatro casos: qué contar y cómo exigir la fuente (1/2)» (6 vinetas).
 
 ### Alcance mínimo y plan de validación: el entregable del taller - diapositivas 7 y 8
 
-**El alcance mínimo** es el concepto que salva los proyectos de primer semestre, y hay que definirlo con precisión porque se confunde con «hacer poco». Es la versión más pequeña de la solución que **ya resuelve algo** del problema y se puede probar con un usuario real. La prueba para saber si está bien definido: *si construimos solo esto y lo ponemos delante de la persona que vive el problema, ¿le sirve de algo?* Si la respuesta es no, no es un alcance mínimo, es un pedazo.
-
-El método concreto que hay que dictarles: **se toma un requisito funcional —el que ataca la causa elegida en el árbol de la sesión 6— y se construye solo eso, cumpliendo los requisitos no funcionales**. Los otros dos requisitos se escriben en una lista titulada «versión siguiente». Esa lista no es una derrota: es la prueba de que el equipo sabe lo que dejó fuera, y en la Clase 15 se muestra. Vale la pena decírselo con estas palabras: **un proyecto que no declara lo que dejó fuera parece incompleto; uno que lo declara parece dirigido.**
-
-**El plan de validación** se escribe hoy y eso es deliberado: escribir cómo se va a probar algo antes de construirlo cambia lo que se construye. Son tres cosas: con quién se prueba —una persona ajena al equipo—, qué tareas se le piden —las de los criterios de aceptación de la sesión 7—, y qué se va a observar.
-
-Las dos trampas hay que nombrarlas con dureza porque las van a cometer todas. **Probar con el propio equipo no prueba nada**: quien construyó sabe dónde hay que tocar. Conviene conectarlo con el Therac-25 de la sesión 4, donde el fabricante sostuvo que la sobredosis era imposible: cuando el que evalúa es el que construyó, el resultado está decidido de antemano. Y **preguntar «¿le gusta?» no sirve**: la gente dice que sí por cortesía, sobre todo a estudiantes que le muestran su trabajo con ilusión. Se le pide que **haga una tarea** y se observa en silencio —dónde duda, dónde se equivoca, qué busca y no encuentra—. Lo que la persona hace vale; lo que opina, poco. Esa regla sola mejora todos los proyectos del curso.
+Proyectado en la lamina «Los cuatro casos: qué contar y cómo exigir la fuente (2/2)» (7 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 8 - Taller de aplicacion del ciclo de vida/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -86,10 +58,18 @@ Numeración real del deck `Clases/Clase 8 - Taller de aplicacion del ciclo de vi
 6. Cómo se decide entre dos alternativas
 7. Alcance mínimo: qué entra y qué no
 8. El plan de validación, y dos trampas
-9. Taller de hoy: Decisión de la solución y alcance mínimo
-10. Cómo se expone en 3 minutos
-11. Para la Clase 9
-12. Cierre · Nos vemos en la sesión 9
+9. La pregunta de entrada: 45 minutos y una fase saltada (1/2)
+10. La pregunta de entrada: 45 minutos y una fase saltada (2/2)
+11. Los cuatro casos: qué contar y cómo exigir la fuente (1/2)
+12. Los cuatro casos: qué contar y cómo exigir la fuente (2/2)
+13. La matriz de decisión: cómo se decide sin que la decisión ya estuviera tomada (1/2)
+14. La matriz de decisión: cómo se decide sin que la decisión ya estuviera tomada (2/2)
+15. Alcance mínimo y plan de validación: el entregable del taller (1/2)
+16. Alcance mínimo y plan de validación: el entregable del taller (2/2)
+17. Taller de hoy: Decisión de la solución y alcance mínimo
+18. Cómo se expone en 3 minutos
+19. Para la Clase 9
+20. Cierre · Nos vemos en la sesión 9
 
 ## Plan de clase minuto a minuto (90 min)
 

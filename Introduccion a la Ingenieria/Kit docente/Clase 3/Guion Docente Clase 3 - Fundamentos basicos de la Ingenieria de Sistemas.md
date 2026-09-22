@@ -31,43 +31,23 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada y por qué esos tres ejemplos - diapositiva 4
 
-La pregunta de apertura junta un semáforo, la matrícula de la universidad y la fila de una EPS a propósito: son tres cosas que el estudiante no clasificaría junto y que comparten exactamente lo que la clase quiere mostrar. En los tres hay entradas, un proceso, salidas y personas afectadas; en los tres el software existe pero es la parte pequeña; y en los tres el problema real está en la coordinación entre partes, no en el código.
-
-El semáforo sirve para desactivar la idea de que un sistema es un programa: un semáforo mal sincronizado produce trancón aunque su temporizador funcione perfecto. La matrícula sirve porque la viven: el sistema de matrícula incluye la plataforma, pero también el pago en el banco, la cola de la ventanilla y la persona que revisa un documento. Y la fila de la EPS sirve porque es el caso donde es más visible que **un sistema puede funcionar según su diseño y ser injusto**: si las citas se asignan por orden de llegada física, el sistema está premiando a quien puede madrugar.
+Proyectado en la lamina «La pregunta de entrada y por qué esos tres ejemplos» (5 vinetas).
 
 ### Qué es un sistema y por qué la frontera es la decisión difícil - diapositiva 5
 
-La definición operativa que sirve para todo el curso es corta: un sistema es un conjunto de partes que interactúan para cumplir un propósito, de modo que si se le quita una parte deja de cumplirlo. Lo importante de esa definición no son las palabras sino la consecuencia: **el propósito es lo primero que hay que poder decir**. Si un equipo no puede decir para qué existe el sistema en una frase, todavía no lo entendió, y ningún diagrama lo va a salvar.
-
-Los cinco elementos se explican con un ejemplo concreto y de una sola pasada. En el sistema de citas de un consultorio: las entradas son las solicitudes de cita, la disponibilidad del médico y los datos del paciente; el proceso es asignar, confirmar y recordar; las salidas son la cita asignada, el paciente atendido y el registro de lo que pasó; la retroalimentación es que un paciente que no llegó libera un cupo y eso debería cambiar la asignación. La frontera es lo que hay que discutir: ¿el transporte del paciente es parte del sistema? Si el 30 % de las citas se pierden porque la gente no logra llegar, dejar el transporte fuera de la frontera hace que el sistema funcione en el papel y falle en la vida.
-
-Ese punto —**toda frontera es una decisión y hay que poder defenderla**— es el que hay que dejar clavado. El estudiante de primer semestre tiende a creer que la frontera viene dada por el problema. No viene dada: la pone el ingeniero, y de ella depende qué se puede mejorar. Una frontera muy estrecha produce sistemas que no sirven; una muy ancha produce proyectos que no se acaban. En la sesión 6, cuando cada equipo escriba el problema de su proyecto, la frontera va a ser el campo que más discusión genere, y hoy es donde se aprende a ponerla.
+Proyectado en la lamina «Qué es un sistema y por qué la frontera es la decisión difícil (1/2)» (6 vinetas).
 
 ### El sistema no es el software: la confusión que hace fracasar proyectos - diapositiva 6
 
-La diapositiva del antes y después es el centro pedagógico de la sesión y conviene dictarla despacio, línea por línea, dejando que el grupo reconozca su propia forma de pensar en la columna izquierda. Casi todos llegan a primer semestre con la mirada de programador, y no por ignorancia: es la que el entorno premia. La columna derecha es la que la carrera enseña.
-
-El ejemplo de las citas médicas conviene desarrollarlo hasta el final porque muestra el fracaso completo. Un equipo con mirada de programador construye una app de citas impecable: sin errores, rápida, bonita. Y la fila de las cinco de la mañana no se mueve, porque las personas que hacen esa fila no tienen datos en el celular, o no confían en la app, o la secretaria sigue apuntando en el cuaderno porque el sistema nuevo le duplica el trabajo. El software funciona y el problema sigue. **En la lógica de este curso, ese proyecto fracasó**, y no por un error técnico.
-
-De ahí sale el criterio de éxito que se usa en todo el semestre y que hay que enunciar hoy con esas palabras: un proyecto de este curso se juzga por **si el problema del entorno se redujo y se puede medir**, no por si el prototipo funciona. Es la razón por la que el bloque «problema del entorno» pesó el 30 % en la sesión 1 y por la que la sesión 6 exige una línea base con una cifra.
+Proyectado en la lamina «Qué es un sistema y por qué la frontera es la decisión difícil (2/2)» (7 vinetas).
 
 ### Actores, requisitos y retroalimentación: los tres que se olvidan - diapositiva 7
 
-El concepto de actor hay que estirarlo más allá del usuario, porque ahí está la falla que más cuesta. En el sistema de citas los actores obvios son el paciente y la secretaria. Los que se olvidan son el médico (cuya agenda se llena distinto), quien paga el servicio (que quiere menos cupos perdidos) y **el vecino que antes conseguía cita madrugando y ahora no la consigue**. Ese último es el más importante para el curso, porque es un actor al que el sistema le empeoró la vida sin que nadie lo consultara. La Clase 13, sobre impacto social, es básicamente una hora dedicada a buscar a ese actor.
-
-Requisito contra deseo es la distinción práctica que más van a usar. La regla es operativa: es requisito si sin eso el sistema no cumple su propósito; es deseo si lo mejora. Y hay que advertir el fenómeno social: **todo el mundo presenta sus deseos como requisitos**, no por mala fe, sino porque desde dentro de su trabajo todo parece indispensable. Separarlos no es un trámite: es lo que permite entregar algo en un semestre en vez de nada en dos años.
-
-La retroalimentación es la más abstracta y la que más rinde cuando se aterriza con una pregunta única: **¿cómo se entera este sistema de que le salió mal?** En la mayoría de los sistemas del entorno que los equipos van a mirar, la respuesta honesta es «no se entera», o «se entera cuando alguien reclama». Encontrar eso ya es un hallazgo de ingeniería y suele ser la mejor oportunidad de mejora del proyecto, porque casi siempre es barata: un registro, un conteo, una pregunta al final del proceso.
+Proyectado en la lamina «El sistema no es el software: la confusión que hace fracasar proyectos (1/2)» (6 vinetas).
 
 ### El asistente de IA: cómo usarlo hoy sin que haga el trabajo - diapositivas 9 y 8
 
-Esta es una de las dos sesiones donde el Plan de curso autoriza IA, y conviene encuadrarla bien porque de cómo se haga hoy depende cómo la usen todo el semestre. La postura del curso no es prohibirla ni celebrarla: es **usarla y verificarla**. El asistente es bueno dándole estructura a algo que el equipo ya entiende, y es bueno sugiriendo actores que se pasaron por alto. Es malo, y de una manera peligrosa, en todo lo local y lo cuantitativo.
-
-El punto que hay que subrayar es el mecanismo de la falla: el asistente **no avisa cuando está inventando**. Escribe «el tiempo promedio de espera en las EPS colombianas es de 47 minutos» con el mismo tono con que escribe algo correcto. Va a inventar cifras, nombres de dependencias municipales y números de leyes. Es exactamente el tipo de dato que un estudiante de primer semestre no puede distinguir, y por eso el entregable de hoy no es el texto de la IA: es **la lista de lo que el equipo detectó y corrigió**.
-
-Operativamente: el equipo escribe su prompt, pega la respuesta, y luego marca en el documento cada cosa que cambió y por qué. Tres correcciones bien argumentadas valen más que un texto largo. Y hay una consecuencia útil que conviene decirles: **la IA solo se puede verificar si uno sabe del tema**, así que la herramienta no reemplaza aprender el contenido, lo hace más necesario. Ese argumento funciona mejor que una prohibición.
-
-El método de cinco pasos de la otra diapositiva es el orden de trabajo del taller, y el paso 4 —seguir un caso real de la entrada a la salida— es el que produce los hallazgos. Los huecos de un sistema no aparecen mirando el diagrama; aparecen cuando uno intenta pasar un caso concreto por él y se topa con un paso que nadie sabe quién hace.
+Proyectado en la lamina «El sistema no es el software: la confusión que hace fracasar proyectos (2/2)» (3 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 3 - Fundamentos basicos de la Ingenieria de Sistemas/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -81,10 +61,19 @@ Numeración real del deck `Clases/Clase 3 - Fundamentos basicos de la Ingenieria
 7. Cuatro conceptos que se usan todo el semestre
 8. Cómo se descompone un sistema en cinco pasos
 9. El asistente de IA: qué hace bien y en qué miente
-10. Taller de hoy: Anatomía del sistema
-11. Cómo se expone en 3 minutos
-12. Para la Clase 4
-13. Cierre · Nos vemos en la sesión 4
+10. La pregunta de entrada y por qué esos tres ejemplos
+11. Qué es un sistema y por qué la frontera es la decisión difícil (1/2)
+12. Qué es un sistema y por qué la frontera es la decisión difícil (2/2)
+13. El sistema no es el software: la confusión que hace fracasar proyectos (1/2)
+14. El sistema no es el software: la confusión que hace fracasar proyectos (2/2)
+15. Actores, requisitos y retroalimentación: los tres que se olvidan (1/2)
+16. Actores, requisitos y retroalimentación: los tres que se olvidan (2/2)
+17. El asistente de IA: cómo usarlo hoy sin que haga el trabajo (1/2)
+18. El asistente de IA: cómo usarlo hoy sin que haga el trabajo (2/2)
+19. Taller de hoy: Anatomía del sistema
+20. Cómo se expone en 3 minutos
+21. Para la Clase 4
+22. Cierre · Nos vemos en la sesión 4
 
 ## Plan de clase minuto a minuto (90 min)
 

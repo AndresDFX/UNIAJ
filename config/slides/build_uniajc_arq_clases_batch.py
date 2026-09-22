@@ -25,6 +25,7 @@ from docx.shared import Inches, Pt, RGBColor
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import calendario_2026_2 as cal  # noqa: E402
 from arq_fundamentos import FUNDAMENTOS  # noqa: E402
+import teoria_a_slides as TS  # noqa: E402
 from arq_examlab_data import (  # noqa: E402
     ACTIVIDAD_CORTE1,
     ACTIVIDAD_CORTE2,
@@ -1625,6 +1626,23 @@ def _tiene_diagrama(n: int) -> bool:
     return any(p.get("tipo") == "diagrama" for p in taller.get("preguntas", []))
 
 
+def _teoria_slides(c: dict) -> list:
+    """Las diapositivas de DESARROLLO del tema: una por concepto, con su contenido.
+
+    `slides_extra` son los titulares curados de la clase —a veces una tabla— y se quedan
+    donde estan. Lo que faltaba era el desarrollo: `arq_fundamentos.FUNDAMENTOS` traia el
+    tema explicado seccion por seccion y no se proyectaba nunca, asi que el estudiante veia
+    el titular y el docente leia la explicacion.
+
+    `build_pptx`, `_slide_map` y el guion llaman a ESTA funcion, para que el deck y la
+    numeracion del guion no puedan desincronizarse. El build lo verifica.
+    """
+    if c.get("tipo") == "parcial":
+        return []
+    fund = FUNDAMENTOS.get(c["n"], "")
+    return TS.slides_de_clase(fund) if fund else []
+
+
 def _slide_map(c: dict) -> list:
     """Titulos de las diapositivas de esta clase, EN ORDEN.
 
@@ -1644,6 +1662,7 @@ def _slide_map(c: dict) -> list:
          "Agenda de hoy (120 min)",
          "Objetivos de la clase"]
     m += [x[0] for x in c.get("slides_extra", [])]
+    m += [x[0] for x in _teoria_slides(c)]
     dg = DIAGRAMAS.get(n)
     if dg:
         m.append(dg["titulo"])
@@ -1844,6 +1863,8 @@ def build_pptx(c: dict) -> Path:
             if imagen:
                 _add_captura(slide, imagen)
         idx += 1
+    for _t, _vin, _ in _teoria_slides(c):
+        content_slide(prs, _t, _vin, idx=idx); idx += 1
     dg = DIAGRAMAS.get(n)
     if dg:
         diagram_boxes_slide(
@@ -3243,6 +3264,33 @@ mismo documento que entregaste.
 """
 
 
+def _apoyo_por_diapositiva(c: dict) -> str:
+    """Apoyo puntual por diapositiva: que subrayar en cada una.
+
+    NO repite el contenido —eso esta proyectado—: recoge las frases del fundamento que le
+    hablan al docente sobre COMO dictar, que son las unicas que no tienen sitio en pantalla.
+    """
+    slides = _teoria_slides(c)
+    if not slides:
+        return ""
+    mapa = _slide_map(c)
+    base = None
+    for i, titulo in enumerate(mapa, 1):
+        if titulo == slides[0][0]:
+            base = i
+            break
+    L = ["## Apoyo por diapositiva", "",
+         "Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en "
+         "cada lamina, no repite su contenido.", ""]
+    for j, (titulo, vin, notas) in enumerate(slides):
+        num = f"[Slide {base + j}] " if base else ""
+        L.append(f"**{num}{titulo}** — {len(vin)} vinetas.")
+        for x in notas:
+            L.append(f"  - {x}")
+        L.append("")
+    return "\n".join(L)
+
+
 def guion_md(c: dict) -> str:
     n = c["n"]
     if c["tipo"] == "parcial":
@@ -3256,6 +3304,7 @@ def guion_md(c: dict) -> str:
         n, "Teoria al servicio del entregable PI de hoy. Ver diapositivas de la clase."
     )
     fund = _resolver_slides(fund, _slide_map(c), n)
+    apoyo = _apoyo_por_diapositiva(c)
 
     # Conceptos reales de esta clase (titulos de las slides de teoria), para que el
     # plan diga QUE cubrir en cada tramo en vez de "recorre las slides".
@@ -3550,7 +3599,7 @@ excepción en la regla del semestre siguiente y elimina el Q&A, que es la mitad 
 **Herramienta:** {c["herramienta"]}
 
 ## Fundamento teórico para el docente
-{fund}
+{apoyo}
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase {n} - {c['slug']}/Presentacion.pptx` (solo tema

@@ -33,47 +33,21 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: cuánto dura contarlo todo - diapositiva 4
 
-La apertura de hoy es una pregunta con trampa aritmética, y funciona porque la respuesta la descubren ellos: **¿cuánto dura contar el problema, los actores y el árbol de causas?** Más de nueve minutos. Solo el árbol de causas de la sesión 6, contado como lo contaron entonces, se lleva cuatro.
-
-De ahí sale la idea que ordena toda la sesión y que conviene decir literalmente: **una presentación no se acorta hablando rápido, se acorta eligiendo.** Es la misma operación del alcance mínimo de la sesión 8 aplicada al tiempo en vez del producto. Los equipos que fracasan en la Clase 15 no fracasan por hablar mal: fracasan porque intentaron contarlo todo y se les acabó el tiempo en el tramo 2, dejando fuera precisamente el prototipo y los hallazgos, que es lo único que el jurado no conoce.
-
-En el muro, cada equipo escribe **qué va a dejar fuera**. Es una pregunta incómoda y es exactamente el trabajo de hoy: dejar fuera el árbol de causas completo, la revisión bibliográfica extensa, la historia de cómo se conocieron, las quince filas de la matriz.
-
-Y una advertencia de encuadre para el docente: hoy nadie expone para lucirse. El bloque de 30 minutos es un **ensayo con corrección**, y hay que decirlo al principio para que los equipos traigan lo que tienen aunque esté a medias. Un equipo que esconde su presentación hoy porque «no está lista» está renunciando a la única corrección antes de la nota.
+Proyectado en la lamina «La pregunta de entrada: cuánto dura contarlo todo (1/2)» (4 vinetas).
 
 ### Los cinco tramos, y por qué el tramo 4 es el que sube la nota - diapositiva 5
 
-La estructura de cinco tramos no es un formato arbitrario: es el orden en que un lector técnico necesita la información —problema, decisión, solución, evidencia, consecuencias— y coincide con la estructura de cualquier informe de ingeniería. Vale la pena decirlo, porque el mismo esqueleto les va a servir en la Clase 16 para el informe y en toda la carrera para cualquier sustentación.
-
-**Tramo 1 · el problema con su cifra, 1 minuto.** El error universal es empezar con presentaciones personales y agradecimientos: «buenas tardes, somos el equipo tal, integrado por…». Eso consume el minuto más valioso de los nueve. **El nombre del equipo está en la diapositiva**; se arranca con el problema y su número.
-
-**Tramo 2 · a quién le pasa y qué decidimos, 2 minutos.** Aquí entra un afectado que no es usuario —trabajo de la Clase 13— y, sobre todo, **la decisión de la matriz de la sesión 8 con lo que se sacrificó**. Decir «elegimos la lista publicada y sacrificamos tener la información al minuto» en diez segundos comunica más madurez que cinco minutos de descripción.
-
-**Tramo 3 · la solución y el prototipo en vivo, 3 minutos.** Es el tramo más largo y la regla es una: **se muestra funcionando, no se describe.** Un recorrido de tres pasos por la pantalla, narrado por una persona mientras otra maneja el mouse.
-
-**Tramo 4 · lo que falló, 2 minutos.** Este es el tramo que hay que defender con insistencia, porque **todos los equipos quieren saltárselo** y es el que más sube la nota. Contar que una persona ajena abandonó la tarea, que se arregló el rótulo y que se decidió **no** arreglar la búsqueda tolerante, es lo que distingue un proyecto de una idea bonita. Un jurado técnico premia eso; un equipo que presenta todo perfecto genera desconfianza inmediata, porque nadie cree que un prototipo de primer semestre funcionó a la primera.
-
-**Tramo 5 · impacto y siguiente paso, 1 minuto.** El positivo con su número, **el negativo con su mitigación** —de nuevo la Clase 13— y qué haría quien continúe el proyecto. Cerrar con el siguiente paso deja la sensación de trabajo vivo y no de tarea entregada.
+Proyectado en la lamina «La pregunta de entrada: cuánto dura contarlo todo (2/2)» (5 vinetas).
 
 ### Diapositivas que se miran, y el reparto que reparte de verdad - diapositivas 6, 7 y 8
 
-El argumento central sobre diapositivas es de atención, no de estética, y hay que darlo así porque es el que convence: **el público no puede leer y escuchar a la vez.** Si la diapositiva tiene el texto completo, la gente lo lee más rápido de lo que usted lo dice, termina antes, y deja de escucharlo justo cuando usted está explicando lo importante. La conclusión es incómoda y hay que decirla: **si la diapositiva lo dice todo, usted está de sobra.**
+Proyectado en la lamina «Los cinco tramos, y por qué el tramo 4 es el que sube la nota (1/2)» (6 vinetas).
 
-De las cuatro reglas, la que más cuesta es **una idea por diapositiva**. Con ocho diapositivas para nueve minutos hay poco más de un minuto por diapositiva; si una tiene tres ideas, en realidad son tres diapositivas apuradas. Y la regla del tamaño de letra tiene una consecuencia práctica que conviene enunciar como ley: **si no cabe, hay que quitar contenido, no reducir la letra.** En una pantalla compartida por video todo se ve más pequeño y más borroso de lo que se ve en el computador de quien la hizo.
-
-La diapositiva de antes y después es el ejercicio más eficaz de la sesión. La columna izquierda es literalmente lo que van a entregar si no se les enseña otra cosa; la derecha muestra el mismo contenido convertido en rótulo. Deténgase en la cuarta fila: **la matriz de decisión completa no va en la presentación** —van las dos alternativas y el ganador—, porque la matriz es material de informe. Distinguir qué va en el informe y qué va en la presentación es una habilidad profesional y es lo que más les va a servir la próxima vez.
-
-Sobre el reparto, hay dos exigencias que evitan los dos fracasos típicos. La primera: **todos los integrantes hablan, y nadie habla menos de un minuto ni más de tres.** Un equipo donde solo uno presenta pierde puntos y, peor, arriesga la nota entera a que esa persona tenga buena conexión ese día. La segunda: **quien no habla también tiene tarea** —cronómetro, capturas del plan B, la diapositiva siguiente lista—. En la demostración del tramo 3, **narrar y manejar la pantalla no las hace la misma persona**: intentar las dos cosas a la vez es la causa más común de que una demostración se caiga. Y para las preguntas, cada integrante responde de su tramo, lo cual además obliga a que todos entiendan el proyecto completo.
+- Vale la pena decirlo, porque el mismo esqueleto les va a servir en la Clase 16 para el informe y en toda la carrera para cualquier sustentación. **Tramo 1 · el problema con su cifra, 1 minuto.** El error universal es empezar con presentaciones personales y agradecimientos: «buenas tardes, somos el equipo tal, integrado por…».
 
 ### El plan B, el ensayo, y por qué se ensaya solo el arranque - diapositiva 9
 
-**El plan B es parte de la nota y hay que ser explícito.** Antes de salir hoy, en la carpeta del equipo tienen que quedar tres cosas: la presentación **descargada en PDF**, **capturas de cada paso** de la demostración del prototipo, y un acuerdo de **quién comparte pantalla si al primero se le cae la conexión**. El argumento no es burocrático sino aritmético: la demostración es el tramo de 3 minutos, un tercio de la presentación; un equipo que no puede mostrar su prototipo porque «no cargó» perdió un tercio de su nota por algo que se prevenía en cinco minutos. Y en clase virtual esto no es hipotético: pasa cada semestre.
-
-**Sobre el ensayo, la trampa principal es ensayar «mentalmente».** Leer el guion en silencio dura aproximadamente la mitad que decirlo en voz alta, y por eso todos los equipos que no ensayan se pasan de tiempo — creen que su presentación dura seis minutos y dura trece. Hay que insistir aunque dé pena: **se ensaya hablando, con cronómetro.**
-
-Las otras dos trampas: **no leer** —se lleva una tarjeta con cuatro palabras clave por tramo, no un texto, porque leer mata el contacto con el público y además suena peor— y **no improvisar el arranque**. Las dos primeras frases se aprenden de memoria: son las que más nervios dan y las que fijan el tono de los nueve minutos. Es un consejo pequeño y funciona.
-
-**Por qué hoy se ensayan solo los primeros 4 minutos**, y conviene explicarlo para que no parezca un recorte: cinco equipos por nueve minutos son 45 minutos y no caben con corrección. Pero además **el arranque es donde se pierde el tiempo**: el equipo que controla los tramos 1 y 2 casi siempre llega bien al final, y el que se pasa en el tramo 2 ya no tiene manera de recuperarse. Ensayar el arranque con cronómetro es la intervención con mejor rendimiento por minuto invertido. El resto se ensaya en equipo, fuera de clase, y hay que decirlo con claridad: **quien no ensaye completo antes de la Clase 15 se va a pasar de tiempo, y a los nueve minutos se corta.**
+Proyectado en la lamina «Los cinco tramos, y por qué el tramo 4 es el que sube la nota (2/2)» (5 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 14 - Preparacion de la presentacion final/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -87,10 +61,18 @@ Numeración real del deck `Clases/Clase 14 - Preparacion de la presentacion fina
 7. El reparto: qué hace cada integrante, incluso quien no habla
 8. La diapositiva que se lee y la que se mira
 9. El plan B técnico, y tres trampas del ensayo
-10. Taller de hoy: Guion de nueve minutos y plan B
-11. Cómo se expone en 4 minutos
-12. Para la Clase 15
-13. Cierre · Nos vemos en la Clase 15
+10. La pregunta de entrada: cuánto dura contarlo todo (1/2)
+11. La pregunta de entrada: cuánto dura contarlo todo (2/2)
+12. Los cinco tramos, y por qué el tramo 4 es el que sube la nota (1/2)
+13. Los cinco tramos, y por qué el tramo 4 es el que sube la nota (2/2)
+14. Diapositivas que se miran, y el reparto que reparte de verdad (1/2)
+15. Diapositivas que se miran, y el reparto que reparte de verdad (2/2)
+16. El plan B, el ensayo, y por qué se ensaya solo el arranque (1/2)
+17. El plan B, el ensayo, y por qué se ensaya solo el arranque (2/2)
+18. Taller de hoy: Guion de nueve minutos y plan B
+19. Cómo se expone en 4 minutos
+20. Para la Clase 15
+21. Cierre · Nos vemos en la Clase 15
 
 ## Plan de clase minuto a minuto (90 min)
 

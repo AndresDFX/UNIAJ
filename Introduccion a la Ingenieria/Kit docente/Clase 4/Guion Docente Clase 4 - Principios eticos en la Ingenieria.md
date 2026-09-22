@@ -31,51 +31,23 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: el ingeniero que fue a la cárcel - diapositiva 4
 
-La apertura de hoy es un caso verdadero y conviene no revelar el nombre en el primer minuto, porque la fuerza está en la pregunta. Un ingeniero de Volkswagen escribió el software que detectaba cuándo el carro estaba en la prueba de emisiones para bajar los contaminantes solo durante el examen. El software funcionaba perfecto: hacía exactamente lo que se le pidió, sin errores. En 2017 ese ingeniero se declaró culpable en Estados Unidos y fue condenado a cuarenta meses de prisión, además de una multa.
-
-El estudiante de primer semestre tiene interiorizada la idea de que la responsabilidad es del jefe y que el programador ejecuta. Este caso la rompe con un hecho verificable, y por eso es mejor abrir con él que con una definición de ética. Recoja las respuestas en el muro los primeros diez minutos —van a aparecer «robó», «hackeó», «se equivocó»— y en el minuto 30, cuando llegue al caso en la tabla, muestre que ninguna era: **no hubo error, no hubo robo, hubo una decisión de diseño que se ejecutó bien**.
+Proyectado en la lamina «La pregunta de entrada: el ingeniero que fue a la cárcel» (8 vinetas).
 
 ### Qué es la ética en una profesión y qué no es - diapositiva 5
 
-Hay tres confusiones que hay que desmontar antes de tocar cualquier caso, porque si no, la discusión del taller se vuelve una conversación de opiniones y no se puede calificar.
-
-**La primera: la ética profesional no es tener buenas intenciones.** Es tomar decisiones defendibles con información incompleta y poder explicar el criterio. Un ingeniero con excelentes intenciones que no preguntó a quién afecta su sistema hizo algo mal, y el resultado no mejora por su buena voluntad. Al revés, un ingeniero que detecta un riesgo y lo escribe está actuando bien aunque el proyecto igual salga mal.
-
-**La segunda: no es un tema de opinión.** Esta es la que más rinde en clase, porque el estudiante llega convencido de que en ética «cada uno piensa distinto». Existen códigos escritos, con principios numerados, que uno puede citar como se cita un artículo de una norma. El código de ética de ACM e IEEE Computer Society para ingeniería de software es de 1999 y tiene ocho principios; el código de ética del ingeniero en Colombia es la Ley 842 de 2003. Un veredicto que cita el numeral es un argumento; «a mí me parece que estuvo mal» no lo es. En el taller de hoy se califica exactamente esa diferencia.
-
-**La tercera: la ley es el piso, no el techo.** El caso de Cambridge Analytica es el mejor para mostrarlo: la interfaz que permitía a una aplicación tomar datos de los amigos del usuario estaba documentada públicamente y era permitida por las reglas de la plataforma. Era legal y es indefendible. Al revés también ocurre: algo puede ser éticamente correcto y estar prohibido por una política interna. La ley y la ética se cruzan pero no coinciden, y el ingeniero tiene que mirar las dos.
-
-Una cuarta idea, que es la que más les sirve: **el momento de la ética es el momento de decidir, y casi siempre es temprano**. Quitar un seguro físico de una máquina de radioterapia porque el software ya lo cubre es una decisión que cuesta una reunión; enterarse de las consecuencias cuesta vidas y una investigación de años. La ética no es lo que se hace después del desastre.
+Proyectado en la lamina «Qué es la ética en una profesión y qué no es (1/3)» (5 vinetas).
 
 ### Los códigos y las tres normas colombianas que hay que saber nombrar - diapositiva 6
 
-**ACM/IEEE, 1999.** Ocho principios en este orden: público, cliente y empleador, producto, juicio, gestión, profesión, colegas y sí mismo. El orden importa y hay que decirlo en voz alta: el principio 1 —actuar de forma consistente con el interés público— **está por encima** del principio 2, que es el cliente y el empleador. Eso significa que el código ya resolvió el conflicto que el estudiante cree irresoluble: si lo que pide el jefe daña al público, el código dice cuál gana. La ACM actualizó además su código general en 2018.
-
-**Ley 842 de 2003.** Es el código de ética profesional de la ingeniería en Colombia y es la que aplica aquí, no las de otros países. Establece los deberes del ingeniero con la sociedad, con la profesión, con sus colegas y con sus clientes, y define las faltas y las sanciones. El punto práctico que hay que aterrizar para un estudiante de primer semestre es la **matrícula profesional**: en Colombia el ejercicio de la ingeniería requiere matrícula, la expide el COPNIA —Consejo Profesional Nacional de Ingeniería—, y el COPNIA puede sancionar y suspenderla. Es decir, la ética profesional aquí no es un discurso: tiene una autoridad, un procedimiento y una consecuencia sobre el derecho a ejercer.
-
-**Ley 1581 de 2012** (con el Decreto 1377 de 2013) es la de protección de datos personales, y es la norma que más van a tocar en su vida laboral, empezando por el proyecto de este curso. Los principios que hay que poder nombrar: finalidad (los datos se piden para algo declarado y no se usan para otra cosa), libertad (hace falta autorización previa, expresa e informada), veracidad, transparencia, acceso restringido, seguridad y confidencialidad. Los **datos sensibles** —salud, biometría, orientación política, sexual o religiosa, datos de niños— tienen protección reforzada. La autoridad es la Superintendencia de Industria y Comercio. Aterrícelo en el curso: si un equipo quiere hacer un proyecto con una base de datos de pacientes de un consultorio del barrio, esta ley le aplica completa, y por eso el curso prohíbe subir nombres y cédulas.
-
-**Ley 1273 de 2009** agregó al Código Penal un título sobre la protección de la información y los datos: acceso abusivo a un sistema informático, obstaculización ilegítima, interceptación de datos, daño informático, hurto por medios informáticos. La diferencia con la anterior hay que subrayarla: aquí la consecuencia es **pena de prisión para la persona**, no una sanción administrativa a la empresa. Es la norma que convierte en delito lo que un estudiante puede considerar una travesura —entrar a un sistema ajeno «solo para probar»— y conviene decirlo hoy, en la sesión 4, y no cuando ya pasó.
+Proyectado en la lamina «Qué es la ética en una profesión y qué no es (2/3)» (6 vinetas).
 
 ### Los cuatro casos: qué contar de cada uno y cuál es el momento de parar - diapositiva 7
 
-**Therac-25 (1985–1987).** Máquina de radioterapia de la Atomic Energy of Canada Limited. Seis accidentes conocidos con sobredosis masivas de radiación y varios muertos. Las causas son de manual y hay que contarlas completas porque son técnicas: los modelos anteriores tenían **seguros físicos** que impedían mecánicamente una configuración peligrosa, y en el Therac-25 se quitaron confiando en que el software lo evitaría; el software venía reutilizado de los modelos anteriores, con errores que antes quedaban tapados por esos seguros; había una condición de carrera que se disparaba cuando la operadora corregía la pantalla muy rápido, algo que hacían las operadoras expertas; los mensajes de error eran crípticos («MALFUNCTION 54») y aparecían tan seguido que se ignoraban; nunca hubo revisión independiente del código; y el fabricante sostuvo al principio que la sobredosis era imposible. La investigación de Nancy Leveson y Clark Turner (1993) es la fuente canónica y está disponible. **El momento de parar** fue la decisión de quitar los seguros físicos: ahí, en una reunión de diseño, era gratis.
-
-**Volkswagen (2015).** El «defeat device»: software que reconocía las condiciones de la prueba de laboratorio y activaba el control de emisiones solo en ese momento. En circulación real el vehículo emitía óxidos de nitrógeno muy por encima del límite. Se descubrió en 2015 y el detalle que interesa aquí es judicial: el ingeniero James Liang se declaró culpable y fue condenado en 2017 a cuarenta meses de prisión y una multa; un directivo recibió una pena mayor. **El momento de parar** fue cuando le pidieron escribir la detección de la prueba: no hacía falta ser experto en emisiones para ver que un código cuyo propósito es comportarse distinto durante el examen existe para engañar.
-
-**Boeing 737 MAX (2018–2019).** El MCAS empujaba el morro hacia abajo con base en **un solo sensor de ángulo de ataque**, podía activarse repetidamente, y no estaba explicado en el manual de vuelo, así que los pilotos no sabían que existía. Dos accidentes —Lion Air 610 en octubre de 2018 y Ethiopian 302 en marzo de 2019— con 346 muertos en total, y la flota mundial en tierra. Un detalle que vale oro para una clase de ingeniería: la alerta que avisaba de la discrepancia entre sensores era una **opción de pago**. **El momento de parar** fue la decisión de arquitectura de depender de un sensor único en un sistema capaz de mover el avión, y la de no documentarlo para no obligar a reentrenar pilotos.
-
-**Cambridge Analytica (2018).** Una aplicación de cuestionarios recogía datos del usuario **y de sus amigos**, que nunca la instalaron ni supieron de ella, aprovechando una interfaz de la plataforma que lo permitía. Los datos de decenas de millones de personas terminaron en perfilamiento político. La consecuencia fue una multa histórica a la plataforma. **El momento de parar** fue el diseño de esa interfaz: alguien decidió que el consentimiento de una persona alcanzara para entregar los datos de sus contactos. Es el caso que conecta directo con la Ley 1581 y con el principio de finalidad.
-
-El hilo común hay que enunciarlo al final de la tabla: **en los cuatro casos el software funcionó**. No hubo un error de programación que causara el desastre —salvo parcialmente en Therac-25, y ahí el error existía desde antes y estaba tapado por un seguro que alguien decidió quitar—. Lo que falló fue lo que se pidió construir y el hecho de que nadie con información suficiente lo detuvo. Esa frase es la tesis de la clase.
+Proyectado en la lamina «Qué es la ética en una profesión y qué no es (3/3)» (6 vinetas).
 
 ### La defensa que no sirve y las cinco preguntas que sí - diapositivas 8 y 9
 
-«Yo solo programé lo que me pidieron» es la frase que el estudiante va a usar espontáneamente en el taller, y hay que desarmarla con hechos en vez de con moralina. Legalmente no funciona: el caso Volkswagen tiene un ingeniero condenado a prisión por ejecutar. Profesionalmente tampoco: el código ACM/IEEE pone el interés público por encima del empleador, así que el conflicto ya está resuelto en el texto.
-
-Pero la parte útil no es la condena, es la alternativa, y conviene enseñarla en términos prácticos porque el estudiante que salga a trabajar el próximo año la va a necesitar: **dejar rastro y escalar temprano**. Un correo corto que diga «esto que se me pide tiene este riesgo para estas personas, lo dejo por escrito y propongo esta alternativa» hace tres cosas: aumenta la probabilidad de que se corrija, obliga a quien decide a decidir de verdad, y protege a quien lo escribió. Hay que decirlo sin heroísmo: no se le está pidiendo a un practicante que renuncie, se le está pidiendo que no sea el único que sabe. La única postura que no tiene defensa posible es callar.
-
-Las cinco preguntas son el método del taller. La más potente es la tercera —«¿aguanta que se sepa?»— porque no requiere saber nada de códigos ni de leyes y descarta la mayoría de las malas ideas en diez segundos: si la decisión depende de que los afectados no se enteren, ya está juzgada. La cuarta —buscar el numeral— es la que convierte una intuición en un argumento profesional, y es la que más pesa en la rúbrica. Y la quinta —¿cuándo se pudo parar?— es la que le da a la clase valor de ingeniería y no de conferencia: en los cuatro casos hubo un momento temprano, identificable y barato, en el que una persona con la información suficiente podía cambiar el resultado.
+Proyectado en la lamina «Los códigos y las tres normas colombianas que hay que saber nombrar (1/3)» (6 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 4 - Principios eticos en la Ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -89,10 +61,23 @@ Numeración real del deck `Clases/Clase 4 - Principios eticos en la Ingenieria/P
 7. Cuatro casos donde el software funcionó
 8. «Yo solo programé lo que me pidieron»
 9. Cinco preguntas para decidir sin ser experto
-10. Taller de hoy: Comité de ética
-11. Cómo se expone en 3 minutos
-12. Para la Clase 5
-13. Cierre · Nos vemos en la sesión 5
+10. La pregunta de entrada: el ingeniero que fue a la cárcel
+11. Qué es la ética en una profesión y qué no es (1/3)
+12. Qué es la ética en una profesión y qué no es (2/3)
+13. Qué es la ética en una profesión y qué no es (3/3)
+14. Los códigos y las tres normas colombianas que hay que saber nombrar (1/3)
+15. Los códigos y las tres normas colombianas que hay que saber nombrar (2/3)
+16. Los códigos y las tres normas colombianas que hay que saber nombrar (3/3)
+17. Los cuatro casos: qué contar de cada uno y cuál es el momento de parar (1/4)
+18. Los cuatro casos: qué contar de cada uno y cuál es el momento de parar (2/4)
+19. Los cuatro casos: qué contar de cada uno y cuál es el momento de parar (3/4)
+20. Los cuatro casos: qué contar de cada uno y cuál es el momento de parar (4/4)
+21. La defensa que no sirve y las cinco preguntas que sí (1/2)
+22. La defensa que no sirve y las cinco preguntas que sí (2/2)
+23. Taller de hoy: Comité de ética
+24. Cómo se expone en 3 minutos
+25. Para la Clase 5
+26. Cierre · Nos vemos en la sesión 5
 
 ## Plan de clase minuto a minuto (90 min)
 

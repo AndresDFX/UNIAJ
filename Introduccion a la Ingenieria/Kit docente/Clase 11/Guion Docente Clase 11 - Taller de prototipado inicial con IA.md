@@ -33,47 +33,21 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: mejor y además ilegal - diapositiva 4
 
-El gancho de hoy es un hecho concreto y reproducible, no una hipótesis: si se le pide a un asistente que mejore un prototipo de consulta de disponibilidad de libros, **con altísima probabilidad va a proponer cuentas de usuario con correo y contraseña, y avisos automáticos por correo cuando el libro esté disponible**. Las dos propuestas son razonables en abstracto, están en casi todos los sistemas parecidos del mundo, y las dos son incorrectas para este proyecto: violan el requisito no funcional «sin crear cuenta» de la sesión 7 y convierten al equipo en responsable del tratamiento de datos personales bajo la Ley 1581 de 2012, que vieron en la sesión 4.
-
-El punto que hay que hacer explícito, y que es el eje de toda la sesión: **el asistente no se equivocó por ser malo. Se equivocó porque nadie le dijo las restricciones.** Propuso la solución promedio de internet, que es exactamente lo que hace bien; el problema es que la solución promedio no es la solución de un proyecto con restricciones locales duras. Y lo hizo **con total seguridad**, sin ninguna señal de advertencia, que es la parte peligrosa.
-
-Vale la pena hacerlo en vivo si el tiempo alcanza —dos minutos de pantalla compartida con un prompt sin restricciones—, porque verlo proponer la cuenta de usuario delante de todos vale más que la diapositiva. Si no alcanza, la apertura sola sirve: en el muro, la pregunta «¿cómo puede pasar eso?» produce respuestas que ya contienen la respuesta correcta.
-
-Recuerde el encuadre general del curso, que hoy se cierra: la IA está autorizada en dos sesiones de dieciséis, con la misma regla en las dos —se entrega el prompt y lo que se corrigió—. Hoy esa regla vale la mitad de la nota del taller.
+Proyectado en la lamina «La pregunta de entrada: mejor y además ilegal (1/2)» (6 vinetas).
 
 ### Qué hace bien y qué hace mal: un mapa honesto - diapositiva 5
 
-Conviene ser preciso y no moralizante, porque estos estudiantes van a trabajar con estas herramientas toda su carrera y lo que necesitan es criterio, no prohibición.
-
-**Hace bien: variantes.** Pedir tres maneras distintas de organizar una pantalla o diez nombres para un botón es un uso excelente. La razón es concreta: un equipo que lleva dos horas mirando su propio dibujo pierde la capacidad de ver alternativas, y abrir opciones es justo lo que más cuesta en ese momento.
-
-**Hace bien: textos y casos de prueba.** Rótulos, mensajes de error y, sobre todo, **listas de casos que a nadie se le ocurrieron** — «¿qué pasa si el usuario escribe el título con una tilde de más?», «¿qué pasa si dos personas piden el mismo libro el mismo día?». Aquí la IA es genuinamente superior a un equipo de primer semestre, porque enumerar casos es exactamente lo que hace bien. Vale la pena decírselo, porque es el uso que más les va a servir en la Clase 12.
-
-**Hace mal: el contexto local.** No sabe que no hay computador en el mostrador, que las voluntarias rotan, que el presupuesto es cero, que la conexión es intermitente. Y como no lo sabe, propone para un contexto que no es el suyo.
-
-**Hace mal: inventar con seguridad.** Esta es la característica que hay que dejar instalada para siempre, y ya la vieron en la sesión 9 con las referencias bibliográficas inexistentes: **un modelo de lenguaje genera texto plausible, y no tiene manera de señalar cuándo lo plausible es incorrecto**. Va a proponer funciones que violan las restricciones del equipo y a veces la ley, con el mismo tono seguro con el que propone las buenas. No hay una alarma; la alarma son ustedes.
+Proyectado en la lamina «La pregunta de entrada: mejor y además ilegal (2/2)» (5 vinetas).
 
 ### El método: cinco pasos y por qué el primero decide todo - diapositiva 6
 
-**Paso 1: dar el contexto que no puede saber** — el problema en una frase de la sesión 6, quién lo usa, y las restricciones. Es el paso que decide la calidad de todo lo demás, y el que los estudiantes se saltan. La diferencia entre «mejora esta pantalla de biblioteca» y un prompt de diez líneas con las cuatro restricciones escritas no es de grado: es la diferencia entre recibir la solución promedio de internet y recibir tres opciones aplicables.
+Proyectado en la lamina «Qué hace bien y qué hace mal: un mapa honesto (1/2)» (5 vinetas).
 
-**Paso 2: pedir variantes, no una respuesta.** «Dame tres maneras distintas de…». El argumento es psicológico y hay que decirlo: una sola respuesta invita a aceptarla —está ahí, está completa, está bien escrita—; tres obligan a comparar, y comparar es donde ellos aportan. Es la matriz de decisión de la sesión 8 aplicada a lo que devuelve un asistente.
-
-**Paso 3: prohibir explícitamente lo prohibido.** «Sin crear cuentas de usuario, sin pedir datos personales, sin instalar nada, sin imágenes.» La regla en cuatro palabras: **si no lo dice, lo va a proponer**. Y aquí hay una lección de ingeniería más general que vale la pena señalar: los requisitos no funcionales que escribieron en la sesión 7 son precisamente lo que hay que poner en el prompt, porque son lo que el mundo no adivina. Un equipo que tiene sus requisitos no funcionales escritos hace un prompt bueno sin esfuerzo; uno que no los tiene, no puede.
-
-**Paso 4: corregir a mano y anotar qué se corrigió.** Esa lista **es el entregable**, y hay que decirlo sin ambigüedad porque cambia cómo trabajan: es la prueba de que pensaron, y es lo que más pesa en la rúbrica de hoy —30 de 100—. Un equipo que no corrigió nada no usó el asistente: lo obedeció.
-
-**Paso 5: declarar el uso.** Qué asistente, para qué, qué se aceptó y qué se descartó. El encuadre correcto no es de sospecha sino de profesión: **declarar el uso de una herramienta es lo normal en ingeniería** —nadie esconde que usó una calculadora o una biblioteca de código—, y esconderlo es lo que constituye la falta. En la vida laboral esto ya es requisito en muchas organizaciones, y acostumbrarse ahora les ahorra un problema después.
+- Conviene ser preciso y no moralizante, porque estos estudiantes van a trabajar con estas herramientas toda su carrera y lo que necesitan es criterio, no prohibición. **Hace bien: variantes.** Pedir tres maneras distintas de organizar una pantalla o diez nombres para un botón es un uso excelente.
 
 ### El antes y después, y cómo cierra el corte - diapositivas 7 y 8
 
-La diapositiva de antes y después es el corazón didáctico de la sesión, y hay que recorrerla con una insistencia: **ninguna de las cinco propuestas del asistente era absurda**. Cuentas de usuario, avisos por correo, reservas con historial, portadas, y un mensaje de error estándar: las cinco están en sistemas reales de bibliotecas en todo el mundo. **Las cinco eran incorrectas para este proyecto**, y cada una por una razón distinta que el equipo ya había escrito en una sesión anterior — el requisito «sin cuenta» de la sesión 7, la Ley 1581 de la sesión 4, el alcance mínimo de la sesión 8, el límite de 200 KB de la sesión 5, y la regla de mensajes con salida de la sesión 10.
-
-Ese es el hallazgo que hay que dejar dicho en voz alta, porque justifica todo el corte: **el equipo pudo corregir al asistente porque tenía sus decisiones escritas.** Un equipo sin requisitos no funcionales, sin alcance definido y sin indicador ambiental no habría tenido con qué objetar, y habría aceptado las cinco. La documentación de las sesiones 6 a 10 no era burocracia académica: es lo que hoy les permite ejercer criterio frente a una herramienta que suena más segura que ellos.
-
-**El cierre del corte.** Los últimos 20 minutos son la evaluación del corte 2 en ExamLab, individual y a libro abierto sobre sus propios documentos del equipo. Cubre las sesiones 7 a 11: fases y costo del cambio, requisitos y criterios de aceptación, matriz de decisión y alcance mínimo, calidad de fuentes, fidelidad de prototipos y uso responsable de IA. Que sea a libro abierto es deliberado y conviene explicarlo: **premia al equipo que documentó**, que es exactamente la conducta que el corte entero intentó enseñar.
-
-Hay que decir con claridad, como en la sesión 6, que **ExamLab es la herramienta que usa este curso para las evaluaciones y no es una plataforma oficial de la universidad**; el enlace se comparte en el chat en el momento y, si algo falla, la evaluación se reprograma y se avisa por el canal del curso. Y la advertencia final del taller, que hay que repetir aunque ya esté en la diapositiva: **no se le pasan datos personales a un asistente** —ni propios ni de terceros—, porque lo que se escribe ahí sale del computador y no vuelve.
+Proyectado en la lamina «Qué hace bien y qué hace mal: un mapa honesto (2/2)» (4 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 11 - Taller de prototipado inicial con IA/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -86,10 +60,18 @@ Numeración real del deck `Clases/Clase 11 - Taller de prototipado inicial con I
 6. Cómo se le pide algo a la IA en este curso
 7. La variante de la IA y la corrección del equipo
 8. Cómo cierra el corte 2 hoy
-9. Taller de hoy: Prototipo v2 con IA
-10. Cómo se expone en 3 minutos
-11. Para la Clase 12
-12. Cierre · Cierra el corte 2 · Nos vemos en la Clase 12
+9. La pregunta de entrada: mejor y además ilegal (1/2)
+10. La pregunta de entrada: mejor y además ilegal (2/2)
+11. Qué hace bien y qué hace mal: un mapa honesto (1/2)
+12. Qué hace bien y qué hace mal: un mapa honesto (2/2)
+13. El método: cinco pasos y por qué el primero decide todo (1/2)
+14. El método: cinco pasos y por qué el primero decide todo (2/2)
+15. El antes y después, y cómo cierra el corte (1/2)
+16. El antes y después, y cómo cierra el corte (2/2)
+17. Taller de hoy: Prototipo v2 con IA
+18. Cómo se expone en 3 minutos
+19. Para la Clase 12
+20. Cierre · Cierra el corte 2 · Nos vemos en la Clase 12
 
 ## Plan de clase minuto a minuto (90 min)
 

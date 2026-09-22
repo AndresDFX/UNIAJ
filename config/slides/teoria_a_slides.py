@@ -50,7 +50,11 @@ MAX_CAR_VINETA = 260
 SOLO_DOCENTE = (
     "errores tipicos del docente",
     "errores típicos del docente",
+    "error tipico del docente",
+    "error típico del docente",
     "errores de docente",
+    "error de docente",
+    "errores del docente",
 )
 
 _ABREV = ("ej", "p.ej", "etc", "vs", "sr", "sra", "dr", "art", "núm", "num", "fig", "seg")
@@ -220,6 +224,12 @@ def slides_de_seccion(titulo: str, cuerpo: str):
     Las notas del guion se cuelgan de la PRIMERA diapositiva de la seccion: son sobre el
     concepto, no sobre una lamina concreta.
     """
+    # El titulo tambien se limpia: hay secciones que llevan tokens DENTRO del texto —«...y
+    # cierre conceptual (de la {{slide:X}} a la {{slide:Y}})»— y no solo al final, asi que
+    # quitar el token final no bastaba y el marcador crudo acababa proyectado.
+    titulo = limpiar_tokens(titulo).rstrip(" (").rstrip()
+    if titulo.count("(") > titulo.count(")"):
+        titulo = titulo[:titulo.rfind("(")].rstrip(" ,;")
     proyecta, notas = a_vinetas(cuerpo)
     if not proyecta:
         return []
@@ -243,6 +253,42 @@ def slides_de_clase(texto: str, incluir_solo_docente: bool = False):
 def titulos_de_clase(texto: str, incluir_solo_docente: bool = False) -> list[str]:
     """Solo los titulos, para que `_slide_map` no repita la logica."""
     return [s[0] for s in slides_de_clase(texto, incluir_solo_docente)]
+
+
+
+def _titulo_de(frase: str, tope: int = 72) -> str:
+    """Titulo de diapositiva a partir de la frase que abre el parrafo.
+
+    En Programacion II y Seminario la teoria no viene en secciones `###` sino en vinetas de
+    parrafo (~1000 caracteres cada una), y cada parrafo abre con su frase tema: «Un ArrayList
+    es exactamente esa carpeta que se agranda sola». Eso es un titulo utilizable; lo que no
+    sirve es proyectar el parrafo entero sin encabezado.
+    """
+    f = frase.strip().rstrip(".;:")
+    f = re.sub(r"^(Empecemos por|Vamos a|Veamos|Ahora bien,|Y aqui|Pero)\s+", "", f, flags=re.I)
+    if len(f) <= tope:
+        return f[:1].upper() + f[1:]
+    corte = f[:tope].rsplit(" ", 1)[0]
+    return (corte[:1].upper() + corte[1:]).rstrip(",;") + "..."
+
+
+def slides_de_vinetas(vinetas_teoria, incluir_solo_docente: bool = False):
+    """Una diapositiva por vineta de `teoria`, con el parrafo entero repartido en frases.
+
+    Es la variante para los cursos cuyo contenido vive en `teoria` y no en un fundamento con
+    secciones. `_resumen`/`_slide_summary` dejaban de cada parrafo su primera frase: 76.000
+    caracteres de teoria acababan proyectados como ~500 por clase.
+    """
+    out = []
+    for b in vinetas_teoria or []:
+        fr = frases(b)
+        if not fr:
+            continue
+        titulo = _titulo_de(fr[0])
+        if not incluir_solo_docente and es_solo_docente(titulo):
+            continue
+        out += slides_de_seccion(titulo, b)
+    return out
 
 
 if __name__ == "__main__":

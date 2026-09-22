@@ -31,57 +31,25 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: si no existe en ningún lado, probablemente no buscaron - diapositiva 4
 
-La pregunta es deliberadamente incómoda y funciona porque casi todos los equipos llegan a esta altura del semestre convencidos de que su solución es original. La respuesta estadística es dura: en un mundo con millones de ingenieros y cincuenta años de software publicado, la probabilidad de que un problema común —disponibilidad, inventario, turnos, avisos— no tenga antecedentes es prácticamente cero.
-
-Lo que hay que evitar es que el grupo lo lea como un desaire. El encuadre que funciona: **buscar antecedentes no le quita mérito al proyecto, le da argumento**. Un equipo que dice «esto no existe» está apostando; un equipo que dice «existen estas tres soluciones, ninguna funciona sin computador en el mostrador, y nosotros resolvemos justamente eso» tiene una posición defendible ante cualquiera. La segunda frase es la que se califica en la Clase 15.
-
-Aproveche el muro para recoger las respuestas y luego voltee la pregunta: *¿qué sería peor, descubrir hoy que ya existe, o descubrirlo el día de la exposición final cuando alguien del público lo diga?* Esa reformulación convierte la sesión en una protección y no en una tarea.
+Proyectado en la lamina «La pregunta de entrada: si no existe en ningún lado, probablemente no buscaron» (8 vinetas).
 
 ### Innovación: por qué la adopción es lo que decide - diapositiva 5
 
-La confusión que hay que desarmar en primer semestre es **innovación = tecnología nueva**. Con esa definición, un equipo se siente obligado a meter inteligencia artificial, blockchain o lo que esté de moda en un proyecto que no lo necesita, y el resultado es peor que la solución simple.
+Proyectado en la lamina «Innovación: por qué la adopción es lo que decide (1/2)» (6 vinetas).
 
-La definición útil: **innovación es una solución que alguien adopta y que cambia algo en la práctica**. La palabra clave es *adopta*. Si nadie la usa, fue un experimento — respetable, pero no innovación. Esto tiene una consecuencia directa sobre sus proyectos y conviene decirla: la biblioteca que empieza a usar una lista publicada es más innovadora que la aplicación perfecta que quedó en el computador del equipo.
-
-**Incremental y radical.** Lo incremental —mejorar algo que ya funciona, un paso a la vez— es lo que ocurre casi siempre y lo único que cabe en un semestre. Hay que decirlo sin condescendencia: la mayoría de la ingeniería del mundo es incremental, y la mejora incremental bien hecha y adoptada vale más que la revolución no entregada.
-
-**De producto y de proceso.** Innovar en el *cómo* —el mismo servicio con la mitad de los pasos— es innovación de proceso, y para muchos de sus proyectos es lo más alcanzable y lo más útil. Si un equipo tiene un proyecto de gestión sin pantallas, este es su lugar en la sesión.
-
-Y el punto que abre el resto de la clase: **casi toda innovación es una recombinación** de cosas que ya existían, traídas a un contexto donde no estaban. Eso convierte la búsqueda de antecedentes en la materia prima del proyecto, y no en un requisito académico. Sin antecedentes no hay con qué recombinar.
+- Hay que decirlo sin condescendencia: la mayoría de la ingeniería del mundo es incremental, y la mejora incremental bien hecha y adoptada vale más que la revolución no entregada. **De producto y de proceso.** Innovar en el *cómo* —el mismo servicio con la mitad de los pasos— es innovación de proceso, y para muchos de sus proyectos es lo más alcanzable y lo más útil.
 
 ### Las cuatro maneras de generar una mejora - diapositiva 6
 
-Estas cuatro operaciones son deliberadamente simples porque tienen que poder usarse en quince minutos dentro de una sala de grupo. Y hay una condición que hay que repetir: **se aplican sobre un antecedente concreto, no sobre una hoja en blanco**. Sin antecedente no producen nada.
-
-**QUITAR** es la más subestimada y casi siempre la más efectiva. Quitar un paso, un requisito, un dato, una pantalla. En el caso de la biblioteca: quitar el registro previo del usuario, quitar la contraseña, quitar la visita presencial. Cada cosa que se quita elimina una razón para que la solución no se use. Vale la pena señalar que **quitar también reduce la huella** —menos datos, menos consultas, menos transferencia—, que es el indicador de la sesión 5.
-
-**COMBINAR** es juntar dos cosas que ya existen y que nadie había juntado en ese contexto: una lista publicada más un mensaje automático; un formulario más un tablero. Es la operación de la que sale la mayoría de las innovaciones incrementales reales.
-
-**INVERTIR** es dar vuelta a quién hace el trabajo o cuándo se hace: que el usuario consulte en vez de que alguien responda —que es exactamente la decisión de la sesión 8—, que el dato se cargue al cerrar y no en el momento de atender. Invertir suele resolver restricciones de personal, que son las más duras y las que menos se pueden comprar.
-
-**ADAPTAR DE OTRO DOMINIO** es traer una solución que ya funciona en otro campo. El ejemplo que conviene dar porque desbloquea a todos los equipos: *la disponibilidad de un libro y la disponibilidad de una mesa en un restaurante son el mismo problema*. Si un equipo se queda sin ideas, la pregunta que hay que hacerle es «¿qué otro negocio tiene este mismo problema y cómo lo resolvió?».
+Proyectado en la lamina «Innovación: por qué la adopción es lo que decide (2/2)» (4 vinetas).
 
 ### Buscar: la pregunta de búsqueda y los cinco pasos - diapositiva 7
 
-El paso que casi nadie hace es el primero, y es el que ahorra las tres horas perdidas: **escribir la pregunta de búsqueda antes de buscar**. No una palabra —«bibliotecas»— sino una pregunta: *¿cómo publican su disponibilidad las bibliotecas pequeñas que no tienen sistema?* Sin pregunta la búsqueda no tiene final, porque nada permite decidir si un resultado sirve o no.
-
-**Traducir a términos de búsqueda** es el paso técnico: dos o tres versiones del mismo concepto —el término técnico, el término común y el término en inglés—. Hay que decirles sin rodeos que **la mayoría de lo publicado está en inglés** y que buscar solo en español recorta el mundo disponible a una fracción. El navegador traduce; la falta de resultados no.
-
-**Buscar en más de un sitio** es donde la mayoría falla por comodidad: un buscador general, un buscador académico, un repositorio institucional y las normas oficiales. Cada uno devuelve un tipo distinto de cosa y ninguno cubre a los otros.
-
-**Filtrar por calidad y no por posición** es el criterio que hay que dejar instalado para toda la carrera: el primer resultado es el mejor posicionado, que no es lo mismo que el mejor. Cuatro preguntas rápidas bastan: quién lo escribe —hay un autor o una institución responsable—, de qué año es, dónde se publicó, y si se puede verificar abriendo el documento.
-
-**Fichar mientras se lee** cierra el método. La ficha del curso tiene seis campos: autor o responsable, año, dónde, qué hace, **qué le falta para nuestro caso**, y el enlace. El quinto campo es el que convierte una bibliografía en un insumo de diseño: es la brecha donde va a entrar su propuesta de mejora, y es lo que se califica más alto en el taller.
+Proyectado en la lamina «Las cuatro maneras de generar una mejora (1/2)» (8 vinetas).
 
 ### Calidad de las fuentes, la IA y qué hacer cuando no se encuentra nada - diapositivas 8 y 9
 
-La tabla de sitios hay que recorrerla rápido y con un consejo práctico por fila. El más valioso: **cuando un artículo académico está de pago, busque el PDF en el repositorio institucional de la universidad del autor**; una parte grande está disponible de manera libre y legal. Esto le resuelve a un estudiante de primer semestre el muro más desmoralizante de la búsqueda académica.
-
-Los **repositorios institucionales** merecen un énfasis especial en este curso: son la mejor fuente para problemas de contexto colombiano, porque las tesis y trabajos de grado suelen atacar exactamente el tipo de problema local que ellos eligieron. Y los **sitios oficiales y las normas** son fuente primaria: se cita el documento, no la noticia que lo comenta, que es la misma regla que ya practicaron en la sesión 4 con los numerales y en la sesión 5 con las cifras.
-
-**El asistente de IA** merece su propia fila y hay que ser preciso, porque este curso lo autoriza en dos sesiones y lo prohíbe en el resto. Sirve para buscar —pistas, sinónimos, el término en inglés que uno no conoce— y **no sirve para citar**. La razón técnica hay que decirla explícitamente: un modelo de lenguaje genera texto plausible, y una referencia bibliográfica plausible tiene autor, título, revista y año con formato perfecto **aunque no exista**. Ha habido abogados sancionados por presentar ante un juez citas de jurisprudencia generadas así. La regla del curso es simple y verificable: **si no puede abrir el enlace y ver el documento, no lo cite.**
-
-Las tres reglas del cierre son las que definen la ética del trabajo académico en este curso. **No inventar una cita ni copiar una que no se abrió** es la falta más grave, y hoy es más fácil cometerla sin mala intención que nunca. **«No encontramos nada» es un resultado válido** si se escribe con qué términos, en qué sitios y qué fue lo más cercano que apareció: eso es un hallazgo, se califica, y es infinitamente mejor que tres fuentes de adorno que nadie leyó. Y la tercera tranquiliza y hay que decirla con convicción: **encontrar que su idea ya existe mejora el proyecto**, porque confirma que el problema es real y da un punto de partida; la pregunta deja de ser «¿lo inventamos?» y pasa a ser «¿qué hacemos distinto y por qué eso importa en nuestro contexto?», que es una pregunta de ingeniería mucho mejor.
+Proyectado en la lamina «Las cuatro maneras de generar una mejora (2/2)» (4 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 9 - Estrategias de innovacion en Ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -95,10 +63,20 @@ Numeración real del deck `Clases/Clase 9 - Estrategias de innovacion en Ingenie
 7. Cómo se busca un antecedente en cinco pasos
 8. Dónde buscar y qué esperar de cada sitio
 9. Tres reglas sobre las fuentes
-10. Taller de hoy: Antecedentes y propuesta de mejora
-11. Cómo se expone en 3 minutos
-12. Para la Clase 10
-13. Cierre · Nos vemos en la sesión 10
+10. La pregunta de entrada: si no existe en ningún lado, probablemente no buscaron
+11. Innovación: por qué la adopción es lo que decide (1/2)
+12. Innovación: por qué la adopción es lo que decide (2/2)
+13. Las cuatro maneras de generar una mejora (1/2)
+14. Las cuatro maneras de generar una mejora (2/2)
+15. Buscar: la pregunta de búsqueda y los cinco pasos (1/2)
+16. Buscar: la pregunta de búsqueda y los cinco pasos (2/2)
+17. Calidad de las fuentes, la IA y qué hacer cuando no se encuentra nada (1/3)
+18. Calidad de las fuentes, la IA y qué hacer cuando no se encuentra nada (2/3)
+19. Calidad de las fuentes, la IA y qué hacer cuando no se encuentra nada (3/3)
+20. Taller de hoy: Antecedentes y propuesta de mejora
+21. Cómo se expone en 3 minutos
+22. Para la Clase 10
+23. Cierre · Nos vemos en la sesión 10
 
 ## Plan de clase minuto a minuto (90 min)
 

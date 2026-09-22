@@ -34,55 +34,23 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: la solución disfrazada de problema - diapositiva 4
 
-«En el barrio falta una app» es la frase que un profesor de primer semestre va a oír docenas de veces, y es el error más costoso del curso porque no se ve: parece un problema, tiene sujeto, tiene carencia, y sin embargo ya trae la solución adentro. Si el problema es «falta una app», entonces cualquier app resuelve el problema, y el proyecto se convierte en un ejercicio de construir algo sin saber para qué.
-
-La prueba que conviene enseñar es de una sola pregunta y sirve para toda la vida: **¿esto se podría resolver sin ninguna app?** Si la respuesta es sí —y casi siempre lo es—, entonces el problema es otro y hay que buscarlo. Si el problema verdadero es que la gente no sabe si el libro que necesita está disponible, eso se puede resolver con una app, con una lista pegada en la puerta o con un número de WhatsApp. Que existan varias soluciones posibles es la señal de que el problema está bien escrito.
-
-Recoja las respuestas del muro en los diez minutos de apertura y no las corrija: en el minuto 12, con la primera diapositiva, van a ver ellos mismos que casi todo lo que escribieron era un síntoma o una solución.
+Proyectado en la lamina «La pregunta de entrada: la solución disfrazada de problema» (6 vinetas).
 
 ### Las tres cosas que se confunden y cómo se escribe un problema - diapositiva 5
 
-**El síntoma** es la señal visible: la queja, la demora, la pérdida. «La gente se queja del servicio» es un síntoma perfecto y un problema inservible, porque no dice de qué se queja ni qué no puede hacer. Los síntomas son útiles —son la pista que lleva al problema— pero atacar un síntoma produce soluciones cosméticas: si el síntoma es que la fila es larga, poner sillas mejora la fila y no toca el problema.
-
-**La solución disfrazada** es la más peligrosa porque se ve profesional. «Falta un sistema», «hay que digitalizar el proceso», «queremos hacerlo con IA». Las tres eligen la herramienta antes de saber qué se va a resolver, y cierran el análisis: una vez que el equipo decidió que va a hacer una app con IA, va a interpretar cualquier hallazgo como confirmación.
-
-**El juicio** es la tercera y la más común en primer semestre: «no hay tecnología en el negocio», «el proceso es muy anticuado». Son opiniones sobre un estado de cosas y no dicen a quién le cuesta qué. Un negocio sin tecnología puede estar funcionando perfectamente; la falta de tecnología no es un problema por sí misma, y esta es una idea que hay que decir en voz alta en un curso de ingeniería de sistemas, porque va contra el reflejo del gremio.
-
-**La fórmula del enunciado**, y conviene dictarla para que la copien: *a QUIÉN le pasa QUÉ, con qué CONSECUENCIA*, más una cifra. Ejemplo bien escrito: «los usuarios de la biblioteca del barrio no saben si un libro está disponible antes de ir, así que hacen viajes en vano; de cada diez visitas, unas cuatro terminan sin préstamo». Tiene sujeto (los usuarios), tiene el qué (no saben la disponibilidad), tiene la consecuencia (viajes en vano) y tiene una cifra. Y no menciona ninguna tecnología, que es lo que deja el espacio para diseñar.
+Proyectado en la lamina «Las tres cosas que se confunden y cómo se escribe un problema (1/2)» (7 vinetas).
 
 ### El árbol del problema: la herramienta que evita las soluciones cosméticas - diapositiva 6
 
-El árbol de problemas es una técnica vieja y muy usada en formulación de proyectos, y para primer semestre tiene una virtud enorme: es un dibujo, así que se puede hacer en quince minutos y se puede discutir señalando con el dedo.
-
-Se dibuja con el **problema en el tronco**, una sola frase. Hacia arriba, las **ramas son los efectos**: lo que se ve, lo que la gente reporta, lo que duele. Hacia abajo, las **raíces son las causas**, y hay dos niveles: las causas directas (por qué ocurre el problema) y las causas de fondo (por qué ocurre cada causa). Se dibuja de arriba hacia abajo y **se lee de abajo hacia arriba**, porque así se ve la cadena completa: esta causa de fondo produce esta causa, que produce el problema, que produce estos efectos.
-
-La regla que hay que repetir hasta el cansancio: **el proyecto ataca una causa, no una rama**. Si el equipo diseña para los efectos, produce algo que alivia la molestia y deja el problema intacto. Y la segunda regla, práctica: dos o tres causas directas, no diez. Un árbol con diez raíces no es un análisis, es una lista de todo lo que se les ocurrió, y con eso no se puede decidir.
-
-El momento de aprendizaje real ocurre en el segundo nivel de raíces, y conviene provocarlo en las salas: cuando el equipo baja de «no hay un registro actualizado» a «el registro se actualiza a mano al final del día y nadie tiene tiempo», ahí aparece por primera vez algo que un estudiante de primer semestre puede efectivamente cambiar en un semestre. Antes de ese nivel, todo se ve demasiado grande.
-
-Un detalle metodológico que ahorra discusiones: si una causa no se puede afectar con nada que el equipo pueda hacer —el presupuesto del municipio, la cultura ciudadana, la ley—, se dibuja igual, pero se marca. Se llama restricción y no es una derrota: es información. Un proyecto que sabe qué no puede cambiar es más serio que uno que promete cambiarlo todo.
+Proyectado en la lamina «Las tres cosas que se confunden y cómo se escribe un problema (2/2)» (6 vinetas).
 
 ### La línea base y los cuatro criterios de viabilidad - diapositivas 7 y 8
 
-**La línea base** es la exigencia que más resistencia genera y la que más valor tiene. Es una cifra sobre el problema **como está hoy**, antes de que el equipo toque nada, y su función es simple: sin ella no hay forma de saber si el proyecto sirvió. En la Clase 16 el informe final va a pedir comparar, y un equipo sin línea base solo puede escribir «mejoramos el proceso», que es una afirmación vacía.
-
-Hay que quitarles de encima la idea de que medir requiere presupuesto o estadística. La línea base de un proyecto de este curso se consigue de tres maneras: **preguntando** a la persona que hace el trabajo, **contando** durante una semana, o **midiendo con un cronómetro** un caso. «La secretaria dedica unas dos horas diarias a confirmar citas por teléfono, según lo que ella misma estima» es una línea base perfectamente aceptable, siempre que se diga que es una estimación y de quién viene. La regla de honestidad es la de la sesión 5, aplicada de nuevo: **cifra con método y fecha, o no va**.
-
-Y hay un diagnóstico gratis escondido en esta exigencia: **si el problema no admite ninguna cifra, está mal delimitado**, y casi siempre es porque es demasiado grande. «La deserción estudiantil» no se puede medir con lo que tiene un equipo de primer semestre; «cuántos de los 30 compañeros de mi grupo no saben en qué semestre pierden el beneficio de la beca» sí. Bajar el problema hasta que se pueda contar algo es la manera más rápida de volverlo abordable.
-
-**Los cuatro criterios** son un filtro y hay que aplicarlos en voz alta a cada problema propuesto, uno por uno. *Abordable* con navegador y herramientas gratuitas: nada que exija comprar equipos, contratar servicios de pago o conseguir permisos institucionales que no van a llegar en un semestre. *Medible*: existe la cifra. *Con acceso a los actores*: pueden hablar esta semana con alguien que vive el problema, sin trámites; este criterio es el que descarta más propuestas y hay que ser firme, porque un proyecto sobre una entidad a la que nadie puede preguntarle nada termina siendo un ejercicio de imaginación con aspecto de proyecto. *Con dueño del problema*: hay una persona o un grupo concreto al que le duele y que reconocería la mejora; si el afectado es «la sociedad», no hay a quién mostrarle el resultado en la Clase 15.
-
-Una advertencia sobre el ánimo del grupo: aplicar estos criterios va a matar algunas ideas ambiciosas y eso frustra. Vale la pena decirles por qué se hace: **es mejor resolver algo pequeño de verdad que simular algo grande**, y en un primer semestre el objetivo es que aprendan a formular y a demostrar, no que salven la ciudad. Un proyecto pequeño y verificable saca mejor nota que uno grandioso e imposible, y hay que decirlo hoy, antes de que se enamoren de la idea.
+Proyectado en la lamina «El árbol del problema: la herramienta que evita las soluciones cosméticas (1/2)» (7 vinetas).
 
 ### Cómo cerrar el corte: la ficha y la evaluación en ExamLab - diapositiva 9
 
-El reparto del tiempo de hoy es distinto al de las otras sesiones y hay que respetarlo: **teoría 25 minutos**, no 45. El corte se cierra con dos entregas y las dos ocurren en clase, así que quedarse largo en la explicación significa aplicar la evaluación con la gente apurada, que es la peor manera de evaluar.
-
-**La ficha del problema** es el producto del corte 1 y conviene decirle al grupo exactamente qué peso tiene en el semestre: a partir de la sesión 7 todo se hace sobre ella. El ciclo de vida de la sesión 7 se aplica a ese problema; el prototipo de las sesiones 10 y 11 resuelve ese problema; la evaluación de impacto de la Clase 13 evalúa esa solución; el informe final de la Clase 16 compara contra esa línea base. Un equipo que hoy escriba una ficha vaga va a arrastrar el problema diez sesiones.
-
-**La evaluación de corte** son los últimos veinte minutos, en ExamLab, individual, y cubre las sesiones 1 a 6. Tres cosas operativas: el enlace va en el chat de la reunión, hay que decir explícitamente que **ExamLab no es una plataforma oficial de la universidad** sino la herramienta que usa este curso, y hay que pedir que cualquier problema para abrirlo se avise **en el chat, en el momento**, no al día siguiente por correo. En un curso virtual el problema técnico no reportado se vuelve un reclamo de nota dos semanas después.
-
-Una última recomendación de manejo del grupo: no anuncie la evaluación al final de las exposiciones, anúnciela en el minuto uno, cuando presente la agenda. La gente organiza su atención distinto cuando sabe que hay una evaluación al cierre, y además evita que alguien se desconecte después de exponer.
+Proyectado en la lamina «El árbol del problema: la herramienta que evita las soluciones cosméticas (2/2)» (8 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 6 - Analisis de problemas tecnologicos del entorno/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -96,10 +64,20 @@ Numeración real del deck `Clases/Clase 6 - Analisis de problemas tecnologicos d
 7. La línea base: la cifra de hoy
 8. Cuándo un problema cabe en un semestre
 9. Cómo cierra el corte 1 hoy
-10. Taller de hoy: Ficha del problema del proyecto
-11. Cómo se expone en 3 minutos
-12. Para la Clase 7
-13. Cierre · Cerró el corte 1 · nos vemos en la sesión 7
+10. La pregunta de entrada: la solución disfrazada de problema
+11. Las tres cosas que se confunden y cómo se escribe un problema (1/2)
+12. Las tres cosas que se confunden y cómo se escribe un problema (2/2)
+13. El árbol del problema: la herramienta que evita las soluciones cosméticas (1/2)
+14. El árbol del problema: la herramienta que evita las soluciones cosméticas (2/2)
+15. La línea base y los cuatro criterios de viabilidad (1/3)
+16. La línea base y los cuatro criterios de viabilidad (2/3)
+17. La línea base y los cuatro criterios de viabilidad (3/3)
+18. Cómo cerrar el corte: la ficha y la evaluación en ExamLab (1/2)
+19. Cómo cerrar el corte: la ficha y la evaluación en ExamLab (2/2)
+20. Taller de hoy: Ficha del problema del proyecto
+21. Cómo se expone en 3 minutos
+22. Para la Clase 7
+23. Cierre · Cerró el corte 1 · nos vemos en la sesión 7
 
 ## Plan de clase minuto a minuto (90 min)
 

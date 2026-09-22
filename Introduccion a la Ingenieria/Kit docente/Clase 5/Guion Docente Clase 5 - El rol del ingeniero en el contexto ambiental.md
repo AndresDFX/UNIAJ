@@ -31,51 +31,23 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: darle materia a algo que parece no tenerla - diapositiva 4
 
-«¿Dónde está la nube?» funciona porque casi nadie ha visto un centro de datos y porque la metáfora está diseñada para que no se piense en el edificio. La segunda parte —cuánta agua se bebió una consulta a un asistente de IA— incomoda a propósito y hay que manejarla con cuidado: la respuesta honesta es que **depende del centro de datos, del modelo, del clima y del año**, y que las cifras que circulan varían por órdenes de magnitud. Eso no debilita la clase: es la clase. El objetivo no es que se lleven un número, es que entiendan que hay agua y electricidad detrás de algo que se siente inmaterial, y que quien afirme un número tiene que decir de dónde salió.
-
-Recoja las respuestas en el muro y no las corrija. En el minuto 20, al llegar al PUE y al enfriamiento, vuelva al muro: alguien va a haber escrito «en internet» o «en un servidor», y ahí se muestra que el servidor está en un edificio que consume tanto en enfriarse como en computar.
+Proyectado en la lamina «La pregunta de entrada: darle materia a algo que parece no tenerla» (7 vinetas).
 
 ### Las cuatro etapas y por qué la fabricación cambia la recomendación - diapositiva 5
 
-La huella material de un sistema de software se reparte en cuatro etapas y conviene recorrerlas con un ejemplo único: una aplicación de citas médicas usada desde el celular.
-
-**Fabricación.** El celular del paciente, el computador de la secretaria y los servidores donde corre el sistema tuvieron que ser fabricados: minería de metales —incluidos varios escasos y con extracción problemática—, ensamblaje y transporte. Este es el punto que más sorprende y el más importante para las decisiones: **en muchos dispositivos personales la mayor parte de la huella de toda su vida ya está gastada cuando se enciende por primera vez**. La consecuencia es contraintuitiva: optimizar el consumo de batería es útil, pero **alargar la vida útil del aparato pesa mucho más**, y eso depende de decisiones de software.
-
-**Uso.** Electricidad del dispositivo, del servidor y —esto es lo que se olvida— del enfriamiento del centro de datos. Aquí entra el PUE.
-
-**Red.** Cada byte que viaja pasa por antenas, cables, enrutadores y equipos que consumen. No es gratis y crece con el volumen: una pantalla que carga imágenes en tamaño original mil veces al día mueve un múltiplo de lo necesario.
-
-**Fin de vida.** El aparato se vuelve residuo electrónico. Tiene metales recuperables y sustancias peligrosas, y cuando no se recoge formalmente se desarma a mano, quemando plásticos, con daño directo a las personas que lo hacen.
-
-El punto pedagógico de la diapositiva es que las palabras «software» y «nube» están construidas para que uno no piense en nada de esto. Nombrar las cuatro etapas es lo que permite discutir el tema con seriedad.
+Proyectado en la lamina «Las cuatro etapas y por qué la fabricación cambia la recomendación (1/2)» (5 vinetas).
 
 ### PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar - diapositiva 6
 
-**PUE (Power Usage Effectiveness).** Es la energía total que entra al centro de datos dividida por la energía que efectivamente llega a los servidores. Si fuera 1.0, todo lo que entra se usa en computar. Un PUE de 1.6 significa que por cada vatio de cómputo se gastan 0,6 en enfriar, iluminar y en pérdidas. Los centros de datos grandes y modernos operan bastante mejor que el promedio de las salas de servidores de empresa, que suelen estar en el rango de 1.5 a 1.6 según las encuestas del sector. La idea que hay que dejar no es el número exacto: es que **una parte grande de la energía de un centro de datos no computa nada**, y que existe una métrica con nombre para medirlo. Un ingeniero que sabe que el PUE existe puede preguntar por él.
-
-**El agua.** Enfriar con evaporación de agua es más barato en electricidad que enfriar con máquinas, así que muchos centros de datos usan agua. Eso traslada el costo: baja la factura de luz y sube el consumo de una cuenca que normalmente abastece a población. Es un buen ejemplo de algo que el curso repite: **optimizar una variable suele mover el problema a otra**, y el ingeniero tiene que saber a cuál. Hay métricas para esto (WUE, litros por kilovatio-hora), y aquí también vale la advertencia de las cifras.
-
-**RAEE y la Ley 1672 de 2013.** Es la norma colombiana que fija los lineamientos para la gestión de residuos de aparatos eléctricos y electrónicos. Lo que hay que poder decir: **obliga a los productores** a establecer sistemas de recolección y gestión, y **establece el deber del usuario** de entregar el aparato en esos puntos en vez de tirarlo a la basura común. Los informes globales de residuos electrónicos (Global E-waste Monitor, de UNITAR e ITU) reportan decenas de millones de toneladas al año y una tasa de recolección formal baja: el orden de magnitud es que **la mayor parte no se recoge**. Si un equipo cita una cifra exacta, exija la edición del informe y el año, porque cambia entre ediciones.
-
-**Obsolescencia inducida por software.** Es el concepto que más les sirve porque está bajo su control profesional. Cuando una nueva versión de una aplicación —o de un sistema operativo— deja de funcionar en dispositivos que servían, el software convierte en basura un aparato que estaba bien. No hace falta discutir si hay intención: el efecto es material y medible. Y la contracara es una decisión concreta que un equipo de este curso puede tomar: **sostener el soporte para dispositivos viejos**, que además es lo correcto para el contexto de la universidad, donde muchos estudiantes trabajan con equipos de varios años.
+Proyectado en la lamina «Las cuatro etapas y por qué la fabricación cambia la recomendación (2/2)» (5 vinetas).
 
 ### De la conciencia a la decisión: la diapositiva que convierte el tema en ingeniería - diapositivas 7 y 9
 
-Esta es la diapositiva que salva la clase de volverse un discurso. Las cinco parejas son decisiones reales de diseño, y en las cinco la versión de la derecha **cumple la misma función**. Eso hay que decirlo explícitamente: no se está pidiendo sacrificar calidad por ambiente, se está pidiendo no desperdiciar.
-
-La primera —pedir la ubicación cada cinco segundos o cada cinco minutos— es la más fácil de entender y toca batería y red a la vez. La tercera —guardar el resultado en vez de recalcular el reporte completo en cada consulta— es la que más sorprende, porque el estudiante todavía no tiene la intuición de que el cómputo cuesta energía; sirve para conectar con la sesión 7 y con la idea de que la eficiencia no es coquetería de programador. La cuarta —sostener dispositivos viejos— es la de mayor impacto real por lo dicho sobre la fabricación. Y la quinta es la más contemporánea y hay que decirla sin miedo: **agregarle un asistente de IA a una función que resolvía una condición simple gasta energía en cada llamada, para siempre**. Es una decisión de arquitectura, y hoy se toma con frecuencia por moda.
-
-El método de cinco pasos es el del taller. El paso 2 —buscar lo que se repite— es el que enseña a estimar: lo que ocurre una vez no mueve la aguja, lo que ocurre mil veces al día sí. Y el paso 5 —definir un indicador medible— es el que separa una intención de una decisión de ingeniería. «Vamos a ser sostenibles» no se puede verificar; «vamos a mover menos de 200 KB por consulta» sí, y en la Clase 16 se puede mirar si se cumplió.
+Proyectado en la lamina «PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (1/3)» (6 vinetas).
 
 ### Colombia, y la honestidad con las cifras - diapositivas 8 y 10
 
-El dato local más útil es la composición de la matriz eléctrica. Una parte importante de la generación en Colombia es hidráulica, lo que significa que un kilovatio-hora consumido aquí tiene un factor de emisiones distinto —menor— que en un país con generación a carbón. La consecuencia metodológica es la que hay que enseñar: **no se copian factores de emisión de otro país**; se usa el factor local, y el operador del sistema (XM) publica datos de generación. Un equipo que cite una fuente colombiana en vez de un blog extranjero ya está haciendo ingeniería.
-
-La contracara es igual de importante y menos conocida: cuando el fenómeno de El Niño reduce los aportes a los embalses, entran las plantas térmicas y el factor de emisiones del país sube. Es decir, **la misma aplicación, sin cambiar una línea de código, emite más en un año seco**. Eso enseña algo que vale para todo el curso: la huella de un sistema no es una propiedad del sistema, es una propiedad del sistema en su contexto.
-
-La diapositiva de las trampas es la más importante para el rigor y conviene dedicarle tiempo real. Las cifras ambientales del sector digital son un campo donde circulan números espectaculares sin alcance definido: litros de agua por consulta a un modelo de lenguaje, gramos de CO₂ por búsqueda, porcentajes del consumo mundial de electricidad. Muchos provienen de estimaciones legítimas pero con supuestos muy específicos, y se citan luego como hechos universales. La regla del curso a partir de hoy es simple y se aplica en la rúbrica: **cifra con fuente, año y alcance, o no va**. Y hay que decir en voz alta lo que sí se puede afirmar sin exagerar: que la huella existe, que tiene cuatro etapas, que se puede reducir con decisiones de diseño y que casi nadie la mide. Con eso alcanza para trabajar con seriedad, y es mucho más defendible que un número impresionante mal citado.
-
-Sobre la comparación «lo digital contra el papel»: alguien la va a proponer y la respuesta correcta es que depende del número de usos y de si obliga a comprar dispositivos. Un documento leído una vez en un computador nuevo no gana contra una hoja; el mismo documento leído por trescientas personas en aparatos que ya existen, sí. La lección es que **comparar sin decir qué se comparó no es un argumento**.
+Proyectado en la lamina «PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (2/3)» (5 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 5 - El rol del ingeniero en el contexto ambiental/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -90,10 +62,20 @@ Numeración real del deck `Clases/Clase 5 - El rol del ingeniero en el contexto 
 8. Colombia: dos datos locales que cambian el análisis
 9. Cómo se estima una huella sin ser experto
 10. Dos trampas de esta clase
-11. Taller de hoy: Huella del sistema
-12. Cómo se expone en 3 minutos
-13. Para la Clase 6
-14. Cierre · Nos vemos en la sesión 6 — cierra el corte 1
+11. La pregunta de entrada: darle materia a algo que parece no tenerla
+12. Las cuatro etapas y por qué la fabricación cambia la recomendación (1/2)
+13. Las cuatro etapas y por qué la fabricación cambia la recomendación (2/2)
+14. PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (1/3)
+15. PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (2/3)
+16. PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (3/3)
+17. De la conciencia a la decisión: la diapositiva que convierte el tema en ingeniería (1/2)
+18. De la conciencia a la decisión: la diapositiva que convierte el tema en ingeniería (2/2)
+19. Colombia, y la honestidad con las cifras (1/2)
+20. Colombia, y la honestidad con las cifras (2/2)
+21. Taller de hoy: Huella del sistema
+22. Cómo se expone en 3 minutos
+23. Para la Clase 6
+24. Cierre · Nos vemos en la sesión 6 — cierra el corte 1
 
 ## Plan de clase minuto a minuto (90 min)
 

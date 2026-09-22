@@ -33,45 +33,21 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: «no, ahí no, toca acá» - diapositiva 4
 
-El gancho de hoy funciona porque todos los equipos van a reconocerse en él. Le pidieron a alguien ajeno que usara el prototipo y, casi con seguridad, en algún momento intervinieron: «no, ahí no, toca acá». Esa frase es el dato más valioso que el equipo tiene hoy, y viene disfrazada de incomodidad.
+Proyectado en la lamina «La pregunta de entrada: «no, ahí no, toca acá» (1/2)» (6 vinetas).
 
-El giro que hay que hacer explícito, y que es el eje de la sesión: **cada intervención es un hallazgo, no un error de la persona.** Si tuvieron que explicar algo, el prototipo no lo explicaba. Y en la vida real nadie va a estar al lado del usuario para aclarárselo. Vale la pena decirlo con una frase que se les quede: **la persona que prueba nunca se equivoca; si se perdió, el diseño la perdió.**
-
-Aproveche la apertura para tomar el pulso operativo: en el muro, cada equipo escribe **cuántas veces tuvo que intervenir**. Ese número, además de romper el hielo, le dice de inmediato quién hizo la prueba y quién no. Un equipo que responde «ninguna, quedó perfecto» casi siempre no probó, o probó con la mamá de un integrante mientras le explicaba todo.
-
-Y aquí conviene ser directo, porque es la primera sesión del corte 3 y las reglas se fijan hoy: **un equipo que no hizo la prueba no tiene avance que presentar.** No se le puede improvisar retroalimentación a un avance inexistente. Si ocurre, dígalo, deje que expongan lo que tengan y que hagan la prueba antes de la Clase 13 — pero que quede claro que arrancaron el corte con desventaja.
+- Vale la pena decirlo con una frase que se les quede: **la persona que prueba nunca se equivoca; si se perdió, el diseño la perdió.** Aproveche la apertura para tomar el pulso operativo: en el muro, cada equipo escribe **cuántas veces tuvo que intervenir**.
 
 ### Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso - diapositivas 5 y 6
 
-**Paso 1: separar lo que hizo de lo que dijo.** Esta es la idea central y hay que insistir en ella. Cuando alguien prueba el trabajo de un amigo, es amable: dice que estaba claro, que le gustó, que es intuitivo. Y sin embargo dudó cinco segundos frente a un botón, se equivocó de pantalla y preguntó qué significaba una palabra. **Lo que hizo es el dato; lo que dijo es cortesía.** No es que la persona mienta: es que nadie quiere hacer sentir mal a quien le muestra algo con orgullo. Por eso en la industria se observa y se cronometra, en vez de preguntar «¿le gustó?» — exactamente la trampa que vieron en la sesión 8.
-
-**Paso 2: escribir el tropiezo, no la solución.** Los estudiantes van a saltar directo a arreglar. Hay que frenarlos: «buscó el botón de volver arriba» es un hecho; «hay que poner un botón arriba» es una conclusión que quizá no sea la mejor. Si se anota la conclusión y se pierde el hecho, ya no se puede pensar de nuevo.
-
-**Pasos 3 y 4: clasificar y buscar el patrón.** La tabla de los cuatro tipos es la herramienta de la sesión, y su valor es que **cada tipo se arregla con un trabajo distinto y a un costo distinto**. Un hallazgo de lenguaje se arregla cambiando una palabra: es el arreglo más barato que existe y el que más rinde, lo cual conecta con el bloque de textos reales de la sesión 10. Uno de flujo exige reordenar pantallas. Uno de expectativa muchas veces **no se arregla**, porque está fuera del alcance de la sesión 8, pero obliga a que el prototipo lo diga en vez de callarlo. Y uno de suposición nuestra es el más caro y el más valioso: descubrir que dábamos por obvio que el usuario tiene datos móviles, o que sabe leer una tabla, cambia una restricción del proyecto.
-
-Sobre el patrón, dé el criterio operativo sin pretensiones de rigor estadístico: **un tropiezo en una persona puede ser casualidad; el mismo tropiezo en dos de tres personas es un defecto de diseño.** Con tres o cinco pruebas no se hace estadística, y hay que decirlo — pero sí se hace ingeniería: la práctica profesional de pruebas de usabilidad trabaja con muy pocos usuarios justamente porque los defectos gruesos aparecen con los primeros. Si algún equipo probó con una sola persona, dígale que el hallazgo sigue valiendo, pero que no sabe si es patrón.
-
-**Paso 5: decidir qué no se arregla.** Es el paso que separa a un equipo que entendió el curso de uno que no. No todo cabe antes de la Clase 14, y **lo que se deja fuera se escribe con su razón**. Eso ya lo practicaron con el alcance mínimo de la sesión 8 y con los descartes de la sesión 11: es la misma disciplina.
+Proyectado en la lamina «La pregunta de entrada: «no, ahí no, toca acá» (2/2)» (3 vinetas).
 
 ### Qué es un avance: cinco minutos que no repiten nada - diapositiva 7
 
-El error universal en una presentación de avance es empezar por el principio. El equipo vuelve a contar el problema, los actores, el árbol de causas y las seis fases, y cuando llega a lo interesante se le acabó el tiempo. Hay que cortarlo de raíz con un argumento simple: **el curso ya conoce su proyecto**, lleva cinco sesiones oyéndolo. Repetirlo es gastar los cinco minutos en lo único que ya no aporta.
-
-Lo que sí es un avance: **los tres hallazgos de la prueba**, contados por lo que la persona hizo. Eso es lo único que el curso no sabe, y por lo tanto lo único que vale la pena contar. Una frase útil para dárselo como regla: *en un avance se cuenta lo que cambió desde la última vez, no lo que se es.*
-
-Y una exigencia que cambia radicalmente la calidad de la sesión: **cada avance tiene que traer una pregunta abierta.** «Tenemos dos maneras de arreglar esto y no nos decidimos» convierte los tres minutos de retroalimentación en algo útil; sin pregunta, los otros equipos improvisan comentarios genéricos. Exíjala explícitamente al repartir el taller —es uno de los cuatro bloques de la ficha— y verá la diferencia.
-
-Por último, la parte incómoda: **admitir lo pendiente**. Los equipos tienden a maquillar el avance porque hay compañeros mirando. El argumento que funciona no es moral sino de conveniencia: **esconder lo pendiente hoy es pagarlo en la Clase 15**, cuando ya hay nota de por medio y ya no hay tiempo de arreglarlo. Hoy la retroalimentación es gratis; en la Clase 15 vale el 15 % del curso.
+Proyectado en la lamina «Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso (1/3)» (7 vinetas).
 
 ### Dar y recibir: la única revisión externa gratis del semestre - diapositivas 8 y 9
 
-La retroalimentación entre pares no sale bien sola: sin reglas, un grupo de primer semestre produce diez minutos de «está muy bien, me gustó». Por eso hoy se enseña el formato, y conviene proyectarlo mientras exponen.
-
-El orden **observación, expectativa, una sola cosa** funciona por razones concretas. Empezar con una **pregunta** en vez de una opinión evita la mitad de los comentarios equivocados, porque muchas veces el equipo ya tenía una razón documentada: preguntar «¿por qué eligieron mostrar la fecha ahí?» y oír «porque la información no está al minuto y no queremos mentir» cierra el tema y además enseña al que preguntó. Describir **lo observable** —«no encontré cómo volver»— entrega algo que se puede arreglar, mientras que «la navegación está confusa» solo entrega una impresión. Decir **qué esperaba** aporta un dato sin dar una orden. Y limitarse a **una sola cosa** es aritmética: en tres minutos con cinco comentarios no se aplica ninguno.
-
-La regla de **hablar del trabajo y no de la persona** hay que enunciarla en voz alta la primera vez, porque marca el clima del corte 3 completo: «este texto no lo entendí» y no «no supieron escribirlo». Es la diferencia entre un equipo que escucha y un equipo que se defiende.
-
-De las tres trampas, la que más daño hace es **rediseñar el proyecto ajeno**: aparece siempre, en la forma de «yo lo habría hecho con una aplicación». Hay que cortarla con respeto y con argumento: el otro equipo tomó decisiones documentadas en las sesiones 6 a 11 que usted no vio, y **la retroalimentación es al avance presentado, no al proyecto que usted haría**. La segunda es el **elogio vacío**, que se arregla pidiendo el «qué» y el «por qué» —un elogio con razón sí es útil, porque le dice al equipo qué conservar—. Y la tercera es de quien recibe: **anotar, no responder**. Solo se pregunta para entender. Cierre con el argumento de peso: estos tres minutos son **la única revisión externa gratis** que van a tener antes de que la exposición valga nota; defenderse en vivo es tirarlos a la basura.
+Proyectado en la lamina «Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso (2/3)» (7 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 12 - Presentacion de avances de proyectos/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -85,10 +61,19 @@ Numeración real del deck `Clases/Clase 12 - Presentacion de avances de proyecto
 7. Qué es un avance y qué no
 8. Cómo se da retroalimentación que sirve
 9. Tres trampas de la retroalimentación entre pares
-10. Taller de hoy: Ficha de avance y plan de ajustes
-11. Cómo se expone en 5 minutos
-12. Para la Clase 13
-13. Cierre · Nos vemos en la Clase 13
+10. La pregunta de entrada: «no, ahí no, toca acá» (1/2)
+11. La pregunta de entrada: «no, ahí no, toca acá» (2/2)
+12. Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso (1/3)
+13. Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso (2/3)
+14. Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso (3/3)
+15. Qué es un avance: cinco minutos que no repiten nada (1/2)
+16. Qué es un avance: cinco minutos que no repiten nada (2/2)
+17. Dar y recibir: la única revisión externa gratis del semestre (1/2)
+18. Dar y recibir: la única revisión externa gratis del semestre (2/2)
+19. Taller de hoy: Ficha de avance y plan de ajustes
+20. Cómo se expone en 5 minutos
+21. Para la Clase 13
+22. Cierre · Nos vemos en la Clase 13
 
 ## Plan de clase minuto a minuto (90 min)
 

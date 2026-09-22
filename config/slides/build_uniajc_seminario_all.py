@@ -192,6 +192,42 @@ def _quiz_items(c):
 
 
 # ----------------------------------------------------------------------- slides
+import teoria_a_slides as TS
+
+def _teoria_slides(c):
+    """Las diapositivas de teoria de la clase: una por vineta, con su parrafo entero.
+
+    Antes era UNA diapositiva con `_resumen(c["teoria"])`, que se queda con la primera frase
+    de cada parrafo. El resto —el 90%— solo existia en el guion, asi que lo que se dictaba no
+    estaba proyectado y el estudiante que faltaba no tenia de donde estudiar.
+    """
+    vin = list(c.get("teoria", []))
+    # `fundamento` era desarrollo adicional que SOLO veia el docente. Ahora se proyecta
+    # tambien: si vale la pena decirlo, vale la pena que el estudiante lo tenga. Viene en
+    # prosa sin secciones, asi que cada parrafo entra como una vineta mas.
+    fund = (c.get("fundamento") or "").strip()
+    if fund:
+        vin += [p.strip() for p in fund.split("\n\n") if len(p.strip()) > 120]
+    return TS.slides_de_vinetas(vin)
+
+
+def _apoyo_por_diapositiva(c, base=None):
+    """Apoyo puntual por diapositiva: que subrayar en cada una, sin repetir su contenido."""
+    slides = _teoria_slides(c)
+    if not slides:
+        return ""
+    L = ["## Apoyo por diapositiva", "",
+         "Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en "
+         "cada lamina, no repite su contenido.", ""]
+    for j, (titulo, vin, notas) in enumerate(slides):
+        num = f"[Slide {base + j}] " if base else ""
+        L.append(f"**{num}{titulo}** — {len(vin)} vinetas.")
+        for x in notas:
+            L.append(f"  - {x}")
+        L.append("")
+    return "\n".join(L)
+
+
 def build_pptx(c):
     n = c["n"]
     if n in PARCIALES:
@@ -229,7 +265,9 @@ def build_pptx(c):
         ("60-105", "Taller guiado = avance del PI"),
         ("105-120", "Criterios de exito y cierre"),
     ], idx=idx); idx += 1
-    content_slide(prs, "Teoria Core", _resumen(c["teoria"]), idx=idx); idx += 1
+    _base_teoria = idx
+    for _t, _vin, _ in _teoria_slides(c):
+        content_slide(prs, _t, _vin, idx=idx); idx += 1
     if c.get("codigo_slide_lineas"):
         pseudo_code_slide(prs, c.get("codigo_slide_titulo", "Codigo de hoy"),
                           c["codigo_slide_lineas"],
@@ -460,12 +498,12 @@ def build_guion_md(c):
         path.write_text(md, encoding="utf-8")
         return path
 
-    teoria = "\n\n".join(c["teoria"])
+    # El contenido esta proyectado (una lamina por concepto). El guion aporta lo que no
+    # cabe en pantalla: que subrayar en cada una.
+    teoria = _apoyo_por_diapositiva(c)
     # `fundamento` es desarrollo adicional SOLO para el guion (no entra a la slide,
     # que resume `teoria` via _resumen). Se usa donde la teoria por si sola no
     # alcanza para dictar la clase sin consultar otra fuente.
-    if c.get("fundamento"):
-        teoria += "\n\n" + c["fundamento"].strip()
     pasos = "\n".join(f"{i}. {t}" for i, t in enumerate(c["taller"], 1))
     md = f"""# Guion docente · Clase {n} · {c['titulo']}
 

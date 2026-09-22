@@ -45,22 +45,49 @@ Solo la Clase 1 lleva `Prueba Diagnostica`. En `config/slides/`, la clase debe t
 en los cuatro módulos de datos: `*_examlab_data.py`, `*_fundamentos.py`, `*_solucion_data.py`,
 `*_taller_data.py`.
 
-## 2. Guion docente
+## 2. Diapositivas y guion: dónde vive la información
 
-- **Teoría dividida por diapositiva**: cada sección `###` anclada con `{{slide:Fragmento}}`.
-  No «ver la presentación», sino *qué se dice mientras esa diapositiva está en pantalla*. Es lo
-  que hace que el guion sirva a un docente que no domina el tema.
-- Los tokens **resuelven a números reales**; si el fragmento desaparece el build aborta, así que
-  no puede publicarse un guion mal numerado.
-- Cubre el **bloque completo** minuto a minuto, y el reparto de minutos coincide con los
-  conceptos del deck.
-- Cierra con **«Errores típicos del docente que no domina el tema»** y **preguntas frecuentes
-  del grupo**.
-- El fuente del fundamento va **sin acentos** (convención del archivo; `«»` sí). Cero
-  marcadores crudos en la salida.
+**La información va en las diapositivas. El guion es apoyo puntual por diapositiva.**
 
-Referencia de tamaño: BD II C2 quedó en 15 secciones ancladas a las diapositivas 4–15, de
-11.9k a 23.9k caracteres.
+Es la regla que reemplaza a la anterior, que pedía un guion capaz de sostener la clase «sin
+consultar otra fuente». Esa regla producía el desbalance que la motivó: 2,6 palabras de guion
+por cada una proyectada, y en Bases de Datos II Clase 1 cinco conceptos distintos apretados en
+una lámina de 551 caracteres mientras el guion los desarrollaba en 15.000. El estudiante que
+faltaba, o que repasaba para el parcial, no tenía de dónde.
+
+### Las diapositivas
+
+- **Una diapositiva por concepto, con el concepto entero.** No su titular ni su primera frase.
+  Si el docente lo dice, está proyectado.
+- **Cada tema se sostiene solo.** No se apoya en el tema anterior ni en una lámina previa: el
+  que llega tarde, falta o repasa suelto tiene que poder seguirlo.
+- Capacidad real medida: **~1150 caracteres en 8 viñetas**. `uniajc_slides_engine.bullets()`
+  baja de 20 a 15 pt hasta que entra y `verificar_desborde.py` denuncia lo que no cabe ni al
+  mínimo — ahí lo que sobra es texto, no tamaño de letra. **Ninguna lámina de contenido por
+  debajo de ~400 caracteres**: si baja de ahí, o falta contenido o sobra la lámina.
+- Cero marcadores crudos (`@@`, `{{slide`, `[CAP:`) en lo que ve el estudiante.
+
+### El guion
+
+- **No lleva nada que no esté proyectado.** Si al escribirlo aparece un concepto que no está en
+  ninguna lámina, **falta la lámina** — no se añade al guion.
+- Lo que sí lleva, porque no cabe en pantalla: **qué subrayar** en cada lámina, qué preguntar,
+  en qué orden dictarlo, cuántos minutos, y los **errores típicos del docente que no domina el
+  tema**, que son material de preparación y no se proyectan.
+- Va **por diapositiva y en su orden**, con el número real resuelto contra el deck. El build
+  verifica que el mapa y el deck coincidan: si alguien agrega una lámina y olvida el mapa, falla
+  en vez de publicar un guion mal numerado.
+
+### Cómo se produce
+
+`config/slides/teoria_a_slides.py` convierte el fundamento en láminas y reparte por registro:
+las frases que explican el **tema** van a la lámina; las que le hablan al docente sobre **cómo
+dictarlo** («conviene decirlo en voz alta», «hay que subrayar») bajan al guion como nota de esa
+lámina. `build_pptx` y el mapa del guion llaman a la misma función, así que no pueden
+desincronizarse.
+
+Referencia de tamaño, tras el cambio: **211.250 palabras proyectadas** en los cinco cursos
+contra 87.499 antes, y una razón guion/deck de **0,6×** donde era 2,6×.
 
 ## 3. Solución docente
 

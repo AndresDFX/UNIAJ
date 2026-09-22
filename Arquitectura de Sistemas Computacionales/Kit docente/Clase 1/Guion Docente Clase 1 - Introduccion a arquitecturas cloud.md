@@ -20,33 +20,40 @@
 **Herramienta:** Padlet · Excalidraw / draw.io
 
 ## Fundamento teórico para el docente
-### PI CloudLite - entregable de hoy: la ficha de 6 bloques - diapositiva 10
-La diapositiva 10 presenta el entregable de hoy: una ficha individual con seis bloques rotulados que cada estudiante llena por su cuenta y que no vuelve a cambiar en el resto del semestre. DOMINIO fija en una linea el problema de negocio elegido (AgendaU, BiblioLite, InventarioLab, TurnosClinica, EventosCampus u otro del mismo tamano); un dominio generico (una red social, una tienda en linea sin mas detalle) hace imposible evaluar las decisiones de las clases siguientes, porque no hay nada concreto que arquitecturar. PROBLEMA obliga a nombrar en tres frases quien sufre la situacion, como se resuelve hoy sin CloudLite y una cifra medible del dolor; sin esa cifra el problema es una opinion y no algo que un diseno pueda mejorar o empeorar de forma verificable. CAPACIDADES son los verbos de negocio que el sistema debe permitir (reservar, publicar, cancelar, notificar), nunca piezas tecnicas como login o cache, porque las capacidades describen el fin y la tecnologia es solo el medio. ACTORES son las personas que interactuan con el sistema, cada una con una frase de que espera obtener; sin esto no hay a quien pedirle validacion cuando en clases futuras se revisen los diagramas. SISTEMAS EXTERNOS es el bloque nuevo de este semestre: dos o tres sistemas de terceros con los que CloudLite intercambia informacion (un proveedor de identidad, un servicio de correo, una pasarela de pagos); es exactamente lo que despues aparece como System_Ext en el diagrama C4 Context de la pregunta 2 de ExamLab, asi que conviene que el estudiante los escriba aqui ANTES de dibujar, no despues. FUERA DE ALCANCE cierra la ficha nombrando tres cosas que CloudLite no hara este semestre; ese bloque evita que el alcance crezca sin control clase a clase y es lo primero que hay que revisar cuando un estudiante pida mas tiempo en una entrega futura.
+## Apoyo por diapositiva
 
-### Que es arquitectura cloud (mapa mental) - diapositiva 4
-Arquitectura de software es el conjunto de decisiones estructurales que resultan costosas o imposibles de cambiar despues: como se dividen los componentes, como se comunican, donde se despliegan y que atributos de calidad se priorizan cuando entran en conflicto. La prueba practica para saber si una decision es arquitectonica consiste en preguntar cuanto costaria revertirla en tres meses. Cambiar el color de un boton no es arquitectura; cambiar de base de datos relacional a documental si lo es, porque arrastra el modelo de datos, las consultas, el codigo de acceso y las pruebas. Esa asimetria de costo es la razon de existir de la materia: si el docente no la instala el primer dia, el curso se percibe como una coleccion de diagramas decorativos y el estudiante concluye que la arquitectura es documentacion que se produce para la nota.
+Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-Conviene separar de entrada dos cosas que el estudiante confunde siempre: el stack tecnologico y la arquitectura. El stack es la lista de tecnologias concretas; la arquitectura es la estructura y las razones. Dos proyectos pueden usar el mismo stack y tener arquitecturas opuestas: uno con un solo proceso que hace todo, otro con tres servicios que se comunican por red. Una forma rapida de demostrarlo es escribir en el tablero «React + Node + PostgreSQL» y preguntar al curso cuantos usuarios simultaneos soporta eso, o que ocurre si la base de datos deja de responder. Nadie puede contestar, porque el stack no contiene esa informacion; las respuestas viven en la arquitectura. Hacer visible ese vacio en los primeros veinte minutos ahorra tres semanas de malentendidos.
+**[Slide 7] PI CloudLite - entregable de hoy: la ficha de 6 bloques (1/2)** — 4 vinetas.
+  - SISTEMAS EXTERNOS es el bloque nuevo de este semestre: dos o tres sistemas de terceros con los que CloudLite intercambia informacion (un proveedor de identidad, un servicio de correo, una pasarela de pagos); es exactamente lo que despues aparece como System_Ext en el diagrama C4 Context de la pregunta 2 de ExamLab, asi que conviene que el estudiante los escriba aqui ANTES de dibujar, no despues.
 
-Los atributos de calidad son las propiedades medibles que el sistema debe exhibir, y son el vocabulario con el que se justifica cualquier decision. Los cuatro que este curso usa de forma permanente son rendimiento, disponibilidad, seguridad y costo. Rendimiento se expresa en tiempo de respuesta: una convencion de usabilidad ampliamente aceptada dice que una interaccion web se siente inmediata por debajo de 100 milisegundos, aceptable hasta unos 300 y claramente lenta por encima de 1 segundo; son convenciones, no leyes fisicas, y conviene decirlo asi. Disponibilidad se expresa como porcentaje de tiempo en que el sistema responde, y ahi el numero si es aritmetica exacta: 99 % permite unas 7 horas de caida al mes, 99,9 % (los llamados tres nueves) alrededor de 43 minutos, y 99,99 % poco mas de 4 minutos. Vale hacer ese calculo en el tablero, porque 43 minutos al mes es un dato que el estudiante recuerda, mientras que la expresion «alta disponibilidad» no significa nada. El punto central es que estos atributos compiten entre si: mas disponibilidad exige redundancia, la redundancia cuesta dinero, y por eso la arquitectura es sobre todo el oficio de elegir que se sacrifica.
+**[Slide 8] PI CloudLite - entregable de hoy: la ficha de 6 bloques (2/2)** — 3 vinetas.
 
-Nube no significa internet ni «el servidor de otra persona». Es un modelo operativo con cinco rasgos que conviene enunciar tal cual, porque son el estandar con el que se define el termino: autoservicio bajo demanda, es decir que quien necesita recursos los aprovisiona sin pedir permiso ni esperar dias; acceso amplio por red; agrupacion de recursos, donde el proveedor comparte hardware fisico entre muchos clientes mediante virtualizacion, tema de la Clase 3; elasticidad rapida, con capacidad que sube y baja en minutos y no en semanas; y medicion del servicio, o pago por lo consumido. El cambio economico que esto produce es lo relevante para la arquitectura, porque la infraestructura deja de ser una compra que se hace por adelantado y se amortiza a largo plazo, y pasa a ser un gasto operativo que cambia con cada decision de diseno. Por eso en la nube el costo se convierte en un atributo de calidad tecnico y no solo administrativo, idea que el curso retoma de forma explicita en la Clase 10.
+**[Slide 9] Que es arquitectura cloud (mapa mental) (1/4)** — 6 vinetas.
+  - Conviene separar de entrada dos cosas que el estudiante confunde siempre: el stack tecnologico y la arquitectura.
 
-### CloudLite App - el hilo conductor - diapositiva 5
-Aterricemos en CloudLite App, el proyecto integrador que atraviesa las quince clases. Supongamos que un estudiante elige como dominio la gestion de turnos de una barberia. El diagrama de contexto correcto tiene una sola caja llamada CloudLite Turnos, tres actores alrededor (el cliente que reserva, el barbero que consulta su agenda del dia y el administrador que configura horarios y precios) y dos o tres sistemas externos con la flecha etiquetada: una pasarela de pagos, con la etiqueta «envia solicitud de cobro y recibe confirmacion»; un proveedor de correo, con la etiqueta «envia recordatorio de turno»; y quizas un servicio de mapas. Nada mas: la API, la base de datos y el almacenamiento de fotos no aparecen todavia porque son interiores. Ese diagrama de cinco o seis elementos es el entregable de hoy, y su valor esta en que obliga a responder dos preguntas que el estudiante no se habia hecho: quien exactamente usa esto y de que terceros depende para funcionar. Un sistema que depende de una pasarela de pagos hereda su disponibilidad, y esa herencia es una decision arquitectonica aunque nadie la haya escrito.
+**[Slide 10] Que es arquitectura cloud (mapa mental) (2/4)** — 7 vinetas.
 
-### De dominio a arquitectura (mini-metodo) - diapositiva 6
-El modelo C4 es la notacion que este curso usa para dibujar arquitectura, y su virtud es ofrecer cuatro niveles de zoom con reglas claras sobre que se muestra en cada uno, en lugar de un unico diagrama que mezcla todo. Nivel 1, Contexto: el sistema es una sola caja negra y alrededor aparecen unicamente las personas que lo usan y los sistemas externos con los que intercambia informacion. Nivel 2, Contenedores: se abre esa caja y se ven las aplicaciones, servicios y bases de datos que la componen. Nivel 3, Componentes: se abre un contenedor y se ven sus modulos internos. Nivel 4, Codigo: clases y funciones, que en la practica casi nunca se dibuja porque el codigo mismo ya lo documenta. Hoy se trabaja unicamente el nivel 1, y la regla es estricta: si en el diagrama de contexto aparecen las palabras PostgreSQL, Docker o Redis, el diagrama esta mal, porque eso es interior del sistema y corresponde al nivel 2 de la Clase 4.
+**[Slide 11] Que es arquitectura cloud (mapa mental) (3/4)** — 7 vinetas.
 
-El segundo artefacto de hoy es la ficha con cuatro capacidades y el problema en tres frases. Una capacidad se escribe como un verbo de negocio que el usuario puede ejecutar, no como una pieza tecnica: «reservar un turno disponible», «cancelar o reprogramar hasta dos horas antes», «consultar la agenda del dia» y «cobrar un anticipo» son capacidades; «tener login con JWT», «usar cache» o «tener panel administrativo» no lo son, porque son medios y no fines. El limite de cuatro capacidades es una decision pedagogica deliberada y no una regla de la industria: con cada estudiante trabajando de forma individual durante doce semanas, un alcance de ocho capacidades garantiza que el proyecto no llegue a ninguna parte. El enunciado del problema debe nombrar a quien le duele y que pierde hoy, con alguna cifra aunque sea estimada: «la barberia agenda por mensajeria instantanea, pierde alrededor de tres turnos diarios por doble reserva y no tiene registro de cuantos clientes no se presentaron». Un problema sin afectado concreto y sin magnitud produce arquitecturas que nadie puede evaluar, porque no hay contra que comparar.
+**[Slide 12] Que es arquitectura cloud (mapa mental) (4/4)** — 4 vinetas.
 
-### Ejemplo de diagrama C4 - nivel Context - diapositiva 7
-Use el diagrama proyectado (System, dos Person, System_Ext) como plantilla en vivo: reemplace actor, sistema y externo por el dominio de un estudiante voluntario mientras explica que en el nivel Context el sistema sigue siendo UNA sola caja, sin abrir por dentro. Es el mismo modelo C4 explicado arriba, ahora aplicado con nombres concretos, y sirve de puente directo hacia la pregunta 2 del taller en ExamLab (el diagrama Mermaid que cada estudiante entrega hoy).
+**[Slide 13] CloudLite App - el hilo conductor** — 8 vinetas.
 
-### Preguntas frecuentes y cierre conceptual (de la diapositiva 4 a la diapositiva 7)
-Tres preguntas aparecen casi siempre en esta primera clase y conviene tener la respuesta lista. La primera: cual es la diferencia entre arquitectura y diseno. Respuesta: es una diferencia de alcance y de reversibilidad, no de naturaleza; arquitectura son las decisiones que afectan a todo el sistema y son caras de revertir, diseno son las decisiones internas de un componente que se pueden cambiar sin tocar a los demas. La segunda: por que no usamos una cuenta real de un proveedor de nube. Respuesta, y hay que darla sin disculparse: porque este curso evalua razonamiento arquitectonico y no el manejo de una consola que cambia de aspecto cada semestre; ninguna actividad exigira tarjeta de credito ni cuenta de pago, todo se hace con draw.io, Excalidraw, Killercoda y el nivel gratuito de GitHub Actions, y quien aprende a justificar un trade-off lo aplica luego en cualquier proveedor en una tarde. La tercera: cuantas cajas debe tener mi diagrama. Respuesta: en el nivel de contexto, entre cuatro y ocho elementos en total; si hay veinte, es casi seguro que se colaron piezas internas. Y vale cerrar ubicando al docente en el mapa del curso, porque la Clase 1 no es una introduccion suelta sino el cimiento de una cadena. Lo que se decida hoy (dominio, actores, capacidades, problema) es la entrada obligatoria de la Clase 2, que se dicta la semana siguiente en sesion virtual sincrona y pide elegir entre IaaS, PaaS y SaaS registrando la decision; de la Clase 3, donde se contenerizara uno de los servicios de este mismo sistema; y sobre todo de la Clase 4, que abre la caja negra dibujada hoy para mostrar de dos a cinco contenedores logicos. La Clase 5 es el primer parcial y evalua justamente este vocabulario. Conviene decirlo en voz alta al cerrar: el estudiante que salga hoy sin dominio definido no tiene sobre que trabajar en las siguientes cuatro sesiones, y el docente debe negarse a dejar el tema abierto para la proxima semana.
+**[Slide 14] De dominio a arquitectura (mini-metodo) (1/2)** — 8 vinetas.
 
-Error tipico del docente que no domina el tema: confundir arquitectura con stack tecnologico y permitir que el estudiante presente una lista de tecnologias como si fuera una arquitectura. La consecuencia aguas abajo es directa: en la Clase 2 ese estudiante no podra sustentar su registro de decision, porque nunca hizo explicito un atributo de calidad que la justifique, y en la Clase 4 producira un diagrama de contenedores que es un inventario de herramientas sin fronteras de responsabilidad. El segundo error es aceptar diagramas de contexto contaminados con piezas internas (base de datos, cache, balanceador) porque «se ven mas completos»; si eso se aprueba hoy, el nivel de contenedores de la Clase 4 pierde todo sentido, ya que no habra nada nuevo que revelar, y la sustentacion final de la Clase 15 terminara siendo un unico diagrama ilegible en el que el estudiante no sabe a que nivel de zoom esta hablando.
+**[Slide 15] De dominio a arquitectura (mini-metodo) (2/2)** — 5 vinetas.
+
+**[Slide 16] Ejemplo de diagrama C4 - nivel Context** — 3 vinetas.
+
+**[Slide 17] Preguntas frecuentes y cierre conceptual () (1/3)** — 7 vinetas.
+  - Tres preguntas aparecen casi siempre en esta primera clase y conviene tener la respuesta lista.
+  - Conviene decirlo en voz alta al cerrar: el estudiante que salga hoy sin dominio definido no tiene sobre que trabajar en las siguientes cuatro sesiones, y el docente debe negarse a dejar el tema abierto para la proxima semana.
+
+**[Slide 18] Preguntas frecuentes y cierre conceptual () (2/3)** — 6 vinetas.
+
+**[Slide 19] Preguntas frecuentes y cierre conceptual () (3/3)** — 5 vinetas.
+
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 1 - Introduccion a arquitecturas cloud/Presentacion.pptx` (solo tema
@@ -58,17 +65,30 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 4. Qué es arquitectura cloud (mapa mental)
 5. CloudLite App — el hilo conductor
 6. De dominio a arquitectura (mini-método)
-7. Ejemplo de diagrama C4 — nivel Context
-8. Herramientas de hoy
-9. Del boceto a ExamLab (diagrama)
-10. PI CloudLite — entregable de hoy
-11. Manos a la obra (paso a paso)
-12. Para continuar (PI)
-13. Clase 1 · PI en movimiento
+7. PI CloudLite - entregable de hoy: la ficha de 6 bloques (1/2)
+8. PI CloudLite - entregable de hoy: la ficha de 6 bloques (2/2)
+9. Que es arquitectura cloud (mapa mental) (1/4)
+10. Que es arquitectura cloud (mapa mental) (2/4)
+11. Que es arquitectura cloud (mapa mental) (3/4)
+12. Que es arquitectura cloud (mapa mental) (4/4)
+13. CloudLite App - el hilo conductor
+14. De dominio a arquitectura (mini-metodo) (1/2)
+15. De dominio a arquitectura (mini-metodo) (2/2)
+16. Ejemplo de diagrama C4 - nivel Context
+17. Preguntas frecuentes y cierre conceptual () (1/3)
+18. Preguntas frecuentes y cierre conceptual () (2/3)
+19. Preguntas frecuentes y cierre conceptual () (3/3)
+20. Ejemplo de diagrama C4 — nivel Context
+21. Herramientas de hoy
+22. Del boceto a ExamLab (diagrama)
+23. PI CloudLite — entregable de hoy
+24. Manos a la obra (paso a paso)
+25. Para continuar (PI)
+26. Clase 1 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 10]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 7]
 Di casi literal:
 > "Hoy avanzamos el PI CloudLite App en: Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases. Entregable concreto: Ficha PI de 5 bloques + C4 Context en Mermaid renderizado en ExamLab (boceto previo en Excalidraw/draw.io). Teoría breve y luego taller; no es un lab suelto."
 
@@ -91,7 +111,7 @@ por diapositiva: esa sección está escrita para que puedas dictarla sin consult
 **[Nota docente]:** cada 8–10 min amarra al artefacto («esto es lo que van a dejar hoy en su informe/diagrama/repo»)
 y pide un estudiante voluntario para usar SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 9]
+### 40–55 · Demo en vivo · [Slide 22]
 Herramienta del día: **Padlet · Excalidraw / draw.io**.
 **Demo que usted debe poder repetir:** Dibujar en vivo el C4 Context de un CloudLite de ejemplo
 
@@ -119,7 +139,7 @@ C4Context
 Cierra la demo diciendo:
 > "Copien la estructura, no el dominio de mi ejemplo."
 
-**Cierra la demo dentro de ExamLab** [Slide 9] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
+**Cierra la demo dentro de ExamLab** [Slide 22] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -130,7 +150,7 @@ Cierra la demo diciendo:
 📸 C4 Context de la demo en vivo: asi debe quedar el tablero al terminar [[captura: demo-clase01.png]]
 
 
-### 55–100 · Taller guiado PI (individual) · [Slide 11]
+### 55–100 · Taller guiado PI (individual) · [Slide 24]
 **[Nota docente]:** proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller»
 de este guion). Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas
 a ver hoy. A los 80 min anuncia:
@@ -144,7 +164,7 @@ Aplica el quiz corto de `Kit docente/Clase 1/Quiz Clase 1 - Introduccion a arqui
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 13]
+### 115–120 · Cierre · [Slide 26]
 Di:
 > "Queda avanzado: Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases. Criterio de éxito: el estudiante explica su artefacto en 60 s. Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan."
 

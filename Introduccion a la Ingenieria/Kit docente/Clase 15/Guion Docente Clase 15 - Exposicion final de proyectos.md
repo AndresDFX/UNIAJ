@@ -33,47 +33,19 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### Cómo se encuadra el día, y por qué el sorteo importa - diapositivas 4 y 6
 
-La apertura de hoy tiene una función distinta a la de las otras sesiones: no introduce un tema, **baja la ansiedad y fija las reglas**. La pregunta de entrada —«¿cuál fue la decisión que más les costó tomar?»— se responde con una línea por equipo en el muro y sirve para dos cosas: los pone a hablar antes de exponer, y les recuerda que **lo que se califica es la decisión, no el resultado**. Muchos equipos llegan creyendo que van a ser juzgados por si su prototipo es bonito.
-
-**El sorteo del orden se hace en vivo y en pantalla.** No es teatro: si el orden se anuncia antes, los últimos equipos siguen preparando durante las primeras exposiciones y no escuchan. Sorteado al empezar, los cinco equipos tienen que estar listos desde el primer minuto y todos escuchan a todos. Dígalo así.
-
-Antes de la primera exposición, **verifique en voz alta el plan B de los cinco equipos**: PDF descargado y capturas en la carpeta. Toma dos minutos y cada semestre salva al menos un equipo. Un equipo que no lo tenga y cuyo prototipo no cargue pierde el tramo de 25 puntos por algo que se prevenía en cinco minutos.
-
-Sobre el rol de quien no expone, hay que ser explícito porque de lo contrario nadie escucha: **la ficha de valoración entre pares se califica**, dentro de la nota de exposiciones del corte. Una fila por equipo con lo más fuerte, lo que no quedó claro y una pregunta. Y la ficha tiene un beneficio para quien la llena: obliga a comparar el proyecto propio con cuatro más, que es la manera más rápida de ver los vacíos del propio informe.
+Proyectado en la lamina «Cómo se encuadra el día, y por qué el sorteo importa (1/2)» (5 vinetas).
 
 ### Cómo se califica cada tramo, sin discutir con el reloj - diapositiva 5
 
-La rúbrica se proyecta al empezar y hay que dejarla visible: calificar con criterios publicados evita la discusión posterior y, sobre todo, **le dice al que expone qué es lo importante**. Los pesos no son arbitrarios — el tramo 3 vale más porque es la evidencia de que hicieron algo, y el tramo 4 vale 20 porque es lo que distingue un proyecto de una idea.
-
-**Califique mientras escucha, no después.** Con cinco equipos seguidos, la memoria mezcla las exposiciones y termina premiando al último. Tenga la tabla de cinco tramos por equipo abierta y anote el puntaje al terminar cada tramo, más una frase de por qué. Esa frase es lo que después se devuelve como retroalimentación.
-
-**Los dos descuentos hay que aplicarlos, y anunciarlos antes.** Hasta 10 puntos si no todos los integrantes hablan —porque la exposición en equipo es lo que se está evaluando— y hasta 10 si nadie sabe responder una pregunta de su propio tramo. El segundo descuento es el que más enseña: destapa al equipo donde uno solo hizo el trabajo y los demás leyeron un guion.
-
-**Sobre el corte a los nueve minutos:** avise en el chat a los 8, y corte a los 9 aunque quede una frase a medias. Es incómodo la primera vez y después el curso lo acepta como parte del juego. El argumento, si alguien reclama, es aritmético y no disciplinario: cinco equipos por 12 minutos son 60, y el tiempo que un equipo se pasa lo pierde el último. **No descuente puntos adicionales por pasarse**: el corte ya es el castigo, porque los tramos que faltaban valen cero.
-
-Un criterio de calificación que conviene tener claro de antemano: **un equipo que cuenta un fracaso con honestidad saca más que uno que presenta todo perfecto.** No es generosidad: en un prototipo de primer semestre, «todo funcionó a la primera» significa casi siempre que no se probó con nadie. Si un equipo no reporta ningún hallazgo en el tramo 4, la pregunta obligatoria es **«¿con quién lo probaron y qué hizo esa persona?»**.
+Proyectado en la lamina «Cómo se encuadra el día, y por qué el sorteo importa (2/2)» (7 vinetas).
 
 ### Las preguntas: los tres minutos que destapan el trabajo real - diapositiva 7
 
-Los tres minutos de preguntas no son un trámite: son la parte de la sesión donde se ve quién entendió el proyecto. Por eso la regla es **responde quien tiene el tramo**, y hay que hacerla cumplir con firmeza —si el mismo integrante responde todo, redirija: «esa es del tramo 4, ¿quién lo presentó?»—.
-
-Enseñe explícitamente que **«no lo medimos» es una respuesta válida y buena**. Un estudiante de primer semestre cree que no saber es un fracaso, y por eso inventa cifras. Hay que decirle lo contrario: lo que hunde una sustentación es afirmar con seguridad algo que no se verificó, porque una sola cifra inventada vuelve dudoso todo lo demás. Es la misma lección de la sesión 5 sobre datos con fuente y de la 11 sobre la IA que **inventa con seguridad**.
-
-La segunda enseñanza es la diferencia entre excusa y decisión. «No lo hicimos porque no nos alcanzó el tiempo» suena a incumplimiento; **«decidimos no hacerlo y sacrificamos esto a cambio»** es exactamente el lenguaje del alcance mínimo de la sesión 8. Los equipos ya tienen la decisión escrita desde entonces: solo hay que recordarles que la usen.
-
-**Reserve una pregunta suya para cada equipo, y hágala útil.** Las tres que más rinden: «¿con quién lo probaron y qué hizo esa persona?» —destapa si hubo prueba real—, «¿qué pasa con alguien que no tiene datos móviles?» —destapa si pensaron en los afectados no usuarios— y «si tuvieran una semana más, ¿qué harían primero?» —destapa si tienen criterio de prioridad o solo una lista de deseos—.
-
-Cuide el tiempo de las respuestas: tres minutos alcanzan para dos o tres preguntas **si las respuestas duran treinta segundos**. Una respuesta de dos minutos se come las preguntas de los demás, y hay que interrumpirla con cortesía.
+Proyectado en la lamina «Cómo se califica cada tramo, sin discutir con el reloj (1/2)» (7 vinetas).
 
 ### El cierre: qué hacer con lo que salió hoy - diapositiva 8
 
-Los ocho minutos de cierre no son para felicitar. Son para **convertir las cinco exposiciones en trabajo concreto para el informe final**, que se entrega la próxima sesión y vale el 20 %.
-
-La instrucción operativa para cada equipo es una: **anoten lo que el curso no entendió de su proyecto, porque eso es exactamente lo que hay que escribir mejor en el informe.** Si tres personas preguntaron cómo se actualiza la lista, la sección de la solución no está clara. Una pregunta repetida es un diagnóstico gratis.
-
-Devuelva **una observación por equipo, dicha en público y en una frase** —lo que más sumó y la única cosa que cambiaría—. La retroalimentación detallada va después, por escrito, con las frases que anotó mientras calificaba. En público, una sola cosa: es la misma regla de la Clase 12 sobre retroalimentación útil.
-
-Y cierre nombrando lo que efectivamente pasó, sin discurso: hace quince sesiones estos equipos tenían una ocurrencia; hoy sustentaron un problema con evidencia, una decisión con criterios, un prototipo probado con personas reales y un impacto con sus costos. **Eso es el ciclo completo de un proyecto de ingeniería**, y lo hicieron en primer semestre. Vale decirlo una vez, en serio y corto.
+Proyectado en la lamina «Cómo se califica cada tramo, sin discutir con el reloj (2/2)» (6 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 15 - Exposicion final de proyectos/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -86,10 +58,18 @@ Numeración real del deck `Clases/Clase 15 - Exposicion final de proyectos/Prese
 6. El orden del día, y qué hace el equipo que no está exponiendo
 7. Los tres minutos de preguntas también se califican
 8. Tres cosas antes de empezar
-9. Taller de hoy: Exposición final del proyecto
-10. Cómo se expone en 9 minutos
-11. Para la Clase 16
-12. Cierre · Nos vemos en la Clase 16 · la última
+9. Cómo se encuadra el día, y por qué el sorteo importa (1/2)
+10. Cómo se encuadra el día, y por qué el sorteo importa (2/2)
+11. Cómo se califica cada tramo, sin discutir con el reloj (1/2)
+12. Cómo se califica cada tramo, sin discutir con el reloj (2/2)
+13. Las preguntas: los tres minutos que destapan el trabajo real (1/2)
+14. Las preguntas: los tres minutos que destapan el trabajo real (2/2)
+15. El cierre: qué hacer con lo que salió hoy (1/2)
+16. El cierre: qué hacer con lo que salió hoy (2/2)
+17. Taller de hoy: Exposición final del proyecto
+18. Cómo se expone en 9 minutos
+19. Para la Clase 16
+20. Cierre · Nos vemos en la Clase 16 · la última
 
 ## Plan de clase minuto a minuto (90 min)
 

@@ -31,59 +31,25 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: ¿quién queda peor? - diapositiva 4
 
-El gancho de hoy está construido para incomodar, y hay que dejarlo incomodar unos segundos antes de explicarlo: **si su solución funciona perfectamente y la usa todo el mundo, ¿quién queda peor que antes?** La reacción típica es «nadie», y esa respuesta es el punto de partida de la sesión.
-
-Siempre hay alguien, y casi nunca es un usuario. En el caso de la biblioteca: la voluntaria del cierre, que ahora dedica diez minutos más a actualizar la lista; y el vecino sin datos móviles, que antes llegaba al mostrador en igualdad de condiciones y ahora llega detrás de tres personas que ya sabían qué pedir. Ninguno de los dos usa el sistema para consultar, y a los dos les cambió la vida por él.
-
-El encuadre que justifica la sesión completa, y que conviene decir sin solemnidad: **un ingeniero que no puede responder esa pregunta no terminó el diseño.** No es un asunto de ética añadida al final ni un requisito de acreditación: es parte del análisis técnico, igual que estimar el consumo o el costo. Los proyectos que fallan socialmente casi nunca fallan por el código; fallan porque nadie preguntó a quién más le pasaba algo.
-
-Operativamente, use la apertura para verificar el insumo: pida que cada equipo escriba en el muro **un afectado que no sea usuario**. Los equipos que traigan el listado de la sesión 3 lo van a hacer en treinta segundos; los que no, van a escribir «los usuarios». Ahí ya sabe con quién tiene que sentarse en las salas de grupo.
+Proyectado en la lamina «La pregunta de entrada: ¿quién queda peor? (1/2)» (7 vinetas).
 
 ### Impacto no es intención, y el indirecto es el que muerde - diapositiva 5
 
-**Impacto no es intención.** Es la distinción más importante del día y la que más cuesta. «Queremos ayudar a la comunidad» es una intención, y no informa nada: no se puede verificar, no se puede medir y nadie puede estar en contra. El impacto es lo que **de hecho** cambia en la vida de alguien, ocurra o no lo que queríamos. Conviene decirlo de frente: el mundo está lleno de proyectos con buenas intenciones y malos impactos, y el propósito de una matriz es precisamente separar las dos cosas.
-
-**Directo e indirecto.** El directo es fácil porque es el que buscábamos: la persona hace menos viajes en vano. El indirecto es el que se olvida y el que trae los problemas: la voluntaria del cierre dedica diez minutos más cada día. Un dato importante para su formación profesional: **la resistencia a una solución nueva casi siempre viene de un impacto indirecto que nadie consideró.** Cuando en una empresa un sistema «no lo quieren usar», nueve de diez veces es porque a alguien le llegó trabajo extra que nunca se contó.
-
-**Positivo y negativo.** Hay que anticipar y desactivar la creencia de que declarar un impacto negativo baja la nota. Es lo contrario, y hay que decirlo explícitamente porque van a dudar: **un informe con solo impactos positivos no es optimista, es incompleto**, y quien lo lea va a desconfiar de todo lo demás. En este curso declarar un negativo con su mitigación **sube** la nota.
-
-**Corto y largo plazo.** Algunos efectos solo aparecen con el uso sostenido: la lista que crece y se vuelve inmanejable, la dependencia de una sola voluntaria que sabe actualizarla. Nombrarlos sin poder medirlos ya es hacer ingeniería, y es material directo para la sección de trabajo futuro del informe final.
+Proyectado en la lamina «La pregunta de entrada: ¿quién queda peor? (2/2)» (4 vinetas).
 
 ### Los afectados que no eligieron nada - diapositiva 6
 
-La frase que ordena este bloque: **los usuarios son la parte fácil, porque por definición eligieron usarla; los afectados no eligieron nada.** De ahí la obligación de buscarlos activamente.
+Proyectado en la lamina «Impacto no es intención, y el indirecto es el que muerde (1/2)» (6 vinetas).
 
-**Paso 1: empezar por la propia lista.** En la sesión 3 hicieron un listado de actores no usuarios. Casi todos lo olvidaron, y ahí está la mitad del trabajo de hoy. Vale la pena señalar la lección de método —es la tercera vez en el curso que un material viejo resuelve un problema nuevo—: **documentar es una inversión, no un trámite.**
-
-**Paso 2: seguir la cadena de trabajo.** ¿A quién le llega más trabajo y a quién menos? Es el impacto indirecto más frecuente. En el caso modelo, la voluntaria del cierre; en un proyecto de gestión, la persona que ahora tiene que llenar el formato.
-
-**Paso 3: preguntar quién NO puede usarla.** Este paso es el corazón ético de la sesión y hay que darle tiempo. Quien no tiene celular, datos, lectura fluida, buena vista, o el idioma. La regla, dicha en una frase que se les debería quedar: **si su solución solo mejora a quien ya estaba mejor, empeoró la brecha.** Y el matiz que hace la idea difícil y verdadera: el excluido puede quedar peor **en términos relativos** aunque nada haya cambiado para él, porque los demás mejoraron y la atención se reordenó. Ese caso es real, es incómodo y es exactamente lo que hay que aprender a ver.
-
-**Paso 4: mirar qué consume.** Energía, datos, papel, hardware que acaba en basura electrónica. En la sesión 5 ya midieron un pedazo de su huella; hoy ese número entra a la matriz.
-
-**Paso 5: preguntar a quién desplaza.** Si la solución reemplaza algo, alguien hacía ese algo. Aquí conviene ser equilibrado y no moralizar: no siempre es malo ni siempre es evitable —la ingeniería lleva dos siglos automatizando trabajo—, pero **omitirlo del análisis sí es un error técnico**.
+- Conviene decirlo de frente: el mundo está lleno de proyectos con buenas intenciones y malos impactos, y el propósito de una matriz es precisamente separar las dos cosas. **Directo e indirecto.** El directo es fácil porque es el que buscábamos: la persona hace menos viajes en vano.
 
 ### La matriz, la calificación y los límites del método - diapositivas 7 y 8
 
-La primera tabla es la plantilla del taller y conviene recorrerla dimensión por dimensión, deteniéndose en la columna de la derecha: **cómo se mide**. Ahí está el aprendizaje. «Acceso» no se mide con adjetivos sino con el número de personas del grupo objetivo que quedan fuera y por qué motivo. «Carga de trabajo» se mide en minutos por día. «Consumo» se mide en KB por consulta por número de consultas estimadas — y ese número ya lo tienen desde la sesión 5.
-
-Insista en la nota al pie: **una fila que no aplica se escribe «no aplica» con una línea de razón.** Dejarla en blanco parece un olvido, y en un informe real el lector no puede distinguir entre «no aplica» y «no lo pensamos».
-
-La segunda tabla es la calificación, y aquí hay que hacer un ejercicio de honestidad intelectual que vale más que la tabla misma. Los cinco criterios —carácter, magnitud, extensión, duración, reversibilidad— provienen de las metodologías de evaluación de impacto ambiental, que trabajan con matrices de este tipo desde los años setenta; la matriz de Leopold, de 1971, es el ejemplo clásico y sigue siendo el punto de partida de la mayoría de las variantes que se usan hoy. Si algún estudiante quiere profundizar, esa es la palabra que debe buscar, y ya saben de la sesión 9 cómo verificar una fuente.
-
-Y ahora el límite, que hay que decir en voz alta porque es formativo: **las escalas son una convención para comparar y ordenar, no una medición.** Poner «magnitud: alta» no convierte un juicio en un dato. Dos equipos honestos pueden calificar distinto el mismo impacto, y eso no invalida el método: la matriz sirve para **ordenar prioridades y forzar la conversación**, no para producir un número objetivo. Lo que sí es exigible es que **cada calificación tenga una línea de justificación**. Un estudiante que entiende esto no va a confundir nunca más una escala ordinal con una medición, y esa es una de las confusiones más comunes en informes técnicos.
+Proyectado en la lamina «Impacto no es intención, y el indirecto es el que muerde (2/2)» (3 vinetas).
 
 ### Del adjetivo al indicador, y las tres honestidades - diapositivas 9 y 10
 
-La diapositiva de antes y después es la que más rinde en clase, porque la columna izquierda es literalmente lo que van a escribir si no se les enseña otra cosa: «beneficia a la comunidad», «contribuye al cuidado del medio ambiente», «mejora la calidad de vida». Leerlas en voz alta produce risa incómoda, y ese es el momento de hacer la pregunta: **¿qué proyecto NO podría escribir estas cinco frases?** Ninguno. Una afirmación que sirve para todo no informa de nada.
-
-La columna derecha muestra el mismo contenido convertido en indicador: 4 de cada 10 viajes evitados, menos de 200 KB por consulta, un pasaje y 25 minutos ahorrados por visita. Y el detalle que hay que señalar con el cursor: **las dos últimas líneas de la derecha son impactos negativos** —1 de cada 5 vecinos queda fuera, 10 minutos diarios extra para la voluntaria— **y son precisamente las que hacen creíbles a las otras tres**. Un lector experimentado confía en un informe que reconoce sus costos.
-
-De las tres honestidades, la primera es la que hay que repetir hasta que se instale: **«no genera ningún impacto negativo» es la frase que más credibilidad quita en un informe de ingeniería.** Toda solución tiene costos. Un equipo que no encuentra ninguno no buscó.
-
-La segunda desactiva la excusa más común: si no se puede medir, **se describe con precisión y se dice cómo se podría medir**. «No sabemos cuántos vecinos no tienen datos móviles; se sabría con una encuesta de diez casas» es una respuesta profesional, y de hecho es el tipo de frase que aparece en informes reales. Lo que no es profesional es un «no aplica» sin razón.
-
-La tercera cierra el arco del curso: **el software también consume.** Datos que alguien paga, energía, hardware que se vuelve residuo. Y aquí hay un hallazgo que vale la pena hacerles ver, porque conecta cuatro sesiones: el límite de 200 KB por consulta que definieron en la sesión 5 como indicador, se volvió requisito no funcional en la sesión 7, sirvió para descartar imágenes en las sesiones 10 y 11, y hoy entra a la matriz como **medida de mitigación ambiental**. Un requisito no funcional bien elegido es, a la vez, una mitigación — y eso no se puede improvisar en la Clase 13 si no se escribió en la 5.
+Proyectado en la lamina «Los afectados que no eligieron nada (1/2)» (7 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 13 - Evaluacion de impacto social y ambiental/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -98,10 +64,20 @@ Numeración real del deck `Clases/Clase 13 - Evaluacion de impacto social y ambi
 8. Cómo se califica un impacto, sin fingir precisión
 9. Un impacto declarado y un impacto medido
 10. Tres honestidades sobre el impacto
-11. Taller de hoy: Matriz de impacto social y ambiental
-12. Cómo se expone en 3 minutos
-13. Para la Clase 14
-14. Cierre · Nos vemos en la Clase 14
+11. La pregunta de entrada: ¿quién queda peor? (1/2)
+12. La pregunta de entrada: ¿quién queda peor? (2/2)
+13. Impacto no es intención, y el indirecto es el que muerde (1/2)
+14. Impacto no es intención, y el indirecto es el que muerde (2/2)
+15. Los afectados que no eligieron nada (1/2)
+16. Los afectados que no eligieron nada (2/2)
+17. La matriz, la calificación y los límites del método (1/2)
+18. La matriz, la calificación y los límites del método (2/2)
+19. Del adjetivo al indicador, y las tres honestidades (1/2)
+20. Del adjetivo al indicador, y las tres honestidades (2/2)
+21. Taller de hoy: Matriz de impacto social y ambiental
+22. Cómo se expone en 3 minutos
+23. Para la Clase 14
+24. Cierre · Nos vemos en la Clase 14
 
 ## Plan de clase minuto a minuto (90 min)
 
