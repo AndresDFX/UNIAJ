@@ -26,6 +26,7 @@ import calendario_2026_2 as cal
 from vetcare_contexto import CLIENTE, INTERESADOS, NOMENCLATURA, PROBLEMAS
 from bd2_taller_data import HERRAMIENTAS_DIA, TALLER_BLOQUE, SOLUCION
 from bd2_fundamentos import FUNDAMENTOS
+import teoria_a_slides as TS
 import bd2_solucion_data as soluciones_bd2
 import solucion_taller
 from bd2_examlab_data import EXAMLAB as TALLERES_EXAMLAB
@@ -2543,6 +2544,34 @@ FLUJO_SLIDE_TITULO = "Del boceto a ExamLab (diagrama)"
 CLIENTE_SLIDE_TITULO = "El cliente · " + CLIENTE
 
 
+def _apoyo_por_diapositiva(c, mapa):
+    """Apoyo puntual por diapositiva: que subrayar en cada una y en que orden.
+
+    NO repite el contenido: el contenido esta proyectado. Aqui va lo que el docente hace con
+    el —que remarcar, que preguntar, por que ese orden—, que es justo lo que no cabe en la
+    pantalla y lo unico que el guion aporta sobre el deck.
+    """
+    slides = _teoria_slides(c)
+    if not slides:
+        return ""
+    # Numero real de cada diapositiva de teoria dentro del deck.
+    base = None
+    for i, titulo in enumerate(mapa, 1):
+        if slides and titulo == slides[0][0]:
+            base = i
+            break
+    L = ["", "## Apoyo por diapositiva", "",
+         "Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en "
+         "cada lamina, no repite su contenido.", ""]
+    for j, (titulo, vin, notas) in enumerate(slides):
+        n = f"[Slide {base + j}] " if base else ""
+        L.append(f"**{n}{titulo}** — {len(vin)} vinetas.")
+        for x in notas:
+            L.append(f"  - {x}")
+        L.append("")
+    return "\n".join(L)
+
+
 def _fundamento_md(c):
     """Desarrollo en prosa del tema, SOLO para el guion docente.
 
@@ -2557,6 +2586,28 @@ def _fundamento_md(c):
         return ""
     fund = _resolver_slides(fund, _slide_map(c), c["n"])
     return "\n\n### Desarrollo del tema (para dictar sin consultar otra fuente)\n\n" + fund + "\n"
+
+
+def _teoria_slides(c):
+    """Las diapositivas de teoria de esta clase: UNA POR CONCEPTO, con su contenido.
+
+    Antes esto era una sola diapositiva con `_slide_summary`: la primera frase de cada
+    vinieta de `teoria`, cortada a 110 caracteres y limitada a 5. En la Clase 1 eso metia
+    cinco conceptos distintos en 551 caracteres mientras el guion los desarrollaba en 15.000,
+    asi que lo que se dictaba no estaba proyectado y el estudiante que faltaba no tenia de
+    donde estudiar.
+
+    La fuente es `FUNDAMENTOS[n]`, que ya venia escrito un concepto por seccion `###`.
+    `teoria_a_slides` reparte cada seccion en las diapositivas que haga falta y aparta las
+    frases que hablan al docente para que vayan al guion, no a la pantalla.
+
+    `build_pptx` y `_slide_map` llaman a ESTA funcion, no cada una a la suya: es lo que hace
+    imposible que el deck y el mapa del guion se desincronicen.
+    """
+    fund = (c.get("fundamento") or FUNDAMENTOS.get(c["n"]) or "").strip()
+    if not fund:
+        return [("Teoria Core (breve)", _slide_summary(c["teoria"]), [])]
+    return TS.slides_de_clase(fund)
 
 
 def _slide_summary(bullets_, max_chars=110, max_items=5):
@@ -2612,7 +2663,7 @@ def _slide_map(c):
          "Mapa del bloque de hoy (120 min)"]
     if c['n'] == 1:
         m.append(CLIENTE_SLIDE_TITULO)
-    m.append("Teoria Core (breve)")
+    m += [t for t, _v, _n in _teoria_slides(c)]
     dg = DIAGRAMAS_BD2.get(c['n'])
     if dg:
         m.append(dg["titulo"])
@@ -2821,8 +2872,8 @@ def build_pptx(c):
             "@@Caso completo:@@ anexo «Caso de estudio Clínica Huellitas» en "
             "Clases/Proyecto Integrador — 8 entidades, 3 reglas y el elenco de nombres.",
         ], sub=NOMENCLATURA, idx=idx); idx += 1
-    content_slide(prs, "Teoria Core (breve)", _slide_summary(c['teoria']), idx=idx,
-                  ); idx += 1
+    for _t, _vin, _ in _teoria_slides(c):
+        content_slide(prs, _t, _vin, idx=idx); idx += 1
     dg = DIAGRAMAS_BD2.get(c['n'])
     if dg:
         diagram_boxes_slide(
@@ -4048,7 +4099,7 @@ Proyectar {sl_cierre}slide de cierre. Dudas finales.
 El objetivo de la clase no es «cubrir un capitulo» aislado, sino producir evidencia
 del PI VetCare. La teoria se limita a desbloquear el taller.
 
-""" + "\n".join(f"- {t}" for t in c['teoria']) + _fundamento_md(c) + f"""
+""" + _apoyo_por_diapositiva(c, mapa) + f"""
 
 **Demo que usted debe poder repetir:** {c['demo']}
 
