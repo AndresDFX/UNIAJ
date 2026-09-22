@@ -15,15 +15,56 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Antes de entrar en materia, el reparto del tiempo, porque hoy son dos...** — 5 vinetas.
+**Antes de entrar en materia, el reparto del tiempo, porque hoy son dos...** — 4 vinetas.
+  - Si el primer bloque se alarga, la ventana queda sin terminar y la clase se pierde, asi que ponga un cronometro visible.
 
-**El problema tecnico es este: con un ArrayList, buscar por ID obliga a...** — 6 vinetas.
+**El problema tecnico es este: con un ArrayList, buscar por ID obliga a... (1/2)** — 3 vinetas.
+  - Cuando dos claves distintas caen en la misma casilla (una colision), el mapa guarda ambas en esa casilla y usa equals() para distinguirlas al leer.
 
-**La API de Map es corta pero tiene trampas que hay que nombrar en voz...** — 6 vinetas.
+**El problema tecnico es este: con un ArrayList, buscar por ID obliga a... (2/2)** — 2 vinetas.
 
-**El HashSet es el hermano del HashMap: por dentro es literalmente un...** — 8 vinetas.
+**El problema tecnico es este: con un... — sintaxis** — 1 vinetas.
 
-**Ahora la parte grafica, y aqui empieza el segundo bloque de la clase** — 8 vinetas.
+**La API de Map es corta pero tiene trampas que hay que nombrar en voz... (1/2)** — 3 vinetas.
+
+**La API de Map es corta pero tiene trampas que hay que nombrar en voz... (2/2)** — 3 vinetas.
+
+**La API de Map es corta pero tiene trampas que... — sintaxis** — 1 vinetas.
+
+**El HashSet es el hermano del HashMap: por dentro es literalmente un...** — 6 vinetas.
+  - Lo que un HashSet no le garantiza es el orden: si usted agrega Labrador, Criollo y Persa y luego imprime el conjunto, pueden salir en cualquier orden, porque la posicion la decide el hash.
+  - Si necesita conservar el orden de insercion use LinkedHashSet o LinkedHashMap, y si necesita orden alfabetico use TreeSet o TreeMap, que ordenan pero cuestan un poco mas.
+
+**Ahora la parte grafica, y aqui empieza el segundo bloque de la clase (1/2)** — 4 vinetas.
+  - Ahora la parte grafica, y aqui empieza el segundo bloque de la clase.
+
+**Ahora la parte grafica, y aqui empieza el segundo bloque de la clase (2/2)** — 3 vinetas.
+
+**class VetCareBuscarExpediente** — 11 vinetas.
+
+**VetCareBuscarExpediente.java — VetCareBuscarExpediente()** — 7 vinetas.
+
+**VetCareBuscarExpediente.java — cargarDatosDePrueba()** — 10 vinetas.
+
+**VetCareBuscarExpediente.java — guardar()** — 12 vinetas.
+
+**VetCareBuscarExpediente.java — compararBusquedas() (1/2)** — 20 vinetas.
+
+**VetCareBuscarExpediente.java — compararBusquedas() (2/2)** — 11 vinetas.
+
+**VetCareBuscarExpediente.java — construirInterfaz() (1/2)** — 20 vinetas.
+
+**VetCareBuscarExpediente.java — construirInterfaz() (2/2)** — 5 vinetas.
+
+**VetCareBuscarExpediente.java — buscar() (1/2)** — 20 vinetas.
+
+**VetCareBuscarExpediente.java — buscar() (2/2)** — 2 vinetas.
+
+**VetCareBuscarExpediente.java — main()** — 6 vinetas.
+
+**VetCareBuscarExpediente.java — class Expediente** — 8 vinetas.
+
+**VetCareBuscarExpediente.java — Expediente()** — 15 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente busca la ficha H-5000 dentro de un archivo historico de 5.000 expedientes, primero recorriendo un ArrayList y luego con get() sobre un HashMap comparando los nanosegundos, y despues ejecuta la misma busqueda desde una ventana Swing escrita linea por linea.

@@ -19,13 +19,23 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **Un requerimiento no es lo que el cliente dijo, es lo que el sistema... (2/2)** — 3 vinetas.
 
-**Con las necesidades en la mano se separan dos familias** — 7 vinetas.
+**Con las necesidades en la mano se separan dos familias (1/2)** — 3 vinetas.
+  - Con las necesidades en la mano se separan dos familias.
+  - Esa separacion importa porque el RF se prueba haciendo clic y el RNF se prueba midiendo o intentando lo prohibido.
 
-**La regla de oro del oficio es dura y se enuncia asi: si no se puede...** — 7 vinetas.
+**Con las necesidades en la mano se separan dos familias (2/2)** — 2 vinetas.
 
-**Priorizar no es ordenar por gusto sino decidir con el cliente que pasa...** — 7 vinetas.
+**La regla de oro del oficio es dura y se enuncia asi: si no se puede... (1/2)** — 5 vinetas.
 
-**El ultimo pedazo es la trazabilidad, que es poder seguir cada requisito...** — 7 vinetas.
+**La regla de oro del oficio es dura y se enuncia asi: si no se puede... (2/2)** — 2 vinetas.
+
+**Priorizar no es ordenar por gusto sino decidir con el cliente que pasa... (1/2)** — 4 vinetas.
+
+**Priorizar no es ordenar por gusto sino decidir con el cliente que pasa... (2/2)** — 3 vinetas.
+
+**El ultimo pedazo es la trazabilidad, que es poder seguir cada requisito...** — 4 vinetas.
+  - Se lleva en una matriz simple de cuatro columnas y se actualiza cada clase.
+  - Esto no es burocracia: es lo que permite que cuando el cliente cambie de opinion, usted sepa en dos minutos que se rompe y cuanto cuesta; y en el Proyecto Integrador es lo que hace posible que el companero que solo cursa Programacion II reciba estos planos y sepa exactamente que implementar y por que, sin tener que volver a entrevistar al veterinario.
 
 
 **Demo que usted debe poder repetir:** El docente toma en vivo dos frases crudas de la entrevista al Dr. Ramirez y las convierte, frente al grupo, en un RF y un RNF usando la plantilla.

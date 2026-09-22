@@ -20,20 +20,58 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **Refactorizar es cambiar la forma interna del código sin cambiar ni un... (2/2)** — 3 vinetas.
 
 **Un code smell es un síntoma en el código que casi siempre anuncia un... (1/2)** — 6 vinetas.
+  - Quinto, el catch vacío que se traga la IOException y deja al usuario creyendo que guardó.
 
-**Un code smell es un síntoma en el código que casi siempre anuncia un... (2/2)** — 4 vinetas.
+**Un code smell es un síntoma en el código que casi siempre anuncia un... (2/2)** — 3 vinetas.
 
 **Persistencia es lograr que los datos sobrevivan al proceso que los creó (1/2)** — 5 vinetas.
+  - Guardar en disco significa convertir cada objeto Mascota en texto y escribirlo en un archivo que queda en el computador.
 
-**Persistencia es lograr que los datos sobrevivan al proceso que los creó (2/2)** — 4 vinetas.
+**Persistencia es lograr que los datos sobrevivan al proceso que los creó (2/2)** — 3 vinetas.
 
-**Un archivo abierto es un recurso del sistema operativo, y todo recurso... (1/2)** — 5 vinetas.
+**Un archivo abierto es un recurso del sistema operativo, y todo recurso... (1/2)** — 4 vinetas.
+  - Por eso el error más desconcertante para un principiante es este: el programa corre sin lanzar ninguna excepción, dice 'guardado', y el archivo mascotas.csv aparece con cero bytes.
+  - Reemplaza al viejo patrón de finally con verificación de null, que casi nadie escribe bien.
 
-**Un archivo abierto es un recurso del sistema operativo, y todo recurso... (2/2)** — 4 vinetas.
+**Un archivo abierto es un recurso del sistema operativo, y todo recurso... (2/2)** — 3 vinetas.
 
-**La persistencia se conecta al ciclo de vida de la aplicación en dos... (1/2)** — 4 vinetas.
+**La persistencia se conecta al ciclo de vida de la aplicación en dos... (1/2)** — 3 vinetas.
+  - Cargar al arrancar significa que el main construye el repositorio, pide cargar() y solo después muestra la ventana con la tabla ya poblada.
+  - Por eso conviene imprimir una vez ruta.toAbsolutePath() para que el estudiante sepa dónde buscarlo en vez de jurar que el programa no guardó nada.
 
-**La persistencia se conecta al ciclo de vida de la aplicación en dos... (2/2)** — 4 vinetas.
+**La persistencia se conecta al ciclo de vida de la aplicación en dos... (2/2)** — 3 vinetas.
+
+**VetCarePersistencia.java — class VetCarePersistencia** — 2 vinetas.
+
+**VetCarePersistencia.java — main() (1/2)** — 20 vinetas.
+
+**VetCarePersistencia.java — main() (2/2)** — 11 vinetas.
+
+**VetCarePersistencia.java — siguienteId() (1/2)** — 20 vinetas.
+
+**VetCarePersistencia.java — siguienteId() (2/2)** — 1 vinetas.
+
+**VetCarePersistencia.java — class Mascota** — 8 vinetas.
+
+**VetCarePersistencia.java — Mascota()** — 8 vinetas.
+
+**VetCarePersistencia.java — class RepositorioMascotasCSV** — 8 vinetas.
+
+**VetCarePersistencia.java — RepositorioMascotasCSV()** — 4 vinetas.
+
+**VetCarePersistencia.java — rutaAbsoluta()** — 5 vinetas.
+
+**VetCarePersistencia.java — guardar()** — 14 vinetas.
+
+**VetCarePersistencia.java — cargar() (1/2)** — 20 vinetas.
+
+**VetCarePersistencia.java — cargar() (2/2)** — 5 vinetas.
+
+**VetCarePersistencia.java — aLinea()** — 8 vinetas.
+
+**VetCarePersistencia.java — desdeLinea()** — 19 vinetas.
+
+**VetCarePersistencia.java — limpiar()** — 8 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente registra una mascota, cierra la aplicación, la vuelve a abrir y la mascota sigue ahí; enseguida abre mascotas.csv en el Bloc de notas para mostrar la línea que escribió el programa.

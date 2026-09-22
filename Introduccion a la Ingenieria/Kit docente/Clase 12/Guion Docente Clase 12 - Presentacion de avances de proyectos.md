@@ -33,21 +33,35 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: «no, ahí no, toca acá» - diapositiva 4
 
-Proyectado en la lamina «La pregunta de entrada: «no, ahí no, toca acá» (1/2)» (6 vinetas).
+Proyectado en la lamina «La pregunta de entrada: «no, ahí no, toca acá» (1/2)» (3 vinetas).
+
+- El gancho de hoy funciona porque todos los equipos van a reconocerse en él.
+
+- Esa frase es el dato más valioso que el equipo tiene hoy, y viene disfrazada de incomodidad.
+
+- Y en la vida real nadie va a estar al lado del usuario para aclarárselo.
 
 - Vale la pena decirlo con una frase que se les quede: **la persona que prueba nunca se equivoca; si se perdió, el diseño la perdió.** Aproveche la apertura para tomar el pulso operativo: en el muro, cada equipo escribe **cuántas veces tuvo que intervenir**.
 
+- Ese número, además de romper el hielo, le dice de inmediato quién hizo la prueba y quién no.
+
 ### Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso - diapositivas 5 y 6
 
-Proyectado en la lamina «La pregunta de entrada: «no, ahí no, toca acá» (2/2)» (3 vinetas).
+Proyectado en la lamina «La pregunta de entrada: «no, ahí no, toca acá» (2/2)» (2 vinetas).
 
 ### Qué es un avance: cinco minutos que no repiten nada - diapositiva 7
 
-Proyectado en la lamina «Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso (1/3)» (7 vinetas).
+Proyectado en la lamina «Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso (1/3)» (6 vinetas).
+
+- Por eso en la industria se observa y se cronometra, en vez de preguntar «¿le gustó?» — exactamente la trampa que vieron en la sesión 8. **Paso 2: escribir el tropiezo, no la solución.** Los estudiantes van a saltar directo a arreglar.
+
+- Uno de flujo exige reordenar pantallas.
+
+- Eso ya lo practicaron con el alcance mínimo de la sesión 8 y con los descartes de la sesión 11: es la misma disciplina.
 
 ### Dar y recibir: la única revisión externa gratis del semestre - diapositivas 8 y 9
 
-Proyectado en la lamina «Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso (2/3)» (7 vinetas).
+Proyectado en la lamina «Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso (2/3)» (5 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 12 - Presentacion de avances de proyectos/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.

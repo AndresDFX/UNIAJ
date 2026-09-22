@@ -34,23 +34,25 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: la solución disfrazada de problema - diapositiva 4
 
-Proyectado en la lamina «La pregunta de entrada: la solución disfrazada de problema» (6 vinetas).
+Proyectado en la lamina «La pregunta de entrada: la solución disfrazada de problema (1/2)» (3 vinetas).
 
 ### Las tres cosas que se confunden y cómo se escribe un problema - diapositiva 5
 
-Proyectado en la lamina «Las tres cosas que se confunden y cómo se escribe un problema (1/2)» (7 vinetas).
+Proyectado en la lamina «La pregunta de entrada: la solución disfrazada de problema (2/2)» (3 vinetas).
 
 ### El árbol del problema: la herramienta que evita las soluciones cosméticas - diapositiva 6
 
-Proyectado en la lamina «Las tres cosas que se confunden y cómo se escribe un problema (2/2)» (6 vinetas).
+Proyectado en la lamina «Las tres cosas que se confunden y cómo se escribe un problema (1/3)» (5 vinetas).
+
+- Tiene sujeto (los usuarios), tiene el qué (no saben la disponibilidad), tiene la consecuencia (viajes en vano) y tiene una cifra.
 
 ### La línea base y los cuatro criterios de viabilidad - diapositivas 7 y 8
 
-Proyectado en la lamina «El árbol del problema: la herramienta que evita las soluciones cosméticas (1/2)» (7 vinetas).
+Proyectado en la lamina «Las tres cosas que se confunden y cómo se escribe un problema (2/3)» (5 vinetas).
 
 ### Cómo cerrar el corte: la ficha y la evaluación en ExamLab - diapositiva 9
 
-Proyectado en la lamina «El árbol del problema: la herramienta que evita las soluciones cosméticas (2/2)» (8 vinetas).
+Proyectado en la lamina «Las tres cosas que se confunden y cómo se escribe un problema (3/3)» (2 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 6 - Analisis de problemas tecnologicos del entorno/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -64,20 +66,24 @@ Numeración real del deck `Clases/Clase 6 - Analisis de problemas tecnologicos d
 7. La línea base: la cifra de hoy
 8. Cuándo un problema cabe en un semestre
 9. Cómo cierra el corte 1 hoy
-10. La pregunta de entrada: la solución disfrazada de problema
-11. Las tres cosas que se confunden y cómo se escribe un problema (1/2)
-12. Las tres cosas que se confunden y cómo se escribe un problema (2/2)
-13. El árbol del problema: la herramienta que evita las soluciones cosméticas (1/2)
-14. El árbol del problema: la herramienta que evita las soluciones cosméticas (2/2)
-15. La línea base y los cuatro criterios de viabilidad (1/3)
-16. La línea base y los cuatro criterios de viabilidad (2/3)
-17. La línea base y los cuatro criterios de viabilidad (3/3)
-18. Cómo cerrar el corte: la ficha y la evaluación en ExamLab (1/2)
-19. Cómo cerrar el corte: la ficha y la evaluación en ExamLab (2/2)
-20. Taller de hoy: Ficha del problema del proyecto
-21. Cómo se expone en 3 minutos
-22. Para la Clase 7
-23. Cierre · Cerró el corte 1 · nos vemos en la sesión 7
+10. La pregunta de entrada: la solución disfrazada de problema (1/2)
+11. La pregunta de entrada: la solución disfrazada de problema (2/2)
+12. Las tres cosas que se confunden y cómo se escribe un problema (1/3)
+13. Las tres cosas que se confunden y cómo se escribe un problema (2/3)
+14. Las tres cosas que se confunden y cómo se escribe un problema (3/3)
+15. El árbol del problema: la herramienta que evita las soluciones cosméticas (1/3)
+16. El árbol del problema: la herramienta que evita las soluciones cosméticas (2/3)
+17. El árbol del problema: la herramienta que evita las soluciones cosméticas (3/3)
+18. La línea base y los cuatro criterios de viabilidad (1/4)
+19. La línea base y los cuatro criterios de viabilidad (2/4)
+20. La línea base y los cuatro criterios de viabilidad (3/4)
+21. La línea base y los cuatro criterios de viabilidad (4/4)
+22. Cómo cerrar el corte: la ficha y la evaluación en ExamLab (1/2)
+23. Cómo cerrar el corte: la ficha y la evaluación en ExamLab (2/2)
+24. Taller de hoy: Ficha del problema del proyecto
+25. Cómo se expone en 3 minutos
+26. Para la Clase 7
+27. Cierre · Cerró el corte 1 · nos vemos en la sesión 7
 
 ## Plan de clase minuto a minuto (90 min)
 

@@ -31,7 +31,9 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: la paradoja de la fidelidad - diapositiva 4
 
-Proyectado en la lamina «La pregunta de entrada: la paradoja de la fidelidad (1/2)» (5 vinetas).
+Proyectado en la lamina «La pregunta de entrada: la paradoja de la fidelidad (1/2)» (4 vinetas).
+
+- Suele salir en dos o tres intentos, y sale mejor de ellos que del docente.
 
 ### Qué es un prototipo: una pregunta hecha objeto - diapositiva 5
 
@@ -41,13 +43,19 @@ Proyectado en la lamina «La pregunta de entrada: la paradoja de la fidelidad (2
 
 Proyectado en la lamina «Qué es un prototipo: una pregunta hecha objeto (1/2)» (4 vinetas).
 
+- Pídale a cada equipo, en la sala, que escriba la pregunta de su prototipo en una línea antes de dibujar nada. **No es la versión 1 a medias**, y esta distinción es la que más cuesta en primer semestre.
+
+- Un prototipo que solo vio el equipo no probó nada.
+
 ### Los cinco pasos de una pantalla, y el estado de error - diapositiva 7
 
-Proyectado en la lamina «Qué es un prototipo: una pregunta hecha objeto (2/2)» (4 vinetas).
+Proyectado en la lamina «Qué es un prototipo: una pregunta hecha objeto (2/2)» (2 vinetas).
 
 ### Elegir la herramienta por la pregunta, y las dos advertencias - diapositivas 8 y 9
 
-Proyectado en la lamina «Fidelidad: cada nivel responde una pregunta distinta (1/2)» (3 vinetas).
+Proyectado en la lamina «Fidelidad: cada nivel responde una pregunta distinta (1/2)» (2 vinetas).
+
+- Vale la pena conectarlo con la curva de la sesión 7: los niveles de fidelidad son esa misma curva vista desde el diseño.
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 10 - Herramientas digitales aplicadas a la Ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -67,14 +75,16 @@ Numeración real del deck `Clases/Clase 10 - Herramientas digitales aplicadas a 
 13. Qué es un prototipo: una pregunta hecha objeto (2/2)
 14. Fidelidad: cada nivel responde una pregunta distinta (1/2)
 15. Fidelidad: cada nivel responde una pregunta distinta (2/2)
-16. Los cinco pasos de una pantalla, y el estado de error (1/2)
-17. Los cinco pasos de una pantalla, y el estado de error (2/2)
-18. Elegir la herramienta por la pregunta, y las dos advertencias (1/2)
-19. Elegir la herramienta por la pregunta, y las dos advertencias (2/2)
-20. Taller de hoy: Prototipo de baja fidelidad
-21. Cómo se expone en 3 minutos
-22. Para la Clase 11
-23. Cierre · Nos vemos en la sesión 11
+16. Los cinco pasos de una pantalla, y el estado de error (1/3)
+17. Los cinco pasos de una pantalla, y el estado de error (2/3)
+18. Los cinco pasos de una pantalla, y el estado de error (3/3)
+19. Elegir la herramienta por la pregunta, y las dos advertencias (1/3)
+20. Elegir la herramienta por la pregunta, y las dos advertencias (2/3)
+21. Elegir la herramienta por la pregunta, y las dos advertencias (3/3)
+22. Taller de hoy: Prototipo de baja fidelidad
+23. Cómo se expone en 3 minutos
+24. Para la Clase 11
+25. Cierre · Nos vemos en la sesión 11
 
 ## Plan de clase minuto a minuto (90 min)
 

@@ -15,19 +15,29 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Un paquete de diseño no es una carpeta de archivos sueltos: es un...** — 6 vinetas.
+**Un paquete de diseño no es una carpeta de archivos sueltos: es un...** — 3 vinetas.
+  - Asi es como en VetCare aparece un requisito RF-07 que promete recordatorio de cita por mensajeria, un diagrama de casos de uso donde no existe ningun caso de uso de recordatorio, y un diagrama de clases donde no hay nada parecido a una clase Notificacion.
+  - Un defecto de consistencia cuesta poco corregirlo hoy, en una hoja, y cuesta carisimo corregirlo cuando ya se construyo sobre el, porque para entonces hay pantallas, tablas y codigo apoyados en la contradiccion.
+  - Por eso esta sesion no agrega tema nuevo: agrega confianza en lo que ya existe, que es un trabajo de arquitecto tan legitimo como dibujar.
 
 **La herramienta central para eso es la trazabilidad, y se verifica en... (1/2)** — 5 vinetas.
 
 **La herramienta central para eso es la trazabilidad, y se verifica en... (2/2)** — 4 vinetas.
 
-**El segundo eje de la auditoria es el lenguaje (1/2)** — 5 vinetas.
+**El segundo eje de la auditoria es el lenguaje (1/2)** — 4 vinetas.
+  - Un sistema se diseña bien cuando existe un solo nombre para cada concepto y todos lo usan, desde la entrevista con la clinica hasta el nombre de la clase.
 
 **El segundo eje de la auditoria es el lenguaje (2/2)** — 3 vinetas.
 
-**La revision entre pares se hace con reglas o no sirve** — 8 vinetas.
+**La revision entre pares se hace con reglas o no sirve (1/2)** — 4 vinetas.
+  - Eso es util.
 
-**Todo lo que se encuentra se convierte en backlog de deuda de diseño, no...** — 8 vinetas.
+**La revision entre pares se hace con reglas o no sirve (2/2)** — 3 vinetas.
+
+**Todo lo que se encuentra se convierte en backlog de deuda de diseño, no... (1/2)** — 4 vinetas.
+  - Todo lo que se encuentra se convierte en backlog de deuda de diseño, no en angustia.
+
+**Todo lo que se encuentra se convierte en backlog de deuda de diseño, no... (2/2)** — 3 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente proyecta el paquete de un equipo ficticio de VetCare y encuentra en vivo tres inconsistencias: un RF sin caso de uso, una clase llamada Dueño que en el catalogo de requisitos se llama Propietario, y un caso de uso que ninguna clase puede soportar.

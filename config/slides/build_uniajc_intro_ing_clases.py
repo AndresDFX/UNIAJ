@@ -38,6 +38,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from uniajc_slides_engine import (  # noqa: E402
     new_prs, class_cover, content_slide, block_timeline_slide, hook_slide,
+    pseudo_code_slide,
     before_after_slide, cards_grid_slide, steps_visual_slide, checklist_slide,
     box_note_slide, closing_slide, table_content, two_column_slide,
     diagram_boxes_slide,
@@ -289,8 +290,11 @@ def build_pptx(n):
         idx += 1
 
     # El desarrollo del tema, proyectado: hasta ahora vivia solo en el guion.
-    for _tit, _vin, _ in _slides_desarrollo(t):
-        content_slide(prs, t_reg(_tit), _vin, idx=idx)
+    for _tit, _items, _, _tipo in _slides_desarrollo(t):
+        if _tipo == "codigo":
+            pseudo_code_slide(prs, t_reg(_tit), _items, idx=idx)
+        else:
+            content_slide(prs, t_reg(_tit), _items, idx=idx)
         idx += 1
 
     tl = t["taller"]
@@ -413,7 +417,7 @@ def md_guion(n, titulos):
     ]
     # El contenido de cada bloque esta PROYECTADO (una lamina de desarrollo por bloque).
     # Aqui queda lo que no cabe en pantalla: donde esta cada cosa y que subrayar.
-    for b, (_tit, _vin, _notas) in zip(t["fundamento"], _slides_desarrollo(t)):
+    for b, (_tit, _vin, _notas, _tipo) in zip(t["fundamento"], _slides_desarrollo(t)):
         L += ["### %s - %s" % (b["titulo"], _etiqueta_slides(titulos, b["slide"], n)), ""]
         L += ["Proyectado en la lamina «%s» (%d vinetas)." % (_tit, len(_vin)), ""]
         for x in _notas:

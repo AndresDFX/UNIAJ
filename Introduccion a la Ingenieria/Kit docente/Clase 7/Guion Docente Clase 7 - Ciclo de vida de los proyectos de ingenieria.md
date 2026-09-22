@@ -31,25 +31,39 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: la curva del costo del cambio - diapositiva 4
 
-Proyectado en la lamina «La pregunta de entrada: la curva del costo del cambio» (8 vinetas).
+Proyectado en la lamina «La pregunta de entrada: la curva del costo del cambio» (4 vinetas).
+
+- Mover una pared en el plano cuesta un borrador; en el ladrillo cuesta tumbar y volver a levantar; en la casa entregada cuesta la obra, la mudanza y el enojo del dueño.
+
+- Lo que hay que hacer explícito en el minuto 12 es que **en software la curva es igual pero se ve menos**, y ahí está el problema.
+
+- Por eso en ingeniería de software hubo que inventar fases, revisiones y criterios de aceptación: son el equivalente a mirar el plano antes de pedir el cemento.
+
+- Recoja las respuestas en el muro.
 
 ### Las seis fases, y por qué el orden importa - diapositiva 5
 
-Proyectado en la lamina «Las seis fases, y por qué el orden importa (1/2)» (5 vinetas).
+Proyectado en la lamina «Las seis fases, y por qué el orden importa (1/2)» (4 vinetas).
 
 - Conviene presentar las fases como una cadena de preguntas, no como una lista de etapas administrativas.
 
+- Eso reordena la percepción del curso: no estaban haciendo un ejercicio, estaban cerrando una fase. **Requisitos** responde *qué tiene que hacer la solución para resolver eso, y cómo sabremos que lo hace*.
+
+- Cada fase existe porque descubrir un error en ella cuesta menos que descubrirlo en la siguiente.
+
 ### La curva del costo del cambio: qué se puede afirmar y qué no - diapositiva 6
 
-Proyectado en la lamina «Las seis fases, y por qué el orden importa (2/2)» (5 vinetas).
+Proyectado en la lamina «Las seis fases, y por qué el orden importa (2/2)» (4 vinetas).
 
 ### Cascada, iterativo, y lo que Royce dijo de verdad - diapositiva 7
 
 Proyectado en la lamina «La curva del costo del cambio: qué se puede afirmar y qué no (1/2)» (5 vinetas).
 
+- La dirección de la curva no está en discusión; la pendiente sí.
+
 ### Requisitos, criterios de aceptación y hitos: lo que se entrega hoy - diapositivas 8 y 9
 
-Proyectado en la lamina «La curva del costo del cambio: qué se puede afirmar y qué no (2/2)» (4 vinetas).
+Proyectado en la lamina «La curva del costo del cambio: qué se puede afirmar y qué no (2/2)» (3 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 7 - Ciclo de vida de los proyectos de ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.

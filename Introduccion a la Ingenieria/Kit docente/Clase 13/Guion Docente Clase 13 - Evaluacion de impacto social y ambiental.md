@@ -31,11 +31,15 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: ¿quién queda peor? - diapositiva 4
 
-Proyectado en la lamina «La pregunta de entrada: ¿quién queda peor? (1/2)» (7 vinetas).
+Proyectado en la lamina «La pregunta de entrada: ¿quién queda peor? (1/2)» (6 vinetas).
+
+- Ninguno de los dos usa el sistema para consultar, y a los dos les cambió la vida por él.
+
+- Ahí ya sabe con quién tiene que sentarse en las salas de grupo.
 
 ### Impacto no es intención, y el indirecto es el que muerde - diapositiva 5
 
-Proyectado en la lamina «La pregunta de entrada: ¿quién queda peor? (2/2)» (4 vinetas).
+Proyectado en la lamina «La pregunta de entrada: ¿quién queda peor? (2/2)» (3 vinetas).
 
 ### Los afectados que no eligieron nada - diapositiva 6
 
@@ -49,7 +53,13 @@ Proyectado en la lamina «Impacto no es intención, y el indirecto es el que mue
 
 ### Del adjetivo al indicador, y las tres honestidades - diapositivas 9 y 10
 
-Proyectado en la lamina «Los afectados que no eligieron nada (1/2)» (7 vinetas).
+Proyectado en la lamina «Los afectados que no eligieron nada (1/2)» (6 vinetas).
+
+- Casi todos lo olvidaron, y ahí está la mitad del trabajo de hoy.
+
+- Vale la pena señalar la lección de método —es la tercera vez en el curso que un material viejo resuelve un problema nuevo—: **documentar es una inversión, no un trámite.** **Paso 2: seguir la cadena de trabajo.** ¿A quién le llega más trabajo y a quién menos?
+
+- Quien no tiene celular, datos, lectura fluida, buena vista, o el idioma.
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 13 - Evaluacion de impacto social y ambiental/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -70,14 +80,15 @@ Numeración real del deck `Clases/Clase 13 - Evaluacion de impacto social y ambi
 14. Impacto no es intención, y el indirecto es el que muerde (2/2)
 15. Los afectados que no eligieron nada (1/2)
 16. Los afectados que no eligieron nada (2/2)
-17. La matriz, la calificación y los límites del método (1/2)
-18. La matriz, la calificación y los límites del método (2/2)
-19. Del adjetivo al indicador, y las tres honestidades (1/2)
-20. Del adjetivo al indicador, y las tres honestidades (2/2)
-21. Taller de hoy: Matriz de impacto social y ambiental
-22. Cómo se expone en 3 minutos
-23. Para la Clase 14
-24. Cierre · Nos vemos en la Clase 14
+17. La matriz, la calificación y los límites del método (1/3)
+18. La matriz, la calificación y los límites del método (2/3)
+19. La matriz, la calificación y los límites del método (3/3)
+20. Del adjetivo al indicador, y las tres honestidades (1/2)
+21. Del adjetivo al indicador, y las tres honestidades (2/2)
+22. Taller de hoy: Matriz de impacto social y ambiental
+23. Cómo se expone en 3 minutos
+24. Para la Clase 14
+25. Cierre · Nos vemos en la Clase 14
 
 ## Plan de clase minuto a minuto (90 min)
 

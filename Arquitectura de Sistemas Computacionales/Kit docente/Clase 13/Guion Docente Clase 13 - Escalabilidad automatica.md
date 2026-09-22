@@ -24,36 +24,50 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 6] Clase autonoma: escalabilidad no es rendimiento** — 6 vinetas.
+**[Slide 6] Clase autonoma: escalabilidad no es rendimiento** — 4 vinetas.
+  - Un sistema puede ser rapido y no escalar, y puede escalar y ser lento.
+  - Por eso el orden del temario no es casual: primero se mide y se identifica el cuello de botella, y solo despues se decide como agregar capacidad.
 
-**[Slide 7] Escalar vertical y horizontalmente: las dos formas de agregar capacidad (1/2)** — 5 vinetas.
+**[Slide 7] Escalar vertical y horizontalmente: las dos formas de agregar capacidad (1/2)** — 4 vinetas.
+  - Ademas una sola maquina grande sigue siendo un unico punto de falla.
+  - No tiene techo cercano, mejora la disponibilidad porque si una instancia muere las otras siguen atendiendo, y permite crecer en pasos pequenos y baratos.
 
-**[Slide 8] Escalar vertical y horizontalmente: las dos formas de agregar capacidad (2/2)** — 4 vinetas.
+**[Slide 8] Escalar vertical y horizontalmente: las dos formas de agregar capacidad (2/2)** — 3 vinetas.
 
 **[Slide 9] Ausencia de estado: donde mas estudiantes fallan (1/2)** — 4 vinetas.
+  - Un servicio sin estado no guarda en la memoria de su propio proceso ninguna informacion que necesite en la siguiente peticion; todo lo que deba persistir vive en un almacen compartido, sea la base de datos, una cache comun o el token que trae el cliente.
 
-**[Slide 10] Ausencia de estado: donde mas estudiantes fallan (2/2)** — 3 vinetas.
+**[Slide 10] Ausencia de estado: donde mas estudiantes fallan (2/2)** — 2 vinetas.
 
-**[Slide 11] Las cinco piezas que el entregable debe nombrar (1/2)** — 7 vinetas.
+**[Slide 11] Las cinco piezas que el entregable debe nombrar (1/2)** — 6 vinetas.
+  - Cada numero se justifica.
 
 **[Slide 12] Las cinco piezas que el entregable debe nombrar (2/2)** — 5 vinetas.
 
-**[Slide 13] El limite fisico: la instancia nueva no aparece al instante** — 7 vinetas.
+**[Slide 13] El limite fisico: la instancia nueva no aparece al instante (1/2)** — 4 vinetas.
 
-**[Slide 14] Elegir la metrica: la decision mas fina del tema (1/2)** — 4 vinetas.
+**[Slide 14] El limite fisico: la instancia nueva no aparece al instante (2/2)** — 3 vinetas.
 
-**[Slide 15] Elegir la metrica: la decision mas fina del tema (2/2)** — 3 vinetas.
+**[Slide 15] Elegir la metrica: la decision mas fina del tema (1/2)** — 3 vinetas.
+  - Regla de bolsillo: la metrica correcta es la que mide el recurso que se agota primero, es decir el cuello de botella identificado en la clase anterior.
+  - De ahi que el entregable de hoy no se pueda hacer bien si el de la Clase 12 quedo vacio.
 
-**[Slide 16] Lo que NO escala: la mitad del entregable (1/2)** — 6 vinetas.
+**[Slide 16] Elegir la metrica: la decision mas fina del tema (2/2)** — 2 vinetas.
 
-**[Slide 17] Lo que NO escala: la mitad del entregable (2/2)** — 6 vinetas.
+**[Slide 17] Lo que NO escala: la mitad del entregable (1/2)** — 5 vinetas.
+  - Lo que NO escala es la mitad del entregable y separa una sustentacion seria de una lista de deseos.
+  - Multiplicar la capa sin verificar el limite del recurso compartido no mejora el sistema, lo rompe.
 
-**[Slide 18] Preguntas frecuentes y cierre conceptual () (1/3)** — 6 vinetas.
+**[Slide 18] Lo que NO escala: la mitad del entregable (2/2)** — 5 vinetas.
+
+**[Slide 19] Preguntas frecuentes y cierre conceptual () (1/4)** — 4 vinetas.
   - Tres preguntas aparecen sin falta en una clase autonoma como esta y conviene responderlas por escrito en el foro.
 
-**[Slide 19] Preguntas frecuentes y cierre conceptual () (2/3)** — 7 vinetas.
+**[Slide 20] Preguntas frecuentes y cierre conceptual () (2/4)** — 4 vinetas.
 
-**[Slide 20] Preguntas frecuentes y cierre conceptual () (3/3)** — 4 vinetas.
+**[Slide 21] Preguntas frecuentes y cierre conceptual () (3/4)** — 5 vinetas.
+
+**[Slide 22] Preguntas frecuentes y cierre conceptual () (4/4)** — 4 vinetas.
 
 
 ## Referencias a diapositivas
@@ -72,21 +86,23 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 10. Ausencia de estado: donde mas estudiantes fallan (2/2)
 11. Las cinco piezas que el entregable debe nombrar (1/2)
 12. Las cinco piezas que el entregable debe nombrar (2/2)
-13. El limite fisico: la instancia nueva no aparece al instante
-14. Elegir la metrica: la decision mas fina del tema (1/2)
-15. Elegir la metrica: la decision mas fina del tema (2/2)
-16. Lo que NO escala: la mitad del entregable (1/2)
-17. Lo que NO escala: la mitad del entregable (2/2)
-18. Preguntas frecuentes y cierre conceptual () (1/3)
-19. Preguntas frecuentes y cierre conceptual () (2/3)
-20. Preguntas frecuentes y cierre conceptual () (3/3)
-21. Politica de autoescalado (tabla, no prosa)
-22. Herramientas de hoy
-23. Del boceto a ExamLab (diagrama)
-24. PI CloudLite — entregable de hoy
-25. Manos a la obra (paso a paso)
-26. Para continuar (PI)
-27. Clase 13 · PI en movimiento
+13. El limite fisico: la instancia nueva no aparece al instante (1/2)
+14. El limite fisico: la instancia nueva no aparece al instante (2/2)
+15. Elegir la metrica: la decision mas fina del tema (1/2)
+16. Elegir la metrica: la decision mas fina del tema (2/2)
+17. Lo que NO escala: la mitad del entregable (1/2)
+18. Lo que NO escala: la mitad del entregable (2/2)
+19. Preguntas frecuentes y cierre conceptual () (1/4)
+20. Preguntas frecuentes y cierre conceptual () (2/4)
+21. Preguntas frecuentes y cierre conceptual () (3/4)
+22. Preguntas frecuentes y cierre conceptual () (4/4)
+23. Politica de autoescalado (tabla, no prosa)
+24. Herramientas de hoy
+25. Del boceto a ExamLab (diagrama)
+26. PI CloudLite — entregable de hoy
+27. Manos a la obra (paso a paso)
+28. Para continuar (PI)
+29. Clase 13 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 

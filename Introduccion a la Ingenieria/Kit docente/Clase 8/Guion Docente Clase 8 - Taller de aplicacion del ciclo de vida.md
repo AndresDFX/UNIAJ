@@ -33,19 +33,35 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: 45 minutos y una fase saltada - diapositiva 4
 
-Proyectado en la lamina «La pregunta de entrada: 45 minutos y una fase saltada (1/2)» (5 vinetas).
+Proyectado en la lamina «La pregunta de entrada: 45 minutos y una fase saltada» (5 vinetas).
+
+- El código llevaba años funcionando.
+
+- Lo que falló fue el **paso controlado de una fase a la siguiente**: un despliegue que dejó una versión antigua activa en uno de los servidores, un sistema automático operando a velocidad de máquina, y ninguna manera de frenar rápido cuando empezó a hacer daño.
+
+- En cuestión de minutos las pérdidas fueron enormes y la firma no sobrevivió como empresa independiente.
+
+- La fuerza está en la pregunta, y el nombre lo pueden buscar ellos cuando se les pida citar la fuente.
 
 ### Los cuatro casos: qué contar y cómo exigir la fuente - diapositiva 5
 
-Proyectado en la lamina «La pregunta de entrada: 45 minutos y una fase saltada (2/2)» (4 vinetas).
+Proyectado en la lamina «Los cuatro casos: qué contar y cómo exigir la fuente (1/2)» (5 vinetas).
+
+- Cuatro casos, cinco minutos en total, un minuto y algo por caso.
+
+- Un sistema automatizado de manejo de maletas de una escala sin precedentes, contratado con el plazo de apertura ya fijado y sin pruebas a escala real; retrasó la apertura del aeropuerto muchos meses, funcionó parcialmente durante años y terminó abandonado.
+
+- La demanda del primer día era perfectamente previsible —una fecha anunciada, una población conocida— y aun así el sitio no aguantó.
 
 ### La matriz de decisión: cómo se decide sin que la decisión ya estuviera tomada - diapositiva 6
 
-Proyectado en la lamina «Los cuatro casos: qué contar y cómo exigir la fuente (1/2)» (6 vinetas).
+Proyectado en la lamina «Los cuatro casos: qué contar y cómo exigir la fuente (2/2)» (5 vinetas).
 
 ### Alcance mínimo y plan de validación: el entregable del taller - diapositivas 7 y 8
 
-Proyectado en la lamina «Los cuatro casos: qué contar y cómo exigir la fuente (2/2)» (7 vinetas).
+Proyectado en la lamina «La matriz de decisión: cómo se decide sin que la decisión ya estuviera tomada (1/2)» (5 vinetas).
+
+- «Elegimos la lista publicada en vez de la aplicación; perdemos la actualización en tiempo real y ganamos que funcione sin conexión y sin capacitar a nadie.» Un equipo que puede decir qué perdió entendió que estaba decidiendo, no acertando.
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 8 - Taller de aplicacion del ciclo de vida/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -58,18 +74,17 @@ Numeración real del deck `Clases/Clase 8 - Taller de aplicacion del ciclo de vi
 6. Cómo se decide entre dos alternativas
 7. Alcance mínimo: qué entra y qué no
 8. El plan de validación, y dos trampas
-9. La pregunta de entrada: 45 minutos y una fase saltada (1/2)
-10. La pregunta de entrada: 45 minutos y una fase saltada (2/2)
-11. Los cuatro casos: qué contar y cómo exigir la fuente (1/2)
-12. Los cuatro casos: qué contar y cómo exigir la fuente (2/2)
-13. La matriz de decisión: cómo se decide sin que la decisión ya estuviera tomada (1/2)
-14. La matriz de decisión: cómo se decide sin que la decisión ya estuviera tomada (2/2)
-15. Alcance mínimo y plan de validación: el entregable del taller (1/2)
-16. Alcance mínimo y plan de validación: el entregable del taller (2/2)
-17. Taller de hoy: Decisión de la solución y alcance mínimo
-18. Cómo se expone en 3 minutos
-19. Para la Clase 9
-20. Cierre · Nos vemos en la sesión 9
+9. La pregunta de entrada: 45 minutos y una fase saltada
+10. Los cuatro casos: qué contar y cómo exigir la fuente (1/2)
+11. Los cuatro casos: qué contar y cómo exigir la fuente (2/2)
+12. La matriz de decisión: cómo se decide sin que la decisión ya estuviera tomada (1/2)
+13. La matriz de decisión: cómo se decide sin que la decisión ya estuviera tomada (2/2)
+14. Alcance mínimo y plan de validación: el entregable del taller (1/2)
+15. Alcance mínimo y plan de validación: el entregable del taller (2/2)
+16. Taller de hoy: Decisión de la solución y alcance mínimo
+17. Cómo se expone en 3 minutos
+18. Para la Clase 9
+19. Cierre · Nos vemos en la sesión 9
 
 ## Plan de clase minuto a minuto (90 min)
 

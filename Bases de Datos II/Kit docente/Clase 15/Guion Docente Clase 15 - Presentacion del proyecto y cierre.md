@@ -24,37 +24,53 @@ del PI VetCare. La teoria se limita a desbloquear el taller.
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 4] Sustentar no es describir: el eje de toda la clase** — 8 vinetas.
+**[Slide 4] Sustentar no es describir: el eje de toda la clase (1/2)** — 5 vinetas.
+  - Eso convierte cada eleccion del ER en algo que se debe poder defender, y es exactamente lo que un evaluador (o un lider tecnico en una entrevista) va a probar con dos o tres preguntas bien elegidas.
 
-**[Slide 5] Las cuatro preguntas de por que que se hacen casi siempre (1/2)** — 4 vinetas.
+**[Slide 5] Sustentar no es describir: el eje de toda la clase (2/2)** — 2 vinetas.
 
-**[Slide 6] Las cuatro preguntas de por que que se hacen casi siempre (2/2)** — 3 vinetas.
+**[Slide 6] Las cuatro preguntas de por que que se hacen casi siempre (1/2)** — 3 vinetas.
+  - Esa segunda mitad es la que distingue al estudiante que entendio, porque normalizar no es un dogma sino un punto de partida del que se sale con razones escritas.
 
-**[Slide 7] La cuarta pregunta, la que mas se falla (1/2)** — 5 vinetas.
+**[Slide 7] Las cuatro preguntas de por que que se hacen casi siempre (2/2)** — 3 vinetas.
 
-**[Slide 8] La cuarta pregunta, la que mas se falla (2/2)** — 4 vinetas.
+**[Slide 8] La cuarta pregunta, la que mas se falla (1/2)** — 3 vinetas.
+  - La cuarta pregunta merece parrafo propio porque es la que mas se falla: por que esa regla esta en un disparador y no en la aplicacion.
+  - Si vive en la aplicacion, los dos ultimos caminos la evaden sin esfuerzo.
+  - Por eso la convencion sana, que el estudiante puede citar como criterio propio, es reservarlos para invariantes de integridad y auditoria, y dejar el flujo de negocio en procedimientos que se invocan explicitamente.
 
-**[Slide 9] Reproducible: un tercero llega a la misma base sin hablar con el autor (1/2)** — 7 vinetas.
+**[Slide 9] La cuarta pregunta, la que mas se falla (2/2)** — 3 vinetas.
+
+**[Slide 10] Reproducible: un tercero llega a la misma base sin hablar con el autor (1/3)** — 5 vinetas.
   - Esa es la definicion operativa y es la unica prueba que importa; el docente puede aplicarla literalmente abriendo el ZIP en un playground limpio y ejecutando.
   - Sobre esa base, cuatro detalles rompen la reproducibilidad y son los que el docente debe buscar primero al abrir el paquete.
 
-**[Slide 10] Reproducible: un tercero llega a la misma base sin hablar con el autor (2/2)** — 6 vinetas.
+**[Slide 11] Reproducible: un tercero llega a la misma base sin hablar con el autor (2/3)** — 5 vinetas.
 
-**[Slide 11] El reparto de los 5 a 8 minutos (1/2)** — 8 vinetas.
+**[Slide 12] Reproducible: un tercero llega a la misma base sin hablar con el autor (3/3)** — 3 vinetas.
 
-**[Slide 12] El reparto de los 5 a 8 minutos (2/2)** — 5 vinetas.
+**[Slide 13] El reparto de los 5 a 8 minutos (1/3)** — 5 vinetas.
+  - Lo que si hay que exigir dentro del turno es la ejecucion real: que el estudiante corra el procedimiento en el playground, con su caso valido y su caso invalido, en vez de proyectar capturas fijas, porque una consulta ejecutandose delante del evaluador es la evidencia mas dificil de fingir y la mas rapida de calificar.
 
-**[Slide 13] El Q&A de modelado, con las respuestas listas** — 8 vinetas.
+**[Slide 14] El reparto de los 5 a 8 minutos (2/3)** — 4 vinetas.
+
+**[Slide 15] El reparto de los 5 a 8 minutos (3/3)** — 2 vinetas.
+
+**[Slide 16] El Q&A de modelado, con las respuestas listas (1/2)** — 3 vinetas.
+  - El Q&A sobre modelado tiene preguntas que se repiten, y conviene que el docente tenga las respuestas listas para poder calificarlas y para poder formularlas.
   - Aqui vale la regla general del Q&A tecnico, que el docente debe anunciar antes de empezar: decir «no lo medimos» no penaliza si viene acompanado de como se mediria, por ejemplo «no medimos con volumen real porque el playground se reinicia, pero el plan de ejecucion pasa de recorrido completo a busqueda por indice, y la prueba seria cargar cincuenta mil citas y comparar los tiempos».
+  - Inventar un numero, en cambio, se cae con la siguiente pregunta y cuesta mucho mas que admitir el limite.
 
-**[Slide 14] Evaluar con rubrica: puntos a evidencia observable (1/2)** — 5 vinetas.
+**[Slide 17] El Q&A de modelado, con las respuestas listas (2/2)** — 3 vinetas.
 
-**[Slide 15] Evaluar con rubrica: puntos a evidencia observable (2/2)** — 3 vinetas.
+**[Slide 18] Evaluar con rubrica: puntos a evidencia observable (1/2)** — 5 vinetas.
 
-**[Slide 16] El cierre del curso: conectar lo hecho con el trabajo real (1/2)** — 4 vinetas.
+**[Slide 19] Evaluar con rubrica: puntos a evidencia observable (2/2)** — 3 vinetas.
+
+**[Slide 20] El cierre del curso: conectar lo hecho con el trabajo real** — 4 vinetas.
+  - Lo que el estudiante produjo (un ER justificado, un DDL con restricciones declarativas, una matriz de privilegios, procedimientos con manejo de errores, disparadores de auditoria, un analisis de plan de ejecucion y un contrato de operaciones) es literalmente el contenido de las tareas de un desarrollador de base de datos o de un administrador junior en su primer ano de trabajo.
   - Conviene tambien cerrar la duda sobre las herramientas, porque alguien la trae: Oracle Live SQL, DB Fiddle y draw.io se usaron por equidad y porque funcionan en cualquier navegador, no porque sean juguetes.
-
-**[Slide 17] El cierre del curso: conectar lo hecho con el trabajo real (2/2)** — 3 vinetas.
+  - Esa respuesta es la que mejor predice si aprendieron, y ademas le da al docente material real para ajustar el curso el proximo semestre.
 
 
 **Demo que usted debe poder repetir:** Checklist final de empaquetado del ZIP.
@@ -66,30 +82,33 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 1. Portada · Clase 15 · Presentacion PI · Cierre VetCare
 2. Encuadre de hoy · Objetivo PI
 3. Mapa del bloque de hoy (120 min)
-4. Sustentar no es describir: el eje de toda la clase
-5. Las cuatro preguntas de por que que se hacen casi siempre (1/2)
-6. Las cuatro preguntas de por que que se hacen casi siempre (2/2)
-7. La cuarta pregunta, la que mas se falla (1/2)
-8. La cuarta pregunta, la que mas se falla (2/2)
-9. Reproducible: un tercero llega a la misma base sin hablar con el autor (1/2)
-10. Reproducible: un tercero llega a la misma base sin hablar con el autor (2/2)
-11. El reparto de los 5 a 8 minutos (1/2)
-12. El reparto de los 5 a 8 minutos (2/2)
-13. El Q&A de modelado, con las respuestas listas
-14. Evaluar con rubrica: puntos a evidencia observable (1/2)
-15. Evaluar con rubrica: puntos a evidencia observable (2/2)
-16. El cierre del curso: conectar lo hecho con el trabajo real (1/2)
-17. El cierre del curso: conectar lo hecho con el trabajo real (2/2)
-18. Como se ordena la sesion de hoy
-19. Herramientas de hoy
-20. Sustentacion del PI — contexto / por que importa
-21. Sustentacion del PI — objetivo y criterios
-22. Sustentacion del PI — escenario / datos de partida
-23. Sustentacion del PI — pasos guiados
-24. Sustentacion del PI — pistas (checklist vacio)
-25. Criterios de exito / entregable
-26. Cierre del PI
-27. Cierre · Clase 15
+4. Sustentar no es describir: el eje de toda la clase (1/2)
+5. Sustentar no es describir: el eje de toda la clase (2/2)
+6. Las cuatro preguntas de por que que se hacen casi siempre (1/2)
+7. Las cuatro preguntas de por que que se hacen casi siempre (2/2)
+8. La cuarta pregunta, la que mas se falla (1/2)
+9. La cuarta pregunta, la que mas se falla (2/2)
+10. Reproducible: un tercero llega a la misma base sin hablar con el autor (1/3)
+11. Reproducible: un tercero llega a la misma base sin hablar con el autor (2/3)
+12. Reproducible: un tercero llega a la misma base sin hablar con el autor (3/3)
+13. El reparto de los 5 a 8 minutos (1/3)
+14. El reparto de los 5 a 8 minutos (2/3)
+15. El reparto de los 5 a 8 minutos (3/3)
+16. El Q&A de modelado, con las respuestas listas (1/2)
+17. El Q&A de modelado, con las respuestas listas (2/2)
+18. Evaluar con rubrica: puntos a evidencia observable (1/2)
+19. Evaluar con rubrica: puntos a evidencia observable (2/2)
+20. El cierre del curso: conectar lo hecho con el trabajo real
+21. Como se ordena la sesion de hoy
+22. Herramientas de hoy
+23. Sustentacion del PI — contexto / por que importa
+24. Sustentacion del PI — objetivo y criterios
+25. Sustentacion del PI — escenario / datos de partida
+26. Sustentacion del PI — pasos guiados
+27. Sustentacion del PI — pistas (checklist vacio)
+28. Criterios de exito / entregable
+29. Cierre del PI
+30. Cierre · Clase 15
 
 > Privado, no se proyecta: `Kit docente/Clase 15/Solucion Taller Clase 15 - VetCare.docx`
 

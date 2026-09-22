@@ -24,39 +24,53 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 7] Latencia, throughput y concurrencia: la identidad que las une** — 6 vinetas.
+**[Slide 7] Latencia, throughput y concurrencia: la identidad que las une (1/2)** — 3 vinetas.
+  - Hay dos magnitudes que se confunden todo el tiempo.
   - La tercera magnitud es la concurrencia, cuantas peticiones estan en vuelo al mismo tiempo, y las tres se relacionan por una identidad que el docente puede escribir en el tablero: concurrencia igual a RPS por latencia.
 
-**[Slide 8] Por que el promedio miente y el percentil no (1/2)** — 5 vinetas.
+**[Slide 8] Latencia, throughput y concurrencia: la identidad que las une (2/2)** — 2 vinetas.
 
-**[Slide 9] Por que el promedio miente y el percentil no (2/2)** — 4 vinetas.
+**[Slide 9] Por que el promedio miente y el percentil no (1/2)** — 4 vinetas.
+  - Por eso la industria escribe sus objetivos en percentiles, y por eso el entregable de hoy exige un objetivo con la forma "p95 del endpoint de listado menor a 300 milisegundos con 5 RPS", que tiene metrica, umbral y condicion de carga.
 
-**[Slide 10] Los umbrales de percepcion, y por que son convenciones (1/2)** — 5 vinetas.
+**[Slide 10] Por que el promedio miente y el percentil no (2/2)** — 4 vinetas.
+
+**[Slide 11] Los umbrales de percepcion, y por que son convenciones (1/2)** — 3 vinetas.
   - Los umbrales que el docente debe poder citar son convenciones de percepcion humana bien establecidas, no leyes fisicas.
+  - De ahi sale la convencion practica para una API interna, que ubica el objetivo de p95 entre 200 y 300 milisegundos dejando presupuesto para que el navegador y la red agreguen lo suyo; para carga de pagina completa la referencia publica de Core Web Vitals considera bueno un renderizado del contenido principal por debajo de 2.5 segundos.
+  - Lo que si es regla es que el numero se escribe antes de medir y se justifica con el caso de uso, no se ajusta despues para que la medicion salga bien.
 
-**[Slide 11] Los umbrales de percepcion, y por que son convenciones (2/2)** — 4 vinetas.
+**[Slide 12] Los umbrales de percepcion, y por que son convenciones (2/2)** — 3 vinetas.
 
-**[Slide 12] El escenario de carga: aritmetica de servilleta** — 6 vinetas.
+**[Slide 13] El escenario de carga: aritmetica de servilleta (1/2)** — 4 vinetas.
   - La forma correcta de estimarlo es aritmetica de servilleta y el docente debe hacerla en vivo con CloudLite.
 
-**[Slide 13] El cuello de botella: siempre hay uno (1/2)** — 5 vinetas.
+**[Slide 14] El escenario de carga: aritmetica de servilleta (2/2)** — 2 vinetas.
 
-**[Slide 14] El cuello de botella: siempre hay uno (2/2)** — 4 vinetas.
+**[Slide 15] El cuello de botella: siempre hay uno (1/2)** — 5 vinetas.
+  - Esos tres cubren la mayoria de los casos que los estudiantes van a sospechar.
 
-**[Slide 15] Los tipos de prueba, por la pregunta que responden (1/2)** — 6 vinetas.
+**[Slide 16] El cuello de botella: siempre hay uno (2/2)** — 3 vinetas.
 
-**[Slide 16] Los tipos de prueba, por la pregunta que responden (2/2)** — 3 vinetas.
+**[Slide 17] Los tipos de prueba, por la pregunta que responden (1/2)** — 4 vinetas.
+  - Los tipos de prueba se distinguen por la pregunta que responden.
+  - La prueba de carga o baseline aplica la carga esperada y responde si el sistema cumple el SLO en condiciones normales.
+  - Un escenario bien razonado sin ejecucion vale mas que una ejecucion sin objetivo.
 
-**[Slide 17] El ensayo del pitch: la segunda mitad tiene su propia teoria (1/2)** — 4 vinetas.
+**[Slide 18] Los tipos de prueba, por la pregunta que responden (2/2)** — 2 vinetas.
+
+**[Slide 19] El ensayo del pitch: la segunda mitad tiene su propia teoria (1/2)** — 4 vinetas.
   - Hay que decir explicitamente que este ensayo no es la sustentacion, que es la Clase 15, ni el Parcial 3 de la Clase 14, que es evaluacion escrita: son tres cosas distintas y mezclarlas confunde al grupo.
 
-**[Slide 18] El ensayo del pitch: la segunda mitad tiene su propia teoria (2/2)** — 3 vinetas.
+**[Slide 20] El ensayo del pitch: la segunda mitad tiene su propia teoria (2/2)** — 3 vinetas.
 
-**[Slide 19] Preguntas frecuentes y cierre conceptual () (1/2)** — 7 vinetas.
+**[Slide 21] Preguntas frecuentes y cierre conceptual () (1/3)** — 4 vinetas.
   - Tres preguntas llegan siempre.
   - Conviene cerrar recordando que el bottleneck identificado hoy es insumo obligatorio de la Clase 13: no se puede escribir una politica de autoescalado sensata sin saber que recurso se agota primero.
 
-**[Slide 20] Preguntas frecuentes y cierre conceptual () (2/2)** — 7 vinetas.
+**[Slide 22] Preguntas frecuentes y cierre conceptual () (2/3)** — 6 vinetas.
+
+**[Slide 23] Preguntas frecuentes y cierre conceptual () (3/3)** — 4 vinetas.
 
 
 ## Referencias a diapositivas
@@ -69,31 +83,34 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 4. Rendimiento sin stress-tool de pago
 5. Preparación de presentación (5–8 min)
 6. Paquete de entrega
-7. Latencia, throughput y concurrencia: la identidad que las une
-8. Por que el promedio miente y el percentil no (1/2)
-9. Por que el promedio miente y el percentil no (2/2)
-10. Los umbrales de percepcion, y por que son convenciones (1/2)
-11. Los umbrales de percepcion, y por que son convenciones (2/2)
-12. El escenario de carga: aritmetica de servilleta
-13. El cuello de botella: siempre hay uno (1/2)
-14. El cuello de botella: siempre hay uno (2/2)
-15. Los tipos de prueba, por la pregunta que responden (1/2)
-16. Los tipos de prueba, por la pregunta que responden (2/2)
-17. El ensayo del pitch: la segunda mitad tiene su propia teoria (1/2)
-18. El ensayo del pitch: la segunda mitad tiene su propia teoria (2/2)
-19. Preguntas frecuentes y cierre conceptual () (1/2)
-20. Preguntas frecuentes y cierre conceptual () (2/2)
-21. «Que sea rapido» no es un requisito
-22. Herramientas de hoy
-23. Del boceto a ExamLab (diagrama)
-24. PI CloudLite — entregable de hoy
-25. Manos a la obra (paso a paso)
-26. Para continuar (PI)
-27. Clase 12 · PI en movimiento
+7. Latencia, throughput y concurrencia: la identidad que las une (1/2)
+8. Latencia, throughput y concurrencia: la identidad que las une (2/2)
+9. Por que el promedio miente y el percentil no (1/2)
+10. Por que el promedio miente y el percentil no (2/2)
+11. Los umbrales de percepcion, y por que son convenciones (1/2)
+12. Los umbrales de percepcion, y por que son convenciones (2/2)
+13. El escenario de carga: aritmetica de servilleta (1/2)
+14. El escenario de carga: aritmetica de servilleta (2/2)
+15. El cuello de botella: siempre hay uno (1/2)
+16. El cuello de botella: siempre hay uno (2/2)
+17. Los tipos de prueba, por la pregunta que responden (1/2)
+18. Los tipos de prueba, por la pregunta que responden (2/2)
+19. El ensayo del pitch: la segunda mitad tiene su propia teoria (1/2)
+20. El ensayo del pitch: la segunda mitad tiene su propia teoria (2/2)
+21. Preguntas frecuentes y cierre conceptual () (1/3)
+22. Preguntas frecuentes y cierre conceptual () (2/3)
+23. Preguntas frecuentes y cierre conceptual () (3/3)
+24. «Que sea rapido» no es un requisito
+25. Herramientas de hoy
+26. Del boceto a ExamLab (diagrama)
+27. PI CloudLite — entregable de hoy
+28. Manos a la obra (paso a paso)
+29. Para continuar (PI)
+30. Clase 12 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 24]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 27]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Escenario de rendimiento + ensayo 5–8 min de sustentación**.
 Entregable concreto: Sección Rendimiento + guion de pitch + paquete casi-final.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -113,7 +130,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 23]
+### 40–55 · Demo en vivo · [Slide 26]
 Herramienta del día: **Google Docs · draw.io · (opcional) lab contenedor**.
 **Demo que usted debe poder repetir:** Definir un objetivo de rendimiento que si se puede verificar
 
@@ -125,7 +142,7 @@ Herramienta del día: **Google Docs · draw.io · (opcional) lab contenedor**.
 Narra los clics en voz alta. Si falla la red, proyecta la solución docente de este kit (`Solucion Taller Clase 12 - CloudLite.md`), que trae el resultado esperado.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
-**Cierra la demo dentro de ExamLab** [Slide 23] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
+**Cierra la demo dentro de ExamLab** [Slide 26] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -135,7 +152,7 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 25]
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 28]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -148,7 +165,7 @@ Aplica el quiz corto de `Kit docente/Clase 12/Quiz Clase 12 - Pruebas de rendimi
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 27]
+### 115–120 · Cierre · [Slide 30]
 Di: «Queda avanzado: Escenario de rendimiento + ensayo 5–8 min de sustentación.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»

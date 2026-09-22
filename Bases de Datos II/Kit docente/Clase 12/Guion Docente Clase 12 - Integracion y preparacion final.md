@@ -24,38 +24,66 @@ del PI VetCare. La teoria se limita a desbloquear el taller.
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 4] Integrar no es conectarse: cual es la unica puerta de entrada (1/2)** — 6 vinetas.
+**[Slide 4] Integrar no es conectarse: cual es la unica puerta de entrada (1/2)** — 4 vinetas.
+  - Esa puerta es la interfaz app-BD y el documento que la describe es el contrato.
+  - Hay exactamente dos formas de construirla.
+  - Todo lo demas de esta clase se deriva de esa decision.
 
-**[Slide 5] Integrar no es conectarse: cual es la unica puerta de entrada (2/2)** — 5 vinetas.
+**[Slide 5] Integrar no es conectarse: cual es la unica puerta de entrada (2/2)** — 4 vinetas.
 
-**[Slide 6] Inyeccion SQL: cuando el dato se interpreta como codigo (1/2)** — 6 vinetas.
+**[Slide 6] Inyeccion SQL: cuando el dato se interpreta como codigo (1/2)** — 4 vinetas.
+  - Concretemoslo en VetCare.
+  - El buscador de mascotas de la recepcion arma la consulta pegando la entrada del usuario, de modo que el motor recibe
+  - Si la recepcionista escribe Luna, el motor recibe WHERE nombre = 'Luna', devuelve una fila, todo parece correcto y la aplicacion pasa a produccion.
   - Conviene una precision honesta, porque la hara un estudiante: en Oracle no se apilan dos sentencias en una misma llamada, asi que el clasico punto y coma seguido de DROP TABLE Cita no se comporta como en otros motores; lo que si funciona, y basta para un incidente reportable, es leer datos ajenos, saltarse un acceso o modificar informacion cuando la aplicacion ejecuta PL/SQL dinamico.
 
-**[Slide 7] Inyeccion SQL: cuando el dato se interpreta como codigo (2/2)** — 4 vinetas.
+**[Slide 7] Inyeccion SQL: cuando el dato se interpreta como codigo (2/2)** — 3 vinetas.
 
-**[Slide 8] Por que el parametro lo evita por construccion (1/2)** — 6 vinetas.
+**[Slide 8] Inyeccion SQL: cuando el dato se interpreta... — sintaxis** — 3 vinetas.
 
-**[Slide 9] Por que el parametro lo evita por construccion (2/2)** — 5 vinetas.
+**[Slide 9] Por que el parametro lo evita por construccion (1/2)** — 4 vinetas.
+  - La inyeccion queda imposible, no improbable, y esa diferencia entre imposible e improbable es la que hay que instalar.
+  - La respuesta honesta es que si mientras use los metodos del ORM o consultas con parametros nombrados, y que no en el momento en que arme una consulta nativa concatenando texto, porque el ORM no revisa lo que usted le entrega.
+  - La vulnerabilidad no la produce la tecnologia sino la concatenacion.
 
-**[Slide 10] El contrato y sus seis partes, que se exigen en el entregable (1/2)** — 8 vinetas.
+**[Slide 10] Por que el parametro lo evita por construccion (2/2)** — 4 vinetas.
 
-**[Slide 11] El contrato y sus seis partes, que se exigen en el entregable (2/2)** — 6 vinetas.
+**[Slide 11] El contrato y sus seis partes, que se exigen en el entregable (1/2)** — 6 vinetas.
+  - La lista de errores posibles con codigo y significado.
+  - Y la version.
+  - Idempotente significa que ejecutar la operacion dos veces con los mismos datos deja el sistema igual que ejecutarla una sola vez.
 
-**[Slide 12] El manejo de errores entre capas: las tres reglas (1/2)** — 6 vinetas.
+**[Slide 12] El contrato y sus seis partes, que se exigen en el entregable (2/2)** — 5 vinetas.
 
-**[Slide 13] El manejo de errores entre capas: las tres reglas (2/2)** — 4 vinetas.
+**[Slide 13] El manejo de errores entre capas: las tres reglas (1/2)** — 4 vinetas.
+  - El manejo de errores entre capas se resuelve con tres reglas.
+  - La operacion de negocio completa, con todas sus validaciones y sus insercciones, vive dentro de un solo procedimiento, y ese procedimiento hace COMMIT si todo salio bien o ROLLBACK si algo fallo; la aplicacion no confirma a la mitad.
 
-**[Slide 14] El pool de conexiones: que es y por que se agota (1/2)** — 8 vinetas.
+**[Slide 14] El manejo de errores entre capas: las tres reglas (2/2)** — 4 vinetas.
 
-**[Slide 15] El pool de conexiones: que es y por que se agota (2/2)** — 7 vinetas.
+**[Slide 15] El pool de conexiones: que es y por que se agota (1/3)** — 5 vinetas.
+  - Tomar una conexion prestada del pool cuesta una fraccion de milisegundo.
+  - De ahi salen dos consecuencias.
 
-**[Slide 16] Logica en la base o en la aplicacion: honestidad y no propaganda (1/2)** — 5 vinetas.
+**[Slide 16] El pool de conexiones: que es y por que se agota (2/3)** — 4 vinetas.
 
-**[Slide 17] Logica en la base o en la aplicacion: honestidad y no propaganda (2/2)** — 4 vinetas.
+**[Slide 17] El pool de conexiones: que es y por que se agota (3/3)** — 4 vinetas.
 
-**[Slide 18] Cambiar el esquema sin romper la aplicacion que ya corre (1/2)** — 8 vinetas.
+**[Slide 18] Logica en la base o en la aplicacion: honestidad y no propaganda (1/2)** — 4 vinetas.
+  - El trade-off de poner logica en la base o en la aplicacion merece honestidad y no propaganda, porque el estudiante encontrara equipos reales que defienden lo contrario de lo que oye hoy.
+  - La orquestacion, la presentacion, los formatos de fecha y el envio de correos van en la aplicacion.
 
-**[Slide 19] Cambiar el esquema sin romper la aplicacion que ya corre (2/2)** — 6 vinetas.
+**[Slide 19] Logica en la base o en la aplicacion: honestidad y no propaganda (2/2)** — 3 vinetas.
+
+**[Slide 20] Cambiar el esquema sin romper la aplicacion que ya corre (1/2)** — 5 vinetas.
+  - Suponga que VetCare necesita registrar la fecha en que una mascota fue inactivada, dato que hoy no existe.
+  - Cuatro, mover lecturas y reportes a la columna nueva.
+  - Cada paso deja funcionando al mismo tiempo la version vieja y la nueva.
+  - Eso mismo entra en el informe y en el pitch de hoy, porque el estudiante no muestra pantallas: muestra su contrato, un caso de exito, un caso de error visto por el usuario y su plan de cambio de esquema, que es lo que la Clase 13 mirara desde el lado de los fallos reales y lo que la Clase 15 va a evaluar.
+
+**[Slide 21] Cambiar el esquema sin romper la aplicacion que ya corre (2/2)** — 4 vinetas.
+
+**[Slide 22] Cambiar el esquema sin romper la aplicacion... — sintaxis** — 1 vinetas.
 
 
 **Demo que usted debe poder repetir:** Plantilla contrato sp_agendar_cita + storyboard 6 slides.
@@ -71,30 +99,33 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 5. Integrar no es conectarse: cual es la unica puerta de entrada (2/2)
 6. Inyeccion SQL: cuando el dato se interpreta como codigo (1/2)
 7. Inyeccion SQL: cuando el dato se interpreta como codigo (2/2)
-8. Por que el parametro lo evita por construccion (1/2)
-9. Por que el parametro lo evita por construccion (2/2)
-10. El contrato y sus seis partes, que se exigen en el entregable (1/2)
-11. El contrato y sus seis partes, que se exigen en el entregable (2/2)
-12. El manejo de errores entre capas: las tres reglas (1/2)
-13. El manejo de errores entre capas: las tres reglas (2/2)
-14. El pool de conexiones: que es y por que se agota (1/2)
-15. El pool de conexiones: que es y por que se agota (2/2)
-16. Logica en la base o en la aplicacion: honestidad y no propaganda (1/2)
-17. Logica en la base o en la aplicacion: honestidad y no propaganda (2/2)
-18. Cambiar el esquema sin romper la aplicacion que ya corre (1/2)
-19. Cambiar el esquema sin romper la aplicacion que ya corre (2/2)
-20. El contrato que la app consume (no SQL suelto)
-21. Demo del dia
-22. Herramientas de hoy
-23. Del boceto a ExamLab (diagrama)
-24. Taller PI VetCare — contexto / por que importa
-25. Taller PI VetCare — objetivo y criterios
-26. Taller PI VetCare — escenario / datos de partida
-27. Taller PI VetCare — pasos guiados
-28. Taller PI VetCare — pistas (checklist vacio)
-29. Criterios de exito / entregable
-30. Para el PI esta semana
-31. Cierre · Clase 12
+8. Inyeccion SQL: cuando el dato se interpreta... — sintaxis
+9. Por que el parametro lo evita por construccion (1/2)
+10. Por que el parametro lo evita por construccion (2/2)
+11. El contrato y sus seis partes, que se exigen en el entregable (1/2)
+12. El contrato y sus seis partes, que se exigen en el entregable (2/2)
+13. El manejo de errores entre capas: las tres reglas (1/2)
+14. El manejo de errores entre capas: las tres reglas (2/2)
+15. El pool de conexiones: que es y por que se agota (1/3)
+16. El pool de conexiones: que es y por que se agota (2/3)
+17. El pool de conexiones: que es y por que se agota (3/3)
+18. Logica en la base o en la aplicacion: honestidad y no propaganda (1/2)
+19. Logica en la base o en la aplicacion: honestidad y no propaganda (2/2)
+20. Cambiar el esquema sin romper la aplicacion que ya corre (1/2)
+21. Cambiar el esquema sin romper la aplicacion que ya corre (2/2)
+22. Cambiar el esquema sin romper la aplicacion... — sintaxis
+23. El contrato que la app consume (no SQL suelto)
+24. Demo del dia
+25. Herramientas de hoy
+26. Del boceto a ExamLab (diagrama)
+27. Taller PI VetCare — contexto / por que importa
+28. Taller PI VetCare — objetivo y criterios
+29. Taller PI VetCare — escenario / datos de partida
+30. Taller PI VetCare — pasos guiados
+31. Taller PI VetCare — pistas (checklist vacio)
+32. Criterios de exito / entregable
+33. Para el PI esta semana
+34. Cierre · Clase 12
 
 > Privado, no se proyecta: `Kit docente/Clase 12/Solucion Taller Clase 12 - VetCare.docx`
 
@@ -124,12 +155,12 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: dejar que la 'integracion' quede como una idea abstracta sin contrato escrito — el entregable de hoy exige documentar minimo 3 operaciones con su firma completa, no solo mencionarlas de palabra.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 21][Slide 23]
+### 35-55 · Demo paso a paso · [Slide 24][Slide 26]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: Plantilla contrato sp_agendar_cita + storyboard 6 slides.
 Herramienta: Google Docs + Live SQL + Excalidraw
 
-**Cierre la demo dentro de ExamLab** [Slide 23] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
+**Cierre la demo dentro de ExamLab** [Slide 26] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -140,7 +171,7 @@ Herramienta: Google Docs + Live SQL + Excalidraw
 📸 Salida esperada de la demo de la Clase 12 [[captura: cap01_demo.png | receta: 1) Abra Google Docs + Live SQL + Excalidraw y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 12/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda embebida aqui sola.]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 27]
+### 55-105 · Taller guiado = tarea del PI · [Slide 30]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -152,13 +183,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: Contrato app<->BD + outline de slides de sustentacion (5-8 min)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 12/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 29]
-Repasar checklist del dia con [Slide 29] «Criterios de exito / entregable».
+### 105-115 · Criterios de exito + quiz corto · [Slide 32]
+Repasar checklist del dia con [Slide 32] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 12 - VetCare.docx`. Clave para usted: `Quiz Clase 12 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 31]
+### 115-120 · Cierre · [Slide 34]
 **Decir:** «Queda avanzado: Contrato integracion + preparacion de entrega/sustentacion. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 31] slide de cierre. Dudas finales.
+Proyectar [Slide 34] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

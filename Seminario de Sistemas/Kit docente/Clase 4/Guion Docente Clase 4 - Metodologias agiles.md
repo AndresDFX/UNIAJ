@@ -15,15 +15,22 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**El manifiesto agil se firmo en 2001 por diecisiete personas cansadas de...** — 6 vinetas.
+**El manifiesto agil se firmo en 2001 por diecisiete personas cansadas de...** — 5 vinetas.
+  - Individuos e interacciones SOBRE procesos y herramientas; software funcionando SOBRE documentacion exhaustiva; colaboracion con el cliente SOBRE negociacion contractual; respuesta ante el cambio SOBRE seguir un plan.
 
-**Scrum es un marco de trabajo, no una metodologia completa: define lo...** — 7 vinetas.
+**Scrum es un marco de trabajo, no una metodologia completa: define lo...** — 6 vinetas.
+  - En VetCare el docente actua como vocero de Huellitas en el rol de Product Owner, y cada estudiante -o cada equipo, si el docente lo autoriza- hace de equipo de desarrollo que se compromete con un objetivo de sprint.
 
-**Kanban viene de otra tradicion y su promesa es distinta: no impone...** — 5 vinetas.
+**Kanban viene de otra tradicion y su promesa es distinta: no impone...** — 4 vinetas.
+  - En VetCare el tablero seria Por hacer / Modelando / En revision del cliente / Aprobado, y la politica de la ultima columna podria ser 'solo pasa a Aprobado si tiene diagrama, mockup y visto bueno de la clinica'.
 
-**Hay dos palabras que se usan como sinonimos y significan cosas...** — 6 vinetas.
+**Hay dos palabras que se usan como sinonimos y significan cosas... (1/2)** — 3 vinetas.
+  - Agil hace las dos cosas al mismo tiempo.
 
-**Agil no significa trabajar sin documentacion, y este es el malentendido...** — 5 vinetas.
+**Hay dos palabras que se usan como sinonimos y significan cosas... (2/2)** — 2 vinetas.
+
+**Agil no significa trabajar sin documentacion, y este es el malentendido...** — 4 vinetas.
+  - Un equipo agil documenta historias de usuario con criterios de aceptacion, la Definicion de Terminado, las decisiones de arquitectura, el diccionario de datos y los diagramas que hagan falta, pero los escribe justo a tiempo y los mantiene vivos.
 
 
 **Demo que usted debe poder repetir:** El docente arma en pantalla el tablero de VetCare, arrastra una tarjeta de 'Por hacer' a 'En revision del cliente' y muestra que pasa cuando se rompe el limite de trabajo en curso.

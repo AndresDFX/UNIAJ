@@ -31,23 +31,37 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada y por qué esos tres ejemplos - diapositiva 4
 
-Proyectado en la lamina «La pregunta de entrada y por qué esos tres ejemplos» (5 vinetas).
+Proyectado en la lamina «La pregunta de entrada y por qué esos tres ejemplos (1/2)» (3 vinetas).
 
 ### Qué es un sistema y por qué la frontera es la decisión difícil - diapositiva 5
 
-Proyectado en la lamina «Qué es un sistema y por qué la frontera es la decisión difícil (1/2)» (6 vinetas).
+Proyectado en la lamina «La pregunta de entrada y por qué esos tres ejemplos (2/2)» (2 vinetas).
 
 ### El sistema no es el software: la confusión que hace fracasar proyectos - diapositiva 6
 
-Proyectado en la lamina «Qué es un sistema y por qué la frontera es la decisión difícil (2/2)» (7 vinetas).
+Proyectado en la lamina «Qué es un sistema y por qué la frontera es la decisión difícil (1/2)» (5 vinetas).
+
+- Lo importante de esa definición no son las palabras sino la consecuencia: **el propósito es lo primero que hay que poder decir**.
+
+- Los cinco elementos se explican con un ejemplo concreto y de una sola pasada.
+
+- El estudiante de primer semestre tiende a creer que la frontera viene dada por el problema.
 
 ### Actores, requisitos y retroalimentación: los tres que se olvidan - diapositiva 7
 
-Proyectado en la lamina «El sistema no es el software: la confusión que hace fracasar proyectos (1/2)» (6 vinetas).
+Proyectado en la lamina «Qué es un sistema y por qué la frontera es la decisión difícil (2/2)» (5 vinetas).
 
 ### El asistente de IA: cómo usarlo hoy sin que haga el trabajo - diapositivas 9 y 8
 
-Proyectado en la lamina «El sistema no es el software: la confusión que hace fracasar proyectos (2/2)» (3 vinetas).
+Proyectado en la lamina «El sistema no es el software: la confusión que hace fracasar proyectos (1/2)» (3 vinetas).
+
+- Casi todos llegan a primer semestre con la mirada de programador, y no por ignorancia: es la que el entorno premia.
+
+- La columna derecha es la que la carrera enseña.
+
+- El ejemplo de las citas médicas conviene desarrollarlo hasta el final porque muestra el fracaso completo.
+
+- El software funciona y el problema sigue. **En la lógica de este curso, ese proyecto fracasó**, y no por un error técnico.
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 3 - Fundamentos basicos de la Ingenieria de Sistemas/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -61,19 +75,20 @@ Numeración real del deck `Clases/Clase 3 - Fundamentos basicos de la Ingenieria
 7. Cuatro conceptos que se usan todo el semestre
 8. Cómo se descompone un sistema en cinco pasos
 9. El asistente de IA: qué hace bien y en qué miente
-10. La pregunta de entrada y por qué esos tres ejemplos
-11. Qué es un sistema y por qué la frontera es la decisión difícil (1/2)
-12. Qué es un sistema y por qué la frontera es la decisión difícil (2/2)
-13. El sistema no es el software: la confusión que hace fracasar proyectos (1/2)
-14. El sistema no es el software: la confusión que hace fracasar proyectos (2/2)
-15. Actores, requisitos y retroalimentación: los tres que se olvidan (1/2)
-16. Actores, requisitos y retroalimentación: los tres que se olvidan (2/2)
-17. El asistente de IA: cómo usarlo hoy sin que haga el trabajo (1/2)
-18. El asistente de IA: cómo usarlo hoy sin que haga el trabajo (2/2)
-19. Taller de hoy: Anatomía del sistema
-20. Cómo se expone en 3 minutos
-21. Para la Clase 4
-22. Cierre · Nos vemos en la sesión 4
+10. La pregunta de entrada y por qué esos tres ejemplos (1/2)
+11. La pregunta de entrada y por qué esos tres ejemplos (2/2)
+12. Qué es un sistema y por qué la frontera es la decisión difícil (1/2)
+13. Qué es un sistema y por qué la frontera es la decisión difícil (2/2)
+14. El sistema no es el software: la confusión que hace fracasar proyectos (1/2)
+15. El sistema no es el software: la confusión que hace fracasar proyectos (2/2)
+16. Actores, requisitos y retroalimentación: los tres que se olvidan (1/2)
+17. Actores, requisitos y retroalimentación: los tres que se olvidan (2/2)
+18. El asistente de IA: cómo usarlo hoy sin que haga el trabajo (1/2)
+19. El asistente de IA: cómo usarlo hoy sin que haga el trabajo (2/2)
+20. Taller de hoy: Anatomía del sistema
+21. Cómo se expone en 3 minutos
+22. Para la Clase 4
+23. Cierre · Nos vemos en la sesión 4
 
 ## Plan de clase minuto a minuto (90 min)
 

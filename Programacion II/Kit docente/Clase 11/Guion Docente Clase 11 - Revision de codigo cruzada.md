@@ -15,22 +15,51 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Una revisión de código es la lectura sistemática del código de otra...** — 7 vinetas.
+**Una revisión de código es la lectura sistemática del código de otra... (1/2)** — 5 vinetas.
   - Conviene decirlo claro porque el estudiante llega con dos ideas equivocadas: que la revisión es un examen donde lo van a rajar, o que es un trámite para poner 'todo bien' y salir rápido.
 
-**Revisar no es leer de arriba a abajo a ver qué salta: se revisa por... (1/2)** — 6 vinetas.
+**Una revisión de código es la lectura sistemática del código de otra... (2/2)** — 2 vinetas.
 
-**Revisar no es leer de arriba a abajo a ver qué salta: se revisa por... (2/2)** — 4 vinetas.
+**Revisar no es leer de arriba a abajo a ver qué salta: se revisa por... (1/2)** — 4 vinetas.
+  - Se ejecuta antes de opinar.
+  - Y solo al final, la sexta: formato e indentación, que es la que menos vale y la que todo el mundo comenta primero.
+  - Si un informe de revisión de VetCare tiene ocho comentarios de espacios y ninguno sobre el NullPointerException al buscar un ID inexistente, esa revisión no sirvió.
 
-**La retroalimentación útil tiene una estructura, y esa estructura se... (1/2)** — 8 vinetas.
+**Revisar no es leer de arriba a abajo a ver qué salta: se revisa por... (2/2)** — 3 vinetas.
 
-**La retroalimentación útil tiene una estructura, y esa estructura se... (2/2)** — 3 vinetas.
+**La retroalimentación útil tiene una estructura, y esa estructura se... (1/2)** — 5 vinetas.
+  - La retroalimentación útil tiene una estructura, y esa estructura se enseña con plantilla porque a punta de buena intención no sale.
+  - Cuarto, se propone una salida concreta.
+  - Compare las dos versiones.
+  - La segunda se puede atender esta tarde; la primera solo produce rabia.
 
-**El checklist es lo que impide que la revisión se vuelva una... (1/2)** — 6 vinetas.
+**La retroalimentación útil tiene una estructura, y esa estructura se... (2/2)** — 2 vinetas.
 
-**El checklist es lo que impide que la revisión se vuelva una... (2/2)** — 6 vinetas.
+**El checklist es lo que impide que la revisión se vuelva una... (1/2)** — 4 vinetas.
+  - ¿la interfaz gráfica muestra la lista y permite registrar y buscar?
+  - ¿hay algún catch vacío?
+  - ¿algún método pasa de cincuenta líneas?
+  - ¿hay bloques duplicados?
 
-**Recibir la crítica también se practica, y es la mitad difícil** — 7 vinetas.
+**El checklist es lo que impide que la revisión se vuelva una... (2/2)** — 4 vinetas.
+
+**Recibir la crítica también se practica, y es la mitad difícil (1/2)** — 5 vinetas.
+
+**Recibir la crítica también se practica, y es la mitad difícil (2/2)** — 2 vinetas.
+
+**VetCareParaRevisar.java — class VetCareParaRevisar** — 4 vinetas.
+
+**VetCareParaRevisar.java — main() (1/2)** — 20 vinetas.
+
+**VetCareParaRevisar.java — main() (2/2)** — 7 vinetas.
+
+**VetCareParaRevisar.java — proceso()** — 19 vinetas.
+
+**VetCareParaRevisar.java — buscarPorId()** — 9 vinetas.
+
+**VetCareParaRevisar.java — imprimirFicha()** — 12 vinetas.
+
+**VetCareParaRevisar.java — buscarDeNuevo()** — 10 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente proyecta VetCareParaRevisar.java, lo ejecuta en vivo, aplica el checklist delante del grupo y reescribe dos comentarios mal formulados del tipo 'este código es un desastre' en retroalimentación accionable.

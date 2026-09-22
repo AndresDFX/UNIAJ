@@ -27,13 +27,12 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **Una pantalla suelta no sirve para nada; lo que se diseña es un flujo de... (2/2)** — 3 vinetas.
 
-**La interfaz no se inventa: se deriva de los artefactos que el equipo ya... (1/2)** — 5 vinetas.
+**La interfaz no se inventa: se deriva de los artefactos que el equipo ya...** — 4 vinetas.
+  - Por eso los wireframes se entregan anotados: se ponen numeritos sobre el dibujo y al lado una tabla que dice, por ejemplo, el numero uno es el campo Nombre de la mascota que sale del atributo Mascota.nombre, texto de sesenta caracteres, obligatorio, exigido por RF-03; el numero cuatro es el mensaje de confirmacion que cumple el RNF-02 de respuesta menor a tres segundos.
+  - Esa anotacion tiene un efecto secundario muy util: si aparece un campo en la pantalla que no esta en el diccionario de datos, entonces o falta un requisito o sobra el campo, y ambas cosas hay que resolverlas hoy y no cuando el compañero de Programacion II ya escribio la tabla.
 
-**La interfaz no se inventa: se deriva de los artefactos que el equipo ya... (2/2)** — 4 vinetas.
-
-**Una interfaz se puede evaluar sin programarla, y esa es una de las... (1/2)** — 4 vinetas.
-
-**Una interfaz se puede evaluar sin programarla, y esa es una de las... (2/2)** — 3 vinetas.
+**Una interfaz se puede evaluar sin programarla, y esa es una de las...** — 5 vinetas.
+  - Eso obliga a decisiones de diseño concretas: letra grande, pocos campos obligatorios, nada de scroll interminable, tolerancia a la interrupcion para que si la llaman y vuelve en tres minutos no haya perdido lo escrito, y mensajes en lenguaje de clinica y no de sistemas, es decir Esta mascota ya tiene ficha en la clinica y no Violacion de restriccion de unicidad.
 
 
 **Demo que usted debe poder repetir:** El docente dibuja en vivo el wireframe de Registrar mascota en Penpot, le pone tres anotaciones numeradas y lo conecta con Buscar expediente para que la clase vea en la misma pantalla la diferencia entre wireframe, mockup y prototipo.

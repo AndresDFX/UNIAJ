@@ -15,19 +15,89 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Integrar es lograr que piezas que ya funcionan por separado funcionen...** — 8 vinetas.
+**Integrar es lograr que piezas que ya funcionan por separado funcionen... (1/2)** — 4 vinetas.
+  - ¿Por qué importa?
 
-**El flujo de punta a punta se define antes de integrar, por escrito, y...** — 7 vinetas.
+**Integrar es lograr que piezas que ya funcionan por separado funcionen... (2/2)** — 3 vinetas.
 
-**Los errores de integración tienen firma propia y conviene reconocerlos...** — 8 vinetas.
+**El flujo de punta a punta se define antes de integrar, por escrito, y... (1/2)** — 4 vinetas.
+  - Eso es lo que tiene que correr sin que nadie toque código en la mitad.
+
+**El flujo de punta a punta se define antes de integrar, por escrito, y... (2/2)** — 2 vinetas.
+
+**Los errores de integración tienen firma propia y conviene reconocerlos...** — 5 vinetas.
+  - Los errores de integración tienen firma propia y conviene reconocerlos por el síntoma.
+  - Quinto, la unión del código de tres personas que trajeron cada una su propia clase Mascota con constructores distintos.
+  - Y sexto, el clásico NullPointerException porque buscarPorId devuelve null cuando el ID no existe y nadie valida antes de usar el resultado.
 
 **El depurador de VS Code es la herramienta de esta clase y hay que... (1/2)** — 4 vinetas.
 
 **El depurador de VS Code es la herramienta de esta clase y hay que... (2/2)** — 4 vinetas.
 
 **La forma de integrar sin sufrir es por goteo y no de un solo golpe (1/2)** — 4 vinetas.
+  - Cuando algo se rompe, uno sabe exactamente qué fue lo último que tocó.
 
-**La forma de integrar sin sufrir es por goteo y no de un solo golpe (2/2)** — 4 vinetas.
+**La forma de integrar sin sufrir es por goteo y no de un solo golpe (2/2)** — 3 vinetas.
+
+**VetCareApp.java — class VetCareApp** — 18 vinetas.
+
+**VetCareApp.java — VetCareApp()** — 16 vinetas.
+
+**VetCareApp.java — construirInterfaz() (1/2)** — 20 vinetas.
+
+**VetCareApp.java — construirInterfaz() (2/2)** — 12 vinetas.
+
+**VetCareApp.java — registrarMascota()** — 13 vinetas.
+
+**VetCareApp.java — buscarPorId()** — 11 vinetas.
+
+**VetCareApp.java — refrescarTabla()** — 8 vinetas.
+
+**VetCareApp.java — limpiarFormulario()** — 7 vinetas.
+
+**VetCareApp.java — cerrarGuardando()** — 16 vinetas.
+
+**VetCareApp.java — main()** — 9 vinetas.
+
+**class DatosInvalidosException · DatosInvalidosException() · class Mascota** — 17 vinetas.
+
+**VetCareApp.java — Mascota()** — 8 vinetas.
+
+**VetCareApp.java — ficha()** — 7 vinetas.
+
+**VetCareApp.java — class ServicioVetCare** — 7 vinetas.
+
+**VetCareApp.java — ServicioVetCare()** — 4 vinetas.
+
+**VetCareApp.java — cargarDesdeArchivo()** — 6 vinetas.
+
+**VetCareApp.java — guardarEnArchivo()** — 4 vinetas.
+
+**VetCareApp.java — listar()** — 4 vinetas.
+
+**VetCareApp.java — buscarPorId()** — 12 vinetas.
+
+**VetCareApp.java — registrar() (1/2)** — 20 vinetas.
+
+**VetCareApp.java — registrar() (2/2)** — 6 vinetas.
+
+**VetCareApp.java — siguienteId() (1/2)** — 20 vinetas.
+
+**VetCareApp.java — siguienteId() (2/2)** — 1 vinetas.
+
+**VetCareApp.java — class RepositorioMascotasCSV** — 8 vinetas.
+
+**VetCareApp.java — RepositorioMascotasCSV()** — 4 vinetas.
+
+**VetCareApp.java — rutaAbsoluta()** — 4 vinetas.
+
+**VetCareApp.java — guardar()** — 15 vinetas.
+
+**VetCareApp.java — cargar() (1/2)** — 20 vinetas.
+
+**VetCareApp.java — cargar() (2/2)** — 15 vinetas.
+
+**VetCareApp.java — limpiar()** — 8 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente corre el guion de humo completo (abrir, registrar, buscar, cerrar, reabrir) y luego pone un breakpoint en el botón Registrar para mostrar con el debugger por qué una edad vacía estaba entrando como cero.

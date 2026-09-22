@@ -15,15 +15,59 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**La clase pasada nos dio un ArrayList, que es una herramienta poderosa...** — 7 vinetas.
+**La clase pasada nos dio un ArrayList, que es una herramienta poderosa...** — 5 vinetas.
+  - Una estructura restrictiva como Queue no ofrece ese metodo; simplemente no existe en su contrato, entonces el error se vuelve imposible de escribir.
+  - Esa es la idea grande de hoy: elegir la estructura mas limitada que resuelva el problema no es una limitacion tecnica, es una forma de blindar la regla del negocio dentro del tipo de dato.
 
-**La cola, o Queue, funciona con disciplina FIFO: First In, First Out, el...** — 7 vinetas.
+**La cola, o Queue, funciona con disciplina FIFO: First In, First Out, el...** — 5 vinetas.
+  - En VetCare usamos siempre offer/poll/peek porque avisan con false o con null en vez de reventar, y en una recepcion que puede quedar vacia a media manana eso es exactamente lo que queremos. peek es lo que alimenta la pantalla de turnos que ve el publico; poll es lo que hace el medico cuando abre la puerta del consultorio.
 
-**La pila, o Stack, funciona al reves: LIFO, Last In, First Out, como la...** — 6 vinetas.
+**La pila, o Stack, funciona al reves: LIFO, Last In, First Out, como la... (1/2)** — 3 vinetas.
+  - Eso es literalmente como funciona el Ctrl+Z de cualquier programa.
 
-**Vale la pena entender por que estas estructuras son rapidas, porque ahi...** — 6 vinetas.
+**La pila, o Stack, funciona al reves: LIFO, Last In, First Out, como la... (2/2)** — 2 vinetas.
 
-**Un punto que confunde mucho: una cola no se recorre para buscar** — 7 vinetas.
+**Vale la pena entender por que estas estructuras son rapidas, porque ahi...** — 3 vinetas.
+  - Vale la pena entender por que estas estructuras son rapidas, porque ahi esta el argumento tecnico y no solo el pedagogico.
+  - Por eso agregar y sacar por cualquiera de los dos extremos cuesta tiempo constante.
+  - La estructura correcta no solo previene errores de negocio, tambien evita que el programa se arrastre.
+
+**Un punto que confunde mucho: una cola no se recorre para buscar** — 6 vinetas.
+  - Ademas, recorrer una cola con for-each la muestra pero no la consume; muchos estudiantes imprimen la cola con un for-each, ven todos los turnos y creen que ya los atendieron, cuando en realidad size() sigue igual.
+
+**VetCareSalaDeEspera.java — class VetCareSalaDeEspera** — 2 vinetas.
+
+**VetCareSalaDeEspera.java — main() (1/3)** — 20 vinetas.
+
+**VetCareSalaDeEspera.java — main() (2/3)** — 20 vinetas.
+
+**VetCareSalaDeEspera.java — main() (3/3)** — 8 vinetas.
+
+**VetCareSalaDeEspera.java — class Turno** — 7 vinetas.
+
+**VetCareSalaDeEspera.java — Turno()** — 13 vinetas.
+
+**VetCareSalaDeEspera.java — class SalaDeEspera** — 4 vinetas.
+
+**VetCareSalaDeEspera.java — registrarLlegada()** — 6 vinetas.
+
+**VetCareSalaDeEspera.java — siguienteEnPantalla()** — 4 vinetas.
+
+**VetCareSalaDeEspera.java — atender()** — 10 vinetas.
+
+**VetCareSalaDeEspera.java — estaVacia()** — 4 vinetas.
+
+**VetCareSalaDeEspera.java — cantidad()** — 6 vinetas.
+
+**VetCareSalaDeEspera.java — class HistorialReciente** — 4 vinetas.
+
+**VetCareSalaDeEspera.java — registrar()** — 5 vinetas.
+
+**VetCareSalaDeEspera.java — ultimaAtencion()** — 4 vinetas.
+
+**VetCareSalaDeEspera.java — deshacer()** — 7 vinetas.
+
+**VetCareSalaDeEspera.java — cantidad()** — 5 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente encola cuatro mascotas, muestra en pantalla la diferencia entre peek() y poll() atendiendo en orden de llegada, y luego usa push/pop para deshacer la ultima atencion registrada.

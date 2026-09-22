@@ -15,17 +15,26 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**UML significa Lenguaje Unificado de Modelado y nacio en los anos...** — 6 vinetas.
+**UML significa Lenguaje Unificado de Modelado y nacio en los anos... (1/2)** — 4 vinetas.
 
-**Los diagramas se agrupan en dos grandes vistas** — 8 vinetas.
+**UML significa Lenguaje Unificado de Modelado y nacio en los anos... (2/2)** — 2 vinetas.
 
-**El diagrama de clases se dibuja con una caja de tres compartimentos:...** — 6 vinetas.
+**Los diagramas se agrupan en dos grandes vistas** — 5 vinetas.
+  - Los diagramas se agrupan en dos grandes vistas.
+  - Un mismo sistema necesita las dos, igual que una casa necesita el plano de plantas y tambien el plano de instalaciones.
+  - En VetCare vamos a usar clases hoy, casos de uso y secuencia mas adelante, y el resto se menciona para que sepan que existen.
 
-**Las lineas entre clases son la mitad del valor del diagrama (1/2)** — 5 vinetas.
+**El diagrama de clases se dibuja con una caja de tres compartimentos:... (1/2)** — 4 vinetas.
+
+**El diagrama de clases se dibuja con una caja de tres compartimentos:... (2/2)** — 2 vinetas.
+
+**Las lineas entre clases son la mitad del valor del diagrama (1/2)** — 4 vinetas.
+  - Cita relaciona a Mascota y a Veterinario, cada cita con exactamente una mascota y un veterinario, y cada veterinario con muchas citas.
 
 **Las lineas entre clases son la mitad del valor del diagrama (2/2)** — 3 vinetas.
 
-**El diagrama que dibujamos hoy no se queda en la clase: es la pieza que...** — 6 vinetas.
+**El diagrama que dibujamos hoy no se queda en la clase: es la pieza que...** — 5 vinetas.
+  - Por eso el diagrama debe estar limpio: nombres en singular, sin atributos repetidos en dos clases, sin lineas sueltas y sin cajas que no correspondan a ningun requisito.
 
 
 **Demo que usted debe poder repetir:** El docente dibuja en vivo Dueno, Mascota y Cita en draw.io y borra tres atributos mal ubicados explicando a que clase pertenecen de verdad.

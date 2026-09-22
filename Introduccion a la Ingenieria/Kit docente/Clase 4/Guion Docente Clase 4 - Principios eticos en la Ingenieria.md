@@ -31,23 +31,43 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: el ingeniero que fue a la cárcel - diapositiva 4
 
-Proyectado en la lamina «La pregunta de entrada: el ingeniero que fue a la cárcel» (8 vinetas).
+Proyectado en la lamina «La pregunta de entrada: el ingeniero que fue a la cárcel (1/2)» (4 vinetas).
+
+- Un ingeniero de Volkswagen escribió el software que detectaba cuándo el carro estaba en la prueba de emisiones para bajar los contaminantes solo durante el examen.
 
 ### Qué es la ética en una profesión y qué no es - diapositiva 5
 
-Proyectado en la lamina «Qué es la ética en una profesión y qué no es (1/3)» (5 vinetas).
+Proyectado en la lamina «La pregunta de entrada: el ingeniero que fue a la cárcel (2/2)» (3 vinetas).
 
 ### Los códigos y las tres normas colombianas que hay que saber nombrar - diapositiva 6
 
-Proyectado en la lamina «Qué es la ética en una profesión y qué no es (2/3)» (6 vinetas).
+Proyectado en la lamina «Qué es la ética en una profesión y qué no es (1/2)» (6 vinetas).
+
+- Un ingeniero con excelentes intenciones que no preguntó a quién afecta su sistema hizo algo mal, y el resultado no mejora por su buena voluntad.
+
+- Al revés, un ingeniero que detecta un riesgo y lo escribe está actuando bien aunque el proyecto igual salga mal. **La segunda: no es un tema de opinión.** Esta es la que más rinde en clase, porque el estudiante llega convencido de que en ética «cada uno piensa distinto».
+
+- Existen códigos escritos, con principios numerados, que uno puede citar como se cita un artículo de una norma.
+
+- La ley y la ética se cruzan pero no coinciden, y el ingeniero tiene que mirar las dos.
+
+- Una cuarta idea, que es la que más les sirve: **el momento de la ética es el momento de decidir, y casi siempre es temprano**.
 
 ### Los cuatro casos: qué contar de cada uno y cuál es el momento de parar - diapositiva 7
 
-Proyectado en la lamina «Qué es la ética en una profesión y qué no es (3/3)» (6 vinetas).
+Proyectado en la lamina «Qué es la ética en una profesión y qué no es (2/2)» (5 vinetas).
 
 ### La defensa que no sirve y las cinco preguntas que sí - diapositivas 8 y 9
 
-Proyectado en la lamina «Los códigos y las tres normas colombianas que hay que saber nombrar (1/3)» (6 vinetas).
+Proyectado en la lamina «Los códigos y las tres normas colombianas que hay que saber nombrar (1/3)» (5 vinetas).
+
+- Eso significa que el código ya resolvió el conflicto que el estudiante cree irresoluble: si lo que pide el jefe daña al público, el código dice cuál gana.
+
+- La ACM actualizó además su código general en 2018. **Ley 842 de 2003.** Es el código de ética profesional de la ingeniería en Colombia y es la que aplica aquí, no las de otros países.
+
+- Establece los deberes del ingeniero con la sociedad, con la profesión, con sus colegas y con sus clientes, y define las faltas y las sanciones.
+
+- Los **datos sensibles** —salud, biometría, orientación política, sexual o religiosa, datos de niños— tienen protección reforzada.
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 4 - Principios eticos en la Ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -61,10 +81,10 @@ Numeración real del deck `Clases/Clase 4 - Principios eticos en la Ingenieria/P
 7. Cuatro casos donde el software funcionó
 8. «Yo solo programé lo que me pidieron»
 9. Cinco preguntas para decidir sin ser experto
-10. La pregunta de entrada: el ingeniero que fue a la cárcel
-11. Qué es la ética en una profesión y qué no es (1/3)
-12. Qué es la ética en una profesión y qué no es (2/3)
-13. Qué es la ética en una profesión y qué no es (3/3)
+10. La pregunta de entrada: el ingeniero que fue a la cárcel (1/2)
+11. La pregunta de entrada: el ingeniero que fue a la cárcel (2/2)
+12. Qué es la ética en una profesión y qué no es (1/2)
+13. Qué es la ética en una profesión y qué no es (2/2)
 14. Los códigos y las tres normas colombianas que hay que saber nombrar (1/3)
 15. Los códigos y las tres normas colombianas que hay que saber nombrar (2/3)
 16. Los códigos y las tres normas colombianas que hay que saber nombrar (3/3)

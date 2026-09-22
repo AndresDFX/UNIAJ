@@ -15,17 +15,74 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Un patron de diseño no es una libreria que se importa ni un archivo que...** — 6 vinetas.
+**Un patron de diseño no es una libreria que se importa ni un archivo que... (1/2)** — 3 vinetas.
 
-**El problema que motiva el Singleton ya lo vivimos en la clase pasada...** — 6 vinetas.
+**Un patron de diseño no es una libreria que se importa ni un archivo que... (2/2)** — 3 vinetas.
+
+**El problema que motiva el Singleton ya lo vivimos en la clase pasada...** — 3 vinetas.
+  - El problema que motiva el Singleton ya lo vivimos en la clase pasada, aunque no le pusimos nombre.
+  - En VetCare la ventana de registro creaba su propio RepositorioMascotas.
+  - Esa es exactamente la intencion del patron Singleton.
 
 **El mecanismo en Java tiene tres piezas y las tres son obligatorias (1/2)** — 4 vinetas.
 
-**El mecanismo en Java tiene tres piezas y las tres son obligatorias (2/2)** — 3 vinetas.
+**El mecanismo en Java tiene tres piezas y las tres son obligatorias (2/2)** — 2 vinetas.
 
-**El segundo patron responde a otro problema distinto: quien decide como...** — 6 vinetas.
+**El mecanismo en Java tiene tres piezas y las... — sintaxis** — 1 vinetas.
 
-**Ahora la parte que casi nadie enseña: cuando NO usarlos** — 8 vinetas.
+**El segundo patron responde a otro problema distinto: quien decide como... (1/2)** — 4 vinetas.
+
+**El segundo patron responde a otro problema distinto: quien decide como... (2/2)** — 2 vinetas.
+
+**Ahora la parte que casi nadie enseña: cuando NO usarlos (1/2)** — 5 vinetas.
+
+**Ahora la parte que casi nadie enseña: cuando NO usarlos (2/2)** — 3 vinetas.
+
+**VetCarePatronesDemo.java — class VetCarePatronesDemo** — 2 vinetas.
+
+**VetCarePatronesDemo.java — main() (1/2)** — 20 vinetas.
+
+**VetCarePatronesDemo.java — main() (2/2)** — 11 vinetas.
+
+**VetCarePatronesDemo.java — class Mascota** — 6 vinetas.
+
+**VetCarePatronesDemo.java — Mascota()** — 13 vinetas.
+
+**VetCarePatronesDemo.java — class RepositorioVetCare** — 6 vinetas.
+
+**VetCarePatronesDemo.java — RepositorioVetCare()** — 4 vinetas.
+
+**VetCarePatronesDemo.java — getInstancia()** — 7 vinetas.
+
+**VetCarePatronesDemo.java — registrar()** — 10 vinetas.
+
+**VetCarePatronesDemo.java — buscarPorId()** — 18 vinetas.
+
+**VetCarePatronesDemo.java — class Consulta** — 4 vinetas.
+
+**VetCarePatronesDemo.java — Consulta()** — 8 vinetas.
+
+**VetCarePatronesDemo.java — describir()** — 6 vinetas.
+
+**VetCarePatronesDemo.java — class ConsultaVacunacion** — 11 vinetas.
+
+**VetCarePatronesDemo.java — class ConsultaControl** — 11 vinetas.
+
+**VetCarePatronesDemo.java — class ConsultaUrgencia** — 12 vinetas.
+
+**VetCarePatronesDemo.java — class FabricaConsultas** — 4 vinetas.
+
+**VetCarePatronesDemo.java — crear()** — 18 vinetas.
+
+**VetCarePatronesDemo.java — class VentanaSucursal** — 9 vinetas.
+
+**VetCarePatronesDemo.java — VentanaSucursal() (1/2)** — 20 vinetas.
+
+**VetCarePatronesDemo.java — VentanaSucursal() (2/2)** — 18 vinetas.
+
+**VetCarePatronesDemo.java — registrar()** — 13 vinetas.
+
+**VetCarePatronesDemo.java — refrescar()** — 13 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente abre dos ventanas de VetCare, registra una mascota en la primera y la muestra apareciendo en la segunda porque ambas comparten la unica instancia del repositorio.

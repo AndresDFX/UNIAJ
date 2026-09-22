@@ -24,64 +24,109 @@ del PI VetCare. La teoria se limita a desbloquear el taller.
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 4] Funcion y procedimiento: se distinguen por su papel, no por su sintaxis (1/3)** — 6 vinetas.
+**[Slide 4] Funcion y procedimiento: se distinguen por su papel, no por su sintaxis (1/3)** — 5 vinetas.
+  - Una funcion y un procedimiento se parecen tanto en la escritura que conviene separarlos por su papel y no por su sintaxis.
+  - RETURNS declara el tipo del valor devuelto, y dentro del cuerpo tiene que haber al menos un RETURN, porque una funcion de PL/pgSQL que termina sin retornar lanza un error en ejecucion.
 
 **[Slide 5] Funcion y procedimiento: se distinguen por su papel, no por su sintaxis (2/3)** — 5 vinetas.
 
-**[Slide 6] Funcion y procedimiento: se distinguen por su papel, no por su sintaxis (3/3)** — 5 vinetas.
+**[Slide 6] Funcion y procedimiento: se distinguen por su papel, no por su sintaxis (3/3)** — 3 vinetas.
 
-**[Slide 7] Los tres detalles de fn_precio_consulta que valen puntos (1/2)** — 8 vinetas.
+**[Slide 7] Funcion y procedimiento: se distinguen por su... — sintaxis** — 6 vinetas.
 
-**[Slide 8] Los tres detalles de fn_precio_consulta que valen puntos (2/2)** — 5 vinetas.
+**[Slide 8] Los tres detalles de fn_precio_consulta que valen puntos (1/2)** — 6 vinetas.
+  - La aplicacion de Huellitas puede mandar 'Canino', 'canino' o 'CANINO', y comparar el texto tal como llega significa que dos de las tres formas caen al precio de otra especie.
+  - Si la casilla de urgencia llega en nulo, que es lo que hace una interfaz donde el usuario no marco nada, entonces IF p_urgencia THEN no entra —nulo no es verdadero— pero cualquier aritmetica con nulo si contamina: v_base * p_urgencia daria nulo y la factura saldria vacia.
 
-**[Slide 9] El trigger: el unico que nadie invoca, y en PostgreSQL son DOS objetos (1/2)** — 6 vinetas.
+**[Slide 9] Los tres detalles de fn_precio_consulta que valen puntos (2/2)** — 4 vinetas.
+
+**[Slide 10] El trigger: el unico que nadie invoca, y en PostgreSQL son DOS objetos (1/2)** — 4 vinetas.
+  - Despues la asociacion,;, que dice cuando dispararla y a quien llamar.
+  - EXECUTE PROCEDURE todavia se acepta por compatibilidad, pero esta obsoleto y no conviene ensenarlo.
+  - De ahi salen sus dos caras: si el trigger falla, la sentencia original tambien falla y se deshace, que es exactamente lo que se quiere para un invariante como que el stock nunca quede negativo; y si el trigger es lento, la sentencia original se vuelve lenta, y si bloquea, bloquea al usuario que hizo el UPDATE.
   - Conviene mencionar tambien las variables especiales que PL/pgSQL pone a disposicion dentro de una funcion de trigger, porque permiten escribir una sola funcion para varios eventos: TG_OP dice si fue INSERT, UPDATE o DELETE, TG_TABLE_NAME dice sobre que tabla, y TG_WHEN y TG_LEVEL dicen si es BEFORE o AFTER y de fila o de sentencia.
+  - Hoy no hacen falta, pero saber que existen evita que el estudiante escriba tres funciones casi identicas.
 
-**[Slide 10] El trigger: el unico que nadie invoca, y en PostgreSQL son DOS objetos (2/2)** — 5 vinetas.
+**[Slide 11] El trigger: el unico que nadie invoca, y en PostgreSQL son DOS objetos (2/2)** — 2 vinetas.
 
-**[Slide 11] BEFORE o AFTER, y que significa el valor que se retorna (1/2)** — 6 vinetas.
+**[Slide 12] El trigger: el unico que nadie invoca, y en... — sintaxis** — 4 vinetas.
 
-**[Slide 12] BEFORE o AFTER, y que significa el valor que se retorna (2/2)** — 8 vinetas.
+**[Slide 13] BEFORE o AFTER, y que significa el valor que se retorna (1/2)** — 4 vinetas.
+  - Para un trigger de DELETE se retorna OLD, porque NEW no existe en ese evento; simetricamente, en un INSERT no existe OLD.
+  - FOR EACH ROW indica que se ejecuta una vez por fila afectada y da acceso a OLD y NEW.
+  - La regla operativa, que es la que se califica en la pregunta 4, se dice en una frase: el que VALIDA va BEFORE, porque tiene que abortar antes de que el dato quede escrito y porque solo ahi puede corregirlo; el que AUDITA va AFTER, porque registra un hecho ya consumado.
 
-**[Slide 13] La auditoria: donde el trigger brilla, y el WHEN que cambia el resultado (1/3)** — 7 vinetas.
+**[Slide 14] BEFORE o AFTER, y que significa el valor que se retorna (2/2)** — 6 vinetas.
+
+**[Slide 15] La auditoria: donde el trigger brilla, y el WHEN que cambia el resultado (1/2)** — 6 vinetas.
+  - Vale leer la cabecera del trigger del proyecto palabra por palabra, porque cada pieza tiene razon.
+  - AFTER UPDATE OF estado ON cita limita el disparo a los cambios de esa columna y no a cualquier actualizacion de la fila, de modo que corregir el telefono no escribe una fila de auditoria.
+  - FOR EACH ROW da acceso a OLD y NEW.
+  - Sin WHEN, la auditoria se llena de eventos donde no cambio nada y deja de servir para investigar.
   - Conviene detenerse en esos dos defaults porque tienen matices. current_user devuelve el rol EFECTIVO, es decir el que la Clase 2 cambiaba con SET ROLE, y no necesariamente quien inicio la sesion, que es session_user; para auditar interesa el efectivo.
+  - Y now() devuelve el instante de inicio de la transaccion, no el del reloj, asi que si una transaccion escribe cinco filas de auditoria las cinco llevan la misma marca de tiempo; si eso importa, existe clock_timestamp().
+  - Como referencia de dimensionamiento, si la clinica registra doscientos cambios auditables por dia, la tabla crece del orden de setenta y tres mil filas en doce meses, cifra que obliga a definir retencion en el mismo plan de respaldo.
 
-**[Slide 14] La auditoria: donde el trigger brilla, y el WHEN que cambia el resultado (2/3)** — 6 vinetas.
+**[Slide 16] La auditoria: donde el trigger brilla, y el WHEN que cambia el resultado (2/2)** — 4 vinetas.
 
-**[Slide 15] La auditoria: donde el trigger brilla, y el WHEN que cambia el resultado (3/3)** — 3 vinetas.
+**[Slide 17] El trigger que impide: el hueco que el CHECK no tapa (1/2)** — 6 vinetas.
+  - Lo que un CHECK no puede hacer es mirar OTRA fila, OTRA tabla, o el valor ANTERIOR de la fila que se esta cambiando; solo ve los valores finales de la fila que se inserta o actualiza.
+  - Por eso el trigger de stock del taller no es un reemplazo del CHECK sino una demostracion de la capacidad extra: la funcion fn_trg_stock_no_negativo() puede escribir RAISE EXCEPTION 'ERROR: el stock de % no puede quedar negativo (resultado: %)', OLD.nombre, NEW.stock, es decir puede nombrar el insumo tomando el dato de OLD y el resultado de NEW en el mismo mensaje.
 
-**[Slide 16] El trigger que impide: el hueco que el CHECK no tapa (1/2)** — 7 vinetas.
+**[Slide 18] El trigger que impide: el hueco que el CHECK no tapa (2/2)** — 4 vinetas.
 
-**[Slide 17] El trigger que impide: el hueco que el CHECK no tapa (2/2)** — 6 vinetas.
-
-**[Slide 18] Las cuatro capas, y en cual vive cada regla (1/3)** — 6 vinetas.
+**[Slide 19] Las cuatro capas, y en cual vive cada regla (1/3)** — 5 vinetas.
+  - La pregunta 4 vale quince puntos, no pide codigo y es la que mejor mide si el estudiante entendio el dia: hay que ubicar cada validacion en su capa y justificar por que ahi.
   - Conviene dictar las cuatro capas en orden de preferencia, porque el orden es la respuesta.
+  - Las dos pasan la verificacion y las dos insertan.
+  - La respuesta correcta es declarativa ——, es mas rapida, mas clara y a prueba de concurrencia, y el porque completo llega en la Clase 10.
 
-**[Slide 19] Las cuatro capas, y en cual vive cada regla (2/3)** — 5 vinetas.
+**[Slide 20] Las cuatro capas, y en cual vive cada regla (2/3)** — 4 vinetas.
 
-**[Slide 20] Las cuatro capas, y en cual vive cada regla (3/3)** — 4 vinetas.
+**[Slide 21] Las cuatro capas, y en cual vive cada regla (3/3)** — 3 vinetas.
 
-**[Slide 21] Cuando NO se usa un trigger, y lo que un trigger no ve (1/2)** — 8 vinetas.
+**[Slide 22] Las cuatro capas, y en cual vive cada regla — sintaxis** — 1 vinetas.
 
-**[Slide 22] Cuando NO se usa un trigger, y lo que un trigger no ve (2/2)** — 7 vinetas.
+**[Slide 23] Cuando NO se usa un trigger, y lo que un trigger no ve (1/3)** — 5 vinetas.
+  - Hay tres riesgos que conviene exponer con ejemplos y no como advertencia generica.
+  - PostgreSQL no la prohibe, la corta cuando se agota la pila, y eso ocurre en produccion y con datos reales, no durante la prueba.
+  - TRUNCATE no dispara triggers de fila, asi que un TRUNCATE insumo pasa por encima de la validacion de stock sin que se escriba una sola linea de auditoria.
 
-**[Slide 23] Seguridad y respaldo: dos preguntas complementarias (1/2)** — 6 vinetas.
+**[Slide 24] Cuando NO se usa un trigger, y lo que un trigger no ve (2/3)** — 4 vinetas.
 
-**[Slide 24] Seguridad y respaldo: dos preguntas complementarias (2/2)** — 7 vinetas.
+**[Slide 25] Cuando NO se usa un trigger, y lo que un trigger no ve (3/3)** — 3 vinetas.
 
-**[Slide 25] RPO y RTO: dos siglas que solo sirven con un numero acordado (1/2)** — 8 vinetas.
+**[Slide 26] Seguridad y respaldo: dos preguntas complementarias (1/3)** — 5 vinetas.
 
-**[Slide 26] RPO y RTO: dos siglas que solo sirven con un numero acordado (2/2)** — 6 vinetas.
+**[Slide 27] Seguridad y respaldo: dos preguntas complementarias (2/3)** — 6 vinetas.
 
-**[Slide 27] Lo que ExamLab si puede demostrar, y lo que se documenta en papel (1/2)** — 7 vinetas.
+**[Slide 28] Seguridad y respaldo: dos preguntas complementarias (3/3)** — 2 vinetas.
 
-**[Slide 28] Lo que ExamLab si puede demostrar, y lo que se documenta en papel (2/2)** — 5 vinetas.
+**[Slide 29] RPO y RTO: dos siglas que solo sirven con un numero acordado (1/3)** — 4 vinetas.
+  - RPO y RTO dejan de ser siglas cuando se les pone un numero acordado con el negocio, y la rubrica pide precisamente el numero con su justificacion.
+  - Probar un restore de verdad tiene cuatro pasos y conviene dictarlos como procedimiento.
+  - Cuatro, dejar bitacora con fecha, responsable, resultado y RTO medido; si no hay bitacora, la prueba no existe.
 
-**[Slide 29] Como amarra con las clases vecinas y con la rubrica del PI** — 7 vinetas.
+**[Slide 30] RPO y RTO: dos siglas que solo sirven con un numero acordado (2/3)** — 4 vinetas.
 
-**[Slide 30] Preguntas frecuentes del grupo (1/2)** — 6 vinetas.
+**[Slide 31] RPO y RTO: dos siglas que solo sirven con un numero acordado (3/3)** — 3 vinetas.
 
-**[Slide 31] Preguntas frecuentes del grupo (2/2)** — 4 vinetas.
+**[Slide 32] Lo que ExamLab si puede demostrar, y lo que se documenta en papel** — 6 vinetas.
+  - Lo que NO se puede ejecutar es pg_dump, pg_dumpall, pg_basebackup ni pg_restore, y la razon hay que decirla con precision en vez de dejarla en «la herramienta no sirve»: son programas de linea de comandos que leen y escriben archivos, y ahi no hay sistema de archivos ni servidor al que conectarse.
+  - Por eso la pregunta 5 es un documento y no una ejecucion: se califica que el plan nombre la herramienta correcta para cada cosa, no que el estudiante la haya corrido.
+  - Esa distincion hay que decirla en clase, porque un estudiante que intente ejecutar pg_dump en la consola de ExamLab va a perder veinte minutos y va a creer que hizo algo mal.
+  - Lo que si se puede ensayar de verdad, y conviene hacerlo, es el restore a escala de aula: borrar el esquema completo y volverlo a levantar pegando el propio guion del estudiante, con cronometro en mano.
+  - Vale un minuto senalarlo para quien se encuentre Oracle en el trabajo, y no vale mas, porque la calificacion ocurre en PostgreSQL.
+
+**[Slide 33] Como amarra con las clases vecinas y con la rubrica del PI (1/2)** — 4 vinetas.
+
+**[Slide 34] Como amarra con las clases vecinas y con la rubrica del PI (2/2)** — 3 vinetas.
+
+**[Slide 35] Preguntas frecuentes del grupo (1/3)** — 3 vinetas.
+
+**[Slide 36] Preguntas frecuentes del grupo (2/3)** — 4 vinetas.
+
+**[Slide 37] Preguntas frecuentes del grupo (3/3)** — 3 vinetas.
 
 
 **Demo que usted debe poder repetir:** fn_precio_consulta + fn_trg_audit_cita con su CREATE TRIGGER ... EXECUTE FUNCTION, en ExamLab, y el esqueleto del plan de respaldo.
@@ -96,45 +141,51 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 4. Funcion y procedimiento: se distinguen por su papel, no por su sintaxis (1/3)
 5. Funcion y procedimiento: se distinguen por su papel, no por su sintaxis (2/3)
 6. Funcion y procedimiento: se distinguen por su papel, no por su sintaxis (3/3)
-7. Los tres detalles de fn_precio_consulta que valen puntos (1/2)
-8. Los tres detalles de fn_precio_consulta que valen puntos (2/2)
-9. El trigger: el unico que nadie invoca, y en PostgreSQL son DOS objetos (1/2)
-10. El trigger: el unico que nadie invoca, y en PostgreSQL son DOS objetos (2/2)
-11. BEFORE o AFTER, y que significa el valor que se retorna (1/2)
-12. BEFORE o AFTER, y que significa el valor que se retorna (2/2)
-13. La auditoria: donde el trigger brilla, y el WHEN que cambia el resultado (1/3)
-14. La auditoria: donde el trigger brilla, y el WHEN que cambia el resultado (2/3)
-15. La auditoria: donde el trigger brilla, y el WHEN que cambia el resultado (3/3)
-16. El trigger que impide: el hueco que el CHECK no tapa (1/2)
-17. El trigger que impide: el hueco que el CHECK no tapa (2/2)
-18. Las cuatro capas, y en cual vive cada regla (1/3)
-19. Las cuatro capas, y en cual vive cada regla (2/3)
-20. Las cuatro capas, y en cual vive cada regla (3/3)
-21. Cuando NO se usa un trigger, y lo que un trigger no ve (1/2)
-22. Cuando NO se usa un trigger, y lo que un trigger no ve (2/2)
-23. Seguridad y respaldo: dos preguntas complementarias (1/2)
-24. Seguridad y respaldo: dos preguntas complementarias (2/2)
-25. RPO y RTO: dos siglas que solo sirven con un numero acordado (1/2)
-26. RPO y RTO: dos siglas que solo sirven con un numero acordado (2/2)
-27. Lo que ExamLab si puede demostrar, y lo que se documenta en papel (1/2)
-28. Lo que ExamLab si puede demostrar, y lo que se documenta en papel (2/2)
-29. Como amarra con las clases vecinas y con la rubrica del PI
-30. Preguntas frecuentes del grupo (1/2)
-31. Preguntas frecuentes del grupo (2/2)
-32. Un trigger son DOS objetos: la funcion y la asociacion
-33. La funcion de tarifas: RETURNS NUMERIC, CASE, COALESCE e IMMUTABLE
-34. Donde vive cada validacion: CHECK, trigger o aplicacion
-35. Plan de respaldo: 6 secciones y herramientas reales de PostgreSQL
-36. Demo del dia
-37. Herramientas de hoy
-38. Taller PI VetCare — contexto / por que importa
-39. Taller PI VetCare — objetivo y criterios
-40. Taller PI VetCare — escenario / datos de partida
-41. Taller PI VetCare — pasos guiados
-42. Taller PI VetCare — pistas (checklist vacio)
-43. Criterios de exito / entregable
-44. Para el PI esta semana
-45. Cierre · Clase 4
+7. Funcion y procedimiento: se distinguen por su... — sintaxis
+8. Los tres detalles de fn_precio_consulta que valen puntos (1/2)
+9. Los tres detalles de fn_precio_consulta que valen puntos (2/2)
+10. El trigger: el unico que nadie invoca, y en PostgreSQL son DOS objetos (1/2)
+11. El trigger: el unico que nadie invoca, y en PostgreSQL son DOS objetos (2/2)
+12. El trigger: el unico que nadie invoca, y en... — sintaxis
+13. BEFORE o AFTER, y que significa el valor que se retorna (1/2)
+14. BEFORE o AFTER, y que significa el valor que se retorna (2/2)
+15. La auditoria: donde el trigger brilla, y el WHEN que cambia el resultado (1/2)
+16. La auditoria: donde el trigger brilla, y el WHEN que cambia el resultado (2/2)
+17. El trigger que impide: el hueco que el CHECK no tapa (1/2)
+18. El trigger que impide: el hueco que el CHECK no tapa (2/2)
+19. Las cuatro capas, y en cual vive cada regla (1/3)
+20. Las cuatro capas, y en cual vive cada regla (2/3)
+21. Las cuatro capas, y en cual vive cada regla (3/3)
+22. Las cuatro capas, y en cual vive cada regla — sintaxis
+23. Cuando NO se usa un trigger, y lo que un trigger no ve (1/3)
+24. Cuando NO se usa un trigger, y lo que un trigger no ve (2/3)
+25. Cuando NO se usa un trigger, y lo que un trigger no ve (3/3)
+26. Seguridad y respaldo: dos preguntas complementarias (1/3)
+27. Seguridad y respaldo: dos preguntas complementarias (2/3)
+28. Seguridad y respaldo: dos preguntas complementarias (3/3)
+29. RPO y RTO: dos siglas que solo sirven con un numero acordado (1/3)
+30. RPO y RTO: dos siglas que solo sirven con un numero acordado (2/3)
+31. RPO y RTO: dos siglas que solo sirven con un numero acordado (3/3)
+32. Lo que ExamLab si puede demostrar, y lo que se documenta en papel
+33. Como amarra con las clases vecinas y con la rubrica del PI (1/2)
+34. Como amarra con las clases vecinas y con la rubrica del PI (2/2)
+35. Preguntas frecuentes del grupo (1/3)
+36. Preguntas frecuentes del grupo (2/3)
+37. Preguntas frecuentes del grupo (3/3)
+38. Un trigger son DOS objetos: la funcion y la asociacion
+39. La funcion de tarifas: RETURNS NUMERIC, CASE, COALESCE e IMMUTABLE
+40. Donde vive cada validacion: CHECK, trigger o aplicacion
+41. Plan de respaldo: 6 secciones y herramientas reales de PostgreSQL
+42. Demo del dia
+43. Herramientas de hoy
+44. Taller PI VetCare — contexto / por que importa
+45. Taller PI VetCare — objetivo y criterios
+46. Taller PI VetCare — escenario / datos de partida
+47. Taller PI VetCare — pasos guiados
+48. Taller PI VetCare — pistas (checklist vacio)
+49. Criterios de exito / entregable
+50. Para el PI esta semana
+51. Cierre · Clase 4
 
 > Privado, no se proyecta: `Kit docente/Clase 4/Solucion Taller Clase 4 - VetCare.docx`
 
@@ -166,14 +217,14 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: presentar el backup como 'copiar el archivo de vez en cuando' sin frecuencia, retencion (cuantas copias se guardan) ni prueba de restore — eso es lo que el taller de esta clase pide explicitamente que el estudiante defina. El segundo error es dictar el trigger como en Oracle, con el cuerpo dentro del CREATE TRIGGER y :NEW/:OLD: la rubrica lo penaliza expresamente, asi que el docente estaria proyectando el codigo por el que va a descontar.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 36]
+### 35-55 · Demo paso a paso · [Slide 42]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: fn_precio_consulta + fn_trg_audit_cita con su CREATE TRIGGER ... EXECUTE FUNCTION, en ExamLab, y el esqueleto del plan de respaldo.
 Herramienta: ExamLab (PostgreSQL) + Google Docs
 📸 trg_audit_cita: los 3 UPDATE dejan 2 filas de auditoria (el WHEN filtra el tercero) [[captura: cap01_demo.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 41]
+### 55-105 · Taller guiado = tarea del PI · [Slide 47]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -186,13 +237,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: fn_precio_consulta + 2 triggers corriendo en ExamLab + Plan_Backup_VetCare con sus 6 secciones (1 pag.)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 4/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 43]
-Repasar checklist del dia con [Slide 43] «Criterios de exito / entregable».
+### 105-115 · Criterios de exito + quiz corto · [Slide 49]
+Repasar checklist del dia con [Slide 49] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 4 - VetCare.docx`. Clave para usted: `Quiz Clase 4 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 45]
+### 115-120 · Cierre · [Slide 51]
 **Decir:** «Queda avanzado: >=1 funcion + >=1 trigger + borrador plan de respaldo. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 45] slide de cierre. Dudas finales.
+Proyectar [Slide 51] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

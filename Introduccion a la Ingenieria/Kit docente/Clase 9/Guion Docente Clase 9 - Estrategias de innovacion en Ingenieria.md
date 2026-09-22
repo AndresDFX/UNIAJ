@@ -31,25 +31,43 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: si no existe en ningún lado, probablemente no buscaron - diapositiva 4
 
-Proyectado en la lamina «La pregunta de entrada: si no existe en ningún lado, probablemente no buscaron» (8 vinetas).
+Proyectado en la lamina «La pregunta de entrada: si no existe en ningún lado, probablemente no buscaron» (4 vinetas).
+
+- La respuesta estadística es dura: en un mundo con millones de ingenieros y cincuenta años de software publicado, la probabilidad de que un problema común —disponibilidad, inventario, turnos, avisos— no tenga antecedentes es prácticamente cero.
+
+- Lo que hay que evitar es que el grupo lo lea como un desaire.
+
+- Un equipo que dice «esto no existe» está apostando; un equipo que dice «existen estas tres soluciones, ninguna funciona sin computador en el mostrador, y nosotros resolvemos justamente eso» tiene una posición defendible ante cualquiera.
+
+- La segunda frase es la que se califica en la Clase 15.
 
 ### Innovación: por qué la adopción es lo que decide - diapositiva 5
 
-Proyectado en la lamina «Innovación: por qué la adopción es lo que decide (1/2)» (6 vinetas).
+Proyectado en la lamina «Innovación: por qué la adopción es lo que decide (1/2)» (5 vinetas).
+
+- Si nadie la usa, fue un experimento — respetable, pero no innovación.
 
 - Hay que decirlo sin condescendencia: la mayoría de la ingeniería del mundo es incremental, y la mejora incremental bien hecha y adoptada vale más que la revolución no entregada. **De producto y de proceso.** Innovar en el *cómo* —el mismo servicio con la mitad de los pasos— es innovación de proceso, y para muchos de sus proyectos es lo más alcanzable y lo más útil.
 
+- Eso convierte la búsqueda de antecedentes en la materia prima del proyecto, y no en un requisito académico.
+
+- Sin antecedentes no hay con qué recombinar.
+
 ### Las cuatro maneras de generar una mejora - diapositiva 6
 
-Proyectado en la lamina «Innovación: por qué la adopción es lo que decide (2/2)» (4 vinetas).
+Proyectado en la lamina «Innovación: por qué la adopción es lo que decide (2/2)» (2 vinetas).
 
 ### Buscar: la pregunta de búsqueda y los cinco pasos - diapositiva 7
 
-Proyectado en la lamina «Las cuatro maneras de generar una mejora (1/2)» (8 vinetas).
+Proyectado en la lamina «Las cuatro maneras de generar una mejora (1/2)» (6 vinetas).
+
+- Quitar un paso, un requisito, un dato, una pantalla.
+
+- Vale la pena señalar que **quitar también reduce la huella** —menos datos, menos consultas, menos transferencia—, que es el indicador de la sesión 5. **COMBINAR** es juntar dos cosas que ya existen y que nadie había juntado en ese contexto: una lista publicada más un mensaje automático; un formulario más un tablero.
 
 ### Calidad de las fuentes, la IA y qué hacer cuando no se encuentra nada - diapositivas 8 y 9
 
-Proyectado en la lamina «Las cuatro maneras de generar una mejora (2/2)» (4 vinetas).
+Proyectado en la lamina «Las cuatro maneras de generar una mejora (2/2)» (3 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 9 - Estrategias de innovacion en Ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.

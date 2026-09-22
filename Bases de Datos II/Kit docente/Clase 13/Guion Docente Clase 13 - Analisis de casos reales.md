@@ -33,25 +33,36 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 7] Causa proxima y causa raiz: la distincion que separa el analisis de la anecdota (2/2)** — 4 vinetas.
 
-**[Slide 8] Caso uno: el respaldo que nunca se restauro (GitLab, 2017) (1/2)** — 7 vinetas.
+**[Slide 8] Caso uno: el respaldo que nunca se restauro (GitLab, 2017) (1/2)** — 4 vinetas.
+  - Eso es la causa proxima.
+  - Lo que convirtio un error humano corriente en un incidente historico fue que, al intentar recuperar, la compania descubrio que sus cinco mecanismos de respaldo y replicacion fallaban de una u otra forma: entre otras cosas, la herramienta de volcado logico fallaba en silencio por una diferencia de version entre cliente y servidor, y las copias que debian estar en almacenamiento remoto estaban vacias.
+  - Terminaron restaurando desde una copia de trabajo de unas seis horas antes y perdieron de forma definitiva la informacion creada en esa ventana, del orden de miles de proyectos y comentarios.
 
-**[Slide 9] Caso uno: el respaldo que nunca se restauro (GitLab, 2017) (2/2)** — 4 vinetas.
+**[Slide 9] Caso uno: el respaldo que nunca se restauro (GitLab, 2017) (2/2)** — 3 vinetas.
 
-**[Slide 10] Caso dos: permisos excesivos (Capital One, 2019) (1/2)** — 5 vinetas.
+**[Slide 10] Caso dos: permisos excesivos (Capital One, 2019) (1/2)** — 3 vinetas.
+  - Caso dos, permisos excesivos.
+  - Y hay que decir la parte incomoda, porque es la que se repite en los proyectos de curso: casi todos los estudiantes hacen que la aplicacion se conecte con un usuario que tiene todo, porque asi nunca aparece un error de permisos y se avanza mas rapido.
 
 **[Slide 11] Caso dos: permisos excesivos (Capital One, 2019) (2/2)** — 4 vinetas.
 
-**[Slide 12] Caso tres: perdida de datos en una migracion (MySpace, 2019) (1/2)** — 5 vinetas.
+**[Slide 12] Caso tres: perdida de datos en una migracion (MySpace, 2019) (1/2)** — 4 vinetas.
+  - Caso tres, perdida de datos durante una migracion.
 
 **[Slide 13] Caso tres: perdida de datos en una migracion (MySpace, 2019) (2/2)** — 3 vinetas.
 
-**[Slide 14] Caso cuatro: concurrencia, el que no llega a los titulares (1/2)** — 6 vinetas.
+**[Slide 14] Caso cuatro: concurrencia, el que no llega a los titulares (1/2)** — 5 vinetas.
+  - Caso cuatro, concurrencia.
 
 **[Slide 15] Caso cuatro: concurrencia, el que no llega a los titulares (2/2)** — 4 vinetas.
 
-**[Slide 16] Lo que decide la calificacion: lecciones accionables (1/2)** — 8 vinetas.
+**[Slide 16] Lo que decide la calificacion: lecciones accionables (1/3)** — 5 vinetas.
+  - Lo que decide la calificacion de hoy no es reunir casos sino escribir lecciones accionables, y esa es la habilidad que el estudiante debe practicar sin ayuda.
+  - Compare las dos versiones.
 
-**[Slide 17] Lo que decide la calificacion: lecciones accionables (2/2)** — 7 vinetas.
+**[Slide 17] Lo que decide la calificacion: lecciones accionables (2/3)** — 5 vinetas.
+
+**[Slide 18] Lo que decide la calificacion: lecciones accionables (3/3)** — 3 vinetas.
 
 
 **Demo que usted debe poder repetir:** Plantilla: contexto -> fallo -> leccion -> cambio en VetCare.
@@ -75,18 +86,19 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 13. Caso tres: perdida de datos en una migracion (MySpace, 2019) (2/2)
 14. Caso cuatro: concurrencia, el que no llega a los titulares (1/2)
 15. Caso cuatro: concurrencia, el que no llega a los titulares (2/2)
-16. Lo que decide la calificacion: lecciones accionables (1/2)
-17. Lo que decide la calificacion: lecciones accionables (2/2)
-18. Demo del dia
-19. Herramientas de hoy
-20. Actividad autonoma — contexto / por que importa
-21. Actividad autonoma — objetivo y criterios
-22. Actividad autonoma — escenario / datos de partida
-23. Actividad autonoma — pasos guiados
-24. Actividad autonoma — pistas (checklist vacio)
-25. Criterios de exito / entregable
-26. Para el PI esta semana
-27. Cierre · Clase 13
+16. Lo que decide la calificacion: lecciones accionables (1/3)
+17. Lo que decide la calificacion: lecciones accionables (2/3)
+18. Lo que decide la calificacion: lecciones accionables (3/3)
+19. Demo del dia
+20. Herramientas de hoy
+21. Actividad autonoma — contexto / por que importa
+22. Actividad autonoma — objetivo y criterios
+23. Actividad autonoma — escenario / datos de partida
+24. Actividad autonoma — pasos guiados
+25. Actividad autonoma — pistas (checklist vacio)
+26. Criterios de exito / entregable
+27. Para el PI esta semana
+28. Cierre · Clase 13
 
 > Privado, no se proyecta: `Kit docente/Clase 13/Solucion Taller Clase 13 - VetCare.docx`
 

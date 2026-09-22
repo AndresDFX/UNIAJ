@@ -24,55 +24,83 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 8] De donde viene la clase y que se abre hoy** — 6 vinetas.
+**[Slide 8] De donde viene la clase y que se abre hoy (1/2)** — 4 vinetas.
 
-**[Slide 9] Monolito: lo que la palabra realmente significa (1/3)** — 7 vinetas.
+**[Slide 9] De donde viene la clase y que se abre hoy (2/2)** — 2 vinetas.
+
+**[Slide 10] Monolito: lo que la palabra realmente significa (1/4)** — 5 vinetas.
+  - Empecemos por el termino que el estudiante trae con mala fama.
   - La palabra decisiva es independiente, y admite una prueba de una linea que el docente debe usar como criterio de correccion: si para poner en produccion el servicio A hay que desplegar tambien el servicio B, entonces A y B no son dos microservicios, son un solo sistema partido en dos repositorios, con todos los costos de la distribucion y ninguno de sus beneficios.
+  - La decision se sostiene con exactamente dos criterios.
+  - La razon de fondo es la que se repite en el cierre: la cantidad de servicios que una organizacion sostiene es funcion del numero de equipos autonomos, no del gusto por la modularidad.
 
-**[Slide 10] Monolito: lo que la palabra realmente significa (2/3)** — 6 vinetas.
+**[Slide 11] Monolito: lo que la palabra realmente significa (2/4)** — 4 vinetas.
 
-**[Slide 11] Monolito: lo que la palabra realmente significa (3/3)** — 7 vinetas.
+**[Slide 12] Monolito: lo que la palabra realmente significa (3/4)** — 6 vinetas.
 
-**[Slide 12] Las tres reglas del nivel Container y la trazabilidad con el Context (1/2)** — 8 vinetas.
+**[Slide 13] Monolito: lo que la palabra realmente significa (4/4)** — 2 vinetas.
 
-**[Slide 13] Las tres reglas del nivel Container y la trazabilidad con el Context (2/2)** — 7 vinetas.
+**[Slide 14] Las tres reglas del nivel Container y la trazabilidad con el Context (1/2)** — 6 vinetas.
+  - Antes del ejemplo conviene fijar las tres reglas con las que se corrige el diagrama, porque cada una tiene puntos asignados y las tres se pierden por descuido y no por no saber.
+  - Nombre, tecnologia y responsabilidad en una frase.
+  - «HTTP» a secas no dice como viajan los datos y «SQL» a secas no dice sobre que transporte; con las dos mitades, cualquiera que lea el diagrama sabe por donde puede romperse.
 
-**[Slide 14] C4Container en Mermaid: la sintaxis que la plataforma renderiza (1/2)** — 7 vinetas.
+**[Slide 15] Las tres reglas del nivel Container y la trazabilidad con el Context (2/2)** — 6 vinetas.
+
+**[Slide 16] C4Container en Mermaid: la sintaxis que la plataforma renderiza (1/2)** — 6 vinetas.
   - Eso cambia lo que el docente tiene que ensenar, porque un boceto correcto escrito con la sintaxis equivocada no renderiza y entonces no hay diagrama que calificar.
   - Vale la pena decir en voz alta que aqui el uso de una IA es legitimo y ademas recomendado: pasar un boceto a codigo Mermaid es justo la tarea mecanica en la que ayuda sin sustituir el criterio.
+  - Lo que NO delega el estudiante es la revision, y hay tres cosas que tiene que verificar el mismo antes de enviar, porque son las que la IA equivoca con frecuencia: que la primera linea sea C4Container, que la base de datos haya quedado como ContainerDb y no como Container, y que ninguna relacion haya perdido la mitad de su etiqueta.
 
-**[Slide 15] C4Container en Mermaid: la sintaxis que la plataforma renderiza (2/2)** — 5 vinetas.
+**[Slide 17] C4Container en Mermaid: la sintaxis que la plataforma renderiza (2/2)** — 4 vinetas.
 
-**[Slide 16] Primer ejemplo: los tres contenedores de CloudLite Turnos (1/2)** — 6 vinetas.
+**[Slide 18] Primer ejemplo: los tres contenedores de CloudLite Turnos** — 5 vinetas.
+  - Primer ejemplo concreto, y conviene construirlo en el tablero en vivo.
+  - La flecha entre la web y la API dice «HTTPS/JSON, consulta disponibilidad y crea reservas»; la flecha entre la API y la base de datos dice «TCP, lee y escribe turnos».
+  - Con eso ya existe un diagrama valido y defendible.
+  - Si la API espera ese envio antes de responder, la reserva de un turno hereda esa latencia y ese riesgo.
+  - Esa es una razon legitima para separar: se agrega una cola de mensajes y un trabajador de notificaciones, la API escribe el turno, publica un mensaje y responde en decenas de milisegundos, y el trabajador envia el correo despues, con reintentos si falla.
 
-**[Slide 17] Primer ejemplo: los tres contenedores de CloudLite Turnos (2/2)** — 4 vinetas.
-
-**[Slide 18] Los contratos: cuatro datos por fila y un 409 obligatorio (1/2)** — 8 vinetas.
+**[Slide 19] Los contratos: cuatro datos por fila y un 409 obligatorio (1/3)** — 6 vinetas.
+  - Dos exigencias mas, que valen puntos y se pierden sin darse cuenta.
   - Conviene tambien tener a mano la diferencia con sus vecinos, porque se confunden: 400 es que la peticion esta mal formada, 401 que no se sabe quien eres, 403 que se sabe y no te corresponde, 404 que no existe, 422 que esta bien formada pero sus datos no pasan una validacion, y 409 que choca con el estado actual.
 
-**[Slide 19] Los contratos: cuatro datos por fila y un 409 obligatorio (2/2)** — 7 vinetas.
+**[Slide 20] Los contratos: cuatro datos por fila y un 409 obligatorio (2/3)** — 5 vinetas.
 
-**[Slide 20] Lo que se paga al distribuir: la red no es una llamada de funcion** — 7 vinetas.
+**[Slide 21] Los contratos: cuatro datos por fila y un 409 obligatorio (3/3)** — 3 vinetas.
 
-**[Slide 21] Timeout, reintento, idempotencia y circuit breaker (1/2)** — 4 vinetas.
+**[Slide 22] Lo que se paga al distribuir: la red no es una llamada de funcion (1/2)** — 4 vinetas.
 
-**[Slide 22] Timeout, reintento, idempotencia y circuit breaker (2/2)** — 3 vinetas.
+**[Slide 23] Lo que se paga al distribuir: la red no es una llamada de funcion (2/2)** — 3 vinetas.
 
-**[Slide 23] Los datos: donde se rompen los proyectos academicos (1/2)** — 5 vinetas.
+**[Slide 24] Timeout, reintento, idempotencia y circuit breaker (1/2)** — 3 vinetas.
+  - De ahi salen cuatro mecanismos que el diagrama y la tabla deben poder mencionar.
+  - Los reintentos exigen idempotencia, que significa que ejecutar la misma operacion dos veces produzca el mismo resultado que ejecutarla una vez.
 
-**[Slide 24] Los datos: donde se rompen los proyectos academicos (2/2)** — 4 vinetas.
+**[Slide 25] Timeout, reintento, idempotencia y circuit breaker (2/2)** — 2 vinetas.
 
-**[Slide 25] El tercer entregable: los tres riesgos, y por que son esos tres (1/3)** — 6 vinetas.
+**[Slide 26] Los datos: donde se rompen los proyectos academicos (1/2)** — 5 vinetas.
+  - Eso introduce consistencia eventual, es decir un lapso durante el cual dos partes del sistema tienen versiones distintas de la verdad, con consecuencias visibles para el usuario.
+
+**[Slide 27] Los datos: donde se rompen los proyectos academicos (2/2)** — 3 vinetas.
+
+**[Slide 28] El tercer entregable: los tres riesgos, y por que son esos tres (1/3)** — 4 vinetas.
   - Conviene dictarlos asi, porque un estudiante que entiende por que son esos tres no escribe generalidades.
+  - El primero pregunta que se cae.
+  - El segundo pregunta cuantos saltos de red tiene una operacion de punta a punta, y se responde con un numero, contado sobre el propio dibujo.
 
-**[Slide 26] El tercer entregable: los tres riesgos, y por que son esos tres (2/3)** — 6 vinetas.
+**[Slide 29] El tercer entregable: los tres riesgos, y por que son esos tres (2/3)** — 6 vinetas.
 
-**[Slide 27] El tercer entregable: los tres riesgos, y por que son esos tres (3/3)** — 4 vinetas.
+**[Slide 30] El tercer entregable: los tres riesgos, y por que son esos tres (3/3)** — 4 vinetas.
 
-**[Slide 28] Preguntas frecuentes y cierre conceptual () (1/2)** — 7 vinetas.
+**[Slide 31] Preguntas frecuentes y cierre conceptual () (1/3)** — 4 vinetas.
+  - No; esta mal hacerlo sin saber que se eligio, y un monolito modular bien argumentado recibe mejor calificacion que cinco servicios sin razon.
   - Conviene cerrar ubicando el curso: este diagrama es el ultimo insumo del Parcial 1 de la Clase 5; en la Clase 6 cada flecha se convertira en una superficie de ataque que hay que proteger; en la Clase 7 estas mismas cajas se reubicaran en un diagrama de despliegue con zonas publicas y privadas, conservando exactamente los mismos nombres; en la Clase 8 cada contenedor implicara su propio pipeline de integracion continua; y en las Clases 12 y 13 se preguntara cual de estas piezas es el cuello de botella y cual se puede replicar.
+  - El numero de servicios no mide calidad arquitectonica; la justificacion de cada frontera si.
 
-**[Slide 29] Preguntas frecuentes y cierre conceptual () (2/2)** — 7 vinetas.
+**[Slide 32] Preguntas frecuentes y cierre conceptual () (2/3)** — 5 vinetas.
+
+**[Slide 33] Preguntas frecuentes y cierre conceptual () (3/3)** — 3 vinetas.
 
 
 ## Referencias a diapositivas
@@ -86,41 +114,45 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 5. C4-lite: del Context a los Containers
 6. Los tres contratos de CloudLite: cuatro datos por fila
 7. Distribuido implica fallos
-8. De donde viene la clase y que se abre hoy
-9. Monolito: lo que la palabra realmente significa (1/3)
-10. Monolito: lo que la palabra realmente significa (2/3)
-11. Monolito: lo que la palabra realmente significa (3/3)
-12. Las tres reglas del nivel Container y la trazabilidad con el Context (1/2)
-13. Las tres reglas del nivel Container y la trazabilidad con el Context (2/2)
-14. C4Container en Mermaid: la sintaxis que la plataforma renderiza (1/2)
-15. C4Container en Mermaid: la sintaxis que la plataforma renderiza (2/2)
-16. Primer ejemplo: los tres contenedores de CloudLite Turnos (1/2)
-17. Primer ejemplo: los tres contenedores de CloudLite Turnos (2/2)
-18. Los contratos: cuatro datos por fila y un 409 obligatorio (1/2)
-19. Los contratos: cuatro datos por fila y un 409 obligatorio (2/2)
-20. Lo que se paga al distribuir: la red no es una llamada de funcion
-21. Timeout, reintento, idempotencia y circuit breaker (1/2)
-22. Timeout, reintento, idempotencia y circuit breaker (2/2)
-23. Los datos: donde se rompen los proyectos academicos (1/2)
-24. Los datos: donde se rompen los proyectos academicos (2/2)
-25. El tercer entregable: los tres riesgos, y por que son esos tres (1/3)
-26. El tercer entregable: los tres riesgos, y por que son esos tres (2/3)
-27. El tercer entregable: los tres riesgos, y por que son esos tres (3/3)
-28. Preguntas frecuentes y cierre conceptual () (1/2)
-29. Preguntas frecuentes y cierre conceptual () (2/2)
-30. Ejemplo de diagrama C4 — nivel Containers
-31. Microservicios de verdad vs microservicios teatro
-32. C4Container en Mermaid: el molde que ExamLab renderiza
-33. Herramientas de hoy
-34. Del boceto a ExamLab (diagrama)
-35. PI CloudLite — entregable de hoy
-36. Manos a la obra (paso a paso)
-37. Para continuar (PI)
-38. Clase 4 · PI en movimiento
+8. De donde viene la clase y que se abre hoy (1/2)
+9. De donde viene la clase y que se abre hoy (2/2)
+10. Monolito: lo que la palabra realmente significa (1/4)
+11. Monolito: lo que la palabra realmente significa (2/4)
+12. Monolito: lo que la palabra realmente significa (3/4)
+13. Monolito: lo que la palabra realmente significa (4/4)
+14. Las tres reglas del nivel Container y la trazabilidad con el Context (1/2)
+15. Las tres reglas del nivel Container y la trazabilidad con el Context (2/2)
+16. C4Container en Mermaid: la sintaxis que la plataforma renderiza (1/2)
+17. C4Container en Mermaid: la sintaxis que la plataforma renderiza (2/2)
+18. Primer ejemplo: los tres contenedores de CloudLite Turnos
+19. Los contratos: cuatro datos por fila y un 409 obligatorio (1/3)
+20. Los contratos: cuatro datos por fila y un 409 obligatorio (2/3)
+21. Los contratos: cuatro datos por fila y un 409 obligatorio (3/3)
+22. Lo que se paga al distribuir: la red no es una llamada de funcion (1/2)
+23. Lo que se paga al distribuir: la red no es una llamada de funcion (2/2)
+24. Timeout, reintento, idempotencia y circuit breaker (1/2)
+25. Timeout, reintento, idempotencia y circuit breaker (2/2)
+26. Los datos: donde se rompen los proyectos academicos (1/2)
+27. Los datos: donde se rompen los proyectos academicos (2/2)
+28. El tercer entregable: los tres riesgos, y por que son esos tres (1/3)
+29. El tercer entregable: los tres riesgos, y por que son esos tres (2/3)
+30. El tercer entregable: los tres riesgos, y por que son esos tres (3/3)
+31. Preguntas frecuentes y cierre conceptual () (1/3)
+32. Preguntas frecuentes y cierre conceptual () (2/3)
+33. Preguntas frecuentes y cierre conceptual () (3/3)
+34. Ejemplo de diagrama C4 — nivel Containers
+35. Microservicios de verdad vs microservicios teatro
+36. C4Container en Mermaid: el molde que ExamLab renderiza
+37. Herramientas de hoy
+38. Del boceto a ExamLab (diagrama)
+39. PI CloudLite — entregable de hoy
+40. Manos a la obra (paso a paso)
+41. Para continuar (PI)
+42. Clase 4 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 35]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 39]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Diagramar componentes/servicios de CloudLite y sus contratos**.
 Entregable concreto: Diagrama C4 Container en Mermaid + tabla de 3 contratos + 3 riesgos de distribución.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -141,7 +173,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 34]
+### 40–55 · Demo en vivo · [Slide 38]
 Herramienta del día: **draw.io o Excalidraw para bocetar · Mermaid dentro de ExamLab para entregar**.
 **Demo que usted debe poder repetir:** Convertir el Context de la Clase 1 en Containers, y dejarlo renderizado en ExamLab
 
@@ -173,10 +205,10 @@ C4Container
     Rel(api, pagos, "cobra", "API REST sobre HTTPS")
 ```
 
-Narra los clics en voz alta. Si falla la red, proyecta la [Slide 32], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
+Narra los clics en voz alta. Si falla la red, proyecta la [Slide 36], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
-**Cierra la demo dentro de ExamLab** [Slide 34] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
+**Cierra la demo dentro de ExamLab** [Slide 38] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -186,7 +218,7 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 36]
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 40]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -199,7 +231,7 @@ Aplica el quiz corto de `Kit docente/Clase 4/Quiz Clase 4 - Microservicios y arq
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 38]
+### 115–120 · Cierre · [Slide 42]
 Di: «Queda avanzado: Diagramar componentes/servicios de CloudLite y sus contratos.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»

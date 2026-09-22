@@ -15,15 +15,64 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Hasta ahora los programas de VetCare corrian en linea recta: el main...** — 6 vinetas.
+**Hasta ahora los programas de VetCare corrian en linea recta: el main...** — 2 vinetas.
+  - Una aplicacion con ventanas no funciona asi.
+  - Cada una de esas acciones se convierte en un objeto de evento que entra a una cola, y Swing va sacando esos eventos uno por uno y le avisa al objeto que previamente dijo 'a mi me interesa ese boton'.
+  - Eso es programacion dirigida por eventos: usted ya no decide cuando corre su codigo; usted lo deja escrito y registrado, y quien decide cuando se ejecuta es la recepcionista de Huellitas el dia que oprima 'Registrar mascota'.
+  - Por eso el metodo que guarda la mascota nunca aparece llamado desde el main: aparece registrado, no llamado, y esa diferencia es la que hay que entender hoy.
 
-**ActionListener es una interfaz de java.awt.event que tiene un solo...** — 8 vinetas.
+**ActionListener es una interfaz de java.awt.event que tiene un solo... (1/2)** — 4 vinetas.
+  - Con una de dos metodos no compila, y el mensaje del editor no lo dice con esas palabras y ahi adentro va su llamada.
 
-**Separar la logica de la interfaz significa que la ventana no conoce...** — 7 vinetas.
+**ActionListener es una interfaz de java.awt.event que tiene un solo... (2/2)** — 3 vinetas.
 
-**Vale la pena desarmar en camara lenta lo que ocurre en un click de...** — 7 vinetas.
+**Separar la logica de la interfaz significa que la ventana no conoce...** — 5 vinetas.
+  - Separar la logica de la interfaz significa que la ventana no conoce reglas de negocio y que las reglas no saben que existe una ventana.
+  - Si toca reescribir todo porque la conversion de la edad estaba adentro del boton, el diseño esta mal.
 
-**Dos detalles mas que le van a servir** — 8 vinetas.
+**Vale la pena desarmar en camara lenta lo que ocurre en un click de... (1/2)** — 3 vinetas.
+  - Vale la pena desarmar en camara lenta lo que ocurre en un click de 'Registrar mascota'.
+  - Cuarto, la vista atrapa esa excepcion y la convierte en un JOptionPane, o, si no hubo error, limpia los campos y refresca el area de listado.
+
+**Vale la pena desarmar en camara lenta lo que ocurre en un click de... (2/2)** — 2 vinetas.
+
+**Dos detalles mas que le van a servir (1/2)** — 3 vinetas.
+  - Dos detalles mas que le van a servir.
+  - Para eso existe SwingWorker.
+
+**Dos detalles mas que le van a servir (2/2)** — 3 vinetas.
+
+**class VetCareEventosDemo · main()** — 14 vinetas.
+
+**VetCareEventosDemo.java — class Mascota** — 7 vinetas.
+
+**VetCareEventosDemo.java — Mascota()** — 16 vinetas.
+
+**VetCareEventosDemo.java — class RepositorioMascotas** — 4 vinetas.
+
+**VetCareEventosDemo.java — registrar()** — 10 vinetas.
+
+**VetCareEventosDemo.java — buscarPorId()** — 15 vinetas.
+
+**VetCareEventosDemo.java — class ControladorRegistro** — 4 vinetas.
+
+**VetCareEventosDemo.java — ControladorRegistro()** — 7 vinetas.
+
+**VetCareEventosDemo.java — registrarMascota() (1/2)** — 20 vinetas.
+
+**VetCareEventosDemo.java — registrarMascota() (2/2)** — 3 vinetas.
+
+**VetCareEventosDemo.java — reporteListado()** — 11 vinetas.
+
+**VetCareEventosDemo.java — class VentanaRegistroMascota** — 12 vinetas.
+
+**VetCareEventosDemo.java — VentanaRegistroMascota() (1/2)** — 20 vinetas.
+
+**VetCareEventosDemo.java — VentanaRegistroMascota() (2/2)** — 12 vinetas.
+
+**VetCareEventosDemo.java — registrar()** — 13 vinetas.
+
+**VetCareEventosDemo.java — limpiar()** — 9 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente oprime el boton de la ventana ya corriendo y muestra en vivo como la mascota pasa del formulario al ArrayList, incluyendo que pasa cuando la edad se escribe como texto.

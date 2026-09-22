@@ -31,23 +31,35 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: darle materia a algo que parece no tenerla - diapositiva 4
 
-Proyectado en la lamina «La pregunta de entrada: darle materia a algo que parece no tenerla» (7 vinetas).
+Proyectado en la lamina «La pregunta de entrada: darle materia a algo que parece no tenerla (1/2)» (3 vinetas).
+
+- Eso no debilita la clase: es la clase.
+
+- Recoja las respuestas en el muro y no las corrija.
 
 ### Las cuatro etapas y por qué la fabricación cambia la recomendación - diapositiva 5
 
-Proyectado en la lamina «Las cuatro etapas y por qué la fabricación cambia la recomendación (1/2)» (5 vinetas).
+Proyectado en la lamina «La pregunta de entrada: darle materia a algo que parece no tenerla (2/2)» (2 vinetas).
 
 ### PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar - diapositiva 6
 
-Proyectado en la lamina «Las cuatro etapas y por qué la fabricación cambia la recomendación (2/2)» (5 vinetas).
+Proyectado en la lamina «Las cuatro etapas y por qué la fabricación cambia la recomendación (1/2)» (4 vinetas).
+
+- Aquí entra el PUE. **Red.** Cada byte que viaja pasa por antenas, cables, enrutadores y equipos que consumen.
 
 ### De la conciencia a la decisión: la diapositiva que convierte el tema en ingeniería - diapositivas 7 y 9
 
-Proyectado en la lamina «PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (1/3)» (6 vinetas).
+Proyectado en la lamina «Las cuatro etapas y por qué la fabricación cambia la recomendación (2/2)» (5 vinetas).
 
 ### Colombia, y la honestidad con las cifras - diapositivas 8 y 10
 
-Proyectado en la lamina «PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (2/3)» (5 vinetas).
+Proyectado en la lamina «PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (1/3)» (6 vinetas).
+
+- Eso traslada el costo: baja la factura de luz y sube el consumo de una cuenca que normalmente abastece a población.
+
+- Lo que hay que poder decir: **obliga a los productores** a establecer sistemas de recolección y gestión, y **establece el deber del usuario** de entregar el aparato en esos puntos en vez de tirarlo a la basura común.
+
+- Cuando una nueva versión de una aplicación —o de un sistema operativo— deja de funcionar en dispositivos que servían, el software convierte en basura un aparato que estaba bien.
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 5 - El rol del ingeniero en el contexto ambiental/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -62,20 +74,21 @@ Numeración real del deck `Clases/Clase 5 - El rol del ingeniero en el contexto 
 8. Colombia: dos datos locales que cambian el análisis
 9. Cómo se estima una huella sin ser experto
 10. Dos trampas de esta clase
-11. La pregunta de entrada: darle materia a algo que parece no tenerla
-12. Las cuatro etapas y por qué la fabricación cambia la recomendación (1/2)
-13. Las cuatro etapas y por qué la fabricación cambia la recomendación (2/2)
-14. PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (1/3)
-15. PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (2/3)
-16. PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (3/3)
-17. De la conciencia a la decisión: la diapositiva que convierte el tema en ingeniería (1/2)
-18. De la conciencia a la decisión: la diapositiva que convierte el tema en ingeniería (2/2)
-19. Colombia, y la honestidad con las cifras (1/2)
-20. Colombia, y la honestidad con las cifras (2/2)
-21. Taller de hoy: Huella del sistema
-22. Cómo se expone en 3 minutos
-23. Para la Clase 6
-24. Cierre · Nos vemos en la sesión 6 — cierra el corte 1
+11. La pregunta de entrada: darle materia a algo que parece no tenerla (1/2)
+12. La pregunta de entrada: darle materia a algo que parece no tenerla (2/2)
+13. Las cuatro etapas y por qué la fabricación cambia la recomendación (1/2)
+14. Las cuatro etapas y por qué la fabricación cambia la recomendación (2/2)
+15. PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (1/3)
+16. PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (2/3)
+17. PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (3/3)
+18. De la conciencia a la decisión: la diapositiva que convierte el tema en ingeniería (1/2)
+19. De la conciencia a la decisión: la diapositiva que convierte el tema en ingeniería (2/2)
+20. Colombia, y la honestidad con las cifras (1/2)
+21. Colombia, y la honestidad con las cifras (2/2)
+22. Taller de hoy: Huella del sistema
+23. Cómo se expone en 3 minutos
+24. Para la Clase 6
+25. Cierre · Nos vemos en la sesión 6 — cierra el corte 1
 
 ## Plan de clase minuto a minuto (90 min)
 

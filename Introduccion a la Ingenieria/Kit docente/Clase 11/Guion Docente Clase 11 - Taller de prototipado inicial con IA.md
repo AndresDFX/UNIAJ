@@ -33,7 +33,9 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: mejor y además ilegal - diapositiva 4
 
-Proyectado en la lamina «La pregunta de entrada: mejor y además ilegal (1/2)» (6 vinetas).
+Proyectado en la lamina «La pregunta de entrada: mejor y además ilegal (1/2)» (5 vinetas).
+
+- Vale la pena hacerlo en vivo si el tiempo alcanza —dos minutos de pantalla compartida con un prompt sin restricciones—, porque verlo proponer la cuenta de usuario delante de todos vale más que la diapositiva.
 
 ### Qué hace bien y qué hace mal: un mapa honesto - diapositiva 5
 
@@ -41,13 +43,17 @@ Proyectado en la lamina «La pregunta de entrada: mejor y además ilegal (2/2)»
 
 ### El método: cinco pasos y por qué el primero decide todo - diapositiva 6
 
-Proyectado en la lamina «Qué hace bien y qué hace mal: un mapa honesto (1/2)» (5 vinetas).
+Proyectado en la lamina «Qué hace bien y qué hace mal: un mapa honesto (1/2)» (4 vinetas).
 
 - Conviene ser preciso y no moralizante, porque estos estudiantes van a trabajar con estas herramientas toda su carrera y lo que necesitan es criterio, no prohibición. **Hace bien: variantes.** Pedir tres maneras distintas de organizar una pantalla o diez nombres para un botón es un uso excelente.
 
+- Vale la pena decírselo, porque es el uso que más les va a servir en la Clase 12. **Hace mal: el contexto local.** No sabe que no hay computador en el mostrador, que las voluntarias rotan, que el presupuesto es cero, que la conexión es intermitente.
+
+- Va a proponer funciones que violan las restricciones del equipo y a veces la ley, con el mismo tono seguro con el que propone las buenas.
+
 ### El antes y después, y cómo cierra el corte - diapositivas 7 y 8
 
-Proyectado en la lamina «Qué hace bien y qué hace mal: un mapa honesto (2/2)» (4 vinetas).
+Proyectado en la lamina «Qué hace bien y qué hace mal: un mapa honesto (2/2)» (3 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 11 - Taller de prototipado inicial con IA/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -64,14 +70,16 @@ Numeración real del deck `Clases/Clase 11 - Taller de prototipado inicial con I
 10. La pregunta de entrada: mejor y además ilegal (2/2)
 11. Qué hace bien y qué hace mal: un mapa honesto (1/2)
 12. Qué hace bien y qué hace mal: un mapa honesto (2/2)
-13. El método: cinco pasos y por qué el primero decide todo (1/2)
-14. El método: cinco pasos y por qué el primero decide todo (2/2)
-15. El antes y después, y cómo cierra el corte (1/2)
-16. El antes y después, y cómo cierra el corte (2/2)
-17. Taller de hoy: Prototipo v2 con IA
-18. Cómo se expone en 3 minutos
-19. Para la Clase 12
-20. Cierre · Cierra el corte 2 · Nos vemos en la Clase 12
+13. El método: cinco pasos y por qué el primero decide todo (1/3)
+14. El método: cinco pasos y por qué el primero decide todo (2/3)
+15. El método: cinco pasos y por qué el primero decide todo (3/3)
+16. El antes y después, y cómo cierra el corte (1/3)
+17. El antes y después, y cómo cierra el corte (2/3)
+18. El antes y después, y cómo cierra el corte (3/3)
+19. Taller de hoy: Prototipo v2 con IA
+20. Cómo se expone en 3 minutos
+21. Para la Clase 12
+22. Cierre · Cierra el corte 2 · Nos vemos en la Clase 12
 
 ## Plan de clase minuto a minuto (90 min)
 

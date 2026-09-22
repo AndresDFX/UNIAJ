@@ -31,25 +31,47 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada y para qué sirve incomodar con una fecha - diapositiva 4
 
-Proyectado en la lamina «La pregunta de entrada y para qué sirve incomodar con una fecha» (7 vinetas).
+Proyectado en la lamina «La pregunta de entrada y para qué sirve incomodar con una fecha» (5 vinetas).
+
+- Esa intuición es la que hay que romper hoy, porque de ella se deriva una creencia más dañina: que basta con aprender la herramienta nueva.
+
+- Los primeros diez minutos, mientras se conectan, sirven para recoger esas respuestas en el muro.
 
 ### Por qué la disciplina nace de un fracaso y no de un invento - diapositivas 5 y 6
 
-Proyectado en la lamina «Por qué la disciplina nace de un fracaso y no de un invento (1/2)» (8 vinetas).
+Proyectado en la lamina «Por qué la disciplina nace de un fracaso y no de un invento (1/2)» (4 vinetas).
+
+- Hay una diferencia grande entre contar la historia de la informática y contar la historia de la ingeniería de sistemas.
+
+- Es la que el estudiante espera y es la menos útil, porque sugiere que el progreso viene del hardware.
+
+- La segunda es una historia de **fracasos de organización**, y es la que explica por qué existe la carrera que el estudiante está empezando.
+
+- En los años cuarenta y cincuenta el cuello de botella era la máquina.
+
+- Programar el ENIAC significaba reconfigurar cables físicamente; escribir en lenguaje de máquina era lento porque la máquina era lo escaso y lo caro.
+
+- Hasta aquí el trabajo lo hace una persona o un puñado de personas, y el método no importa mucho porque el problema cabe en una cabeza.
+
+- Y fracasan de forma espectacular en plazo y en costo, no porque las máquinas fueran lentas, sino porque **nadie sabía cómo coordinar a mil personas construyendo una sola cosa que nadie puede ver ni tocar**.
 
 - Vale la pena detenerse en que el término era una **propuesta, casi una provocación**: si construir software se parece a construir un puente, entonces debería tener método, estándares, mediciones y responsabilidad profesional, en vez de depender del talento de individuos.
 
 ### Los seis hitos: qué decir de cada uno en dos minutos - diapositiva 7
 
-Proyectado en la lamina «Por qué la disciplina nace de un fracaso y no de un invento (2/2)» (7 vinetas).
+Proyectado en la lamina «Por qué la disciplina nace de un fracaso y no de un invento (2/2)» (4 vinetas).
 
 ### El método de lectura de un hito y por qué la cuarta pregunta es la que se califica - diapositivas 8 y 9
 
 Proyectado en la lamina «Los seis hitos: qué decir de cada uno en dos minutos (1/3)» (5 vinetas).
 
-### El taller, la exposición y por qué las cinco líneas de tiempo se suman - diapositivas 20 y 21
+- La industria se quedó con el dibujo y tiró la advertencia.
 
-Proyectado en la lamina «Los seis hitos: qué decir de cada uno en dos minutos (2/3)» (6 vinetas).
+- Esa pregunta es el hilo de las Clases 4, 5 y 13.
+
+### El taller, la exposición y por qué las cinco líneas de tiempo se suman - diapositivas 19 y 20
+
+Proyectado en la lamina «Los seis hitos: qué decir de cada uno en dos minutos (2/3)» (5 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 2 - Historia y evolucion de la Ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -71,12 +93,11 @@ Numeración real del deck `Clases/Clase 2 - Historia y evolucion de la Ingenieri
 15. Los seis hitos: qué decir de cada uno en dos minutos (3/3)
 16. El método de lectura de un hito y por qué la cuarta pregunta es la que se califica (1/2)
 17. El método de lectura de un hito y por qué la cuarta pregunta es la que se califica (2/2)
-18. El taller, la exposición y por qué las cinco líneas de tiempo se suman (1/2)
-19. El taller, la exposición y por qué las cinco líneas de tiempo se suman (2/2)
-20. Taller de hoy: Línea de tiempo del periodo
-21. Cómo se expone en 3 minutos
-22. Para la Clase 3
-23. Cierre · Nos vemos en la sesión 3
+18. El taller, la exposición y por qué las cinco líneas de tiempo se suman
+19. Taller de hoy: Línea de tiempo del periodo
+20. Cómo se expone en 3 minutos
+21. Para la Clase 3
+22. Cierre · Nos vemos en la sesión 3
 
 ## Plan de clase minuto a minuto (90 min)
 

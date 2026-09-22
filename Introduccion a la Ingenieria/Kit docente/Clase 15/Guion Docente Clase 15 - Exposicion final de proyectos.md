@@ -33,19 +33,29 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### Cómo se encuadra el día, y por qué el sorteo importa - diapositivas 4 y 6
 
-Proyectado en la lamina «Cómo se encuadra el día, y por qué el sorteo importa (1/2)» (5 vinetas).
+Proyectado en la lamina «Cómo se encuadra el día, y por qué el sorteo importa (1/2)» (4 vinetas).
+
+- Sorteado al empezar, los cinco equipos tienen que estar listos desde el primer minuto y todos escuchan a todos.
+
+- Toma dos minutos y cada semestre salva al menos un equipo.
+
+- Una fila por equipo con lo más fuerte, lo que no quedó claro y una pregunta.
 
 ### Cómo se califica cada tramo, sin discutir con el reloj - diapositiva 5
 
-Proyectado en la lamina «Cómo se encuadra el día, y por qué el sorteo importa (2/2)» (7 vinetas).
+Proyectado en la lamina «Cómo se encuadra el día, y por qué el sorteo importa (2/2)» (4 vinetas).
 
 ### Las preguntas: los tres minutos que destapan el trabajo real - diapositiva 7
 
-Proyectado en la lamina «Cómo se califica cada tramo, sin discutir con el reloj (1/2)» (7 vinetas).
+Proyectado en la lamina «Cómo se califica cada tramo, sin discutir con el reloj (1/2)» (5 vinetas).
+
+- Tenga la tabla de cinco tramos por equipo abierta y anote el puntaje al terminar cada tramo, más una frase de por qué.
+
+- Esa frase es lo que después se devuelve como retroalimentación. **Los dos descuentos hay que aplicarlos, y anunciarlos antes.** Hasta 10 puntos si no todos los integrantes hablan —porque la exposición en equipo es lo que se está evaluando— y hasta 10 si nadie sabe responder una pregunta de su propio tramo.
 
 ### El cierre: qué hacer con lo que salió hoy - diapositiva 8
 
-Proyectado en la lamina «Cómo se califica cada tramo, sin discutir con el reloj (2/2)» (6 vinetas).
+Proyectado en la lamina «Cómo se califica cada tramo, sin discutir con el reloj (2/2)» (5 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 15 - Exposicion final de proyectos/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.

@@ -15,17 +15,59 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Documentar no es llenar el codigo de comentarios** — 6 vinetas.
+**Documentar no es llenar el codigo de comentarios** — 5 vinetas.
+  - La documentacion tecnica no describe la implementacion, describe la promesa.
 
-**Un bloque Javadoc se escribe con /** y se cierra con */, y va...** — 7 vinetas.
+**Un bloque Javadoc se escribe con /** y se cierra con */, y va...** — 4 vinetas.
+  - La primera frase debe ser un resumen corto que termine en punto, porque esa frase es la que aparece en las tablas resumen del HTML generado.
+  - Lo que se genera es un sitio web: en VS Code se corre la herramienta del JDK desde la terminal integrada, «javadoc -d docs -private src/vetcare/*.java», que crea la carpeta docs/ y deja un index.html que se abre en el navegador con la misma cara que tiene la documentacion oficial de Java.
 
-**La mejor documentacion es la que no hay que escribir, y eso se logra...** — 6 vinetas.
+**La mejor documentacion es la que no hay que escribir, y eso se logra... (1/2)** — 3 vinetas.
+  - Ahora bien, la mejor documentacion es la que no hay que escribir, y eso se logra con nombres que se explican solos.
 
-**La segunda mitad de la clase es control de calidad** — 8 vinetas.
+**La mejor documentacion es la que no hay que escribir, y eso se logra... (2/2)** — 2 vinetas.
+
+**La segunda mitad de la clase es control de calidad (1/2)** — 5 vinetas.
+
+**La segunda mitad de la clase es control de calidad (2/2)** — 3 vinetas.
 
 **JUnit es la herramienta que convierte esos casos en codigo que se... (1/2)** — 6 vinetas.
 
 **JUnit es la herramienta que convierte esos casos en codigo que se... (2/2)** — 4 vinetas.
+
+**VetCareQADemo.java — class VetCareQADemo** — 5 vinetas.
+
+**VetCareQADemo.java — main() (1/3)** — 20 vinetas.
+
+**VetCareQADemo.java — main() (2/3)** — 20 vinetas.
+
+**VetCareQADemo.java — main() (3/3)** — 8 vinetas.
+
+**VetCareQADemo.java — nuevaAgenda()** — 8 vinetas.
+
+**VetCareQADemo.java — verificar()** — 17 vinetas.
+
+**VetCareQADemo.java — class Mascota** — 13 vinetas.
+
+**VetCareQADemo.java — Mascota() (1/2)** — 20 vinetas.
+
+**VetCareQADemo.java — Mascota() (2/2)** — 4 vinetas.
+
+**VetCareQADemo.java — class Cita** — 11 vinetas.
+
+**VetCareQADemo.java — Cita()** — 10 vinetas.
+
+**VetCareQADemo.java — class AgendaService** — 11 vinetas.
+
+**VetCareQADemo.java — registrarMascota()** — 18 vinetas.
+
+**VetCareQADemo.java — agendar() (1/4)** — 20 vinetas.
+
+**VetCareQADemo.java — agendar() (2/4)** — 20 vinetas.
+
+**VetCareQADemo.java — agendar() (3/4)** — 20 vinetas.
+
+**VetCareQADemo.java — agendar() (4/4)** — 18 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente escribe un bloque Javadoc, genera la documentacion HTML con javadoc desde la terminal integrada y luego corre las pruebas mostrando la barra en rojo, corrige la regla y la muestra en verde.

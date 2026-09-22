@@ -169,6 +169,7 @@ def _quiz_items(c):
 
 # ----------------------------------------------------------------------- slides
 import teoria_a_slides as TS
+import codigo_a_slides as CS
 
 def _teoria_slides(c):
     """Las diapositivas de teoria de la clase: una por vineta, con su parrafo entero.
@@ -184,7 +185,13 @@ def _teoria_slides(c):
     fund = (c.get("fundamento") or "").strip()
     if fund:
         vin += [p.strip() for p in fund.split("\n\n") if len(p.strip()) > 120]
-    return TS.slides_de_vinetas(vin)
+    laminas = TS.slides_de_vinetas(vin)
+    # Y el demo de la clase, partido por metodo. Antes se proyectaban ~15 lineas de
+    # `codigo_slide_lineas` y el archivo completo quedaba en el Kit docente, que es material
+    # del docente: el estudiante veia el recorte. «Mas codigo si es programacion» es esto.
+    laminas += CS.slides_de_fuente(c.get("codigo_fuente") or "",
+                                   c.get("codigo_archivo") or "")
+    return laminas
 
 
 def _apoyo_por_diapositiva(c, base=None):
@@ -195,7 +202,7 @@ def _apoyo_por_diapositiva(c, base=None):
     L = ["## Apoyo por diapositiva", "",
          "Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en "
          "cada lamina, no repite su contenido.", ""]
-    for j, (titulo, vin, notas) in enumerate(slides):
+    for j, (titulo, vin, notas, _tipo) in enumerate(slides):
         num = f"[Slide {base + j}] " if base else ""
         L.append(f"**{num}{titulo}** — {len(vin)} vinetas.")
         for x in notas:
@@ -242,8 +249,12 @@ def build_pptx(c):
         ("105-120", "Criterios de exito y cierre"),
     ], idx=idx); idx += 1
     _base_teoria = idx
-    for _t, _vin, _ in _teoria_slides(c):
-        content_slide(prs, _t, _vin, idx=idx); idx += 1
+    for _t, _items, _, _tipo in _teoria_slides(c):
+        if _tipo == "codigo":
+            pseudo_code_slide(prs, _t, _items, idx=idx)
+        else:
+            content_slide(prs, _t, _items, idx=idx)
+        idx += 1
     if c.get("codigo_slide_lineas"):
         pseudo_code_slide(prs, c.get("codigo_slide_titulo", "Codigo de hoy"),
                           c["codigo_slide_lineas"],

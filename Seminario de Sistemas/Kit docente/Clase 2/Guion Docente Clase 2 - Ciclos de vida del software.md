@@ -15,16 +15,30 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Un ciclo de vida del software es el orden en que se recorren las etapas...** — 5 vinetas.
+**Un ciclo de vida del software es el orden en que se recorren las etapas...** — 3 vinetas.
+  - Lo importante no es memorizar los nombres sino entender que cada fase tiene tres cosas: una entrada (lo que recibe de la fase anterior), una salida tangible llamada artefacto (un documento, un diagrama, un programa) y un criterio para decir 'esto ya quedo'.
+  - Si una fase no produce un artefacto verificable, esa fase no existe, existe una conversacion.
 
-**Vale la pena decir con precision que produce cada fase, porque ahi se...** — 7 vinetas.
+**Vale la pena decir con precision que produce cada fase, porque ahi se...** — 3 vinetas.
   - Vale la pena decir con precision que produce cada fase, porque ahi se cae la mitad de los equipos.
+  - Diseño responde COMO se va a lograr y produce casos de uso, diagramas de clases, modelo de datos, wireframes y mockups.
+  - Pruebas verifica que lo construido corresponde a lo pedido y produce casos de prueba y evidencias.
+  - Mantenimiento arregla, ajusta y evoluciona el sistema ya en uso.
+  - Por eso aqui nunca se califica codigo: se califica que los planos esten completos, coherentes y sean construibles.
 
-**La gran decision no es cuales fases hacer, sino cuantas veces...** — 6 vinetas.
+**La gran decision no es cuales fases hacer, sino cuantas veces...** — 4 vinetas.
+  - Recorrerlas una sola vez y en orden significa cerrar requisitos de TODO VetCare, luego diseñar TODO VetCare, luego construir TODO.
+  - Recorrerlas en ciclos significa tomar un pedazo util del sistema y pasarlo por las cinco fases en una vuelta corta, y despues repetir con el siguiente pedazo.
 
-**Hay que separar dos palabras que los equipos usan como sinonimos y no...** — 7 vinetas.
+**Hay que separar dos palabras que los equipos usan como sinonimos y no... (1/2)** — 5 vinetas.
 
-**Como se elige el recorrido?** — 7 vinetas.
+**Hay que separar dos palabras que los equipos usan como sinonimos y no... (2/2)** — 2 vinetas.
+
+**Como se elige el recorrido? (1/2)** — 3 vinetas.
+  - Como se elige el recorrido?
+  - Con criterios, no con moda.
+
+**Como se elige el recorrido? (2/2)** — 2 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente arma en vivo en draw.io el ciclo de VetCare en dos versiones, una sola pasada y tres vueltas, y muestra que las cajas son identicas y lo unico que cambia es el recorrido.

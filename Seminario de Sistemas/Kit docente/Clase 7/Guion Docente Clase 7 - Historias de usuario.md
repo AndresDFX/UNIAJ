@@ -15,17 +15,28 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Una historia de usuario no es un requisito abreviado ni una moda de las... (1/2)** — 6 vinetas.
+**Una historia de usuario no es un requisito abreviado ni una moda de las... (1/2)** — 5 vinetas.
+  - Conversation, la charla que aclara los detalles; y Confirmation, los criterios de aceptacion.
 
 **Una historia de usuario no es un requisito abreviado ni una moda de las... (2/2)** — 5 vinetas.
 
-**Los criterios de aceptacion son la parte que convierte una historia...** — 8 vinetas.
+**Los criterios de aceptacion son la parte que convierte una historia... (1/2)** — 3 vinetas.
+  - Dado que selecciono la mascota Rocky, cuando abro su historial, entonces veo sus atenciones de la mas reciente a la mas antigua
+  - Dado un documento que no existe, cuando busco, entonces el sistema muestra un mensaje claro y ofrece crear el dueno.
 
-**INVEST es la lista de chequeo para saber si una historia esta bien...** — 8 vinetas.
+**Los criterios de aceptacion son la parte que convierte una historia... (2/2)** — 3 vinetas.
 
-**Una epica es una historia grande que todavia no cabe en una iteracion...** — 6 vinetas.
+**INVEST es la lista de chequeo para saber si una historia esta bien... (1/2)** — 4 vinetas.
 
-**Estimar en agil no es adivinar horas sino comparar tamanos, y esa es la... (1/2)** — 4 vinetas.
+**INVEST es la lista de chequeo para saber si una historia esta bien... (2/2)** — 4 vinetas.
+
+**Una epica es una historia grande que todavia no cabe en una iteracion... (1/2)** — 3 vinetas.
+  - El nombre de la epica se conserva como etiqueta en cada historia para no perder el hilo.
+
+**Una epica es una historia grande que todavia no cabe en una iteracion... (2/2)** — 2 vinetas.
+
+**Estimar en agil no es adivinar horas sino comparar tamanos, y esa es la... (1/2)** — 3 vinetas.
+  - Con dos o tres iteraciones se conoce la velocidad del equipo y recien ahi se puede prometer fechas.
 
 **Estimar en agil no es adivinar horas sino comparar tamanos, y esa es la... (2/2)** — 3 vinetas.
 

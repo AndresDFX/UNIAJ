@@ -24,36 +24,53 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 8] Sustentar no es describir: el eje de toda la clase** — 7 vinetas.
+**[Slide 8] Sustentar no es describir: el eje de toda la clase (1/2)** — 4 vinetas.
   - Conviene fijar el termino con precision: una decision de arquitectura es una eleccion que afecta la estructura del sistema, es costosa de revertir una vez implementada, y tiene al menos una alternativa razonable que se descarto.
 
-**[Slide 9] La prueba de tres capas que se aplica en voz alta** — 7 vinetas.
+**[Slide 9] Sustentar no es describir: el eje de toda la clase (2/2)** — 3 vinetas.
+
+**[Slide 10] La prueba de tres capas que se aplica en voz alta** — 4 vinetas.
   - Existe una prueba practica de tres capas que el docente puede aplicar en voz alta a cualquier afirmacion del estudiante, y conviene ensenarla antes de que empiecen las presentaciones.
+  - Quien solo llega a la primera capa esta leyendo el diagrama en voz alta y no deberia obtener los puntos de sustentacion.
+  - Quien llega a la segunda esta justificando.
+  - Quien llega a la tercera esta sustentando como un arquitecto, porque demuestra que conocia el costo de su decision antes de tomarla y aun asi la tomo.
 
-**[Slide 10] El ADR: el artefacto que sostiene la tercera capa (1/2)** — 8 vinetas.
+**[Slide 11] El ADR: el artefacto que sostiene la tercera capa (1/2)** — 6 vinetas.
+  - Estado, «Aceptado» mas la fecha en que se decidio.
+  - Decision, en una frase afirmativa y en presente.
+  - Alternativas descartadas, exactamente dos, cada una con la razon concreta del descarte.
+  - Citar un ADR por numero le dice al evaluador que existe una traza escrita y verificable, no una improvisacion del momento; es la diferencia entre quien decidio y quien recuerda.
 
-**[Slide 11] El ADR: el artefacto que sostiene la tercera capa (2/2)** — 5 vinetas.
+**[Slide 12] El ADR: el artefacto que sostiene la tercera capa (2/2)** — 3 vinetas.
 
-**[Slide 12] El pitch de 5 a 8 minutos: el reparto que funciona** — 7 vinetas.
+**[Slide 13] El pitch de 5 a 8 minutos: el reparto que funciona (1/2)** — 4 vinetas.
   - La razon es concreta y el docente debe decirla: si el estudiante trae veinte diapositivas, no termina, corre las ultimas, y las ultimas suelen ser justamente las de seguridad, costos y escalabilidad, donde estan los puntos de la rubrica que menos se defienden solos.
 
-**[Slide 13] La regla de los 60 segundos, anunciada desde la Clase 11 (1/2)** — 6 vinetas.
+**[Slide 14] El pitch de 5 a 8 minutos: el reparto que funciona (2/2)** — 3 vinetas.
+
+**[Slide 15] La regla de los 60 segundos, anunciada desde la Clase 11 (1/2)** — 5 vinetas.
   - La respuesta del docente debe ser: en equipo se puede repartir quien HABLA de cada tema, pero no quien ENTIENDE cada tema, porque el Q&A se dirige al azar; y en modo individual no hay reparto posible, de modo que la pregunta pierde sentido y lo que queda es preparar el sistema completo.
+  - La razon no es castigar.
+  - Ese ejercicio suele revelar en cinco minutos lo que la nota habria revelado demasiado tarde.
 
-**[Slide 14] La regla de los 60 segundos, anunciada desde la Clase 11 (2/2)** — 4 vinetas.
+**[Slide 16] La regla de los 60 segundos, anunciada desde la Clase 11 (2/2)** — 3 vinetas.
 
-**[Slide 15] El Q&A tecnico: tres tipos de pregunta (1/2)** — 7 vinetas.
+**[Slide 17] El Q&A tecnico: tres tipos de pregunta (1/2)** — 5 vinetas.
+  - El Q&A tecnico tiene tres tipos de pregunta y conviene que el docente los reconozca para dosificarlos.
+  - La respuesta correcta es que decir «no lo medimos» no penaliza si va acompanado de como se mediria: «no medimos el p95 porque no hay trafico real, pero el plan es simular 50 peticiones por segundo y observar la latencia de la API, que es el cuello de botella que sospechamos por lo que vimos en la Clase 12».
+  - Improvisar un dato falso, en cambio, se detecta con una sola pregunta de seguimiento y cuesta mucho mas que admitir el limite.
 
-**[Slide 16] El Q&A tecnico: tres tipos de pregunta (2/2)** — 6 vinetas.
+**[Slide 18] El Q&A tecnico: tres tipos de pregunta (2/2)** — 4 vinetas.
 
-**[Slide 17] Evaluar con rubrica: puntos a evidencia observable (1/2)** — 4 vinetas.
+**[Slide 19] Evaluar con rubrica: puntos a evidencia observable (1/2)** — 5 vinetas.
+  - Evaluar con rubrica significa asignar puntos a evidencia observable y no a impresion general, y por eso conviene leer el reparto en voz alta al abrir la clase.
 
-**[Slide 18] Evaluar con rubrica: puntos a evidencia observable (2/2)** — 4 vinetas.
+**[Slide 20] Evaluar con rubrica: puntos a evidencia observable (2/2)** — 2 vinetas.
 
-**[Slide 19] El cierre del curso: conectar lo hecho con la practica profesional (1/2)** — 5 vinetas.
+**[Slide 21] El cierre del curso: conectar lo hecho con la practica profesional (1/2)** — 5 vinetas.
   - Conviene tambien cerrar la duda sobre las herramientas, porque algun estudiante la trae: el curso prohibio la nube de pago por razones pedagogicas y de equidad, no porque draw.io, Killercoda y GitHub Actions sean juguetes.
 
-**[Slide 20] El cierre del curso: conectar lo hecho con la practica profesional (2/2)** — 4 vinetas.
+**[Slide 22] El cierre del curso: conectar lo hecho con la practica profesional (2/2)** — 4 vinetas.
 
 
 ## Referencias a diapositivas
@@ -67,25 +84,27 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 5. Rúbrica de sustentación (recordatorio)
 6. Checklist final
 7. Cierre del curso
-8. Sustentar no es describir: el eje de toda la clase
-9. La prueba de tres capas que se aplica en voz alta
-10. El ADR: el artefacto que sostiene la tercera capa (1/2)
-11. El ADR: el artefacto que sostiene la tercera capa (2/2)
-12. El pitch de 5 a 8 minutos: el reparto que funciona
-13. La regla de los 60 segundos, anunciada desde la Clase 11 (1/2)
-14. La regla de los 60 segundos, anunciada desde la Clase 11 (2/2)
-15. El Q&A tecnico: tres tipos de pregunta (1/2)
-16. El Q&A tecnico: tres tipos de pregunta (2/2)
-17. Evaluar con rubrica: puntos a evidencia observable (1/2)
-18. Evaluar con rubrica: puntos a evidencia observable (2/2)
-19. El cierre del curso: conectar lo hecho con la practica profesional (1/2)
-20. El cierre del curso: conectar lo hecho con la practica profesional (2/2)
-21. Herramientas de hoy
-22. Del boceto a ExamLab (diagrama)
-23. PI CloudLite — entregable de hoy
-24. Sustentación (paso a paso)
-25. Para continuar (PI)
-26. Clase 15 · cierre del PI CloudLite
+8. Sustentar no es describir: el eje de toda la clase (1/2)
+9. Sustentar no es describir: el eje de toda la clase (2/2)
+10. La prueba de tres capas que se aplica en voz alta
+11. El ADR: el artefacto que sostiene la tercera capa (1/2)
+12. El ADR: el artefacto que sostiene la tercera capa (2/2)
+13. El pitch de 5 a 8 minutos: el reparto que funciona (1/2)
+14. El pitch de 5 a 8 minutos: el reparto que funciona (2/2)
+15. La regla de los 60 segundos, anunciada desde la Clase 11 (1/2)
+16. La regla de los 60 segundos, anunciada desde la Clase 11 (2/2)
+17. El Q&A tecnico: tres tipos de pregunta (1/2)
+18. El Q&A tecnico: tres tipos de pregunta (2/2)
+19. Evaluar con rubrica: puntos a evidencia observable (1/2)
+20. Evaluar con rubrica: puntos a evidencia observable (2/2)
+21. El cierre del curso: conectar lo hecho con la practica profesional (1/2)
+22. El cierre del curso: conectar lo hecho con la practica profesional (2/2)
+23. Herramientas de hoy
+24. Del boceto a ExamLab (diagrama)
+25. PI CloudLite — entregable de hoy
+26. Sustentación (paso a paso)
+27. Para continuar (PI)
+28. Clase 15 · cierre del PI CloudLite
 
 ## Plan de clase minuto a minuto (120 min)
 

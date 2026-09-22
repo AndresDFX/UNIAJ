@@ -24,36 +24,56 @@ del PI VetCare. La teoria se limita a desbloquear el taller.
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 4] Que es una revision tecnica, y con que producto se sale (1/2)** — 4 vinetas.
+**[Slide 4] Que es una revision tecnica, y con que producto se sale (1/2)** — 3 vinetas.
+  - Lo que se hace hoy es una revision tecnica con lista de verificacion, comprimida a diez minutos por estudiante.
+  - Un estudiante que se pone a corregir el DDL en vivo consume el tiempo de los demas y sale con un hallazgo menos que si hubiera seguido escuchando.
 
-**[Slide 5] Que es una revision tecnica, y con que producto se sale (2/2)** — 3 vinetas.
+**[Slide 5] Que es una revision tecnica, y con que producto se sale (2/2)** — 2 vinetas.
 
-**[Slide 6] Lo que se audita es la coherencia entre piezas** — 7 vinetas.
+**[Slide 6] Lo que se audita es la coherencia entre piezas** — 4 vinetas.
+  - Lo que se audita en una base de datos no es cada pieza por separado sino la coherencia entre piezas.
+  - Coherencia significa que todas esas piezas describen el mismo sistema.
+  - Esa divergencia es el hallazgo mas comun del checkpoint y tambien el mas facil de detectar si se sabe donde mirar.
   - Las cuatro verificaciones cruzadas que el docente debe correr son: que el DDL corresponda al ER, que los GRANT correspondan a los roles declarados, que los procedimientos listados existan y sean invocables, y que la optimizacion tenga medicion antes y despues.
 
-**[Slide 7] Verificaciones uno y dos: el ER contra el DDL (1/2)** — 6 vinetas.
+**[Slide 7] Verificaciones uno y dos: el ER contra el DDL (1/2)** — 4 vinetas.
+  - Verificacion uno, ER contra DDL.
+  - Despues se verifican las relaciones.
+  - Verificacion dos, roles contra GRANT.
 
-**[Slide 8] Verificaciones uno y dos: el ER contra el DDL (2/2)** — 4 vinetas.
+**[Slide 8] Verificaciones uno y dos: el ER contra el DDL (2/2)** — 3 vinetas.
 
-**[Slide 9] Verificacion tres: que compile no es que sirva (1/2)** — 6 vinetas.
+**[Slide 9] Verificacion tres: que compile no es que sirva (1/2)** — 3 vinetas.
+  - Verificacion tres, procedimientos invocables.
+  - La prueba de humo dura un minuto y consiste en pedir dos ejecuciones y no una.
+  - Verificacion cuatro, optimizacion.
+  - Se exige la consulta original, el plan de ejecucion que la acompanaba, el cambio aplicado (indice creado o consulta reescrita) y el plan despues, mostrando que el motor paso de recorrido completo de tabla a acceso por indice.
 
-**[Slide 10] Verificacion tres: que compile no es que sirva (2/2)** — 4 vinetas.
+**[Slide 10] Verificacion tres: que compile no es que sirva (2/2)** — 3 vinetas.
 
-**[Slide 11] Scope creep: el crecimiento no controlado del alcance (1/2)** — 5 vinetas.
+**[Slide 11] Scope creep: el crecimiento no controlado del alcance (1/2)** — 4 vinetas.
+  - Eso no resta puntos, al contrario, declarar el limite es una senal de madurez que se valora en la sustentacion.
 
 **[Slide 12] Scope creep: el crecimiento no controlado del alcance (2/2)** — 4 vinetas.
 
-**[Slide 13] La anatomia fija de la retroalimentacion util (1/2)** — 7 vinetas.
+**[Slide 13] La anatomia fija de la retroalimentacion util (1/2)** — 6 vinetas.
+  - Comparense los dos extremos.
+  - Responsable: Carlos.
 
-**[Slide 14] La anatomia fija de la retroalimentacion util (2/2)** — 4 vinetas.
+**[Slide 14] La anatomia fija de la retroalimentacion util (2/2)** — 3 vinetas.
 
-**[Slide 15] La aritmetica del calendario, dicha en voz alta (1/2)** — 6 vinetas.
+**[Slide 15] La aritmetica del calendario, dicha en voz alta (1/3)** — 4 vinetas.
 
-**[Slide 16] La aritmetica del calendario, dicha en voz alta (2/2)** — 6 vinetas.
+**[Slide 16] La aritmetica del calendario, dicha en voz alta (2/3)** — 5 vinetas.
 
-**[Slide 17] Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado (1/2)** — 7 vinetas.
+**[Slide 17] La aritmetica del calendario, dicha en voz alta (3/3)** — 3 vinetas.
 
-**[Slide 18] Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado (2/2)** — 5 vinetas.
+**[Slide 18] Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado (1/2)** — 5 vinetas.
+  - Aqui aparecen las dos preguntas previsibles del estudiante.
+  - La respuesta es que el checkpoint en si no califica el producto, pero es la ultima oportunidad de mover puntos de la rubrica antes de la entrega, y por eso conviene llegar con lo peor y no con lo mejor: un estudiante que esconde su parte floja para no verse mal pierde justamente la revision que la habria arreglado.
+  - No, porque el auditor par no califica.
+
+**[Slide 19] Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado (2/2)** — 3 vinetas.
 
 
 **Demo que usted debe poder repetir:** Recorrido de checklist + ejemplo demo de 3 min.
@@ -76,21 +96,22 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 12. Scope creep: el crecimiento no controlado del alcance (2/2)
 13. La anatomia fija de la retroalimentacion util (1/2)
 14. La anatomia fija de la retroalimentacion util (2/2)
-15. La aritmetica del calendario, dicha en voz alta (1/2)
-16. La aritmetica del calendario, dicha en voz alta (2/2)
-17. Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado (1/2)
-18. Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado (2/2)
-19. Demo del dia
-20. Herramientas de hoy
-21. Del boceto a ExamLab (diagrama)
-22. Taller PI VetCare — contexto / por que importa
-23. Taller PI VetCare — objetivo y criterios
-24. Taller PI VetCare — escenario / datos de partida
-25. Taller PI VetCare — pasos guiados
-26. Taller PI VetCare — pistas (checklist vacio)
-27. Criterios de exito / entregable
-28. Para el PI esta semana
-29. Cierre · Clase 11
+15. La aritmetica del calendario, dicha en voz alta (1/3)
+16. La aritmetica del calendario, dicha en voz alta (2/3)
+17. La aritmetica del calendario, dicha en voz alta (3/3)
+18. Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado (1/2)
+19. Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado (2/2)
+20. Demo del dia
+21. Herramientas de hoy
+22. Del boceto a ExamLab (diagrama)
+23. Taller PI VetCare — contexto / por que importa
+24. Taller PI VetCare — objetivo y criterios
+25. Taller PI VetCare — escenario / datos de partida
+26. Taller PI VetCare — pasos guiados
+27. Taller PI VetCare — pistas (checklist vacio)
+28. Criterios de exito / entregable
+29. Para el PI esta semana
+30. Cierre · Clase 11
 
 > Privado, no se proyecta: `Kit docente/Clase 11/Solucion Taller Clase 11 - VetCare.docx`
 
@@ -117,12 +138,12 @@ Ideas que tienen que quedar dichas:
 - Revision cruzada entre estudiantes: 10 min por persona.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 19][Slide 21]
+### 35-55 · Demo paso a paso · [Slide 20][Slide 22]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: Recorrido de checklist + ejemplo demo de 3 min.
 Herramienta: Live SQL / DB Fiddle + draw.io + ExamLab
 
-**Cierre la demo dentro de ExamLab** [Slide 21] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
+**Cierre la demo dentro de ExamLab** [Slide 22] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -133,7 +154,7 @@ Herramienta: Live SQL / DB Fiddle + draw.io + ExamLab
 📸 Salida esperada de la demo de la Clase 11 [[captura: cap01_demo.png | receta: 1) Abra Live SQL / DB Fiddle + draw.io + ExamLab y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 11/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda embebida aqui sola.]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 25]
+### 55-105 · Taller guiado = tarea del PI · [Slide 26]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -145,13 +166,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: Checklist firmada + enlace/ZIP avance (DDL+procs+ER)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 11/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 27]
-Repasar checklist del dia con [Slide 27] «Criterios de exito / entregable».
+### 105-115 · Criterios de exito + quiz corto · [Slide 28]
+Repasar checklist del dia con [Slide 28] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 11 - VetCare.docx`. Clave para usted: `Quiz Clase 11 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 29]
+### 115-120 · Cierre · [Slide 30]
 **Decir:** «Queda avanzado: Demo parcial + checklist de avance (hito formal PI). Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 29] slide de cierre. Dudas finales.
+Proyectar [Slide 30] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

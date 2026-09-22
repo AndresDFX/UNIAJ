@@ -1863,8 +1863,12 @@ def build_pptx(c: dict) -> Path:
             if imagen:
                 _add_captura(slide, imagen)
         idx += 1
-    for _t, _vin, _ in _teoria_slides(c):
-        content_slide(prs, _t, _vin, idx=idx); idx += 1
+    for _t, _items, _, _tipo in _teoria_slides(c):
+        if _tipo == "codigo":
+            pseudo_code_slide(prs, _t, _items, idx=idx)
+        else:
+            content_slide(prs, _t, _items, idx=idx)
+        idx += 1
     dg = DIAGRAMAS.get(n)
     if dg:
         diagram_boxes_slide(
@@ -3282,7 +3286,7 @@ def _apoyo_por_diapositiva(c: dict) -> str:
     L = ["## Apoyo por diapositiva", "",
          "Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en "
          "cada lamina, no repite su contenido.", ""]
-    for j, (titulo, vin, notas) in enumerate(slides):
+    for j, (titulo, vin, notas, _tipo) in enumerate(slides):
         num = f"[Slide {base + j}] " if base else ""
         L.append(f"**{num}{titulo}** — {len(vin)} vinetas.")
         for x in notas:

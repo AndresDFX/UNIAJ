@@ -15,21 +15,63 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Una excepcion es un objeto que Java crea en el momento exacto en que...** — 6 vinetas.
+**Una excepcion es un objeto que Java crea en el momento exacto en que... (1/2)** — 3 vinetas.
+  - Toda la familia cuelga de Throwable, que se divide en Error (fallas de la maquina virtual, como quedarse sin memoria, que no debemos atrapar) y Exception (fallas del programa o del entorno, que si podemos atender).
+
+**Una excepcion es un objeto que Java crea en el momento exacto en que... (2/2)** — 2 vinetas.
 
 **Java parte las excepciones en dos grupos y esa division decide cuanto... (1/2)** — 4 vinetas.
 
 **Java parte las excepciones en dos grupos y esa division decide cuanto... (2/2)** — 4 vinetas.
 
-**La estructura try-catch-finally tiene una anatomia que conviene... (1/2)** — 6 vinetas.
+**La estructura try-catch-finally tiene una anatomia que conviene... (1/2)** — 5 vinetas.
+  - La estructura try-catch-finally tiene una anatomia que conviene explicar despacio.
+  - En VetCare esto significa que si el CSV esta corrupto a la mitad, el archivo igual se cierra y la aplicacion sigue viva con las mascotas que alcanzo a leer.
 
-**La estructura try-catch-finally tiene una anatomia que conviene... (2/2)** — 4 vinetas.
+**La estructura try-catch-finally tiene una anatomia que conviene... (2/2)** — 2 vinetas.
 
-**Throw y throws se parecen en el nombre y hacen cosas opuestas, y esa... (1/2)** — 2 vinetas.
+**La estructura try-catch-finally tiene una... — sintaxis** — 1 vinetas.
 
-**Throw y throws se parecen en el nombre y hacen cosas opuestas, y esa... (2/2)** — 3 vinetas.
+**Throw y throws se parecen en el nombre y hacen cosas opuestas, y esa...** — 2 vinetas.
+  - throw y throws se parecen en el nombre y hacen cosas opuestas, y esa confusion es la que mas cuesta en el parcial. throw (sin s) es una instruccion que se ejecuta y lanza un objeto en ese instante: throw. throws (con s) es una advertencia escrita en la firma del metodo: public void setEdad(String texto) throws DatoInvalidoException, y significa 'yo no resuelvo esto, quien me llame vera que hace'.
+  - De ahi sale la regla de capas que usaremos en VetCare: las clases del dominio (Mascota, Dueno, Cita) validan y LANZAN, porque no saben si hay una ventana, una consola o un servidor al otro lado; la capa de interfaz (el JFrame o el menu de consola) CAPTURA y traduce ese error a un JOptionPane que el usuario entiende.
 
-**El catch vacio, ese catch (Exception e) { } que aparece cuando VS Code...** — 7 vinetas.
+**Throw y throws se parecen en el nombre y... — sintaxis** — 1 vinetas.
+
+**El catch vacio, ese catch (Exception e) { } que aparece cuando VS Code... (1/2)** — 3 vinetas.
+  - Y la mejor excepcion es la que no ocurre: validar antes de convertir (revisar null, aplicar trim, verificar isEmpty y comprobar el rango) evita el 80 por ciento de los try-catch de VetCare y hace que el codigo se lea como las reglas del negocio.
+
+**El catch vacio, ese catch (Exception e) { } que aparece cuando VS Code... (2/2)** — 3 vinetas.
+
+**DemoExcepcionesVetCare.java — class DemoExcepcionesVetCare** — 5 vinetas.
+
+**DemoExcepcionesVetCare.java — class DatoInvalidoException** — 8 vinetas.
+
+**DemoExcepcionesVetCare.java — class Mascota (1/4)** — 20 vinetas.
+
+**DemoExcepcionesVetCare.java — class Mascota (2/4)** — 20 vinetas.
+
+**DemoExcepcionesVetCare.java — class Mascota (3/4)** — 20 vinetas.
+
+**DemoExcepcionesVetCare.java — class Mascota (4/4)** — 10 vinetas.
+
+**DemoExcepcionesVetCare.java — registrar()** — 16 vinetas.
+
+**DemoExcepcionesVetCare.java — buscarNombrePorId()** — 14 vinetas.
+
+**DemoExcepcionesVetCare.java — cargar() (1/2)** — 20 vinetas.
+
+**DemoExcepcionesVetCare.java — cargar() (2/2)** — 7 vinetas.
+
+**DemoExcepcionesVetCare.java — guardar()** — 16 vinetas.
+
+**DemoExcepcionesVetCare.java — malaPractica()** — 12 vinetas.
+
+**DemoExcepcionesVetCare.java — main() (1/3)** — 20 vinetas.
+
+**DemoExcepcionesVetCare.java — main() (2/3)** — 20 vinetas.
+
+**DemoExcepcionesVetCare.java — main() (3/3)** — 8 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente escribe 'tres' en el campo edad, muestra la aplicacion reventando con el stack trace rojo, y en vivo la envuelve en try-catch hasta que responde con un aviso amable.

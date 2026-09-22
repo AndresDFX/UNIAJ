@@ -33,25 +33,27 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 ### La pregunta de entrada: el pago de haber escrito en cada sesión - diapositiva 4
 
-Proyectado en la lamina «La pregunta de entrada: el pago de haber escrito en cada sesión» (6 vinetas).
+Proyectado en la lamina «La pregunta de entrada: el pago de haber escrito en cada sesión (1/2)» (4 vinetas).
 
 - Vale la pena detenerse ahí treinta segundos, porque es una de las lecciones más transferibles del curso: **el informe no se escribió hoy, se escribió en dieciséis sesiones.** La ficha del problema de la sesión 6 es la sección 2; la matriz de la 8 es la sección 6; los hallazgos de la 12 son la sección 8.
 
 ### Las doce secciones, y el orden correcto para armarlas - diapositivas 5, 6 y 7
 
-Proyectado en la lamina «Las doce secciones, y el orden correcto para armarlas (1/2)» (6 vinetas).
+Proyectado en la lamina «La pregunta de entrada: el pago de haber escrito en cada sesión (2/2)» (2 vinetas).
 
 ### La galería, y por qué socializar no es exponer otra vez - diapositiva 8
 
-Proyectado en la lamina «Las doce secciones, y el orden correcto para armarlas (2/2)» (8 vinetas).
+Proyectado en la lamina «Las doce secciones, y el orden correcto para armarlas (1/3)» (5 vinetas).
+
+- Sobre la **sección 11, la declaración del uso de IA**: es un cuarto de página y es la que más se olvida.
 
 ### Autoevaluación y coevaluación: cómo evitar que sea un trámite - diapositiva 9
 
-Proyectado en la lamina «La galería, y por qué socializar no es exponer otra vez (1/2)» (5 vinetas).
+Proyectado en la lamina «Las doce secciones, y el orden correcto para armarlas (2/3)» (5 vinetas).
 
 ### El cierre del curso: veinte minutos que no son un discurso - diapositiva 10
 
-Proyectado en la lamina «La galería, y por qué socializar no es exponer otra vez (2/2)» (3 vinetas).
+Proyectado en la lamina «Las doce secciones, y el orden correcto para armarlas (3/3)» (3 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 16 - Socializacion y evaluacion final del curso/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -66,19 +68,21 @@ Numeración real del deck `Clases/Clase 16 - Socializacion y evaluacion final de
 8. Cuatro cosas que bajan la nota del informe
 9. La autoevaluación y la coevaluación, en serio
 10. Lo que decían en la sesión 1 y lo que pueden sostener hoy
-11. La pregunta de entrada: el pago de haber escrito en cada sesión
-12. Las doce secciones, y el orden correcto para armarlas (1/2)
-13. Las doce secciones, y el orden correcto para armarlas (2/2)
-14. La galería, y por qué socializar no es exponer otra vez (1/2)
-15. La galería, y por qué socializar no es exponer otra vez (2/2)
-16. Autoevaluación y coevaluación: cómo evitar que sea un trámite (1/2)
-17. Autoevaluación y coevaluación: cómo evitar que sea un trámite (2/2)
-18. El cierre del curso: veinte minutos que no son un discurso (1/2)
-19. El cierre del curso: veinte minutos que no son un discurso (2/2)
-20. Taller de hoy: Informe final y autoevaluación
-21. Cómo se expone en 3 minutos
-22. Cierre del curso
-23. Cierre · Gracias · Introducción a la Ingeniería
+11. La pregunta de entrada: el pago de haber escrito en cada sesión (1/2)
+12. La pregunta de entrada: el pago de haber escrito en cada sesión (2/2)
+13. Las doce secciones, y el orden correcto para armarlas (1/3)
+14. Las doce secciones, y el orden correcto para armarlas (2/3)
+15. Las doce secciones, y el orden correcto para armarlas (3/3)
+16. La galería, y por qué socializar no es exponer otra vez (1/2)
+17. La galería, y por qué socializar no es exponer otra vez (2/2)
+18. Autoevaluación y coevaluación: cómo evitar que sea un trámite (1/2)
+19. Autoevaluación y coevaluación: cómo evitar que sea un trámite (2/2)
+20. El cierre del curso: veinte minutos que no son un discurso (1/2)
+21. El cierre del curso: veinte minutos que no son un discurso (2/2)
+22. Taller de hoy: Informe final y autoevaluación
+23. Cómo se expone en 3 minutos
+24. Cierre del curso
+25. Cierre · Gracias · Introducción a la Ingeniería
 
 ## Plan de clase minuto a minuto (90 min)
 

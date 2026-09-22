@@ -2563,7 +2563,7 @@ def _apoyo_por_diapositiva(c, mapa):
     L = ["", "## Apoyo por diapositiva", "",
          "Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en "
          "cada lamina, no repite su contenido.", ""]
-    for j, (titulo, vin, notas) in enumerate(slides):
+    for j, (titulo, vin, notas, _tipo) in enumerate(slides):
         n = f"[Slide {base + j}] " if base else ""
         L.append(f"**{n}{titulo}** — {len(vin)} vinetas.")
         for x in notas:
@@ -2606,7 +2606,7 @@ def _teoria_slides(c):
     """
     fund = (c.get("fundamento") or FUNDAMENTOS.get(c["n"]) or "").strip()
     if not fund:
-        return [("Teoria Core (breve)", _slide_summary(c["teoria"]), [])]
+        return [("Teoria Core (breve)", _slide_summary(c["teoria"]), [], "content")]
     return TS.slides_de_clase(fund)
 
 
@@ -2663,7 +2663,7 @@ def _slide_map(c):
          "Mapa del bloque de hoy (120 min)"]
     if c['n'] == 1:
         m.append(CLIENTE_SLIDE_TITULO)
-    m += [t for t, _v, _n in _teoria_slides(c)]
+    m += [s[0] for s in _teoria_slides(c)]
     dg = DIAGRAMAS_BD2.get(c['n'])
     if dg:
         m.append(dg["titulo"])
@@ -2872,8 +2872,12 @@ def build_pptx(c):
             "@@Caso completo:@@ anexo «Caso de estudio Clínica Huellitas» en "
             "Clases/Proyecto Integrador — 8 entidades, 3 reglas y el elenco de nombres.",
         ], sub=NOMENCLATURA, idx=idx); idx += 1
-    for _t, _vin, _ in _teoria_slides(c):
-        content_slide(prs, _t, _vin, idx=idx); idx += 1
+    for _t, _items, _, _tipo in _teoria_slides(c):
+        if _tipo == "codigo":
+            pseudo_code_slide(prs, _t, _items, idx=idx)
+        else:
+            content_slide(prs, _t, _items, idx=idx)
+        idx += 1
     dg = DIAGRAMAS_BD2.get(c['n'])
     if dg:
         diagram_boxes_slide(

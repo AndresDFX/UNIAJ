@@ -15,15 +15,63 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**El problema real de Huellitas** — 6 vinetas.
+**El problema real de Huellitas (1/2)** — 3 vinetas.
+  - Empecemos por el problema real de Huellitas.
 
-**Un ArrayList es exactamente esa carpeta que se agranda sola, y aqui...** — 5 vinetas.
+**El problema real de Huellitas (2/2)** — 2 vinetas.
 
-**La interfaz de trabajo es corta y hay que dominarla de memoria** — 7 vinetas.
+**Un ArrayList es exactamente esa carpeta que se agranda sola, y aqui...** — 4 vinetas.
+  - Esa arquitectura explica el rendimiento: get(i) es instantaneo porque salta directo a la posicion i del arreglo interno, agregar al final es barato casi siempre, pero add(0, mascota) o remove(0) obligan a correr un puesto a todos los demas elementos.
 
-**Recorrer la lista tiene dos formas y cada una tiene su momento** — 6 vinetas.
+**La interfaz de trabajo es corta y hay que dominarla de memoria (1/2)** — 4 vinetas.
+  - El <Mascota> entre los picos se llama generico y no es decoracion: le dice al compilador que ahi solo entran Mascotas, de modo que si un estudiante intenta guardar un String el error aparece al compilar y no como un ClassCastException en plena sustentacion.
 
-**La ultima idea es de diseno, y es la que hace que este codigo sirva...** — 6 vinetas.
+**La interfaz de trabajo es corta y hay que dominarla de memoria (2/2)** — 2 vinetas.
+
+**La interfaz de trabajo es corta y hay que... — sintaxis** — 1 vinetas.
+
+**Recorrer la lista tiene dos formas y cada una tiene su momento (1/2)** — 3 vinetas.
+  - Recorrer la lista tiene dos formas y cada una tiene su momento.
+
+**Recorrer la lista tiene dos formas y cada una tiene su momento (2/2)** — 2 vinetas.
+
+**La ultima idea es de diseno, y es la que hace que este codigo sirva...** — 4 vinetas.
+  - La ultima idea es de diseno, y es la que hace que este codigo sirva para el resto del proyecto integrador.
+  - Eso es encapsulamiento aplicado a colecciones, y es lo que hara posible que en las proximas clases la misma clase RegistroMascotas alimente una tabla de Swing y despues se guarde en un archivo CSV sin cambiar una sola linea de la logica.
+
+**class VetCareRegistroMascotas** — 2 vinetas.
+
+**VetCareRegistroMascotas.java — main() (1/3)** — 20 vinetas.
+
+**VetCareRegistroMascotas.java — main() (2/3)** — 20 vinetas.
+
+**VetCareRegistroMascotas.java — main() (3/3)** — 3 vinetas.
+
+**VetCareRegistroMascotas.java — menu() (1/3)** — 20 vinetas.
+
+**VetCareRegistroMascotas.java — menu() (2/3)** — 20 vinetas.
+
+**VetCareRegistroMascotas.java — menu() (3/3)** — 11 vinetas.
+
+**VetCareRegistroMascotas.java — leerEntero()** — 10 vinetas.
+
+**VetCareRegistroMascotas.java — class Mascota** — 8 vinetas.
+
+**VetCareRegistroMascotas.java — Mascota()** — 15 vinetas.
+
+**VetCareRegistroMascotas.java — class RegistroMascotas** — 5 vinetas.
+
+**VetCareRegistroMascotas.java — agregar()** — 14 vinetas.
+
+**VetCareRegistroMascotas.java — buscarPorId()** — 12 vinetas.
+
+**VetCareRegistroMascotas.java — eliminarPorId()** — 11 vinetas.
+
+**VetCareRegistroMascotas.java — pasarAGeriatria()** — 11 vinetas.
+
+**VetCareRegistroMascotas.java — listar()** — 10 vinetas.
+
+**VetCareRegistroMascotas.java — cantidad()** — 5 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente muestra un Mascota[3] que revienta al intentar guardar la cuarta ficha y luego el mismo caso resuelto con ArrayList, imprimiendo size() despues de cada operacion.

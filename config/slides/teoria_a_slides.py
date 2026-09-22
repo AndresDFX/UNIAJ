@@ -35,11 +35,13 @@ from __future__ import annotations
 
 import re
 
-#: Presupuesto por diapositiva. Por debajo de la capacidad medida (~1100 car a 20 pt en 6-7
+#: Presupuesto por diapositiva. MUY por debajo de la capacidad medida (~1150 car): la
+#: lamina tiene que leerse de un vistazo, no contener el parrafo. La capacidad era el
+#: limite fisico; esto es el limite de atencion. (~1100 car a 20 pt en 6-7
 #: vinetas) para que el autoajuste no tenga que bajar de cuerpo casi nunca: una clase virtual
 #: se ve en una ventana compartida y recomprimida, y 20 pt es lo que se lee ahi.
-MAX_CAR = 1150
-MAX_VINETAS = 8
+MAX_CAR = 800
+MAX_VINETAS = 6
 
 #: Una vineta mas larga que esto se parte por el conector mas cercano al medio: son frases
 #: que en prosa se leen bien y proyectadas ocupan cuatro lineas.
@@ -170,22 +172,228 @@ def _partir_larga(f: str) -> list[str]:
     return [f]
 
 
-def a_vinetas(cuerpo: str) -> tuple[list[str], list[str]]:
+def a_vinetas(cuerpo: str):
     """`(proyectable, notas)` — lo que va a la diapositiva y lo que va al guion.
 
     Las frases que hablan al docente sobre COMO dictar no se proyectan: se devuelven aparte
     para que el guion las use como nota puntual de esa diapositiva. Asi el deck lleva la
     informacion y el guion no agrega nada que no este proyectado.
     """
-    proyecta, notas = [], []
+    proyecta, notas, codigo = [], [], []
     for f in frases(cuerpo):
+        # 1. el codigo sale del texto y se junta para la lamina de sintaxis
+        resto, frags = _extraer_codigo(f)
+        codigo += frags
+        f = resto or f if not frags else resto
+        if not f or len(f) < 12:
+            continue
+        # 2. lo que le habla al docente sobre COMO dictar, al guion
         if es_instruccional(f):
             notas.append(limpiar_tokens(f))
             continue
         limpia = limpiar_tokens(f)
-        if limpia:
+        if not limpia:
+            continue
+        # 3. lo que argumenta tambien se dice, no se proyecta: es el «demasiado texto»
+        if es_operativa(limpia):
             proyecta += _partir_larga(limpia)
-    return proyecta, notas
+        else:
+            notas.append(limpia)
+    return proyecta, notas, codigo
+
+
+# ───────────────────────────────────────────────── CODIGO DENTRO DE LA PROSA
+
+#: Arranques de sentencia que valen una lamina de codigo. El orden importa: se prueba el mas
+#: especifico primero para que «CREATE OR REPLACE FUNCTION» no case como «CREATE».
+ARRANQUE_CODIGO = (
+    "CREATE OR REPLACE FUNCTION", "CREATE OR REPLACE PROCEDURE", "CREATE OR REPLACE VIEW",
+    "CREATE TABLE", "CREATE INDEX", "CREATE UNIQUE INDEX", "CREATE ROLE", "CREATE USER",
+    "CREATE TRIGGER", "CREATE VIEW", "CREATE FUNCTION", "CREATE PROCEDURE",
+    "ALTER TABLE", "DROP TABLE", "INSERT INTO", "SELECT ", "UPDATE ", "DELETE FROM",
+    "GRANT ", "REVOKE ", "EXPLAIN ", "ANALYZE ", "VACUUM ", "SET TRANSACTION",
+    "BEGIN;", "COMMIT;", "ROLLBACK;", "SAVEPOINT ", "CALL ", "DO $$",
+    "RAISE EXCEPTION", "WITH ", "MERGE INTO",
+    "public class", "public static", "private ", "protected ", "class ",
+    "List<", "Map<", "ArrayList<", "for (", "while (", "if (", "try {",
+    "System.out", "new ",
+    "docker ", "kubectl ", "git ", "npm ", "mvn ", "java ", "psql ",
+    "apiVersion:", "FROM ", "RUN ", "COPY ", "CMD ",
+)
+
+#: Longitud minima para que un fragmento valga una lamina aparte: por debajo es un nombre de
+#: columna o una palabra clave citada, no una sentencia.
+MIN_CAR_CODIGO = 28
+
+
+#: Palabras funcionales del castellano. Si una aparece en el fragmento, no es una sentencia:
+#: es una frase que MENCIONA la palabra clave («el ALTER TABLE debe convertir cada valor»).
+_CASTELLANO = (
+    "que", "debe", "puede", "cada", "una", "unos", "unas", "los", "las", "del", "por",
+    "con", "sin", "mientras", "porque", "asi", "esa", "ese", "esto", "esta", "hay",
+    "son", "pero", "cuando", "donde", "como", "para", "sobre", "entre", "desde",
+    "aqui", "alli", "ya", "muy", "mas", "menos", "todo", "toda", "nada", "solo",
+    "dentro", "fuera", "antes", "despues", "luego", "tambien", "tampoco", "sigue",
+    "queda", "deja", "hace", "dice", "vale", "sirve", "pasa", "falla",
+    "el", "la", "y", "un", "se", "su", "al", "lo", "les", "nos", "es",
+    "devuelve", "permite", "impide", "obliga", "evita", "arroja", "lanza",
+    "guarda", "apunta", "existe", "cambia", "convierte", "bloquea", "cuesta",
+)
+
+
+def _es_codigo_real(frag):
+    """True si el fragmento es una sentencia y no una frase que la menciona."""
+    # Tiene que tener forma de codigo: parentesis, punto y coma, asignacion o tipo.
+    if not re.search(r"[(;=]", frag) and not re.search(
+            r"(?i)\b(VARCHAR|NUMBER|DECIMAL|TIMESTAMP|INT|CHAR|BOOLEAN|TO|ON|FROM|SET)\b", frag):
+        return False
+    # Y no puede llevar palabras funcionales del castellano fuera de una cadena literal.
+    sin_cadenas = re.sub(r"'[^']*'", "", frag)
+    for pal in re.findall(r"[a-záéíóúñ]+", sin_cadenas.lower()):
+        if pal in _CASTELLANO:
+            return False
+    return True
+
+
+def _extraer_codigo(frase):
+    """`(frase_sin_codigo, [fragmentos])`.
+
+    Un fragmento arranca en una palabra clave y termina donde termina la sentencia: en el
+    punto y coma, o al cerrar el parentesis que abrio, o al final de la frase.
+    """
+    fragmentos = []
+    texto = frase
+    for _ in range(4):                      # una frase puede traer dos o tres sentencias
+        pos, arranque = None, None
+        for a in ARRANQUE_CODIGO:
+            i = texto.find(a)
+            if i != -1 and (pos is None or i < pos):
+                pos, arranque = i, a
+        if pos is None:
+            break
+        # fin de la sentencia
+        j = pos + len(arranque)
+        prof = 0
+        abrio = False
+        fin = len(texto)
+        while j < len(texto):
+            ch = texto[j]
+            if ch == "(":
+                prof += 1
+                abrio = True
+            elif ch == ")":
+                if prof == 0:
+                    fin = j
+                    break
+                prof -= 1
+                # Cerrado el grupo de nivel superior, la sentencia termina. Sin esto el
+                # barrido seguia hasta el siguiente punto y se llevaba la prosa de detras.
+                if prof == 0 and abrio:
+                    # INSERT lleva DOS grupos: la lista de columnas y el VALUES. Si lo que
+                    # sigue es VALUES, la sentencia continua.
+                    resto = texto[j + 1:j + 10].upper().lstrip()
+                    if resto.startswith("VALUES"):
+                        abrio = False
+                        j += 1
+                        continue
+                    fin = j + 1
+                    break
+            elif ch == ";" and prof == 0:
+                fin = j + 1
+                break
+            elif ch == "." and prof == 0 and j + 1 < len(texto) and texto[j + 1] == " ":
+                fin = j
+                break
+            j += 1
+        frag = texto[pos:fin].strip(" ,;:.")
+        if len(frag) >= MIN_CAR_CODIGO and _es_codigo_real(frag):
+            fragmentos.append(frag)
+            texto = (texto[:pos] + texto[fin:]).replace("  ", " ")
+        else:
+            # no vale lamina aparte: se deja en la prosa y se sigue buscando mas alla
+            texto_restante = texto[fin:]
+            if not texto_restante:
+                break
+            texto = texto[:fin] + texto_restante
+            break
+    texto = re.sub(r"\s{2,}", " ", texto)
+    texto = re.sub(r"\s+([,.;:])", r"\1", texto).strip(" ,;:")
+    return texto, fragmentos
+
+
+def _lineas_de_codigo(frag):
+    """Parte una sentencia en lineas legibles en monoespaciado."""
+    f = re.sub(r"\s+", " ", frag).strip()
+    # un CREATE TABLE con lista de columnas: una columna por linea
+    m = re.match(r"(?i)^(CREATE\s+TABLE\s+\S+)\s*\((.+?)\)[.;]*$", f)
+    if m:
+        cols, prof, act = [], 0, ""
+        for ch in m.group(2):
+            if ch == "(":
+                prof += 1
+            elif ch == ")":
+                prof -= 1
+            if ch == "," and prof == 0:
+                cols.append(act.strip())
+                act = ""
+            else:
+                act += ch
+        if act.strip():
+            cols.append(act.strip())
+        return [m.group(1) + " ("] + ["  " + c + ("," if i < len(cols) - 1 else "")
+                                      for i, c in enumerate(cols)] + [");"]
+    # SQL con clausulas: una clausula por linea
+    f2 = re.sub(r"(?i)\s+(FROM|WHERE|GROUP BY|ORDER BY|HAVING|JOIN|LEFT JOIN|INNER JOIN|"
+                r"VALUES|SET|RETURNING|LIMIT)\s+", lambda m: "\n" + m.group(1) + " ", f)
+    lineas = [x.strip() for x in f2.split("\n") if x.strip()]
+    if len(lineas) > 1:
+        return lineas
+    # si sigue siendo una sola linea larga, cortarla por comas
+    if len(f) > 95:
+        trozos, act = [], ""
+        for parte in f.split(", "):
+            if len(act) + len(parte) > 90:
+                trozos.append(act.rstrip(", "))
+                act = ""
+            act += parte + ", "
+        if act.strip(", "):
+            trozos.append(act.rstrip(", "))
+        return trozos
+    return [f]
+
+
+# ───────────────────────────────────────────────── QUE VALE PROYECTAR
+
+#: Senales de que una frase es OPERATIVA: define, manda, mide o nombra. Son las que se
+#: proyectan; el resto argumenta y se dice.
+OPERATIVA = (
+    r"\bes\b", r"\bson\b", r"\bse (usa|declara|escribe|crea|otorga|revoca|llama|define)",
+    r"\bno (se|acepta|admite|puede|basta|sirve)\b", r"\bhay que\b", r"\bdebe\b",
+    r"\bsiempre\b", r"\bnunca\b", r"\bregla\b", r"\bcriterio\b",
+    r"\d", r"[A-Z]{3,}", r"\b(VARCHAR|NUMBER|DECIMAL|TIMESTAMP|INT|CHAR|BOOLEAN)\b",
+    r"[a-z_]+\.[a-z_]+", r"\bpor ejemplo\b", r":",
+)
+_RX_OP = [re.compile(p, re.I) for p in OPERATIVA]
+
+#: Giros de argumentacion: explican POR QUE, y eso se dice en voz, no se proyecta.
+ARGUMENTA = (
+    r"^(la respuesta|eso |esa |ahi |asi |por eso|de ahi|lo importante|lo que |y eso|"
+    r"leidas asi|dicho de otro modo|en otras palabras|conviene|vale la pena)",
+    r"\b(no es doctrinal|no es casual|no es decoracion|es exactamente eso|"
+    r"es la que|es lo que hace|es la diferencia entre)\b",
+    r"^(supongamos|imaginemos|piensen)",
+)
+_RX_ARG = [re.compile(p, re.I) for p in ARGUMENTA]
+
+
+def es_operativa(frase):
+    """True si la frase vale proyectarse: define, manda, mide o nombra algo concreto."""
+    f = frase.strip()
+    if len(f) < 25:
+        return False
+    if any(rx.search(f) for rx in _RX_ARG):
+        return False
+    return sum(1 for rx in _RX_OP if rx.search(f)) >= 2
 
 
 def _empaquetar(vinetas: list[str]) -> list[list[str]]:
@@ -219,10 +427,13 @@ def _empaquetar(vinetas: list[str]) -> list[list[str]]:
 
 
 def slides_de_seccion(titulo: str, cuerpo: str):
-    """`(titulo, vinetas, notas)` por cada diapositiva que necesita esta seccion.
+    """Laminas de esta seccion, tipadas.
 
-    Las notas del guion se cuelgan de la PRIMERA diapositiva de la seccion: son sobre el
-    concepto, no sobre una lamina concreta.
+    Cada una es `(titulo, items, notas, tipo)` con `tipo` en `content` o `codigo`. El codigo
+    de toda la seccion va en UNA lamina al final: una consulta se lee en monoespaciado y en
+    varias lineas, y los fragmentos cortos solo valen una lamina cuando se juntan.
+
+    Las notas del guion se cuelgan de la PRIMERA lamina: son sobre el concepto.
     """
     # El titulo tambien se limpia: hay secciones que llevan tokens DENTRO del texto —«...y
     # cierre conceptual (de la {{slide:X}} a la {{slide:Y}})»— y no solo al final, asi que
@@ -230,14 +441,30 @@ def slides_de_seccion(titulo: str, cuerpo: str):
     titulo = limpiar_tokens(titulo).rstrip(" (").rstrip()
     if titulo.count("(") > titulo.count(")"):
         titulo = titulo[:titulo.rfind("(")].rstrip(" ,;")
-    proyecta, notas = a_vinetas(cuerpo)
-    if not proyecta:
-        return []
-    paginas = _empaquetar(proyecta)
-    if len(paginas) == 1:
-        return [(titulo, paginas[0], notas)]
-    return [(f"{titulo} ({i}/{len(paginas)})", pg, notas if i == 1 else [])
-            for i, pg in enumerate(paginas, 1)]
+    proyecta, notas, codigo = a_vinetas(cuerpo)
+
+    out = []
+    if proyecta:
+        paginas = _empaquetar(proyecta)
+        if len(paginas) == 1:
+            out.append((titulo, paginas[0], notas, "content"))
+        else:
+            out += [(f"{titulo} ({i}/{len(paginas)})", pg, notas if i == 1 else [], "content")
+                    for i, pg in enumerate(paginas, 1)]
+    if codigo:
+        lineas = []
+        for frag in codigo:
+            if lineas:
+                lineas.append("")
+            lineas += _lineas_de_codigo(frag)
+        if not out:
+            out.append((titulo, lineas, notas, "codigo"))
+        else:
+            # El titulo de una lamina de codigo tiene que caber en UNA linea: si envuelve,
+            # empuja el bloque de codigo y lo hace desbordar (paso en 3 laminas de Prog II).
+            corto = titulo if len(titulo) <= 46 else titulo[:46].rsplit(" ", 1)[0] + "..."
+            out.append((f"{corto} — sintaxis", lineas, [], "codigo"))
+    return out
 
 
 def slides_de_clase(texto: str, incluir_solo_docente: bool = False):
@@ -298,6 +525,7 @@ if __name__ == "__main__":
     for n in sorted(FUNDAMENTOS):
         sl = slides_de_clase(FUNDAMENTOS[n])
         print(f"Clase {n}: {len(sl)} diapositivas de teoria")
-        for t, v, notas in sl:
-            print(f"   {sum(len(x) for x in v):>5}car {len(v)}v {len(notas)}nota  {t[:56]}")
+        for t, v, notas, tipo in sl:
+            print(f"   {tipo:<8}{sum(len(x) for x in v):>5}car {len(v)}v "
+                  f"{len(notas)}nota  {t[:50]}")
         break

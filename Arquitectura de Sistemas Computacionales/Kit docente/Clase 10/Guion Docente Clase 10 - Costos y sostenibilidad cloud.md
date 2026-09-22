@@ -24,34 +24,51 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 6] Clase autonoma: de gasto de capital a gasto operativo medido** — 6 vinetas.
+**[Slide 6] Clase autonoma: de gasto de capital a gasto operativo medido** — 4 vinetas.
   - Conviene empezar por la economia, porque sin ella el tema suena a contabilidad.
+  - Cuando cada recurso tiene precio unitario, casi cualquier decision de diseno se convierte en una cifra mensual y el arquitecto pasa a ser corresponsable del gasto.
+  - Esa es la razon por la que este tema vive en un curso de arquitectura y no en uno de administracion.
 
-**[Slide 7] CloudLite no tiene factura real, y por que igual se estima** — 8 vinetas.
+**[Slide 7] CloudLite no tiene factura real, y por que igual se estima (1/2)** — 3 vinetas.
+  - Eso no impide el analisis de costo, solo cambia la escala de medida.
 
-**[Slide 8] Ordenes de magnitud que el docente debe poder citar** — 7 vinetas.
+**[Slide 8] CloudLite no tiene factura real, y por que igual se estima (2/2)** — 4 vinetas.
+
+**[Slide 9] Ordenes de magnitud que el docente debe poder citar** — 5 vinetas.
   - El docente debe poder citar ordenes de magnitud, y conviene decir en voz alta que son convenciones aproximadas de precios de lista y no reglas duras: las cifras cambian por proveedor, region y ano, pero las proporciones se mantienen estables.
+  - Una base de datos gestionada cuesta entre dos y tres veces la maquina desnuda equivalente, porque incluye respaldos, parches y conmutacion por falla.
+  - Una funcion serverless suele traer free tier de alrededor de un millon de invocaciones mensuales, asi que un componente poco usado cuesta cero de verdad.
 
-**[Slide 9] Primer ejemplo: la tabla del entregable, componente por componente** — 7 vinetas.
+**[Slide 10] Primer ejemplo: la tabla del entregable, componente por componente (1/2)** — 4 vinetas.
   - El primer ejemplo anclado en CloudLite es la tabla del entregable, y el docente deberia recorrerla componente por componente.
+  - El contenedor de la API queda en Medio, con driver instancias por horas encendidas.
 
-**[Slide 10] Segundo ejemplo: por que el driver importa mas que el nivel (1/2)** — 5 vinetas.
+**[Slide 11] Primer ejemplo: la tabla del entregable, componente por componente (2/2)** — 2 vinetas.
 
-**[Slide 11] Segundo ejemplo: por que el driver importa mas que el nivel (2/2)** — 4 vinetas.
+**[Slide 12] Segundo ejemplo: por que el driver importa mas que el nivel (1/2)** — 4 vinetas.
+  - El segundo ejemplo muestra por que el driver importa mas que el nivel.
+  - Esto tambien desarma la intuicion mas comun del estudiante, que si nadie usa el sistema el sistema no cuesta.
 
-**[Slide 12] Right-sizing: tres acciones ancladas en observacion (1/2)** — 5 vinetas.
+**[Slide 13] Segundo ejemplo: por que el driver importa mas que el nivel (2/2)** — 3 vinetas.
 
-**[Slide 13] Right-sizing: tres acciones ancladas en observacion (2/2)** — 4 vinetas.
+**[Slide 14] Right-sizing: tres acciones ancladas en observacion (1/2)** — 4 vinetas.
+  - De ahi sale el segundo bloque del entregable: tres acciones de right-sizing.
 
-**[Slide 14] Sostenibilidad tecnica antes que ambiental** — 7 vinetas.
+**[Slide 15] Right-sizing: tres acciones ancladas en observacion (2/2)** — 4 vinetas.
 
-**[Slide 15] Preguntas frecuentes y cierre conceptual () (1/3)** — 5 vinetas.
+**[Slide 16] Sostenibilidad tecnica antes que ambiental (1/2)** — 4 vinetas.
+  - Por eso las mismas tres acciones sirven a la vez para la factura y para la huella.
+
+**[Slide 17] Sostenibilidad tecnica antes que ambiental (2/2)** — 2 vinetas.
+
+**[Slide 18] Preguntas frecuentes y cierre conceptual () (1/3)** — 5 vinetas.
   - Tres preguntas aparecen siempre.
   - Conviene advertir que en la Clase 11 la auditoria exigira que los componentes de esta tabla se llamen igual que los contenedores del C4 de la Clase 4 y las piezas del despliegue de la Clase 7, y que en la Clase 13 el limite maximo del autoescalado sera el techo de costo que se decide hoy.
+  - Con eso la clase se vuelve una caceria de calculadoras de precios, el estudiante copia numeros que no entiende y las acciones de right-sizing quedan cosmeticas.
 
-**[Slide 16] Preguntas frecuentes y cierre conceptual () (2/3)** — 6 vinetas.
+**[Slide 19] Preguntas frecuentes y cierre conceptual () (2/3)** — 5 vinetas.
 
-**[Slide 17] Preguntas frecuentes y cierre conceptual () (3/3)** — 3 vinetas.
+**[Slide 20] Preguntas frecuentes y cierre conceptual () (3/3)** — 3 vinetas.
 
 
 ## Referencias a diapositivas
@@ -64,22 +81,25 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 4. Costos sin factura real
 5. Sostenibilidad
 6. Clase autonoma: de gasto de capital a gasto operativo medido
-7. CloudLite no tiene factura real, y por que igual se estima
-8. Ordenes de magnitud que el docente debe poder citar
-9. Primer ejemplo: la tabla del entregable, componente por componente
-10. Segundo ejemplo: por que el driver importa mas que el nivel (1/2)
-11. Segundo ejemplo: por que el driver importa mas que el nivel (2/2)
-12. Right-sizing: tres acciones ancladas en observacion (1/2)
-13. Right-sizing: tres acciones ancladas en observacion (2/2)
-14. Sostenibilidad tecnica antes que ambiental
-15. Preguntas frecuentes y cierre conceptual () (1/3)
-16. Preguntas frecuentes y cierre conceptual () (2/3)
-17. Preguntas frecuentes y cierre conceptual () (3/3)
-18. Herramientas de hoy
-19. PI CloudLite — entregable de hoy
-20. Manos a la obra (paso a paso)
-21. Para continuar (PI)
-22. Clase 10 · PI en movimiento
+7. CloudLite no tiene factura real, y por que igual se estima (1/2)
+8. CloudLite no tiene factura real, y por que igual se estima (2/2)
+9. Ordenes de magnitud que el docente debe poder citar
+10. Primer ejemplo: la tabla del entregable, componente por componente (1/2)
+11. Primer ejemplo: la tabla del entregable, componente por componente (2/2)
+12. Segundo ejemplo: por que el driver importa mas que el nivel (1/2)
+13. Segundo ejemplo: por que el driver importa mas que el nivel (2/2)
+14. Right-sizing: tres acciones ancladas en observacion (1/2)
+15. Right-sizing: tres acciones ancladas en observacion (2/2)
+16. Sostenibilidad tecnica antes que ambiental (1/2)
+17. Sostenibilidad tecnica antes que ambiental (2/2)
+18. Preguntas frecuentes y cierre conceptual () (1/3)
+19. Preguntas frecuentes y cierre conceptual () (2/3)
+20. Preguntas frecuentes y cierre conceptual () (3/3)
+21. Herramientas de hoy
+22. PI CloudLite — entregable de hoy
+23. Manos a la obra (paso a paso)
+24. Para continuar (PI)
+25. Clase 10 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 

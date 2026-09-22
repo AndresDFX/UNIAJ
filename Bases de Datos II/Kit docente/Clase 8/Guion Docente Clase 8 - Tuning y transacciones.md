@@ -24,74 +24,133 @@ del PI VetCare. La teoria se limita a desbloquear el taller.
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 4] Que es una transaccion, y las dos amenazas de las que protege (1/2)** — 6 vinetas.
+**[Slide 4] Que es una transaccion, y las dos amenazas de las que protege (1/2)** — 5 vinetas.
+  - La condicion stock >= 2 no es decoracion, es la que impide que el descuento se aplique cuando no hay existencias y hace que el motor informe cero filas afectadas en lugar de dejar un numero negativo.
 
 **[Slide 5] Que es una transaccion, y las dos amenazas de las que protege (2/2)** — 5 vinetas.
 
-**[Slide 6] Atomicidad: el fallo concreto en VetCare (1/2)** — 5 vinetas.
+**[Slide 6] Que es una transaccion, y las dos amenazas de... — sintaxis** — 3 vinetas.
 
-**[Slide 7] Atomicidad: el fallo concreto en VetCare (2/2)** — 3 vinetas.
+**[Slide 7] Atomicidad: el fallo concreto en VetCare** — 4 vinetas.
+  - Sin atomicidad queda una factura cobrando dos productos con una sola linea registrada, y un insumo descontado que nadie entrego.
+  - Nadie recibe un error, la clinica cobro, y el dano aparece semanas despues, cuando el inventario fisico no cuadra y ya no hay forma de saber que factura lo desajusto.
+  - Esa es la razon por la que el entregable no pide tres sentencias sueltas sino un procedimiento que las agrupa, y por la que la pregunta 2 del taller vale 25 puntos por demostrar con datos —foto inicial y foto final— que el descuento que SI habia alcanzado se deshizo.
 
-**[Slide 8] Consistencia: valido es lo que las restricciones declaran (1/2)** — 6 vinetas.
+**[Slide 8] Atomicidad: el fallo concreto en VetCare — sintaxis** — 1 vinetas.
+
+**[Slide 9] Consistencia: valido es lo que las restricciones declaran (1/2)** — 5 vinetas.
+  - Si nadie declaro la restriccion, la transaccion puede ser perfectamente atomica y dejar la base en un estado absurdo.
+  - Con eso el mismo UPDATE falla con un error del motor y la transaccion se puede deshacer entera.
   - Conviene notar como se combinan las dos defensas del dia: el CHECK es la red de seguridad declarativa, y el AND stock >= p_cantidad del WHERE es el guardia que evita llegar al error y permite dar un mensaje de negocio en lugar de un error de restriccion.
 
-**[Slide 9] Consistencia: valido es lo que las restricciones declaran (2/2)** — 5 vinetas.
+**[Slide 10] Consistencia: valido es lo que las restricciones declaran (2/2)** — 4 vinetas.
 
-**[Slide 10] Aislamiento: el fallo mas facil de reproducir (1/2)** — 7 vinetas.
+**[Slide 11] Consistencia: valido es lo que las... — sintaxis** — 1 vinetas.
 
-**[Slide 11] Aislamiento: el fallo mas facil de reproducir (2/2)** — 7 vinetas.
+**[Slide 12] Aislamiento: el fallo mas facil de reproducir (1/2)** — 5 vinetas.
+  - Aislamiento significa que dos transacciones concurrentes producen un resultado equivalente al que darian ejecutadas una despues de la otra.
+  - Eso se llama actualizacion perdida o lost update, y la primera defensa es de diseno, no de configuracion: no leer y luego escribir con el valor leido, sino dejar que el motor haga la resta en la misma sentencia, UPDATE insumo SET stock = stock - 3 WHERE id_insumo = 2 AND stock >= 3, porque esa sentencia es atomica y toma un bloqueo sobre la fila mientras se ejecuta.
+  - Esa es exactamente la decision que la pregunta 5 pide documentar en una frase defendible.
+  - Oracle implementa solo dos, READ COMMITTED por omision y SERIALIZABLE
+  - MySQL con InnoDB usa REPEATABLE READ por omision, valor distinto que explica diferencias reales al portar un script.
 
-**[Slide 12] Durabilidad: el registro de transacciones (1/2)** — 5 vinetas.
+**[Slide 13] Aislamiento: el fallo mas facil de reproducir (2/2)** — 3 vinetas.
 
-**[Slide 13] Durabilidad: el registro de transacciones (2/2)** — 4 vinetas.
+**[Slide 14] Durabilidad: el registro de transacciones (1/2)** — 5 vinetas.
+  - Durabilidad significa que despues de confirmar, el dato sobrevive incluso si el servidor se apaga un segundo mas tarde.
 
-**[Slide 14] La firma de sp_facturar, y por que recibe dos arreglos (1/2)** — 8 vinetas.
+**[Slide 15] Durabilidad: el registro de transacciones (2/2)** — 3 vinetas.
 
-**[Slide 15] La firma de sp_facturar, y por que recibe dos arreglos (2/2)** — 8 vinetas.
+**[Slide 16] La firma de sp_facturar, y por que recibe dos arreglos (1/2)** — 3 vinetas.
+  - Aqui empieza lo que se califica, y la primera cosa que hay que proyectar es la firma exacta, porque no es la que uno escribiria de memoria: LANGUAGE plpgsql AS $proc$... $proc$.
+  - Tres observaciones.
+  - Segunda, y es la que sorprende, recibe DOS ARREGLOS PARALELOS y no un insumo suelto, porque una factura real tiene varias lineas; se invoca, que significa una unidad del insumo 1, dos del 6 y tres del 5.
+  - Tercera, el cuerpo va entre delimitadores de dolar, y conviene usar una etiqueta como $proc$ en lugar de $$ pelado para que no choque con otro bloque anidado.
+  - El cuerpo tiene cuatro partes y vale recorrerlas en orden.
+  - INTO evita ir a buscar con otro SELECT el identificador que se acaba de generar.
 
-**[Slide 16] El guardia del stock, sentencia por sentencia (1/2)** — 7 vinetas.
+**[Slide 17] La firma de sp_facturar, y por que recibe dos arreglos (2/2)** — 5 vinetas.
 
-**[Slide 17] El guardia del stock, sentencia por sentencia (2/2)** — 7 vinetas.
+**[Slide 18] La firma de sp_facturar, y por que recibe dos... — sintaxis** — 12 vinetas.
 
-**[Slide 18] Error del motor y error de negocio: se atienden distinto (1/2)** — 8 vinetas.
+**[Slide 19] El guardia del stock, sentencia por sentencia (1/3)** — 4 vinetas.
 
-**[Slide 19] Error del motor y error de negocio: se atienden distinto (2/2)** — 5 vinetas.
+**[Slide 20] El guardia del stock, sentencia por sentencia (2/3)** — 5 vinetas.
 
-**[Slide 20] Donde empieza y termina la transaccion de un CALL (1/2)** — 5 vinetas.
+**[Slide 21] El guardia del stock, sentencia por sentencia (3/3)** — 3 vinetas.
 
-**[Slide 21] Donde empieza y termina la transaccion de un CALL (2/2)** — 4 vinetas.
+**[Slide 22] El guardia del stock, sentencia por sentencia — sintaxis** — 7 vinetas.
 
-**[Slide 22] El savepoint implicito del bloque EXCEPTION (1/2)** — 8 vinetas.
+**[Slide 23] Error del motor y error de negocio: se atienden distinto (1/2)** — 5 vinetas.
+  - Hay que separar dos tipos de fallo a mitad de transaccion porque se atienden distinto, y esta distincion es la que ordena todo el procedimiento.
+  - De ahi que el procedimiento tenga que convertir el cero filas en una excepcion, con el RAISE EXCEPTION de la seccion anterior, y de ahi tambien que el mensaje deba nombrar el insumo concreto: quien lea el error en la sustentacion tiene que poder decir cual linea fallo.
+  - Dos exigencias del entregable salen de aqui.
 
-**[Slide 23] El savepoint implicito del bloque EXCEPTION (2/2)** — 4 vinetas.
+**[Slide 24] Error del motor y error de negocio: se atienden distinto (2/2)** — 4 vinetas.
 
-**[Slide 24] El contraste con Oracle, que es la pregunta 4 (1/2)** — 6 vinetas.
+**[Slide 25] Donde empieza y termina la transaccion de un CALL (1/2)** — 5 vinetas.
+  - Si la excepcion se propaga hasta afuera del procedimiento, el motor deshace TODO lo que ese CALL habia hecho —la cabecera de la factura, las lineas ya insertadas y los descuentos de stock ya aplicados— y nadie escribio ROLLBACK.
 
-**[Slide 25] El contraste con Oracle, que es la pregunta 4 (2/2)** — 5 vinetas.
+**[Slide 26] Donde empieza y termina la transaccion de un CALL (2/2)** — 3 vinetas.
 
-**[Slide 26] Abortar o informar: fn_descontar_stock (1/2)** — 8 vinetas.
+**[Slide 27] Donde empieza y termina la transaccion de un... — sintaxis** — 1 vinetas.
 
-**[Slide 27] Abortar o informar: fn_descontar_stock (2/2)** — 7 vinetas.
+**[Slide 28] El savepoint implicito del bloque EXCEPTION (1/2)** — 5 vinetas.
+  - EXCEPTION WHEN...
+  - END en PL/pgSQL crea un savepoint implicito al entrar.
+  - Por eso, cuando el codigo captura el error, se revierte solo lo hecho DENTRO de ese bloque y el resto de la transaccion sigue vivo.
+  - El savepoint implicito de ese DO deshace todo lo que el CALL habia hecho, el mensaje se imprime, y la foto final demuestra que la base quedo igual.
 
-**[Slide 28] Tuning: habitos de escritura, no parametros del servidor (1/2)** — 6 vinetas.
+**[Slide 29] El savepoint implicito del bloque EXCEPTION (2/2)** — 3 vinetas.
 
-**[Slide 29] Tuning: habitos de escritura, no parametros del servidor (2/2)** — 5 vinetas.
+**[Slide 30] El savepoint implicito del bloque EXCEPTION — sintaxis** — 1 vinetas.
 
-**[Slide 30] La demo, en el orden en que se proyecta (1/2)** — 7 vinetas.
+**[Slide 31] El contraste con Oracle, que es la pregunta 4 (1/3)** — 4 vinetas.
 
-**[Slide 31] La demo, en el orden en que se proyecta (2/2)** — 4 vinetas.
+**[Slide 32] El contraste con Oracle, que es la pregunta 4 (2/3)** — 3 vinetas.
 
-**[Slide 32] Donde corre esto, y por que el autocommit ya no es el enemigo (1/2)** — 7 vinetas.
+**[Slide 33] El contraste con Oracle, que es la pregunta 4 (3/3)** — 3 vinetas.
 
-**[Slide 33] Donde corre esto, y por que el autocommit ya no es el enemigo (2/2)** — 5 vinetas.
+**[Slide 34] Abortar o informar: fn_descontar_stock (1/2)** — 6 vinetas.
+  - El procedimiento ABORTA la factura completa cuando no hay stock; la funcion INFORMA y deja que el llamador decida.
+  - Lo que hay que enfatizar es la linea que separa un caso del otro: una cantidad negativa o cero no es «no hay stock», es una llamada mal hecha, y eso SI es una excepcion; el resultado negativo legitimo se devuelve como dato.
+  - Eso aqui no se puede demostrar, porque el motor corre una sola sesion, y ese es el gap que la pregunta 5 pide declarar.
 
-**[Slide 34] El reparto de los 120 minutos y como acompanar el taller (1/2)** — 8 vinetas.
+**[Slide 35] Abortar o informar: fn_descontar_stock (2/2)** — 6 vinetas.
 
-**[Slide 35] El reparto de los 120 minutos y como acompanar el taller (2/2)** — 6 vinetas.
+**[Slide 36] Abortar o informar: fn_descontar_stock — sintaxis** — 3 vinetas.
 
-**[Slide 36] Preguntas frecuentes del grupo (1/2)** — 8 vinetas.
+**[Slide 37] Tuning: habitos de escritura, no parametros del servidor (1/3)** — 4 vinetas.
 
-**[Slide 37] Preguntas frecuentes del grupo (2/2)** — 8 vinetas.
+**[Slide 38] Tuning: habitos de escritura, no parametros del servidor (2/3)** — 4 vinetas.
+
+**[Slide 39] Tuning: habitos de escritura, no parametros del servidor (3/3)** — 3 vinetas.
+
+**[Slide 40] La demo, en el orden en que se proyecta (1/2)** — 6 vinetas.
+
+**[Slide 41] La demo, en el orden en que se proyecta (2/2)** — 5 vinetas.
+
+**[Slide 42] La demo, en el orden en que se proyecta — sintaxis** — 3 vinetas.
+
+**[Slide 43] Donde corre esto, y por que el autocommit ya no es el enemigo (1/2)** — 5 vinetas.
+  - Se menciona como diferencia entre motores, no como precaucion del taller.
+  - Lo que si hay que declarar es el limite real: PGlite corre UNA SOLA sesion, asi que la espera por bloqueo, el interbloqueo, la lectura sucia y la actualizacion perdida no se pueden reproducir y se documentan en papel como una linea de tiempo de T1 y T2 con lo que ve cada una en cada paso, formato que usara la Clase 10.
+  - Tampoco se demuestra la durabilidad real, porque nadie puede apagar el servidor.
+
+**[Slide 44] Donde corre esto, y por que el autocommit ya no es el enemigo (2/2)** — 3 vinetas.
+
+**[Slide 45] El reparto de los 120 minutos y como acompanar el taller (1/3)** — 5 vinetas.
+  - Cuatro avisos para el acompanamiento.
+
+**[Slide 46] El reparto de los 120 minutos y como acompanar el taller (2/3)** — 6 vinetas.
+
+**[Slide 47] El reparto de los 120 minutos y como acompanar el taller (3/3)** — 2 vinetas.
+
+**[Slide 48] Preguntas frecuentes del grupo (1/3)** — 6 vinetas.
+
+**[Slide 49] Preguntas frecuentes del grupo (2/3)** — 5 vinetas.
+
+**[Slide 50] Preguntas frecuentes del grupo (3/3)** — 5 vinetas.
 
 
 **Demo que usted debe poder repetir:** CALL sp_facturar(4, ARRAY[1,6,5], ARRAY[1,2,3]) que factura 27.400, y CALL sp_facturar(4, ARRAY[3,2], ARRAY[2,10]) que falla en la segunda linea: el stock del insumo 3 vuelve a 40 sin ROLLBACK escrito.
@@ -105,52 +164,65 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 3. Mapa del bloque de hoy (120 min)
 4. Que es una transaccion, y las dos amenazas de las que protege (1/2)
 5. Que es una transaccion, y las dos amenazas de las que protege (2/2)
-6. Atomicidad: el fallo concreto en VetCare (1/2)
-7. Atomicidad: el fallo concreto en VetCare (2/2)
-8. Consistencia: valido es lo que las restricciones declaran (1/2)
-9. Consistencia: valido es lo que las restricciones declaran (2/2)
-10. Aislamiento: el fallo mas facil de reproducir (1/2)
-11. Aislamiento: el fallo mas facil de reproducir (2/2)
-12. Durabilidad: el registro de transacciones (1/2)
-13. Durabilidad: el registro de transacciones (2/2)
-14. La firma de sp_facturar, y por que recibe dos arreglos (1/2)
-15. La firma de sp_facturar, y por que recibe dos arreglos (2/2)
-16. El guardia del stock, sentencia por sentencia (1/2)
-17. El guardia del stock, sentencia por sentencia (2/2)
-18. Error del motor y error de negocio: se atienden distinto (1/2)
-19. Error del motor y error de negocio: se atienden distinto (2/2)
-20. Donde empieza y termina la transaccion de un CALL (1/2)
-21. Donde empieza y termina la transaccion de un CALL (2/2)
-22. El savepoint implicito del bloque EXCEPTION (1/2)
-23. El savepoint implicito del bloque EXCEPTION (2/2)
-24. El contraste con Oracle, que es la pregunta 4 (1/2)
-25. El contraste con Oracle, que es la pregunta 4 (2/2)
-26. Abortar o informar: fn_descontar_stock (1/2)
-27. Abortar o informar: fn_descontar_stock (2/2)
-28. Tuning: habitos de escritura, no parametros del servidor (1/2)
-29. Tuning: habitos de escritura, no parametros del servidor (2/2)
-30. La demo, en el orden en que se proyecta (1/2)
-31. La demo, en el orden en que se proyecta (2/2)
-32. Donde corre esto, y por que el autocommit ya no es el enemigo (1/2)
-33. Donde corre esto, y por que el autocommit ya no es el enemigo (2/2)
-34. El reparto de los 120 minutos y como acompanar el taller (1/2)
-35. El reparto de los 120 minutos y como acompanar el taller (2/2)
-36. Preguntas frecuentes del grupo (1/2)
-37. Preguntas frecuentes del grupo (2/2)
-38. Todo o nada: la transaccion de facturacion
-39. sp_facturar en PL/pgSQL: el molde que se califica
-40. Por que el procedimiento no lleva COMMIT ni ROLLBACK
-41. fn_descontar_stock: cuando «no hay stock» es una respuesta, no un error
-42. Demo del dia
-43. Herramientas de hoy
-44. Taller PI VetCare — contexto / por que importa
-45. Taller PI VetCare — objetivo y criterios
-46. Taller PI VetCare — escenario / datos de partida
-47. Taller PI VetCare — pasos guiados
-48. Taller PI VetCare — pistas (checklist vacio)
-49. Criterios de exito / entregable
-50. Para el PI esta semana
-51. Cierre · Clase 8
+6. Que es una transaccion, y las dos amenazas de... — sintaxis
+7. Atomicidad: el fallo concreto en VetCare
+8. Atomicidad: el fallo concreto en VetCare — sintaxis
+9. Consistencia: valido es lo que las restricciones declaran (1/2)
+10. Consistencia: valido es lo que las restricciones declaran (2/2)
+11. Consistencia: valido es lo que las... — sintaxis
+12. Aislamiento: el fallo mas facil de reproducir (1/2)
+13. Aislamiento: el fallo mas facil de reproducir (2/2)
+14. Durabilidad: el registro de transacciones (1/2)
+15. Durabilidad: el registro de transacciones (2/2)
+16. La firma de sp_facturar, y por que recibe dos arreglos (1/2)
+17. La firma de sp_facturar, y por que recibe dos arreglos (2/2)
+18. La firma de sp_facturar, y por que recibe dos... — sintaxis
+19. El guardia del stock, sentencia por sentencia (1/3)
+20. El guardia del stock, sentencia por sentencia (2/3)
+21. El guardia del stock, sentencia por sentencia (3/3)
+22. El guardia del stock, sentencia por sentencia — sintaxis
+23. Error del motor y error de negocio: se atienden distinto (1/2)
+24. Error del motor y error de negocio: se atienden distinto (2/2)
+25. Donde empieza y termina la transaccion de un CALL (1/2)
+26. Donde empieza y termina la transaccion de un CALL (2/2)
+27. Donde empieza y termina la transaccion de un... — sintaxis
+28. El savepoint implicito del bloque EXCEPTION (1/2)
+29. El savepoint implicito del bloque EXCEPTION (2/2)
+30. El savepoint implicito del bloque EXCEPTION — sintaxis
+31. El contraste con Oracle, que es la pregunta 4 (1/3)
+32. El contraste con Oracle, que es la pregunta 4 (2/3)
+33. El contraste con Oracle, que es la pregunta 4 (3/3)
+34. Abortar o informar: fn_descontar_stock (1/2)
+35. Abortar o informar: fn_descontar_stock (2/2)
+36. Abortar o informar: fn_descontar_stock — sintaxis
+37. Tuning: habitos de escritura, no parametros del servidor (1/3)
+38. Tuning: habitos de escritura, no parametros del servidor (2/3)
+39. Tuning: habitos de escritura, no parametros del servidor (3/3)
+40. La demo, en el orden en que se proyecta (1/2)
+41. La demo, en el orden en que se proyecta (2/2)
+42. La demo, en el orden en que se proyecta — sintaxis
+43. Donde corre esto, y por que el autocommit ya no es el enemigo (1/2)
+44. Donde corre esto, y por que el autocommit ya no es el enemigo (2/2)
+45. El reparto de los 120 minutos y como acompanar el taller (1/3)
+46. El reparto de los 120 minutos y como acompanar el taller (2/3)
+47. El reparto de los 120 minutos y como acompanar el taller (3/3)
+48. Preguntas frecuentes del grupo (1/3)
+49. Preguntas frecuentes del grupo (2/3)
+50. Preguntas frecuentes del grupo (3/3)
+51. Todo o nada: la transaccion de facturacion
+52. sp_facturar en PL/pgSQL: el molde que se califica
+53. Por que el procedimiento no lleva COMMIT ni ROLLBACK
+54. fn_descontar_stock: cuando «no hay stock» es una respuesta, no un error
+55. Demo del dia
+56. Herramientas de hoy
+57. Taller PI VetCare — contexto / por que importa
+58. Taller PI VetCare — objetivo y criterios
+59. Taller PI VetCare — escenario / datos de partida
+60. Taller PI VetCare — pasos guiados
+61. Taller PI VetCare — pistas (checklist vacio)
+62. Criterios de exito / entregable
+63. Para el PI esta semana
+64. Cierre · Clase 8
 
 > Privado, no se proyecta: `Kit docente/Clase 8/Solucion Taller Clase 8 - VetCare.docx`
 
@@ -181,14 +253,14 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: envolver TODA la sesion de trabajo en una sola transaccion gigante 'para no perder nada' — eso maximiza el tiempo que otros usuarios quedan bloqueados esperando esas filas, exactamente el problema que Clase 10 (concurrencia) va a diagnosticar.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 42]
+### 35-55 · Demo paso a paso · [Slide 55]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: CALL sp_facturar(4, ARRAY[1,6,5], ARRAY[1,2,3]) que factura 27.400, y CALL sp_facturar(4, ARRAY[3,2], ARRAY[2,10]) que falla en la segunda linea: el stock del insumo 3 vuelve a 40 sin ROLLBACK escrito.
 Herramienta: ExamLab (PostgreSQL/PGlite)
 📸 CALL sp_facturar que falla a mitad: foto inicial y foto final identicas, sin ROLLBACK escrito [[captura: salida-rollback-stock.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 47]
+### 55-105 · Taller guiado = tarea del PI · [Slide 60]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -201,13 +273,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: sp_facturar + fn_descontar_stock + seccion Transacciones y tuning del informe (1 pag.)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 8/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 49]
-Repasar checklist del dia con [Slide 49] «Criterios de exito / entregable».
+### 105-115 · Criterios de exito + quiz corto · [Slide 62]
+Repasar checklist del dia con [Slide 62] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 8 - VetCare.docx`. Clave para usted: `Quiz Clase 8 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 51]
+### 115-120 · Cierre · [Slide 64]
 **Decir:** «Queda avanzado: Transaccion de negocio (factura + stock) + notas de tuning. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 51] slide de cierre. Dudas finales.
+Proyectar [Slide 64] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

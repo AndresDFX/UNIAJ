@@ -15,19 +15,48 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Sustentar un proyecto de software no es exponer diapositivas: es...** — 6 vinetas.
+**Sustentar un proyecto de software no es exponer diapositivas: es... (1/2)** — 3 vinetas.
+
+**Sustentar un proyecto de software no es exponer diapositivas: es... (2/2)** — 3 vinetas.
 
 **La sustentacion es una coreografia y hay que repartirla como se reparte... (1/2)** — 4 vinetas.
+  - Un guion escrito, con minutos y evidencia por bloque (y el nombre del responsable si hay equipo), convierte una exposicion nerviosa en algo que se puede ensayar y medir; en VetCare ese guion tiene cinco bloques y suma siete minutos, con cuatro dedicados a la demo.
 
-**La sustentacion es una coreografia y hay que repartirla como se reparte... (2/2)** — 4 vinetas.
+**La sustentacion es una coreografia y hay que repartirla como se reparte... (2/2)** — 2 vinetas.
 
 **La demo en vivo no falla por mala suerte, falla por falta de... (1/2)** — 4 vinetas.
+  - La demo en vivo no falla por mala suerte, falla por falta de preparacion, y se blinda con un chequeo previo que llamaremos pre-vuelo.
 
-**La demo en vivo no falla por mala suerte, falla por falta de... (2/2)** — 3 vinetas.
+**La demo en vivo no falla por mala suerte, falla por falta de... (2/2)** — 2 vinetas.
 
-**Las preguntas del jurado son casi siempre las mismas y se pueden...** — 6 vinetas.
+**Las preguntas del jurado son casi siempre las mismas y se pueden... (1/2)** — 4 vinetas.
 
-**El manejo del tiempo y del nervio se entrena, no se improvisa** — 6 vinetas.
+**Las preguntas del jurado son casi siempre las mismas y se pueden... (2/2)** — 2 vinetas.
+
+**El manejo del tiempo y del nervio se entrena, no se improvisa** — 5 vinetas.
+  - Por eso hoy ensayamos con reloj y anotamos el tiempo real de cada bloque frente al planeado, y se repite hasta que el total caiga entre cinco y ocho minutos con margen.
+
+**class EnsayoSustentacionVetCare** — 20 vinetas.
+
+**EnsayoSustentacionVetCare.java — responsableDe()** — 7 vinetas.
+
+**EnsayoSustentacionVetCare.java — main() (1/2)** — 20 vinetas.
+
+**EnsayoSustentacionVetCare.java — main() (2/2)** — 18 vinetas.
+
+**EnsayoSustentacionVetCare.java — sembrarDatosDemo() (1/2)** — 20 vinetas.
+
+**EnsayoSustentacionVetCare.java — sembrarDatosDemo() (2/2)** — 4 vinetas.
+
+**EnsayoSustentacionVetCare.java — escribir()** — 12 vinetas.
+
+**EnsayoSustentacionVetCare.java — chequeoPreVuelo()** — 15 vinetas.
+
+**EnsayoSustentacionVetCare.java — contarFilas()** — 14 vinetas.
+
+**EnsayoSustentacionVetCare.java — ensayo() (1/2)** — 20 vinetas.
+
+**EnsayoSustentacionVetCare.java — ensayo() (2/2)** — 10 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente sustenta VetCare en 6 minutos delante del grupo, provoca a proposito un error de edad para mostrar la validacion, y luego repite la misma demo con la lista vacia para que se vea el desastre de no sembrar datos.

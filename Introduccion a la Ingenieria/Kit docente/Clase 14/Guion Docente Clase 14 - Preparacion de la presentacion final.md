@@ -35,19 +35,27 @@ Esta sección está escrita para dictar la clase **sin consultar otra fuente**, 
 
 Proyectado en la lamina «La pregunta de entrada: cuánto dura contarlo todo (1/2)» (4 vinetas).
 
+- En el muro, cada equipo escribe **qué va a dejar fuera**.
+
+- Un equipo que esconde su presentación hoy porque «no está lista» está renunciando a la única corrección antes de la nota.
+
 ### Los cinco tramos, y por qué el tramo 4 es el que sube la nota - diapositiva 5
 
-Proyectado en la lamina «La pregunta de entrada: cuánto dura contarlo todo (2/2)» (5 vinetas).
+Proyectado en la lamina «La pregunta de entrada: cuánto dura contarlo todo (2/2)» (3 vinetas).
 
 ### Diapositivas que se miran, y el reparto que reparte de verdad - diapositivas 6, 7 y 8
 
-Proyectado en la lamina «Los cinco tramos, y por qué el tramo 4 es el que sube la nota (1/2)» (6 vinetas).
+Proyectado en la lamina «Los cinco tramos, y por qué el tramo 4 es el que sube la nota (1/2)» (4 vinetas).
 
 - Vale la pena decirlo, porque el mismo esqueleto les va a servir en la Clase 16 para el informe y en toda la carrera para cualquier sustentación. **Tramo 1 · el problema con su cifra, 1 minuto.** El error universal es empezar con presentaciones personales y agradecimientos: «buenas tardes, somos el equipo tal, integrado por…».
 
+- Eso consume el minuto más valioso de los nueve. **El nombre del equipo está en la diapositiva**; se arranca con el problema y su número. **Tramo 2 · a quién le pasa y qué decidimos, 2 minutos.** Aquí entra un afectado que no es usuario —trabajo de la Clase 13— y, sobre todo, **la decisión de la matriz de la sesión 8 con lo que se sacrificó**.
+
+- Cerrar con el siguiente paso deja la sensación de trabajo vivo y no de tarea entregada.
+
 ### El plan B, el ensayo, y por qué se ensaya solo el arranque - diapositiva 9
 
-Proyectado en la lamina «Los cinco tramos, y por qué el tramo 4 es el que sube la nota (2/2)» (5 vinetas).
+Proyectado en la lamina «Los cinco tramos, y por qué el tramo 4 es el que sube la nota (2/2)» (4 vinetas).
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 14 - Preparacion de la presentacion final/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -65,14 +73,16 @@ Numeración real del deck `Clases/Clase 14 - Preparacion de la presentacion fina
 11. La pregunta de entrada: cuánto dura contarlo todo (2/2)
 12. Los cinco tramos, y por qué el tramo 4 es el que sube la nota (1/2)
 13. Los cinco tramos, y por qué el tramo 4 es el que sube la nota (2/2)
-14. Diapositivas que se miran, y el reparto que reparte de verdad (1/2)
-15. Diapositivas que se miran, y el reparto que reparte de verdad (2/2)
-16. El plan B, el ensayo, y por qué se ensaya solo el arranque (1/2)
-17. El plan B, el ensayo, y por qué se ensaya solo el arranque (2/2)
-18. Taller de hoy: Guion de nueve minutos y plan B
-19. Cómo se expone en 4 minutos
-20. Para la Clase 15
-21. Cierre · Nos vemos en la Clase 15
+14. Diapositivas que se miran, y el reparto que reparte de verdad (1/3)
+15. Diapositivas que se miran, y el reparto que reparte de verdad (2/3)
+16. Diapositivas que se miran, y el reparto que reparte de verdad (3/3)
+17. El plan B, el ensayo, y por qué se ensaya solo el arranque (1/3)
+18. El plan B, el ensayo, y por qué se ensaya solo el arranque (2/3)
+19. El plan B, el ensayo, y por qué se ensaya solo el arranque (3/3)
+20. Taller de hoy: Guion de nueve minutos y plan B
+21. Cómo se expone en 4 minutos
+22. Para la Clase 15
+23. Cierre · Nos vemos en la Clase 15
 
 ## Plan de clase minuto a minuto (90 min)
 

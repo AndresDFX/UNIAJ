@@ -15,47 +15,80 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Antes de la POO un programa era una lista de procedimientos que...** — 5 vinetas.
+**Antes de la POO un programa era una lista de procedimientos que...** — 2 vinetas.
+  - Antes de la POO un programa era una lista de procedimientos que operaban sobre datos sueltos.
+  - Cuando el programa crecia, nadie sabia que funcion tocaba que dato, y un cambio pequeno rompia cosas en lugares inesperados.
+  - El programa deja de ser una receta y pasa a ser un conjunto de piezas que se hablan entre si.
 
 **La distincion que mas cuesta el primer dia es clase contra objeto** — 6 vinetas.
 
-**Los cuatro pilares se entienden por el problema que resuelve cada uno** — 4 vinetas.
+**Los cuatro pilares se entienden por el problema que resuelve cada uno** — 3 vinetas.
+  - Los cuatro pilares se entienden por el problema que resuelve cada uno.
 
 **Herencia es que una clase puede extender a otra y reutilizar lo que ya...** — 4 vinetas.
 
-**El constructor es el metodo que se ejecuta al crear el objeto y deja...** — 4 vinetas.
+**El constructor es el metodo que se ejecuta al crear el objeto y deja...** — 2 vinetas.
+  - La instruccion reserva memoria y llama al constructor.
+  - Por eso desde la primera clase se escribe el constructor completo.
 
-**En Programacion I el estudiante trabajo con programacion estructurada:... (1/2)** — 6 vinetas.
+**El constructor es el metodo que se ejecuta al... — sintaxis** — 1 vinetas.
 
-**En Programacion I el estudiante trabajo con programacion estructurada:... (2/2)** — 3 vinetas.
+**En Programacion I el estudiante trabajo con programacion estructurada:... (1/2)** — 4 vinetas.
+  - Vale la pena hacer visible el limite de ese enfoque con el mismo dominio del proyecto antes de nombrar la palabra objeto.
+  - Eso funciona en un ejercicio de veinte lineas y se cae en cuanto el programa crece, por tres razones concretas.
+  - Ordenar la lista por nombre obliga a mover los tres arreglos en perfecta sincronia, y basta olvidar uno para que Luna quede con la edad de otro animal.
+
+**En Programacion I el estudiante trabajo con programacion estructurada:... (2/2)** — 2 vinetas.
 
 **Ahora el punto que decide el semestre, y por eso va temprano: que es un... (1/2)** — 5 vinetas.
+  - En Java una variable local vive en la pila, una zona pequena y ordenada asociada al metodo que se esta ejecutando, mientras que el objeto creado con new vive en el monton, una zona grande donde el programa reserva espacio a medida que lo necesita.
+  - No hay dos mascotas, hay una con dos nombres.
 
-**Ahora el punto que decide el semestre, y por eso va temprano: que es un... (2/2)** — 5 vinetas.
+**Ahora el punto que decide el semestre, y por eso va temprano: que es un... (2/2)** — 3 vinetas.
 
-**De lo anterior sale la pregunta que aparece sin falta en las primeras... (1/2)** — 5 vinetas.
+**Ahora el punto que decide el semestre, y por... — sintaxis** — 3 vinetas.
 
-**De lo anterior sale la pregunta que aparece sin falta en las primeras... (2/2)** — 4 vinetas.
+**De lo anterior sale la pregunta que aparece sin falta en las primeras... (1/2)** — 3 vinetas.
+  - La respuesta es exacta y hay que darla asi: el operador == compara referencias, es decir pregunta si las dos variables apuntan al mismo objeto, no si los objetos se parecen.
+  - Sobrescribirlo significa escribirlo en Mascota para que dos mascotas sean iguales cuando su identificador sea igual.
+  - Por eso la regla practica del curso es sin excepciones: con objetos nunca se usa ==, se usa equals; == se reserva para primitivos y para preguntar si algo es null.
 
-**Recien ahora tiene sentido la analogia clasica (1/2)** — 7 vinetas.
+**De lo anterior sale la pregunta que aparece sin falta en las primeras... (2/2)** — 3 vinetas.
+
+**Recien ahora tiene sentido la analogia clasica (1/2)** — 6 vinetas.
+  - Recien ahora tiene sentido la analogia clasica.
 
 **Recien ahora tiene sentido la analogia clasica (2/2)** — 4 vinetas.
 
-**El encapsulamiento se ensena mal cuando se presenta como la orden de... (1/2)** — 8 vinetas.
+**El encapsulamiento se ensena mal cuando se presenta como la orden de... (1/2)** — 6 vinetas.
+  - El encapsulamiento se ensena mal cuando se presenta como la orden de poner private y generar getters.
+  - Se ensena bien cuando se muestra el problema que resuelve, y en VetCare el problema tiene nombre.
+  - La respuesta concreta es que funciona hoy, con un archivo y con usted como unico autor; en la Clase 12, integrando modulos de tres companeros, quien escriba la pantalla de facturacion pondra activa en false por comodidad y usted perdera una tarde buscando por que las citas desaparecieron.
 
-**El encapsulamiento se ensena mal cuando se presenta como la orden de... (2/2)** — 7 vinetas.
+**El encapsulamiento se ensena mal cuando se presenta como la orden de... (2/2)** — 5 vinetas.
 
 **El constructor es la pieza que garantiza que el objeto nazca valido (1/2)** — 6 vinetas.
+  - Eso elimina una familia entera de errores aguas abajo, porque nadie tendra que preguntarse mas adelante si el nombre podria estar vacio.
 
-**El constructor es la pieza que garantiza que el objeto nazca valido (2/2)** — 4 vinetas.
+**El constructor es la pieza que garantiza que el objeto nazca valido (2/2)** — 3 vinetas.
 
-**Queda el error mas frecuente de Java, y hay que nombrarlo hoy porque su... (1/2)** — 6 vinetas.
+**Queda el error mas frecuente de Java, y hay que nombrarlo hoy porque su... (1/2)** — 5 vinetas.
+  - Las encuestas y los reportes de errores en produccion la ubican de forma consistente como la excepcion mas frecuente en aplicaciones Java, y conviene presentarlo asi, como observacion de la industria y no como ley.
 
 **Queda el error mas frecuente de Java, y hay que nombrarlo hoy porque su... (2/2)** — 5 vinetas.
 
-**El entorno cierra la clase y tiene dos reglas duras que producen el... (1/2)** — 5 vinetas.
+**El entorno cierra la clase y tiene dos reglas duras que producen el... (1/2)** — 4 vinetas.
+  - El entorno cierra la clase y tiene dos reglas duras que producen el noventa por ciento de los tropiezos del primer dia.
 
 **El entorno cierra la clase y tiene dos reglas duras que producen el... (2/2)** — 4 vinetas.
+
+**Mascota.java — class Mascota** — 7 vinetas.
+
+**Mascota.java — Mascota()** — 13 vinetas.
+
+**Mascota.java — setEdad()** — 9 vinetas.
+
+**Mascota.java — main()** — 10 vinetas.
 
 
 **Demo que usted debe poder repetir:** Escribir en vivo la clase Mascota y un main que instancia dos mascotas con datos distintos, mostrando que salen del mismo molde

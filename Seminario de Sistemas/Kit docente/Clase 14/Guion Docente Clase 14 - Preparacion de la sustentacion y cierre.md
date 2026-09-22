@@ -15,15 +15,23 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Sustentar un paquete de diseño no es leer diapositivas ni narrar lo que...** — 7 vinetas.
+**Sustentar un paquete de diseño no es leer diapositivas ni narrar lo que... (1/2)** — 3 vinetas.
+  - Por eso una sustentacion es un argumento con evidencia, no un recuento cronologico.
 
-**El orden de la sustentacion no es libre, es un embudo y tiene una razon...** — 8 vinetas.
+**Sustentar un paquete de diseño no es leer diapositivas ni narrar lo que... (2/2)** — 3 vinetas.
 
-**Defender una decision de diseño tiene una estructura fija que conviene... (1/2)** — 5 vinetas.
+**El orden de la sustentacion no es libre, es un embudo y tiene una razon...** — 6 vinetas.
+  - Primero el problema, porque nada de lo que sigue tiene sentido si el jurado no sabe que duele en Huellitas.
+  - Tercero el modelo, casos de uso y clases, porque muestra como se organiza la solucion.
+
+**Defender una decision de diseño tiene una estructura fija que conviene... (1/2)** — 4 vinetas.
+  - Una decision defendida asi resiste cualquier pregunta, porque el jurado ya sabe que el equipo penso en la alternativa.
 
 **Defender una decision de diseño tiene una estructura fija que conviene... (2/2)** — 3 vinetas.
 
-**Las preguntas del jurado son bastante predecibles y por eso se preparan** — 7 vinetas.
+**Las preguntas del jurado son bastante predecibles y por eso se preparan** — 5 vinetas.
+  - La respuesta correcta es reconocer el vacio y proponer como se resolveria, por ejemplo no lo modelamos, lo registramos como riesgo abierto y se resolveria agregando una validacion de unicidad por dueño mas nombre en el diccionario de datos.
+  - Un jurado castiga mucho mas la improvisacion detectada que la honestidad tecnica.
 
 **El reparto del guion en bloques con tiempos es criterio de evaluacion... (1/2)** — 4 vinetas.
 
