@@ -114,6 +114,16 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - La respuesta no es doctrinal sino de costo: ahi el telefono de un dueno con veinte citas vive veinte veces y basta una actualizacion parcial para que el sistema mienta; ademas ese diseno impide registrar un dueno sin cita o un insumo sin venta.
   - Esa regla necesita otra herramienta: un CHECK cuando mira solo columnas de la misma fila, un procedimiento almacenado cuando debe consultar otra tabla, que es el hito de la Clase 3, o un disparador cuando debe aplicarse aunque nadie llame al procedimiento, que es el hito de la Clase 4.
 
+**[Slide 27] El patron de tabla: PK, obligatorios y dominio cerrado** — 10 vinetas.
+
+**[Slide 28] La clave foranea y que pasa al borrar el padre** — 13 vinetas.
+
+**[Slide 29] Integridad referencial: el error que devuelve el motor** — 10 vinetas.
+
+**[Slide 30] El JOIN de tres tablas** — 10 vinetas.
+
+**[Slide 31] Lo que el DDL NO puede defender solo** — 10 vinetas.
+
 
 **Demo que usted debe poder repetir:** Boceto ER en draw.io (Dueno-Mascota-Cita) + CREATE TABLE minimo en DB Fiddle, y cierre pasando el boceto a Mermaid con IA para pegarlo renderizado en ExamLab.
 
@@ -147,19 +157,24 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 24. Herramientas del dia y que se puede demostrar con cada una
 25. Del ER dibujado al codigo Mermaid que se entrega
 26. Preguntas frecuentes del grupo
-27. ER minimo VetCare (con cardinalidad)
-28. El DDL minimo que sostiene el ER
-29. Demo del dia
-30. Herramientas de hoy
-31. Del boceto a ExamLab (diagrama)
-32. Taller PI VetCare — contexto / por que importa
-33. Taller PI VetCare — objetivo y criterios
-34. Taller PI VetCare — escenario / datos de partida
-35. Taller PI VetCare — pasos guiados
-36. Taller PI VetCare — pistas (checklist vacio)
-37. Criterios de exito / entregable
-38. Para el PI esta semana
-39. Cierre · Clase 1
+27. El patron de tabla: PK, obligatorios y dominio cerrado
+28. La clave foranea y que pasa al borrar el padre
+29. Integridad referencial: el error que devuelve el motor
+30. El JOIN de tres tablas
+31. Lo que el DDL NO puede defender solo
+32. ER minimo VetCare (con cardinalidad)
+33. El DDL minimo que sostiene el ER
+34. Demo del dia
+35. Herramientas de hoy
+36. Del boceto a ExamLab (diagrama)
+37. Taller PI VetCare — contexto / por que importa
+38. Taller PI VetCare — objetivo y criterios
+39. Taller PI VetCare — escenario / datos de partida
+40. Taller PI VetCare — pasos guiados
+41. Taller PI VetCare — pistas (checklist vacio)
+42. Criterios de exito / entregable
+43. Para el PI esta semana
+44. Cierre · Clase 1
 
 > Privado, no se proyecta: `Kit docente/Clase 1/Solucion Taller Clase 1 - VetCare.docx`
 
@@ -189,12 +204,12 @@ Ideas que tienen que quedar dichas:
 - Reglas de negocio del PI que ya anticipan clases futuras: mascota inactiva no puede tener cita nueva (se validara con un procedimiento en Clase 3), stock de insumo nunca queda negativo (transacciones, Clase 8), cambios sensibles quedan auditados (triggers, Clase 4).
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 29][Slide 31]
+### 35-55 · Demo paso a paso · [Slide 34][Slide 36]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: Boceto ER en draw.io (Dueno-Mascota-Cita) + CREATE TABLE minimo en DB Fiddle, y cierre pasando el boceto a Mermaid con IA para pegarlo renderizado en ExamLab.
 Herramienta: draw.io + DB Fiddle
 
-**Cierre la demo dentro de ExamLab** [Slide 31] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
+**Cierre la demo dentro de ExamLab** [Slide 36] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -205,7 +220,7 @@ Herramienta: draw.io + DB Fiddle
 📸 Resultado del JOIN de verificacion del ER (lo que debe salir tras los INSERT) [[captura: salida-join-vetcare.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 35]
+### 55-105 · Taller guiado = tarea del PI · [Slide 40]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -217,13 +232,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: Ficha del PI (plantilla) + ER en Mermaid renderizado en ExamLab (PNG para tu carpeta) + 3 reglas Condicion -> Accion
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 1/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 37]
-Repasar checklist del dia con [Slide 37] «Criterios de exito / entregable».
+### 105-115 · Criterios de exito + quiz corto · [Slide 42]
+Repasar checklist del dia con [Slide 42] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 1 - VetCare.docx`. Clave para usted: `Quiz Clase 1 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 39]
+### 115-120 · Cierre · [Slide 44]
 **Decir:** «Queda avanzado: Arranque PI: dominio, alcance y borrador ER de VetCare DB. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 39] slide de cierre. Dudas finales.
+Proyectar [Slide 44] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

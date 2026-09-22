@@ -60,6 +60,8 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 20] Preguntas frecuentes y cierre conceptual () (3/3)** — 3 vinetas.
 
+**[Slide 21] El C4 Component: por dentro de la API** — 17 vinetas.
+
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 11 - Avance del proyecto final/Presentacion.pptx` (solo tema
@@ -85,16 +87,17 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 18. Preguntas frecuentes y cierre conceptual () (1/3)
 19. Preguntas frecuentes y cierre conceptual () (2/3)
 20. Preguntas frecuentes y cierre conceptual () (3/3)
-21. Herramientas de hoy
-22. Del boceto a ExamLab (diagrama)
-23. PI CloudLite — entregable de hoy
-24. Manos a la obra (paso a paso)
-25. Para continuar (PI)
-26. Clase 11 · PI en movimiento
+21. El C4 Component: por dentro de la API
+22. Herramientas de hoy
+23. Del boceto a ExamLab (diagrama)
+24. PI CloudLite — entregable de hoy
+25. Manos a la obra (paso a paso)
+26. Para continuar (PI)
+27. Clase 11 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 23]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 24]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Integrar diagramas v1 + checklist de avance PI**.
 Entregable concreto: Paquete v1: Context + Containers + Deployment + Dockerfile + Actions + informe 60%+.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -114,7 +117,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 22]
+### 40–55 · Demo en vivo · [Slide 23]
 Herramienta del día: **draw.io · GitHub · Google Docs**.
 **Demo que usted debe poder repetir:** Auditar en vivo el paquete de un voluntario
 
@@ -126,7 +129,7 @@ Herramienta del día: **draw.io · GitHub · Google Docs**.
 Narra los clics en voz alta. Si falla la red, proyecta la solución docente de este kit (`Solucion Taller Clase 11 - CloudLite.md`), que trae el resultado esperado.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
-**Cierra la demo dentro de ExamLab** [Slide 22] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
+**Cierra la demo dentro de ExamLab** [Slide 23] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -136,7 +139,7 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 24]
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 25]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -149,7 +152,7 @@ Aplica el quiz corto de `Kit docente/Clase 11/Quiz Clase 11 - Avance del proyect
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 26]
+### 115–120 · Cierre · [Slide 27]
 Di: «Queda avanzado: Integrar diagramas v1 + checklist de avance PI.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»

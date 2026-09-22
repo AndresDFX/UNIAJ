@@ -91,6 +91,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **Queda la trampa pedagogica de este primer dia, y es la mas seria del... (2/2)** — 4 vinetas.
 
+**El mapa de dominio en Mermaid: la sintaxis** — 18 vinetas.
+
+**La ficha de requisito bien escrito, campo por campo** — 13 vinetas.
+
 
 **Demo que usted debe poder repetir:** Convertir en vivo la frase cruda «necesito buscar rapido el expediente de un animal» en un requisito funcional y uno no funcional bien escritos
 

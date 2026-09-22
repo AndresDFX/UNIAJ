@@ -39,6 +39,8 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **Todo lo que se encuentra se convierte en backlog de deuda de diseño, no... (2/2)** — 3 vinetas.
 
+**El glosario de nombres canonicos: el hueco mas comun** — 11 vinetas.
+
 
 **Demo que usted debe poder repetir:** El docente proyecta el paquete de un equipo ficticio de VetCare y encuentra en vivo tres inconsistencias: un RF sin caso de uso, una clase llamada Dueño que en el catalogo de requisitos se llama Propietario, y un caso de uso que ninguna clase puede soportar.
 

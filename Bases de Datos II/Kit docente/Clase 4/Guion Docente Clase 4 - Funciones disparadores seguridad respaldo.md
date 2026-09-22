@@ -128,6 +128,14 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 37] Preguntas frecuentes del grupo (3/3)** — 3 vinetas.
 
+**[Slide 38] La funcion de tarifas, y por que IMMUTABLE importa** — 15 vinetas.
+
+**[Slide 39] Un trigger son DOS objetos: la funcion y la asociacion** — 18 vinetas.
+
+**[Slide 40] BEFORE o AFTER: uno puede impedir, el otro solo registrar** — 16 vinetas.
+
+**[Slide 41] Las cuatro capas, y en cual vive cada regla** — 11 vinetas.
+
 
 **Demo que usted debe poder repetir:** fn_precio_consulta + fn_trg_audit_cita con su CREATE TRIGGER ... EXECUTE FUNCTION, en ExamLab, y el esqueleto del plan de respaldo.
 
@@ -172,20 +180,24 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 35. Preguntas frecuentes del grupo (1/3)
 36. Preguntas frecuentes del grupo (2/3)
 37. Preguntas frecuentes del grupo (3/3)
-38. Un trigger son DOS objetos: la funcion y la asociacion
-39. La funcion de tarifas: RETURNS NUMERIC, CASE, COALESCE e IMMUTABLE
-40. Donde vive cada validacion: CHECK, trigger o aplicacion
-41. Plan de respaldo: 6 secciones y herramientas reales de PostgreSQL
-42. Demo del dia
-43. Herramientas de hoy
-44. Taller PI VetCare — contexto / por que importa
-45. Taller PI VetCare — objetivo y criterios
-46. Taller PI VetCare — escenario / datos de partida
-47. Taller PI VetCare — pasos guiados
-48. Taller PI VetCare — pistas (checklist vacio)
-49. Criterios de exito / entregable
-50. Para el PI esta semana
-51. Cierre · Clase 4
+38. La funcion de tarifas, y por que IMMUTABLE importa
+39. Un trigger son DOS objetos: la funcion y la asociacion
+40. BEFORE o AFTER: uno puede impedir, el otro solo registrar
+41. Las cuatro capas, y en cual vive cada regla
+42. Un trigger son DOS objetos: la funcion y la asociacion
+43. La funcion de tarifas: RETURNS NUMERIC, CASE, COALESCE e IMMUTABLE
+44. Donde vive cada validacion: CHECK, trigger o aplicacion
+45. Plan de respaldo: 6 secciones y herramientas reales de PostgreSQL
+46. Demo del dia
+47. Herramientas de hoy
+48. Taller PI VetCare — contexto / por que importa
+49. Taller PI VetCare — objetivo y criterios
+50. Taller PI VetCare — escenario / datos de partida
+51. Taller PI VetCare — pasos guiados
+52. Taller PI VetCare — pistas (checklist vacio)
+53. Criterios de exito / entregable
+54. Para el PI esta semana
+55. Cierre · Clase 4
 
 > Privado, no se proyecta: `Kit docente/Clase 4/Solucion Taller Clase 4 - VetCare.docx`
 
@@ -217,14 +229,14 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: presentar el backup como 'copiar el archivo de vez en cuando' sin frecuencia, retencion (cuantas copias se guardan) ni prueba de restore — eso es lo que el taller de esta clase pide explicitamente que el estudiante defina. El segundo error es dictar el trigger como en Oracle, con el cuerpo dentro del CREATE TRIGGER y :NEW/:OLD: la rubrica lo penaliza expresamente, asi que el docente estaria proyectando el codigo por el que va a descontar.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 42]
+### 35-55 · Demo paso a paso · [Slide 46]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: fn_precio_consulta + fn_trg_audit_cita con su CREATE TRIGGER ... EXECUTE FUNCTION, en ExamLab, y el esqueleto del plan de respaldo.
 Herramienta: ExamLab (PostgreSQL) + Google Docs
 📸 trg_audit_cita: los 3 UPDATE dejan 2 filas de auditoria (el WHEN filtra el tercero) [[captura: cap01_demo.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 47]
+### 55-105 · Taller guiado = tarea del PI · [Slide 51]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -237,13 +249,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: fn_precio_consulta + 2 triggers corriendo en ExamLab + Plan_Backup_VetCare con sus 6 secciones (1 pag.)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 4/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 49]
-Repasar checklist del dia con [Slide 49] «Criterios de exito / entregable».
+### 105-115 · Criterios de exito + quiz corto · [Slide 53]
+Repasar checklist del dia con [Slide 53] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 4 - VetCare.docx`. Clave para usted: `Quiz Clase 4 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 51]
+### 115-120 · Cierre · [Slide 55]
 **Decir:** «Queda avanzado: >=1 funcion + >=1 trigger + borrador plan de respaldo. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 51] slide de cierre. Dudas finales.
+Proyectar [Slide 55] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

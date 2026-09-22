@@ -26,6 +26,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import calendario_2026_2 as cal  # noqa: E402
 from arq_fundamentos import FUNDAMENTOS  # noqa: E402
 import teoria_a_slides as TS  # noqa: E402
+from arq_operativo_data import OPERATIVO  # noqa: E402
 from arq_examlab_data import (  # noqa: E402
     ACTIVIDAD_CORTE1,
     ACTIVIDAD_CORTE2,
@@ -1640,7 +1641,12 @@ def _teoria_slides(c: dict) -> list:
     if c.get("tipo") == "parcial":
         return []
     fund = FUNDAMENTOS.get(c["n"], "")
-    return TS.slides_de_clase(fund) if fund else []
+    laminas = TS.slides_de_clase(fund) if fund else []
+    # Y el material operativo autorado: Dockerfile, CLI, Mermaid, YAML, ADR. Los
+    # entregables de ARQ son artefactos con FORMA, y el deck proyectaba el 1% de codigo:
+    # el estudiante adivinaba la forma y perdia puntos por el formato, no por el criterio.
+    laminas += [(tit, lineas, [], "codigo") for tit, lineas in OPERATIVO.get(c["n"], [])]
+    return laminas
 
 
 def _slide_map(c: dict) -> list:

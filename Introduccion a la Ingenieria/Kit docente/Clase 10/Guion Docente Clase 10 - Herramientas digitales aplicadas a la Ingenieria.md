@@ -81,10 +81,12 @@ Numeración real del deck `Clases/Clase 10 - Herramientas digitales aplicadas a 
 19. Elegir la herramienta por la pregunta, y las dos advertencias (1/3)
 20. Elegir la herramienta por la pregunta, y las dos advertencias (2/3)
 21. Elegir la herramienta por la pregunta, y las dos advertencias (3/3)
-22. Taller de hoy: Prototipo de baja fidelidad
-23. Cómo se expone en 3 minutos
-24. Para la Clase 11
-25. Cierre · Nos vemos en la sesión 11
+22. Plantilla del entregable: los 5 bloques
+23. Guion de la exposicion, con tiempos
+24. Taller de hoy: Prototipo de baja fidelidad
+25. Cómo se expone en 3 minutos
+26. Para la Clase 11
+27. Cierre · Nos vemos en la sesión 11
 
 ## Plan de clase minuto a minuto (90 min)
 

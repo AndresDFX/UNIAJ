@@ -34,6 +34,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **Una interfaz se puede evaluar sin programarla, y esa es una de las...** — 5 vinetas.
   - Eso obliga a decisiones de diseño concretas: letra grande, pocos campos obligatorios, nada de scroll interminable, tolerancia a la interrupcion para que si la llaman y vuelve en tres minutos no haya perdido lo escrito, y mensajes en lenguaje de clinica y no de sistemas, es decir Esta mascota ya tiene ficha en la clinica y no Violacion de restriccion de unicidad.
 
+**El mapa de navegacion del prototipo** — 14 vinetas.
+
+**La tabla de anotaciones del wireframe** — 10 vinetas.
+
 
 **Demo que usted debe poder repetir:** El docente dibuja en vivo el wireframe de Registrar mascota en Penpot, le pone tres anotaciones numeradas y lo conecta con Buscar expediente para que la clase vea en la misma pantalla la diferencia entre wireframe, mockup y prototipo.
 

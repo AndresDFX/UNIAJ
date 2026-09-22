@@ -69,7 +69,7 @@ Proyectado en la lamina «Los seis hitos: qué decir de cada uno en dos minutos 
 
 - Esa pregunta es el hilo de las Clases 4, 5 y 13.
 
-### El taller, la exposición y por qué las cinco líneas de tiempo se suman - diapositivas 19 y 20
+### El taller, la exposición y por qué las cinco líneas de tiempo se suman - diapositivas 21 y 22
 
 Proyectado en la lamina «Los seis hitos: qué decir de cada uno en dos minutos (2/3)» (5 vinetas).
 
@@ -94,10 +94,12 @@ Numeración real del deck `Clases/Clase 2 - Historia y evolucion de la Ingenieri
 16. El método de lectura de un hito y por qué la cuarta pregunta es la que se califica (1/2)
 17. El método de lectura de un hito y por qué la cuarta pregunta es la que se califica (2/2)
 18. El taller, la exposición y por qué las cinco líneas de tiempo se suman
-19. Taller de hoy: Línea de tiempo del periodo
-20. Cómo se expone en 3 minutos
-21. Para la Clase 3
-22. Cierre · Nos vemos en la sesión 3
+19. Plantilla del entregable: los 5 bloques
+20. Guion de la exposicion, con tiempos
+21. Taller de hoy: Línea de tiempo del periodo
+22. Cómo se expone en 3 minutos
+23. Para la Clase 3
+24. Cierre · Nos vemos en la sesión 3
 
 ## Plan de clase minuto a minuto (90 min)
 

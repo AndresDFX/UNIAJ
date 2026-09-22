@@ -40,6 +40,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **Como se elige el recorrido? (2/2)** — 2 vinetas.
 
+**El recorrido lineal del ciclo de vida** — 6 vinetas.
+
+**El mismo ciclo en tres vueltas** — 15 vinetas.
+
 
 **Demo que usted debe poder repetir:** El docente arma en vivo en draw.io el ciclo de VetCare en dos versiones, una sola pasada y tres vueltas, y muestra que las cajas son identicas y lo unico que cambia es el recorrido.
 

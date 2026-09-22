@@ -27,6 +27,7 @@ from vetcare_contexto import CLIENTE, INTERESADOS, NOMENCLATURA, PROBLEMAS
 from bd2_taller_data import HERRAMIENTAS_DIA, TALLER_BLOQUE, SOLUCION
 from bd2_fundamentos import FUNDAMENTOS
 import teoria_a_slides as TS
+from bd2_queries_data import QUERIES
 import bd2_solucion_data as soluciones_bd2
 import solucion_taller
 from bd2_examlab_data import EXAMLAB as TALLERES_EXAMLAB
@@ -2607,7 +2608,13 @@ def _teoria_slides(c):
     fund = (c.get("fundamento") or FUNDAMENTOS.get(c["n"]) or "").strip()
     if not fund:
         return [("Teoria Core (breve)", _slide_summary(c["teoria"]), [], "content")]
-    return TS.slides_de_clase(fund)
+    laminas = TS.slides_de_clase(fund)
+    # Y las consultas autoradas de la clase. Es la materia de las consultas y el deck
+    # proyectaba el 7% de codigo: todo el SQL que ya existia en el material estaba
+    # extraido, asi que subir de ahi era escribir SQL nuevo. Ensenan el MECANISMO que la
+    # actividad de ExamLab evalua, sobre un ejemplo adyacente y no sobre el enunciado.
+    laminas += [(tit, lineas, [], "codigo") for tit, lineas in QUERIES.get(c["n"], [])]
+    return laminas
 
 
 def _slide_summary(bullets_, max_chars=110, max_items=5):

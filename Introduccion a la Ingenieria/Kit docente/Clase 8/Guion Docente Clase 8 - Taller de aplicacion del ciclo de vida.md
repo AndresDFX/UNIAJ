@@ -81,10 +81,12 @@ Numeración real del deck `Clases/Clase 8 - Taller de aplicacion del ciclo de vi
 13. La matriz de decisión: cómo se decide sin que la decisión ya estuviera tomada (2/2)
 14. Alcance mínimo y plan de validación: el entregable del taller (1/2)
 15. Alcance mínimo y plan de validación: el entregable del taller (2/2)
-16. Taller de hoy: Decisión de la solución y alcance mínimo
-17. Cómo se expone en 3 minutos
-18. Para la Clase 9
-19. Cierre · Nos vemos en la sesión 9
+16. Plantilla del entregable: los 5 bloques
+17. Guion de la exposicion, con tiempos
+18. Taller de hoy: Decisión de la solución y alcance mínimo
+19. Cómo se expone en 3 minutos
+20. Para la Clase 9
+21. Cierre · Nos vemos en la sesión 9
 
 ## Plan de clase minuto a minuto (90 min)
 

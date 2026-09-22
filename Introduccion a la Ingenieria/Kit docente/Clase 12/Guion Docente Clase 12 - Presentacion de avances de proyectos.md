@@ -84,10 +84,12 @@ Numeración real del deck `Clases/Clase 12 - Presentacion de avances de proyecto
 16. Qué es un avance: cinco minutos que no repiten nada (2/2)
 17. Dar y recibir: la única revisión externa gratis del semestre (1/2)
 18. Dar y recibir: la única revisión externa gratis del semestre (2/2)
-19. Taller de hoy: Ficha de avance y plan de ajustes
-20. Cómo se expone en 5 minutos
-21. Para la Clase 13
-22. Cierre · Nos vemos en la Clase 13
+19. Plantilla del entregable: los 5 bloques
+20. Guion de la exposicion, con tiempos
+21. Taller de hoy: Ficha de avance y plan de ajustes
+22. Cómo se expone en 5 minutos
+23. Para la Clase 13
+24. Cierre · Nos vemos en la Clase 13
 
 ## Plan de clase minuto a minuto (90 min)
 

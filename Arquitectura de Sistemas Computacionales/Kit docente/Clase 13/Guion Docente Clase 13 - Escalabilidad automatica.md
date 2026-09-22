@@ -69,6 +69,8 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 22] Preguntas frecuentes y cierre conceptual () (4/4)** — 4 vinetas.
 
+**[Slide 23] La regla de autoescalado, escrita como configuracion** — 13 vinetas.
+
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 13 - Escalabilidad automatica/Presentacion.pptx` (solo tema
@@ -96,13 +98,14 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 20. Preguntas frecuentes y cierre conceptual () (2/4)
 21. Preguntas frecuentes y cierre conceptual () (3/4)
 22. Preguntas frecuentes y cierre conceptual () (4/4)
-23. Politica de autoescalado (tabla, no prosa)
-24. Herramientas de hoy
-25. Del boceto a ExamLab (diagrama)
-26. PI CloudLite — entregable de hoy
-27. Manos a la obra (paso a paso)
-28. Para continuar (PI)
-29. Clase 13 · PI en movimiento
+23. La regla de autoescalado, escrita como configuracion
+24. Politica de autoescalado (tabla, no prosa)
+25. Herramientas de hoy
+26. Del boceto a ExamLab (diagrama)
+27. PI CloudLite — entregable de hoy
+28. Manos a la obra (paso a paso)
+29. Para continuar (PI)
+30. Clase 13 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 

@@ -76,10 +76,12 @@ Numeración real del deck `Clases/Clase 11 - Taller de prototipado inicial con I
 16. El antes y después, y cómo cierra el corte (1/3)
 17. El antes y después, y cómo cierra el corte (2/3)
 18. El antes y después, y cómo cierra el corte (3/3)
-19. Taller de hoy: Prototipo v2 con IA
-20. Cómo se expone en 3 minutos
-21. Para la Clase 12
-22. Cierre · Cierra el corte 2 · Nos vemos en la Clase 12
+19. Plantilla del entregable: los 5 bloques
+20. Guion de la exposicion, con tiempos
+21. Taller de hoy: Prototipo v2 con IA
+22. Cómo se expone en 3 minutos
+23. Para la Clase 12
+24. Cierre · Cierra el corte 2 · Nos vemos en la Clase 12
 
 ## Plan de clase minuto a minuto (90 min)
 

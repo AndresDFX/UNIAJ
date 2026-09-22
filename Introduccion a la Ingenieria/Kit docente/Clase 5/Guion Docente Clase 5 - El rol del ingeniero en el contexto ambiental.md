@@ -85,10 +85,12 @@ Numeración real del deck `Clases/Clase 5 - El rol del ingeniero en el contexto 
 19. De la conciencia a la decisión: la diapositiva que convierte el tema en ingeniería (2/2)
 20. Colombia, y la honestidad con las cifras (1/2)
 21. Colombia, y la honestidad con las cifras (2/2)
-22. Taller de hoy: Huella del sistema
-23. Cómo se expone en 3 minutos
-24. Para la Clase 6
-25. Cierre · Nos vemos en la sesión 6 — cierra el corte 1
+22. Plantilla del entregable: los 5 bloques
+23. Guion de la exposicion, con tiempos
+24. Taller de hoy: Huella del sistema
+25. Cómo se expone en 3 minutos
+26. Para la Clase 6
+27. Cierre · Nos vemos en la sesión 6 — cierra el corte 1
 
 ## Plan de clase minuto a minuto (90 min)
 

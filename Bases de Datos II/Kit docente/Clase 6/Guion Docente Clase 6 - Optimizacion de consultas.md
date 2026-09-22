@@ -107,6 +107,12 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 34] Preguntas frecuentes del grupo (3/3)** — 3 vinetas.
 
+**[Slide 35] El antipatron y su reescritura** — 12 vinetas.
+
+**[Slide 36] EXPLAIN ANALYZE: la evidencia, no la opinion** — 11 vinetas.
+
+**[Slide 37] Matar la subconsulta correlacionada** — 13 vinetas.
+
 
 **Demo que usted debe poder repetir:** Consulta pesada citas+mascotas+duenos -> version filtrada y proyectada, con EXPLAIN ANALYZE antes y despues, en ExamLab.
 
@@ -148,20 +154,23 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 32. Preguntas frecuentes del grupo (1/3)
 33. Preguntas frecuentes del grupo (2/3)
 34. Preguntas frecuentes del grupo (3/3)
-35. Optimizar es un ANTES medible, no una opinion
-36. Leer un plan: es un arbol y se lee de adentro hacia afuera
-37. La subconsulta correlacionada: 2.006 pasadas o una sola
-38. Optimizar no cambia el resultado: como se prueba
-39. Demo del dia
-40. Herramientas de hoy
-41. Taller PI VetCare — contexto / por que importa
-42. Taller PI VetCare — objetivo y criterios
-43. Taller PI VetCare — escenario / datos de partida
-44. Taller PI VetCare — pasos guiados
-45. Taller PI VetCare — pistas (checklist vacio)
-46. Criterios de exito / entregable
-47. Para el PI esta semana
-48. Cierre · Clase 6
+35. El antipatron y su reescritura
+36. EXPLAIN ANALYZE: la evidencia, no la opinion
+37. Matar la subconsulta correlacionada
+38. Optimizar es un ANTES medible, no una opinion
+39. Leer un plan: es un arbol y se lee de adentro hacia afuera
+40. La subconsulta correlacionada: 2.006 pasadas o una sola
+41. Optimizar no cambia el resultado: como se prueba
+42. Demo del dia
+43. Herramientas de hoy
+44. Taller PI VetCare — contexto / por que importa
+45. Taller PI VetCare — objetivo y criterios
+46. Taller PI VetCare — escenario / datos de partida
+47. Taller PI VetCare — pasos guiados
+48. Taller PI VetCare — pistas (checklist vacio)
+49. Criterios de exito / entregable
+50. Para el PI esta semana
+51. Cierre · Clase 6
 
 > Privado, no se proyecta: `Kit docente/Clase 6/Solucion Taller Clase 6 - VetCare.docx`
 
@@ -193,14 +202,14 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: pedir 'la consulta más rápida' sin definir contra que se compara (volumen de datos, indices existentes) — optimizar siempre es relativo a un antes medible, por eso el taller pide guardar la version antes Y despues, no solo la version final.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 39]
+### 35-55 · Demo paso a paso · [Slide 42]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: Consulta pesada citas+mascotas+duenos -> version filtrada y proyectada, con EXPLAIN ANALYZE antes y despues, en ExamLab.
 Herramienta: ExamLab (PostgreSQL) + Google Docs
 📸 EXPLAIN ANALYZE ANTES vs DESPUES: el nodo no cambia, las pasadas si (loops 2006 -> 1) [[captura: salida-explain-antes-despues.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 44]
+### 55-105 · Taller guiado = tarea del PI · [Slide 47]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -213,13 +222,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: 2 consultas (antes/despues) + justificacion (media pag.)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 6/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 46]
-Repasar checklist del dia con [Slide 46] «Criterios de exito / entregable».
+### 105-115 · Criterios de exito + quiz corto · [Slide 49]
+Repasar checklist del dia con [Slide 49] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 6 - VetCare.docx`. Clave para usted: `Quiz Clase 6 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 48]
+### 115-120 · Cierre · [Slide 51]
 **Decir:** «Queda avanzado: Primera pareja de consultas antes/despues del PI. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 48] slide de cierre. Dudas finales.
+Proyectar [Slide 51] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

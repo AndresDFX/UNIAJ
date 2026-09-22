@@ -72,6 +72,8 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 26] Preguntas frecuentes y cierre conceptual () (3/3)** — 4 vinetas.
 
+**[Slide 27] La plantilla de ADR, con los seis apartados que se califican** — 21 vinetas.
+
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 2 - Modelos de servicio IaaS PaaS SaaS/Presentacion.pptx` (solo tema
@@ -103,17 +105,18 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 24. Preguntas frecuentes y cierre conceptual () (1/3)
 25. Preguntas frecuentes y cierre conceptual () (2/3)
 26. Preguntas frecuentes y cierre conceptual () (3/3)
-27. Quién administra cada capa — IaaS vs PaaS vs SaaS
-28. ADR-001 — las 6 secciones caben en una pagina
-29. Herramientas de hoy
-30. PI CloudLite — entregable de hoy
-31. Manos a la obra (paso a paso)
-32. Para continuar (PI)
-33. Clase 2 · PI en movimiento
+27. La plantilla de ADR, con los seis apartados que se califican
+28. Quién administra cada capa — IaaS vs PaaS vs SaaS
+29. ADR-001 — las 6 secciones caben en una pagina
+30. Herramientas de hoy
+31. PI CloudLite — entregable de hoy
+32. Manos a la obra (paso a paso)
+33. Para continuar (PI)
+34. Clase 2 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 30]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 31]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Decidir modelo dominante (IaaS/PaaS/SaaS) para CloudLite + ADR breve**.
 Entregable concreto: ADR-001: decisión de modelo de servicio + matriz de comparación aplicada al dominio.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -134,7 +137,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 28]
+### 40–55 · Demo en vivo · [Slide 29]
 Herramienta del día: **Google Docs · draw.io (opcional)**.
 **Demo que usted debe poder repetir:** Llenar un ADR-001 delante del grupo, con sus 6 secciones rotuladas
 
@@ -145,11 +148,11 @@ Herramienta del día: **Google Docs · draw.io (opcional)**.
 5. Alternativas descartadas, exactamente dos: IaaS, porque habria que operar el sistema operativo sin tiempo para ello; SaaS como nucleo, porque no quedaria arquitectura que disenar. Aclare aqui —y no en la decision— que identidad y correo siguen siendo SaaS satelite.
 6. Consecuencias: escriba UN eje (operacion) con su + y su -, y deje los otros dos al grupo. Diga: «un ADR de una pagina que se entiende vale mas que 5 paginas que nadie lee».
 
-Narra los clics en voz alta. Si falla la red, proyecta la [Slide 28], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
+Narra los clics en voz alta. Si falla la red, proyecta la [Slide 29], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 31]
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 32]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -162,7 +165,7 @@ Aplica el quiz corto de `Kit docente/Clase 2/Quiz Clase 2 - Modelos de servicio 
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 33]
+### 115–120 · Cierre · [Slide 34]
 Di: «Queda avanzado: Decidir modelo dominante (IaaS/PaaS/SaaS) para CloudLite + ADR breve.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»

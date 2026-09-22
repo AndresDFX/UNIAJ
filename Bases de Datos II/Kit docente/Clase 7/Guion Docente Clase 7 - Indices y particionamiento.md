@@ -135,6 +135,14 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 45] Preguntas frecuentes del grupo (3/3)** — 5 vinetas.
 
+**[Slide 46] Crear el indice y probar que se usa** — 11 vinetas.
+
+**[Slide 47] El orden de columnas en un indice compuesto** — 10 vinetas.
+
+**[Slide 48] Particionar el historico por rango de fecha** — 14 vinetas.
+
+**[Slide 49] El costo de sobre-indexar, que casi nunca se menciona** — 11 vinetas.
+
 
 **Demo que usted debe poder repetir:** EXPLAIN ANALYZE con Seq Scan, CREATE INDEX idx_cita_fecha_hora, ANALYZE, y el mismo EXPLAIN mostrando Index Scan.
 
@@ -187,20 +195,24 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 43. Preguntas frecuentes del grupo (1/3)
 44. Preguntas frecuentes del grupo (2/3)
 45. Preguntas frecuentes del grupo (3/3)
-46. Un indice se justifica con la consulta que lo usa
-47. Los cinco indices de hoy, con su nombre exacto
-48. El indice parcial: el mismo beneficio, una fraccion del tamano
-49. Particionar hoy de verdad: rango por ano, poda y archivado
-50. Demo del dia
-51. Herramientas de hoy
-52. Taller PI VetCare — contexto / por que importa
-53. Taller PI VetCare — objetivo y criterios
-54. Taller PI VetCare — escenario / datos de partida
-55. Taller PI VetCare — pasos guiados
-56. Taller PI VetCare — pistas (checklist vacio)
-57. Criterios de exito / entregable
-58. Para el PI esta semana
-59. Cierre · Clase 7
+46. Crear el indice y probar que se usa
+47. El orden de columnas en un indice compuesto
+48. Particionar el historico por rango de fecha
+49. El costo de sobre-indexar, que casi nunca se menciona
+50. Un indice se justifica con la consulta que lo usa
+51. Los cinco indices de hoy, con su nombre exacto
+52. El indice parcial: el mismo beneficio, una fraccion del tamano
+53. Particionar hoy de verdad: rango por ano, poda y archivado
+54. Demo del dia
+55. Herramientas de hoy
+56. Taller PI VetCare — contexto / por que importa
+57. Taller PI VetCare — objetivo y criterios
+58. Taller PI VetCare — escenario / datos de partida
+59. Taller PI VetCare — pasos guiados
+60. Taller PI VetCare — pistas (checklist vacio)
+61. Criterios de exito / entregable
+62. Para el PI esta semana
+63. Cierre · Clase 7
 
 > Privado, no se proyecta: `Kit docente/Clase 7/Solucion Taller Clase 7 - VetCare.docx`
 
@@ -231,14 +243,14 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: crear un indice sobre CADA columna 'por si acaso' sin mirar que consultas realmente lo necesitan — el taller exige justificar cada indice con la consulta concreta que lo aprovecha.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 50]
+### 35-55 · Demo paso a paso · [Slide 54]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: EXPLAIN ANALYZE con Seq Scan, CREATE INDEX idx_cita_fecha_hora, ANALYZE, y el mismo EXPLAIN mostrando Index Scan.
 Herramienta: ExamLab (PostgreSQL/PGlite)
 📸 El plan de C1 antes y despues: Seq Scan -> Index Scan using idx_cita_programada_fecha [[captura: salida-indice-antes-despues.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 55]
+### 55-105 · Taller guiado = tarea del PI · [Slide 59]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -251,13 +263,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: Script CREATE INDEX + cita_hist particionada + tabla justificacion consulta->indice
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 7/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 57]
-Repasar checklist del dia con [Slide 57] «Criterios de exito / entregable».
+### 105-115 · Criterios de exito + quiz corto · [Slide 61]
+Repasar checklist del dia con [Slide 61] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 7 - VetCare.docx`. Clave para usted: `Quiz Clase 7 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 59]
+### 115-120 · Cierre · [Slide 63]
 **Decir:** «Queda avanzado: 3 indices justificados (uno parcial) + historico particionado por ano. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 59] slide de cierre. Dudas finales.
+Proyectar [Slide 63] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

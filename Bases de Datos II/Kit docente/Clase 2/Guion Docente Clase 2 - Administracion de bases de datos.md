@@ -133,6 +133,14 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 35] Preguntas frecuentes del grupo — sintaxis** — 1 vinetas.
 
+**[Slide 36] Crear el rol y otorgar solo lo que el cargo usa** — 10 vinetas.
+
+**[Slide 37] REVOKE, y los dos que hacen dano en silencio** — 10 vinetas.
+
+**[Slide 38] Cuando el GRANT sobra: vista y privilegio por columna** — 13 vinetas.
+
+**[Slide 39] La matriz como hecho verificable, no como documento** — 11 vinetas.
+
 
 **Demo que usted debe poder repetir:** Los 4 roles de VetCare con CREATE ROLE/GRANT/REVOKE en ExamLab, verificados con information_schema.role_table_grants.
 
@@ -175,19 +183,23 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 33. Preguntas frecuentes del grupo (1/2)
 34. Preguntas frecuentes del grupo (2/2)
 35. Preguntas frecuentes del grupo — sintaxis
-36. Minimo privilegio, en concreto
-37. Reducir la superficie: vista y privilegio por columna
-38. Ciclo de vida de una cuenta: alta, cambio, baja, revision
-39. Demo del dia
-40. Herramientas de hoy
-41. Taller PI VetCare — contexto / por que importa
-42. Taller PI VetCare — objetivo y criterios
-43. Taller PI VetCare — escenario / datos de partida
-44. Taller PI VetCare — pasos guiados
-45. Taller PI VetCare — pistas (checklist vacio)
-46. Criterios de exito / entregable
-47. Para el PI esta semana
-48. Cierre · Clase 2
+36. Crear el rol y otorgar solo lo que el cargo usa
+37. REVOKE, y los dos que hacen dano en silencio
+38. Cuando el GRANT sobra: vista y privilegio por columna
+39. La matriz como hecho verificable, no como documento
+40. Minimo privilegio, en concreto
+41. Reducir la superficie: vista y privilegio por columna
+42. Ciclo de vida de una cuenta: alta, cambio, baja, revision
+43. Demo del dia
+44. Herramientas de hoy
+45. Taller PI VetCare — contexto / por que importa
+46. Taller PI VetCare — objetivo y criterios
+47. Taller PI VetCare — escenario / datos de partida
+48. Taller PI VetCare — pasos guiados
+49. Taller PI VetCare — pistas (checklist vacio)
+50. Criterios de exito / entregable
+51. Para el PI esta semana
+52. Cierre · Clase 2
 
 > Privado, no se proyecta: `Kit docente/Clase 2/Solucion Taller Clase 2 - VetCare.docx`
 
@@ -218,14 +230,14 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: crear un unico usuario 'admin' que todos comparten (rompe la trazabilidad de auditoria) o dar ALL PRIVILEGES a todo el mundo 'para que no falle nada' — exactamente lo opuesto a minimo privilegio.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 39]
+### 35-55 · Demo paso a paso · [Slide 43]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: Los 4 roles de VetCare con CREATE ROLE/GRANT/REVOKE en ExamLab, verificados con information_schema.role_table_grants.
 Herramienta: ExamLab (PostgreSQL) + Google Docs
 📸 Salida esperada de la demo de la Clase 2 [[captura: cap01_demo.png | receta: 1) Abra ExamLab (PostgreSQL) + Google Docs y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 2/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda embebida aqui sola.]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 44]
+### 55-105 · Taller guiado = tarea del PI · [Slide 48]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -237,13 +249,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: Documento Roles_VetCare + script GRANT/REVOKE ejecutado en ExamLab
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 2/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 46]
-Repasar checklist del dia con [Slide 46] «Criterios de exito / entregable».
+### 105-115 · Criterios de exito + quiz corto · [Slide 50]
+Repasar checklist del dia con [Slide 50] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 2 - VetCare.docx`. Clave para usted: `Quiz Clase 2 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 48]
+### 115-120 · Cierre · [Slide 52]
 **Decir:** «Queda avanzado: Plan de roles/privilegios de VetCare. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 48] slide de cierre. Dudas finales.
+Proyectar [Slide 52] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

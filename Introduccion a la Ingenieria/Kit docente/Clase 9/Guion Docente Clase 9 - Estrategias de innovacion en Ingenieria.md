@@ -91,10 +91,12 @@ Numeración real del deck `Clases/Clase 9 - Estrategias de innovacion en Ingenie
 17. Calidad de las fuentes, la IA y qué hacer cuando no se encuentra nada (1/3)
 18. Calidad de las fuentes, la IA y qué hacer cuando no se encuentra nada (2/3)
 19. Calidad de las fuentes, la IA y qué hacer cuando no se encuentra nada (3/3)
-20. Taller de hoy: Antecedentes y propuesta de mejora
-21. Cómo se expone en 3 minutos
-22. Para la Clase 10
-23. Cierre · Nos vemos en la sesión 10
+20. Plantilla del entregable: los 5 bloques
+21. Guion de la exposicion, con tiempos
+22. Taller de hoy: Antecedentes y propuesta de mejora
+23. Cómo se expone en 3 minutos
+24. Para la Clase 10
+25. Cierre · Nos vemos en la sesión 10
 
 ## Plan de clase minuto a minuto (90 min)
 

@@ -85,10 +85,12 @@ Numeración real del deck `Clases/Clase 3 - Fundamentos basicos de la Ingenieria
 17. Actores, requisitos y retroalimentación: los tres que se olvidan (2/2)
 18. El asistente de IA: cómo usarlo hoy sin que haga el trabajo (1/2)
 19. El asistente de IA: cómo usarlo hoy sin que haga el trabajo (2/2)
-20. Taller de hoy: Anatomía del sistema
-21. Cómo se expone en 3 minutos
-22. Para la Clase 4
-23. Cierre · Nos vemos en la sesión 4
+20. Plantilla del entregable: los 5 bloques
+21. Guion de la exposicion, con tiempos
+22. Taller de hoy: Anatomía del sistema
+23. Cómo se expone en 3 minutos
+24. Para la Clase 4
+25. Cierre · Nos vemos en la sesión 4
 
 ## Plan de clase minuto a minuto (90 min)
 

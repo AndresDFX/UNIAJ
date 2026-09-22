@@ -76,10 +76,12 @@ Numeración real del deck `Clases/Clase 15 - Exposicion final de proyectos/Prese
 14. Las preguntas: los tres minutos que destapan el trabajo real (2/2)
 15. El cierre: qué hacer con lo que salió hoy (1/2)
 16. El cierre: qué hacer con lo que salió hoy (2/2)
-17. Taller de hoy: Exposición final del proyecto
-18. Cómo se expone en 9 minutos
-19. Para la Clase 16
-20. Cierre · Nos vemos en la Clase 16 · la última
+17. Plantilla del entregable: los 5 bloques
+18. Guion de la exposicion, con tiempos
+19. Taller de hoy: Exposición final del proyecto
+20. Cómo se expone en 9 minutos
+21. Para la Clase 16
+22. Cierre · Nos vemos en la Clase 16 · la última
 
 ## Plan de clase minuto a minuto (90 min)
 

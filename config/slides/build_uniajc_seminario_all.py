@@ -194,6 +194,7 @@ def _quiz_items(c):
 # ----------------------------------------------------------------------- slides
 import teoria_a_slides as TS
 import codigo_a_slides as CS
+from seminario_operativo_data import OPERATIVO
 
 def _teoria_slides(c):
     """Las diapositivas de teoria de la clase: una por vineta, con su parrafo entero.
@@ -215,6 +216,10 @@ def _teoria_slides(c):
     # del docente: el estudiante veia el recorte. «Mas codigo si es programacion» es esto.
     laminas += CS.slides_de_fuente(c.get("codigo_fuente") or "",
                                    c.get("codigo_archivo") or "")
+    # Y el material operativo autorado. En Seminario los entregables son diagramas
+    # Mermaid y plantillas de artefacto, y la sintaxis de Mermaid es el 100% de si el
+    # entregable se puede calificar: uno que no renderiza en ExamLab no se califica.
+    laminas += [(tit, lineas, [], "codigo") for tit, lineas in OPERATIVO.get(c["n"], [])]
     return laminas
 
 

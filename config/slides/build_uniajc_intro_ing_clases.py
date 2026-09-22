@@ -204,6 +204,42 @@ def _agenda(t):
 
 # ---------------------------------------------------------------- diapositivas
 
+def _plantilla_entregable(t):
+    """La plantilla EN BLANCO del entregable, generada de `taller.bloques`.
+
+    CLAUDE.md §4: si la forma de la respuesta se califica, la forma se entrega, no se
+    adivina. Y se genera del mismo dato con el que se califica para que no pueda divergir.
+    """
+    tl = t.get("taller") or {}
+    bloques = tl.get("bloques") or []
+    if not bloques:
+        return []
+    L = ["# %s" % (tl.get("titulo") or "Entregable de hoy"),
+         "# Documento del equipo · un bloque por titulo, sin cambiar los nombres",
+         ""]
+    for i, b in enumerate(bloques, 1):
+        L.append("## %d. %s" % (i, b.get("clave", "BLOQUE %d" % i)))
+    L += ["", "# Los titulos van TAL CUAL: son con los que se califica."]
+    return [("Plantilla del entregable: los %d bloques" % len(bloques), L, [], "codigo")]
+
+
+def _guion_cronometrado(t):
+    """El guion de la exposicion con su reparto de tiempo, de `taller.expo`."""
+    tl = t.get("taller") or {}
+    expo = tl.get("expo") or []
+    if not expo:
+        return []
+    L = ["# Exposicion de hoy · lo que se califica es el reparto, no el total", ""]
+    for item in expo:
+        if isinstance(item, (list, tuple)) and len(item) >= 2:
+            L.append("%-34s %s" % (str(item[0])[:34], str(item[1])[:44]))
+        else:
+            L.append(str(item)[:80])
+    L += ["", "# El tramo marcado como obligatorio es el que el jurado califica:",
+          "# si el guion no esta cronometrado, es el que se queda sin tiempo."]
+    return [("Guion de la exposicion, con tiempos", L, [], "codigo")]
+
+
 def _slides_desarrollo(t):
     """Las laminas de DESARROLLO del tema, una por bloque de `fundamento`.
 
@@ -216,6 +252,11 @@ def _slides_desarrollo(t):
         if not cuerpo.strip():
             continue
         out += TS.slides_de_seccion(b["titulo"], cuerpo)
+    # Y los dos artefactos operativos de este curso: la plantilla en blanco del
+    # entregable y el guion cronometrado de la exposicion. Los dos se generan del mismo
+    # dato con el que se califica.
+    out += _plantilla_entregable(t)
+    out += _guion_cronometrado(t)
     return out
 
 
@@ -417,7 +458,8 @@ def md_guion(n, titulos):
     ]
     # El contenido de cada bloque esta PROYECTADO (una lamina de desarrollo por bloque).
     # Aqui queda lo que no cabe en pantalla: donde esta cada cosa y que subrayar.
-    for b, (_tit, _vin, _notas, _tipo) in zip(t["fundamento"], _slides_desarrollo(t)):
+    _desarrollo = [s for s in _slides_desarrollo(t) if s[3] == "content"]
+    for b, (_tit, _vin, _notas, _tipo) in zip(t["fundamento"], _desarrollo):
         L += ["### %s - %s" % (b["titulo"], _etiqueta_slides(titulos, b["slide"], n)), ""]
         L += ["Proyectado en la lamina «%s» (%d vinetas)." % (_tit, len(_vin)), ""]
         for x in _notas:

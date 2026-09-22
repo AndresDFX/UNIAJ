@@ -72,6 +72,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 23] Preguntas frecuentes y cierre conceptual () (3/3)** — 4 vinetas.
 
+**[Slide 24] El presupuesto de latencia del camino critico** — 16 vinetas.
+
+**[Slide 25] Las metricas objetivo, escritas como se verifican** — 12 vinetas.
+
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 12 - Pruebas de rendimiento y preparacion final/Presentacion.pptx` (solo tema
@@ -100,17 +104,19 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 21. Preguntas frecuentes y cierre conceptual () (1/3)
 22. Preguntas frecuentes y cierre conceptual () (2/3)
 23. Preguntas frecuentes y cierre conceptual () (3/3)
-24. «Que sea rapido» no es un requisito
-25. Herramientas de hoy
-26. Del boceto a ExamLab (diagrama)
-27. PI CloudLite — entregable de hoy
-28. Manos a la obra (paso a paso)
-29. Para continuar (PI)
-30. Clase 12 · PI en movimiento
+24. El presupuesto de latencia del camino critico
+25. Las metricas objetivo, escritas como se verifican
+26. «Que sea rapido» no es un requisito
+27. Herramientas de hoy
+28. Del boceto a ExamLab (diagrama)
+29. PI CloudLite — entregable de hoy
+30. Manos a la obra (paso a paso)
+31. Para continuar (PI)
+32. Clase 12 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 27]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 29]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Escenario de rendimiento + ensayo 5–8 min de sustentación**.
 Entregable concreto: Sección Rendimiento + guion de pitch + paquete casi-final.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -130,7 +136,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 26]
+### 40–55 · Demo en vivo · [Slide 28]
 Herramienta del día: **Google Docs · draw.io · (opcional) lab contenedor**.
 **Demo que usted debe poder repetir:** Definir un objetivo de rendimiento que si se puede verificar
 
@@ -142,7 +148,7 @@ Herramienta del día: **Google Docs · draw.io · (opcional) lab contenedor**.
 Narra los clics en voz alta. Si falla la red, proyecta la solución docente de este kit (`Solucion Taller Clase 12 - CloudLite.md`), que trae el resultado esperado.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
-**Cierra la demo dentro de ExamLab** [Slide 26] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
+**Cierra la demo dentro de ExamLab** [Slide 28] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -152,7 +158,7 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 28]
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 30]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -165,7 +171,7 @@ Aplica el quiz corto de `Kit docente/Clase 12/Quiz Clase 12 - Pruebas de rendimi
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 30]
+### 115–120 · Cierre · [Slide 32]
 Di: «Queda avanzado: Escenario de rendimiento + ensayo 5–8 min de sustentación.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»

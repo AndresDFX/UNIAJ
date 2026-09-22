@@ -102,6 +102,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 33] Preguntas frecuentes y cierre conceptual () (3/3)** — 3 vinetas.
 
+**[Slide 34] El C4 Container en Mermaid: la forma que ExamLab renderiza** — 17 vinetas.
+
+**[Slide 35] Lo que se califica del diagrama, y no es el dibujo** — 13 vinetas.
+
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 4 - Microservicios y arquitecturas distribuidas/Presentacion.pptx` (solo tema
@@ -140,19 +144,21 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 31. Preguntas frecuentes y cierre conceptual () (1/3)
 32. Preguntas frecuentes y cierre conceptual () (2/3)
 33. Preguntas frecuentes y cierre conceptual () (3/3)
-34. Ejemplo de diagrama C4 — nivel Containers
-35. Microservicios de verdad vs microservicios teatro
-36. C4Container en Mermaid: el molde que ExamLab renderiza
-37. Herramientas de hoy
-38. Del boceto a ExamLab (diagrama)
-39. PI CloudLite — entregable de hoy
-40. Manos a la obra (paso a paso)
-41. Para continuar (PI)
-42. Clase 4 · PI en movimiento
+34. El C4 Container en Mermaid: la forma que ExamLab renderiza
+35. Lo que se califica del diagrama, y no es el dibujo
+36. Ejemplo de diagrama C4 — nivel Containers
+37. Microservicios de verdad vs microservicios teatro
+38. C4Container en Mermaid: el molde que ExamLab renderiza
+39. Herramientas de hoy
+40. Del boceto a ExamLab (diagrama)
+41. PI CloudLite — entregable de hoy
+42. Manos a la obra (paso a paso)
+43. Para continuar (PI)
+44. Clase 4 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 39]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 41]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Diagramar componentes/servicios de CloudLite y sus contratos**.
 Entregable concreto: Diagrama C4 Container en Mermaid + tabla de 3 contratos + 3 riesgos de distribución.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -173,7 +179,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 38]
+### 40–55 · Demo en vivo · [Slide 40]
 Herramienta del día: **draw.io o Excalidraw para bocetar · Mermaid dentro de ExamLab para entregar**.
 **Demo que usted debe poder repetir:** Convertir el Context de la Clase 1 en Containers, y dejarlo renderizado en ExamLab
 
@@ -205,10 +211,10 @@ C4Container
     Rel(api, pagos, "cobra", "API REST sobre HTTPS")
 ```
 
-Narra los clics en voz alta. Si falla la red, proyecta la [Slide 36], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
+Narra los clics en voz alta. Si falla la red, proyecta la [Slide 38], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
-**Cierra la demo dentro de ExamLab** [Slide 38] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
+**Cierra la demo dentro de ExamLab** [Slide 40] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -218,7 +224,7 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 40]
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 42]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -231,7 +237,7 @@ Aplica el quiz corto de `Kit docente/Clase 4/Quiz Clase 4 - Microservicios y arq
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 42]
+### 115–120 · Cierre · [Slide 44]
 Di: «Queda avanzado: Diagramar componentes/servicios de CloudLite y sus contratos.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»

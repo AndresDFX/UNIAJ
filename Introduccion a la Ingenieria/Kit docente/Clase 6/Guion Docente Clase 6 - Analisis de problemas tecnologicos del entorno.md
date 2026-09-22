@@ -80,10 +80,12 @@ Numeración real del deck `Clases/Clase 6 - Analisis de problemas tecnologicos d
 21. La línea base y los cuatro criterios de viabilidad (4/4)
 22. Cómo cerrar el corte: la ficha y la evaluación en ExamLab (1/2)
 23. Cómo cerrar el corte: la ficha y la evaluación en ExamLab (2/2)
-24. Taller de hoy: Ficha del problema del proyecto
-25. Cómo se expone en 3 minutos
-26. Para la Clase 7
-27. Cierre · Cerró el corte 1 · nos vemos en la sesión 7
+24. Plantilla del entregable: los 5 bloques
+25. Guion de la exposicion, con tiempos
+26. Taller de hoy: Ficha del problema del proyecto
+27. Cómo se expone en 3 minutos
+28. Para la Clase 7
+29. Cierre · Cerró el corte 1 · nos vemos en la sesión 7
 
 ## Plan de clase minuto a minuto (90 min)
 

@@ -79,10 +79,12 @@ Numeración real del deck `Clases/Clase 14 - Preparacion de la presentacion fina
 17. El plan B, el ensayo, y por qué se ensaya solo el arranque (1/3)
 18. El plan B, el ensayo, y por qué se ensaya solo el arranque (2/3)
 19. El plan B, el ensayo, y por qué se ensaya solo el arranque (3/3)
-20. Taller de hoy: Guion de nueve minutos y plan B
-21. Cómo se expone en 4 minutos
-22. Para la Clase 15
-23. Cierre · Nos vemos en la Clase 15
+20. Plantilla del entregable: los 5 bloques
+21. Guion de la exposicion, con tiempos
+22. Taller de hoy: Guion de nueve minutos y plan B
+23. Cómo se expone en 4 minutos
+24. Para la Clase 15
+25. Cierre · Nos vemos en la Clase 15
 
 ## Plan de clase minuto a minuto (90 min)
 

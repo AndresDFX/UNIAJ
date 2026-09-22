@@ -39,6 +39,12 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **Los flujos alternos tambien se modelan, y para eso existen los... (2/2)** — 3 vinetas.
 
+**El diagrama de secuencia en Mermaid** — 18 vinetas.
+
+**El diagrama de actividad, con decision y carriles** — 12 vinetas.
+
+**La tabla de mapeo mensaje a operacion** — 10 vinetas.
+
 
 **Demo que usted debe poder repetir:** El docente toma el flujo principal ya escrito de CU-04 Agendar cita y lo convierte linea por linea en mensajes de un diagrama de secuencia en Mermaid, mostrando en vivo que cada mensaje necesita una clase dueña que lo pueda responder.
 

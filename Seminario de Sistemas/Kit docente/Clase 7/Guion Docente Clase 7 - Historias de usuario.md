@@ -40,6 +40,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **Estimar en agil no es adivinar horas sino comparar tamanos, y esa es la... (2/2)** — 3 vinetas.
 
+**La historia y sus criterios en Dado-Cuando-Entonces** — 17 vinetas.
+
+**El mapa del backlog: epicas, historias y orden** — 12 vinetas.
+
 
 **Demo que usted debe poder repetir:** El docente toma el RF-03 del catalogo, lo convierte en vivo en historia con criterios y luego muestra una historia partida por capas para tumbarla con INVEST.
 

@@ -87,10 +87,12 @@ Numeración real del deck `Clases/Clase 7 - Ciclo de vida de los proyectos de in
 17. Requisitos, criterios de aceptación y hitos: lo que se entrega hoy (1/3)
 18. Requisitos, criterios de aceptación y hitos: lo que se entrega hoy (2/3)
 19. Requisitos, criterios de aceptación y hitos: lo que se entrega hoy (3/3)
-20. Taller de hoy: Ciclo de vida del proyecto
-21. Cómo se expone en 3 minutos
-22. Para la Clase 8
-23. Cierre · Nos vemos en la sesión 8
+20. Plantilla del entregable: los 5 bloques
+21. Guion de la exposicion, con tiempos
+22. Taller de hoy: Ciclo de vida del proyecto
+23. Cómo se expone en 3 minutos
+24. Para la Clase 8
+25. Cierre · Nos vemos en la sesión 8
 
 ## Plan de clase minuto a minuto (90 min)
 

@@ -64,6 +64,8 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 18] Lo que decide la calificacion: lecciones accionables (3/3)** — 3 vinetas.
 
+**[Slide 19] Leer un plan de ejecucion ajeno** — 13 vinetas.
+
 
 **Demo que usted debe poder repetir:** Plantilla: contexto -> fallo -> leccion -> cambio en VetCare.
 
@@ -89,16 +91,17 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 16. Lo que decide la calificacion: lecciones accionables (1/3)
 17. Lo que decide la calificacion: lecciones accionables (2/3)
 18. Lo que decide la calificacion: lecciones accionables (3/3)
-19. Demo del dia
-20. Herramientas de hoy
-21. Actividad autonoma — contexto / por que importa
-22. Actividad autonoma — objetivo y criterios
-23. Actividad autonoma — escenario / datos de partida
-24. Actividad autonoma — pasos guiados
-25. Actividad autonoma — pistas (checklist vacio)
-26. Criterios de exito / entregable
-27. Para el PI esta semana
-28. Cierre · Clase 13
+19. Leer un plan de ejecucion ajeno
+20. Demo del dia
+21. Herramientas de hoy
+22. Actividad autonoma — contexto / por que importa
+23. Actividad autonoma — objetivo y criterios
+24. Actividad autonoma — escenario / datos de partida
+25. Actividad autonoma — pasos guiados
+26. Actividad autonoma — pistas (checklist vacio)
+27. Criterios de exito / entregable
+28. Para el PI esta semana
+29. Cierre · Clase 13
 
 > Privado, no se proyecta: `Kit docente/Clase 13/Solucion Taller Clase 13 - VetCare.docx`
 

@@ -87,6 +87,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 26] Preguntas frecuentes del grupo (2/2)** — 4 vinetas.
 
+**[Slide 27] El workflow de CI: el archivo completo** — 22 vinetas.
+
+**[Slide 28] Los secretos en el workflow, y hasta donde llega el pipeline** — 10 vinetas.
+
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 8 - Monitoreo optimizacion y CI-CD/Presentacion.pptx` (solo tema
@@ -118,16 +122,18 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 24. Donde se ejecuta de verdad la politica de secretos de la Clase 6 (2/2)
 25. Preguntas frecuentes del grupo (1/2)
 26. Preguntas frecuentes del grupo (2/2)
-27. .github/workflows/ci.yml — CI real, no un echo
-28. Herramientas de hoy
-29. PI CloudLite — entregable de hoy
-30. Manos a la obra (paso a paso)
-31. Para continuar (PI)
-32. Clase 8 · PI en movimiento
+27. El workflow de CI: el archivo completo
+28. Los secretos en el workflow, y hasta donde llega el pipeline
+29. .github/workflows/ci.yml — CI real, no un echo
+30. Herramientas de hoy
+31. PI CloudLite — entregable de hoy
+32. Manos a la obra (paso a paso)
+33. Para continuar (PI)
+34. Clase 8 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 29]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 31]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Workflow Actions (build/test/simulate) + métricas de monitoreo del PI**.
 Entregable concreto: .github/workflows/ci.yml + sección Monitoreo/CI del informe.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -147,7 +153,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 27]
+### 40–55 · Demo en vivo · [Slide 29]
 Herramienta del día: **GitHub Actions · Google Docs**.
 **Demo que usted debe poder repetir:** Un workflow de GitHub Actions que corra de verdad, con los tres pasos calificados
 
@@ -164,7 +170,7 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 📸 Run verde del workflow: build + test reales, no un `echo ok` [[captura: salida-actions-run.png]]
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 30]
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 32]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -177,7 +183,7 @@ Aplica el quiz corto de `Kit docente/Clase 8/Quiz Clase 8 - Monitoreo optimizaci
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 32]
+### 115–120 · Cierre · [Slide 34]
 Di: «Queda avanzado: Workflow Actions (build/test/simulate) + métricas de monitoreo del PI.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»

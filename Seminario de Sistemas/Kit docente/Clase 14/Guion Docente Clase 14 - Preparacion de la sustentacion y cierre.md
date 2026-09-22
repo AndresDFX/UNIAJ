@@ -37,6 +37,8 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **El reparto del guion en bloques con tiempos es criterio de evaluacion... (2/2)** — 4 vinetas.
 
+**El guion cronometrado de la sustentacion** — 16 vinetas.
+
 
 **Demo que usted debe poder repetir:** El docente proyecta una sustentacion mal hecha y una bien hecha del mismo paquete VetCare, y luego arma en vivo la tabla de decisiones para justificar por que Historia_Clinica es una clase aparte de Mascota.
 

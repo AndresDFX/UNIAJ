@@ -32,6 +32,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **Agil no significa trabajar sin documentacion, y este es el malentendido...** — 4 vinetas.
   - Un equipo agil documenta historias de usuario con criterios de aceptacion, la Definicion de Terminado, las decisiones de arquitectura, el diccionario de datos y los diagramas que hagan falta, pero los escribe justo a tiempo y los mantiene vivos.
 
+**El plan de sprints en Mermaid (gantt)** — 15 vinetas.
+
+**El tablero de flujo con limite de trabajo en curso** — 20 vinetas.
+
 
 **Demo que usted debe poder repetir:** El docente arma en pantalla el tablero de VetCare, arrastra una tarjeta de 'Por hacer' a 'En revision del cliente' y muestra que pasa cuando se rompe el limite de trabajo en curso.
 

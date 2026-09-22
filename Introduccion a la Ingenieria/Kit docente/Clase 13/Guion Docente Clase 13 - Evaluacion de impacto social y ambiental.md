@@ -85,10 +85,12 @@ Numeración real del deck `Clases/Clase 13 - Evaluacion de impacto social y ambi
 19. La matriz, la calificación y los límites del método (3/3)
 20. Del adjetivo al indicador, y las tres honestidades (1/2)
 21. Del adjetivo al indicador, y las tres honestidades (2/2)
-22. Taller de hoy: Matriz de impacto social y ambiental
-23. Cómo se expone en 3 minutos
-24. Para la Clase 14
-25. Cierre · Nos vemos en la Clase 14
+22. Plantilla del entregable: los 5 bloques
+23. Guion de la exposicion, con tiempos
+24. Taller de hoy: Matriz de impacto social y ambiental
+25. Cómo se expone en 3 minutos
+26. Para la Clase 14
+27. Cierre · Nos vemos en la Clase 14
 
 ## Plan de clase minuto a minuto (90 min)
 

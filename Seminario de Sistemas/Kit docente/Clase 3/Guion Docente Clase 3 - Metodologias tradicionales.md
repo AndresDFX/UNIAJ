@@ -31,6 +31,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **En el mundo tradicional la documentacion no acompaña al producto: en...** — 4 vinetas.
   - Cada documento tiene numero de version, fecha, autor y aprobador, y todo cambio entra por una solicitud formal donde se evalua impacto en alcance, tiempo y costo antes de aceptarla.
 
+**El modelo en V con trazabilidad** — 17 vinetas.
+
+**La solicitud de cambio sobre linea base** — 14 vinetas.
+
 
 **Demo que usted debe poder repetir:** El docente dibuja en draw.io el modelo en V de VetCare y traza en vivo la linea punteada que conecta el requisito RF-03 'buscar historial' con su prueba de aceptacion CP-ACEP-07.
 

@@ -152,6 +152,12 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 50] Preguntas frecuentes del grupo (3/3)** — 5 vinetas.
 
+**[Slide 51] Todo o nada: la transaccion explicita** — 11 vinetas.
+
+**[Slide 52] SAVEPOINT: deshacer una parte sin perder el resto** — 12 vinetas.
+
+**[Slide 53] El bloque EXCEPTION y la trampa que cuesta puntos** — 12 vinetas.
+
 
 **Demo que usted debe poder repetir:** CALL sp_facturar(4, ARRAY[1,6,5], ARRAY[1,2,3]) que factura 27.400, y CALL sp_facturar(4, ARRAY[3,2], ARRAY[2,10]) que falla en la segunda linea: el stock del insumo 3 vuelve a 40 sin ROLLBACK escrito.
 
@@ -209,20 +215,23 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 48. Preguntas frecuentes del grupo (1/3)
 49. Preguntas frecuentes del grupo (2/3)
 50. Preguntas frecuentes del grupo (3/3)
-51. Todo o nada: la transaccion de facturacion
-52. sp_facturar en PL/pgSQL: el molde que se califica
-53. Por que el procedimiento no lleva COMMIT ni ROLLBACK
-54. fn_descontar_stock: cuando «no hay stock» es una respuesta, no un error
-55. Demo del dia
-56. Herramientas de hoy
-57. Taller PI VetCare — contexto / por que importa
-58. Taller PI VetCare — objetivo y criterios
-59. Taller PI VetCare — escenario / datos de partida
-60. Taller PI VetCare — pasos guiados
-61. Taller PI VetCare — pistas (checklist vacio)
-62. Criterios de exito / entregable
-63. Para el PI esta semana
-64. Cierre · Clase 8
+51. Todo o nada: la transaccion explicita
+52. SAVEPOINT: deshacer una parte sin perder el resto
+53. El bloque EXCEPTION y la trampa que cuesta puntos
+54. Todo o nada: la transaccion de facturacion
+55. sp_facturar en PL/pgSQL: el molde que se califica
+56. Por que el procedimiento no lleva COMMIT ni ROLLBACK
+57. fn_descontar_stock: cuando «no hay stock» es una respuesta, no un error
+58. Demo del dia
+59. Herramientas de hoy
+60. Taller PI VetCare — contexto / por que importa
+61. Taller PI VetCare — objetivo y criterios
+62. Taller PI VetCare — escenario / datos de partida
+63. Taller PI VetCare — pasos guiados
+64. Taller PI VetCare — pistas (checklist vacio)
+65. Criterios de exito / entregable
+66. Para el PI esta semana
+67. Cierre · Clase 8
 
 > Privado, no se proyecta: `Kit docente/Clase 8/Solucion Taller Clase 8 - VetCare.docx`
 
@@ -253,14 +262,14 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: envolver TODA la sesion de trabajo en una sola transaccion gigante 'para no perder nada' — eso maximiza el tiempo que otros usuarios quedan bloqueados esperando esas filas, exactamente el problema que Clase 10 (concurrencia) va a diagnosticar.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 55]
+### 35-55 · Demo paso a paso · [Slide 58]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: CALL sp_facturar(4, ARRAY[1,6,5], ARRAY[1,2,3]) que factura 27.400, y CALL sp_facturar(4, ARRAY[3,2], ARRAY[2,10]) que falla en la segunda linea: el stock del insumo 3 vuelve a 40 sin ROLLBACK escrito.
 Herramienta: ExamLab (PostgreSQL/PGlite)
 📸 CALL sp_facturar que falla a mitad: foto inicial y foto final identicas, sin ROLLBACK escrito [[captura: salida-rollback-stock.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 60]
+### 55-105 · Taller guiado = tarea del PI · [Slide 63]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -273,13 +282,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: sp_facturar + fn_descontar_stock + seccion Transacciones y tuning del informe (1 pag.)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 8/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 62]
-Repasar checklist del dia con [Slide 62] «Criterios de exito / entregable».
+### 105-115 · Criterios de exito + quiz corto · [Slide 65]
+Repasar checklist del dia con [Slide 65] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 8 - VetCare.docx`. Clave para usted: `Quiz Clase 8 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 64]
+### 115-120 · Cierre · [Slide 67]
 **Decir:** «Queda avanzado: Transaccion de negocio (factura + stock) + notas de tuning. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 64] slide de cierre. Dudas finales.
+Proyectar [Slide 67] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

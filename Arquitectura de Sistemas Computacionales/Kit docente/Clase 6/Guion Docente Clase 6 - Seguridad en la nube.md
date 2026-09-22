@@ -86,6 +86,8 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 29] Preguntas frecuentes del grupo (2/2)** — 3 vinetas.
 
+**[Slide 30] La politica de secretos, en comandos** — 14 vinetas.
+
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 6 - Seguridad en la nube/Presentacion.pptx` (solo tema
@@ -120,16 +122,17 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 27. El entregable: tres columnas, y la tercera es una caja o una flecha (2/2)
 28. Preguntas frecuentes del grupo (1/2)
 29. Preguntas frecuentes del grupo (2/2)
-30. El secreto en la imagen: por qué borrarlo no sirve
-31. Herramientas de hoy
-32. PI CloudLite — entregable de hoy
-33. Manos a la obra (paso a paso)
-34. Para continuar (PI)
-35. Clase 6 · PI en movimiento
+30. La politica de secretos, en comandos
+31. El secreto en la imagen: por qué borrarlo no sirve
+32. Herramientas de hoy
+33. PI CloudLite — entregable de hoy
+34. Manos a la obra (paso a paso)
+35. Para continuar (PI)
+36. Clase 6 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 32]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 33]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Modelo de amenazas mínimo + controles para CloudLite**.
 Entregable concreto: Sección Seguridad PI: 5 amenazas STRIDE-lite + controles + secretos/CI.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -152,7 +155,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 30]
+### 40–55 · Demo en vivo · [Slide 31]
 Herramienta del día: **Google Docs para la tabla y la política · ExamLab para entregar**.
 **Demo que usted debe poder repetir:** De amenaza STRIDE a control verificable, en vivo
 
@@ -167,7 +170,7 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 📸 Por que un secreto NUNCA va dentro de la imagen (demo de 1 minuto) [[captura: salida-secreto-en-imagen.png]]
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 33]
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 34]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -180,7 +183,7 @@ Aplica el quiz corto de `Kit docente/Clase 6/Quiz Clase 6 - Seguridad en la nube
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 35]
+### 115–120 · Cierre · [Slide 36]
 Di: «Queda avanzado: Modelo de amenazas mínimo + controles para CloudLite.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»

@@ -78,6 +78,12 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 20] Antes de los niveles: la restriccion que... — sintaxis** — 1 vinetas.
 
+**[Slide 21] La doble reserva, y la restriccion que la cierra de raiz** — 10 vinetas.
+
+**[Slide 22] El bloqueo explicito y la actualizacion condicional** — 10 vinetas.
+
+**[Slide 23] Niveles de aislamiento: que anomalia tapa cada uno** — 13 vinetas.
+
 
 **Demo que usted debe poder repetir:** Narrativa paso a paso T1/T2 sobre tabla Cita.
 
@@ -105,18 +111,21 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 18. Deadlock: la escena de VetCare y como se evita (2/2)
 19. Antes de los niveles: la restriccion que cuesta una linea
 20. Antes de los niveles: la restriccion que... — sintaxis
-21. Doble reserva sin control de concurrencia
-22. La restriccion que hace imposible la doble reserva
-23. Demo del dia
-24. Herramientas de hoy
-25. Actividad autonoma — contexto / por que importa
-26. Actividad autonoma — objetivo y criterios
-27. Actividad autonoma — escenario / datos de partida
-28. Actividad autonoma — pasos guiados
-29. Actividad autonoma — pistas (checklist vacio)
-30. Criterios de exito / entregable
-31. Para el PI esta semana
-32. Cierre · Clase 10
+21. La doble reserva, y la restriccion que la cierra de raiz
+22. El bloqueo explicito y la actualizacion condicional
+23. Niveles de aislamiento: que anomalia tapa cada uno
+24. Doble reserva sin control de concurrencia
+25. La restriccion que hace imposible la doble reserva
+26. Demo del dia
+27. Herramientas de hoy
+28. Actividad autonoma — contexto / por que importa
+29. Actividad autonoma — objetivo y criterios
+30. Actividad autonoma — escenario / datos de partida
+31. Actividad autonoma — pasos guiados
+32. Actividad autonoma — pistas (checklist vacio)
+33. Criterios de exito / entregable
+34. Para el PI esta semana
+35. Cierre · Clase 10
 
 > Privado, no se proyecta: `Kit docente/Clase 10/Solucion Taller Clase 10 - VetCare.docx`
 

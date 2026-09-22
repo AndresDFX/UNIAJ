@@ -79,10 +79,12 @@ Numeración real del deck `Clases/Clase 16 - Socializacion y evaluacion final de
 19. Autoevaluación y coevaluación: cómo evitar que sea un trámite (2/2)
 20. El cierre del curso: veinte minutos que no son un discurso (1/2)
 21. El cierre del curso: veinte minutos que no son un discurso (2/2)
-22. Taller de hoy: Informe final y autoevaluación
-23. Cómo se expone en 3 minutos
-24. Cierre del curso
-25. Cierre · Gracias · Introducción a la Ingeniería
+22. Plantilla del entregable: los 5 bloques
+23. Guion de la exposicion, con tiempos
+24. Taller de hoy: Informe final y autoevaluación
+25. Cómo se expone en 3 minutos
+26. Cierre del curso
+27. Cierre · Gracias · Introducción a la Ingeniería
 
 ## Plan de clase minuto a minuto (90 min)
 

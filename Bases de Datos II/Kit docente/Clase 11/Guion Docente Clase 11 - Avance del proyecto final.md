@@ -75,6 +75,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 19] Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado (2/2)** — 3 vinetas.
 
+**[Slide 20] La bateria de verificacion del avance** — 11 vinetas.
+
+**[Slide 21] Integridad y objetos de negocio, contados** — 14 vinetas.
+
 
 **Demo que usted debe poder repetir:** Recorrido de checklist + ejemplo demo de 3 min.
 
@@ -101,17 +105,19 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 17. La aritmetica del calendario, dicha en voz alta (3/3)
 18. Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado (1/2)
 19. Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado (2/2)
-20. Demo del dia
-21. Herramientas de hoy
-22. Del boceto a ExamLab (diagrama)
-23. Taller PI VetCare — contexto / por que importa
-24. Taller PI VetCare — objetivo y criterios
-25. Taller PI VetCare — escenario / datos de partida
-26. Taller PI VetCare — pasos guiados
-27. Taller PI VetCare — pistas (checklist vacio)
-28. Criterios de exito / entregable
-29. Para el PI esta semana
-30. Cierre · Clase 11
+20. La bateria de verificacion del avance
+21. Integridad y objetos de negocio, contados
+22. Demo del dia
+23. Herramientas de hoy
+24. Del boceto a ExamLab (diagrama)
+25. Taller PI VetCare — contexto / por que importa
+26. Taller PI VetCare — objetivo y criterios
+27. Taller PI VetCare — escenario / datos de partida
+28. Taller PI VetCare — pasos guiados
+29. Taller PI VetCare — pistas (checklist vacio)
+30. Criterios de exito / entregable
+31. Para el PI esta semana
+32. Cierre · Clase 11
 
 > Privado, no se proyecta: `Kit docente/Clase 11/Solucion Taller Clase 11 - VetCare.docx`
 
@@ -138,12 +144,12 @@ Ideas que tienen que quedar dichas:
 - Revision cruzada entre estudiantes: 10 min por persona.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 20][Slide 22]
+### 35-55 · Demo paso a paso · [Slide 22][Slide 24]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: Recorrido de checklist + ejemplo demo de 3 min.
 Herramienta: Live SQL / DB Fiddle + draw.io + ExamLab
 
-**Cierre la demo dentro de ExamLab** [Slide 22] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
+**Cierre la demo dentro de ExamLab** [Slide 24] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -154,7 +160,7 @@ Herramienta: Live SQL / DB Fiddle + draw.io + ExamLab
 📸 Salida esperada de la demo de la Clase 11 [[captura: cap01_demo.png | receta: 1) Abra Live SQL / DB Fiddle + draw.io + ExamLab y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 11/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda embebida aqui sola.]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 26]
+### 55-105 · Taller guiado = tarea del PI · [Slide 28]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -166,13 +172,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: Checklist firmada + enlace/ZIP avance (DDL+procs+ER)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 11/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 28]
-Repasar checklist del dia con [Slide 28] «Criterios de exito / entregable».
+### 105-115 · Criterios de exito + quiz corto · [Slide 30]
+Repasar checklist del dia con [Slide 30] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 11 - VetCare.docx`. Clave para usted: `Quiz Clase 11 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 30]
+### 115-120 · Cierre · [Slide 32]
 **Decir:** «Queda avanzado: Demo parcial + checklist de avance (hito formal PI). Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 30] slide de cierre. Dudas finales.
+Proyectar [Slide 32] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

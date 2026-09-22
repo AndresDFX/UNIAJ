@@ -37,6 +37,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **Precondiciones y postcondiciones son un contrato, no un adorno (2/2)** — 2 vinetas.
 
+**El diagrama de casos de uso en Mermaid** — 18 vinetas.
+
+**La especificacion textual del caso de uso** — 20 vinetas.
+
 
 **Demo que usted debe poder repetir:** El docente proyecta como un caso de uso mal escrito (Dar clic en guardar) se transforma en uno correcto (Registrar mascota) y luego llena en vivo, delante del grupo, la plantilla de especificacion de Buscar expediente.
 

@@ -94,10 +94,12 @@ Numeración real del deck `Clases/Clase 4 - Principios eticos en la Ingenieria/P
 20. Los cuatro casos: qué contar de cada uno y cuál es el momento de parar (4/4)
 21. La defensa que no sirve y las cinco preguntas que sí (1/2)
 22. La defensa que no sirve y las cinco preguntas que sí (2/2)
-23. Taller de hoy: Comité de ética
-24. Cómo se expone en 3 minutos
-25. Para la Clase 5
-26. Cierre · Nos vemos en la sesión 5
+23. Plantilla del entregable: los 5 bloques
+24. Guion de la exposicion, con tiempos
+25. Taller de hoy: Comité de ética
+26. Cómo se expone en 3 minutos
+27. Para la Clase 5
+28. Cierre · Nos vemos en la sesión 5
 
 ## Plan de clase minuto a minuto (90 min)
 

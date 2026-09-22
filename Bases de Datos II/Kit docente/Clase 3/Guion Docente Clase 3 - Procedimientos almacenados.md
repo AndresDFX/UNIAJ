@@ -145,6 +145,14 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 41] Preguntas frecuentes del grupo (3/3)** — 2 vinetas.
 
+**[Slide 42] El molde de un procedimiento en PL/pgSQL** — 18 vinetas.
+
+**[Slide 43] RAISE EXCEPTION: la validacion que aborta y deshace** — 9 vinetas.
+
+**[Slide 44] La bateria de pruebas: un bloque DO por caso** — 12 vinetas.
+
+**[Slide 45] PROCEDURE o FUNCTION: la diferencia es donde se puede usar** — 13 vinetas.
+
 
 **Demo que usted debe poder repetir:** sp_agendar_cita en PL/pgSQL dentro de ExamLab: las 3 validaciones con RAISE EXCEPTION y la bateria de bloques DO que las prueba.
 
@@ -193,22 +201,26 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 39. Preguntas frecuentes del grupo (1/3)
 40. Preguntas frecuentes del grupo (2/3)
 41. Preguntas frecuentes del grupo (3/3)
-42. Por que un procedimiento y no SQL en cada pantalla
-43. El molde de PL/pgSQL y la validacion que aborta
+42. El molde de un procedimiento en PL/pgSQL
+43. RAISE EXCEPTION: la validacion que aborta y deshace
 44. La bateria de pruebas: un bloque DO por caso
-45. La columna paso y la trampa de WHEN OTHERS
-46. El contrato del procedimiento: los 6 bloques que consume la app
-47. PROCEDURE o FUNCTION: cual se puede usar dentro de un SELECT
-48. Demo del dia
-49. Herramientas de hoy
-50. Taller PI VetCare — contexto / por que importa
-51. Taller PI VetCare — objetivo y criterios
-52. Taller PI VetCare — escenario / datos de partida
-53. Taller PI VetCare — pasos guiados
-54. Taller PI VetCare — pistas (checklist vacio)
-55. Criterios de exito / entregable
-56. Para el PI esta semana
-57. Cierre · Clase 3
+45. PROCEDURE o FUNCTION: la diferencia es donde se puede usar
+46. Por que un procedimiento y no SQL en cada pantalla
+47. El molde de PL/pgSQL y la validacion que aborta
+48. La bateria de pruebas: un bloque DO por caso
+49. La columna paso y la trampa de WHEN OTHERS
+50. El contrato del procedimiento: los 6 bloques que consume la app
+51. PROCEDURE o FUNCTION: cual se puede usar dentro de un SELECT
+52. Demo del dia
+53. Herramientas de hoy
+54. Taller PI VetCare — contexto / por que importa
+55. Taller PI VetCare — objetivo y criterios
+56. Taller PI VetCare — escenario / datos de partida
+57. Taller PI VetCare — pasos guiados
+58. Taller PI VetCare — pistas (checklist vacio)
+59. Criterios de exito / entregable
+60. Para el PI esta semana
+61. Cierre · Clase 3
 
 > Privado, no se proyecta: `Kit docente/Clase 3/Solucion Taller Clase 3 - VetCare.docx`
 
@@ -240,14 +252,14 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: escribir el proc sin validar nada (solo el INSERT) y llamarlo 'logica de negocio' — un proc sin reglas de validacion es solo una consulta con nombre. El segundo error es dictar el molde de Oracle porque es el que uno recuerda: en ExamLab ese codigo no compila, y el estudiante pierde los 35 puntos de la pregunta 1 por sintaxis, no por no entender el tema.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 48]
+### 35-55 · Demo paso a paso · [Slide 52]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: sp_agendar_cita en PL/pgSQL dentro de ExamLab: las 3 validaciones con RAISE EXCEPTION y la bateria de bloques DO que las prueba.
 Herramienta: ExamLab (PostgreSQL) + Google Docs
 📸 Bateria de pruebas de sp_agendar_cita: P1 OK y P2 rechazado por mascota inactiva [[captura: salida-proc-ok-y-error.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 53]
+### 55-105 · Taller guiado = tarea del PI · [Slide 57]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -260,13 +272,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: 2 procedimientos en PL/pgSQL corriendo en ExamLab + bateria de pruebas con su tabla resultado_prueba + contrato del proc (6 bloques)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 3/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 55]
-Repasar checklist del dia con [Slide 55] «Criterios de exito / entregable».
+### 105-115 · Criterios de exito + quiz corto · [Slide 59]
+Repasar checklist del dia con [Slide 59] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 3 - VetCare.docx`. Clave para usted: `Quiz Clase 3 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 57]
+### 115-120 · Cierre · [Slide 61]
 **Decir:** «Queda avanzado: >=1 procedimiento de negocio (agendar cita / registrar consulta). Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 57] slide de cierre. Dudas finales.
+Proyectar [Slide 61] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

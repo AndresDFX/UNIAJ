@@ -36,6 +36,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **El diagrama que dibujamos hoy no se queda en la clase: es la pieza que...** — 5 vinetas.
   - Por eso el diagrama debe estar limpio: nombres en singular, sin atributos repetidos en dos clases, sin lineas sueltas y sin cajas que no correspondan a ningun requisito.
 
+**El diagrama de clases en Mermaid: la sintaxis completa** — 19 vinetas.
+
+**Lo que NO es una clase del dominio** — 12 vinetas.
+
 
 **Demo que usted debe poder repetir:** El docente dibuja en vivo Dueno, Mascota y Cita en draw.io y borra tres atributos mal ubicados explicando a que clase pertenecen de verdad.
 

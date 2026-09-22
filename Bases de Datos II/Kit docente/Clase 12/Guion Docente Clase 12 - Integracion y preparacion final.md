@@ -85,6 +85,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 22] Cambiar el esquema sin romper la aplicacion... — sintaxis** — 1 vinetas.
 
+**[Slide 23] El contrato de la capa de API: siempre parametros ligados** — 13 vinetas.
+
+**[Slide 24] La inyeccion de SQL, explicada con las dos versiones** — 11 vinetas.
+
 
 **Demo que usted debe poder repetir:** Plantilla contrato sp_agendar_cita + storyboard 6 slides.
 
@@ -114,18 +118,20 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 20. Cambiar el esquema sin romper la aplicacion que ya corre (1/2)
 21. Cambiar el esquema sin romper la aplicacion que ya corre (2/2)
 22. Cambiar el esquema sin romper la aplicacion... — sintaxis
-23. El contrato que la app consume (no SQL suelto)
-24. Demo del dia
-25. Herramientas de hoy
-26. Del boceto a ExamLab (diagrama)
-27. Taller PI VetCare — contexto / por que importa
-28. Taller PI VetCare — objetivo y criterios
-29. Taller PI VetCare — escenario / datos de partida
-30. Taller PI VetCare — pasos guiados
-31. Taller PI VetCare — pistas (checklist vacio)
-32. Criterios de exito / entregable
-33. Para el PI esta semana
-34. Cierre · Clase 12
+23. El contrato de la capa de API: siempre parametros ligados
+24. La inyeccion de SQL, explicada con las dos versiones
+25. El contrato que la app consume (no SQL suelto)
+26. Demo del dia
+27. Herramientas de hoy
+28. Del boceto a ExamLab (diagrama)
+29. Taller PI VetCare — contexto / por que importa
+30. Taller PI VetCare — objetivo y criterios
+31. Taller PI VetCare — escenario / datos de partida
+32. Taller PI VetCare — pasos guiados
+33. Taller PI VetCare — pistas (checklist vacio)
+34. Criterios de exito / entregable
+35. Para el PI esta semana
+36. Cierre · Clase 12
 
 > Privado, no se proyecta: `Kit docente/Clase 12/Solucion Taller Clase 12 - VetCare.docx`
 
@@ -155,12 +161,12 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: dejar que la 'integracion' quede como una idea abstracta sin contrato escrito — el entregable de hoy exige documentar minimo 3 operaciones con su firma completa, no solo mencionarlas de palabra.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 24][Slide 26]
+### 35-55 · Demo paso a paso · [Slide 26][Slide 28]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: Plantilla contrato sp_agendar_cita + storyboard 6 slides.
 Herramienta: Google Docs + Live SQL + Excalidraw
 
-**Cierre la demo dentro de ExamLab** [Slide 26] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
+**Cierre la demo dentro de ExamLab** [Slide 28] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -171,7 +177,7 @@ Herramienta: Google Docs + Live SQL + Excalidraw
 📸 Salida esperada de la demo de la Clase 12 [[captura: cap01_demo.png | receta: 1) Abra Google Docs + Live SQL + Excalidraw y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 12/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda embebida aqui sola.]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 30]
+### 55-105 · Taller guiado = tarea del PI · [Slide 32]
 **Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
 Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
 Actividades:
@@ -183,13 +189,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: Contrato app<->BD + outline de slides de sustentacion (5-8 min)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 12/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 32]
-Repasar checklist del dia con [Slide 32] «Criterios de exito / entregable».
+### 105-115 · Criterios de exito + quiz corto · [Slide 34]
+Repasar checklist del dia con [Slide 34] «Criterios de exito / entregable».
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 12 - VetCare.docx`. Clave para usted: `Quiz Clase 12 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 34]
+### 115-120 · Cierre · [Slide 36]
 **Decir:** «Queda avanzado: Contrato integracion + preparacion de entrega/sustentacion. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 34] slide de cierre. Dudas finales.
+Proyectar [Slide 36] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

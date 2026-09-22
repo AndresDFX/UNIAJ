@@ -91,6 +91,14 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 26] Preguntas frecuentes y cierre conceptual () (4/4)** — 2 vinetas.
 
+**[Slide 27] El Dockerfile minimo, capa por capa** — 15 vinetas.
+
+**[Slide 28] El ciclo completo: construir, ejecutar, verificar** — 12 vinetas.
+
+**[Slide 29] Imagen, contenedor y capas: los comandos que lo demuestran** — 12 vinetas.
+
+**[Slide 30] Limpiar, y la prueba de que el contenedor no guarda estado** — 11 vinetas.
+
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 3 - Virtualizacion y contenedores/Presentacion.pptx` (solo tema
@@ -122,18 +130,22 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 24. Preguntas frecuentes y cierre conceptual () (2/4)
 25. Preguntas frecuentes y cierre conceptual () (3/4)
 26. Preguntas frecuentes y cierre conceptual () (4/4)
-27. Máquinas virtuales vs. contenedores
-28. Maquina virtual vs contenedor — que cambia de verdad
-29. Dockerfile minimo del stub CloudLite
-30. Herramientas de hoy
-31. PI CloudLite — entregable de hoy
-32. Manos a la obra (paso a paso)
-33. Para continuar (PI)
-34. Clase 3 · PI en movimiento
+27. El Dockerfile minimo, capa por capa
+28. El ciclo completo: construir, ejecutar, verificar
+29. Imagen, contenedor y capas: los comandos que lo demuestran
+30. Limpiar, y la prueba de que el contenedor no guarda estado
+31. Máquinas virtuales vs. contenedores
+32. Maquina virtual vs contenedor — que cambia de verdad
+33. Dockerfile minimo del stub CloudLite
+34. Herramientas de hoy
+35. PI CloudLite — entregable de hoy
+36. Manos a la obra (paso a paso)
+37. Para continuar (PI)
+38. Clase 3 · PI en movimiento
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 31]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 35]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Contenerizar un stub del servicio principal de CloudLite**.
 Entregable concreto: Dockerfile del stub + bitácora de 5 comandos con la salida real + captura del lab.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -154,7 +166,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 29]
+### 40–55 · Demo en vivo · [Slide 33]
 Herramienta del día: **Killercoda · alterna si no carga: LabEx Docker Playground**.
 **Demo que usted debe poder repetir:** Construir, correr y verificar el stub en Killercoda — los 5 comandos de la bitacora
 
@@ -174,7 +186,7 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 📸 Evidencia del entregable: el contenedor corriendo (`docker ps`) [[captura: salida-docker-ps.png]]
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 32]
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 36]
 Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
@@ -187,7 +199,7 @@ Aplica el quiz corto de `Kit docente/Clase 3/Quiz Clase 3 - Virtualizacion y con
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 34]
+### 115–120 · Cierre · [Slide 38]
 Di: «Queda avanzado: Contenerizar un stub del servicio principal de CloudLite.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
