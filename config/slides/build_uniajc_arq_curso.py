@@ -124,7 +124,12 @@ def build():
             "**Sesión 0 (hoy)** = encuadre del curso + evaluación + **socialización del Proyecto Integrador CloudLite** + herramientas.",
             "**Clase 1** = diagnóstico + arranque del primer tema (introducción a arquitecturas cloud) — mismo bloque de hoy.",
             "De la sesión 2 en adelante, cada sesión sigue la misma estructura: **Teoría Core breve** → **Taller PI CloudLite** → **cierre**. Modalidad: **todas las sesiones son virtuales síncronas por Meet**, incluidos la sesión 1 y los parciales (**5 / 9 / 12**); festivos = **clase autónoma**. Dos sesiones son **dobles** (dos temas en un bloque) y la **sesión 13 (16/11)** es de **sustentaciones**.",
-            "Herramientas **gratis + navegador** (sin cloud de pago ni Docker Desktop). Talleres y quices/parciales se entregan/presentan en @@ExamLab@@ (https://uniaj.examlab.workers.dev/) — no es la plataforma oficial de la UNIAJC, la usamos solo para esto.",
+            # La plataforma no se nombra ni se pone su direccion: el estudiante ya
+            # tiene ambas cosas en el correo de bienvenida, junto con su usuario y
+            # su clave temporal. Lo que la lamina tiene que dejar claro es QUE se
+            # entrega ahi y que no es la plataforma oficial de la universidad.
+            # Mismo criterio que las 12 clases (build_uniajc_arq_clases_batch).
+            "Herramientas **gratis + navegador** (sin cloud de pago ni Docker Desktop). Talleres y quices/parciales se entregan y se presentan en **la plataforma del curso** — no es la plataforma oficial de la UNIAJC, la usamos solo para esto; la dirección y tus datos de acceso llegan en el correo de bienvenida.",
             "Hilo conductor de todo el semestre: **Proyecto Integrador CloudLite**.",
         ],
         idx=6,
@@ -178,7 +183,7 @@ def build():
             {"name": "Excalidraw", "logo": "excalidraw.png", "note": "Bocetos de taller"},
             {"name": "Killercoda", "logo": "killercoda.png", "note": "Lab contenedores · 1 h"},
             {"name": "GitHub Actions", "logo": "github.png", "note": "CI/CD conceptual"},
-            {"name": "ExamLab", "logo": "examlab.png", "note": "Talleres + quices/parciales"},
+            {"name": "la plataforma del curso", "logo": "examlab.png", "note": "Talleres + quices/parciales"},
         ],
         title="Herramientas del curso",
         sub="Gratis · navegador / free tier · Floci en evaluación (piloto opcional)",

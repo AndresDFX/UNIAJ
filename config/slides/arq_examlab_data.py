@@ -335,7 +335,7 @@ Clase 15 va a pedir.
                   'Paso 1: elija en la pregunta 8 cual servicio de su C4 Context va a contenedorizar y justifiquelo en 2 o 3 frases; escriba a continuacion el Dockerfile completo con la imagen base ligera y con etiqueta fija, el COPY de dependencias antes del COPY del codigo, el EXPOSE y el CMD, verificando que no copie el .env ni ninguna clave.',
                   'Paso 2: explique en la pregunta 9, sobre su propio Dockerfile, la diferencia entre imagen y contenedor, que instrucciones de SU archivo crean capa, por que el orden aprovecha el cache y en que se diferencia su contenedor de una maquina virtual; verifique que no escribio que un contenedor es una VM ligera.',
                   'Paso 3: describa en la pregunta 10 el ciclo completo con los comandos exactos de build y de run, explicando que lado del mapeo de puertos es el anfitrion y que lado el contenedor, y cierre con el contrato del endpoint de salud (ruta, codigo de estado y cuerpo); verifique que el puerto sea el mismo que puso en el EXPOSE.',
-                  'Paso 4: ejecute de verdad el ciclo en Killercoda y reporte en la pregunta 11 la tabla de 5 filas con la salida real pegada textualmente, la descripcion de la captura con prompt, docker ps y hora del sistema, y una fila de incidente; recuerde que la sesion caduca a 1 hora, asi que capture la evidencia ANTES de cerrarla.',
+                  'Paso 4: complete en la pregunta 11 la tabla de 5 filas con el fragmento CONCRETO que espera leer en cada comando y con el sintoma que delataria su fallo, y desarrolle abajo un caso que falla sobre su propio Dockerfile, con el comando de diagnostico y la correccion; verifique que no escribio «sale bien» en ninguna fila, porque es justo lo que la pregunta no acepta.',
               ],
      'preguntas': [
                       {
@@ -432,14 +432,10 @@ Explique el ciclo completo de su servicio, con los **comandos exactos** que usar
                           'n_global': 11,
                           'tipo': 'abierta',
                           'puntos': 6.0,
-                          'enunciado': '''## Bitacora del laboratorio: la evidencia de que corrio
+                          'enunciado': '''## Bitacora del ciclo: que espera ver, y que hace cuando no lo ve
 
-Ejecute de verdad el ciclo en **Killercoda** (killercoda.com, cuenta gratuita, escenario
-Ubuntu) y reporte lo que paso. Si Killercoda no carga, la alterna es **LabEx Docker
-Playground**, que en su plan gratuito da solo **3 sesiones al dia**.
-
-Entregue una tabla de **3 columnas** (`Comando | Que esperaba | Que salio realmente`) con
-**una fila por comando**, en este orden:
+Entregue una tabla de **3 columnas** (`Comando | Que espero ver | Como se que salio mal`)
+con **una fila por comando**, en este orden:
 
 1. el build de su imagen
 2. `docker images` filtrado por su imagen
@@ -447,26 +443,29 @@ Entregue una tabla de **3 columnas** (`Comando | Que esperaba | Que salio realme
 4. `docker ps`
 5. la peticion a su endpoint de salud
 
-En la columna de la derecha pegue el **fragmento textual** de la salida real: el numero de
-capas, el identificador corto del contenedor, el `200` de la respuesta. No la parafrasee.
+En la columna del medio escriba **el fragmento concreto** que espera leer, no una
+descripcion vaga: cuantas capas, que identificador corto, que `200`. «Sale bien» no es una
+respuesta. En la tercera columna, **el sintoma** que veria si ese comando falla: el mensaje,
+el codigo o la ausencia que lo delata.
 
 Debajo de la tabla:
 
-- **Describa la captura** que adjunta. Debe mostrarse al mismo tiempo el prompt del
-  laboratorio, la salida de `docker ps` y la hora del sistema.
-- **Una fila de incidente**: un comando que le fallo y como lo resolvio. Si nada fallo,
-  escriba el que estuvo a punto de fallar y por que no fallo.
+- **Un caso que falla, desarrollado.** Elija uno de los cinco comandos, describa una causa
+  realista por la que fallaria **en su propio Dockerfile** y diga con que comando lo
+  diagnosticaria y como lo corregiria.
+- **La trampa del puerto.** Diga que vera en `docker ps` si publico mal el mapeo, y por que
+  el endpoint de salud responderia distinto a lo que espera.
 
-> **La sesion del laboratorio caduca a 1 hora.** El Dockerfile se escribe en la carpeta de
-> su PI y se **pega** en el laboratorio, nunca al contrario, y la evidencia se captura
-> **antes** de cerrar. Perder el trabajo por no haber guardado es el incidente mas comun del
-> dia, y no es excusa aceptable para no entregar esta pregunta.
+> **No hace falta ejecutarlo para responder.** Esta pregunta evalua que sepa leer la salida
+> de cada comando y reconocer el sintoma cuando algo se rompe, que es lo que despues sirve
+> en cualquier maquina. Si quiere comprobarlo —y vale la pena—, hay laboratorios de
+> contenedores gratuitos en el navegador; lo que ahi vea no cambia la nota.
 
 > La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
-                          'rubrica': '2.5 pts las cinco filas con la salida real pegada textualmente; una salida parafraseada («salio bien») no suma. 1.5 pts la descripcion de la captura con los tres elementos exigidos (prompt, docker ps y hora del sistema). 1 pt la fila de incidente con el problema y como se resolvio. 1 pt coherencia: el nombre de la imagen, la etiqueta y el puerto son los mismos de las preguntas 8 y 10. Es la pregunta que demuestra que el contenedor existio de verdad y no solo en papel.',
+                          'rubrica': '2.5 pts las cinco filas con el fragmento CONCRETO que se espera leer (numero de capas, identificador corto, el 200); «sale bien» o una parafrasis no suma. 1.5 pts la tercera columna con el sintoma verificable de cada fallo, no un «da error». 1 pt el caso desarrollado, atado a SU propio Dockerfile, con el comando de diagnostico y la correccion. 1 pt coherencia: el nombre de la imagen, la etiqueta y el puerto son los mismos de las preguntas 8 y 10. Se responde escribiendo: no se exige haber ejecutado nada, y una captura de laboratorio no suma puntos ni los reemplaza.',
                       },
                   ],
-     'resumen': '''Las preguntas 8 a 11 de la actividad del Corte 1. El estudiante elige el servicio a contenedorizar, escribe su Dockerfile, explica capas y cache sobre su propio archivo, documenta el ciclo con el contrato de salud y entrega la bitacora con la evidencia real del contenedor corriendo.''',
+     'resumen': '''Las preguntas 8 a 11 de la actividad del Corte 1. El estudiante elige el servicio a contenedorizar, escribe su Dockerfile, explica capas y cache sobre su propio archivo, documenta el ciclo con el contrato de salud y entrega la bitacora de lo que espera ver en cada comando y del sintoma con el que reconoceria un fallo.''',
      'titulo': '''Actividad del Corte 1 (preguntas 8 a 11) - Contenedor del stub de CloudLite'''},
  4: {'pasos': [
                   'Paso 1: decida en la pregunta 12 si su CloudLite es un monolito modular o microservicios, con los dos criterios aplicados a su caso (tamano del equipo con numero y plazo, y que partes cambian juntas) y lo que gana y pierde; verifique que no escribio «un poco de los dos», porque eso vale cero.',

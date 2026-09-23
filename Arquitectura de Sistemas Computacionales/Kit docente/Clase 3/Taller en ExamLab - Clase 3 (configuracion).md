@@ -11,7 +11,7 @@
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
 > campo para copiar y pegar, incluidos el SQL de partida y el codigo base.
 
-**Que produce el estudiante:** Las preguntas 8 a 11 de la actividad del Corte 1. El estudiante elige el servicio a contenedorizar, escribe su Dockerfile, explica capas y cache sobre su propio archivo, documenta el ciclo con el contrato de salud y entrega la bitacora con la evidencia real del contenedor corriendo.
+**Que produce el estudiante:** Las preguntas 8 a 11 de la actividad del Corte 1. El estudiante elige el servicio a contenedorizar, escribe su Dockerfile, explica capas y cache sobre su propio archivo, documenta el ciclo con el contrato de salud y entrega la bitacora de lo que espera ver en cada comando y del sintoma con el que reconoceria un fallo.
 
 ---
 
@@ -132,14 +132,10 @@ Explique el ciclo completo de su servicio, con los **comandos exactos** que usar
 
 **Enunciado (campo Contenido):**
 
-## Bitacora del laboratorio: la evidencia de que corrio
+## Bitacora del ciclo: que espera ver, y que hace cuando no lo ve
 
-Ejecute de verdad el ciclo en **Killercoda** (killercoda.com, cuenta gratuita, escenario
-Ubuntu) y reporte lo que paso. Si Killercoda no carga, la alterna es **LabEx Docker
-Playground**, que en su plan gratuito da solo **3 sesiones al dia**.
-
-Entregue una tabla de **3 columnas** (`Comando | Que esperaba | Que salio realmente`) con
-**una fila por comando**, en este orden:
+Entregue una tabla de **3 columnas** (`Comando | Que espero ver | Como se que salio mal`)
+con **una fila por comando**, en este orden:
 
 1. el build de su imagen
 2. `docker images` filtrado por su imagen
@@ -147,26 +143,29 @@ Entregue una tabla de **3 columnas** (`Comando | Que esperaba | Que salio realme
 4. `docker ps`
 5. la peticion a su endpoint de salud
 
-En la columna de la derecha pegue el **fragmento textual** de la salida real: el numero de
-capas, el identificador corto del contenedor, el `200` de la respuesta. No la parafrasee.
+En la columna del medio escriba **el fragmento concreto** que espera leer, no una
+descripcion vaga: cuantas capas, que identificador corto, que `200`. «Sale bien» no es una
+respuesta. En la tercera columna, **el sintoma** que veria si ese comando falla: el mensaje,
+el codigo o la ausencia que lo delata.
 
 Debajo de la tabla:
 
-- **Describa la captura** que adjunta. Debe mostrarse al mismo tiempo el prompt del
-  laboratorio, la salida de `docker ps` y la hora del sistema.
-- **Una fila de incidente**: un comando que le fallo y como lo resolvio. Si nada fallo,
-  escriba el que estuvo a punto de fallar y por que no fallo.
+- **Un caso que falla, desarrollado.** Elija uno de los cinco comandos, describa una causa
+  realista por la que fallaria **en su propio Dockerfile** y diga con que comando lo
+  diagnosticaria y como lo corregiria.
+- **La trampa del puerto.** Diga que vera en `docker ps` si publico mal el mapeo, y por que
+  el endpoint de salud responderia distinto a lo que espera.
 
-> **La sesion del laboratorio caduca a 1 hora.** El Dockerfile se escribe en la carpeta de
-> su PI y se **pega** en el laboratorio, nunca al contrario, y la evidencia se captura
-> **antes** de cerrar. Perder el trabajo por no haber guardado es el incidente mas comun del
-> dia, y no es excusa aceptable para no entregar esta pregunta.
+> **No hace falta ejecutarlo para responder.** Esta pregunta evalua que sepa leer la salida
+> de cada comando y reconocer el sintoma cuando algo se rompe, que es lo que despues sirve
+> en cualquier maquina. Si quiere comprobarlo —y vale la pena—, hay laboratorios de
+> contenedores gratuitos en el navegador; lo que ahi vea no cambia la nota.
 
 > La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
-2.5 pts las cinco filas con la salida real pegada textualmente; una salida parafraseada («salio bien») no suma. 1.5 pts la descripcion de la captura con los tres elementos exigidos (prompt, docker ps y hora del sistema). 1 pt la fila de incidente con el problema y como se resolvio. 1 pt coherencia: el nombre de la imagen, la etiqueta y el puerto son los mismos de las preguntas 8 y 10. Es la pregunta que demuestra que el contenedor existio de verdad y no solo en papel.
+2.5 pts las cinco filas con el fragmento CONCRETO que se espera leer (numero de capas, identificador corto, el 200); «sale bien» o una parafrasis no suma. 1.5 pts la tercera columna con el sintoma verificable de cada fallo, no un «da error». 1 pt el caso desarrollado, atado a SU propio Dockerfile, con el comando de diagnostico y la correccion. 1 pt coherencia: el nombre de la imagen, la etiqueta y el puerto son los mismos de las preguntas 8 y 10. Se responde escribiendo: no se exige haber ejecutado nada, y una captura de laboratorio no suma puntos ni los reemplaza.
 
 ---
 
