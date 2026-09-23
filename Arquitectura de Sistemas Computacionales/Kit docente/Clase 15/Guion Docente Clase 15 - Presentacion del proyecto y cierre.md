@@ -15,9 +15,9 @@
 ## Hoy avanzamos el PI en…
 **Sustentar en vivo el PI CloudLite App y entregar el paquete final**
 
-**Entregable concreto:** Paquete final en ExamLab (módulo Proyectos) + pitch de 5–8 min sustentado hoy en clase + Q&A
+**Entregable concreto:** Paquete final en la plataforma del curso (módulo Proyectos) + pitch de 5–8 min sustentado hoy en clase + Q&A
 
-**Herramienta:** Google Docs/Slides · diagramas · capturas lab
+**Herramienta:** Navegador · editores de texto y de diagramas del curso
 
 ## Fundamento teórico para el docente
 ## Apoyo por diapositiva
@@ -100,7 +100,7 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 21. El cierre del curso: conectar lo hecho con la practica profesional (1/2)
 22. El cierre del curso: conectar lo hecho con la practica profesional (2/2)
 23. Herramientas de hoy
-24. Del boceto a ExamLab (diagrama)
+24. Del boceto a la plataforma del curso (diagrama)
 25. PI CloudLite — entregable de hoy
 26. Sustentación (paso a paso)
 27. Para continuar (PI)
@@ -120,7 +120,7 @@ sustentar: anúncialo por escrito una semana antes para que nadie asuma que no h
 1. Publica el orden y la duración exacta del turno: **6 min de pitch + 2–4 min de Q&A**.
    Con 12 sustentaciones eso es ~110 min; si el grupo es más grande, baja a 5 + 2 y avísalo
    antes, nunca el mismo día.
-2. Exige el paquete subido a ExamLab (módulo Proyectos) **antes** del bloque: quien llega a
+2. Exige el paquete subido a la plataforma del curso (módulo Proyectos) **antes** del bloque: quien llega a
    subir archivos consume el tiempo de otro. Verifica tú mismo que los enlaces abren.
 3. Ten a mano la rúbrica impresa por estudiante y la lista de preguntas de comprobación de
    abajo, para no improvisar el Q&A ni preguntar lo mismo a todos.
@@ -175,10 +175,10 @@ excepción en la regla del semestre siguiente y elimina el Q&A, que es la mitad 
 
 ## Actividad / taller (detalle)
 1. Paso 1: armen el paquete final y llenen el indice de 8 filas con entregable, nombre de archivo, ruta dentro del paquete y estado, verificando que los 8 archivos abran desde una maquina distinta a la del autor y que ningun nombre de archivo tenga espacios ni tildes que rompan la descarga.
-2. Paso 2: escriban en ExamLab la lamina unica de arquitectura en Mermaid con las 3 zonas, los 5 contenedores, el edge, la cadena de entrega y los sistemas externos, verificando al renderizar que sea legible en una sola pantalla sin desplazamiento y que use los mismos nombres canonicos del paquete, porque esta es la lamina que van a proyectar en la sustentacion.
+2. Paso 2: escriban en la plataforma del curso la lamina unica de arquitectura en Mermaid con las 3 zonas, los 5 contenedores, el edge, la cadena de entrega y los sistemas externos, verificando al renderizar que sea legible en una sola pantalla sin desplazamiento y que use los mismos nombres canonicos del paquete, porque esta es la lamina que van a proyectar en la sustentacion.
 3. Paso 3: redacten el Q and A escrito con 3 preguntas duras que el jurado podria hacer, una de decision de arquitectura, una de seguridad y una de escala o rendimiento, cada una con respuesta de maximo 4 lineas que cite la evidencia del paquete, verificando que ninguna respuesta sea no lo alcanzamos a hacer sin nombrar la decision consciente que tomaron.
 4. Paso 4: ensayen el pitch con cronometro ANTES de la sesion y registren la tabla de tiempos reales por seccion con quien hablo en cada una, verificando que el tiempo total quede entre 5 y 8 minutos; la sustentacion se hace EN VIVO en la sesion de clase, con preguntas del docente al cierre, no con un video grabado.
-5. Paso 5: escriban la reflexion de media pagina sobre el trade-off mas difícil y suban el paquete final completo mas las 5 preguntas a ExamLab (modulo Proyectos) ANTES de su turno de sustentacion, verificando que el informe, los diagramas, la evidencia del lab, el ci.yml y la presentacion esten los cinco dentro del mismo paquete.
+5. Paso 5: escriban la reflexion de media pagina sobre el trade-off mas difícil y suban el paquete final completo mas las 5 preguntas a la plataforma del curso (modulo Proyectos) ANTES de su turno de sustentacion, verificando que el informe, los diagramas, la evidencia del lab, el ci.yml y la presentacion esten los cinco dentro del mismo paquete.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).
@@ -205,10 +205,10 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 15/Quiz Clase 15 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase15.png | receta: 1) Abre Google Docs/Slides · diagramas · capturas lab y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 15/Capturas/demo-clase15.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase15.png | receta: 1) Abre Navegador · editores de texto y de diagramas del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 15/Capturas/demo-clase15.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase15.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 15/Capturas/evidencia-clase15.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
+- Plataforma de entrega: la plataforma del curso (la plataforma del curso). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).

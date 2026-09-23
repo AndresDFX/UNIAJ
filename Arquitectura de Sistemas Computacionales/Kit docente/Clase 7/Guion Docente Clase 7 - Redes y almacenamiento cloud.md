@@ -15,9 +15,9 @@
 ## Hoy avanzamos el PI en…
 **Diagrama de despliegue: red, zonas, almacenamiento**
 
-**Entregable concreto:** Diagrama Deployment en Mermaid dentro de ExamLab (3 zonas + puertos) + tipo de almacenamiento por componente
+**Entregable concreto:** Diagrama Deployment en Mermaid en la plataforma del curso (3 zonas + puertos) + tipo de almacenamiento por componente
 
-**Herramienta:** ExamLab (Mermaid) · boceto en draw.io o Excalidraw
+**Herramienta:** Navegador · editor de diagramas del curso (Mermaid) · boceto libre opcional
 
 ## Fundamento teórico para el docente
 ## Apoyo por diapositiva
@@ -131,9 +131,9 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 30. El diagrama de Despliegue: donde corre cada cosa
 31. Que tipo de almacenamiento pide cada componente
 32. Ejemplo de diagrama de despliegue (Deployment)
-33. El Despliegue en Mermaid: el molde que ExamLab renderiza
+33. El Despliegue en Mermaid: el molde que la plataforma del curso renderiza
 34. Herramientas de hoy
-35. Del boceto a ExamLab (diagrama)
+35. Del boceto a la plataforma del curso (diagrama)
 36. PI CloudLite — entregable de hoy
 37. Manos a la obra (paso a paso)
 38. Para continuar (PI)
@@ -143,7 +143,7 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 
 ### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 36]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Diagrama de despliegue: red, zonas, almacenamiento**.
-Entregable concreto: Diagrama Deployment en Mermaid dentro de ExamLab (3 zonas + puertos) + tipo de almacenamiento por componente.
+Entregable concreto: Diagrama Deployment en Mermaid en la plataforma del curso (3 zonas + puertos) + tipo de almacenamiento por componente.
 Teoría breve y luego taller; no es un lab suelto.»
 Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
 Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
@@ -162,17 +162,17 @@ Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su info
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
 ### 40–55 · Demo en vivo · [Slide 35]
-Herramienta del día: **ExamLab (Mermaid) · boceto en draw.io o Excalidraw**.
+Herramienta del día: **Navegador · editor de diagramas del curso (Mermaid) · boceto libre opcional**.
 **Demo que usted debe poder repetir:** Del boceto de tres zonas al Mermaid que se califica
 
 1. En draw.io o Excalidraw dibuje TRES rectangulos, rotulados «Zona publica», «Zona privada» y «Zona de datos».
 2. Reparta las cajas de CloudLite: `Edge / balanceador` y `App web` en la publica, `API CloudLite` en la privada, `Base de datos` en la de datos — nunca en la publica. El `Cliente / navegador` va FUERA de las tres zonas: es el actor, no algo que usted despliegue, y esa es una de las dos filas sin par de la pregunta 6.
 3. Etiquete cada flecha con su puerto (443 al edge, 8080 a la API, 5432 a la base de datos) y saque una flecha aparte a la `Pasarela de pagos` externa: ahi esta la frontera de confianza, y son 2 de los 14 pts.
 4. Pregunte: «si un atacante llega desde internet, con que se topa primero?» — eso es superficie de exposicion.
-5. Traduzca ese boceto a Mermaid (el codigo de referencia esta abajo), peguelo en la pregunta 4 de ExamLab y proyectelo RENDERIZADO: 2 de los 14 pts son que renderice sin error.
+5. Traduzca ese boceto a Mermaid (el codigo de referencia esta abajo), peguelo en la pregunta 4 de la actividad y proyectelo RENDERIZADO: 2 de los 14 pts son que renderice sin error.
 6. Verifique en voz alta que los nombres de los servicios son LOS MISMOS del C4 Containers de la Clase 4.
 
-**Referencia del resultado:** Despliegue en tres zonas de CloudLite (el resultado de la demo). Si la red falla o prefiere no dibujar a mano, pegue este codigo en la pregunta de diagrama de ExamLab y proyectelo renderizado; tambien sirve para volver a generar la imagen en cualquier editor que soporte Mermaid.
+**Referencia del resultado:** Despliegue en tres zonas de CloudLite (el resultado de la demo). Si la red falla o prefiere no dibujar a mano, pegue este codigo en la pregunta de diagrama de la actividad y proyectelo renderizado; tambien sirve para volver a generar la imagen en cualquier editor que soporte Mermaid.
 
 ```mermaid
 flowchart LR
@@ -198,13 +198,13 @@ flowchart LR
 Narra los clics en voz alta. Si falla la red, proyecta la [Slide 33], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
-**Cierra la demo dentro de ExamLab** [Slide 35] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
+**Cierra la demo en la plataforma del curso** [Slide 35] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
 - **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
 - **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `flowchart`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
-- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
+- **3. Pega y renderiza en la plataforma del curso** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de la plataforma del curso.
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
 
@@ -224,7 +224,7 @@ Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección
 ### 115–120 · Cierre · [Slide 39]
 Di: «Queda avanzado: Diagrama de despliegue: red, zonas, almacenamiento.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
-Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
+Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
@@ -258,10 +258,10 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 7/Quiz Clase 7 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase07.png | receta: 1) Abre ExamLab (Mermaid) · boceto en draw.io o Excalidraw y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 7/Capturas/demo-clase07.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase07.png | receta: 1) Abre Navegador · editor de diagramas del curso (Mermaid) · boceto libre opcional y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 7/Capturas/demo-clase07.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase07.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 7/Capturas/evidencia-clase07.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
+- Plataforma de entrega: la plataforma del curso (la plataforma del curso). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).

@@ -5,7 +5,7 @@ El guion embebe automaticamente cualquier PNG que exista aqui con el nombre
 esperado. Mientras no exista, el .docx imprime la receta en su lugar.
 
 Pendiente: demo-clase12.png — la herramienta del dia en uso
-  1. Abrir Google Docs · draw.io · (opcional) lab contenedor.
+  1. Abrir Navegador · editores de diagramas y de texto del curso.
   2. Repetir la demo: Definir un objetivo de rendimiento que si se puede verificar.
      1. Escriba la frase mala: «la app debe ser rapida». Pregunte al grupo como la comprobarian; deje que fallen.
      2. Reescribala en vivo: «el p95 del endpoint de consulta responde en menos de 300 ms con 50 peticiones por segundo».

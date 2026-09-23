@@ -43,7 +43,7 @@ Amenazas tipicas del curso, como referencia de la **forma** esperada, no para co
 > reservas de otro porque el endpoint no valida a quien pertenece» si lo es, porque nombra
 > al actor, el dato y el camino.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -75,7 +75,7 @@ componente de SU sistema lo aplica y que deja de poder hacer al aplicarlo.
 > Por eso la segunda columna vale tanto como la primera. Si no encuentra donde ubicarlo,
 > probablemente le falta una caja o una frontera en el diagrama.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -107,7 +107,7 @@ Defina la politica de secretos de CloudLite respondiendo estas cuatro preguntas:
 Cierre nombrando **que haria si un secreto se filtra**: el primer paso no es borrar el
 commit, es **rotar la credencial**, porque el historial ya salio del equipo.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 

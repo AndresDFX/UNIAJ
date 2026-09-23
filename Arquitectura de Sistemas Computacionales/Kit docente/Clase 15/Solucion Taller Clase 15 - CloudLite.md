@@ -11,7 +11,7 @@
 - Taller del estudiante: `Clases/Clase 15 - Presentacion del proyecto y cierre/`
 - Configuracion en la plataforma: `Kit docente/Clase 15/Taller en ExamLab - Clase 15 (configuracion).md`
 - Hito del PI: Sustentar en vivo el PI CloudLite App y entregar el paquete final
-- Entregable: Paquete final en ExamLab (módulo Proyectos) + pitch de 5–8 min sustentado hoy en clase + Q&A
+- Entregable: Paquete final en la plataforma del curso (módulo Proyectos) + pitch de 5–8 min sustentado hoy en clase + Q&A
 - **Estas preguntas: 100 puntos** en 5 preguntas.
 
 | # | Pregunta | Tipo | Puntos |

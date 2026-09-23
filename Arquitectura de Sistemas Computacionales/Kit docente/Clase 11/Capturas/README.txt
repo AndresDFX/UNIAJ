@@ -5,7 +5,7 @@ El guion embebe automaticamente cualquier PNG que exista aqui con el nombre
 esperado. Mientras no exista, el .docx imprime la receta en su lugar.
 
 Pendiente: demo-clase11.png — la herramienta del dia en uso
-  1. Abrir draw.io · GitHub · Google Docs.
+  1. Abrir Navegador · editores de diagramas y de texto del curso.
   2. Repetir la demo: Auditar en vivo el paquete de un voluntario.
      1. Pida a un estudiante voluntario (o a un equipo, si autorizo equipos) que proyecte su C4 Containers y su diagrama de despliegue lado a lado.
      2. Compare nombre por nombre: todo servicio del Containers debe existir en el despliegue y viceversa.

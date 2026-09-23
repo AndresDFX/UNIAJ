@@ -44,7 +44,7 @@ que necesita el prestamo» si.
 > tres modelos, y en los tres usted sigue respondiendo por su propia aplicacion, sus
 > permisos y sus datos.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -94,7 +94,7 @@ hecho.
 
 Este ADR se reutiliza en el informe del PI y en la sustentacion de la Clase 15.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -127,7 +127,7 @@ Clase 15 va a pedir.
 > alternativa que el proveedor soporte» si lo es, porque describe algo que cambia en su
 > trabajo.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 

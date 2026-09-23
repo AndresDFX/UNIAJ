@@ -17,7 +17,7 @@
 
 **Entregable concreto:** Sección Escalabilidad: triggers, límites, qué escala y qué no
 
-**Herramienta:** Google Docs · draw.io (opcional nota en Deployment)
+**Herramienta:** Navegador · editores de texto y de diagramas del curso
 
 ## Fundamento teórico para el docente
 ## Apoyo por diapositiva
@@ -101,7 +101,7 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 23. La regla de autoescalado, escrita como configuracion
 24. Politica de autoescalado (tabla, no prosa)
 25. Herramientas de hoy
-26. Del boceto a ExamLab (diagrama)
+26. Del boceto a la plataforma del curso (diagrama)
 27. PI CloudLite — entregable de hoy
 28. Manos a la obra (paso a paso)
 29. Para continuar (PI)
@@ -115,7 +115,7 @@ con `Presentacion.pptx` + el taller de la carpeta `Clases/`. Por eso el material
 tiene que ser **autosuficiente**: lo que no quede escrito, nadie lo va a explicar en vivo.
 
 ### Qué publicar (antes del día de la clase)
-1. En ExamLab: las diapositivas, el taller y el recordatorio del hito del PI.
+1. En la plataforma del curso: las diapositivas, el taller y el recordatorio del hito del PI.
 2. La sección «Fundamento teórico para el docente» de este guion, adaptada como **lectura guía**
    del estudiante — es el reemplazo de la explicación en vivo, no un anexo opcional.
 3. La **salida esperada** del ejercicio (ver la demo de abajo), para que el estudiante autónomo
@@ -128,7 +128,7 @@ tiene que ser **autosuficiente**: lo que no quede escrito, nadie lo va a explica
 - **15–45** Leer la teoría (lectura guía) y tomar notas directamente en el informe del PI.
 - **45–60** Revisar la salida esperada del ejercicio resuelto.
 - **60–105** Desarrollar el taller sobre su propio CloudLite.
-- **105–120** Empaquetar la evidencia y subirla a ExamLab.
+- **105–120** Empaquetar la evidencia y subirla a la plataforma del curso.
 
 ### La demo, en versión asíncrona
 **Demo que usted debe poder repetir:** Vertical vs horizontal, y lo que NO escala
@@ -157,9 +157,9 @@ para detectar quién entendió y quién solo copió la plantilla. No adelantes c
 ## Actividad / taller (detalle)
 1. Paso 1: tome los 5 componentes de su C4Deployment de la Clase 7 y clasifique cada uno como escala horizontal, escala vertical o no escala, verificando que al menos uno quede en no escala con justificacion tecnica, porque una politica donde todo escala no es una politica; el resultado abre la seccion Escalabilidad del informe.
 2. Paso 2: complete la tabla de politica de escalado con 6 columnas y 5 filas (componente, tipo de escala, disparador de subida, disparador de bajada, minimo y maximo, tiempo de enfriamiento), verificando que cada disparador tenga metrica, umbral numerico y ventana de tiempo, y que ningun maximo quede en infinito o sin definir.
-3. Paso 3: escriba en ExamLab el diagrama Mermaid de la maquina de decision del autoescalado con el nodo de observacion, los dos rombos de decision, las acciones de subida y bajada, el enfriamiento y el nodo de lo que no escala, verificando al renderizar que el ciclo se cierre sobre el nodo de observacion y que los umbrales del diagrama sean los mismos numeros de la tabla.
+3. Paso 3: escriba en la plataforma del curso el diagrama Mermaid de la maquina de decision del autoescalado con el nodo de observacion, los dos rombos de decision, las acciones de subida y bajada, el enfriamiento y el nodo de lo que no escala, verificando al renderizar que el ciclo se cierre sobre el nodo de observacion y que los umbrales del diagrama sean los mismos numeros de la tabla.
 4. Paso 4: escriba los 3 componentes que NO escalan con su justificacion tecnica y su plan alterno, y la tabla de impacto en costos que enlaza con la Clase 10, verificando que cada plan alterno sea ejecutable sin cloud de pago y que el impacto de costo use los mismos niveles bajo, medio o alto de la seccion de costos.
-5. Paso 5: integre la politica en la seccion Escalabilidad del informe, anote la marca de replicas en el diagrama de despliegue si aplica y suba las 5 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que la politica no prometa nada que la arquitectura dibujada no pueda cumplir.
+5. Paso 5: integre la politica en la seccion Escalabilidad del informe, anote la marca de replicas en el diagrama de despliegue si aplica y suba las 5 preguntas a la plataforma del curso (modulo Talleres) antes del domingo 23:59, verificando que la politica no prometa nada que la arquitectura dibujada no pueda cumplir.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).
@@ -186,10 +186,10 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 13/Quiz Clase 13 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase13.png | receta: 1) Abre Google Docs · draw.io (opcional nota en Deployment) y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 13/Capturas/demo-clase13.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase13.png | receta: 1) Abre Navegador · editores de texto y de diagramas del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 13/Capturas/demo-clase13.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase13.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 13/Capturas/evidencia-clase13.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
+- Plataforma de entrega: la plataforma del curso (la plataforma del curso). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).

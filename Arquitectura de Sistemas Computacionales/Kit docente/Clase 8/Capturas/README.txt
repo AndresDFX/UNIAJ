@@ -8,7 +8,7 @@ Ya generadas por `python config/slides/mockups.py` (no hay que tomarlas):
   - salida-actions-run.png — Run verde del workflow: build + test reales, no un `echo ok`
 
 Pendiente: demo-clase08.png — la herramienta del dia en uso
-  1. Abrir GitHub Actions · Google Docs.
+  1. Abrir Navegador · editor de código del curso (YAML).
   2. Repetir la demo: Un workflow de GitHub Actions que corra de verdad, con los tres pasos calificados.
      1. Cree `.github/workflows/ci.yml` copiando la diapositiva del ci.yml: `on: [push, pull_request]`, `runs-on: ubuntu-latest` y los pasos en ORDEN — Construir, Probar, Despliegue SIMULADO.
      2. Senale los tres bloques mientras los escribe: «disparadores, entorno y pasos: son 2, 1.5 y 4 puntos de la pregunta 7».

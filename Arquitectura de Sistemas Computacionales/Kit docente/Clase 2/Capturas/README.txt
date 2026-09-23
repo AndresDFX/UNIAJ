@@ -5,7 +5,7 @@ El guion embebe automaticamente cualquier PNG que exista aqui con el nombre
 esperado. Mientras no exista, el .docx imprime la receta en su lugar.
 
 Pendiente: demo-clase02.png — la herramienta del dia en uso
-  1. Abrir Google Docs · draw.io (opcional).
+  1. Abrir Navegador · editor de texto del curso.
   2. Repetir la demo: Llenar un ADR-001 delante del grupo, con sus 6 secciones rotuladas.
      1. Abra un Google Doc y escriba los 6 encabezados en orden: 1. Titulo · 2. Estado · 3. Contexto · 4. Decision · 5. Alternativas descartadas · 6. Consecuencias.
      2. Titulo: «ADR-001 Modelo de servicio dominante de CloudLite App». Estado: «Aceptado» y la fecha de hoy. Diga en voz alta: «estos dos rotulos valen 1.5 puntos y son los que se citan en la sustentacion».

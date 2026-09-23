@@ -58,7 +58,7 @@ DUDAS_ESTUDIANTE = {
          "`System_Ext` en el diagrama de la pregunta 3."),
         ("¿Tengo que escribir el diagrama a mano en Mermaid?",
          "No. Dibújalo en Excalidraw o draw.io y pide a una IA que lo traduzca a Mermaid; "
-         "tú revisas el resultado y lo pegas en ExamLab. Lo que se califica es el diagrama "
+         "tú revisas el resultado y lo pegas en la plataforma del curso. Lo que se califica es el diagrama "
          "renderizado en la plataforma, no la imagen."),
         ("¿Por qué mi diagrama no puede llevar la base de datos?",
          "Porque hoy entregas el nivel Context, donde el sistema es una sola caja negra. "

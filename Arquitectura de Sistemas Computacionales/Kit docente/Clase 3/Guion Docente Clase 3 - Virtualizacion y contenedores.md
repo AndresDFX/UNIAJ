@@ -9,16 +9,16 @@
 
 ## Objetivos de la clase
 - Diferenciar VM vs contenedor y el rol de la imagen.
-- Ejecutar un contenedor en lab de navegador (sin Docker Desktop obligatorio).
+- Razonar el ciclo build → run → verify: qué imprime cada comando y por qué.
 - Publicar el puerto y verificar el servicio con un endpoint de salud (ruta, código, cuerpo).
-- Dejar evidencia PI: Dockerfile del stub CloudLite + bitácora + captura.
+- Dejar evidencia PI: Dockerfile del stub CloudLite + ciclo justificado.
 
 ## Hoy avanzamos el PI en…
 **Contenerizar un stub del servicio principal de CloudLite**
 
-**Entregable concreto:** Dockerfile del stub + bitácora de 5 comandos con la salida real + captura del lab
+**Entregable concreto:** Dockerfile del stub + .dockerignore + ciclo de 5 comandos con la salida esperada y su justificación
 
-**Herramienta:** Killercoda · alterna si no carga: LabEx Docker Playground
+**Herramienta:** Navegador · editor de código del curso · lab de contenedores recomendado (no obligatorio)
 
 ## Fundamento teórico para el docente
 ## Apoyo por diapositiva
@@ -108,7 +108,7 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 2. Agenda de hoy (120 min)
 3. Objetivos de la clase
 4. VM vs contenedor
-5. Lab en navegador (pasos demo)
+5. Comprobar en un lab: recomendado, no obligatorio
 6. Dockerfile mínimo para el stub
 7. Construir, correr y verificar el contenedor
 8. De donde viene la clase y que se entrega hoy
@@ -147,7 +147,7 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 
 ### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 35]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Contenerizar un stub del servicio principal de CloudLite**.
-Entregable concreto: Dockerfile del stub + bitácora de 5 comandos con la salida real + captura del lab.
+Entregable concreto: Dockerfile del stub + .dockerignore + ciclo de 5 comandos con la salida esperada y su justificación.
 Teoría breve y luego taller; no es un lab suelto.»
 Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
 Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
@@ -155,7 +155,7 @@ Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?»
 ### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 4]
 Cubre estos conceptos, en este orden, ~7 min cada uno, con su diapositiva:
 - **VM vs contenedor** · [Slide 4]
-- **Lab en navegador (pasos demo)** · [Slide 5]
+- **Comprobar en un lab: recomendado, no obligatorio** · [Slide 5]
 - **Dockerfile mínimo para el stub** · [Slide 6]
 - **Construir, correr y verificar el contenedor** · [Slide 7]
 
@@ -167,7 +167,7 @@ Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su info
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
 ### 40–55 · Demo en vivo · [Slide 33]
-Herramienta del día: **Killercoda · alterna si no carga: LabEx Docker Playground**.
+Herramienta del día: **Navegador · editor de código del curso · lab de contenedores recomendado (no obligatorio)**.
 **Demo que usted debe poder repetir:** Construir, correr y verificar el stub en Killercoda — los 5 comandos de la bitacora
 
 1. Abra killercoda.com, inicie sesion con la cuenta gratuita y lance un escenario Ubuntu (advierta en voz alta: la sesion caduca a 1 h, guarden capturas antes de cerrarla).
@@ -202,7 +202,7 @@ Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección
 ### 115–120 · Cierre · [Slide 38]
 Di: «Queda avanzado: Contenerizar un stub del servicio principal de CloudLite.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
-Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
+Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
@@ -236,10 +236,10 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 3/Quiz Clase 3 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase03.png | receta: 1) Abre Killercoda · alterna si no carga: LabEx Docker Playground y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 3/Capturas/demo-clase03.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase03.png | receta: 1) Abre Navegador · editor de código del curso · lab de contenedores recomendado (no obligatorio) y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 3/Capturas/demo-clase03.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase03.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 3/Capturas/evidencia-clase03.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
+- Plataforma de entrega: la plataforma del curso (la plataforma del curso). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).

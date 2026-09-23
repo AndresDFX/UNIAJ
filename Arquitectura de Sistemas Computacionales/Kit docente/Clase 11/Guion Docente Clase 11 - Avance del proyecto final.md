@@ -17,7 +17,7 @@
 
 **Entregable concreto:** Paquete v1: Context + Containers + Deployment + Dockerfile + Actions + informe 60%+
 
-**Herramienta:** draw.io · GitHub · Google Docs
+**Herramienta:** Navegador · editores de diagramas y de texto del curso
 
 ## Fundamento teórico para el docente
 ## Apoyo por diapositiva
@@ -89,7 +89,7 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 20. Preguntas frecuentes y cierre conceptual () (3/3)
 21. El C4 Component: por dentro de la API
 22. Herramientas de hoy
-23. Del boceto a ExamLab (diagrama)
+23. Del boceto a la plataforma del curso (diagrama)
 24. PI CloudLite — entregable de hoy
 25. Manos a la obra (paso a paso)
 26. Para continuar (PI)
@@ -118,7 +118,7 @@ Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su info
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
 ### 40–55 · Demo en vivo · [Slide 23]
-Herramienta del día: **draw.io · GitHub · Google Docs**.
+Herramienta del día: **Navegador · editores de diagramas y de texto del curso**.
 **Demo que usted debe poder repetir:** Auditar en vivo el paquete de un voluntario
 
 1. Pida a un estudiante voluntario (o a un equipo, si autorizo equipos) que proyecte su C4 Containers y su diagrama de despliegue lado a lado.
@@ -129,13 +129,13 @@ Herramienta del día: **draw.io · GitHub · Google Docs**.
 Narra los clics en voz alta. Si falla la red, proyecta la solución docente de este kit (`Solucion Taller Clase 11 - CloudLite.md`), que trae el resultado esperado.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
-**Cierra la demo dentro de ExamLab** [Slide 23] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
+**Cierra la demo en la plataforma del curso** [Slide 23] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
 - **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
 - **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `C4Component`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
-- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
+- **3. Pega y renderiza en la plataforma del curso** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de la plataforma del curso.
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
 
@@ -155,15 +155,15 @@ Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección
 ### 115–120 · Cierre · [Slide 27]
 Di: «Queda avanzado: Integrar diagramas v1 + checklist de avance PI.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
-Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
+Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
 1. Paso 1: completen el checklist de 10 filas del paquete v1 marcando cada evidencia como si, no o parcial y pegando la ruta o el enlace exacto de cada una, verificando que ninguna fila marcada como si quede sin ruta verificable, porque una fila sin enlace se califica como no.
 2. Paso 2: hagan la reconciliacion de nombres llenando la tabla de 5 filas que compara como se llama cada elemento en el C4Container, en el C4Deployment, en el Dockerfile o el ci.yml y en el informe, verificando que la columna de nombre canonico sea identica en las cuatro y aplicando la correccion en el artefacto que este desalineado.
-3. Paso 3: escriban en ExamLab el diagrama C4Component del interior de la API con 5 componentes y sus relaciones hacia la base de datos, la cola y el proveedor de identidad, verificando al renderizar que ningun componente sea un contenedor de la Clase 4 disfrazado y que el contenedor contenedor de la frontera se llame igual que en el C4Container.
+3. Paso 3: escriban en la plataforma del curso el diagrama C4Component del interior de la API con 5 componentes y sus relaciones hacia la base de datos, la cola y el proveedor de identidad, verificando al renderizar que ningun componente sea un contenedor de la Clase 4 disfrazado y que el contenedor contenedor de la frontera se llame igual que en el C4Container.
 4. Paso 4: escriban el backlog de 5 items priorizados hacia la Clase 12 con hueco detectado, accion, responsable y fecha, verificando que cada item se pueda cerrar en una semana y que al menos uno provenga del feedback del docente recibido hoy en la cola de revision.
-5. Paso 5: empaqueten el ZIP o el repositorio con los diagramas, el Dockerfile, el ci.yml y el informe al 60 por ciento, y suban las 5 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que el paquete se pueda abrir en otra maquina y que el informe enlace cada evidencia por su ruta dentro del paquete.
+5. Paso 5: empaqueten el ZIP o el repositorio con los diagramas, el Dockerfile, el ci.yml y el informe al 60 por ciento, y suban las 5 preguntas a la plataforma del curso (modulo Talleres) antes del domingo 23:59, verificando que el paquete se pueda abrir en otra maquina y que el informe enlace cada evidencia por su ruta dentro del paquete.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).
@@ -190,10 +190,10 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 11/Quiz Clase 11 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase11.png | receta: 1) Abre draw.io · GitHub · Google Docs y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 11/Capturas/demo-clase11.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase11.png | receta: 1) Abre Navegador · editores de diagramas y de texto del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 11/Capturas/demo-clase11.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase11.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 11/Capturas/evidencia-clase11.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
+- Plataforma de entrega: la plataforma del curso (la plataforma del curso). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).

@@ -5,7 +5,7 @@ El guion embebe automaticamente cualquier PNG que exista aqui con el nombre
 esperado. Mientras no exista, el .docx imprime la receta en su lugar.
 
 Pendiente: demo-clase13.png — la herramienta del dia en uso
-  1. Abrir Google Docs · draw.io (opcional nota en Deployment).
+  1. Abrir Navegador · editores de texto y de diagramas del curso.
   2. Repetir la demo: Vertical vs horizontal, y lo que NO escala.
      1. Dibuje una caja «API» y agrandela: eso es vertical (mas CPU/RAM a la misma maquina, con techo fisico).
      2. Borre y dibuje 3 cajas «API» iguales con un balanceador arriba: eso es horizontal.

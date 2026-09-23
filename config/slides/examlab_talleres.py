@@ -37,6 +37,22 @@ import re
 
 EXAMLAB_URL = "https://uniaj.examlab.workers.dev/"
 
+#: Como se nombra la plataforma en el texto del ESTUDIANTE. Es un parametro porque este
+#: modulo sirve a los CINCO cursos y Arquitectura pidio que su parte practica no la nombre:
+#: el estudiante ya sabe cual es y como entrar —eso va en el correo de bienvenida— y en el
+#: taller lo que importa es QUE se entrega. Los otros cuatro cursos la siguen nombrando.
+NOMBRE_PLATAFORMA = "ExamLab"
+MOSTRAR_URL = True
+
+
+def _plataforma():
+    return NOMBRE_PLATAFORMA
+
+
+def _con_url(_=None):
+    """«ExamLab (https://...)» o solo el nombre, segun MOSTRAR_URL."""
+    return "%s (%s)" % (NOMBRE_PLATAFORMA, EXAMLAB_URL) if MOSTRAR_URL else NOMBRE_PLATAFORMA
+
 # Como se le explica al ESTUDIANTE cada tipo: que va a ver y que se espera que
 # deje. La clave es que sepa la FORMA de la respuesta antes de abrir la pregunta.
 TIPOS = {
@@ -129,10 +145,10 @@ FLUJO_DIAGRAMA_PASOS = [
      "Copia o describe tu boceto a una IA y pidele el codigo Mermaid: "
      "«convierte este diagrama a Mermaid usando {dialecto}». Revisa el "
      "resultado: la IA acierta la sintaxis, no tu modelo."),
-    ("3. Pega y renderiza en ExamLab",
+    ("3. Pega y renderiza en {plataforma}",
      "Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja "
      "la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es "
-     "el diagrama renderizado dentro de ExamLab."),
+     "el diagrama renderizado dentro de {plataforma}."),
     ("4. Guarda el PNG para tu PI",
      "Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia "
      "es para tu informe; no reemplaza la respuesta en la plataforma."),
@@ -174,13 +190,15 @@ def flujo_diagrama_pasos(dialecto="el tipo que pide el enunciado"):
     interpreta markdown inline y los mostraria literales.
     """
     d_slide = dialecto.replace("`", "")
-    return [(re.sub(r"^\d+\.\s*", "", t), d.format(dialecto=d_slide))
+    return [(re.sub(r"^\d+\.\s*", "", t).format(plataforma=_plataforma()),
+             d.format(dialecto=d_slide, plataforma=_plataforma()))
             for t, d in FLUJO_DIAGRAMA_PASOS]
 
 
 def flujo_diagrama_lineas(dialecto="el tipo que pide el enunciado", *, prefijo=""):
     """Los 4 pasos como lineas de texto plano (una por paso)."""
-    return ["%s%s: %s" % (prefijo, t, d.format(dialecto=dialecto))
+    return ["%s%s: %s" % (prefijo, t.format(plataforma=_plataforma()),
+                          d.format(dialecto=dialecto, plataforma=_plataforma()))
             for t, d in FLUJO_DIAGRAMA_PASOS]
 
 
@@ -189,7 +207,7 @@ def flujo_diagrama_md(dialecto="el tipo que pide el enunciado"):
     L = ["**%s.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid."
          % FLUJO_DIAGRAMA_TITULO, ""]
     for t, d in FLUJO_DIAGRAMA_PASOS:
-        L.append("- **%s** %s" % (t, d.format(dialecto=dialecto)))
+        L.append("- **%s** %s" % (t.format(plataforma=_plataforma()), d.format(dialecto=dialecto, plataforma=_plataforma())))
     return "\n".join(L)
 
 
@@ -218,12 +236,12 @@ def bloque_estudiante(taller):
       'b'    parrafo con la primera parte en negrita (marcador @@)
       'li'   item de lista
     """
-    out = [("h", "Que vas a resolver en ExamLab")]
+    out = [("h", "Que vas a resolver en %s" % _plataforma())]
     if taller.get("resumen"):
         out.append(("p", taller["resumen"]))
     out.append((
         "p",
-        f"El taller se resuelve y se entrega en ExamLab ({EXAMLAB_URL}), en el modulo "
+        f"El taller se resuelve y se entrega en {_con_url('')}, en el modulo "
         f"Talleres. Son {len(taller.get('preguntas', []))} preguntas y suman "
         f"{total_puntos(taller)} puntos. Lo que sigue es lo que vas a encontrar en cada "
         "una, para que sepas de antemano en que forma se responde:",
@@ -256,21 +274,22 @@ def bloque_estudiante(taller):
         for titulo, desc in FLUJO_DIAGRAMA_PASOS:
             out.append((
                 "b",
-                "@@%s:@@ %s" % (titulo, desc.format(
+                "@@%s:@@ %s" % (titulo.format(plataforma=_plataforma()), desc.format(
+                    plataforma=_plataforma(),
                     dialecto=dialectos[0] if len(dialectos) == 1 else "el tipo que pide el enunciado")),
             ))
         out.append((
             "p",
             "Si la IA te devuelve algo que no renderiza, no lo pegues tal cual: "
-            "corrigelo en ExamLab hasta ver el dibujo. Un diagrama que no renderiza "
+            f"corrigelo en {_plataforma()} hasta ver el dibujo. Un diagrama que no renderiza "
             "no se puede calificar.",
         ))
     out.append((
         "p",
         "Cada pregunta trae su propio enunciado completo dentro de la plataforma: "
-        "puedes resolver el taller leyendo solo ExamLab. Este documento sirve para "
+        f"puedes resolver el taller leyendo solo {_plataforma()}. Este documento sirve para "
         "prepararte y conservar tus respuestas. La actividad es individual; si el "
-        "docente autoriza trabajo en equipo, la entrega en ExamLab sigue siendo individual.",
+        f"docente autoriza trabajo en equipo, la entrega en {_plataforma()} sigue siendo individual.",
     ))
     return out
 

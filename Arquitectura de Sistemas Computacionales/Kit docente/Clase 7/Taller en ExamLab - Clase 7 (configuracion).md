@@ -5,7 +5,7 @@
 - **Preguntas:** 3 · **Total:** 25 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Diagrama de despliegue: red, zonas, almacenamiento
-- **Entregable de la clase:** Diagrama Deployment en Mermaid dentro de ExamLab (3 zonas + puertos) + tipo de almacenamiento por componente
+- **Entregable de la clase:** Diagrama Deployment en Mermaid en la plataforma del curso (3 zonas + puertos) + tipo de almacenamiento por componente
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
@@ -42,7 +42,7 @@ Debe tener:
 Reutilice **los mismos nombres** de componentes del C4 Containers del Corte 1: es el mismo
 sistema visto desde donde se ejecuta.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Pegar al final del enunciado — flujo de entrega del diagrama:**
 
@@ -50,7 +50,7 @@ sistema visto desde donde se ejecuta.
 
 - **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
 - **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `flowchart`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
-- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
+- **3. Pega y renderiza en la plataforma del curso** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de la plataforma del curso.
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
 **Diagrama de referencia (Mermaid):**
@@ -104,7 +104,7 @@ mas. Formato: `Componente | Tipo | Que caracteristica del dato lo exige`.
 > Decir «mi dominio no necesita objeto, y por eso no lo tengo» es una respuesta correcta y
 > completa.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -133,7 +133,7 @@ cual de los dos diagramas actualizo para que queden iguales.
 > «api-agenda» en uno y «servidor-backend» en otro, nadie puede saber si son la misma cosa,
 > y en la sustentacion de la Clase 15 eso se lee como dos sistemas distintos.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 

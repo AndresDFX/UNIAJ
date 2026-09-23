@@ -17,7 +17,7 @@
 
 **Entregable concreto:** ADR-001: decisión de modelo de servicio + matriz de comparación aplicada al dominio
 
-**Herramienta:** Google Docs · draw.io (opcional)
+**Herramienta:** Navegador · editor de texto del curso
 
 ## Fundamento teórico para el docente
 ## Apoyo por diapositiva
@@ -72,7 +72,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 26] Preguntas frecuentes y cierre conceptual () (3/3)** — 4 vinetas.
 
-**[Slide 27] La plantilla de ADR, con los seis apartados que se califican** — 21 vinetas.
+**[Slide 27] La plantilla de ADR: los seis apartados que se califican** — 21 vinetas.
 
 
 ## Referencias a diapositivas
@@ -105,7 +105,7 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 24. Preguntas frecuentes y cierre conceptual () (1/3)
 25. Preguntas frecuentes y cierre conceptual () (2/3)
 26. Preguntas frecuentes y cierre conceptual () (3/3)
-27. La plantilla de ADR, con los seis apartados que se califican
+27. La plantilla de ADR: los seis apartados que se califican
 28. Quién administra cada capa — IaaS vs PaaS vs SaaS
 29. ADR-001 — las 6 secciones caben en una pagina
 30. Herramientas de hoy
@@ -138,7 +138,7 @@ Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su info
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
 ### 40–55 · Demo en vivo · [Slide 29]
-Herramienta del día: **Google Docs · draw.io (opcional)**.
+Herramienta del día: **Navegador · editor de texto del curso**.
 **Demo que usted debe poder repetir:** Llenar un ADR-001 delante del grupo, con sus 6 secciones rotuladas
 
 1. Abra un Google Doc y escriba los 6 encabezados en orden: 1. Titulo · 2. Estado · 3. Contexto · 4. Decision · 5. Alternativas descartadas · 6. Consecuencias.
@@ -168,7 +168,7 @@ Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección
 ### 115–120 · Cierre · [Slide 34]
 Di: «Queda avanzado: Decidir modelo dominante (IaaS/PaaS/SaaS) para CloudLite + ADR breve.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
-Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
+Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
@@ -202,10 +202,10 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 2/Quiz Clase 2 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase02.png | receta: 1) Abre Google Docs · draw.io (opcional) y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 2/Capturas/demo-clase02.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase02.png | receta: 1) Abre Navegador · editor de texto del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 2/Capturas/demo-clase02.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase02.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 2/Capturas/evidencia-clase02.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
+- Plataforma de entrega: la plataforma del curso (la plataforma del curso). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).

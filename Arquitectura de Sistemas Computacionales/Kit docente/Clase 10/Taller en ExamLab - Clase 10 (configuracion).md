@@ -45,7 +45,7 @@ columnas**:
 **Fuerce al menos un Alto y un Bajo.** Marcar todo como «Medio» para no pensar es la
 respuesta que esta pregunta busca descartar.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -81,7 +81,7 @@ Ejemplos de la **forma** esperada, no para copiarlos:
 Ate al menos una de las tres a un **driver de costo** de la tabla anterior: sostenibilidad y
 costo suelen apalancarse con la misma decision.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 

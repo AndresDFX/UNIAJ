@@ -11,7 +11,7 @@
 - Taller del estudiante: `Clases/Clase 1 - Introduccion a arquitecturas cloud/`
 - Configuracion en la plataforma: `Kit docente/Clase 1/Taller en ExamLab - Clase 1 (configuracion).md`
 - Hito del PI: Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases
-- Entregable: Ficha PI de 5 bloques + C4 Context en Mermaid renderizado en ExamLab (boceto previo en Excalidraw/draw.io)
+- Entregable: Ficha PI de 5 bloques + C4 Context en Mermaid renderizado en la plataforma (boceto previo en Excalidraw/draw.io)
 - **Estas preguntas: 25.0 puntos** en 4 preguntas.
 
 | # | Pregunta | Tipo | Puntos |

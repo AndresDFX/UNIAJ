@@ -17,7 +17,7 @@
 
 **Entregable concreto:** Sección Costos/Sostenibilidad del informe (bajo/medio + drivers)
 
-**Herramienta:** Google Docs
+**Herramienta:** Navegador · editor de texto del curso
 
 ## Fundamento teórico para el docente
 ## Apoyo por diapositiva
@@ -109,7 +109,7 @@ con `Presentacion.pptx` + el taller de la carpeta `Clases/`. Por eso el material
 tiene que ser **autosuficiente**: lo que no quede escrito, nadie lo va a explicar en vivo.
 
 ### Qué publicar (antes del día de la clase)
-1. En ExamLab: las diapositivas, el taller y el recordatorio del hito del PI.
+1. En la plataforma del curso: las diapositivas, el taller y el recordatorio del hito del PI.
 2. La sección «Fundamento teórico para el docente» de este guion, adaptada como **lectura guía**
    del estudiante — es el reemplazo de la explicación en vivo, no un anexo opcional.
 3. La **salida esperada** del ejercicio (ver la demo de abajo), para que el estudiante autónomo
@@ -122,7 +122,7 @@ tiene que ser **autosuficiente**: lo que no quede escrito, nadie lo va a explica
 - **15–45** Leer la teoría (lectura guía) y tomar notas directamente en el informe del PI.
 - **45–60** Revisar la salida esperada del ejercicio resuelto.
 - **60–105** Desarrollar el taller sobre su propio CloudLite.
-- **105–120** Empaquetar la evidencia y subirla a ExamLab.
+- **105–120** Empaquetar la evidencia y subirla a la plataforma del curso.
 
 ### La demo, en versión asíncrona
 **Demo que usted debe poder repetir:** Tabla de costo cualitativo en 5 minutos
@@ -151,7 +151,7 @@ para detectar quién entendió y quién solo copió la plantilla. No adelantes c
 1. Paso 1: construya en la pregunta 11 la tabla de costos con una fila por cada componente de su despliegue y las columnas componente, driver, nivel B/M/A y apalancamiento; verifique que cada driver sea una variable contable (horas encendidas, GB de salida, GB almacenados, minutos de CI) y no «el uso».
 2. Paso 2: fuerce al menos un Alto y un Bajo con su justificacion. Marcar todo como Medio para no decidir es lo que la pregunta busca descartar, y ese criterio vale cero si todas las filas quedan iguales.
 3. Paso 3: escriba en la pregunta 12 tres acciones de sostenibilidad, cada una con el artefacto donde se comprueba y como se comprueba; aplique la prueba de que otra persona pueda decir en seis meses, mirando el repositorio, si la accion se aplico.
-4. Paso 4: ate al menos una de las tres acciones a un driver de costo de la pregunta 11 y suba la actividad completa del Corte 2 a ExamLab antes del domingo 23:59. Es una clase autonoma: no hay encuentro sincrono, y las dudas van por el foro.
+4. Paso 4: ate al menos una de las tres acciones a un driver de costo de la pregunta 11 y suba la actividad completa del Corte 2 a la plataforma del curso antes del domingo 23:59. Es una clase autonoma: no hay encuentro sincrono, y las dudas van por el foro.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).
@@ -178,10 +178,10 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 10/Quiz Clase 10 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase10.png | receta: 1) Abre Google Docs y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 10/Capturas/demo-clase10.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase10.png | receta: 1) Abre Navegador · editor de texto del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 10/Capturas/demo-clase10.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase10.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 10/Capturas/evidencia-clase10.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
+- Plataforma de entrega: la plataforma del curso (la plataforma del curso). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).

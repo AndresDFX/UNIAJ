@@ -231,7 +231,7 @@ TALLER_BLOQUE = {
             'Dominio con actor + dolor medible (no genérico).',
             '3-5 capacidades en verbos de negocio.',
             'C4 Context: 1 caja sistema + >=2 actores + >=1 SaaS/sistema externo.',
-            'Doc + PNG (o enlace) listos para ExamLab · domingo 23:59.',
+            'Doc + PNG (o enlace) listos para entregar · domingo 23:59.',
         ],
         'escenario': [
             'Actividad individual. Elegir un dominio concreto.',
@@ -491,7 +491,7 @@ TALLER_BLOQUE = {
         ],
         'objetivo': 'Entregar paquete final + pitch 5-8 min + Q&A escrito.',
         'criterios': [
-            'ZIP/PDF en ExamLab con diagramas + lab + CI + informe.',
+            'ZIP/PDF en la plataforma del curso con diagramas + lab + CI + informe.',
             'Pitch 5-8 min: individual, o con todos los integrantes si el docente autorizo equipo.',
             'Q&A escrito 3+3 + reflexión 1/2 página.',
             'Autoevaluación breve del proceso.',

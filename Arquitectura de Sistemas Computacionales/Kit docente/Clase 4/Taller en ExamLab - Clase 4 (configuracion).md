@@ -42,7 +42,7 @@ Esta decision es la que explica cuantas cajas tendra el diagrama de la pregunta 
 elige monolito modular, esas cajas son modulos dentro de un contenedor mas sus almacenes de
 datos, no servicios sueltos.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -82,7 +82,7 @@ El diagrama debe tener:
 Estos nombres vuelven en el diagrama de despliegue de la Clase 7 y en el checkpoint de la
 Clase 11: si aqui llama «api-prestamos» a un servicio, alla tiene que llamarse igual.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Pegar al final del enunciado — flujo de entrega del diagrama:**
 
@@ -90,7 +90,7 @@ Clase 11: si aqui llama «api-prestamos» a un servicio, alla tiene que llamarse
 
 - **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
 - **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `C4Container`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
-- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
+- **3. Pega y renderiza en la plataforma del curso** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de la plataforma del curso.
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
 **Diagrama de referencia (Mermaid):**
@@ -149,7 +149,7 @@ acuerdo de como se hablan dos partes, y aqui se escribe con **cuatro datos**:
 Un contrato sin su error solo describe el camino feliz, y el camino feliz nunca es el que
 rompe el sistema.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -183,7 +183,7 @@ propia arquitectura logica, en este orden:
 > los saltos hacia la base de datos y hacia los sistemas externos son igualmente red, y el
 > riesgo 3 existe en cuanto haya dos escrituras que deban ocurrir juntas.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 

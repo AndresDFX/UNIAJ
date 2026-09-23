@@ -11,7 +11,7 @@
 - Taller del estudiante: `Clases/Clase 3 - Virtualizacion y contenedores/`
 - Configuracion en la plataforma: `Kit docente/Clase 3/Taller en ExamLab - Clase 3 (configuracion).md`
 - Hito del PI: Contenerizar un stub del servicio principal de CloudLite
-- Entregable: Dockerfile del stub + bitácora de 5 comandos con la salida real + captura del lab
+- Entregable: Dockerfile del stub + .dockerignore + ciclo de 5 comandos con la salida esperada y su justificación
 - **Estas preguntas: 25.0 puntos** en 4 preguntas.
 
 | # | Pregunta | Tipo | Puntos |

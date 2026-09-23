@@ -8,7 +8,7 @@ Ya generadas por `python config/slides/mockups.py` (no hay que tomarlas):
   - salida-secreto-en-imagen.png — Por que un secreto NUNCA va dentro de la imagen (demo de 1 minuto)
 
 Pendiente: demo-clase06.png — la herramienta del dia en uso
-  1. Abrir Google Docs para la tabla y la política · ExamLab para entregar.
+  1. Abrir Navegador · editor de texto del curso.
   2. Repetir la demo: De amenaza STRIDE a control verificable, en vivo.
      1. Escriba en el tablero, con las dos partes que exige la rubrica: «Tampering: un cliente mueve la franja de un turno ajeno porque la API no revisa de quien es el turno».
      2. Pregunte al grupo cual seria el control; guie hasta «validar el rol y la propiedad del turno antes de aceptar el cambio».

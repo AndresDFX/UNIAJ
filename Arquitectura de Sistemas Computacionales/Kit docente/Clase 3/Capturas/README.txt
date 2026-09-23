@@ -9,7 +9,7 @@ Ya generadas por `python config/slides/mockups.py` (no hay que tomarlas):
   - salida-docker-ps.png — Evidencia del entregable: el contenedor corriendo (`docker ps`)
 
 Pendiente: demo-clase03.png — la herramienta del dia en uso
-  1. Abrir Killercoda · alterna si no carga: LabEx Docker Playground.
+  1. Abrir Navegador · editor de código del curso · lab de contenedores recomendado (no obligatorio).
   2. Repetir la demo: Construir, correr y verificar el stub en Killercoda — los 5 comandos de la bitacora.
      1. Abra killercoda.com, inicie sesion con la cuenta gratuita y lance un escenario Ubuntu (advierta en voz alta: la sesion caduca a 1 h, guarden capturas antes de cerrarla).
      2. Escriba el Dockerfile del stub en vivo, en el mismo orden de la diapositiva «Dockerfile minimo del stub CloudLite»: FROM node:20-alpine, WORKDIR, COPY package*.json, RUN npm ci --omit=dev, COPY . ., EXPOSE 8080, CMD. Y cree al lado un `.dockerignore` con `.env` y `node_modules` — diga: «sin este archivo, el COPY . . se lleva el .env a la imagen y son 5 puntos».

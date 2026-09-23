@@ -17,7 +17,7 @@
 
 **Entregable concreto:** Sección Rendimiento + guion de pitch + paquete casi-final
 
-**Herramienta:** Google Docs · draw.io · (opcional) lab contenedor
+**Herramienta:** Navegador · editores de diagramas y de texto del curso
 
 ## Fundamento teórico para el docente
 ## Apoyo por diapositiva
@@ -108,7 +108,7 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 25. Las metricas objetivo, escritas como se verifican
 26. «Que sea rapido» no es un requisito
 27. Herramientas de hoy
-28. Del boceto a ExamLab (diagrama)
+28. Del boceto a la plataforma del curso (diagrama)
 29. PI CloudLite — entregable de hoy
 30. Manos a la obra (paso a paso)
 31. Para continuar (PI)
@@ -137,7 +137,7 @@ Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su info
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
 ### 40–55 · Demo en vivo · [Slide 28]
-Herramienta del día: **Google Docs · draw.io · (opcional) lab contenedor**.
+Herramienta del día: **Navegador · editores de diagramas y de texto del curso**.
 **Demo que usted debe poder repetir:** Definir un objetivo de rendimiento que si se puede verificar
 
 1. Escriba la frase mala: «la app debe ser rapida». Pregunte al grupo como la comprobarian; deje que fallen.
@@ -148,13 +148,13 @@ Herramienta del día: **Google Docs · draw.io · (opcional) lab contenedor**.
 Narra los clics en voz alta. Si falla la red, proyecta la solución docente de este kit (`Solucion Taller Clase 12 - CloudLite.md`), que trae el resultado esperado.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
-**Cierra la demo dentro de ExamLab** [Slide 28] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
+**Cierra la demo en la plataforma del curso** [Slide 28] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
 - **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
 - **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `sequenceDiagram`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
-- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
+- **3. Pega y renderiza en la plataforma del curso** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de la plataforma del curso.
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
 
@@ -174,15 +174,15 @@ Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección
 ### 115–120 · Cierre · [Slide 32]
 Di: «Queda avanzado: Escenario de rendimiento + ensayo 5–8 min de sustentación.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
-Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
+Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
 1. Paso 1: describan el escenario de carga del pico real de su dominio con los 6 datos obligatorios (evento del pico, usuarios concurrentes, peticiones por segundo, mezcla de operaciones en porcentajes que sumen 100, duracion de la ventana y volumen de datos de partida), verificando que la mezcla sume exactamente 100 por ciento y que el pico corresponda a una fecha real del calendario de su dominio.
 2. Paso 2: definan las 3 metricas objetivo en una tabla de 4 columnas con numero, ventana de medicion, forma de medirla y consecuencia de incumplirla, verificando que cada objetivo tenga un numero y una ventana (por ejemplo p95 por debajo de 800 ms en 5 minutos) y que ninguna diga rapido o aceptable sin cifra.
-3. Paso 3: escriban en ExamLab el sequenceDiagram del camino critico con el presupuesto de latencia repartido por salto, verificando que la suma de los tramos sea menor o igual al objetivo de p95 y que la nota final muestre el margen restante en milisegundos.
+3. Paso 3: escriban en la plataforma del curso el sequenceDiagram del camino critico con el presupuesto de latencia repartido por salto, verificando que la suma de los tramos sea menor o igual al objetivo de p95 y que la nota final muestre el margen restante en milisegundos.
 4. Paso 4: ensayen el pitch de 5 a 8 minutos con cronometro y llenen la tabla de guion de 6 filas con minuto, seccion, quien habla, mensaje clave y evidencia en pantalla, verificando que la suma de los minutos quede entre 5 y 8, que ninguna seccion pase de 2:00 (y, si el docente autorizo equipo, que todos los integrantes hablen) y que cada seccion tenga una evidencia concreta que se pueda mostrar.
-5. Paso 5: cierren los 5 items del backlog de la Clase 11 dejando registro de los residuales, dejen el paquete casi final ordenado en el repositorio o el Drive y suban las 6 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, verificando que el cuello de botella declarado en el analisis sea el mismo que muestra el diagrama de secuencia.
+5. Paso 5: cierren los 5 items del backlog de la Clase 11 dejando registro de los residuales, dejen el paquete casi final ordenado en el repositorio o el Drive y suban las 6 preguntas a la plataforma del curso (modulo Talleres) antes del domingo 23:59, verificando que el cuello de botella declarado en el analisis sea el mismo que muestra el diagrama de secuencia.
 
 ### Criterio de éxito
 - Artefacto integrado al paquete PI (no archivo huérfano).
@@ -209,10 +209,10 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 12/Quiz Clase 12 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase12.png | receta: 1) Abre Google Docs · draw.io · (opcional) lab contenedor y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 12/Capturas/demo-clase12.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase12.png | receta: 1) Abre Navegador · editores de diagramas y de texto del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 12/Capturas/demo-clase12.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase12.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 12/Capturas/evidencia-clase12.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
+- Plataforma de entrega: la plataforma del curso (la plataforma del curso). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).

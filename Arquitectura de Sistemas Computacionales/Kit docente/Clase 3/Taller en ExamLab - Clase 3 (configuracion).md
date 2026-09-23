@@ -5,7 +5,7 @@
 - **Preguntas:** 4 · **Total:** 25 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Contenerizar un stub del servicio principal de CloudLite
-- **Entregable de la clase:** Dockerfile del stub + bitácora de 5 comandos con la salida real + captura del lab
+- **Entregable de la clase:** Dockerfile del stub + .dockerignore + ciclo de 5 comandos con la salida esperada y su justificación
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
@@ -51,7 +51,7 @@ tener, como minimo, estas instrucciones y en un orden que tenga sentido:
 > que tenga la imagen puede leerlo con `docker history` aunque el archivo se borre en una
 > capa posterior. Los secretos se inyectan en tiempo de ejecucion, no se construyen dentro.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -85,7 +85,7 @@ Explique, **usando el Dockerfile que acaba de escribir**, no la teoria general:
 > anfitrion) y «la imagen se ejecuta» (se ejecuta el contenedor, que es una instancia de la
 > imagen).
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -118,7 +118,7 @@ Explique el ciclo completo de su servicio, con los **comandos exactos** que usar
 > la Clase 8 (CI). Un endpoint que devuelve 200 con el cuerpo vacio es peor que ninguno,
 > porque no distingue «vivo» de «vivo pero roto».
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -162,7 +162,7 @@ Debajo de la tabla:
 > **antes** de cerrar. Perder el trabajo por no haber guardado es el incidente mas comun del
 > dia, y no es excusa aceptable para no entregar esta pregunta.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 

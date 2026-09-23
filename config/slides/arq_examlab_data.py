@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-"""Especificacion de los talleres en ExamLab - Arquitectura de Sistemas Computacionales 2026-2.
+"""Especificacion de los talleres en la plataforma del curso - Arquitectura de Sistemas Computacionales 2026-2.
 
 La consume `examlab_talleres.py` para (a) decirle al estudiante, dentro del .docx
 del taller, que va a encontrar en la plataforma y en que forma se responde cada
 pregunta, y (b) generar en el Kit docente la guia con el texto exacto de cada
-campo para crear el taller en ExamLab.
+campo para crear el taller en la plataforma del curso.
 
-Por que existe: el taller decia «suba el resultado a ExamLab» y nada mas. El
+Por que existe: el taller decia «suba el resultado a la plataforma del curso» y nada mas. El
 estudiante no sabia que iba a encontrar, y el material pedia exportar PNG de
 draw.io o correr SQL en DB Fiddle cuando la plataforma ya trae editor Mermaid,
 PostgreSQL real (PGlite/WASM) y ejecucion de GUI de Java en el navegador.
 
-Tipos usados, todos verificados contra el codigo de ExamLab
+Tipos usados, todos verificados contra el codigo de la plataforma del curso
 (`src/modules/workshops/WorkshopQuestions.tsx`):
     abierta · cerrada · cerrada_multi · codigo · diagrama · java_gui ·
     python_gui · codigo_zip · red_consola · red_gui · so_consola · bd_sql
@@ -98,7 +98,7 @@ El problema debe decir dos cosas, y las dos se califican:
 Este dominio **no vuelve a cambiar** en el resto del curso: las Clases 2, 3 y 4 de esta
 misma actividad, y las Clases 7, 11 y 15, reutilizan estos nombres.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '3 pts el dominio concreto y del tamano adecuado. Si es generico (red social, app de la universidad), toda la pregunta vale cero: sin dominio no hay nada que arquitecturar en las clases siguientes. 1.5 pts que el problema nombre a QUIEN lo sufre con un rol concreto. 1.75 pts que incluya una cifra que mida el dolor; una cifra estimada sirve, «mucho tiempo» no. Se descuenta si el problema pasa de 3 frases.',
                       },
                       {
@@ -133,7 +133,7 @@ FUERA DE ALCANCE
   evita que el alcance crezca sin control, y es lo primero que se revisa cuando alguien
   pida mas tiempo en una entrega futura.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '2 pts los cinco bloques presentes y rotulados en el orden pedido. 2.5 pts las capacidades (3 a 5) en verbo mas objeto de negocio, sin nombrar tecnologia; se descuenta por cada capacidad que sea una pieza tecnica. 2.25 pts los actores (2 a 3) con su expectativa explicita, mas los sistemas externos nombrados. 2 pts el fuera de alcance con exclusiones que un evaluador razonable si habria esperado. Los sistemas externos de este bloque deben ser los mismos que aparezcan en el diagrama de la pregunta 3.',
                       },
                       {
@@ -161,7 +161,7 @@ El diagrama debe mostrar:
 > la pregunta 13 de esta misma actividad, que corresponde a la Clase 4. Si se dibujan aqui,
 > ese diagrama se queda sin nada nuevo que mostrar.
 
-**Antes de enviar, verifique renderizando dentro de ExamLab:** que el diagrama se dibuje
+**Antes de enviar, verifique renderizando en la plataforma del curso:** que el diagrama se dibuje
 sin error de sintaxis, que cada flecha se lea en voz alta como una frase completa, y que
 los nombres sean identicos a los de su ficha.
 
@@ -171,7 +171,7 @@ separe con «y» o con guion.
 **Tamano de referencia:** entre cuatro y ocho elementos en total. Si tiene veinte, es casi
 seguro que se colaron piezas internas del sistema.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '3 pts una sola caja System para CloudLite completo. 2 pts los actores como Person, coherentes con la ficha. 2 pts los sistemas externos como System_Ext, los mismos que la ficha. 2 pts que TODA flecha lleve verbo de negocio y protocolo. 1 pt que el diagrama renderice sin error dentro de la plataforma. Si aparece un contenedor interno (base de datos, API, worker, cache) se pierden los 3 pts de la caja del sistema, porque eso es el nivel Container de la pregunta 13.',
                           'mermaid_esperado': '''C4Context
     title Contexto de CloudLite App - dominio AgendaU
@@ -216,11 +216,11 @@ tener los dos al mismo tiempo, y **que gana** a cambio.
 Lo que escriba aqui vuelve dos veces en el curso: el **costo** se retoma en la Clase 10 y
 el **rendimiento** con percentiles en la Clase 12.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '1 pt la eleccion de dos atributos con una razon atada al dominio propio y no a la teoria general. 2 pts las dos metricas, con numero Y unidad: una metrica sin numero («que sea rapido», «que sea seguro») no suma. 2 pts la frase de conflicto, que debe nombrar cual se sacrifica y que se gana; cero en este criterio si la respuesta afirma que los cuatro son igual de importantes o no elige.',
                       },
                   ],
-     'resumen': '''Las preguntas 1 a 4 de la actividad del Corte 1, que es una sola para las Clases 1 a 4. El estudiante sale con el dominio de CloudLite cerrado en una ficha de cinco bloques y con el diagrama C4 Context renderizado dentro de ExamLab, que es la semilla de todos los diagramas del semestre.''',
+     'resumen': '''Las preguntas 1 a 4 de la actividad del Corte 1, que es una sola para las Clases 1 a 4. El estudiante sale con el dominio de CloudLite cerrado en una ficha de cinco bloques y con el diagrama C4 Context renderizado en la plataforma del curso, que es la semilla de todos los diagramas del semestre.''',
      'titulo': '''Actividad del Corte 1 (preguntas 1 a 4) - Dominio, ficha, C4 Context y calidad'''},
  2: {'pasos': [
                   'Paso 1: relea su ficha y su C4 Context de la Clase 1. No cambie de dominio: las preguntas 5 a 7 se califican sobre el mismo sistema, y el ADR que redacte hoy se reutiliza en el informe del PI y en la sustentacion de la Clase 15.',
@@ -256,7 +256,7 @@ que necesita el prestamo» si.
 > tres modelos, y en los tres usted sigue respondiendo por su propia aplicacion, sus
 > permisos y sus datos.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '2 pts la matriz con los cuatro criterios en el orden pedido y las cuatro columnas. 3 pts que las doce celdas de comparacion hablen del dominio propio y de sus capacidades, no de teoria general; se descuenta por cada fila escrita en abstracto. 1.25 pts que la fila de operacion reparta correctamente la responsabilidad en los tres modelos y no afirme que en PaaS o SaaS el equipo deja de responder por su aplicacion.',
                       },
                       {
@@ -299,7 +299,7 @@ hecho.
 
 Este ADR se reutiliza en el informe del PI y en la sustentacion de la Clase 15.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '1.5 pts titulo con el numero del ADR y estado con fecha. 2 pts el contexto: nombra el dominio, el plazo y al menos una restriccion real de quien sostiene el proyecto; cero en este criterio si es teoria general o un resumen del tema de la clase. 3.5 pts la decision en UNA frase con UN modelo dominante; cero en este criterio si nombra dos o mas modelos. 5.5 pts las dos alternativas descartadas con el motivo del descarte atado al dominio: 2.75 pts cada una, y se pierde la mitad de cada una si el motivo es generico («es mas caro», «es mas complejo») sin decir mas caro o mas complejo PARA QUE de su sistema.',
                       },
                       {
@@ -325,7 +325,7 @@ Clase 15 va a pedir.
 > alternativa que el proveedor soporte» si lo es, porque describe algo que cambia en su
 > trabajo.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '3 pts los tres ejes presentes y rotulados (operacion, costo, aprendizaje). 2 pts que cada eje traiga al menos una consecuencia positiva y una negativa marcadas con + y -. 1.25 pts que al menos una negativa hable de amarre al proveedor o de perdida de control. Se descuenta por cada consecuencia escrita como ventaja de folleto («es mas facil», «es mas moderno») en vez de como algo que cambia en el trabajo del estudiante.',
                       },
                   ],
@@ -372,7 +372,7 @@ tener, como minimo, estas instrucciones y en un orden que tenga sentido:
 > que tenga la imagen puede leerlo con `docker history` aunque el archivo se borre en una
 > capa posterior. Los secretos se inyectan en tiempo de ejecucion, no se construyen dentro.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '2 pts la eleccion del servicio con justificacion atada al dominio. 5 pts el Dockerfile completo con las instrucciones minimas y un orden que aproveche el cache (dependencias antes del codigo). 1.5 pts imagen base ligera y con etiqueta fija; se descuenta por usar latest. 1.5 pts coherencia del puerto entre EXPOSE, CMD y lo documentado. Si el Dockerfile copia un .env o una clave, o hace COPY de todo sin .dockerignore ni mencionarlo, se pierden los 5 pts del Dockerfile: es el error que el curso corta el mismo dia.',
                       },
                       {
@@ -399,7 +399,7 @@ Explique, **usando el Dockerfile que acaba de escribir**, no la teoria general:
 > anfitrion) y «la imagen se ejecuta» (se ejecuta el contenedor, que es una instancia de la
 > imagen).
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '1 pt distinguir imagen de contenedor sin decir que un contenedor es una VM ligera. 1 pt nombrar al menos dos instrucciones de SU propio Dockerfile que crean capa. 1 pt explicar el efecto del orden en el cache, comparando con el orden inverso. 1 pt la diferencia con una VM en terminos de kernel compartido. Una respuesta que explique la teoria sin referirse a su archivo pierde la mitad: la pregunta evalua que entienda lo que escribio.',
                       },
                       {
@@ -425,7 +425,7 @@ Explique el ciclo completo de su servicio, con los **comandos exactos** que usar
 > la Clase 8 (CI). Un endpoint que devuelve 200 con el cuerpo vacio es peor que ninguno,
 > porque no distingue «vivo» de «vivo pero roto».
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '1.5 pts el comando de build con nombre y etiqueta. 1.5 pts el comando de run con el mapeo de puertos correctamente explicado: que lado es el anfitrion, que lado el contenedor y que pasa si se invierten. 2 pts el contrato de salud completo con ruta, codigo de estado y cuerpo con su formato; se descuenta si falta cualquiera de los tres. El puerto tiene que ser el mismo de la pregunta 8.',
                       },
                       {
@@ -462,7 +462,7 @@ Debajo de la tabla:
 > **antes** de cerrar. Perder el trabajo por no haber guardado es el incidente mas comun del
 > dia, y no es excusa aceptable para no entregar esta pregunta.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '2.5 pts las cinco filas con la salida real pegada textualmente; una salida parafraseada («salio bien») no suma. 1.5 pts la descripcion de la captura con los tres elementos exigidos (prompt, docker ps y hora del sistema). 1 pt la fila de incidente con el problema y como se resolvio. 1 pt coherencia: el nombre de la imagen, la etiqueta y el puerto son los mismos de las preguntas 8 y 10. Es la pregunta que demuestra que el contenedor existio de verdad y no solo en papel.',
                       },
                   ],
@@ -472,7 +472,7 @@ Debajo de la tabla:
                   'Paso 1: decida en la pregunta 12 si su CloudLite es un monolito modular o microservicios, con los dos criterios aplicados a su caso (tamano del equipo con numero y plazo, y que partes cambian juntas) y lo que gana y pierde; verifique que no escribio «un poco de los dos», porque eso vale cero.',
                   'Paso 2: modele en la pregunta 13 el C4 Container partiendo del C4 Context de la pregunta 3, con entre 2 y 5 contenedores coherentes con la decision anterior, los almacenes de datos como ContainerDb y toda flecha con protocolo y formato; verifique que los nombres de sistema, actores y sistemas externos sean identicos a los del Context.',
                   'Paso 3: liste en la pregunta 14 los 3 contratos con quien llama a quien usando los nombres exactos del diagrama, el verbo y la ruta (o el evento) y el error de negocio con su codigo y su significado en el dominio; verifique que al menos uno sea un 409 de conflicto y que ninguno diga «500 error del servidor».',
-                  'Paso 4: analice en la pregunta 15 los tres riesgos de distribucion nombrando una caja concreta que se cae, contando los saltos de red de una operacion de punta a punta y nombrando un dato expuesto a inconsistencia; con esto la actividad del Corte 1 queda completa y se entrega en ExamLab antes del domingo 23:59 de esta semana.',
+                  'Paso 4: analice en la pregunta 15 los tres riesgos de distribucion nombrando una caja concreta que se cae, contando los saltos de red de una operacion de punta a punta y nombrando un dato expuesto a inconsistencia; con esto la actividad del Corte 1 queda completa y se entrega en la plataforma del curso antes del domingo 23:59 de esta semana.',
               ],
      'preguntas': [
                       {
@@ -500,7 +500,7 @@ Esta decision es la que explica cuantas cajas tendra el diagrama de la pregunta 
 elige monolito modular, esas cajas son modulos dentro de un contenedor mas sus almacenes de
 datos, no servicios sueltos.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '1 pt la decision nombrada en una frase, sin ambiguedad. 2 pts los dos criterios aplicados al caso: 1 pt tamano del equipo con numero y plazo, 1 pt acoplamiento diciendo que partes cambian juntas. 1 pt el que gana y que pierde en terminos del dominio. Cero en la decision si dice «un poco de los dos» o no elige. Elegir monolito modular NO se penaliza: se penaliza no sustentar.',
                       },
                       {
@@ -533,7 +533,7 @@ El diagrama debe tener:
 Estos nombres vuelven en el diagrama de despliegue de la Clase 7 y en el checkpoint de la
 Clase 11: si aqui llama «api-prestamos» a un servicio, alla tiene que llamarse igual.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '3 pts entre 2 y 5 contenedores, cada uno con su tecnologia; se descuenta por cada caja de mas sin justificacion. 2 pts los almacenes de datos declarados como ContainerDb. 3 pts que TODA flecha lleve protocolo y formato. 2 pts que los nombres de sistema, actores y sistemas externos sean identicos a los del C4 Context de la pregunta 3. 1 pt que renderice sin error. Si el numero de cajas contradice la decision de la pregunta 12 (por ejemplo cinco servicios sueltos habiendo elegido monolito modular) se pierden los 3 pts de los contenedores.',
                           'mermaid_esperado': '''C4Container
     title Contenedores de CloudLite App - dominio AgendaU
@@ -579,7 +579,7 @@ acuerdo de como se hablan dos partes, y aqui se escribe con **cuatro datos**:
 Un contrato sin su error solo describe el camino feliz, y el camino feliz nunca es el que
 rompe el sistema.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '3 pts los tres contratos con quien llama a quien usando los nombres exactos del diagrama: 1 pt cada uno. 2 pts los verbos y rutas bien formados (o el evento, si es asincrono). 2 pts los errores de negocio con codigo y significado en el dominio; se pierde el punto del error si dice 500 o «error generico», y se pierde 1 pt del total si ninguno de los tres es un 409 de conflicto.',
                       },
                       {
@@ -606,7 +606,7 @@ propia arquitectura logica, en este orden:
 > los saltos hacia la base de datos y hacia los sistemas externos son igualmente red, y el
 > riesgo 3 existe en cuanto haya dos escrituras que deban ocurrir juntas.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '1 pt el riesgo de indisponibilidad nombrando una caja concreta y distinguiendo que deja de funcionar de que sigue funcionando; media respuesta si dice «se cae todo». 1 pt el conteo de saltos de una operacion de punta a punta. 1 pt el dato expuesto a inconsistencia, nombrado, con lo que pasa si falla el segundo paso. Una respuesta generica sobre «los microservicios son mas complejos» no suma en ningun criterio.',
                       },
                   ],
@@ -645,7 +645,7 @@ Amenazas tipicas del curso, como referencia de la **forma** esperada, no para co
 > reservas de otro porque el endpoint no valida a quien pertenece» si lo es, porque nombra
 > al actor, el dato y el camino.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '1.75 pts por amenaza bien formada, hasta 5. Una amenaza suma completo solo si nombra el actor o el dato concreto del dominio y el camino por el que ocurre. Una amenaza generica («podrian hackear la base de datos») vale la mitad. Se descuenta si dos amenazas son la misma con otras palabras.',
                       },
                       {
@@ -670,7 +670,7 @@ componente de SU sistema lo aplica y que deja de poder hacer al aplicarlo.
 > Por eso la segunda columna vale tanto como la primera. Si no encuentra donde ubicarlo,
 > probablemente le falta una caja o una frontera en el diagrama.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '1 pt por cada control concreto y verificable, hasta 5. 2.5 pts por senalar correctamente la caja o la flecha de cada uno; se prorratea. 1.25 pts por el principio de menor privilegio aplicado a un componente concreto, diciendo que deja de poder hacer. Un control tipo «usar buenas practicas» no suma.',
                       },
                       {
@@ -695,7 +695,7 @@ Defina la politica de secretos de CloudLite respondiendo estas cuatro preguntas:
 Cierre nombrando **que haria si un secreto se filtra**: el primer paso no es borrar el
 commit, es **rotar la credencial**, porque el historial ya salio del equipo.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '1.5 pts cada una de las cuatro preguntas respondida de forma concreta (donde, quien, cada cuanto, que se prohibe): 6 pts. 1.5 pts el procedimiento ante filtracion empezando por rotar la credencial y no por borrar el commit. Cero en la primera pregunta si la respuesta admite guardar secretos en el repositorio en claro.',
                       },
                   ],
@@ -733,7 +733,7 @@ Debe tener:
 Reutilice **los mismos nombres** de componentes del C4 Containers del Corte 1: es el mismo
 sistema visto desde donde se ejecuta.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '4 pts las tres zonas presentes y rotuladas. 4 pts cada componente en la zona que le corresponde; **se pierden los 4 completos si la base de datos queda en la zona publica**. 2 pts las fronteras de confianza marcadas. 2 pts el puerto de cada componente. 2 pts que renderice sin error. Se descuenta por nombrar subredes o servicios de un proveedor concreto.',
                           'mermaid_esperado': '''flowchart LR
     subgraph publica["Zona publica - internet"]
@@ -774,7 +774,7 @@ mas. Formato: `Componente | Tipo | Que caracteristica del dato lo exige`.
 > Decir «mi dominio no necesita objeto, y por eso no lo tengo» es una respuesta correcta y
 > completa.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '3 pts la clasificacion correcta de cada componente del despliegue. 2.5 pts que cada justificacion nombre la caracteristica del dato (se cruza con otros, lo monta un solo proceso, se recupera entero) y no una preferencia. Suma completo quien declare que su dominio no necesita almacenamiento de objetos y lo justifique; se descuenta quien lo incluya sin un dato que lo pida.',
                       },
                       {
@@ -796,7 +796,7 @@ cual de los dos diagramas actualizo para que queden iguales.
 > «api-agenda» en uno y «servidor-backend» en otro, nadie puede saber si son la misma cosa,
 > y en la sustentacion de la Clase 15 eso se lee como dos sistemas distintos.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '2 pts la explicacion de por que los nombres deben coincidir, en terminos de que son el mismo sistema. 2.5 pts la tabla completa con una fila por componente y su zona. 1 pt listar los renombres aplicados, o declarar explicitamente que no hubo ninguno. Se descuenta si la tabla deja fuera algun componente que si aparece en alguno de los dos diagramas.',
                       },
                   ],
@@ -833,7 +833,7 @@ Dejelo explicito en el nombre del paso para no prometer lo que no hace.
 Use la imagen y el puerto **del Dockerfile que escribio en el Corte 1**: es el mismo
 servicio.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '2 pts los disparadores declarados. 1.5 pts el entorno de ejecucion. 4 pts los tres pasos presentes y en orden (construccion, prueba, despliegue simulado). 1.5 pts que el despliegue este rotulado como simulado y no prometa un despliegue real. 1 pt coherencia con el Dockerfile del Corte 1 (misma imagen, mismo puerto). **Cero en toda la pregunta si aparece un secreto escrito en claro en el YAML.**',
                       },
                       {
@@ -854,7 +854,7 @@ Explique, sobre **su propio** `ci.yml`:
 > responder es «que error tendria que introducir yo en el codigo para que este pipeline lo
 > detecte», y su respuesta tiene que decirlo.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '1.5 pts que se compila o instala. 1.5 pts que se ejecuta en la prueba y que comprueba. 2 pts la condicion de fallo, expresada como algo que el pipeline detectaria. **Cero en la condicion de fallo si el pipeline no puede fallar nunca** (solo `echo`, o pruebas que siempre pasan): es el criterio central de la pregunta.',
                       },
                       {
@@ -876,7 +876,7 @@ Distinga los dos terminos y ubique su propio trabajo:
 > este curso el despliegue **se simula**, y decirlo asi no resta puntos: los suma, porque
 > demuestra que sabe donde esta el limite de lo que construyo.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '1 pt la definicion de CI atada a cuando actua. 1 pt la de CD y su diferencia. 1 pt ubicar correctamente su propio trabajo, reconociendo que llega hasta «listo para desplegar». 1 pt lo que faltaria para CD real y por que el curso no lo exige. Se descuenta la mitad si afirma haber construido CD.',
                       },
                       {
@@ -905,7 +905,7 @@ Formato: `Senal | Que se mide en MI dominio | Umbral u objetivo`.
 Al menos una de las senales debe ser un **registro** y no una metrica numerica: algo que se
 escribe para poder reconstruir que paso despues.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                           'rubrica': '1 pt por senal bien formada con su umbral, hasta 4 senales; las senales 5 y 6 suman hasta 1 pt adicional entre las dos. 1 pt que al menos una sea un registro y no una metrica numerica. **Una senal sin umbral no suma**, aunque este bien elegida. Se descuenta si las senales no se refieren a operaciones del dominio propio.',
                       },
                   ],
@@ -915,7 +915,7 @@ escribe para poder reconstruir que paso despues.
                    'Paso 1: construya en la pregunta 11 la tabla de costos con una fila por cada componente de su despliegue y las columnas componente, driver, nivel B/M/A y apalancamiento; verifique que cada driver sea una variable contable (horas encendidas, GB de salida, GB almacenados, minutos de CI) y no «el uso».',
                    'Paso 2: fuerce al menos un Alto y un Bajo con su justificacion. Marcar todo como Medio para no decidir es lo que la pregunta busca descartar, y ese criterio vale cero si todas las filas quedan iguales.',
                    'Paso 3: escriba en la pregunta 12 tres acciones de sostenibilidad, cada una con el artefacto donde se comprueba y como se comprueba; aplique la prueba de que otra persona pueda decir en seis meses, mirando el repositorio, si la accion se aplico.',
-                   'Paso 4: ate al menos una de las tres acciones a un driver de costo de la pregunta 11 y suba la actividad completa del Corte 2 a ExamLab antes del domingo 23:59. Es una clase autonoma: no hay encuentro sincrono, y las dudas van por el foro.',
+                   'Paso 4: ate al menos una de las tres acciones a un driver de costo de la pregunta 11 y suba la actividad completa del Corte 2 a la plataforma del curso antes del domingo 23:59. Es una clase autonoma: no hay encuentro sincrono, y las dudas van por el foro.',
                ],
       'preguntas': [
                        {
@@ -946,7 +946,7 @@ columnas**:
 **Fuerce al menos un Alto y un Bajo.** Marcar todo como «Medio» para no pensar es la
 respuesta que esta pregunta busca descartar.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                            'rubrica': '4 pts una fila por cada componente del despliegue, sin dejar ninguno fuera. 5 pts los drivers: cada uno tiene que ser una variable contable (horas encendidas, GB de salida, GB almacenados, minutos de CI) y no «el uso». 3.25 pts los niveles, con al menos un Alto y un Bajo justificados; si todo es Medio, este criterio vale cero. 4 pts los apalancamientos, uno por fila, concretos y comprobables. **Se descuenta fuerte por inventar precios en dolares**: la escala es cualitativa.',
                        },
                        {
@@ -975,7 +975,7 @@ Ejemplos de la **forma** esperada, no para copiarlos:
 Ate al menos una de las tres a un **driver de costo** de la tabla anterior: sostenibilidad y
 costo suelen apalancarse con la misma decision.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                            'rubrica': '2.5 pts por accion verificable, hasta 3 acciones: suma completo solo si nombra el artefacto y como se comprueba. 1.25 pts por atar al menos una accion a un driver de costo de la pregunta 11. Una accion que no se pueda comprobar mirando un artefacto vale cero, aunque sea razonable.',
                        },
                    ],
@@ -990,7 +990,7 @@ costo suelen apalancarse con la misma decision.
                 'Dockerfile o el ci.yml y en el informe, verificando que la columna de nombre '
                 'canonico sea identica en las cuatro y aplicando la correccion en el artefacto que '
                 'este desalineado.',
-                'Paso 3: escriban en ExamLab el diagrama C4Component del interior de la API con 5 '
+                'Paso 3: escriban en la plataforma del curso el diagrama C4Component del interior de la API con 5 '
                 'componentes y sus relaciones hacia la base de datos, la cola y el proveedor de '
                 'identidad, verificando al renderizar que ningun componente sea un contenedor de '
                 'la Clase 4 disfrazado y que el contenedor contenedor de la frontera se llame '
@@ -1000,7 +1000,7 @@ costo suelen apalancarse con la misma decision.
                 'en una semana y que al menos uno provenga del feedback del docente recibido hoy '
                 'en la cola de revision.',
                 'Paso 5: empaqueten el ZIP o el repositorio con los diagramas, el Dockerfile, el '
-                'ci.yml y el informe al 60 por ciento, y suban las 5 preguntas a ExamLab (modulo '
+                'ci.yml y el informe al 60 por ciento, y suban las 5 preguntas a la plataforma del curso (modulo '
                 'Talleres) antes del domingo 23:59, verificando que el paquete se pueda abrir en '
                 'otra maquina y que el informe enlace cada evidencia por su ruta dentro del '
                 'paquete.'],
@@ -1205,7 +1205,7 @@ costo suelen apalancarse con la misma decision.
       'resumen': 'El estudiante consolida el paquete v1 de CloudLite con checklist enlazado, '
                  'nombres reconciliados entre todos los artefactos, el interior de la API en un '
                  'C4Component y un backlog de 5 items hacia la Clase 12.',
-      'titulo': 'Taller Clase 11 en ExamLab - Checkpoint del paquete v1 de CloudLite'},
+      'titulo': 'Taller Clase 11 en la plataforma del curso - Checkpoint del paquete v1 de CloudLite'},
  12: {'pasos': ['Paso 1: describan el escenario de carga del pico real de su dominio con los 6 '
                 'datos obligatorios (evento del pico, usuarios concurrentes, peticiones por '
                 'segundo, mezcla de operaciones en porcentajes que sumen 100, duracion de la '
@@ -1216,7 +1216,7 @@ costo suelen apalancarse con la misma decision.
                 'ventana de medicion, forma de medirla y consecuencia de incumplirla, verificando '
                 'que cada objetivo tenga un numero y una ventana (por ejemplo p95 por debajo de '
                 '800 ms en 5 minutos) y que ninguna diga rapido o aceptable sin cifra.',
-                'Paso 3: escriban en ExamLab el sequenceDiagram del camino critico con el '
+                'Paso 3: escriban en la plataforma del curso el sequenceDiagram del camino critico con el '
                 'presupuesto de latencia repartido por salto, verificando que la suma de los '
                 'tramos sea menor o igual al objetivo de p95 y que la nota final muestre el margen '
                 'restante en milisegundos.',
@@ -1228,7 +1228,7 @@ costo suelen apalancarse con la misma decision.
                 'mostrar.',
                 'Paso 5: cierren los 5 items del backlog de la Clase 11 dejando registro de los '
                 'residuales, dejen el paquete casi final ordenado en el repositorio o el Drive y '
-                'suban las 6 preguntas a ExamLab (modulo Talleres) antes del domingo 23:59, '
+                'suban las 6 preguntas a la plataforma del curso (modulo Talleres) antes del domingo 23:59, '
                 'verificando que el cuello de botella declarado en el analisis sea el mismo que '
                 'muestra el diagrama de secuencia.'],
       'preguntas': [{'enunciado': '## Escenario de carga del pico de su dominio\n'
@@ -1440,7 +1440,7 @@ costo suelen apalancarse con la misma decision.
       'resumen': 'El estudiante entrega el escenario de carga del pico de su dominio con 3 '
                  'metricas objetivo numericas, el presupuesto de latencia repartido por salto en '
                  'un diagrama de secuencia y el guion cronometrado del pitch de sustentacion.',
-      'titulo': 'Taller Clase 12 en ExamLab - Rendimiento y ensayo de sustentacion de CloudLite'},
+      'titulo': 'Taller Clase 12 en la plataforma del curso - Rendimiento y ensayo de sustentacion de CloudLite'},
  13: {'pasos': ['Paso 1: tome los 5 componentes de su C4Deployment de la Clase 7 y clasifique cada '
                 'uno como escala horizontal, escala vertical o no escala, verificando que al menos '
                 'uno quede en no escala con justificacion tecnica, porque una politica donde todo '
@@ -1451,7 +1451,7 @@ costo suelen apalancarse con la misma decision.
                 'maximo, tiempo de enfriamiento), verificando que cada disparador tenga metrica, '
                 'umbral numerico y ventana de tiempo, y que ningun maximo quede en infinito o sin '
                 'definir.',
-                'Paso 3: escriba en ExamLab el diagrama Mermaid de la maquina de decision del '
+                'Paso 3: escriba en la plataforma del curso el diagrama Mermaid de la maquina de decision del '
                 'autoescalado con el nodo de observacion, los dos rombos de decision, las acciones '
                 'de subida y bajada, el enfriamiento y el nodo de lo que no escala, verificando al '
                 'renderizar que el ciclo se cierre sobre el nodo de observacion y que los umbrales '
@@ -1463,7 +1463,7 @@ costo suelen apalancarse con la misma decision.
                 'costos.',
                 'Paso 5: integre la politica en la seccion Escalabilidad del informe, anote la '
                 'marca de replicas en el diagrama de despliegue si aplica y suba las 5 preguntas a '
-                'ExamLab (modulo Talleres) antes del domingo 23:59, verificando que la politica no '
+                'la plataforma del curso (modulo Talleres) antes del domingo 23:59, verificando que la politica no '
                 'prometa nada que la arquitectura dibujada no pueda cumplir.'],
       'preguntas': [{'enunciado': '## Politica de autoescalado de CloudLite\n'
                                   '\n'
@@ -1640,12 +1640,12 @@ costo suelen apalancarse con la misma decision.
       'resumen': 'El estudiante entrega la politica de autoescalado conceptual de CloudLite con '
                  'disparadores numericos, minimos y maximos, tiempo de enfriamiento, los '
                  'componentes que deliberadamente no escalan y el impacto en costos.',
-      'titulo': 'Taller Clase 13 en ExamLab - Politica de autoescalado de CloudLite'},
+      'titulo': 'Taller Clase 13 en la plataforma del curso - Politica de autoescalado de CloudLite'},
  15: {'pasos': ['Paso 1: armen el paquete final y llenen el indice de 8 filas con entregable, '
                 'nombre de archivo, ruta dentro del paquete y estado, verificando que los 8 '
                 'archivos abran desde una maquina distinta a la del autor y que ningun nombre de '
                 'archivo tenga espacios ni tildes que rompan la descarga.',
-                'Paso 2: escriban en ExamLab la lamina unica de arquitectura en Mermaid con las 3 '
+                'Paso 2: escriban en la plataforma del curso la lamina unica de arquitectura en Mermaid con las 3 '
                 'zonas, los 5 contenedores, el edge, la cadena de entrega y los sistemas externos, '
                 'verificando al renderizar que sea legible en una sola pantalla sin desplazamiento '
                 'y que use los mismos nombres canonicos del paquete, porque esta es la lamina que '
@@ -1660,7 +1660,7 @@ costo suelen apalancarse con la misma decision.
                 'total quede entre 5 y 8 minutos; la sustentacion se hace EN VIVO en la sesion de '
                 'clase, con preguntas del docente al cierre, no con un video grabado.',
                 'Paso 5: escriban la reflexion de media pagina sobre el trade-off mas difícil y '
-                'suban el paquete final completo mas las 5 preguntas a ExamLab (modulo Proyectos) '
+                'suban el paquete final completo mas las 5 preguntas a la plataforma del curso (modulo Proyectos) '
                 'ANTES de su turno de sustentacion, verificando que el informe, los diagramas, la evidencia del '
                 'lab, el ci.yml y la presentacion esten los cinco dentro del mismo paquete.'],
       'preguntas': [{'enunciado': '## Indice del paquete final\n'
@@ -1865,4 +1865,4 @@ costo suelen apalancarse con la misma decision.
       'resumen': 'El estudiante entrega el paquete final de CloudLite indexado y verificado, la '
                  'lamina unica de arquitectura que proyecta en la sustentacion, el Q and A '
                  'escrito, los tiempos reales del pitch y la reflexion del trade-off mas difícil.',
-      'titulo': 'Taller Clase 15 en ExamLab - Entrega final y sustentacion de CloudLite'}}
+      'titulo': 'Taller Clase 15 en la plataforma del curso - Entrega final y sustentacion de CloudLite'}}

@@ -41,7 +41,7 @@ Dejelo explicito en el nombre del paso para no prometer lo que no hace.
 Use la imagen y el puerto **del Dockerfile que escribio en el Corte 1**: es el mismo
 servicio.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -69,7 +69,7 @@ Explique, sobre **su propio** `ci.yml`:
 > responder es «que error tendria que introducir yo en el codigo para que este pipeline lo
 > detecte», y su respuesta tiene que decirlo.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -98,7 +98,7 @@ Distinga los dos terminos y ubique su propio trabajo:
 > este curso el despliegue **se simula**, y decirlo asi no resta puntos: los suma, porque
 > demuestra que sabe donde esta el limite de lo que construyo.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -134,7 +134,7 @@ Formato: `Senal | Que se mide en MI dominio | Umbral u objetivo`.
 Al menos una de las senales debe ser un **registro** y no una metrica numerica: algo que se
 escribe para poder reconstruir que paso despues.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 

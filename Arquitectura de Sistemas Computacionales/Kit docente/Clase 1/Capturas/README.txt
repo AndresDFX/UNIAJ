@@ -8,7 +8,7 @@ Ya generadas por `python config/slides/mockups.py` (no hay que tomarlas):
   - demo-clase01.png — C4 Context de la demo en vivo: asi debe quedar el tablero al terminar
 
 Pendiente: demo-clase01.png — la herramienta del dia en uso
-  1. Abrir Padlet · Excalidraw / draw.io.
+  1. Abrir Navegador · editor de diagramas del curso · boceto libre (papel o Excalidraw) opcional.
   2. Repetir la demo: Dibujar en vivo el C4 Context de un CloudLite de ejemplo.
      1. Abra draw.io en blanco y dibuje UNA caja al centro rotulada «CloudLite App».
      2. Agregue 2 monigotes a la izquierda (Usuario final, Administrador) con flechas rotuladas «consulta», «administra».

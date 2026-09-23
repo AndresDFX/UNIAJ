@@ -36,6 +36,13 @@ from arq_examlab_data import (  # noqa: E402
 import arq_solucion_data as soluciones  # noqa: E402
 import solucion_taller  # noqa: E402
 import examlab_talleres  # noqa: E402
+
+# La parte practica de Arquitectura no nombra la plataforma: el estudiante ya sabe cual es y
+# como entrar —eso va en el correo de bienvenida— y en el taller lo que importa es QUE se
+# entrega. El modulo es compartido con los otros cuatro cursos, asi que se configura aqui
+# y ellos salen identicos.
+examlab_talleres.NOMBRE_PLATAFORMA = "la plataforma del curso"
+examlab_talleres.MOSTRAR_URL = False
 from uniajc_slides_engine import (  # noqa: E402
     before_after_slide,
     box_note_slide,
@@ -140,13 +147,13 @@ MODALIDAD_DEFAULTS = {
     # Slides
     "agenda_taller_nota": "avance individual",
     "equipo_note": "Individual por defecto · el docente puede autorizar equipos de 2–3; "
-                   "la entrega en ExamLab siempre es individual.",
+                   "la entrega en la plataforma del curso siempre es individual.",
     # Taller del estudiante
     "explica_60s_note": "Puedes explicar tu decisión en 60 segundos "
                         "(si trabajas en equipo autorizado, cualquier integrante debe poder hacerlo).",
     "entrega_unidad_note": "Modalidad de trabajo: individual por defecto; el docente puede autorizar "
                            "equipos de 2 o 3 y en ese caso el artefacto puede ser compartido, pero el "
-                           "envío en ExamLab es siempre individual (responde con tus propias palabras).",
+                           "envío en la plataforma del curso es siempre individual (responde con tus propias palabras).",
     # Guion docente
     "arranque_cita": "¿En qué quedó tu CloudLite la clase pasada?",
     "arranque_nota": "pregunta de arranque (1 min) para detectar estudiantes rezagados antes de avanzar:",
@@ -220,8 +227,8 @@ CLASSES = [
         "tema": "Introducción a arquitecturas cloud",
         "sub": "Diagnóstico · CloudLite App · primer boceto",
         "pi_hoy": "Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases",
-        "entregable": "Ficha PI de 5 bloques + C4 Context en Mermaid renderizado en ExamLab (boceto previo en Excalidraw/draw.io)",
-        "herramienta": "Padlet · Excalidraw / draw.io",
+        "entregable": "Ficha PI de 5 bloques + C4 Context en Mermaid renderizado en la plataforma (boceto previo en Excalidraw/draw.io)",
+        "herramienta": "Navegador · editor de diagramas del curso · boceto libre (papel o Excalidraw) opcional",
         # Modalidad individual por defecto: desde 2026-2 los textos por defecto del
         # curso ya estan escritos en modo individual (ver MODALIDAD_DEFAULTS abajo),
         # asi que esta clase solo necesita el matiz propio de la Clase 1: aqui el
@@ -231,7 +238,7 @@ CLASSES = [
         "ficha_bloques_note": "Ficha de 5 bloques: DOMINIO · PROBLEMA · ACTORES (con sus sistemas externos) · CAPACIDADES · FUERA DE ALCANCE.",
         "explica_60s_note": "El estudiante puede explicar su decisión en 60 segundos.",
         "entrega_unidad_note": "Un envío por estudiante.",
-        "entrega_oficial_nota": "La entrega oficial se hace respondiendo las preguntas abiertas del taller dentro de ExamLab (https://uniaj.examlab.workers.dev/). El documento/ficha en Word o Google Docs es opcional, solo para que el estudiante conserve sus respuestas; lo que califica es lo que quede escrito en las preguntas de ExamLab.",
+        "entrega_oficial_nota": "La entrega oficial se hace respondiendo las preguntas abiertas del taller en la plataforma del curso. El documento/ficha en Word o Google Docs es opcional, solo para que el estudiante conserve sus respuestas; lo que califica es lo que quede escrito en las preguntas de la actividad.",
         "separar_notas_docente": True,
         "arranque_cita": "¿En qué quedó tu CloudLite la clase pasada?",
         "arranque_nota": "pregunta de arranque (1 min) para detectar estudiantes rezagados antes de avanzar:",
@@ -270,8 +277,8 @@ CLASSES = [
         "taller_pasos": [
             "Elija dominio concreto (no «red social genérica») y escriba: problema (2–3 frases), 4 capacidades.",
             "Escriba actores, sistemas externos (2–3) y fuera de alcance.",
-            "Boceto del **C4 Context** en Excalidraw o draw.io (CloudLite + actores + sistemas externos), y después convertirlo a **Mermaid** con ayuda de una IA para pegarlo renderizado en ExamLab.",
-            "Revise que los nombres de actores y sistemas externos coincidan entre la ficha y el diagrama, y entregue en **ExamLab** las preguntas 1 a 4 de la actividad del Corte 1.",
+            "Boceto del **C4 Context** en Excalidraw o draw.io (CloudLite + actores + sistemas externos), y después convertirlo a **Mermaid** con ayuda de una IA para pegarlo renderizado en la plataforma.",
+            "Revise que los nombres de actores y sistemas externos coincidan entre la ficha y el diagrama, y entregue en **la plataforma del curso** las preguntas 1 a 4 de la actividad del Corte 1.",
         ],
         "quiz": [
             ("¿Qué hace que un dominio sea concreto y no genérico?",
@@ -289,7 +296,7 @@ CLASSES = [
         "sub": "ADR del PI · elección del modelo de servicio",
         "pi_hoy": "Decidir modelo dominante (IaaS/PaaS/SaaS) para CloudLite + ADR breve",
         "entregable": "ADR-001: decisión de modelo de servicio + matriz de comparación aplicada al dominio",
-        "herramienta": "Google Docs · draw.io (opcional)",
+        "herramienta": "Navegador · editor de texto del curso",
         "objetivos": [
             "Comparar IaaS, PaaS y SaaS con criterios de control, operación y velocidad.",
             "Elegir el **modelo dominante** de CloudLite con justificación.",
@@ -335,7 +342,7 @@ CLASSES = [
             "Redacte las 5 primeras secciones del ADR-001: Título · Estado con fecha · Contexto · Decisión (1 frase, 1 modelo dominante) · Alternativas descartadas (exactamente 2) — pregunta 6.",
             "Escriba la sección 6 del mismo ADR, Consecuencias, en los 3 ejes (operación, costo, aprendizaje) con un + y un - en cada uno (pregunta 7).",
             "Actualice el informe PI (sección «Modelo de servicio») pegando el ADR completo, las 6 secciones.",
-            "Entrega domingo 23:59 en **ExamLab** (Talleres) — mismo doc del PI o anexo.",
+            "Entrega domingo 23:59 en **la plataforma del curso** (Talleres) — mismo doc del PI o anexo.",
         ],
         "quiz": [
             ("Si solo despliega código y el proveedor gestiona el runtime, ¿qué modelo es?", "PaaS."),
@@ -353,13 +360,13 @@ CLASSES = [
         # Sin «compose opcional»: la actividad pide un servicio, un Dockerfile y un
         # `docker run`, y la solucion docente responde que compose «hoy suma ruido».
         # La bitacora se nombra porque son 6 de los 25 puntos de la clase.
-        "entregable": "Dockerfile del stub + bitácora de 5 comandos con la salida real + captura del lab",
-        "herramienta": "Killercoda · alterna si no carga: LabEx Docker Playground",
+        "entregable": "Dockerfile del stub + .dockerignore + ciclo de 5 comandos con la salida esperada y su justificación",
+        "herramienta": "Navegador · editor de código del curso · lab de contenedores recomendado (no obligatorio)",
         "objetivos": [
             "Diferenciar VM vs contenedor y el rol de la imagen.",
-            "Ejecutar un contenedor en lab de **navegador** (sin Docker Desktop obligatorio).",
+            "Razonar el ciclo build → run → verify: qué imprime cada comando y por qué.",
             "Publicar el puerto y verificar el servicio con un **endpoint de salud** (ruta, código, cuerpo).",
-            "Dejar evidencia PI: Dockerfile del stub CloudLite + bitácora + captura.",
+            "Dejar evidencia PI: Dockerfile del stub CloudLite + ciclo justificado.",
         ],
         "slides_extra": [
             ("VM vs contenedor", [
@@ -368,14 +375,15 @@ CLASSES = [
                 "Imagen = capas inmutables; contenedor = instancia en ejecución.",
                 "CloudLite: contenerizamos al menos **un** servicio (API stub o front estático).",
             ]),
-            ("Lab en navegador (pasos demo)", [
-                "Abrir **Killercoda** (killercoda.com, escenario Ubuntu) con cuenta gratuita.",
-                "`docker run` de un nginx/hello y luego **su** imagen stub.",
-                "📸 [CAP: docker-ps] `docker ps` con el contenedor arriba.",
-                "@@La sesión caduca a 1 h:@@ el Dockerfile se escribe en **tu** carpeta del PI y se "
-                "pega en el lab, nunca al contrario. Guarda capturas antes de cerrar.",
-                "Si Killercoda no carga: **LabEx Docker Playground** como alterna (misma hora de "
-                "sesión, pero solo **3 al día** en el plan gratuito).",
+            ("Comprobar en un lab: recomendado, no obligatorio", [
+                "Lo que se entrega hoy es el **Dockerfile** y el **ciclo justificado**: se escribe "
+                "y se razona, no hace falta ejecutarlo para entregar.",
+                "Si quieres comprobarlo —y vale la pena— hay laboratorios de contenedores "
+                "gratuitos en el navegador, sin instalar nada y sin tarjeta.",
+                "@@Ojo con hacerlos obligatorios:@@ la sesión caduca en torno a la hora y el plan "
+                "gratuito limita cuántas abres al día. Por eso tu nota no depende de que carguen.",
+                "El Dockerfile se escribe en **tu** carpeta del PI y se pega en el lab, nunca al "
+                "contrario: lo que se cierra con la sesión no es tu entregable.",
             ]),
             ("Dockerfile mínimo para el stub", [
                 "Siete instrucciones: **FROM · WORKDIR · COPY** de dependencias **· RUN · COPY** del código **· EXPOSE · CMD**.",
@@ -406,9 +414,9 @@ CLASSES = [
         "taller_pasos": [
             "Definan qué servicio contenerizan hoy (API stub o front estático del dominio).",
             "Escriban el Dockerfile de siete instrucciones **y** su `.dockerignore` al lado.",
-            "En Killercoda: construyan con nombre y etiqueta, corran publicando el puerto y verifiquen `GET /health` (si no carga, LabEx como alterna).",
-            "Llenen la bitácora de 5 comandos pegando la salida real, con una fila de incidente.",
-            "Capturen evidencia (PNG con prompt, `docker ps` y hora del sistema) o enlace de sesión + nota de caducidad.",
+            "Escriban los 5 comandos del ciclo con nombre y etiqueta, el mapeo de puertos y la verificación de `GET /health`.",
+            "Para cada comando, digan **qué debe imprimir** y **cómo se sabe que salió bien**; incluyan un caso que falla y su síntoma.",
+            "Expliquen, sobre su propio Dockerfile, qué instrucción crea qué capa y qué cambia si se invierte el orden.",
         ],
         "quiz": [
             ("¿Qué comparte un contenedor con el host que una VM típicamente no comparte?", "El kernel del SO."),
@@ -430,7 +438,7 @@ CLASSES = [
         "sub": "C4 Containers, contratos y riesgos",
         "pi_hoy": "Diagramar componentes/servicios de CloudLite y sus contratos",
         "entregable": "Diagrama C4 Container en Mermaid + tabla de 3 contratos + 3 riesgos de distribución",
-        "herramienta": "draw.io o Excalidraw para bocetar · Mermaid dentro de ExamLab para entregar",
+        "herramienta": "Navegador · editor de diagramas del curso (Mermaid) · boceto libre opcional",
         "objetivos": [
             "Contrastar monolito vs microservicios con criterios de equipo y acoplamiento.",
             "Modelar CloudLite en **C4 Container** (Mermaid) con 2–5 cajas justificadas.",
@@ -493,7 +501,7 @@ CLASSES = [
         "taller_pasos": [
             "Decidan en una frase: monolito modular o microservicios, con dos criterios y lo que se gana y se pierde.",
             "Bocetan en draw.io o Excalidraw el C4 **Containers**: 2–5 cajas justificadas, almacenes marcados como tales.",
-            "Pasen el boceto a **Mermaid** (`C4Container` en la primera línea) y péguenlo en la pregunta de diagrama de ExamLab.",
+            "Pasen el boceto a **Mermaid** (`C4Container` en la primera línea) y péguenlo en la pregunta de diagrama de la actividad.",
             "Listen 3 contratos con las cuatro columnas: contrato, quién llama a quién, verbo y ruta, y error de negocio.",
             "Nombren los 3 riesgos de distribución: qué caja se cae, cuántos saltos de red, y qué dato se escribe en dos pasos.",
         ],
@@ -534,7 +542,7 @@ CLASSES = [
         # Decia «Excalidraw · Google Docs» y omitia donde se califica, que es la seccion
         # del taller que el estudiante lee antes de empezar. Hoy no se dibuja nada nuevo:
         # se escribe una tabla y una politica, y se senala sobre el C4 que ya existe.
-        "herramienta": "Google Docs para la tabla y la política · ExamLab para entregar",
+        "herramienta": "Navegador · editor de texto del curso",
         "objetivos": [
             "Aplicar un modelo de amenazas simple al dominio CloudLite.",
             "Mapear controles (authn/z, secretos, superficie de red) sin cloud de pago.",
@@ -674,8 +682,8 @@ CLASSES = [
         # califica son 14 pts de **codigo Mermaid pegado en ExamLab**, con 2 pts que dependen
         # de que renderice sin error. draw.io y Excalidraw siguen sirviendo para el boceto —
         # es el paso 1 de la diapositiva «Del boceto a ExamLab» — pero no son la entrega.
-        "entregable": "Diagrama Deployment en Mermaid dentro de ExamLab (3 zonas + puertos) + tipo de almacenamiento por componente",
-        "herramienta": "ExamLab (Mermaid) · boceto en draw.io o Excalidraw",
+        "entregable": "Diagrama Deployment en Mermaid en la plataforma del curso (3 zonas + puertos) + tipo de almacenamiento por componente",
+        "herramienta": "Navegador · editor de diagramas del curso (Mermaid) · boceto libre opcional",
         "objetivos": [
             "Modelar red lógica (cliente, edge, app, datos) sin VPC de pago.",
             "Elegir tipo de almacenamiento según el caso de uso CloudLite.",
@@ -696,14 +704,14 @@ CLASSES = [
             ]),
             ("Checklist del diagrama Deployment", [
                 "Tres zonas rotuladas · cada componente en su zona · puerto de cada uno.",
-                "Fronteras de confianza marcadas · **que renderice sin error** en ExamLab.",
+                "Fronteras de confianza marcadas · **que renderice sin error** en la plataforma.",
                 "Debe alinearse con el C4 Containers (mismos nombres).",
             ]),
         ],
         "taller_titulo": "Taller Clase 7 — Despliegue y storage CloudLite",
         "taller_pasos": [
             "Bocetén el Deployment en draw.io o Excalidraw con las **tres** zonas (pública / privada / datos).",
-            "Tradúzcanlo a **Mermaid** y péguenlo en la pregunta 4 de ExamLab: se califica el diagrama **renderizado**.",
+            "Tradúzcanlo a **Mermaid** y péguenlo en la pregunta 4 de la actividad: se califica el diagrama **renderizado**.",
             "Etiqueten el puerto de cada componente y marquen las fronteras de confianza.",
             "Clasifiquen el almacenamiento de cada componente: Relacional / Bloque / Objeto, con la característica del dato.",
             "Llenen la tabla de correspondencia C4 Containers → Despliegue → Zona y listen los renombres.",
@@ -723,7 +731,7 @@ CLASSES = [
         "sub": "GitHub Actions + plan de observabilidad",
         "pi_hoy": "Workflow Actions (build/test/simulate) + métricas de monitoreo del PI",
         "entregable": ".github/workflows/ci.yml + sección Monitoreo/CI del informe",
-        "herramienta": "GitHub Actions · Google Docs",
+        "herramienta": "Navegador · editor de código del curso (YAML)",
         "objetivos": [
             "Explicar pipeline CI vs CD y qué es realista sin cloud de pago.",
             "Crear un workflow Actions que construya/pruebe un stub.",
@@ -783,7 +791,7 @@ CLASSES = [
         "sub": "Actividad autónoma · sección PI",
         "pi_hoy": "Estimación cualitativa de costos + notas de sostenibilidad",
         "entregable": "Sección Costos/Sostenibilidad del informe (bajo/medio + drivers)",
-        "herramienta": "Google Docs",
+        "herramienta": "Navegador · editor de texto del curso",
         "objetivos": [
             "Identificar drivers de costo (cómputo, datos, transferencia, idle).",
             "Proponer 3 apalancamientos de ahorro sin romper el diseño.",
@@ -820,7 +828,7 @@ CLASSES = [
         "sub": "Checkpoint diagramas v1 CloudLite",
         "pi_hoy": "Integrar diagramas v1 + checklist de avance PI",
         "entregable": "Paquete v1: Context + Containers + Deployment + Dockerfile + Actions + informe 60%+",
-        "herramienta": "draw.io · GitHub · Google Docs",
+        "herramienta": "Navegador · editores de diagramas y de texto del curso",
         "objetivos": [
             "Consolidar evidencias PI en un paquete revisable.",
             "Detectar huecos (nombres inconsistentes, servicios de más, sin seguridad).",
@@ -862,7 +870,7 @@ CLASSES = [
         "sub": "Métricas objetivo + ensayo de pitch PI",
         "pi_hoy": "Escenario de rendimiento + ensayo 5–8 min de sustentación",
         "entregable": "Sección Rendimiento + guion de pitch + paquete casi-final",
-        "herramienta": "Google Docs · draw.io · (opcional) lab contenedor",
+        "herramienta": "Navegador · editores de diagramas y de texto del curso",
         "objetivos": [
             "Definir métricas/objetivos de rendimiento realistas para CloudLite.",
             "Diseñar un escenario de prueba (aunque sea cualitativo/simulado).",
@@ -905,7 +913,7 @@ CLASSES = [
         "sub": "Actividad autónoma · escenario de escala PI",
         "pi_hoy": "Documentar política de autoescalado conceptual de CloudLite",
         "entregable": "Sección Escalabilidad: triggers, límites, qué escala y qué no",
-        "herramienta": "Google Docs · draw.io (opcional nota en Deployment)",
+        "herramienta": "Navegador · editores de texto y de diagramas del curso",
         "objetivos": [
             "Distinguir escala vertical vs horizontal y cuándo aplicarlas.",
             "Definir triggers cualitativos (CPU, cola, RPS) sin cloud de pago.",
@@ -956,8 +964,8 @@ CLASSES = [
         "tema": "Presentación del proyecto + cierre",
         "sub": "Sustentación en vivo del PI CloudLite · cierre del curso",
         "pi_hoy": "Sustentar en vivo el PI CloudLite App y entregar el paquete final",
-        "entregable": "Paquete final en ExamLab (módulo Proyectos) + pitch de 5–8 min sustentado hoy en clase + Q&A",
-        "herramienta": "Google Docs/Slides · diagramas · capturas lab",
+        "entregable": "Paquete final en la plataforma del curso (módulo Proyectos) + pitch de 5–8 min sustentado hoy en clase + Q&A",
+        "herramienta": "Navegador · editores de texto y de diagramas del curso",
         "objetivos": [
             "Sustentar **en vivo** CloudLite App con evidencias completas.",
             "Responder **en vivo** preguntas de arquitectura (ADRs, amenazas, escala).",
@@ -967,7 +975,7 @@ CLASSES = [
             ("Cómo se ordena la sesión de hoy", [
                 "Sustentación **en vivo**, en este bloque: no se reemplaza por video grabado.",
                 "Turnos de **6 min de pitch + 2–4 min de Q&A**; el orden se sortea al empezar.",
-                "Ten el paquete ya subido a ExamLab **antes** de tu turno (no se sube presentando).",
+                "Ten el paquete ya subido a la plataforma del curso **antes** de tu turno (no se sube presentando).",
                 "Mientras otros presentan, escuchas: el cierre del curso se hace con todo el grupo.",
             ]),
             ("Rúbrica de sustentación (recordatorio)", [
@@ -985,7 +993,7 @@ CLASSES = [
         ],
         "taller_titulo": "Guía de sustentación Clase 15 — PI CloudLite",
         "taller_pasos": [
-            "Sube el paquete final a **ExamLab** (módulo Proyectos) **antes** de tu turno: informe + evidencias.",
+            "Sube el paquete final a **la plataforma del curso** (módulo Proyectos) **antes** de tu turno: informe + evidencias.",
             "Sustenta **en vivo** el pitch de 5–8 min con la lámina de arquitectura en pantalla.",
             "Responde el **Q&A en vivo** (3–4 preguntas del docente, dirigidas al azar).",
             "Entrega el Q&A escrito (3 preguntas duras que te harías + respuestas) como preparación del anterior.",
@@ -1109,7 +1117,7 @@ def cover_slide(prs, n: int, tema: str, sub: str, pi_hoy: str, *, tipo: str = "r
         lineas_cover = [
             f"**Hoy cerramos el PI:** {pi_hoy}",
             "Bloque **120 min** · sesión **síncrona** de sustentaciones · turnos consecutivos.",
-            "Paquete subido a ExamLab **antes** de tu turno · defensa **en vivo**, no video grabado.",
+            "Paquete subido a la plataforma del curso **antes** de tu turno · defensa **en vivo**, no video grabado.",
         ]
     elif tipo == "parcial":
         # Tampoco hay teoría ni taller: la portada anunciaba las dos y ademas rellenaba
@@ -1306,7 +1314,7 @@ CODIGO_SLIDE = {
     # respuestas distintas a la misma necesidad, en el mismo dominio, una diapositiva
     # despues. Se agrega el `Container(worker...)` y el correo pasa a colgar de el. Las
     # dos lineas en blanco se van para no pasar de 15 renglones, que es lo que cabe.
-    4: ("C4Container en Mermaid: el molde que ExamLab renderiza", [
+    4: ("C4Container en Mermaid: el molde que la plataforma del curso renderiza", [
         "C4Container",
         "title Diagrama de contenedores - CloudLite Turnos",
         'Person(cliente, "Cliente de la barberia", "Reserva y consulta sus turnos")',
@@ -1359,7 +1367,7 @@ CODIGO_SLIDE = {
     # de «que renderice sin error»— y el molde no estaba proyectado en ninguna diapositiva:
     # el estudiante veia el diagrama dibujado (DIAGRAMAS[7]) pero nunca el codigo que se
     # entrega. Es el mismo molde que la Clase 4 ya usa para el C4Container.
-    7: ("El Despliegue en Mermaid: el molde que ExamLab renderiza", [
+    7: ("El Despliegue en Mermaid: el molde que la plataforma del curso renderiza", [
         "flowchart LR",
         # La `App web` va en la zona publica y esta en el molde a proposito: su ubicacion es
         # parte de los 4 pts de «cada componente en su zona» y es la duda que el grupo
@@ -1587,11 +1595,11 @@ HERRAMIENTAS_DIA = {
 
 
 def _herramientas_de(c: dict) -> list:
-    """Herramientas de la clase + Mermaid (si hay diagrama) + ExamLab.
+    """Herramientas de la clase + Mermaid (si hay diagrama) + la plataforma del curso.
 
-    Mermaid y ExamLab no se escriben clase por clase porque son transversales: si
+    Mermaid y la plataforma del curso no se escriben clase por clase porque son transversales: si
     el taller tiene pregunta de diagrama, el estudiante entrega codigo Mermaid, y
-    la entrega siempre ocurre en ExamLab. Anadirlos aqui evita que una clase se
+    la entrega siempre ocurre en la plataforma del curso. Anadirlos aqui evita que una clase se
     quede sin nombrarlos.
     """
     base = list(HERRAMIENTAS_DIA.get(c["n"], []))
@@ -1599,7 +1607,7 @@ def _herramientas_de(c: dict) -> list:
         return []
     if _tiene_diagrama(c["n"]):
         base.append({"name": "Mermaid", "logo": "mermaid.png", "note": "Codigo del diagrama"})
-    base.append({"name": "ExamLab", "logo": "examlab.png", "note": "Donde se entrega"})
+    base.append({"name": "la plataforma del curso", "logo": "examlab.png", "note": "Donde se entrega"})
     return base
 
 
@@ -1613,11 +1621,11 @@ def _herramientas_de(c: dict) -> list:
 LAB_LIMITES = ("Cuenta gratuita, sin tarjeta · la sesión caduca a 1 h · "
                "un escenario a la vez")
 
-FLUJO_SLIDE_TITULO = "Del boceto a ExamLab (diagrama)"
+FLUJO_SLIDE_TITULO = "Del boceto a la plataforma del curso (diagrama)"
 
 
 def _tiene_diagrama(n: int) -> bool:
-    """True si el taller de ExamLab de esta clase tiene pregunta tipo `diagrama`.
+    """True si el taller de la plataforma del curso de esta clase tiene pregunta tipo `diagrama`.
 
     Decide si la clase necesita la diapositiva del flujo: 12 de las 15 clases de
     Arquitectura piden un diagrama, y hasta ahora ninguna explicaba que la respuesta
@@ -1822,7 +1830,7 @@ def build_pptx(c: dict) -> Path:
             "**0–10** Encuadre + sorteo del orden de turnos.",
             "**10–110** Sustentaciones: **6 min de pitch + 2–4 min de Q&A** por turno.",
             "**110–120** Cierre del curso.",
-            "El paquete debe estar **subido a ExamLab antes** de tu turno.",
+            "El paquete debe estar **subido a la plataforma del curso antes** de tu turno.",
             "Sesión **síncrona**: la defensa no se reemplaza por video grabado.",
         ]
     else:
@@ -1905,7 +1913,7 @@ def build_pptx(c: dict) -> Path:
             prs, FLUJO_SLIDE_TITULO,
             examlab_talleres.flujo_diagrama_pasos(
                 dialectos[0] if len(dialectos) == 1 else "el tipo que pide el enunciado"),
-            sub="El diagrama se entrega como código Mermaid dentro de ExamLab, no como imagen",
+            sub="El diagrama se entrega como código Mermaid en la plataforma del curso, no como imagen",
             idx=idx)
         idx += 1
     content_slide(prs, "PI CloudLite — entregable de hoy", entregable_bullets, idx=idx)
@@ -1917,13 +1925,13 @@ def build_pptx(c: dict) -> Path:
     if c["tipo"] == "sustentacion":
         box_note_slide(prs, "Para continuar (PI)", [
             ("info", f"Entregable: {c['entregable']}"),
-            ("aclaracion", "El paquete se sube a ExamLab (https://uniaj.examlab.workers.dev/ · módulo Proyectos) **antes** del bloque de sustentaciones."),
+            ("aclaracion", "El paquete se sube a la plataforma del curso (la plataforma del curso · módulo Proyectos) **antes** del bloque de sustentaciones."),
             ("advertencia", "La sustentación es **en vivo** y con Q&A: no se acepta video grabado en su lugar."),
         ], idx=idx)
     else:
         box_note_slide(prs, "Para continuar (PI)", [
             ("info", f"Entregable: {c['entregable']}"),
-            ("aclaracion", "Subir evidencias al paquete CloudLite (Drive/repo) y a ExamLab (https://uniaj.examlab.workers.dev/) domingo 23:59."),
+            ("aclaracion", "Subir evidencias al paquete CloudLite (Drive/repo) y a la plataforma del curso (la plataforma del curso) domingo 23:59."),
             ("advertencia", "Sin cloud de pago ni instalaciones obligatorias de hipervisores/Docker Desktop."),
         ], idx=idx)
     idx += 1
@@ -2274,7 +2282,7 @@ PLANTILLA_TALLER = {
         "   Diagrama que actualicé para que queden iguales: ___________________________________",
         "",
         "C) VERIFICACION ANTES DE ENVIAR   (no da puntos; los quita si falla)",
-        "   [ ] Mi diagrama de la pregunta 4 RENDERIZO sin error dentro de ExamLab (2 pts).",
+        "   [ ] Mi diagrama de la pregunta 4 RENDERIZO sin error en la plataforma del curso (2 pts).",
         "   [ ] Las TRES zonas estan rotuladas: publica, privada y de datos.",
         "   [ ] La base de datos NO esta en la zona publica. Si lo esta, pierdo 4 pts completos.",
         "   [ ] Cada componente lleva su puerto.",
@@ -2348,14 +2356,14 @@ TALLER_BLOQUE = {
             "Actividad individual. Elegir un dominio concreto.",
             "Sugeridos: AgendaU · BiblioLite · InventarioLab · TurnosClinica · EventosCampus.",
             "Plantilla ficha (5 bloques): DOMINIO · PROBLEMA · ACTORES (con sus sistemas externos) · CAPACIDADES · FUERA DE ALCANCE.",
-            "Diagrama: boceto visual en @@Excalidraw o draw.io@@ → conversión a @@Mermaid (C4Context)@@ con ayuda de una IA → pegar y @@renderizar en ExamLab@@.",
+            "Diagrama: boceto visual en @@Excalidraw o draw.io@@ → conversión a @@Mermaid (C4Context)@@ con ayuda de una IA → pegar y @@renderizar en la plataforma del curso@@.",
         ],
         "pistas": [
             "¿Quién sufre el problema y como lo miden?",
             "¿La caja grande es el sistema CloudLite (no un módulo interno)?",
             "¿Las flechas tienen verbo (reservar, notificar, autenticar)?",
             "¿Los 2-3 sistemas externos coinciden con los System_Ext del diagrama C4?",
-            "¿El diagrama quedó pegado como Mermaid y renderizado en ExamLab (no solo como imagen)?",
+            "¿El diagrama quedó pegado como Mermaid y renderizado en la plataforma (no solo como imagen)?",
             "¿Fuera de alcance está escrito (que NO haran hoy)?",
         ],
     },
@@ -2387,7 +2395,7 @@ TALLER_BLOQUE = {
         "contexto": [
             "@@Por qué importa al PI:@@ CloudLite debe mostrar al menos un servicio contenerizado con evidencia.",
             "El contenedor es el puente entre el diagrama C4 y el despliegue realista (sin cloud de pago).",
-            "Lab en navegador Killercoda: sin Docker Desktop obligatorio.",
+            "Lab de contenedores en el navegador: comprobar, no entregar.",
         ],
         "escenario": [
             "Elegir el servicio principal del C4 (API o web).",
@@ -2423,7 +2431,7 @@ TALLER_BLOQUE = {
         "escenario": [
             "Partir del C4 Context de la pregunta 3 (mismos nombres de sistema, actores y externos).",
             "Bocetar en draw.io o Excalidraw la vista @@Containers@@ (no solo Context)…",
-            "…y entregar el diagrama como código @@Mermaid@@ dentro de ExamLab, que es donde se renderiza y se califica.",
+            "…y entregar el diagrama como código @@Mermaid@@ en la plataforma del curso, que es donde se renderiza y se califica.",
         ],
         # Una pista por pregunta, como minimo: antes eran 3 y ninguna cubria la 12
         # (la decision y sus dos criterios) ni la 15 (los tres riesgos), que juntas
@@ -2452,7 +2460,7 @@ TALLER_BLOQUE = {
         "escenario": [
             "Actividad individual. Se parte del @@C4 Containers@@ del Corte 1: hoy no se dibuja nada nuevo, se señala sobre lo que ya existe.",
             "Amenazas típicas del curso, como referencia de la @@forma@@ y no para copiarlas: secretos en la imagen, API sin autenticación, registros que guardan tokens, datos personales sin TLS.",
-            "Son tres respuestas escritas dentro de ExamLab: las cinco amenazas, la tabla de tres columnas y la política de secretos. La @@plantilla@@ de la sección siguiente trae la estructura exacta que se califica.",
+            "Son tres respuestas escritas en la plataforma del curso: las cinco amenazas, la tabla de tres columnas y la política de secretos. La @@plantilla@@ de la sección siguiente trae la estructura exacta que se califica.",
         ],
         # Eran 3 pistas para 3 preguntas de 25 puntos, y dejaban sin cubrir la mitad de
         # la rubrica: la frecuencia de rotacion, el responsable, el procedimiento ante
@@ -2482,7 +2490,7 @@ TALLER_BLOQUE = {
         "escenario": [
             "Cliente -> edge -> app -> datos.",
             "Sin inventar subnets AWS; trust boundaries sí.",
-            "El diagrama se entrega como @@código Mermaid pegado en ExamLab@@, no como imagen.",
+            "El diagrama se entrega como @@código Mermaid pegado en la plataforma del curso@@, no como imagen.",
         ],
         # El checklist cubre las TRES preguntas de hoy, criterio por criterio calificado:
         # antes solo tenía 3 líneas y dejaba fuera puertos, fronteras, render y renombres.
@@ -2649,7 +2657,7 @@ def build_taller_docx(c: dict) -> Path | None:
         # califica, el formato se entrega, no se adivina.
         h2(doc, f"{_sec}. Plantilla del entregable (copia esto y llénalo)")
         para(doc, "Esta es exactamente la estructura que se califica. Copia el bloque tal cual "
-                  "en tu documento, llénalo, y pega cada parte en la pregunta de ExamLab que "
+                  "en tu documento, llénalo, y pega cada parte en la pregunta de la plataforma del curso que "
                   "corresponda. Los nombres no se cambian.", size=10)
         for linea in PLANTILLA_TALLER[n]:
             para(doc, linea or " ", size=9, shade="F2F2F3", space_after=0, font=MONO)
@@ -2680,7 +2688,7 @@ def build_taller_docx(c: dict) -> Path | None:
     if c["tipo"] == "sustentacion":
         # No es un taller con plazo del domingo: la sesión es la sustentación en vivo,
         # así que el paquete tiene que estar arriba ANTES del bloque.
-        para(doc, "El paquete final se sube a ExamLab (https://uniaj.examlab.workers.dev/ · módulo Proyectos) "
+        para(doc, "El paquete final se sube a la plataforma del curso (la plataforma del curso · módulo Proyectos) "
                   "ANTES del bloque de sustentaciones: quien llega a subir archivos consume su propio "
                   "turno. La sustentación es en vivo (5–8 min de pitch + Q&A) en la sesión de clase; no "
                   "se reemplaza por un video grabado. " + mod(c, "entrega_unidad_note"))
@@ -2693,13 +2701,13 @@ def build_taller_docx(c: dict) -> Path | None:
             _hermanas = [str(x) for x in _act["clases"] if x != c["n"]]
             _otras = (" y ".join([", ".join(_hermanas[:-1]), _hermanas[-1]])
                       if len(_hermanas) > 1 else _hermanas[0])
-            para(doc, "Entrega en ExamLab (https://uniaj.examlab.workers.dev/ · módulo Talleres). "
+            para(doc, "Entrega en la plataforma del curso (la plataforma del curso · módulo Talleres). "
                       f"Las preguntas de hoy son parte de UNA sola actividad, compartida con las "
                       f"Clases {_otras}: se guarda el avance de hoy y la actividad se entrega "
                       f"completa el {_cierre}. No hay entrega este domingo. "
                       + mod(c, "entrega_unidad_note"))
         else:
-            para(doc, "Entrega en ExamLab (https://uniaj.examlab.workers.dev/ · módulo Talleres) · domingo 23:59 (regla del Acuerdo). "
+            para(doc, "Entrega en la plataforma del curso (la plataforma del curso · módulo Talleres) · domingo 23:59 (regla del Acuerdo). "
                       + mod(c, "entrega_unidad_note"))
     if c.get("entrega_oficial_nota"):
         para(doc, c["entrega_oficial_nota"], shade="E8F4FA")
@@ -2711,7 +2719,7 @@ def build_taller_docx(c: dict) -> Path | None:
         examlab_talleres.render_estudiante(
             doc, _taller_el, para=para, bullets=bullets,
             add_inline=add_inline_docx, color_titulo=AZUL,
-            titulo=f"{_sec}. Qué vas a resolver en ExamLab",
+            titulo=f"{_sec}. Qué vas a resolver en la plataforma del curso",
         )
     doc.save(str(path))
     print("OK taller ->", path)
@@ -2830,14 +2838,14 @@ DEMO_ARQ = {
     # es ahi donde se califica la pregunta 13 y es el paso que el estudiante no adivina.
     # Antes cerraba en el tablero de draw.io y nadie veia nunca la sintaxis que la
     # plataforma exige (`C4Container` en la primera linea, `ContainerDb` para la base).
-    4: ("Convertir el Context de la Clase 1 en Containers, y dejarlo renderizado en ExamLab", [
+    4: ("Convertir el Context de la Clase 1 en Containers, y dejarlo renderizado en la plataforma", [
         "Abra el diagrama C4 Context de la demo de Clase 1 y haga zoom a la caja «CloudLite App». Diga: «hoy no dibujamos otro sistema, abrimos este».",
         "Reemplace esa caja por 3 cajas internas: «App web», «API de turnos» y «Base de turnos». Escriba en cada una sus TRES datos: nombre, tecnologia y responsabilidad en una frase.",
         "Senale la base de datos y diga: «esta no es un Container mas, es un ALMACEN; en el codigo va como ContainerDb y son 2 puntos». Deje el cliente y el correo FUERA del recuadro del sistema.",
         "Rotule CADA flecha con protocolo Y formato: «HTTPS/JSON», «TCP/SQL». Borre a proposito una etiqueta y pregunte que se pierde: sin ella nadie puede decir por donde se rompe.",
         "Proponga una cuarta caja, el worker de avisos, y pida la razon de negocio. Si nadie la da, borrela en vivo: «eso es microservicios teatro». Si alguien la da (el correo tarda y puede fallar), quedese con ella y anote la razon al lado.",
         "Verifique nombre por nombre contra el C4 Context de la Clase 1: si alli decia «Pasarela de pagos», aqui no puede decir «Pagos». Son 2 puntos de la pregunta 13.",
-        "Cierre en ExamLab: pegue el codigo Mermaid de la diapositiva del molde, cambie los nombres por los del ejemplo del tablero y proyecte el resultado RENDERIZADO. Diga: «si no renderiza, no hay diagrama; se revisa antes de enviar».",
+        "Cierre en la plataforma del curso: pegue el codigo Mermaid de la diapositiva del molde, cambie los nombres por los del ejemplo del tablero y proyecte el resultado RENDERIZADO. Diga: «si no renderiza, no hay diagrama; se revisa antes de enviar».",
     ]),
     6: ("De amenaza STRIDE a control verificable, en vivo", [
         # El paso 1 decia «alguien cambia el precio de un item»: ningun dominio del curso
@@ -2859,7 +2867,7 @@ DEMO_ARQ = {
         "Reparta las cajas de CloudLite: `Edge / balanceador` y `App web` en la publica, `API CloudLite` en la privada, `Base de datos` en la de datos — nunca en la publica. El `Cliente / navegador` va FUERA de las tres zonas: es el actor, no algo que usted despliegue, y esa es una de las dos filas sin par de la pregunta 6.",
         "Etiquete cada flecha con su puerto (443 al edge, 8080 a la API, 5432 a la base de datos) y saque una flecha aparte a la `Pasarela de pagos` externa: ahi esta la frontera de confianza, y son 2 de los 14 pts.",
         "Pregunte: «si un atacante llega desde internet, con que se topa primero?» — eso es superficie de exposicion.",
-        "Traduzca ese boceto a Mermaid (el codigo de referencia esta abajo), peguelo en la pregunta 4 de ExamLab y proyectelo RENDERIZADO: 2 de los 14 pts son que renderice sin error.",
+        "Traduzca ese boceto a Mermaid (el codigo de referencia esta abajo), peguelo en la pregunta 4 de la actividad y proyectelo RENDERIZADO: 2 de los 14 pts son que renderice sin error.",
         "Verifique en voz alta que los nombres de los servicios son LOS MISMOS del C4 Containers de la Clase 4.",
     ]),
     # La demo montaba «3 steps: checkout, setup y una prueba»: le faltaban los dos pasos que
@@ -3081,7 +3089,7 @@ def _demo_md(n: int) -> str:
         rotulo, codigo = ref
         md += (
             f"\n**Referencia del resultado:** {rotulo}. Si la red falla o prefiere no "
-            "dibujar a mano, pegue este codigo en la pregunta de diagrama de ExamLab y "
+            "dibujar a mano, pegue este codigo en la pregunta de diagrama de la actividad y "
             "proyectelo renderizado; tambien sirve para volver a generar la imagen en "
             "cualquier editor que soporte Mermaid.\n\n"
             "```mermaid\n" + codigo + "\n```\n"
@@ -3377,7 +3385,7 @@ def guion_md(c: dict) -> str:
     if _tiene_diagrama(n):
         _dial = examlab_talleres._dialectos_del_taller(TALLERES_EXAMLAB[n])
         flujo_guion = (
-            "\n**Cierra la demo dentro de ExamLab** " + sl_flujo + " — es el paso que el "
+            "\n**Cierra la demo en la plataforma del curso** " + sl_flujo + " — es el paso que el "
             "estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, "
             "pegalo en la pregunta de diagrama y muestralo renderizado.\n\n"
             + examlab_talleres.flujo_diagrama_md(
@@ -3433,7 +3441,7 @@ Retroalimenta 2–3 {retro_word} en voz alta, nombrando el error y la correcció
 ### 115–120 · Cierre · {sl_cierre}
 Di: «Queda avanzado: {c['pi_hoy']}.
 Criterio de éxito: {criterio_60s_note}.
-Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
+Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»
 """
     else:
         # Rama exclusiva para clases con actividad individual (hoy: Clase 1), donde se
@@ -3485,7 +3493,7 @@ Retroalimenta 2–3 {retro_word} en voz alta, nombrando el error y la correcció
 
 ### 115–120 · Cierre · {sl_cierre}
 Di:
-> "Queda avanzado: {c['pi_hoy']}. Criterio de éxito: {criterio_60s_note}. Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan."
+> "Queda avanzado: {c['pi_hoy']}. Criterio de éxito: {criterio_60s_note}. Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan."
 """
 
     if c["tipo"] == "autonoma":
@@ -3495,7 +3503,7 @@ con `Presentacion.pptx` + el taller de la carpeta `Clases/`. Por eso el material
 tiene que ser **autosuficiente**: lo que no quede escrito, nadie lo va a explicar en vivo.
 
 ### Qué publicar (antes del día de la clase)
-1. En ExamLab: las diapositivas, el taller y el recordatorio del hito del PI.
+1. En la plataforma del curso: las diapositivas, el taller y el recordatorio del hito del PI.
 2. La sección «Fundamento teórico para el docente» de este guion, adaptada como **lectura guía**
    del estudiante — es el reemplazo de la explicación en vivo, no un anexo opcional.
 3. La **salida esperada** del ejercicio (ver la demo de abajo), para que el estudiante autónomo
@@ -3508,7 +3516,7 @@ tiene que ser **autosuficiente**: lo que no quede escrito, nadie lo va a explica
 - **15–45** Leer la teoría (lectura guía) y tomar notas directamente en el informe del PI.
 - **45–60** Revisar la salida esperada del ejercicio resuelto.
 - **60–105** Desarrollar el taller sobre su propio CloudLite.
-- **105–120** Empaquetar la evidencia y subirla a ExamLab.
+- **105–120** Empaquetar la evidencia y subirla a la plataforma del curso.
 
 ### La demo, en versión asíncrona
 {_demo_md(n)}
@@ -3541,7 +3549,7 @@ sustentar: anúncialo por escrito una semana antes para que nadie asuma que no h
 1. Publica el orden y la duración exacta del turno: **6 min de pitch + 2–4 min de Q&A**.
    Con 12 sustentaciones eso es ~110 min; si el grupo es más grande, baja a 5 + 2 y avísalo
    antes, nunca el mismo día.
-2. Exige el paquete subido a ExamLab (módulo Proyectos) **antes** del bloque: quien llega a
+2. Exige el paquete subido a la plataforma del curso (módulo Proyectos) **antes** del bloque: quien llega a
    subir archivos consume el tiempo de otro. Verifica tú mismo que los enlaces abren.
 3. Ten a mano la rúbrica impresa por estudiante y la lista de preguntas de comprobación de
    abajo, para no improvisar el Q&A ni preguntar lo mismo a todos.
@@ -3649,7 +3657,7 @@ y `Kit docente/Clase {n}/Quiz Clase {n} - CLAVE DOCENTE.docx` (clave, privada).
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase{n:02d}.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase {n}/Capturas/evidencia-clase{n:02d}.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.{chr(10) + "- " + c["entrega_oficial_nota"] if c.get("entrega_oficial_nota") else ""}
+- Plataforma de entrega: la plataforma del curso (la plataforma del curso). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.{chr(10) + "- " + c["entrega_oficial_nota"] if c.get("entrega_oficial_nota") else ""}
 - Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).
 """
@@ -3807,7 +3815,7 @@ def convert_guiones(paths: list[Path]) -> None:
 
 
 def build_examlab_guia(c):
-    """Guia para armar el taller de esta clase dentro de ExamLab.
+    """Guia para armar el taller de esta clase en la plataforma del curso.
 
     Va en el Kit docente porque la plataforma no importa preguntas desde archivo:
     el docente las crea en la UI y necesita el texto exacto de cada campo.

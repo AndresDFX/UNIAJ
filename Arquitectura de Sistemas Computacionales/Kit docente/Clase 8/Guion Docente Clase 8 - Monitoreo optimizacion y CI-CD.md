@@ -17,7 +17,7 @@
 
 **Entregable concreto:** .github/workflows/ci.yml + sección Monitoreo/CI del informe
 
-**Herramienta:** GitHub Actions · Google Docs
+**Herramienta:** Navegador · editor de código del curso (YAML)
 
 ## Fundamento teórico para el docente
 ## Apoyo por diapositiva
@@ -89,7 +89,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 27] El workflow de CI: el archivo completo** — 22 vinetas.
 
-**[Slide 28] Los secretos en el workflow, y hasta donde llega el pipeline** — 10 vinetas.
+**[Slide 28] Secretos en el workflow, y hasta donde llega el pipeline** — 10 vinetas.
 
 
 ## Referencias a diapositivas
@@ -123,7 +123,7 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 25. Preguntas frecuentes del grupo (1/2)
 26. Preguntas frecuentes del grupo (2/2)
 27. El workflow de CI: el archivo completo
-28. Los secretos en el workflow, y hasta donde llega el pipeline
+28. Secretos en el workflow, y hasta donde llega el pipeline
 29. .github/workflows/ci.yml — CI real, no un echo
 30. Herramientas de hoy
 31. PI CloudLite — entregable de hoy
@@ -154,7 +154,7 @@ Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su info
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
 ### 40–55 · Demo en vivo · [Slide 29]
-Herramienta del día: **GitHub Actions · Google Docs**.
+Herramienta del día: **Navegador · editor de código del curso (YAML)**.
 **Demo que usted debe poder repetir:** Un workflow de GitHub Actions que corra de verdad, con los tres pasos calificados
 
 1. Cree `.github/workflows/ci.yml` copiando la diapositiva del ci.yml: `on: [push, pull_request]`, `runs-on: ubuntu-latest` y los pasos en ORDEN — Construir, Probar, Despliegue SIMULADO.
@@ -186,7 +186,7 @@ Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección
 ### 115–120 · Cierre · [Slide 34]
 Di: «Queda avanzado: Workflow Actions (build/test/simulate) + métricas de monitoreo del PI.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
-Entrega domingo 23:59 en ExamLab. Siguiente hito del PI según el plan.»
+Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»
 
 
 ## Actividad / taller (detalle)
@@ -220,10 +220,10 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 8/Quiz Clase 8 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase08.png | receta: 1) Abre GitHub Actions · Google Docs y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 8/Capturas/demo-clase08.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase08.png | receta: 1) Abre Navegador · editor de código del curso (YAML) y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 8/Capturas/demo-clase08.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase08.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 8/Capturas/evidencia-clase08.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
-- Plataforma de entrega: ExamLab (https://uniaj.examlab.workers.dev/). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
+- Plataforma de entrega: la plataforma del curso (la plataforma del curso). No es la plataforma oficial de la UNIAJC; la universidad no tiene campus virtual propio.
 - Prohibido pedir cloud con tarjeta: todo el curso corre con free tier o en el navegador.
 - Día de parcial = solo evaluación (no aplica a esta clase).

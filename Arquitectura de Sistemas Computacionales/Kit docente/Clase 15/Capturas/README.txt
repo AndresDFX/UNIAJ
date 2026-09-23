@@ -5,7 +5,7 @@ El guion embebe automaticamente cualquier PNG que exista aqui con el nombre
 esperado. Mientras no exista, el .docx imprime la receta en su lugar.
 
 Pendiente: demo-clase15.png — la herramienta del dia en uso
-  1. Abrir Google Docs/Slides · diagramas · capturas lab.
+  1. Abrir Navegador · editores de texto y de diagramas del curso.
   2. Repetir la demo: Modelar una sustentacion de 6 minutos y un Q&A.
      1. Presente usted mismo un CloudLite de ejemplo en 6 minutos cronometrados, con la estructura: problema, decision clave, evidencia, limite conocido.
      2. Hagase una pregunta dificil en voz alta y respondala: «por que no uso microservicios? Porque el proyecto lo sostiene una sola persona y la frontera no se justificaba».

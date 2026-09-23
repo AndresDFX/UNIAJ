@@ -124,7 +124,7 @@ OPERATIVO = {
 
     # ── Clase 4 · C4 Container en Mermaid ───────────────────────────────────
     4: [
-        ("El C4 Container en Mermaid: la forma que ExamLab renderiza", [
+        ("El C4 Container en Mermaid: la forma que la plataforma del curso renderiza", [
             "flowchart TB",
             "  usuario([Usuario <rol de su dominio>])",
             "",

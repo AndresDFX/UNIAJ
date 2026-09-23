@@ -54,6 +54,15 @@ DOCENTE = "Julian Andres Castaño Espinosa"
 CORREO = "julianacastano@profesores.uniajc.edu.co"
 
 
+#: Como se nombra la plataforma en el enunciado del ESTUDIANTE. Parametro porque este
+#: generador sirve a varios cursos y solo Arquitectura pidio no nombrarla.
+NOMBRE_PLATAFORMA = "ExamLab"
+
+
+def _plat():
+    return NOMBRE_PLATAFORMA
+
+
 def _shade(paragraph, fill: str) -> None:
     pPr = paragraph._p.get_or_add_pPr()
     shd = OxmlElement("w:shd")
@@ -172,7 +181,7 @@ def portada_estudiante(doc, meta):
          size=11, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER)
     para(doc, f"Docente: {DOCENTE}  ·  {CORREO}",
          size=10, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
-    para(doc, "Versión estudiante — Entrega en ExamLab según hitos del plan.",
+    para(doc, "Versión estudiante — Entrega en %s según hitos del plan." % _plat(),
          size=10, bold=True, color=AZUL, align=WD_ALIGN_PARAGRAPH.CENTER,
          shade="E8F4FA", space_after=10)
 
@@ -387,6 +396,9 @@ ARQ_META = {
     "periodo": "2026-2",
     "horario": "Lunes 10:00–12:00 (120 min)",
     "dominio": "CloudLite App",
+    # La parte practica de Arquitectura no nombra la plataforma: el estudiante ya sabe cual
+    # es y como entrar —eso va en el correo de bienvenida—. Los demas cursos si la nombran.
+    "plataforma": "la plataforma del curso",
 }
 
 
@@ -456,7 +468,7 @@ def enunciado_arq(doc):
         "Diagramas: draw.io / diagrams.net · Excalidraw.",
         "Contenedores: LabEx Docker Playground · Killercoda (sin Docker Desktop obligatorio).",
         "CI/CD: GitHub Actions (cuenta free) — pipelines simples.",
-        "Entregas: Google Docs/Drive o Word Online → subir a ExamLab.",
+        "Entregas: documento propio → subir a %s." % _plat(),
     ])
     para(doc,
          "Prohibido como requisito: AWS/GCP/Oracle Cloud/Azure Free Tier con tarjeta; "
@@ -480,7 +492,7 @@ def enunciado_arq(doc):
         "Individual por defecto: cada estudiante desarrolla y entrega su propio proyecto.",
         "Opcional: el docente puede autorizar equipos de 2 o 3 integrantes.",
         "Debes poder explicar los diagramas y el workflow CI/CD (si hay equipo, cualquier integrante).",
-        "La entrega en ExamLab es siempre individual, incluso si el artefacto se trabajó en equipo.",
+        "La entrega es siempre individual, incluso si el artefacto se trabajó en equipo.",
     ])
 
     h2(doc, "8. Qué NO es este proyecto")
@@ -1245,6 +1257,9 @@ def build_one(curso_dir: Path, meta: dict, build_est, build_doc, md_text: str, s
     est_path = est_dir / f"Enunciado Proyecto Integrador - {slug} - 2026-2.docx"
     doc_path = kit_dir / f"Guia Docente PI - {slug} - 2026-2.docx"
     md_path = kit_dir / f"Guia Docente PI - {slug} - 2026-2.md"
+
+    global NOMBRE_PLATAFORMA
+    NOMBRE_PLATAFORMA = meta.get("plataforma", "ExamLab")
 
     d1 = Document()
     margins(d1)

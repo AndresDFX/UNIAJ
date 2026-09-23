@@ -11,7 +11,7 @@
 - Taller del estudiante: `Clases/Clase 7 - Redes y almacenamiento cloud/`
 - Configuracion en la plataforma: `Kit docente/Clase 7/Taller en ExamLab - Clase 7 (configuracion).md`
 - Hito del PI: Diagrama de despliegue: red, zonas, almacenamiento
-- Entregable: Diagrama Deployment en Mermaid dentro de ExamLab (3 zonas + puertos) + tipo de almacenamiento por componente
+- Entregable: Diagrama Deployment en Mermaid en la plataforma del curso (3 zonas + puertos) + tipo de almacenamiento por componente
 - **Estas preguntas: 25.0 puntos** en 3 preguntas.
 
 | # | Pregunta | Tipo | Puntos |

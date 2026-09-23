@@ -5,13 +5,13 @@
 - **Preguntas:** 4 · **Total:** 25 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases
-- **Entregable de la clase:** Ficha PI de 5 bloques + C4 Context en Mermaid renderizado en ExamLab (boceto previo en Excalidraw/draw.io)
+- **Entregable de la clase:** Ficha PI de 5 bloques + C4 Context en Mermaid renderizado en la plataforma (boceto previo en Excalidraw/draw.io)
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
 > campo para copiar y pegar, incluidos el SQL de partida y el codigo base.
 
-**Que produce el estudiante:** Las preguntas 1 a 4 de la actividad del Corte 1, que es una sola para las Clases 1 a 4. El estudiante sale con el dominio de CloudLite cerrado en una ficha de cinco bloques y con el diagrama C4 Context renderizado dentro de ExamLab, que es la semilla de todos los diagramas del semestre.
+**Que produce el estudiante:** Las preguntas 1 a 4 de la actividad del Corte 1, que es una sola para las Clases 1 a 4. El estudiante sale con el dominio de CloudLite cerrado en una ficha de cinco bloques y con el diagrama C4 Context renderizado en la plataforma del curso, que es la semilla de todos los diagramas del semestre.
 
 ---
 
@@ -43,7 +43,7 @@ El problema debe decir dos cosas, y las dos se califican:
 Este dominio **no vuelve a cambiar** en el resto del curso: las Clases 2, 3 y 4 de esta
 misma actividad, y las Clases 7, 11 y 15, reutilizan estos nombres.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -85,7 +85,7 @@ FUERA DE ALCANCE
   evita que el alcance crezca sin control, y es lo primero que se revisa cuando alguien
   pida mas tiempo en una entrega futura.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 
@@ -120,7 +120,7 @@ El diagrama debe mostrar:
 > la pregunta 13 de esta misma actividad, que corresponde a la Clase 4. Si se dibujan aqui,
 > ese diagrama se queda sin nada nuevo que mostrar.
 
-**Antes de enviar, verifique renderizando dentro de ExamLab:** que el diagrama se dibuje
+**Antes de enviar, verifique renderizando en la plataforma del curso:** que el diagrama se dibuje
 sin error de sintaxis, que cada flecha se lea en voz alta como una frase completa, y que
 los nombres sean identicos a los de su ficha.
 
@@ -130,7 +130,7 @@ separe con «y» o con guion.
 **Tamano de referencia:** entre cuatro y ocho elementos en total. Si tiene veinte, es casi
 seguro que se colaron piezas internas del sistema.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Pegar al final del enunciado — flujo de entrega del diagrama:**
 
@@ -138,7 +138,7 @@ seguro que se colaron piezas internas del sistema.
 
 - **1. Disena visual** Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar cajas que escribir codigo, y ahi es donde piensas el modelo.
 - **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `C4Context`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
-- **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
+- **3. Pega y renderiza en la plataforma del curso** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de la plataforma del curso.
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
 **Diagrama de referencia (Mermaid):**
@@ -196,7 +196,7 @@ tener los dos al mismo tiempo, y **que gana** a cambio.
 Lo que escriba aqui vuelve dos veces en el curso: el **costo** se retoma en la Clase 10 y
 el **rendimiento** con percentiles en la Clase 12.
 
-> La entrega oficial es esta respuesta dentro de ExamLab. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
+> La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 
 **Rubrica esperada (campo Rubrica):**
 

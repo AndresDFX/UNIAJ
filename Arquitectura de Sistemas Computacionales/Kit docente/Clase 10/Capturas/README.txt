@@ -5,7 +5,7 @@ El guion embebe automaticamente cualquier PNG que exista aqui con el nombre
 esperado. Mientras no exista, el .docx imprime la receta en su lugar.
 
 Pendiente: demo-clase10.png — la herramienta del dia en uso
-  1. Abrir Google Docs.
+  1. Abrir Navegador · editor de texto del curso.
   2. Repetir la demo: Tabla de costo cualitativo en 5 minutos.
      1. Dibuje 3 columnas: Componente | Costo (Bajo/Medio/Alto) | Driver del costo.
      2. Llene 3 filas de CloudLite: base de datos gestionada (Alto, computo+almacenamiento constante 24/7), API en contenedor (Medio, numero de instancias), object storage de imagenes (Bajo, volumen de datos).
