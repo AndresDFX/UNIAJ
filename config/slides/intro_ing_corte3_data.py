@@ -3096,10 +3096,8 @@ TEMAS[16] = {
     ],
     "agenda_sub": "Última sesión. No hay evaluación escrita: lo que se califica hoy es el informe "
                   "final (20 %) y la autoevaluación",
-    "nota_bloque": "**No hay examen final escrito en este curso.** El 40 % del corte 3 se reparte en "
-                   "exposición final 15 % (Clase 15) + **informe final 20 % (hoy)** + asistencia "
-                   "5 %. El informe **se entrega dentro de la clase**: se arma, se revisa con la "
-                   "lista de verificación y se sube antes de terminar la sesión.",
+    "nota_bloque": "**Sesión de cierre del curso:** se arma y se revisa el informe final con la "
+                   "lista de verificación, se socializa el trabajo y se hace la autoevaluación.",
     "agenda": {},
     "herramienta_nota": "El informe en **Google Docs**, en la carpeta del equipo, con **el enlace "
                         "compartido y una copia en PDF**. La galería del curso en **Padlet**: una "

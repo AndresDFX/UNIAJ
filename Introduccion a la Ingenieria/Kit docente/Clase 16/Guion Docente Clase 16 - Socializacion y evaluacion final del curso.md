@@ -11,7 +11,7 @@
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
 - Enfoque: Aprendizaje basado en competencia + Aprendizaje Invertido · Estrategia: ABPr — Aprendizaje Basado en Proyectos
 
-> **No hay examen final escrito en este curso.** El 40 % del corte 3 se reparte en exposición final 15 % (Clase 15) + **informe final 20 % (hoy)** + asistencia 5 %. El informe **se entrega dentro de la clase**: se arma, se revisa con la lista de verificación y se sube antes de terminar la sesión.
+> **Sesión de cierre del curso:** se arma y se revisa el informe final con la lista de verificación, se socializa el trabajo y se hace la autoevaluación.
 
 ## Objetivos de la clase
 - Armar y entregar el **informe final** con sus doce secciones (**20 %**).

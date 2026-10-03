@@ -58,6 +58,9 @@ _TITULOS_EJEMPLO = {}
 #: cierre: el `plan` las sigue citando con la numeracion vieja.
 _RETIRADAS = {}
 
+#: Laminas de teoria que no se proyectan (la de evaluacion de corte), en su orden.
+_TEORIA_RETIRADA = {}
+
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 CURSO = os.path.join(ROOT, D.curso()["folder"])
 LETRAS = "abcdefghij"
@@ -104,7 +107,7 @@ def _slide_no(titulos, frag, n):
         return hits[0]
     # Las laminas de actividad (taller, exposicion, tarea) ya no se proyectan: un bloque del
     # fundamento que hablaba de ellas sigue en el guion, pero sin lamina.
-    if re.search(r"taller|expone|para la clase|cierre del curso|actividad de hoy", fp):
+    if re.search(r"taller|expone|para la clase|cierre del curso|actividad de hoy|cierra el corte", fp):
         return None
     raise SystemExit(
         "Clase %d: el fragmento {{slide:%s}} coincide con %d diapositivas.\n"
@@ -200,6 +203,12 @@ def _agenda(t):
                              % (t["n"], total, D.curso()["duracion_min"]))
         slots, acum = [], 0
         for nombre, mins, label in t["agenda_slots"]:
+            if nombre == "Actividad en equipos":
+                label = "opcional · la guía está en la carpeta de la clase"
+            elif nombre == "Exposiciones":
+                label = "de la práctica, si se hizo"
+            elif nombre.startswith("Evaluación de corte"):
+                label = "sobre lo visto en el corte hasta hoy"
             desde, acum = acum, acum + mins
             slots.append({
                 "t": "%02d:%02d–%02d:%02d · %d min"
@@ -364,7 +373,12 @@ def build_pptx(n):
     idx += 1
 
     _TITULOS_EJEMPLO[n] = set()
+    _TEORIA_RETIRADA[n] = []
     for spec in t["teoria"]:
+        if _plano(spec["titulo"]).startswith("como cierra el corte"):
+            # Es la evaluacion de corte y la entrega: va solo en la carpeta y el guion.
+            _TEORIA_RETIRADA[n].append(spec["titulo"])
+            continue
         _slide_teoria(prs, spec, idx, t_reg)
         idx += 1
         # Los ejemplos resueltos de ESTE concepto, justo detras: es primer semestre y el
@@ -417,9 +431,14 @@ def _remapear_slides(texto, n, titulos):
     """
     ejemplos = _TITULOS_EJEMPLO.get(n, set())
     retiradas = _RETIRADAS.get(n, 0)
-    if not ejemplos and not retiradas:
+    if not ejemplos and not retiradas and not _TEORIA_RETIRADA.get(n):
         return texto
     viejos = [x for x in titulos if x not in ejemplos]
+    # Las laminas de teoria retiradas: se reinsertan en su lugar del orden de `teoria`.
+    t_ = TD.TEMAS[n]
+    for k, spec in enumerate(t_["teoria"]):
+        if spec["titulo"] in _TEORIA_RETIRADA.get(n, []):
+            viejos.insert(4 + k, None)
     # Las laminas de actividad iban justo antes del cierre.
     viejos = viejos[:-1] + [None] * retiradas + viejos[-1:]
     nuevo_de = {}

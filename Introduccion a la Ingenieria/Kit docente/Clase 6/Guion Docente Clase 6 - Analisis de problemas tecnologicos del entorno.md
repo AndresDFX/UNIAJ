@@ -11,7 +11,7 @@
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
 - Enfoque: Aprendizaje basado en competencia + Aprendizaje Invertido · Estrategia: ABPr — Aprendizaje Basado en Proyectos
 
-> **Esta sesión cierra el corte 1 (30 %).** Trae dos cosas que las demás no tienen: la **ficha del problema del proyecto**, que es el producto del corte y gobierna el resto del semestre, y la **evaluación de corte en ExamLab**, que se aplica en los últimos 20 minutos y cubre las sesiones 1 a 6. Por eso el bloque de teoría baja de 45 a 25 minutos: hay que llegar con tiempo, no con la explicación a medias.
+> **Esta sesión cierra el corte 1.** Los últimos 20 minutos son la evaluación de corte, sobre lo visto hasta hoy. Por eso el bloque de teoría baja de 45 a 25 minutos: hay que llegar con tiempo, no con la explicación a medias.
 
 ## Objetivos de la clase
 - Distinguir un **problema** de un **síntoma** y de una **solución disfrazada de problema**.
@@ -38,7 +38,7 @@ Debajo de estas láminas, en las notas del presentador:
 - **Las tres cosas que se confunden y cómo se escribe un problema** → diapositiva 5
 - **El árbol del problema: la herramienta que evita las soluciones cosméticas** → diapositiva 7
 - **La línea base y los cuatro criterios de viabilidad** → diapositivas 9 y 11
-- **Cómo cerrar el corte: la ficha y la evaluación en ExamLab** → diapositiva 13
+- **Cómo cerrar el corte: la ficha y la evaluación en ExamLab** → sin lámina: es la actividad, su guía está en la carpeta de la clase
 
 ## Desarrollo de la clase, minuto a minuto (90 min)
 
@@ -52,7 +52,7 @@ Comparta pantalla antes de que entre el primero:
 
 **[Nota docente]:** pida que tengan abierto el documento del equipo con las cuatro cosas de las sesiones anteriores (problema inicial, ficha de sistema, regla ética, indicador ambiental). La ficha se arma con eso.
 
-### 00:10–00:35 · Teoría (25 min, comprimida) · [Slide 5][Slide 7][Slide 9][Slide 11][Slide 13]
+### 00:10–00:35 · Teoría (25 min, comprimida) · [Slide 5][Slide 7][Slide 9][Slide 11][fuera del deck · guía del taller en la carpeta]
 
 Reparto estricto. Hoy el reloj manda:
 
@@ -64,7 +64,7 @@ Reparto estricto. Hoy el reloj manda:
 
 - **5 min** · Los cuatro criterios [Slide 11]. Aplíquelos en voz alta a una idea que haya salido en el muro, incluida la parte incómoda de descartar.
 
-- **2 min** · Cómo cierra el corte [Slide 13]. Ficha + evaluación, y que ExamLab no es plataforma oficial de la universidad.
+- **2 min** · Cómo cierra el corte [fuera del deck · guía del taller en la carpeta]. Ficha + evaluación, y que ExamLab no es plataforma oficial de la universidad.
 
 **[Nota docente]:** si va retrasado, recorte los criterios a tres minutos quedándose con *medible* y *acceso a los actores*, que son los dos que más descartan. **No recorte el árbol**: es la herramienta del taller.
 
@@ -98,7 +98,7 @@ Es individual, cubre las sesiones 1 a 6 y se responde en la sesión. Mantenga la
 
 **[Nota docente]:** si alguien pierde la conexión durante la evaluación, anótelo y resuélvalo con reposición el mismo día. No lo deje para la próxima sesión.
 
-### 01:27–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 14]
+### 01:27–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 13]
 
 Una idea: **el problema ya está escrito y de aquí en adelante todo se hace sobre esa ficha.** El corte 1 cierra con un producto, no con una nota.
 
@@ -121,8 +121,7 @@ Numeración real del deck `Clases/Clase 6 - Analisis de problemas tecnologicos d
 10. Ejemplo: cómo se saca una línea base con el celular
 11. Cuándo un problema cabe en un semestre
 12. Ejemplo: el mismo problema, grande y del tamaño justo
-13. Cómo cierra el corte 1 hoy
-14. Cierre · Cerró el corte 1 · nos vemos en la sesión 7
+13. Cierre · Cerró el corte 1 · nos vemos en la sesión 7
 
 ## Si pasa esto en clase
 

@@ -11,7 +11,7 @@
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
 - Enfoque: Aprendizaje basado en competencia + Aprendizaje Invertido · Estrategia: ABPr — Aprendizaje Basado en Proyectos
 
-> **Esta sesión cierra el corte 2 (30 %).** La teoría baja a 17 minutos y la actividad a 27 para que quepan los **20 minutos de evaluación** al final, en ExamLab, sobre las sesiones 7 a 11. Es además la **segunda y última sesión con asistente de IA autorizado** —la otra fue la sesión 3—, y aplica la misma regla, hoy con más peso: se entrega el prompt usado y la lista de lo que se corrigió a mano.
+> **Esta sesión cierra el corte 2.** La teoría baja a 17 minutos para que quepan los **20 minutos de evaluación** al final, sobre lo visto en el corte hasta hoy. Es además la **segunda y última sesión con asistente de IA autorizado** —la otra fue la sesión 3—.
 
 ## Objetivos de la clase
 - Escribir un **prompt con contexto**: problema, actores y **restricciones** del proyecto.
@@ -36,7 +36,7 @@ Debajo de estas láminas, en las notas del presentador:
 - **La pregunta de entrada: mejor y además ilegal** → diapositiva 4
 - **Qué hace bien y qué hace mal: un mapa honesto** → diapositiva 5
 - **El método: cinco pasos y por qué el primero decide todo** → diapositiva 6
-- **El antes y después, y cómo cierra el corte** → diapositivas 8 y 9
+- **El antes y después, y cómo cierra el corte** → diapositiva 8
 
 ## Desarrollo de la clase, minuto a minuto (90 min)
 
@@ -50,7 +50,7 @@ Comparta pantalla antes de que entre el primero:
 
 **[Nota docente]:** si tiene dos minutos, hágalo en vivo: un prompt sin restricciones sobre su prototipo, y muestre cómo propone la cuenta de usuario. Vale más que la diapositiva.
 
-### 00:08–00:25 · Teoría (17 min) · [Slide 5][Slide 6][Slide 8][Slide 9]
+### 00:08–00:25 · Teoría (17 min) · [Slide 5][Slide 6][Slide 8][fuera del deck · guía del taller en la carpeta]
 
 Reparto estricto, hoy no hay margen:
 
@@ -60,7 +60,7 @@ Reparto estricto, hoy no hay margen:
 
 - **5 min** · El antes y después [Slide 8]. Recórralo fila por fila diciendo **de qué sesión sale cada corrección**. Es la diapositiva que justifica el corte entero.
 
-- **2 min** · Cómo cierra el corte [Slide 9]. Diga que es a libro abierto **sobre sus propios documentos** y que ExamLab no es plataforma oficial de la universidad.
+- **2 min** · Cómo cierra el corte [fuera del deck · guía del taller en la carpeta]. Diga que es a libro abierto **sobre sus propios documentos** y que ExamLab no es plataforma oficial de la universidad.
 
 ### 00:25–00:52 · Taller en salas de grupo (27 min) · [fuera del deck · guía del taller en la carpeta]
 
@@ -88,7 +88,7 @@ Ritmo sugerido dentro de la sala, dígaselo al repartir:
 
 **[Nota docente]:** pregunte a cada equipo **de qué sesión salió una de sus correcciones**. Es la manera de cerrar el corte mostrando que todo estaba conectado.
 
-### 01:07–01:27 · Evaluación del corte 2 en ExamLab (20 min) · [Slide 9]
+### 01:07–01:27 · Evaluación del corte 2 en ExamLab (20 min) · [fuera del deck · guía del taller en la carpeta]
 
 Cierre las salas y devuelva a todos a la sala principal antes de compartir el enlace.
 
@@ -100,7 +100,7 @@ Recuerde en voz alta: **individual y a libro abierto sobre sus propios documento
 
 Quédese con la cámara encendida y el micrófono abierto para dudas de enunciado, sin resolver contenido.
 
-### 01:27–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 10]
+### 01:27–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 9]
 
 Una idea: **pudieron corregir al asistente porque tenían sus decisiones escritas.** Eso es lo que hicieron en el corte 2.
 
@@ -119,8 +119,7 @@ Numeración real del deck `Clases/Clase 11 - Taller de prototipado inicial con I
 6. Cómo se le pide algo a la IA en este curso
 7. Ejemplo: la misma petición, mal y bien hecha
 8. La variante de la IA y la corrección del equipo
-9. Cómo cierra el corte 2 hoy
-10. Cierre · Cierra el corte 2 · Nos vemos en la Clase 12
+9. Cierre · Cierra el corte 2 · Nos vemos en la Clase 12
 
 ## Si pasa esto en clase
 

@@ -2842,10 +2842,8 @@ TEMAS[6] = {
     ],
     "agenda_sub": "Hoy el reparto cambia: la teoría se comprime a 25 min para dejar 20 min de "
                   "evaluación de corte al final",
-    "nota_bloque": "**Esta sesión cierra el corte 1 (30 %).** Trae dos cosas que las demás no "
-                   "tienen: la **ficha del problema del proyecto**, que es el producto del corte y "
-                   "gobierna el resto del semestre, y la **evaluación de corte en ExamLab**, que se "
-                   "aplica en los últimos 20 minutos y cubre las sesiones 1 a 6. Por eso el bloque "
+    "nota_bloque": "**Esta sesión cierra el corte 1.** Los últimos 20 minutos son la "
+                   "evaluación de corte, sobre lo visto hasta hoy. Por eso el bloque "
                    "de teoría baja de 45 a 25 minutos: hay que llegar con tiempo, no con la "
                    "explicación a medias.",
     "agenda": {},

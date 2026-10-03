@@ -2984,12 +2984,10 @@ TEMAS[11] = {
     ],
     "agenda_sub": "Hoy cierra el corte 2: la evaluación va al final, después de las exposiciones, "
                   "porque cubre las cinco sesiones completas",
-    "nota_bloque": "**Esta sesión cierra el corte 2 (30 %).** La teoría baja a 17 minutos y la "
-                   "actividad a 27 para que quepan los **20 minutos de evaluación** al final, en "
-                   "ExamLab, sobre las sesiones 7 a 11. Es además la **segunda y última sesión con "
-                   "asistente de IA autorizado** —la otra fue la sesión 3—, y aplica la misma regla, "
-                   "hoy con más peso: se entrega el prompt usado y la lista de lo que se corrigió a "
-                   "mano.",
+    "nota_bloque": "**Esta sesión cierra el corte 2.** La teoría baja a 17 minutos "
+                   "para que quepan los **20 minutos de evaluación** al final, sobre lo "
+                   "visto en el corte hasta hoy. Es además la **segunda y última sesión con "
+                   "asistente de IA autorizado** —la otra fue la sesión 3—.",
     "agenda": {},
     "herramienta_nota": "Hoy **sí se usa asistente de IA**, con dos condiciones que son la mitad de "
                         "la nota: **se entrega el prompt completo** y **la lista de lo que se "
@@ -3032,7 +3030,7 @@ TEMAS[11] = {
                 ("1 · Dé el contexto que no puede saber", "El problema en una frase (sesión 6), quién lo usa, y **las restricciones** — es el paso que decide la calidad de todo lo demás."),
                 ("2 · Pida variantes, no una respuesta", "«Dame tres maneras distintas de…». Una sola respuesta invita a aceptarla; tres obligan a elegir, y elegir es su trabajo."),
                 ("3 · Prohíba explícitamente lo prohibido", "«Sin crear cuentas de usuario, sin pedir datos personales, sin instalar nada.» **Si no lo dice, lo va a proponer.**"),
-                ("4 · Corrija a mano y anote qué corrigió", "Esa lista **es el entregable**. Es la prueba de que ustedes pensaron, y es lo que más pesa en la rúbrica de hoy."),
+                ("4 · Corrija a mano y anote qué corrigió", "Esa lista **es lo que vale**: es la prueba de que ustedes pensaron, y no la IA."),
                 ("5 · Declare el uso", "En el documento: qué asistente, para qué, qué se aceptó y qué se descartó. **Declararlo es lo profesional; esconderlo es la falta.**"),
             ],
             "sub": "El prompt sin contexto ni restricciones devuelve la solución promedio de internet, que no es la solución de su proyecto",
