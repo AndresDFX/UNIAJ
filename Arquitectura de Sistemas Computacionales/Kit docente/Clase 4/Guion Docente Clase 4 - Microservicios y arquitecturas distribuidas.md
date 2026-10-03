@@ -24,7 +24,7 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 8] De donde viene la clase y que se abre hoy (1/2)** — 4 vinetas.
+**[Slide 8] De donde viene la clase y que se abre hoy (1/2)** — 5 vinetas.
 
 **[Slide 9] De donde viene la clase y que se abre hoy (2/2)** — 2 vinetas.
 
@@ -41,18 +41,19 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 13] Monolito: lo que la palabra realmente significa (4/4)** — 2 vinetas.
 
 **[Slide 14] Las tres reglas del nivel Container y la trazabilidad con el Context (1/2)** — 6 vinetas.
-  - Antes del ejemplo conviene fijar las tres reglas con las que se corrige el diagrama, porque cada una tiene puntos asignados y las tres se pierden por descuido y no por no saber.
   - Nombre, tecnologia y responsabilidad en una frase.
   - «HTTP» a secas no dice como viajan los datos y «SQL» a secas no dice sobre que transporte; con las dos mitades, cualquiera que lea el diagrama sabe por donde puede romperse.
+  - (Sobre la actividad, no se proyecta) Antes del ejemplo conviene fijar las tres reglas con las que se corrige el diagrama, porque cada una tiene puntos asignados y las tres se pierden por descuido y no por no saber.
 
 **[Slide 15] Las tres reglas del nivel Container y la trazabilidad con el Context (2/2)** — 6 vinetas.
 
-**[Slide 16] C4Container en Mermaid: la sintaxis que la plataforma renderiza (1/2)** — 6 vinetas.
-  - Eso cambia lo que el docente tiene que ensenar, porque un boceto correcto escrito con la sintaxis equivocada no renderiza y entonces no hay diagrama que calificar.
+**[Slide 16] C4Container en Mermaid: la sintaxis que se renderiza (1/2)** — 6 vinetas.
   - Vale la pena decir en voz alta que aqui el uso de una IA es legitimo y ademas recomendado: pasar un boceto a codigo Mermaid es justo la tarea mecanica en la que ayuda sin sustituir el criterio.
   - Lo que NO delega el estudiante es la revision, y hay tres cosas que tiene que verificar el mismo antes de enviar, porque son las que la IA equivoca con frecuencia: que la primera linea sea C4Container, que la base de datos haya quedado como ContainerDb y no como Container, y que ninguna relacion haya perdido la mitad de su etiqueta.
+  - (Sobre la actividad, no se proyecta) Eso cambia lo que el docente tiene que ensenar, porque un boceto correcto escrito con la sintaxis equivocada no renderiza y entonces no hay diagrama que calificar.
+  - (Sobre la actividad, no se proyecta) Un codigo que no renderiza vale cero, y es el unico punto del taller donde el estudiante puede comprobar su propia nota antes de entregar.
 
-**[Slide 17] C4Container en Mermaid: la sintaxis que la plataforma renderiza (2/2)** — 4 vinetas.
+**[Slide 17] C4Container en Mermaid: la sintaxis que se renderiza (2/2)** — 3 vinetas.
 
 **[Slide 18] Primer ejemplo: los tres contenedores de CloudLite Turnos** — 5 vinetas.
   - Primer ejemplo concreto, y conviene construirlo en el tablero en vivo.
@@ -62,8 +63,8 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Esa es una razon legitima para separar: se agrega una cola de mensajes y un trabajador de notificaciones, la API escribe el turno, publica un mensaje y responde en decenas de milisegundos, y el trabajador envia el correo despues, con reintentos si falla.
 
 **[Slide 19] Los contratos: cuatro datos por fila y un 409 obligatorio (1/3)** — 6 vinetas.
-  - Dos exigencias mas, que valen puntos y se pierden sin darse cuenta.
   - Conviene tambien tener a mano la diferencia con sus vecinos, porque se confunden: 400 es que la peticion esta mal formada, 401 que no se sabe quien eres, 403 que se sabe y no te corresponde, 404 que no existe, 422 que esta bien formada pero sus datos no pasan una validacion, y 409 que choca con el estado actual.
+  - (Sobre la actividad, no se proyecta) Dos exigencias mas, que valen puntos y se pierden sin darse cuenta.
 
 **[Slide 20] Los contratos: cuatro datos por fila y un 409 obligatorio (2/3)** — 5 vinetas.
 
@@ -84,27 +85,28 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 27] Los datos: donde se rompen los proyectos academicos (2/2)** — 3 vinetas.
 
-**[Slide 28] El tercer entregable: los tres riesgos, y por que son esos tres (1/3)** — 4 vinetas.
+**[Slide 28] Los tres riesgos de distribuir, y por que son esos tres (1/3)** — 5 vinetas.
   - Conviene dictarlos asi, porque un estudiante que entiende por que son esos tres no escribe generalidades.
   - El primero pregunta que se cae.
   - El segundo pregunta cuantos saltos de red tiene una operacion de punta a punta, y se responde con un numero, contado sobre el propio dibujo.
+  - (Sobre la actividad, no se proyecta) «Se cae todo» vale la mitad de los puntos, y con razon: en un sistema bien partido nunca se cae todo, y el ejercicio consiste precisamente en descubrir que algunas cosas sobreviven.
 
-**[Slide 29] El tercer entregable: los tres riesgos, y por que son esos tres (2/3)** — 6 vinetas.
+**[Slide 29] Los tres riesgos de distribuir, y por que son esos tres (2/3)** — 5 vinetas.
 
-**[Slide 30] El tercer entregable: los tres riesgos, y por que son esos tres (3/3)** — 4 vinetas.
+**[Slide 30] Los tres riesgos de distribuir, y por que son esos tres (3/3)** — 3 vinetas.
 
 **[Slide 31] Preguntas frecuentes y cierre conceptual () (1/3)** — 4 vinetas.
-  - No; esta mal hacerlo sin saber que se eligio, y un monolito modular bien argumentado recibe mejor calificacion que cinco servicios sin razon.
   - Conviene cerrar ubicando el curso: este diagrama es el ultimo insumo del Parcial 1 de la Clase 5; en la Clase 6 cada flecha se convertira en una superficie de ataque que hay que proteger; en la Clase 7 estas mismas cajas se reubicaran en un diagrama de despliegue con zonas publicas y privadas, conservando exactamente los mismos nombres; en la Clase 8 cada contenedor implicara su propio pipeline de integracion continua; y en las Clases 12 y 13 se preguntara cual de estas piezas es el cuello de botella y cual se puede replicar.
   - El numero de servicios no mide calidad arquitectonica; la justificacion de cada frontera si.
+  - (Sobre la actividad, no se proyecta) No; esta mal hacerlo sin saber que se eligio, y un monolito modular bien argumentado recibe mejor calificacion que cinco servicios sin razon.
 
 **[Slide 32] Preguntas frecuentes y cierre conceptual () (2/3)** — 5 vinetas.
 
 **[Slide 33] Preguntas frecuentes y cierre conceptual () (3/3)** — 3 vinetas.
 
-**[Slide 34] El C4 Container en Mermaid: la forma que la plataforma del curso renderiza** — 17 vinetas.
+**[Slide 34] El C4 Container en Mermaid: la forma que un visor renderiza** — 17 vinetas.
 
-**[Slide 35] Lo que se califica del diagrama, y no es el dibujo** — 13 vinetas.
+**[Slide 35] Lo que importa del diagrama, y no es el dibujo** — 13 vinetas.
 
 
 ## Referencias a diapositivas
@@ -126,8 +128,8 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 13. Monolito: lo que la palabra realmente significa (4/4)
 14. Las tres reglas del nivel Container y la trazabilidad con el Context (1/2)
 15. Las tres reglas del nivel Container y la trazabilidad con el Context (2/2)
-16. C4Container en Mermaid: la sintaxis que la plataforma renderiza (1/2)
-17. C4Container en Mermaid: la sintaxis que la plataforma renderiza (2/2)
+16. C4Container en Mermaid: la sintaxis que se renderiza (1/2)
+17. C4Container en Mermaid: la sintaxis que se renderiza (2/2)
 18. Primer ejemplo: los tres contenedores de CloudLite Turnos
 19. Los contratos: cuatro datos por fila y un 409 obligatorio (1/3)
 20. Los contratos: cuatro datos por fila y un 409 obligatorio (2/3)
@@ -138,18 +140,19 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 25. Timeout, reintento, idempotencia y circuit breaker (2/2)
 26. Los datos: donde se rompen los proyectos academicos (1/2)
 27. Los datos: donde se rompen los proyectos academicos (2/2)
-28. El tercer entregable: los tres riesgos, y por que son esos tres (1/3)
-29. El tercer entregable: los tres riesgos, y por que son esos tres (2/3)
-30. El tercer entregable: los tres riesgos, y por que son esos tres (3/3)
+28. Los tres riesgos de distribuir, y por que son esos tres (1/3)
+29. Los tres riesgos de distribuir, y por que son esos tres (2/3)
+30. Los tres riesgos de distribuir, y por que son esos tres (3/3)
 31. Preguntas frecuentes y cierre conceptual () (1/3)
 32. Preguntas frecuentes y cierre conceptual () (2/3)
 33. Preguntas frecuentes y cierre conceptual () (3/3)
-34. El C4 Container en Mermaid: la forma que la plataforma del curso renderiza
-35. Lo que se califica del diagrama, y no es el dibujo
+34. El C4 Container en Mermaid: la forma que un visor renderiza
+35. Lo que importa del diagrama, y no es el dibujo
 36. Ejemplo de diagrama C4 — nivel Containers
 37. Microservicios de verdad vs microservicios teatro
-38. C4Container en Mermaid: el molde que la plataforma del curso renderiza
-39. Clase 4 · cierre conceptual
+38. C4Container en Mermaid: el molde que un visor renderiza
+39. Del boceto al código Mermaid
+40. Clase 4 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -174,7 +177,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 38]
+### 40–55 · Demo en vivo · [Slide 39]
 Herramienta del día: **Navegador · editor de diagramas del curso (Mermaid) · boceto libre opcional**.
 **Demo que usted debe poder repetir:** Convertir el Context de la Clase 1 en Containers, y dejarlo renderizado en la plataforma
 
@@ -233,7 +236,7 @@ Aplica el quiz corto de `Kit docente/Clase 4/Quiz Clase 4 - Microservicios y arq
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 39]
+### 115–120 · Cierre · [Slide 40]
 Di: «Queda avanzado: Diagramar componentes/servicios de CloudLite y sus contratos.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»

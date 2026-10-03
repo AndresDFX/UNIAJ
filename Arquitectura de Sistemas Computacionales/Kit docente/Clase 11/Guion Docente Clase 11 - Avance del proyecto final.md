@@ -52,15 +52,16 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 15] El semaforo: el umbral que decide si el proyecto va a tiempo (2/2)** — 3 vinetas.
 
-**[Slide 16] Preguntas frecuentes y cierre conceptual () (1/3)** — 4 vinetas.
+**[Slide 16] Preguntas frecuentes y cierre conceptual () (1/2)** — 3 vinetas.
   - Tres preguntas se repiten y el docente debe responderlas sin titubear.
   - Conviene cerrar diciendo que lo que se estabilice hoy es la base sobre la que la Clase 12 agregara el analisis de rendimiento y la Clase 13 la politica de escalado, y que un proyecto con el paquete v1 incoherente no puede hacer ninguna de las dos, porque no se puede medir ni escalar un sistema que todavia no esta definido.
+  - (Sobre la actividad, no se proyecta) La primera es si esto se califica; la respuesta honesta es que este checkpoint no es la sustentacion final, que ocurre en la Clase 15, ni el Parcial 3, que es la evaluacion escrita de la Clase 14, y que hoy se registra estado y compromisos, pero el acta es el insumo con el que se mirara la entrega final: un gap senalado hoy y no cerrado pesa mucho mas que uno que aparecio despues.
+  - (Sobre la actividad, no se proyecta) La segunda es por que revisa un companero si el que califica es el docente, y la respuesta es que la revision por pares es practica estandar en la industria y que su valor no esta en el juicio del par sino en la obligacion de explicar; ademas el par pregunta lo que el docente ya asume, y esas son justo las preguntas que llegan en un Q&A real.
+  - (Sobre la actividad, no se proyecta) La tercera, la mas delicada, es si cambiar el diagrama ahora significa perder el trabajo hecho, y la respuesta debe ser tajante: no, porque el artefacto no es el entregable, la decision documentada lo es; un diagrama corregido con una nota de por que cambio vale mas que uno intacto, y ese cambio justificado es exactamente lo que un ADR registra.
 
-**[Slide 17] Preguntas frecuentes y cierre conceptual () (2/3)** — 5 vinetas.
+**[Slide 17] Preguntas frecuentes y cierre conceptual () (2/2)** — 3 vinetas.
 
-**[Slide 18] Preguntas frecuentes y cierre conceptual () (3/3)** — 3 vinetas.
-
-**[Slide 19] El C4 Component: por dentro de la API** — 17 vinetas.
+**[Slide 18] El C4 Component: por dentro de la API** — 17 vinetas.
 
 
 ## Referencias a diapositivas
@@ -82,10 +83,10 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 13. Retroalimentacion accionable: observacion, evidencia, impacto y accion con fecha (2/2)
 14. El semaforo: el umbral que decide si el proyecto va a tiempo (1/2)
 15. El semaforo: el umbral que decide si el proyecto va a tiempo (2/2)
-16. Preguntas frecuentes y cierre conceptual () (1/3)
-17. Preguntas frecuentes y cierre conceptual () (2/3)
-18. Preguntas frecuentes y cierre conceptual () (3/3)
-19. El C4 Component: por dentro de la API
+16. Preguntas frecuentes y cierre conceptual () (1/2)
+17. Preguntas frecuentes y cierre conceptual () (2/2)
+18. El C4 Component: por dentro de la API
+19. Del boceto al código Mermaid
 20. Clase 11 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
@@ -108,7 +109,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo
+### 40–55 · Demo en vivo · [Slide 19]
 Herramienta del día: **Navegador · editores de diagramas y de texto del curso**.
 **Demo que usted debe poder repetir:** Auditar en vivo el paquete de un voluntario
 

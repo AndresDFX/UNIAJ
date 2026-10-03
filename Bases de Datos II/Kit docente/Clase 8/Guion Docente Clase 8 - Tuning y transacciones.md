@@ -88,7 +88,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 24] Error del motor y error de negocio: se atienden distinto (2/2)** — 4 vinetas.
 
-**[Slide 25] Donde empieza y termina la transaccion de un CALL (1/2)** — 5 vinetas.
+**[Slide 25] Donde empieza y termina la transaccion de un CALL (1/2)** — 4 vinetas.
   - Si la excepcion se propaga hasta afuera del procedimiento, el motor deshace TODO lo que ese CALL habia hecho —la cabecera de la factura, las lineas ya insertadas y los descuentos de stock ya aplicados— y nadie escribio ROLLBACK.
 
 **[Slide 26] Donde empieza y termina la transaccion de un CALL (2/2)** — 3 vinetas.
@@ -188,9 +188,9 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 28. El savepoint implicito del bloque EXCEPTION (1/2)
 29. El savepoint implicito del bloque EXCEPTION (2/2)
 30. El savepoint implicito del bloque EXCEPTION — sintaxis
-31. El contraste con Oracle, que es la pregunta 4 (1/3)
-32. El contraste con Oracle, que es la pregunta 4 (2/3)
-33. El contraste con Oracle, que es la pregunta 4 (3/3)
+31. El contraste con Oracle (1/3)
+32. El contraste con Oracle (2/3)
+33. El contraste con Oracle (3/3)
 34. Abortar o informar: fn_descontar_stock (1/2)
 35. Abortar o informar: fn_descontar_stock (2/2)
 36. Abortar o informar: fn_descontar_stock — sintaxis
@@ -207,9 +207,9 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 47. Preguntas frecuentes del grupo (3/3)
 48. Todo o nada: la transaccion explicita
 49. SAVEPOINT: deshacer una parte sin perder el resto
-50. El bloque EXCEPTION y la trampa que cuesta puntos
+50. El bloque EXCEPTION
 51. Todo o nada: la transaccion de facturacion
-52. sp_facturar en PL/pgSQL: el molde que se califica
+52. sp_facturar en PL/pgSQL
 53. Por que el procedimiento no lleva COMMIT ni ROLLBACK
 54. fn_descontar_stock: cuando «no hay stock» es una respuesta, no un error
 55. Demo del dia

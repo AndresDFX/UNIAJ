@@ -24,75 +24,84 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 7] El tercer angulo: que responde el diagrama de despliegue (1/2)** — 5 vinetas.
+**[Slide 7] El tercer angulo: que responde el diagrama de despliegue (1/2)** — 4 vinetas.
   - Conviene tener claro el mapa de los tres diagramas del curso, porque el estudiante cree que dibuja lo mismo tres veces.
-  - Lo que se califica hoy son 25 de los 100 puntos de la actividad del Corte 2, en tres preguntas: 14 puntos el diagrama de despliegue, 5.5 el tipo de almacenamiento de cada componente y 5.5 la tabla de correspondencia con el C4 Containers.
+  - (Sobre la actividad, no se proyecta) Lo que se califica hoy son 25 de los 100 puntos de la actividad del Corte 2, en tres preguntas: 14 puntos el diagrama de despliegue, 5.5 el tipo de almacenamiento de cada componente y 5.5 la tabla de correspondencia con el C4 Containers.
+  - (Sobre la actividad, no se proyecta) Y hay un dato que cambia como se dicta la clase: el entregable NO es una imagen.
+  - (Sobre la actividad, no se proyecta) La pregunta 4 se responde con codigo Mermaid pegado en la plataforma del curso, que la plataforma renderiza en la misma pantalla, y 2 de esos 14 puntos son literalmente que renderice sin error.
+  - (Sobre la actividad, no se proyecta) El boceto en draw.io o en Excalidraw sigue sirviendo, y es el paso 1 del metodo que se proyecta hoy, pero es un borrador de trabajo: no se entrega y no se califica.
 
-**[Slide 8] El tercer angulo: que responde el diagrama de despliegue (2/2)** — 4 vinetas.
+**[Slide 8] El tercer angulo: que responde el diagrama de despliegue (2/2)** — 2 vinetas.
 
-**[Slide 9] IP, puerto y protocolo: las tres etiquetas de cada flecha (1/2)** — 3 vinetas.
+**[Slide 9] IP, puerto y protocolo: las tres etiquetas de cada flecha** — 4 vinetas.
   - Para etiquetar ese diagrama hacen falta tres conceptos de red que el docente debe definir en una frase.
   - Una direccion IP identifica una maquina dentro de una red.
   - Ahi esta el amarre: cuando en Killercoda se ejecuto el contenedor publicando un puerto, esa linea era la decision de que superficie queda expuesta, tema de la Clase 6, y hoy esa decision se dibuja.
+  - (Sobre la actividad, no se proyecta) Esto no es decorativo: la pregunta 4 da 2 puntos por que cada componente lleve su puerto etiquetado, y el diagrama de referencia usa exactamente tres, 443 en el edge, 8080 en la API y 5432 en la base de datos, que son los mismos que el estudiante ya escribio en el EXPOSE de su Dockerfile de la Clase 3.
 
-**[Slide 10] IP, puerto y protocolo: las tres etiquetas de cada flecha (2/2)** — 3 vinetas.
-
-**[Slide 11] Subred publica y privada: lo definen las rutas, no el nombre (1/2)** — 5 vinetas.
+**[Slide 10] Subred publica y privada: lo definen las rutas, no el nombre (1/2)** — 4 vinetas.
   - Una privada no lo tiene; solo se alcanza desde dentro, aunque normalmente si puede salir para descargar actualizaciones.
-  - Conviene ademas nombrar la frontera de confianza, que vale 2 puntos: es la linea donde termina lo que el estudiante controla y empieza lo que no.
+  - Conviene ademas nombrar la frontera de confianza: es la linea donde termina lo que el estudiante controla y empieza lo que no.
+  - (Sobre la actividad, no se proyecta) Los 4 puntos de ubicacion de la pregunta 4 se pierden COMPLETOS si la base de datos queda en la zona publica: no es un descuento parcial, es el error que la pregunta esta disenada para detectar.
+  - (Sobre la actividad, no se proyecta) Y las tres zonas rotuladas valen otros 4 puntos por si mismas, asi que un diagrama de dos zonas, aunque tenga la base de datos bien puesta, ya empezo perdiendo.
 
-**[Slide 12] Subred publica y privada: lo definen las rutas, no el nombre (2/2)** — 3 vinetas.
+**[Slide 11] Subred publica y privada: lo definen las rutas, no el nombre (2/2)** — 2 vinetas.
 
-**[Slide 13] DNS y balanceador de carga (1/2)** — 4 vinetas.
+**[Slide 12] DNS y balanceador de carga (1/2)** — 4 vinetas.
   - El balanceador de carga recibe todas las peticiones y las reparte entre varias instancias iguales del mismo servicio, con algoritmos como round robin o menor numero de conexiones activas.
 
-**[Slide 14] DNS y balanceador de carga (2/2)** — 2 vinetas.
+**[Slide 13] DNS y balanceador de carga (2/2)** — 2 vinetas.
 
-**[Slide 15] Los tres nombres de almacenamiento que califica la pregunta 5 (1/3)** — 4 vinetas.
+**[Slide 14] Los tres nombres de almacenamiento (1/3)** — 4 vinetas.
   - Vale la pena escribirlas en el tablero y sostenerlas toda la clase.
+  - Y cada eleccion se justifica nombrando la caracteristica del dato.
 
-**[Slide 16] Los tres nombres de almacenamiento que califica la pregunta 5 (2/3)** — 6 vinetas.
+**[Slide 15] Los tres nombres de almacenamiento (2/3)** — 5 vinetas.
 
-**[Slide 17] Los tres nombres de almacenamiento que califica la pregunta 5 (3/3)** — 3 vinetas.
+**[Slide 16] Los tres nombres de almacenamiento (3/3)** — 3 vinetas.
 
-**[Slide 18] El caso de la foto de perfil, y cuando la respuesta correcta es «no necesito objeto» (1/2)** — 5 vinetas.
+**[Slide 17] El caso de la foto de perfil, y cuando la respuesta correcta es «no necesito objeto» (1/2)** — 4 vinetas.
   - Y ahora la otra mitad, que es la que sorprende al docente: si el dominio del estudiante no maneja archivos, imagenes ni documentos adjuntos, la respuesta correcta y completa es declarar que NO necesita almacenamiento de objetos y explicar por que.
+  - (Sobre la actividad, no se proyecta) La rubrica lo dice al reves de como el grupo lo espera: suma completo quien lo declare y justifique, y se descuenta a quien agregue un almacen de objetos sin un dato que lo pida.
+  - (Sobre la actividad, no se proyecta) Hay que anunciarlo antes del taller, porque si no medio salon inventa un bucket «porque suena a cloud» y pierde puntos por agregar.
 
-**[Slide 19] El caso de la foto de perfil, y cuando la respuesta correcta es «no necesito objeto» (2/2)** — 4 vinetas.
+**[Slide 18] El caso de la foto de perfil, y cuando la respuesta correcta es «no necesito objeto» (2/2)** — 3 vinetas.
 
-**[Slide 20] Trazabilidad: la tabla de correspondencia de la pregunta 6 (1/3)** — 3 vinetas.
-  - Queda la trazabilidad, donde mas puntos se pierden y donde vive una pregunta entera.
+**[Slide 19] Trazabilidad: la tabla de correspondencia (1/2)** — 3 vinetas.
+  - (Sobre la actividad, no se proyecta) Queda la trazabilidad, donde mas puntos se pierden y donde vive una pregunta entera.
+  - (Sobre la actividad, no se proyecta) Los 5.5 puntos se reparten asi, y conviene decirlo en voz alta: 2 puntos la explicacion de por que los nombres deben coincidir, y la respuesta esperada es que los dos diagramas son el MISMO sistema visto desde angulos distintos, uno dice que piezas hay y el otro donde se ejecutan; 2.5 puntos la tabla completa, con una fila por componente y su zona; y 1 punto listar los renombres que se aplicaron, o declarar explicitamente que no hubo ninguno, que tambien vale.
+  - (Sobre la actividad, no se proyecta) La trampa esta en la palabra completa: se descuenta si la tabla deja fuera un componente que si aparece en alguno de los dos diagramas, asi que hay que instruir el gesto de llenarla con los dos diagramas abiertos al lado y contando cajas.
 
-**[Slide 21] Trazabilidad: la tabla de correspondencia de la pregunta 6 (2/3)** — 3 vinetas.
+**[Slide 20] Trazabilidad: la tabla de correspondencia (2/2)** — 2 vinetas.
 
-**[Slide 22] Trazabilidad: la tabla de correspondencia de la pregunta 6 (3/3)** — 3 vinetas.
+**[Slide 21] Recorrer una peticion de CloudLite de punta a punta (1/2)** — 4 vinetas.
+  - (Sobre la actividad, no se proyecta) Ese recorrido, con cada flecha etiquetada con protocolo y puerto y cada caja dentro de su zona, es la estructura que la pregunta 4 califica; lo que se pega en la plataforma es su version en Mermaid, que es la seccion siguiente.
 
-**[Slide 23] Recorrer una peticion de CloudLite de punta a punta (1/2)** — 5 vinetas.
+**[Slide 22] Recorrer una peticion de CloudLite de punta a punta (2/2)** — 2 vinetas.
 
-**[Slide 24] Recorrer una peticion de CloudLite de punta a punta (2/2)** — 2 vinetas.
-
-**[Slide 25] El molde de Mermaid, linea por linea (1/3)** — 6 vinetas.
+**[Slide 23] El molde de Mermaid, linea por linea (1/2)** — 6 vinetas.
   - Hay cinco cosas que el docente debe poder explicar sin titubear.
   - Se escribe flowchart LR, donde LR significa de izquierda a derecha, y es lo que hace que el recorrido cliente, edge, aplicacion, datos se lea como un flujo y no como una torre.
-  - Vale la pena senalar la caja de la base de datos y decir «esta forma, dentro de este subgraph, son 4 de los 14 puntos».
   - Dos advertencias practicas.
   - Sirven para dejar una nota al evaluador, no para responder.
+  - (Sobre la actividad, no se proyecta) La diapositiva del molde existe porque el estudiante puede tener el modelo correcto en la cabeza y perder puntos por sintaxis, y porque 2 de los 14 son que el diagrama renderice.
+  - (Sobre la actividad, no se proyecta) Vale la pena senalar la caja de la base de datos y decir «esta forma, dentro de este subgraph, son 4 de los 14 puntos».
+  - (Sobre la actividad, no se proyecta) Si no se dibuja, se corrige ahi mismo; nadie califica un codigo que no dibuja.
 
-**[Slide 26] El molde de Mermaid, linea por linea (2/3)** — 4 vinetas.
+**[Slide 24] El molde de Mermaid, linea por linea (2/2)** — 6 vinetas.
 
-**[Slide 27] El molde de Mermaid, linea por linea (3/3)** — 4 vinetas.
-
-**[Slide 28] Preguntas frecuentes del grupo (1/2)** — 4 vinetas.
+**[Slide 25] Preguntas frecuentes del grupo** — 5 vinetas.
   - Estas cuatro aparecen todos los semestres y las cuatro se responden con material que ya esta proyectado.
   - Si un desarrollador necesita entrar, se hace por un unico host intermedio controlado, llamado bastion.
   - Por eso las zonas se llaman Publica, Privada y Datos.
   - El PNG exportado va a la carpeta del Proyecto Integrador, para el informe, y no reemplaza la respuesta.
+  - (Sobre la actividad, no se proyecta) Es mas: la rubrica DESCUENTA por nombrar subredes o servicios de un proveedor concreto, asi que escribir VPC, el nombre de una zona de disponibilidad o el de un servicio de marca resta en vez de sumar.
+  - (Sobre la actividad, no se proyecta) «Puedo subir mi imagen del diagrama en vez del codigo Mermaid?» No para la pregunta 4: lo que se califica es el diagrama renderizado dentro de la plataforma.
+  - (Sobre la actividad, no se proyecta) «Mi sistema es pequeno, solo tiene la aplicacion y la base de datos; igual necesito tres zonas?» Si, y no es burocracia: las tres zonas son 4 puntos y el sentido de la separacion es justamente que el punto de entrada, la logica y los datos tengan grados de exposicion distintos.
 
-**[Slide 29] Preguntas frecuentes del grupo (2/2)** — 5 vinetas.
+**[Slide 26] El diagrama de Despliegue: donde corre cada cosa** — 23 vinetas.
 
-**[Slide 30] El diagrama de Despliegue: donde corre cada cosa** — 23 vinetas.
-
-**[Slide 31] Que tipo de almacenamiento pide cada componente** — 11 vinetas.
+**[Slide 27] Que tipo de almacenamiento pide cada componente** — 11 vinetas.
 
 
 ## Referencias a diapositivas
@@ -107,32 +116,29 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 6. Checklist del diagrama Deployment
 7. El tercer angulo: que responde el diagrama de despliegue (1/2)
 8. El tercer angulo: que responde el diagrama de despliegue (2/2)
-9. IP, puerto y protocolo: las tres etiquetas de cada flecha (1/2)
-10. IP, puerto y protocolo: las tres etiquetas de cada flecha (2/2)
-11. Subred publica y privada: lo definen las rutas, no el nombre (1/2)
-12. Subred publica y privada: lo definen las rutas, no el nombre (2/2)
-13. DNS y balanceador de carga (1/2)
-14. DNS y balanceador de carga (2/2)
-15. Los tres nombres de almacenamiento que califica la pregunta 5 (1/3)
-16. Los tres nombres de almacenamiento que califica la pregunta 5 (2/3)
-17. Los tres nombres de almacenamiento que califica la pregunta 5 (3/3)
-18. El caso de la foto de perfil, y cuando la respuesta correcta es «no necesito objeto» (1/2)
-19. El caso de la foto de perfil, y cuando la respuesta correcta es «no necesito objeto» (2/2)
-20. Trazabilidad: la tabla de correspondencia de la pregunta 6 (1/3)
-21. Trazabilidad: la tabla de correspondencia de la pregunta 6 (2/3)
-22. Trazabilidad: la tabla de correspondencia de la pregunta 6 (3/3)
-23. Recorrer una peticion de CloudLite de punta a punta (1/2)
-24. Recorrer una peticion de CloudLite de punta a punta (2/2)
-25. El molde de Mermaid, linea por linea (1/3)
-26. El molde de Mermaid, linea por linea (2/3)
-27. El molde de Mermaid, linea por linea (3/3)
-28. Preguntas frecuentes del grupo (1/2)
-29. Preguntas frecuentes del grupo (2/2)
-30. El diagrama de Despliegue: donde corre cada cosa
-31. Que tipo de almacenamiento pide cada componente
-32. Ejemplo de diagrama de despliegue (Deployment)
-33. El Despliegue en Mermaid: el molde que la plataforma del curso renderiza
-34. Clase 7 · cierre conceptual
+9. IP, puerto y protocolo: las tres etiquetas de cada flecha
+10. Subred publica y privada: lo definen las rutas, no el nombre (1/2)
+11. Subred publica y privada: lo definen las rutas, no el nombre (2/2)
+12. DNS y balanceador de carga (1/2)
+13. DNS y balanceador de carga (2/2)
+14. Los tres nombres de almacenamiento (1/3)
+15. Los tres nombres de almacenamiento (2/3)
+16. Los tres nombres de almacenamiento (3/3)
+17. El caso de la foto de perfil, y cuando la respuesta correcta es «no necesito objeto» (1/2)
+18. El caso de la foto de perfil, y cuando la respuesta correcta es «no necesito objeto» (2/2)
+19. Trazabilidad: la tabla de correspondencia (1/2)
+20. Trazabilidad: la tabla de correspondencia (2/2)
+21. Recorrer una peticion de CloudLite de punta a punta (1/2)
+22. Recorrer una peticion de CloudLite de punta a punta (2/2)
+23. El molde de Mermaid, linea por linea (1/2)
+24. El molde de Mermaid, linea por linea (2/2)
+25. Preguntas frecuentes del grupo
+26. El diagrama de Despliegue: donde corre cada cosa
+27. Que tipo de almacenamiento pide cada componente
+28. Ejemplo de diagrama de despliegue (Deployment)
+29. El Despliegue en Mermaid: el molde que un visor renderiza
+30. Del boceto al código Mermaid
+31. Clase 7 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -156,7 +162,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 33]
+### 40–55 · Demo en vivo · [Slide 30]
 Herramienta del día: **Navegador · editor de diagramas del curso (Mermaid) · boceto libre opcional**.
 **Demo que usted debe poder repetir:** Del boceto de tres zonas al Mermaid que se califica
 
@@ -190,7 +196,7 @@ flowchart LR
     api -->|"HTTPS 443 - frontera de confianza"| pagos
 ```
 
-Narra los clics en voz alta. Si falla la red, proyecta la [Slide 33], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
+Narra los clics en voz alta. Si falla la red, proyecta la [Slide 29], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
 **Si se hace el taller, cierra la demo en la plataforma del curso** (sin diapositiva: el flujo está en el `Taller … .docx`) — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
@@ -217,7 +223,7 @@ Aplica el quiz corto de `Kit docente/Clase 7/Quiz Clase 7 - Redes y almacenamien
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 34]
+### 115–120 · Cierre · [Slide 31]
 Di: «Queda avanzado: Diagrama de despliegue: red, zonas, almacenamiento.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»

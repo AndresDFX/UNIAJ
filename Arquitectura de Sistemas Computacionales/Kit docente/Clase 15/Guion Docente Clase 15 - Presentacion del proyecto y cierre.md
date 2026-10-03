@@ -31,9 +31,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 7] La prueba de tres capas que se aplica en voz alta** — 4 vinetas.
   - Existe una prueba practica de tres capas que el docente puede aplicar en voz alta a cualquier afirmacion del estudiante, y conviene ensenarla antes de que empiecen las presentaciones.
-  - Quien solo llega a la primera capa esta leyendo el diagrama en voz alta y no deberia obtener los puntos de sustentacion.
   - Quien llega a la segunda esta justificando.
   - Quien llega a la tercera esta sustentando como un arquitecto, porque demuestra que conocia el costo de su decision antes de tomarla y aun asi la tomo.
+  - (Sobre la actividad, no se proyecta) Quien solo llega a la primera capa esta leyendo el diagrama en voz alta y no deberia obtener los puntos de sustentacion.
 
 **[Slide 8] El ADR: el artefacto que sostiene la tercera capa (1/2)** — 6 vinetas.
   - Estado, «Aceptado» mas la fecha en que se decidio.
@@ -44,7 +44,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 9] El ADR: el artefacto que sostiene la tercera capa (2/2)** — 3 vinetas.
 
 **[Slide 10] El pitch de 5 a 8 minutos: el reparto que funciona (1/2)** — 4 vinetas.
-  - La razon es concreta y el docente debe decirla: si el estudiante trae veinte diapositivas, no termina, corre las ultimas, y las ultimas suelen ser justamente las de seguridad, costos y escalabilidad, donde estan los puntos de la rubrica que menos se defienden solos.
+  - (Sobre la actividad, no se proyecta) La razon es concreta y el docente debe decirla: si el estudiante trae veinte diapositivas, no termina, corre las ultimas, y las ultimas suelen ser justamente las de seguridad, costos y escalabilidad, donde estan los puntos de la rubrica que menos se defienden solos.
 
 **[Slide 11] El pitch de 5 a 8 minutos: el reparto que funciona (2/2)** — 3 vinetas.
 
@@ -52,25 +52,22 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - La respuesta del docente debe ser: en equipo se puede repartir quien HABLA de cada tema, pero no quien ENTIENDE cada tema, porque el Q&A se dirige al azar; y en modo individual no hay reparto posible, de modo que la pregunta pierde sentido y lo que queda es preparar el sistema completo.
   - La razon no es castigar.
   - Ese ejercicio suele revelar en cinco minutos lo que la nota habria revelado demasiado tarde.
+  - (Sobre la actividad, no se proyecta) En los equipos autorizados el mismo riesgo se multiplica: si solo un integrante puede explicar el despliegue, no hay evidencia de que los demas participaran, y por eso la rubrica exige que todos hablen y descuenta cuando presenta uno solo.
 
-**[Slide 13] La regla de los 60 segundos, anunciada desde la Clase 11 (2/2)** — 3 vinetas.
+**[Slide 13] La regla de los 60 segundos, anunciada desde la Clase 11 (2/2)** — 2 vinetas.
 
-**[Slide 14] El Q&A tecnico: tres tipos de pregunta (1/2)** — 5 vinetas.
+**[Slide 14] El Q&A tecnico: tres tipos de pregunta (1/2)** — 3 vinetas.
   - El Q&A tecnico tiene tres tipos de pregunta y conviene que el docente los reconozca para dosificarlos.
   - La respuesta correcta es que decir «no lo medimos» no penaliza si va acompanado de como se mediria: «no medimos el p95 porque no hay trafico real, pero el plan es simular 50 peticiones por segundo y observar la latencia de la API, que es el cuello de botella que sospechamos por lo que vimos en la Clase 12».
   - Improvisar un dato falso, en cambio, se detecta con una sola pregunta de seguimiento y cuesta mucho mas que admitir el limite.
+  - (Sobre la actividad, no se proyecta) El Q&A escrito que pide el taller (tres preguntas duras que el propio estudiante se haria, con su respuesta) no reemplaza nada: es la preparacion del Q&A en vivo, y en la practica el estudiante que lo escribio en serio responde mucho mejor cuando la pregunta llega de verdad.
 
 **[Slide 15] El Q&A tecnico: tres tipos de pregunta (2/2)** — 4 vinetas.
 
-**[Slide 16] Evaluar con rubrica: puntos a evidencia observable (1/2)** — 5 vinetas.
-  - Evaluar con rubrica significa asignar puntos a evidencia observable y no a impresion general, y por eso conviene leer el reparto en voz alta al abrir la clase.
-
-**[Slide 17] Evaluar con rubrica: puntos a evidencia observable (2/2)** — 2 vinetas.
-
-**[Slide 18] El cierre del curso: conectar lo hecho con la practica profesional (1/2)** — 5 vinetas.
+**[Slide 16] El cierre del curso: conectar lo hecho con la practica profesional (1/2)** — 5 vinetas.
   - Conviene tambien cerrar la duda sobre las herramientas, porque algun estudiante la trae: el curso prohibio la nube de pago por razones pedagogicas y de equidad, no porque draw.io, Killercoda y GitHub Actions sean juguetes.
 
-**[Slide 19] El cierre del curso: conectar lo hecho con la practica profesional (2/2)** — 4 vinetas.
+**[Slide 17] El cierre del curso: conectar lo hecho con la practica profesional (2/2)** — 4 vinetas.
 
 
 ## Referencias a diapositivas
@@ -92,11 +89,10 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 13. La regla de los 60 segundos, anunciada desde la Clase 11 (2/2)
 14. El Q&A tecnico: tres tipos de pregunta (1/2)
 15. El Q&A tecnico: tres tipos de pregunta (2/2)
-16. Evaluar con rubrica: puntos a evidencia observable (1/2)
-17. Evaluar con rubrica: puntos a evidencia observable (2/2)
-18. El cierre del curso: conectar lo hecho con la practica profesional (1/2)
-19. El cierre del curso: conectar lo hecho con la practica profesional (2/2)
-20. Clase 15 · cierre del curso
+16. El cierre del curso: conectar lo hecho con la practica profesional (1/2)
+17. El cierre del curso: conectar lo hecho con la practica profesional (2/2)
+18. Del boceto al código Mermaid
+19. Clase 15 · cierre del curso
 
 ## Plan de clase minuto a minuto (120 min)
 

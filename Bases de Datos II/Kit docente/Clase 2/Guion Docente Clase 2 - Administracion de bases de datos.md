@@ -97,17 +97,16 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 23] La matriz como hecho verificable:... — sintaxis** — 3 vinetas.
 
-**[Slide 24] La politica de altas y bajas: el ciclo de vida de una cuenta (1/3)** — 4 vinetas.
+**[Slide 24] La politica de altas y bajas: el ciclo de vida de una cuenta (1/3)** — 5 vinetas.
   - La diapositiva trae las cinco secciones en el mismo orden en que el taller las va a pedir, asi que se dicta recorriendola de arriba abajo.
   - Dos reglas la cierran.
   - Vale la pena senalar el detalle tecnico de la baja: en PostgreSQL no se puede hacer DROP ROLE de un rol que todavia posee objetos, hay que reasignarlos primero con REASSIGN OWNED BY ana_gomez TO admin_bd, y por eso la politica tiene que decir que pasa con lo que la persona era dueno.
 
-**[Slide 25] La politica de altas y bajas: el ciclo de vida de una cuenta (2/3)** — 4 vinetas.
+**[Slide 25] La politica de altas y bajas: el ciclo de vida de una cuenta (2/3)** — 5 vinetas.
 
-**[Slide 26] La politica de altas y bajas: el ciclo de vida de una cuenta (3/3)** — 5 vinetas.
+**[Slide 26] La politica de altas y bajas: el ciclo de vida de una cuenta (3/3)** — 3 vinetas.
 
 **[Slide 27] El motor de hoy es PostgreSQL, y eso decide que se puede demostrar (1/2)** — 5 vinetas.
-  - El taller se resuelve y se califica en ExamLab, que ejecuta PostgreSQL dentro del navegador.
   - Ahi CREATE ROLE, GRANT, REVOKE, CREATE VIEW, los privilegios por columna y las consultas a information_schema funcionan todos: son DDL real y son verificables, asi que la evidencia del taller es la salida del motor y no una promesa.
   - Lo que NO se puede hacer es abrir una segunda conexion: el entorno tiene un solo usuario con login y una sola sesion, asi que nadie va a conectarse como recepcion en otra pestana mientras el docente mira desde la suya.
   - Esa es la limitacion real, y hay que nombrarla con esa precision, porque la version anterior de esta guia decia algo mas fuerte y falso: que por eso la prueba negativa era imposible.
@@ -119,7 +118,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 29] El motor de hoy es PostgreSQL, y eso decide... — sintaxis** — 6 vinetas.
 
-**[Slide 30] La matriz es la decision, no el script (1/2)** — 6 vinetas.
+**[Slide 30] La matriz es la decision, no el script (1/2)** — 5 vinetas.
 
 **[Slide 31] La matriz es la decision, no el script (2/2)** — 2 vinetas.
 
@@ -179,7 +178,7 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 29. El motor de hoy es PostgreSQL, y eso decide... — sintaxis
 30. La matriz es la decision, no el script (1/2)
 31. La matriz es la decision, no el script (2/2)
-32. Como amarra con las clases vecinas y con la rubrica del PI
+32. Como amarra con las clases vecinas y con el PI
 33. Preguntas frecuentes del grupo (1/2)
 34. Preguntas frecuentes del grupo (2/2)
 35. Preguntas frecuentes del grupo — sintaxis

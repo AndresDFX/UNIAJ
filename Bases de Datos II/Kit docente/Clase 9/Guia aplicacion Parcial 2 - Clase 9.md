@@ -43,8 +43,8 @@ fecha **19/10/2026** · tiempo de resolucion previsto **90–100 minutos**.
 
 | Min | Accion |
 |---|---|
-| 0-10 | Asistencia por lista. Proyecta la **diapositiva 2** (alcance y reparto de puntos, que es lo primero que preguntan) y luego la **diapositiva 3**. Anuncia: canal de entrega, cierre en el minuto 110, que material esta autorizado (por defecto **nada**) y que las dudas de contenido no se responden. |
-| 10-15 | Comparte el enunciado y **confirma en voz alta que todos lo abrieron** antes de arrancar el reloj. Deja la **diapositiva 3** en pantalla: ahorra la mitad de los mensajes por privado. |
+| 0-10 | Asistencia por lista. Proyecta la **diapositiva 2** (alcance y reparto de puntos, que es lo primero que preguntan) y luego la **diapositiva 2**. Anuncia: canal de entrega, cierre en el minuto 110, que material esta autorizado (por defecto **nada**) y que las dudas de contenido no se responden. |
+| 10-15 | Comparte el enunciado y **confirma en voz alta que todos lo abrieron** antes de arrancar el reloj. Deja la **diapositiva 2** en pantalla: ahorra la mitad de los mensajes por privado. |
 | 15-100 | Desarrollo (silencio de evaluacion). Camara y microfono abiertos: es la unica supervision que hay. Avisa el tiempo a los 50 y a los 80 minutos. |
 | 100-110 | Aviso de 10 min. Recibe las entregas y **acusa recibo por el chat, uno por uno**. Anota quien no entrego. |
 | 110-120 | Cierre. «El PI VetCare continúa en la siguiente clase; hoy no hay tarea nueva.» Sin comentarios sobre el parcial: todavia hay quien esta subiendo el archivo. |

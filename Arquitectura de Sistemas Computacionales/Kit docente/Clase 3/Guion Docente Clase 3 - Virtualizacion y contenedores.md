@@ -25,9 +25,10 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 8] De donde viene la clase y que se entrega hoy** — 3 vinetas.
+**[Slide 8] De donde viene la clase y que se entrega hoy** — 2 vinetas.
   - Las dos clases anteriores decidieron QUE se va a construir (dominio, capacidades, actores, diagrama de contexto) y BAJO QUE modelo de servicio se va a operar, con su registro de decision.
   - Conviene decir desde el minuto uno por que esto importa para la arquitectura y no solo para la operacion: el contenedor es la unidad de despliegue con la que se razona en todos los diagramas siguientes, y sin entender que es exactamente, el nivel de contenedores del modelo C4 que se dibuja en la Clase 4 queda en pura metafora.
+  - (Sobre la actividad, no se proyecta) El entregable es un Dockerfile con su ciclo de construccion razonado: se escribe y se justifica, sin depender de ejecutarlo en ningun laboratorio externo para poder entregar.
 
 **[Slide 9] Antes de la virtualizacion: un servidor por aplicacion** — 4 vinetas.
   - La virtualizacion resolvio eso con una pieza de software llamada hipervisor, que se interpone entre el hardware y los sistemas operativos y presenta a cada uno la ilusion de tener una maquina completa para si.
@@ -52,7 +53,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 16] Primer ejemplo: el stub de la API de CloudLite (1/2)** — 5 vinetas.
   - Primer ejemplo concreto en CloudLite.
-  - Su Dockerfile tiene siete instrucciones —esa cifra se califica, asi que conviene contarlas en voz alta— y el docente debe poder explicar cada una.
+  - Su Dockerfile tiene siete instrucciones, y el docente debe poder explicar cada una.
   - WORKDIR /app fija el directorio dentro del contenedor donde ocurrira todo lo demas.
   - COPY package*.json./ trae solo la lista de dependencias.
   - COPY.. trae el resto del codigo, y va DESPUES por la razon de cache de la seccion anterior.
@@ -60,34 +61,36 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Por eso al lado del Dockerfile va un segundo archivo, el.dockerignore, con al menos.env, node_modules y.git.
   - Lo que realmente publica el puerto es la opcion -p al ejecutar, y ese es el tema de la diapositiva siguiente.
 
-**[Slide 17] Primer ejemplo: el stub de la API de CloudLite (2/2)** — 6 vinetas.
+**[Slide 17] Primer ejemplo: el stub de la API de CloudLite (2/2)** — 5 vinetas.
 
 **[Slide 18] Construir, correr y verificar: los tres comandos y el contrato de salud (1/3)** — 6 vinetas.
+  - Con el Dockerfile escrito faltan tres comandos, cada uno con su sintaxis precisa.
   - El -d lo manda a segundo plano y el --name le da un nombre estable para no andar copiando identificadores.
   - Y hay que anunciar el sintoma de invertirlos, que es lo que hace perder la tarde: docker ps sigue reportando el contenedor como Up y la peticion simplemente no obtiene respuesta o muere con una conexion reiniciada.
   - El sintoma no senala la causa, y el estudiante busca el error en el codigo cuando esta en una linea del comando.
   - Por eso el cuerpo lleva al menos un campo verificable, por ejemplo un estado y el nombre del servicio en JSON.
 
-**[Slide 19] Construir, correr y verificar: los tres comandos y el contrato de salud (2/3)** — 6 vinetas.
+**[Slide 19] Construir, correr y verificar: los tres comandos y el contrato de salud (2/3)** — 5 vinetas.
 
 **[Slide 20] Construir, correr y verificar: los tres comandos y el contrato de salud (3/3)** — 3 vinetas.
 
-**[Slide 21] Segundo ejemplo: leer las siete columnas de docker ps (1/2)** — 6 vinetas.
+**[Slide 21] Segundo ejemplo: leer las siete columnas de docker ps (1/2)** — 5 vinetas.
   - Segundo ejemplo concreto.
   - La columna de estado es la que hay que mirar: si dice Up seguido de un tiempo, el contenedor vive; si dice Exited con un codigo entre parentesis, murio, y ese codigo es la primera pista del problema.
-  - Hay dos limites que conviene anunciar ANTES de empezar y no despues, porque cambian como se planifica la hora de taller.
   - De ahi sale la regla operativa del dia, y hay que decirla como consecuencia del limite y no como consejo suelto: el Dockerfile se escribe en la carpeta del proyecto y se PEGA en el laboratorio, nunca al contrario, y las capturas se guardan antes de cerrar.
   - Por eso la alterna es alterna y no la primera opcion.
+  - (Sobre la actividad, no se proyecta) Hay dos limites que conviene anunciar ANTES de empezar y no despues, porque cambian como se planifica la hora de taller.
 
 **[Slide 22] Segundo ejemplo: leer las siete columnas de docker ps (2/2)** — 5 vinetas.
 
 **[Slide 23] Preguntas frecuentes y cierre conceptual () (1/4)** — 5 vinetas.
   - Tres preguntas se repiten en esta clase.
   - La respuesta, dicha desde ya, es no.
+  - (Sobre la actividad, no se proyecta) Un grupo que solo copio comandos consigue la captura del entregable, pero en la Clase 8, cuando el pipeline de integracion continua deba construir una imagen automaticamente, no sabra que esta construyendo ni por que su build tarda cinco minutos, y en la sustentacion de la Clase 15 describira su arquitectura diciendo que lo metieron en Docker, que no es una decision arquitectonica sino una herramienta sin justificar.
 
-**[Slide 24] Preguntas frecuentes y cierre conceptual () (2/4)** — 6 vinetas.
+**[Slide 24] Preguntas frecuentes y cierre conceptual () (2/4)** — 5 vinetas.
 
-**[Slide 25] Preguntas frecuentes y cierre conceptual () (3/4)** — 6 vinetas.
+**[Slide 25] Preguntas frecuentes y cierre conceptual () (3/4)** — 5 vinetas.
 
 **[Slide 26] Preguntas frecuentes y cierre conceptual () (4/4)** — 2 vinetas.
 

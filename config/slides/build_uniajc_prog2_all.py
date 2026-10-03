@@ -221,11 +221,11 @@ def build_pptx(c):
             "Hoy es **solo Parcial** (virtual sincrono por Meet).",
             "No hay tema nuevo en esta sesion.",
             "Duracion sugerida: **90–100 min** dentro del bloque de 120.",
-            "La preparacion del PI continua en la siguiente clase regular.",
+            "Entra lo visto en el corte hasta hoy; el enunciado y el canal de entrega se comparten al empezar.",
         ], idx=2)
         closing_slide(prs, f"{PARCIALES[n][0]} · Clase {n}",
                       ["Enfocados en la evaluacion del corte",
-                       "El PI VetCare continua la proxima clase"],
+                       "El tema continua la proxima clase"],
                       accent="Solo evaluacion")
         out_dir = CLASES_DIR / f"Clase {n} - {PARCIALES[n][0]}"
         out_dir.mkdir(parents=True, exist_ok=True)

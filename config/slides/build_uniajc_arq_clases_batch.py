@@ -51,6 +51,7 @@ from uniajc_slides_engine import (  # noqa: E402
     new_prs,
     notas,
     pseudo_code_slide,
+    steps_visual_slide,
     table_content,
 )
 from uniajc_slides_engine import (  # noqa: E402
@@ -261,7 +262,7 @@ CLASSES = [
             ]),
             ("CloudLite App — el hilo conductor", [
                 "Aplicación web/API de un dominio realista (citas, academia, inventario liviano…).",
-                "Entregables del semestre: diagramas + contenedor (lab) + CI/CD conceptual + informe.",
+                "Lo que se construye en el semestre: diagramas + contenedor (lab) + CI/CD conceptual + informe.",
                 "Hoy solo: **problema + capacidades + boceto de contexto**.",
                 "Sin AWS/GCP/Oracle: draw.io, Killercoda, GitHub Actions.",
             ]),
@@ -331,7 +332,7 @@ CLASSES = [
                 "@@Título@@: «ADR-001 Modelo de servicio dominante de CloudLite App».  @@Estado@@: Aceptado + fecha de hoy.",
                 "@@Contexto@@ = las restricciones (quién lo sostiene, cuánto tiempo, qué presupuesto), no el resumen del tema.",
                 "@@Decisión@@: 1 frase, 1 modelo dominante.  @@Alternativas descartadas@@: exactamente 2, con motivo del dominio.",
-                "Máximo 1 página. Las 5 primeras secciones son la **pregunta 6**; @@Consecuencias@@ es la **pregunta 7**.",
+                "Máximo 1 página: las 6 secciones son UN solo documento, y @@Consecuencias@@ cierra la decisión.",
             ]),
         ],
         "taller_titulo": "Taller Clase 2 — ADR modelo de servicio CloudLite",
@@ -382,7 +383,7 @@ CLASSES = [
                 "@@Ojo con hacerlos obligatorios:@@ la sesión caduca en torno a la hora y el plan "
                 "gratuito limita cuántas abres al día. Por eso tu nota no depende de que carguen.",
                 "El Dockerfile se escribe en **tu** carpeta del PI y se pega en el lab, nunca al "
-                "contrario: lo que se cierra con la sesión no es tu entregable.",
+                "contrario: lo que se cierra con la sesión del lab se pierde.",
             ]),
             ("Dockerfile mínimo para el stub", [
                 "Siete instrucciones: **FROM · WORKDIR · COPY** de dependencias **· RUN · COPY** del código **· EXPOSE · CMD**.",
@@ -564,8 +565,8 @@ CLASSES = [
                 "Credenciales en repo · APIs abiertas · datos PII sin cifrado en tránsito.",
                 "STRIDE-lite: Spoofing, Tampering, Repudiation, Info disclosure, DoS, Elevation.",
                 "Elijan 5 amenazas **del dominio**, no genéricas de Internet.",
-                "La forma que se califica: **actor o dato concreto** + **el camino** por el que "
-                "ocurre. Sin esas dos partes, la amenaza vale la mitad.",
+                "Una amenaza bien escrita: **actor o dato concreto** + **el camino** por el que "
+                "ocurre. Sin esas dos partes es una categoría, no una amenaza.",
                 "«Fuga de información» es una categoría. «Un cliente lee el turno de otro porque "
                 "`GET /turnos/17` no valida a quién pertenece» **sí** es una amenaza.",
             ]),
@@ -577,11 +578,11 @@ CLASSES = [
                 # el deck decia «en los *secrets* del repositorio». Va con acentos graves,
                 # que es lo que el motor convierte en comillas angulares.
                 "Secretos: en los `secrets` del repositorio, inyectados como variable de entorno.",
-                "Los dos que más puntos valen se abren en las siguientes dos diapositivas.",
+                "Los dos más delicados se abren en las siguientes dos diapositivas.",
             ]),
             ("Menor privilegio: qué deja de poder hacer", [
                 "No es una definición, es una **resta**: se nombra el componente y lo que **deja "
-                "de poder hacer** al aplicarlo. La pregunta 2 pide las dos mitades.",
+                "de poder hacer** al aplicarlo. Hacen falta las dos mitades.",
                 "Ejemplo sobre el C4 de la Clase 4: la `API de turnos` no entra a la "
                 "`Base de turnos` como dueña de la base, sino con un rol propio.",
                 "**Puede**: leer, insertar y actualizar sus tablas de turnos.",
@@ -590,7 +591,7 @@ CLASSES = [
                 "permisos y no los del dueño. Hace daño, pero no borra la evidencia.",
             ]),
             ("Política de secretos: las cuatro preguntas", [], {
-                "headers": ["Lo que se pregunta", "Respuesta concreta (así se califica)"],
+                "headers": ["Lo que se pregunta", "Respuesta concreta"],
                 "rows": [
                     ["**1. Dónde viven**",
                      "En los `secrets` del repositorio y en las variables de entorno del "
@@ -703,7 +704,7 @@ CLASSES = [
             ]),
             ("Checklist del diagrama Deployment", [
                 "Tres zonas rotuladas · cada componente en su zona · puerto de cada uno.",
-                "Fronteras de confianza marcadas · **que renderice sin error** en la plataforma.",
+                "Fronteras de confianza marcadas · **que renderice sin error** en un visor Mermaid.",
                 "Debe alinearse con el C4 Containers (mismos nombres).",
             ]),
         ],
@@ -740,10 +741,10 @@ CLASSES = [
             ("CI/CD sin tarjeta", [
                 "CI: build + test en cada push. CD: deploy — aquí **simulado** (echo/artifact).",
                 "GitHub Actions free: runners hosted; YAML en `.github/workflows/`.",
-                "**«Ya tenemos CD» porque el YAML tiene un paso `deploy` resta puntos.** Aquí llega a «listo para desplegar».",
+                "**«Ya tenemos CD» porque el YAML tiene un paso `deploy` es falso.** Aquí llega a «listo para desplegar».",
             ]),
             ("YAML mínimo", [
-                "Tres bloques que se califican: **disparadores** (`on`) · **entorno** (`runs-on`) · **pasos**.",
+                "Tres bloques obligatorios: **disparadores** (`on`) · **entorno** (`runs-on`) · **pasos**.",
                 "Los pasos, en este orden: **construcción** → **prueba** → **despliegue simulado**.",
                 "Secrets solo vía Settings; nunca en el YAML en claro (**cero en la pregunta si aparece uno**).",
                 "**Un CI que solo imprime «OK» no es CI:** tienes que poder decir qué error lo pondría rojo.",
@@ -948,7 +949,7 @@ CLASSES = [
         "n": 15,
         "slug": "Presentacion del proyecto y cierre",
         "tema": "Presentación del proyecto + cierre",
-        "sub": "Sustentación en vivo del PI CloudLite · cierre del curso",
+        "sub": "Sustentar una arquitectura · cierre del curso",
         "pi_hoy": "Sustentar en vivo el PI CloudLite App y entregar el paquete final",
         "entregable": "Paquete final en la plataforma del curso (módulo Proyectos) + pitch de 5–8 min sustentado hoy en clase + Q&A",
         "herramienta": "Navegador · editores de texto y de diagramas del curso",
@@ -1087,18 +1088,16 @@ def cover_slide(prs, n: int, tema: str, sub: str, pi_hoy: str, *, tipo: str = "r
     if tipo == "sustentacion":
         # El bloque no se reparte en teoría + taller: son turnos de sustentación.
         lineas_cover = [
-            f"**Hoy cerramos el PI:** {pi_hoy}",
-            "Bloque **120 min** · sesión **síncrona** de sustentaciones · turnos consecutivos.",
-            "Paquete subido a la plataforma del curso **antes** de tu turno · defensa **en vivo**, no video grabado.",
+            "Bloque **120 min** · sesión **virtual síncrona** por Google Meet.",
+            "Tema: sustentar una arquitectura es **justificar**, no describir · cierre del curso.",
         ]
     elif tipo == "parcial":
         # Tampoco hay teoría ni taller: la portada anunciaba las dos y ademas rellenaba
         # «Hoy avanzamos el PI en:» con «Sin avance dirigido de PI», que se leia como una
         # frase sin sentido en la primera diapositiva que ve el grupo.
         lineas_cover = [
-            "**Hoy es solo el parcial:** no hay tema nuevo ni taller del PI.",
+            "**Hoy es el parcial:** no hay tema nuevo.",
             "Bloque **120 min** · sesión **virtual síncrona** por Google Meet.",
-            "El enunciado se comparte al empezar · **no** se distribuye antes.",
         ]
     else:
         # Solo el tema: el taller es opcional y su guia vive en la carpeta de la clase.
@@ -1252,9 +1251,9 @@ CODIGO_SLIDE = {
         "- IaaS: control total, pero yo opero SO y parches -> tiempo que no tengo.",
         "- SaaS como nucleo: no queda nada que arquitecturar; solo satelite (auth/email).",
         "",
-        "## 6. Consecuencias               <- pregunta 7: 3 ejes, cada uno con + y -",
+        "## 6. Consecuencias               <- 3 ejes, cada uno con + y -",
         "Operacion + / -        Costo + / -        Aprendizaje + / -",
-    ], "Sin Titulo y Estado con fecha no hay ADR que citar en la Clase 15: son 1.5 puntos de la pregunta 6."),
+    ], "Sin Titulo y Estado con fecha no hay ADR que citar despues: es su identidad."),
     # El `.dockerignore` va en la MISMA diapositiva y no en una nota al pie: la rubrica
     # de la pregunta 8 anula los 5 puntos del Dockerfile si se hace `COPY . .` «sin
     # .dockerignore ni mencionarlo», y esta diapositiva proyecta justo ese `COPY . .`.
@@ -1286,7 +1285,7 @@ CODIGO_SLIDE = {
     # respuestas distintas a la misma necesidad, en el mismo dominio, una diapositiva
     # despues. Se agrega el `Container(worker...)` y el correo pasa a colgar de el. Las
     # dos lineas en blanco se van para no pasar de 15 renglones, que es lo que cabe.
-    4: ("C4Container en Mermaid: el molde que la plataforma del curso renderiza", [
+    4: ("C4Container en Mermaid: el molde que un visor renderiza", [
         "C4Container",
         "title Diagrama de contenedores - CloudLite Turnos",
         'Person(cliente, "Cliente de la barberia", "Reserva y consulta sus turnos")',
@@ -1339,7 +1338,7 @@ CODIGO_SLIDE = {
     # de «que renderice sin error»— y el molde no estaba proyectado en ninguna diapositiva:
     # el estudiante veia el diagrama dibujado (DIAGRAMAS[7]) pero nunca el codigo que se
     # entrega. Es el mismo molde que la Clase 4 ya usa para el C4Container.
-    7: ("El Despliegue en Mermaid: el molde que la plataforma del curso renderiza", [
+    7: ("El Despliegue en Mermaid: el molde que un visor renderiza", [
         "flowchart LR",
         # La `App web` va en la zona publica y esta en el molde a proposito: su ubicacion es
         # parte de los 4 pts de «cada componente en su zona» y es la duda que el grupo
@@ -1593,7 +1592,23 @@ def _herramientas_de(c: dict) -> list:
 LAB_LIMITES = ("Cuenta gratuita, sin tarjeta · la sesión caduca a 1 h · "
                "un escenario a la vez")
 
-FLUJO_SLIDE_TITULO = "Del boceto a la plataforma del curso (diagrama)"
+FLUJO_SLIDE_TITULO = "Del boceto al código Mermaid"
+
+# Pasos propios del deck: los compartidos (examlab_talleres) nombran la plataforma,
+# y el deck de clase no la nombra.
+FLUJO_PASOS_DECK = [
+    ("Diseña visual",
+     "Dibuja el diagrama como quieras en Excalidraw o draw.io: es más rápido arrastrar "
+     "cajas que escribir código, y ahí es donde se piensa el modelo."),
+    ("Traduce con IA",
+     "Describe tu boceto a una IA y pídele el código Mermaid usando {dialecto}. Revisa "
+     "el resultado: la IA acierta la sintaxis, no tu modelo."),
+    ("Renderiza en un visor",
+     "Pega el código en un visor Mermaid (mermaid.live o la vista previa de tu editor) "
+     "y míralo dibujado. Si no renderiza, corrige ahí: un end faltante o un rótulo sin comillas."),
+    ("Guarda código e imagen",
+     "El código es la fuente del diagrama: guárdalo con tu proyecto junto con el PNG exportado."),
+]
 
 
 def _tiene_diagrama(n: int) -> bool:
@@ -1605,6 +1620,54 @@ def _tiene_diagrama(n: int) -> bool:
     """
     taller = TALLERES_EXAMLAB.get(n) or {}
     return any(p.get("tipo") == "diagrama" for p in taller.get("preguntas", []))
+
+
+# Referencias a la actividad evaluada: el deck solo lleva el tema. Una frase del fundamento
+# que nombra el entregable, la pregunta N, los puntos, la rubrica, el taller o la plataforma
+# no se proyecta (va a la nota de su lamina). El concepto se escribe en frases propias.
+_RX_ACTIVIDAD = re.compile(
+    r"examlab|plataforma del curso|plataforma (?:lo |la )?renderiza|plataforma no dibuj|(?:pegado|pega|dentro de|reparto) (?:en )?la plataforma|entregabl|pregunta \d|\bpuntos\b|"
+    r"\d+(?:\.\d+)?\s+puntos?\b|r[uú]brica|calific|taller|\bdescuent|resta puntos|"
+    r"\bvale(?:n)? (?:cero|la mitad|\d)|pierde(?:n)? puntos",
+    re.I)
+
+
+_SECCIONES_SOLO_ACTIVIDAD = {"Evaluar con evidencia observable"}
+
+
+def _es_de_actividad(frase: str) -> bool:
+    return bool(_RX_ACTIVIDAD.search(frase))
+
+
+def _fundamento_sin_actividad(fund: str):
+    """`(texto, {titulo_seccion: [frases retiradas]})`."""
+    if not fund:
+        return fund, {}
+    partes = re.split(r"^(###[ \t]+.+?)[ \t]*$", fund, flags=re.M)
+    out, retiradas = [partes[0]], {}
+    for i in range(1, len(partes) - 1, 2):
+        cab, cuerpo = partes[i], partes[i + 1]
+        titulo = re.sub(r"\s*-\s*\{\{slide:.+?\}\}\s*$", "", cab[3:].strip()).strip()
+        titulo_l = TS.limpiar_tokens(titulo).rstrip(" (").rstrip()
+        if titulo_l.count("(") > titulo_l.count(")"):
+            titulo_l = titulo_l[:titulo_l.rfind("(")].rstrip(" ,;")
+        if titulo_l in _SECCIONES_SOLO_ACTIVIDAD:
+            # Seccion entera sobre la evaluacion: queda en el guion, no en el deck.
+            continue
+        parrafos = []
+        for par in re.split(r"\n\s*\n", cuerpo):
+            if not par.strip():
+                continue
+            quedan = []
+            for f in TS.frases(par):
+                if _es_de_actividad(f):
+                    retiradas.setdefault(titulo_l, []).append(TS.limpiar_tokens(f))
+                else:
+                    quedan.append(f)
+            if quedan:
+                parrafos.append(" ".join(quedan))
+        out.append(cab + "\n" + "\n\n".join(parrafos) + "\n\n")
+    return "".join(out), retiradas
 
 
 def _teoria_slides(c: dict) -> list:
@@ -1621,7 +1684,19 @@ def _teoria_slides(c: dict) -> list:
     if c.get("tipo") == "parcial":
         return []
     fund = FUNDAMENTOS.get(c["n"], "")
+    fund, retiradas = _fundamento_sin_actividad(fund)
     laminas = TS.slides_de_clase(fund) if fund else []
+    # Las frases que hablaban de la actividad evaluada no se proyectan: bajan a las notas
+    # de la primera lamina de su seccion (guion + notas del presentador).
+    if retiradas:
+        nuevas = []
+        for tit, lineas, notas_, tipo in laminas:
+            base_t = re.sub(r"\s*\(\d+/\d+\)$", "", tit)
+            extra = retiradas.pop(base_t, None)
+            if extra:
+                notas_ = list(notas_) + ["(Sobre la actividad, no se proyecta) " + x for x in extra]
+            nuevas.append((tit, lineas, notas_, tipo))
+        laminas = nuevas
     # Y el material operativo autorado: Dockerfile, CLI, Mermaid, YAML, ADR. Los
     # entregables de ARQ son artefactos con FORMA, y el deck proyectaba el 1% de codigo:
     # el estudiante adivinaba la forma y perdia puntos por el formato, no por el criterio.
@@ -1641,9 +1716,8 @@ def _slide_map(c: dict) -> list:
     n = c["n"]
     if c["tipo"] == "parcial":
         return [f"Portada · Clase {n} · {c['tema']}",
-                "Que se evalua hoy",
-                "Como se responde y como se entrega",
-                f"Parcial · Clase {n}"]
+                "Indicaciones",
+                c["tema"]]
     m = [f"Portada · Clase {n} · {c['tema']}",
          "Agenda de hoy (120 min)",
          "Objetivos de la clase"]
@@ -1658,6 +1732,8 @@ def _slide_map(c: dict) -> list:
     cs = CODIGO_SLIDE.get(n)
     if cs:
         m.append(cs[0])
+    if _tiene_diagrama(n):
+        m.append(FLUJO_SLIDE_TITULO)
     m.append(f"Clase {n} · cierre del curso" if c["tipo"] == "sustentacion"
              else f"Clase {n} · cierre conceptual")
     return m
@@ -1753,30 +1829,18 @@ def build_pptx(c: dict) -> Path:
         # alcance, el reparto de puntos, el canal ni la hora de cierre. Todo lo que hay
         # que anunciar al minuto 0 esta ahora proyectado, y sale de la portada del
         # propio instrumento.
-        p = PARCIALES_ARQ[n]
-        m = _parcial_meta(p["corte"])
         prs = new_prs()
-        cover_slide(prs, n, c["tema"], "Solo evaluación · sin tema ni taller dirigido",
-                    c["pi_hoy"], tipo="parcial")
-        content_slide(prs, "Qué se evalúa hoy",
-                      [f"**{s.split(' — ')[0]}** — {s.split(' — ')[1]}"
-                       for s in m["secciones_resumen"]]
-                      + [f"Total **100 puntos** · nota = puntos / 20 · "
-                         f"este parcial pesa {m['valor_corte']}."],
-                      sub="**Solo** "
-                          + " · ".join(t.split(" · ")[0] for t in m["temas"])
-                          + " — fuera de esa lista no hay nada",
-                      idx=2)
-        content_slide(prs, "Cómo se responde y cómo se entrega", [
-            f"Tiempo previsto **{m['tiempo']}** dentro del bloque de 120.",
-            "El envío **cierra en el minuto 110**: lo que llegue después no se recibe.",
-            "Canal de entrega: el que se anuncia ahora. Confirmo cada recibido por el chat.",
-            "Pregunta de **forma** sí (cuántas líneas, si pide tabla). De **contenido** no.",
-            "Si se te cae el internet: sigue respondiendo y avisa por correo al volver.",
-        ], idx=3)
-        closing_slide(prs, f"Parcial · Clase {n}", [
+        cover_slide(prs, n, c["tema"], "Solo evaluación", c["pi_hoy"], tipo="parcial")
+        content_slide(prs, "Indicaciones", [
+            "Hoy es el **parcial**: no hay tema nuevo en esta sesión.",
+            "Entra lo visto en el corte **hasta hoy**.",
+            "Sesión **virtual síncrona** por Google Meet.",
+            "Duración aproximada: **90–100 min** dentro del bloque de 120.",
+            "El enunciado y el canal de entrega se comparten **al empezar**.",
+        ], idx=2)
+        closing_slide(prs, c["tema"], [
             "Hoy solo se evalúa el corte",
-            _cierre_parcial_pi(n),
+            "El tema continúa la próxima clase",
         ], accent="Solo evaluación")
         _verificar_mapa(c, prs)
         prs.save(str(out))
@@ -1791,11 +1855,9 @@ def build_pptx(c: dict) -> Path:
         # en vivo. Proyectar la agenda genérica aquí haría creer que todavía queda
         # tiempo de trabajo en clase, y el estudiante llegaría a subir archivos.
         agenda = [
-            "**0–10** Encuadre + sorteo del orden de turnos.",
-            "**10–110** Sustentaciones: **6 min de pitch + 2–4 min de Q&A** por turno.",
-            "**110–120** Cierre del curso.",
-            "El paquete debe estar **subido a la plataforma del curso antes** de tu turno.",
-            "Sesión **síncrona**: la defensa no se reemplaza por video grabado.",
+            "**0–10** Encuadre: sustentar no es describir.",
+            "**10–110** Presentaciones en vivo: pitch corto y preguntas técnicas.",
+            "**110–120** Cierre del curso: lo aprendido y la práctica profesional.",
         ]
     else:
         agenda = [
@@ -1851,6 +1913,16 @@ def build_pptx(c: dict) -> Path:
     cs = CODIGO_SLIDE.get(n)
     if cs:
         pseudo_code_slide(prs, cs[0], cs[1], caption=cs[2], idx=idx)
+        idx += 1
+    # Del boceto al codigo Mermaid: solo donde la clase trabaja un diagrama.
+    if _tiene_diagrama(n):
+        _d = examlab_talleres._dialectos_del_taller(TALLERES_EXAMLAB[n])
+        _d = (_d[0] if len(_d) == 1 else "el tipo de diagrama que corresponda").replace("`", "")
+        steps_visual_slide(
+            prs, FLUJO_SLIDE_TITULO,
+            [(t, d.format(dialecto=_d)) for t, d in FLUJO_PASOS_DECK],
+            sub="El diagrama se escribe como código: se versiona, se compara y se corrige",
+            idx=idx)
         idx += 1
     # El deck lleva solo el tema. Herramientas, flujo de entrega, entregable, pasos
     # del taller y «Para continuar» se retiraron: el taller es opcional y su guia
@@ -3048,7 +3120,7 @@ def _guion_parcial_cuerpo(c: dict) -> str:
     # Los tokens se arman fuera del f-string: dentro, `{{` es una llave literal
     # escapada y el token salia como «{slide:evalua hoy}», que ni resuelve ni es
     # detectable como marcador crudo por su forma habitual.
-    tok_alcance, tok_entrega = "{{slide:evalua hoy}}", "{{slide:Como se responde}}"
+    tok_alcance = tok_entrega = "{{slide:Indicaciones}}"
     secciones = "\n".join(f"   - {s}" for s in m["secciones_resumen"])
     lista_temas = "\n".join(f"   - {t}" for t in m["temas"])
     no_resp = " · ".join(f"«{d}»" for d in p["dudas_no"])
@@ -3113,11 +3185,10 @@ Di, con estas dos frases: «Hoy es **solo parcial**: no hay tema nuevo ni taller
 proyecto.» y «El parcial se entrega **por el canal que voy a nombrar ahora** —el que
 decidiste en la preparación— **antes del minuto 110; lo que llegue después no se recibe.**»
 Verifica asistencia por lista, no por «los que están conectados».
-Proyecta la **{tok_alcance}** mientras lo dices: ahí está el alcance —las clases que
-entran— y el reparto de puntos por sección, que es lo primero que van a preguntar.
-Pasa a la **{tok_entrega}** para el canal, el minuto de cierre y qué dudas vas a
-responder; dejarla en pantalla los primeros minutos ahorra la mitad de los mensajes por
-privado.
+Proyecta la **{tok_alcance}** mientras lo dices. El deck es genérico a propósito: el
+alcance (qué clases entran) y el reparto de puntos los dices tú, desde el enunciado, y el
+canal y el minuto de cierre también; dejar la lámina en pantalla los primeros minutos
+ahorra la mitad de los mensajes por privado.
 Comparte el enunciado y **confirma en voz alta que todos lo abrieron** antes de arrancar
 el reloj: en virtual, el que no lo pudo descargar pierde 15 minutos en silencio.
 Di también qué material está autorizado (por defecto: **nada**) y que las cámaras se

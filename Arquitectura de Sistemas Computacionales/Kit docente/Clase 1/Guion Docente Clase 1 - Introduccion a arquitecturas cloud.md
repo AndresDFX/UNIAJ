@@ -26,7 +26,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 7] La ficha de dominio de 6 bloques (1/2)** — 3 vinetas.
   - DOMINIO fija en una linea el problema de negocio elegido (AgendaU, BiblioLite, InventarioLab, TurnosClinica, EventosCampus u otro del mismo tamano); un dominio generico (una red social, una tienda en linea sin mas detalle) hace imposible evaluar las decisiones de las clases siguientes, porque no hay nada concreto que arquitecturar.
-  - SISTEMAS EXTERNOS es el bloque nuevo de este semestre: dos o tres sistemas de terceros con los que CloudLite intercambia informacion (un proveedor de identidad, un servicio de correo, una pasarela de pagos); es exactamente lo que despues aparece como System_Ext en el diagrama C4 Context de la pregunta 2 de la plataforma del curso, asi que conviene que el estudiante los escriba aqui ANTES de dibujar, no despues.
+  - SISTEMAS EXTERNOS es el bloque nuevo de este semestre: dos o tres sistemas de terceros con los que CloudLite intercambia informacion (un proveedor de identidad, un servicio de correo, una pasarela de pagos); es exactamente lo que despues aparece como System_Ext en el diagrama C4 Context, asi que conviene que el estudiante los escriba aqui ANTES de dibujar, no despues.
 
 **[Slide 8] La ficha de dominio de 6 bloques (2/2)** — 2 vinetas.
 
@@ -44,11 +44,11 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 12] Que es arquitectura cloud (mapa mental) (4/4)** — 3 vinetas.
 
-**[Slide 13] CloudLite App - el hilo conductor (1/2)** — 4 vinetas.
+**[Slide 13] CloudLite App - el hilo conductor (1/2)** — 3 vinetas.
   - Aterricemos en CloudLite App, el proyecto integrador que atraviesa las quince clases.
   - Supongamos que un estudiante elige como dominio la gestion de turnos de una barberia.
 
-**[Slide 14] CloudLite App - el hilo conductor (2/2)** — 2 vinetas.
+**[Slide 14] CloudLite App - el hilo conductor (2/2)** — 3 vinetas.
 
 **[Slide 15] De dominio a arquitectura (mini-metodo) (1/3)** — 5 vinetas.
   - Un problema sin afectado concreto y sin magnitud produce arquitecturas que nadie puede evaluar, porque no hay contra que comparar.
@@ -57,7 +57,8 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 17] De dominio a arquitectura (mini-metodo) (3/3)** — 3 vinetas.
 
-**[Slide 18] Ejemplo de diagrama C4 - nivel Context** — 3 vinetas.
+**[Slide 18] Ejemplo de diagrama C4 - nivel Context** — 2 vinetas.
+  - (Sobre la actividad, no se proyecta) Es el mismo modelo C4 explicado arriba, ahora aplicado con nombres concretos, y sirve de puente directo hacia la pregunta 2 del taller en la plataforma del curso (el diagrama Mermaid que cada estudiante entrega hoy).
 
 **[Slide 19] Preguntas frecuentes y cierre conceptual () (1/3)** — 5 vinetas.
   - Tres preguntas aparecen casi siempre en esta primera clase y conviene tener la respuesta lista.
@@ -96,7 +97,8 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 20. Preguntas frecuentes y cierre conceptual () (2/3)
 21. Preguntas frecuentes y cierre conceptual () (3/3)
 22. Ejemplo de diagrama C4 — nivel Context
-23. Clase 1 · cierre conceptual
+23. Del boceto al código Mermaid
+24. Clase 1 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -123,7 +125,7 @@ por diapositiva: esa sección está escrita para que puedas dictarla sin consult
 **[Nota docente]:** cada 8–10 min amarra al artefacto («esto es lo que van a dejar hoy en su informe/diagrama/repo»)
 y pide un estudiante voluntario para usar SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo
+### 40–55 · Demo en vivo · [Slide 23]
 Herramienta del día: **Navegador · editor de diagramas del curso · boceto libre (papel o Excalidraw) opcional**.
 **Demo que usted debe poder repetir:** Dibujar en vivo el C4 Context de un CloudLite de ejemplo
 
@@ -176,7 +178,7 @@ Aplica el quiz corto de `Kit docente/Clase 1/Quiz Clase 1 - Introduccion a arqui
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 23]
+### 115–120 · Cierre · [Slide 24]
 Di:
 > "Queda avanzado: Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases. Criterio de éxito: el estudiante explica su artefacto en 60 s. Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan."
 

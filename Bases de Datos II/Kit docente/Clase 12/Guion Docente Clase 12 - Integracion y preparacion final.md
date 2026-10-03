@@ -122,7 +122,7 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 24. La inyeccion de SQL, explicada con las dos versiones
 25. El contrato que la app consume (no SQL suelto)
 26. Demo del dia
-27. Del boceto a ExamLab (diagrama)
+27. Del boceto al código Mermaid
 28. Cierre · Clase 12
 
 > Privado, no se proyecta: `Kit docente/Clase 12/Solucion Taller Clase 12 - VetCare.docx`

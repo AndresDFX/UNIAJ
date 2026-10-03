@@ -197,6 +197,21 @@ import teoria_a_slides as TS
 import codigo_a_slides as CS
 from seminario_operativo_data import OPERATIVO
 
+def _parrafos_fundamento(c):
+    fund = (c.get("fundamento") or "").strip()
+    return [p.strip() for p in fund.split("\n\n") if len(p.strip()) > 120] if fund else []
+
+
+def _es_para_docente(p):
+    """Parrafo que le habla al docente (organizacion, matricula, como encuadrar): no se
+    proyecta, va a las notas del presentador. La lamina es para el estudiante."""
+    return "el docente debe" in p.lower()
+
+
+def notas_docente(c):
+    return [p for p in _parrafos_fundamento(c) if _es_para_docente(p)]
+
+
 def _teoria_slides(c):
     """Las diapositivas de teoria de la clase: una por vineta, con su parrafo entero.
 
@@ -208,9 +223,7 @@ def _teoria_slides(c):
     # `fundamento` era desarrollo adicional que SOLO veia el docente. Ahora se proyecta
     # tambien: si vale la pena decirlo, vale la pena que el estudiante lo tenga. Viene en
     # prosa sin secciones, asi que cada parrafo entra como una vineta mas.
-    fund = (c.get("fundamento") or "").strip()
-    if fund:
-        vin += [p.strip() for p in fund.split("\n\n") if len(p.strip()) > 120]
+    vin += [p for p in _parrafos_fundamento(c) if not _es_para_docente(p)]
     laminas = TS.slides_de_vinetas(vin)
     # Y el demo de la clase, partido por metodo. Antes se proyectaban ~15 lineas de
     # `codigo_slide_lineas` y el archivo completo quedaba en el Kit docente, que es material
@@ -280,13 +293,17 @@ def build_pptx(c):
         ("60-105", "Practica (opcional, guia en la carpeta)"),
         ("105-120", "Sintesis y cierre"),
     ], idx=idx); idx += 1
-    for _t, _items, _notas, _tipo in _teoria_slides(c):
+    for _k, (_t, _items, _notas, _tipo) in enumerate(_teoria_slides(c)):
         if _tipo == "codigo":
             _s = pseudo_code_slide(prs, _t, _items, idx=idx)
         else:
             _s = content_slide(prs, _t, _items, idx=idx)
         if _notas and _s is not None:
             notas(_s, list(_notas))
+        # Lo que el fundamento le dice al docente (organizacion del curso), debajo de la
+        # primera lamina de teoria: se lee al presentar, no se proyecta.
+        if _k == 0 and _s is not None and notas_docente(c):
+            notas(_s, ["PARA EL DOCENTE"] + notas_docente(c))
         idx += 1
     if c.get("codigo_slide_lineas"):
         pseudo_code_slide(prs, c.get("codigo_slide_titulo", "Codigo de hoy"),

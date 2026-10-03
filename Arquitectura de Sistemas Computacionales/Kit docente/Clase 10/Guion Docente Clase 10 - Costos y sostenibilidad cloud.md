@@ -39,11 +39,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Una base de datos gestionada cuesta entre dos y tres veces la maquina desnuda equivalente, porque incluye respaldos, parches y conmutacion por falla.
   - Una funcion serverless suele traer free tier de alrededor de un millon de invocaciones mensuales, asi que un componente poco usado cuesta cero de verdad.
 
-**[Slide 10] Primer ejemplo: la tabla del entregable, componente por componente (1/2)** — 4 vinetas.
-  - El primer ejemplo anclado en CloudLite es la tabla del entregable, y el docente deberia recorrerla componente por componente.
+**[Slide 10] Primer ejemplo: la tabla de costos, componente por componente (1/2)** — 5 vinetas.
   - El contenedor de la API queda en Medio, con driver instancias por horas encendidas.
 
-**[Slide 11] Primer ejemplo: la tabla del entregable, componente por componente (2/2)** — 2 vinetas.
+**[Slide 11] Primer ejemplo: la tabla de costos, componente por componente (2/2)** — 2 vinetas.
 
 **[Slide 12] Segundo ejemplo: por que el driver importa mas que el nivel (1/2)** — 4 vinetas.
   - El segundo ejemplo muestra por que el driver importa mas que el nivel.
@@ -52,7 +51,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 13] Segundo ejemplo: por que el driver importa mas que el nivel (2/2)** — 3 vinetas.
 
 **[Slide 14] Right-sizing: tres acciones ancladas en observacion (1/2)** — 4 vinetas.
-  - De ahi sale el segundo bloque del entregable: tres acciones de right-sizing.
+  - De ahi salen tres acciones de right-sizing.
 
 **[Slide 15] Right-sizing: tres acciones ancladas en observacion (2/2)** — 4 vinetas.
 
@@ -84,8 +83,8 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 7. CloudLite no tiene factura real, y por que igual se estima (1/2)
 8. CloudLite no tiene factura real, y por que igual se estima (2/2)
 9. Ordenes de magnitud que el docente debe poder citar
-10. Primer ejemplo: la tabla del entregable, componente por componente (1/2)
-11. Primer ejemplo: la tabla del entregable, componente por componente (2/2)
+10. Primer ejemplo: la tabla de costos, componente por componente (1/2)
+11. Primer ejemplo: la tabla de costos, componente por componente (2/2)
 12. Segundo ejemplo: por que el driver importa mas que el nivel (1/2)
 13. Segundo ejemplo: por que el driver importa mas que el nivel (2/2)
 14. Right-sizing: tres acciones ancladas en observacion (1/2)

@@ -77,13 +77,6 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **El rasgo tres merece su propio parrafo porque es el hilo que amarra el... (2/2)** — 3 vinetas.
 
-**Hay un asunto de organizacion que el docente debe resolver el primer... (1/2)** — 4 vinetas.
-  - Hay un asunto de organizacion que el docente debe resolver el primer dia porque afecta la calificacion: los estudiantes llegan en tres situaciones de matricula distintas y cada una cierra su entregable de manera diferente.
-  - Primera situacion, quien cursa Seminario y Programacion II al mismo tiempo.
-  - De ahi sale una exigencia concreta para el documento: debe ser autosuficiente, entendible por alguien que no estuvo en las conversaciones del equipo; si el artefacto solo se entiende cuando su autor lo explica de viva voz, no sirve para ese companero y por lo tanto no sirve.
-
-**Hay un asunto de organizacion que el docente debe resolver el primer... (2/2)** — 3 vinetas.
-
 **Queda la trampa pedagogica de este primer dia, y es la mas seria del... (1/2)** — 5 vinetas.
   - El encuadre tiene cuatro movimientos y conviene hacerlos en este orden.
   - Conviene tambien nombrar el perfil profesional, porque el estudiante rara vez lo tiene claro: analista, arquitecto y product owner son cargos que existen y que se pagan bien precisamente por traducir entre el negocio y la tecnica.

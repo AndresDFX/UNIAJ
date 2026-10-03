@@ -63,11 +63,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 17] El Q&A de modelado, con las respuestas listas (2/2)** — 3 vinetas.
 
-**[Slide 18] Evaluar con rubrica: puntos a evidencia observable (1/2)** — 5 vinetas.
-
-**[Slide 19] Evaluar con rubrica: puntos a evidencia observable (2/2)** — 3 vinetas.
-
-**[Slide 20] El cierre del curso: conectar lo hecho con el trabajo real** — 4 vinetas.
+**[Slide 18] El cierre del curso: conectar lo hecho con el trabajo real** — 4 vinetas.
   - Lo que el estudiante produjo (un ER justificado, un DDL con restricciones declarativas, una matriz de privilegios, procedimientos con manejo de errores, disparadores de auditoria, un analisis de plan de ejecucion y un contrato de operaciones) es literalmente el contenido de las tareas de un desarrollador de base de datos o de un administrador junior en su primer ano de trabajo.
   - Conviene tambien cerrar la duda sobre las herramientas, porque alguien la trae: Oracle Live SQL, DB Fiddle y draw.io se usaron por equidad y porque funcionan en cualquier navegador, no porque sean juguetes.
   - Esa respuesta es la que mejor predice si aprendieron, y ademas le da al docente material real para ajustar el curso el proximo semestre.
@@ -96,11 +92,9 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 15. El reparto de los 5 a 8 minutos (3/3)
 16. El Q&A de modelado, con las respuestas listas (1/2)
 17. El Q&A de modelado, con las respuestas listas (2/2)
-18. Evaluar con rubrica: puntos a evidencia observable (1/2)
-19. Evaluar con rubrica: puntos a evidencia observable (2/2)
-20. El cierre del curso: conectar lo hecho con el trabajo real
-21. Como se ordena la sesion de hoy
-22. Cierre · Clase 15
+18. El cierre del curso: conectar lo hecho con el trabajo real
+19. Como se ordena la sesion de hoy
+20. Cierre · Clase 15
 
 > Privado, no se proyecta: `Kit docente/Clase 15/Solucion Taller Clase 15 - VetCare.docx`
 
@@ -149,6 +143,12 @@ Deje constancia escrita en el momento (hora, motivo) y reprograme dentro de la m
 Meet, sustentando igualmente en vivo. Aceptar un video «por esta vez» elimina el Q&A, que es la
 mitad de lo que se evalua, y vuelve regla la excepcion el semestre siguiente.
 
+
+## Reparto del bloque y logistica (no se proyecta)
+
+### Evaluar con rubrica: puntos a evidencia observable
+
+Evaluar con rubrica es asignar puntos a evidencia observable y no a impresion general. Los 100 puntos del PI VetCare DB se reparten en 20 por modelo y DDL coherente, 15 por seguridad y respaldo, 25 por procedimientos, funciones y disparadores con casos de prueba, 15 por optimizacion con antes y despues, 10 por la integracion aplicacion-base de datos documentada como contrato, y 15 por informe y sustentacion. Leer ese reparto en voz alta al abrir la sesion, antes del primer turno, evita el reclamo mas comun: los 15 puntos de sustentacion son solo la sexta parte del total, pero la sustentacion es el instrumento con el que el evaluador verifica que los otros 85 son de su autor, y un modelo excelente que nadie sabe defender abre una duda de autoria que ningun documento cierra. Y va el recordatorio de pesos: estos 100 puntos valen 20% del Corte 3, el Parcial 3 de la Clase 14 (virtual sincrono por Meet y escrito, el 9 de noviembre) vale 15%, y la asistencia 5%. El proyecto no reemplaza ni compensa el parcial: son dos evaluaciones distintas del mismo corte, y confundirlas produce reclamos que se evitan diciendolo una sola vez, hoy, con los numeros a la vista.
 
 ## Codigo / scripts
 Carpeta Codigo/ — archivo N/A.

@@ -35,7 +35,7 @@ OPERATIVO = {
 
     # ── Clase 2 · ADR: la decision escrita ──────────────────────────────────
     2: [
-        ("La plantilla de ADR: los seis apartados que se califican", [
+        ("La plantilla de ADR: los seis apartados", [
             "# ADR-001 · Modelo de servicio dominante de CloudLite",
             "",
             "## 1. Estado",
@@ -124,7 +124,7 @@ OPERATIVO = {
 
     # ── Clase 4 · C4 Container en Mermaid ───────────────────────────────────
     4: [
-        ("El C4 Container en Mermaid: la forma que la plataforma del curso renderiza", [
+        ("El C4 Container en Mermaid: la forma que un visor renderiza", [
             "flowchart TB",
             "  usuario([Usuario <rol de su dominio>])",
             "",
@@ -143,7 +143,7 @@ OPERATIVO = {
             "  api -->|encola| cola",
             "  cola -->|SMTP| correo",
         ]),
-        ("Lo que se califica del diagrama, y no es el dibujo", [
+        ("Lo que importa del diagrama, y no es el dibujo", [
             "%% Cada caja lleva TECNOLOGIA, no solo nombre:",
             "%%   mal:  api[API]",
             "%%   bien: api[API REST<br/>Node + Express]",
@@ -156,7 +156,7 @@ OPERATIVO = {
             "%% que define de que se es responsable.",
             "",
             "%% Y los nombres tienen que ser LOS MISMOS en el C4, en el Despliegue",
-            "%% (Clase 7) y en el Component (Clase 11). Reconciliarlos es la P2 del hito.",
+            "%% (Clase 7) y en el Component (Clase 11). Hay que reconciliarlos.",
         ]),
     ],
 
@@ -257,8 +257,8 @@ OPERATIVO = {
             "# CI  = construir y probar en cada push. Esto SI es realista aqui.",
             "# CD  = desplegar automaticamente a produccion. Necesita un proveedor",
             "#       con credenciales, asi que en el PI se declara como SIMULADO",
-            "#       y el ultimo paso se rotula como tal. Decirlo vale puntos;",
-            "#       fingirlo los quita.",
+            "#       y el ultimo paso se rotula como tal. Decirlo es honesto;",
+            "#       fingirlo es un error.",
         ]),
     ],
 

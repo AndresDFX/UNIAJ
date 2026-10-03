@@ -40,9 +40,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 9] El precio se paga en cada escritura, y se cuantifica (1/3)** — 4 vinetas.
 
-**[Slide 10] El precio se paga en cada escritura, y se cuantifica (2/3)** — 5 vinetas.
+**[Slide 10] El precio se paga en cada escritura, y se cuantifica (2/3)** — 4 vinetas.
 
-**[Slide 11] El precio se paga en cada escritura, y se cuantifica (3/3)** — 2 vinetas.
+**[Slide 11] El precio se paga en cada escritura, y se cuantifica (3/3)** — 3 vinetas.
 
 **[Slide 12] Indice compuesto: la regla del prefijo izquierdo** — 4 vinetas.
   - De ahi la regla del prefijo mas a la izquierda: un indice sobre (estado, fecha_hora) resuelve una busqueda por estado, y una por estado junto con fecha_hora, pero NO resuelve eficientemente una busqueda solo por fecha_hora, igual que en el directorio no se pueden encontrar todas las personas llamadas Ana sin leerlo entero.
@@ -62,80 +62,79 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 17] Las siete razones por las que un indice existente no se usa (2/2)** — 3 vinetas.
 
-**[Slide 18] Los cinco nombres que se califican, y la consulta que justifica cada uno (1/3)** — 3 vinetas.
+**[Slide 18] Los cinco nombres que se califican, y la consulta que justifica cada uno (1/2)** — 4 vinetas.
   - Aqui empieza la parte que se califica letra por letra, y conviene decirlo con esas palabras.
   - Dos hechos sobre claves evitan la mitad de los indices inutiles que se entregan en los proyectos.
 
-**[Slide 19] Los cinco nombres que se califican, y la consulta que justifica cada uno (2/3)** — 3 vinetas.
+**[Slide 19] Los cinco nombres que se califican, y la consulta que justifica cada uno (2/2)** — 4 vinetas.
 
-**[Slide 20] Los cinco nombres que se califican, y la consulta que justifica cada uno (3/3)** — 2 vinetas.
-
-**[Slide 21] La secuencia de medicion, y por que el ANALYZE del medio no es opcional (1/2)** — 4 vinetas.
+**[Slide 20] La secuencia de medicion, y por que el ANALYZE del medio no es opcional (1/2)** — 4 vinetas.
   - Segundo, los CREATE INDEX.
 
-**[Slide 22] La secuencia de medicion, y por que el ANALYZE del medio no es opcional (2/2)** — 5 vinetas.
+**[Slide 21] La secuencia de medicion, y por que el ANALYZE del medio no es opcional (2/2)** — 4 vinetas.
 
-**[Slide 23] La secuencia de medicion, y por que el... — sintaxis** — 7 vinetas.
+**[Slide 22] La secuencia de medicion, y por que el... — sintaxis** — 7 vinetas.
 
-**[Slide 24] El experimento del orden de columnas, paso a paso (1/2)** — 4 vinetas.
+**[Slide 23] El experimento del orden de columnas, paso a paso (1/2)** — 4 vinetas.
   - La pregunta 2 no pide creer la regla del prefijo izquierdo, pide demostrarla, y el docente tiene que poder anticipar los tres resultados.
   - Eso es la regla del prefijo izquierdo vista en vivo, y es la unica manera de que no quede como una frase que se memoriza.
   - Un plan distinto bien leido vale mas que el plan esperado copiado.
 
-**[Slide 25] El experimento del orden de columnas, paso a paso (2/2)** — 3 vinetas.
+**[Slide 24] El experimento del orden de columnas, paso a paso (2/2)** — 3 vinetas.
 
-**[Slide 26] El indice parcial: que indexa, cuanto ahorra y cuando gana (1/3)** — 4 vinetas.
+**[Slide 25] El indice parcial: que indexa, cuanto ahorra y cuando gana (1/3)** — 4 vinetas.
 
-**[Slide 27] El indice parcial: que indexa, cuanto ahorra y cuando gana (2/3)** — 4 vinetas.
+**[Slide 26] El indice parcial: que indexa, cuanto ahorra y cuando gana (2/3)** — 4 vinetas.
 
-**[Slide 28] El indice parcial: que indexa, cuanto ahorra y cuando gana (3/3)** — 3 vinetas.
+**[Slide 27] El indice parcial: que indexa, cuanto ahorra y cuando gana (3/3)** — 3 vinetas.
 
-**[Slide 29] El indice parcial: que indexa, cuanto ahorra... — sintaxis** — 1 vinetas.
+**[Slide 28] El indice parcial: que indexa, cuanto ahorra... — sintaxis** — 1 vinetas.
 
-**[Slide 30] Particionar: que es, y por que hoy si se implementa (1/2)** — 4 vinetas.
+**[Slide 29] Particionar: que es, y por que hoy si se implementa (1/2)** — 4 vinetas.
   - Ahora la advertencia importante para el docente, porque es la que ha costado puntos: eso NO significa que hoy el particionamiento sea una idea conceptual que solo se cuenta.
   - Lo que si es cierto, y hay que decirlo en la misma frase, es que con 5.010 filas la ganancia de RENDIMIENTO no es apreciable: lo que se demuestra hoy es que el motor descarta particiones enteras antes de leer, y que archivar un ano se vuelve trivial.
 
-**[Slide 31] Particionar: que es, y por que hoy si se implementa (2/2)** — 3 vinetas.
+**[Slide 30] Particionar: que es, y por que hoy si se implementa (2/2)** — 3 vinetas.
 
-**[Slide 32] El DDL de la particion, con sus dos trampas (1/2)** — 6 vinetas.
+**[Slide 31] El DDL de la particion, con sus dos trampas (1/2)** — 6 vinetas.
   - Sin esa consulta no hay evidencia del enrutamiento, solo un INSERT que no dio error, y la rubrica lo pide explicitamente.
 
-**[Slide 33] El DDL de la particion, con sus dos trampas (2/2)** — 3 vinetas.
+**[Slide 32] El DDL de la particion, con sus dos trampas (2/2)** — 3 vinetas.
 
-**[Slide 34] El DDL de la particion, con sus dos trampas — sintaxis** — 20 vinetas.
+**[Slide 33] El DDL de la particion, con sus dos trampas — sintaxis** — 20 vinetas.
 
-**[Slide 35] El veredicto de particionamiento que pide la pregunta 5 (1/3)** — 4 vinetas.
+**[Slide 34] El veredicto de particionamiento que pide la pregunta 5 (1/3)** — 4 vinetas.
+  - Un veredicto de particionamiento tiene tres exigencias distintas.
 
-**[Slide 36] El veredicto de particionamiento que pide la pregunta 5 (2/3)** — 4 vinetas.
+**[Slide 35] El veredicto de particionamiento que pide la pregunta 5 (2/3)** — 4 vinetas.
 
-**[Slide 37] El veredicto de particionamiento que pide la pregunta 5 (3/3)** — 3 vinetas.
+**[Slide 36] El veredicto de particionamiento que pide la pregunta 5 (3/3)** — 2 vinetas.
 
-**[Slide 38] La demo, en el orden en que se proyecta (1/2)** — 5 vinetas.
+**[Slide 37] La demo, en el orden en que se proyecta (1/2)** — 5 vinetas.
   - El script trae cinco bloques y el orden importa.
   - Lo que no se puede hacer es medir en una base de 20 filas: el plan no va a cambiar y el grupo se va a llevar la conclusion contraria.
 
-**[Slide 39] La demo, en el orden en que se proyecta (2/2)** — 4 vinetas.
+**[Slide 38] La demo, en el orden en que se proyecta (2/2)** — 4 vinetas.
 
-**[Slide 40] Donde corre esto, y que no se puede medir aqui** — 4 vinetas.
+**[Slide 39] Donde corre esto, y que no se puede medir aqui** — 4 vinetas.
   - Ahi corre la demo, ahi se resuelve el taller y ahi se califica, asi que no hay razon para trabajar en otro sitio.
   - Lo que si se puede medir aqui: el cambio de Seq Scan a Index Scan, la eleccion entre dos indices que compiten, el efecto del orden de columnas con su DROP INDEX, el particionamiento declarativo completo y la poda en el plan, y el tamano de cada indice con pg_relation_size.
   - Lo que NO se puede medir, y hay que declararlo en el informe en vez de inventarlo: los tiempos con la memoria intermedia vacia, porque vaciarla exige privilegios de administrador; el tiempo de creacion de un indice sobre decenas de millones de filas; la fragmentacion despues de meses de escrituras; la degradacion medible de un INSERT con diez indices, que necesita una carga sostenida; y cualquier cosa que exija dos sesiones simultaneas, porque PGlite corre una sola, que es el tema de la Clase 10.
   - Esa lista de limites es la seccion 5 de la pregunta 5 y vale puntos: se pierde por omitirla, no por tenerla.
 
-**[Slide 41] Preguntas frecuentes del grupo (1/3)** — 3 vinetas.
+**[Slide 40] Preguntas frecuentes del grupo (1/3)** — 3 vinetas.
 
-**[Slide 42] Preguntas frecuentes del grupo (2/3)** — 4 vinetas.
+**[Slide 41] Preguntas frecuentes del grupo (2/3)** — 4 vinetas.
 
-**[Slide 43] Preguntas frecuentes del grupo (3/3)** — 5 vinetas.
+**[Slide 42] Preguntas frecuentes del grupo (3/3)** — 5 vinetas.
 
-**[Slide 44] Crear el indice y probar que se usa** — 11 vinetas.
+**[Slide 43] Crear el indice y probar que se usa** — 11 vinetas.
 
-**[Slide 45] El orden de columnas en un indice compuesto** — 10 vinetas.
+**[Slide 44] El orden de columnas en un indice compuesto** — 10 vinetas.
 
-**[Slide 46] Particionar el historico por rango de fecha** — 14 vinetas.
+**[Slide 45] Particionar el historico por rango de fecha** — 14 vinetas.
 
-**[Slide 47] El costo de sobre-indexar, que casi nunca se menciona** — 11 vinetas.
+**[Slide 46] El costo de sobre-indexar, que casi nunca se menciona** — 11 vinetas.
 
 
 **Demo que usted debe poder repetir:** EXPLAIN ANALYZE con Seq Scan, CREATE INDEX idx_cita_fecha_hora, ANALYZE, y el mismo EXPLAIN mostrando Index Scan.
@@ -161,42 +160,41 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 15. Cuando el indice responde solo, sin tocar la... — sintaxis
 16. Las siete razones por las que un indice existente no se usa (1/2)
 17. Las siete razones por las que un indice existente no se usa (2/2)
-18. Los cinco nombres que se califican, y la consulta que justifica cada uno (1/3)
-19. Los cinco nombres que se califican, y la consulta que justifica cada uno (2/3)
-20. Los cinco nombres que se califican, y la consulta que justifica cada uno (3/3)
-21. La secuencia de medicion, y por que el ANALYZE del medio no es opcional (1/2)
-22. La secuencia de medicion, y por que el ANALYZE del medio no es opcional (2/2)
-23. La secuencia de medicion, y por que el... — sintaxis
-24. El experimento del orden de columnas, paso a paso (1/2)
-25. El experimento del orden de columnas, paso a paso (2/2)
-26. El indice parcial: que indexa, cuanto ahorra y cuando gana (1/3)
-27. El indice parcial: que indexa, cuanto ahorra y cuando gana (2/3)
-28. El indice parcial: que indexa, cuanto ahorra y cuando gana (3/3)
-29. El indice parcial: que indexa, cuanto ahorra... — sintaxis
-30. Particionar: que es, y por que hoy si se implementa (1/2)
-31. Particionar: que es, y por que hoy si se implementa (2/2)
-32. El DDL de la particion, con sus dos trampas (1/2)
-33. El DDL de la particion, con sus dos trampas (2/2)
-34. El DDL de la particion, con sus dos trampas — sintaxis
-35. El veredicto de particionamiento que pide la pregunta 5 (1/3)
-36. El veredicto de particionamiento que pide la pregunta 5 (2/3)
-37. El veredicto de particionamiento que pide la pregunta 5 (3/3)
-38. La demo, en el orden en que se proyecta (1/2)
-39. La demo, en el orden en que se proyecta (2/2)
-40. Donde corre esto, y que no se puede medir aqui
-41. Preguntas frecuentes del grupo (1/3)
-42. Preguntas frecuentes del grupo (2/3)
-43. Preguntas frecuentes del grupo (3/3)
-44. Crear el indice y probar que se usa
-45. El orden de columnas en un indice compuesto
-46. Particionar el historico por rango de fecha
-47. El costo de sobre-indexar, que casi nunca se menciona
-48. Un indice se justifica con la consulta que lo usa
-49. Los cinco indices de hoy, con su nombre exacto
-50. El indice parcial: el mismo beneficio, una fraccion del tamano
-51. Particionar hoy de verdad: rango por ano, poda y archivado
-52. Demo del dia
-53. Cierre · Clase 7
+18. Los cinco indices, y la consulta que justifica cada uno (1/2)
+19. Los cinco indices, y la consulta que justifica cada uno (2/2)
+20. La secuencia de medicion, y por que el ANALYZE del medio no es opcional (1/2)
+21. La secuencia de medicion, y por que el ANALYZE del medio no es opcional (2/2)
+22. La secuencia de medicion, y por que el... — sintaxis
+23. El experimento del orden de columnas, paso a paso (1/2)
+24. El experimento del orden de columnas, paso a paso (2/2)
+25. El indice parcial: que indexa, cuanto ahorra y cuando gana (1/3)
+26. El indice parcial: que indexa, cuanto ahorra y cuando gana (2/3)
+27. El indice parcial: que indexa, cuanto ahorra y cuando gana (3/3)
+28. El indice parcial: que indexa, cuanto ahorra... — sintaxis
+29. Particionar: que es, y por que hoy si se implementa (1/2)
+30. Particionar: que es, y por que hoy si se implementa (2/2)
+31. El DDL de la particion, con sus dos trampas (1/2)
+32. El DDL de la particion, con sus dos trampas (2/2)
+33. El DDL de la particion, con sus dos trampas — sintaxis
+34. El veredicto de particionamiento (1/3)
+35. El veredicto de particionamiento (2/3)
+36. El veredicto de particionamiento (3/3)
+37. La demo, en el orden en que se proyecta (1/2)
+38. La demo, en el orden en que se proyecta (2/2)
+39. Donde corre esto, y que no se puede medir aqui
+40. Preguntas frecuentes del grupo (1/3)
+41. Preguntas frecuentes del grupo (2/3)
+42. Preguntas frecuentes del grupo (3/3)
+43. Crear el indice y probar que se usa
+44. El orden de columnas en un indice compuesto
+45. Particionar el historico por rango de fecha
+46. El costo de sobre-indexar, que casi nunca se menciona
+47. Un indice se justifica con la consulta que lo usa
+48. Los cinco indices de hoy, con su nombre exacto
+49. El indice parcial: el mismo beneficio, una fraccion del tamano
+50. Particionar hoy de verdad: rango por ano, poda y archivado
+51. Demo del dia
+52. Cierre · Clase 7
 
 > Privado, no se proyecta: `Kit docente/Clase 7/Solucion Taller Clase 7 - VetCare.docx`
 
@@ -226,7 +224,7 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: crear un indice sobre CADA columna 'por si acaso' sin mirar que consultas realmente lo necesitan — el taller exige justificar cada indice con la consulta concreta que lo aprovecha.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 52]
+### 35-55 · Demo paso a paso · [Slide 51]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: EXPLAIN ANALYZE con Seq Scan, CREATE INDEX idx_cita_fecha_hora, ANALYZE, y el mismo EXPLAIN mostrando Index Scan.
 Herramienta: ExamLab (PostgreSQL/PGlite)
@@ -252,9 +250,9 @@ Entregable: Script CREATE INDEX + cita_hist particionada + tabla justificacion c
 Repasar los conceptos del dia volviendo a las laminas de teoria que mas costaron.
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 7 - VetCare.docx`. Clave para usted: `Quiz Clase 7 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 53]
+### 115-120 · Cierre · [Slide 52]
 **Decir:** «Queda visto: Indices y particionamiento · VetCare. Si hicimos la practica, la guia y la entrega estan en la carpeta de la clase.»
-Proyectar [Slide 53] slide de cierre. Dudas finales.
+Proyectar [Slide 52] slide de cierre. Dudas finales.
 
 
 ## Reparto del bloque y logistica (no se proyecta)

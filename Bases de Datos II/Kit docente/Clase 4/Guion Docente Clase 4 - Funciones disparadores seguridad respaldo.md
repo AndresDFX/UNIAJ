@@ -150,8 +150,8 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 5. Funcion y procedimiento: se distinguen por su papel, no por su sintaxis (2/3)
 6. Funcion y procedimiento: se distinguen por su papel, no por su sintaxis (3/3)
 7. Funcion y procedimiento: se distinguen por su... — sintaxis
-8. Los tres detalles de fn_precio_consulta que valen puntos (1/2)
-9. Los tres detalles de fn_precio_consulta que valen puntos (2/2)
+8. Los tres detalles de fn_precio_consulta (1/2)
+9. Los tres detalles de fn_precio_consulta (2/2)
 10. El trigger: el unico que nadie invoca, y en PostgreSQL son DOS objetos (1/2)
 11. El trigger: el unico que nadie invoca, y en PostgreSQL son DOS objetos (2/2)
 12. El trigger: el unico que nadie invoca, y en... — sintaxis
@@ -174,9 +174,9 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 29. RPO y RTO: dos siglas que solo sirven con un numero acordado (1/3)
 30. RPO y RTO: dos siglas que solo sirven con un numero acordado (2/3)
 31. RPO y RTO: dos siglas que solo sirven con un numero acordado (3/3)
-32. Lo que ExamLab si puede demostrar, y lo que se documenta en papel
-33. Como amarra con las clases vecinas y con la rubrica del PI (1/2)
-34. Como amarra con las clases vecinas y con la rubrica del PI (2/2)
+32. Lo que PostgreSQL en el navegador si puede demostrar, y lo que se documenta en papel
+33. Como amarra con las clases vecinas y con el PI (1/2)
+34. Como amarra con las clases vecinas y con el PI (2/2)
 35. Preguntas frecuentes del grupo (1/3)
 36. Preguntas frecuentes del grupo (2/3)
 37. Preguntas frecuentes del grupo (3/3)

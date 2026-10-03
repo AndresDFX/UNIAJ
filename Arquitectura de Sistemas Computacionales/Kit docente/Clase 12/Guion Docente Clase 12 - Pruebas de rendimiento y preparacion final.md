@@ -31,7 +31,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 7] Latencia, throughput y concurrencia: la identidad que las une (2/2)** — 2 vinetas.
 
 **[Slide 8] Por que el promedio miente y el percentil no (1/2)** — 4 vinetas.
-  - Por eso la industria escribe sus objetivos en percentiles, y por eso el entregable de hoy exige un objetivo con la forma "p95 del endpoint de listado menor a 300 milisegundos con 5 RPS", que tiene metrica, umbral y condicion de carga.
+  - Por eso la industria escribe sus objetivos en percentiles, y por eso un objetivo bien escrito tiene la forma "p95 del endpoint de listado menor a 300 milisegundos con 5 RPS", que tiene metrica, umbral y condicion de carga.
 
 **[Slide 9] Por que el promedio miente y el percentil no (2/2)** — 4 vinetas.
 
@@ -106,7 +106,8 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 23. El presupuesto de latencia del camino critico
 24. Las metricas objetivo, escritas como se verifican
 25. «Que sea rapido» no es un requisito
-26. Clase 12 · cierre conceptual
+26. Del boceto al código Mermaid
+27. Clase 12 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -129,7 +130,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo
+### 40–55 · Demo en vivo · [Slide 26]
 Herramienta del día: **Navegador · editores de diagramas y de texto del curso**.
 **Demo que usted debe poder repetir:** Definir un objetivo de rendimiento que si se puede verificar
 
@@ -165,7 +166,7 @@ Aplica el quiz corto de `Kit docente/Clase 12/Quiz Clase 12 - Pruebas de rendimi
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 26]
+### 115–120 · Cierre · [Slide 27]
 Di: «Queda avanzado: Escenario de rendimiento + ensayo 5–8 min de sustentación.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»

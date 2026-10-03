@@ -82,10 +82,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - La consecuencia que hay que subrayar, porque es la que abre la Clase 3, es que la clave foranea NO defiende esa regla: para el motor, la mascota inactiva existe y su identificador es valido, asi que aceptara sin chistar una cita nueva sobre ella.
   - Si el estudiante sale hoy con DELETE en la cabeza, en la Clase 3 no va a entender por que hace falta sp_agendar_cita.
 
-**[Slide 18] Que separa un diagrama ER de un dibujo (1/2)** — 4 vinetas.
+**[Slide 18] Que separa un diagrama ER de un dibujo (1/2)** — 5 vinetas.
   - Eso se materializa como consulta.id_cita NOT NULL UNIQUE, no como una clave foranea simple, y decidirlo hoy evita la pregunta que aparece en la Clase 3 cuando alguien intenta registrar la consulta antes de la cita.
 
-**[Slide 19] Que separa un diagrama ER de un dibujo (2/2)** — 4 vinetas.
+**[Slide 19] Que separa un diagrama ER de un dibujo (2/2)** — 3 vinetas.
 
 **[Slide 20] Tipos de datos: donde se pagan las facturas mas caras (1/2)** — 4 vinetas.
 
@@ -103,7 +103,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Oracle Live SQL exige cuenta gratuita pero conserva esquema y guiones entre sesiones y admite bloques PL/SQL, que es lo que se necesitara desde la Clase 3; conviene que el estudiante la cree hoy y no el dia que la necesite. draw.io corre en el navegador, no pide cuenta y exporta PNG, el formato que pide ExamLab.
   - De ahi sale la regla operativa del curso: la fuente de verdad es el archivo sql en la carpeta del proyecto, nunca la pestana del navegador, y el estudiante va bien si reconstruye el esquema completo en menos de cinco minutos pegando su propio guion.
 
-**[Slide 25] Del ER dibujado al codigo Mermaid que se entrega** — 3 vinetas.
+**[Slide 25] Del ER dibujado al codigo Mermaid** — 3 vinetas.
   - Ultimo tramo, y es el que decide si el taller se entrega o no: como pasa el estudiante del dibujo a lo que la plataforma califica.
   - Eso no significa que haya que dibujar escribiendo codigo, y conviene decirlo asi para que nadie se bloquee: el camino corto es disenar visual en draw.io o Excalidraw, que es donde se piensa el modelo, y despues pedirle a una IA que traduzca ese boceto a Mermaid.
   - El PNG exportado se conserva en la carpeta del PI para el informe, pero no reemplaza la respuesta en la plataforma.
@@ -155,7 +155,7 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 22. Convenciones de nombres para que el DDL corra a la primera (1/2)
 23. Convenciones de nombres para que el DDL corra a la primera (2/2)
 24. Herramientas del dia y que se puede demostrar con cada una
-25. Del ER dibujado al codigo Mermaid que se entrega
+25. Del ER dibujado al codigo Mermaid
 26. Preguntas frecuentes del grupo
 27. El patron de tabla: PK, obligatorios y dominio cerrado
 28. La clave foranea y que pasa al borrar el padre
@@ -165,7 +165,7 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 32. ER minimo VetCare (con cardinalidad)
 33. El DDL minimo que sostiene el ER
 34. Demo del dia
-35. Del boceto a ExamLab (diagrama)
+35. Del boceto al código Mermaid
 36. Cierre · Clase 1
 
 > Privado, no se proyecta: `Kit docente/Clase 1/Solucion Taller Clase 1 - VetCare.docx`

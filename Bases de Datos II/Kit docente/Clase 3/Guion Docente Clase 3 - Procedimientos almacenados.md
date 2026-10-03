@@ -196,8 +196,8 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 34. El segundo procedimiento: sp_registrar_consulta y el EXISTS (1/2)
 35. El segundo procedimiento: sp_registrar_consulta y el EXISTS (2/2)
 36. El segundo procedimiento:... — sintaxis
-37. Como amarra con las clases vecinas y con la rubrica del PI (1/2)
-38. Como amarra con las clases vecinas y con la rubrica del PI (2/2)
+37. Como amarra con las clases vecinas y con el PI (1/2)
+38. Como amarra con las clases vecinas y con el PI (2/2)
 39. Preguntas frecuentes del grupo (1/3)
 40. Preguntas frecuentes del grupo (2/3)
 41. Preguntas frecuentes del grupo (3/3)

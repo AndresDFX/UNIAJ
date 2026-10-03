@@ -99,7 +99,7 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 17. La bateria de verificacion del avance
 18. Integridad y objetos de negocio, contados
 19. Demo del dia
-20. Del boceto a ExamLab (diagrama)
+20. Del boceto al código Mermaid
 21. Cierre · Clase 11
 
 > Privado, no se proyecta: `Kit docente/Clase 11/Solucion Taller Clase 11 - VetCare.docx`

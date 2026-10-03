@@ -1950,7 +1950,7 @@ CODIGO_SLIDE = {
         "",
         "-- Mal candidato: baja cardinalidad (solo 'S' o 'N')",
         "-- CREATE INDEX idx_mascota_activa ON mascota(activa);",
-    ], "Cada indice acelera lecturas y encarece INSERT/UPDATE/DELETE. El nombre se califica letra por letra."),
+    ], "Cada indice acelera lecturas y encarece INSERT/UPDATE/DELETE. El nombre es el que el plan imprime en «Index Scan using»."),
     # Decia «ROLLBACK; -- de lo contrario: COMMIT;», que es literalmente la opcion
     # INCORRECTA de la pregunta 4 (10 pts) proyectada como respuesta. En PostgreSQL el
     # procedimiento no lleva control de transaccion: la excepcion que se propaga fuera del
@@ -2538,7 +2538,7 @@ TEORIA_EXTRA = {
 # Titulo de la diapositiva del flujo de diagramacion (Excalidraw -> IA -> Mermaid
 # -> ExamLab). Vive aqui y no en examlab_talleres porque es el rotulo del deck del
 # curso; el CONTENIDO de los 4 pasos si es compartido entre los cuatro cursos.
-FLUJO_SLIDE_TITULO = "Del boceto a ExamLab (diagrama)"
+FLUJO_SLIDE_TITULO = "Del boceto al código Mermaid"
 
 # Diapositiva de contexto del cliente. Solo en la Clase 1: es donde el estudiante
 # empieza a modelar y necesita saber para quien. Antes conocia a la clinica
@@ -2596,6 +2596,7 @@ def _fundamento_md(c):
 SECCIONES_SOLO_TALLER = (
     "El reparto de los 120 minutos y como acompanar el taller",
     "La aritmetica del calendario, dicha en voz alta",
+    "Evaluar con rubrica: puntos a evidencia observable",
 )
 
 
@@ -2684,8 +2685,7 @@ def _slide_map(c):
     """
     if c['tipo'] == 'parcial':
         return [f"Portada · Clase {c['n']} · {c['titulo']}",
-                "Que se evalua hoy",
-                "Como se responde y como se entrega",
+                "Indicaciones",
                 f"{c['titulo']} · Clase {c['n']}"]
     m = [f"Portada · Clase {c['n']} · {c['titulo']}",
          ENCUADRE_TITULO[c['tipo'] == 'sustentacion'],
@@ -2711,11 +2711,153 @@ def _slide_map(c):
     if _tiene_diagrama(c['n']):
         m.append(FLUJO_SLIDE_TITULO)
     m.append(f"Cierre · Clase {c['n']}")
-    return m
+    return [_titulo_tema(t) for t in m]
 
 
 # Titulo de la 2a lamina: [regular/autonoma, sustentacion].
 ENCUADRE_TITULO = ("Encuadre de hoy · Tema y objetivo", "Encuadre de hoy · Objetivo PI")
+
+
+# --- Solo el tema en los decks de clase -------------------------------------
+# El deck no nombra la plataforma de entrega ni la actividad evaluada: ni «taller», ni
+# «entregable», ni «la pregunta N», ni puntos, ni rubrica. La plataforma solo se nombra
+# en la Presentacion del curso. Lo que el fundamento dice sobre la actividad sale de la
+# lamina y va a las NOTAS DEL PRESENTADOR de esa misma lamina: el concepto se sigue
+# proyectando, solo sale la mencion. Los guiones y el Kit docente no pasan por aqui.
+_RX_ACTIVIDAD = re.compile(
+    r"examlab|plataforma del curso|entregab|\bpreguntas? \d|\bpreguntas? (?:uno|dos|tres|cuatro|cinco)\b"
+    r"|r[uú]brica|\bcalific(?:a|an|ar|ado|ada)\b|\btaller|plantilla del|la actividad\b"
+    r"|\b(?:\d+|diez|quince|veinte|veinticinco|treinta(?: y cinco)?|cincuenta|cien)\s+"
+    r"(?:de los (?:100|cien)\s+)?puntos\b|\bde los (?:100|cien)\b"
+    r"|\b(?:vale|valen|cuesta|cuestan|costaria|resta|restan|suma|sumar|pierde|pierden|pierdan)\s+"
+    r"(?:los\s+)?puntos\b|\blos puntos\b|puntos (?:de|del) (?:la )?(?:rubrica|taller|PI|proyecto|total)"
+    r"|\bse sube\b|se entrega\b|sube el paquete|modulo de proyectos",
+    re.I)
+
+_SUBS_TEMA = [
+    (r"\s*\+\s*ExamLab(?:\s*\([^)]*\))?", ""),
+    (r"ExamLab\s*\((PostgreSQL[^)]*)\)", r"\1"),
+    (r"\s*(?:,\s*)?(?:dentro de|en) (?:la consola de )?(?:ExamLab|la plataforma del curso)(?:\s*\([^)]*\))?", ""),
+    (r"\b(la|el|las|los) (base|esquema|escenario|motor|consulta|ranking|agenda|funcion|version|datos)"
+     r" del taller\b", r"\1 \2 de la clase"),
+    (r"\bdel taller\b(?! de)", "de la clase"),
+    (r"\bExamLab\b|\bla plataforma del curso\b", "PostgreSQL en el navegador"),
+]
+
+_TITULOS_TEMA = [
+    (r"Del boceto a ExamLab \(diagrama\)", "Del boceto al código Mermaid"),
+    (r"\s+que se entrega\b", ""),
+    (r"\s*(?:,\s*)?que es la pregunta \d+", ""),
+    (r"\s+que pide la pregunta \d+", ""),
+    (r"\s+que valen puntos", ""),
+    (r"\s*y la trampa que cuesta puntos", ""),
+    (r":\s*el molde que se califica", ""),
+    (r"Los cinco nombres que se califican", "Los cinco indices"),
+    (r"\s+que se califican?\b", ""),
+    (r"y con la r[uú]brica del PI", "y con el PI"),
+    (r"Lo que (?:ExamLab|la plataforma del curso) si puede demostrar",
+     "Lo que PostgreSQL en el navegador si puede demostrar"),
+    (r"Lo que pide el taller", "Lo que pide la practica"),
+]
+
+
+def _titulo_tema(t):
+    if not isinstance(t, str):
+        return t
+    for a, b in _TITULOS_TEMA:
+        t = re.sub(a, b, t, flags=re.I)
+    return t
+
+
+def _frase_tema(f, fuera):
+    """Una frase: la limpia, o la manda a `fuera` si solo habla de la actividad."""
+    for a, b in _SUBS_TEMA:
+        f = re.sub(a, b, f, flags=re.I)
+    if not _RX_ACTIVIDAD.search(f):
+        return f
+    # Intenta salvar el concepto quitando solo las clausulas que hablan de la actividad.
+    trozos = re.split(r"(\s*[,;]\s+|\s+[—–-]\s+|:\s+)", f)
+    clausulas, seps = trozos[0::2], trozos[1::2]
+    if _RX_ACTIVIDAD.search(clausulas[0]):
+        fuera.append(f)
+        return ""
+    keep = clausulas[0]
+    for sep, cl in zip(seps, clausulas[1:]):
+        if _RX_ACTIVIDAD.search(cl):
+            fuera.append(f)
+            break
+        keep += sep + cl
+    keep = keep.rstrip(" ,;:—–-")
+    if keep and keep[-1] not in ".?!»)`":
+        keep += "."
+    return keep
+
+
+def _texto_tema(t, fuera):
+    if not isinstance(t, str) or not t.strip():
+        return t
+    if t.lstrip().startswith("--"):           # comentario de codigo
+        for a, b in _SUBS_TEMA:
+            t = re.sub(a, b, t, flags=re.I)
+        if _RX_ACTIVIDAD.search(t):
+            fuera.append(t.strip())
+            return None
+        return t
+    frases = re.split(r"(?<=[.!?])\s+(?=[«¿¡A-ZÁÉÍÓÚÑ@*`])", t)
+    out = [x for x in (_frase_tema(f, fuera) for f in frases) if x]
+    return " ".join(out)
+
+
+def _tema(obj, fuera, codigo=False):
+    if isinstance(obj, str):
+        if codigo and not obj.lstrip().startswith("--"):
+            r = obj
+            for a, b in _SUBS_TEMA:
+                r = re.sub(a, b, r, flags=re.I)
+            return r
+        return _texto_tema(obj, fuera)
+    if type(obj) is list:
+        out = [_tema(x, fuera, codigo) for x in obj]
+        if codigo:
+            return [x for x in out if x is not None]
+        return [x for x in out if x not in (None, "")]
+    if type(obj) is tuple:
+        return tuple(_tema(x, fuera, codigo) if x is not None else None for x in obj)
+    if type(obj) is dict:
+        return {k: _tema(v, fuera, codigo) for k, v in obj.items()}
+    return obj
+
+
+def _solo_tema(fn, codigo=False):
+    """Envuelve un constructor de lamina: titulo y contenido sin la actividad."""
+    def w(prs, title, *a, **k):
+        fuera = []
+        a = [_tema(x, fuera, codigo) for x in a]
+        k = {kk: (_tema(v, fuera, codigo) if kk not in ("idx", "size") else v)
+             for kk, v in k.items()}
+        sl = fn(prs, _titulo_tema(title), *a, **k)
+        if fuera:
+            notas(sl, "Fuera de la lamina (habla de la practica, no del tema):\n- "
+                  + "\n- ".join(fuera))
+        return sl
+    return w
+
+
+# Del boceto al codigo Mermaid: los pasos sin nombrar donde se entrega.
+FLUJO_TEMA_PASOS = [
+    ("Disena visual",
+     "Dibuja el diagrama como quieras en Excalidraw o draw.io: es mas rapido arrastrar "
+     "cajas que escribir codigo, y ahi es donde piensas el modelo."),
+    ("Traduce con IA",
+     "Copia o describe tu boceto a una IA y pidele el codigo Mermaid usando {d}. Revisa "
+     "el resultado: la IA acierta la sintaxis, no tu modelo."),
+    ("Renderiza y corrige",
+     "Pega el codigo en un visor Mermaid (por ejemplo mermaid.live) y mira como lo dibuja. "
+     "Si no renderiza, corrige ahi mismo: un diagrama que no renderiza no comunica nada."),
+    ("Guarda codigo e imagen",
+     "Conserva el texto Mermaid, que es la fuente, y exporta el PNG para tu informe del "
+     "Proyecto Integrador."),
+]
 
 
 def _plano(s):
@@ -2814,28 +2956,20 @@ def build_pptx(c):
         # estaba sin acentos, y esto no es fuente de fundamento: es lo que se proyecta. Y
         # el cierre afirmaba «El PI VetCare DB continua la proxima clase» tambien en el
         # Parcial 3, cuando lo que sigue ahi es la sustentacion.
-        p = PARCIALES_BD2[c['n']]
-        m = _parcial_meta_bd2(p['corte'])
+        # Generico a proposito: dice cuando es y como se presenta, no que temas ni que
+        # puntaje, porque eso puede cambiar. El detalle vive en Parciales/ y en el Kit.
         prs = new_prs()
-        class_cover(prs, c['titulo'], subtitulo="Solo evaluación · sin tema ni taller",
+        class_cover(prs, c['titulo'], subtitulo="Solo evaluación",
                     clase_n=c['n'], idx=1)
-        content_slide(prs, "Qué se evalúa hoy",
-                      [f"**{s.split(' — ')[0]}** — {s.split(' — ')[1]}"
-                       for s in m['secciones_resumen']]
-                      + [f"Total **100 puntos** · nota = puntos / 20 · "
-                         f"este parcial pesa {m['valor_corte']}."],
-                      sub="**Solo** " + " · ".join(t.split(' · ')[0] for t in m['temas'])
-                          + " — fuera de esa lista no hay nada",
-                      idx=2)
-        content_slide(prs, "Cómo se responde y cómo se entrega", [
-            "El envío **cierra en el minuto 110**: lo que llegue después no se recibe.",
-            "Canal de entrega: el que se anuncia ahora. Confirmo cada recibido por el chat.",
-            "El SQL se escribe **como texto**: no se pide captura ni se abre ExamLab.",
-            "Pregunta de **forma** sí (cuántas líneas, si pide tabla). De **contenido** no.",
-            "Si se te cae el internet: sigue respondiendo y avisa por correo al volver.",
-        ], sub=f"Tiempo previsto **{m['tiempo']}** dentro del bloque de 120", idx=3)
+        globals()["content_slide"](prs, "Indicaciones", [
+            f"Hoy es el **{c['titulo']}**: no hay tema nuevo en esta sesión.",
+            "Entra lo visto en el corte hasta hoy.",
+            "Modalidad **virtual síncrona por Meet**, como todas las sesiones.",
+            "Duración aproximada: **90 a 110 min** dentro del bloque de 120.",
+            "El enunciado y el canal de entrega se comparten al empezar.",
+        ], idx=2)
         closing_slide(prs, f"{c['titulo']} · Clase {c['n']}",
-                      ["Hoy solo se evalúa el corte", _cierre_pi_parcial(c['n'])],
+                      ["Hoy solo se evalúa", "El tema continúa la próxima clase"],
                       accent="Solo evaluación")
         _verificar_mapa(c, prs)
         out_dir = CLASES_DIR / f"Clase {c['n']} - {c['titulo']}"
@@ -2844,6 +2978,12 @@ def build_pptx(c):
         prs.save(str(out)); print("PPTX", out)
         return out
     prs = new_prs(); cover_pptx(prs, c); idx = 2
+    content_slide = _solo_tema(globals()["content_slide"])
+    pseudo_code_slide = _solo_tema(globals()["pseudo_code_slide"], codigo=True)
+    diagram_boxes_slide = _solo_tema(globals()["diagram_boxes_slide"])
+    before_after_slide = _solo_tema(globals()["before_after_slide"])
+    steps_visual_slide = _solo_tema(globals()["steps_visual_slide"])
+    block_timeline_slide = _solo_tema(globals()["block_timeline_slide"])
     tipo_lbl = {"autonoma": "autonoma (festivo)",
                 "sustentacion": "sustentacion en vivo"}.get(c['tipo'], "regular")
     # 2ª slide: encuadre / objetivos (contenido que salió de la portada)
@@ -2851,7 +2991,6 @@ def build_pptx(c):
         content_slide(prs, ENCUADRE_TITULO[1], [
             f"**Hoy cerramos el PI:** {c['hito_pi']}",
             "Sesión **síncrona** de sustentaciones · Bloque **120 min** · turnos consecutivos.",
-            "Sube el paquete a ExamLab **antes** de tu turno: presentando no se sube nada.",
             "La sustentación es **en vivo** y con preguntas: no se reemplaza por video grabado.",
         ], idx=idx); idx += 1
     else:
@@ -2946,9 +3085,9 @@ def build_pptx(c):
         dialectos = examlab_talleres._dialectos_del_taller(TALLERES_EXAMLAB[c['n']])
         steps_visual_slide(
             prs, FLUJO_SLIDE_TITULO,
-            examlab_talleres.flujo_diagrama_pasos(
-                dialectos[0] if len(dialectos) == 1 else "el tipo que pide el enunciado"),
-            sub="El diagrama se entrega como codigo Mermaid dentro de ExamLab, no como imagen",
+            [(t, d.format(d=(dialectos[0] if len(dialectos) == 1 else "el tipo de diagrama que corresponda").replace("`", "")))
+             for t, d in FLUJO_TEMA_PASOS],
+            sub="El diagrama es texto Mermaid: la imagen sale del codigo, no al reves",
             idx=idx)
         idx += 1
     # El QUIZ no va en el material del estudiante: ni proyectado ni anunciado.
@@ -2964,7 +3103,7 @@ def build_pptx(c):
         # Cierre conceptual: los conceptos que se vieron, sin anunciar entregables.
         _vistos = []
         for _t, *_ in _teoria_slides(c):
-            _b = re.sub(r"\s*\(\d+/\d+\)$|\s*— sintaxis$", "", _t).split(":")[0].strip()
+            _b = re.sub(r"\s*\(\d+/\d+\)$|\s*— sintaxis$", "", _titulo_tema(_t)).split(":")[0].strip()
             if _b not in _vistos:
                 _vistos.append(_b)
         closing_slide(prs, f"Clase {c['n']} · {c['titulo']}",
@@ -3718,7 +3857,7 @@ def _guia_parcial_cuerpo(c):
     # Los tokens se arman fuera del f-string: dentro, `{{` es una llave literal escapada y
     # el token saldria como «{slide:evalua hoy}», que ni resuelve ni se detecta como
     # marcador crudo por su forma habitual.
-    tok_alcance, tok_entrega = '{{slide:evalua hoy}}', '{{slide:Como se responde}}'
+    tok_alcance, tok_entrega = '{{slide:Indicaciones}}', '{{slide:Indicaciones}}'
     # La clase que el grupo cree que no cuenta es la autonoma: no hubo sesion en vivo. La
     # portada del instrumento la marca «(sesion autonoma)». Cuando la autonoma ES la ultima
     # clase evaluada —el Parcial 2, cuya Clase 10 cayo en la sesion del festivo— la

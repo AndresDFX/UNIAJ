@@ -39,10 +39,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 10] Ausencia de estado: donde mas estudiantes fallan (2/2)** — 2 vinetas.
 
-**[Slide 11] Las cinco piezas que el entregable debe nombrar (1/2)** — 6 vinetas.
+**[Slide 11] Las cinco piezas del autoescalado (1/2)** — 6 vinetas.
   - Cada numero se justifica.
 
-**[Slide 12] Las cinco piezas que el entregable debe nombrar (2/2)** — 5 vinetas.
+**[Slide 12] Las cinco piezas del autoescalado (2/2)** — 5 vinetas.
 
 **[Slide 13] El limite fisico: la instancia nueva no aparece al instante (1/2)** — 4 vinetas.
 
@@ -50,26 +50,26 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 15] Elegir la metrica: la decision mas fina del tema (1/2)** — 3 vinetas.
   - Regla de bolsillo: la metrica correcta es la que mide el recurso que se agota primero, es decir el cuello de botella identificado en la clase anterior.
-  - De ahi que el entregable de hoy no se pueda hacer bien si el de la Clase 12 quedo vacio.
+  - (Sobre la actividad, no se proyecta) De ahi que el entregable de hoy no se pueda hacer bien si el de la Clase 12 quedo vacio.
 
 **[Slide 16] Elegir la metrica: la decision mas fina del tema (2/2)** — 2 vinetas.
 
-**[Slide 17] Lo que NO escala: la mitad del entregable (1/2)** — 5 vinetas.
-  - Lo que NO escala es la mitad del entregable y separa una sustentacion seria de una lista de deseos.
+**[Slide 17] Lo que NO escala (1/2)** — 5 vinetas.
+  - Declarar lo que NO escala separa un diseno serio de una lista de deseos.
   - Multiplicar la capa sin verificar el limite del recurso compartido no mejora el sistema, lo rompe.
 
-**[Slide 18] Lo que NO escala: la mitad del entregable (2/2)** — 5 vinetas.
+**[Slide 18] Lo que NO escala (2/2)** — 5 vinetas.
 
-**[Slide 19] Preguntas frecuentes y cierre conceptual () (1/4)** — 4 vinetas.
+**[Slide 19] Preguntas frecuentes y cierre conceptual () (1/3)** — 4 vinetas.
   - Tres preguntas aparecen sin falta en una clase autonoma como esta y conviene responderlas por escrito en el foro.
+  - (Sobre la actividad, no se proyecta) Para verificar el diseno sin gastar un peso alcanza Killercoda con docker compose para levantar dos o tres replicas del stub detras de un balanceador y comprobar que la sesion no se rompe; el entregable formal es una nota sobre el diagrama de despliegue y la seccion escrita con estrategia, trigger, limite y lo que no escala, que la Clase 14 evaluara y la Clase 15 exigira sustentar.
+  - (Sobre la actividad, no se proyecta) Si eso se deja pasar, el entregable llega con la seccion de "que no escala" vacia o rellenada con una frase generica, y en la Clase 15 el estudiante afirma que su sistema soporta cualquier crecimiento mientras el diagrama muestra una unica base de datos con la sesion guardada en memoria, que es la contradiccion mas facil de detectar y la mas costosa de explicar en ese momento.
 
-**[Slide 20] Preguntas frecuentes y cierre conceptual () (2/4)** — 4 vinetas.
+**[Slide 20] Preguntas frecuentes y cierre conceptual () (2/3)** — 5 vinetas.
 
-**[Slide 21] Preguntas frecuentes y cierre conceptual () (3/4)** — 5 vinetas.
+**[Slide 21] Preguntas frecuentes y cierre conceptual () (3/3)** — 3 vinetas.
 
-**[Slide 22] Preguntas frecuentes y cierre conceptual () (4/4)** — 4 vinetas.
-
-**[Slide 23] La regla de autoescalado, escrita como configuracion** — 13 vinetas.
+**[Slide 22] La regla de autoescalado, escrita como configuracion** — 13 vinetas.
 
 
 ## Referencias a diapositivas
@@ -86,20 +86,20 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 8. Escalar vertical y horizontalmente: las dos formas de agregar capacidad (2/2)
 9. Ausencia de estado: donde mas estudiantes fallan (1/2)
 10. Ausencia de estado: donde mas estudiantes fallan (2/2)
-11. Las cinco piezas que el entregable debe nombrar (1/2)
-12. Las cinco piezas que el entregable debe nombrar (2/2)
+11. Las cinco piezas del autoescalado (1/2)
+12. Las cinco piezas del autoescalado (2/2)
 13. El limite fisico: la instancia nueva no aparece al instante (1/2)
 14. El limite fisico: la instancia nueva no aparece al instante (2/2)
 15. Elegir la metrica: la decision mas fina del tema (1/2)
 16. Elegir la metrica: la decision mas fina del tema (2/2)
-17. Lo que NO escala: la mitad del entregable (1/2)
-18. Lo que NO escala: la mitad del entregable (2/2)
-19. Preguntas frecuentes y cierre conceptual () (1/4)
-20. Preguntas frecuentes y cierre conceptual () (2/4)
-21. Preguntas frecuentes y cierre conceptual () (3/4)
-22. Preguntas frecuentes y cierre conceptual () (4/4)
-23. La regla de autoescalado, escrita como configuracion
-24. Politica de autoescalado (tabla, no prosa)
+17. Lo que NO escala (1/2)
+18. Lo que NO escala (2/2)
+19. Preguntas frecuentes y cierre conceptual () (1/3)
+20. Preguntas frecuentes y cierre conceptual () (2/3)
+21. Preguntas frecuentes y cierre conceptual () (3/3)
+22. La regla de autoescalado, escrita como configuracion
+23. Politica de autoescalado (tabla, no prosa)
+24. Del boceto al código Mermaid
 25. Clase 13 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)

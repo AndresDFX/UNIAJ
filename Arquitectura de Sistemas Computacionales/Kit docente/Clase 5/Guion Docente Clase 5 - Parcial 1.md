@@ -45,11 +45,10 @@ Di, con estas dos frases: «Hoy es **solo parcial**: no hay tema nuevo ni taller
 proyecto.» y «El parcial se entrega **por el canal que voy a nombrar ahora** —el que
 decidiste en la preparación— **antes del minuto 110; lo que llegue después no se recibe.**»
 Verifica asistencia por lista, no por «los que están conectados».
-Proyecta la **diapositiva 2** mientras lo dices: ahí está el alcance —las clases que
-entran— y el reparto de puntos por sección, que es lo primero que van a preguntar.
-Pasa a la **diapositiva 3** para el canal, el minuto de cierre y qué dudas vas a
-responder; dejarla en pantalla los primeros minutos ahorra la mitad de los mensajes por
-privado.
+Proyecta la **diapositiva 2** mientras lo dices. El deck es genérico a propósito: el
+alcance (qué clases entran) y el reparto de puntos los dices tú, desde el enunciado, y el
+canal y el minuto de cierre también; dejar la lámina en pantalla los primeros minutos
+ahorra la mitad de los mensajes por privado.
 Comparte el enunciado y **confirma en voz alta que todos lo abrieron** antes de arrancar
 el reloj: en virtual, el que no lo pudo descargar pierde 15 minutos en silencio.
 Di también qué material está autorizado (por defecto: **nada**) y que las cámaras se
