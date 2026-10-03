@@ -101,7 +101,7 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 6. Menor privilegio: qué deja de poder hacer
 7. Política de secretos: las cuatro preguntas
 8. Ejercicio guiado
-9. La tabla que se califica: una fila por amenaza
+9. Una fila por amenaza: ejemplo en CloudLite Turnos
 10. Seguridad como propiedad del diseno: la triada CIA (1/2)
 11. Seguridad como propiedad del diseno: la triada CIA (2/2)
 12. Modelar amenazas: las cuatro preguntas y el vocabulario (1/2)
@@ -124,15 +124,11 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 29. Preguntas frecuentes del grupo (2/2)
 30. La politica de secretos, en comandos
 31. El secreto en la imagen: por qué borrarlo no sirve
-32. Herramientas de hoy
-33. PI CloudLite — entregable de hoy
-34. Manos a la obra (paso a paso)
-35. Para continuar (PI)
-36. Clase 6 · PI en movimiento
+32. Clase 6 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 33]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Modelo de amenazas mínimo + controles para CloudLite**.
 Entregable concreto: Sección Seguridad PI: 5 amenazas STRIDE-lite + controles + secretos/CI.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -146,7 +142,7 @@ Cubre estos conceptos, en este orden, ~5 min cada uno, con su diapositiva:
 - **Menor privilegio: qué deja de poder hacer** · [Slide 6]
 - **Política de secretos: las cuatro preguntas** · [Slide 7]
 - **Ejercicio guiado** · [Slide 8]
-- **La tabla que se califica: una fila por amenaza** · [Slide 9]
+- **Una fila por amenaza: ejemplo en CloudLite Turnos** · [Slide 9]
 
 **Ninguna se salta**: cada una de esas diapositivas es el mecanismo con que se resuelve
 al menos una pregunta de la actividad calificada de hoy.
@@ -170,8 +166,9 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 📸 Por que un secreto NUNCA va dentro de la imagen (demo de 1 minuto) [[captura: salida-secreto-en-imagen.png]]
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 34]
-Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · opcional · sin diapositiva
+El taller es **opcional** y ya no está en el deck: si se hace hoy, comparte el `Taller … .docx` de
+`Clases/Clase 6 - Seguridad en la nube/` (los pasos también están en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
 
@@ -183,7 +180,7 @@ Aplica el quiz corto de `Kit docente/Clase 6/Quiz Clase 6 - Seguridad en la nube
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 36]
+### 115–120 · Cierre · [Slide 32]
 Di: «Queda avanzado: Modelo de amenazas mínimo + controles para CloudLite.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»

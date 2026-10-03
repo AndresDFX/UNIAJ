@@ -92,7 +92,7 @@ Numeracion real del deck `Clases/Clase 10 - Control de concurrencia/Presentacion
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
 1. Portada · Clase 10 · Control de concurrencia · VetCare
-2. Encuadre de hoy · Objetivo PI
+2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. La transaccion como unidad de todo o nada (1/2)
 5. La transaccion como unidad de todo o nada (2/2)
@@ -117,15 +117,7 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 24. Doble reserva sin control de concurrencia
 25. La restriccion que hace imposible la doble reserva
 26. Demo del dia
-27. Herramientas de hoy
-28. Actividad autonoma — contexto / por que importa
-29. Actividad autonoma — objetivo y criterios
-30. Actividad autonoma — escenario / datos de partida
-31. Actividad autonoma — pasos guiados
-32. Actividad autonoma — pistas (checklist vacio)
-33. Criterios de exito / entregable
-34. Para el PI esta semana
-35. Cierre · Clase 10
+27. Cierre · Clase 10
 
 > Privado, no se proyecta: `Kit docente/Clase 10/Solucion Taller Clase 10 - VetCare.docx`
 
@@ -135,7 +127,7 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
 ### Bloque A (0-20) · Encuadre PI
 **Decir/publicar:** «Hoy avanzamos el PI en: Escenarios de concurrencia del PI documentados. No es un taller suelto.»
-Referencia slides: Agenda + Objetivo PI.
+Referencia slides: Encuadre + Mapa del bloque.
 
 ### Bloque B (20-45) · Teoria minima
 Leer Teoria Core. Tomar notas en el informe del PI.

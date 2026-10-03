@@ -65,7 +65,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** si el tiempo aprieta, recorte Cambridge Analytica y 737 MAX a dos minutos. **Therac-25 y Volkswagen no se recortan**: uno da el argumento técnico y el otro el argumento legal.
 
-### 00:55–01:12 · Taller en salas de grupo · [Slide 15]
+### 00:55–01:12 · Taller en salas de grupo · [fuera del deck · guía del taller en la carpeta]
 
 **2 min** para repartir casos: un caso por equipo, asignado por número de equipo. El quinto equipo recibe un caso local en vez de uno famoso (está en el taller), porque hace falta que al menos uno juzgue algo que podría pasarles a ellos.
 
@@ -75,7 +75,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** cuando alguien diga «pero le habrían echado del trabajo», no lo descarte: es la objeción honesta. Responda con lo que sí se le pide —dejar rastro y escalar— y con lo que le pasó a quien no lo hizo.
 
-### 01:12–01:27 · Exposiciones · [Slide 16]
+### 01:12–01:27 · Exposiciones · [fuera del deck · guía del taller en la carpeta]
 
 5 equipos × 3 min, vocero con la pantalla ya compartida. **El minuto obligatorio de hoy es «el momento en que se pudo parar»**: sin eso la exposición es un resumen de noticia.
 
@@ -83,7 +83,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** anote qué numeral citó cada equipo. Si tres equipos citaron el principio 1 del código ACM/IEEE, dígalo en el cierre: es la señal de que el interés público es el principio que resuelve la mayoría de los casos.
 
-### 01:27–01:30 · Cierre · [Slide 17][Slide 18]
+### 01:27–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 15]
 
 Una idea: **en los cuatro casos el software funcionó.** Falló lo que se pidió construir y el hecho de que nadie lo detuvo. La ética profesional es la decisión temprana, no el arrepentimiento posterior.
 
@@ -108,10 +108,7 @@ Numeración real del deck `Clases/Clase 4 - Principios eticos en la Ingenieria/P
 12. Ejemplo: el correo que deja rastro
 13. Cinco preguntas para decidir sin ser experto
 14. Ejemplo resuelto: la app que vende la ubicación
-15. Taller de hoy: Comité de ética
-16. Cómo se expone en 3 minutos
-17. Para la Clase 5
-18. Cierre · Nos vemos en la sesión 5
+15. Cierre · Nos vemos en la sesión 5
 
 ## Si pasa esto en clase
 

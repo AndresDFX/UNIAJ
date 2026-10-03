@@ -2,8 +2,8 @@
 
 - **Curso:** Seminario de Sistemas (FI303301) · 120 min
 - **Hilo:** Proyecto Integrador **VetCare** — planos del sistema de la clinica «Huellitas»
-- **Hoy avanzamos el PI en:** Queda listo el catalogo de requisitos de VetCare: 8 RF y 4 RNF con criterio de verificacion y prioridad MoSCoW.
-- **Entregable de hoy:** Documento de requisitos de VetCare en PDF, con minimo 8 RF, 4 RNF cuantificados, priorizacion MoSCoW y matriz de trazabilidad, subido a ExamLab.
+- **Avance del PI (si se hace la practica):** Queda listo el catalogo de requisitos de VetCare: 8 RF y 4 RNF con criterio de verificacion y prioridad MoSCoW.
+- **Practica (opcional):** `Clases/Clase 6 - Requerimientos de software/Taller PI - Clase 6 - VetCare.docx` — no esta en el deck
 - **Herramienta:** Google Docs · draw.io
 - **Slides:** `Clases/Clase 6 - Requerimientos de software/Presentacion.pptx`
 
@@ -47,13 +47,12 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 ## Plan minuto a minuto (120 min)
 
 ### 0-10 · Encuadre
-**Decir:** «Hoy avanzamos VetCare en: Queda listo el catalogo de requisitos de VetCare: 8 RF y 4 RNF con criterio de verificacion y prioridad MoSCoW. La teoria es corta; el peso esta en
-el taller del proyecto.»
+**Decir:** «Hoy el tema es: Requerimientos de software. Todo lo que vamos a ver esta en las laminas.»
 Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 
 ### 10-40 · Teoria Core
-Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
-proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
+Cubrir el fundamento de arriba apoyandose en las laminas de teoria (una por concepto)
+y en las de codigo proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
 Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
@@ -62,8 +61,11 @@ Demo: El docente toma en vivo dos frases crudas de la entrevista al Dr. Ramirez 
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 6/Plantillas/RF-RNF-VetCare.md`
 
-### 60-105 · Taller guiado = avance del PI
-**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
+### 60-105 · Practica guiada (OPCIONAL) = avance del PI
+No hay laminas para esta franja: la guia es el archivo
+`Clases/Clase 6 - Requerimientos de software/Taller PI - Clase 6 - VetCare.docx` (compartirlo, no proyectarlo).
+Si hoy no se hace, usar el tiempo para profundizar la teoria y la demo.
+**Decir (si se hace):** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Paso 1: copie en la plantilla las cinco frases crudas de la entrevista al Dr. Ramirez y marque cada una como NECESIDAD, anotando al lado quien la dijo y en que contexto; esa columna es el origen y no se puede dejar vacia.
 2. Paso 2: traduzca las necesidades a requisitos funcionales usando la plantilla el sistema debe permitir a <actor> <accion> <objeto>, hasta llegar a minimo 8 RF numerados de RF-01 a RF-08; ningun RF puede contener la palabra y uniendo dos capacidades distintas.
@@ -73,11 +75,11 @@ Actividades:
 Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Documento de requisitos de VetCare en PDF, con minimo 8 RF, 4 RNF cuantificados, priorizacion MoSCoW y matriz de trazabilidad, subido a ExamLab.
 
-### 105-120 · Criterios de exito y cierre
-Repasar el checklist de la slide de criterios.
+### 105-120 · Sintesis y cierre
+Si hubo practica, repasar los criterios de exito del archivo del taller (no estan en el deck).
 Aplicar el quiz corto de `Kit docente/Clase 6/Quiz Clase 6 - VetCare.docx`
 (la clave va aparte y **no se proyecta**).
-**Decir:** «Queda avanzado: Queda listo el catalogo de requisitos de VetCare: 8 RF y 4 RNF con criterio de verificacion y prioridad MoSCoW.. Entrega en ExamLab, domingo 23:59.»
+**Decir (si hubo practica):** «Queda avanzado: Queda listo el catalogo de requisitos de VetCare: 8 RF y 4 RNF con criterio de verificacion y prioridad MoSCoW.. Entrega en ExamLab, domingo 23:59.»
 
 ## Solucion del taller (privada)
 `Kit docente/Clase 6/Solucion Taller Clase 6 - VetCare.docx` — no proyectar completa.

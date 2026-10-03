@@ -68,7 +68,7 @@ Reparto estricto. Hoy el reloj manda:
 
 **[Nota docente]:** si va retrasado, recorte los criterios a tres minutos quedándose con *medible* y *acceso a los actores*, que son los dos que más descartan. **No recorte el árbol**: es la herramienta del taller.
 
-### 00:35–00:52 · Taller en salas de grupo · [Slide 14]
+### 00:35–00:52 · Taller en salas de grupo · [fuera del deck · guía del taller en la carpeta]
 
 **2 min** para repartir: cada equipo trabaja **su propio problema**, el que viene desde la sesión 1. Excalidraw para el árbol, documento del equipo para la ficha.
 
@@ -78,7 +78,7 @@ Reparto estricto. Hoy el reloj manda:
 
 **[Nota docente]:** el árbol de diez raíces es el otro error frecuente. Pida que escojan las dos causas que sí pueden tocar y marquen el resto como restricciones.
 
-### 00:52–01:07 · Exposiciones · [Slide 15]
+### 00:52–01:07 · Exposiciones · [fuera del deck · guía del taller en la carpeta]
 
 5 equipos × 3 min. **El minuto obligatorio de hoy es el problema en una frase más la cifra.** Si no hay cifra, dígalo en el momento y déjelo anotado: se corrige esta semana y entra en la sesión 7.
 
@@ -98,7 +98,7 @@ Es individual, cubre las sesiones 1 a 6 y se responde en la sesión. Mantenga la
 
 **[Nota docente]:** si alguien pierde la conexión durante la evaluación, anótelo y resuélvalo con reposición el mismo día. No lo deje para la próxima sesión.
 
-### 01:27–01:30 · Cierre · [Slide 16][Slide 17]
+### 01:27–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 14]
 
 Una idea: **el problema ya está escrito y de aquí en adelante todo se hace sobre esa ficha.** El corte 1 cierra con un producto, no con una nota.
 
@@ -122,10 +122,7 @@ Numeración real del deck `Clases/Clase 6 - Analisis de problemas tecnologicos d
 11. Cuándo un problema cabe en un semestre
 12. Ejemplo: el mismo problema, grande y del tamaño justo
 13. Cómo cierra el corte 1 hoy
-14. Taller de hoy: Ficha del problema del proyecto
-15. Cómo se expone en 3 minutos
-16. Para la Clase 7
-17. Cierre · Cerró el corte 1 · nos vemos en la sesión 7
+14. Cierre · Cerró el corte 1 · nos vemos en la sesión 7
 
 ## Si pasa esto en clase
 

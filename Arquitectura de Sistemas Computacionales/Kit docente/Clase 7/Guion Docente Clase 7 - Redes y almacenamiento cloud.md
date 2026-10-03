@@ -132,16 +132,11 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 31. Que tipo de almacenamiento pide cada componente
 32. Ejemplo de diagrama de despliegue (Deployment)
 33. El Despliegue en Mermaid: el molde que la plataforma del curso renderiza
-34. Herramientas de hoy
-35. Del boceto a la plataforma del curso (diagrama)
-36. PI CloudLite — entregable de hoy
-37. Manos a la obra (paso a paso)
-38. Para continuar (PI)
-39. Clase 7 · PI en movimiento
+34. Clase 7 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 36]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Diagrama de despliegue: red, zonas, almacenamiento**.
 Entregable concreto: Diagrama Deployment en Mermaid en la plataforma del curso (3 zonas + puertos) + tipo de almacenamiento por componente.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -161,7 +156,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 35]
+### 40–55 · Demo en vivo · [Slide 33]
 Herramienta del día: **Navegador · editor de diagramas del curso (Mermaid) · boceto libre opcional**.
 **Demo que usted debe poder repetir:** Del boceto de tres zonas al Mermaid que se califica
 
@@ -198,7 +193,7 @@ flowchart LR
 Narra los clics en voz alta. Si falla la red, proyecta la [Slide 33], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
-**Cierra la demo en la plataforma del curso** [Slide 35] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
+**Si se hace el taller, cierra la demo en la plataforma del curso** (sin diapositiva: el flujo está en el `Taller … .docx`) — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -208,8 +203,9 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 37]
-Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · opcional · sin diapositiva
+El taller es **opcional** y ya no está en el deck: si se hace hoy, comparte el `Taller … .docx` de
+`Clases/Clase 7 - Redes y almacenamiento cloud/` (los pasos también están en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
 
@@ -221,7 +217,7 @@ Aplica el quiz corto de `Kit docente/Clase 7/Quiz Clase 7 - Redes y almacenamien
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 39]
+### 115–120 · Cierre · [Slide 34]
 Di: «Queda avanzado: Diagrama de despliegue: red, zonas, almacenamiento.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»

@@ -24,43 +24,43 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 7] La teoria propia del dia: que es una revision de arquitectura (1/2)** — 3 vinetas.
+**[Slide 5] La teoria propia del dia: que es una revision de arquitectura (1/2)** — 3 vinetas.
   - Hoy el docente no dicta, audita, y el estudiante no aprende un concepto, demuestra que los que ya tiene forman un sistema.
 
-**[Slide 8] La teoria propia del dia: que es una revision de arquitectura (2/2)** — 2 vinetas.
+**[Slide 6] La teoria propia del dia: que es una revision de arquitectura (2/2)** — 2 vinetas.
 
-**[Slide 9] El insumo: las seis piezas del paquete CloudLite v1** — 4 vinetas.
+**[Slide 7] El insumo: las seis piezas del paquete CloudLite v1** — 4 vinetas.
   - Y se audita con preguntas mecanicas que cualquier docente puede hacer sin ser experto en el dominio del proyecto, lo que hace esta tecnica ensenable.
 
-**[Slide 10] Las cinco preguntas de coherencia, en orden (1/2)** — 5 vinetas.
+**[Slide 8] Las cinco preguntas de coherencia, en orden (1/2)** — 5 vinetas.
 
-**[Slide 11] Las cinco preguntas de coherencia, en orden (2/2)** — 4 vinetas.
+**[Slide 9] Las cinco preguntas de coherencia, en orden (2/2)** — 4 vinetas.
 
-**[Slide 12] Scope creep y arquitectura de papel: las dos patologias con nombre propio (1/2)** — 4 vinetas.
+**[Slide 10] Scope creep y arquitectura de papel: las dos patologias con nombre propio (1/2)** — 4 vinetas.
   - Hay dos patologias con nombre propio que arruinan las sustentaciones.
   - La respuesta correcta no es prohibir ideas sino congelar el alcance y abrir una lista de aparcamiento, un anexo donde las capacidades extra quedan escritas como "fuera de alcance v1, candidatas a v2": preserva la idea, protege el cronograma y es lo que hace un equipo profesional al cerrar un release.
 
-**[Slide 13] Scope creep y arquitectura de papel: las dos patologias con nombre propio (2/2)** — 4 vinetas.
+**[Slide 11] Scope creep y arquitectura de papel: las dos patologias con nombre propio (2/2)** — 4 vinetas.
 
-**[Slide 14] Retroalimentacion accionable: observacion, evidencia, impacto y accion con fecha (1/2)** — 4 vinetas.
+**[Slide 12] Retroalimentacion accionable: observacion, evidencia, impacto y accion con fecha (1/2)** — 4 vinetas.
   - El docente debe apuntar a tres hallazgos por proyecto como maximo y marcar cual es el bloqueante, porque un estudiante que recibe once observaciones no corrige ninguna: se paraliza.
   - Conviene nombrar tambien una fortaleza concreta, no por amabilidad sino porque el estudiante necesita saber que conservar; si solo escucha fallas, en la siguiente version cambia todo, incluido lo que estaba bien.
 
-**[Slide 15] Retroalimentacion accionable: observacion, evidencia, impacto y accion con fecha (2/2)** — 2 vinetas.
+**[Slide 13] Retroalimentacion accionable: observacion, evidencia, impacto y accion con fecha (2/2)** — 2 vinetas.
 
-**[Slide 16] El semaforo: el umbral que decide si el proyecto va a tiempo (1/2)** — 5 vinetas.
+**[Slide 14] El semaforo: el umbral que decide si el proyecto va a tiempo (1/2)** — 5 vinetas.
 
-**[Slide 17] El semaforo: el umbral que decide si el proyecto va a tiempo (2/2)** — 3 vinetas.
+**[Slide 15] El semaforo: el umbral que decide si el proyecto va a tiempo (2/2)** — 3 vinetas.
 
-**[Slide 18] Preguntas frecuentes y cierre conceptual () (1/3)** — 4 vinetas.
+**[Slide 16] Preguntas frecuentes y cierre conceptual () (1/3)** — 4 vinetas.
   - Tres preguntas se repiten y el docente debe responderlas sin titubear.
   - Conviene cerrar diciendo que lo que se estabilice hoy es la base sobre la que la Clase 12 agregara el analisis de rendimiento y la Clase 13 la politica de escalado, y que un proyecto con el paquete v1 incoherente no puede hacer ninguna de las dos, porque no se puede medir ni escalar un sistema que todavia no esta definido.
 
-**[Slide 19] Preguntas frecuentes y cierre conceptual () (2/3)** — 5 vinetas.
+**[Slide 17] Preguntas frecuentes y cierre conceptual () (2/3)** — 5 vinetas.
 
-**[Slide 20] Preguntas frecuentes y cierre conceptual () (3/3)** — 3 vinetas.
+**[Slide 18] Preguntas frecuentes y cierre conceptual () (3/3)** — 3 vinetas.
 
-**[Slide 21] El C4 Component: por dentro de la API** — 17 vinetas.
+**[Slide 19] El C4 Component: por dentro de la API** — 17 vinetas.
 
 
 ## Referencias a diapositivas
@@ -70,34 +70,27 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 1. Portada · Clase 11 · Avance del proyecto final
 2. Agenda de hoy (120 min)
 3. Objetivos de la clase
-4. Checklist de avance (obligatorio)
-5. Errores frecuentes a corregir
-6. Rúbrica (recordatorio)
-7. La teoria propia del dia: que es una revision de arquitectura (1/2)
-8. La teoria propia del dia: que es una revision de arquitectura (2/2)
-9. El insumo: las seis piezas del paquete CloudLite v1
-10. Las cinco preguntas de coherencia, en orden (1/2)
-11. Las cinco preguntas de coherencia, en orden (2/2)
-12. Scope creep y arquitectura de papel: las dos patologias con nombre propio (1/2)
-13. Scope creep y arquitectura de papel: las dos patologias con nombre propio (2/2)
-14. Retroalimentacion accionable: observacion, evidencia, impacto y accion con fecha (1/2)
-15. Retroalimentacion accionable: observacion, evidencia, impacto y accion con fecha (2/2)
-16. El semaforo: el umbral que decide si el proyecto va a tiempo (1/2)
-17. El semaforo: el umbral que decide si el proyecto va a tiempo (2/2)
-18. Preguntas frecuentes y cierre conceptual () (1/3)
-19. Preguntas frecuentes y cierre conceptual () (2/3)
-20. Preguntas frecuentes y cierre conceptual () (3/3)
-21. El C4 Component: por dentro de la API
-22. Herramientas de hoy
-23. Del boceto a la plataforma del curso (diagrama)
-24. PI CloudLite — entregable de hoy
-25. Manos a la obra (paso a paso)
-26. Para continuar (PI)
-27. Clase 11 · PI en movimiento
+4. Errores frecuentes a corregir
+5. La teoria propia del dia: que es una revision de arquitectura (1/2)
+6. La teoria propia del dia: que es una revision de arquitectura (2/2)
+7. El insumo: las seis piezas del paquete CloudLite v1
+8. Las cinco preguntas de coherencia, en orden (1/2)
+9. Las cinco preguntas de coherencia, en orden (2/2)
+10. Scope creep y arquitectura de papel: las dos patologias con nombre propio (1/2)
+11. Scope creep y arquitectura de papel: las dos patologias con nombre propio (2/2)
+12. Retroalimentacion accionable: observacion, evidencia, impacto y accion con fecha (1/2)
+13. Retroalimentacion accionable: observacion, evidencia, impacto y accion con fecha (2/2)
+14. El semaforo: el umbral que decide si el proyecto va a tiempo (1/2)
+15. El semaforo: el umbral que decide si el proyecto va a tiempo (2/2)
+16. Preguntas frecuentes y cierre conceptual () (1/3)
+17. Preguntas frecuentes y cierre conceptual () (2/3)
+18. Preguntas frecuentes y cierre conceptual () (3/3)
+19. El C4 Component: por dentro de la API
+20. Clase 11 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 24]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Integrar diagramas v1 + checklist de avance PI**.
 Entregable concreto: Paquete v1: Context + Containers + Deployment + Dockerfile + Actions + informe 60%+.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -105,10 +98,8 @@ Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien
 Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
 
 ### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 4]
-Cubre estos conceptos, en este orden, ~10 min cada uno, con su diapositiva:
-- **Checklist de avance (obligatorio)** · [Slide 4]
-- **Errores frecuentes a corregir** · [Slide 5]
-- **Rúbrica (recordatorio)** · [Slide 6]
+Cubre estos conceptos, en este orden, ~30 min cada uno, con su diapositiva:
+- **Errores frecuentes a corregir** · [Slide 4]
 
 **Ninguna se salta**: cada una de esas diapositivas es el mecanismo con que se resuelve
 al menos una pregunta de la actividad calificada de hoy.
@@ -117,7 +108,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 23]
+### 40–55 · Demo en vivo
 Herramienta del día: **Navegador · editores de diagramas y de texto del curso**.
 **Demo que usted debe poder repetir:** Auditar en vivo el paquete de un voluntario
 
@@ -129,7 +120,7 @@ Herramienta del día: **Navegador · editores de diagramas y de texto del curso*
 Narra los clics en voz alta. Si falla la red, proyecta la solución docente de este kit (`Solucion Taller Clase 11 - CloudLite.md`), que trae el resultado esperado.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
-**Cierra la demo en la plataforma del curso** [Slide 23] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
+**Si se hace el taller, cierra la demo en la plataforma del curso** (sin diapositiva: el flujo está en el `Taller … .docx`) — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -139,8 +130,9 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 25]
-Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · opcional · sin diapositiva
+El taller es **opcional** y ya no está en el deck: si se hace hoy, comparte el `Taller … .docx` de
+`Clases/Clase 11 - Avance del proyecto final/` (los pasos también están en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
 
@@ -152,7 +144,7 @@ Aplica el quiz corto de `Kit docente/Clase 11/Quiz Clase 11 - Avance del proyect
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 27]
+### 115–120 · Cierre · [Slide 20]
 Di: «Queda avanzado: Integrar diagramas v1 + checklist de avance PI.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»

@@ -62,7 +62,7 @@ Reparto estricto, hoy no hay margen:
 
 - **2 min** · Cómo cierra el corte [Slide 9]. Diga que es a libro abierto **sobre sus propios documentos** y que ExamLab no es plataforma oficial de la universidad.
 
-### 00:25–00:52 · Taller en salas de grupo (27 min) · [Slide 10]
+### 00:25–00:52 · Taller en salas de grupo (27 min) · [fuera del deck · guía del taller en la carpeta]
 
 **2 min** para abrir el asistente, el prototipo y el documento del equipo.
 
@@ -80,7 +80,7 @@ Ritmo sugerido dentro de la sala, dígaselo al repartir:
 
 **[Nota docente]:** si un equipo dice «quedó perfecto, no corregimos nada», revíselo contra sus propios requisitos no funcionales: siempre hay algo. Es la señal más clara de que aceptaron sin leer.
 
-### 00:52–01:07 · Exposiciones · [Slide 11]
+### 00:52–01:07 · Exposiciones · [fuera del deck · guía del taller en la carpeta]
 
 5 equipos × 3 min. **El minuto obligatorio es «qué corregimos y por qué»**, no la variante elegida.
 
@@ -100,7 +100,7 @@ Recuerde en voz alta: **individual y a libro abierto sobre sus propios documento
 
 Quédese con la cámara encendida y el micrófono abierto para dudas de enunciado, sin resolver contenido.
 
-### 01:27–01:30 · Cierre · [Slide 12][Slide 13]
+### 01:27–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 10]
 
 Una idea: **pudieron corregir al asistente porque tenían sus decisiones escritas.** Eso es lo que hicieron en el corte 2.
 
@@ -120,10 +120,7 @@ Numeración real del deck `Clases/Clase 11 - Taller de prototipado inicial con I
 7. Ejemplo: la misma petición, mal y bien hecha
 8. La variante de la IA y la corrección del equipo
 9. Cómo cierra el corte 2 hoy
-10. Taller de hoy: Prototipo v2 con IA
-11. Cómo se expone en 3 minutos
-12. Para la Clase 12
-13. Cierre · Cierra el corte 2 · Nos vemos en la Clase 12
+10. Cierre · Cierra el corte 2 · Nos vemos en la Clase 12
 
 ## Si pasa esto en clase
 

@@ -161,7 +161,7 @@ Numeracion real del deck `Clases/Clase 3 - Procedimientos almacenados/Presentaci
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
 1. Portada · Clase 3 · Procedimientos almacenados · VetCare
-2. Encuadre de hoy · Objetivo PI
+2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. Que es un procedimiento almacenado, y las dos palabras que importan (1/2)
 5. Que es un procedimiento almacenado, y las dos palabras que importan (2/2)
@@ -212,28 +212,19 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 50. El contrato del procedimiento: los 6 bloques que consume la app
 51. PROCEDURE o FUNCTION: cual se puede usar dentro de un SELECT
 52. Demo del dia
-53. Herramientas de hoy
-54. Taller PI VetCare — contexto / por que importa
-55. Taller PI VetCare — objetivo y criterios
-56. Taller PI VetCare — escenario / datos de partida
-57. Taller PI VetCare — pasos guiados
-58. Taller PI VetCare — pistas (checklist vacio)
-59. Criterios de exito / entregable
-60. Para el PI esta semana
-61. Cierre · Clase 3
+53. Cierre · Clase 3
 
 > Privado, no se proyecta: `Kit docente/Clase 3/Solucion Taller Clase 3 - VetCare.docx`
 
 ## Plan minuto a minuto (120 min) — texto casi literal
 
 ### 0-10 · Encuadre · [Slide 2][Slide 3]
-**Decir:** «Buenas. Hoy el hilo es VetCare DB. Avanzamos el PI en: >=1 procedimiento de negocio (agendar cita / registrar consulta).
-La teoria sera corta; el peso esta en el taller del proyecto.»
-Proyectar [Slide 2] «Encuadre de hoy · Objetivo PI» y [Slide 3] «Mapa del bloque de hoy».
+**Decir:** «Buenas. Hoy el hilo es VetCare DB y el tema es: Procedimientos almacenados · VetCare.»
+Proyectar [Slide 2] «Encuadre de hoy · Tema y objetivo» y [Slide 3] «Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
 ### 10-35 · Teoria Core (breve) · desde 
-**Decir:** «Solo lo necesario para el entregable de hoy.»
+**Decir:** «Esto es lo que hay que saber del tema de hoy.»
 Proyecte estas diapositivas, en este orden, ~25 min cada una. Son la teoria
 completa del dia: **ninguna se salta**, porque el taller cobra puntos por lo que se
 proyecta en todas ellas.
@@ -259,9 +250,11 @@ Herramienta: ExamLab (PostgreSQL) + Google Docs
 📸 Bateria de pruebas de sp_agendar_cita: P1 OK y P2 rechazado por mascota inactiva [[captura: salida-proc-ok-y-error.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 57]
-**Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
-Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
+### 55-105 · Practica (opcional) · sin lamina
+La practica es **opcional** y **no se proyecta**: a veces se hace en clase, a veces no. La guia
+completa (contexto, escenario, pasos, pistas, plantilla y criterios) esta en `Clases/Clase 3 - Procedimientos almacenados/Taller PI - Clase 3 - VetCare.docx`.
+Si hoy se hace, el estudiante la abre desde la carpeta de la clase. Solucion en Kit docente/Solucion Taller... (no proyectar).
+Si se hace, avanza el PI en: >=1 procedimiento de negocio (agendar cita / registrar consulta)
 Actividades:
 1. Escribir sp_agendar_cita en PL/pgSQL y ejecutarlo en ExamLab (LANGUAGE plpgsql, dollar-quoting, sin sintaxis de Oracle).
 2. Incluir las 3 validaciones de negocio del PI, cada una con su RAISE EXCEPTION y su mensaje literal.
@@ -272,13 +265,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: 2 procedimientos en PL/pgSQL corriendo en ExamLab + bateria de pruebas con su tabla resultado_prueba + contrato del proc (6 bloques)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 3/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 59]
-Repasar checklist del dia con [Slide 59] «Criterios de exito / entregable».
+### 105-115 · Repaso + quiz corto
+Repasar los conceptos del dia volviendo a las laminas de teoria que mas costaron.
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 3 - VetCare.docx`. Clave para usted: `Quiz Clase 3 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 61]
-**Decir:** «Queda avanzado: >=1 procedimiento de negocio (agendar cita / registrar consulta). Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 61] slide de cierre. Dudas finales.
+### 115-120 · Cierre · [Slide 53]
+**Decir:** «Queda visto: Procedimientos almacenados · VetCare. Si hicimos la practica, la guia y la entrega estan en la carpeta de la clase.»
+Proyectar [Slide 53] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

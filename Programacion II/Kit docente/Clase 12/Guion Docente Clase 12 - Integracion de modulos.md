@@ -110,8 +110,8 @@ el taller del proyecto.»
 Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 
 ### 10-40 · Teoria Core
-Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
-proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
+Cubrir el fundamento de arriba apoyandose en las laminas de concepto y en las de codigo
+(lo que hay que subrayar esta tambien en las notas del presentador de cada lamina). Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
 Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
@@ -120,7 +120,9 @@ Demo: El docente corre el guion de humo completo (abrir, registrar, buscar, cerr
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 12/Codigo/VetCareApp.java`
 
-### 60-105 · Taller guiado = avance del PI
+### 60-105 · Taller guiado (opcional) = avance del PI
+Opcional: no tiene lamina en el deck. La guia esta en
+`Clases/Clase 12 - Integracion de modulos/Taller PI - Clase 12 - VetCare.docx`; si hoy no se hace, se extiende la demo y la practica libre.
 **Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Organice el proyecto en los paquetes vetcare.modelo, vetcare.datos, vetcare.logica y vetcare.ui, deje un único método main en la clase de arranque, elimine cualquier otro main que haya quedado de los talleres anteriores y verifique que la aplicación abre desde ese único punto.
@@ -132,7 +134,7 @@ Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: El proyecto VetCare ejecutable (carpeta del proyecto o JAR) más la bitácora de integración con tres defectos hallados con el debugger, cada uno con síntoma, causa, corrección y evidencia, subidos a ExamLab.
 
 ### 105-120 · Criterios de exito y cierre
-Repasar el checklist de la slide de criterios.
+Si hubo taller, repasar los criterios de exito del `Taller PI - Clase 12 - VetCare.docx` (no estan en el deck).
 Aplicar el quiz corto de `Kit docente/Clase 12/Quiz Clase 12 - VetCare.docx`
 (la clave va aparte y **no se proyecta**).
 **Decir:** «Queda avanzado: VetCare arranca, carga el archivo, registra, busca por ID, lista y guarda al cerrar: el flujo completo del PI corre sin tocar código.. Entrega en ExamLab, domingo 23:59.»

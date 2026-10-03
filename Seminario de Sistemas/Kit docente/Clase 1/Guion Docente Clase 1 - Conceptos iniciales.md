@@ -2,8 +2,8 @@
 
 - **Curso:** Seminario de Sistemas (FI303301) · 120 min
 - **Hilo:** Proyecto Integrador **VetCare** — planos del sistema de la clinica «Huellitas»
-- **Hoy avanzamos el PI en:** Dominio del proyecto acotado (trabajo individual por defecto)
-- **Entregable de hoy:** Ficha de dominio: problema en 2-3 frases, 3-5 capacidades, 2-3 actores y lo que queda fuera de alcance
+- **Avance del PI (si se hace la practica):** Dominio del proyecto acotado (trabajo individual por defecto)
+- **Practica (opcional):** `Clases/Clase 1 - Conceptos iniciales/Taller PI - Clase 1 - VetCare.docx` — no esta en el deck
 - **Herramienta:** Google Docs · draw.io
 - **Slides:** `Clases/Clase 1 - Conceptos iniciales/Presentacion.pptx`
 
@@ -101,13 +101,12 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 ## Plan minuto a minuto (120 min)
 
 ### 0-10 · Encuadre
-**Decir:** «Hoy avanzamos VetCare en: Dominio del proyecto acotado (trabajo individual por defecto). La teoria es corta; el peso esta en
-el taller del proyecto.»
+**Decir:** «Hoy el tema es: Conceptos iniciales de ingenieria de software. Todo lo que vamos a ver esta en las laminas.»
 Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 
 ### 10-40 · Teoria Core
-Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
-proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
+Cubrir el fundamento de arriba apoyandose en las laminas de teoria (una por concepto)
+y en las de codigo proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
 Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
@@ -116,8 +115,11 @@ Demo: Convertir en vivo la frase cruda «necesito buscar rapido el expediente de
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 1/Plantillas/Ficha de dominio - VetCare.md`
 
-### 60-105 · Taller guiado = avance del PI
-**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
+### 60-105 · Practica guiada (OPCIONAL) = avance del PI
+No hay laminas para esta franja: la guia es el archivo
+`Clases/Clase 1 - Conceptos iniciales/Taller PI - Clase 1 - VetCare.docx` (compartirlo, no proyectarlo).
+Si hoy no se hace, usar el tiempo para profundizar la teoria y la demo.
+**Decir (si se hace):** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Modalidad de trabajo: individual por defecto. Abra su ficha de dominio y escriba su nombre. Si el docente autoriza equipos de 2 o 3 integrantes, la ficha puede ser compartida, pero la entrega en ExamLab siempre es individual y con sus propias palabras.
 2. Escriban el problema en 2-3 frases: quien sufre que, y como se nota hoy ese dolor en la operacion diaria de la clinica.
@@ -127,11 +129,11 @@ Actividades:
 Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Ficha de dominio: problema en 2-3 frases, 3-5 capacidades, 2-3 actores y lo que queda fuera de alcance
 
-### 105-120 · Criterios de exito y cierre
-Repasar el checklist de la slide de criterios.
+### 105-120 · Sintesis y cierre
+Si hubo practica, repasar los criterios de exito del archivo del taller (no estan en el deck).
 Aplicar el quiz corto de `Kit docente/Clase 1/Quiz Clase 1 - VetCare.docx`
 (la clave va aparte y **no se proyecta**).
-**Decir:** «Queda avanzado: Dominio del proyecto acotado (trabajo individual por defecto). Entrega en ExamLab, domingo 23:59.»
+**Decir (si hubo practica):** «Queda avanzado: Dominio del proyecto acotado (trabajo individual por defecto). Entrega en ExamLab, domingo 23:59.»
 
 ## Solucion del taller (privada)
 `Kit docente/Clase 1/Solucion Taller Clase 1 - VetCare.docx` — no proyectar completa.

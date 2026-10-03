@@ -91,7 +91,7 @@ Cada equipo deja en su columna del muro **tres imágenes** —una pantalla del p
 
 **[Nota docente]:** si aparece un conflicto de equipo, **no lo resuelva en público**. Recoja las coevaluaciones, léalas después y ajuste con criterio: tres coevaluaciones independientes con hechos son información válida; una sola sin hechos no alcanza.
 
-### 01:10–01:30 · Cierre del curso (20 min) · [Slide 11][Slide 14][Slide 15]
+### 01:10–01:30 · Cierre del curso (20 min) · [Slide 11][fuera del deck · guía del taller en la carpeta][Slide 12]
 
 **[Slide 11]** Antes y después. Tenga a mano **las respuestas reales de la prueba diagnóstica de la sesión 1**, no parafraseadas: el efecto está en que sean suyas.
 
@@ -119,10 +119,7 @@ Numeración real del deck `Clases/Clase 16 - Socializacion y evaluacion final de
 9. Ejemplo: la sección 10 del informe, vacía y bien hecha
 10. La autoevaluación y la coevaluación, en serio
 11. Lo que decían en la sesión 1 y lo que pueden sostener hoy
-12. Taller de hoy: Informe final y autoevaluación
-13. Cómo se expone en 3 minutos
-14. Cierre del curso
-15. Cierre · Gracias · Introducción a la Ingeniería
+12. Cierre · Gracias · Introducción a la Ingeniería
 
 ## Si pasa esto en clase
 

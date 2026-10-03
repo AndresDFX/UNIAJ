@@ -56,13 +56,13 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 15] Caso cuatro: concurrencia, el que no llega a los titulares (2/2)** — 4 vinetas.
 
-**[Slide 16] Lo que decide la calificacion: lecciones accionables (1/3)** — 5 vinetas.
+**[Slide 16] Lecciones accionables: los cuatro elementos verificables (1/3)** — 5 vinetas.
   - Lo que decide la calificacion de hoy no es reunir casos sino escribir lecciones accionables, y esa es la habilidad que el estudiante debe practicar sin ayuda.
   - Compare las dos versiones.
 
-**[Slide 17] Lo que decide la calificacion: lecciones accionables (2/3)** — 5 vinetas.
+**[Slide 17] Lecciones accionables: los cuatro elementos verificables (2/3)** — 5 vinetas.
 
-**[Slide 18] Lo que decide la calificacion: lecciones accionables (3/3)** — 3 vinetas.
+**[Slide 18] Lecciones accionables: los cuatro elementos verificables (3/3)** — 3 vinetas.
 
 **[Slide 19] Leer un plan de ejecucion ajeno** — 13 vinetas.
 
@@ -74,7 +74,7 @@ Numeracion real del deck `Clases/Clase 13 - Analisis de casos reales/Presentacio
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
 1. Portada · Clase 13 · Analisis de casos reales · VetCare
-2. Encuadre de hoy · Objetivo PI
+2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. Clase autonoma: este texto es fundamento y guia a la vez (1/2)
 5. Clase autonoma: este texto es fundamento y guia a la vez (2/2)
@@ -88,20 +88,12 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 13. Caso tres: perdida de datos en una migracion (MySpace, 2019) (2/2)
 14. Caso cuatro: concurrencia, el que no llega a los titulares (1/2)
 15. Caso cuatro: concurrencia, el que no llega a los titulares (2/2)
-16. Lo que decide la calificacion: lecciones accionables (1/3)
-17. Lo que decide la calificacion: lecciones accionables (2/3)
-18. Lo que decide la calificacion: lecciones accionables (3/3)
+16. Lecciones accionables: los cuatro elementos verificables (1/3)
+17. Lecciones accionables: los cuatro elementos verificables (2/3)
+18. Lecciones accionables: los cuatro elementos verificables (3/3)
 19. Leer un plan de ejecucion ajeno
 20. Demo del dia
-21. Herramientas de hoy
-22. Actividad autonoma — contexto / por que importa
-23. Actividad autonoma — objetivo y criterios
-24. Actividad autonoma — escenario / datos de partida
-25. Actividad autonoma — pasos guiados
-26. Actividad autonoma — pistas (checklist vacio)
-27. Criterios de exito / entregable
-28. Para el PI esta semana
-29. Cierre · Clase 13
+21. Cierre · Clase 13
 
 > Privado, no se proyecta: `Kit docente/Clase 13/Solucion Taller Clase 13 - VetCare.docx`
 
@@ -111,7 +103,7 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
 ### Bloque A (0-20) · Encuadre PI
 **Decir/publicar:** «Hoy avanzamos el PI en: Informe de caso -> mejoras concretas al PI. No es un taller suelto.»
-Referencia slides: Agenda + Objetivo PI.
+Referencia slides: Encuadre + Mapa del bloque.
 
 ### Bloque B (20-45) · Teoria minima
 Leer Teoria Core. Tomar notas en el informe del PI.

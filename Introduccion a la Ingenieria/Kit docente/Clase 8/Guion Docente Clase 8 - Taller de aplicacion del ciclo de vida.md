@@ -64,7 +64,7 @@ Reparto estricto:
 
 **[Nota docente]:** si va retrasado, recorte los casos a cuatro minutos y quédese con el del aeropuerto (requisitos) y el de la firma financiera (operación).
 
-### 00:30–01:10 · Taller extendido en salas de grupo (40 min) · [Slide 12]
+### 00:30–01:10 · Taller extendido en salas de grupo (40 min) · [fuera del deck · guía del taller en la carpeta]
 
 **3 min** para organizarse. El documento del equipo y draw.io abiertos.
 
@@ -82,7 +82,7 @@ Reparto estricto:
 
 **[Nota docente]:** si un equipo llega sin las dos alternativas del trabajo independiente, hágalas escribir en cinco minutos ahí mismo. Sin dos alternativas no hay decisión que tomar y la sesión se les pierde.
 
-### 01:10–01:25 · Exposiciones · [Slide 13]
+### 01:10–01:25 · Exposiciones · [fuera del deck · guía del taller en la carpeta]
 
 5 equipos × 3 min. **El minuto obligatorio es «qué perdimos al decidir»**: es lo que demuestra que decidieron en vez de acertar.
 
@@ -90,7 +90,7 @@ Reparto estricto:
 
 **[Nota docente]:** anote la alternativa elegida y el alcance mínimo de cada equipo. En la sesión 10 se prototipa exactamente eso, y en la 12 se prueba.
 
-### 01:25–01:30 · Cierre (5 min) · [Slide 14][Slide 15]
+### 01:25–01:30 · Cierre (5 min) · [fuera del deck · guía del taller en la carpeta][Slide 12]
 
 Una idea: **decidir no es acertar.** Una decisión de ingeniería se defiende con criterios escritos antes, con una justificación por criterio y con la lista de lo que se sacrificó.
 
@@ -114,10 +114,7 @@ Numeración real del deck `Clases/Clase 8 - Taller de aplicacion del ciclo de vi
 9. Ejemplo: alcance soñado y alcance mínimo
 10. El plan de validación, y dos trampas
 11. Ejemplo: un plan de validación de tres líneas
-12. Taller de hoy: Decisión de la solución y alcance mínimo
-13. Cómo se expone en 3 minutos
-14. Para la Clase 9
-15. Cierre · Nos vemos en la sesión 9
+12. Cierre · Nos vemos en la sesión 9
 
 ## Si pasa esto en clase
 

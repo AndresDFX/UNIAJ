@@ -48,12 +48,12 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 10] Por que el parametro lo evita por construccion (2/2)** — 4 vinetas.
 
-**[Slide 11] El contrato y sus seis partes, que se exigen en el entregable (1/2)** — 6 vinetas.
+**[Slide 11] El contrato y sus seis partes (1/2)** — 6 vinetas.
   - La lista de errores posibles con codigo y significado.
   - Y la version.
   - Idempotente significa que ejecutar la operacion dos veces con los mismos datos deja el sistema igual que ejecutarla una sola vez.
 
-**[Slide 12] El contrato y sus seis partes, que se exigen en el entregable (2/2)** — 5 vinetas.
+**[Slide 12] El contrato y sus seis partes (2/2)** — 5 vinetas.
 
 **[Slide 13] El manejo de errores entre capas: las tres reglas (1/2)** — 4 vinetas.
   - El manejo de errores entre capas se resuelve con tres reglas.
@@ -97,7 +97,7 @@ Numeracion real del deck `Clases/Clase 12 - Integracion y preparacion final/Pres
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
 1. Portada · Clase 12 · Integracion app <-> BD · Prep. presentacion
-2. Encuadre de hoy · Objetivo PI
+2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. Integrar no es conectarse: cual es la unica puerta de entrada (1/2)
 5. Integrar no es conectarse: cual es la unica puerta de entrada (2/2)
@@ -106,8 +106,8 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 8. Inyeccion SQL: cuando el dato se interpreta... — sintaxis
 9. Por que el parametro lo evita por construccion (1/2)
 10. Por que el parametro lo evita por construccion (2/2)
-11. El contrato y sus seis partes, que se exigen en el entregable (1/2)
-12. El contrato y sus seis partes, que se exigen en el entregable (2/2)
+11. El contrato y sus seis partes (1/2)
+12. El contrato y sus seis partes (2/2)
 13. El manejo de errores entre capas: las tres reglas (1/2)
 14. El manejo de errores entre capas: las tres reglas (2/2)
 15. El pool de conexiones: que es y por que se agota (1/3)
@@ -122,29 +122,20 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 24. La inyeccion de SQL, explicada con las dos versiones
 25. El contrato que la app consume (no SQL suelto)
 26. Demo del dia
-27. Herramientas de hoy
-28. Del boceto a ExamLab (diagrama)
-29. Taller PI VetCare — contexto / por que importa
-30. Taller PI VetCare — objetivo y criterios
-31. Taller PI VetCare — escenario / datos de partida
-32. Taller PI VetCare — pasos guiados
-33. Taller PI VetCare — pistas (checklist vacio)
-34. Criterios de exito / entregable
-35. Para el PI esta semana
-36. Cierre · Clase 12
+27. Del boceto a ExamLab (diagrama)
+28. Cierre · Clase 12
 
 > Privado, no se proyecta: `Kit docente/Clase 12/Solucion Taller Clase 12 - VetCare.docx`
 
 ## Plan minuto a minuto (120 min) — texto casi literal
 
 ### 0-10 · Encuadre · [Slide 2][Slide 3]
-**Decir:** «Buenas. Hoy el hilo es VetCare DB. Avanzamos el PI en: Contrato integracion + preparacion de entrega/sustentacion.
-La teoria sera corta; el peso esta en el taller del proyecto.»
-Proyectar [Slide 2] «Encuadre de hoy · Objetivo PI» y [Slide 3] «Mapa del bloque de hoy».
+**Decir:** «Buenas. Hoy el hilo es VetCare DB y el tema es: Integracion app <-> BD · Prep. presentacion.»
+Proyectar [Slide 2] «Encuadre de hoy · Tema y objetivo» y [Slide 3] «Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
 ### 10-35 · Teoria Core (breve) · desde 
-**Decir:** «Solo lo necesario para el entregable de hoy.»
+**Decir:** «Esto es lo que hay que saber del tema de hoy.»
 Proyecte estas diapositivas, en este orden, ~25 min cada una. Son la teoria
 completa del dia: **ninguna se salta**, porque el taller cobra puntos por lo que se
 proyecta en todas ellas.
@@ -161,12 +152,12 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: dejar que la 'integracion' quede como una idea abstracta sin contrato escrito — el entregable de hoy exige documentar minimo 3 operaciones con su firma completa, no solo mencionarlas de palabra.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 26][Slide 28]
+### 35-55 · Demo paso a paso · [Slide 26][Slide 27]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: Plantilla contrato sp_agendar_cita + storyboard 6 slides.
 Herramienta: Google Docs + Live SQL + Excalidraw
 
-**Cierre la demo dentro de ExamLab** [Slide 28] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
+**Cierre la demo dentro de ExamLab** [Slide 27] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -177,9 +168,11 @@ Herramienta: Google Docs + Live SQL + Excalidraw
 📸 Salida esperada de la demo de la Clase 12 [[captura: cap01_demo.png | receta: 1) Abra Google Docs + Live SQL + Excalidraw y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 12/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda embebida aqui sola.]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 32]
-**Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
-Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
+### 55-105 · Practica (opcional) · sin lamina
+La practica es **opcional** y **no se proyecta**: a veces se hace en clase, a veces no. La guia
+completa (contexto, escenario, pasos, pistas, plantilla y criterios) esta en `Clases/Clase 12 - Integracion y preparacion final/Taller PI - Clase 12 - VetCare.docx`.
+Si hoy se hace, el estudiante la abre desde la carpeta de la clase. Solucion en Kit docente/Solucion Taller... (no proyectar).
+Si se hace, avanza el PI en: Contrato integracion + preparacion de entrega/sustentacion
 Actividades:
 1. Redactar contrato de >=3 operaciones.
 2. Diagrama flujo app->BD (Excalidraw) opcional.
@@ -189,13 +182,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: Contrato app<->BD + outline de slides de sustentacion (5-8 min)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 12/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 34]
-Repasar checklist del dia con [Slide 34] «Criterios de exito / entregable».
+### 105-115 · Repaso + quiz corto
+Repasar los conceptos del dia volviendo a las laminas de teoria que mas costaron.
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 12 - VetCare.docx`. Clave para usted: `Quiz Clase 12 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 36]
-**Decir:** «Queda avanzado: Contrato integracion + preparacion de entrega/sustentacion. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 36] slide de cierre. Dudas finales.
+### 115-120 · Cierre · [Slide 28]
+**Decir:** «Queda visto: Integracion app <-> BD · Prep. presentacion. Si hicimos la practica, la guia y la entrega estan en la carpeta de la clase.»
+Proyectar [Slide 28] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

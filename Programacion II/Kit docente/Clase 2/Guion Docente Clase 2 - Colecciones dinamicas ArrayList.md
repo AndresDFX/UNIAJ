@@ -84,8 +84,8 @@ el taller del proyecto.»
 Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 
 ### 10-40 · Teoria Core
-Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
-proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
+Cubrir el fundamento de arriba apoyandose en las laminas de concepto y en las de codigo
+(lo que hay que subrayar esta tambien en las notas del presentador de cada lamina). Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
 Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
@@ -94,7 +94,9 @@ Demo: El docente muestra un Mascota[3] que revienta al intentar guardar la cuart
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 2/Codigo/VetCareRegistroMascotas.java`
 
-### 60-105 · Taller guiado = avance del PI
+### 60-105 · Taller guiado (opcional) = avance del PI
+Opcional: no tiene lamina en el deck. La guia esta en
+`Clases/Clase 2 - Colecciones dinamicas ArrayList/Taller PI - Clase 2 - VetCare.docx`; si hoy no se hace, se extiende la demo y la practica libre.
 **Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Cree en VS Code el proyecto Java llamado VetCare con paquete vetcare, y dentro de el la clase Mascota con los atributos privados id, nombre, especie, edad y dueno, su constructor completo, sus getters y el metodo toString(); verifique imprimiendo una mascota de prueba y confirmando que en consola sale el texto legible y no vetcare.Mascota@1a2b3c.
@@ -106,7 +108,7 @@ Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Proyecto Java con las clases Mascota y RegistroMascotas y un menu de consola que agrega, lista, busca por ID y elimina mascotas, comprimido y subido a ExamLab.
 
 ### 105-120 · Criterios de exito y cierre
-Repasar el checklist de la slide de criterios.
+Si hubo taller, repasar los criterios de exito del `Taller PI - Clase 2 - VetCare.docx` (no estan en el deck).
 Aplicar el quiz corto de `Kit docente/Clase 2/Quiz Clase 2 - VetCare.docx`
 (la clave va aparte y **no se proyecta**).
 **Decir:** «Queda avanzado: El registro de mascotas de VetCare deja de vivir en un arreglo de tamano fijo y pasa a un ArrayList<Mascota> que crece con la clinica.. Entrega en ExamLab, domingo 23:59.»

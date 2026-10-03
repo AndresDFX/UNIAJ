@@ -66,7 +66,7 @@ Reparto:
 
 - **2 min** · Las tres trampas [Slide 11]. Enuncie en voz alta la regla de quien recibe: **anotar, no responder.**
 
-### 00:28–00:40 · Taller en salas de grupo (12 min) · [Slide 12]
+### 00:28–00:40 · Taller en salas de grupo (12 min) · [fuera del deck · guía del taller en la carpeta]
 
 Bloque corto a propósito: el trabajo grueso ya venía hecho. Ritmo:
 
@@ -80,7 +80,7 @@ Bloque corto a propósito: el trabajo grueso ya venía hecho. Ritmo:
 
 **[Nota docente]:** abra el muro de Padlet con **una columna por equipo** antes de que salgan de las salas, y ponga el enlace en el chat.
 
-### 00:40–01:20 · Exposiciones y retroalimentación (40 min) · [Slide 13]
+### 00:40–01:20 · Exposiciones y retroalimentación (40 min) · [fuera del deck · guía del taller en la carpeta]
 
 5 equipos × 8 min: **5 de avance y 3 de retroalimentación del curso**. Cronómetro en pantalla, se corta al llegar a cero.
 
@@ -92,7 +92,7 @@ Mientras un equipo expone, los otros cuatro escriben **en la columna de ese equi
 
 **[Nota docente]:** aporte usted **un** comentario por equipo, al final de los tres minutos, y que sea el que nadie dijo. No repita lo que ya dijeron los compañeros.
 
-### 01:20–01:30 · Cierre · [Slide 14][Slide 15]
+### 01:20–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 12]
 
 Cada equipo escribe en su columna del muro **las dos cosas que va a ajustar** con lo que oyó hoy. Dos minutos, y queda el compromiso por escrito.
 
@@ -116,10 +116,7 @@ Numeración real del deck `Clases/Clase 12 - Presentacion de avances de proyecto
 9. Cómo se da retroalimentación que sirve
 10. Ejemplo: retroalimentación que no sirve y que sí
 11. Tres trampas de la retroalimentación entre pares
-12. Taller de hoy: Ficha de avance y plan de ajustes
-13. Cómo se expone en 5 minutos
-14. Para la Clase 13
-15. Cierre · Nos vemos en la Clase 13
+12. Cierre · Nos vemos en la Clase 13
 
 ## Si pasa esto en clase
 

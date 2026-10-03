@@ -67,7 +67,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** si el tiempo aprieta, recorte Colombia a cuatro minutos quedándose con la matriz hidráulica y la Ley 1672. La diapositiva de las dos decisiones y la de las trampas no se recortan.
 
-### 00:55–01:12 · Taller en salas de grupo · [Slide 15]
+### 00:55–01:12 · Taller en salas de grupo · [fuera del deck · guía del taller en la carpeta]
 
 **3 min** para abrir Excalidraw y repartir. Cada equipo trabaja **el sistema de su propio proyecto**, el que viene de las sesiones 1 y 3.
 
@@ -77,7 +77,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** si aparece una cifra sin fuente, pídala en el momento. Si no la tienen, que la borren y escriban la afirmación sin número: se califica mejor una afirmación honesta que una cifra inventada.
 
-### 01:12–01:27 · Exposiciones · [Slide 16]
+### 01:12–01:27 · Exposiciones · [fuera del deck · guía del taller en la carpeta]
 
 5 equipos × 3 min con el diagrama compartido. **El minuto obligatorio es «la etapa que más pesa y por qué»**, y el cierre de cada exposición es el indicador.
 
@@ -85,7 +85,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** anote los cinco indicadores. En la Clase 16 se revisa si se cumplieron, y tener la lista de hoy es lo que hace posible esa revisión.
 
-### 01:27–01:30 · Cierre · [Slide 17][Slide 18]
+### 01:27–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 15]
 
 Una idea: **el software no es inmaterial.** Tiene fabricación, consumo, red y residuo, y las decisiones que bajan la huella son decisiones de diseño, no de buena voluntad. La más fuerte que ellos pueden tomar es no obligar a cambiar de aparato.
 
@@ -110,10 +110,7 @@ Numeración real del deck `Clases/Clase 5 - El rol del ingeniero en el contexto 
 12. Cómo se estima una huella sin ser experto
 13. Ejemplo resuelto: el reporte diario de una tienda
 14. Dos trampas de esta clase
-15. Taller de hoy: Huella del sistema
-16. Cómo se expone en 3 minutos
-17. Para la Clase 6
-18. Cierre · Nos vemos en la sesión 6 — cierra el corte 1
+15. Cierre · Nos vemos en la sesión 6 — cierra el corte 1
 
 ## Si pasa esto en clase
 

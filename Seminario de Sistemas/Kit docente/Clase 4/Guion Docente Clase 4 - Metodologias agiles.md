@@ -2,8 +2,8 @@
 
 - **Curso:** Seminario de Sistemas (FI303301) · 120 min
 - **Hilo:** Proyecto Integrador **VetCare** — planos del sistema de la clinica «Huellitas»
-- **Hoy avanzamos el PI en:** Queda listo el backlog priorizado de VetCare repartido en sprints del semestre, con las primeras historias de usuario escritas con criterios de aceptacion.
-- **Entregable de hoy:** Un tablero en draw.io o Excalidraw con el Product Backlog priorizado de VetCare y las columnas de flujo con limite de trabajo en curso, mas un documento con el plan de tres sprints (objetivo y entregable de diseño de cada uno), la Definicion de Terminado y tres historias de usuario con criterios en formato Dado/Cuando/Entonces.
+- **Avance del PI (si se hace la practica):** Queda listo el backlog priorizado de VetCare repartido en sprints del semestre, con las primeras historias de usuario escritas con criterios de aceptacion.
+- **Practica (opcional):** `Clases/Clase 4 - Metodologias agiles/Taller PI - Clase 4 - VetCare.docx` — no esta en el deck
 - **Herramienta:** draw.io · Excalidraw · Google Docs
 - **Slides:** `Clases/Clase 4 - Metodologias agiles/Presentacion.pptx`
 
@@ -42,13 +42,12 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 ## Plan minuto a minuto (120 min)
 
 ### 0-10 · Encuadre
-**Decir:** «Hoy avanzamos VetCare en: Queda listo el backlog priorizado de VetCare repartido en sprints del semestre, con las primeras historias de usuario escritas con criterios de aceptacion. La teoria es corta; el peso esta en
-el taller del proyecto.»
+**Decir:** «Hoy el tema es: Metodologias agiles. Todo lo que vamos a ver esta en las laminas.»
 Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 
 ### 10-40 · Teoria Core
-Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
-proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
+Cubrir el fundamento de arriba apoyandose en las laminas de teoria (una por concepto)
+y en las de codigo proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
 Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
@@ -57,8 +56,11 @@ Demo: El docente arma en pantalla el tablero de VetCare, arrastra una tarjeta de
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 4/Plantillas/Backlog-y-Sprints-VetCare.md`
 
-### 60-105 · Taller guiado = avance del PI
-**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
+### 60-105 · Practica guiada (OPCIONAL) = avance del PI
+No hay laminas para esta franja: la guia es el archivo
+`Clases/Clase 4 - Metodologias agiles/Taller PI - Clase 4 - VetCare.docx` (compartirlo, no proyectarlo).
+Si hoy no se hace, usar el tiempo para profundizar la teoria y la demo.
+**Decir (si se hace):** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. En Google Docs escriba el Product Backlog de VetCare con al menos ocho items redactados como historias de usuario cortas, cada uno con prioridad (Alta/Media/Baja) y una justificacion de valor para Huellitas en una linea.
 2. Priorice el backlog en orden de arriba hacia abajo y explique por escrito, en dos renglones, por que el primer item es el primero (pista: resuelve uno de los tres dolores de la clinica).
@@ -68,11 +70,11 @@ Actividades:
 Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Un tablero en draw.io o Excalidraw con el Product Backlog priorizado de VetCare y las columnas de flujo con limite de trabajo en curso, mas un documento con el plan de tres sprints (objetivo y entregable de diseño de cada uno), la Definicion de Terminado y tres historias de usuario con criterios en formato Dado/Cuando/Entonces.
 
-### 105-120 · Criterios de exito y cierre
-Repasar el checklist de la slide de criterios.
+### 105-120 · Sintesis y cierre
+Si hubo practica, repasar los criterios de exito del archivo del taller (no estan en el deck).
 Aplicar el quiz corto de `Kit docente/Clase 4/Quiz Clase 4 - VetCare.docx`
 (la clave va aparte y **no se proyecta**).
-**Decir:** «Queda avanzado: Queda listo el backlog priorizado de VetCare repartido en sprints del semestre, con las primeras historias de usuario escritas con criterios de aceptacion.. Entrega en ExamLab, domingo 23:59.»
+**Decir (si hubo practica):** «Queda avanzado: Queda listo el backlog priorizado de VetCare repartido en sprints del semestre, con las primeras historias de usuario escritas con criterios de aceptacion.. Entrega en ExamLab, domingo 23:59.»
 
 ## Solucion del taller (privada)
 `Kit docente/Clase 4/Solucion Taller Clase 4 - VetCare.docx` — no proyectar completa.

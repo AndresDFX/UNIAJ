@@ -132,7 +132,7 @@ Numeracion real del deck `Clases/Clase 1 - Revision BD I y arranque VetCare/Pres
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
 1. Portada · Clase 1 · Revision BD I · Arranque VetCare DB
-2. Encuadre de hoy · Objetivo PI
+2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. El cliente · Clínica Veterinaria «Huellitas»
 5. El cliente: la clinica Huellitas (1/2)
@@ -165,29 +165,20 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 32. ER minimo VetCare (con cardinalidad)
 33. El DDL minimo que sostiene el ER
 34. Demo del dia
-35. Herramientas de hoy
-36. Del boceto a ExamLab (diagrama)
-37. Taller PI VetCare — contexto / por que importa
-38. Taller PI VetCare — objetivo y criterios
-39. Taller PI VetCare — escenario / datos de partida
-40. Taller PI VetCare — pasos guiados
-41. Taller PI VetCare — pistas (checklist vacio)
-42. Criterios de exito / entregable
-43. Para el PI esta semana
-44. Cierre · Clase 1
+35. Del boceto a ExamLab (diagrama)
+36. Cierre · Clase 1
 
 > Privado, no se proyecta: `Kit docente/Clase 1/Solucion Taller Clase 1 - VetCare.docx`
 
 ## Plan minuto a minuto (120 min) — texto casi literal
 
 ### 0-10 · Encuadre · [Slide 2][Slide 3]
-**Decir:** «Buenas. Hoy el hilo es VetCare DB. Avanzamos el PI en: Arranque PI: dominio, alcance y borrador ER de VetCare DB.
-La teoria sera corta; el peso esta en el taller del proyecto.»
-Proyectar [Slide 2] «Encuadre de hoy · Objetivo PI» y [Slide 3] «Mapa del bloque de hoy».
+**Decir:** «Buenas. Hoy el hilo es VetCare DB y el tema es: Revision BD I · Arranque VetCare DB.»
+Proyectar [Slide 2] «Encuadre de hoy · Tema y objetivo» y [Slide 3] «Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
 ### 10-35 · Teoria Core (breve) · desde 
-**Decir:** «Solo lo necesario para el entregable de hoy.»
+**Decir:** «Esto es lo que hay que saber del tema de hoy.»
 Proyecte estas diapositivas, en este orden, ~25 min cada una. Son la teoria
 completa del dia: **ninguna se salta**, porque el taller cobra puntos por lo que se
 proyecta en todas ellas.
@@ -204,12 +195,12 @@ Ideas que tienen que quedar dichas:
 - Reglas de negocio del PI que ya anticipan clases futuras: mascota inactiva no puede tener cita nueva (se validara con un procedimiento en Clase 3), stock de insumo nunca queda negativo (transacciones, Clase 8), cambios sensibles quedan auditados (triggers, Clase 4).
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 34][Slide 36]
+### 35-55 · Demo paso a paso · [Slide 34][Slide 35]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: Boceto ER en draw.io (Dueno-Mascota-Cita) + CREATE TABLE minimo en DB Fiddle, y cierre pasando el boceto a Mermaid con IA para pegarlo renderizado en ExamLab.
 Herramienta: draw.io + DB Fiddle
 
-**Cierre la demo dentro de ExamLab** [Slide 36] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
+**Cierre la demo dentro de ExamLab** [Slide 35] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -220,9 +211,11 @@ Herramienta: draw.io + DB Fiddle
 📸 Resultado del JOIN de verificacion del ER (lo que debe salir tras los INSERT) [[captura: salida-join-vetcare.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 40]
-**Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
-Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
+### 55-105 · Practica (opcional) · sin lamina
+La practica es **opcional** y **no se proyecta**: a veces se hace en clase, a veces no. La guia
+completa (contexto, escenario, pasos, pistas, plantilla y criterios) esta en `Clases/Clase 1 - Revision BD I y arranque VetCare/Taller PI - Clase 1 - VetCare.docx`.
+Si hoy se hace, el estudiante la abre desde la carpeta de la clase. Solucion en Kit docente/Solucion Taller... (no proyectar).
+Si se hace, avanza el PI en: Arranque PI: dominio, alcance y borrador ER de VetCare DB
 Actividades:
 1. Registrar el proyecto con el nombre exacto VetCare - [Apellido] (trabajo individual por defecto; equipo de 2-3 solo si el docente lo autoriza).
 2. Llenar la plantilla de la ficha del PI: alcance SI / alcance NO y 3 reglas de negocio propias en formato Condicion -> Accion.
@@ -232,13 +225,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: Ficha del PI (plantilla) + ER en Mermaid renderizado en ExamLab (PNG para tu carpeta) + 3 reglas Condicion -> Accion
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 1/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 42]
-Repasar checklist del dia con [Slide 42] «Criterios de exito / entregable».
+### 105-115 · Repaso + quiz corto
+Repasar los conceptos del dia volviendo a las laminas de teoria que mas costaron.
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 1 - VetCare.docx`. Clave para usted: `Quiz Clase 1 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 44]
-**Decir:** «Queda avanzado: Arranque PI: dominio, alcance y borrador ER de VetCare DB. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 44] slide de cierre. Dudas finales.
+### 115-120 · Cierre · [Slide 36]
+**Decir:** «Queda visto: Revision BD I · Arranque VetCare DB. Si hicimos la practica, la guia y la entrega estan en la carpeta de la clase.»
+Proyectar [Slide 36] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

@@ -46,6 +46,7 @@ from uniajc_slides_engine import (  # noqa: E402
     closing_slide,
     content_slide,
     herramientas_slide,
+    notas,
     new_prs,
     pseudo_code_slide,
     steps_visual_slide,
@@ -218,7 +219,7 @@ def build_pptx(c):
         class_cover(prs, PARCIALES[n][0], subtitulo="Solo evaluacion", clase_n=n, idx=1)
         content_slide(prs, "Indicaciones", [
             "Hoy es **solo Parcial** (virtual sincrono por Meet).",
-            "No hay tema nuevo ni taller del PI en esta sesion.",
+            "No hay tema nuevo en esta sesion.",
             "Duracion sugerida: **90–100 min** dentro del bloque de 120.",
             "La preparacion del PI continua en la siguiente clase regular.",
         ], idx=2)
@@ -235,25 +236,28 @@ def build_pptx(c):
     prs = new_prs()
     class_cover(prs, c["titulo"], subtitulo=c["subtitulo"], clase_n=n, idx=1)
     idx = 2
-    content_slide(prs, "Encuadre de hoy · Objetivo del PI", [
-        f"**Hoy avanzamos VetCare en:** {c['hito_pi']}",
+    # El deck lleva solo el tema. El taller del PI es opcional y vive en su carpeta
+    # (Taller ….docx en Clases/Clase N/; Solucion, Quiz y ExamLab en Kit docente/).
+    content_slide(prs, "Encuadre de hoy", [
+        f"**Tema de hoy:** {c['titulo']} — {c['subtitulo']}",
         f"Herramienta: **{c['herramienta']}** · Bloque **120 min**",
-        f"**Entregable de hoy:** {c['entregable']}",
-        "La teoria esta al servicio del producto: al salir, VetCare avanzo.",
+        "Primero el concepto, despues el codigo que lo muestra y la demo en vivo.",
+        "Todo con el mismo dominio: la clinica veterinaria Huellitas (VetCare).",
     ], idx=idx); idx += 1
     block_timeline_slide(prs, "Mapa del bloque de hoy (120 min)", [
-        ("0-10", "Encuadre y repaso del avance"),
+        ("0-10", "Encuadre y repaso de la clase anterior"),
         ("10-40", "Teoria Core del tema de hoy"),
         ("40-60", "Demo en vivo sobre VetCare"),
-        ("60-105", "Taller guiado = avance del PI"),
-        ("105-120", "Criterios de exito y cierre"),
+        ("60-105", "Practica (opcional, guia en la carpeta)"),
+        ("105-120", "Repaso de conceptos y cierre"),
     ], idx=idx); idx += 1
-    _base_teoria = idx
-    for _t, _items, _, _tipo in _teoria_slides(c):
+    for _t, _items, _notas, _tipo in _teoria_slides(c):
         if _tipo == "codigo":
-            pseudo_code_slide(prs, _t, _items, idx=idx)
+            _s = pseudo_code_slide(prs, _t, _items, idx=idx)
         else:
-            content_slide(prs, _t, _items, idx=idx)
+            _s = content_slide(prs, _t, _items, idx=idx)
+        if _s is not None and _notas:
+            notas(_s, list(_notas))
         idx += 1
     if c.get("codigo_slide_lineas"):
         pseudo_code_slide(prs, c.get("codigo_slide_titulo", "Codigo de hoy"),
@@ -264,28 +268,10 @@ def build_pptx(c):
         f"**Demo:** {c['demo']}",
         "Mismo dominio VetCare — no otro ejemplo.",
     ], idx=idx); idx += 1
-    if c.get("contexto"):
-        content_slide(prs, "Taller PI — por que importa", c["contexto"], idx=idx); idx += 1
-    if c.get("escenario"):
-        content_slide(prs, "Taller PI — punto de partida", c["escenario"], idx=idx); idx += 1
-    steps_visual_slide(prs, "Taller PI — pasos guiados",
-                       [(t, "") for t in c["taller"]], idx=idx); idx += 1
-    if c.get("pistas"):
-        checklist_slide(prs, "Antes de entregar — autochequeo", c["pistas"], idx=idx); idx += 1
-    content_slide(prs, "Criterios de exito / entregable", [
-        f"**Entregable:** {c['entregable']}",
-        *[f"@@Exito:@@ {x}" for x in c.get("criterios", [])],
-        f"@@Entrega en {EXAMLAB}@@ — domingo 23:59.",
-    ], idx=idx); idx += 1
-    box_note_slide(prs, "Para el PI esta semana", [
-        ("info", f"Hito: {c['hito_pi']}"),
-        ("aclaracion", "Enunciado completo: Clases/Proyecto Integrador/ (VetCare)."),
-        ("advertencia", f"Entrega del taller en {EXAMLAB} · domingo 23:59."),
-    ], idx=idx); idx += 1
-    closing_slide(prs, f"Clase {n} · VetCare avanza", [
-        c["hito_pi"],
-        f"Entregable: {c['entregable']}",
-        "Siguiente clase: continuamos el hilo del PI",
+    closing_slide(prs, f"Clase {n} · {c['titulo']}", [
+        c["subtitulo"],
+        "Repasa las laminas de concepto y el codigo de la demo",
+        "Siguiente clase: continuamos el hilo del tema",
     ], accent="Teoria al servicio del proyecto")
     out_dir = CLASES_DIR / f"Clase {n} - {c['slug']}"
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -511,8 +497,8 @@ el taller del proyecto.»
 Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 
 ### 10-40 · Teoria Core
-Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
-proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
+Cubrir el fundamento de arriba apoyandose en las laminas de concepto y en las de codigo
+(lo que hay que subrayar esta tambien en las notas del presentador de cada lamina). Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
 Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
@@ -521,7 +507,9 @@ Demo: {c['demo']}
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase {n}/Codigo/{c.get('codigo_archivo', '(sin archivo)')}`
 
-### 60-105 · Taller guiado = avance del PI
+### 60-105 · Taller guiado (opcional) = avance del PI
+Opcional: no tiene lamina en el deck. La guia esta en
+`Clases/Clase {n} - {c['slug']}/Taller PI - Clase {n} - VetCare.docx`; si hoy no se hace, se extiende la demo y la practica libre.
 **Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 {pasos}
@@ -529,7 +517,7 @@ Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: {c['entregable']}
 
 ### 105-120 · Criterios de exito y cierre
-Repasar el checklist de la slide de criterios.
+Si hubo taller, repasar los criterios de exito del `Taller PI - Clase {n} - VetCare.docx` (no estan en el deck).
 Aplicar el quiz corto de `Kit docente/Clase {n}/Quiz Clase {n} - VetCare.docx`
 (la clave va aparte y **no se proyecta**).
 **Decir:** «Queda avanzado: {c['hito_pi']}. Entrega en ExamLab, domingo 23:59.»

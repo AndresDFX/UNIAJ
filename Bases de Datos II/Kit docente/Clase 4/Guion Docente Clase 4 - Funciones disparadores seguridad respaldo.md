@@ -144,7 +144,7 @@ Numeracion real del deck `Clases/Clase 4 - Funciones disparadores seguridad resp
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
 1. Portada · Clase 4 · Funciones · Triggers · Seguridad y respaldo
-2. Encuadre de hoy · Objetivo PI
+2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. Funcion y procedimiento: se distinguen por su papel, no por su sintaxis (1/3)
 5. Funcion y procedimiento: se distinguen por su papel, no por su sintaxis (2/3)
@@ -189,28 +189,19 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 44. Donde vive cada validacion: CHECK, trigger o aplicacion
 45. Plan de respaldo: 6 secciones y herramientas reales de PostgreSQL
 46. Demo del dia
-47. Herramientas de hoy
-48. Taller PI VetCare — contexto / por que importa
-49. Taller PI VetCare — objetivo y criterios
-50. Taller PI VetCare — escenario / datos de partida
-51. Taller PI VetCare — pasos guiados
-52. Taller PI VetCare — pistas (checklist vacio)
-53. Criterios de exito / entregable
-54. Para el PI esta semana
-55. Cierre · Clase 4
+47. Cierre · Clase 4
 
 > Privado, no se proyecta: `Kit docente/Clase 4/Solucion Taller Clase 4 - VetCare.docx`
 
 ## Plan minuto a minuto (120 min) — texto casi literal
 
 ### 0-10 · Encuadre · [Slide 2][Slide 3]
-**Decir:** «Buenas. Hoy el hilo es VetCare DB. Avanzamos el PI en: >=1 funcion + >=1 trigger + borrador plan de respaldo.
-La teoria sera corta; el peso esta en el taller del proyecto.»
-Proyectar [Slide 2] «Encuadre de hoy · Objetivo PI» y [Slide 3] «Mapa del bloque de hoy».
+**Decir:** «Buenas. Hoy el hilo es VetCare DB y el tema es: Funciones · Triggers · Seguridad y respaldo.»
+Proyectar [Slide 2] «Encuadre de hoy · Tema y objetivo» y [Slide 3] «Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
 ### 10-35 · Teoria Core (breve) · desde 
-**Decir:** «Solo lo necesario para el entregable de hoy.»
+**Decir:** «Esto es lo que hay que saber del tema de hoy.»
 Proyecte estas diapositivas, en este orden, ~25 min cada una. Son la teoria
 completa del dia: **ninguna se salta**, porque el taller cobra puntos por lo que se
 proyecta en todas ellas.
@@ -236,9 +227,11 @@ Herramienta: ExamLab (PostgreSQL) + Google Docs
 📸 trg_audit_cita: los 3 UPDATE dejan 2 filas de auditoria (el WHEN filtra el tercero) [[captura: cap01_demo.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 51]
-**Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
-Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
+### 55-105 · Practica (opcional) · sin lamina
+La practica es **opcional** y **no se proyecta**: a veces se hace en clase, a veces no. La guia
+completa (contexto, escenario, pasos, pistas, plantilla y criterios) esta en `Clases/Clase 4 - Funciones disparadores seguridad respaldo/Taller PI - Clase 4 - VetCare.docx`.
+Si hoy se hace, el estudiante la abre desde la carpeta de la clase. Solucion en Kit docente/Solucion Taller... (no proyectar).
+Si se hace, avanza el PI en: >=1 funcion + >=1 trigger + borrador plan de respaldo
 Actividades:
 1. Escribir fn_precio_consulta(especie, urgencia) RETURNS NUMERIC en PL/pgSQL y probarla con SELECT sobre las 3 especies.
 2. Crear la tabla audit_cita y el trigger de auditoria en sus dos objetos: fn_trg_audit_cita() RETURNS TRIGGER + CREATE TRIGGER ... EXECUTE FUNCTION.
@@ -249,13 +242,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: fn_precio_consulta + 2 triggers corriendo en ExamLab + Plan_Backup_VetCare con sus 6 secciones (1 pag.)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 4/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 53]
-Repasar checklist del dia con [Slide 53] «Criterios de exito / entregable».
+### 105-115 · Repaso + quiz corto
+Repasar los conceptos del dia volviendo a las laminas de teoria que mas costaron.
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 4 - VetCare.docx`. Clave para usted: `Quiz Clase 4 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 55]
-**Decir:** «Queda avanzado: >=1 funcion + >=1 trigger + borrador plan de respaldo. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 55] slide de cierre. Dudas finales.
+### 115-120 · Cierre · [Slide 47]
+**Decir:** «Queda visto: Funciones · Triggers · Seguridad y respaldo. Si hicimos la practica, la guia y la entrega estan en la carpeta de la clase.»
+Proyectar [Slide 47] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

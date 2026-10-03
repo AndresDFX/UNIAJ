@@ -60,11 +60,11 @@ AGENDA = [
     {"t": "00:40–00:55 · 15 min",
      "label": "**Diagnóstico** — 13 preguntas, no tiene nota"},
     {"t": "00:55–01:12 · 17 min",
-     "label": "**Actividad** — ficha del campo, en equipos, en la nube"},
+     "label": "**Práctica en equipos** — opcional · la guía está en la carpeta de la clase"},
     {"t": "01:12–01:27 · 15 min",
-     "label": "**Exposiciones** — 5 equipos × 3 min, con cronómetro"},
+     "label": "**Socialización** — de la práctica, si se hizo"},
     {"t": "01:27–01:30 · 3 min",
-     "label": "**Cierre** — una idea, la tarea y el tema de la sesión 2"},
+     "label": "**Cierre** — una idea y el tema de la sesión 2"},
 ]
 
 PREGUNTA_ENTRADA = (

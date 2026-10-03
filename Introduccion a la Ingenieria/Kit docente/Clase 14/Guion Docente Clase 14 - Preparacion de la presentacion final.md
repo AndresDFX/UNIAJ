@@ -66,7 +66,7 @@ Reparto:
 
 - **3 min** · Plan B y trampas del ensayo [Slide 10]. Diga que el plan B **es parte de la nota** y que se entrega hoy, no la próxima sesión.
 
-### 00:28–00:55 · Taller en salas de grupo (27 min) · [Slide 11]
+### 00:28–00:55 · Taller en salas de grupo (27 min) · [fuera del deck · guía del taller en la carpeta]
 
 Ritmo sugerido dentro de la sala:
 
@@ -82,7 +82,7 @@ Ritmo sugerido dentro de la sala:
 
 **[Nota docente]:** verifique el plan B equipo por equipo **antes de que termine el bloque**. Después ya no hay tiempo, y en la Clase 15 es tarde.
 
-### 00:55–01:25 · Ensayo cronometrado (30 min) · [Slide 12]
+### 00:55–01:25 · Ensayo cronometrado (30 min) · [fuera del deck · guía del taller en la carpeta]
 
 5 equipos × 6 min: **4 minutos de ensayo del arranque** (tramos 1, 2 y el comienzo del 3) y **2 minutos de corrección**. Cronómetro en pantalla, visible para todos.
 
@@ -94,7 +94,7 @@ Ritmo sugerido dentro de la sala:
 
 Los demás equipos observan y anotan una cosa que van a copiar y una que van a evitar. Se comparte en el muro, sin nombres.
 
-### 01:25–01:30 · Cierre · [Slide 13][Slide 14]
+### 01:25–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 11]
 
 Verifique en voz alta la lista de la Clase 15: **guion con tiempos, ocho diapositivas, reparto, demostración ensayada, PDF descargado y capturas en la carpeta.**
 
@@ -117,10 +117,7 @@ Numeración real del deck `Clases/Clase 14 - Preparacion de la presentacion fina
 8. El reparto: qué hace cada integrante, incluso quien no habla
 9. La diapositiva que se lee y la que se mira
 10. El plan B técnico, y tres trampas del ensayo
-11. Taller de hoy: Guion de nueve minutos y plan B
-12. Cómo se expone en 4 minutos
-13. Para la Clase 15
-14. Cierre · Nos vemos en la Clase 15
+11. Cierre · Nos vemos en la Clase 15
 
 ## Si pasa esto en clase
 

@@ -137,15 +137,11 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 31. Máquinas virtuales vs. contenedores
 32. Maquina virtual vs contenedor — que cambia de verdad
 33. Dockerfile minimo del stub CloudLite
-34. Herramientas de hoy
-35. PI CloudLite — entregable de hoy
-36. Manos a la obra (paso a paso)
-37. Para continuar (PI)
-38. Clase 3 · PI en movimiento
+34. Clase 3 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 35]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Contenerizar un stub del servicio principal de CloudLite**.
 Entregable concreto: Dockerfile del stub + .dockerignore + ciclo de 5 comandos con la salida esperada y su justificación.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -186,8 +182,9 @@ Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 📸 Evidencia del entregable: el contenedor corriendo (`docker ps`) [[captura: salida-docker-ps.png]]
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 36]
-Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · opcional · sin diapositiva
+El taller es **opcional** y ya no está en el deck: si se hace hoy, comparte el `Taller … .docx` de
+`Clases/Clase 3 - Virtualizacion y contenedores/` (los pasos también están en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
 
@@ -199,7 +196,7 @@ Aplica el quiz corto de `Kit docente/Clase 3/Quiz Clase 3 - Virtualizacion y con
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 38]
+### 115–120 · Cierre · [Slide 34]
 Di: «Queda avanzado: Contenerizar un stub del servicio principal de CloudLite.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»

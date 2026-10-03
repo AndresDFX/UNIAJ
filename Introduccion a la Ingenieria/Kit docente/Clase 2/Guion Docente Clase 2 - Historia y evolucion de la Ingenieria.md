@@ -35,7 +35,7 @@ Debajo de estas láminas, en las notas del presentador:
 - **Por qué la disciplina nace de un fracaso y no de un invento** → diapositivas 5 y 7
 - **Los seis hitos: qué decir de cada uno en dos minutos** → diapositiva 8
 - **El método de lectura de un hito y por qué la cuarta pregunta es la que se califica** → diapositivas 10 y 12
-- **El taller, la exposición y por qué las cinco líneas de tiempo se suman** → diapositivas 13 y 14
+- **El taller, la exposición y por qué las cinco líneas de tiempo se suman** → sin lámina: es la actividad, su guía está en la carpeta de la clase
 
 ## Desarrollo de la clase, minuto a minuto (90 min)
 
@@ -65,7 +65,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** la aritmética de Brooks se explica en treinta segundos y se queda: 5 personas son 10 parejas que se tienen que entender; 10 personas son 45. Es la razón por la que los equipos de este curso son de cinco.
 
-### 00:55–01:12 · Taller en salas de grupo · [Slide 13]
+### 00:55–01:12 · Taller en salas de grupo · [fuera del deck · guía del taller en la carpeta]
 
 **3 min** para repartir periodos y abrir la herramienta. El periodo de cada equipo **no se sortea hoy**: se asigna en orden, del equipo 1 al 5, para que las exposiciones queden en orden histórico sin reorganizar nada.
 
@@ -75,7 +75,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** cuando un equipo escriba una cifra de internet («el 70 % de los proyectos fracasa»), pida fuente y año en el documento. Es el primer ejercicio de rigor bibliográfico del curso y se vuelve a pedir en la sesión 9.
 
-### 01:12–01:27 · Exposiciones · [Slide 14]
+### 01:12–01:27 · Exposiciones · [fuera del deck · guía del taller en la carpeta]
 
 **En orden histórico**, equipo 1 a equipo 5. Escriba el orden en el chat antes de empezar. 3 min por equipo, cronómetro en pantalla, habla el vocero con el diagrama ya compartido.
 
@@ -83,7 +83,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** no dé retroalimentación equipo por equipo. Anote y guarde todo para el cierre; cinco rondas de comentarios no caben en 15 min.
 
-### 01:27–01:30 · Cierre · [Slide 15][Slide 16]
+### 01:27–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 13]
 
 Una sola idea: **la disciplina nació de un fracaso de organización, no de un invento**, y los problemas de plazo, costo y requisitos que cambian siguen abiertos. El curso entero está puesto para que ellos no los repitan por ignorancia.
 
@@ -106,10 +106,7 @@ Numeración real del deck `Clases/Clase 2 - Historia y evolucion de la Ingenieri
 10. Cómo se lee un hito sin quedarse en la anécdota
 11. Ejemplo resuelto: el hito de 1975, con las cuatro preguntas
 12. Tres cosas que se repiten y son falsas
-13. Taller de hoy: Línea de tiempo del periodo
-14. Cómo se expone en 3 minutos
-15. Para la Clase 3
-16. Cierre · Nos vemos en la sesión 3
+13. Cierre · Nos vemos en la sesión 3
 
 ## Si pasa esto en clase
 

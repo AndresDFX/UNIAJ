@@ -95,11 +95,7 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 18. Preguntas frecuentes y cierre conceptual () (1/3)
 19. Preguntas frecuentes y cierre conceptual () (2/3)
 20. Preguntas frecuentes y cierre conceptual () (3/3)
-21. Herramientas de hoy
-22. PI CloudLite — entregable de hoy
-23. Manos a la obra (paso a paso)
-24. Para continuar (PI)
-25. Clase 10 · PI en movimiento
+21. Clase 10 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 

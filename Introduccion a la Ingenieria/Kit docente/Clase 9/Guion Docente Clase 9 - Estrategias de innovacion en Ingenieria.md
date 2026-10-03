@@ -65,7 +65,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** si va retrasado, comprima innovación a 5 minutos. La búsqueda y las reglas son lo que se califica hoy.
 
-### 00:55–01:12 · Taller en salas de grupo · [Slide 13]
+### 00:55–01:12 · Taller en salas de grupo · [fuera del deck · guía del taller en la carpeta]
 
 **2 min** para abrir el documento del equipo y Excalidraw.
 
@@ -75,7 +75,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** si ve una referencia sin enlace o que no abre, pídala en pantalla en ese momento. Es la única forma de cortar la cita inventada, y hacerlo en la sala enseña más que descontarlo en la nota.
 
-### 01:12–01:27 · Exposiciones · [Slide 14]
+### 01:12–01:27 · Exposiciones · [fuera del deck · guía del taller en la carpeta]
 
 5 equipos × 3 min. **El minuto obligatorio es «qué le falta a lo que ya existe y qué vamos a hacer distinto»**.
 
@@ -85,7 +85,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** anote la propuesta de mejora de cada equipo. Es el eje del informe final de la Clase 16 y de la exposición de la 15.
 
-### 01:27–01:30 · Cierre · [Slide 15][Slide 16]
+### 01:27–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 13]
 
 Una idea: **nadie parte de cero, y decirlo es una fortaleza.** «Existen estas tres soluciones, ninguna funciona sin computador en el mostrador, y nosotros resolvemos eso» es una posición defendible ante cualquiera.
 
@@ -110,10 +110,7 @@ Numeración real del deck `Clases/Clase 9 - Estrategias de innovacion en Ingenie
 10. Ejemplo: la búsqueda del antecedente, hecha
 11. Dónde buscar y qué esperar de cada sitio
 12. Tres reglas sobre las fuentes
-13. Taller de hoy: Antecedentes y propuesta de mejora
-14. Cómo se expone en 3 minutos
-15. Para la Clase 10
-16. Cierre · Nos vemos en la sesión 10
+13. Cierre · Nos vemos en la sesión 10
 
 ## Si pasa esto en clase
 

@@ -73,6 +73,8 @@ def _slide_no(titulos, frag):
             if not _plano(t).startswith("portada") and fp in _plano(t)]
     if len(hits) == 1:
         return hits[0]
+    if re.search(r"actividad de hoy|expone|para la sesion", _plano(frag)):
+        return None  # lamina de actividad: ya no se proyecta
     raise SystemExit(
         "Clase %d: el fragmento {{slide:%s}} %s.\nTitulos del deck:\n%s"
         % (C1.CLASE_N, frag,
@@ -182,43 +184,8 @@ def build_pptx():
 
     content_slide(prs, t("Cinco equipos, los mismos todo el semestre"), C1.EQUIPOS, idx=11)
 
-    act = C1.ACTIVIDAD
-    checklist_slide(
-        prs,
-        t("Actividad de hoy: %s" % act["titulo"]),
-        ["**%s** — %s" % (b["clave"], b["pide"]) for b in act["bloques"]],
-        sub="%d min en equipos · un campo por equipo, sorteado · la ficha se escribe en la "
-            "carpeta del equipo (Google Docs o Slides)" % act["duracion_min"],
-        idx=12,
-    )
-
-    steps_visual_slide(
-        prs,
-        t("Cómo se expone en 3 minutos"),
-        [
-            ("30 s · El campo", "Qué es y de qué se ocupa, en sus palabras."),
-            ("60 s · El problema del entorno", "Quién lo sufre y la cifra. Es lo que más pesa."),
-            ("30 s · La confusión frecuente", "Qué cree la gente y por qué es falso."),
-            ("60 s · Si se hace mal", "A quién le pasa y qué pierde."),
-        ],
-        sub="Habla el vocero · cronómetro proyectado · se corta a los 3 min desde hoy",
-        idx=13,
-    )
-
-    sig = C1.TI_SIGUIENTE
-    content_slide(
-        prs,
-        t("Para la sesión 2"),
-        [
-            "@@Trabajo dirigido:@@ %s" % sig["tid"],
-            "@@Trabajo independiente:@@ %s" % sig["ti"],
-            "**%s**" % sig["tema_siguiente"],
-            "@@Aviso:@@ %s" % sig["aviso"],
-            "Antes de salir: el enlace de la carpeta del equipo, con permiso de lectura para el "
-            "docente, y el nombre del vocero de hoy.",
-        ],
-        idx=14,
-    )
+    # La actividad, su exposicion y la tarea NO se proyectan: la actividad es opcional y
+    # su guia vive en la carpeta de la clase. El deck lleva el tema.
 
     closing_slide(
         prs,
@@ -239,7 +206,7 @@ def build_pptx():
     for b in C1.FUNDAMENTO:
         for m in _SLIDE_TOKEN.finditer(b["slide"]):
             k = _slide_no(T, m.group(1))
-            if 1 <= k <= len(laminas):
+            if k is not None and 1 <= k <= len(laminas):
                 notas(laminas[k - 1], [b["titulo"].upper()] + list(b["cuerpo"]))
     prs.save(out)
     return out, T
@@ -295,7 +262,12 @@ def md_guion(titulos):
         # Un bloque puede cubrir mas de una diapositiva (p. ej. el metodo y el proyecto van
         # juntos). Se resuelven TODOS los tokens del campo `slide`, no solo el primero: asi
         # ninguna diapositiva de teoria queda sin su parrafo en el fundamento.
-        ns = [_slide_no(titulos, m.group(1)) for m in _SLIDE_TOKEN.finditer(b["slide"])]
+        ns = [x for x in (_slide_no(titulos, m.group(1))
+                          for m in _SLIDE_TOKEN.finditer(b["slide"])) if x is not None]
+        if not ns:
+            L += ["- **%s** → sin lámina: es la actividad, su guía está en la carpeta de la clase"
+                  % b["titulo"]]
+            continue
         etq = ("diapositiva %d" % ns[0] if len(ns) == 1
                else "diapositivas %s y %d" % (", ".join(str(x) for x in ns[:-1]), ns[-1]))
         L += ["- **%s** → %s" % (b["titulo"], etq)]
@@ -364,7 +336,7 @@ def md_guion(titulos):
         "son las que usa en el minuto 55 para conformar los equipos. Revíselas mientras el grupo "
         "termina; son de conteo, no de ficha individual.",
         "",
-        "### 00:55–01:12 · Actividad en equipos · [Slide 11][Slide 12]",
+        "### 00:55–01:12 · Actividad en equipos (opcional) · [Slide 11] · guía de la actividad en la carpeta, sin lámina",
         "Primero **conforme los cinco equipos** (3 min): divida el total de asistentes entre cinco "
         "y mezcle según las respuestas del bloque C — reparta a quien no tiene computador propio y "
         "a quien trabaja más de 20 horas entre equipos distintos, en vez de dejar que se agrupen "
@@ -381,7 +353,7 @@ def md_guion(titulos):
         "pida un número aunque sea estimado; «el problema es que no tienen una app» → recuerde que "
         "el problema es lo que pasa hoy **sin** el sistema.",
         "",
-        "### 01:12–01:27 · Exposiciones · [Slide 13]",
+        "### 01:12–01:27 · Exposiciones (si se hizo la actividad) · sin lámina",
         "De vuelta en la sala principal: cinco equipos × 3 min, cronómetro en pantalla, habla el "
         "vocero con su documento ya compartido. **Se corta a los 3 min "
         "desde la primera sesión:** si hoy se permite estirar, en la Clase 15 las exposiciones "
@@ -394,7 +366,7 @@ def md_guion(titulos):
         "que empiecen las exposiciones, y que el vocero tenga la pestaña abierta. Buscar el archivo "
         "o pelear con «compartir pantalla» con el cronómetro corriendo se come el turno.",
         "",
-        "### 01:27–01:30 · Cierre · [Slide 14]",
+        "### 01:27–01:30 · Cierre · [Slide 12] · la tarea se dice de palabra y va en la carpeta",
         "Dé **dos** observaciones del conjunto (no una nota por equipo) y cierre con la tarea:",
         "",
         "> «%s Y para la próxima: %s»" % (C1.SOLUCION["cierre"], C1.TI_SIGUIENTE["ti"]),

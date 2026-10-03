@@ -49,9 +49,8 @@ from uniajc_slides_engine import (  # noqa: E402
     closing_slide,
     content_slide,
     new_prs,
-    herramientas_slide,
+    notas,
     pseudo_code_slide,
-    steps_visual_slide,
     table_content,
 )
 from uniajc_slides_engine import (  # noqa: E402
@@ -619,7 +618,7 @@ CLASSES = [
                 "Amenaza → control → dónde se ve, en el diagrama que ya tienen.",
                 "Ej.: llaman la API sin autenticar → token verificado → **flecha** «App web → API».",
             ]),
-            ("La tabla que se califica: una fila por amenaza", [], {
+            ("Una fila por amenaza: ejemplo en CloudLite Turnos", [], {
                 # Encabezados LITERALMENTE los tres de la pregunta 2, de la solucion
                 # docente y de la plantilla del taller. Traian una cuarta columna
                 # «STRIDE» al frente, y como la diapositiva se titula «la tabla que se
@@ -653,7 +652,7 @@ CLASSES = [
                 ],
                 "col_w": [4.6, 3.9, 3.833],
                 "fs_body": 10,
-                "note": "Cuatro filas de ejemplo; el entregable pide cinco, sobre SU dominio. Una "
+                "note": "Cuatro filas de ejemplo sobre CloudLite Turnos. Una "
                         "lista genérica de buenas prácticas no es un modelo de amenazas, y dos "
                         "filas que dicen lo mismo con otras palabras cuentan como una.",
             }),
@@ -835,18 +834,9 @@ CLASSES = [
             "Salir con backlog claro hacia Clase 12/15.",
         ],
         "slides_extra": [
-            ("Checklist de avance (obligatorio)", [
-                "☐ Dominio + capacidades  ☐ ADR modelo  ☐ C4 Context/Containers",
-                "☐ Deployment  ☐ Dockerfile/lab  ☐ Actions YAML  ☐ Seguridad  ☐ Costos",
-                "Hoy el docente revisa en vivo; no es sustentación final.",
-            ]),
             ("Errores frecuentes a corregir", [
                 "Microservicios teatro · nombres distintos entre diagramas · secretos en imagen.",
                 "CI sin tests · diagrama sin puertos · dominio infinito.",
-            ]),
-            ("Rúbrica (recordatorio)", [
-                "Diagramas 25 · Contenedores 20 · CI/CD 15 · Dominio/servicio 15 · etc.",
-                "Detalle en enunciado PI (no se repite evaluación global aquí).",
             ]),
         ],
         "taller_titulo": "Taller Clase 11 — Checkpoint PI CloudLite v1",
@@ -886,10 +876,6 @@ CLASSES = [
                 "1 min problema · 2 min arquitectura · 1 min contenedor · 1 min CI · 1 min seguridad/costos · Q&A.",
                 "Demo: diagrama + captura lab/Actions (no improvisar login cloud).",
                 "Sustentas tú los 5 bloques; si hay equipo autorizado, hablan todos.",
-            ]),
-            ("Paquete de entrega", [
-                "Informe + diagramas + Dockerfile + YAML + capturas.",
-                "Fecha/canal: coordinación del periodo.",
             ]),
         ],
         "taller_titulo": "Taller Clase 12 — Rendimiento y ensayo CloudLite",
@@ -972,20 +958,6 @@ CLASSES = [
             "Cerrar el curso con reflexión de aprendizaje.",
         ],
         "slides_extra": [
-            ("Cómo se ordena la sesión de hoy", [
-                "Sustentación **en vivo**, en este bloque: no se reemplaza por video grabado.",
-                "Turnos de **6 min de pitch + 2–4 min de Q&A**; el orden se sortea al empezar.",
-                "Ten el paquete ya subido a la plataforma del curso **antes** de tu turno (no se sube presentando).",
-                "Mientras otros presentan, escuchas: el cierre del curso se hace con todo el grupo.",
-            ]),
-            ("Rúbrica de sustentación (recordatorio)", [
-                "Claridad del problema · calidad de diagramas · demo lab/CI · respuestas.",
-                "Cubres los 5 bloques del guion; en equipo autorizado hablan todos (penalización si solo uno presenta).",
-            ]),
-            ("Checklist final", [
-                "Informe completo · 3 diagramas · Dockerfile+captura · Actions · pitch.",
-                "Sin cuentas cloud de pago · sin instalar hipervisores como requisito.",
-            ]),
             ("Cierre del curso", [
                 "RAA1–3 aplicados al PI. Conserven el repo como portafolio.",
                 "Gracias — arquitectura es trade-offs documentados, no logos de proveedores.",
@@ -1129,10 +1101,10 @@ def cover_slide(prs, n: int, tema: str, sub: str, pi_hoy: str, *, tipo: str = "r
             "El enunciado se comparte al empezar · **no** se distribuye antes.",
         ]
     else:
+        # Solo el tema: el taller es opcional y su guia vive en la carpeta de la clase.
         lineas_cover = [
-            f"**Hoy avanzamos el PI en:** {pi_hoy}",
-            "Bloque **120 min** · Teoría breve · Taller PI · cierre.",
-            "Herramientas gratis + navegador · sin AWS/GCP/Oracle Cloud.",
+            "Bloque **120 min** · sesión **virtual síncrona** por Google Meet.",
+            "Conceptos del tema, ejemplos resueltos sobre CloudLite y cierre conceptual.",
         ]
     for i, ln in enumerate(lineas_cover):
         p = tm.paragraphs[0] if i == 0 else tm.add_paragraph()
@@ -1686,16 +1658,8 @@ def _slide_map(c: dict) -> list:
     cs = CODIGO_SLIDE.get(n)
     if cs:
         m.append(cs[0])
-    if _herramientas_de(c):
-        m.append("Herramientas de hoy")
-    if _tiene_diagrama(n):
-        m.append(FLUJO_SLIDE_TITULO)
-    m.append("PI CloudLite — entregable de hoy")
-    m.append("Sustentación (paso a paso)" if c["tipo"] == "sustentacion"
-             else "Manos a la obra (paso a paso)")
-    m.append("Para continuar (PI)")
-    m.append(f"Clase {n} · cierre del PI CloudLite" if c["tipo"] == "sustentacion"
-             else f"Clase {n} · PI en movimiento")
+    m.append(f"Clase {n} · cierre del curso" if c["tipo"] == "sustentacion"
+             else f"Clase {n} · cierre conceptual")
     return m
 
 
@@ -1835,30 +1799,16 @@ def build_pptx(c: dict) -> Path:
         ]
     else:
         agenda = [
-            "**0–10** Encuadre: hoy avanzamos el PI en… + entregable concreto.",
-            "**10–40** Teoría Core breve (solo lo necesario para el taller PI).",
-            f"**40–100** Trabajo guiado del PI (demo en vivo + {mod(c, 'agenda_taller_nota')}).",
-            "**100–115** Revisión de evidencias del PI.",
-            "**115–120** Cierre: criterio de éxito + plazo domingo 23:59.",
+            "**0–10** Encuadre del tema y objetivos de la clase.",
+            "**10–70** Conceptos del tema, uno por lámina, con ejemplos sobre CloudLite.",
+            "**70–100** Ejemplos resueltos y demo del docente sobre el tema.",
+            "**100–115** Práctica (opcional, guía en la carpeta de la clase).",
+            "**115–120** Preguntas y cierre conceptual.",
         ]
     content_slide(prs, "Agenda de hoy (120 min)", agenda, idx=idx)
     idx += 1
     content_slide(prs, "Objetivos de la clase", c["objetivos"], idx=idx)
     idx += 1
-    # El bloque evaluativo (que se entrega, con que herramienta) se construye aqui
-    # pero se PROYECTA mas abajo, justo antes de la practica: anunciarlo antes de la
-    # teoria hacia que la clase sonara a "esto es lo que califica" en vez de "esto es
-    # lo que se aprende", y adelantaba una nota que todavia no tenia contexto.
-    entregable_bullets = [
-        f"@@Entregable:@@ {c['entregable']}",
-        f"Herramienta: **{c['herramienta']}**",
-        ("Hoy no se construye: se **defiende** lo que ya está en el paquete del PI."
-         if c["tipo"] == "sustentacion"
-         else "Todo lo que construyan hoy entra al **informe/repo del PI** (no es lab suelto)."),
-        mod(c, "equipo_note"),
-    ]
-    if c.get("ficha_bloques_note"):
-        entregable_bullets[-1:-1] = [c["ficha_bloques_note"]]
     for extra in c["slides_extra"]:
         # Una entrada es (titulo, vinetas) o (titulo, vinetas, tabla). La tercera
         # forma existe porque hay conceptos que son una comparacion y salen mejor
@@ -1877,11 +1827,15 @@ def build_pptx(c: dict) -> Path:
             if imagen:
                 _add_captura(slide, imagen)
         idx += 1
-    for _t, _items, _, _tipo in _teoria_slides(c):
+    for _t, _items, _notas, _tipo in _teoria_slides(c):
         if _tipo == "codigo":
-            pseudo_code_slide(prs, _t, _items, idx=idx)
+            _sl = pseudo_code_slide(prs, _t, _items, idx=idx)
         else:
-            content_slide(prs, _t, _items, idx=idx)
+            _sl = content_slide(prs, _t, _items, idx=idx)
+        # Lo que el guion recoge como apoyo de esta lamina (que subrayar, como dictarla)
+        # va tambien a las notas del presentador.
+        if _notas and _sl is not None:
+            notas(_sl, list(_notas))
         idx += 1
     dg = DIAGRAMAS.get(n)
     if dg:
@@ -1898,50 +1852,16 @@ def build_pptx(c: dict) -> Path:
     if cs:
         pseudo_code_slide(prs, cs[0], cs[1], caption=cs[2], idx=idx)
         idx += 1
-    tools = _herramientas_de(c)
-    if tools:
-        herramientas_slide(prs, tools, title="Herramientas de hoy",
-                           sub="Gratis · navegador o free tier · sin cuenta de pago",
-                           idx=idx)
-        idx += 1
-    # Del boceto al codigo: solo donde el taller pide un diagrama. El estudiante
-    # disena en Excalidraw/draw.io y entrega Mermaid; sin esta diapositiva llegaba
-    # con un PNG a una caja de texto.
-    if _tiene_diagrama(n):
-        dialectos = examlab_talleres._dialectos_del_taller(TALLERES_EXAMLAB[n])
-        steps_visual_slide(
-            prs, FLUJO_SLIDE_TITULO,
-            examlab_talleres.flujo_diagrama_pasos(
-                dialectos[0] if len(dialectos) == 1 else "el tipo que pide el enunciado"),
-            sub="El diagrama se entrega como código Mermaid en la plataforma del curso, no como imagen",
-            idx=idx)
-        idx += 1
-    content_slide(prs, "PI CloudLite — entregable de hoy", entregable_bullets, idx=idx)
-    idx += 1
-    pasos_titulo = ("Sustentación (paso a paso)" if c["tipo"] == "sustentacion"
-                    else "Manos a la obra (paso a paso)")
-    content_slide(prs, pasos_titulo, [f"**{i+1}.** {p}" for i, p in enumerate(_pasos(c))], idx=idx)
-    idx += 1
-    if c["tipo"] == "sustentacion":
-        box_note_slide(prs, "Para continuar (PI)", [
-            ("info", f"Entregable: {c['entregable']}"),
-            ("aclaracion", "El paquete se sube a la plataforma del curso (la plataforma del curso · módulo Proyectos) **antes** del bloque de sustentaciones."),
-            ("advertencia", "La sustentación es **en vivo** y con Q&A: no se acepta video grabado en su lugar."),
-        ], idx=idx)
-    else:
-        box_note_slide(prs, "Para continuar (PI)", [
-            ("info", f"Entregable: {c['entregable']}"),
-            ("aclaracion", "Subir evidencias al paquete CloudLite (Drive/repo) y a la plataforma del curso (la plataforma del curso) domingo 23:59."),
-            ("advertencia", "Sin cloud de pago ni instalaciones obligatorias de hipervisores/Docker Desktop."),
-        ], idx=idx)
-    idx += 1
+    # El deck lleva solo el tema. Herramientas, flujo de entrega, entregable, pasos
+    # del taller y «Para continuar» se retiraron: el taller es opcional y su guia
+    # vive en la carpeta de la clase (Taller ... .docx).
     if c["tipo"] == "sustentacion":
         closing_slide(
             prs,
-            f"Clase {n} · cierre del PI CloudLite",
+            f"Clase {n} · cierre del curso",
             [
-                c["pi_hoy"],
-                f"Evidencia: {c['entregable']}",
+                "Arquitectura = decisiones estructurales con sus razones y consecuencias",
+                "Context, Containers y Deployment cuentan el mismo sistema desde tres ángulos",
                 "Conserva el repo (informe, diagramas, Dockerfile, ci.yml) como portafolio",
             ],
             accent="Arquitectura = decisiones documentadas con sus consecuencias",
@@ -1949,13 +1869,9 @@ def build_pptx(c: dict) -> Path:
     else:
         closing_slide(
             prs,
-            f"Clase {n} · PI en movimiento",
-            [
-                c["pi_hoy"],
-                f"Evidencia: {c['entregable']}",
-                "Siguiente paso = siguiente hito del PI CloudLite",
-            ],
-            accent="Teoría al servicio del proyecto",
+            f"Clase {n} · cierre conceptual",
+            [str(o).replace("**", "") for o in c["objetivos"]][:3],
+            accent="Teoría al servicio del diseño",
         )
     _verificar_mapa(c, prs)
     prs.save(str(out))
@@ -3344,10 +3260,8 @@ def guion_md(c: dict) -> str:
     mapa = _slide_map(c)
     sl_agenda = _slide_tag(mapa, "Agenda de hoy").strip()
     sl_obj = _slide_tag(mapa, "Objetivos de la clase").strip()
-    sl_entreg = _slide_tag(mapa, "entregable de hoy").strip()
     sl_teoria = _slide_tag(mapa, *(conceptos or ["Objetivos"])).strip()
     sl_flujo = _slide_tag(mapa, FLUJO_SLIDE_TITULO).strip()
-    sl_taller = _slide_tag(mapa, "paso a paso").strip()
     sl_cierre = f"[Slide {len(mapa)}]"
     mapa_md = "\n".join(f"{i}. {t}" for i, t in enumerate(mapa, 1))
 
@@ -3385,7 +3299,7 @@ def guion_md(c: dict) -> str:
     if _tiene_diagrama(n):
         _dial = examlab_talleres._dialectos_del_taller(TALLERES_EXAMLAB[n])
         flujo_guion = (
-            "\n**Cierra la demo en la plataforma del curso** " + sl_flujo + " — es el paso que el "
+            "\n**Si se hace el taller, cierra la demo en la plataforma del curso** (sin diapositiva: el flujo está en el `Taller … .docx`) — es el paso que el "
             "estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, "
             "pegalo en la pregunta de diagrama y muestralo renderizado.\n\n"
             + examlab_talleres.flujo_diagrama_md(
@@ -3400,7 +3314,7 @@ def guion_md(c: dict) -> str:
         # de «las notas para el docente». Cualquier cambio aqui se propaga a esas
         # clases en su proximo build; las frases de modalidad de trabajo estan
         # parametrizadas arriba, no las vuelvas a escribir a mano.
-        plan_blocks = f"""### 0–10 · Encuadre PI · {sl_agenda}{sl_obj}{sl_entreg}
+        plan_blocks = f"""### 0–10 · Encuadre PI · {sl_agenda}{sl_obj}
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **{c['pi_hoy']}**.
 Entregable concreto: {c['entregable']}.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -3425,8 +3339,9 @@ Narra los clics en voz alta. Si falla la red, {respaldo_demo}.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 {flujo_guion}{_capturas_md(n)}
 
-### 55–100 · Taller guiado PI ({taller_modalidad_word}) · {sl_taller}
-Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
+### 55–100 · Taller guiado PI ({taller_modalidad_word}) · opcional · sin diapositiva
+El taller es **opcional** y ya no está en el deck: si se hace hoy, comparte el `Taller … .docx` de
+`Clases/Clase {n} - {c['slug']}/` (los pasos también están en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
 
@@ -3447,7 +3362,7 @@ Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según e
         # Rama exclusiva para clases con actividad individual (hoy: Clase 1), donde se
         # separa explicitamente lo que el docente DICE (bloques "> ...") de las
         # instrucciones PARA el docente (bloques "**[Nota docente]:**").
-        plan_blocks = f"""### 0–10 · Encuadre PI · {sl_agenda}{sl_obj}{sl_entreg}
+        plan_blocks = f"""### 0–10 · Encuadre PI · {sl_agenda}{sl_obj}
 Di casi literal:
 > "Hoy avanzamos el PI CloudLite App en: {c['pi_hoy']}. Entregable concreto: {c['entregable']}. Teoría breve y luego taller; no es un lab suelto."
 
@@ -3477,9 +3392,9 @@ Cierra la demo diciendo:
 > "Copien la estructura, no el dominio de mi ejemplo."
 {flujo_guion}{_capturas_md(n)}
 
-### 55–100 · Taller guiado PI ({taller_modalidad_word}) · {sl_taller}
-**[Nota docente]:** proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller»
-de este guion). Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas
+### 55–100 · Taller guiado PI ({taller_modalidad_word}) · opcional · sin diapositiva
+**[Nota docente]:** el taller es **opcional** y ya no está en el deck: si se hace hoy, comparte el `Taller … .docx`
+de `Clases/Clase {n} - {c['slug']}/` (los pasos también están en la sección «Actividad / taller» de este guion). Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas
 a ver hoy. A los 80 min anuncia:
 > "Faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador."
 

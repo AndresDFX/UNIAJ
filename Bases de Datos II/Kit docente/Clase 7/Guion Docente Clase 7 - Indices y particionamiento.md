@@ -123,25 +123,19 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Lo que NO se puede medir, y hay que declararlo en el informe en vez de inventarlo: los tiempos con la memoria intermedia vacia, porque vaciarla exige privilegios de administrador; el tiempo de creacion de un indice sobre decenas de millones de filas; la fragmentacion despues de meses de escrituras; la degradacion medible de un INSERT con diez indices, que necesita una carga sostenida; y cualquier cosa que exija dos sesiones simultaneas, porque PGlite corre una sola, que es el tema de la Clase 10.
   - Esa lista de limites es la seccion 5 de la pregunta 5 y vale puntos: se pierde por omitirla, no por tenerla.
 
-**[Slide 41] El reparto de los 120 minutos y como acompanar el taller (1/2)** — 6 vinetas.
-  - Tres avisos para el acompanamiento.
-  - Vale la pena anunciar a mitad del taller que faltan 15 minutos y que la tabla de justificacion todavia no esta escrita.
+**[Slide 41] Preguntas frecuentes del grupo (1/3)** — 3 vinetas.
 
-**[Slide 42] El reparto de los 120 minutos y como acompanar el taller (2/2)** — 6 vinetas.
+**[Slide 42] Preguntas frecuentes del grupo (2/3)** — 4 vinetas.
 
-**[Slide 43] Preguntas frecuentes del grupo (1/3)** — 3 vinetas.
+**[Slide 43] Preguntas frecuentes del grupo (3/3)** — 5 vinetas.
 
-**[Slide 44] Preguntas frecuentes del grupo (2/3)** — 4 vinetas.
+**[Slide 44] Crear el indice y probar que se usa** — 11 vinetas.
 
-**[Slide 45] Preguntas frecuentes del grupo (3/3)** — 5 vinetas.
+**[Slide 45] El orden de columnas en un indice compuesto** — 10 vinetas.
 
-**[Slide 46] Crear el indice y probar que se usa** — 11 vinetas.
+**[Slide 46] Particionar el historico por rango de fecha** — 14 vinetas.
 
-**[Slide 47] El orden de columnas en un indice compuesto** — 10 vinetas.
-
-**[Slide 48] Particionar el historico por rango de fecha** — 14 vinetas.
-
-**[Slide 49] El costo de sobre-indexar, que casi nunca se menciona** — 11 vinetas.
+**[Slide 47] El costo de sobre-indexar, que casi nunca se menciona** — 11 vinetas.
 
 
 **Demo que usted debe poder repetir:** EXPLAIN ANALYZE con Seq Scan, CREATE INDEX idx_cita_fecha_hora, ANALYZE, y el mismo EXPLAIN mostrando Index Scan.
@@ -151,7 +145,7 @@ Numeracion real del deck `Clases/Clase 7 - Indices y particionamiento/Presentaci
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
 1. Portada · Clase 7 · Indices y particionamiento · VetCare
-2. Encuadre de hoy · Objetivo PI
+2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. De donde viene la clase: los Seq Scan de la Clase 6 (1/2)
 5. De donde viene la clase: los Seq Scan de la Clase 6 (2/2)
@@ -190,42 +184,31 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 38. La demo, en el orden en que se proyecta (1/2)
 39. La demo, en el orden en que se proyecta (2/2)
 40. Donde corre esto, y que no se puede medir aqui
-41. El reparto de los 120 minutos y como acompanar el taller (1/2)
-42. El reparto de los 120 minutos y como acompanar el taller (2/2)
-43. Preguntas frecuentes del grupo (1/3)
-44. Preguntas frecuentes del grupo (2/3)
-45. Preguntas frecuentes del grupo (3/3)
-46. Crear el indice y probar que se usa
-47. El orden de columnas en un indice compuesto
-48. Particionar el historico por rango de fecha
-49. El costo de sobre-indexar, que casi nunca se menciona
-50. Un indice se justifica con la consulta que lo usa
-51. Los cinco indices de hoy, con su nombre exacto
-52. El indice parcial: el mismo beneficio, una fraccion del tamano
-53. Particionar hoy de verdad: rango por ano, poda y archivado
-54. Demo del dia
-55. Herramientas de hoy
-56. Taller PI VetCare — contexto / por que importa
-57. Taller PI VetCare — objetivo y criterios
-58. Taller PI VetCare — escenario / datos de partida
-59. Taller PI VetCare — pasos guiados
-60. Taller PI VetCare — pistas (checklist vacio)
-61. Criterios de exito / entregable
-62. Para el PI esta semana
-63. Cierre · Clase 7
+41. Preguntas frecuentes del grupo (1/3)
+42. Preguntas frecuentes del grupo (2/3)
+43. Preguntas frecuentes del grupo (3/3)
+44. Crear el indice y probar que se usa
+45. El orden de columnas en un indice compuesto
+46. Particionar el historico por rango de fecha
+47. El costo de sobre-indexar, que casi nunca se menciona
+48. Un indice se justifica con la consulta que lo usa
+49. Los cinco indices de hoy, con su nombre exacto
+50. El indice parcial: el mismo beneficio, una fraccion del tamano
+51. Particionar hoy de verdad: rango por ano, poda y archivado
+52. Demo del dia
+53. Cierre · Clase 7
 
 > Privado, no se proyecta: `Kit docente/Clase 7/Solucion Taller Clase 7 - VetCare.docx`
 
 ## Plan minuto a minuto (120 min) — texto casi literal
 
 ### 0-10 · Encuadre · [Slide 2][Slide 3]
-**Decir:** «Buenas. Hoy el hilo es VetCare DB. Avanzamos el PI en: 3 indices justificados (uno parcial) + historico particionado por ano.
-La teoria sera corta; el peso esta en el taller del proyecto.»
-Proyectar [Slide 2] «Encuadre de hoy · Objetivo PI» y [Slide 3] «Mapa del bloque de hoy».
+**Decir:** «Buenas. Hoy el hilo es VetCare DB y el tema es: Indices y particionamiento · VetCare.»
+Proyectar [Slide 2] «Encuadre de hoy · Tema y objetivo» y [Slide 3] «Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
 ### 10-35 · Teoria Core (breve) · desde 
-**Decir:** «Solo lo necesario para el entregable de hoy.»
+**Decir:** «Esto es lo que hay que saber del tema de hoy.»
 Proyecte estas diapositivas, en este orden, ~25 min cada una. Son la teoria
 completa del dia: **ninguna se salta**, porque el taller cobra puntos por lo que se
 proyecta en todas ellas.
@@ -243,16 +226,18 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: crear un indice sobre CADA columna 'por si acaso' sin mirar que consultas realmente lo necesitan — el taller exige justificar cada indice con la consulta concreta que lo aprovecha.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 54]
+### 35-55 · Demo paso a paso · [Slide 52]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: EXPLAIN ANALYZE con Seq Scan, CREATE INDEX idx_cita_fecha_hora, ANALYZE, y el mismo EXPLAIN mostrando Index Scan.
 Herramienta: ExamLab (PostgreSQL/PGlite)
 📸 El plan de C1 antes y despues: Seq Scan -> Index Scan using idx_cita_programada_fecha [[captura: salida-indice-antes-despues.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 59]
-**Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
-Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
+### 55-105 · Practica (opcional) · sin lamina
+La practica es **opcional** y **no se proyecta**: a veces se hace en clase, a veces no. La guia
+completa (contexto, escenario, pasos, pistas, plantilla y criterios) esta en `Clases/Clase 7 - Indices y particionamiento/Taller PI - Clase 7 - VetCare.docx`.
+Si hoy se hace, el estudiante la abre desde la carpeta de la clase. Solucion en Kit docente/Solucion Taller... (no proyectar).
+Si se hace, avanza el PI en: 3 indices justificados (uno parcial) + historico particionado por ano
 Actividades:
 1. Medir la linea base con EXPLAIN ANALYZE de las dos consultas frecuentes: hay que ver Seq Scan.
 2. Crear los tres indices con el nombre exacto, incluido el parcial idx_cita_programada_fecha, y correr ANALYZE.
@@ -263,14 +248,20 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: Script CREATE INDEX + cita_hist particionada + tabla justificacion consulta->indice
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 7/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 61]
-Repasar checklist del dia con [Slide 61] «Criterios de exito / entregable».
+### 105-115 · Repaso + quiz corto
+Repasar los conceptos del dia volviendo a las laminas de teoria que mas costaron.
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 7 - VetCare.docx`. Clave para usted: `Quiz Clase 7 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 63]
-**Decir:** «Queda avanzado: 3 indices justificados (uno parcial) + historico particionado por ano. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 63] slide de cierre. Dudas finales.
+### 115-120 · Cierre · [Slide 53]
+**Decir:** «Queda visto: Indices y particionamiento · VetCare. Si hicimos la practica, la guia y la entrega estan en la carpeta de la clase.»
+Proyectar [Slide 53] slide de cierre. Dudas finales.
 
+
+## Reparto del bloque y logistica (no se proyecta)
+
+### El reparto de los 120 minutos y como acompanar el taller
+
+El bloque de 120 minutos se reparte asi. Del minuto 0 al 10, encuadre y el enganche de la Clase 6: se proyecta un plan con Seq Scan y se anuncia que hoy esa linea cambia. Del 10 al 30, la teoria core: que es un indice, el B-Tree y el precio en cada escritura. Del 30 al 45, la diapositiva de justificacion, el prefijo izquierdo y las razones por las que un indice no se usa. Del 45 al 60, los cinco nombres y la secuencia de medicion, con la demo del bloque 2 en vivo: es el corazon de la sesion y no se debe recortar. Del 60 al 70, el indice parcial con sus numeros. Del 70 al 80, el particionamiento con el DDL y la trampa de la clave primaria. Del 80 al 115, el taller, que son 100 puntos en cinco preguntas: se abre ExamLab y se resuelve la pregunta 1 acompanada, en voz alta, hasta que aparezca el primer Index Scan del grupo, y las cuatro restantes de forma individual. Del 115 al 120, cierre y el amarre con la Clase 8. Tres avisos para el acompanamiento. Uno, el error mas frecuente no es conceptual sino de nombre: conviene proyectar los cinco nombres y dejarlos en pantalla mientras el grupo trabaja. Dos, cuando alguien diga que su indice no sirvio, la primera pregunta es si corrio el ANALYZE, no si el indice esta bien pensado. Tres, la pregunta 5 no es un relleno de cierre: son 20 puntos, la tabla tiene siete columnas y quien la deje para el ultimo minuto entrega tres columnas de siete. Vale la pena anunciar a mitad del taller que faltan 15 minutos y que la tabla de justificacion todavia no esta escrita.
 
 ## Codigo / scripts
 Carpeta Codigo/ — archivo 07_indices_vetcare.sql.

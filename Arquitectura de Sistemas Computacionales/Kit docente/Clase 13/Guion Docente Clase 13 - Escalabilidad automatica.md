@@ -100,12 +100,7 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 22. Preguntas frecuentes y cierre conceptual () (4/4)
 23. La regla de autoescalado, escrita como configuracion
 24. Politica de autoescalado (tabla, no prosa)
-25. Herramientas de hoy
-26. Del boceto a la plataforma del curso (diagrama)
-27. PI CloudLite — entregable de hoy
-28. Manos a la obra (paso a paso)
-29. Para continuar (PI)
-30. Clase 13 · PI en movimiento
+25. Clase 13 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 

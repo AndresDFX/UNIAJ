@@ -18,7 +18,7 @@ from uniajc_slides_engine import (
     new_prs, content_slide, table_content, box_note_slide, closing_slide,
     class_cover, herramientas_slide, steps_visual_slide, checklist_slide,
     block_timeline_slide, diagram_boxes_slide, pseudo_code_slide,
-    before_after_slide, AMARILLO, NAVY, CIAN,
+    before_after_slide, notas, AMARILLO, NAVY, CIAN,
     RED as PPTX_RED,
 )
 from uniajc_quiz_helpers import clave_text, pptx_chunks, q_abierta, q_om, q_vf, student_lines
@@ -2052,7 +2052,8 @@ ANTES_DESPUES = {
 # enseñaba. El caso que la creo es la politica de altas y bajas de la Clase 2, que
 # vale 15 de 100 puntos y cuyo unico ancla era «Para el PI esta semana», una
 # diapositiva que trae el hito y la fecha limite pero ni una palabra de la
-# politica. Antes de inventar un molde nuevo, mire si el contenido es una lista de
+# politica. (Esa lamina ya no existe: el deck solo lleva el tema, y por eso
+# todo mecanismo evaluado tiene que vivir en una lamina de concepto como estas.) Antes de inventar un molde nuevo, mire si el contenido es una lista de
 # secciones: si lo es, va aqui.
 #
 #   {n: [(titulo, [vinetas], subtitulo_o_None), ...]}
@@ -2589,6 +2590,27 @@ def _fundamento_md(c):
     return "\n\n### Desarrollo del tema (para dictar sin consultar otra fuente)\n\n" + fund + "\n"
 
 
+# Secciones del fundamento que hablan del taller o de la logistica del bloque, no del
+# tema: no se proyectan (el taller es opcional y su guia vive en la carpeta). Su texto
+# va al guion, en «Reparto del bloque y logistica», que es apoyo docente.
+SECCIONES_SOLO_TALLER = (
+    "El reparto de los 120 minutos y como acompanar el taller",
+    "La aritmetica del calendario, dicha en voz alta",
+)
+
+
+def _secciones_de_taller(fund):
+    """`[(titulo, cuerpo)]` de las secciones de SECCIONES_SOLO_TALLER."""
+    return [(t, b) for t, _a, b in TS.partir_secciones(fund) if t in SECCIONES_SOLO_TALLER]
+
+
+def _sin_secciones_de_taller(fund):
+    partes = re.split(r"(?m)^(?=###[ \t])", fund)
+    return "".join(
+        p for p in partes
+        if not any(p.startswith("### " + t) for t in SECCIONES_SOLO_TALLER))
+
+
 def _teoria_slides(c):
     """Las diapositivas de teoria de esta clase: UNA POR CONCEPTO, con su contenido.
 
@@ -2608,7 +2630,7 @@ def _teoria_slides(c):
     fund = (c.get("fundamento") or FUNDAMENTOS.get(c["n"]) or "").strip()
     if not fund:
         return [("Teoria Core (breve)", _slide_summary(c["teoria"]), [], "content")]
-    laminas = TS.slides_de_clase(fund)
+    laminas = TS.slides_de_clase(_sin_secciones_de_taller(fund))
     # Y las consultas autoradas de la clase. Es la materia de las consultas y el deck
     # proyectaba el 7% de codigo: todo el SQL que ya existia en el material estaba
     # extraido, asi que subir de ahi era escribir SQL nuevo. Ensenan el MECANISMO que la
@@ -2666,7 +2688,7 @@ def _slide_map(c):
                 "Como se responde y como se entrega",
                 f"{c['titulo']} · Clase {c['n']}"]
     m = [f"Portada · Clase {c['n']} · {c['titulo']}",
-         "Encuadre de hoy · Objetivo PI",
+         ENCUADRE_TITULO[c['tipo'] == 'sustentacion'],
          "Mapa del bloque de hoy (120 min)"]
     if c['n'] == 1:
         m.append(CLIENTE_SLIDE_TITULO)
@@ -2683,25 +2705,17 @@ def _slide_map(c):
     for extra in TEORIA_EXTRA.get(c['n'], []):
         m.append(extra[0])
     m.append("Como se ordena la sesion de hoy" if c['tipo'] == 'sustentacion' else "Demo del dia")
-    if HERRAMIENTAS_DIA.get(c["n"]):
-        m.append("Herramientas de hoy")
+    # El deck solo lleva el tema: el taller es opcional y su guia, sus criterios y su
+    # entrega viven en la carpeta (Taller ... .docx), no en laminas. Lo que se queda es el
+    # flujo boceto -> Mermaid, porque es el mecanismo que la pregunta de diagrama evalua.
     if _tiene_diagrama(c['n']):
         m.append(FLUJO_SLIDE_TITULO)
-    tb = TALLER_BLOQUE.get(c["n"], {})
-    label = {"autonoma": "Actividad autonoma",
-             "sustentacion": "Sustentacion del PI"}.get(c["tipo"], "Taller PI VetCare")
-    if tb.get("contexto"):
-        m.append(f"{label} — contexto / por que importa")
-    m.append(f"{label} — objetivo y criterios")
-    if tb.get("escenario"):
-        m.append(f"{label} — escenario / datos de partida")
-    m.append(f"{label} — pasos guiados")
-    if tb.get("pistas"):
-        m.append(f"{label} — pistas (checklist vacio)")
-    m.append("Criterios de exito / entregable")
-    m.append("Cierre del PI" if c['tipo'] == 'sustentacion' else "Para el PI esta semana")
     m.append(f"Cierre · Clase {c['n']}")
     return m
+
+
+# Titulo de la 2a lamina: [regular/autonoma, sustentacion].
+ENCUADRE_TITULO = ("Encuadre de hoy · Tema y objetivo", "Encuadre de hoy · Objetivo PI")
 
 
 def _plano(s):
@@ -2834,21 +2848,19 @@ def build_pptx(c):
                 "sustentacion": "sustentacion en vivo"}.get(c['tipo'], "regular")
     # 2ª slide: encuadre / objetivos (contenido que salió de la portada)
     if c['tipo'] == 'sustentacion':
-        content_slide(prs, "Encuadre de hoy · Objetivo PI", [
+        content_slide(prs, ENCUADRE_TITULO[1], [
             f"**Hoy cerramos el PI:** {c['hito_pi']}",
             "Sesión **síncrona** de sustentaciones · Bloque **120 min** · turnos consecutivos.",
-            f"**Entregable de hoy:** {c['entregable']}",
             "Sube el paquete a ExamLab **antes** de tu turno: presentando no se sube nada.",
             "La sustentación es **en vivo** y con preguntas: no se reemplaza por video grabado.",
         ], idx=idx); idx += 1
     else:
-        content_slide(prs, "Encuadre de hoy · Objetivo PI", [
-            f"**Hoy avanzamos el PI en:** {c['hito_pi']}",
-            f"Herramienta: **{c['herramienta']}** · Bloque **120 min** · Teoría breve · Taller PI",
-            f"**Entregable de hoy:** {c['entregable']}",
+        content_slide(prs, ENCUADRE_TITULO[0], [
+            f"**Tema de hoy:** {c['titulo']}",
+            f"Herramienta: **{c['herramienta']}** · Bloque **120 min**",
             "Gratis + navegador · free tier · sin software de pago obligatorio.",
-            "La teoría no es un tema aislado: alimenta evidencias de la rúbrica del PI.",
-            "Al salir: avance concreto en su paquete VetCare.",
+            "Recorrido: teoría del tema, una lámina por concepto, y demo del docente sobre VetCare DB.",
+            "Cada lámina se sostiene sola: sirve para repasar aunque hayas faltado.",
         ], idx=idx); idx += 1
     if c['tipo'] == 'sustentacion':
         # El bloque no se reparte en teoría + taller: son turnos de sustentación.
@@ -2862,8 +2874,8 @@ def build_pptx(c):
             ("0-10", f"Encuadre · clase {tipo_lbl} · VetCare"),
             ("10-35", "Teoría Core breve (al servicio del PI)"),
             ("35-55", "Demo con la herramienta del día"),
-            ("55-105", "Taller guiado = tarea del PI"),
-            ("105-120", "Criterios de exito · cierre · dudas del PI"),
+            ("55-105", "Práctica (opcional, guía en la carpeta)"),
+            ("105-120", "Cierre conceptual · dudas"),
         ], idx=idx); idx += 1
     if c['n'] == 1:
         content_slide(prs, CLIENTE_SLIDE_TITULO, [
@@ -2879,11 +2891,15 @@ def build_pptx(c):
             "@@Caso completo:@@ anexo «Caso de estudio Clínica Huellitas» en "
             "Clases/Proyecto Integrador — 8 entidades, 3 reglas y el elenco de nombres.",
         ], sub=NOMENCLATURA, idx=idx); idx += 1
-    for _t, _items, _, _tipo in _teoria_slides(c):
+    for _t, _items, _notas, _tipo in _teoria_slides(c):
         if _tipo == "codigo":
-            pseudo_code_slide(prs, _t, _items, idx=idx)
+            _s = pseudo_code_slide(prs, _t, _items, idx=idx)
         else:
-            content_slide(prs, _t, _items, idx=idx)
+            _s = content_slide(prs, _t, _items, idx=idx)
+        # Lo que teoria_a_slides manda al guion (que subrayar, como dictarlo) va
+        # tambien a las notas del presentador de ESA lamina.
+        if _notas:
+            notas(_s, "\n".join(_notas))
         idx += 1
     dg = DIAGRAMAS_BD2.get(c['n'])
     if dg:
@@ -2913,7 +2929,6 @@ def build_pptx(c):
         content_slide(prs, "Como se ordena la sesion de hoy", [
             "Sustentación **en vivo**, en este bloque: no se reemplaza por video grabado.",
             "Turnos de **5–8 min de pitch + Q&A**; el orden se sortea al empezar.",
-            f"Ten listo: **{c['entregable']}**",
             "En tu turno muestra una **ejecución real** (procedimiento OK + caso rechazado), no solo capturas.",
             "Mientras otros presentan, escuchas: el cierre del curso se hace con todo el grupo.",
         ], idx=idx); idx += 1
@@ -2924,11 +2939,6 @@ def build_pptx(c):
             "Sigan el mismo dominio VetCare (no inventen otro caso).",
             "Al final de la demo: dejar enlace/script compartible al grupo.",
         ], idx=idx); idx += 1
-    tools = HERRAMIENTAS_DIA.get(c["n"])
-    if tools:
-        herramientas_slide(prs, tools, title="Herramientas de hoy",
-                           sub="Gratis · navegador o free tier", idx=idx)
-        idx += 1
     # Del boceto al codigo: solo en las clases cuyo taller tiene pregunta de
     # diagrama. El estudiante disena en Excalidraw/draw.io y entrega Mermaid; sin
     # esta diapositiva llegaba con un PNG a una caja que espera texto.
@@ -2941,61 +2951,6 @@ def build_pptx(c):
             sub="El diagrama se entrega como codigo Mermaid dentro de ExamLab, no como imagen",
             idx=idx)
         idx += 1
-    tb = TALLER_BLOQUE.get(c["n"], {})
-    label = {"autonoma": "Actividad autonoma",
-             "sustentacion": "Sustentacion del PI"}.get(c["tipo"], "Taller PI VetCare")
-    if tb.get("contexto"):
-        content_slide(prs, f"{label} — contexto / por que importa", tb["contexto"], idx=idx,
-                      )
-        idx += 1
-    obj = tb.get("objetivo") or c["hito_pi"]
-    crit = [f"@@Exito:@@ {x}" for x in tb.get("criterios", [])] or [
-        f"@@Entregable:@@ {c['entregable']}",
-        # No hay «playground»: la evidencia vive dentro de ExamLab, que guarda la
-        # consulta y lo que devolvio la base en cada pregunta. Este texto solo se
-        # usa si la clase no tiene `criterios` en TALLER_BLOQUE.
-        "Evidencia: lo que ejecutaste y su salida quedan guardados en la pregunta de ExamLab.",
-    ]
-    content_slide(prs, f"{label} — objetivo y criterios", [f"@@Objetivo:@@ {obj}", *crit], idx=idx,
-                  )
-    idx += 1
-    if tb.get("escenario"):
-        content_slide(prs, f"{label} — escenario / datos de partida", tb["escenario"], idx=idx,
-                      )
-        idx += 1
-    steps_visual_slide(prs, f"{label} — pasos guiados", [(t, "") for t in c["taller"]], idx=idx)
-    idx += 1
-    if tb.get("pistas"):
-        checklist_slide(prs, f"{label} — pistas (checklist vacio)", tb["pistas"], idx=idx)
-        idx += 1
-    if c['tipo'] == 'sustentacion':
-        content_slide(prs, "Criterios de exito / entregable", [
-            f"**Entregable:** {c['entregable']}",
-            "Evidencia ejecutable en pantalla durante tu turno (no solo capturas).",
-            "Puedes explicar **cualquier** parte de tu modelo en 60 segundos.",
-            "@@Entrega en ExamLab@@ (https://uniaj.examlab.workers.dev/ · módulo Proyectos) — **antes** de tu turno.",
-        ], idx=idx); idx += 1
-        box_note_slide(prs, "Cierre del PI", [
-            ("info", f"Hito: {c['hito_pi']}"),
-            ("aclaracion", "Enunciado completo y rubrica: Clases/Proyecto Integrador/ (VetCare DB)."),
-            ("advertencia", "El PI vale 20% del Corte 3 y NO reemplaza el Parcial 3, que ya se aplico en su propia sesion."),
-        ], idx=idx); idx += 1
-    else:
-        content_slide(prs, "Criterios de exito / entregable", [
-            f"**Entregable:** {c['entregable']}",
-            # Decia «Evidencia en playground (enlace)»: no hay playground ni enlace que
-            # compartir — la entrega es dentro de ExamLab, que guarda la consulta y la
-            # salida en cada pregunta. Es una diapositiva compartida por las 15 clases.
-            "Evidencia: el SQL y su salida quedan guardados en cada pregunta de ExamLab.",
-            "Conserva copia en tu carpeta del PI (los .sql que pide el entregable).",
-            "Actualizar checklist PI (que criterio de rubrica avanzo).",
-            "@@Entrega en ExamLab@@ (https://uniaj.examlab.workers.dev/) — domingo 23:59 cuando aplique taller.",
-        ], idx=idx); idx += 1
-        box_note_slide(prs, "Para el PI esta semana", [
-            ("info", f"Hito: {c['hito_pi']}"),
-            ("aclaracion", "Enunciado completo: Clases/Proyecto Integrador/ (VetCare DB)."),
-            ("advertencia", "Taller de la semana en ExamLab (https://uniaj.examlab.workers.dev/): domingo 23:59 (regla del Acuerdo) cuando aplique."),
-        ], idx=idx); idx += 1
     # El QUIZ no va en el material del estudiante: ni proyectado ni anunciado.
     # Vive solo en Kit docente/Clase N/ (enunciados + CLAVE DOCENTE aparte), que
     # el docente aplica por el canal que decida. Anticiparlo en la diapositiva le
@@ -3003,15 +2958,18 @@ def build_pptx(c):
     if c['tipo'] == 'sustentacion':
         closing_slide(prs, f"Clase {c['n']} · cierre de VetCare DB", [
             c['hito_pi'],
-            f"Entregable: {c['entregable']}",
             "Conserva el paquete (ER, DDL, roles, procs, triggers, optimizacion) como portafolio",
         ], accent="Sustentar es justificar decisiones, no describir tablas")
     else:
-        closing_slide(prs, f"Clase {c['n']} · VetCare avanza", [
-            c['hito_pi'],
-            f"Entregable: {c['entregable']}",
-            "Siguiente clase: continuar el hilo del PI segun plan",
-        ], accent="Teoria breve · practica = PI")
+        # Cierre conceptual: los conceptos que se vieron, sin anunciar entregables.
+        _vistos = []
+        for _t, *_ in _teoria_slides(c):
+            _b = re.sub(r"\s*\(\d+/\d+\)$|\s*— sintaxis$", "", _t).split(":")[0].strip()
+            if _b not in _vistos:
+                _vistos.append(_b)
+        closing_slide(prs, f"Clase {c['n']} · {c['titulo']}",
+                      _vistos[:3] or [c['titulo']],
+                      accent="Todo lo visto queda proyectado para repasar")
     _verificar_mapa(c, prs)
     out_dir = CLASES_DIR / f"Clase {c['n']} - {c['slug']}"
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -3908,6 +3866,17 @@ mismo documento que entregaste.
 """
 
 
+def _reparto_taller_md(c):
+    fund = (c.get("fundamento") or FUNDAMENTOS.get(c["n"]) or "")
+    secs = _secciones_de_taller(fund)
+    if not secs:
+        return ""
+    L = ["## Reparto del bloque y logistica (no se proyecta)", ""]
+    for t, b in secs:
+        L += [f"### {t}", "", TS.limpiar_tokens(b), ""]
+    return "\n".join(L) + "\n"
+
+
 def build_guion_md(c):
     kit = KIT_DIR / f"Clase {c['n']}"
     kit.mkdir(parents=True, exist_ok=True)
@@ -3952,8 +3921,8 @@ def build_guion_md(c):
     min_por_slide = max(2, 25 // max(1, len(teoria_slides)))
     sl_demo = _slide_tag(mapa, "Demo del dia", "Como se ordena")
     sl_flujo = _slide_tag(mapa, FLUJO_SLIDE_TITULO)
-    sl_taller = _slide_tag(mapa, "pasos guiados")
-    sl_crit = _slide_tag(mapa, "Criterios de exito")
+    _taller_doc = (f"`Clases/Clase {c['n']} - {c['slug']}/"
+                   f"Taller PI - Clase {c['n']} - VetCare.docx`")
     sl_cierre = f"[Slide {len(mapa)}] "  # el cierre es siempre la ultima
     tipo = TIPO_LABEL[c['tipo']]
     # Si el taller pide un diagrama, la demo tiene que terminar en ExamLab y no en
@@ -4024,7 +3993,7 @@ mitad de lo que se evalua, y vuelve regla la excepcion el semestre siguiente.
 
 ### Bloque A (0-20) · Encuadre PI
 **Decir/publicar:** «Hoy avanzamos el PI en: {hito}. No es un taller suelto.»
-Referencia slides: Agenda + Objetivo PI.
+Referencia slides: Encuadre + Mapa del bloque.
 
 ### Bloque B (20-45) · Teoria minima
 Leer Teoria Core. Tomar notas en el informe del PI.
@@ -4041,13 +4010,12 @@ Subir entregable a ExamLab. Actualizar el checklist PI del proyecto.
         plan = f"""## Plan minuto a minuto (120 min) — texto casi literal
 
 ### 0-10 · Encuadre · {_slide_tag(mapa, "Encuadre de hoy").strip()}{_slide_tag(mapa, "Mapa del bloque").strip()}
-**Decir:** «Buenas. Hoy el hilo es VetCare DB. Avanzamos el PI en: {c['hito_pi']}.
-La teoria sera corta; el peso esta en el taller del proyecto.»
-Proyectar {_slide_tag(mapa, "Encuadre de hoy") or "la slide de"}«Encuadre de hoy · Objetivo PI» y {_slide_tag(mapa, "Mapa del bloque")}«Mapa del bloque de hoy».
+**Decir:** «Buenas. Hoy el hilo es VetCare DB y el tema es: {c['titulo']}.»
+Proyectar {_slide_tag(mapa, "Encuadre de hoy") or "la slide de"}«{ENCUADRE_TITULO[0]}» y {_slide_tag(mapa, "Mapa del bloque")}«Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
 ### 10-35 · Teoria Core (breve) · desde {sl_teoria.strip()}
-**Decir:** «Solo lo necesario para el entregable de hoy.»
+**Decir:** «Esto es lo que hay que saber del tema de hoy.»
 Proyecte estas diapositivas, en este orden, ~{min_por_slide} min cada una. Son la teoria
 completa del dia: **ninguna se salta**, porque el taller cobra puntos por lo que se
 proyecta en todas ellas.
@@ -4065,17 +4033,19 @@ Demo: {c['demo']}
 Herramienta: {c['herramienta']}
 {flujo_guion}""" + _capturas_md(c['n'], c) + f"""Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · {sl_taller.strip()}
-**Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
-Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
+### 55-105 · Practica (opcional) · sin lamina
+La practica es **opcional** y **no se proyecta**: a veces se hace en clase, a veces no. La guia
+completa (contexto, escenario, pasos, pistas, plantilla y criterios) esta en {_taller_doc}.
+Si hoy se hace, el estudiante la abre desde la carpeta de la clase. Solucion en Kit docente/Solucion Taller... (no proyectar).
+Si se hace, avanza el PI en: {c['hito_pi']}
 Actividades:
 """ + "\n".join(f"{i+1}. {t}" for i,t in enumerate(c['taller'])) + f"""
 Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: {c['entregable']}
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase {c['n']}/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · {sl_crit.strip()}
-Repasar checklist del dia con {sl_crit}«Criterios de exito / entregable».
+### 105-115 · Repaso + quiz corto
+Repasar los conceptos del dia volviendo a las laminas de teoria que mas costaron.
 """ + (
         f"Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). "
         f"Version impresa/proyectable de respaldo: `Quiz Clase {c['n']} - VetCare.docx`. "
@@ -4085,7 +4055,7 @@ Repasar checklist del dia con {sl_crit}«Criterios de exito / entregable».
     ) + f"""
 
 ### 115-120 · Cierre · {sl_cierre.strip()}
-**Decir:** «Queda avanzado: {c['hito_pi']}. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
+**Decir:** «Queda visto: {c['titulo']}. Si hicimos la practica, la guia y la entrega estan en la carpeta de la clase.»
 Proyectar {sl_cierre}slide de cierre. Dudas finales.
 """
 
@@ -4123,7 +4093,7 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 > Privado, no se proyecta: `Kit docente/Clase {c['n']}/Solucion Taller Clase {c['n']} - VetCare.docx`
 """ + "\n" + plan + f"""
 
-## Codigo / scripts
+""" + _reparto_taller_md(c) + f"""## Codigo / scripts
 Carpeta Codigo/ — archivo {c['sql'] or 'N/A'}.
 
 ## Capturas

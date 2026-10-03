@@ -80,8 +80,8 @@ el taller del proyecto.»
 Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 
 ### 10-40 · Teoria Core
-Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
-proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
+Cubrir el fundamento de arriba apoyandose en las laminas de concepto y en las de codigo
+(lo que hay que subrayar esta tambien en las notas del presentador de cada lamina). Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
 Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
@@ -90,7 +90,9 @@ Demo: El docente encola cuatro mascotas, muestra en pantalla la diferencia entre
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 3/Codigo/VetCareSalaDeEspera.java`
 
-### 60-105 · Taller guiado = avance del PI
+### 60-105 · Taller guiado (opcional) = avance del PI
+Opcional: no tiene lamina en el deck. La guia esta en
+`Clases/Clase 3 - Pilas y colas/Taller PI - Clase 3 - VetCare.docx`; si hoy no se hace, se extiende la demo y la practica libre.
 **Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Cree la clase Turno con id, nombre de la mascota, nombre del dueno y motivo de consulta, mas sus getters y su toString(); verifique imprimiendo un turno suelto en consola antes de meterlo en cualquier estructura.
@@ -102,7 +104,7 @@ Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Clases SalaDeEspera (Queue) e HistorialReciente (Deque como pila) integradas al proyecto VetCare, con una demo que atiende en orden de llegada las cuatro mascotas del escenario y deshace la ultima atencion registrada; comprimido y subido a ExamLab.
 
 ### 105-120 · Criterios de exito y cierre
-Repasar el checklist de la slide de criterios.
+Si hubo taller, repasar los criterios de exito del `Taller PI - Clase 3 - VetCare.docx` (no estan en el deck).
 Aplicar el quiz corto de `Kit docente/Clase 3/Quiz Clase 3 - VetCare.docx`
 (la clave va aparte y **no se proyecta**).
 **Decir:** «Queda avanzado: VetCare queda con la sala de espera modelada como cola FIFO y el historial de atenciones recientes como pila LIFO, ambas conectadas al registro de mascotas de la clase anterior.. Entrega en ExamLab, domingo 23:59.»

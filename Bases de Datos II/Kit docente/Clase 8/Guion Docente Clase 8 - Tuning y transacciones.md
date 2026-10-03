@@ -139,24 +139,17 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 44] Donde corre esto, y por que el autocommit ya no es el enemigo (2/2)** — 3 vinetas.
 
-**[Slide 45] El reparto de los 120 minutos y como acompanar el taller (1/3)** — 5 vinetas.
-  - Cuatro avisos para el acompanamiento.
+**[Slide 45] Preguntas frecuentes del grupo (1/3)** — 6 vinetas.
 
-**[Slide 46] El reparto de los 120 minutos y como acompanar el taller (2/3)** — 6 vinetas.
+**[Slide 46] Preguntas frecuentes del grupo (2/3)** — 5 vinetas.
 
-**[Slide 47] El reparto de los 120 minutos y como acompanar el taller (3/3)** — 2 vinetas.
+**[Slide 47] Preguntas frecuentes del grupo (3/3)** — 5 vinetas.
 
-**[Slide 48] Preguntas frecuentes del grupo (1/3)** — 6 vinetas.
+**[Slide 48] Todo o nada: la transaccion explicita** — 11 vinetas.
 
-**[Slide 49] Preguntas frecuentes del grupo (2/3)** — 5 vinetas.
+**[Slide 49] SAVEPOINT: deshacer una parte sin perder el resto** — 12 vinetas.
 
-**[Slide 50] Preguntas frecuentes del grupo (3/3)** — 5 vinetas.
-
-**[Slide 51] Todo o nada: la transaccion explicita** — 11 vinetas.
-
-**[Slide 52] SAVEPOINT: deshacer una parte sin perder el resto** — 12 vinetas.
-
-**[Slide 53] El bloque EXCEPTION y la trampa que cuesta puntos** — 12 vinetas.
+**[Slide 50] El bloque EXCEPTION y la trampa que cuesta puntos** — 12 vinetas.
 
 
 **Demo que usted debe poder repetir:** CALL sp_facturar(4, ARRAY[1,6,5], ARRAY[1,2,3]) que factura 27.400, y CALL sp_facturar(4, ARRAY[3,2], ARRAY[2,10]) que falla en la segunda linea: el stock del insumo 3 vuelve a 40 sin ROLLBACK escrito.
@@ -166,7 +159,7 @@ Numeracion real del deck `Clases/Clase 8 - Tuning y transacciones/Presentacion.p
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
 1. Portada · Clase 8 · Tuning · Transacciones · VetCare
-2. Encuadre de hoy · Objetivo PI
+2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. Que es una transaccion, y las dos amenazas de las que protege (1/2)
 5. Que es una transaccion, y las dos amenazas de las que protege (2/2)
@@ -209,42 +202,30 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 42. La demo, en el orden en que se proyecta — sintaxis
 43. Donde corre esto, y por que el autocommit ya no es el enemigo (1/2)
 44. Donde corre esto, y por que el autocommit ya no es el enemigo (2/2)
-45. El reparto de los 120 minutos y como acompanar el taller (1/3)
-46. El reparto de los 120 minutos y como acompanar el taller (2/3)
-47. El reparto de los 120 minutos y como acompanar el taller (3/3)
-48. Preguntas frecuentes del grupo (1/3)
-49. Preguntas frecuentes del grupo (2/3)
-50. Preguntas frecuentes del grupo (3/3)
-51. Todo o nada: la transaccion explicita
-52. SAVEPOINT: deshacer una parte sin perder el resto
-53. El bloque EXCEPTION y la trampa que cuesta puntos
-54. Todo o nada: la transaccion de facturacion
-55. sp_facturar en PL/pgSQL: el molde que se califica
-56. Por que el procedimiento no lleva COMMIT ni ROLLBACK
-57. fn_descontar_stock: cuando «no hay stock» es una respuesta, no un error
-58. Demo del dia
-59. Herramientas de hoy
-60. Taller PI VetCare — contexto / por que importa
-61. Taller PI VetCare — objetivo y criterios
-62. Taller PI VetCare — escenario / datos de partida
-63. Taller PI VetCare — pasos guiados
-64. Taller PI VetCare — pistas (checklist vacio)
-65. Criterios de exito / entregable
-66. Para el PI esta semana
-67. Cierre · Clase 8
+45. Preguntas frecuentes del grupo (1/3)
+46. Preguntas frecuentes del grupo (2/3)
+47. Preguntas frecuentes del grupo (3/3)
+48. Todo o nada: la transaccion explicita
+49. SAVEPOINT: deshacer una parte sin perder el resto
+50. El bloque EXCEPTION y la trampa que cuesta puntos
+51. Todo o nada: la transaccion de facturacion
+52. sp_facturar en PL/pgSQL: el molde que se califica
+53. Por que el procedimiento no lleva COMMIT ni ROLLBACK
+54. fn_descontar_stock: cuando «no hay stock» es una respuesta, no un error
+55. Demo del dia
+56. Cierre · Clase 8
 
 > Privado, no se proyecta: `Kit docente/Clase 8/Solucion Taller Clase 8 - VetCare.docx`
 
 ## Plan minuto a minuto (120 min) — texto casi literal
 
 ### 0-10 · Encuadre · [Slide 2][Slide 3]
-**Decir:** «Buenas. Hoy el hilo es VetCare DB. Avanzamos el PI en: Transaccion de negocio (factura + stock) + notas de tuning.
-La teoria sera corta; el peso esta en el taller del proyecto.»
-Proyectar [Slide 2] «Encuadre de hoy · Objetivo PI» y [Slide 3] «Mapa del bloque de hoy».
+**Decir:** «Buenas. Hoy el hilo es VetCare DB y el tema es: Tuning · Transacciones · VetCare.»
+Proyectar [Slide 2] «Encuadre de hoy · Tema y objetivo» y [Slide 3] «Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
 ### 10-35 · Teoria Core (breve) · desde 
-**Decir:** «Solo lo necesario para el entregable de hoy.»
+**Decir:** «Esto es lo que hay que saber del tema de hoy.»
 Proyecte estas diapositivas, en este orden, ~25 min cada una. Son la teoria
 completa del dia: **ninguna se salta**, porque el taller cobra puntos por lo que se
 proyecta en todas ellas.
@@ -262,16 +243,18 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: envolver TODA la sesion de trabajo en una sola transaccion gigante 'para no perder nada' — eso maximiza el tiempo que otros usuarios quedan bloqueados esperando esas filas, exactamente el problema que Clase 10 (concurrencia) va a diagnosticar.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 58]
+### 35-55 · Demo paso a paso · [Slide 55]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: CALL sp_facturar(4, ARRAY[1,6,5], ARRAY[1,2,3]) que factura 27.400, y CALL sp_facturar(4, ARRAY[3,2], ARRAY[2,10]) que falla en la segunda linea: el stock del insumo 3 vuelve a 40 sin ROLLBACK escrito.
 Herramienta: ExamLab (PostgreSQL/PGlite)
 📸 CALL sp_facturar que falla a mitad: foto inicial y foto final identicas, sin ROLLBACK escrito [[captura: salida-rollback-stock.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 63]
-**Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
-Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
+### 55-105 · Practica (opcional) · sin lamina
+La practica es **opcional** y **no se proyecta**: a veces se hace en clase, a veces no. La guia
+completa (contexto, escenario, pasos, pistas, plantilla y criterios) esta en `Clases/Clase 8 - Tuning y transacciones/Taller PI - Clase 8 - VetCare.docx`.
+Si hoy se hace, el estudiante la abre desde la carpeta de la clase. Solucion en Kit docente/Solucion Taller... (no proyectar).
+Si se hace, avanza el PI en: Transaccion de negocio (factura + stock) + notas de tuning
 Actividades:
 1. Escribir sp_facturar(p_id_consulta, p_insumos INT[], p_cantidades INT[]) en PL/pgSQL: cabecera con total 0, bucle por linea con el guardia stock >= cantidad, y UPDATE del total al final.
 2. Probar el fallo a mitad con ARRAY[3,2] / ARRAY[2,10] y demostrar con foto inicial y final que el stock del insumo 3 volvio a 40.
@@ -282,14 +265,20 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: sp_facturar + fn_descontar_stock + seccion Transacciones y tuning del informe (1 pag.)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 8/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 65]
-Repasar checklist del dia con [Slide 65] «Criterios de exito / entregable».
+### 105-115 · Repaso + quiz corto
+Repasar los conceptos del dia volviendo a las laminas de teoria que mas costaron.
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 8 - VetCare.docx`. Clave para usted: `Quiz Clase 8 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 67]
-**Decir:** «Queda avanzado: Transaccion de negocio (factura + stock) + notas de tuning. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 67] slide de cierre. Dudas finales.
+### 115-120 · Cierre · [Slide 56]
+**Decir:** «Queda visto: Tuning · Transacciones · VetCare. Si hicimos la practica, la guia y la entrega estan en la carpeta de la clase.»
+Proyectar [Slide 56] slide de cierre. Dudas finales.
 
+
+## Reparto del bloque y logistica (no se proyecta)
+
+### El reparto de los 120 minutos y como acompanar el taller
+
+El bloque de 120 minutos se reparte asi. Del minuto 0 al 10, encuadre y el amarre con la Clase 7: ayer se hizo que las consultas leyeran menos, hoy se hace que las escrituras no queden a medias. Del 10 al 30, ACID con sus cuatro fallos concretos, uno por letra, cada uno nombrando la tabla de VetCare donde ocurre; conviene no dedicar mas de cinco minutos por letra y no entrar en niveles de aislamiento mas alla de nombrarlos. Del 30 al 50, la firma del procedimiento y el guardia, sentencia por sentencia, con el codigo en pantalla. Del 50 al 60, por que no lleva COMMIT ni ROLLBACK, con el savepoint implicito y el contraste con Oracle: son los 10 puntos de la pregunta 4 y se resuelven en esta diapositiva. Del 60 al 70, la funcion y la distincion entre abortar e informar. Del 70 al 80, tuning y el checklist. Del 80 al 115, el taller. Del 115 al 120, cierre y el gancho de la Clase 10. Cuatro avisos para el acompanamiento. Uno, la pregunta 1 es la mas larga del taller y vale 35 puntos: conviene resolver en voz alta con el grupo la validacion de los arreglos y la cabecera con RETURNING, y dejar el bucle para el trabajo individual. Dos, el error de sintaxis mas frecuente es el delimitador de dolar mal cerrado; si alguien reporta un error incomprensible, lo primero que se revisa es que el $proc$ del final este igual al del principio. Tres, quien escriba COMMIT dentro del procedimiento tiene que entender por que sobra, no solo borrarlo, porque es la pregunta 4. Cuatro, la pregunta 5 son 15 puntos de prosa estructurada y se queda sin tiempo si nadie la anuncia: a los 100 minutos hay que decir en voz alta que faltan 15 y que el checklist necesita evidencias, no casillas.
 
 ## Codigo / scripts
 Carpeta Codigo/ — archivo 08_transacciones_vetcare.sql.

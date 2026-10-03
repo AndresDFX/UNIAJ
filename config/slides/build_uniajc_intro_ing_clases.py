@@ -54,6 +54,10 @@ from intro_ing_ejemplos_data import EJEMPLOS  # noqa: E402
 #: plan, que estan contados sobre el deck SIN ejemplos.
 _TITULOS_EJEMPLO = {}
 
+#: Cuantas laminas de actividad (taller, exposicion, tarea) se retiraron justo antes del
+#: cierre: el `plan` las sigue citando con la numeracion vieja.
+_RETIRADAS = {}
+
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 CURSO = os.path.join(ROOT, D.curso()["folder"])
 LETRAS = "abcdefghij"
@@ -98,6 +102,10 @@ def _slide_no(titulos, frag, n):
     # lamina que desarrolla, asi que la primera es la que el guion quiere nombrar.
     if hits:
         return hits[0]
+    # Las laminas de actividad (taller, exposicion, tarea) ya no se proyectan: un bloque del
+    # fundamento que hablaba de ellas sigue en el guion, pero sin lamina.
+    if re.search(r"taller|expone|para la clase|cierre del curso|actividad de hoy", fp):
+        return None
     raise SystemExit(
         "Clase %d: el fragmento {{slide:%s}} coincide con %d diapositivas.\n"
         "Titulos reales del deck:\n%s"
@@ -111,6 +119,9 @@ def _etiqueta_slides(titulos, campo, n):
     ns = [_slide_no(titulos, m.group(1), n) for m in _SLIDE_TOKEN.finditer(campo)]
     if not ns:
         raise SystemExit("Clase %d: bloque de fundamento sin {{slide:}}: %r" % (n, campo))
+    ns = [x for x in ns if x is not None]
+    if not ns:
+        return "sin lámina: es la actividad, su guía está en la carpeta de la clase"
     if len(ns) == 1:
         return "diapositiva %d" % ns[0]
     return "diapositivas %s y %d" % (", ".join(str(x) for x in ns[:-1]), ns[-1])
@@ -198,11 +209,16 @@ def _agenda(t):
         return slots
 
     etq = t.get("agenda", {})
+    # El taller es opcional y su detalle esta en la carpeta: la agenda no lo anuncia.
+    _practica = {
+        "Actividad en equipos": "Práctica en equipos (opcional · la guía está en la carpeta de la clase)",
+        "Exposiciones": "Socialización de la práctica, si se hizo",
+    }
     slots = []
     for b in D.dinamica()["bloques"]:
         slots.append({
             "t": "%s–%s · %d min" % (b["desde"], b["hasta"], b["min"]),
-            "label": etq.get(b["nombre"], b["corto"]),
+            "label": _practica.get(b["nombre"], etq.get(b["nombre"], b["corto"])),
         })
     return slots
 
@@ -257,7 +273,7 @@ def _notas_del_fundamento(prs, titulos, t, n):
         nums = [_slide_no(titulos, m.group(1), n) for m in _SLIDE_TOKEN.finditer(b["slide"])]
         texto = [b["titulo"].upper()] + list(b.get("cuerpo", []))
         for k in nums:
-            if 1 <= k <= len(laminas):
+            if k is not None and 1 <= k <= len(laminas):
                 notas(laminas[k - 1], texto)
 
 
@@ -362,50 +378,10 @@ def build_pptx(n):
                 notas(prs.slides[-1], ej["nota"])
             idx += 1
 
-    tl = t["taller"]
-    checklist_slide(
-        prs, t_reg("Taller de hoy: %s" % tl["titulo"]),
-        ["**%s** — %s" % (b["clave"], b["pide"]) for b in tl["bloques"]],
-        sub="%d min en equipos · %s · %s" % (tl["min"], tl["reparto_corto"], tl["entregable_corto"]),
-        idx=idx,
-    )
-    idx += 1
-
-    steps_visual_slide(
-        prs, t_reg("Cómo se expone en %d minutos" % tl["exposicion"]),
-        tl["expo"],
-        sub="Habla el vocero con la pantalla ya compartida · cronómetro en pantalla · se corta al llegar a cero",
-        idx=idx,
-    )
-    idx += 1
-
-    if n < c["n_temas"]:
-        sig = D.tema(n + 1)
-        content_slide(
-            prs, t_reg("Para la Clase %d" % (n + 1)),
-            [
-                "@@Trabajo dirigido:@@ %s" % t["ti_siguiente"]["tid"],
-                "@@Trabajo independiente:@@ %s" % t["ti_siguiente"]["ti"],
-                "**Clase %d · %s** — %s" % (n + 1, sig["tema_acentos"],
-                                            t["ti_siguiente"]["adelanto"]),
-                "@@Aviso:@@ %s" % t["ti_siguiente"]["aviso"],
-                "**Antes de salir:** el enlace del documento del equipo en el chat, con permiso "
-                "de lectura para el docente, y el nombre del vocero de hoy.",
-            ],
-            idx=idx,
-        )
-    else:
-        content_slide(
-            prs, t_reg("Cierre del curso"),
-            [
-                "@@Lo que queda entregado:@@ %s" % t["ti_siguiente"]["tid"],
-                "@@Autoevaluación:@@ %s" % t["ti_siguiente"]["ti"],
-                "**%s**" % t["ti_siguiente"]["adelanto"],
-                "@@Aviso:@@ %s" % t["ti_siguiente"]["aviso"],
-            ],
-            idx=idx,
-        )
-    idx += 1
+    # El taller, su exposicion y la tarea de la clase siguiente NO se proyectan: el taller
+    # es opcional (a veces se hace, a veces no) y lo evaluativo vive solo en la carpeta
+    # (Taller ... .docx, Kit docente). El deck lleva el tema.
+    _RETIRADAS[n] = 3
 
     closing_slide(
         prs,
@@ -440,15 +416,22 @@ def _remapear_slides(texto, n, titulos):
     build no debe inventar una lamina.
     """
     ejemplos = _TITULOS_EJEMPLO.get(n, set())
-    if not ejemplos:
+    retiradas = _RETIRADAS.get(n, 0)
+    if not ejemplos and not retiradas:
         return texto
     viejos = [x for x in titulos if x not in ejemplos]
+    # Las laminas de actividad iban justo antes del cierre.
+    viejos = viejos[:-1] + [None] * retiradas + viejos[-1:]
     nuevo_de = {}
     for i_viejo, tit in enumerate(viejos, 1):
-        nuevo_de[i_viejo] = titulos.index(tit) + 1
-    return re.sub(r"\[Slide (\d+)\]",
-                  lambda m: "[Slide %d]" % nuevo_de.get(int(m.group(1)), int(m.group(1))),
-                  texto)
+        nuevo_de[i_viejo] = None if tit is None else titulos.index(tit) + 1
+
+    def _r(m):
+        k = int(m.group(1))
+        if k in nuevo_de and nuevo_de[k] is None:
+            return "[fuera del deck · guía del taller en la carpeta]"
+        return "[Slide %d]" % nuevo_de.get(k, k)
+    return re.sub(r"\[Slide (\d+)\]", _r, texto)
 
 
 def md_guion(n, titulos):

@@ -101,8 +101,8 @@ el taller del proyecto.»
 Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 
 ### 10-40 · Teoria Core
-Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
-proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
+Cubrir el fundamento de arriba apoyandose en las laminas de concepto y en las de codigo
+(lo que hay que subrayar esta tambien en las notas del presentador de cada lamina). Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
 Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
@@ -111,7 +111,9 @@ Demo: Escribir en vivo la clase Mascota y un main que instancia dos mascotas con
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 1/Codigo/Mascota.java`
 
-### 60-105 · Taller guiado = avance del PI
+### 60-105 · Taller guiado (opcional) = avance del PI
+Opcional: no tiene lamina en el deck. La guia esta en
+`Clases/Clase 1 - Introduccion a POO/Taller PI - Clase 1 - VetCare.docx`; si hoy no se hace, se extiende la demo y la practica libre.
 **Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Instale y verifique el entorno (JDK 17+ y VS Code con el Extension Pack for Java) y cree un proyecto Java llamado VetCare con paquete vetcare. Este paso es el objetivo real del bloque: nadie puede quedarse sin entorno funcionando.
@@ -123,7 +125,7 @@ Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Proyecto Java con la clase Mascota (atributos privados, constructor y toString) y un main que crea dos objetos distintos
 
 ### 105-120 · Criterios de exito y cierre
-Repasar el checklist de la slide de criterios.
+Si hubo taller, repasar los criterios de exito del `Taller PI - Clase 1 - VetCare.docx` (no estan en el deck).
 Aplicar el quiz corto de `Kit docente/Clase 1/Quiz Clase 1 - VetCare.docx`
 (la clave va aparte y **no se proyecta**).
 **Decir:** «Queda avanzado: Entorno de desarrollo listo y la primera clase del dominio VetCare escrita. Entrega en ExamLab, domingo 23:59.»

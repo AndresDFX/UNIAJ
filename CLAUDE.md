@@ -66,6 +66,14 @@ faltaba, o que repasaba para el parcial, no tenía de dónde.
   mínimo — ahí lo que sobra es texto, no tamaño de letra. **Ninguna lámina de contenido por
   debajo de ~400 caracteres**: si baja de ahí, o falta contenido o sobra la lámina.
 - Cero marcadores crudos (`@@`, `{{slide`, `[CAP:`) en lo que ve el estudiante.
+- **El deck lleva solo el tema, nunca la actividad.** El taller es opcional y lo evaluativo va
+  aparte, solo en la carpeta: ninguna lámina de taller, pasos, pistas, criterios de éxito,
+  entregable, herramientas de la actividad, exposición, tarea ni quiz. Portada y agenda no lo
+  anuncian (la agenda dice «Práctica (opcional · la guía está en la carpeta)»). Los archivos de
+  la actividad se siguen generando en `Clases/` y `Kit docente/`. Lo que la actividad evalúa
+  sigue necesitando su lámina de **concepto** (§0).
+- **Conceptos y respuestas van en las notas del presentador** de su lámina
+  (`uniajc_slides_engine.notas`). La lámina no le habla al docente.
 
 ### El guion
 

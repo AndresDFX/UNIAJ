@@ -2,8 +2,8 @@
 
 - **Curso:** Seminario de Sistemas (FI303301) · 120 min
 - **Hilo:** Proyecto Integrador **VetCare** — planos del sistema de la clinica «Huellitas»
-- **Hoy avanzamos el PI en:** Quedan listas las pantallas de Registrar mascota y Buscar expediente de VetCare, anotadas y conectadas en un prototipo navegable.
-- **Entregable de hoy:** Un archivo de Figma o Penpot con las dos pantallas anotadas y minimo tres transiciones navegables, mas la hoja de anotaciones que amarra cada campo a un RF y a un atributo del diccionario de datos, subido a ExamLab.
+- **Avance del PI (si se hace la practica):** Quedan listas las pantallas de Registrar mascota y Buscar expediente de VetCare, anotadas y conectadas en un prototipo navegable.
+- **Practica (opcional):** `Clases/Clase 13 - Diseño de interfaces/Taller PI - Clase 13 - VetCare.docx` — no esta en el deck
 - **Herramienta:** Figma o Penpot · Excalidraw · Google Docs
 - **Slides:** `Clases/Clase 13 - Diseño de interfaces/Presentacion.pptx`
 
@@ -44,13 +44,12 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 ## Plan minuto a minuto (120 min)
 
 ### 0-10 · Encuadre
-**Decir:** «Hoy avanzamos VetCare en: Quedan listas las pantallas de Registrar mascota y Buscar expediente de VetCare, anotadas y conectadas en un prototipo navegable. La teoria es corta; el peso esta en
-el taller del proyecto.»
+**Decir:** «Hoy el tema es: Diseño de interfaces. Todo lo que vamos a ver esta en las laminas.»
 Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 
 ### 10-40 · Teoria Core
-Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
-proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
+Cubrir el fundamento de arriba apoyandose en las laminas de teoria (una por concepto)
+y en las de codigo proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
 Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
@@ -59,8 +58,11 @@ Demo: El docente dibuja en vivo el wireframe de Registrar mascota en Penpot, le 
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 13/Plantillas/Wireframes-Anotados-VetCare.md`
 
-### 60-105 · Taller guiado = avance del PI
-**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
+### 60-105 · Practica guiada (OPCIONAL) = avance del PI
+No hay laminas para esta franja: la guia es el archivo
+`Clases/Clase 13 - Diseño de interfaces/Taller PI - Clase 13 - VetCare.docx` (compartirlo, no proyectarlo).
+Si hoy no se hace, usar el tiempo para profundizar la teoria y la demo.
+**Decir (si se hace):** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Paso 1. En Excalidraw o en papel, dibujen el wireframe en gris de la pantalla Registrar mascota de VetCare, sin colores ni logos, ubicando bloque de dueño, bloque de datos de la mascota y zona de accion; el wireframe debe caber en una sola vista sin scroll y no puede tener mas de nueve campos.
 2. Paso 2. Numeren de uno a seis los elementos criticos del wireframe y llenen la tabla de anotaciones indicando para cada numero el atributo del diccionario de datos que lo respalda, el RF que lo exige y si es obligatorio u opcional; si un elemento no tiene RF, borrenlo o creen el requisito y dejenlo escrito.
@@ -70,11 +72,11 @@ Actividades:
 Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Un archivo de Figma o Penpot con las dos pantallas anotadas y minimo tres transiciones navegables, mas la hoja de anotaciones que amarra cada campo a un RF y a un atributo del diccionario de datos, subido a ExamLab.
 
-### 105-120 · Criterios de exito y cierre
-Repasar el checklist de la slide de criterios.
+### 105-120 · Sintesis y cierre
+Si hubo practica, repasar los criterios de exito del archivo del taller (no estan en el deck).
 Aplicar el quiz corto de `Kit docente/Clase 13/Quiz Clase 13 - VetCare.docx`
 (la clave va aparte y **no se proyecta**).
-**Decir:** «Queda avanzado: Quedan listas las pantallas de Registrar mascota y Buscar expediente de VetCare, anotadas y conectadas en un prototipo navegable.. Entrega en ExamLab, domingo 23:59.»
+**Decir (si hubo practica):** «Queda avanzado: Quedan listas las pantallas de Registrar mascota y Buscar expediente de VetCare, anotadas y conectadas en un prototipo navegable.. Entrega en ExamLab, domingo 23:59.»
 
 ## Solucion del taller (privada)
 `Kit docente/Clase 13/Solucion Taller Clase 13 - VetCare.docx` — no proyectar completa.

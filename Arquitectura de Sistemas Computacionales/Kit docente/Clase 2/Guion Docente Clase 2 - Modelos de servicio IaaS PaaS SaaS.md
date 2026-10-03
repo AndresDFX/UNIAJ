@@ -108,15 +108,11 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 27. La plantilla de ADR: los seis apartados que se califican
 28. Quién administra cada capa — IaaS vs PaaS vs SaaS
 29. ADR-001 — las 6 secciones caben en una pagina
-30. Herramientas de hoy
-31. PI CloudLite — entregable de hoy
-32. Manos a la obra (paso a paso)
-33. Para continuar (PI)
-34. Clase 2 · PI en movimiento
+30. Clase 2 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 31]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3]
 Di casi literal: «Hoy avanzamos el PI CloudLite App en: **Decidir modelo dominante (IaaS/PaaS/SaaS) para CloudLite + ADR breve**.
 Entregable concreto: ADR-001: decisión de modelo de servicio + matriz de comparación aplicada al dominio.
 Teoría breve y luego taller; no es un lab suelto.»
@@ -152,8 +148,9 @@ Narra los clics en voz alta. Si falla la red, proyecta la [Slide 29], que ya tra
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
 
-### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · [Slide 32]
-Proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller» de este guion).
+### 55–100 · Taller guiado PI (individual · equipos de 2–3 solo si tú los autorizaste) · opcional · sin diapositiva
+El taller es **opcional** y ya no está en el deck: si se hace hoy, comparte el `Taller … .docx` de
+`Clases/Clase 2 - Modelos de servicio IaaS PaaS SaaS/` (los pasos también están en la sección «Actividad / taller» de este guion).
 Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas a ver hoy.
 A los 80 min anuncia: «faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador.»
 
@@ -165,7 +162,7 @@ Aplica el quiz corto de `Kit docente/Clase 2/Quiz Clase 2 - Modelos de servicio 
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 34]
+### 115–120 · Cierre · [Slide 30]
 Di: «Queda avanzado: Decidir modelo dominante (IaaS/PaaS/SaaS) para CloudLite + ADR breve.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»

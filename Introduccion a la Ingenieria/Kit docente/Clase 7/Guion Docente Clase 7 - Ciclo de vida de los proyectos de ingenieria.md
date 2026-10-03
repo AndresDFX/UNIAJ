@@ -65,7 +65,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** si va retrasado, recorte los malentendidos a dos minutos. **No recorte la diapositiva de requisitos y criterios**: sin ella el taller no se puede hacer.
 
-### 00:55–01:12 · Taller en salas de grupo · [Slide 13]
+### 00:55–01:12 · Taller en salas de grupo · [fuera del deck · guía del taller en la carpeta]
 
 **2 min** para abrir draw.io y el documento del equipo. Cada equipo trabaja su propio proyecto.
 
@@ -75,7 +75,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** revise el plan de hitos con severidad. Si todo el trabajo cae en la Clase 14, dígalo ahora: es un proyecto que va a fallar y todavía hay nueve sesiones para arreglarlo.
 
-### 01:12–01:27 · Exposiciones · [Slide 14]
+### 01:12–01:27 · Exposiciones · [fuera del deck · guía del taller en la carpeta]
 
 5 equipos × 3 min con el diagrama compartido. **El minuto obligatorio es «en qué fase estamos y qué falta para cerrarla»**.
 
@@ -83,7 +83,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** anote la fase declarada por cada equipo y su hito de la sesión 10. En la sesión 10 se verifica contra eso, y es la manera más simple de detectar a un equipo atrasado antes de que sea tarde.
 
-### 01:27–01:30 · Cierre · [Slide 15][Slide 16]
+### 01:27–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 13]
 
 Una idea: **el orden de las fases no es burocracia, es economía.** El error barato es el que se encuentra temprano, y por eso hoy escribieron requisitos en vez de empezar a construir.
 
@@ -106,10 +106,7 @@ Numeración real del deck `Clases/Clase 7 - Ciclo de vida de los proyectos de in
 10. Cuatro cosas que se entregan y no son código
 11. Ejemplo: requisitos mal y bien escritos
 12. Tres malentendidos que salen caros
-13. Taller de hoy: Ciclo de vida del proyecto
-14. Cómo se expone en 3 minutos
-15. Para la Clase 8
-16. Cierre · Nos vemos en la sesión 8
+13. Cierre · Nos vemos en la sesión 8
 
 ## Si pasa esto en clase
 

@@ -37,7 +37,7 @@ Debajo de estas láminas, en las notas del presentador:
 - **Los cinco campos de acción, y por qué se sortean en vez de elegirse** → diapositiva 8
 - **El método del curso y el proyecto que se evalúa** → diapositivas 9 y 10
 - **Los equipos: por qué cinco, por qué estables y qué queda listo hoy** → diapositiva 11
-- **La actividad de hoy, cómo se corrige en caliente y cómo se expone en tres minutos** → diapositivas 12 y 13
+- **La actividad de hoy, cómo se corrige en caliente y cómo se expone en tres minutos** → sin lámina: es la actividad, su guía está en la carpeta de la clase
 
 ## Referencias a diapositivas
 Numeración real del deck `Clases/Clase 1 - Presentacion del curso y diagnostico inicial/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -53,10 +53,7 @@ Numeración real del deck `Clases/Clase 1 - Presentacion del curso y diagnostico
 9. El método del curso: de un problema del entorno a una propuesta
 10. El proyecto del curso
 11. Cinco equipos, los mismos todo el semestre
-12. Actividad de hoy: Ficha del campo de acción
-13. Cómo se expone en 3 minutos
-14. Para la sesión 2
-15. Cierre · Nos vemos en la sesión 2
+12. Cierre · Nos vemos en la sesión 2
 
 ## Plan de clase minuto a minuto (90 min)
 
@@ -89,21 +86,21 @@ Diga las tres cosas de la diapositiva **antes** de repartirlo, sin adornos: no t
 
 **[Nota docente]:** las tres últimas preguntas (computador, conexión, horas de trabajo) son las que usa en el minuto 55 para conformar los equipos. Revíselas mientras el grupo termina; son de conteo, no de ficha individual.
 
-### 00:55–01:12 · Actividad en equipos · [Slide 11][Slide 12]
+### 00:55–01:12 · Actividad en equipos (opcional) · [Slide 11] · guía de la actividad en la carpeta, sin lámina
 Primero **conforme los cinco equipos** (3 min): divida el total de asistentes entre cinco y mezcle según las respuestas del bloque C — reparta a quien no tiene computador propio y a quien trabaja más de 20 horas entre equipos distintos, en vez de dejar que se agrupen por amistad. Después **sortee el campo** de cada equipo delante del curso.
 
 Luego los **14 min de ficha**, con los equipos ya en sus salas de grupo. No se quede en la sala principal: entre a las cinco salas con un orden fijo, unos 3 min en cada una, y en cada entrada revise **una sola cosa**, el bloque «PROBLEMA DEL ENTORNO», porque es el que alimenta el proyecto del semestre y el único que no se puede arreglar después.
 
 **[Nota docente]:** las tres correcciones en caliente, sin discusión — «los usuarios» → pida un rol concreto y no acepte avance hasta que esté escrito; «se pierde mucho tiempo» → pida un número aunque sea estimado; «el problema es que no tienen una app» → recuerde que el problema es lo que pasa hoy **sin** el sistema.
 
-### 01:12–01:27 · Exposiciones · [Slide 13]
+### 01:12–01:27 · Exposiciones (si se hizo la actividad) · sin lámina
 De vuelta en la sala principal: cinco equipos × 3 min, cronómetro en pantalla, habla el vocero con su documento ya compartido. **Se corta a los 3 min desde la primera sesión:** si hoy se permite estirar, en la Clase 15 las exposiciones finales no caben en el bloque.
 
 **[Nota docente]:** no dé retroalimentación equipo por equipo — cinco rondas de comentarios no caben en 15 min. Anote y guarde todo para el cierre.
 
 **[Nota docente]:** exija el enlace de lectura del documento **pegado en el chat** antes de que empiecen las exposiciones, y que el vocero tenga la pestaña abierta. Buscar el archivo o pelear con «compartir pantalla» con el cronómetro corriendo se come el turno.
 
-### 01:27–01:30 · Cierre · [Slide 14]
+### 01:27–01:30 · Cierre · [Slide 12] · la tarea se dice de palabra y va en la carpeta
 Dé **dos** observaciones del conjunto (no una nota por equipo) y cierre con la tarea:
 
 > «Las cinco fichas quedan en la carpeta de cada equipo y no se vuelven a tocar hasta la **sesión 6**, cuando el bloque «problema del entorno» de las cinco fichas se pone sobre la mesa y cada equipo elige de ahí el problema de su proyecto. Conviene decirlo hoy en el cierre: lo que escribieron en 17 minutos es el material con el que van a trabajar cinco meses, y por eso vale la pena escribirlo bien. Y para la próxima: Revisión de la historia de la Ingeniería de Sistemas: buscar tres hechos anteriores a 1990 que hoy sigan afectando cómo se construye software, y traer la fuente de cada uno.»

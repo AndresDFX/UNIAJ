@@ -2,8 +2,8 @@
 
 - **Curso:** Seminario de Sistemas (FI303301) · 120 min
 - **Hilo:** Proyecto Integrador **VetCare** — planos del sistema de la clinica «Huellitas»
-- **Hoy avanzamos el PI en:** El paquete de diseño de VetCare queda auditado y consistente: requisitos, casos de uso y diagrama de clases usan los mismos nombres y no se contradicen entre si.
-- **Entregable de hoy:** Un documento con la matriz de trazabilidad RF a CU a Clase, el glosario de nombres canonicos, el acta de revision entre pares con hallazgos clasificados por severidad y el backlog priorizado de correcciones, subido a ExamLab.
+- **Avance del PI (si se hace la practica):** El paquete de diseño de VetCare queda auditado y consistente: requisitos, casos de uso y diagrama de clases usan los mismos nombres y no se contradicen entre si.
+- **Practica (opcional):** `Clases/Clase 11 - Avance del proyecto integrador/Taller PI - Clase 11 - VetCare.docx` — no esta en el deck
 - **Herramienta:** Google Docs · draw.io
 - **Slides:** `Clases/Clase 11 - Avance del proyecto integrador/Presentacion.pptx`
 
@@ -47,13 +47,12 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 ## Plan minuto a minuto (120 min)
 
 ### 0-10 · Encuadre
-**Decir:** «Hoy avanzamos VetCare en: El paquete de diseño de VetCare queda auditado y consistente: requisitos, casos de uso y diagrama de clases usan los mismos nombres y no se contradicen entre si. La teoria es corta; el peso esta en
-el taller del proyecto.»
+**Decir:** «Hoy el tema es: Avance del proyecto integrador. Todo lo que vamos a ver esta en las laminas.»
 Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 
 ### 10-40 · Teoria Core
-Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
-proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
+Cubrir el fundamento de arriba apoyandose en las laminas de teoria (una por concepto)
+y en las de codigo proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
 Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
@@ -62,8 +61,11 @@ Demo: El docente proyecta el paquete de un equipo ficticio de VetCare y encuentr
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 11/Plantillas/Auditoria-Cruzada-VetCare.md`
 
-### 60-105 · Taller guiado = avance del PI
-**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
+### 60-105 · Practica guiada (OPCIONAL) = avance del PI
+No hay laminas para esta franja: la guia es el archivo
+`Clases/Clase 11 - Avance del proyecto integrador/Taller PI - Clase 11 - VetCare.docx` (compartirlo, no proyectarlo).
+Si hoy no se hace, usar el tiempo para profundizar la teoria y la demo.
+**Decir (si se hace):** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Construir en Google Docs la matriz de trazabilidad de VetCare con las columnas RF, Caso de uso, Clase o clases implicadas y Mockup, incluyendo todos los requisitos del catalogo, y marcar en rojo cada fila incompleta.
 2. Levantar el glosario de nombres canonicos con minimo ocho conceptos del dominio (Propietario, Mascota, Consulta, Cita, Veterinario, Vacuna, Expediente, Bitacora), cada uno con definicion de una linea y sinonimos prohibidos, y renombrar en los artefactos todo lo que no coincida.
@@ -73,11 +75,11 @@ Actividades:
 Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Un documento con la matriz de trazabilidad RF a CU a Clase, el glosario de nombres canonicos, el acta de revision entre pares con hallazgos clasificados por severidad y el backlog priorizado de correcciones, subido a ExamLab.
 
-### 105-120 · Criterios de exito y cierre
-Repasar el checklist de la slide de criterios.
+### 105-120 · Sintesis y cierre
+Si hubo practica, repasar los criterios de exito del archivo del taller (no estan en el deck).
 Aplicar el quiz corto de `Kit docente/Clase 11/Quiz Clase 11 - VetCare.docx`
 (la clave va aparte y **no se proyecta**).
-**Decir:** «Queda avanzado: El paquete de diseño de VetCare queda auditado y consistente: requisitos, casos de uso y diagrama de clases usan los mismos nombres y no se contradicen entre si.. Entrega en ExamLab, domingo 23:59.»
+**Decir (si hubo practica):** «Queda avanzado: El paquete de diseño de VetCare queda auditado y consistente: requisitos, casos de uso y diagrama de clases usan los mismos nombres y no se contradicen entre si.. Entrega en ExamLab, domingo 23:59.»
 
 ## Solucion del taller (privada)
 `Kit docente/Clase 11/Solucion Taller Clase 11 - VetCare.docx` — no proyectar completa.

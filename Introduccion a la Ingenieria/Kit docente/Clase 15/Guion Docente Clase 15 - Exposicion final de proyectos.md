@@ -58,7 +58,7 @@ Una línea por equipo en el muro. Sirve para bajar la ansiedad y para recordar q
 
 **[Nota docente]:** el sorteo se hace ahora y no antes, para que los últimos equipos escuchen en vez de seguir preparando.
 
-### 00:10–01:10 · Exposiciones finales (60 min) · [Slide 10][Slide 11]
+### 00:10–01:10 · Exposiciones finales (60 min) · [fuera del deck · guía del taller en la carpeta][fuera del deck · guía del taller en la carpeta]
 
 5 equipos × 12 min: **9 de exposición y 3 de preguntas**. Cronómetro grande en pantalla compartida, aviso en el chat a los 8 minutos, corte a los 9.
 
@@ -82,7 +82,7 @@ Cada equipo completa en el muro, en la columna de los **otros cuatro** equipos: 
 
 Lea en voz alta **dos o tres observaciones anónimas** que sean buenas. Enseña más sobre cómo se da retroalimentación que cualquier explicación.
 
-### 01:22–01:30 · Cierre · [Slide 12][Slide 13]
+### 01:22–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 10]
 
 **Una observación por equipo, en una frase**: lo que más sumó y la única cosa que cambiaría. La retroalimentación detallada va después, por escrito.
 
@@ -106,10 +106,7 @@ Numeración real del deck `Clases/Clase 15 - Exposicion final de proyectos/Prese
 7. Los tres minutos de preguntas también se califican
 8. Ejemplo: la misma pregunta, dos respuestas
 9. Tres cosas antes de empezar
-10. Taller de hoy: Exposición final del proyecto
-11. Cómo se expone en 9 minutos
-12. Para la Clase 16
-13. Cierre · Nos vemos en la Clase 16 · la última
+10. Cierre · Nos vemos en la Clase 16 · la última
 
 ## Si pasa esto en clase
 

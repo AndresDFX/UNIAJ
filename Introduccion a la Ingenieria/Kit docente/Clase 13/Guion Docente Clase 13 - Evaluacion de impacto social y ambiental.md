@@ -67,7 +67,7 @@ Reparto:
 
 - **3 min** · Las tres honestidades [Slide 12]. La primera, repetida: «no genera impacto negativo» es la frase que más credibilidad quita.
 
-### 00:55–01:12 · Taller en salas de grupo (17 min) · [Slide 13]
+### 00:55–01:12 · Taller en salas de grupo (17 min) · [fuera del deck · guía del taller en la carpeta]
 
 Ritmo sugerido dentro de la sala:
 
@@ -83,7 +83,7 @@ Ritmo sugerido dentro de la sala:
 
 **[Nota docente]:** el error de calibración más común es escribir adjetivos donde va un número. Pida el indicador en voz alta: «beneficia a la comunidad» → **¿cuántas personas, cuántas veces al mes?**
 
-### 01:12–01:27 · Exposiciones · [Slide 14]
+### 01:12–01:27 · Exposiciones · [fuera del deck · guía del taller en la carpeta]
 
 5 equipos × 3 min. **El minuto obligatorio es el impacto NEGATIVO y su mitigación**, no la lista de bondades.
 
@@ -91,7 +91,7 @@ Ritmo sugerido dentro de la sala:
 
 **[Nota docente]:** premie en voz alta al equipo que declare el negativo más incómodo. Es la conducta que quiere ver en el informe final.
 
-### 01:27–01:30 · Cierre · [Slide 15][Slide 16]
+### 01:27–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 13]
 
 Una idea: **los usuarios eligieron usarla; los afectados no eligieron nada.**
 
@@ -116,10 +116,7 @@ Numeración real del deck `Clases/Clase 13 - Evaluacion de impacto social y ambi
 10. Ejemplo: un impacto negativo calificado
 11. Un impacto declarado y un impacto medido
 12. Tres honestidades sobre el impacto
-13. Taller de hoy: Matriz de impacto social y ambiental
-14. Cómo se expone en 3 minutos
-15. Para la Clase 14
-16. Cierre · Nos vemos en la Clase 14
+13. Cierre · Nos vemos en la Clase 14
 
 ## Si pasa esto en clase
 

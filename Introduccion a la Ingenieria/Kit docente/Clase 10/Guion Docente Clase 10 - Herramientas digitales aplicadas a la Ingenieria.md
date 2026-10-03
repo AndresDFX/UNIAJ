@@ -65,7 +65,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** si va retrasado, recorte fidelidad a 5 minutos. **No recorte el paso 4 ni la demostración de Slides**: son las dos cosas que cambian los entregables.
 
-### 00:55–01:12 · Taller en salas de grupo · [Slide 12]
+### 00:55–01:12 · Taller en salas de grupo · [fuera del deck · guía del taller en la carpeta]
 
 **2 min** para abrir Excalidraw o draw.io. Reparto sugerido: **dos dibujan, dos escriben los textos reales, uno escribe el guion de prueba**. Nadie mira sin hacer nada.
 
@@ -75,7 +75,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** si un equipo tiene proyecto de proceso sin pantallas, las «tres pantallas» son **tres pasos del proceso o el formato que se va a llenar**. Los cinco pasos aplican igual.
 
-### 01:12–01:27 · Exposiciones · [Slide 13]
+### 01:12–01:27 · Exposiciones · [fuera del deck · guía del taller en la carpeta]
 
 5 equipos × 3 min con el prototipo compartido. **El minuto obligatorio es «qué se ve cuando algo falla o no hay datos»**.
 
@@ -85,7 +85,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** anote qué le falta a cada prototipo. En la sesión 11 se corrige exactamente eso, con IA y a mano.
 
-### 01:27–01:30 · Cierre · [Slide 14][Slide 15]
+### 01:27–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 12]
 
 Una idea: **el prototipo no es una maqueta, es una pregunta.** Y se hace feo a propósito, para que la gente se atreva a decir lo que está mal.
 
@@ -109,10 +109,7 @@ Numeración real del deck `Clases/Clase 10 - Herramientas digitales aplicadas a 
 9. Ejemplo: la pantalla «ver mi turno», en cinco pasos
 10. Qué herramienta usar, según la pregunta
 11. La paradoja de la fidelidad, y dos advertencias
-12. Taller de hoy: Prototipo de baja fidelidad
-13. Cómo se expone en 3 minutos
-14. Para la Clase 11
-15. Cierre · Nos vemos en la sesión 11
+12. Cierre · Nos vemos en la sesión 11
 
 ## Si pasa esto en clase
 

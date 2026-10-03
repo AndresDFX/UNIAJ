@@ -121,7 +121,7 @@ Numeracion real del deck `Clases/Clase 6 - Optimizacion de consultas/Presentacio
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
 1. Portada · Clase 6 · Optimizacion de consultas · VetCare
-2. Encuadre de hoy · Objetivo PI
+2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. SQL es declarativo: quien decide el como es el optimizador (1/2)
 5. SQL es declarativo: quien decide el como es el optimizador (2/2)
@@ -162,28 +162,19 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 40. La subconsulta correlacionada: 2.006 pasadas o una sola
 41. Optimizar no cambia el resultado: como se prueba
 42. Demo del dia
-43. Herramientas de hoy
-44. Taller PI VetCare — contexto / por que importa
-45. Taller PI VetCare — objetivo y criterios
-46. Taller PI VetCare — escenario / datos de partida
-47. Taller PI VetCare — pasos guiados
-48. Taller PI VetCare — pistas (checklist vacio)
-49. Criterios de exito / entregable
-50. Para el PI esta semana
-51. Cierre · Clase 6
+43. Cierre · Clase 6
 
 > Privado, no se proyecta: `Kit docente/Clase 6/Solucion Taller Clase 6 - VetCare.docx`
 
 ## Plan minuto a minuto (120 min) — texto casi literal
 
 ### 0-10 · Encuadre · [Slide 2][Slide 3]
-**Decir:** «Buenas. Hoy el hilo es VetCare DB. Avanzamos el PI en: Primera pareja de consultas antes/despues del PI.
-La teoria sera corta; el peso esta en el taller del proyecto.»
-Proyectar [Slide 2] «Encuadre de hoy · Objetivo PI» y [Slide 3] «Mapa del bloque de hoy».
+**Decir:** «Buenas. Hoy el hilo es VetCare DB y el tema es: Optimizacion de consultas · VetCare.»
+Proyectar [Slide 2] «Encuadre de hoy · Tema y objetivo» y [Slide 3] «Mapa del bloque de hoy».
 Pasar asistencia. Recordar herramientas gratis+nube.
 
 ### 10-35 · Teoria Core (breve) · desde 
-**Decir:** «Solo lo necesario para el entregable de hoy.»
+**Decir:** «Esto es lo que hay que saber del tema de hoy.»
 Proyecte estas diapositivas, en este orden, ~25 min cada una. Son la teoria
 completa del dia: **ninguna se salta**, porque el taller cobra puntos por lo que se
 proyecta en todas ellas.
@@ -209,9 +200,11 @@ Herramienta: ExamLab (PostgreSQL) + Google Docs
 📸 EXPLAIN ANALYZE ANTES vs DESPUES: el nodo no cambia, las pasadas si (loops 2006 -> 1) [[captura: salida-explain-antes-despues.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
-### 55-105 · Taller guiado = tarea del PI · [Slide 47]
-**Decir:** «Abran su carpeta VetCare. Esto suma a la rubrica del PI. Al final suben el taller en ExamLab.»
-Usar bloque Taller ampliado (contexto->pistas). Solucion en Kit docente/Solucion Taller... (no proyectar completa).
+### 55-105 · Practica (opcional) · sin lamina
+La practica es **opcional** y **no se proyecta**: a veces se hace en clase, a veces no. La guia
+completa (contexto, escenario, pasos, pistas, plantilla y criterios) esta en `Clases/Clase 6 - Optimizacion de consultas/Taller PI - Clase 6 - VetCare.docx`.
+Si hoy se hace, el estudiante la abre desde la carpeta de la clase. Solucion en Kit docente/Solucion Taller... (no proyectar).
+Si se hace, avanza el PI en: Primera pareja de consultas antes/despues del PI
 Actividades:
 1. Reescribir la agenda del dia corrigiendo sus 4 antipatrones (SELECT *, joins con coma, to_char sobre la fecha, UPPER sobre el estado) y probar con COUNT(*) que las dos versiones devuelven las mismas 91 filas.
 2. Medir con EXPLAIN (ANALYZE, BUFFERS) las dos versiones, y con EXPLAIN ANALYZE una tercera que le anada LIMIT 50, y anotar las tres en comentarios: nodo mas costoso, filas estimadas vs reales y tiempo.
@@ -222,13 +215,13 @@ Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
 Entregable: 2 consultas (antes/despues) + justificacion (media pag.)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 6/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
-### 105-115 · Criterios de exito + quiz corto · [Slide 49]
-Repasar checklist del dia con [Slide 49] «Criterios de exito / entregable».
+### 105-115 · Repaso + quiz corto
+Repasar los conceptos del dia volviendo a las laminas de teoria que mas costaron.
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 6 - VetCare.docx`. Clave para usted: `Quiz Clase 6 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 51]
-**Decir:** «Queda avanzado: Primera pareja de consultas antes/despues del PI. Suban el taller a ExamLab hoy domingo 23:59 si aplica. Enunciado PI en Clases/Proyecto Integrador.»
-Proyectar [Slide 51] slide de cierre. Dudas finales.
+### 115-120 · Cierre · [Slide 43]
+**Decir:** «Queda visto: Optimizacion de consultas · VetCare. Si hicimos la practica, la guia y la entrega estan en la carpeta de la clase.»
+Proyectar [Slide 43] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

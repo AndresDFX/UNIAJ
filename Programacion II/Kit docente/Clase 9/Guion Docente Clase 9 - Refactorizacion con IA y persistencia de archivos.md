@@ -84,8 +84,8 @@ el taller del proyecto.»
 Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 
 ### 10-40 · Teoria Core
-Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
-proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
+Cubrir el fundamento de arriba apoyandose en las laminas de concepto y en las de codigo
+(lo que hay que subrayar esta tambien en las notas del presentador de cada lamina). Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
 Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
@@ -94,7 +94,9 @@ Demo: El docente registra una mascota, cierra la aplicación, la vuelve a abrir 
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 9/Codigo/VetCarePersistencia.java`
 
-### 60-105 · Taller guiado = avance del PI
+### 60-105 · Taller guiado (opcional) = avance del PI
+Opcional: no tiene lamina en el deck. La guia esta en
+`Clases/Clase 9 - Refactorizacion con IA y persistencia de archivos/Taller PI - Clase 9 - VetCare.docx`; si hoy no se hace, se extiende la demo y la practica libre.
 **Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Cree el paquete vetcare.datos y dentro la clase RepositorioMascotasCSV con la constante private static final String SEPARADOR = ";", la constante ENCABEZADO con el texto id;nombre;especie;edad;cedula_dueno y un atributo Path ruta construido con Paths.get("mascotas.csv"); compile el proyecto y verifique que no hay errores rojos antes de seguir.
@@ -106,7 +108,7 @@ Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: La clase RepositorioMascotasCSV con guardar() y cargar() funcionando, el archivo mascotas.csv generado por la propia aplicación y la bitácora REFACTOR.md, subidos a ExamLab.
 
 ### 105-120 · Criterios de exito y cierre
-Repasar el checklist de la slide de criterios.
+Si hubo taller, repasar los criterios de exito del `Taller PI - Clase 9 - VetCare.docx` (no estan en el deck).
 Aplicar el quiz corto de `Kit docente/Clase 9/Quiz Clase 9 - VetCare.docx`
 (la clave va aparte y **no se proyecta**).
 **Decir:** «Queda avanzado: VetCare guarda la lista de mascotas en mascotas.csv al cerrar y la vuelve a cargar al abrir.. Entrega en ExamLab, domingo 23:59.»

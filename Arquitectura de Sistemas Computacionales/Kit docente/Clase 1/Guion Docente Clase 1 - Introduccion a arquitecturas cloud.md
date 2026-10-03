@@ -24,11 +24,11 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 7] PI CloudLite - entregable de hoy: la ficha de 6 bloques (1/2)** — 3 vinetas.
+**[Slide 7] La ficha de dominio de 6 bloques (1/2)** — 3 vinetas.
   - DOMINIO fija en una linea el problema de negocio elegido (AgendaU, BiblioLite, InventarioLab, TurnosClinica, EventosCampus u otro del mismo tamano); un dominio generico (una red social, una tienda en linea sin mas detalle) hace imposible evaluar las decisiones de las clases siguientes, porque no hay nada concreto que arquitecturar.
   - SISTEMAS EXTERNOS es el bloque nuevo de este semestre: dos o tres sistemas de terceros con los que CloudLite intercambia informacion (un proveedor de identidad, un servicio de correo, una pasarela de pagos); es exactamente lo que despues aparece como System_Ext en el diagrama C4 Context de la pregunta 2 de la plataforma del curso, asi que conviene que el estudiante los escriba aqui ANTES de dibujar, no despues.
 
-**[Slide 8] PI CloudLite - entregable de hoy: la ficha de 6 bloques (2/2)** — 2 vinetas.
+**[Slide 8] La ficha de dominio de 6 bloques (2/2)** — 2 vinetas.
 
 **[Slide 9] Que es arquitectura cloud (mapa mental) (1/4)** — 6 vinetas.
   - Esa asimetria de costo es la razon de existir de la materia: si el docente no la instala el primer dia, el curso se percibe como una coleccion de diagramas decorativos y el estudiante concluye que la arquitectura es documentacion que se produce para la nota.
@@ -80,8 +80,8 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 4. Qué es arquitectura cloud (mapa mental)
 5. CloudLite App — el hilo conductor
 6. De dominio a arquitectura (mini-método)
-7. PI CloudLite - entregable de hoy: la ficha de 6 bloques (1/2)
-8. PI CloudLite - entregable de hoy: la ficha de 6 bloques (2/2)
+7. La ficha de dominio de 6 bloques (1/2)
+8. La ficha de dominio de 6 bloques (2/2)
 9. Que es arquitectura cloud (mapa mental) (1/4)
 10. Que es arquitectura cloud (mapa mental) (2/4)
 11. Que es arquitectura cloud (mapa mental) (3/4)
@@ -96,16 +96,11 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 20. Preguntas frecuentes y cierre conceptual () (2/3)
 21. Preguntas frecuentes y cierre conceptual () (3/3)
 22. Ejemplo de diagrama C4 — nivel Context
-23. Herramientas de hoy
-24. Del boceto a la plataforma del curso (diagrama)
-25. PI CloudLite — entregable de hoy
-26. Manos a la obra (paso a paso)
-27. Para continuar (PI)
-28. Clase 1 · PI en movimiento
+23. Clase 1 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
-### 0–10 · Encuadre PI · [Slide 2][Slide 3][Slide 7]
+### 0–10 · Encuadre PI · [Slide 2][Slide 3]
 Di casi literal:
 > "Hoy avanzamos el PI CloudLite App en: Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases. Entregable concreto: Ficha PI de 5 bloques + C4 Context en Mermaid renderizado en la plataforma (boceto previo en Excalidraw/draw.io). Teoría breve y luego taller; no es un lab suelto."
 
@@ -128,7 +123,7 @@ por diapositiva: esa sección está escrita para que puedas dictarla sin consult
 **[Nota docente]:** cada 8–10 min amarra al artefacto («esto es lo que van a dejar hoy en su informe/diagrama/repo»)
 y pide un estudiante voluntario para usar SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 24]
+### 40–55 · Demo en vivo
 Herramienta del día: **Navegador · editor de diagramas del curso · boceto libre (papel o Excalidraw) opcional**.
 **Demo que usted debe poder repetir:** Dibujar en vivo el C4 Context de un CloudLite de ejemplo
 
@@ -156,7 +151,7 @@ C4Context
 Cierra la demo diciendo:
 > "Copien la estructura, no el dominio de mi ejemplo."
 
-**Cierra la demo en la plataforma del curso** [Slide 24] — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
+**Si se hace el taller, cierra la demo en la plataforma del curso** (sin diapositiva: el flujo está en el `Taller … .docx`) — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -167,9 +162,9 @@ Cierra la demo diciendo:
 📸 C4 Context de la demo en vivo: asi debe quedar el tablero al terminar [[captura: demo-clase01.png]]
 
 
-### 55–100 · Taller guiado PI (individual) · [Slide 26]
-**[Nota docente]:** proyecta la lista de pasos del taller del estudiante (está en la sección «Actividad / taller»
-de este guion). Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas
+### 55–100 · Taller guiado PI (individual) · opcional · sin diapositiva
+**[Nota docente]:** el taller es **opcional** y ya no está en el deck: si se hace hoy, comparte el `Taller … .docx`
+de `Clases/Clase 1 - Introduccion a arquitecturas cloud/` (los pasos también están en la sección «Actividad / taller» de este guion). Circula por mesas/Meet con la lista de errores frecuentes de abajo en la mano: son los que vas
 a ver hoy. A los 80 min anuncia:
 > "Faltan 20 min. Falta evidencia: PNG/YAML/enlace. Empiecen a subir borrador."
 
@@ -181,7 +176,7 @@ Aplica el quiz corto de `Kit docente/Clase 1/Quiz Clase 1 - Introduccion a arqui
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 28]
+### 115–120 · Cierre · [Slide 23]
 Di:
 > "Queda avanzado: Definir dominio CloudLite App + 3–5 capacidades + problema en 2–3 frases. Criterio de éxito: el estudiante explica su artefacto en 60 s. Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan."
 

@@ -100,15 +100,7 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 19. Evaluar con rubrica: puntos a evidencia observable (2/2)
 20. El cierre del curso: conectar lo hecho con el trabajo real
 21. Como se ordena la sesion de hoy
-22. Herramientas de hoy
-23. Sustentacion del PI — contexto / por que importa
-24. Sustentacion del PI — objetivo y criterios
-25. Sustentacion del PI — escenario / datos de partida
-26. Sustentacion del PI — pasos guiados
-27. Sustentacion del PI — pistas (checklist vacio)
-28. Criterios de exito / entregable
-29. Cierre del PI
-30. Cierre · Clase 15
+22. Cierre · Clase 15
 
 > Privado, no se proyecta: `Kit docente/Clase 15/Solucion Taller Clase 15 - VetCare.docx`
 

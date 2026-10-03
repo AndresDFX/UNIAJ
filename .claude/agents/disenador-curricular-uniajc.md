@@ -335,7 +335,7 @@ Estructura sugerida:
 
 ## Guión (`Kit docente/Clase N/` · `.md` → `.docx` con `python config/slides/guion_md_a_docx.py`)
 
-Solo tema de hoy · {{DURACION}} min · Teoría Core · Taller · Quiz · Cierre. Sin políticas del semestre, sin bio, sin fechas de periodo.
+Solo tema de hoy · {{DURACION}} min · Teoría Core · Práctica (opcional, sin lámina) · Cierre. Sin políticas del semestre, sin bio, sin fechas de periodo.
 
 ### Densidad mínima del guión (verificable, no negociable)
 
@@ -381,7 +381,40 @@ usar un campo aparte (`fundamento`) que solo consuma el guión. Si no, se rompe 
 
 ## Slides estudiante (`Clases/Clase NN - <Tema>/Presentacion.pptx`)
 
-~7–12 slides: `class_cover` → objetivos / timeline del bloque → conceptos → demo → taller → quiz (sin respuestas) → para continuar → cierre.
+`class_cover` → agenda / objetivos → pregunta de entrada → conceptos (con su ejemplo resuelto) → código / consultas → demo del docente → cierre.
+
+### El deck lleva SOLO el tema (regla 2026-10, vinculante)
+
+El docente lo pidió así: el taller es **opcional** («a veces se hace, a veces no») y lo
+evaluativo va **aparte, solo en la carpeta**. Por eso el `Presentacion.pptx` de una clase
+**no lleva ninguna lámina de la actividad**:
+- NO: «Taller PI …», «Taller de hoy», pasos guiados, pistas / autochequeo, «Criterios de
+  éxito / entregable», «PI … — entregable de hoy», «Manos a la obra», «Herramientas de hoy»
+  (son las de la actividad), «Cómo se expone», «Para el PI esta semana», «Para continuar»,
+  «Para la Clase N» (trabajo dirigido / tarea), quiz.
+- Portada, encuadre y agenda **no anuncian** el taller ni su entregable («Hoy avanzamos el PI
+  en…», «Teoría breve · Taller PI»). La franja de práctica en la agenda dice solo «Práctica
+  (opcional · la guía está en la carpeta de la clase)».
+- Los archivos de la actividad **se siguen generando igual** en su carpeta: `Taller … .docx`
+  en `Clases/Clase N/`; solución, quiz, ExamLab y guion en `Kit docente/Clase N/`.
+- El **guion** sí cronometra la práctica, marcada como opcional, apuntando al archivo del
+  taller y **sin `[Slide N]`** (no tiene lámina). Las anclas `{{slide:…}}` del fundamento que
+  hablaban de la actividad no apuntan a ninguna lámina: el bloque queda en el guion.
+- Criterio rector intacto: lo que la actividad evalúa tiene su **lámina de concepto**. Si un
+  mecanismo evaluado solo se explicaba en una lámina del taller, se vuelve lámina de concepto.
+
+### Notas del presentador y guion de tiempos (regla 2026-10)
+
+- **Conceptos y respuestas van en las NOTAS DEL PRESENTADOR** de la lámina a la que
+  acompañan (`uniajc_slides_engine.notas(slide, texto)`): la respuesta a la pregunta de
+  entrada, qué subrayar, por qué ese ejemplo. La pregunta se proyecta; la respuesta no.
+- **Las láminas son para el estudiante**: ninguna frase dirigida al docente («conviene
+  dictarlo despacio», «hay que subrayar»). En cursos de primer semestre (Introducción a la
+  Ingeniería) cada concepto lleva detrás un **ejemplo resuelto** con un caso cotidiano
+  (`intro_ing_ejemplos_data.py`).
+- **El guion es un guion de tiempos y desarrollo de la clase**: franja, lámina en pantalla,
+  qué se hace, qué hacer si pasa algo. En Introducción a la Ingeniería el fundamento ya no va
+  en el guion sino en las notas; el guion solo dice debajo de qué lámina está cada concepto.
 
 **Documentos estudiante:** solo `.docx` en `Clases/` (nunca `.md`).
 

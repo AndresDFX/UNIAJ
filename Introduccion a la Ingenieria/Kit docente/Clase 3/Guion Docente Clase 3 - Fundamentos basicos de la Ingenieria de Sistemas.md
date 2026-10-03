@@ -65,7 +65,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** al terminar, vuelva al muro de la apertura y muestre que «son procesos» era una respuesta a medias: son sistemas, y en los tres el software es la parte pequeña.
 
-### 00:55–01:12 · Taller en salas de grupo · [Slide 14]
+### 00:55–01:12 · Taller en salas de grupo · [fuera del deck · guía del taller en la carpeta]
 
 **2 min** para repartir. Cada equipo trabaja **el sistema del problema que escribió en la sesión 1**: no se sortea nada nuevo, porque el objetivo es que ese problema madure hacia el proyecto.
 
@@ -75,7 +75,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** la trampa que hay que buscar son las cifras inventadas. Si en el documento aparece «el promedio de espera es de 45 min», pregunte de dónde salió. Si salió de la IA, esa es exactamente la corrección que se califica.
 
-### 01:12–01:27 · Exposiciones · [Slide 15]
+### 01:12–01:27 · Exposiciones · [fuera del deck · guía del taller en la carpeta]
 
 5 equipos × 3 min. Habla el vocero con el documento ya compartido. **El último minuto de cada exposición es obligatoriamente «qué se inventó la IA»**: es la parte que hace la sesión distinta de una clase de teoría de sistemas.
 
@@ -83,7 +83,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** anote los actores olvidados que aparezcan. Son material directo para la Clase 13 y conviene tener la lista.
 
-### 01:27–01:30 · Cierre · [Slide 16][Slide 17]
+### 01:27–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 14]
 
 Una idea: **el sistema no es el software.** Un proyecto de este curso se juzga por si el problema del entorno se redujo y se puede medir, no por si el prototipo funciona.
 
@@ -107,10 +107,7 @@ Numeración real del deck `Clases/Clase 3 - Fundamentos basicos de la Ingenieria
 11. Cómo se descompone un sistema en cinco pasos
 12. Ejemplo resuelto: el semáforo de una esquina, en cinco pasos
 13. El asistente de IA: qué hace bien y en qué miente
-14. Taller de hoy: Anatomía del sistema
-15. Cómo se expone en 3 minutos
-16. Para la Clase 4
-17. Cierre · Nos vemos en la sesión 4
+14. Cierre · Nos vemos en la sesión 4
 
 ## Si pasa esto en clase
 

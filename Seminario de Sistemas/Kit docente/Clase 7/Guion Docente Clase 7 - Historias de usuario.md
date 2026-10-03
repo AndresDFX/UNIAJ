@@ -2,8 +2,8 @@
 
 - **Curso:** Seminario de Sistemas (FI303301) · 120 min
 - **Hilo:** Proyecto Integrador **VetCare** — planos del sistema de la clinica «Huellitas»
-- **Hoy avanzamos el PI en:** Queda listo el backlog inicial de VetCare: dos epicas descompuestas en ocho historias priorizadas, con criterios de aceptacion y talla en puntos.
-- **Entregable de hoy:** Tablero de backlog con 8 historias en formato Como/quiero/para, cada una con 2 o 3 criterios de aceptacion en Dado-Cuando-Entonces, estimacion en puntos y trazabilidad al RF de la clase 6, subido a ExamLab.
+- **Avance del PI (si se hace la practica):** Queda listo el backlog inicial de VetCare: dos epicas descompuestas en ocho historias priorizadas, con criterios de aceptacion y talla en puntos.
+- **Practica (opcional):** `Clases/Clase 7 - Historias de usuario/Taller PI - Clase 7 - VetCare.docx` — no esta en el deck
 - **Herramienta:** Google Docs · Excalidraw
 - **Slides:** `Clases/Clase 7 - Historias de usuario/Presentacion.pptx`
 
@@ -50,13 +50,12 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 ## Plan minuto a minuto (120 min)
 
 ### 0-10 · Encuadre
-**Decir:** «Hoy avanzamos VetCare en: Queda listo el backlog inicial de VetCare: dos epicas descompuestas en ocho historias priorizadas, con criterios de aceptacion y talla en puntos. La teoria es corta; el peso esta en
-el taller del proyecto.»
+**Decir:** «Hoy el tema es: Historias de usuario. Todo lo que vamos a ver esta en las laminas.»
 Pasar asistencia. Recordar donde quedo el avance de la clase pasada.
 
 ### 10-40 · Teoria Core
-Cubrir el fundamento de arriba apoyandose en la slide «Teoria Core» y en la de codigo
-proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
+Cubrir el fundamento de arriba apoyandose en las laminas de teoria (una por concepto)
+y en las de codigo proyectable. Cada 8-10 min, amarrar al producto: «esto es lo que van a dejar hoy en VetCare».
 Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
@@ -65,8 +64,11 @@ Demo: El docente toma el RF-03 del catalogo, lo convierte en vivo en historia co
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 7/Plantillas/Backlog-Historias-VetCare.md`
 
-### 60-105 · Taller guiado = avance del PI
-**Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
+### 60-105 · Practica guiada (OPCIONAL) = avance del PI
+No hay laminas para esta franja: la guia es el archivo
+`Clases/Clase 7 - Historias de usuario/Taller PI - Clase 7 - VetCare.docx` (compartirlo, no proyectarlo).
+Si hoy no se hace, usar el tiempo para profundizar la teoria y la demo.
+**Decir (si se hace):** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
 1. Paso 1: agrupe los RF del catalogo de la clase 6 en dos epicas de VetCare (por ejemplo Gestion de pacientes e Historial y agenda) y escriba el nombre y el objetivo de cada epica en una linea.
 2. Paso 2: descomponga las dos epicas en 8 historias con el formato Como <rol de la clinica Huellitas> quiero <accion> para <beneficio>, usando roles concretos (auxiliar, veterinario, administrador) y nunca la palabra usuario.
@@ -76,11 +78,11 @@ Actividades:
 Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
 Entregable: Tablero de backlog con 8 historias en formato Como/quiero/para, cada una con 2 o 3 criterios de aceptacion en Dado-Cuando-Entonces, estimacion en puntos y trazabilidad al RF de la clase 6, subido a ExamLab.
 
-### 105-120 · Criterios de exito y cierre
-Repasar el checklist de la slide de criterios.
+### 105-120 · Sintesis y cierre
+Si hubo practica, repasar los criterios de exito del archivo del taller (no estan en el deck).
 Aplicar el quiz corto de `Kit docente/Clase 7/Quiz Clase 7 - VetCare.docx`
 (la clave va aparte y **no se proyecta**).
-**Decir:** «Queda avanzado: Queda listo el backlog inicial de VetCare: dos epicas descompuestas en ocho historias priorizadas, con criterios de aceptacion y talla en puntos.. Entrega en ExamLab, domingo 23:59.»
+**Decir (si hubo practica):** «Queda avanzado: Queda listo el backlog inicial de VetCare: dos epicas descompuestas en ocho historias priorizadas, con criterios de aceptacion y talla en puntos.. Entrega en ExamLab, domingo 23:59.»
 
 ## Solucion del taller (privada)
 `Kit docente/Clase 7/Solucion Taller Clase 7 - VetCare.docx` — no proyectar completa.
