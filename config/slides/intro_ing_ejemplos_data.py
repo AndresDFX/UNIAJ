@@ -605,7 +605,7 @@ EJEMPLOS = {
 
     # ── Clase 15 · Exposición final ─────────────────────────────────────────
     15: [
-        ("Los tres minutos de preguntas también se califican", {
+        ("Los tres minutos de preguntas también son exposición", {
             "tipo": "before_after",
             "titulo": "Ejemplo: la misma pregunta, dos respuestas",
             "sub": "Pregunta del curso: «¿Por qué la app no deja pagar?»",
@@ -627,10 +627,10 @@ EJEMPLOS = {
 
     # ── Clase 16 · Informe final ────────────────────────────────────────────
     16: [
-        ("Cuatro cosas que bajan la nota del informe", {
+        ("Cuatro errores frecuentes del informe", {
             "tipo": "before_after",
             "titulo": "Ejemplo: la sección 10 del informe, vacía y bien hecha",
-            "before_title": "Sección 10 que baja la nota",
+            "before_title": "Sección 10 vacía",
             "before": [
                 "«Limitaciones: ninguna».",
                 "«Trabajo futuro: mejorar la app».",

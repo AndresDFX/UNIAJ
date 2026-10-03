@@ -27,16 +27,17 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Por eso aqui nunca se revisa codigo: se revisa que los planos esten completos, coherentes y sean construibles.
 
 **La gran decision no es cuales fases hacer, sino cuantas veces...** — 4 vinetas.
-  - Recorrerlas una sola vez y en orden significa cerrar requisitos de TODO el sistema de la clinica, luego diseñar TODO el sistema de la clinica, luego construir TODO.
+  - Recorrerlas una sola vez y en orden significa cerrar requisitos de TODO el sistema, luego diseñar TODO el sistema, luego construir TODO.
   - Recorrerlas en ciclos significa tomar un pedazo util del sistema y pasarlo por las cinco fases en una vuelta corta, y despues repetir con el siguiente pedazo.
 
-**Hay que separar dos palabras que los equipos usan como sinonimos y no... (1/2)** — 5 vinetas.
+**Hay que separar dos palabras que los equipos usan como sinonimos y no... (1/2)** — 6 vinetas.
 
-**Hay que separar dos palabras que los equipos usan como sinonimos y no... (2/2)** — 2 vinetas.
+**Hay que separar dos palabras que los equipos usan como sinonimos y no... (2/2)** — 4 vinetas.
 
-**Como se elige el recorrido? (1/2)** — 3 vinetas.
+**Como se elige el recorrido? (1/2)** — 5 vinetas.
   - Como se elige el recorrido?
   - Con criterios, no con moda.
+  - En la clinica, un recorrido en ciclos permitiria mostrar primero la ficha del paciente y ajustar la agenda despues de escuchar a la recepcionista.
 
 **Como se elige el recorrido? (2/2)** — 3 vinetas.
 

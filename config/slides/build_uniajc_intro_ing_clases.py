@@ -107,7 +107,7 @@ def _slide_no(titulos, frag, n):
         return hits[0]
     # Las laminas de actividad (taller, exposicion, tarea) ya no se proyectan: un bloque del
     # fundamento que hablaba de ellas sigue en el guion, pero sin lamina.
-    if re.search(r"taller|expone|para la clase|cierre del curso|actividad de hoy|cierra el corte", fp):
+    if re.search(r"taller|expone|para la clase|cierre del curso|actividad de hoy|cierra el corte|se califica", fp):
         return None
     raise SystemExit(
         "Clase %d: el fragmento {{slide:%s}} coincide con %d diapositivas.\n"
@@ -375,7 +375,7 @@ def build_pptx(n):
     _TITULOS_EJEMPLO[n] = set()
     _TEORIA_RETIRADA[n] = []
     for spec in t["teoria"]:
-        if _plano(spec["titulo"]).startswith("como cierra el corte"):
+        if _plano(spec["titulo"]).startswith(("como cierra el corte", "con que se califica")):
             # Es la evaluacion de corte y la entrega: va solo en la carpeta y el guion.
             _TEORIA_RETIRADA[n].append(spec["titulo"])
             continue

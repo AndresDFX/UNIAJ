@@ -27,19 +27,21 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 8] De donde viene la clase: virtualizacion y contenedores (1/2)** — 4 vinetas.
   - Las dos clases anteriores decidieron QUE se va a construir (dominio, capacidades, actores, diagrama de contexto) y BAJO QUE modelo de servicio se va a operar, con su registro de decision.
-  - Conviene decir desde el minuto uno por que esto importa para la arquitectura y no solo para la operacion: el contenedor es la unidad de despliegue con la que se razona en todos los diagramas siguientes, y sin entender que es exactamente, el nivel de contenedores del modelo C4 que se dibuja en la Clase 4 queda en pura metafora.
-  - (Sobre la actividad, no se proyecta) El entregable es un Dockerfile con su ciclo de construccion razonado: se escribe y se justifica, sin depender de ejecutarlo en ningun laboratorio externo para poder entregar.
+  - (No se proyecta) Es la primera clase francamente tecnica del curso y la primera en la que el estudiante escribe algo que una maquina ejecuta.
+  - (No se proyecta) El entregable es un Dockerfile con su ciclo de construccion razonado: se escribe y se justifica, sin depender de ejecutarlo en ningun laboratorio externo para poder entregar.
+  - (No se proyecta) Conviene decir desde el minuto uno por que esto importa para la arquitectura y no solo para la operacion: el contenedor es la unidad de despliegue con la que se razona en todos los diagramas siguientes, y sin entender que es exactamente, el nivel de contenedores del modelo C4 que se dibuja en la Clase 4 queda en pura metafora.
 
 **[Slide 9] De donde viene la clase: virtualizacion y contenedores (2/2)** — 3 vinetas.
 
 **[Slide 10] Antes de la virtualizacion: un servidor por aplicacion** — 4 vinetas.
   - La virtualizacion resolvio eso con una pieza de software llamada hipervisor, que se interpone entre el hardware y los sistemas operativos y presenta a cada uno la ilusion de tener una maquina completa para si.
-  - Los ordenes de magnitud que el docente debe poder citar: una maquina virtual ocupa varios gigabytes en disco y tarda entre 30 segundos y unos minutos en arrancar, porque debe iniciar un sistema operativo completo.
+  - (No se proyecta) Los ordenes de magnitud que el docente debe poder citar: una maquina virtual ocupa varios gigabytes en disco y tarda entre 30 segundos y unos minutos en arrancar, porque debe iniciar un sistema operativo completo.
 
 **[Slide 11] Recorrer el diagrama de las dos pilas, de abajo hacia arriba (1/2)** — 4 vinetas.
-  - Conviene cerrar con lo que el dibujo NO muestra y la seccion anterior si dijo: en la nube las dos pilas se apilan, con los contenedores corriendo DENTRO de maquinas virtuales.
+  - (No se proyecta) Esta diapositiva es la misma comparacion de la seccion anterior, ya dibujada, y conviene recorrerla con el puntero en vez de leerla.
+  - (No se proyecta) Conviene cerrar con lo que el dibujo NO muestra y la seccion anterior si dijo: en la nube las dos pilas se apilan, con los contenedores corriendo DENTRO de maquinas virtuales.
 
-**[Slide 12] Recorrer el diagrama de las dos pilas, de abajo hacia arriba (2/2)** — 4 vinetas.
+**[Slide 12] Recorrer el diagrama de las dos pilas, de abajo hacia arriba (2/2)** — 3 vinetas.
 
 **[Slide 13] El contenedor: aislamiento sin otro sistema operativo (1/2)** — 4 vinetas.
   - Todos los contenedores de una maquina comparten el kernel del anfitrion, y el aislamiento se consigue con dos mecanismos del propio Linux.
@@ -48,61 +50,59 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 14] El contenedor: aislamiento sin otro sistema operativo (2/2)** — 4 vinetas.
 
 **[Slide 15] Dockerfile, imagen, contenedor y registro: los cuatro terminos (1/2)** — 4 vinetas.
-  - Cuatro terminos se confunden de forma sistematica y conviene fijarlos con una sola analogia.
   - De ahi la unica optimizacion que hay que ensenar hoy: copiar primero el archivo de dependencias e instalarlas, y solo despues copiar el codigo fuente, porque el codigo cambia en cada commit y las dependencias casi nunca.
+  - (No se proyecta) Cuatro terminos se confunden de forma sistematica y conviene fijarlos con una sola analogia.
 
 **[Slide 16] Dockerfile, imagen, contenedor y registro: los cuatro terminos (2/2)** — 3 vinetas.
 
-**[Slide 17] Primer ejemplo: el stub de la API de CloudLite (1/2)** — 5 vinetas.
+**[Slide 17] Primer ejemplo: el stub de la API de CloudLite (1/2)** — 4 vinetas.
   - Primer ejemplo concreto en CloudLite.
-  - Su Dockerfile tiene siete instrucciones, y el docente debe poder explicar cada una.
   - WORKDIR /app fija el directorio dentro del contenedor donde ocurrira todo lo demas.
   - COPY package*.json./ trae solo la lista de dependencias.
   - COPY.. trae el resto del codigo, y va DESPUES por la razon de cache de la seccion anterior.
   - Y CMD indica que comando ejecutar cuando el contenedor arranque, uno solo y en primer plano.
   - Por eso al lado del Dockerfile va un segundo archivo, el.dockerignore, con al menos.env, node_modules y.git.
   - Lo que realmente publica el puerto es la opcion -p al ejecutar, y ese es el tema de la diapositiva siguiente.
+  - (No se proyecta) En CloudLite Turnos el estudiante contenerizara un stub de su API, es decir una version minima que responde algo verificable: el endpoint GET /health, que devuelve un cuerpo en formato JSON con al menos un campo que se pueda comprobar.
+  - (No se proyecta) Su Dockerfile tiene siete instrucciones, y el docente debe poder explicar cada una.
+  - (No se proyecta) La diapositiva lo proyecta junto al Dockerfile y no como nota al pie a proposito: son dos archivos hermanos en la misma carpeta, y el estudiante que entrega el primero sin el segundo entrega un artefacto que filtra secretos.
 
-**[Slide 18] Primer ejemplo: el stub de la API de CloudLite (2/2)** — 5 vinetas.
+**[Slide 18] Primer ejemplo: el stub de la API de CloudLite (2/2)** — 4 vinetas.
 
-**[Slide 19] Construir, correr y verificar: los tres comandos y el contrato de salud (1/3)** — 6 vinetas.
+**[Slide 19] Construir, correr y verificar: los tres comandos y el contrato de salud (1/2)** — 6 vinetas.
   - Con el Dockerfile escrito faltan tres comandos, cada uno con su sintaxis precisa.
   - El -d lo manda a segundo plano y el --name le da un nombre estable para no andar copiando identificadores.
-  - Y hay que anunciar el sintoma de invertirlos, que es lo que hace perder la tarde: docker ps sigue reportando el contenedor como Up y la peticion simplemente no obtiene respuesta o muere con una conexion reiniciada.
-  - El sintoma no senala la causa, y el estudiante busca el error en el codigo cuando esta en una linea del comando.
   - Por eso el cuerpo lleva al menos un campo verificable, por ejemplo un estado y el nombre del servicio en JSON.
+  - (No se proyecta) Un build sin etiqueta funciona y por eso el estudiante no nota el problema: Docker le pone latest en silencio, y a partir de ahi nadie puede decir que version esta corriendo.
+  - (No se proyecta) El corazon de la instruccion es el -p, y conviene escribirlo en el tablero con las dos etiquetas encima: el numero de la IZQUIERDA es el del anfitrion, la maquina desde la que uno abre el navegador, y el de la DERECHA es el del contenedor, el mismo del EXPOSE.
+  - (No se proyecta) En el ejemplo estan a proposito DISTINTOS, porque cuando se escribe -p 8080:8080 los dos lados se confunden y el estudiante no puede decir cual es cual; en la actividad se le pide justamente explicar la diferencia.
+  - (No se proyecta) Y hay que anunciar el sintoma de invertirlos, que es lo que hace perder la tarde: docker ps sigue reportando el contenedor como Up y la peticion simplemente no obtiene respuesta o muere con una conexion reiniciada.
+  - (No se proyecta) El sintoma no senala la causa, y el estudiante busca el error en el codigo cuando esta en una linea del comando.
+  - (No se proyecta) Este mismo endpoint reaparece en la Clase 7, donde el balanceador lo consulta para decidir si sigue enviandole trafico a una instancia, y en la Clase 8, donde el pipeline lo usa como prueba de humo despues de construir la imagen.
 
-**[Slide 20] Construir, correr y verificar: los tres comandos y el contrato de salud (2/3)** — 5 vinetas.
+**[Slide 20] Construir, correr y verificar: los tres comandos y el contrato de salud (2/2)** — 4 vinetas.
 
-**[Slide 21] Construir, correr y verificar: los tres comandos y el contrato de salud (3/3)** — 3 vinetas.
-
-**[Slide 22] Segundo ejemplo: leer las siete columnas de docker ps (1/2)** — 5 vinetas.
+**[Slide 21] Segundo ejemplo: leer las siete columnas de docker ps** — 5 vinetas.
   - Segundo ejemplo concreto.
   - La columna de estado es la que hay que mirar: si dice Up seguido de un tiempo, el contenedor vive; si dice Exited con un codigo entre parentesis, murio, y ese codigo es la primera pista del problema.
-  - De ahi sale la regla operativa del dia, y hay que decirla como consecuencia del limite y no como consejo suelto: el Dockerfile se escribe en la carpeta del proyecto y se PEGA en el laboratorio, nunca al contrario, y las capturas se guardan antes de cerrar.
   - Por eso la alterna es alterna y no la primera opcion.
-  - (Sobre la actividad, no se proyecta) Hay dos limites que conviene anunciar ANTES de empezar y no despues, porque cambian como se planifica la hora de taller.
+  - (No se proyecta) Un estudiante mas adelantado puede levantar dos contenedores, la API y un stub de notificaciones, y comprobar algo que sera central en la Clase 4: desde el contenedor de la API, la direccion localhost NO es la maquina anfitriona ni el otro contenedor, es el propio contenedor, y para que dos contenedores se hablen hay que ponerlos en una misma red y llamarse por nombre.
+  - (No se proyecta) Hay dos limites que conviene anunciar ANTES de empezar y no despues, porque cambian como se planifica la hora de taller.
+  - (No se proyecta) De ahi sale la regla operativa del dia, y hay que decirla como consecuencia del limite y no como consejo suelto: el Dockerfile se escribe en la carpeta del proyecto y se PEGA en el laboratorio, nunca al contrario, y las capturas se guardan antes de cerrar.
+  - (No se proyecta) La alterna, si Killercoda no carga, es LabEx Docker Playground, que cumple la misma funcion tambien gratis y en el navegador, pero con una restriccion mas dura que conviene mencionar: su plan gratuito da solo tres sesiones al dia, de modo que quien la use para depurar puede quedarse sin intentos justo el dia de la entrega.
 
-**[Slide 23] Segundo ejemplo: leer las siete columnas de docker ps (2/2)** — 5 vinetas.
-
-**[Slide 24] Preguntas frecuentes y cierre conceptual () (1/4)** — 5 vinetas.
-  - Tres preguntas se repiten en esta clase.
+**[Slide 22] Preguntas frecuentes y cierre conceptual (1/2)** — 4 vinetas.
   - La respuesta, dicha desde ya, es no.
-  - (Sobre la actividad, no se proyecta) Un grupo que solo copio comandos consigue la captura del entregable, pero en la Clase 8, cuando el pipeline de integracion continua deba construir una imagen automaticamente, no sabra que esta construyendo ni por que su build tarda cinco minutos, y en la sustentacion de la Clase 15 describira su arquitectura diciendo que lo metieron en Docker, que no es una decision arquitectonica sino una herramienta sin justificar.
 
-**[Slide 25] Preguntas frecuentes y cierre conceptual () (2/4)** — 5 vinetas.
+**[Slide 23] Preguntas frecuentes y cierre conceptual (2/2)** — 3 vinetas.
 
-**[Slide 26] Preguntas frecuentes y cierre conceptual () (3/4)** — 5 vinetas.
+**[Slide 24] El Dockerfile minimo, capa por capa** — 15 vinetas.
 
-**[Slide 27] Preguntas frecuentes y cierre conceptual () (4/4)** — 2 vinetas.
+**[Slide 25] El ciclo completo: construir, ejecutar, verificar** — 12 vinetas.
 
-**[Slide 28] El Dockerfile minimo, capa por capa** — 15 vinetas.
+**[Slide 26] Imagen, contenedor y capas: los comandos que lo demuestran** — 12 vinetas.
 
-**[Slide 29] El ciclo completo: construir, ejecutar, verificar** — 12 vinetas.
-
-**[Slide 30] Imagen, contenedor y capas: los comandos que lo demuestran** — 12 vinetas.
-
-**[Slide 31] Limpiar, y la prueba de que el contenedor no guarda estado** — 11 vinetas.
+**[Slide 27] Limpiar, y la prueba de que el contenedor no guarda estado** — 11 vinetas.
 
 
 ## Referencias a diapositivas
@@ -127,23 +127,19 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 16. Dockerfile, imagen, contenedor y registro: los cuatro terminos (2/2)
 17. Primer ejemplo: el stub de la API de CloudLite (1/2)
 18. Primer ejemplo: el stub de la API de CloudLite (2/2)
-19. Construir, correr y verificar: los tres comandos y el contrato de salud (1/3)
-20. Construir, correr y verificar: los tres comandos y el contrato de salud (2/3)
-21. Construir, correr y verificar: los tres comandos y el contrato de salud (3/3)
-22. Segundo ejemplo: leer las siete columnas de docker ps (1/2)
-23. Segundo ejemplo: leer las siete columnas de docker ps (2/2)
-24. Preguntas frecuentes y cierre conceptual () (1/4)
-25. Preguntas frecuentes y cierre conceptual () (2/4)
-26. Preguntas frecuentes y cierre conceptual () (3/4)
-27. Preguntas frecuentes y cierre conceptual () (4/4)
-28. El Dockerfile minimo, capa por capa
-29. El ciclo completo: construir, ejecutar, verificar
-30. Imagen, contenedor y capas: los comandos que lo demuestran
-31. Limpiar, y la prueba de que el contenedor no guarda estado
-32. Máquinas virtuales vs. contenedores
-33. Maquina virtual vs contenedor — que cambia de verdad
-34. Dockerfile minimo del stub CloudLite
-35. Clase 3 · cierre conceptual
+19. Construir, correr y verificar: los tres comandos y el contrato de salud (1/2)
+20. Construir, correr y verificar: los tres comandos y el contrato de salud (2/2)
+21. Segundo ejemplo: leer las siete columnas de docker ps
+22. Preguntas frecuentes y cierre conceptual (1/2)
+23. Preguntas frecuentes y cierre conceptual (2/2)
+24. El Dockerfile minimo, capa por capa
+25. El ciclo completo: construir, ejecutar, verificar
+26. Imagen, contenedor y capas: los comandos que lo demuestran
+27. Limpiar, y la prueba de que el contenedor no guarda estado
+28. Máquinas virtuales vs. contenedores
+29. Maquina virtual vs contenedor — que cambia de verdad
+30. Dockerfile minimo del stub CloudLite
+31. Clase 3 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -168,7 +164,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 34]
+### 40–55 · Demo en vivo · [Slide 30]
 Herramienta del día: **Navegador · editor de código del curso · lab de contenedores recomendado (no obligatorio)**.
 **Demo que usted debe poder repetir:** Construir, correr y verificar el stub en Killercoda — los 5 comandos de la bitacora
 
@@ -202,7 +198,7 @@ Aplica el quiz corto de `Kit docente/Clase 3/Quiz Clase 3 - Virtualizacion y con
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 35]
+### 115–120 · Cierre · [Slide 31]
 Di: «Queda avanzado: Contenerizar un stub del servicio principal de CloudLite.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»

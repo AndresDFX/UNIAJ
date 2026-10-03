@@ -41,37 +41,37 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **La persistencia se conecta al ciclo de vida de la aplicación en dos... (2/2)** — 3 vinetas.
 
-**VetCarePersistencia.java — class VetCarePersistencia** — 2 vinetas.
+**ClinicaPersistencia.java — class ClinicaPersistencia** — 2 vinetas.
 
-**VetCarePersistencia.java — main() (1/2)** — 20 vinetas.
+**ClinicaPersistencia.java — main() (1/2)** — 20 vinetas.
 
-**VetCarePersistencia.java — main() (2/2)** — 11 vinetas.
+**ClinicaPersistencia.java — main() (2/2)** — 11 vinetas.
 
-**VetCarePersistencia.java — siguienteId() (1/2)** — 20 vinetas.
+**ClinicaPersistencia.java — siguienteId() (1/2)** — 20 vinetas.
 
-**VetCarePersistencia.java — siguienteId() (2/2)** — 1 vinetas.
+**ClinicaPersistencia.java — siguienteId() (2/2)** — 1 vinetas.
 
-**VetCarePersistencia.java — class Mascota** — 8 vinetas.
+**ClinicaPersistencia.java — class Mascota** — 8 vinetas.
 
-**VetCarePersistencia.java — Mascota()** — 8 vinetas.
+**ClinicaPersistencia.java — Mascota()** — 8 vinetas.
 
-**VetCarePersistencia.java — class RepositorioMascotasCSV** — 8 vinetas.
+**ClinicaPersistencia.java — class RepositorioMascotasCSV** — 8 vinetas.
 
-**VetCarePersistencia.java — RepositorioMascotasCSV()** — 4 vinetas.
+**ClinicaPersistencia.java — RepositorioMascotasCSV()** — 4 vinetas.
 
-**VetCarePersistencia.java — rutaAbsoluta()** — 5 vinetas.
+**ClinicaPersistencia.java — rutaAbsoluta()** — 5 vinetas.
 
-**VetCarePersistencia.java — guardar()** — 14 vinetas.
+**ClinicaPersistencia.java — guardar()** — 14 vinetas.
 
-**VetCarePersistencia.java — cargar() (1/2)** — 20 vinetas.
+**ClinicaPersistencia.java — cargar() (1/2)** — 20 vinetas.
 
-**VetCarePersistencia.java — cargar() (2/2)** — 5 vinetas.
+**ClinicaPersistencia.java — cargar() (2/2)** — 5 vinetas.
 
-**VetCarePersistencia.java — aLinea()** — 8 vinetas.
+**ClinicaPersistencia.java — aLinea()** — 8 vinetas.
 
-**VetCarePersistencia.java — desdeLinea()** — 19 vinetas.
+**ClinicaPersistencia.java — desdeLinea()** — 19 vinetas.
 
-**VetCarePersistencia.java — limpiar()** — 8 vinetas.
+**ClinicaPersistencia.java — limpiar()** — 8 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente registra una mascota, cierra la aplicación, la vuelve a abrir y la mascota sigue ahí; enseguida abre mascotas.csv en el Bloc de notas para mostrar la línea que escribió el programa.
@@ -92,14 +92,14 @@ Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: El docente registra una mascota, cierra la aplicación, la vuelve a abrir y la mascota sigue ahí; enseguida abre mascotas.csv en el Bloc de notas para mostrar la línea que escribió el programa.
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
-`Kit docente/Clase 9/Codigo/VetCarePersistencia.java`
+`Kit docente/Clase 9/Codigo/ClinicaPersistencia.java`
 
 ### 60-105 · Taller guiado (opcional) = avance del PI
 Opcional: no tiene lamina en el deck. La guia esta en
 `Clases/Clase 9 - Refactorizacion con IA y persistencia de archivos/Taller PI - Clase 9 - VetCare.docx`; si hoy no se hace, se extiende la demo y la practica libre.
 **Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
-1. Cree el paquete vetcare.datos y dentro la clase RepositorioMascotasCSV con la constante private static final String SEPARADOR = ";", la constante ENCABEZADO con el texto id;nombre;especie;edad;cedula_dueno y un atributo Path ruta construido con Paths.get("mascotas.csv"); compile el proyecto y verifique que no hay errores rojos antes de seguir.
+1. Cree el paquete clinica.datos y dentro la clase RepositorioMascotasCSV con la constante private static final String SEPARADOR = ";", la constante ENCABEZADO con el texto id;nombre;especie;edad;cedula_dueno y un atributo Path ruta construido con Paths.get("mascotas.csv"); compile el proyecto y verifique que no hay errores rojos antes de seguir.
 2. Implemente guardar(List<Mascota>) usando try-with-resources: escriba el encabezado, recorra la lista y escriba una línea por mascota; ejecute, abra mascotas.csv en el Bloc de notas y verifique que tiene exactamente tantas líneas como mascotas más una, y el mismo número de punto y coma en todas.
 3. Implemente cargar() de forma defensiva: si el archivo no existe devuelve una lista vacía, descarta la línea de encabezado, ignora las líneas que no tengan cinco campos e ignora las que traigan una edad no numérica, avisando por consola el número de la línea; compruébelo dañando a propósito una línea del archivo y volviendo a ejecutar.
 4. Conecte el repositorio al ciclo de vida de la aplicación: cargar() al arrancar antes de mostrar la ventana y guardar() al cerrar; cierre la aplicación, vuelva a abrirla y verifique que el conteo de mascotas en la tabla es el mismo que había antes de cerrar.

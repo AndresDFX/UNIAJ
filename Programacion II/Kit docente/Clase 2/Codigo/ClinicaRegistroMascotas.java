@@ -1,4 +1,4 @@
-package vetcare;
+package clinica;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * VetCare - Clase 2: de arreglos fijos a ArrayList.
- * Clinica Veterinaria Huellitas.
+ * Clinica Veterinaria - Clase 2: de arreglos fijos a ArrayList.
+ * Clinica Veterinaria.
  * Archivo unico: en VS Code, el boton Run que aparece sobre el metodo main (o Ctrl+F5).
  * Los bloques 1 a 4 corren solos; el bloque 5 abre el menu y pide datos por consola.
  */
-public class VetCareRegistroMascotas {
+public class ClinicaRegistroMascotas {
 
     public static void main(String[] args) {
 

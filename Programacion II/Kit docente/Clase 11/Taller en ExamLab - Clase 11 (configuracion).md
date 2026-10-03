@@ -23,7 +23,7 @@
 
 ## Primero ejecutar, despues opinar
 
-Este es `VetCareParaRevisar.java`, el proyecto que le toco revisar. **No lo arregle todavia**: hoy solo lo ejecuta y provoca los cuatro casos borde de VetCare.
+Este es `ClinicaParaRevisar.java`, el proyecto que le toco revisar. **No lo arregle todavia**: hoy solo lo ejecuta y provoca los cuatro casos borde de VetCare.
 
 Complete el `main` agregando, uno por uno, los cuatro casos borde marcados con `TODO`:
 
@@ -57,7 +57,7 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-        VetCareParaRevisar app = new VetCareParaRevisar();
+        ClinicaParaRevisar app = new ClinicaParaRevisar();
         app.cargarDesdeCsv("mascotas.csv");
         app.registrar("M-001", "Firulais", "canino", "4");
         app.registrar("M-002", "Michi", "felino", "2");
@@ -89,7 +89,7 @@ class MascotaRev {
     }
 }
 
-class VetCareParaRevisar {
+class ClinicaParaRevisar {
 
     ArrayList<MascotaRev> lista = new ArrayList<>();
 
@@ -151,7 +151,7 @@ Los cuatro casos borde estan agregados al main y probados. Los comentarios final
 
 ## Checklist de doce items con evidencia `archivo:linea`
 
-Recorra el `VetCareParaRevisar.java` de la pregunta anterior con el checklist de la clase. Para **cada** item escriba `cumple`, `no cumple` o `no aplica`, y en **todos** los que marque `no cumple` la evidencia localizable en formato `archivo:linea` (o los pasos para reproducirlo).
+Recorra el `ClinicaParaRevisar.java` de la pregunta anterior con el checklist de la clase. Para **cada** item escriba `cumple`, `no cumple` o `no aplica`, y en **todos** los que marque `no cumple` la evidencia localizable en formato `archivo:linea` (o los pasos para reproducirlo).
 
 | # | Item |
 |---|------|
@@ -171,7 +171,7 @@ Recorra el `VetCareParaRevisar.java` de la pregunta anterior con el checklist de
 Use este formato por linea:
 
 ```
-Item 7 (catch vacio): no cumple - VetCareParaRevisar.java:linea NN, el catch (Exception ex) del metodo cargarDesdeCsv no tiene una sola instruccion adentro.
+Item 7 (catch vacio): no cumple - ClinicaParaRevisar.java:linea NN, el catch (Exception ex) del metodo cargarDesdeCsv no tiene una sola instruccion adentro.
 ```
 
 Cierre con **una frase** de resumen: ¿arranco el proyecto?, ¿cuantos items en `no cumple`?
@@ -190,7 +190,7 @@ Los doce items estan marcados. Cada 'no cumple' trae evidencia localizable en fo
 
 ## ¿Cuales de estos comentarios sirven como retroalimentacion?
 
-Un revisor escribio estos comentarios sobre `VetCareParaRevisar.java`. Marque **todos** los que son retroalimentacion accionable (se refieren al codigo, traen evidencia y proponen algo).
+Un revisor escribio estos comentarios sobre `ClinicaParaRevisar.java`. Marque **todos** los que son retroalimentacion accionable (se refieren al codigo, traen evidencia y proponen algo).
 
 **Opciones:**
 
@@ -245,7 +245,7 @@ Hay cinco hallazgos distintos con el formato Evidencia + Impacto + Sugerencia y 
 
 ## Parche de los bloqueantes (mostrar, no solo decir)
 
-Una revision gana autoridad cuando el revisor puede demostrar el arreglo. Sobre el **mismo** `VetCareParaRevisar.java`, aplique unicamente estas tres correcciones y deje el resto como esta:
+Una revision gana autoridad cuando el revisor puede demostrar el arreglo. Sobre el **mismo** `ClinicaParaRevisar.java`, aplique unicamente estas tres correcciones y deje el resto como esta:
 
 1. **`registrar`**: proteja `Integer.parseInt` (`try-catch` de `NumberFormatException`) y valide que el nombre no venga vacio. Ante un dato invalido: **no** agregue la mascota a la lista e imprima el aviso.
 2. **`buscar`**: compare los IDs con `equals` en vez de `==`.
@@ -285,7 +285,7 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-        VetCareParaRevisar app = new VetCareParaRevisar();
+        ClinicaParaRevisar app = new ClinicaParaRevisar();
         app.cargarDesdeCsv("mascotas.csv");
         app.registrar("M-001", "Firulais", "canino", "4");
         app.registrar("M-002", "Michi", "felino", "2");
@@ -317,7 +317,7 @@ class MascotaRev {
     }
 }
 
-class VetCareParaRevisar {
+class ClinicaParaRevisar {
 
     ArrayList<MascotaRev> lista = new ArrayList<>();
 

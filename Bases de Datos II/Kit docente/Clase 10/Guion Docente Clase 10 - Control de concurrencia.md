@@ -147,7 +147,7 @@ Subir entregable a ExamLab. Actualizar el checklist PI del proyecto.
 
 
 ## Codigo / scripts
-Carpeta Codigo/ — archivo 10_concurrencia_vetcare.sql.
+Carpeta Codigo/ — archivo 10_concurrencia_clinica.sql.
 
 ## Capturas
 Carpeta `Kit docente/Clase 10/Capturas/`. Cada linea de pantallazo de arriba trae

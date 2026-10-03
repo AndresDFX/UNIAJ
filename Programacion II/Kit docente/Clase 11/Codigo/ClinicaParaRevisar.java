@@ -1,25 +1,25 @@
 import java.util.ArrayList;
 
 /**
- * VetCare - Clase 11: material para la revision cruzada.
- * Clinica Veterinaria Huellitas.
+ * Clinica Veterinaria - Clase 11: material para la revision cruzada.
+ * Clinica Veterinaria.
  *
  * Este archivo COMPILA y ARRANCA, pero tiene al menos siete hallazgos de
  * revision (correccion, diseno, legibilidad y manejo de errores) y termina
  * con una excepcion en tiempo de ejecucion. Eso es a proposito.
  *
- * Ejecutar:  java VetCareParaRevisar.java
+ * Ejecutar:  java ClinicaParaRevisar.java
  *
  * Instruccion para el estudiante: NO corrija nada todavia. Primero ejecutelo,
  * anote la salida real, aplique el checklist y escriba los hallazgos con el
  * formato Evidencia + Impacto + Sugerencia.
  */
-public class VetCareParaRevisar {
+public class ClinicaParaRevisar {
 
     public static ArrayList<String[]> datos = new ArrayList<String[]>();
 
     public static void main(String[] args) {
-        System.out.println("=== VetCare Huellitas (version para revisar) ===");
+        System.out.println("=== Clinica (version para revisar) ===");
 
         int consecutivo = 1;
         proceso("M00" + consecutivo, "Firulais", "Canino", "4", "1144556677");

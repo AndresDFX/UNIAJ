@@ -24,70 +24,75 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 10] Seguridad como propiedad del diseno: la triada CIA (1/2)** — 4 vinetas.
+**[Slide 10] Seguridad como propiedad del diseno: la triada CIA** — 4 vinetas.
   - Casi todos los incidentes reales ocurren del lado del cliente.
   - Cada amenaza que se modele despues niega al menos una de las tres.
+  - (No se proyecta) La primera pregunta del estudiante sera «no es el proveedor de nube el que ya se encarga de la seguridad?», y la respuesta sale del modelo de responsabilidad compartida de la Clase 2: el proveedor asegura la nube (hardware, hipervisor, red fisica) y quien construye CloudLite asegura lo que pone DENTRO de ella (identidades, permisos, configuracion, codigo y datos).
 
-**[Slide 11] Seguridad como propiedad del diseno: la triada CIA (2/2)** — 2 vinetas.
+**[Slide 11] Modelar amenazas: las cuatro preguntas y el vocabulario** — 6 vinetas.
+  - (No se proyecta) Hace falta vocabulario preciso, porque el estudiante usa estas palabras como sinonimos.
+  - (No se proyecta) Y la superficie de ataque son los puntos por donde alguien externo puede interactuar con el sistema: cada endpoint publico, cada puerto publicado del contenedor, cada formulario, cada dependencia de terceros.
 
-**[Slide 12] Modelar amenazas: las cuatro preguntas y el vocabulario** — 6 vinetas.
-  - Hace falta vocabulario preciso, porque el estudiante usa estas palabras como sinonimos.
-  - (Sobre la actividad, no se proyecta) Y la superficie de ataque son los puntos por donde alguien externo puede interactuar con el sistema: cada endpoint publico, cada puerto publicado del contenedor, cada formulario, cada dependencia de terceros.
-
-**[Slide 13] STRIDE: seis categorias, cada una niega una propiedad** — 4 vinetas.
+**[Slide 12] STRIDE: seis categorias, cada una niega una propiedad** — 4 vinetas.
   - Tampering modifica datos sin autorizacion y niega la integridad.
   - Denial of service agota un recurso hasta que el sistema deja de responder y niega la disponibilidad.
   - Elevation of privilege obtiene mas permisos de los asignados y niega la autorizacion.
   - De ahi sale la distincion que mas se confunde: autenticacion es demostrar quien eres, autorizacion es determinar que puedes hacer una vez identificado.
   - Un sistema puede autenticar impecablemente y seguir siendo inseguro si despues no verifica permisos.
 
-**[Slide 14] Los controles gratuitos, en tres familias** — 6 vinetas.
-  - Los controles que el estudiante puede citar sin pagar nada se ordenan en tres familias.
+**[Slide 13] Los controles gratuitos, en tres familias** — 4 vinetas.
+  - (No se proyecta) Los controles que el estudiante puede citar sin pagar nada se ordenan en tres familias.
+  - (No se proyecta) Red: publicar solo el punto de entrada y dejar la base de datos sin acceso desde internet, que es el diagrama de la Clase 7.
+  - (No se proyecta) Aparece la segunda pregunta previsible: «si ya valido en el formulario, para que validar otra vez en la API?».
 
-**[Slide 15] Menor privilegio: la resta que hay que poder nombrar (1/2)** — 5 vinetas.
+**[Slide 14] Menor privilegio: la resta que hay que poder nombrar (1/2)** — 4 vinetas.
   - Si la respuesta no tiene un verbo en negativo, no esta aplicado.
   - Menor privilegio no evita el ataque, acota el dano; decirlo asi evita la objecion de «entonces igual me atacan».
-  - Conviene ademas dar la version de la que casi nadie se acuerda: el principio aplica a personas igual que a servicios, y en un proyecto de un semestre el caso mas cercano es que no todo integrante del equipo necesita permiso de administracion en el repositorio.
-  - (Sobre la actividad, no se proyecta) El menor privilegio vale 1.25 puntos de la pregunta 2 y se pierde casi siempre por la misma razon: el estudiante lo define bien y no lo aplica.
+  - (No se proyecta) El menor privilegio vale 1.25 puntos de la pregunta 2 y se pierde casi siempre por la misma razon: el estudiante lo define bien y no lo aplica.
+  - (No se proyecta) El ejemplo que conviene proyectar es, resuelto sobre el diagrama de turnos que ya se uso en la Clase 4: la API de turnos no se conecta a la base como duena de la base, sino con un rol propio al que se le conceden exactamente las operaciones de lectura, insercion y actualizacion sobre sus tablas.
+  - (No se proyecta) Conviene ademas dar la version de la que casi nadie se acuerda: el principio aplica a personas igual que a servicios, y en un proyecto de un semestre el caso mas cercano es que no todo integrante del equipo necesita permiso de administracion en el repositorio.
 
-**[Slide 16] Menor privilegio: la resta que hay que poder nombrar (2/2)** — 3 vinetas.
+**[Slide 15] Menor privilegio: la resta que hay que poder nombrar (2/2)** — 3 vinetas.
 
-**[Slide 17] Gestion de secretos: el error mas repetido y el mas facil de verificar (1/2)** — 5 vinetas.
+**[Slide 16] Gestion de secretos: el error mas repetido y el mas facil de verificar (1/2)** — 5 vinetas.
   - Con herramientas gratis, el valor real vive en los secretos del repositorio y se inyecta como variable de entorno en ejecucion, versionando solo un archivo de ejemplo con los nombres de las variables.
+  - (No se proyecta) Esto se materializa en la Clase 8.
 
-**[Slide 18] Gestion de secretos: el error mas repetido y el mas facil de verificar (2/2)** — 4 vinetas.
+**[Slide 17] Gestion de secretos: el error mas repetido y el mas facil de verificar (2/2)** — 3 vinetas.
 
-**[Slide 19] La politica en cuatro respuestas: quien rota, cada cuanto y que se hace ante una filtracion (1/3)** — 5 vinetas.
-  - Conviene recorrer renglon por renglon, porque el estudiante que solo escucho «no los pongas en el Dockerfile» responde una de las cinco y pierde las otras cuatro.
-  - Esa distincion entre el nombre de un secreto, que es publico, y su valor, que no lo es, es la senal de que el estudiante entendio el tema.
-  - (Sobre la actividad, no se proyecta) La politica de secretos vale 7.5 puntos repartidos en cuatro respuestas de 1.5 mas el procedimiento ante filtracion, tambien de 1.5.
+**[Slide 18] La politica en cuatro respuestas: quien rota, cada cuanto y que se hace ante una filtracion (1/3)** — 5 vinetas.
+  - (No se proyecta) La politica de secretos vale 7.5 puntos repartidos en cuatro respuestas de 1.5 mas el procedimiento ante filtracion, tambien de 1.5.
+  - (No se proyecta) Conviene recorrer renglon por renglon, porque el estudiante que solo escucho «no los pongas en el Dockerfile» responde una de las cinco y pierde las otras cuatro.
+  - (No se proyecta) Esa distincion entre el nombre de un secreto, que es publico, y su valor, que no lo es, es la senal de que el estudiante entendio el tema.
 
-**[Slide 20] La politica en cuatro respuestas: quien rota, cada cuanto y que se hace ante una filtracion (2/3)** — 5 vinetas.
+**[Slide 19] La politica en cuatro respuestas: quien rota, cada cuanto y que se hace ante una filtracion (2/3)** — 5 vinetas.
 
-**[Slide 21] La politica en cuatro respuestas: quien rota, cada cuanto y que se hace ante una filtracion (3/3)** — 3 vinetas.
+**[Slide 20] La politica en cuatro respuestas: quien rota, cada cuanto y que se hace ante una filtracion (3/3)** — 3 vinetas.
 
-**[Slide 22] Primer ejemplo: autenticacion con token en CloudLite** — 6 vinetas.
+**[Slide 21] Primer ejemplo: autenticacion con token en CloudLite** — 5 vinetas.
   - Primer ejemplo concreto.
   - En CloudLite el usuario final se autentica contra la API y recibe un token, una cadena firmada que acompana cada peticion posterior para no volver a pedir la contrasena.
+  - (No se proyecta) Evidencia: la caja Auth del C4 Containers de la Clase 4 y la flecha etiquetada HTTPS.
 
-**[Slide 23] Segundo ejemplo: PII y las tres amenazas de identidad** — 5 vinetas.
+**[Slide 22] Segundo ejemplo: PII y las tres amenazas de identidad** — 5 vinetas.
   - Segundo ejemplo concreto.
   - La respuesta que devuelve mas de lo necesario: el endpoint de perfil serializa la fila completa e incluye el hash de la contrasena o el correo de otros usuarios; el control es declarar que campos salen.
 
-**[Slide 24] Amenaza, control y donde se ve: la tercera es una caja o una flecha (1/2)** — 4 vinetas.
+**[Slide 23] Amenaza, control y donde se ve: la tercera es una caja o una flecha** — 4 vinetas.
   - La tercera es la que se responde mal: solo admite el nombre de una CAJA o de una FLECHA del C4 Containers o del Despliegue, escrito igual que en el diagrama.
   - «la flecha App web -> API de turnos lleva HTTPS y el identificador se toma del token» si.
+  - (No se proyecta) Tercera pregunta previsible: «cuantas amenazas hay que poner?».
+  - (No se proyecta) La Clase 5 cerro con el Parcial 1 el bloque de arquitectura y esta clase abre el de operacion.
+  - (No se proyecta) Las fronteras de confianza que hoy se nombran en texto se dibujan como zonas publica, privada y de datos en la Clase 7; la politica de secretos se ejecuta en el pipeline de la Clase 8, donde la denegacion de servicio se vuelve una senal medible; y todo el bloque se evalua en el Parcial 2 de la Clase 9.
 
-**[Slide 25] Amenaza, control y donde se ve: la tercera es una caja o una flecha (2/2)** — 4 vinetas.
-
-**[Slide 26] Preguntas frecuentes del grupo (1/2)** — 3 vinetas.
+**[Slide 24] Preguntas frecuentes del grupo (1/2)** — 3 vinetas.
   - Estas aparecen todos los semestres, y las cuatro se responden con material que ya esta proyectado.
-  - (Sobre la actividad, no se proyecta) «Si trabajo solo, quien rota los secretos?» El mismo estudiante, y es una respuesta valida: lo que se califica es que exista un responsable escrito, no que sea otra persona.
-  - (Sobre la actividad, no se proyecta) Lo que se descuenta es la misma amenaza escrita dos veces con otras palabras.
+  - (No se proyecta) «Si trabajo solo, quien rota los secretos?» El mismo estudiante, y es una respuesta valida: lo que se califica es que exista un responsable escrito, no que sea otra persona.
+  - (No se proyecta) Lo que se descuenta es la misma amenaza escrita dos veces con otras palabras.
 
-**[Slide 27] Preguntas frecuentes del grupo (2/2)** — 5 vinetas.
+**[Slide 25] Preguntas frecuentes del grupo (2/2)** — 5 vinetas.
 
-**[Slide 28] La politica de secretos, en comandos** — 14 vinetas.
+**[Slide 26] La politica de secretos, en comandos** — 14 vinetas.
 
 
 ## Referencias a diapositivas
@@ -103,27 +108,25 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 7. Política de secretos: las cuatro preguntas
 8. Ejercicio guiado
 9. Una fila por amenaza: ejemplo en CloudLite Turnos
-10. Seguridad como propiedad del diseno: la triada CIA (1/2)
-11. Seguridad como propiedad del diseno: la triada CIA (2/2)
-12. Modelar amenazas: las cuatro preguntas y el vocabulario
-13. STRIDE: seis categorias, cada una niega una propiedad
-14. Los controles gratuitos, en tres familias
-15. Menor privilegio: la resta que hay que poder nombrar (1/2)
-16. Menor privilegio: la resta que hay que poder nombrar (2/2)
-17. Gestion de secretos: el error mas repetido y el mas facil de verificar (1/2)
-18. Gestion de secretos: el error mas repetido y el mas facil de verificar (2/2)
-19. La politica en cuatro respuestas: quien rota, cada cuanto y que se hace ante una filtracion (1/3)
-20. La politica en cuatro respuestas: quien rota, cada cuanto y que se hace ante una filtracion (2/3)
-21. La politica en cuatro respuestas: quien rota, cada cuanto y que se hace ante una filtracion (3/3)
-22. Primer ejemplo: autenticacion con token en CloudLite
-23. Segundo ejemplo: PII y las tres amenazas de identidad
-24. Amenaza, control y donde se ve: la tercera es una caja o una flecha (1/2)
-25. Amenaza, control y donde se ve: la tercera es una caja o una flecha (2/2)
-26. Preguntas frecuentes del grupo (1/2)
-27. Preguntas frecuentes del grupo (2/2)
-28. La politica de secretos, en comandos
-29. El secreto en la imagen: por qué borrarlo no sirve
-30. Clase 6 · cierre conceptual
+10. Seguridad como propiedad del diseno: la triada CIA
+11. Modelar amenazas: las cuatro preguntas y el vocabulario
+12. STRIDE: seis categorias, cada una niega una propiedad
+13. Los controles gratuitos, en tres familias
+14. Menor privilegio: la resta que hay que poder nombrar (1/2)
+15. Menor privilegio: la resta que hay que poder nombrar (2/2)
+16. Gestion de secretos: el error mas repetido y el mas facil de verificar (1/2)
+17. Gestion de secretos: el error mas repetido y el mas facil de verificar (2/2)
+18. La politica en cuatro respuestas: quien rota, cada cuanto y que se hace ante una filtracion (1/3)
+19. La politica en cuatro respuestas: quien rota, cada cuanto y que se hace ante una filtracion (2/3)
+20. La politica en cuatro respuestas: quien rota, cada cuanto y que se hace ante una filtracion (3/3)
+21. Primer ejemplo: autenticacion con token en CloudLite
+22. Segundo ejemplo: PII y las tres amenazas de identidad
+23. Amenaza, control y donde se ve: la tercera es una caja o una flecha
+24. Preguntas frecuentes del grupo (1/2)
+25. Preguntas frecuentes del grupo (2/2)
+26. La politica de secretos, en comandos
+27. El secreto en la imagen: por qué borrarlo no sirve
+28. Clase 6 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -150,7 +153,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 29]
+### 40–55 · Demo en vivo · [Slide 27]
 Herramienta del día: **Navegador · editor de texto del curso**.
 **Demo que usted debe poder repetir:** De amenaza STRIDE a control verificable, en vivo
 
@@ -179,7 +182,7 @@ Aplica el quiz corto de `Kit docente/Clase 6/Quiz Clase 6 - Seguridad en la nube
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 30]
+### 115–120 · Cierre · [Slide 28]
 Di: «Queda avanzado: Modelo de amenazas mínimo + controles para CloudLite.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»

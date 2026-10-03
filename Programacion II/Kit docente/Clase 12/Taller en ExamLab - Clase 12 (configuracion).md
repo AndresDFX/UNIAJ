@@ -27,7 +27,7 @@ Hasta ahora cada taller dejo su propio `main` y su propio repositorio. Hoy VetCa
 
 El starter ya trae las cuatro capas listas y correctas: `Mascota` (modelo), `RepositorioMascotas` (datos, con el archivo simulado en memoria para este ejercicio), `ServicioMascotas` (logica) y `VentanaPrincipal` (ui, que **recibe** el servicio y nunca lo crea).
 
-Escriba el `main` de `AppVetCare` con el **guion de humo de cinco pasos**:
+Escriba el `main` de `AppClinica` con el **guion de humo de cinco pasos**:
 
 1. Cree **una sola vez** el repositorio y el servicio, e inyecte el repositorio al servicio por constructor. Pase el **mismo** servicio a la ventana.
 2. **Paso 1 - abrir con datos:** `ventana.abrir()`, que carga y muestra el listado (M-001 Firulais, M-002 Michi, M-003 Rocky).
@@ -71,7 +71,7 @@ Dos cosas para mirar con atencion:
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppVetCare {
+public class AppClinica {
 
     // UNICO main de todo el proyecto VetCare.
     public static void main(String[] args) {
@@ -125,7 +125,7 @@ class Mascota {
     }
 }
 
-// Capa vetcare.datos: simula el archivo mascotas.csv en memoria para este ejercicio.
+// Capa clinica.datos: simula el archivo mascotas.csv en memoria para este ejercicio.
 class RepositorioMascotas {
 
     private final List<String> archivoSimulado = new ArrayList<>();
@@ -156,7 +156,7 @@ class RepositorioMascotas {
     }
 }
 
-// Capa vetcare.logica
+// Capa clinica.logica
 class ServicioMascotas {
 
     private final RepositorioMascotas repositorio;
@@ -215,7 +215,7 @@ class ServicioMascotas {
     }
 }
 
-// Capa vetcare.ui: recibe el servicio, NUNCA lo crea.
+// Capa clinica.ui: recibe el servicio, NUNCA lo crea.
 class VentanaPrincipal {
 
     private final ServicioMascotas servicio;
@@ -300,7 +300,7 @@ La ultima linea es la correccion demostrada: de tres intentos, **solo uno** lleg
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppVetCare {
+public class AppClinica {
 
     public static void main(String[] args) {
         ServicioMascotas servicio = new ServicioMascotas();
@@ -383,10 +383,10 @@ El valor por defecto 0 desaparecio y el catch ya no ignora el error. Los dos cas
 Suba el **ZIP del proyecto `VetCare`** (o el JAR mas el codigo fuente) con la integracion terminada:
 
 **Estructura obligatoria de paquetes:**
-- `vetcare.modelo` — `Mascota`, `Dueno`, `Cita`
-- `vetcare.datos` — `RepositorioMascotasCSV` (guardar y cargar de la Clase 9)
-- `vetcare.logica` — el servicio con las reglas y validaciones
-- `vetcare.ui` — la ventana Swing de registro y listado
+- `clinica.modelo` — `Mascota`, `Dueno`, `Cita`
+- `clinica.datos` — `RepositorioMascotasCSV` (guardar y cargar de la Clase 9)
+- `clinica.logica` — el servicio con las reglas y validaciones
+- `clinica.ui` — la ventana Swing de registro y listado
 
 **Requisitos verificables:**
 1. **Un unico `main`** en toda la aplicacion. Elimine los `main` sobrantes de los talleres anteriores (busque `void main` con Ctrl+F y reporte cuantos borro en la bitacora).
@@ -435,7 +435,7 @@ Este diagrama es la lista de chequeo que va a usar el dia de la sustentacion: si
 
 ```mermaid
 flowchart TD
-    A[main de AppVetCare] --> B[Paso 1: abrir con datos]
+    A[main de AppClinica] --> B[Paso 1: abrir con datos]
     B --> C{Existe mascotas.csv?}
     C -- si --> D[Carga las mascotas y las muestra]
     C -- no --> E[Aviso: primera ejecucion, lista vacia]

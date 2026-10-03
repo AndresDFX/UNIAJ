@@ -262,7 +262,7 @@ Proyectar [Slide 44] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts
-Carpeta Codigo/ — archivo 02_roles_vetcare.sql.
+Carpeta Codigo/ — archivo 02_roles_clinica.sql.
 
 ## Capturas
 Carpeta `Kit docente/Clase 2/Capturas/`. Cada linea de pantallazo de arriba trae

@@ -441,6 +441,8 @@ def slides_de_seccion(titulo: str, cuerpo: str):
     titulo = limpiar_tokens(titulo).rstrip(" (").rstrip()
     if titulo.count("(") > titulo.count(")"):
         titulo = titulo[:titulo.rfind("(")].rstrip(" ,;")
+    # Y si los tokens eran TODO el parentesis, queda «()» o «(de la  a la )»: fuera.
+    titulo = re.sub(r"\s*\((?:\s|de la|del?|a la|al)*\)", "", titulo).rstrip()
     proyecta, notas, codigo = a_vinetas(cuerpo)
 
     out = []

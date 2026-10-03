@@ -42,37 +42,37 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **Dos detalles mas que le van a servir (2/2)** — 3 vinetas.
 
-**class VetCareEventosDemo · main()** — 14 vinetas.
+**class ClinicaEventosDemo · main()** — 14 vinetas.
 
-**VetCareEventosDemo.java — class Mascota** — 7 vinetas.
+**ClinicaEventosDemo.java — class Mascota** — 7 vinetas.
 
-**VetCareEventosDemo.java — Mascota()** — 16 vinetas.
+**ClinicaEventosDemo.java — Mascota()** — 16 vinetas.
 
-**VetCareEventosDemo.java — class RepositorioMascotas** — 4 vinetas.
+**ClinicaEventosDemo.java — class RepositorioMascotas** — 4 vinetas.
 
-**VetCareEventosDemo.java — registrar()** — 10 vinetas.
+**ClinicaEventosDemo.java — registrar()** — 10 vinetas.
 
-**VetCareEventosDemo.java — buscarPorId()** — 15 vinetas.
+**ClinicaEventosDemo.java — buscarPorId()** — 15 vinetas.
 
-**VetCareEventosDemo.java — class ControladorRegistro** — 4 vinetas.
+**ClinicaEventosDemo.java — class ControladorRegistro** — 4 vinetas.
 
-**VetCareEventosDemo.java — ControladorRegistro()** — 7 vinetas.
+**ClinicaEventosDemo.java — ControladorRegistro()** — 7 vinetas.
 
-**VetCareEventosDemo.java — registrarMascota() (1/2)** — 20 vinetas.
+**ClinicaEventosDemo.java — registrarMascota() (1/2)** — 20 vinetas.
 
-**VetCareEventosDemo.java — registrarMascota() (2/2)** — 3 vinetas.
+**ClinicaEventosDemo.java — registrarMascota() (2/2)** — 3 vinetas.
 
-**VetCareEventosDemo.java — reporteListado()** — 11 vinetas.
+**ClinicaEventosDemo.java — reporteListado()** — 11 vinetas.
 
-**VetCareEventosDemo.java — class VentanaRegistroMascota** — 12 vinetas.
+**ClinicaEventosDemo.java — class VentanaRegistroMascota** — 12 vinetas.
 
-**VetCareEventosDemo.java — VentanaRegistroMascota() (1/2)** — 20 vinetas.
+**ClinicaEventosDemo.java — VentanaRegistroMascota() (1/2)** — 20 vinetas.
 
-**VetCareEventosDemo.java — VentanaRegistroMascota() (2/2)** — 12 vinetas.
+**ClinicaEventosDemo.java — VentanaRegistroMascota() (2/2)** — 12 vinetas.
 
-**VetCareEventosDemo.java — registrar()** — 13 vinetas.
+**ClinicaEventosDemo.java — registrar()** — 13 vinetas.
 
-**VetCareEventosDemo.java — limpiar()** — 9 vinetas.
+**ClinicaEventosDemo.java — limpiar()** — 9 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente oprime el boton de la ventana ya corriendo y muestra en vivo como la mascota pasa del formulario al ArrayList, incluyendo que pasa cuando la edad se escribe como texto.
@@ -93,15 +93,15 @@ Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: El docente oprime el boton de la ventana ya corriendo y muestra en vivo como la mascota pasa del formulario al ArrayList, incluyendo que pasa cuando la edad se escribe como texto.
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
-`Kit docente/Clase 6/Codigo/VetCareEventosDemo.java`
+`Kit docente/Clase 6/Codigo/ClinicaEventosDemo.java`
 
 ### 60-105 · Taller guiado (opcional) = avance del PI
 Opcional: no tiene lamina en el deck. La guia esta en
 `Clases/Clase 6 - Eventos y controladores ActionListener/Taller PI - Clase 6 - VetCare.docx`; si hoy no se hace, se extiende la demo y la practica libre.
 **Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
-1. Cree el paquete vetcare.vista y dentro la clase VentanaRegistroMascota que extiende JFrame, con los campos ID, nombre, especie y edad, el boton 'Registrar mascota' y un JTextArea de solo lectura para el listado; ejecutela y verifique que abre centrada y que cierra con EXIT_ON_CLOSE.
-2. Deje Mascota en vetcare.modelo y cree en vetcare.servicio la clase RepositorioMascotas con un ArrayList<Mascota> privado y los metodos registrar, buscarPorId, listar y total; compruebe con Ctrl+F que ninguna de esas dos clases tiene un import de javax.swing.
+1. Cree el paquete clinica.vista y dentro la clase VentanaRegistroMascota que extiende JFrame, con los campos ID, nombre, especie y edad, el boton 'Registrar mascota' y un JTextArea de solo lectura para el listado; ejecutela y verifique que abre centrada y que cierra con EXIT_ON_CLOSE.
+2. Deje Mascota en clinica.modelo y cree en clinica.servicio la clase RepositorioMascotas con un ArrayList<Mascota> privado y los metodos registrar, buscarPorId, listar y total; compruebe con Ctrl+F que ninguna de esas dos clases tiene un import de javax.swing.
 3. Cree ControladorRegistro con el metodo registrarMascota(String id, String nombre, String especie, String edadTexto) que valide obligatorios, convierta la edad con Integer.parseInt dentro de try-catch y lance IllegalArgumentException con mensajes en español; el repositorio debe recibirse por el constructor, no crearse adentro del metodo.
 4. Conecte el boton con addActionListener de manera que el cuerpo del listener tenga maximo cinco lineas: leer los getText(), llamar al controlador, refrescar el area, limpiar campos y mostrar el JOptionPane; declare el controlador como atributo de la ventana, nunca dentro del listener.
 5. Pruebe y capture evidencia de tres casos: (a) registro valido de M-001 Kira, (b) edad escrita como 'tres', (c) ID repetido M-001; guarde las tres capturas, exporte el proyecto comprimido y subalo a ExamLab.

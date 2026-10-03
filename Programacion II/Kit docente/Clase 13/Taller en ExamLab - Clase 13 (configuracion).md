@@ -80,7 +80,7 @@ public class Main {
     }
 }
 
-// Paquete vetcare.excepciones
+// Paquete clinica.excepciones
 class DatoInvalidoException extends Exception {
 
     // TODO 1: constructor que reciba el mensaje y lo pase a la superclase con super(mensaje)
@@ -247,7 +247,7 @@ class VentanaRegistro extends JFrame {
     private final JTextArea areaListado = new JTextArea(8, 40);
 
     public VentanaRegistro() {
-        setTitle("VetCare - Registro con validacion");
+        setTitle("Clinica - Registro con validacion");
         setSize(620, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

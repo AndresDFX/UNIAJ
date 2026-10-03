@@ -39,31 +39,31 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **Ahora la parte grafica, y aqui empieza el segundo bloque de la clase (2/2)** — 3 vinetas.
 
-**class VetCareBuscarExpediente** — 11 vinetas.
+**class ClinicaBuscarExpediente** — 11 vinetas.
 
-**VetCareBuscarExpediente.java — VetCareBuscarExpediente()** — 7 vinetas.
+**ClinicaBuscarExpediente.java — ClinicaBuscarExpediente()** — 7 vinetas.
 
-**VetCareBuscarExpediente.java — cargarDatosDePrueba()** — 10 vinetas.
+**ClinicaBuscarExpediente.java — cargarDatosDePrueba()** — 10 vinetas.
 
-**VetCareBuscarExpediente.java — guardar()** — 12 vinetas.
+**ClinicaBuscarExpediente.java — guardar()** — 12 vinetas.
 
-**VetCareBuscarExpediente.java — compararBusquedas() (1/2)** — 20 vinetas.
+**ClinicaBuscarExpediente.java — compararBusquedas() (1/2)** — 20 vinetas.
 
-**VetCareBuscarExpediente.java — compararBusquedas() (2/2)** — 11 vinetas.
+**ClinicaBuscarExpediente.java — compararBusquedas() (2/2)** — 11 vinetas.
 
-**VetCareBuscarExpediente.java — construirInterfaz() (1/2)** — 20 vinetas.
+**ClinicaBuscarExpediente.java — construirInterfaz() (1/2)** — 20 vinetas.
 
-**VetCareBuscarExpediente.java — construirInterfaz() (2/2)** — 5 vinetas.
+**ClinicaBuscarExpediente.java — construirInterfaz() (2/2)** — 5 vinetas.
 
-**VetCareBuscarExpediente.java — buscar() (1/2)** — 20 vinetas.
+**ClinicaBuscarExpediente.java — buscar() (1/2)** — 20 vinetas.
 
-**VetCareBuscarExpediente.java — buscar() (2/2)** — 2 vinetas.
+**ClinicaBuscarExpediente.java — buscar() (2/2)** — 2 vinetas.
 
-**VetCareBuscarExpediente.java — main()** — 6 vinetas.
+**ClinicaBuscarExpediente.java — main()** — 6 vinetas.
 
-**VetCareBuscarExpediente.java — class Expediente** — 8 vinetas.
+**ClinicaBuscarExpediente.java — class Expediente** — 8 vinetas.
 
-**VetCareBuscarExpediente.java — Expediente()** — 15 vinetas.
+**ClinicaBuscarExpediente.java — Expediente()** — 15 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente busca la ficha H-5000 dentro de un archivo historico de 5.000 expedientes, primero recorriendo un ArrayList y luego con get() sobre un HashMap comparando los nanosegundos, y despues ejecuta la misma busqueda desde una ventana Swing escrita linea por linea.
@@ -84,7 +84,7 @@ Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: El docente busca la ficha H-5000 dentro de un archivo historico de 5.000 expedientes, primero recorriendo un ArrayList y luego con get() sobre un HashMap comparando los nanosegundos, y despues ejecuta la misma busqueda desde una ventana Swing escrita linea por linea.
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
-`Kit docente/Clase 4/Codigo/VetCareBuscarExpediente.java`
+`Kit docente/Clase 4/Codigo/ClinicaBuscarExpediente.java`
 
 ### 60-105 · Taller guiado (opcional) = avance del PI
 Opcional: no tiene lamina en el deck. La guia esta en

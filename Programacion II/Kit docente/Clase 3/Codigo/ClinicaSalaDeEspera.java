@@ -1,4 +1,4 @@
-package vetcare;
+package clinica;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -6,11 +6,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * VetCare - Clase 3: sala de espera (cola FIFO) e historial reciente (pila LIFO).
- * Clinica Veterinaria Huellitas.
+ * Clinica Veterinaria - Clase 3: sala de espera (cola FIFO) e historial reciente (pila LIFO).
+ * Clinica Veterinaria.
  * Archivo unico: en VS Code, el boton Run que aparece sobre el metodo main (o Ctrl+F5).
  */
-public class VetCareSalaDeEspera {
+public class ClinicaSalaDeEspera {
 
     public static void main(String[] args) {
 

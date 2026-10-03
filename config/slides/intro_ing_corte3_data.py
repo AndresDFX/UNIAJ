@@ -119,7 +119,7 @@ TEMAS[12] = {
                  "cuatro equipos les sirven de algo. Sin pregunta, la retroalimentación es vacía."),
                 ("Un avance ADMITE lo pendiente",
                  "Lo que todavía no está, dicho sin rodeos. **Esconder lo pendiente hoy es pagarlo "
-                 "en la Clase 15**, delante de todo el mundo y con nota."),
+                 "en la Clase 15**, delante de todo el mundo."),
             ],
             "columns": 2,
         },
@@ -153,7 +153,7 @@ TEMAS[12] = {
                  "**Tomarlo personal.** Recibir es más difícil que dar. Regla mientras les hablan: "
                  "**anotar, no responder.** Solo se pregunta para entender —«¿en qué momento se "
                  "perdió?»—. Defenderse en vivo desperdicia los únicos tres minutos gratis de "
-                 "revisión externa que van a tener antes de la nota."),
+                 "revisión externa que van a tener antes de la exposición final."),
             ],
         },
     ],
@@ -786,7 +786,7 @@ TEMAS[13] = {
     ],
     "agenda": {
         "Apertura": "Pregunta de entrada en el muro: ¿quién queda peor?",
-        "Teoría y guía del docente": "Impacto, afectados, la matriz y cómo se califica",
+        "Teoría y guía del docente": "Impacto, afectados, la matriz y cómo se califica un impacto",
         "Actividad en equipos": "Matriz de impacto del proyecto, en salas de grupo",
         "Exposiciones": "5 equipos × 3 min — el impacto negativo y su mitigación",
         "Cierre": "Lo que queda amarrado para la Clase 14",
@@ -858,7 +858,7 @@ TEMAS[13] = {
             ],
             "note": "No todas las dimensiones aplican a todos los proyectos. Una fila que no aplica "
                     "se escribe «no aplica» **con una línea de razón** — dejarla en blanco parece un "
-                    "olvido y se califica como tal.",
+                    "olvido, y se lee como tal.",
             "col_w": [2.3, 3.1, 4.4],
         },
         {
@@ -1607,7 +1607,7 @@ TEMAS[14] = {
         ("Cierre", 5, "Lo que falta antes de la Clase 15"),
     ],
     "agenda_sub": "Hoy nadie expone para lucirse: se ensaya con cronómetro y se corrige. La "
-                  "presentación con nota es la próxima sesión",
+                  "presentación final es la próxima sesión",
     "nota_bloque": "**El bloque de exposiciones de hoy es un ensayo**, no una presentación: cada "
                    "equipo ensaya **los primeros 4 minutos** frente al cronómetro y recibe 2 minutos "
                    "de corrección. Se ensaya solo el arranque porque **es donde todos los equipos se "
@@ -1636,7 +1636,7 @@ TEMAS[14] = {
                 ("4 · Lo que falló en la prueba · 2 min", "Los hallazgos con una persona ajena, qué se arregló y **qué se decidió no arreglar**. Es el tramo que distingue un proyecto de una idea."),
                 ("5 · Impacto y siguiente paso · 1 min", "El impacto positivo con su número, **el negativo con su mitigación**, y qué haría el próximo equipo que lo continúe."),
             ],
-            "sub": "Nueve minutos exactos y se corta al llegar a cero. El tramo 4 es el que más suben la nota y el que todos quieren saltarse",
+            "sub": "Nueve minutos exactos y se corta al llegar a cero. El tramo 4 es el que más convence y el que todos quieren saltarse",
         },
         {
             "tipo": "cards",
@@ -1676,7 +1676,7 @@ TEMAS[14] = {
                  "Todos preparados para las preguntas: **cada uno responde de su tramo**."],
             ],
             "note": "Todos los integrantes hablan, y **nadie habla menos de un minuto ni más de "
-                    "tres**. Un equipo donde uno solo presenta pierde puntos de reparto, y además "
+                    "tres**. Un equipo donde uno solo presenta muestra un proyecto de una persona, y además "
                     "arriesga todo a que esa persona tenga buena conexión ese día.",
             "col_w": [2.4, 3.5, 3.9],
         },
@@ -1706,7 +1706,7 @@ TEMAS[14] = {
             "titulo": "El plan B técnico, y tres trampas del ensayo",
             "notas": [
                 ("advertencia",
-                 "**El plan B no es opcional: es parte de la nota.** Antes de salir hoy, en la "
+                 "**El plan B no es opcional.** Antes de salir hoy, en la "
                  "carpeta del equipo: la presentación **descargada en PDF**, **capturas de cada paso** "
                  "de la demostración del prototipo, y un acuerdo de **quién comparte pantalla si al "
                  "primero se le cae la conexión**. Un equipo que no puede mostrar su prototipo porque "
@@ -2379,10 +2379,10 @@ TEMAS[15] = {
         ("Valoración entre pares", 12, "La ficha de valoración de los otros equipos, en el muro"),
         ("Cierre", 8, "Lo que se vio hoy y qué falta para el informe final"),
     ],
-    "agenda_sub": "Hoy la clase la dan los estudiantes. El docente cronometra, pregunta y califica",
+    "agenda_sub": "Hoy la clase la dan los estudiantes. El docente cronometra y pregunta",
     "nota_bloque": "**Se corta a los nueve minutos**, sin excepción y aunque quede una frase a "
                    "medias: con cinco equipos en 90 minutos, el tiempo que un equipo se pasa lo "
-                   "pierde el último. Los **tres minutos de preguntas** también se califican, y "
+                   "pierde el último. Los **tres minutos de preguntas** también son parte de la exposición, y "
                    "**cada integrante responde de su tramo**. El orden se sortea al empezar, así que "
                    "los cinco equipos tienen que estar listos desde el primer minuto.",
     "agenda": {},
@@ -2432,11 +2432,11 @@ TEMAS[15] = {
                 ("4 · Tres minutos de preguntas", "Primero una pregunta del curso, después una del docente. **Responde quien tenga el tramo.**"),
                 ("5 · Los que no exponen llenan la ficha", "Una fila por equipo: lo más fuerte, lo que no quedó claro y **una pregunta**. Se entrega en el muro."),
             ],
-            "sub": "Escuchar también es trabajo de hoy: la ficha de valoración se califica dentro de la nota de exposiciones del corte",
+            "sub": "Escuchar también es trabajo de hoy: la ficha de valoración devuelve a cada equipo lo que el curso entendió",
         },
         {
             "tipo": "cards",
-            "titulo": "Los tres minutos de preguntas también se califican",
+            "titulo": "Los tres minutos de preguntas también son exposición",
             "cards": [
                 ("Responde quien tiene el tramo",
                  "Si preguntan por la prueba con usuarios, responde quien la hizo. **No responde "
@@ -2460,7 +2460,7 @@ TEMAS[15] = {
                 ("advertencia",
                  "**El PDF y las capturas, en la carpeta, ahora.** No al final, no «después de "
                  "exponer». Si el prototipo no carga en vivo, el equipo narra el mismo recorrido "
-                 "sobre las capturas y **no pierde el tramo de 25 puntos**. Es literalmente para hoy "
+                 "sobre las capturas y **no pierde la demostración**. Es literalmente para hoy "
                  "que se preparó eso en la Clase 14."),
                 ("info",
                  "**Se corta a los nueve minutos y no es rigidez por rigidez:** con cinco equipos en "
@@ -2469,7 +2469,7 @@ TEMAS[15] = {
                  "todo el tiempo que hay."),
                 ("aclaracion",
                  "**Nada de esto termina hoy.** De cada exposición sale una lista de ajustes para el "
-                 "**informe final de la Clase 16, que vale el 20 %**. Anoten lo que el curso no "
+                 "**informe final de la Clase 16**. Anoten lo que el curso no "
                  "entendió: eso es exactamente lo que hay que escribir mejor en el informe."),
             ],
         },
@@ -3075,14 +3075,14 @@ TEMAS[16] = {
     "n": 16,
     "titulo": "Socialización y evaluación final del curso",
     "subtitulo": "Once de las doce secciones del informe ya están escritas — hoy se arma y se cierra",
-    "hook": "El informe final tiene doce secciones y vale el 20 %. ¿Cuántas de esas doce creen que "
+    "hook": "El informe final tiene doce secciones. ¿Cuántas de esas doce creen que "
             "van a escribir hoy desde cero?",
     "hook_lines": [
         "Una. El resumen. Las otras once ya están escritas desde la sesión 3.",
         "Eso es lo que se gana escribiendo en cada sesión en vez de dejarlo para el final.",
     ],
     "objetivos": [
-        "Armar y entregar el **informe final** con sus doce secciones (**20 %**).",
+        "Armar y entregar el **informe final** con sus doce secciones.",
         "**Socializar** el proyecto en la galería del curso y ver los otros cuatro.",
         "Hacer una **autoevaluación y una coevaluación** con criterios, no con impresiones.",
         "Reconocer **qué se sabe hacer hoy** que no se sabía en la sesión 1.",
@@ -3094,8 +3094,8 @@ TEMAS[16] = {
         ("Autoevaluación y coevaluación", 20, "Individual y del equipo, con criterios"),
         ("Cierre del curso", 20, "Lo que sabían en la sesión 1 y lo que saben hoy"),
     ],
-    "agenda_sub": "Última sesión. No hay evaluación escrita: lo que se califica hoy es el informe "
-                  "final (20 %) y la autoevaluación",
+    "agenda_sub": "Última sesión: se cierra el informe "
+                  "final, se socializa el proyecto y se hace la autoevaluación",
     "nota_bloque": "**Sesión de cierre del curso:** se arma y se revisa el informe final con la "
                    "lista de verificación, se socializa el trabajo y se hace la autoevaluación.",
     "agenda": {},
@@ -3111,7 +3111,7 @@ TEMAS[16] = {
     "teoria": [
         {
             "tipo": "tabla",
-            "titulo": "Qué lleva el informe final (20 %) · secciones 1 a 6",
+            "titulo": "Qué lleva el informe final · secciones 1 a 6",
             "headers": ["Sección", "De dónde sale", "Largo"],
             "rows": [
                 ["1 · Portada, integrantes y **resumen**",
@@ -3138,7 +3138,7 @@ TEMAS[16] = {
         },
         {
             "tipo": "tabla",
-            "titulo": "Qué lleva el informe final (20 %) · secciones 7 a 12",
+            "titulo": "Qué lleva el informe final · secciones 7 a 12",
             "headers": ["Sección", "De dónde sale", "Largo"],
             "rows": [
                 ["7 · La solución y el prototipo",
@@ -3180,11 +3180,11 @@ TEMAS[16] = {
         },
         {
             "tipo": "cards",
-            "titulo": "Cuatro cosas que bajan la nota del informe",
+            "titulo": "Cuatro errores frecuentes del informe",
             "cards": [
                 ("Un informe que no cita sus propias sesiones",
                  "Si la sección 6 no dice **qué se sacrificó** al decidir, es que se reescribió de "
-                 "memoria en vez de tomar la matriz de la sesión 8. Se nota, y cuesta puntos."),
+                 "memoria en vez de tomar la matriz de la sesión 8. Se nota, y le resta credibilidad."),
                 ("Referencias que nadie leyó",
                  "Una lista de diez enlaces cuando en la sesión 9 se trabajaron tres antecedentes. "
                  "**Cite lo que leyó**; lo demás es relleno y es fácil de comprobar."),
@@ -3214,7 +3214,7 @@ TEMAS[16] = {
                  "aportó» no sirve; «no entregó su sección en las tres últimas sesiones» sí."),
                 ("advertencia",
                  "**La autoevaluación individual se entrega solo al docente**, no al muro y no al "
-                 "equipo. Y ponerse la nota máxima sin evidencia baja el puntaje: lo que se evalúa "
+                 "equipo. Y darse el máximo sin evidencia es justo lo contrario: lo que importa "
                  "aquí es **la capacidad de mirar el propio trabajo con honestidad**, que es una "
                  "competencia profesional y no un trámite."),
             ],
@@ -3301,7 +3301,7 @@ TEMAS[16] = {
         },
         {
             "titulo": "La galería, y por qué socializar no es exponer otra vez",
-            "slide": "{{slide:Cuatro cosas que bajan la nota}}",
+            "slide": "{{slide:Cuatro errores frecuentes del informe}}",
             "cuerpo": [
                 "Los veinte minutos de socialización **no son una segunda ronda de exposiciones** — "
                 "eso fue la Clase 15 y ya tiene nota. Aquí el formato es una **galería**: cada "

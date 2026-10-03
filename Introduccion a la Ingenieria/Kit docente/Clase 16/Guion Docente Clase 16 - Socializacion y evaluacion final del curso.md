@@ -14,7 +14,7 @@
 > **Sesión de cierre del curso:** se arma y se revisa el informe final con la lista de verificación, se socializa el trabajo y se hace la autoevaluación.
 
 ## Objetivos de la clase
-- Armar y entregar el **informe final** con sus doce secciones (**20 %**).
+- Armar y entregar el **informe final** con sus doce secciones.
 - **Socializar** el proyecto en la galería del curso y ver los otros cuatro.
 - Hacer una **autoevaluación y una coevaluación** con criterios, no con impresiones.
 - Reconocer **qué se sabe hacer hoy** que no se sabía en la sesión 1.
@@ -112,10 +112,10 @@ Numeración real del deck `Clases/Clase 16 - Socializacion y evaluacion final de
 2. Agenda de hoy (90 min)
 3. Objetivos de la sesión
 4. Pregunta de entrada
-5. Qué lleva el informe final (20 %) · secciones 1 a 6
-6. Qué lleva el informe final (20 %) · secciones 7 a 12
+5. Qué lleva el informe final · secciones 1 a 6
+6. Qué lleva el informe final · secciones 7 a 12
 7. Cómo se arma el informe en veinticuatro minutos
-8. Cuatro cosas que bajan la nota del informe
+8. Cuatro errores frecuentes del informe
 9. Ejemplo: la sección 10 del informe, vacía y bien hecha
 10. La autoevaluación y la coevaluación, en serio
 11. Lo que decían en la sesión 1 y lo que pueden sostener hoy

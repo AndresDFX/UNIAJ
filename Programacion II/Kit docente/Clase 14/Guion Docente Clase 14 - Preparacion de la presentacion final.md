@@ -36,27 +36,27 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **El manejo del tiempo y del nervio se entrena, no se improvisa** — 5 vinetas.
   - Por eso hoy ensayamos con reloj y anotamos el tiempo real de cada bloque frente al planeado, y se repite hasta que el total caiga entre cinco y ocho minutos con margen.
 
-**class EnsayoSustentacionVetCare** — 20 vinetas.
+**class EnsayoSustentacionClinica** — 20 vinetas.
 
-**EnsayoSustentacionVetCare.java — responsableDe()** — 7 vinetas.
+**EnsayoSustentacionClinica.java — responsableDe()** — 7 vinetas.
 
-**EnsayoSustentacionVetCare.java — main() (1/2)** — 20 vinetas.
+**EnsayoSustentacionClinica.java — main() (1/2)** — 20 vinetas.
 
-**EnsayoSustentacionVetCare.java — main() (2/2)** — 18 vinetas.
+**EnsayoSustentacionClinica.java — main() (2/2)** — 18 vinetas.
 
-**EnsayoSustentacionVetCare.java — sembrarDatosDemo() (1/2)** — 20 vinetas.
+**EnsayoSustentacionClinica.java — sembrarDatosDemo() (1/2)** — 20 vinetas.
 
-**EnsayoSustentacionVetCare.java — sembrarDatosDemo() (2/2)** — 4 vinetas.
+**EnsayoSustentacionClinica.java — sembrarDatosDemo() (2/2)** — 4 vinetas.
 
-**EnsayoSustentacionVetCare.java — escribir()** — 12 vinetas.
+**EnsayoSustentacionClinica.java — escribir()** — 12 vinetas.
 
-**EnsayoSustentacionVetCare.java — chequeoPreVuelo()** — 15 vinetas.
+**EnsayoSustentacionClinica.java — chequeoPreVuelo()** — 15 vinetas.
 
-**EnsayoSustentacionVetCare.java — contarFilas()** — 14 vinetas.
+**EnsayoSustentacionClinica.java — contarFilas()** — 14 vinetas.
 
-**EnsayoSustentacionVetCare.java — ensayo() (1/2)** — 20 vinetas.
+**EnsayoSustentacionClinica.java — ensayo() (1/2)** — 20 vinetas.
 
-**EnsayoSustentacionVetCare.java — ensayo() (2/2)** — 10 vinetas.
+**EnsayoSustentacionClinica.java — ensayo() (2/2)** — 10 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente sustenta VetCare en 6 minutos delante del grupo, provoca a proposito un error de edad para mostrar la validacion, y luego repite la misma demo con la lista vacia para que se vea el desastre de no sembrar datos.
@@ -77,7 +77,7 @@ Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: El docente sustenta VetCare en 6 minutos delante del grupo, provoca a proposito un error de edad para mostrar la validacion, y luego repite la misma demo con la lista vacia para que se vea el desastre de no sembrar datos.
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
-`Kit docente/Clase 14/Codigo/EnsayoSustentacionVetCare.java`
+`Kit docente/Clase 14/Codigo/EnsayoSustentacionClinica.java`
 
 ### 60-105 · Taller guiado (opcional) = avance del PI
 Opcional: no tiene lamina en el deck. La guia esta en

@@ -528,11 +528,11 @@ SELECT id_insumo, nombre, stock FROM insumo WHERE id_insumo = 2;   -- stock = 1
 -- Estos comandos NO corren dentro de ExamLab -- son de linea de comandos, no SQL --
 -- pero son los que hay que nombrar en el plan. Se proyectan como referencia.
 --
---   pg_dump -Fc -d vetcare -f vetcare_2026-09-15.dump   respaldo logico de LA base
+--   pg_dump -Fc -d clinica -f clinica_2026-09-15.dump   respaldo logico de LA base
 --   pg_dumpall --globals-only -f roles.sql              roles y privilegios: pg_dump
 --                                                       NO los incluye
 --   pg_basebackup -D /backup/base -Ft -z                copia fisica del cluster
---   pg_restore -d vetcare_prueba vetcare_2026-09-15.dump   el ensayo de restauracion
+--   pg_restore -d clinica_prueba clinica_2026-09-15.dump   el ensayo de restauracion
 --
 -- La consulta de validacion despues de restaurar, que es lo que convierte «restaure»
 -- en «restaure bien»:

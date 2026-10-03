@@ -20,4 +20,4 @@
 - Compilar o buscar el proyecto en vivo delante del jurado: se pierden dos de los ocho minutos y cualquier error de compilacion se lleva por delante toda la presentacion.
 - Repartir la exposicion en frases sueltas en vez de bloques completos con evidencia: el jurado pregunta por cualquier parte del proyecto. Y si el docente autorizo equipo, dejar que hable solo el que mas sabe: los integrantes mudos arrastran la nota de todos.
 
-Codigo de apoyo: `Kit docente/Clase 14/Codigo/EnsayoSustentacionVetCare.java`
+Codigo de apoyo: `Kit docente/Clase 14/Codigo/EnsayoSustentacionClinica.java`

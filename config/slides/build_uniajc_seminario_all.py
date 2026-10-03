@@ -221,15 +221,34 @@ _DECK_SUBS = [
     (r"con VetCare en la mano", "con el caso de la clinica en la mano"),
     (r"y VetCare va a", "y el sistema va a"),
     (r"construir VetCare", "construir el sistema"),
+    (r"los planos y el prototipo de VetCare", "los planos y el prototipo del sistema"),
+    (r"cada concepto de VetCare", "cada concepto del dominio"),
+    (r"Un caso de VetCare", "Un caso tipico"),
+    (r"secundario de VetCare", "secundario del sistema"),
     (r"Trasladado a VetCare: si Huellitas", "Trasladado a la clinica: si la clinica"),
     (r"en un proyecto como VetCare", "en un proyecto como el de la clinica"),
-    (r"\bEn VetCare\b", "En el sistema de la clinica"),
-    (r"\ben VetCare\b", "en el sistema de la clinica"),
-    (r"\bPara VetCare\b", "Para el sistema de la clinica"),
-    (r"\bpara VetCare\b", "para el sistema de la clinica"),
-    (r"\bde VetCare\b", "del sistema de la clinica"),
+    (r"\bEn VetCare\b", "En la clinica"),
+    (r"\ben VetCare\b", "en la clinica"),
+    (r"\bPara VetCare\b", "Para la clinica"),
+    (r"\bpara VetCare\b", "para la clinica"),
+    (r"\bde VetCare\b", "de la clinica"),
     (r"\bsobre VetCare\b", "sobre la clinica"),
-    (r"\bVetCare\b", "el sistema de la clinica"),
+    (r"\bVetCare\b", "el sistema"),
+    # frases que le hablaban al docente: se reescriben como concepto
+    (r"^Conviene separar dos palabras que se usan como sinonimos y no lo son",
+     "Proyecto y producto son dos palabras que se usan como sinonimos y no lo son"),
+    (r"Queda una pregunta que el estudiante hace el primer dia y conviene responder sin rodeos: "
+     r"para que sirve documentar si al final lo que se usa es el codigo\.",
+     "Para que sirve documentar si al final lo que se usa es el codigo: depende de quien lee."),
+    (r"(?i)\bel docente que califica,", "quien revisa el diseño,"),
+    (r"Conviene tambien aclarar el mapa del semestre en una sola frase, porque de eso depende "
+     r"que el estudiante sepa donde esta parado en cada clase\.",
+     "El mapa del semestre cabe en una sola frase, y de el depende saber donde se esta parado en cada clase."),
+    (r" y que conviene instalar el primer dia sin jerga: la deuda tecnica", ": la deuda tecnica"),
+    (r"Aqui es donde los tres casos de matricula se hacen visibles y conviene decirlo en voz alta en el aula:",
+     "Aqui se hacen visibles los tres casos de matricula:"),
+    (r"^Demo: El docente (\w+)", lambda m: "Demo: se " + m.group(1)),
+    (r"^El docente (\w+)", lambda m: "Se " + m.group(1)),
     (r"\bClinica Huellitas\b", "Clinica veterinaria"),
     (r"\bclinica Huellitas\b", "clinica"),
     (r"\b(de|a|para|en) Huellitas\b", r"\1 la clinica"),
@@ -273,7 +292,8 @@ def _parrafos_fundamento(c):
 def _es_para_docente(p):
     """Parrafo que le habla al docente (organizacion, matricula, como encuadrar): no se
     proyecta, va a las notas del presentador. La lamina es para el estudiante."""
-    return "el docente debe" in p.lower()
+    t = p.lower()
+    return "el docente debe" in t or "trampa pedagogica" in t
 
 
 def notas_docente(c):

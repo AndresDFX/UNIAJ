@@ -1,7 +1,7 @@
-package vetcare;
+package clinica;
 
 /**
- * VetCare - Clinica Veterinaria Huellitas
+ * Clinica Veterinaria
  * Clase 1: primera clase del dominio. Es el molde a partir del cual se crean
  * los objetos Mascota; todo el proyecto se apoya en ella.
  */
@@ -41,7 +41,7 @@ public class Mascota {
     public static void main(String[] args) {
         Mascota luna = new Mascota("M-001", "Luna", "Canino", 3);
         Mascota michi = new Mascota("M-002", "Michi", "Felino", 5);
-        System.out.println("Pacientes registrados hoy en Huellitas:");
+        System.out.println("Pacientes registrados hoy en la clinica:");
         System.out.println(luna);
         System.out.println(michi);
         luna.setEdad(-2);

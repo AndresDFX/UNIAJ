@@ -753,7 +753,7 @@ TEMAS[8] = {
                   "decidir entre dos alternativas con argumentos no se hace en 17 minutos",
     "nota_bloque": "**Esta es una sesión de taller, no de contenido nuevo.** La teoría se comprime a "
                    "20 minutos —cuatro casos y dos herramientas— y la actividad en equipos se "
-                   "extiende a 40, porque el entregable es una **decisión**: cuál de las dos "
+                   "extiende a 40, porque lo que sale de hoy es una **decisión**: cuál de las dos "
                    "alternativas de solución se construye, con qué alcance y cómo se va a validar. "
                    "Es la fase de diseño empezando de verdad.",
     "agenda": {},
@@ -1540,7 +1540,7 @@ TEMAS[9] = {
                 ("info",
                  "**«No encontramos nada» es un resultado válido, si se escribe bien.** Se anota "
                  "qué se buscó, con qué términos, en qué sitios, y qué se encontró de lo más "
-                 "cercano. Eso es un hallazgo y se califica. Lo que no se acepta es rellenar el "
+                 "cercano. Eso es un hallazgo y vale tanto como una fuente. Lo que no se acepta es rellenar el "
                  "vacío con fuentes de adorno que nadie leyó."),
                 ("aclaracion",
                  "**Encontrar que su idea ya existe no arruina el proyecto: lo mejora.** Significa "
@@ -2318,9 +2318,8 @@ TEMAS[10] = {
                  "quiere destruir algo que parece haber costado mucho. Por eso el primer prototipo "
                  "se hace a propósito feo."),
                 ("advertencia",
-                 "**No pulan el prototipo: no es lo que se califica.** Se califica que el flujo se "
-                 "entienda, que los textos sean reales y que existan el estado vacío y el de error. "
-                 "Un equipo que gasta el taller eligiendo colores llega a la Clase 12 sin nada que "
+                 "**No pulan el prototipo:** lo que importa es que el flujo se entienda, que los textos sean reales y que existan el estado vacío y el de error. "
+                 "Un equipo que gasta la sesión eligiendo colores llega a la Clase 12 sin nada que "
                  "probar."),
                 ("advertencia",
                  "**Si el prototipo lleva datos, que sean inventados.** Ningún nombre, cédula, "
@@ -2961,7 +2960,7 @@ TEMAS[10] = {
 TEMAS[11] = {
     "n": 11,
     "titulo": "Taller de prototipado inicial con IA",
-    "subtitulo": "La IA propone, ustedes deciden — y lo que corrigieron es lo que se califica",
+    "subtitulo": "La IA propone, ustedes deciden — y lo que corrigieron es el trabajo de ingeniería",
     "hook": "Le pedí a un asistente que mejorara el prototipo de la biblioteca. "
             "Me devolvió algo mejor... y además ilegal. ¿Cómo puede pasar eso?",
     "hook_lines": [

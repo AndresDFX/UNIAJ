@@ -6,7 +6,7 @@ referencia del nivel esperado para el proximo semestre.
 
 1) demo-clase11.png — la herramienta del dia en uso
    - Abrir Visual Studio Code (Java).
-   - Repetir la demo del bloque 40-60: El docente proyecta VetCareParaRevisar.java, lo ejecuta en vivo, aplica el checklist delante del grupo y reescribe dos comentarios mal formulados del tipo 'este código es un desastre' en retroalimentación accionable.
+   - Repetir la demo del bloque 40-60: El docente proyecta ClinicaParaRevisar.java, lo ejecuta en vivo, aplica el checklist delante del grupo y reescribe dos comentarios mal formulados del tipo 'este código es un desastre' en retroalimentación accionable.
    - Capturar solo la ventana util, no el escritorio completo.
    - Recortar a ~1200 px de ancho y guardar aqui con ese nombre.
 

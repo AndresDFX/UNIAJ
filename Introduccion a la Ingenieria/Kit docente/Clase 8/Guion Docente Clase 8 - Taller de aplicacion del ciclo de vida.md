@@ -11,7 +11,7 @@
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
 - Enfoque: Aprendizaje basado en competencia + Aprendizaje Invertido · Estrategia: ABPr — Aprendizaje Basado en Proyectos
 
-> **Esta es una sesión de taller, no de contenido nuevo.** La teoría se comprime a 20 minutos —cuatro casos y dos herramientas— y la actividad en equipos se extiende a 40, porque el entregable es una **decisión**: cuál de las dos alternativas de solución se construye, con qué alcance y cómo se va a validar. Es la fase de diseño empezando de verdad.
+> **Esta es una sesión de taller, no de contenido nuevo.** La teoría se comprime a 20 minutos —cuatro casos y dos herramientas— y la actividad en equipos se extiende a 40, porque lo que sale de hoy es una **decisión**: cuál de las dos alternativas de solución se construye, con qué alcance y cómo se va a validar. Es la fase de diseño empezando de verdad.
 
 ## Objetivos de la clase
 - Identificar, en un caso real, **qué fase se saltó** y qué habría costado no saltarla.

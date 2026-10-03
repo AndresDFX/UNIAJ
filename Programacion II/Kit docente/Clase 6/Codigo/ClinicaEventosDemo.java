@@ -1,4 +1,4 @@
-package vetcare.eventos;
+package clinica.eventos;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -16,8 +16,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-/** Clase 6 de VetCare: el boton Registrar mascota que de verdad guarda. */
-public class VetCareEventosDemo {
+/** Clase 6 del sistema de la clinica: el boton Registrar mascota que de verdad guarda. */
+public class ClinicaEventosDemo {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -29,7 +29,7 @@ public class VetCareEventosDemo {
     }
 }
 
-/** Modelo: una mascota del expediente de la clinica Huellitas. */
+/** Modelo: una mascota del expediente de la clinica. */
 class Mascota {
 
     private final String id;
@@ -146,7 +146,7 @@ class VentanaRegistroMascota extends JFrame {
             new ControladorRegistro(new RepositorioMascotas());
 
     public VentanaRegistroMascota() {
-        super("VetCare - Registro de mascotas");
+        super("Clinica - Registro de mascotas");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 

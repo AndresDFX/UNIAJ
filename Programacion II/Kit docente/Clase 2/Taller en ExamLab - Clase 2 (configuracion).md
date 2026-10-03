@@ -479,14 +479,14 @@ Respuesta correcta: el fragmento A, porque el for-each usa internamente un itera
 
 ## Entrega del proyecto: menu de consola de VetCare
 
-Suba un **ZIP del proyecto `VetCare`** (paquete `vetcare`) que contenga, ahora en archivos separados:
+Suba un **ZIP del proyecto `VetCare`** (paquete `clinica`) que contenga, ahora en archivos separados:
 
 - `Mascota.java` con atributos privados, constructor, getters y `toString()`.
 - `RegistroMascotas.java` con `agregar`, `listar`, `buscarPorId`, `eliminarPorId`, `pasarAGeriatria` y `cantidad`.
 - La clase de arranque con un **menu de consola** hecho con `Scanner` dentro de un `while`, con las opciones:
 
 ```
-=== VetCare - Registro de mascotas ===
+=== Clinica - Registro de mascotas ===
 1. Agregar mascota
 2. Listar mascotas
 3. Buscar por ID
@@ -504,7 +504,7 @@ Requisitos de la entrega:
 
 **Rubrica esperada (campo Rubrica):**
 
-El ZIP contiene un proyecto Java compilable con Mascota y RegistroMascotas en archivos separados dentro del paquete vetcare. El menu con Scanner y while ofrece las cinco opciones, ejecuta cada una y no se cae con una opcion invalida. Incluye la captura de la consola con el listado de las seis fichas.
+El ZIP contiene un proyecto Java compilable con Mascota y RegistroMascotas en archivos separados dentro del paquete clinica. El menu con Scanner y while ofrece las cinco opciones, ejecuta cada una y no se cae con una opcion invalida. Incluye la captura de la consola con el listado de las seis fichas.
 
 ---
 

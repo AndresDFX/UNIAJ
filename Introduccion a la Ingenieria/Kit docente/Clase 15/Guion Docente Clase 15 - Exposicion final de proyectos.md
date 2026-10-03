@@ -11,7 +11,7 @@
 - **Material general para los tres grupos** (SB141B, SB141C, LB141F): sin fechas ni horarios de reloj. El reloj de pared de cada grupo está en su `CALENDARIO_2026-2 - <GRUPO>.md`.
 - Enfoque: Aprendizaje basado en competencia + Aprendizaje Invertido · Estrategia: ABPr — Aprendizaje Basado en Proyectos
 
-> **Se corta a los nueve minutos**, sin excepción y aunque quede una frase a medias: con cinco equipos en 90 minutos, el tiempo que un equipo se pasa lo pierde el último. Los **tres minutos de preguntas** también se califican, y **cada integrante responde de su tramo**. El orden se sortea al empezar, así que los cinco equipos tienen que estar listos desde el primer minuto.
+> **Se corta a los nueve minutos**, sin excepción y aunque quede una frase a medias: con cinco equipos en 90 minutos, el tiempo que un equipo se pasa lo pierde el último. Los **tres minutos de preguntas** también son parte de la exposición, y **cada integrante responde de su tramo**. El orden se sortea al empezar, así que los cinco equipos tienen que estar listos desde el primer minuto.
 
 ## Objetivos de la clase
 - Sustentar el proyecto en **nueve minutos**, con la estructura de cinco tramos.
@@ -33,14 +33,14 @@
 
 Debajo de estas láminas, en las notas del presentador:
 
-- **Cómo se encuadra el día, y por qué el sorteo importa** → diapositivas 4 y 6
-- **Cómo se califica cada tramo, sin discutir con el reloj** → diapositiva 5
-- **Las preguntas: los tres minutos que destapan el trabajo real** → diapositiva 7
-- **El cierre: qué hacer con lo que salió hoy** → diapositiva 9
+- **Cómo se encuadra el día, y por qué el sorteo importa** → diapositivas 4 y 5
+- **Cómo se califica cada tramo, sin discutir con el reloj** → sin lámina: es la actividad, su guía está en la carpeta de la clase
+- **Las preguntas: los tres minutos que destapan el trabajo real** → diapositiva 6
+- **El cierre: qué hacer con lo que salió hoy** → diapositiva 8
 
 ## Desarrollo de la clase, minuto a minuto (90 min)
 
-### 00:00–00:10 · Apertura y encuadre · [Slide 4]…[Slide 9]
+### 00:00–00:10 · Apertura y encuadre · [Slide 4]…[Slide 8]
 
 Comparta pantalla antes de que entre el primero:
 
@@ -48,13 +48,13 @@ Comparta pantalla antes de que entre el primero:
 
 Una línea por equipo en el muro. Sirve para bajar la ansiedad y para recordar que **se califica la decisión, no el resultado**.
 
-- **2 min** · La rúbrica en pantalla [Slide 5]. Anuncie los dos descuentos: **todos hablan** y **cada uno responde de su tramo**.
+- **2 min** · La rúbrica en pantalla [fuera del deck · guía del taller en la carpeta]. Anuncie los dos descuentos: **todos hablan** y **cada uno responde de su tramo**.
 
-- **2 min** · El orden del día [Slide 6] y **el sorteo en vivo**. Nadie sabe si es primero.
+- **2 min** · El orden del día [Slide 5] y **el sorteo en vivo**. Nadie sabe si es primero.
 
-- **1 min** · Las preguntas [Slide 7]. Diga que **«no lo medimos» es respuesta válida**.
+- **1 min** · Las preguntas [Slide 6]. Diga que **«no lo medimos» es respuesta válida**.
 
-- **2 min** · [Slide 9] **Verifique el plan B de los cinco equipos**: PDF y capturas en la carpeta. Ahora, no después.
+- **2 min** · [Slide 8] **Verifique el plan B de los cinco equipos**: PDF y capturas en la carpeta. Ahora, no después.
 
 **[Nota docente]:** el sorteo se hace ahora y no antes, para que los últimos equipos escuchen en vez de seguir preparando.
 
@@ -82,7 +82,7 @@ Cada equipo completa en el muro, en la columna de los **otros cuatro** equipos: 
 
 Lea en voz alta **dos o tres observaciones anónimas** que sean buenas. Enseña más sobre cómo se da retroalimentación que cualquier explicación.
 
-### 01:22–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 10]
+### 01:22–01:30 · Cierre · [fuera del deck · guía del taller en la carpeta][Slide 9]
 
 **Una observación por equipo, en una frase**: lo que más sumó y la única cosa que cambiaría. La retroalimentación detallada va después, por escrito.
 
@@ -92,7 +92,7 @@ Recuerde: el **informe final de la Clase 16 vale el 20 %**, y **once de sus doce
 
 Y dígalo una vez, corto y en serio: hace quince sesiones tenían una ocurrencia; hoy sustentaron un problema con evidencia, una decisión con criterios, un prototipo probado y un impacto con sus costos. **Eso es un proyecto de ingeniería completo.**
 
-> **Ejemplos resueltos** (láminas 8): cada uno va justo después de su concepto y se recorre **dentro del tiempo de ese concepto**, no aparte. Cómo recorrerlo está en sus notas del presentador.
+> **Ejemplos resueltos** (láminas 7): cada uno va justo después de su concepto y se recorre **dentro del tiempo de ese concepto**, no aparte. Cómo recorrerlo está en sus notas del presentador.
 
 ## Mapa de láminas
 Numeración real del deck `Clases/Clase 15 - Exposicion final de proyectos/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
@@ -101,12 +101,11 @@ Numeración real del deck `Clases/Clase 15 - Exposicion final de proyectos/Prese
 2. Agenda de hoy (90 min)
 3. Objetivos de la sesión
 4. Pregunta de entrada
-5. Con qué se califica hoy
-6. El orden del día, y qué hace el equipo que no está exponiendo
-7. Los tres minutos de preguntas también se califican
-8. Ejemplo: la misma pregunta, dos respuestas
-9. Tres cosas antes de empezar
-10. Cierre · Nos vemos en la Clase 16 · la última
+5. El orden del día, y qué hace el equipo que no está exponiendo
+6. Los tres minutos de preguntas también son exposición
+7. Ejemplo: la misma pregunta, dos respuestas
+8. Tres cosas antes de empezar
+9. Cierre · Nos vemos en la Clase 16 · la última
 
 ## Si pasa esto en clase
 

@@ -47,22 +47,22 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **Recibir la crítica también se practica, y es la mitad difícil (2/2)** — 2 vinetas.
 
-**VetCareParaRevisar.java — class VetCareParaRevisar** — 4 vinetas.
+**ClinicaParaRevisar.java — class ClinicaParaRevisar** — 4 vinetas.
 
-**VetCareParaRevisar.java — main() (1/2)** — 20 vinetas.
+**ClinicaParaRevisar.java — main() (1/2)** — 20 vinetas.
 
-**VetCareParaRevisar.java — main() (2/2)** — 7 vinetas.
+**ClinicaParaRevisar.java — main() (2/2)** — 7 vinetas.
 
-**VetCareParaRevisar.java — proceso()** — 19 vinetas.
+**ClinicaParaRevisar.java — proceso()** — 19 vinetas.
 
-**VetCareParaRevisar.java — buscarPorId()** — 9 vinetas.
+**ClinicaParaRevisar.java — buscarPorId()** — 9 vinetas.
 
-**VetCareParaRevisar.java — imprimirFicha()** — 12 vinetas.
+**ClinicaParaRevisar.java — imprimirFicha()** — 12 vinetas.
 
-**VetCareParaRevisar.java — buscarDeNuevo()** — 10 vinetas.
+**ClinicaParaRevisar.java — buscarDeNuevo()** — 10 vinetas.
 
 
-**Demo que usted debe poder repetir:** El docente proyecta VetCareParaRevisar.java, lo ejecuta en vivo, aplica el checklist delante del grupo y reescribe dos comentarios mal formulados del tipo 'este código es un desastre' en retroalimentación accionable.
+**Demo que usted debe poder repetir:** El docente proyecta ClinicaParaRevisar.java, lo ejecuta en vivo, aplica el checklist delante del grupo y reescribe dos comentarios mal formulados del tipo 'este código es un desastre' en retroalimentación accionable.
 
 ## Plan minuto a minuto (120 min)
 
@@ -78,9 +78,9 @@ Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
-Demo: El docente proyecta VetCareParaRevisar.java, lo ejecuta en vivo, aplica el checklist delante del grupo y reescribe dos comentarios mal formulados del tipo 'este código es un desastre' en retroalimentación accionable.
+Demo: El docente proyecta ClinicaParaRevisar.java, lo ejecuta en vivo, aplica el checklist delante del grupo y reescribe dos comentarios mal formulados del tipo 'este código es un desastre' en retroalimentación accionable.
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
-`Kit docente/Clase 11/Codigo/VetCareParaRevisar.java`
+`Kit docente/Clase 11/Codigo/ClinicaParaRevisar.java`
 
 ### 60-105 · Taller guiado (opcional) = avance del PI
 Opcional: no tiene lamina en el deck. La guia esta en

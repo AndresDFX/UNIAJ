@@ -25,22 +25,22 @@ import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * VetCare - Clase 12: aplicacion integrada de punta a punta.
- * Clinica Veterinaria Huellitas.
+ * Clinica Veterinaria - Clase 12: aplicacion integrada de punta a punta.
+ * Clinica Veterinaria.
  *
  * Capas:  Mascota (modelo) -> RepositorioMascotasCSV (datos)
- *         -> ServicioVetCare (logica) -> VetCareApp (interfaz)
+ *         -> ServicioClinica (logica) -> ClinicaApp (interfaz)
  *
  * Un solo main. Una sola instancia de servicio. Un solo archivo de datos.
  *
- * Ejecutar:  java VetCareApp.java
+ * Ejecutar:  java ClinicaApp.java
  *
  * Guion de humo: abrir con datos -> registrar -> buscar por ID -> cerrar
  * guardando -> reabrir y verificar que la mascota nueva sigue ahi.
  */
-public class VetCareApp extends JFrame {
+public class ClinicaApp extends JFrame {
 
-    private final ServicioVetCare servicio;
+    private final ServicioClinica servicio;
 
     private final DefaultTableModel modelo = new DefaultTableModel(
             new Object[]{"ID", "Nombre", "Especie", "Edad", "CC Dueno"}, 0) {
@@ -56,8 +56,8 @@ public class VetCareApp extends JFrame {
     private final JTextField txtCedula = new JTextField();
     private final JTextField txtBuscar = new JTextField();
 
-    public VetCareApp(ServicioVetCare servicio) {
-        super("VetCare - Clinica Veterinaria Huellitas");
+    public ClinicaApp(ServicioClinica servicio) {
+        super("Clinica Veterinaria");
         this.servicio = servicio;
         construirInterfaz();
         refrescarTabla();
@@ -161,9 +161,9 @@ public class VetCareApp extends JFrame {
 
     public static void main(String[] args) {
         RepositorioMascotasCSV repositorio = new RepositorioMascotasCSV("mascotas.csv");
-        ServicioVetCare servicio = new ServicioVetCare(repositorio);
+        ServicioClinica servicio = new ServicioClinica(repositorio);
         servicio.cargarDesdeArchivo();
-        SwingUtilities.invokeLater(() -> new VetCareApp(servicio).setVisible(true));
+        SwingUtilities.invokeLater(() -> new ClinicaApp(servicio).setVisible(true));
     }
 }
 
@@ -218,14 +218,14 @@ class Mascota {
 }
 
 /** Logica del negocio: dueno del ArrayList y de las reglas. No sabe que existe Swing. */
-class ServicioVetCare {
+class ServicioClinica {
 
     private static final int EDAD_MAXIMA = 25;
 
     private final RepositorioMascotasCSV repositorio;
     private final List<Mascota> mascotas = new ArrayList<>();
 
-    public ServicioVetCare(RepositorioMascotasCSV repositorio) {
+    public ServicioClinica(RepositorioMascotasCSV repositorio) {
         this.repositorio = repositorio;
     }
 

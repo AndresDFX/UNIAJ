@@ -24,9 +24,10 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 6] Latencia, throughput y concurrencia: la identidad que las une (1/2)** — 4 vinetas.
+**[Slide 6] Latencia, throughput y concurrencia: la identidad que las une (1/2)** — 3 vinetas.
   - Hay dos magnitudes que se confunden todo el tiempo.
-  - La tercera magnitud es la concurrencia, cuantas peticiones estan en vuelo al mismo tiempo, y las tres se relacionan por una identidad que el docente puede escribir en el tablero: concurrencia igual a RPS por latencia.
+  - (No se proyecta) Rendimiento es la unica parte del curso donde el estudiante puede pasar de opinar a medir, y por eso conviene empezar por el vocabulario exacto.
+  - (No se proyecta) La tercera magnitud es la concurrencia, cuantas peticiones estan en vuelo al mismo tiempo, y las tres se relacionan por una identidad que el docente puede escribir en el tablero: concurrencia igual a RPS por latencia.
 
 **[Slide 7] Latencia, throughput y concurrencia: la identidad que las une (2/2)** — 4 vinetas.
 
@@ -35,46 +36,41 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 9] Por que el promedio miente y el percentil no (2/2)** — 4 vinetas.
 
-**[Slide 10] Los umbrales de percepcion, y por que son convenciones (1/2)** — 3 vinetas.
-  - Los umbrales que el docente debe poder citar son convenciones de percepcion humana bien establecidas, no leyes fisicas.
+**[Slide 10] Los umbrales de percepcion, y por que son convenciones** — 4 vinetas.
   - De ahi sale la convencion practica para una API interna, que ubica el objetivo de p95 entre 200 y 300 milisegundos dejando presupuesto para que el navegador y la red agreguen lo suyo; para carga de pagina completa la referencia publica de Core Web Vitals considera bueno un renderizado del contenido principal por debajo de 2.5 segundos.
   - Lo que si es regla es que el numero se escribe antes de medir y se justifica con el caso de uso, no se ajusta despues para que la medicion salga bien.
+  - (No se proyecta) Los umbrales que el docente debe poder citar son convenciones de percepcion humana bien establecidas, no leyes fisicas.
+  - (No se proyecta) Un SLO de 99.9 por ciento de disponibilidad, los "tres nueves", admite unos 43 minutos de caida al mes; el 99.99 baja a poco mas de 4 minutos, y esa diferencia de un decimal suele multiplicar el costo de la arquitectura, lo que amarra con la tabla de la Clase 10.
 
-**[Slide 11] Los umbrales de percepcion, y por que son convenciones (2/2)** — 3 vinetas.
+**[Slide 11] El escenario de carga: aritmetica de servilleta** — 4 vinetas.
+  - (No se proyecta) El segundo componente es el escenario de carga, y el estudiante casi siempre lo inventa exagerado.
+  - (No se proyecta) La forma correcta de estimarlo es aritmetica de servilleta y el docente debe hacerla en vivo con CloudLite.
+  - (No se proyecta) La leccion es doble: un objetivo de rendimiento sin cuenta de sobre es marketing y no ingenieria, y dimensionar para 5 RPS en vez de 10000 es justamente lo que evita el sobreaprovisionamiento que la Clase 10 senalo como desperdicio.
 
-**[Slide 12] El escenario de carga: aritmetica de servilleta (1/2)** — 4 vinetas.
-  - La forma correcta de estimarlo es aritmetica de servilleta y el docente debe hacerla en vivo con CloudLite.
+**[Slide 12] El cuello de botella: siempre hay uno (1/2)** — 4 vinetas.
+  - (No se proyecta) La afirmacion fuerte, que conviene decir tal cual, es que en cualquier instante hay exactamente un cuello de botella; "todo esta lento" nunca es un diagnostico, es la ausencia de uno.
+  - (No se proyecta) Se localiza con las senales doradas de la Clase 8, en particular la saturacion, mirando cual recurso esta cerca de su limite mientras los demas estan holgados.
+  - (No se proyecta) Esos tres cubren la mayoria de los casos que los estudiantes van a sospechar.
 
-**[Slide 13] El escenario de carga: aritmetica de servilleta (2/2)** — 2 vinetas.
+**[Slide 13] El cuello de botella: siempre hay uno (2/2)** — 2 vinetas.
 
-**[Slide 14] El cuello de botella: siempre hay uno (1/2)** — 5 vinetas.
-  - Esos tres cubren la mayoria de los casos que los estudiantes van a sospechar.
-
-**[Slide 15] El cuello de botella: siempre hay uno (2/2)** — 3 vinetas.
-
-**[Slide 16] Los tipos de prueba, por la pregunta que responden (1/2)** — 4 vinetas.
+**[Slide 14] Los tipos de prueba, por la pregunta que responden** — 4 vinetas.
   - Los tipos de prueba se distinguen por la pregunta que responden.
   - La prueba de carga o baseline aplica la carga esperada y responde si el sistema cumple el SLO en condiciones normales.
   - Un escenario bien razonado sin ejecucion vale mas que una ejecucion sin objetivo.
+  - (No se proyecta) La prueba de picos, o spike test, aplica una subida subita y grande simulando una promocion o una noticia viral, y responde si el sistema reacciona a tiempo; anticipa el limite del autoescalado de la Clase 13, porque arrancar una instancia toma decenas de segundos y un pico mas rapido golpea antes de que llegue la ayuda.
 
-**[Slide 17] Los tipos de prueba, por la pregunta que responden (2/2)** — 2 vinetas.
+**[Slide 15] El ensayo del pitch: la segunda mitad tiene su propia teoria** — 4 vinetas.
+  - (No se proyecta) La segunda mitad de la clase es el ensayo del pitch y tiene su propia teoria.
+  - (No se proyecta) Se ensaya hoy con cronometro y en voz alta, porque leer mentalmente siempre da la mitad del tiempo real, y sin leer las diapositivas, ya que en la Clase 15 el criterio es que quien sustenta pueda explicar cualquier parte del sistema; si el docente autorizo equipos, se ensaya ademas con rotacion de expositor, porque alli el criterio aplica a cualquier integrante.
+  - (No se proyecta) Hay que decir explicitamente que este ensayo no es la sustentacion, que es la Clase 15, ni el Parcial 3 de la Clase 14, que es evaluacion escrita: son tres cosas distintas y mezclarlas confunde al grupo.
 
-**[Slide 18] El ensayo del pitch: la segunda mitad tiene su propia teoria (1/2)** — 4 vinetas.
-  - Hay que decir explicitamente que este ensayo no es la sustentacion, que es la Clase 15, ni el Parcial 3 de la Clase 14, que es evaluacion escrita: son tres cosas distintas y mezclarlas confunde al grupo.
-
-**[Slide 19] El ensayo del pitch: la segunda mitad tiene su propia teoria (2/2)** — 3 vinetas.
-
-**[Slide 20] Preguntas frecuentes y cierre conceptual () (1/3)** — 4 vinetas.
+**[Slide 16] Preguntas frecuentes y cierre conceptual** — 5 vinetas.
   - Tres preguntas llegan siempre.
-  - Conviene cerrar recordando que el bottleneck identificado hoy es insumo obligatorio de la Clase 13: no se puede escribir una politica de autoescalado sensata sin saber que recurso se agota primero.
 
-**[Slide 21] Preguntas frecuentes y cierre conceptual () (2/3)** — 6 vinetas.
+**[Slide 17] El presupuesto de latencia del camino critico** — 16 vinetas.
 
-**[Slide 22] Preguntas frecuentes y cierre conceptual () (3/3)** — 4 vinetas.
-
-**[Slide 23] El presupuesto de latencia del camino critico** — 16 vinetas.
-
-**[Slide 24] Las metricas objetivo, escritas como se verifican** — 12 vinetas.
+**[Slide 18] Las metricas objetivo, escritas como se verifican** — 12 vinetas.
 
 
 ## Referencias a diapositivas
@@ -90,24 +86,18 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 7. Latencia, throughput y concurrencia: la identidad que las une (2/2)
 8. Por que el promedio miente y el percentil no (1/2)
 9. Por que el promedio miente y el percentil no (2/2)
-10. Los umbrales de percepcion, y por que son convenciones (1/2)
-11. Los umbrales de percepcion, y por que son convenciones (2/2)
-12. El escenario de carga: aritmetica de servilleta (1/2)
-13. El escenario de carga: aritmetica de servilleta (2/2)
-14. El cuello de botella: siempre hay uno (1/2)
-15. El cuello de botella: siempre hay uno (2/2)
-16. Los tipos de prueba, por la pregunta que responden (1/2)
-17. Los tipos de prueba, por la pregunta que responden (2/2)
-18. El ensayo del pitch: la segunda mitad tiene su propia teoria (1/2)
-19. El ensayo del pitch: la segunda mitad tiene su propia teoria (2/2)
-20. Preguntas frecuentes y cierre conceptual () (1/3)
-21. Preguntas frecuentes y cierre conceptual () (2/3)
-22. Preguntas frecuentes y cierre conceptual () (3/3)
-23. El presupuesto de latencia del camino critico
-24. Las metricas objetivo, escritas como se verifican
-25. «Que sea rapido» no es un requisito
-26. Del boceto al código Mermaid
-27. Clase 12 · cierre conceptual
+10. Los umbrales de percepcion, y por que son convenciones
+11. El escenario de carga: aritmetica de servilleta
+12. El cuello de botella: siempre hay uno (1/2)
+13. El cuello de botella: siempre hay uno (2/2)
+14. Los tipos de prueba, por la pregunta que responden
+15. El ensayo del pitch: la segunda mitad tiene su propia teoria
+16. Preguntas frecuentes y cierre conceptual
+17. El presupuesto de latencia del camino critico
+18. Las metricas objetivo, escritas como se verifican
+19. «Que sea rapido» no es un requisito
+20. Del boceto al código Mermaid
+21. Clase 12 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -130,7 +120,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 26]
+### 40–55 · Demo en vivo · [Slide 20]
 Herramienta del día: **Navegador · editores de diagramas y de texto del curso**.
 **Demo que usted debe poder repetir:** Definir un objetivo de rendimiento que si se puede verificar
 
@@ -166,7 +156,7 @@ Aplica el quiz corto de `Kit docente/Clase 12/Quiz Clase 12 - Pruebas de rendimi
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 27]
+### 115–120 · Cierre · [Slide 21]
 Di: «Queda avanzado: Escenario de rendimiento + ensayo 5–8 min de sustentación.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»

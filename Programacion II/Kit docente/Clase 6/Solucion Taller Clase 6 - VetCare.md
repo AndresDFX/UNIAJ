@@ -20,4 +20,4 @@
 - Usar Integer.parseInt sin try-catch: la excepcion sube al EDT, se pinta una traza roja en la consola de VS Code y el usuario no ve ningun mensaje.
 - Escribir la validacion dentro de actionPerformed y llenar la vista de ifs, de modo que la misma regla se vuelve a copiar y pegar en la ventana de citas.
 
-Codigo de apoyo: `Kit docente/Clase 6/Codigo/VetCareEventosDemo.java`
+Codigo de apoyo: `Kit docente/Clase 6/Codigo/ClinicaEventosDemo.java`

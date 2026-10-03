@@ -25,49 +25,58 @@
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
 **[Slide 5] Sustentar no es describir: el eje de toda la clase (1/2)** — 5 vinetas.
-  - Conviene fijar el termino con precision: una decision de arquitectura es una eleccion que afecta la estructura del sistema, es costosa de revertir una vez implementada, y tiene al menos una alternativa razonable que se descarto.
+  - «usamos Docker porque el mismo artefacto corre igual en el laboratorio y en produccion» si justifica.
+  - (No se proyecta) Sustentar no es describir, y esa distincion es el eje de toda la clase.
+  - (No se proyecta) Conviene fijar el termino con precision: una decision de arquitectura es una eleccion que afecta la estructura del sistema, es costosa de revertir una vez implementada, y tiene al menos una alternativa razonable que se descarto.
 
 **[Slide 6] Sustentar no es describir: el eje de toda la clase (2/2)** — 4 vinetas.
 
-**[Slide 7] La prueba de tres capas que se aplica en voz alta** — 4 vinetas.
-  - Existe una prueba practica de tres capas que el docente puede aplicar en voz alta a cualquier afirmacion del estudiante, y conviene ensenarla antes de que empiecen las presentaciones.
+**[Slide 7] La prueba de tres capas** — 3 vinetas.
   - Quien llega a la segunda esta justificando.
   - Quien llega a la tercera esta sustentando como un arquitecto, porque demuestra que conocia el costo de su decision antes de tomarla y aun asi la tomo.
-  - (Sobre la actividad, no se proyecta) Quien solo llega a la primera capa esta leyendo el diagrama en voz alta y no deberia obtener los puntos de sustentacion.
+  - (No se proyecta) Existe una prueba practica de tres capas que el docente puede aplicar en voz alta a cualquier afirmacion del estudiante, y conviene ensenarla antes de que empiecen las presentaciones.
+  - (No se proyecta) Quien solo llega a la primera capa esta leyendo el diagrama en voz alta y no deberia obtener los puntos de sustentacion.
+  - (No se proyecta) La instruccion operativa para el docente es simple: ante cada afirmacion, preguntar «a cambio de que», y no aceptar la respuesta «de nada».
 
-**[Slide 8] El ADR: el artefacto que sostiene la tercera capa (1/2)** — 6 vinetas.
+**[Slide 8] El ADR: el artefacto que sostiene la tercera capa** — 4 vinetas.
   - Estado, «Aceptado» mas la fecha en que se decidio.
   - Decision, en una frase afirmativa y en presente.
   - Alternativas descartadas, exactamente dos, cada una con la razon concreta del descarte.
   - Citar un ADR por numero le dice al evaluador que existe una traza escrita y verificable, no una improvisacion del momento; es la diferencia entre quien decidio y quien recuerda.
+  - (No se proyecta) El artefacto que sostiene esa tercera capa es el ADR, o Architecture Decision Record: un documento corto, de una pagina como maximo, que registra UNA sola decision con las seis secciones rotuladas que el curso fijo en la Clase 2 y que no han cambiado desde entonces.
+  - (No se proyecta) Los estudiantes ya produjeron el ADR-001 en la Clase 2, cuando decidieron el modelo de servicio dominante entre IaaS, PaaS y SaaS; a lo largo del curso debieron acumular tres o cuatro mas: contenedores frente a maquinas virtuales (Clase 3), donde poner la frontera entre servicios (Clase 4), y que se escala y que no (Clase 13).
+  - (No se proyecta) En la sustentacion el ADR no se lee en voz alta: se cita.
 
-**[Slide 9] El ADR: el artefacto que sostiene la tercera capa (2/2)** — 3 vinetas.
+**[Slide 9] El pitch de 5 a 8 minutos: el reparto que funciona (1/2)** — 4 vinetas.
+  - (No se proyecta) La razon es concreta y el docente debe decirla: si el estudiante trae veinte diapositivas, no termina, corre las ultimas, y las ultimas suelen ser justamente las de seguridad, costos y escalabilidad, donde estan los puntos de la rubrica que menos se defienden solos.
 
-**[Slide 10] El pitch de 5 a 8 minutos: el reparto que funciona (1/2)** — 4 vinetas.
-  - (Sobre la actividad, no se proyecta) La razon es concreta y el docente debe decirla: si el estudiante trae veinte diapositivas, no termina, corre las ultimas, y las ultimas suelen ser justamente las de seguridad, costos y escalabilidad, donde estan los puntos de la rubrica que menos se defienden solos.
+**[Slide 10] El pitch de 5 a 8 minutos: el reparto que funciona (2/2)** — 5 vinetas.
 
-**[Slide 11] El pitch de 5 a 8 minutos: el reparto que funciona (2/2)** — 5 vinetas.
-
-**[Slide 12] La regla de los 60 segundos, anunciada desde la Clase 11 (1/2)** — 5 vinetas.
-  - La respuesta del docente debe ser: en equipo se puede repartir quien HABLA de cada tema, pero no quien ENTIENDE cada tema, porque el Q&A se dirige al azar; y en modo individual no hay reparto posible, de modo que la pregunta pierde sentido y lo que queda es preparar el sistema completo.
+**[Slide 11] La regla de los 60 segundos, anunciada desde la Clase 11** — 2 vinetas.
   - La razon no es castigar.
   - Ese ejercicio suele revelar en cinco minutos lo que la nota habria revelado demasiado tarde.
-  - (Sobre la actividad, no se proyecta) En los equipos autorizados el mismo riesgo se multiplica: si solo un integrante puede explicar el despliegue, no hay evidencia de que los demas participaran, y por eso la rubrica exige que todos hablen y descuenta cuando presenta uno solo.
+  - (No se proyecta) El criterio de calidad que se anuncio desde el checkpoint de la Clase 11 es la regla de los 60 segundos: quien sustenta debe poder explicar CUALQUIER parte del sistema en 60 segundos, sin buscar en el informe.
+  - (No se proyecta) El trabajo es individual por defecto, asi que en la mayoria de los casos ese "quien" es el propio autor y la regla se comprueba sola; cuando el docente autorizo un equipo de dos o tres, la regla se vuelve exigente y se lee asi: CUALQUIER integrante debe poder explicar CUALQUIER parte.
+  - (No se proyecta) Esto casi siempre genera la primera pregunta real del estudiante: «podemos repartirnos los temas y que cada uno prepare solo el suyo?».
+  - (No se proyecta) La respuesta del docente debe ser: en equipo se puede repartir quien HABLA de cada tema, pero no quien ENTIENDE cada tema, porque el Q&A se dirige al azar; y en modo individual no hay reparto posible, de modo que la pregunta pierde sentido y lo que queda es preparar el sistema completo.
+  - (No se proyecta) El segundo motivo es de evaluacion: si el estudiante no puede explicar su propio diagrama de despliegue, el evaluador no tiene forma de saber si el artefacto es suyo o copiado, y ese es exactamente el vacio que la sustentacion existe para cerrar.
+  - (No se proyecta) En los equipos autorizados el mismo riesgo se multiplica: si solo un integrante puede explicar el despliegue, no hay evidencia de que los demas participaran, y por eso la rubrica exige que todos hablen y descuenta cuando presenta uno solo.
 
-**[Slide 13] La regla de los 60 segundos, anunciada desde la Clase 11 (2/2)** — 2 vinetas.
-
-**[Slide 14] El Q&A tecnico: tres tipos de pregunta (1/2)** — 3 vinetas.
-  - El Q&A tecnico tiene tres tipos de pregunta y conviene que el docente los reconozca para dosificarlos.
-  - La respuesta correcta es que decir «no lo medimos» no penaliza si va acompanado de como se mediria: «no medimos el p95 porque no hay trafico real, pero el plan es simular 50 peticiones por segundo y observar la latencia de la API, que es el cuello de botella que sospechamos por lo que vimos en la Clase 12».
+**[Slide 12] El Q&A tecnico: tres tipos de pregunta** — 3 vinetas.
   - Improvisar un dato falso, en cambio, se detecta con una sola pregunta de seguimiento y cuesta mucho mas que admitir el limite.
-  - (Sobre la actividad, no se proyecta) El Q&A escrito que pide el taller (tres preguntas duras que el propio estudiante se haria, con su respuesta) no reemplaza nada: es la preparacion del Q&A en vivo, y en la practica el estudiante que lo escribio en serio responde mucho mejor cuando la pregunta llega de verdad.
+  - (No se proyecta) El Q&A tecnico tiene tres tipos de pregunta y conviene que el docente los reconozca para dosificarlos.
+  - (No se proyecta) La pregunta de verificacion comprueba que el estudiante hizo lo que dice: «muestreme el archivo.yml del workflow» o «en que linea del Dockerfile esta la imagen base y por que eligieron una variante alpine».
+  - (No se proyecta) Aqui aparece la segunda pregunta previsible del estudiante: «y si no sabemos la respuesta?».
+  - (No se proyecta) La respuesta correcta es que decir «no lo medimos» no penaliza si va acompanado de como se mediria: «no medimos el p95 porque no hay trafico real, pero el plan es simular 50 peticiones por segundo y observar la latencia de la API, que es el cuello de botella que sospechamos por lo que vimos en la Clase 12».
+  - (No se proyecta) Y conviene ser explicito sobre el formato de la sesion, porque es lo que decide como se prepara el estudiante: la Clase 15 se dicta en la ultima sesion del semestre (16 de noviembre) como sustentacion EN VIVO, sincrona, con turnos de unos 6 minutos de pitch y 2 a 4 de preguntas.
+  - (No se proyecta) El Q&A escrito que pide el taller (tres preguntas duras que el propio estudiante se haria, con su respuesta) no reemplaza nada: es la preparacion del Q&A en vivo, y en la practica el estudiante que lo escribio en serio responde mucho mejor cuando la pregunta llega de verdad.
 
-**[Slide 15] El Q&A tecnico: tres tipos de pregunta (2/2)** — 4 vinetas.
+**[Slide 13] El cierre del curso: conectar lo hecho con la practica profesional (1/2)** — 4 vinetas.
+  - (No se proyecta) El cierre del curso debe conectar lo hecho con la practica profesional, porque de eso depende que el estudiante conserve el material en vez de borrarlo al terminar el semestre.
+  - (No se proyecta) Conviene tambien cerrar la duda sobre las herramientas, porque algun estudiante la trae: el curso prohibio la nube de pago por razones pedagogicas y de equidad, no porque draw.io, Killercoda y GitHub Actions sean juguetes.
+  - (No se proyecta) El diagrama de contenedores, el Dockerfile y el pipeline que el estudiante escribio son los mismos artefactos que se producen con una cuenta corporativa; lo que no se aprende en un free tier es justamente lo que si se aprendio aqui, que es razonar el trade-off.
 
-**[Slide 16] El cierre del curso: conectar lo hecho con la practica profesional (1/2)** — 5 vinetas.
-  - Conviene tambien cerrar la duda sobre las herramientas, porque algun estudiante la trae: el curso prohibio la nube de pago por razones pedagogicas y de equidad, no porque draw.io, Killercoda y GitHub Actions sean juguetes.
-
-**[Slide 17] El cierre del curso: conectar lo hecho con la practica profesional (2/2)** — 4 vinetas.
+**[Slide 14] El cierre del curso: conectar lo hecho con la practica profesional (2/2)** — 2 vinetas.
 
 
 ## Referencias a diapositivas
@@ -80,19 +89,16 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 4. Cierre del curso
 5. Sustentar no es describir: el eje de toda la clase (1/2)
 6. Sustentar no es describir: el eje de toda la clase (2/2)
-7. La prueba de tres capas que se aplica en voz alta
-8. El ADR: el artefacto que sostiene la tercera capa (1/2)
-9. El ADR: el artefacto que sostiene la tercera capa (2/2)
-10. El pitch de 5 a 8 minutos: el reparto que funciona (1/2)
-11. El pitch de 5 a 8 minutos: el reparto que funciona (2/2)
-12. La regla de los 60 segundos, anunciada desde la Clase 11 (1/2)
-13. La regla de los 60 segundos, anunciada desde la Clase 11 (2/2)
-14. El Q&A tecnico: tres tipos de pregunta (1/2)
-15. El Q&A tecnico: tres tipos de pregunta (2/2)
-16. El cierre del curso: conectar lo hecho con la practica profesional (1/2)
-17. El cierre del curso: conectar lo hecho con la practica profesional (2/2)
-18. Del boceto al código Mermaid
-19. Clase 15 · cierre del curso
+7. La prueba de tres capas
+8. El ADR: el artefacto que sostiene la tercera capa
+9. El pitch de 5 a 8 minutos: el reparto que funciona (1/2)
+10. El pitch de 5 a 8 minutos: el reparto que funciona (2/2)
+11. La regla de los 60 segundos, anunciada desde la Clase 11
+12. El Q&A tecnico: tres tipos de pregunta
+13. El cierre del curso: conectar lo hecho con la practica profesional (1/2)
+14. El cierre del curso: conectar lo hecho con la practica profesional (2/2)
+15. Del boceto al código Mermaid
+16. Clase 15 · cierre del curso
 
 ## Plan de clase minuto a minuto (120 min)
 

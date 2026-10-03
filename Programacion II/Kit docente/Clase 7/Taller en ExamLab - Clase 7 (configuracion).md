@@ -5,7 +5,7 @@
 - **Preguntas:** 5 · **Total:** 100 puntos
 - **Plataforma:** ExamLab (https://uniaj.examlab.workers.dev/) · modulo Talleres
 - **Hito del PI:** VetCare queda con un unico repositorio de datos en memoria compartido por todas las ventanas y una fabrica que crea las consultas del dominio.
-- **Entregable de la clase:** Clase RepositorioVetCare convertida en Singleton, FabricaConsultas con tres tipos y evidencia de que dos ventanas ven la misma lista, subido a ExamLab.
+- **Entregable de la clase:** Clase RepositorioClinica convertida en Singleton, FabricaConsultas con tres tipos y evidencia de que dos ventanas ven la misma lista, subido a ExamLab.
 
 > ExamLab no importa preguntas desde archivo: el alta se hace en la UI del
 > docente (o con la pestana de IA). Este documento trae el texto exacto de cada
@@ -23,11 +23,11 @@
 
 ## Un solo repositorio para toda la clinica (Singleton)
 
-Hasta ahora cada ventana hacia `new RepositorioVetCare()`: Recepcion registraba una mascota y Consultorio no la veia, porque **eran dos listas distintas**. El patron Singleton garantiza que exista **una sola** instancia.
+Hasta ahora cada ventana hacia `new RepositorioClinica()`: Recepcion registraba una mascota y Consultorio no la veia, porque **eran dos listas distintas**. El patron Singleton garantiza que exista **una sola** instancia.
 
-Convierta `RepositorioVetCare` en Singleton. El atributo **`private static RepositorioVetCare instancia;`** ya viene declarado; complete las otras dos piezas:
+Convierta `RepositorioClinica` en Singleton. El atributo **`private static RepositorioClinica instancia;`** ya viene declarado; complete las otras dos piezas:
 
-1. El constructor debe ser **`private`**, con un `System.out.println("[RepositorioVetCare] creando la unica instancia")` adentro (es el testigo que prueba el patron).
+1. El constructor debe ser **`private`**, con un `System.out.println("[RepositorioClinica] creando la unica instancia")` adentro (es el testigo que prueba el patron).
 2. `getInstancia()` debe quedar **`public static synchronized`** y crear la instancia **solo si todavia es `null`**, devolviendo siempre la misma. Tal como esta en el starter devuelve `null` y el programa falla: ese es el arreglo.
 
 El `main` ya simula las dos ventanas: pide la instancia tres veces, compara referencias e `identityHashCode`, y registra M-001 Kira desde "Recepcion" y M-002 Michi desde "Consultorio".
@@ -36,7 +36,7 @@ El `main` ya simula las dos ventanas: pide la instancia tres veces, compara refe
 
 ```
 --- Arranca la aplicacion ---
-[RepositorioVetCare] creando la unica instancia
+[RepositorioClinica] creando la unica instancia
 Misma instancia en las tres llamadas: true
 Coinciden los identityHashCode: true
 Registrada M-001 Kira. Total en el repositorio: 1
@@ -60,40 +60,40 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("--- Arranca la aplicacion ---");
 
-        RepositorioVetCare a = RepositorioVetCare.getInstancia();
-        RepositorioVetCare b = RepositorioVetCare.getInstancia();
-        RepositorioVetCare c = RepositorioVetCare.getInstancia();
+        RepositorioClinica a = RepositorioClinica.getInstancia();
+        RepositorioClinica b = RepositorioClinica.getInstancia();
+        RepositorioClinica c = RepositorioClinica.getInstancia();
 
         System.out.println("Misma instancia en las tres llamadas: " + (a == b && b == c));
         System.out.println("Coinciden los identityHashCode: "
                 + (System.identityHashCode(a) == System.identityHashCode(b)));
 
         // La "ventana Recepcion" registra a Kira
-        RepositorioVetCare.getInstancia().registrar("M-001 Kira");
+        RepositorioClinica.getInstancia().registrar("M-001 Kira");
         // La "ventana Consultorio" registra a Michi
-        RepositorioVetCare.getInstancia().registrar("M-002 Michi");
+        RepositorioClinica.getInstancia().registrar("M-002 Michi");
 
         System.out.println("Lo que ve Recepcion: " + a.listar());
         System.out.println("Lo que ve Consultorio: " + c.listar());
     }
 }
 
-class RepositorioVetCare {
+class RepositorioClinica {
 
     // Pieza 1 del patron (ya declarada): el unico lugar donde vive la instancia.
-    private static RepositorioVetCare instancia;
+    private static RepositorioClinica instancia;
 
     private final List<String> mascotas = new ArrayList<>();
 
     // TODO 1: cambie la visibilidad de este constructor a private e imprima adentro
-    //         "[RepositorioVetCare] creando la unica instancia"
-    RepositorioVetCare() {
+    //         "[RepositorioClinica] creando la unica instancia"
+    RepositorioClinica() {
     }
 
     // TODO 2: agregue synchronized a la firma y complete el cuerpo:
     //         si instancia todavia es null, creela aqui; devuelva siempre la misma.
     //         Tal como esta, devuelve null y el programa falla: eso es lo que va a arreglar.
-    public static RepositorioVetCare getInstancia() {
+    public static RepositorioClinica getInstancia() {
         return instancia;
     }
 
@@ -368,18 +368,18 @@ El classDiagram renderiza y muestra Consulta marcada como abstracta con sus meto
 Un compañero escribio esto y jura que es un Singleton:
 
 ```java
-public class RepositorioVetCare {
+public class RepositorioClinica {
 
-    private static RepositorioVetCare instancia;
+    private static RepositorioClinica instancia;
     private final List<Mascota> mascotas = new ArrayList<>();
 
-    public RepositorioVetCare() {
-        System.out.println("[RepositorioVetCare] creando la unica instancia");
+    public RepositorioClinica() {
+        System.out.println("[RepositorioClinica] creando la unica instancia");
     }
 
-    public static synchronized RepositorioVetCare getInstancia() {
+    public static synchronized RepositorioClinica getInstancia() {
         if (instancia == null) {
-            instancia = new RepositorioVetCare();
+            instancia = new RepositorioClinica();
         }
         return instancia;
     }
@@ -393,7 +393,7 @@ Al ejecutar la aplicacion, el mensaje de creacion aparece **tres veces** y las v
 **Opciones:**
 
 - [ ] Falta declarar el atributo instancia como final para que no se pueda reasignar.
-- [x] El constructor es public: cualquier clase puede seguir escribiendo new RepositorioVetCare() y saltarse getInstancia por completo.
+- [x] El constructor es public: cualquier clase puede seguir escribiendo new RepositorioClinica() y saltarse getInstancia por completo.
 - [ ] El metodo getInstancia deberia ser private para proteger la instancia unica.
 - [ ] El problema es synchronized: bloquea el metodo y obliga a crear una instancia por hilo.
 
@@ -411,7 +411,7 @@ Respuesta correcta: el constructor es public, asi que cualquier clase puede segu
 
 ## Justificacion del patron y de su costo
 
-**(a) Evidencia (obligatoria).** Pegue las lineas de consola de su ejecucion que demuestran el patron: el mensaje del constructor apareciendo **una sola vez** y los dos `identityHashCode` con el **mismo numero**. Diga tambien cuantos `new RepositorioVetCare()` quedaron en el proyecto despues del Ctrl+F (debe ser exactamente uno, dentro de `getInstancia`) y en que clases estaban antes.
+**(a) Evidencia (obligatoria).** Pegue las lineas de consola de su ejecucion que demuestran el patron: el mensaje del constructor apareciendo **una sola vez** y los dos `identityHashCode` con el **mismo numero**. Diga tambien cuantos `new RepositorioClinica()` quedaron en el proyecto despues del Ctrl+F (debe ser exactamente uno, dentro de `getInstancia`) y en que clases estaban antes.
 
 **(b) ¿Por que el repositorio SI y `Mascota` NO?** Explique por que tiene sentido que exista un unico repositorio y por que seria un desastre que `Mascota` fuera Singleton. Sea concreto: diga que pasaria en la clinica si solo pudiera existir un objeto `Mascota` en toda la aplicacion.
 

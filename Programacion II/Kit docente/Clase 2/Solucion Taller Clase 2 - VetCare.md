@@ -20,4 +20,4 @@
 - Recorrer con for (int i = 0; i <= mascotas.size(); i++), lo que siempre lanza IndexOutOfBoundsException en la ultima vuelta porque el indice valido llega hasta size()-1.
 - Borrar con mascotas.remove(m) dentro de un for-each y recibir ConcurrentModificationException, en vez de usar Iterator.remove() o removeIf.
 
-Codigo de apoyo: `Kit docente/Clase 2/Codigo/VetCareRegistroMascotas.java`
+Codigo de apoyo: `Kit docente/Clase 2/Codigo/ClinicaRegistroMascotas.java`

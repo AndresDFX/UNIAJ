@@ -346,17 +346,17 @@ Esta base ya trae las tres funciones `api_agendar_cita`, `api_registrar_consulta
 
 Vas a aplicar privilegio minimo al usuario que usara la aplicacion. Escribe el SQL que:
 
-1. Cree el rol `app_vetcare` con `NOLOGIN`.
-2. **Cierre la puerta grande**: revoca de `app_vetcare` cualquier privilegio de escritura directa sobre las tablas de negocio:
-   `REVOKE INSERT, UPDATE, DELETE ON cita, consulta, factura, detalle_factura, insumo FROM app_vetcare;`
+1. Cree el rol `app_clinica` con `NOLOGIN`.
+2. **Cierre la puerta grande**: revoca de `app_clinica` cualquier privilegio de escritura directa sobre las tablas de negocio:
+   `REVOKE INSERT, UPDATE, DELETE ON cita, consulta, factura, detalle_factura, insumo FROM app_clinica;`
    (Aunque sea redundante porque nunca se otorgo, la sentencia queda como evidencia explicita de la decision de diseno.)
 3. **Punto clave que casi todos olvidan**: en PostgreSQL las funciones nuevas quedan con `EXECUTE` otorgado a `PUBLIC` por defecto. Revocalo para las tres funciones:
    `REVOKE EXECUTE ON FUNCTION api_agendar_cita(INT, INT, TIMESTAMP) FROM PUBLIC;` y lo equivalente para las otras dos, respetando su firma exacta (`api_registrar_consulta(INT, TEXT, NUMERIC)`, `api_facturar(INT, INT, INT)`).
-4. Otorgue `EXECUTE` de las tres funciones **solo** a `app_vetcare`.
-5. Otorgue a `app_vetcare` unicamente el `SELECT` que necesita para pintar pantallas: sobre `dueno`, `mascota`, `veterinario` y `cita`. Nada mas.
+4. Otorgue `EXECUTE` de las tres funciones **solo** a `app_clinica`.
+5. Otorgue a `app_clinica` unicamente el `SELECT` que necesita para pintar pantallas: sobre `dueno`, `mascota`, `veterinario` y `cita`. Nada mas.
 6. **Verifique** con dos consultas:
    - `SELECT grantee, routine_name, privilege_type FROM information_schema.routine_privileges WHERE routine_name LIKE 'api_%' ORDER BY routine_name, grantee;`
-   - `SELECT grantee, table_name, privilege_type FROM information_schema.role_table_grants WHERE grantee = 'app_vetcare' ORDER BY table_name, privilege_type;`
+   - `SELECT grantee, table_name, privilege_type FROM information_schema.role_table_grants WHERE grantee = 'app_clinica' ORDER BY table_name, privilege_type;`
 7. Cierre con un comentario `--` de dos lineas explicando por que este esquema de permisos hace **imposible** que un error de la aplicacion salte las validaciones de negocio.
 
 **SQL de partida (`options.db.setupSql`)** - corre antes del SQL del
@@ -607,7 +607,7 @@ $fn$;
 
 **Rubrica esperada (campo Rubrica):**
 
-Se crea el rol app_vetcare y se ejecutan el REVOKE de escritura sobre las tablas, el REVOKE EXECUTE ... FROM PUBLIC de las tres funciones con su firma correcta y el GRANT EXECUTE solo a app_vetcare. Los SELECT otorgados se limitan a las 4 tablas de lectura pedidas. Las dos consultas de verificacion devuelven filas que evidencian la configuracion. El comentario final explica correctamente por que la app no puede saltar las validaciones.
+Se crea el rol app_clinica y se ejecutan el REVOKE de escritura sobre las tablas, el REVOKE EXECUTE ... FROM PUBLIC de las tres funciones con su firma correcta y el GRANT EXECUTE solo a app_clinica. Los SELECT otorgados se limitan a las 4 tablas de lectura pedidas. Las dos consultas de verificacion devuelven filas que evidencian la configuracion. El comentario final explica correctamente por que la app no puede saltar las validaciones.
 
 ---
 

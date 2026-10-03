@@ -815,7 +815,7 @@ El analisis entra en la seccion de **seguridad y control de acceso**, como una s
 
 ### Errores frecuentes y que hacer
 
-- **Filas con intenciones en vez de objetos:** «mejorar la seguridad de la base», «hacer respaldos». La rubrica pide un objeto real —`buscar_mascota_segura`, `trg_archivar_cita`, `idx_cita_vet_fecha`, `app_vetcare`— porque un plan de mejoras cuya unidad no es un objeto no se puede verificar ni asignar.
+- **Filas con intenciones en vez de objetos:** «mejorar la seguridad de la base», «hacer respaldos». La rubrica pide un objeto real —`buscar_mascota_segura`, `trg_archivar_cita`, `idx_cita_vet_fecha`, `app_clinica`— porque un plan de mejoras cuya unidad no es un objeto no se puede verificar ni asignar.
 - **Marcar `IMPLEMENTADA` sin citar la prueba,** o citando una que no se corrio. Es lo mismo que declaro resuelto el respaldo en el caso analizado. La columna de verificacion pide el numero: 8 → 0, 0 y 10, `RESTAURACION OK`.
 - **Una tercera fila con estado `PENDIENTE` y sin responsable ni fecha,** o con una fecha posterior al 2026-11-16. Un pendiente sin fecha se convierte en un pendiente permanente, que es como el item del respaldo llego hasta aqui.
 - **Priorizar por gusto:** «haria primero la 1 porque es la que mas me interesa». El enunciado pide la relacion esfuerzo/impacto, y es una herramienta, no un formalismo: obliga a comparar el costo de hacer con el costo de no hacer.

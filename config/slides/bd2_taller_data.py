@@ -774,7 +774,7 @@ SOLUCION = {
             'Escribir el alcance en dos listas explicitas: que SI cubre el PI este semestre (agenda, facturacion basica, roles) y que NO cubre (ej. pagos en linea, historial clinico completo) para evitar scope creep en clases futuras.',
         ],
         'ejemplo': [
-            'DDL: Kit docente/Clase 1/Codigo/01_arranque_vetcare.sql',
+            'DDL: Kit docente/Clase 1/Codigo/01_arranque_clinica.sql',
             'ER: Dueño 1-N Mascota; Mascota 1-N Cita.',
         ],
         'rubrica': [
@@ -805,7 +805,7 @@ SOLUCION = {
             'Redactar la politica de altas y bajas en una pagina, con las 5 secciones del enunciado: alta, cambio de rol, baja el mismo dia (con REASSIGN OWNED BY antes del DROP ROLE), revision periodica con la consulta que sirve de evidencia, y la prueba negativa — SET ROLE recepcion; seguido de la sentencia que debe fallar con permission denied, y RESET ROLE; para volver.',
         ],
         'ejemplo': [
-            'Codigo/02_roles_vetcare.sql',
+            'Codigo/02_roles_clinica.sql',
         ],
         'rubrica': [
             'Roles + GRANT/REVOKE verificados (30)',
@@ -831,7 +831,7 @@ SOLUCION = {
             'Documentar la firma del proc como si fuera el contrato que usara la futura app: nombre, cada parametro con su tipo y direccion (IN/OUT), y el listado de mensajes de p_msg posibles — esto es exactamente lo que se reutiliza en el contrato de integracion de Clase 12.',
         ],
         'ejemplo': [
-            'Codigo/03_procs_vetcare.sql',
+            'Codigo/03_procs_clinica.sql',
         ],
         'rubrica': [
             'Proc (3)',
@@ -901,7 +901,7 @@ SOLUCION = {
             'Explicar por escrito el riesgo de sobre-indexar: cada indice adicional ralentiza INSERT/UPDATE/DELETE sobre esa tabla, asi que un indice sin una consulta real que lo use es costo puro sin beneficio — por eso el entregable exige justificar cada indice con su consulta.',
         ],
         'ejemplo': [
-            'Codigo/07_indices_vetcare.sql',
+            'Codigo/07_indices_clinica.sql',
         ],
         'rubrica': [
             'Indices (4)',
@@ -924,7 +924,7 @@ SOLUCION = {
             'Actualizar el informe del PI con la seccion de transacciones: que operacion se protegio, que prueba de fallo se ejecuto, y que se verifico despues del ROLLBACK (que el stock e historial quedaron exactamente como antes del intento fallido).',
         ],
         'ejemplo': [
-            'Codigo/08_transacciones_vetcare.sql',
+            'Codigo/08_transacciones_clinica.sql',
         ],
         'rubrica': [
             'Transaccion (4)',
@@ -947,7 +947,7 @@ SOLUCION = {
             'Agregar la seccion de concurrencia al informe del PI explicando, en lenguaje simple, por que un simple "usar transacciones" no basta sin la restriccion UNIQUE o la condicion en el UPDATE, y que mecanismo especifico elegiste para VetCare.',
         ],
         'ejemplo': [
-            'Codigo/10_concurrencia_vetcare.sql',
+            'Codigo/10_concurrencia_clinica.sql',
         ],
         'rubrica': [
             'Cita (3)',

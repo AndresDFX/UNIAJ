@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * VetCare - Clinica Veterinaria Huellitas
+ * Clinica Veterinaria
  * Clase 13: control de excepciones (checked vs unchecked, try-catch-finally, throw / throws).
  * Ejecutar en VS Code: el boton Run sobre el metodo main, o Ctrl+F5.
  */
-public class DemoExcepcionesVetCare {
+public class DemoExcepcionesClinica {
 
     private static final String ARCHIVO = "datos/mascotas.csv";
 
@@ -146,7 +146,7 @@ public class DemoExcepcionesVetCare {
                 }
             }
         } catch (FileNotFoundException e) {   // hija de IOException: por eso va primero
-            System.out.println("  [INFO] No existe " + ruta + ". VetCare arranca con la lista vacia.");
+            System.out.println("  [INFO] No existe " + ruta + ". El sistema de la clinica arranca con la lista vacia.");
         } catch (IOException e) {
             System.out.println("  [ERROR] Fallo leyendo " + ruta + ": " + e.getMessage());
         }
@@ -182,7 +182,7 @@ public class DemoExcepcionesVetCare {
     }
 
     public static void main(String[] args) {
-        System.out.println("=== VetCare | Clase 13: control de excepciones ===");
+        System.out.println("=== Clinica | Clase 13: control de excepciones ===");
 
         List<Mascota> agenda = cargar(ARCHIVO);
         System.out.println("Mascotas cargadas del archivo: " + agenda.size());
@@ -225,6 +225,6 @@ public class DemoExcepcionesVetCare {
         teclado.close();
 
         guardar(ARCHIVO, agenda);
-        System.out.println("=== Fin de la demo: VetCare nunca se cerro por un dato mal escrito. ===");
+        System.out.println("=== Fin de la demo: el sistema de la clinica nunca se cerro por un dato mal escrito. ===");
     }
 }

@@ -43,35 +43,35 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **El catch vacio, ese catch (Exception e) { } que aparece cuando VS Code... (2/2)** — 3 vinetas.
 
-**DemoExcepcionesVetCare.java — class DemoExcepcionesVetCare** — 5 vinetas.
+**DemoExcepcionesClinica.java — class DemoExcepcionesClinica** — 5 vinetas.
 
-**DemoExcepcionesVetCare.java — class DatoInvalidoException** — 8 vinetas.
+**DemoExcepcionesClinica.java — class DatoInvalidoException** — 8 vinetas.
 
-**DemoExcepcionesVetCare.java — class Mascota (1/4)** — 20 vinetas.
+**DemoExcepcionesClinica.java — class Mascota (1/4)** — 20 vinetas.
 
-**DemoExcepcionesVetCare.java — class Mascota (2/4)** — 20 vinetas.
+**DemoExcepcionesClinica.java — class Mascota (2/4)** — 20 vinetas.
 
-**DemoExcepcionesVetCare.java — class Mascota (3/4)** — 20 vinetas.
+**DemoExcepcionesClinica.java — class Mascota (3/4)** — 20 vinetas.
 
-**DemoExcepcionesVetCare.java — class Mascota (4/4)** — 10 vinetas.
+**DemoExcepcionesClinica.java — class Mascota (4/4)** — 10 vinetas.
 
-**DemoExcepcionesVetCare.java — registrar()** — 16 vinetas.
+**DemoExcepcionesClinica.java — registrar()** — 16 vinetas.
 
-**DemoExcepcionesVetCare.java — buscarNombrePorId()** — 14 vinetas.
+**DemoExcepcionesClinica.java — buscarNombrePorId()** — 14 vinetas.
 
-**DemoExcepcionesVetCare.java — cargar() (1/2)** — 20 vinetas.
+**DemoExcepcionesClinica.java — cargar() (1/2)** — 20 vinetas.
 
-**DemoExcepcionesVetCare.java — cargar() (2/2)** — 7 vinetas.
+**DemoExcepcionesClinica.java — cargar() (2/2)** — 7 vinetas.
 
-**DemoExcepcionesVetCare.java — guardar()** — 16 vinetas.
+**DemoExcepcionesClinica.java — guardar()** — 16 vinetas.
 
-**DemoExcepcionesVetCare.java — malaPractica()** — 12 vinetas.
+**DemoExcepcionesClinica.java — malaPractica()** — 12 vinetas.
 
-**DemoExcepcionesVetCare.java — main() (1/3)** — 20 vinetas.
+**DemoExcepcionesClinica.java — main() (1/3)** — 20 vinetas.
 
-**DemoExcepcionesVetCare.java — main() (2/3)** — 20 vinetas.
+**DemoExcepcionesClinica.java — main() (2/3)** — 20 vinetas.
 
-**DemoExcepcionesVetCare.java — main() (3/3)** — 8 vinetas.
+**DemoExcepcionesClinica.java — main() (3/3)** — 8 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente escribe 'tres' en el campo edad, muestra la aplicacion reventando con el stack trace rojo, y en vivo la envuelve en try-catch hasta que responde con un aviso amable.
@@ -92,14 +92,14 @@ Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: El docente escribe 'tres' en el campo edad, muestra la aplicacion reventando con el stack trace rojo, y en vivo la envuelve en try-catch hasta que responde con un aviso amable.
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
-`Kit docente/Clase 13/Codigo/DemoExcepcionesVetCare.java`
+`Kit docente/Clase 13/Codigo/DemoExcepcionesClinica.java`
 
 ### 60-105 · Taller guiado (opcional) = avance del PI
 Opcional: no tiene lamina en el deck. La guia esta en
 `Clases/Clase 13 - Control de excepciones/Taller PI - Clase 13 - VetCare.docx`; si hoy no se hace, se extiende la demo y la practica libre.
 **Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
-1. Paso 1. Abra el proyecto VetCare en VS Code, cree el paquete vetcare.excepciones y dentro la clase DatoInvalidoException que extienda Exception con un constructor que reciba el mensaje; compile y verifique que no hay errores.
+1. Paso 1. Abra el proyecto VetCare en VS Code, cree el paquete clinica.excepciones y dentro la clase DatoInvalidoException que extienda Exception con un constructor que reciba el mensaje; compile y verifique que no hay errores.
 2. Paso 2. En la clase Mascota reemplace setEdad(int) por setEdad(String texto) throws DatoInvalidoException: rechace vacio, convierta con Integer.parseInt dentro de un try, atrape NumberFormatException y relance DatoInvalidoException con un mensaje de la clinica, y valide el rango 0 a 30; repita la idea en setPeso con Double.parseDouble y rango 0.1 a 120.
 3. Paso 3. En el formulario de registro (JFrame o menu de consola) envuelva las llamadas a los setters en un try-catch que muestre JOptionPane.showMessageDialog con e.getMessage(), devuelva el foco al campo culpable con requestFocus() y NO agregue la mascota a la lista cuando hubo error.
 4. Paso 4. Cambie la carga de datos/mascotas.csv a try-with-resources con dos catch separados: FileNotFoundException, que arranca con lista vacia e informa que es la primera ejecucion, e IOException, que muestra el problema real; las lineas del CSV con datos malos se omiten con un aviso, sin tumbar la carga completa.

@@ -20,4 +20,4 @@
 - No descartar la línea de encabezado al cargar, con lo cual el programa intenta convertir la palabra 'edad' en número, o peor, aparece una mascota fantasma llamada 'nombre' en la tabla.
 - Escribir los campos en un orden al guardar y leerlos en otro al cargar (por ejemplo, especie y edad intercambiadas), de modo que el archivo se ve bien pero la tabla muestra 'Canino' en la columna de edad.
 
-Codigo de apoyo: `Kit docente/Clase 9/Codigo/VetCarePersistencia.java`
+Codigo de apoyo: `Kit docente/Clase 9/Codigo/ClinicaPersistencia.java`

@@ -1,4 +1,4 @@
-package vetcare;
+package clinica;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -18,12 +18,12 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 /**
- * VetCare - Clase 4: HashMap + HashSet + primera ventana Swing.
- * Clinica Veterinaria Huellitas.
+ * Clinica Veterinaria - Clase 4: HashMap + HashSet + primera ventana Swing.
+ * Clinica Veterinaria.
  * Ventana escrita A MANO (sin el disenador visual) para entender la jerarquia.
  * Archivo unico: en VS Code, el boton Run que aparece sobre el metodo main (o Ctrl+F5).
  */
-public class VetCareBuscarExpediente extends JFrame {
+public class ClinicaBuscarExpediente extends JFrame {
 
     // ---- Datos: la inteligencia del sistema vive aqui, no en el boton ----
     private final Map<String, Expediente> expedientes = new HashMap<>();
@@ -34,8 +34,8 @@ public class VetCareBuscarExpediente extends JFrame {
     private final JButton btnBuscar = new JButton("Buscar expediente");
     private final JLabel lblResultado = new JLabel("Escriba un ID (ej: M-002) y presione Buscar", SwingConstants.CENTER);
 
-    public VetCareBuscarExpediente() {
-        super("VetCare - Buscar expediente");
+    public ClinicaBuscarExpediente() {
+        super("Clinica - Buscar expediente");
         cargarDatosDePrueba();
         compararBusquedas();
         construirInterfaz();
@@ -143,7 +143,7 @@ public class VetCareBuscarExpediente extends JFrame {
 
     public static void main(String[] args) {
         // La interfaz se construye en el hilo de eventos de Swing (EDT)
-        SwingUtilities.invokeLater(() -> new VetCareBuscarExpediente().setVisible(true));
+        SwingUtilities.invokeLater(() -> new ClinicaBuscarExpediente().setVisible(true));
     }
 }
 

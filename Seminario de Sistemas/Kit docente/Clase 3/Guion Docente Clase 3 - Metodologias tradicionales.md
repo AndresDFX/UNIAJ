@@ -15,20 +15,18 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**El modelo en cascada es el recorrido lineal llevado a su version... (1/2)** — 4 vinetas.
+**El modelo en cascada es el recorrido lineal llevado a su version... (1/2)** — 5 vinetas.
 
-**El modelo en cascada es el recorrido lineal llevado a su version... (2/2)** — 2 vinetas.
+**El modelo en cascada es el recorrido lineal llevado a su version... (2/2)** — 4 vinetas.
 
 **El modelo en V toma la cascada y la dobla en forma de letra V para...** — 5 vinetas.
   - Los requisitos se emparejan con las pruebas de aceptacion, el diseño de la arquitectura con las pruebas de integracion y el diseño detallado con las pruebas unitarias.
 
-**Cuando SI tienen sentido estos modelos?** — 5 vinetas.
+**Cuando SI tienen sentido estos modelos?** — 4 vinetas.
   - Cuando SI tienen sentido estos modelos?
 
-**Cuando NO tienen sentido? (1/2)** — 3 vinetas.
+**Cuando NO tienen sentido?** — 5 vinetas.
   - Cuando NO tienen sentido?
-
-**Cuando NO tienen sentido? (2/2)** — 2 vinetas.
 
 **En el mundo tradicional la documentacion no acompaña al producto: en...** — 3 vinetas.
   - Cada documento tiene numero de version, fecha, autor y aprobador, y todo cambio entra por una solicitud formal donde se evalua impacto en alcance, tiempo y costo antes de aceptarla.

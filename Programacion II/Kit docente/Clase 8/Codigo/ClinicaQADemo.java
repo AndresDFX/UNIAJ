@@ -1,4 +1,4 @@
-package vetcare.qa;
+package clinica.qa;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -7,14 +7,14 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 /**
- * Clase 8 de VetCare: dominio documentado con Javadoc y su bateria de casos de prueba.
+ * Clase 8 del sistema de la clinica: dominio documentado con Javadoc y su bateria de casos de prueba.
  * Este archivo se ejecuta sin librerias externas: el metodo main corre los mismos casos
  * que despues se escriben con JUnit (ver el bloque comentado al final del archivo).
  *
- * @author Equipo VetCare
+ * @author Equipo Clinica
  * @version 1.0
  */
-public class VetCareQADemo {
+public class ClinicaQADemo {
 
     private static int aprobadas = 0;
     private static int fallidas = 0;
@@ -87,10 +87,10 @@ public class VetCareQADemo {
 }
 
 /**
- * Expediente de una mascota de la clinica Huellitas.
+ * Expediente de una mascota de la clinica.
  * Una mascota inactiva es la que fue dada de baja del servicio y no puede agendar citas.
  *
- * @author Equipo VetCare
+ * @author Equipo Clinica
  */
 class Mascota {
 
@@ -156,10 +156,10 @@ class Cita {
 }
 
 /**
- * Reglas de agendamiento de VetCare.
+ * Reglas de agendamiento del sistema de la clinica.
  * No conoce ventanas ni botones, y por eso se puede probar de forma automatica.
  *
- * @author Equipo VetCare
+ * @author Equipo Clinica
  */
 class AgendaService {
 

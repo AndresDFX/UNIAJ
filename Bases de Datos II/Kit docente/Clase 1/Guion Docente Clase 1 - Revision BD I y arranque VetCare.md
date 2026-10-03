@@ -211,7 +211,7 @@ Herramienta: draw.io + DB Fiddle
 - **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `erDiagram`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
 - **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
-📸 Resultado del JOIN de verificacion del ER (lo que debe salir tras los INSERT) [[captura: salida-join-vetcare.png]]
+📸 Resultado del JOIN de verificacion del ER (lo que debe salir tras los INSERT) [[captura: salida-join-clinica.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Practica (opcional) · sin lamina
@@ -238,7 +238,7 @@ Proyectar [Slide 35] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts
-Carpeta Codigo/ — archivo 01_arranque_vetcare.sql.
+Carpeta Codigo/ — archivo 01_arranque_clinica.sql.
 
 ## Capturas
 Carpeta `Kit docente/Clase 1/Capturas/`. Cada linea de pantallazo de arriba trae

@@ -3,7 +3,7 @@
 - **Curso:** Programacion II (FI303204) · 120 min
 - **Hilo:** Proyecto Integrador **VetCare** (aplicacion Java de la clinica «Huellitas»)
 - **Hoy avanzamos el PI en:** VetCare queda con un unico repositorio de datos en memoria compartido por todas las ventanas y una fabrica que crea las consultas del dominio.
-- **Entregable de hoy:** Clase RepositorioVetCare convertida en Singleton, FabricaConsultas con tres tipos y evidencia de que dos ventanas ven la misma lista, subido a ExamLab.
+- **Entregable de hoy:** Clase RepositorioClinica convertida en Singleton, FabricaConsultas con tres tipos y evidencia de que dos ventanas ven la misma lista, subido a ExamLab.
 - **Herramienta:** Visual Studio Code (Java)
 - **Slides:** `Clases/Clase 7 - Patrones de diseno Singleton y Factory/Presentacion.pptx`
 
@@ -38,51 +38,51 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **Ahora la parte que casi nadie enseña: cuando NO usarlos (2/2)** — 3 vinetas.
 
-**VetCarePatronesDemo.java — class VetCarePatronesDemo** — 2 vinetas.
+**ClinicaPatronesDemo.java — class ClinicaPatronesDemo** — 2 vinetas.
 
-**VetCarePatronesDemo.java — main() (1/2)** — 20 vinetas.
+**ClinicaPatronesDemo.java — main() (1/2)** — 20 vinetas.
 
-**VetCarePatronesDemo.java — main() (2/2)** — 11 vinetas.
+**ClinicaPatronesDemo.java — main() (2/2)** — 11 vinetas.
 
-**VetCarePatronesDemo.java — class Mascota** — 6 vinetas.
+**ClinicaPatronesDemo.java — class Mascota** — 6 vinetas.
 
-**VetCarePatronesDemo.java — Mascota()** — 13 vinetas.
+**ClinicaPatronesDemo.java — Mascota()** — 13 vinetas.
 
-**VetCarePatronesDemo.java — class RepositorioVetCare** — 6 vinetas.
+**ClinicaPatronesDemo.java — class RepositorioClinica** — 6 vinetas.
 
-**VetCarePatronesDemo.java — RepositorioVetCare()** — 4 vinetas.
+**ClinicaPatronesDemo.java — RepositorioClinica()** — 4 vinetas.
 
-**VetCarePatronesDemo.java — getInstancia()** — 7 vinetas.
+**ClinicaPatronesDemo.java — getInstancia()** — 7 vinetas.
 
-**VetCarePatronesDemo.java — registrar()** — 10 vinetas.
+**ClinicaPatronesDemo.java — registrar()** — 10 vinetas.
 
-**VetCarePatronesDemo.java — buscarPorId()** — 18 vinetas.
+**ClinicaPatronesDemo.java — buscarPorId()** — 18 vinetas.
 
-**VetCarePatronesDemo.java — class Consulta** — 4 vinetas.
+**ClinicaPatronesDemo.java — class Consulta** — 4 vinetas.
 
-**VetCarePatronesDemo.java — Consulta()** — 8 vinetas.
+**ClinicaPatronesDemo.java — Consulta()** — 8 vinetas.
 
-**VetCarePatronesDemo.java — describir()** — 6 vinetas.
+**ClinicaPatronesDemo.java — describir()** — 6 vinetas.
 
-**VetCarePatronesDemo.java — class ConsultaVacunacion** — 11 vinetas.
+**ClinicaPatronesDemo.java — class ConsultaVacunacion** — 11 vinetas.
 
-**VetCarePatronesDemo.java — class ConsultaControl** — 11 vinetas.
+**ClinicaPatronesDemo.java — class ConsultaControl** — 11 vinetas.
 
-**VetCarePatronesDemo.java — class ConsultaUrgencia** — 12 vinetas.
+**ClinicaPatronesDemo.java — class ConsultaUrgencia** — 12 vinetas.
 
-**VetCarePatronesDemo.java — class FabricaConsultas** — 4 vinetas.
+**ClinicaPatronesDemo.java — class FabricaConsultas** — 4 vinetas.
 
-**VetCarePatronesDemo.java — crear()** — 18 vinetas.
+**ClinicaPatronesDemo.java — crear()** — 18 vinetas.
 
-**VetCarePatronesDemo.java — class VentanaSucursal** — 9 vinetas.
+**ClinicaPatronesDemo.java — class VentanaSucursal** — 9 vinetas.
 
-**VetCarePatronesDemo.java — VentanaSucursal() (1/2)** — 20 vinetas.
+**ClinicaPatronesDemo.java — VentanaSucursal() (1/2)** — 20 vinetas.
 
-**VetCarePatronesDemo.java — VentanaSucursal() (2/2)** — 18 vinetas.
+**ClinicaPatronesDemo.java — VentanaSucursal() (2/2)** — 18 vinetas.
 
-**VetCarePatronesDemo.java — registrar()** — 13 vinetas.
+**ClinicaPatronesDemo.java — registrar()** — 13 vinetas.
 
-**VetCarePatronesDemo.java — refrescar()** — 13 vinetas.
+**ClinicaPatronesDemo.java — refrescar()** — 13 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente abre dos ventanas de VetCare, registra una mascota en la primera y la muestra apareciendo en la segunda porque ambas comparten la unica instancia del repositorio.
@@ -103,20 +103,20 @@ Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: El docente abre dos ventanas de VetCare, registra una mascota en la primera y la muestra apareciendo en la segunda porque ambas comparten la unica instancia del repositorio.
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
-`Kit docente/Clase 7/Codigo/VetCarePatronesDemo.java`
+`Kit docente/Clase 7/Codigo/ClinicaPatronesDemo.java`
 
 ### 60-105 · Taller guiado (opcional) = avance del PI
 Opcional: no tiene lamina en el deck. La guia esta en
 `Clases/Clase 7 - Patrones de diseno Singleton y Factory/Taller PI - Clase 7 - VetCare.docx`; si hoy no se hace, se extiende la demo y la practica libre.
 **Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
-1. Convierta RepositorioVetCare en Singleton: atributo private static instancia, constructor private con un System.out.println que avise cuando se crea, y metodo public static synchronized getInstancia(); ejecute el programa y verifique que el mensaje de creacion aparece una sola vez aunque llame getInstancia() tres veces.
-2. Elimine todos los 'new RepositorioVetCare()' que queden en las ventanas y reemplacelos por RepositorioVetCare.getInstancia(); use Ctrl+F en el proyecto para confirmar que no queda ni uno solo fuera del propio metodo getInstancia.
+1. Convierta RepositorioClinica en Singleton: atributo private static instancia, constructor private con un System.out.println que avise cuando se crea, y metodo public static synchronized getInstancia(); ejecute el programa y verifique que el mensaje de creacion aparece una sola vez aunque llame getInstancia() tres veces.
+2. Elimine todos los 'new RepositorioClinica()' que queden en las ventanas y reemplacelos por RepositorioClinica.getInstancia(); use Ctrl+F en el proyecto para confirmar que no queda ni uno solo fuera del propio metodo getInstancia.
 3. Cree la jerarquia Consulta (abstracta) con ConsultaVacunacion, ConsultaControl y ConsultaUrgencia, cada una con su duracionMinutos() y tarifaBase(), y la clase FabricaConsultas con el metodo estatico crear(String tipo, String idMascota) que normalice el texto y lance IllegalArgumentException si el tipo no existe.
 4. Ejecute el demo y compruebe dos cosas: en la consola, que el mensaje del constructor sale una sola vez y que los dos identityHashCode coinciden; en pantalla, que al registrar M-002 Michi en la ventana Recepcion y oprimir Refrescar en la ventana Consultorio, Michi aparece junto a M-001 Kira, que fue registrada desde el main.
 5. Escriba al final del archivo un comentario de tres lineas justificando por que el repositorio SI es Singleton, por que Mascota NO debe serlo y que problema tendria el Singleton cuando lleguemos a las pruebas; suba el proyecto y el comentario a ExamLab.
 Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.
-Entregable: Clase RepositorioVetCare convertida en Singleton, FabricaConsultas con tres tipos y evidencia de que dos ventanas ven la misma lista, subido a ExamLab.
+Entregable: Clase RepositorioClinica convertida en Singleton, FabricaConsultas con tres tipos y evidencia de que dos ventanas ven la misma lista, subido a ExamLab.
 
 ### 105-120 · Criterios de exito y cierre
 Si hubo taller, repasar los criterios de exito del `Taller PI - Clase 7 - VetCare.docx` (no estan en el deck).

@@ -44,7 +44,7 @@ Kira puede agendar: true
 Rocky puede agendar: false
 ```
 
-Adjunte tambien, en el mismo campo de codigo y como comentario al final del archivo, el comando o los pasos exactos que uso en la terminal integrada de VS Code para generar el HTML (por ejemplo `javadoc -d docs -private src/vetcare/*.java`) y la ruta donde quedo la carpeta generada.
+Adjunte tambien, en el mismo campo de codigo y como comentario al final del archivo, el comando o los pasos exactos que uso en la terminal integrada de VS Code para generar el HTML (por ejemplo `javadoc -d docs -private src/clinica/*.java`) y la ruta donde quedo la carpeta generada.
 
 **Lenguaje:** `java`
 

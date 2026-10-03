@@ -15,11 +15,11 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Hasta ahora todos los modelos del sistema de la clinica han sido... (1/2)** — 3 vinetas.
+**Hasta ahora todos los modelos de la clinica han sido estaticos: el... (1/2)** — 3 vinetas.
   - Lo que ninguno de los dos muestra es la conversacion interna del sistema en el momento exacto en que eso ocurre.
   - Sobre la linea de vida se dibujan barras de activacion que muestran durante cuanto tiempo ese objeto esta trabajando.
 
-**Hasta ahora todos los modelos del sistema de la clinica han sido... (2/2)** — 2 vinetas.
+**Hasta ahora todos los modelos de la clinica han sido estaticos: el... (2/2)** — 2 vinetas.
 
 **El diagrama de actividad responde a otra pregunta completamente... (1/2)** — 2 vinetas.
   - Eso permite modelar el proceso completo de atencion en la clinica: el propietario llega y pregunta, la recepcionista verifica la cita, si no la tiene se decide entre esperar o reagendar, el veterinario atiende, registra la consulta y si formula medicamentos el flujo se abre en dos ramas paralelas, una de facturacion y otra de programacion del control.
@@ -28,7 +28,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **La pregunta practica es cuando usar cada uno, y la respuesta se decide... (1/2)** — 5 vinetas.
 
-**La pregunta practica es cuando usar cada uno, y la respuesta se decide... (2/2)** — 3 vinetas.
+**La pregunta practica es cuando usar cada uno, y la respuesta se decide... (2/2)** — 2 vinetas.
 
 **Estos diagramas no se inventan desde cero: se derivan de lo que ya esta...** — 4 vinetas.
   - Cada paso del flujo principal del caso de uso se convierte en uno o varios mensajes del diagrama de secuencia, en el mismo orden y con los mismos nombres del glosario canonico que se fijo en la auditoria de la clase once.

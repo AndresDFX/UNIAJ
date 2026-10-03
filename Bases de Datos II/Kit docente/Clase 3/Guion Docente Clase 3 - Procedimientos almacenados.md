@@ -289,7 +289,7 @@ Proyectar [Slide 53] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts
-Carpeta Codigo/ — archivo 03_procs_vetcare.sql.
+Carpeta Codigo/ — archivo 03_procs_clinica.sql.
 
 ## Capturas
 Carpeta `Kit docente/Clase 3/Capturas/`. Cada linea de pantallazo de arriba trae

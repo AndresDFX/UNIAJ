@@ -1,4 +1,4 @@
-package vetcare.patrones;
+package clinica.patrones;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -16,12 +16,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-/** Clase 7 de VetCare: un solo repositorio (Singleton) y una fabrica de consultas (Factory). */
-public class VetCarePatronesDemo {
+/** Clase 7 del sistema de la clinica: un solo repositorio (Singleton) y una fabrica de consultas (Factory). */
+public class ClinicaPatronesDemo {
 
     public static void main(String[] args) {
-        RepositorioVetCare a = RepositorioVetCare.getInstancia();
-        RepositorioVetCare b = RepositorioVetCare.getInstancia();
+        RepositorioClinica a = RepositorioClinica.getInstancia();
+        RepositorioClinica b = RepositorioClinica.getInstancia();
         System.out.println("Son el mismo objeto? " + (a == b));
         System.out.println("id a = " + System.identityHashCode(a)
                 + "   id b = " + System.identityHashCode(b));
@@ -49,7 +49,7 @@ public class VetCarePatronesDemo {
     }
 }
 
-/** Expediente basico de una mascota de la clinica Huellitas. */
+/** Expediente basico de una mascota de la clinica. */
 class Mascota {
 
     private final String id;
@@ -74,20 +74,20 @@ class Mascota {
     }
 }
 
-/** Singleton: unico punto de acceso a los datos en memoria de VetCare. */
-class RepositorioVetCare {
+/** Singleton: unico punto de acceso a los datos en memoria del sistema de la clinica. */
+class RepositorioClinica {
 
-    private static RepositorioVetCare instancia;
+    private static RepositorioClinica instancia;
 
     private final List<Mascota> mascotas = new ArrayList<Mascota>();
 
-    private RepositorioVetCare() {
+    private RepositorioClinica() {
         System.out.println("[Repositorio] Se creo la UNICA instancia de datos.");
     }
 
-    public static synchronized RepositorioVetCare getInstancia() {
+    public static synchronized RepositorioClinica getInstancia() {
         if (instancia == null) {
-            instancia = new RepositorioVetCare();
+            instancia = new RepositorioClinica();
         }
         return instancia;
     }
@@ -204,7 +204,7 @@ class VentanaSucursal extends JFrame {
     private final JButton btnRefrescar = new JButton("Refrescar");
 
     public VentanaSucursal(String punto) {
-        super("VetCare - " + punto);
+        super("Clinica - " + punto);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -243,7 +243,7 @@ class VentanaSucursal extends JFrame {
 
     private void registrar() {
         try {
-            RepositorioVetCare.getInstancia().registrar(new Mascota(
+            RepositorioClinica.getInstancia().registrar(new Mascota(
                     txtId.getText().trim(), txtNombre.getText().trim(), txtEspecie.getText().trim()));
             txtId.setText("");
             txtNombre.setText("");
@@ -257,12 +257,12 @@ class VentanaSucursal extends JFrame {
     private void refrescar() {
         StringBuilder sb = new StringBuilder();
         sb.append("Repositorio #")
-                .append(System.identityHashCode(RepositorioVetCare.getInstancia()))
+                .append(System.identityHashCode(RepositorioClinica.getInstancia()))
                 .append(System.lineSeparator());
-        for (Mascota m : RepositorioVetCare.getInstancia().listar()) {
+        for (Mascota m : RepositorioClinica.getInstancia().listar()) {
             sb.append(m.toString()).append(System.lineSeparator());
         }
-        sb.append("Total: ").append(RepositorioVetCare.getInstancia().total());
+        sb.append("Total: ").append(RepositorioClinica.getInstancia().total());
         area.setText(sb.toString());
     }
 }

@@ -4,7 +4,7 @@
 
 **Resumen:** Las tres funciones `api_*` con el contrato uniforme `(ok, mensaje, id_generado)` y las seis llamadas con sus valores exactos; el cliente Python con parametros ligados, `dataclass` y corte en el primer rechazo; el diagrama de secuencia con la rama de error; el blindaje de privilegios **con la prueba negativa via `SET ROLE`, que destapa el defecto central de la clase: sin `SECURITY DEFINER` el rol de la aplicacion no puede usar la API**; el contrato de integracion con la tabla de los 13 mensajes de rechazo y el veredicto honesto de idempotencia (dos de las tres operaciones absorben el reintento por accidente, `api_facturar` cobra dos veces); y el guion de sustentacion de 7 minutos con la demo de 10 sentencias, el plan B y las tres preguntas del jurado que de verdad van a hacer.
 
-> **Esta clase comparte sesion con la 11:** el lunes **2026-10-26**, 18:00 a 20:00, entran las dos. Seis preguntas no caben en lo que queda de esas dos horas, asi que lo razonable es guiar en vivo la pregunta 1 —que es donde se aprende el contrato— y dejar el resto como trabajo autonomo con fecha de cierre antes del **2026-11-16**, que es la sustentacion. **El motor es PostgreSQL, no Oracle.** Y hay que subrayar tres cosas antes de abrir el taller, porque son las que el jurado va a tocar. Primera y mas importante: **tal como esta escrita la pregunta 4, el rol `app_vetcare` no puede usar la API.** Las funciones se crean con `SECURITY INVOKER` —el valor por omision—, asi que corren con los privilegios de quien llama, y quien llama solo tiene `SELECT`: el `INSERT INTO cita` de adentro falla con «permission denied» y el `EXCEPTION WHEN OTHERS` lo devuelve como si fuera un rechazo de negocio. Falta `SECURITY DEFINER`, la rubrica no lo pide y por lo tanto no se descuenta, pero hay que decirlo en voz alta y la solucion lo demuestra con `SET ROLE`. Segunda: `api_agendar_cita` valida la franja con un `SELECT COUNT(*)`, que es **exactamente** el write skew de la Clase 10 —codigo, no restriccion—, asi que la API hereda el problema completo. Tercera: ese `EXCEPTION WHEN OTHERS` que hace elegante el contrato tambien convierte cualquier fallo de infraestructura en un mensaje de negocio, y eso es un riesgo, no una virtud. Por ultimo: la pregunta 2 es de tipo `codigo` y **no se ejecuta** —se califica leyendola—, y las preguntas 5 y 6 son sobre el PI real de cada estudiante, asi que lo que sigue es un **modelo de referencia y no una clave**. En la pregunta 2 no se aceptan credenciales escritas en el codigo: van por variables de entorno.
+> **Esta clase comparte sesion con la 11:** el lunes **2026-10-26**, 18:00 a 20:00, entran las dos. Seis preguntas no caben en lo que queda de esas dos horas, asi que lo razonable es guiar en vivo la pregunta 1 —que es donde se aprende el contrato— y dejar el resto como trabajo autonomo con fecha de cierre antes del **2026-11-16**, que es la sustentacion. **El motor es PostgreSQL, no Oracle.** Y hay que subrayar tres cosas antes de abrir el taller, porque son las que el jurado va a tocar. Primera y mas importante: **tal como esta escrita la pregunta 4, el rol `app_clinica` no puede usar la API.** Las funciones se crean con `SECURITY INVOKER` —el valor por omision—, asi que corren con los privilegios de quien llama, y quien llama solo tiene `SELECT`: el `INSERT INTO cita` de adentro falla con «permission denied» y el `EXCEPTION WHEN OTHERS` lo devuelve como si fuera un rechazo de negocio. Falta `SECURITY DEFINER`, la rubrica no lo pide y por lo tanto no se descuenta, pero hay que decirlo en voz alta y la solucion lo demuestra con `SET ROLE`. Segunda: `api_agendar_cita` valida la franja con un `SELECT COUNT(*)`, que es **exactamente** el write skew de la Clase 10 —codigo, no restriccion—, asi que la API hereda el problema completo. Tercera: ese `EXCEPTION WHEN OTHERS` que hace elegante el contrato tambien convierte cualquier fallo de infraestructura en un mensaje de negocio, y eso es un riesgo, no una virtud. Por ultimo: la pregunta 2 es de tipo `codigo` y **no se ejecuta** —se califica leyendola—, y las preguntas 5 y 6 son sobre el PI real de cada estudiante, asi que lo que sigue es un **modelo de referencia y no una clave**. En la pregunta 2 no se aceptan credenciales escritas en el codigo: van por variables de entorno.
 
 ## Alineacion con el taller
 
@@ -517,7 +517,7 @@ def _conectar():
     """Credenciales por variables de entorno, nunca en el codigo."""
     return psycopg2.connect(
         host=os.environ.get("VETCARE_HOST", "localhost"),
-        dbname=os.environ.get("VETCARE_DB", "vetcare"),
+        dbname=os.environ.get("CLINICA_DB", "clinica"),
         user=os.environ["VETCARE_USER"],
         password=os.environ["VETCARE_PASSWORD"],
     )
@@ -663,15 +663,15 @@ sequenceDiagram
 -- 1. El rol de la aplicacion
 -- NOLOGIN porque no es una persona ni un servicio que se conecte por si
 -- mismo: es el conjunto de permisos que despues se le otorga al usuario
--- real de la aplicacion con GRANT app_vetcare TO usuario_app. Separar el
+-- real de la aplicacion con GRANT app_clinica TO usuario_app. Separar el
 -- rol de permisos del usuario que se conecta es lo que permite rotar
 -- credenciales sin volver a repartir privilegios.
 -- ======================================================================
-CREATE ROLE app_vetcare NOLOGIN;
+CREATE ROLE app_clinica NOLOGIN;
 
 -- ======================================================================
 -- 2. Cerrar la puerta grande
--- Redundante hoy -- a app_vetcare nunca se le otorgo nada -- y aun asi se
+-- Redundante hoy -- a app_clinica nunca se le otorgo nada -- y aun asi se
 -- escribe, porque un script de permisos tiene que poder leerse como la
 -- DECISION de diseno y no solo como su efecto. El dia que alguien haga un
 -- GRANT ALL de apuro, esta linea al reejecutar el script lo revierte.
@@ -683,7 +683,7 @@ CREATE ROLE app_vetcare NOLOGIN;
 -- ======================================================================
 REVOKE INSERT, UPDATE, DELETE
     ON cita, consulta, factura, detalle_factura, insumo
-  FROM app_vetcare;
+  FROM app_clinica;
 
 -- ======================================================================
 -- 3. EL PUNTO QUE CASI TODOS OLVIDAN
@@ -691,7 +691,7 @@ REVOKE INSERT, UPDATE, DELETE
 -- PUBLIC. O sea que sin este REVOKE, CUALQUIER rol de la base puede
 -- llamar api_facturar y cobrarle a un cliente. El GRANT del paso 4 no
 -- sirve de nada mientras PUBLIC siga teniendo el privilegio: no se le
--- esta dando acceso a app_vetcare, se le esta quitando a todos los demas.
+-- esta dando acceso a app_clinica, se le esta quitando a todos los demas.
 --
 -- La firma tiene que ir COMPLETA y con los tipos exactos, porque las
 -- funciones se identifican por nombre + tipos de argumentos. Un
@@ -705,9 +705,9 @@ REVOKE EXECUTE ON FUNCTION api_facturar(INT, INT, INT)             FROM PUBLIC;
 -- ======================================================================
 -- 4. Otorgar EXECUTE solo al rol de la aplicacion
 -- ======================================================================
-GRANT EXECUTE ON FUNCTION api_agendar_cita(INT, INT, TIMESTAMP)      TO app_vetcare;
-GRANT EXECUTE ON FUNCTION api_registrar_consulta(INT, TEXT, NUMERIC) TO app_vetcare;
-GRANT EXECUTE ON FUNCTION api_facturar(INT, INT, INT)                TO app_vetcare;
+GRANT EXECUTE ON FUNCTION api_agendar_cita(INT, INT, TIMESTAMP)      TO app_clinica;
+GRANT EXECUTE ON FUNCTION api_registrar_consulta(INT, TEXT, NUMERIC) TO app_clinica;
+GRANT EXECUTE ON FUNCTION api_facturar(INT, INT, INT)                TO app_clinica;
 
 -- ======================================================================
 -- 5. Solo la lectura que necesita para pintar pantallas
@@ -716,7 +716,7 @@ GRANT EXECUTE ON FUNCTION api_facturar(INT, INT, INT)                TO app_vetc
 -- directamente; lo que necesite de ahi se lo devuelve una funcion, y asi
 -- la lista de precios no se puede extraer con un SELECT.
 -- ======================================================================
-GRANT SELECT ON dueno, mascota, veterinario, cita TO app_vetcare;
+GRANT SELECT ON dueno, mascota, veterinario, cita TO app_clinica;
 
 -- ======================================================================
 -- 6. Verificacion
@@ -728,7 +728,7 @@ SELECT grantee, routine_name, privilege_type
 
 SELECT grantee, table_name, privilege_type
   FROM information_schema.role_table_grants
- WHERE grantee = 'app_vetcare'
+ WHERE grantee = 'app_clinica'
  ORDER BY table_name, privilege_type;
 
 -- ======================================================================
@@ -740,9 +740,9 @@ SELECT grantee, table_name, privilege_type
 -- verificar con una sola conexion: un superusuario puede ponerse la piel
 -- de cualquier rol con SET ROLE, incluso de uno NOLOGIN.
 -- ======================================================================
-SET ROLE app_vetcare;
+SET ROLE app_clinica;
 
-SELECT current_user;                                   -- app_vetcare
+SELECT current_user;                                   -- app_clinica
 
 SELECT id_mascota, nombre, activa FROM mascota WHERE id_mascota = 1;  -- funciona
 
@@ -762,7 +762,7 @@ RESET ROLE;
 --
 -- Las funciones se crearon con SECURITY INVOKER, que es el valor por
 -- omision: la funcion corre con los privilegios de QUIEN LA LLAMA. Y
--- app_vetcare solo tiene SELECT, asi que el INSERT INTO cita de adentro
+-- app_clinica solo tiene SELECT, asi que el INSERT INTO cita de adentro
 -- se rechaza. El EXCEPTION WHEN OTHERS lo atrapa y lo devuelve como si
 -- fuera un rechazo de negocio -- el contrato se cumple, la aplicacion no
 -- ve una excepcion cruda, y precisamente por eso el problema puede vivir
@@ -783,7 +783,7 @@ ALTER FUNCTION api_facturar(INT, INT, INT)
   SECURITY DEFINER SET search_path = public, pg_temp;
 
 -- Ahora si: mismo rol, misma llamada, resultado distinto.
-SET ROLE app_vetcare;
+SET ROLE app_clinica;
 SELECT * FROM api_agendar_cita(1, 3, TIMESTAMP '2026-10-02 09:00:00');
 -- (t, 'Cita agendada', 11)
 
@@ -817,28 +817,28 @@ routine_privileges -- 6 filas
 
    grantee   |      routine_name      | privilege_type
 -------------+------------------------+----------------
- app_vetcare | api_agendar_cita       | EXECUTE
+ app_clinica | api_agendar_cita       | EXECUTE
  postgres    | api_agendar_cita       | EXECUTE
- app_vetcare | api_facturar           | EXECUTE
+ app_clinica | api_facturar           | EXECUTE
  postgres    | api_facturar           | EXECUTE
- app_vetcare | api_registrar_consulta | EXECUTE
+ app_clinica | api_registrar_consulta | EXECUTE
  postgres    | api_registrar_consulta | EXECUTE
 
-Dos filas por funcion y las dos son correctas: app_vetcare porque se le acaba de
+Dos filas por funcion y las dos son correctas: app_clinica porque se le acaba de
 otorgar, y el propietario porque un propietario conserva EXECUTE sobre lo suyo.
 El nombre del propietario depende del entorno -- en ExamLab suele ser postgres --
 y no es lo que se califica. Lo que se califica es que PUBLIC ya no aparece:
 antes del REVOKE habia una fila con el grantee vacio o PUBLIC por cada funcion, y
 esa era la puerta abierta.
 
-role_table_grants para app_vetcare -- 4 filas
+role_table_grants para app_clinica -- 4 filas
 
    grantee   | table_name  | privilege_type
 -------------+-------------+----------------
- app_vetcare | cita        | SELECT
- app_vetcare | dueno       | SELECT
- app_vetcare | mascota     | SELECT
- app_vetcare | veterinario | SELECT
+ app_clinica | cita        | SELECT
+ app_clinica | dueno       | SELECT
+ app_clinica | mascota     | SELECT
+ app_clinica | veterinario | SELECT
 
 Cuatro filas, las cuatro SELECT, y aqui esta el detalle mas fino de la pregunta:
 la evidencia del REVOKE de escritura es una ausencia. No hay ninguna fila que
@@ -851,7 +851,7 @@ Prueba negativa con SET ROLE -- lo que de verdad cierra la pregunta
 
  current_user
 --------------
- app_vetcare
+ app_clinica
 
  id_mascota |  nombre  | activa
 ------------+----------+--------
@@ -891,29 +891,29 @@ numero no es lo que se califica.
 
 Sobre el WARNING del paso 2: es esperable ver una vez por tabla
   WARNING:  no privileges could be revoked for "cita"
-porque a app_vetcare nunca se le habia otorgado nada. Es informativo, no es un
+porque a app_clinica nunca se le habia otorgado nada. Es informativo, no es un
 error, y el script continua.
 ```
 
 ### Como calificar
 
-- **2 pts — `CREATE ROLE app_vetcare NOLOGIN;`.** Se reconoce como sobresaliente explicar por que `NOLOGIN`: el rol es el paquete de permisos, no la credencial; el usuario real se conecta y recibe el paquete con `GRANT app_vetcare TO usuario_app`, y asi la contrasena se puede rotar sin volver a repartir privilegios.
+- **2 pts — `CREATE ROLE app_clinica NOLOGIN;`.** Se reconoce como sobresaliente explicar por que `NOLOGIN`: el rol es el paquete de permisos, no la credencial; el usuario real se conecta y recibe el paquete con `GRANT app_clinica TO usuario_app`, y asi la contrasena se puede rotar sin volver a repartir privilegios.
 - **2 pts — el `REVOKE INSERT, UPDATE, DELETE` sobre las cinco tablas de negocio.** Se otorga aunque sea redundante, porque el enunciado lo pide como evidencia explicita de la decision. Si el estudiante lo omite «porque no hacia falta», se descuentan los 2 pts y se le senala que un script de permisos se lee como la decision de diseno, no solo como su efecto.
 - **4 pts — el `REVOKE EXECUTE ... FROM PUBLIC` de las tres funciones con su firma exacta.** Es el punto de mas peso de la pregunta porque es el que casi todos olvidan, y sin el, el `GRANT` del paso siguiente no protege nada: **una funcion recien creada trae `EXECUTE` para `PUBLIC`**, asi que cualquier rol de la base puede llamar `api_facturar`. Se descuenta 1 pt por cada firma incompleta o con tipos que no corresponden: las funciones se identifican por nombre mas tipos de argumentos, y `api_facturar(INT, INT)` no existe.
-- **2 pts — el `GRANT EXECUTE` de las tres solo a `app_vetcare`,** y **1,5 pts el `GRANT SELECT` limitado a las cuatro tablas pedidas** —`dueno`, `mascota`, `veterinario`, `cita`— y a nada mas. Un `GRANT SELECT ON ALL TABLES` cuesta esos 1,5 pts completos: le entrega a la aplicacion la lista de precios y el stock, que es justo lo que no debe poder leer.
-- **1,5 pts — las dos consultas de verificacion devolviendo filas coherentes:** **6 filas** en `routine_privileges` —dos por funcion: `app_vetcare` y el propietario— y **4 filas** en `role_table_grants`, todas `SELECT`. Se reconoce como sobresaliente notar que **la evidencia del `REVOKE` de escritura es una ausencia**: no hay fila que diga «revocado», lo que prueba el blindaje es que no aparezca ningun `INSERT`/`UPDATE`/`DELETE` y que `PUBLIC` haya desaparecido.
+- **2 pts — el `GRANT EXECUTE` de las tres solo a `app_clinica`,** y **1,5 pts el `GRANT SELECT` limitado a las cuatro tablas pedidas** —`dueno`, `mascota`, `veterinario`, `cita`— y a nada mas. Un `GRANT SELECT ON ALL TABLES` cuesta esos 1,5 pts completos: le entrega a la aplicacion la lista de precios y el stock, que es justo lo que no debe poder leer.
+- **1,5 pts — las dos consultas de verificacion devolviendo filas coherentes:** **6 filas** en `routine_privileges` —dos por funcion: `app_clinica` y el propietario— y **4 filas** en `role_table_grants`, todas `SELECT`. Se reconoce como sobresaliente notar que **la evidencia del `REVOKE` de escritura es una ausencia**: no hay fila que diga «revocado», lo que prueba el blindaje es que no aparezca ningun `INSERT`/`UPDATE`/`DELETE` y que `PUBLIC` haya desaparecido.
 - **Los 13 pts requieren el comentario final de dos lineas** explicando por que la aplicacion no puede saltarse las validaciones. La respuesta correcta no es «porque la app siempre llama a las funciones» —eso es una promesa— sino **«porque no tiene forma fisica de escribir sin pasar por ellas»**: el permiso vive en la base, no en el codigo que alguien puede olvidar de invocar. Se reconoce como sobresaliente cerrar con la consecuencia fuerte: hasta una inyeccion SQL exitosa termina en «permission denied».
-- **Se reconoce como muy sobresaliente, sin puntos extra, la prueba negativa con `SET ROLE app_vetcare`** y el descubrimiento de que **la API tampoco funciona** por falta de `SECURITY DEFINER`. La rubrica no lo pide y por lo tanto no se descuenta a nadie, pero quien llegue ahi resolvio el hueco de diseno de todo el taller y tiene lista la respuesta a la pregunta mas probable del jurado.
+- **Se reconoce como muy sobresaliente, sin puntos extra, la prueba negativa con `SET ROLE app_clinica`** y el descubrimiento de que **la API tampoco funciona** por falta de `SECURITY DEFINER`. La rubrica no lo pide y por lo tanto no se descuenta a nadie, pero quien llegue ahi resolvio el hueco de diseno de todo el taller y tiene lista la respuesta a la pregunta mas probable del jurado.
 
 ### Errores frecuentes y que hacer
 
-- **Omitir el `REVOKE EXECUTE ... FROM PUBLIC`.** Es el error dominante y el mas costoso: el estudiante hace el `GRANT` a `app_vetcare`, ve las filas de la verificacion y concluye que blindo la API, cuando en realidad **cualquier rol de la base sigue pudiendo facturar**. Se detecta mirando si `PUBLIC` aparece todavia en `routine_privileges`.
+- **Omitir el `REVOKE EXECUTE ... FROM PUBLIC`.** Es el error dominante y el mas costoso: el estudiante hace el `GRANT` a `app_clinica`, ve las filas de la verificacion y concluye que blindo la API, cuando en realidad **cualquier rol de la base sigue pudiendo facturar**. Se detecta mirando si `PUBLIC` aparece todavia en `routine_privileges`.
 - **Firmas incompletas o con tipos equivocados en el `REVOKE` o el `GRANT`:** `api_facturar(INT, INT)`, o `api_registrar_consulta(INT, VARCHAR, NUMERIC)` cuando el parametro es `TEXT`. Falla con «function ... does not exist» y el estudiante suele culpar al `REVOKE`. Las funciones se identifican por nombre **mas** tipos de argumentos.
-- **`GRANT SELECT ON ALL TABLES IN SCHEMA public TO app_vetcare;`** en vez de las cuatro tablas. Es mas rapido de escribir y contradice el objetivo entero: le entrega a la aplicacion `insumo` —la lista de precios y el stock— y `factura`. Se detecta contando filas en la segunda verificacion: tienen que ser 4.
+- **`GRANT SELECT ON ALL TABLES IN SCHEMA public TO app_clinica;`** en vez de las cuatro tablas. Es mas rapido de escribir y contradice el objetivo entero: le entrega a la aplicacion `insumo` —la lista de precios y el stock— y `factura`. Se detecta contando filas en la segunda verificacion: tienen que ser 4.
 - **Interpretar el `WARNING: no privileges could be revoked for "cita"` como un fallo** y empezar a cambiar el script. Es informativo: avisa que no habia nada que quitar, que es justo lo que se queria confirmar. El script sigue corriendo.
 - **Dar `LOGIN` y contrasena al rol** «para poder probarlo». No hace falta y empeora la postura de seguridad: con `SET ROLE` se prueba desde la misma sesion, sin crear una credencial mas que despues hay que administrar.
 - **Un comentario final que promete en vez de explicar:** «la app no se puede saltar las validaciones porque siempre usa las funciones». Eso es una convencion de equipo, y las convenciones se rompen con un desarrollador nuevo. Lo que se pide es el argumento de imposibilidad: sin `INSERT`, no hay camino.
-- **Concluir que la pregunta esta cerrada sin haber intentado usar la API como `app_vetcare`.** No cuesta puntos, pero deja pasar el hueco de `SECURITY INVOKER`: el rol tiene todos los permisos que el enunciado pide y aun asi **no puede agendar una cita**. Vale la pena mostrarlo en clase, porque es la diferencia entre configurar permisos y verificarlos.
+- **Concluir que la pregunta esta cerrada sin haber intentado usar la API como `app_clinica`.** No cuesta puntos, pero deja pasar el hueco de `SECURITY INVOKER`: el rol tiene todos los permisos que el enunciado pide y aun asi **no puede agendar una cita**. Vale la pena mostrarlo en clase, porque es la diferencia entre configurar permisos y verificarlos.
 
 ---
 
@@ -1099,7 +1099,7 @@ Tres niveles, en este orden, y decididos **antes** de subir:
 
 **1. «Si la aplicacion solo tiene `EXECUTE`, ¿como escribe la funcion en las tablas?»** *(la mas probable, y la que descubre el hueco)*
 
-Con `SECURITY INVOKER`, que es el valor por omision, **no puede**: la funcion corre con los privilegios de quien llama y el `INSERT` de adentro devuelve «permission denied for table cita», que el `EXCEPTION WHEN OTHERS` disfraza de rechazo de negocio. La correccion es `ALTER FUNCTION api_* SECURITY DEFINER SET search_path = public, pg_temp`, para que la funcion corra con los privilegios de su propietario; el `search_path` fijo es obligatorio, porque una funcion `SECURITY DEFINER` con el camino abierto se puede enganar. Lo verifique con `SET ROLE app_vetcare` antes y despues.
+Con `SECURITY INVOKER`, que es el valor por omision, **no puede**: la funcion corre con los privilegios de quien llama y el `INSERT` de adentro devuelve «permission denied for table cita», que el `EXCEPTION WHEN OTHERS` disfraza de rechazo de negocio. La correccion es `ALTER FUNCTION api_* SECURITY DEFINER SET search_path = public, pg_temp`, para que la funcion corra con los privilegios de su propietario; el `search_path` fijo es obligatorio, porque una funcion `SECURITY DEFINER` con el camino abierto se puede enganar. Lo verifique con `SET ROLE app_clinica` antes y despues.
 
 **2. «¿Que pasa si dos recepcionistas agendan la misma franja al mismo tiempo?»** *(concurrencia)*
 
@@ -1112,7 +1112,7 @@ No todavia, y prefiero decirlo: el plan esta escrito con RPO de 15 minutos y RTO
 ### Checklist de empaquetado
 
 ```
-vetcare-db-<apellido>.zip
+clinica-db-<apellido>.zip
   LEEME.md                      <- como correr todo, en 10 lineas
   db/
     01_ddl.sql                  <- tablas, PK, FK, CHECK
@@ -1124,7 +1124,7 @@ vetcare-db-<apellido>.zip
     07_privilegios_api.sql      <- REVOKE FROM PUBLIC + GRANT EXECUTE
     08_datos_demo.sql           <- la siembra de la demo
   app/
-    vetcare_datos.py            <- la capa de la pregunta 2
+    clinica_datos.py            <- la capa de la pregunta 2
   informe/                      <- 01-modelo-er.md ... 14-orden-de-scripts.md
   demo/
     demo.sql                    <- las 10 sentencias en orden
@@ -1167,13 +1167,13 @@ Te falta el `RETURN;` desnudo detras del `RETURN QUERY` del rechazo. Es el error
 
 Porque no lo es. `CALL` sirve para procedimientos —los `sp_*` de la Clase 8— y aqui son **funciones** que devuelven una tabla, asi que se consumen en el `FROM`: `SELECT * FROM api_agendar_cita(1, 2, TIMESTAMP '2026-10-01 09:00:00');`. La confusion es normal porque en la Clase 8 todo era `CALL`. Y hay una razon de diseno detras del cambio: un procedimiento no puede devolver una fila de resultado a la aplicacion de forma comoda, y todo el contrato `(ok, mensaje, id_generado)` depende precisamente de eso.
 
-**Hice todo lo de la pregunta 4 y `app_vetcare` sigue sin poder agendar. ¿Que me falta?**
+**Hice todo lo de la pregunta 4 y `app_clinica` sigue sin poder agendar. ¿Que me falta?**
 
-**Nada de lo que pide el enunciado: te falta algo que el enunciado no pide.** Y es el hallazgo mas importante de la clase. Las funciones se crearon con `SECURITY INVOKER`, que es el valor por omision, y eso significa que corren con los privilegios de **quien las llama**. `app_vetcare` solo tiene `SELECT`, asi que el `INSERT INTO cita` de adentro se rechaza con «permission denied for table cita», el `EXCEPTION WHEN OTHERS` lo atrapa, y tu aplicacion recibe un `ok = false` con ese texto como si fuera un rechazo de negocio. La correccion son tres lineas: `ALTER FUNCTION api_agendar_cita(INT, INT, TIMESTAMP) SECURITY DEFINER SET search_path = public, pg_temp;` y lo equivalente para las otras dos. El `search_path` fijo no es opcional: una funcion `SECURITY DEFINER` con el camino abierto se puede enganar creando una tabla `cita` en otro esquema. Compruebalo con `SET ROLE app_vetcare;` antes y despues.
+**Nada de lo que pide el enunciado: te falta algo que el enunciado no pide.** Y es el hallazgo mas importante de la clase. Las funciones se crearon con `SECURITY INVOKER`, que es el valor por omision, y eso significa que corren con los privilegios de **quien las llama**. `app_clinica` solo tiene `SELECT`, asi que el `INSERT INTO cita` de adentro se rechaza con «permission denied for table cita», el `EXCEPTION WHEN OTHERS` lo atrapa, y tu aplicacion recibe un `ok = false` con ese texto como si fuera un rechazo de negocio. La correccion son tres lineas: `ALTER FUNCTION api_agendar_cita(INT, INT, TIMESTAMP) SECURITY DEFINER SET search_path = public, pg_temp;` y lo equivalente para las otras dos. El `search_path` fijo no es opcional: una funcion `SECURITY DEFINER` con el camino abierto se puede enganar creando una tabla `cita` en otro esquema. Compruebalo con `SET ROLE app_clinica;` antes y despues.
 
-**¿Puedo probar los permisos si `app_vetcare` es `NOLOGIN` y en ExamLab hay una sola conexion?**
+**¿Puedo probar los permisos si `app_clinica` es `NOLOGIN` y en ExamLab hay una sola conexion?**
 
-Si, y es la diferencia con la Clase 10. Un superusuario puede ponerse la piel de cualquier rol con `SET ROLE app_vetcare;` —tambien de uno `NOLOGIN`—, hacer las pruebas y volver con `RESET ROLE;`. Asi que aqui **si** se puede verificar de verdad: un `INSERT INTO cita` tiene que fallar con «permission denied» y un `SELECT` sobre `mascota` tiene que funcionar. Aprovechalo, porque es la unica prueba negativa del curso que el entorno permite ejecutar. Y no crees un rol con `LOGIN` y contrasena «para poder probar»: no hace falta y es una credencial mas que administrar.
+Si, y es la diferencia con la Clase 10. Un superusuario puede ponerse la piel de cualquier rol con `SET ROLE app_clinica;` —tambien de uno `NOLOGIN`—, hacer las pruebas y volver con `RESET ROLE;`. Asi que aqui **si** se puede verificar de verdad: un `INSERT INTO cita` tiene que fallar con «permission denied» y un `SELECT` sobre `mascota` tiene que funcionar. Aprovechalo, porque es la unica prueba negativa del curso que el entorno permite ejecutar. Y no crees un rol con `LOGIN` y contrasena «para poder probar»: no hace falta y es una credencial mas que administrar.
 
 **¿Por que la llamada 3 registra la consulta de la cita **1** y no de la 11 que acabo de crear?**
 
@@ -1189,14 +1189,14 @@ No, y conviene ser categorico: **es la unica prohibicion de la pregunta 2 que cu
 
 **El `REVOKE` del paso 2 de la pregunta 4 me saca un `WARNING`. ¿Esta mal?**
 
-No. `WARNING: no privileges could be revoked for "cita"` significa que a `app_vetcare` nunca se le habia otorgado nada sobre esa tabla, que es exactamente lo que querias confirmar. Es informativo, aparece una vez por tabla y el script sigue corriendo. La sentencia se escribe igual, y el enunciado explica por que: un script de permisos tiene que poder leerse como la **decision** de diseno y no solo como su efecto. El dia que alguien haga un `GRANT ALL` de apuro, esa linea lo revierte al reejecutar el script.
+No. `WARNING: no privileges could be revoked for "cita"` significa que a `app_clinica` nunca se le habia otorgado nada sobre esa tabla, que es exactamente lo que querias confirmar. Es informativo, aparece una vez por tabla y el script sigue corriendo. La sentencia se escribe igual, y el enunciado explica por que: un script de permisos tiene que poder leerse como la **decision** de diseno y no solo como su efecto. El dia que alguien haga un `GRANT ALL` de apuro, esa linea lo revierte al reejecutar el script.
 
 ---
 
 ## Cierre de la clase
 
 - Al terminar, cada estudiante debe tener: las **tres funciones `api_*`** con el contrato literal `(ok, mensaje, id_generado)` y las seis llamadas devolviendo `11 / rechazo / 5 / rechazo / 4 / rechazo` **sin una sola excepcion**; el **cliente Python** con parametros ligados, `dataclass` y `flujo_atencion` cortando en el primer `ok = false`; el **diagrama de secuencia** con los cuatro participantes, el `alt` del corte y ninguna flecha de la app a las tablas; el **script de privilegios** con el `REVOKE EXECUTE ... FROM PUBLIC` —6 filas y 4 filas en las verificaciones—; el **contrato de integracion** con los tres bloques de siete puntos, la tabla de rechazos y el veredicto de idempotencia; y el **guion de sustentacion** de 7 minutos con la demo de 10 sentencias y el plan B de tres niveles.
-- Cuatro comprobaciones rapidas antes de cerrar, todas de leer y contar. Que cada llamada `api_*` devuelva **exactamente una fila** —dos filas significan que falta un `RETURN;` y que la funcion hizo el `INSERT` que decia estar rechazando—. Que en el archivo Python **no haya ni una f-string dentro del SQL** ni la palabra `INSERT`. Que el diagrama **renderice** y que ninguna flecha vaya de `APP` a `DB`. Y que el `REVOKE EXECUTE ... FROM PUBLIC` este, con las tres firmas completas: sin el, el `GRANT` a `app_vetcare` no protege nada, porque una funcion recien creada trae `EXECUTE` para todo el mundo.
+- Cuatro comprobaciones rapidas antes de cerrar, todas de leer y contar. Que cada llamada `api_*` devuelva **exactamente una fila** —dos filas significan que falta un `RETURN;` y que la funcion hizo el `INSERT` que decia estar rechazando—. Que en el archivo Python **no haya ni una f-string dentro del SQL** ni la palabra `INSERT`. Que el diagrama **renderice** y que ninguna flecha vaya de `APP` a `DB`. Y que el `REVOKE EXECUTE ... FROM PUBLIC` este, con las tres firmas completas: sin el, el `GRANT` a `app_clinica` no protege nada, porque una funcion recien creada trae `EXECUTE` para todo el mundo.
 - El mensaje de la clase es el de la pregunta 4, y conviene decirlo con las dos mitades. La primera es la que se buscaba: **el permiso hace imposible lo que la disciplina solo hace improbable.** La aplicacion no se salta las validaciones no porque el equipo se haya comprometido a llamar las funciones, sino porque sin `INSERT` **no tiene camino** —y eso vale igual para un bug, para un desarrollador nuevo o para una inyeccion SQL exitosa, que terminan todas en «permission denied»—. La segunda mitad es la incomoda, y es lo mejor que se llevan de hoy: al probarlo con `SET ROLE` resulta que **la API tampoco funciona**, porque falta `SECURITY DEFINER`, y el `EXCEPTION WHEN OTHERS` que hace tan elegante el contrato disfraza ese fallo de configuracion como si fuera un rechazo de negocio. Un permiso configurado y no verificado es una suposicion, igual que el respaldo que nunca se restauro. El **2026-11-09** es el Parcial 3 y el **2026-11-16** hay que sustentar: la pregunta 1 del jurado ya esta escrita en esta clase, y tambien su respuesta.
 
 ---

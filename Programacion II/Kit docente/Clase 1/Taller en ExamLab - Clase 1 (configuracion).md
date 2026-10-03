@@ -47,7 +47,7 @@ Mascota M-003 -> Rocky (canino, 9 anios), dueno: Luisa Perez
 
 > Escribimos `anios` y `dueno` sin tilde ni ene a proposito: asi la salida de consola es identica en cualquier maquina y se puede comparar caracter por caracter.
 
-> En VS Code usted tendra `Mascota.java` y la clase de arranque en archivos separados dentro del paquete `vetcare`. En ExamLab todo va en un solo archivo: la clase publica `Main` con el `main` y debajo `Mascota` sin `public`.
+> En VS Code usted tendra `Mascota.java` y la clase de arranque en archivos separados dentro del paquete `clinica`. En ExamLab todo va en un solo archivo: la clase publica `Main` con el `main` y debajo `Mascota` sin `public`.
 
 **Lenguaje:** `java`
 
@@ -63,7 +63,7 @@ public class Main {
     }
 }
 
-// En su proyecto esta clase va en su propio archivo Mascota.java, dentro del paquete vetcare.
+// En su proyecto esta clase va en su propio archivo Mascota.java, dentro del paquete clinica.
 // En ExamLab la dejamos en el mismo archivo, sin la palabra public.
 class Mascota {
 
@@ -82,7 +82,7 @@ class Mascota {
 
 **Rubrica esperada (campo Rubrica):**
 
-Los cinco atributos son private y el constructor los inicializa todos con this. Existen los getters pedidos y toString() esta sobreescrito con @Override. El main crea DOS objetos distintos de la misma clase y la salida coincide caracter por caracter con las dos lineas pedidas (nunca algo como vetcare.Mascota@6d06d69c).
+Los cinco atributos son private y el constructor los inicializa todos con this. Existen los getters pedidos y toString() esta sobreescrito con @Override. El main crea DOS objetos distintos de la misma clase y la salida coincide caracter por caracter con las dos lineas pedidas (nunca algo como clinica.Mascota@6d06d69c).
 
 ---
 
@@ -188,7 +188,7 @@ setEdad valida el rango 0 a 30 antes de asignar. Tras el intento con -2 el atrib
 Un compañero ejecuta su proyecto VetCare y en la consola de VS Code aparece:
 
 ```
-vetcare.Mascota@6d06d69c
+clinica.Mascota@6d06d69c
 ```
 
 Su clase `Mascota` tiene los atributos privados, el constructor completo y los getters. El objeto fue creado sin errores.
@@ -280,7 +280,7 @@ Responda las tres partes. Sea breve y concreto.
 **(a) Entorno funcionando (obligatorio).** Escriba:
 - La version del JDK que le devuelve `java -version` en la terminal.
 - La version de VS Code y del Extension Pack for Java que instalo.
-- El nombre del proyecto y del paquete que creo (debe ser proyecto `VetCare`, paquete `vetcare`) y la ruta donde quedo en su disco.
+- El nombre del proyecto y del paquete que creo (debe ser proyecto `VetCare`, paquete `clinica`) y la ruta donde quedo en su disco.
 
 **(b) Clase y objeto.** Explique con las fichas M-001 Firulais y M-003 Rocky la diferencia entre la **clase** `Mascota` y un **objeto** `Mascota`. Use la palabra *molde* y diga cuantos moldes y cuantos objetos hay en su programa.
 

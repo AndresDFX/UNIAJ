@@ -39,65 +39,65 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **La forma de integrar sin sufrir es por goteo y no de un solo golpe (2/2)** — 3 vinetas.
 
-**VetCareApp.java — class VetCareApp** — 18 vinetas.
+**ClinicaApp.java — class ClinicaApp** — 18 vinetas.
 
-**VetCareApp.java — VetCareApp()** — 16 vinetas.
+**ClinicaApp.java — ClinicaApp()** — 16 vinetas.
 
-**VetCareApp.java — construirInterfaz() (1/2)** — 20 vinetas.
+**ClinicaApp.java — construirInterfaz() (1/2)** — 20 vinetas.
 
-**VetCareApp.java — construirInterfaz() (2/2)** — 12 vinetas.
+**ClinicaApp.java — construirInterfaz() (2/2)** — 12 vinetas.
 
-**VetCareApp.java — registrarMascota()** — 13 vinetas.
+**ClinicaApp.java — registrarMascota()** — 13 vinetas.
 
-**VetCareApp.java — buscarPorId()** — 11 vinetas.
+**ClinicaApp.java — buscarPorId()** — 11 vinetas.
 
-**VetCareApp.java — refrescarTabla()** — 8 vinetas.
+**ClinicaApp.java — refrescarTabla()** — 8 vinetas.
 
-**VetCareApp.java — limpiarFormulario()** — 7 vinetas.
+**ClinicaApp.java — limpiarFormulario()** — 7 vinetas.
 
-**VetCareApp.java — cerrarGuardando()** — 16 vinetas.
+**ClinicaApp.java — cerrarGuardando()** — 16 vinetas.
 
-**VetCareApp.java — main()** — 9 vinetas.
+**ClinicaApp.java — main()** — 9 vinetas.
 
 **class DatosInvalidosException · DatosInvalidosException() · class Mascota** — 17 vinetas.
 
-**VetCareApp.java — Mascota()** — 8 vinetas.
+**ClinicaApp.java — Mascota()** — 8 vinetas.
 
-**VetCareApp.java — ficha()** — 7 vinetas.
+**ClinicaApp.java — ficha()** — 7 vinetas.
 
-**VetCareApp.java — class ServicioVetCare** — 7 vinetas.
+**ClinicaApp.java — class ServicioClinica** — 7 vinetas.
 
-**VetCareApp.java — ServicioVetCare()** — 4 vinetas.
+**ClinicaApp.java — ServicioClinica()** — 4 vinetas.
 
-**VetCareApp.java — cargarDesdeArchivo()** — 6 vinetas.
+**ClinicaApp.java — cargarDesdeArchivo()** — 6 vinetas.
 
-**VetCareApp.java — guardarEnArchivo()** — 4 vinetas.
+**ClinicaApp.java — guardarEnArchivo()** — 4 vinetas.
 
-**VetCareApp.java — listar()** — 4 vinetas.
+**ClinicaApp.java — listar()** — 4 vinetas.
 
-**VetCareApp.java — buscarPorId()** — 12 vinetas.
+**ClinicaApp.java — buscarPorId()** — 12 vinetas.
 
-**VetCareApp.java — registrar() (1/2)** — 20 vinetas.
+**ClinicaApp.java — registrar() (1/2)** — 20 vinetas.
 
-**VetCareApp.java — registrar() (2/2)** — 6 vinetas.
+**ClinicaApp.java — registrar() (2/2)** — 6 vinetas.
 
-**VetCareApp.java — siguienteId() (1/2)** — 20 vinetas.
+**ClinicaApp.java — siguienteId() (1/2)** — 20 vinetas.
 
-**VetCareApp.java — siguienteId() (2/2)** — 1 vinetas.
+**ClinicaApp.java — siguienteId() (2/2)** — 1 vinetas.
 
-**VetCareApp.java — class RepositorioMascotasCSV** — 8 vinetas.
+**ClinicaApp.java — class RepositorioMascotasCSV** — 8 vinetas.
 
-**VetCareApp.java — RepositorioMascotasCSV()** — 4 vinetas.
+**ClinicaApp.java — RepositorioMascotasCSV()** — 4 vinetas.
 
-**VetCareApp.java — rutaAbsoluta()** — 4 vinetas.
+**ClinicaApp.java — rutaAbsoluta()** — 4 vinetas.
 
-**VetCareApp.java — guardar()** — 15 vinetas.
+**ClinicaApp.java — guardar()** — 15 vinetas.
 
-**VetCareApp.java — cargar() (1/2)** — 20 vinetas.
+**ClinicaApp.java — cargar() (1/2)** — 20 vinetas.
 
-**VetCareApp.java — cargar() (2/2)** — 15 vinetas.
+**ClinicaApp.java — cargar() (2/2)** — 15 vinetas.
 
-**VetCareApp.java — limpiar()** — 8 vinetas.
+**ClinicaApp.java — limpiar()** — 8 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente corre el guion de humo completo (abrir, registrar, buscar, cerrar, reabrir) y luego pone un breakpoint en el botón Registrar para mostrar con el debugger por qué una edad vacía estaba entrando como cero.
@@ -118,14 +118,14 @@ Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: El docente corre el guion de humo completo (abrir, registrar, buscar, cerrar, reabrir) y luego pone un breakpoint en el botón Registrar para mostrar con el debugger por qué una edad vacía estaba entrando como cero.
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
-`Kit docente/Clase 12/Codigo/VetCareApp.java`
+`Kit docente/Clase 12/Codigo/ClinicaApp.java`
 
 ### 60-105 · Taller guiado (opcional) = avance del PI
 Opcional: no tiene lamina en el deck. La guia esta en
 `Clases/Clase 12 - Integracion de modulos/Taller PI - Clase 12 - VetCare.docx`; si hoy no se hace, se extiende la demo y la practica libre.
 **Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
-1. Organice el proyecto en los paquetes vetcare.modelo, vetcare.datos, vetcare.logica y vetcare.ui, deje un único método main en la clase de arranque, elimine cualquier otro main que haya quedado de los talleres anteriores y verifique que la aplicación abre desde ese único punto.
+1. Organice el proyecto en los paquetes clinica.modelo, clinica.datos, clinica.logica y clinica.ui, deje un único método main en la clase de arranque, elimine cualquier otro main que haya quedado de los talleres anteriores y verifique que la aplicación abre desde ese único punto.
 2. Asegure una sola instancia: cree el repositorio y el servicio en el main y páselos por constructor a la ventana; ponga un breakpoint en el botón Registrar y otro en el cierre, y compruebe en la ventana Variables que el objeto servicio tiene el mismo identificador en ambos puntos.
 3. Corra el guion de humo de cinco pasos (abrir con datos, registrar, buscar por ID, cerrar guardando, reabrir y verificar) y anote en qué paso exacto falla y con qué mensaje; si pasa completo a la primera, dañe una línea de mascotas.csv y vuelva a correrlo.
 4. Depure el primer defecto con el debugger: breakpoint en el manejador del botón, registre el valor real de cada campo del formulario antes de llegar al servicio, identifique en qué capa se corrompe el dato y aplique la corrección; deje la evidencia en la bitácora.

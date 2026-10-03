@@ -788,9 +788,7 @@ TEMAS[3] = {
                  "normas colombianas que no existen. Lo escribe con el mismo tono que lo verdadero: "
                  "**no hay señal de que está inventando**."),
                 ("aclaracion",
-                 "**Por eso el entregable de hoy incluye el prompt y la corrección.** Se califica "
-                 "lo que ustedes detectaron que estaba mal. Un texto de IA pegado sin correcciones "
-                 "no puntúa, y no por castigo: es que no muestra ningún trabajo de ingeniería."),
+                 "**Por eso, al usar IA, se guardan el prompt y la corrección.** Lo valioso es lo que ustedes detectaron que estaba mal. Un texto de IA pegado sin correcciones no vale nada, y no por castigo: es que no muestra ningún trabajo de ingeniería."),
             ],
         },
     ],

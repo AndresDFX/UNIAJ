@@ -24,80 +24,84 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 7] Integracion continua: el problema que resuelve, en definicion operativa (1/2)** — 3 vinetas.
-  - Conviene decir el reparto al abrir la clase, porque las dos preguntas que el grupo subestima, la 8 y la 10, valen juntas mas que el YAML.
-  - (Sobre la actividad, no se proyecta) Lo que se califica hoy son 25 de los 100 puntos de la actividad del Corte 2, en cuatro preguntas: 10 puntos el contenido completo del ci.yml, 5 explicar que hace de verdad la construccion y la prueba y con que condicion el pipeline debe fallar, 4 distinguir CI de CD y ubicar hasta donde llego el propio trabajo, y 6 la tabla de senales de monitoreo con umbral.
+**[Slide 7] Integracion continua: el problema que resuelve, en definicion operativa** — 4 vinetas.
+  - (No se proyecta) Esta clase junta dos temas que parecen distintos y son el mismo asunto en dos momentos: automatizar la verificacion antes de que un cambio llegue a los usuarios, y observar el sistema despues de que llego.
+  - (No se proyecta) Lo que se califica hoy son 25 de los 100 puntos de la actividad del Corte 2, en cuatro preguntas: 10 puntos el contenido completo del ci.yml, 5 explicar que hace de verdad la construccion y la prueba y con que condicion el pipeline debe fallar, 4 distinguir CI de CD y ubicar hasta donde llego el propio trabajo, y 6 la tabla de senales de monitoreo con umbral.
+  - (No se proyecta) Conviene decir el reparto al abrir la clase, porque las dos preguntas que el grupo subestima, la 8 y la 10, valen juntas mas que el YAML.
 
-**[Slide 8] Integracion continua: el problema que resuelve, en definicion operativa (2/2)** — 2 vinetas.
-
-**[Slide 9] Entrega continua y despliegue continuo: la sigla CD es ambigua** — 5 vinetas.
+**[Slide 8] Entrega continua y despliegue continuo: la sigla CD es ambigua** — 5 vinetas.
   - Entrega continua significa que cada cambio que pasa la validacion queda listo para desplegarse, empaquetado y probado, pero un humano decide cuando se aprieta el boton.
   - El pipeline llega hasta «listo para desplegar» y la etapa final imprime un mensaje y publica un artefacto en lugar de subir a un servidor real.
-  - Hay que decirlo explicito: lo simulado es el ultimo paso, no el pipeline; todo lo anterior es real y ejecutable.
-  - (Sobre la actividad, no se proyecta) Y hay que anunciar como se califica esa frontera, porque es contraintuitivo para el estudiante que cree que reconocer un limite es admitir una carencia: la pregunta 9 SUMA un punto por ubicar correctamente el propio trabajo y decir que llega hasta «listo para desplegar», y DESCUENTA la mitad de la pregunta a quien afirme haber construido CD.
+  - (No se proyecta) Hay que decirlo explicito: lo simulado es el ultimo paso, no el pipeline; todo lo anterior es real y ejecutable.
+  - (No se proyecta) Y hay que anunciar como se califica esa frontera, porque es contraintuitivo para el estudiante que cree que reconocer un limite es admitir una carencia: la pregunta 9 SUMA un punto por ubicar correctamente el propio trabajo y decir que llega hasta «listo para desplegar», y DESCUENTA la mitad de la pregunta a quien afirme haber construido CD.
 
-**[Slide 10] GitHub Actions en cinco palabras (1/2)** — 5 vinetas.
+**[Slide 9] GitHub Actions en cinco palabras** — 6 vinetas.
   - Su vocabulario tiene cinco palabras.
+  - (No se proyecta) Advertencias: el YAML se indenta con espacios y nunca con tabulaciones, causa numero uno de un pipeline que no arranca; y en el nivel gratuito los repositorios publicos tienen minutos ilimitados mientras los privados tienen una cuota del orden de 2000 minutos al mes, cifra que conviene confirmar en la pagina de facturacion porque el proveedor la cambia.
 
-**[Slide 11] GitHub Actions en cinco palabras (2/2)** — 3 vinetas.
+**[Slide 10] Los tres bloques de un workflow, y el orden de los pasos** — 5 vinetas.
+  - (No se proyecta) Un punto y medio es el ENTORNO de ejecucion, la clave runs-on, tipicamente ubuntu-latest; es el bloque que el estudiante omite mas y el mas facil de recuperar.
+  - (No se proyecta) Y un punto es la coherencia con el Dockerfile del Corte 1: la misma imagen y el mismo puerto, es decir cloudlite-api con su etiqueta 0.1.0 y el 8080 del EXPOSE de la Clase 3.
+  - (No se proyecta) Falta la sancion, que conviene anunciar dos veces: la pregunta vale CERO completa si aparece un secreto escrito en claro dentro del YAML, sin importar lo bien que este el resto.
+  - (No se proyecta) Es la misma politica que el estudiante escribio en la pregunta 3 del Corte 2, y esta es la clase donde se comprueba si la cumple.
 
-**[Slide 12] Los tres bloques de un workflow, y el orden de los pasos (1/2)** — 5 vinetas.
-  - (Sobre la actividad, no se proyecta) Falta la sancion, que conviene anunciar dos veces: la pregunta vale CERO completa si aparece un secreto escrito en claro dentro del YAML, sin importar lo bien que este el resto.
-  - (Sobre la actividad, no se proyecta) Es la misma politica que el estudiante escribio en la pregunta 3 del Corte 2, y esta es la clase donde se comprueba si la cumple.
-
-**[Slide 13] Los tres bloques de un workflow, y el orden de los pasos (2/2)** — 2 vinetas.
-
-**[Slide 14] Monitorear y observar: la segunda mitad cambia de lado (1/2)** — 5 vinetas.
+**[Slide 11] Monitorear y observar: la segunda mitad cambia de lado (1/2)** — 4 vinetas.
   - Se apoya en tres tipos de senal.
+  - (No se proyecta) La segunda mitad de la clase cambia de lado: ya no se trata de validar antes, sino de saber que pasa despues.
+  - (No se proyecta) Las trazas siguen el recorrido de una sola peticion por varios servicios y son necesarias porque la Clase 4 convirtio el sistema en distribuido: cuando la peticion pasa por la API y por el servicio de notificaciones, saber cual de los dos tardo es imposible con metricas agregadas.
 
-**[Slide 15] Monitorear y observar: la segunda mitad cambia de lado (2/2)** — 3 vinetas.
+**[Slide 12] Monitorear y observar: la segunda mitad cambia de lado (2/2)** — 4 vinetas.
 
-**[Slide 16] Las cuatro senales de oro, con definicion operativa (1/2)** — 6 vinetas.
-  - Errores es la proporcion de peticiones que fallan, tipicamente el porcentaje de respuestas 5xx; conviene expresarlo como disponibilidad, y aqui hay aritmetica que el docente debe citar: 99,9 por ciento equivale a unos 43 minutos de indisponibilidad al mes y 99,99 por ciento a unos 4 minutos, lo cual no es convencion sino calculo sobre los 43.200 minutos de un mes de treinta dias.
+**[Slide 13] Las cuatro senales de oro, con definicion operativa (1/2)** — 6 vinetas.
+  - (No se proyecta) Errores es la proporcion de peticiones que fallan, tipicamente el porcentaje de respuestas 5xx; conviene expresarlo como disponibilidad, y aqui hay aritmetica que el docente debe citar: 99,9 por ciento equivale a unos 43 minutos de indisponibilidad al mes y 99,99 por ciento a unos 4 minutos, lo cual no es convencion sino calculo sobre los 43.200 minutos de un mes de treinta dias.
 
-**[Slide 17] Las cuatro senales de oro, con definicion operativa (2/2)** — 3 vinetas.
+**[Slide 14] Las cuatro senales de oro, con definicion operativa (2/2)** — 3 vinetas.
 
-**[Slide 18] La tabla de senales, con sus tres columnas (1/2)** — 5 vinetas.
+**[Slide 15] La tabla de senales, con sus tres columnas (1/2)** — 4 vinetas.
   - «Medimos la latencia» no permite decidir nada
-  - Una tabla de referencia para CloudLite, que el docente puede llenar en vivo: latencia p95 del inicio de sesion y del listado principal, con objetivo bajo 300 milisegundos; peticiones por minuto en la hora pico, con un valor esperado que sirva de linea base; porcentaje de respuestas 5xx, con alerta sobre el 1 por ciento sostenido; uso del pool de conexiones, con alerta sobre el 80 por ciento; y la fila que casi nadie escribe y vale un punto, un REGISTRO: el log estructurado de cada reserva rechazada y de cada intento de inicio de sesion fallido, con identificador de peticion, ruta y codigo, cuyo umbral es un evento observable, por ejemplo mas de cinco fallos del mismo usuario en diez minutos se revisa.
-  - Conviene proyectar esa fila y decir «esta es la que falta en el 80 por ciento de las entregas».
   - Esa accion no es una cuarta columna: se escribe dentro del umbral, como en el ejemplo del listado.
-  - Ahi entra la optimizacion de la segunda mitad del tema: paginar, con veinte a cincuenta elementos por pagina, porque un endpoint que devuelve cincuenta mil registros es problema de latencia y de memoria; indexar la columna por la que se filtra, porque sin indice el motor recorre la tabla completa; cachear lecturas repetidas, donde una tasa de acierto del 90 por ciento significa que nueve de cada diez lecturas no llegan a la base; y limitar la tasa de peticiones, el control de denegacion de servicio de la Clase 6.
   - La fila tiene senal, objeto concreto del dominio y una accion atada al umbral.
-  - (Sobre la actividad, no se proyecta) El reparto de sus 6 puntos es un punto por senal bien formada con su umbral hasta la cuarta, hasta un punto adicional entre las senales quinta y sexta, y un punto por que al menos una sea un registro.
+  - (No se proyecta) El reparto de sus 6 puntos es un punto por senal bien formada con su umbral hasta la cuarta, hasta un punto adicional entre las senales quinta y sexta, y un punto por que al menos una sea un registro.
+  - (No se proyecta) El umbral puede ser discutible, y hay que decir que se acepta discutible: lo que no puede es faltar.
+  - (No se proyecta) Una tabla de referencia para CloudLite, que el docente puede llenar en vivo: latencia p95 del inicio de sesion y del listado principal, con objetivo bajo 300 milisegundos; peticiones por minuto en la hora pico, con un valor esperado que sirva de linea base; porcentaje de respuestas 5xx, con alerta sobre el 1 por ciento sostenido; uso del pool de conexiones, con alerta sobre el 80 por ciento; y la fila que casi nadie escribe y vale un punto, un REGISTRO: el log estructurado de cada reserva rechazada y de cada intento de inicio de sesion fallido, con identificador de peticion, ruta y codigo, cuyo umbral es un evento observable, por ejemplo mas de cinco fallos del mismo usuario en diez minutos se revisa.
+  - (No se proyecta) Conviene proyectar esa fila y decir «esta es la que falta en el 80 por ciento de las entregas».
+  - (No se proyecta) Ahi entra la optimizacion de la segunda mitad del tema: paginar, con veinte a cincuenta elementos por pagina, porque un endpoint que devuelve cincuenta mil registros es problema de latencia y de memoria; indexar la columna por la que se filtra, porque sin indice el motor recorre la tabla completa; cachear lecturas repetidas, donde una tasa de acierto del 90 por ciento significa que nueve de cada diez lecturas no llegan a la base; y limitar la tasa de peticiones, el control de denegacion de servicio de la Clase 6.
 
-**[Slide 19] La tabla de senales, con sus tres columnas (2/2)** — 6 vinetas.
+**[Slide 16] La tabla de senales, con sus tres columnas (2/2)** — 6 vinetas.
 
-**[Slide 20] El pipeline del stub de CloudLite, paso por paso (1/2)** — 4 vinetas.
+**[Slide 17] El pipeline del stub de CloudLite, paso por paso (1/2)** — 4 vinetas.
   - El workflow se dispara en push y en pull_request.
-  - (Sobre la actividad, no se proyecta) La evidencia del entregable es doble: el archivo ci.yml en el repositorio y la captura de una corrida en verde con los nombres de los pasos visibles; si Actions falla por cuota o por red se acepta el YAML con la explicacion paso por paso, pero eso es plan B y hay que decir que lo es.
+  - (No se proyecta) El ejemplo concreto es el pipeline del stub de CloudLite, que ya existe desde la Clase 3 como Dockerfile y contenedor, y la diapositiva del ci.yml es el molde que se puede copiar.
+  - (No se proyecta) La evidencia del entregable es doble: el archivo ci.yml en el repositorio y la captura de una corrida en verde con los nombres de los pasos visibles; si Actions falla por cuota o por red se acepta el YAML con la explicacion paso por paso, pero eso es plan B y hay que decir que lo es.
 
-**[Slide 21] El pipeline del stub de CloudLite, paso por paso (2/2)** — 3 vinetas.
+**[Slide 18] El pipeline del stub de CloudLite, paso por paso (2/2)** — 3 vinetas.
 
-**[Slide 22] La condicion de fallo: la pregunta que separa un CI de una decoracion verde** — 4 vinetas.
+**[Slide 19] La condicion de fallo: la pregunta que separa un CI de una decoracion verde** — 5 vinetas.
   - Uno y medio, que se compila o se instala.
   - Uno y medio, que se ejecuta en la prueba y que comprueba exactamente.
-  - La forma de responderlo es una prueba mental que el docente debe hacer en voz alta y en vivo: que error tendria que introducir yo en el codigo para que este pipeline lo detecte.
   - Si la respuesta no aparece en diez segundos, el pipeline no valida nada todavia.
-  - La respuesta es que una sola prueba que verifique que el endpoint /health responde 200 detecta la clase de error mas costosa en operacion, que la aplicacion ya no arranca; y con eso la condicion de fallo se escribe sola: el check sale rojo si /health deja de responder 200, si falta una dependencia declarada o si el docker build no compila.
-  - Conviene romper el pipeline a proposito en la demo, porque un check rojo proyectado ensena mas que el parrafo anterior.
+  - (No se proyecta) La forma de responderlo es una prueba mental que el docente debe hacer en voz alta y en vivo: que error tendria que introducir yo en el codigo para que este pipeline lo detecte.
+  - (No se proyecta) Aqui es donde aparece la pregunta previsible del grupo, y hay que salir a su encuentro: para que escribir pruebas de un stub que casi no hace nada.
+  - (No se proyecta) La respuesta es que una sola prueba que verifique que el endpoint /health responde 200 detecta la clase de error mas costosa en operacion, que la aplicacion ya no arranca; y con eso la condicion de fallo se escribe sola: el check sale rojo si /health deja de responder 200, si falta una dependencia declarada o si el docker build no compila.
+  - (No se proyecta) Conviene romper el pipeline a proposito en la demo, porque un check rojo proyectado ensena mas que el parrafo anterior.
 
-**[Slide 23] Donde se ejecuta de verdad la politica de secretos de la Clase 6** — 4 vinetas.
+**[Slide 20] Donde se ejecuta de verdad la politica de secretos de la Clase 6** — 3 vinetas.
   - Los valores sensibles se guardan en el repositorio bajo Settings, Secrets and variables, Actions; el workflow los referencia por nombre y la plataforma los inyecta como variables de entorno solo durante la corrida.
   - Dos detalles evitan sustos.
-  - (Sobre la actividad, no se proyecta) Y el recordatorio de calificacion: un secreto en claro en el YAML no descuenta, anula la pregunta 7 entera.
+  - (No se proyecta) El pipeline es tambien donde se ejecuta de verdad la politica de secretos escrita en la Clase 6.
+  - (No se proyecta) Y el recordatorio de calificacion: un secreto en claro en el YAML no descuenta, anula la pregunta 7 entera.
 
-**[Slide 24] Preguntas frecuentes del grupo (1/2)** — 3 vinetas.
+**[Slide 21] Preguntas frecuentes del grupo** — 3 vinetas.
   - Cuatro que aparecen todos los semestres.
   - Un umbral justificado asi vale, aunque despues la medicion lo corrija.
-  - (Sobre la actividad, no se proyecta) «Si no tenemos usuarios reales, que monitoreamos?» El entregable es el plan, no los datos: la pregunta pide que senales observaria en una produccion hipotetica, con sus umbrales.
-  - (Sobre la actividad, no se proyecta) Es preferible una prueba real y pequena a tres pruebas inventadas que no se ejecutan, porque la pregunta 8 evalua si el pipeline puede fallar.
+  - (No se proyecta) «Si no tenemos usuarios reales, que monitoreamos?» El entregable es el plan, no los datos: la pregunta pide que senales observaria en una produccion hipotetica, con sus umbrales.
+  - (No se proyecta) Y algo si es real: el chequeo de salud que consulta el balanceador de la Clase 7 ya es monitoreo, y el check de Actions ya es una senal de que el sistema construye.
+  - (No se proyecta) «De donde saco los umbrales si nunca he medido?» De tres fuentes legitimas, y conviene nombrarlas: una convencion del oficio citada como tal, por ejemplo 300 milisegundos de p95 o el 80 por ciento de saturacion; una expectativa del usuario redactada en el dominio, por ejemplo que una reserva no tarde mas de dos segundos; o una aritmetica de servilleta a partir del escenario de carga, que es justamente lo que se formaliza en la Clase 12.
+  - (No se proyecta) Es preferible una prueba real y pequena a tres pruebas inventadas que no se ejecutan, porque la pregunta 8 evalua si el pipeline puede fallar.
 
-**[Slide 25] Preguntas frecuentes del grupo (2/2)** — 3 vinetas.
+**[Slide 22] El workflow de CI: el archivo completo** — 22 vinetas.
 
-**[Slide 26] El workflow de CI: el archivo completo** — 22 vinetas.
-
-**[Slide 27] Secretos en el workflow, y hasta donde llega el pipeline** — 10 vinetas.
+**[Slide 23] Secretos en el workflow, y hasta donde llega el pipeline** — 10 vinetas.
 
 
 ## Referencias a diapositivas
@@ -110,29 +114,25 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 4. CI/CD sin tarjeta
 5. YAML mínimo
 6. Monitoreo y optimización
-7. Integracion continua: el problema que resuelve, en definicion operativa (1/2)
-8. Integracion continua: el problema que resuelve, en definicion operativa (2/2)
-9. Entrega continua y despliegue continuo: la sigla CD es ambigua
-10. GitHub Actions en cinco palabras (1/2)
-11. GitHub Actions en cinco palabras (2/2)
-12. Los tres bloques de un workflow, y el orden de los pasos (1/2)
-13. Los tres bloques de un workflow, y el orden de los pasos (2/2)
-14. Monitorear y observar: la segunda mitad cambia de lado (1/2)
-15. Monitorear y observar: la segunda mitad cambia de lado (2/2)
-16. Las cuatro senales de oro, con definicion operativa (1/2)
-17. Las cuatro senales de oro, con definicion operativa (2/2)
-18. La tabla de senales, con sus tres columnas (1/2)
-19. La tabla de senales, con sus tres columnas (2/2)
-20. El pipeline del stub de CloudLite, paso por paso (1/2)
-21. El pipeline del stub de CloudLite, paso por paso (2/2)
-22. La condicion de fallo: la pregunta que separa un CI de una decoracion verde
-23. Donde se ejecuta de verdad la politica de secretos de la Clase 6
-24. Preguntas frecuentes del grupo (1/2)
-25. Preguntas frecuentes del grupo (2/2)
-26. El workflow de CI: el archivo completo
-27. Secretos en el workflow, y hasta donde llega el pipeline
-28. .github/workflows/ci.yml — CI real, no un echo
-29. Clase 8 · cierre conceptual
+7. Integracion continua: el problema que resuelve, en definicion operativa
+8. Entrega continua y despliegue continuo: la sigla CD es ambigua
+9. GitHub Actions en cinco palabras
+10. Los tres bloques de un workflow, y el orden de los pasos
+11. Monitorear y observar: la segunda mitad cambia de lado (1/2)
+12. Monitorear y observar: la segunda mitad cambia de lado (2/2)
+13. Las cuatro senales de oro, con definicion operativa (1/2)
+14. Las cuatro senales de oro, con definicion operativa (2/2)
+15. La tabla de senales, con sus tres columnas (1/2)
+16. La tabla de senales, con sus tres columnas (2/2)
+17. El pipeline del stub de CloudLite, paso por paso (1/2)
+18. El pipeline del stub de CloudLite, paso por paso (2/2)
+19. La condicion de fallo: la pregunta que separa un CI de una decoracion verde
+20. Donde se ejecuta de verdad la politica de secretos de la Clase 6
+21. Preguntas frecuentes del grupo
+22. El workflow de CI: el archivo completo
+23. Secretos en el workflow, y hasta donde llega el pipeline
+24. .github/workflows/ci.yml — CI real, no un echo
+25. Clase 8 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -156,7 +156,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 28]
+### 40–55 · Demo en vivo · [Slide 24]
 Herramienta del día: **Navegador · editor de código del curso (YAML)**.
 **Demo que usted debe poder repetir:** Un workflow de GitHub Actions que corra de verdad, con los tres pasos calificados
 
@@ -187,7 +187,7 @@ Aplica el quiz corto de `Kit docente/Clase 8/Quiz Clase 8 - Monitoreo optimizaci
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 29]
+### 115–120 · Cierre · [Slide 25]
 Di: «Queda avanzado: Workflow Actions (build/test/simulate) + métricas de monitoreo del PI.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»

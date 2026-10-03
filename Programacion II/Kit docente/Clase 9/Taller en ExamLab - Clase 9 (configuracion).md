@@ -345,7 +345,7 @@ cargar devuelve lista vacia con aviso cuando el archivo no existe, sin lanzar ex
 
 Suba el **ZIP del proyecto `VetCare`** con la persistencia integrada al ciclo de vida de la aplicacion:
 
-1. Paquete `vetcare.datos` con `RepositorioMascotasCSV` (los metodos `guardar` y `cargar` que acaba de escribir, ya en archivos separados).
+1. Paquete `clinica.datos` con `RepositorioMascotasCSV` (los metodos `guardar` y `cargar` que acaba de escribir, ya en archivos separados).
 2. **Al arrancar**: `cargar()` se llama **antes** de mostrar la ventana o el menu, y lo cargado es lo que se muestra.
 3. **Al cerrar**: `guardar()` se llama al salir (por ejemplo en la opcion Salir del menu, o con un `WindowListener`/`addShutdownHook` si es ventana).
 4. Dentro del ZIP incluya:
@@ -359,7 +359,7 @@ Suba el **ZIP del proyecto `VetCare`** con la persistencia integrada al ciclo de
 
 **Rubrica esperada (campo Rubrica):**
 
-El ZIP trae un proyecto compilable con RepositorioMascotasCSV en el paquete vetcare.datos, cargar() invocado antes de mostrar la interfaz y guardar() al cerrar. Incluye el mascotas.csv generado por la aplicacion y las dos capturas con el mismo conteo antes de cerrar y al reabrir.
+El ZIP trae un proyecto compilable con RepositorioMascotasCSV en el paquete clinica.datos, cargar() invocado antes de mostrar la interfaz y guardar() al cerrar. Incluye el mascotas.csv generado por la aplicacion y las dos capturas con el mismo conteo antes de cerrar y al reabrir.
 
 ---
 

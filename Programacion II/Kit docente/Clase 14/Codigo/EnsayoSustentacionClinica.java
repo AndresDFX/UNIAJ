@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
- * VetCare - Clinica Veterinaria Huellitas
+ * Clinica Veterinaria
  * Clase 14: preparacion de la sustentacion final.
  * 1) Siembra el juego de datos de demostracion.
  * 2) Chequeo pre-vuelo antes de conectar el videobeam.
@@ -16,7 +16,7 @@ import java.util.Scanner;
  * en PRESENTADORES y el reparto de bloques se hace automatico.
  * Ejecutar en VS Code: el boton Run sobre el metodo main, o Ctrl+F5.
  */
-public class EnsayoSustentacionVetCare {
+public class EnsayoSustentacionClinica {
 
     private static final String CARPETA = "datos_demo";
 
@@ -28,7 +28,7 @@ public class EnsayoSustentacionVetCare {
     // Guion: bloque, evidencia que se muestra en pantalla y minutos planeados.
     // Total 7 minutos, con la demo ocupando 4. El guion no cambia por el numero de expositores.
     private static final String[][] GUION = {
-        {"Problema de la clinica Huellitas y solucion propuesta", "Diapositiva con los 3 dolores", "1"},
+        {"Problema de la clinica y solucion propuesta", "Diapositiva con los 3 dolores", "1"},
         {"Arquitectura: clases, herencia y colecciones", "Persona.java al lado de Dueno.java", "1"},
         {"DEMO: registrar dueno y mascota (con validacion de edad)", "La aplicacion corriendo", "2"},
         {"DEMO: agendar cita, buscar por ID y guardar en CSV", "Cerrar y reabrir con los datos ahi", "2"},
@@ -48,7 +48,7 @@ public class EnsayoSustentacionVetCare {
         boolean seguir = true;
         while (seguir) {
             System.out.println("");
-            System.out.println("=== VetCare | Preparacion de la sustentacion ===");
+            System.out.println("=== Clinica | Preparacion de la sustentacion ===");
             System.out.println("1. Sembrar datos de demostracion");
             System.out.println("2. Chequeo pre-vuelo");
             System.out.println("3. Ensayo cronometrado");

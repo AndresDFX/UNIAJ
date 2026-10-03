@@ -16,11 +16,11 @@
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
 **Un caso de uso es la descripcion de una interaccion completa entre un...** — 4 vinetas.
-  - En el sistema de la clinica, Registrar mascota pasa la prueba, porque la recepcionista de la clinica termina con la ficha creada y el codigo asignado; en cambio Validar la fecha de nacimiento no la pasa, porque nadie llega a la clinica con el objetivo de validar una fecha.
-  - Esa distincion parece un detalle de nombres, pero define el tamaño de todo el modelo: si se confunde, un sistema pequeño como el sistema de la clinica termina con cuarenta casos de uso inutiles en vez de seis u ocho casos de uso reales.
+  - En la clinica, Registrar mascota pasa la prueba, porque la recepcionista de la clinica termina con la ficha creada y el codigo asignado; en cambio Validar la fecha de nacimiento no la pasa, porque nadie llega a la clinica con el objetivo de validar una fecha.
+  - Esa distincion parece un detalle de nombres, pero define el tamaño de todo el modelo: si se confunde, un sistema pequeño como el sistema termina con cuarenta casos de uso inutiles en vez de seis u ocho casos de uso reales.
 
 **El actor es un rol, no una persona ni un cargo del organigrama** — 5 vinetas.
-  - Si en el sistema de la clinica dibujamos adentro del rectangulo un caso de uso llamado Enviar mensaje de WhatsApp, estamos diciendo que nosotros construimos la mensajeria, y eso probablemente sea falso y encarezca el proyecto por escrito.
+  - Si en la clinica dibujamos adentro del rectangulo un caso de uso llamado Enviar mensaje de WhatsApp, estamos diciendo que nosotros construimos la mensajeria, y eso probablemente sea falso y encarezca el proyecto por escrito.
 
 **Las relaciones entre casos de uso son tres y se abusa de ellas (1/2)** — 5 vinetas.
 

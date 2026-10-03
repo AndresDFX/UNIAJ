@@ -17,8 +17,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **Sustentar un paquete de diseño no es leer diapositivas ni narrar lo que... (1/2)** — 3 vinetas.
   - Por eso una sustentacion es un argumento con evidencia, no un recuento cronologico.
+  - En la clinica esa historia empieza por el problema, las fichas de papel que se pierden y los ocho minutos para encontrar un historial, y termina mostrando en el prototipo como cada requisito queda resuelto.
 
-**Sustentar un paquete de diseño no es leer diapositivas ni narrar lo que... (2/2)** — 3 vinetas.
+**Sustentar un paquete de diseño no es leer diapositivas ni narrar lo que... (2/2)** — 5 vinetas.
 
 **El orden de la sustentacion no es libre, es un embudo y tiene una razon...** — 6 vinetas.
   - Primero el problema, porque nada de lo que sigue tiene sentido si el jurado no sabe que duele en la clinica.
@@ -33,9 +34,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - La respuesta correcta es reconocer el vacio y proponer como se resolveria, por ejemplo no lo modelamos, lo registramos como riesgo abierto y se resolveria agregando una validacion de unicidad por dueño mas nombre en el diccionario de datos.
   - Un jurado castiga mucho mas la improvisacion detectada que la honestidad tecnica.
 
-**El reparto del guion en bloques con tiempos es criterio de evaluacion... (1/2)** — 4 vinetas.
+**El reparto del guion en bloques con tiempos es lo que sostiene una... (1/2)** — 4 vinetas.
 
-**El reparto del guion en bloques con tiempos es criterio de evaluacion... (2/2)** — 4 vinetas.
+**El reparto del guion en bloques con tiempos es lo que sostiene una... (2/2)** — 4 vinetas.
 
 **El guion cronometrado de la sustentacion** — 16 vinetas.
 

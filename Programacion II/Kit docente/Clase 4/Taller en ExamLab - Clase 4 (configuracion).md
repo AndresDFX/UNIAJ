@@ -379,7 +379,7 @@ class VentanaBuscarExpediente extends JFrame {
             new JLabel("Escriba un ID (M-001 a M-005) y oprima Buscar", SwingConstants.CENTER);
 
     public VentanaBuscarExpediente() {
-        setTitle("VetCare - Buscar expediente");
+        setTitle("Clinica - Buscar expediente");
         setSize(620, 200);
         setLocationRelativeTo(null);
         // TODO: configure setDefaultCloseOperation para que al cerrar la ventana termine el programa

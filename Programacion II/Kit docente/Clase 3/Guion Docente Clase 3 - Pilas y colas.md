@@ -35,39 +35,39 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **Un punto que confunde mucho: una cola no se recorre para buscar** — 6 vinetas.
   - Ademas, recorrer una cola con for-each la muestra pero no la consume; muchos estudiantes imprimen la cola con un for-each, ven todos los turnos y creen que ya los atendieron, cuando en realidad size() sigue igual.
 
-**VetCareSalaDeEspera.java — class VetCareSalaDeEspera** — 2 vinetas.
+**ClinicaSalaDeEspera.java — class ClinicaSalaDeEspera** — 2 vinetas.
 
-**VetCareSalaDeEspera.java — main() (1/3)** — 20 vinetas.
+**ClinicaSalaDeEspera.java — main() (1/3)** — 20 vinetas.
 
-**VetCareSalaDeEspera.java — main() (2/3)** — 20 vinetas.
+**ClinicaSalaDeEspera.java — main() (2/3)** — 20 vinetas.
 
-**VetCareSalaDeEspera.java — main() (3/3)** — 8 vinetas.
+**ClinicaSalaDeEspera.java — main() (3/3)** — 8 vinetas.
 
-**VetCareSalaDeEspera.java — class Turno** — 7 vinetas.
+**ClinicaSalaDeEspera.java — class Turno** — 7 vinetas.
 
-**VetCareSalaDeEspera.java — Turno()** — 13 vinetas.
+**ClinicaSalaDeEspera.java — Turno()** — 13 vinetas.
 
-**VetCareSalaDeEspera.java — class SalaDeEspera** — 4 vinetas.
+**ClinicaSalaDeEspera.java — class SalaDeEspera** — 4 vinetas.
 
-**VetCareSalaDeEspera.java — registrarLlegada()** — 6 vinetas.
+**ClinicaSalaDeEspera.java — registrarLlegada()** — 6 vinetas.
 
-**VetCareSalaDeEspera.java — siguienteEnPantalla()** — 4 vinetas.
+**ClinicaSalaDeEspera.java — siguienteEnPantalla()** — 4 vinetas.
 
-**VetCareSalaDeEspera.java — atender()** — 10 vinetas.
+**ClinicaSalaDeEspera.java — atender()** — 10 vinetas.
 
-**VetCareSalaDeEspera.java — estaVacia()** — 4 vinetas.
+**ClinicaSalaDeEspera.java — estaVacia()** — 4 vinetas.
 
-**VetCareSalaDeEspera.java — cantidad()** — 6 vinetas.
+**ClinicaSalaDeEspera.java — cantidad()** — 6 vinetas.
 
-**VetCareSalaDeEspera.java — class HistorialReciente** — 4 vinetas.
+**ClinicaSalaDeEspera.java — class HistorialReciente** — 4 vinetas.
 
-**VetCareSalaDeEspera.java — registrar()** — 5 vinetas.
+**ClinicaSalaDeEspera.java — registrar()** — 5 vinetas.
 
-**VetCareSalaDeEspera.java — ultimaAtencion()** — 4 vinetas.
+**ClinicaSalaDeEspera.java — ultimaAtencion()** — 4 vinetas.
 
-**VetCareSalaDeEspera.java — deshacer()** — 7 vinetas.
+**ClinicaSalaDeEspera.java — deshacer()** — 7 vinetas.
 
-**VetCareSalaDeEspera.java — cantidad()** — 5 vinetas.
+**ClinicaSalaDeEspera.java — cantidad()** — 5 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente encola cuatro mascotas, muestra en pantalla la diferencia entre peek() y poll() atendiendo en orden de llegada, y luego usa push/pop para deshacer la ultima atencion registrada.
@@ -88,7 +88,7 @@ Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: El docente encola cuatro mascotas, muestra en pantalla la diferencia entre peek() y poll() atendiendo en orden de llegada, y luego usa push/pop para deshacer la ultima atencion registrada.
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
-`Kit docente/Clase 3/Codigo/VetCareSalaDeEspera.java`
+`Kit docente/Clase 3/Codigo/ClinicaSalaDeEspera.java`
 
 ### 60-105 · Taller guiado (opcional) = avance del PI
 Opcional: no tiene lamina en el deck. La guia esta en

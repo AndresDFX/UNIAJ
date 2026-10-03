@@ -54,7 +54,7 @@
 INSERT INTO entrega_final (estudiante, codigo, proyecto, enlace_zip, integrantes)
 VALUES ('Nombre Completo Del Estudiante', '1234567',
         'VetCare DB - Sistema de gestion para clinica veterinaria',
-        'https://drive.google.com/mi-entrega-vetcare.zip',
+        'https://drive.google.com/mi-entrega-clinica.zip',
         NULL);   -- NULL porque trabajo solo; si hubo equipo autorizado, va la lista
 
 SELECT id_entrega, estudiante, codigo, proyecto, fecha_entrega
@@ -892,13 +892,13 @@ La clave se lee del banco de la plataforma, asi que esta es la que se califica. 
 | 4 | `04_indices.sql` | `idx_cita_vet_fecha`, `idx_cita_mascota`, el parcial `idx_cita_programada` y el unico parcial `uq_cita_vet_franja` de la Clase 10 | Si |
 | 5 | `05_optimizacion_antes_despues.sql` | El par de `EXPLAIN (ANALYZE, BUFFERS)` de la Clase 6: `Seq Scan` con `Rows Removed by Filter` antes, `Index Cond` despues | Si |
 | 6 | `06_api.sql` | `api_agendar_cita`, `api_registrar_consulta` y `api_facturar`: el contrato `(ok, mensaje, id_generado)` de la Clase 12 | Si |
-| 7 | `07_privilegios_api.sql` | Rol `app_vetcare`, `REVOKE`/`GRANT` con firma exacta y el `SECURITY DEFINER SET search_path` sin el cual la app no puede usar la API. **Obligatoriamente despues del 06** | Si |
+| 7 | `07_privilegios_api.sql` | Rol `app_clinica`, `REVOKE`/`GRANT` con firma exacta y el `SECURITY DEFINER SET search_path` sin el cual la app no puede usar la API. **Obligatoriamente despues del 06** | Si |
 | 8 | `08_seguridad_sql_dinamico.sql` | `buscar_mascota_segura` con `EXECUTE ... USING`, `DROP` de la version vulnerable y la evidencia 8 → 0 (Clase 13) | Si |
 | 9 | `09_respaldo_y_restore.sql` | `respaldo_cita`, `bitacora_respaldo`, `trg_archivar_cita`, la consulta de veredicto y el guion de `pg_dump`/`pg_restore` **aun sin ensayar** | Si |
 | 10 | `10_pruebas_aceptacion.sql` | Las 3 reglas de negocio del PI mas la bateria de 5 pruebas de la Clase 11, con la prueba 5 en `cumple = FALSE` documentada | Si |
 | — | `app/cliente.py` | Cliente Python de la Clase 12: solo llama a las funciones `api_*`, con `%s` y sin un `INSERT` directo | No (no se evalua ejecucion) |
-| — | `er_vetcare.png` + `er_vetcare.mmd` | El ER en imagen y en Mermaid. Tiene que coincidir con `01_ddl.sql`: si no, el entregable es inconsistente | No |
-| — | `informe_vetcare.pdf` | Roles y privilegios, respaldo, optimizacion antes/despues, indices, transacciones, concurrencia y lecciones de casos reales | No |
+| — | `er_clinica.png` + `er_clinica.mmd` | El ER en imagen y en Mermaid. Tiene que coincidir con `01_ddl.sql`: si no, el entregable es inconsistente | No |
+| — | `informe_clinica.pdf` | Roles y privilegios, respaldo, optimizacion antes/despues, indices, transacciones, concurrencia y lecciones de casos reales | No |
 | — | `acta_entrega.pdf` | Este documento: identificacion, inventario, trazabilidad, guion, autoria y estado final firmado | No |
 
 Modelo de referencia del acta. Las cifras y los nombres son de ejemplo; lo que se califica es que las seis secciones existan y que el inventario, la trazabilidad y el guion sean **verificables contra el ZIP entregado**.
@@ -919,8 +919,8 @@ Es la tabla de arriba. Dos reglas que la gobiernan: los archivos numerados se ej
 
 | Clase | Tema | Artefacto del paquete que lo contiene |
 |---|---|---|
-| 1 | Revision BD I · arranque VetCare | `01_ddl.sql` + `er_vetcare.mmd`: las 8 tablas y el modelo del que salio todo |
-| 2 | Administracion de BD · roles | `07_privilegios_api.sql` (rol `app_vetcare`, `REVOKE`/`GRANT`) + informe §roles y privilegios |
+| 1 | Revision BD I · arranque VetCare | `01_ddl.sql` + `er_clinica.mmd`: las 8 tablas y el modelo del que salio todo |
+| 2 | Administracion de BD · roles | `07_privilegios_api.sql` (rol `app_clinica`, `REVOKE`/`GRANT`) + informe §roles y privilegios |
 | 3 | Procedimientos almacenados | `03_logica.sql`: `sp_agendar_cita` con la validacion de mascota inactiva |
 | 4 | Funciones · triggers · respaldo | `03_logica.sql` (`fn_precio_consulta`, `fn_trg_audit_cita` + `trg_audit_cita`) y `09_respaldo_y_restore.sql` |
 | 6 | Optimizacion de consultas | `05_optimizacion_antes_despues.sql`: el par de `EXPLAIN` con `Seq Scan` → `Index Cond` |
@@ -1019,7 +1019,7 @@ Y una cuarta que no era de sintaxis sino de habito: no hay `DUAL`. `SELECT 1 + 1
 ### 5. Lo que se queda sin verificar
 
 - **La concurrencia real.** El entorno de practica es de **una sola sesion**, asi que nunca vi dos transacciones peleando por la misma franja: lo demostre con el indice unico, que es el control correcto, pero no con dos sesiones simultaneas. **Como lo verificaria:** dos clientes `psql` abiertos, `BEGIN` en los dos, el `INSERT` de la misma franja en ambos y observar que uno espera y despues recibe `23505`; y para el escenario de `SERIALIZABLE`, comprobar que el `40001` aparece **en el `COMMIT`** y que el reintento la resuelve.
-- **Los privilegios con usuarios conectados de verdad.** Probé `app_vetcare` con `SET ROLE`, que es lo que el entorno permite y demostro lo importante —que sin `SECURITY DEFINER` la app no puede usar su propia API—, pero no con una conexion autenticada real. **Como lo verificaria:** crear el rol con `LOGIN` y contrasena, conectarme como el desde otro cliente e intentar el `INSERT` directo, revisando ademas `pg_hba.conf`.
+- **Los privilegios con usuarios conectados de verdad.** Probé `app_clinica` con `SET ROLE`, que es lo que el entorno permite y demostro lo importante —que sin `SECURITY DEFINER` la app no puede usar su propia API—, pero no con una conexion autenticada real. **Como lo verificaria:** crear el rol con `LOGIN` y contrasena, conectarme como el desde otro cliente e intentar el `INSERT` directo, revisando ademas `pg_hba.conf`.
 - **El particionamiento.** Diseñé la particion por rango de `fecha_hora` y con ocho citas el planificador no tiene nada que podar. **Como lo verificaria:** cargar del orden de un millon de citas con `generate_series` y comprobar en el `EXPLAIN` que solo se leen las particiones del rango consultado.
 - **El respaldo fisico, y es el que mas me pesa.** El guion de `pg_dump`/`pg_restore` esta escrito y **no lo he ejecutado**. Lo que si tengo es el respaldo logico con su trigger de archivo y su consulta de veredicto, y se exactamente por que no es suficiente: vive en la **misma** base. **Como lo verificaria:** `pg_dump` completo, `pg_restore` en una base vacia, correr encima la bateria de cinco pruebas de la Clase 11 y exigir el mismo resultado —incluido el `cumple = FALSE` de la prueba 5— y cronometrarlo para saber si el RTO de 4 horas que declare es real o es un deseo.
 

@@ -19,10 +19,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Individuos e interacciones SOBRE procesos y herramientas; software funcionando SOBRE documentacion exhaustiva; colaboracion con el cliente SOBRE negociacion contractual; respuesta ante el cambio SOBRE seguir un plan.
 
 **Scrum es un marco de trabajo, no una metodologia completa: define lo...** — 6 vinetas.
-  - En el sistema de la clinica el docente actua como vocero de la clinica en el rol de Product Owner, y cada estudiante -o cada equipo, si el docente lo autoriza- hace de equipo de desarrollo que se compromete con un objetivo de sprint.
+  - En la clinica el docente actua como vocero de la clinica en el rol de Product Owner, y cada estudiante -o cada equipo, si el docente lo autoriza- hace de equipo de desarrollo que se compromete con un objetivo de sprint.
 
 **Kanban viene de otra tradicion y su promesa es distinta: no impone...** — 4 vinetas.
-  - En el sistema de la clinica el tablero seria Por hacer / Modelando / En revision del cliente / Aprobado, y la politica de la ultima columna podria ser 'solo pasa a Aprobado si tiene diagrama, mockup y visto bueno de la clinica'.
+  - En la clinica el tablero seria Por hacer / Modelando / En revision del cliente / Aprobado, y la politica de la ultima columna podria ser 'solo pasa a Aprobado si tiene diagrama, mockup y visto bueno de la clinica'.
 
 **Hay dos palabras que se usan como sinonimos y significan cosas... (1/2)** — 3 vinetas.
   - Agil hace las dos cosas al mismo tiempo.

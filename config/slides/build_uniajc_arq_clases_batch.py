@@ -906,7 +906,7 @@ CLASSES = [
                 "1 min problema · 2 min arquitectura · 1 min contenedor · 1 min CI · 1 min seguridad/costos · Q&A.",
                 "Demo: diagrama + captura lab/Actions (no improvisar login cloud).",
                 "Sustentas tú los 5 bloques; si hay equipo autorizado, hablan todos.",
-                "Una idea por diapositiva: el diagrama en pantalla y la decisión dicha en voz alta.",
+                "Una idea por diapositiva: el diagrama en pantalla y la decisión explicada por quien presenta.",
                 "Cerrar con el punto débil declarado: lo que no escala o lo que no se midió.",
             ]),
         ],
@@ -1678,6 +1678,20 @@ _RX_ACTIVIDAD = re.compile(
 _SECCIONES_SOLO_ACTIVIDAD = {"Evaluar con evidencia observable"}
 
 
+# Frases que le hablan al docente sobre como dictar: tampoco se proyectan.
+_RX_DOCENTE = re.compile(
+    r"\bconviene\b|\bhay que (?:decir|dictar|explicar|salir|dejar|anunciar|mostrar)|"
+    r"en voz alta|\b(?:el|del|al|la) docente\b|vale la pena (?:decir|mencionar|nombrar)|"
+    r"\btablero\b|\bdictar\b|\brecorr(?:a|ala|erla|erlas|erlos)\b|^pregunte\b|"
+    r"esta diapositiva|la diapositiva (?:lo )?proyecta|se proyecta en la demo|"
+    r"\bpregunta previsible\b|primera pregunta (?:real )?del estudiante|"
+    r"\bel grupo ve\b|consecuencia pedagogica|vale en clase|\bvale hacer\b|"
+    r"\bel estudiante\b|\blos estudiantes\b|las preguntas de esta clase|"
+    r"\bla clase\b|esta clase|^proyecte\b|^devolverle\b|ni un punto", re.I)
+_RX_PARRAFO_DOCENTE = re.compile(
+    r"^(?:Error tipico|El (?:primer|segundo|tercer|cuarto) error|Un tercer tropiezo)", re.I)
+
+
 def _es_de_actividad(frase: str) -> bool:
     return bool(_RX_ACTIVIDAD.search(frase))
 
@@ -1701,9 +1715,14 @@ def _fundamento_sin_actividad(fund: str):
         for par in re.split(r"\n\s*\n", cuerpo):
             if not par.strip():
                 continue
+            frs = TS.frases(par)
+            if frs and _RX_PARRAFO_DOCENTE.search(frs[0]):
+                # Parrafo de preparacion docente (errores tipicos): entero a la nota.
+                retiradas.setdefault(titulo_l, []).extend(TS.limpiar_tokens(f) for f in frs)
+                continue
             quedan = []
-            for f in TS.frases(par):
-                if _es_de_actividad(f):
+            for f in frs:
+                if _es_de_actividad(f) or _RX_DOCENTE.search(f):
                     retiradas.setdefault(titulo_l, []).append(TS.limpiar_tokens(f))
                 else:
                     quedan.append(f)
@@ -1737,7 +1756,7 @@ def _teoria_slides(c: dict) -> list:
             base_t = re.sub(r"\s*\(\d+/\d+\)$", "", tit)
             extra = retiradas.pop(base_t, None)
             if extra:
-                notas_ = list(notas_) + ["(Sobre la actividad, no se proyecta) " + x for x in extra]
+                notas_ = list(notas_) + ["(No se proyecta) " + x for x in extra]
             nuevas.append((tit, lineas, notas_, tipo))
         laminas = nuevas
     # Y el material operativo autorado: Dockerfile, CLI, Mermaid, YAML, ADR. Los
@@ -1990,7 +2009,7 @@ def build_pptx(c: dict) -> Path:
         agenda = [
             "**0–10** Encuadre del tema y objetivos de la clase.",
             "**10–70** Conceptos del tema, uno por lámina, con ejemplos sobre CloudLite.",
-            "**70–100** Ejemplos resueltos y demo del docente sobre el tema.",
+            "**70–100** Ejemplos resueltos y demostración sobre el tema.",
             "**100–115** Práctica (opcional, guía en la carpeta de la clase).",
             "**115–120** Preguntas y cierre conceptual.",
         ]

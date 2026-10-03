@@ -505,7 +505,7 @@ La clave se lee del banco de la plataforma, asi que esta es la que se califica. 
 
 | Que se respalda | Herramienta | Frecuencia y ventana | Retencion y ubicacion |
 |---|---|---|---|
-| Datos + esquema + rutinas, todo junto | `pg_dump -Fc -d vetcare -f vetcare_AAAAMMDD.dump` (formato comprimido, restaurable con `pg_restore`) | **Diario, 20:30.** La clinica cierra a las 19:00 y la facturacion del ultimo turno se cierra hacia las 19:45; 20:30 da hora y media de margen y aun deja la noche libre. | 14 copias diarias + la del domingo durante 8 semanas. **Ubicacion 1:** disco externo del consultorio. **Ubicacion 2:** carpeta cifrada sincronizada fuera de la clinica el mismo dia. |
+| Datos + esquema + rutinas, todo junto | `pg_dump -Fc -d clinica -f clinica_AAAAMMDD.dump` (formato comprimido, restaurable con `pg_restore`) | **Diario, 20:30.** La clinica cierra a las 19:00 y la facturacion del ultimo turno se cierra hacia las 19:45; 20:30 da hora y media de margen y aun deja la noche libre. | 14 copias diarias + la del domingo durante 8 semanas. **Ubicacion 1:** disco externo del consultorio. **Ubicacion 2:** carpeta cifrada sincronizada fuera de la clinica el mismo dia. |
 | Roles, contrasenas y permisos (la matriz de la Clase 2) | `pg_dumpall --globals-only -f roles_AAAAMMDD.sql` | **Diario, 20:25,** justo antes del dump, y **ademas cada vez que se ejecuta un `GRANT` o `REVOKE`**. Se separa porque `pg_dump` de una base **no** incluye los roles: restaurar solo el dump deja una base con datos y sin usuarios. | 30 dias, las dos ubicaciones. Es un archivo de pocos kilobytes: no hay razon para guardar menos. |
 | DDL y rutinas como codigo fuente versionado | El repositorio Git del PI: `/db/01_schema.sql`, `/db/02_procedimientos.sql`, `/db/03_triggers.sql`, `/db/migraciones/NNN_*.sql` | **En cada cambio,** con el `commit` correspondiente. El respaldo del esquema no es un archivo que se genera de noche: es el historial del repositorio. | Indefinida. **Ubicacion 1:** repositorio remoto. **Ubicacion 2:** clon local del docente. Se complementa con `pg_dump --schema-only` diario, para poder comparar lo que hay en produccion contra lo que dice el repositorio. |
 | Copia fisica para recuperacion rapida | `pg_basebackup -D /respaldos/base_AAAAMMDD -Ft -z` | **Semanal, domingo 02:00,** con la clinica cerrada. Es la que permite un RTO corto: restaurar una copia fisica es copiar un directorio, no reconstruir la base sentencia por sentencia. | 4 copias semanales, solo en la ubicacion 1 por tamano. La primera del mes se conserva 12 meses en la ubicacion 2. |
@@ -520,11 +520,11 @@ La clave se lee del banco de la plataforma, asi que esta es la que se califica. 
 
 **5. Restore de prueba.** Un respaldo no verificado no es un respaldo, es un archivo. El ensayo es **mensual, el primer domingo, a las 3:00**, despues de la copia fisica, y son cinco pasos concretos:
 
-1. `createdb vetcare_restore_AAAAMMDD` — nunca sobre la base de produccion.
-2. `psql -d vetcare_restore_AAAAMMDD -f roles_AAAAMMDD.sql` — los roles primero, o el `pg_restore` fallara al asignar propietarios.
-3. `pg_restore -d vetcare_restore_AAAAMMDD vetcare_AAAAMMDD.dump` y se **guarda la salida completa**, incluidos los avisos.
+1. `createdb clinica_restore_AAAAMMDD` — nunca sobre la base de produccion.
+2. `psql -d clinica_restore_AAAAMMDD -f roles_AAAAMMDD.sql` — los roles primero, o el `pg_restore` fallara al asignar propietarios.
+3. `pg_restore -d clinica_restore_AAAAMMDD clinica_AAAAMMDD.dump` y se **guarda la salida completa**, incluidos los avisos.
 4. Se corre la consulta de validacion y se compara contra los valores esperados del dia del respaldo.
-5. `dropdb vetcare_restore_AAAAMMDD` y se archiva la evidencia.
+5. `dropdb clinica_restore_AAAAMMDD` y se archiva la evidencia.
 
 La consulta de validacion, con los valores que deben salir para el respaldo de la base sembrada de este taller:
 

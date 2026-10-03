@@ -23,9 +23,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **Los principios de usabilidad no son gusto ni estetica, son reglas... (2/2)** — 4 vinetas.
 
-**Una pantalla suelta no sirve para nada; lo que se diseña es un flujo de... (1/2)** — 4 vinetas.
+**Una pantalla suelta no sirve para nada; lo que se diseña es un flujo de... (1/2)** — 5 vinetas.
 
-**Una pantalla suelta no sirve para nada; lo que se diseña es un flujo de... (2/2)** — 4 vinetas.
+**Una pantalla suelta no sirve para nada; lo que se diseña es un flujo de... (2/2)** — 3 vinetas.
 
 **La interfaz no se inventa: se deriva de los artefactos que el equipo ya...** — 4 vinetas.
   - Por eso los wireframes se entregan anotados: se ponen numeritos sobre el dibujo y al lado una tabla que dice, por ejemplo, el numero uno es el campo Nombre de la mascota que sale del atributo Mascota.nombre, texto de sesenta caracteres, obligatorio, exigido por RF-03; el numero cuatro es el mensaje de confirmacion que cumple el RNF-02 de respuesta menor a tres segundos.

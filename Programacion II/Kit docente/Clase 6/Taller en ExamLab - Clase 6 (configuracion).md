@@ -23,7 +23,7 @@
 
 ## `RepositorioMascotas`: la capa que no sabe que existe Swing
 
-En VetCare hay tres paquetes: `vetcare.modelo` (Mascota), `vetcare.servicio` (repositorio y controlador) y `vetcare.vista` (las ventanas). La regla es dura: **ninguna clase de modelo o servicio importa `javax.swing`**. Si manana la clinica cambia Swing por una pagina web, esta capa no se toca.
+En VetCare hay tres paquetes: `clinica.modelo` (Mascota), `clinica.servicio` (repositorio y controlador) y `clinica.vista` (las ventanas). La regla es dura: **ninguna clase de modelo o servicio importa `javax.swing`**. Si manana la clinica cambia Swing por una pagina web, esta capa no se toca.
 
 `Mascota` ya viene completa. Complete `RepositorioMascotas`:
 
@@ -75,7 +75,7 @@ public class Main {
     }
 }
 
-// Paquete vetcare.modelo: NUNCA importa javax.swing
+// Paquete clinica.modelo: NUNCA importa javax.swing
 class Mascota {
 
     private final String id;
@@ -104,7 +104,7 @@ class Mascota {
     }
 }
 
-// Paquete vetcare.servicio: NUNCA importa javax.swing
+// Paquete clinica.servicio: NUNCA importa javax.swing
 class RepositorioMascotas {
 
     private final List<Mascota> mascotas = new ArrayList<>();
@@ -205,7 +205,7 @@ public class Main {
     }
 }
 
-// Paquete vetcare.modelo: NUNCA importa javax.swing
+// Paquete clinica.modelo: NUNCA importa javax.swing
 class Mascota {
 
     private final String id;
@@ -444,7 +444,7 @@ class VentanaRegistroMascota extends JFrame {
     private final JTextArea areaListado = new JTextArea(8, 40);
 
     public VentanaRegistroMascota() {
-        setTitle("VetCare - Registro de mascotas");
+        setTitle("Clinica - Registro de mascotas");
         setSize(640, 420);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -570,7 +570,7 @@ Respuesta correcta: la B. A mete conversion, validacion y la coleccion dentro de
 2. Edad escrita como **tres**.
 3. **ID repetido M-001**.
 
-**(b) Prueba del Ctrl+F.** Diga que busco y que encontro al buscar `javax.swing` en los paquetes `vetcare.modelo` y `vetcare.servicio`. Si aparecio algun resultado, explique como lo elimino.
+**(b) Prueba del Ctrl+F.** Diga que busco y que encontro al buscar `javax.swing` en los paquetes `clinica.modelo` y `clinica.servicio`. Si aparecio algun resultado, explique como lo elimino.
 
 **(c) Justificacion.** Explique con sus palabras por que el `ActionListener` no debe contener `Integer.parseInt` ni la lista de mascotas. Responda concretamente: ¿como probaria la regla *"no se aceptan dos mascotas con el mismo ID"* sin abrir la ventana, y por que eso seria imposible si la regla viviera dentro del listener?
 

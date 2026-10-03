@@ -9,22 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * VetCare - Clase 9
+ * Clinica Veterinaria - Clase 9
  * Persistencia de mascotas en archivo CSV, con lectura defensiva y try-with-resources.
- * Clinica Veterinaria Huellitas.
+ * Clinica Veterinaria.
  *
- * Ejecutar desde consola:  java VetCarePersistencia.java
+ * Ejecutar desde consola:  java ClinicaPersistencia.java
  * (o abrir la carpeta en VS Code y ejecutar la clase principal con el boton Run)
  *
  * Corra el programa DOS veces seguidas: la segunda vez debe recuperar lo que
  * escribio la primera. Esa es toda la leccion.
  */
-public class VetCarePersistencia {
+public class ClinicaPersistencia {
 
     public static void main(String[] args) {
         RepositorioMascotasCSV repositorio = new RepositorioMascotasCSV("mascotas.csv");
 
-        System.out.println("=== VetCare: arranque ===");
+        System.out.println("=== Clinica: arranque ===");
         System.out.println("Archivo de datos: " + repositorio.rutaAbsoluta());
 
         List<Mascota> mascotas = repositorio.cargar();
@@ -43,7 +43,7 @@ public class VetCarePersistencia {
         repositorio.guardar(mascotas);
         System.out.println("Datos escritos en disco.");
 
-        System.out.println("=== VetCare: simulacion de reapertura ===");
+        System.out.println("=== Clinica: simulacion de reapertura ===");
         List<Mascota> verificacion = repositorio.cargar();
         for (Mascota m : verificacion) {
             System.out.println("  " + m);
@@ -117,7 +117,7 @@ class Mascota {
 
 /**
  * Unica clase del proyecto que sabe de archivos.
- * Si manana VetCare pasa a base de datos, solo se reemplaza esta clase.
+ * Si manana el sistema de la clinica pasa a base de datos, solo se reemplaza esta clase.
  */
 class RepositorioMascotasCSV {
 

@@ -110,7 +110,7 @@ CLASES = [
             "Llenar la plantilla de la ficha del PI: alcance SI / alcance NO y 3 reglas de negocio propias en formato Condicion -> Accion.",
             "Dibujar el ER borrador en Excalidraw o draw.io, pasarlo a Mermaid (erDiagram) con ayuda de una IA y pegarlo renderizado en ExamLab.",
             "Exportar tambien el PNG del ER a la carpeta del PI y verificar que los nombres coincidan con el DDL (minusculas, singular, id_<entidad>)."],
-    quiz=True, sql="01_arranque_vetcare.sql"),
+    quiz=True, sql="01_arranque_clinica.sql"),
   dict(n=2, slug="Administracion de bases de datos",
     titulo="Administracion de BD · Roles VetCare",
     subtitulo="Privilegios y usuarios del PI",
@@ -129,7 +129,7 @@ CLASES = [
             "Recortar la superficie: vista v_agenda_recepcion + privilegio por columna sobre dueno.",
             "Matriz rol x objeto x privilegio de los 10 objetos, justificando privilegio minimo.",
             "Redactar 1 pagina: politica de altas/bajas de usuarios, con la prueba negativa (SET ROLE) corrida y su mensaje de error."],
-    quiz=True, sql="02_roles_vetcare.sql"),
+    quiz=True, sql="02_roles_clinica.sql"),
   dict(n=3, slug="Procedimientos almacenados",
     titulo="Procedimientos almacenados · VetCare",
     subtitulo="Logica de negocio en la BD del PI",
@@ -153,7 +153,7 @@ CLASES = [
             "Correr la bateria de pruebas con bloques DO: 1 caso OK + 3 casos error, escritos en resultado_prueba, mas el COUNT(*) de cita antes y despues.",
             "Escribir sp_registrar_consulta, comprobando con EXISTS antes de chocar contra la restriccion UNIQUE.",
             "Redactar el contrato del proc en sus 6 bloques (plantilla en este documento) y pegarlo en la pregunta 5."],
-    quiz=True, sql="03_procs_vetcare.sql"),
+    quiz=True, sql="03_procs_clinica.sql"),
   dict(n=4, slug="Funciones disparadores seguridad respaldo",
     titulo="Funciones · Triggers · Seguridad y respaldo",
     subtitulo="Integridad + RAA1 del PI VetCare",
@@ -245,7 +245,7 @@ CLASES = [
             "Repetir los EXPLAIN y decir cual indice eligio el planeador y por que.",
             "Construir cita_hist particionada por ano, migrar las citas y demostrar el enrutamiento y la poda.",
             "Llenar la tabla de justificacion consulta->indice (7 columnas) y el veredicto de particionamiento."],
-    quiz=True, sql="07_indices_vetcare.sql"),
+    quiz=True, sql="07_indices_clinica.sql"),
   dict(n=8, slug="Tuning y transacciones",
     titulo="Tuning · Transacciones · VetCare",
     subtitulo="Atomicidad en facturacion e insumos",
@@ -277,7 +277,7 @@ CLASES = [
             "Encapsular el descuento en fn_descontar_stock, que devuelve BOOLEAN y no lanza excepcion.",
             "Llenar la seccion Transacciones y tuning del informe: inventario de 3 transacciones y checklist de 7 items.",
             "Declarar el gap de concurrencia: PGlite corre una sola sesion, y eso es la Clase 10."],
-    quiz=True, sql="08_transacciones_vetcare.sql"),
+    quiz=True, sql="08_transacciones_clinica.sql"),
   dict(n=9, slug=None, titulo="Parcial 2", subtitulo="Solo evaluacion — Corte 2",
     herramienta=None, hito_pi="No avanza PI", entregable=None, teoria=[], demo=None, taller=[],
     quiz=False, sql=None, parcial="Parcial 2 - Optimizacion indices y transacciones.docx"),
@@ -298,7 +298,7 @@ CLASES = [
             "Describir escenario doble descuento de stock.",
             "Proponer mitigacion SQL.",
             "Anadir seccion al informe PI."],
-    quiz=True, sql="10_concurrencia_vetcare.sql"),
+    quiz=True, sql="10_concurrencia_clinica.sql"),
   dict(n=11, slug="Avance del proyecto final",
     titulo="Avance PI · VetCare DB",
     subtitulo="Checklist viva + demo parcial",
@@ -377,7 +377,7 @@ for _c in CLASES:
     _c["tipo"] = tipo_de_clase(_c["n"])
 
 SQL_BODIES = {
-"01_arranque_vetcare.sql": """-- VetCare DB · Clase 1 · DDL minimo demo (DB Fiddle / PostgreSQL o MySQL)
+"01_arranque_clinica.sql": """-- VetCare DB · Clase 1 · DDL minimo demo (DB Fiddle / PostgreSQL o MySQL)
 -- Objetivo PI: dejar entidades base para el ER.
 
 CREATE TABLE dueno (
@@ -409,7 +409,7 @@ SELECT m.nombre, d.nombre AS dueno, c.fecha_hora
 FROM cita c JOIN mascota m ON m.id_mascota=c.id_mascota
 JOIN dueno d ON d.id_dueno=m.id_dueno;
 """,
-"02_roles_vetcare.sql": """-- VetCare DB · Clase 2 · Roles y privilegios · PostgreSQL
+"02_roles_clinica.sql": """-- VetCare DB · Clase 2 · Roles y privilegios · PostgreSQL
 -- Este es el script de la DEMO: corre tal cual en ExamLab (PostgreSQL en el
 -- navegador), sobre el esquema de VetCare ya creado. Los nombres de rol son los
 -- mismos que pide el taller: minusculas, y el del veterinario con sufijo `_rol`
@@ -504,7 +504,7 @@ RESET ROLE;   -- volver al propietario ANTES de seguir con cualquier otra cosa
 -- Baja:   REASSIGN OWNED BY ana_gomez TO admin_bd;  -- antes de borrar el rol
 --         DROP ROLE ana_gomez;                      -- falla si todavia posee objetos
 """,
-"03_procs_vetcare.sql": """-- VetCare DB · Clase 3 · Procedimientos almacenados · PostgreSQL
+"03_procs_clinica.sql": """-- VetCare DB · Clase 3 · Procedimientos almacenados · PostgreSQL
 -- Script de la DEMO: corre tal cual en ExamLab (PostgreSQL/PGlite en el navegador),
 -- sobre el esquema de VetCare ya creado y poblado: 8 mascotas (Rocky=3 y Kiara=8
 -- estan INACTIVAS), 4 veterinarios, 10 citas, y una cita del veterinario 1 el
@@ -794,11 +794,11 @@ SELECT id_insumo, nombre, stock FROM insumo WHERE id_insumo = 2;   -- stock = 1
 -- Estos comandos NO corren dentro de ExamLab -- son de linea de comandos, no SQL --
 -- pero son los que hay que nombrar en el plan. Se proyectan como referencia.
 --
---   pg_dump -Fc -d vetcare -f vetcare_2026-09-15.dump   respaldo logico de LA base
+--   pg_dump -Fc -d clinica -f clinica_2026-09-15.dump   respaldo logico de LA base
 --   pg_dumpall --globals-only -f roles.sql              roles y privilegios: pg_dump
 --                                                       NO los incluye
 --   pg_basebackup -D /backup/base -Ft -z                copia fisica del cluster
---   pg_restore -d vetcare_prueba vetcare_2026-09-15.dump   el ensayo de restauracion
+--   pg_restore -d clinica_prueba clinica_2026-09-15.dump   el ensayo de restauracion
 --
 -- La consulta de validacion despues de restaurar, que es lo que convierte «restaure»
 -- en «restaure bien»:
@@ -1063,7 +1063,7 @@ GROUP BY d.id_dueno ORDER BY d.id_dueno;
 -- privilegios de administrador—, concurrencia (eso es la Clase 10) y cualquier
 -- comparacion por encima de unos cientos de miles de filas.
 """,
-"07_indices_vetcare.sql": """-- VetCare DB · Clase 7 · Indices y particionamiento
+"07_indices_clinica.sql": """-- VetCare DB · Clase 7 · Indices y particionamiento
 -- Ejecutable en PostgreSQL, incluido PGlite (la consola de ExamLab). Corre completo y
 -- EN ORDEN: el valor de la clase esta en el antes/despues, no en el CREATE INDEX.
 --
@@ -1274,7 +1274,7 @@ SELECT COUNT(*) FROM cita_hist
 -- infla el registro de transacciones y sostiene bloqueos largos. Eso es la Clase 8.
 -- DROP TABLE cita_hist_2025;
 """,
-"08_transacciones_vetcare.sql": """-- VetCare DB · Clase 8 · Transaccion de facturacion + descuento de stock
+"08_transacciones_clinica.sql": """-- VetCare DB · Clase 8 · Transaccion de facturacion + descuento de stock
 -- Ejecutable en PostgreSQL, incluido PGlite (la consola de ExamLab). Corre completo y
 -- EN ORDEN: el bloque 3 solo tiene sentido si antes se tomo la foto del bloque 2.
 --
@@ -1469,7 +1469,7 @@ SELECT id_insumo, nombre, stock FROM insumo ORDER BY id_insumo;
 -- Aqui no se puede demostrar: PGlite corre UNA SOLA sesion. Ese es el gap que se declara
 -- en la pregunta 5 y lo que abre la Clase 10.
 """,
-"10_concurrencia_vetcare.sql": """-- VetCare DB · Clase 10 · Demo ejecutable: doble reserva y su mitigacion
+"10_concurrencia_clinica.sql": """-- VetCare DB · Clase 10 · Demo ejecutable: doble reserva y su mitigacion
 -- Ejecutar EN ORDEN: primero se ve el problema, despues la solucion.
 
 -- Paso 1: tabla de demo SIN restriccion (asi llegaria si nadie penso en concurrencia)
@@ -1593,7 +1593,7 @@ QUIZ = {
           "C) Factura AWS", "D) Diagrama sin usuarios"], "B"),
     q_vf("Separar rol de aplicación y rol de DBA reduce el impacto de una filtración de credenciales.", "V"),
     q_abierta("Defina 2 roles VetCare (nombre + privilegio clave de cada uno).",
-              "Ej. app_vetcare: EXECUTE procs; lector_agenda: SELECT cita/mascota."),
+              "Ej. app_clinica: EXECUTE procs; lector_agenda: SELECT cita/mascota."),
     q_abierta("¿Qué operación debería fallar con el rol de lectura y cómo lo evidencia?",
               "Ej. DELETE/UPDATE stock → error de privilegio; captura del playground."),
 ],
@@ -2242,8 +2242,8 @@ TEORIA_EXTRA = {
     ), (
         "Plan de respaldo: 6 secciones y herramientas reales de PostgreSQL",
         [
-            "@@1. Que se respalda y con que.@@ `pg_dump -Fc -d vetcare -f "
-            "vetcare_AAAAMMDD.dump` para los datos, y `pg_dumpall --globals-only` para los "
+            "@@1. Que se respalda y con que.@@ `pg_dump -Fc -d clinica -f "
+            "clinica_AAAAMMDD.dump` para los datos, y `pg_dumpall --globals-only` para los "
             "@@roles de la Clase 2@@: `pg_dump` es de UNA base y los roles son del cluster, asi "
             "que no los respalda. Si falta, se restaura la base y ningun rol tiene permisos.",
             "@@2. Frecuencia, con su razon.@@ No «diario»: «`pg_dump -Fc` a las 20:30 @@porque@@ "
@@ -2844,7 +2844,7 @@ _RX_ACTIVIDAD = re.compile(
 # Los decks de clase no nombran el proyecto ni el cliente: el ejemplo se queda con una
 # descripcion generica del dominio. Taller, solucion, guion y Kit siguen nombrandolos.
 _SUBS_NOMBRES = [
-    (r"vetcare", "clinica"),   # identificadores: rol_vetcare_app, 07_indices_vetcare.sql
+    (r"vetcare", "clinica"),   # por si un identificador viejo reaparece en el texto
     (r"\b(?:la |una )?cl[ií]nica( veterinaria)?\s*[«\"“]?Huellitas[»\"”]?", r"la clínica\1"),
     (r"[«\"“]?\bHuellitas\b[»\"”]?", "la clínica"),
     (r"\bVetCare DB\b", "la base de la clínica"),
@@ -3858,7 +3858,7 @@ def build_solucion_docx(c):
 # existe, guion_md_a_docx.py deja la caja "inserta aqui la captura" y no rompe.
 CAPTURAS_CLASE = {
     1: [("Resultado del JOIN de verificacion del ER (lo que debe salir tras los INSERT)",
-         "salida-join-vetcare.png")],
+         "salida-join-clinica.png")],
     3: [("Bateria de pruebas de sp_agendar_cita: P1 OK y P2 rechazado por mascota inactiva",
          "salida-proc-ok-y-error.png")],
     4: [("trg_audit_cita: los 3 UPDATE dejan 2 filas de auditoria (el WHEN filtra el tercero)",

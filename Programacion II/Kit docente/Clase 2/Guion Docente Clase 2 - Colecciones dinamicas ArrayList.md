@@ -39,39 +39,39 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - La ultima idea es de diseno, y es la que hace que este codigo sirva para el resto del proyecto integrador.
   - Eso es encapsulamiento aplicado a colecciones, y es lo que hara posible que en las proximas clases la misma clase RegistroMascotas alimente una tabla de Swing y despues se guarde en un archivo CSV sin cambiar una sola linea de la logica.
 
-**class VetCareRegistroMascotas** — 2 vinetas.
+**class ClinicaRegistroMascotas** — 2 vinetas.
 
-**VetCareRegistroMascotas.java — main() (1/3)** — 20 vinetas.
+**ClinicaRegistroMascotas.java — main() (1/3)** — 20 vinetas.
 
-**VetCareRegistroMascotas.java — main() (2/3)** — 20 vinetas.
+**ClinicaRegistroMascotas.java — main() (2/3)** — 20 vinetas.
 
-**VetCareRegistroMascotas.java — main() (3/3)** — 3 vinetas.
+**ClinicaRegistroMascotas.java — main() (3/3)** — 3 vinetas.
 
-**VetCareRegistroMascotas.java — menu() (1/3)** — 20 vinetas.
+**ClinicaRegistroMascotas.java — menu() (1/3)** — 20 vinetas.
 
-**VetCareRegistroMascotas.java — menu() (2/3)** — 20 vinetas.
+**ClinicaRegistroMascotas.java — menu() (2/3)** — 20 vinetas.
 
-**VetCareRegistroMascotas.java — menu() (3/3)** — 11 vinetas.
+**ClinicaRegistroMascotas.java — menu() (3/3)** — 11 vinetas.
 
-**VetCareRegistroMascotas.java — leerEntero()** — 10 vinetas.
+**ClinicaRegistroMascotas.java — leerEntero()** — 10 vinetas.
 
-**VetCareRegistroMascotas.java — class Mascota** — 8 vinetas.
+**ClinicaRegistroMascotas.java — class Mascota** — 8 vinetas.
 
-**VetCareRegistroMascotas.java — Mascota()** — 15 vinetas.
+**ClinicaRegistroMascotas.java — Mascota()** — 15 vinetas.
 
-**VetCareRegistroMascotas.java — class RegistroMascotas** — 5 vinetas.
+**ClinicaRegistroMascotas.java — class RegistroMascotas** — 5 vinetas.
 
-**VetCareRegistroMascotas.java — agregar()** — 14 vinetas.
+**ClinicaRegistroMascotas.java — agregar()** — 14 vinetas.
 
-**VetCareRegistroMascotas.java — buscarPorId()** — 12 vinetas.
+**ClinicaRegistroMascotas.java — buscarPorId()** — 12 vinetas.
 
-**VetCareRegistroMascotas.java — eliminarPorId()** — 11 vinetas.
+**ClinicaRegistroMascotas.java — eliminarPorId()** — 11 vinetas.
 
-**VetCareRegistroMascotas.java — pasarAGeriatria()** — 11 vinetas.
+**ClinicaRegistroMascotas.java — pasarAGeriatria()** — 11 vinetas.
 
-**VetCareRegistroMascotas.java — listar()** — 10 vinetas.
+**ClinicaRegistroMascotas.java — listar()** — 10 vinetas.
 
-**VetCareRegistroMascotas.java — cantidad()** — 5 vinetas.
+**ClinicaRegistroMascotas.java — cantidad()** — 5 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente muestra un Mascota[3] que revienta al intentar guardar la cuarta ficha y luego el mismo caso resuelto con ArrayList, imprimiendo size() despues de cada operacion.
@@ -92,14 +92,14 @@ Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: El docente muestra un Mascota[3] que revienta al intentar guardar la cuarta ficha y luego el mismo caso resuelto con ArrayList, imprimiendo size() despues de cada operacion.
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
-`Kit docente/Clase 2/Codigo/VetCareRegistroMascotas.java`
+`Kit docente/Clase 2/Codigo/ClinicaRegistroMascotas.java`
 
 ### 60-105 · Taller guiado (opcional) = avance del PI
 Opcional: no tiene lamina en el deck. La guia esta en
 `Clases/Clase 2 - Colecciones dinamicas ArrayList/Taller PI - Clase 2 - VetCare.docx`; si hoy no se hace, se extiende la demo y la practica libre.
 **Decir:** «Abran su proyecto VetCare. Trabajo individual por defecto; si autorice equipo, el archivo puede ser compartido pero cada uno entrega en ExamLab. Esto suma a la rubrica del PI.»
 Actividades:
-1. Cree en VS Code el proyecto Java llamado VetCare con paquete vetcare, y dentro de el la clase Mascota con los atributos privados id, nombre, especie, edad y dueno, su constructor completo, sus getters y el metodo toString(); verifique imprimiendo una mascota de prueba y confirmando que en consola sale el texto legible y no vetcare.Mascota@1a2b3c.
+1. Cree en VS Code el proyecto Java llamado VetCare con paquete clinica, y dentro de el la clase Mascota con los atributos privados id, nombre, especie, edad y dueno, su constructor completo, sus getters y el metodo toString(); verifique imprimiendo una mascota de prueba y confirmando que en consola sale el texto legible y no clinica.Mascota@1a2b3c.
 2. Cree la clase RegistroMascotas con el atributo private final List<Mascota> mascotas = new ArrayList<>(); y el metodo agregar(Mascota m) que rechace un ID ya existente; verifique agregando dos veces la mascota M-001 y comprobando que la consola muestra el aviso de ID repetido y que cantidad() sigue devolviendo 1.
 3. Implemente listar(), que recorra con for indexado e imprima cada ficha numerada, y buscarPorId(String id), que recorra con for-each y devuelva la Mascota o null; verifique que buscarPorId("M-003") imprime la ficha de Rocky y que buscarPorId("M-099") imprime que no existe, sin lanzar NullPointerException.
 4. Implemente eliminarPorId(String id) usando remove(objeto) y el metodo pasarAGeriatria(int edadMinima) usando Iterator con it.remove(); verifique que despues de eliminar M-002 y de pasar a geriatria a las mascotas de 9 anios o mas, size() bajo exactamente en la cantidad de fichas retiradas y el programa no lanza ConcurrentModificationException.

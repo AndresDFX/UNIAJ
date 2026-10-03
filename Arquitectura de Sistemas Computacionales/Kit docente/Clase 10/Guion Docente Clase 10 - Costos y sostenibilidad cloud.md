@@ -24,50 +24,52 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 6] Clase autonoma: de gasto de capital a gasto operativo medido** — 4 vinetas.
-  - Conviene empezar por la economia, porque sin ella el tema suena a contabilidad.
+**[Slide 6] Clase autonoma: de gasto de capital a gasto operativo medido** — 3 vinetas.
   - Cuando cada recurso tiene precio unitario, casi cualquier decision de diseno se convierte en una cifra mensual y el arquitecto pasa a ser corresponsable del gasto.
   - Esa es la razon por la que este tema vive en un curso de arquitectura y no en uno de administracion.
+  - (No se proyecta) Esta clase es autonoma por festivo: no hay encuentro sincronico y este fundamento se publica tal cual como material de lectura, asi que debe sostener por si solo la comprension del tema.
+  - (No se proyecta) Conviene empezar por la economia, porque sin ella el tema suena a contabilidad.
 
 **[Slide 7] CloudLite no tiene factura real, y por que igual se estima (1/2)** — 3 vinetas.
   - Eso no impide el analisis de costo, solo cambia la escala de medida.
+  - (No se proyecta) Un componente al que el estudiante no le sabe poner driver es un componente que todavia no entiende.
 
-**[Slide 8] CloudLite no tiene factura real, y por que igual se estima (2/2)** — 4 vinetas.
+**[Slide 8] CloudLite no tiene factura real, y por que igual se estima (2/2)** — 3 vinetas.
 
-**[Slide 9] Ordenes de magnitud que el docente debe poder citar** — 5 vinetas.
-  - El docente debe poder citar ordenes de magnitud, y conviene decir en voz alta que son convenciones aproximadas de precios de lista y no reglas duras: las cifras cambian por proveedor, region y ano, pero las proporciones se mantienen estables.
+**[Slide 9] Ordenes de magnitud de costo** — 5 vinetas.
   - Una base de datos gestionada cuesta entre dos y tres veces la maquina desnuda equivalente, porque incluye respaldos, parches y conmutacion por falla.
   - Una funcion serverless suele traer free tier de alrededor de un millon de invocaciones mensuales, asi que un componente poco usado cuesta cero de verdad.
+  - (No se proyecta) El docente debe poder citar ordenes de magnitud, y conviene decir en voz alta que son convenciones aproximadas de precios de lista y no reglas duras: las cifras cambian por proveedor, region y ano, pero las proporciones se mantienen estables.
 
-**[Slide 10] Primer ejemplo: la tabla de costos, componente por componente (1/2)** — 6 vinetas.
+**[Slide 10] Primer ejemplo: la tabla de costos, componente por componente (1/2)** — 5 vinetas.
   - El contenedor de la API queda en Medio, con driver instancias por horas encendidas.
+  - (No se proyecta) Y hay un componente que sorprende, el monitoreo de la Clase 8: un sistema que registra cada peticion con detalle puede generar mas gigabytes de logs que de datos de negocio, y la ingesta de logs se cobra por gigabyte; existen casos reales de equipos cuya observabilidad costaba mas que la aplicacion observada.
 
 **[Slide 11] Primer ejemplo: la tabla de costos, componente por componente (2/2)** — 3 vinetas.
 
-**[Slide 12] Segundo ejemplo: por que el driver importa mas que el nivel (1/2)** — 4 vinetas.
+**[Slide 12] Segundo ejemplo: por que el driver importa mas que el nivel** — 5 vinetas.
   - El segundo ejemplo muestra por que el driver importa mas que el nivel.
   - Esto tambien desarma la intuicion mas comun del estudiante, que si nadie usa el sistema el sistema no cuesta.
+  - (No se proyecta) La conclusion es contraintuitiva y por eso vale en clase: el driver del componente "almacenamiento de archivos" no es el almacenamiento, es el trafico, y la mitigacion no es contable sino arquitectonica, poner una cache o una red de distribucion de contenido delante para que el mismo archivo no salga del origen veinte veces.
 
-**[Slide 13] Segundo ejemplo: por que el driver importa mas que el nivel (2/2)** — 3 vinetas.
-
-**[Slide 14] Right-sizing: tres acciones ancladas en observacion (1/2)** — 4 vinetas.
+**[Slide 13] Right-sizing: tres acciones ancladas en observacion (1/2)** — 4 vinetas.
   - De ahi salen tres acciones de right-sizing.
+  - (No se proyecta) Right-sizing es ajustar la capacidad aprovisionada a la demanda observada, y la palabra clave es observada: sin medicion es adivinanza, y la medicion viene de las senales doradas de la Clase 8, en particular la saturacion.
+  - (No se proyecta) La tercera es adelgazar el artefacto, que amarra con la Clase 3: una imagen basada en python:3.12 pesa del orden de 1 GB, la variante slim unos 150 MB y una construida sobre alpine puede bajar a decenas de megabytes; eso es menos registro, menos transferencia en cada despliegue y menos tiempo de arranque, dato que reaparece en la Clase 13.
 
-**[Slide 15] Right-sizing: tres acciones ancladas en observacion (2/2)** — 4 vinetas.
+**[Slide 14] Right-sizing: tres acciones ancladas en observacion (2/2)** — 3 vinetas.
 
-**[Slide 16] Sostenibilidad tecnica antes que ambiental (1/2)** — 5 vinetas.
+**[Slide 15] Sostenibilidad tecnica antes que ambiental (1/2)** — 4 vinetas.
   - Por eso las mismas tres acciones sirven a la vez para la factura y para la huella.
+  - (No se proyecta) La sostenibilidad en este curso es tecnica antes que ambiental, y conviene decirlo asi para no caer en discurso vacio.
+  - (No se proyecta) Y hay una tercera cara que el estudiante ignora: el costo humano de mantener el diseno.
 
-**[Slide 17] Sostenibilidad tecnica antes que ambiental (2/2)** — 3 vinetas.
+**[Slide 16] Sostenibilidad tecnica antes que ambiental (2/2)** — 3 vinetas.
 
-**[Slide 18] Preguntas frecuentes y cierre conceptual () (1/3)** — 5 vinetas.
+**[Slide 17] Preguntas frecuentes y cierre conceptual (1/2)** — 3 vinetas.
   - Tres preguntas aparecen siempre.
-  - Conviene advertir que en la Clase 11 la auditoria exigira que los componentes de esta tabla se llamen igual que los contenedores del C4 de la Clase 4 y las piezas del despliegue de la Clase 7, y que en la Clase 13 el limite maximo del autoescalado sera el techo de costo que se decide hoy.
-  - Con eso la clase se vuelve una caceria de calculadoras de precios, el estudiante copia numeros que no entiende y las acciones de right-sizing quedan cosmeticas.
 
-**[Slide 19] Preguntas frecuentes y cierre conceptual () (2/3)** — 5 vinetas.
-
-**[Slide 20] Preguntas frecuentes y cierre conceptual () (3/3)** — 3 vinetas.
+**[Slide 18] Preguntas frecuentes y cierre conceptual (2/2)** — 3 vinetas.
 
 
 ## Referencias a diapositivas
@@ -82,19 +84,17 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 6. Clase autonoma: de gasto de capital a gasto operativo medido
 7. CloudLite no tiene factura real, y por que igual se estima (1/2)
 8. CloudLite no tiene factura real, y por que igual se estima (2/2)
-9. Ordenes de magnitud que el docente debe poder citar
+9. Ordenes de magnitud de costo
 10. Primer ejemplo: la tabla de costos, componente por componente (1/2)
 11. Primer ejemplo: la tabla de costos, componente por componente (2/2)
-12. Segundo ejemplo: por que el driver importa mas que el nivel (1/2)
-13. Segundo ejemplo: por que el driver importa mas que el nivel (2/2)
-14. Right-sizing: tres acciones ancladas en observacion (1/2)
-15. Right-sizing: tres acciones ancladas en observacion (2/2)
-16. Sostenibilidad tecnica antes que ambiental (1/2)
-17. Sostenibilidad tecnica antes que ambiental (2/2)
-18. Preguntas frecuentes y cierre conceptual () (1/3)
-19. Preguntas frecuentes y cierre conceptual () (2/3)
-20. Preguntas frecuentes y cierre conceptual () (3/3)
-21. Clase 10 · cierre conceptual
+12. Segundo ejemplo: por que el driver importa mas que el nivel
+13. Right-sizing: tres acciones ancladas en observacion (1/2)
+14. Right-sizing: tres acciones ancladas en observacion (2/2)
+15. Sostenibilidad tecnica antes que ambiental (1/2)
+16. Sostenibilidad tecnica antes que ambiental (2/2)
+17. Preguntas frecuentes y cierre conceptual (1/2)
+18. Preguntas frecuentes y cierre conceptual (2/2)
+19. Clase 10 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 

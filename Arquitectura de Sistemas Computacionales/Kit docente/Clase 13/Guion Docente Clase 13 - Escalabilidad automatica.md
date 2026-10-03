@@ -24,52 +24,50 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 6] Clase autonoma: escalabilidad no es rendimiento** — 4 vinetas.
+**[Slide 6] Clase autonoma: escalabilidad no es rendimiento** — 2 vinetas.
   - Un sistema puede ser rapido y no escalar, y puede escalar y ser lento.
   - Por eso el orden del temario no es casual: primero se mide y se identifica el cuello de botella, y solo despues se decide como agregar capacidad.
+  - (No se proyecta) Esta clase es autonoma por festivo: el estudiante trabaja solo y este fundamento se publica como material de lectura, asi que esta escrito para explicar el tema completo sin apoyo de un encuentro sincronico.
+  - (No se proyecta) El rendimiento, tema de la Clase 12, pregunta cuanto tarda una peticion con la carga actual.
 
-**[Slide 7] Escalar vertical y horizontalmente: las dos formas de agregar capacidad (1/2)** — 4 vinetas.
+**[Slide 7] Escalar vertical y horizontalmente: las dos formas de agregar capacidad** — 5 vinetas.
   - Ademas una sola maquina grande sigue siendo un unico punto de falla.
   - No tiene techo cercano, mejora la disponibilidad porque si una instancia muere las otras siguen atendiendo, y permite crecer en pasos pequenos y baratos.
+  - (No se proyecta) Hay dos formas de agregar capacidad y el estudiante debe poder definirlas sin dudar.
+  - (No se proyecta) Escalar horizontalmente, o hacia afuera, es agregar MAS instancias iguales trabajando en paralelo, con el balanceador de carga de la Clase 7 repartiendo peticiones entre ellas.
 
-**[Slide 8] Escalar vertical y horizontalmente: las dos formas de agregar capacidad (2/2)** — 3 vinetas.
-
-**[Slide 9] Ausencia de estado: donde mas estudiantes fallan (1/2)** — 4 vinetas.
+**[Slide 8] Ausencia de estado: donde mas estudiantes fallan** — 4 vinetas.
   - Un servicio sin estado no guarda en la memoria de su propio proceso ninguna informacion que necesite en la siguiente peticion; todo lo que deba persistir vive en un almacen compartido, sea la base de datos, una cache comun o el token que trae el cliente.
+  - (No se proyecta) La solucion parcial que casi todos proponen es la sesion pegajosa, que amarra al usuario a una instancia, y hay que decir por que es un parche: si esa instancia se cae la sesion se pierde igual, y el balanceo se vuelve desigual.
+  - (No se proyecta) Lo mismo aplica a los archivos subidos de CloudLite: si se escriben en el disco local del contenedor, la mitad de las descargas fallara porque el archivo esta en la otra instancia, y por eso van a almacenamiento de objetos, que fue la decision de la Clase 7.
 
-**[Slide 10] Ausencia de estado: donde mas estudiantes fallan (2/2)** — 2 vinetas.
-
-**[Slide 11] Las cinco piezas del autoescalado (1/2)** — 6 vinetas.
+**[Slide 9] Las cinco piezas del autoescalado (1/2)** — 4 vinetas.
   - Cada numero se justifica.
+  - (No se proyecta) Y el maximo es la pieza mas olvidada y la mas importante: es el techo de costo decidido en la Clase 10, y sin el, un error de programacion o un ataque puede escalar la factura sin limite; hay casos documentados de facturas de miles de dolares generadas en horas por autoescalado sin tope.
 
-**[Slide 12] Las cinco piezas del autoescalado (2/2)** — 5 vinetas.
+**[Slide 10] Las cinco piezas del autoescalado (2/2)** — 5 vinetas.
 
-**[Slide 13] El limite fisico: la instancia nueva no aparece al instante (1/2)** — 4 vinetas.
+**[Slide 11] El limite fisico: la instancia nueva no aparece al instante** — 5 vinetas.
+  - (No se proyecta) Sume el periodo de evaluacion y el sistema reacciona entre 5 y 10 minutos despues de que empezo el problema, asi que un pico subito del tipo que la prueba de spike de la Clase 12 simula ocurre y termina antes de que llegue la ayuda.
+  - (No se proyecta) Aqui reaparece la Clase 3: una imagen slim arranca mas rapido que una de un gigabyte, asi que adelgazar la imagen no es solo ahorro de costo, es tiempo de reaccion.
 
-**[Slide 14] El limite fisico: la instancia nueva no aparece al instante (2/2)** — 3 vinetas.
+**[Slide 12] Elegir la metrica: la decision mas fina del tema** — 4 vinetas.
+  - (No se proyecta) Metricas mejores para ese caso son las peticiones por segundo por instancia, que se deriva del calculo hecho en la Clase 12, la latencia p95 del propio servicio, o la longitud de la cola pendiente.
+  - (No se proyecta) Regla de bolsillo: la metrica correcta es la que mide el recurso que se agota primero, es decir el cuello de botella identificado en la clase anterior.
+  - (No se proyecta) De ahi que el entregable de hoy no se pueda hacer bien si el de la Clase 12 quedo vacio.
 
-**[Slide 15] Elegir la metrica: la decision mas fina del tema (1/2)** — 3 vinetas.
-  - Regla de bolsillo: la metrica correcta es la que mide el recurso que se agota primero, es decir el cuello de botella identificado en la clase anterior.
-  - (Sobre la actividad, no se proyecta) De ahi que el entregable de hoy no se pueda hacer bien si el de la Clase 12 quedo vacio.
-
-**[Slide 16] Elegir la metrica: la decision mas fina del tema (2/2)** — 2 vinetas.
-
-**[Slide 17] Lo que NO escala (1/2)** — 5 vinetas.
+**[Slide 13] Lo que NO escala (1/2)** — 4 vinetas.
   - Declarar lo que NO escala separa un diseno serio de una lista de deseos.
   - Multiplicar la capa sin verificar el limite del recurso compartido no mejora el sistema, lo rompe.
+  - (No se proyecta) Tambien conviene enumerar otras piezas que no escalan por replicacion: los limites de terceros, como un proveedor de correo que acepta 100 envios por minuto y rechaza el exceso, de modo que diez workers no envian diez veces mas rapido sino que generan diez veces mas errores; los sistemas de archivos compartidos; y las tareas programadas de tipo singleton, que si corren en seis instancias hacen el mismo trabajo seis veces y pueden duplicar cobros o correos.
 
-**[Slide 18] Lo que NO escala (2/2)** — 5 vinetas.
+**[Slide 14] Lo que NO escala (2/2)** — 3 vinetas.
 
-**[Slide 19] Preguntas frecuentes y cierre conceptual () (1/3)** — 4 vinetas.
-  - Tres preguntas aparecen sin falta en una clase autonoma como esta y conviene responderlas por escrito en el foro.
-  - (Sobre la actividad, no se proyecta) Para verificar el diseno sin gastar un peso alcanza Killercoda con docker compose para levantar dos o tres replicas del stub detras de un balanceador y comprobar que la sesion no se rompe; el entregable formal es una nota sobre el diagrama de despliegue y la seccion escrita con estrategia, trigger, limite y lo que no escala, que la Clase 14 evaluara y la Clase 15 exigira sustentar.
-  - (Sobre la actividad, no se proyecta) Si eso se deja pasar, el entregable llega con la seccion de "que no escala" vacia o rellenada con una frase generica, y en la Clase 15 el estudiante afirma que su sistema soporta cualquier crecimiento mientras el diagrama muestra una unica base de datos con la sesion guardada en memoria, que es la contradiccion mas facil de detectar y la mas costosa de explicar en ese momento.
+**[Slide 15] Preguntas frecuentes y cierre conceptual (1/2)** — 3 vinetas.
 
-**[Slide 20] Preguntas frecuentes y cierre conceptual () (2/3)** — 5 vinetas.
+**[Slide 16] Preguntas frecuentes y cierre conceptual (2/2)** — 3 vinetas.
 
-**[Slide 21] Preguntas frecuentes y cierre conceptual () (3/3)** — 3 vinetas.
-
-**[Slide 22] La regla de autoescalado, escrita como configuracion** — 13 vinetas.
+**[Slide 17] La regla de autoescalado, escrita como configuracion** — 13 vinetas.
 
 
 ## Referencias a diapositivas
@@ -82,25 +80,20 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 4. Escala para CloudLite
 5. Límites y costos
 6. Clase autonoma: escalabilidad no es rendimiento
-7. Escalar vertical y horizontalmente: las dos formas de agregar capacidad (1/2)
-8. Escalar vertical y horizontalmente: las dos formas de agregar capacidad (2/2)
-9. Ausencia de estado: donde mas estudiantes fallan (1/2)
-10. Ausencia de estado: donde mas estudiantes fallan (2/2)
-11. Las cinco piezas del autoescalado (1/2)
-12. Las cinco piezas del autoescalado (2/2)
-13. El limite fisico: la instancia nueva no aparece al instante (1/2)
-14. El limite fisico: la instancia nueva no aparece al instante (2/2)
-15. Elegir la metrica: la decision mas fina del tema (1/2)
-16. Elegir la metrica: la decision mas fina del tema (2/2)
-17. Lo que NO escala (1/2)
-18. Lo que NO escala (2/2)
-19. Preguntas frecuentes y cierre conceptual () (1/3)
-20. Preguntas frecuentes y cierre conceptual () (2/3)
-21. Preguntas frecuentes y cierre conceptual () (3/3)
-22. La regla de autoescalado, escrita como configuracion
-23. Politica de autoescalado (tabla, no prosa)
-24. Del boceto al código Mermaid
-25. Clase 13 · cierre conceptual
+7. Escalar vertical y horizontalmente: las dos formas de agregar capacidad
+8. Ausencia de estado: donde mas estudiantes fallan
+9. Las cinco piezas del autoescalado (1/2)
+10. Las cinco piezas del autoescalado (2/2)
+11. El limite fisico: la instancia nueva no aparece al instante
+12. Elegir la metrica: la decision mas fina del tema
+13. Lo que NO escala (1/2)
+14. Lo que NO escala (2/2)
+15. Preguntas frecuentes y cierre conceptual (1/2)
+16. Preguntas frecuentes y cierre conceptual (2/2)
+17. La regla de autoescalado, escrita como configuracion
+18. Politica de autoescalado (tabla, no prosa)
+19. Del boceto al código Mermaid
+20. Clase 13 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
