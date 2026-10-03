@@ -554,6 +554,35 @@ def box_note_slide(prs, title, notes, idx=None):
     footer_num(s, idx)
     return s
 
+def notas(slide, texto, agregar=True):
+    """Escribe las NOTAS DEL PRESENTADOR de la diapositiva.
+
+    Se ven en la vista del presentador, debajo de la lamina, y no se proyectan: es el sitio
+    para la respuesta a la pregunta que esta en pantalla, el concepto que hay que decir y
+    por que se eligio ese ejemplo. Lo que el estudiante ve es la lamina; lo que el docente
+    lee mientras tanto es esto.
+
+    `texto` puede ser una cadena o una lista de parrafos. Con `agregar=True` se suma a lo
+    que ya hubiera, separado por una linea en blanco, para que varios bloques puedan caer
+    en la misma lamina sin pisarse.
+
+    Los marcadores de formato del motor (`**`, `@@`) se limpian: las notas son texto plano.
+    """
+    if not texto:
+        return
+    parrafos = [texto] if isinstance(texto, str) else [p for p in texto if p]
+    limpios = []
+    for p in parrafos:
+        p = str(p).replace("@@", "").replace("**", "")
+        limpios.append(p.strip())
+    nuevo = "\n\n".join(x for x in limpios if x)
+    if not nuevo:
+        return
+    tf = slide.notes_slide.notes_text_frame
+    previo = (tf.text or "").strip()
+    tf.text = (previo + "\n\n" + nuevo) if (agregar and previo) else nuevo
+
+
 def footer_num(slide, idx=None):
     if idx is None:
         return

@@ -1,5 +1,7 @@
 # Guion docente — Clase 4: Principios éticos en la Ingeniería
 
+> **Guion de tiempos y desarrollo de la clase.** Dice qué franja es, qué lámina está en pantalla y qué se hace. **Los conceptos y las respuestas a las preguntas de cada lámina están en las NOTAS DEL PRESENTADOR del deck** (en PowerPoint: vista del presentador, o Ver → Notas), debajo de la lámina donde hacen falta.
+
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
@@ -25,83 +27,17 @@
 
 > Hoy **no se usa asistente de IA**, y la razón es del tema: un caso ético se juzga leyendo el código de ética y los hechos, no pidiéndole una opinión a una herramienta que no responde por ella. El texto del código de ética de ACM/IEEE y el de la Ley 842 de 2003 se comparten en la carpeta del curso y **hay que citar el numeral**, no resumirlo de memoria.
 
-## Fundamento teórico para el docente
+## Dónde está cada concepto
 
-Esta sección está escrita para dictar la clase **sin consultar otra fuente**, y va dividida por diapositiva: cada bloque dice a qué diapositiva corresponde.
+Debajo de estas láminas, en las notas del presentador:
 
-### La pregunta de entrada: el ingeniero que fue a la cárcel - diapositiva 4
+- **La pregunta de entrada: el ingeniero que fue a la cárcel** → diapositiva 4
+- **Qué es la ética en una profesión y qué no es** → diapositiva 5
+- **Los códigos y las tres normas colombianas que hay que saber nombrar** → diapositiva 7
+- **Los cuatro casos: qué contar de cada uno y cuál es el momento de parar** → diapositiva 9
+- **La defensa que no sirve y las cinco preguntas que sí** → diapositivas 11 y 13
 
-Proyectado en la lamina «La pregunta de entrada: el ingeniero que fue a la cárcel (1/2)» (4 vinetas).
-
-- Un ingeniero de Volkswagen escribió el software que detectaba cuándo el carro estaba en la prueba de emisiones para bajar los contaminantes solo durante el examen.
-
-### Qué es la ética en una profesión y qué no es - diapositiva 5
-
-Proyectado en la lamina «La pregunta de entrada: el ingeniero que fue a la cárcel (2/2)» (3 vinetas).
-
-### Los códigos y las tres normas colombianas que hay que saber nombrar - diapositiva 6
-
-Proyectado en la lamina «Qué es la ética en una profesión y qué no es (1/2)» (6 vinetas).
-
-- Un ingeniero con excelentes intenciones que no preguntó a quién afecta su sistema hizo algo mal, y el resultado no mejora por su buena voluntad.
-
-- Al revés, un ingeniero que detecta un riesgo y lo escribe está actuando bien aunque el proyecto igual salga mal. **La segunda: no es un tema de opinión.** Esta es la que más rinde en clase, porque el estudiante llega convencido de que en ética «cada uno piensa distinto».
-
-- Existen códigos escritos, con principios numerados, que uno puede citar como se cita un artículo de una norma.
-
-- La ley y la ética se cruzan pero no coinciden, y el ingeniero tiene que mirar las dos.
-
-- Una cuarta idea, que es la que más les sirve: **el momento de la ética es el momento de decidir, y casi siempre es temprano**.
-
-### Los cuatro casos: qué contar de cada uno y cuál es el momento de parar - diapositiva 7
-
-Proyectado en la lamina «Qué es la ética en una profesión y qué no es (2/2)» (5 vinetas).
-
-### La defensa que no sirve y las cinco preguntas que sí - diapositivas 8 y 9
-
-Proyectado en la lamina «Los códigos y las tres normas colombianas que hay que saber nombrar (1/3)» (5 vinetas).
-
-- Eso significa que el código ya resolvió el conflicto que el estudiante cree irresoluble: si lo que pide el jefe daña al público, el código dice cuál gana.
-
-- La ACM actualizó además su código general en 2018. **Ley 842 de 2003.** Es el código de ética profesional de la ingeniería en Colombia y es la que aplica aquí, no las de otros países.
-
-- Establece los deberes del ingeniero con la sociedad, con la profesión, con sus colegas y con sus clientes, y define las faltas y las sanciones.
-
-- Los **datos sensibles** —salud, biometría, orientación política, sexual o religiosa, datos de niños— tienen protección reforzada.
-
-## Referencias a diapositivas
-Numeración real del deck `Clases/Clase 4 - Principios eticos en la Ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
-
-1. Portada · Clase 4
-2. Agenda de hoy (90 min)
-3. Objetivos de la sesión
-4. Pregunta de entrada
-5. Tres cosas que se confunden
-6. Los principios que sí están escritos
-7. Cuatro casos donde el software funcionó
-8. «Yo solo programé lo que me pidieron»
-9. Cinco preguntas para decidir sin ser experto
-10. La pregunta de entrada: el ingeniero que fue a la cárcel (1/2)
-11. La pregunta de entrada: el ingeniero que fue a la cárcel (2/2)
-12. Qué es la ética en una profesión y qué no es (1/2)
-13. Qué es la ética en una profesión y qué no es (2/2)
-14. Los códigos y las tres normas colombianas que hay que saber nombrar (1/3)
-15. Los códigos y las tres normas colombianas que hay que saber nombrar (2/3)
-16. Los códigos y las tres normas colombianas que hay que saber nombrar (3/3)
-17. Los cuatro casos: qué contar de cada uno y cuál es el momento de parar (1/4)
-18. Los cuatro casos: qué contar de cada uno y cuál es el momento de parar (2/4)
-19. Los cuatro casos: qué contar de cada uno y cuál es el momento de parar (3/4)
-20. Los cuatro casos: qué contar de cada uno y cuál es el momento de parar (4/4)
-21. La defensa que no sirve y las cinco preguntas que sí (1/2)
-22. La defensa que no sirve y las cinco preguntas que sí (2/2)
-23. Plantilla del entregable: los 5 bloques
-24. Guion de la exposicion, con tiempos
-25. Taller de hoy: Comité de ética
-26. Cómo se expone en 3 minutos
-27. Para la Clase 5
-28. Cierre · Nos vemos en la sesión 5
-
-## Plan de clase minuto a minuto (90 min)
+## Desarrollo de la clase, minuto a minuto (90 min)
 
 ### 00:00–00:10 · Apertura · [Slide 4]
 
@@ -113,23 +49,23 @@ Comparta pantalla antes de que entre el primero:
 
 **[Nota docente]:** hoy hay lectura previa (el código de ética). Verifique en el chat quién lo abrió: el taller se cae sin ese texto a mano.
 
-### 00:10–00:55 · Teoría · [Slide 5][Slide 6][Slide 7][Slide 8][Slide 9]
+### 00:10–00:55 · Teoría · [Slide 5][Slide 7][Slide 9][Slide 11][Slide 13]
 
 Reparto sugerido de los 45 min:
 
 - **8 min** · Tres cosas que se confunden [Slide 5]. Insista en la segunda: **hay códigos escritos y se citan por numeral**. De eso depende que el taller sea evaluable y no una tertulia.
 
-- **10 min** · Los principios y las tres normas [Slide 6]. En ACM/IEEE, diga que el orden importa: el público está antes que el empleador. En Colombia, mencione la matrícula del COPNIA: la ética aquí tiene autoridad y consecuencia.
+- **10 min** · Los principios y las tres normas [Slide 7]. En ACM/IEEE, diga que el orden importa: el público está antes que el empleador. En Colombia, mencione la matrícula del COPNIA: la ética aquí tiene autoridad y consecuencia.
 
-- **16 min** · Los cuatro casos [Slide 7], unos 4 min cada uno. Therac-25 completo; en Volkswagen revele que este era el de la apertura y **vuelva al muro**.
+- **16 min** · Los cuatro casos [Slide 9], unos 4 min cada uno. Therac-25 completo; en Volkswagen revele que este era el de la apertura y **vuelva al muro**.
 
-- **6 min** · «Yo solo programé lo que me pidieron» [Slide 8]. La parte importante es la salida práctica: dejar rastro y escalar temprano.
+- **6 min** · «Yo solo programé lo que me pidieron» [Slide 11]. La parte importante es la salida práctica: dejar rastro y escalar temprano.
 
-- **5 min** · Las cinco preguntas [Slide 9]. Es el método del taller.
+- **5 min** · Las cinco preguntas [Slide 13]. Es el método del taller.
 
 **[Nota docente]:** si el tiempo aprieta, recorte Cambridge Analytica y 737 MAX a dos minutos. **Therac-25 y Volkswagen no se recortan**: uno da el argumento técnico y el otro el argumento legal.
 
-### 00:55–01:12 · Taller en salas de grupo · [Slide 10]
+### 00:55–01:12 · Taller en salas de grupo · [Slide 15]
 
 **2 min** para repartir casos: un caso por equipo, asignado por número de equipo. El quinto equipo recibe un caso local en vez de uno famoso (está en el taller), porque hace falta que al menos uno juzgue algo que podría pasarles a ellos.
 
@@ -139,7 +75,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** cuando alguien diga «pero le habrían echado del trabajo», no lo descarte: es la objeción honesta. Responda con lo que sí se le pide —dejar rastro y escalar— y con lo que le pasó a quien no lo hizo.
 
-### 01:12–01:27 · Exposiciones · [Slide 11]
+### 01:12–01:27 · Exposiciones · [Slide 16]
 
 5 equipos × 3 min, vocero con la pantalla ya compartida. **El minuto obligatorio de hoy es «el momento en que se pudo parar»**: sin eso la exposición es un resumen de noticia.
 
@@ -147,13 +83,37 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** anote qué numeral citó cada equipo. Si tres equipos citaron el principio 1 del código ACM/IEEE, dígalo en el cierre: es la señal de que el interés público es el principio que resuelve la mayoría de los casos.
 
-### 01:27–01:30 · Cierre · [Slide 12][Slide 13]
+### 01:27–01:30 · Cierre · [Slide 17][Slide 18]
 
 Una idea: **en los cuatro casos el software funcionó.** Falló lo que se pidió construir y el hecho de que nadie lo detuvo. La ética profesional es la decisión temprana, no el arrepentimiento posterior.
 
 Anuncie la sesión 5: hoy se vio el daño a personas; la próxima, el daño que no tiene una víctima con nombre y que casi nadie mide — el ambiental.
 
-## Errores frecuentes y cómo cortarlos en caliente
+> **Ejemplos resueltos** (láminas 6, 8, 10, 12, 14): cada uno va justo después de su concepto y se recorre **dentro del tiempo de ese concepto**, no aparte. Cómo recorrerlo está en sus notas del presentador.
+
+## Mapa de láminas
+Numeración real del deck `Clases/Clase 4 - Principios eticos en la Ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
+
+1. Portada · Clase 4
+2. Agenda de hoy (90 min)
+3. Objetivos de la sesión
+4. Pregunta de entrada
+5. Tres cosas que se confunden
+6. Ejemplo: el mismo pedido, decidido de dos maneras
+7. Los principios que sí están escritos
+8. Ejemplo: opinar o citar un principio
+9. Cuatro casos donde el software funcionó
+10. Ejemplo: qué falló en el Therac-25, paso a paso
+11. «Yo solo programé lo que me pidieron»
+12. Ejemplo: el correo que deja rastro
+13. Cinco preguntas para decidir sin ser experto
+14. Ejemplo resuelto: la app que vende la ubicación
+15. Taller de hoy: Comité de ética
+16. Cómo se expone en 3 minutos
+17. Para la Clase 5
+18. Cierre · Nos vemos en la sesión 5
+
+## Si pasa esto en clase
 
 | Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |
 |---|---|---|
@@ -163,7 +123,7 @@ Anuncie la sesión 5: hoy se vio el daño a personas; la próxima, el daño que 
 | «Debieron probar mejor el software» | Es correcto y es tardío: no toca la decisión que creó el riesgo. | El momento más temprano en que alguien pudo cambiar el resultado, y qué debía hacer ahí. |
 | «Si era legal, no hay problema ético» | Cambridge Analytica era legal según las reglas de la plataforma y es indefendible. | Que apliquen la pregunta 3: ¿aguanta que se sepa? Y que digan quién quedó sin saber. |
 
-## Dudas frecuentes del estudiante
+## Preguntas que suelen hacer
 
 **¿Y si me despiden por negarme?**
 
@@ -181,7 +141,7 @@ El de ACM/IEEE no: es un compromiso profesional internacional, y su fuerza está
 
 No. Ni nombres, ni cédulas, ni teléfonos, ni fotos de terceros: se usa el rol. Si su proyecto necesita datos para funcionar, se inventan datos de prueba. Esa regla es la Ley 1581 de 2012 aplicada a su trabajo, y es la primera cosa que se revisa en el informe final.
 
-## Notas operativas
+## Antes de empezar
 
 - Comparta el **texto del código ACM/IEEE y el de la Ley 842 de 2003** en la carpeta del curso antes de la sesión. Sin el texto a mano, el bloque del numeral —30 % de la nota— no se puede hacer y el taller se convierte en opinión.
 - El caso del equipo 5 (el local, de datos de salud en un enlace público) **no se cambia**: es el que amarra la clase al proyecto del semestre y a la regla de datos personales del curso.

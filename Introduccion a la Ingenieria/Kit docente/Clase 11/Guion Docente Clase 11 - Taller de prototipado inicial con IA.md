@@ -1,5 +1,7 @@
 # Guion docente — Clase 11: Taller de prototipado inicial con IA
 
+> **Guion de tiempos y desarrollo de la clase.** Dice qué franja es, qué lámina está en pantalla y qué se hace. **Los conceptos y las respuestas a las preguntas de cada lámina están en las NOTAS DEL PRESENTADOR del deck** (en PowerPoint: vista del presentador, o Ver → Notas), debajo de la lámina donde hacen falta.
+
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
@@ -27,63 +29,16 @@
 
 > Hoy **sí se usa asistente de IA**, con dos condiciones que son la mitad de la nota: **se entrega el prompt completo** y **la lista de lo que se corrigió a mano**. Cualquier asistente gratuito sirve, sin pagar y sin tarjeta. El prototipo corregido se edita en **Excalidraw** o **draw.io** y el registro va en el **documento del equipo**. Regla que no se negocia: **no se le pasan datos personales a un asistente**, ni de ustedes ni de nadie — lo que se escribe ahí sale del computador.
 
-## Fundamento teórico para el docente
+## Dónde está cada concepto
 
-Esta sección está escrita para dictar la clase **sin consultar otra fuente**, y va dividida por diapositiva: cada bloque dice a qué diapositiva corresponde.
+Debajo de estas láminas, en las notas del presentador:
 
-### La pregunta de entrada: mejor y además ilegal - diapositiva 4
+- **La pregunta de entrada: mejor y además ilegal** → diapositiva 4
+- **Qué hace bien y qué hace mal: un mapa honesto** → diapositiva 5
+- **El método: cinco pasos y por qué el primero decide todo** → diapositiva 6
+- **El antes y después, y cómo cierra el corte** → diapositivas 8 y 9
 
-Proyectado en la lamina «La pregunta de entrada: mejor y además ilegal (1/2)» (5 vinetas).
-
-- Vale la pena hacerlo en vivo si el tiempo alcanza —dos minutos de pantalla compartida con un prompt sin restricciones—, porque verlo proponer la cuenta de usuario delante de todos vale más que la diapositiva.
-
-### Qué hace bien y qué hace mal: un mapa honesto - diapositiva 5
-
-Proyectado en la lamina «La pregunta de entrada: mejor y además ilegal (2/2)» (5 vinetas).
-
-### El método: cinco pasos y por qué el primero decide todo - diapositiva 6
-
-Proyectado en la lamina «Qué hace bien y qué hace mal: un mapa honesto (1/2)» (4 vinetas).
-
-- Conviene ser preciso y no moralizante, porque estos estudiantes van a trabajar con estas herramientas toda su carrera y lo que necesitan es criterio, no prohibición. **Hace bien: variantes.** Pedir tres maneras distintas de organizar una pantalla o diez nombres para un botón es un uso excelente.
-
-- Vale la pena decírselo, porque es el uso que más les va a servir en la Clase 12. **Hace mal: el contexto local.** No sabe que no hay computador en el mostrador, que las voluntarias rotan, que el presupuesto es cero, que la conexión es intermitente.
-
-- Va a proponer funciones que violan las restricciones del equipo y a veces la ley, con el mismo tono seguro con el que propone las buenas.
-
-### El antes y después, y cómo cierra el corte - diapositivas 7 y 8
-
-Proyectado en la lamina «Qué hace bien y qué hace mal: un mapa honesto (2/2)» (3 vinetas).
-
-## Referencias a diapositivas
-Numeración real del deck `Clases/Clase 11 - Taller de prototipado inicial con IA/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
-
-1. Portada · Clase 11
-2. Agenda de hoy (90 min)
-3. Objetivos de la sesión
-4. Pregunta de entrada
-5. Qué hace bien y qué hace mal la IA en prototipado
-6. Cómo se le pide algo a la IA en este curso
-7. La variante de la IA y la corrección del equipo
-8. Cómo cierra el corte 2 hoy
-9. La pregunta de entrada: mejor y además ilegal (1/2)
-10. La pregunta de entrada: mejor y además ilegal (2/2)
-11. Qué hace bien y qué hace mal: un mapa honesto (1/2)
-12. Qué hace bien y qué hace mal: un mapa honesto (2/2)
-13. El método: cinco pasos y por qué el primero decide todo (1/3)
-14. El método: cinco pasos y por qué el primero decide todo (2/3)
-15. El método: cinco pasos y por qué el primero decide todo (3/3)
-16. El antes y después, y cómo cierra el corte (1/3)
-17. El antes y después, y cómo cierra el corte (2/3)
-18. El antes y después, y cómo cierra el corte (3/3)
-19. Plantilla del entregable: los 5 bloques
-20. Guion de la exposicion, con tiempos
-21. Taller de hoy: Prototipo v2 con IA
-22. Cómo se expone en 3 minutos
-23. Para la Clase 12
-24. Cierre · Cierra el corte 2 · Nos vemos en la Clase 12
-
-## Plan de clase minuto a minuto (90 min)
+## Desarrollo de la clase, minuto a minuto (90 min)
 
 ### 00:00–00:08 · Apertura · [Slide 4]
 
@@ -95,7 +50,7 @@ Comparta pantalla antes de que entre el primero:
 
 **[Nota docente]:** si tiene dos minutos, hágalo en vivo: un prompt sin restricciones sobre su prototipo, y muestre cómo propone la cuenta de usuario. Vale más que la diapositiva.
 
-### 00:08–00:25 · Teoría (17 min) · [Slide 5][Slide 6][Slide 7][Slide 8]
+### 00:08–00:25 · Teoría (17 min) · [Slide 5][Slide 6][Slide 8][Slide 9]
 
 Reparto estricto, hoy no hay margen:
 
@@ -103,11 +58,11 @@ Reparto estricto, hoy no hay margen:
 
 - **6 min** · Los cinco pasos [Slide 6]. El paso 3 es el que salva la sesión: **si no lo dice, lo va a proponer**. Y diga que el paso 4 vale 30 puntos.
 
-- **5 min** · El antes y después [Slide 7]. Recórralo fila por fila diciendo **de qué sesión sale cada corrección**. Es la diapositiva que justifica el corte entero.
+- **5 min** · El antes y después [Slide 8]. Recórralo fila por fila diciendo **de qué sesión sale cada corrección**. Es la diapositiva que justifica el corte entero.
 
-- **2 min** · Cómo cierra el corte [Slide 8]. Diga que es a libro abierto **sobre sus propios documentos** y que ExamLab no es plataforma oficial de la universidad.
+- **2 min** · Cómo cierra el corte [Slide 9]. Diga que es a libro abierto **sobre sus propios documentos** y que ExamLab no es plataforma oficial de la universidad.
 
-### 00:25–00:52 · Taller en salas de grupo (27 min) · [Slide 9]
+### 00:25–00:52 · Taller en salas de grupo (27 min) · [Slide 10]
 
 **2 min** para abrir el asistente, el prototipo y el documento del equipo.
 
@@ -125,7 +80,7 @@ Ritmo sugerido dentro de la sala, dígaselo al repartir:
 
 **[Nota docente]:** si un equipo dice «quedó perfecto, no corregimos nada», revíselo contra sus propios requisitos no funcionales: siempre hay algo. Es la señal más clara de que aceptaron sin leer.
 
-### 00:52–01:07 · Exposiciones · [Slide 10]
+### 00:52–01:07 · Exposiciones · [Slide 11]
 
 5 equipos × 3 min. **El minuto obligatorio es «qué corregimos y por qué»**, no la variante elegida.
 
@@ -133,7 +88,7 @@ Ritmo sugerido dentro de la sala, dígaselo al repartir:
 
 **[Nota docente]:** pregunte a cada equipo **de qué sesión salió una de sus correcciones**. Es la manera de cerrar el corte mostrando que todo estaba conectado.
 
-### 01:07–01:27 · Evaluación del corte 2 en ExamLab (20 min) · [Slide 8]
+### 01:07–01:27 · Evaluación del corte 2 en ExamLab (20 min) · [Slide 9]
 
 Cierre las salas y devuelva a todos a la sala principal antes de compartir el enlace.
 
@@ -145,13 +100,32 @@ Recuerde en voz alta: **individual y a libro abierto sobre sus propios documento
 
 Quédese con la cámara encendida y el micrófono abierto para dudas de enunciado, sin resolver contenido.
 
-### 01:27–01:30 · Cierre · [Slide 11][Slide 12]
+### 01:27–01:30 · Cierre · [Slide 12][Slide 13]
 
 Una idea: **pudieron corregir al asistente porque tenían sus decisiones escritas.** Eso es lo que hicieron en el corte 2.
 
 Anuncie el corte 3: empieza con la **presentación de avances** de la Clase 12, donde el prototipo se prueba con una persona ajena al equipo. Es la única retroalimentación gratis del semestre.
 
-## Errores frecuentes y cómo cortarlos en caliente
+> **Ejemplos resueltos** (láminas 7): cada uno va justo después de su concepto y se recorre **dentro del tiempo de ese concepto**, no aparte. Cómo recorrerlo está en sus notas del presentador.
+
+## Mapa de láminas
+Numeración real del deck `Clases/Clase 11 - Taller de prototipado inicial con IA/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
+
+1. Portada · Clase 11
+2. Agenda de hoy (90 min)
+3. Objetivos de la sesión
+4. Pregunta de entrada
+5. Qué hace bien y qué hace mal la IA en prototipado
+6. Cómo se le pide algo a la IA en este curso
+7. Ejemplo: la misma petición, mal y bien hecha
+8. La variante de la IA y la corrección del equipo
+9. Cómo cierra el corte 2 hoy
+10. Taller de hoy: Prototipo v2 con IA
+11. Cómo se expone en 3 minutos
+12. Para la Clase 12
+13. Cierre · Cierra el corte 2 · Nos vemos en la Clase 12
+
+## Si pasa esto en clase
 
 | Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |
 |---|---|---|
@@ -161,7 +135,7 @@ Anuncie el corte 3: empieza con la **presentación de avances** de la Clase 12, 
 | Datos reales de personas escritos en el prompt | Lo que se escribe ahí sale del computador y no vuelve: es tratamiento de datos personales sin autorización. | Que lo declaren en el registro y que en adelante usen roles y datos inventados. La corrección es hacia adelante. |
 | Un registro escrito al final, de memoria | Las correcciones y sus razones se olvidan en minutos, y sin razones el bloque de 30 puntos no se puede calificar. | Que una persona del equipo escriba el registro **mientras** los otros corrigen. Si se deja para el final, no se hace. |
 
-## Dudas frecuentes del estudiante
+## Preguntas que suelen hacer
 
 **¿Podemos usar IA en las otras sesiones?**
 
@@ -179,7 +153,7 @@ No, si se declara y si el criterio es suyo. Lo que sería falta es presentar com
 
 Sí, individual y con sus propios documentos del equipo a la vista: la ficha del problema, la tabla de requisitos, la matriz de decisión, las fichas de antecedentes y el prototipo. Es deliberado — **premia al equipo que documentó**, que es justo lo que el corte intentó enseñar. Lo que no se puede es resolverla entre varios: es individual.
 
-## Notas operativas
+## Antes de empezar
 
 - **El reparto de hoy es distinto y hay que anunciarlo en el minuto 2:** teoría 17 min · taller 27 min · exposiciones 15 min · **evaluación del corte 2, 20 min al final**. Que nadie se vaya antes.
 - **Prepare la evaluación en ExamLab con anticipación** y téngala abierta antes de la sesión. El enlace va **en el chat**, nunca en la diapositiva.

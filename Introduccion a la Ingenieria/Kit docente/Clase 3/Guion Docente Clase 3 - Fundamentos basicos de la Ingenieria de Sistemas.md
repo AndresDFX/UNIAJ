@@ -1,5 +1,7 @@
 # Guion docente — Clase 3: Fundamentos básicos de la Ingeniería de Sistemas
 
+> **Guion de tiempos y desarrollo de la clase.** Dice qué franja es, qué lámina está en pantalla y qué se hace. **Los conceptos y las respuestas a las preguntas de cada lámina están en las NOTAS DEL PRESENTADOR del deck** (en PowerPoint: vista del presentador, o Ver → Notas), debajo de la lámina donde hacen falta.
+
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
@@ -25,74 +27,17 @@
 
 > Es la **primera de las dos sesiones** en que el Plan de curso autoriza usar un asistente de IA (la otra es la 11). La regla es firme y se dice en voz alta: se entrega el **prompt usado** y **lo que se corrigió a mano**. Una respuesta de IA pegada sin revisar no puntúa, porque el criterio de hoy es justamente distinguir lo que la herramienta acertó de lo que inventó. Sirve cualquier asistente en plan gratuito.
 
-## Fundamento teórico para el docente
+## Dónde está cada concepto
 
-Esta sección está escrita para dictar la clase **sin consultar otra fuente**, y va dividida por diapositiva: cada bloque dice a qué diapositiva corresponde.
+Debajo de estas láminas, en las notas del presentador:
 
-### La pregunta de entrada y por qué esos tres ejemplos - diapositiva 4
+- **La pregunta de entrada y por qué esos tres ejemplos** → diapositiva 4
+- **Qué es un sistema y por qué la frontera es la decisión difícil** → diapositiva 5
+- **El sistema no es el software: la confusión que hace fracasar proyectos** → diapositiva 7
+- **Actores, requisitos y retroalimentación: los tres que se olvidan** → diapositiva 9
+- **El asistente de IA: cómo usarlo hoy sin que haga el trabajo** → diapositivas 13 y 11
 
-Proyectado en la lamina «La pregunta de entrada y por qué esos tres ejemplos (1/2)» (3 vinetas).
-
-### Qué es un sistema y por qué la frontera es la decisión difícil - diapositiva 5
-
-Proyectado en la lamina «La pregunta de entrada y por qué esos tres ejemplos (2/2)» (2 vinetas).
-
-### El sistema no es el software: la confusión que hace fracasar proyectos - diapositiva 6
-
-Proyectado en la lamina «Qué es un sistema y por qué la frontera es la decisión difícil (1/2)» (5 vinetas).
-
-- Lo importante de esa definición no son las palabras sino la consecuencia: **el propósito es lo primero que hay que poder decir**.
-
-- Los cinco elementos se explican con un ejemplo concreto y de una sola pasada.
-
-- El estudiante de primer semestre tiende a creer que la frontera viene dada por el problema.
-
-### Actores, requisitos y retroalimentación: los tres que se olvidan - diapositiva 7
-
-Proyectado en la lamina «Qué es un sistema y por qué la frontera es la decisión difícil (2/2)» (5 vinetas).
-
-### El asistente de IA: cómo usarlo hoy sin que haga el trabajo - diapositivas 9 y 8
-
-Proyectado en la lamina «El sistema no es el software: la confusión que hace fracasar proyectos (1/2)» (3 vinetas).
-
-- Casi todos llegan a primer semestre con la mirada de programador, y no por ignorancia: es la que el entorno premia.
-
-- La columna derecha es la que la carrera enseña.
-
-- El ejemplo de las citas médicas conviene desarrollarlo hasta el final porque muestra el fracaso completo.
-
-- El software funciona y el problema sigue. **En la lógica de este curso, ese proyecto fracasó**, y no por un error técnico.
-
-## Referencias a diapositivas
-Numeración real del deck `Clases/Clase 3 - Fundamentos basicos de la Ingenieria de Sistemas/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
-
-1. Portada · Clase 3
-2. Agenda de hoy (90 min)
-3. Objetivos de la sesión
-4. Pregunta de entrada
-5. Los cinco elementos de un sistema
-6. Mirar el software o mirar el sistema
-7. Cuatro conceptos que se usan todo el semestre
-8. Cómo se descompone un sistema en cinco pasos
-9. El asistente de IA: qué hace bien y en qué miente
-10. La pregunta de entrada y por qué esos tres ejemplos (1/2)
-11. La pregunta de entrada y por qué esos tres ejemplos (2/2)
-12. Qué es un sistema y por qué la frontera es la decisión difícil (1/2)
-13. Qué es un sistema y por qué la frontera es la decisión difícil (2/2)
-14. El sistema no es el software: la confusión que hace fracasar proyectos (1/2)
-15. El sistema no es el software: la confusión que hace fracasar proyectos (2/2)
-16. Actores, requisitos y retroalimentación: los tres que se olvidan (1/2)
-17. Actores, requisitos y retroalimentación: los tres que se olvidan (2/2)
-18. El asistente de IA: cómo usarlo hoy sin que haga el trabajo (1/2)
-19. El asistente de IA: cómo usarlo hoy sin que haga el trabajo (2/2)
-20. Plantilla del entregable: los 5 bloques
-21. Guion de la exposicion, con tiempos
-22. Taller de hoy: Anatomía del sistema
-23. Cómo se expone en 3 minutos
-24. Para la Clase 4
-25. Cierre · Nos vemos en la sesión 4
-
-## Plan de clase minuto a minuto (90 min)
+## Desarrollo de la clase, minuto a minuto (90 min)
 
 ### 00:00–00:10 · Apertura · [Slide 4]
 
@@ -104,23 +49,23 @@ Comparta pantalla con la pregunta de entrada antes de que entre el primero:
 
 **[Nota docente]:** recuerde que hoy se usa asistente de IA y que hay que traer la línea de tiempo de la sesión 2 en la carpeta del equipo.
 
-### 00:10–00:55 · Teoría · [Slide 5][Slide 6][Slide 7][Slide 8][Slide 9]
+### 00:10–00:55 · Teoría · [Slide 5][Slide 7][Slide 9][Slide 11][Slide 13]
 
 Reparto sugerido de los 45 min:
 
 - **10 min** · Los cinco elementos [Slide 5], con el ejemplo de las citas del consultorio recorrido completo. Detenga la clase en **frontera** y haga la pregunta del transporte del paciente: es la que produce discusión.
 
-- **12 min** · Mirar el software o mirar el sistema [Slide 6]. Línea por línea. Cierre con el caso de la app impecable y la fila que no se movió.
+- **12 min** · Mirar el software o mirar el sistema [Slide 7]. Línea por línea. Cierre con el caso de la app impecable y la fila que no se movió.
 
-- **10 min** · Los cuatro conceptos [Slide 7]. En **actor**, insista en el vecino que ya no consigue cita: es el actor que se olvida siempre.
+- **10 min** · Los cuatro conceptos [Slide 9]. En **actor**, insista en el vecino que ya no consigue cita: es el actor que se olvida siempre.
 
-- **7 min** · El método de cinco pasos [Slide 8]. Es el orden del taller.
+- **7 min** · El método de cinco pasos [Slide 11]. Es el orden del taller.
 
-- **6 min** · El asistente de IA [Slide 9]. La regla se dice completa: prompt + correcciones, o no puntúa.
+- **6 min** · El asistente de IA [Slide 13]. La regla se dice completa: prompt + correcciones, o no puntúa.
 
 **[Nota docente]:** al terminar, vuelva al muro de la apertura y muestre que «son procesos» era una respuesta a medias: son sistemas, y en los tres el software es la parte pequeña.
 
-### 00:55–01:12 · Taller en salas de grupo · [Slide 10]
+### 00:55–01:12 · Taller en salas de grupo · [Slide 14]
 
 **2 min** para repartir. Cada equipo trabaja **el sistema del problema que escribió en la sesión 1**: no se sortea nada nuevo, porque el objetivo es que ese problema madure hacia el proyecto.
 
@@ -130,7 +75,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** la trampa que hay que buscar son las cifras inventadas. Si en el documento aparece «el promedio de espera es de 45 min», pregunte de dónde salió. Si salió de la IA, esa es exactamente la corrección que se califica.
 
-### 01:12–01:27 · Exposiciones · [Slide 11]
+### 01:12–01:27 · Exposiciones · [Slide 15]
 
 5 equipos × 3 min. Habla el vocero con el documento ya compartido. **El último minuto de cada exposición es obligatoriamente «qué se inventó la IA»**: es la parte que hace la sesión distinta de una clase de teoría de sistemas.
 
@@ -138,13 +83,36 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** anote los actores olvidados que aparezcan. Son material directo para la Clase 13 y conviene tener la lista.
 
-### 01:27–01:30 · Cierre · [Slide 12][Slide 13]
+### 01:27–01:30 · Cierre · [Slide 16][Slide 17]
 
 Una idea: **el sistema no es el software.** Un proyecto de este curso se juzga por si el problema del entorno se redujo y se puede medir, no por si el prototipo funciona.
 
 Anuncie la sesión 4 —principios éticos— con el gancho: hoy vimos que un sistema puede funcionar y ser injusto; la próxima se ve qué responsabilidad tiene el ingeniero cuando eso pasa.
 
-## Errores frecuentes y cómo cortarlos en caliente
+> **Ejemplos resueltos** (láminas 6, 8, 10, 12): cada uno va justo después de su concepto y se recorre **dentro del tiempo de ese concepto**, no aparte. Cómo recorrerlo está en sus notas del presentador.
+
+## Mapa de láminas
+Numeración real del deck `Clases/Clase 3 - Fundamentos basicos de la Ingenieria de Sistemas/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
+
+1. Portada · Clase 3
+2. Agenda de hoy (90 min)
+3. Objetivos de la sesión
+4. Pregunta de entrada
+5. Los cinco elementos de un sistema
+6. Ejemplo resuelto: el sistema de citas de un consultorio
+7. Mirar el software o mirar el sistema
+8. Ejemplo: la app que funcionó y la fila que no se movió
+9. Cuatro conceptos que se usan todo el semestre
+10. Ejemplo: todos los actores del sistema de citas
+11. Cómo se descompone un sistema en cinco pasos
+12. Ejemplo resuelto: el semáforo de una esquina, en cinco pasos
+13. El asistente de IA: qué hace bien y en qué miente
+14. Taller de hoy: Anatomía del sistema
+15. Cómo se expone en 3 minutos
+16. Para la Clase 4
+17. Cierre · Nos vemos en la sesión 4
+
+## Si pasa esto en clase
 
 | Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |
 |---|---|---|
@@ -154,7 +122,7 @@ Anuncie la sesión 4 —principios éticos— con el gancho: hoy vimos que un si
 | «La retroalimentación es que el usuario se queja» | Es tardía y sesgada: solo se queja una parte, y ya pasó el daño. | Cómo se enteraría el sistema ANTES de que alguien reclame. Si no hay manera, que lo escriban: es un hallazgo. |
 | Un dato con cifra que salió de la IA | El asistente inventa cifras locales con total naturalidad y sin avisar. | La fuente. Si salió de la IA, que lo borren y lo anoten como corrección: eso es lo que se califica. |
 
-## Dudas frecuentes del estudiante
+## Preguntas que suelen hacer
 
 **¿Entonces podemos usar IA en todo el curso?**
 
@@ -172,7 +140,7 @@ Vuelvan a mirar las cifras, los nombres propios y las normas. En un caso local s
 
 Sí, hoy sí. La idea es que ese problema madure: en la sesión 6 se entrega la ficha del problema del proyecto y es más fácil si vienen trabajándolo desde la primera semana.
 
-## Notas operativas
+## Antes de empezar
 
 - Las cinco salas de grupo se crean **antes** de la sesión.
 - Es la primera de las dos sesiones con IA autorizada. Diga la regla completa **antes** de abrir las salas, no después: prompt + correcciones, o no puntúa.

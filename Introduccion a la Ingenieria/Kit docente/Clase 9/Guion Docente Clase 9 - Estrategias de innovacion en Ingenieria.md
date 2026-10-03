@@ -1,5 +1,7 @@
 # Guion docente — Clase 9: Estrategias de innovación en Ingeniería
 
+> **Guion de tiempos y desarrollo de la clase.** Dice qué franja es, qué lámina está en pantalla y qué se hace. **Los conceptos y las respuestas a las preguntas de cada lámina están en las NOTAS DEL PRESENTADOR del deck** (en PowerPoint: vista del presentador, o Ver → Notas), debajo de la lámina donde hacen falta.
+
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
@@ -25,80 +27,17 @@
 
 > La búsqueda se hace en el navegador y las fichas van en el **documento del equipo**; el mapa de antecedentes se dibuja en **Excalidraw**. Hoy **no se usa IA, y hay una razón de fondo**: la sesión de hoy es sobre fuentes verificables, y un asistente puede devolver títulos, autores y años que parecen reales y no existen. Una respuesta de asistente **no es una fuente**: es un intermediario que no responde por lo que dice.
 
-## Fundamento teórico para el docente
+## Dónde está cada concepto
 
-Esta sección está escrita para dictar la clase **sin consultar otra fuente**, y va dividida por diapositiva: cada bloque dice a qué diapositiva corresponde.
+Debajo de estas láminas, en las notas del presentador:
 
-### La pregunta de entrada: si no existe en ningún lado, probablemente no buscaron - diapositiva 4
+- **La pregunta de entrada: si no existe en ningún lado, probablemente no buscaron** → diapositiva 4
+- **Innovación: por qué la adopción es lo que decide** → diapositiva 5
+- **Las cuatro maneras de generar una mejora** → diapositiva 7
+- **Buscar: la pregunta de búsqueda y los cinco pasos** → diapositiva 9
+- **Calidad de las fuentes, la IA y qué hacer cuando no se encuentra nada** → diapositivas 11 y 12
 
-Proyectado en la lamina «La pregunta de entrada: si no existe en ningún lado, probablemente no buscaron» (4 vinetas).
-
-- La respuesta estadística es dura: en un mundo con millones de ingenieros y cincuenta años de software publicado, la probabilidad de que un problema común —disponibilidad, inventario, turnos, avisos— no tenga antecedentes es prácticamente cero.
-
-- Lo que hay que evitar es que el grupo lo lea como un desaire.
-
-- Un equipo que dice «esto no existe» está apostando; un equipo que dice «existen estas tres soluciones, ninguna funciona sin computador en el mostrador, y nosotros resolvemos justamente eso» tiene una posición defendible ante cualquiera.
-
-- La segunda frase es la que se califica en la Clase 15.
-
-### Innovación: por qué la adopción es lo que decide - diapositiva 5
-
-Proyectado en la lamina «Innovación: por qué la adopción es lo que decide (1/2)» (5 vinetas).
-
-- Si nadie la usa, fue un experimento — respetable, pero no innovación.
-
-- Hay que decirlo sin condescendencia: la mayoría de la ingeniería del mundo es incremental, y la mejora incremental bien hecha y adoptada vale más que la revolución no entregada. **De producto y de proceso.** Innovar en el *cómo* —el mismo servicio con la mitad de los pasos— es innovación de proceso, y para muchos de sus proyectos es lo más alcanzable y lo más útil.
-
-- Eso convierte la búsqueda de antecedentes en la materia prima del proyecto, y no en un requisito académico.
-
-- Sin antecedentes no hay con qué recombinar.
-
-### Las cuatro maneras de generar una mejora - diapositiva 6
-
-Proyectado en la lamina «Innovación: por qué la adopción es lo que decide (2/2)» (2 vinetas).
-
-### Buscar: la pregunta de búsqueda y los cinco pasos - diapositiva 7
-
-Proyectado en la lamina «Las cuatro maneras de generar una mejora (1/2)» (6 vinetas).
-
-- Quitar un paso, un requisito, un dato, una pantalla.
-
-- Vale la pena señalar que **quitar también reduce la huella** —menos datos, menos consultas, menos transferencia—, que es el indicador de la sesión 5. **COMBINAR** es juntar dos cosas que ya existen y que nadie había juntado en ese contexto: una lista publicada más un mensaje automático; un formulario más un tablero.
-
-### Calidad de las fuentes, la IA y qué hacer cuando no se encuentra nada - diapositivas 8 y 9
-
-Proyectado en la lamina «Las cuatro maneras de generar una mejora (2/2)» (3 vinetas).
-
-## Referencias a diapositivas
-Numeración real del deck `Clases/Clase 9 - Estrategias de innovacion en Ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
-
-1. Portada · Clase 9
-2. Agenda de hoy (90 min)
-3. Objetivos de la sesión
-4. Pregunta de entrada
-5. Qué es innovación y qué no
-6. Cuatro maneras de generar una mejora
-7. Cómo se busca un antecedente en cinco pasos
-8. Dónde buscar y qué esperar de cada sitio
-9. Tres reglas sobre las fuentes
-10. La pregunta de entrada: si no existe en ningún lado, probablemente no buscaron
-11. Innovación: por qué la adopción es lo que decide (1/2)
-12. Innovación: por qué la adopción es lo que decide (2/2)
-13. Las cuatro maneras de generar una mejora (1/2)
-14. Las cuatro maneras de generar una mejora (2/2)
-15. Buscar: la pregunta de búsqueda y los cinco pasos (1/2)
-16. Buscar: la pregunta de búsqueda y los cinco pasos (2/2)
-17. Calidad de las fuentes, la IA y qué hacer cuando no se encuentra nada (1/3)
-18. Calidad de las fuentes, la IA y qué hacer cuando no se encuentra nada (2/3)
-19. Calidad de las fuentes, la IA y qué hacer cuando no se encuentra nada (3/3)
-20. Plantilla del entregable: los 5 bloques
-21. Guion de la exposicion, con tiempos
-22. Taller de hoy: Antecedentes y propuesta de mejora
-23. Cómo se expone en 3 minutos
-24. Para la Clase 10
-25. Cierre · Nos vemos en la sesión 10
-
-## Plan de clase minuto a minuto (90 min)
+## Desarrollo de la clase, minuto a minuto (90 min)
 
 ### 00:00–00:10 · Apertura · [Slide 4]
 
@@ -110,23 +49,23 @@ Comparta pantalla antes de que entre el primero:
 
 **[Nota docente]:** pida que abran la **alternativa elegida en la sesión 8**. Los antecedentes se buscan sobre esa decisión, no sobre el tema en general.
 
-### 00:10–00:55 · Teoría · [Slide 5][Slide 6][Slide 7][Slide 8][Slide 9]
+### 00:10–00:55 · Teoría · [Slide 5][Slide 7][Slide 9][Slide 11][Slide 12]
 
 Reparto sugerido de los 45 min:
 
 - **8 min** · Qué es innovación y qué no [Slide 5]. El punto es **la adopción**: una lista que la biblioteca usa vale más que la app perfecta que quedó en el computador del equipo.
 
-- **8 min** · Cuatro maneras de generar una mejora [Slide 6]. Insista en **QUITAR** y en el ejemplo del restaurante para desbloquear equipos.
+- **8 min** · Cuatro maneras de generar una mejora [Slide 7]. Insista en **QUITAR** y en el ejemplo del restaurante para desbloquear equipos.
 
-- **10 min** · Cómo se busca [Slide 7]. Haga escribir la pregunta de búsqueda **en el chat**, un equipo a la vez: son 2 minutos y cambia el taller entero.
+- **10 min** · Cómo se busca [Slide 9]. Haga escribir la pregunta de búsqueda **en el chat**, un equipo a la vez: son 2 minutos y cambia el taller entero.
 
-- **12 min** · Dónde buscar [Slide 8]. Un consejo por fila. No se salte el truco del repositorio institucional para los artículos de pago.
+- **12 min** · Dónde buscar [Slide 11]. Un consejo por fila. No se salte el truco del repositorio institucional para los artículos de pago.
 
-- **7 min** · Tres reglas sobre las fuentes [Slide 9]. **No la recorte:** es la diapositiva de integridad académica de todo el curso.
+- **7 min** · Tres reglas sobre las fuentes [Slide 12]. **No la recorte:** es la diapositiva de integridad académica de todo el curso.
 
 **[Nota docente]:** si va retrasado, comprima innovación a 5 minutos. La búsqueda y las reglas son lo que se califica hoy.
 
-### 00:55–01:12 · Taller en salas de grupo · [Slide 10]
+### 00:55–01:12 · Taller en salas de grupo · [Slide 13]
 
 **2 min** para abrir el documento del equipo y Excalidraw.
 
@@ -136,7 +75,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** si ve una referencia sin enlace o que no abre, pídala en pantalla en ese momento. Es la única forma de cortar la cita inventada, y hacerlo en la sala enseña más que descontarlo en la nota.
 
-### 01:12–01:27 · Exposiciones · [Slide 11]
+### 01:12–01:27 · Exposiciones · [Slide 14]
 
 5 equipos × 3 min. **El minuto obligatorio es «qué le falta a lo que ya existe y qué vamos a hacer distinto»**.
 
@@ -146,7 +85,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** anote la propuesta de mejora de cada equipo. Es el eje del informe final de la Clase 16 y de la exposición de la 15.
 
-### 01:27–01:30 · Cierre · [Slide 12][Slide 13]
+### 01:27–01:30 · Cierre · [Slide 15][Slide 16]
 
 Una idea: **nadie parte de cero, y decirlo es una fortaleza.** «Existen estas tres soluciones, ninguna funciona sin computador en el mostrador, y nosotros resolvemos eso» es una posición defendible ante cualquiera.
 
@@ -154,7 +93,29 @@ Repita la regla: **si no puede abrir el enlace y ver el documento, no lo cite.**
 
 Anuncie la sesión 10: **prototipado**. Se pasa de la decisión y los antecedentes a las tres pantallas o pasos del flujo principal.
 
-## Errores frecuentes y cómo cortarlos en caliente
+> **Ejemplos resueltos** (láminas 6, 8, 10): cada uno va justo después de su concepto y se recorre **dentro del tiempo de ese concepto**, no aparte. Cómo recorrerlo está en sus notas del presentador.
+
+## Mapa de láminas
+Numeración real del deck `Clases/Clase 9 - Estrategias de innovacion en Ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
+
+1. Portada · Clase 9
+2. Agenda de hoy (90 min)
+3. Objetivos de la sesión
+4. Pregunta de entrada
+5. Qué es innovación y qué no
+6. Ejemplo: tecnología nueva o innovación
+7. Cuatro maneras de generar una mejora
+8. Ejemplo: las cuatro operaciones sobre la fila de la tienda
+9. Cómo se busca un antecedente en cinco pasos
+10. Ejemplo: la búsqueda del antecedente, hecha
+11. Dónde buscar y qué esperar de cada sitio
+12. Tres reglas sobre las fuentes
+13. Taller de hoy: Antecedentes y propuesta de mejora
+14. Cómo se expone en 3 minutos
+15. Para la Clase 10
+16. Cierre · Nos vemos en la sesión 10
+
+## Si pasa esto en clase
 
 | Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |
 |---|---|---|
@@ -164,7 +125,7 @@ Anuncie la sesión 10: **prototipado**. Se pasa de la decisión y los antecedent
 | «Ya existe algo igual, entonces cambiamos de tema» | Cambiar de tema en la sesión 9 tira por la borda las sesiones 6, 7 y 8, y el problema nuevo llega sin análisis. | «¿Y por qué no lo están usando?». La respuesta a eso casi siempre es el problema real, y es mejor que el original. |
 | Tres fuentes sobre el tema en general, ninguna leída | Una bibliografía de adorno no aporta nada al diseño y se detecta con una sola pregunta. | El campo «qué le falta para nuestro caso» de cada ficha. Sin haber leído, ese campo no se puede llenar. |
 
-## Dudas frecuentes del estudiante
+## Preguntas que suelen hacer
 
 **¿Cuántas fuentes hay que tener?**
 
@@ -182,7 +143,7 @@ Depende de quién lo firma y de para qué se usa. La documentación oficial de u
 
 Eso es exactamente el uso correcto, y en la sesión 11 se practica formalmente. Hoy no se usa porque la sesión es sobre aprender a buscar, y quien empieza con el atajo no aprende el método. Pero la regla vale desde ya: **la IA puede darle pistas y términos; la fuente se abre, se lee y se cita usted.**
 
-## Notas operativas
+## Antes de empezar
 
 - Las cinco salas de grupo se crean **antes** de la sesión.
 - **Ábrale los enlaces del documento de solución antes de la clase.** Las URL cambian; si alguna se cayó, úsela como ejemplo en vivo de por qué se anota la fecha de consulta.

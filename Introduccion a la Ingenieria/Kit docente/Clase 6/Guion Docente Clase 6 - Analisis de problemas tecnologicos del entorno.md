@@ -1,5 +1,7 @@
 # Guion docente — Clase 6: Análisis de problemas tecnológicos del entorno
 
+> **Guion de tiempos y desarrollo de la clase.** Dice qué franja es, qué lámina está en pantalla y qué se hace. **Los conceptos y las respuestas a las preguntas de cada lámina están en las NOTAS DEL PRESENTADOR del deck** (en PowerPoint: vista del presentador, o Ver → Notas), debajo de la lámina donde hacen falta.
+
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
@@ -28,66 +30,17 @@
 
 > El árbol de causas se dibuja en **Excalidraw** —a mano alzada, que es lo que sirve para pensar— y la ficha se escribe en el **documento del equipo en Drive**. Hoy **no se usa IA**: el problema tiene que salir de lo que ellos conocen del entorno, y un asistente lo devuelve genérico. La evaluación de corte se responde en **ExamLab**, con el enlace en el chat.
 
-## Fundamento teórico para el docente
+## Dónde está cada concepto
 
-Esta sección está escrita para dictar la clase **sin consultar otra fuente**, y va dividida por diapositiva: cada bloque dice a qué diapositiva corresponde.
+Debajo de estas láminas, en las notas del presentador:
 
-### La pregunta de entrada: la solución disfrazada de problema - diapositiva 4
+- **La pregunta de entrada: la solución disfrazada de problema** → diapositiva 4
+- **Las tres cosas que se confunden y cómo se escribe un problema** → diapositiva 5
+- **El árbol del problema: la herramienta que evita las soluciones cosméticas** → diapositiva 7
+- **La línea base y los cuatro criterios de viabilidad** → diapositivas 9 y 11
+- **Cómo cerrar el corte: la ficha y la evaluación en ExamLab** → diapositiva 13
 
-Proyectado en la lamina «La pregunta de entrada: la solución disfrazada de problema (1/2)» (3 vinetas).
-
-### Las tres cosas que se confunden y cómo se escribe un problema - diapositiva 5
-
-Proyectado en la lamina «La pregunta de entrada: la solución disfrazada de problema (2/2)» (3 vinetas).
-
-### El árbol del problema: la herramienta que evita las soluciones cosméticas - diapositiva 6
-
-Proyectado en la lamina «Las tres cosas que se confunden y cómo se escribe un problema (1/3)» (5 vinetas).
-
-- Tiene sujeto (los usuarios), tiene el qué (no saben la disponibilidad), tiene la consecuencia (viajes en vano) y tiene una cifra.
-
-### La línea base y los cuatro criterios de viabilidad - diapositivas 7 y 8
-
-Proyectado en la lamina «Las tres cosas que se confunden y cómo se escribe un problema (2/3)» (5 vinetas).
-
-### Cómo cerrar el corte: la ficha y la evaluación en ExamLab - diapositiva 9
-
-Proyectado en la lamina «Las tres cosas que se confunden y cómo se escribe un problema (3/3)» (2 vinetas).
-
-## Referencias a diapositivas
-Numeración real del deck `Clases/Clase 6 - Analisis de problemas tecnologicos del entorno/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
-
-1. Portada · Clase 6
-2. Agenda de hoy (90 min)
-3. Objetivos de la sesión
-4. Pregunta de entrada
-5. Síntoma, problema y solución disfrazada
-6. El árbol del problema
-7. La línea base: la cifra de hoy
-8. Cuándo un problema cabe en un semestre
-9. Cómo cierra el corte 1 hoy
-10. La pregunta de entrada: la solución disfrazada de problema (1/2)
-11. La pregunta de entrada: la solución disfrazada de problema (2/2)
-12. Las tres cosas que se confunden y cómo se escribe un problema (1/3)
-13. Las tres cosas que se confunden y cómo se escribe un problema (2/3)
-14. Las tres cosas que se confunden y cómo se escribe un problema (3/3)
-15. El árbol del problema: la herramienta que evita las soluciones cosméticas (1/3)
-16. El árbol del problema: la herramienta que evita las soluciones cosméticas (2/3)
-17. El árbol del problema: la herramienta que evita las soluciones cosméticas (3/3)
-18. La línea base y los cuatro criterios de viabilidad (1/4)
-19. La línea base y los cuatro criterios de viabilidad (2/4)
-20. La línea base y los cuatro criterios de viabilidad (3/4)
-21. La línea base y los cuatro criterios de viabilidad (4/4)
-22. Cómo cerrar el corte: la ficha y la evaluación en ExamLab (1/2)
-23. Cómo cerrar el corte: la ficha y la evaluación en ExamLab (2/2)
-24. Plantilla del entregable: los 5 bloques
-25. Guion de la exposicion, con tiempos
-26. Taller de hoy: Ficha del problema del proyecto
-27. Cómo se expone en 3 minutos
-28. Para la Clase 7
-29. Cierre · Cerró el corte 1 · nos vemos en la sesión 7
-
-## Plan de clase minuto a minuto (90 min)
+## Desarrollo de la clase, minuto a minuto (90 min)
 
 ### 00:00–00:10 · Apertura · [Slide 4]
 
@@ -99,23 +52,23 @@ Comparta pantalla antes de que entre el primero:
 
 **[Nota docente]:** pida que tengan abierto el documento del equipo con las cuatro cosas de las sesiones anteriores (problema inicial, ficha de sistema, regla ética, indicador ambiental). La ficha se arma con eso.
 
-### 00:10–00:35 · Teoría (25 min, comprimida) · [Slide 5][Slide 6][Slide 7][Slide 8][Slide 9]
+### 00:10–00:35 · Teoría (25 min, comprimida) · [Slide 5][Slide 7][Slide 9][Slide 11][Slide 13]
 
 Reparto estricto. Hoy el reloj manda:
 
 - **6 min** · Síntoma, problema y solución disfrazada [Slide 5]. **Vuelva al muro** y clasifique en voz alta dos o tres respuestas de la apertura. Dicte la fórmula: a quién le pasa qué, con qué consecuencia, más una cifra.
 
-- **7 min** · El árbol del problema [Slide 6]. Dibújelo en vivo con un ejemplo, no lo explique en abstracto. Repita la regla: **el proyecto ataca una causa, no una rama**.
+- **7 min** · El árbol del problema [Slide 7]. Dibújelo en vivo con un ejemplo, no lo explique en abstracto. Repita la regla: **el proyecto ataca una causa, no una rama**.
 
-- **5 min** · La línea base [Slide 7]. Lo esencial: se consigue preguntando, contando o cronometrando; y si no hay cifra posible, el problema está muy grande.
+- **5 min** · La línea base [Slide 9]. Lo esencial: se consigue preguntando, contando o cronometrando; y si no hay cifra posible, el problema está muy grande.
 
-- **5 min** · Los cuatro criterios [Slide 8]. Aplíquelos en voz alta a una idea que haya salido en el muro, incluida la parte incómoda de descartar.
+- **5 min** · Los cuatro criterios [Slide 11]. Aplíquelos en voz alta a una idea que haya salido en el muro, incluida la parte incómoda de descartar.
 
-- **2 min** · Cómo cierra el corte [Slide 9]. Ficha + evaluación, y que ExamLab no es plataforma oficial de la universidad.
+- **2 min** · Cómo cierra el corte [Slide 13]. Ficha + evaluación, y que ExamLab no es plataforma oficial de la universidad.
 
 **[Nota docente]:** si va retrasado, recorte los criterios a tres minutos quedándose con *medible* y *acceso a los actores*, que son los dos que más descartan. **No recorte el árbol**: es la herramienta del taller.
 
-### 00:35–00:52 · Taller en salas de grupo · [Slide 10]
+### 00:35–00:52 · Taller en salas de grupo · [Slide 14]
 
 **2 min** para repartir: cada equipo trabaja **su propio problema**, el que viene desde la sesión 1. Excalidraw para el árbol, documento del equipo para la ficha.
 
@@ -125,7 +78,7 @@ Reparto estricto. Hoy el reloj manda:
 
 **[Nota docente]:** el árbol de diez raíces es el otro error frecuente. Pida que escojan las dos causas que sí pueden tocar y marquen el resto como restricciones.
 
-### 00:52–01:07 · Exposiciones · [Slide 11]
+### 00:52–01:07 · Exposiciones · [Slide 15]
 
 5 equipos × 3 min. **El minuto obligatorio de hoy es el problema en una frase más la cifra.** Si no hay cifra, dígalo en el momento y déjelo anotado: se corrige esta semana y entra en la sesión 7.
 
@@ -145,13 +98,36 @@ Es individual, cubre las sesiones 1 a 6 y se responde en la sesión. Mantenga la
 
 **[Nota docente]:** si alguien pierde la conexión durante la evaluación, anótelo y resuélvalo con reposición el mismo día. No lo deje para la próxima sesión.
 
-### 01:27–01:30 · Cierre · [Slide 12][Slide 13]
+### 01:27–01:30 · Cierre · [Slide 16][Slide 17]
 
 Una idea: **el problema ya está escrito y de aquí en adelante todo se hace sobre esa ficha.** El corte 1 cierra con un producto, no con una nota.
 
 Anuncie la sesión 7: arranca el corte 2 con el **ciclo de vida de los proyectos de ingeniería**, y se aplica al problema de hoy.
 
-## Errores frecuentes y cómo cortarlos en caliente
+> **Ejemplos resueltos** (láminas 6, 8, 10, 12): cada uno va justo después de su concepto y se recorre **dentro del tiempo de ese concepto**, no aparte. Cómo recorrerlo está en sus notas del presentador.
+
+## Mapa de láminas
+Numeración real del deck `Clases/Clase 6 - Analisis de problemas tecnologicos del entorno/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
+
+1. Portada · Clase 6
+2. Agenda de hoy (90 min)
+3. Objetivos de la sesión
+4. Pregunta de entrada
+5. Síntoma, problema y solución disfrazada
+6. Ejemplo: de la queja al problema, en cuatro pasos
+7. El árbol del problema
+8. Ejemplo resuelto: el árbol de la fila en la tienda
+9. La línea base: la cifra de hoy
+10. Ejemplo: cómo se saca una línea base con el celular
+11. Cuándo un problema cabe en un semestre
+12. Ejemplo: el mismo problema, grande y del tamaño justo
+13. Cómo cierra el corte 1 hoy
+14. Taller de hoy: Ficha del problema del proyecto
+15. Cómo se expone en 3 minutos
+16. Para la Clase 7
+17. Cierre · Cerró el corte 1 · nos vemos en la sesión 7
+
+## Si pasa esto en clase
 
 | Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |
 |---|---|---|
@@ -161,7 +137,7 @@ Anuncie la sesión 7: arranca el corte 2 con el **ciclo de vida de los proyectos
 | Un árbol con diez raíces | Es una lista de todo lo que se les ocurrió, no un análisis, y con eso no se puede decidir qué atacar. | Dos o tres causas directas, su segundo nivel, y las que no pueden cambiar marcadas como restricciones. |
 | «El éxito es tener 200 usuarios en la app» | Mide la adopción de la solución, no la resolución del problema. Se puede tener 200 usuarios y el problema intacto. | El criterio con la misma medición de la línea base: de X a Y, medido así. |
 
-## Dudas frecuentes del estudiante
+## Preguntas que suelen hacer
 
 **Nuestro problema es muy grande y nos dijeron que lo bajemos. ¿No es peor un proyecto pequeño?**
 
@@ -183,7 +159,7 @@ Perfecto, pero no va en el enunciado del problema. Escriban el problema sin menc
 
 Cubre las sesiones 1 a 6: qué es y qué no es la ingeniería, historia y hitos, los cinco elementos de un sistema, los principios éticos y las tres normas colombianas, las cuatro etapas de la huella, y problema contra síntoma. Se responde en ExamLab en los últimos 20 minutos de la sesión, es individual, y si el enlace no le abre lo avisa **en el chat en el momento**.
 
-## Notas operativas
+## Antes de empezar
 
 - **El reparto de tiempo de hoy es distinto: teoría 25 min, no 45.** Quedarse largo en la explicación significa aplicar la evaluación de corte con el grupo apurado. Ponga una alarma a los 35 minutos.
 - **Anuncie la evaluación de corte en el minuto 2**, con la agenda en pantalla. La gente organiza la atención distinto sabiendo que hay evaluación al cierre, y así nadie se desconecta después de exponer.

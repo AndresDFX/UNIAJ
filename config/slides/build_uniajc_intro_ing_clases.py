@@ -38,7 +38,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from uniajc_slides_engine import (  # noqa: E402
     new_prs, class_cover, content_slide, block_timeline_slide, hook_slide,
-    pseudo_code_slide,
+    pseudo_code_slide, notas,
     before_after_slide, cards_grid_slide, steps_visual_slide, checklist_slide,
     box_note_slide, closing_slide, table_content, two_column_slide,
     diagram_boxes_slide,
@@ -48,6 +48,11 @@ import intro_ing_datos as D  # noqa: E402
 import intro_ing_temas_data as TD  # noqa: E402
 import examlab_talleres  # noqa: E402
 import teoria_a_slides as TS  # noqa: E402
+from intro_ing_ejemplos_data import EJEMPLOS  # noqa: E402
+
+#: Titulos de las laminas de ejemplo de cada clase, para remapear los `[Slide N]` del
+#: plan, que estan contados sobre el deck SIN ejemplos.
+_TITULOS_EJEMPLO = {}
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 CURSO = os.path.join(ROOT, D.curso()["folder"])
@@ -240,6 +245,22 @@ def _guion_cronometrado(t):
     return [("Guion de la exposicion, con tiempos", L, [], "codigo")]
 
 
+def _notas_del_fundamento(prs, titulos, t, n):
+    """Escribe cada bloque del fundamento en las NOTAS de la lamina a la que apunta.
+
+    El ancla `{{slide:Fragmento}}` ya decia a que lamina acompana cada bloque; antes se
+    usaba para numerar el guion, ahora tambien para saber debajo de que lamina va. Un bloque
+    con dos anclas va en las dos.
+    """
+    laminas = list(prs.slides)
+    for b in t.get("fundamento", []):
+        nums = [_slide_no(titulos, m.group(1), n) for m in _SLIDE_TOKEN.finditer(b["slide"])]
+        texto = [b["titulo"].upper()] + list(b.get("cuerpo", []))
+        for k in nums:
+            if 1 <= k <= len(laminas):
+                notas(laminas[k - 1], texto)
+
+
 def _slides_desarrollo(t):
     """Las laminas de DESARROLLO del tema, una por bloque de `fundamento`.
 
@@ -326,17 +347,20 @@ def build_pptx(n):
     T.append("Pregunta de entrada")
     idx += 1
 
+    _TITULOS_EJEMPLO[n] = set()
     for spec in t["teoria"]:
         _slide_teoria(prs, spec, idx, t_reg)
         idx += 1
-
-    # El desarrollo del tema, proyectado: hasta ahora vivia solo en el guion.
-    for _tit, _items, _, _tipo in _slides_desarrollo(t):
-        if _tipo == "codigo":
-            pseudo_code_slide(prs, t_reg(_tit), _items, idx=idx)
-        else:
-            content_slide(prs, t_reg(_tit), _items, idx=idx)
-        idx += 1
+        # Los ejemplos resueltos de ESTE concepto, justo detras: es primer semestre y el
+        # concepto en abstracto no se entiende hasta que se ve aplicado a un caso.
+        for despues_de, ej in EJEMPLOS.get(n, []):
+            if _plano(despues_de) not in _plano(spec["titulo"]):
+                continue
+            _slide_teoria(prs, ej, idx, t_reg)
+            _TITULOS_EJEMPLO[n].add(ej["titulo"])
+            if ej.get("nota"):
+                notas(prs.slides[-1], ej["nota"])
+            idx += 1
 
     tl = t["taller"]
     checklist_slide(
@@ -397,11 +421,35 @@ def build_pptx(n):
     dir_clase, _, _ = _dirs(n)
     os.makedirs(dir_clase, exist_ok=True)
     out = os.path.join(dir_clase, "Presentacion.pptx")
+    # Las NOTAS DEL PRESENTADOR: cada bloque del fundamento va debajo de la lamina
+    # a la que ya apuntaba su ancla {{slide:...}}. Lo que el estudiante ve es la
+    # lamina; lo que el docente lee mientras tanto —la respuesta a la pregunta, el
+    # concepto, por que ese ejemplo— va aqui, y no se proyecta.
+    _notas_del_fundamento(prs, T, t, n)
     prs.save(out)
     return out, T
 
 
 # ----------------------------------------------------------------------- guion
+
+def _remapear_slides(texto, n, titulos):
+    """Corrige los `[Slide N]` del plan, contados sobre el deck SIN ejemplos.
+
+    Se reconstruye la numeracion vieja quitando los titulos de ejemplo, y cada numero viejo se
+    traduce al nuevo por TITULO. Si un numero no se puede traducir, se deja como esta: el
+    build no debe inventar una lamina.
+    """
+    ejemplos = _TITULOS_EJEMPLO.get(n, set())
+    if not ejemplos:
+        return texto
+    viejos = [x for x in titulos if x not in ejemplos]
+    nuevo_de = {}
+    for i_viejo, tit in enumerate(viejos, 1):
+        nuevo_de[i_viejo] = titulos.index(tit) + 1
+    return re.sub(r"\[Slide (\d+)\]",
+                  lambda m: "[Slide %d]" % nuevo_de.get(int(m.group(1)), int(m.group(1))),
+                  texto)
+
 
 def md_guion(n, titulos):
     t = TD.TEMAS[n]
@@ -417,6 +465,11 @@ def md_guion(n, titulos):
 
     L = [
         "# Guion docente — Clase %d: %s" % (n, t["titulo"]),
+        "",
+        "> **Guion de tiempos y desarrollo de la clase.** Dice qué franja es, qué lámina está "
+        "en pantalla y qué se hace. **Los conceptos y las respuestas a las preguntas de cada "
+        "lámina están en las NOTAS DEL PRESENTADOR del deck** (en PowerPoint: vista del "
+        "presentador, o Ver → Notas), debajo de la lámina donde hacen falta.",
         "",
         "## Información de la clase",
         "- Asignatura: %s (%s)" % (c["nombre_acentos"], c["codigo"]),
@@ -450,35 +503,37 @@ def md_guion(n, titulos):
         "",
         "> %s" % t["herramienta_nota"],
         "",
-        "## Fundamento teórico para el docente",
-        "",
-        "Esta sección está escrita para dictar la clase **sin consultar otra fuente**, y va "
-        "dividida por diapositiva: cada bloque dice a qué diapositiva corresponde.",
-        "",
     ]
-    # El contenido de cada bloque esta PROYECTADO (una lamina de desarrollo por bloque).
-    # Aqui queda lo que no cabe en pantalla: donde esta cada cosa y que subrayar.
-    _desarrollo = [s for s in _slides_desarrollo(t) if s[3] == "content"]
-    for b, (_tit, _vin, _notas, _tipo) in zip(t["fundamento"], _desarrollo):
-        L += ["### %s - %s" % (b["titulo"], _etiqueta_slides(titulos, b["slide"], n)), ""]
-        L += ["Proyectado en la lamina «%s» (%d vinetas)." % (_tit, len(_vin)), ""]
-        for x in _notas:
-            L += ["- %s" % x, ""]
+    # El fundamento ya no va en el guion: esta en las NOTAS DEL PRESENTADOR, debajo de la
+    # lamina a la que acompana. Aqui solo queda donde encontrarlo.
+    L += ["## Dónde está cada concepto", "",
+          "Debajo de estas láminas, en las notas del presentador:", ""]
+    for b in t["fundamento"]:
+        L.append("- **%s** → %s" % (b["titulo"], _etiqueta_slides(titulos, b["slide"], n)))
+    L += [""]
+
+    # El minuto a minuto es EL guion: va primero.
+    L += ["## Desarrollo de la clase, minuto a minuto (%d min)" % c["duracion_min"], ""]
+    for p in t["plan"]:
+        L += ["### %s" % _remapear_slides(p["titulo"], n, titulos), ""]
+        for x in p["cuerpo"]:
+            L += [_remapear_slides(x, n, titulos), ""]
+    if _TITULOS_EJEMPLO.get(n):
+        nums = sorted(titulos.index(x) + 1 for x in _TITULOS_EJEMPLO[n])
+        L += ["> **Ejemplos resueltos** (láminas %s): cada uno va justo después de su concepto "
+              "y se recorre **dentro del tiempo de ese concepto**, no aparte. Cómo recorrerlo "
+              "está en sus notas del presentador." % ", ".join(map(str, nums)), ""]
 
     L += [
-        "## Referencias a diapositivas",
+        "## Mapa de láminas",
         "Numeración real del deck `Clases/Clase %d - %s/Presentacion.pptx`. Las etiquetas "
         "[Slide N] del plan y las referencias del fundamento apuntan aquí." % (n, _slug(n)),
         "",
     ]
     L += ["%d. %s" % (i, x) for i, x in enumerate(titulos, 1)]
-    L += ["", "## Plan de clase minuto a minuto (%d min)" % c["duracion_min"], ""]
-    for p in t["plan"]:
-        L += ["### %s" % p["titulo"], ""]
-        for x in p["cuerpo"]:
-            L += [x, ""]
+    L += [""]
 
-    L += ["## Errores frecuentes y cómo cortarlos en caliente", ""]
+    L += ["## Si pasa esto en clase", ""]
     L += ["| Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |",
           "|---|---|---|"]
     for e in t["errores"]:
@@ -486,12 +541,12 @@ def md_guion(n, titulos):
     L.append("")
 
     if t.get("dudas"):
-        L += ["## Dudas frecuentes del estudiante", ""]
+        L += ["## Preguntas que suelen hacer", ""]
         for d in t["dudas"]:
             L += ["**%s**" % d["p"], "", d["r"], ""]
 
     L += [
-        "## Notas operativas",
+        "## Antes de empezar",
         "",
     ]
     L += ["- %s" % x for x in t["notas_operativas"]]

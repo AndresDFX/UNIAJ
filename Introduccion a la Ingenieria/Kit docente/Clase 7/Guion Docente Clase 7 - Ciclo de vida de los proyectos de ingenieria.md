@@ -1,5 +1,7 @@
 # Guion docente — Clase 7: Ciclo de vida de los proyectos de ingeniería
 
+> **Guion de tiempos y desarrollo de la clase.** Dice qué franja es, qué lámina está en pantalla y qué se hace. **Los conceptos y las respuestas a las preguntas de cada lámina están en las NOTAS DEL PRESENTADOR del deck** (en PowerPoint: vista del presentador, o Ver → Notas), debajo de la lámina donde hacen falta.
+
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
@@ -25,76 +27,17 @@
 
 > El mapa del ciclo de vida se hace en **diagrams.net (draw.io)**, que abre sin cuenta y guarda en la carpeta del equipo. La tabla de requisitos va en el **documento del equipo**. Hoy no se usa IA: los requisitos tienen que salir de la ficha del problema de la sesión 6, y un asistente los devuelve genéricos y sin las restricciones del caso.
 
-## Fundamento teórico para el docente
+## Dónde está cada concepto
 
-Esta sección está escrita para dictar la clase **sin consultar otra fuente**, y va dividida por diapositiva: cada bloque dice a qué diapositiva corresponde.
+Debajo de estas láminas, en las notas del presentador:
 
-### La pregunta de entrada: la curva del costo del cambio - diapositiva 4
+- **La pregunta de entrada: la curva del costo del cambio** → diapositiva 4
+- **Las seis fases, y por qué el orden importa** → diapositiva 5
+- **La curva del costo del cambio: qué se puede afirmar y qué no** → diapositiva 7
+- **Cascada, iterativo, y lo que Royce dijo de verdad** → diapositiva 9
+- **Requisitos, criterios de aceptación y hitos: lo que se entrega hoy** → diapositivas 10 y 12
 
-Proyectado en la lamina «La pregunta de entrada: la curva del costo del cambio» (4 vinetas).
-
-- Mover una pared en el plano cuesta un borrador; en el ladrillo cuesta tumbar y volver a levantar; en la casa entregada cuesta la obra, la mudanza y el enojo del dueño.
-
-- Lo que hay que hacer explícito en el minuto 12 es que **en software la curva es igual pero se ve menos**, y ahí está el problema.
-
-- Por eso en ingeniería de software hubo que inventar fases, revisiones y criterios de aceptación: son el equivalente a mirar el plano antes de pedir el cemento.
-
-- Recoja las respuestas en el muro.
-
-### Las seis fases, y por qué el orden importa - diapositiva 5
-
-Proyectado en la lamina «Las seis fases, y por qué el orden importa (1/2)» (4 vinetas).
-
-- Conviene presentar las fases como una cadena de preguntas, no como una lista de etapas administrativas.
-
-- Eso reordena la percepción del curso: no estaban haciendo un ejercicio, estaban cerrando una fase. **Requisitos** responde *qué tiene que hacer la solución para resolver eso, y cómo sabremos que lo hace*.
-
-- Cada fase existe porque descubrir un error en ella cuesta menos que descubrirlo en la siguiente.
-
-### La curva del costo del cambio: qué se puede afirmar y qué no - diapositiva 6
-
-Proyectado en la lamina «Las seis fases, y por qué el orden importa (2/2)» (4 vinetas).
-
-### Cascada, iterativo, y lo que Royce dijo de verdad - diapositiva 7
-
-Proyectado en la lamina «La curva del costo del cambio: qué se puede afirmar y qué no (1/2)» (5 vinetas).
-
-- La dirección de la curva no está en discusión; la pendiente sí.
-
-### Requisitos, criterios de aceptación y hitos: lo que se entrega hoy - diapositivas 8 y 9
-
-Proyectado en la lamina «La curva del costo del cambio: qué se puede afirmar y qué no (2/2)» (3 vinetas).
-
-## Referencias a diapositivas
-Numeración real del deck `Clases/Clase 7 - Ciclo de vida de los proyectos de ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
-
-1. Portada · Clase 7
-2. Agenda de hoy (90 min)
-3. Objetivos de la sesión
-4. Pregunta de entrada
-5. Las seis fases del ciclo de vida
-6. Lo que cuesta cambiar en cada fase
-7. Una sola pasada o varias vueltas
-8. Cuatro cosas que se entregan y no son código
-9. Tres malentendidos que salen caros
-10. La pregunta de entrada: la curva del costo del cambio
-11. Las seis fases, y por qué el orden importa (1/2)
-12. Las seis fases, y por qué el orden importa (2/2)
-13. La curva del costo del cambio: qué se puede afirmar y qué no (1/2)
-14. La curva del costo del cambio: qué se puede afirmar y qué no (2/2)
-15. Cascada, iterativo, y lo que Royce dijo de verdad (1/2)
-16. Cascada, iterativo, y lo que Royce dijo de verdad (2/2)
-17. Requisitos, criterios de aceptación y hitos: lo que se entrega hoy (1/3)
-18. Requisitos, criterios de aceptación y hitos: lo que se entrega hoy (2/3)
-19. Requisitos, criterios de aceptación y hitos: lo que se entrega hoy (3/3)
-20. Plantilla del entregable: los 5 bloques
-21. Guion de la exposicion, con tiempos
-22. Taller de hoy: Ciclo de vida del proyecto
-23. Cómo se expone en 3 minutos
-24. Para la Clase 8
-25. Cierre · Nos vemos en la sesión 8
-
-## Plan de clase minuto a minuto (90 min)
+## Desarrollo de la clase, minuto a minuto (90 min)
 
 ### 00:00–00:10 · Apertura · [Slide 4]
 
@@ -106,23 +49,23 @@ Comparta pantalla antes de que entre el primero:
 
 **[Nota docente]:** pida que abran la **ficha del problema de la sesión 6**. Todo el taller de hoy cuelga de ella; sin ficha no hay requisitos.
 
-### 00:10–00:55 · Teoría · [Slide 5][Slide 6][Slide 7][Slide 8][Slide 9]
+### 00:10–00:55 · Teoría · [Slide 5][Slide 7][Slide 9][Slide 10][Slide 12]
 
 Reparto sugerido de los 45 min:
 
 - **9 min** · Las seis fases [Slide 5]. Diga explícitamente que **la fase 1 ya la cerraron en la sesión 6**: eso reordena cómo ven el curso.
 
-- **10 min** · La curva del costo [Slide 6]. Vuelva al muro. Sea honesto con las cifras: la dirección de la curva no se discute, los múltiplos sí.
+- **10 min** · La curva del costo [Slide 7]. Vuelva al muro. Sea honesto con las cifras: la dirección de la curva no se discute, los múltiplos sí.
 
-- **9 min** · Una sola pasada o varias vueltas [Slide 7]. Cierre el punto de Royce de la sesión 2 y anuncie las **dos vueltas** de este curso (10–11 y 12–14).
+- **9 min** · Una sola pasada o varias vueltas [Slide 9]. Cierre el punto de Royce de la sesión 2 y anuncie las **dos vueltas** de este curso (10–11 y 12–14).
 
-- **12 min** · Cuatro cosas que se entregan [Slide 8]. Es la más operativa: de aquí sale el taller. Insista en que **los requisitos no funcionales salen de las restricciones del árbol de la sesión 6**.
+- **12 min** · Cuatro cosas que se entregan [Slide 10]. Es la más operativa: de aquí sale el taller. Insista en que **los requisitos no funcionales salen de las restricciones del árbol de la sesión 6**.
 
-- **5 min** · Tres malentendidos [Slide 9].
+- **5 min** · Tres malentendidos [Slide 12].
 
 **[Nota docente]:** si va retrasado, recorte los malentendidos a dos minutos. **No recorte la diapositiva de requisitos y criterios**: sin ella el taller no se puede hacer.
 
-### 00:55–01:12 · Taller en salas de grupo · [Slide 10]
+### 00:55–01:12 · Taller en salas de grupo · [Slide 13]
 
 **2 min** para abrir draw.io y el documento del equipo. Cada equipo trabaja su propio proyecto.
 
@@ -132,7 +75,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** revise el plan de hitos con severidad. Si todo el trabajo cae en la Clase 14, dígalo ahora: es un proyecto que va a fallar y todavía hay nueve sesiones para arreglarlo.
 
-### 01:12–01:27 · Exposiciones · [Slide 11]
+### 01:12–01:27 · Exposiciones · [Slide 14]
 
 5 equipos × 3 min con el diagrama compartido. **El minuto obligatorio es «en qué fase estamos y qué falta para cerrarla»**.
 
@@ -140,13 +83,35 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** anote la fase declarada por cada equipo y su hito de la sesión 10. En la sesión 10 se verifica contra eso, y es la manera más simple de detectar a un equipo atrasado antes de que sea tarde.
 
-### 01:27–01:30 · Cierre · [Slide 12][Slide 13]
+### 01:27–01:30 · Cierre · [Slide 15][Slide 16]
 
 Una idea: **el orden de las fases no es burocracia, es economía.** El error barato es el que se encuentra temprano, y por eso hoy escribieron requisitos en vez de empezar a construir.
 
 Anuncie la sesión 8: se aplica esto a **casos reales de proyectos que se saltaron una fase**, y cada equipo decide entre sus dos alternativas de solución.
 
-## Errores frecuentes y cómo cortarlos en caliente
+> **Ejemplos resueltos** (láminas 6, 8, 11): cada uno va justo después de su concepto y se recorre **dentro del tiempo de ese concepto**, no aparte. Cómo recorrerlo está en sus notas del presentador.
+
+## Mapa de láminas
+Numeración real del deck `Clases/Clase 7 - Ciclo de vida de los proyectos de ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
+
+1. Portada · Clase 7
+2. Agenda de hoy (90 min)
+3. Objetivos de la sesión
+4. Pregunta de entrada
+5. Las seis fases del ciclo de vida
+6. Ejemplo: las seis fases en la app de turnos de la tienda
+7. Lo que cuesta cambiar en cada fase
+8. Ejemplo: el mismo error, descubierto en tres momentos
+9. Una sola pasada o varias vueltas
+10. Cuatro cosas que se entregan y no son código
+11. Ejemplo: requisitos mal y bien escritos
+12. Tres malentendidos que salen caros
+13. Taller de hoy: Ciclo de vida del proyecto
+14. Cómo se expone en 3 minutos
+15. Para la Clase 8
+16. Cierre · Nos vemos en la sesión 8
+
+## Si pasa esto en clase
 
 | Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |
 |---|---|---|
@@ -156,7 +121,7 @@ Anuncie la sesión 8: se aplica esto a **casos reales de proyectos que se saltar
 | «Debe ser escalable / usar la nube» como requisito no funcional | No sale de ninguna restricción del proyecto: entró por moda y no por análisis. | Que señalen la restricción del árbol de la sesión 6 de donde sale cada requisito no funcional. |
 | Un plan con todo el trabajo en la Clase 14 | Es el patrón exacto de los proyectos que no se entregan, y desperdicia la retroalimentación gratis de la Clase 12. | Un hito verificable en la Clase 10, aunque sea mínimo. La Clase 14 se reserva para ensayar, no para construir. |
 
-## Dudas frecuentes del estudiante
+## Preguntas que suelen hacer
 
 **¿Tenemos que seguir cascada o ágil?**
 
@@ -174,7 +139,7 @@ Va a pasar, y no es una falla del usuario: es la razón de ser del enfoque itera
 
 En el informe final, sí, en una versión corta: qué pasaría si su solución se deja de usar y **qué pasa con los datos**. Es la Ley 1581 de 2012 de la sesión 4 aplicada al final de la vida del sistema, y casi nadie la piensa. Con dos párrafos bien pensados es suficiente.
 
-## Notas operativas
+## Antes de empezar
 
 - Las cinco salas de grupo se crean **antes** de la sesión.
 - Pida que abran la **ficha del problema de la sesión 6** en la apertura. Sin ficha no hay requisitos, y hay equipos que la van a haber dejado a medias.

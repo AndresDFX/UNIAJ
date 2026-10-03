@@ -1,5 +1,7 @@
 # Guion docente — Clase 14: Preparación de la presentación final
 
+> **Guion de tiempos y desarrollo de la clase.** Dice qué franja es, qué lámina está en pantalla y qué se hace. **Los conceptos y las respuestas a las preguntas de cada lámina están en las NOTAS DEL PRESENTADOR del deck** (en PowerPoint: vista del presentador, o Ver → Notas), debajo de la lámina donde hacen falta.
+
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
@@ -27,66 +29,16 @@
 
 > Las diapositivas en **Canva** o en **Google Slides**, como prefieran: las dos son gratuitas y sirven igual. Google Slides tiene una ventaja concreta —se abre desde cualquier computador y no depende de una cuenta de Canva—. El guion y el reparto van en el **documento del equipo**. **Hoy no se usa asistente de IA.** Y una obligación técnica: **la presentación descargada en PDF** y **capturas de cada paso del prototipo**, guardadas en la carpeta del equipo antes de salir de clase.
 
-## Fundamento teórico para el docente
+## Dónde está cada concepto
 
-Esta sección está escrita para dictar la clase **sin consultar otra fuente**, y va dividida por diapositiva: cada bloque dice a qué diapositiva corresponde.
+Debajo de estas láminas, en las notas del presentador:
 
-### La pregunta de entrada: cuánto dura contarlo todo - diapositiva 4
+- **La pregunta de entrada: cuánto dura contarlo todo** → diapositiva 4
+- **Los cinco tramos, y por qué el tramo 4 es el que sube la nota** → diapositiva 5
+- **Diapositivas que se miran, y el reparto que reparte de verdad** → diapositivas 7, 8 y 9
+- **El plan B, el ensayo, y por qué se ensaya solo el arranque** → diapositiva 10
 
-Proyectado en la lamina «La pregunta de entrada: cuánto dura contarlo todo (1/2)» (4 vinetas).
-
-- En el muro, cada equipo escribe **qué va a dejar fuera**.
-
-- Un equipo que esconde su presentación hoy porque «no está lista» está renunciando a la única corrección antes de la nota.
-
-### Los cinco tramos, y por qué el tramo 4 es el que sube la nota - diapositiva 5
-
-Proyectado en la lamina «La pregunta de entrada: cuánto dura contarlo todo (2/2)» (3 vinetas).
-
-### Diapositivas que se miran, y el reparto que reparte de verdad - diapositivas 6, 7 y 8
-
-Proyectado en la lamina «Los cinco tramos, y por qué el tramo 4 es el que sube la nota (1/2)» (4 vinetas).
-
-- Vale la pena decirlo, porque el mismo esqueleto les va a servir en la Clase 16 para el informe y en toda la carrera para cualquier sustentación. **Tramo 1 · el problema con su cifra, 1 minuto.** El error universal es empezar con presentaciones personales y agradecimientos: «buenas tardes, somos el equipo tal, integrado por…».
-
-- Eso consume el minuto más valioso de los nueve. **El nombre del equipo está en la diapositiva**; se arranca con el problema y su número. **Tramo 2 · a quién le pasa y qué decidimos, 2 minutos.** Aquí entra un afectado que no es usuario —trabajo de la Clase 13— y, sobre todo, **la decisión de la matriz de la sesión 8 con lo que se sacrificó**.
-
-- Cerrar con el siguiente paso deja la sensación de trabajo vivo y no de tarea entregada.
-
-### El plan B, el ensayo, y por qué se ensaya solo el arranque - diapositiva 9
-
-Proyectado en la lamina «Los cinco tramos, y por qué el tramo 4 es el que sube la nota (2/2)» (4 vinetas).
-
-## Referencias a diapositivas
-Numeración real del deck `Clases/Clase 14 - Preparacion de la presentacion final/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
-
-1. Portada · Clase 14
-2. Agenda de hoy (90 min)
-3. Objetivos de la sesión
-4. Pregunta de entrada
-5. Los cinco tramos de nueve minutos
-6. Cuatro reglas de diapositiva
-7. El reparto: qué hace cada integrante, incluso quien no habla
-8. La diapositiva que se lee y la que se mira
-9. El plan B técnico, y tres trampas del ensayo
-10. La pregunta de entrada: cuánto dura contarlo todo (1/2)
-11. La pregunta de entrada: cuánto dura contarlo todo (2/2)
-12. Los cinco tramos, y por qué el tramo 4 es el que sube la nota (1/2)
-13. Los cinco tramos, y por qué el tramo 4 es el que sube la nota (2/2)
-14. Diapositivas que se miran, y el reparto que reparte de verdad (1/3)
-15. Diapositivas que se miran, y el reparto que reparte de verdad (2/3)
-16. Diapositivas que se miran, y el reparto que reparte de verdad (3/3)
-17. El plan B, el ensayo, y por qué se ensaya solo el arranque (1/3)
-18. El plan B, el ensayo, y por qué se ensaya solo el arranque (2/3)
-19. El plan B, el ensayo, y por qué se ensaya solo el arranque (3/3)
-20. Plantilla del entregable: los 5 bloques
-21. Guion de la exposicion, con tiempos
-22. Taller de hoy: Guion de nueve minutos y plan B
-23. Cómo se expone en 4 minutos
-24. Para la Clase 15
-25. Cierre · Nos vemos en la Clase 15
-
-## Plan de clase minuto a minuto (90 min)
+## Desarrollo de la clase, minuto a minuto (90 min)
 
 ### 00:00–00:06 · Apertura · [Slide 4]
 
@@ -100,21 +52,21 @@ En el muro, cada equipo escribe **qué va a dejar fuera**. Es el trabajo de hoy 
 
 **[Nota docente]:** diga la frase que ordena la sesión: **una presentación no se acorta hablando rápido, se acorta eligiendo.**
 
-### 00:06–00:28 · Teoría (22 min) · [Slide 5]…[Slide 9]
+### 00:06–00:28 · Teoría (22 min) · [Slide 5]…[Slide 10]
 
 Reparto:
 
 - **6 min** · Los cinco tramos [Slide 5]. Defienda el **tramo 4**: es el que todos quieren saltarse y el que más sube la nota.
 
-- **4 min** · Las cuatro reglas de diapositiva [Slide 6]. La ley: **si no cabe, se quita contenido, no se reduce la letra.**
+- **4 min** · Las cuatro reglas de diapositiva [Slide 7]. La ley: **si no cabe, se quita contenido, no se reduce la letra.**
 
-- **4 min** · El reparto [Slide 7]. Las dos exigencias: **todos hablan** y **narrar y manejar la pantalla no las hace la misma persona.**
+- **4 min** · El reparto [Slide 8]. Las dos exigencias: **todos hablan** y **narrar y manejar la pantalla no las hace la misma persona.**
 
-- **5 min** · Antes y después [Slide 8]. Deténgase en la fila de la matriz: **la matriz completa va en el informe, no en la presentación.**
+- **5 min** · Antes y después [Slide 9]. Deténgase en la fila de la matriz: **la matriz completa va en el informe, no en la presentación.**
 
-- **3 min** · Plan B y trampas del ensayo [Slide 9]. Diga que el plan B **es parte de la nota** y que se entrega hoy, no la próxima sesión.
+- **3 min** · Plan B y trampas del ensayo [Slide 10]. Diga que el plan B **es parte de la nota** y que se entrega hoy, no la próxima sesión.
 
-### 00:28–00:55 · Taller en salas de grupo (27 min) · [Slide 10]
+### 00:28–00:55 · Taller en salas de grupo (27 min) · [Slide 11]
 
 Ritmo sugerido dentro de la sala:
 
@@ -130,7 +82,7 @@ Ritmo sugerido dentro de la sala:
 
 **[Nota docente]:** verifique el plan B equipo por equipo **antes de que termine el bloque**. Después ya no hay tiempo, y en la Clase 15 es tarde.
 
-### 00:55–01:25 · Ensayo cronometrado (30 min) · [Slide 11]
+### 00:55–01:25 · Ensayo cronometrado (30 min) · [Slide 12]
 
 5 equipos × 6 min: **4 minutos de ensayo del arranque** (tramos 1, 2 y el comienzo del 3) y **2 minutos de corrección**. Cronómetro en pantalla, visible para todos.
 
@@ -142,7 +94,7 @@ Ritmo sugerido dentro de la sala:
 
 Los demás equipos observan y anotan una cosa que van a copiar y una que van a evitar. Se comparte en el muro, sin nombres.
 
-### 01:25–01:30 · Cierre · [Slide 12][Slide 13]
+### 01:25–01:30 · Cierre · [Slide 13][Slide 14]
 
 Verifique en voz alta la lista de la Clase 15: **guion con tiempos, ocho diapositivas, reparto, demostración ensayada, PDF descargado y capturas en la carpeta.**
 
@@ -150,7 +102,27 @@ Una idea: **una presentación no se acorta hablando rápido, se acorta eligiendo
 
 Recuerde lo que vale: la exposición de la Clase 15 es el **15 %** del curso, y **se corta a los nueve minutos**. Quien no ensaye completo se va a pasar.
 
-## Errores frecuentes y cómo cortarlos en caliente
+> **Ejemplos resueltos** (láminas 6): cada uno va justo después de su concepto y se recorre **dentro del tiempo de ese concepto**, no aparte. Cómo recorrerlo está en sus notas del presentador.
+
+## Mapa de láminas
+Numeración real del deck `Clases/Clase 14 - Preparacion de la presentacion final/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
+
+1. Portada · Clase 14
+2. Agenda de hoy (90 min)
+3. Objetivos de la sesión
+4. Pregunta de entrada
+5. Los cinco tramos de nueve minutos
+6. Ejemplo: los cinco tramos de la app de turnos, dichos
+7. Cuatro reglas de diapositiva
+8. El reparto: qué hace cada integrante, incluso quien no habla
+9. La diapositiva que se lee y la que se mira
+10. El plan B técnico, y tres trampas del ensayo
+11. Taller de hoy: Guion de nueve minutos y plan B
+12. Cómo se expone en 4 minutos
+13. Para la Clase 15
+14. Cierre · Nos vemos en la Clase 15
+
+## Si pasa esto en clase
 
 | Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |
 |---|---|---|
@@ -160,7 +132,7 @@ Recuerde lo que vale: la exposición de la Clase 15 es el **15 %** del curso, y 
 | «Aquí arriba tenemos un campo de búsqueda, y a la derecha un botón que dice buscar…» | Narrar la interfaz consume los tres minutos del tramo más importante sin mostrar nada que funcione. | Mostrar una tarea cumpliéndose: alguien encontrando un libro, alguien marcando un préstamo en 14 segundos. |
 | «El plan B lo hacemos en casa» | Es la parte más fácil de los cien puntos del día y la que se olvida siempre. En la Clase 15 ya es tarde. | El PDF y las capturas en la carpeta hoy, antes de salir, y el acuerdo de quién comparte pantalla. |
 
-## Dudas frecuentes del estudiante
+## Preguntas que suelen hacer
 
 **¿Nueve minutos exactos? ¿Qué pasa si nos pasamos?**
 
@@ -178,7 +150,7 @@ En vivo, siempre que se pueda: mostrar una tarea cumpliéndose convence mucho m�
 
 Va en el **informe final de la Clase 16**, que vale el 20 %. El árbol de causas completo, la matriz de decisión con sus quince filas, los tres antecedentes, la matriz de impacto entera: todo eso es material de informe. Distinguir qué va en la presentación y qué va en el informe es una habilidad profesional, y es media hora de trabajo ganado para la próxima sesión.
 
-## Notas operativas
+## Antes de empezar
 
 - **Reparto propio hoy:** apertura 6 · teoría 22 · taller 27 · **ensayo cronometrado 30** · cierre 5. Anúncielo en el minuto 2 y aclare que el ensayo **no tiene nota**.
 - **Cronómetro grande y visible en pantalla compartida** durante el ensayo. Sin cronómetro visible, el ejercicio pierde la mitad del efecto.

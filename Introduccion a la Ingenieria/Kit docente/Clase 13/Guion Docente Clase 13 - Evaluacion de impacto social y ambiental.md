@@ -1,5 +1,7 @@
 # Guion docente — Clase 13: Evaluación de impacto social y ambiental
 
+> **Guion de tiempos y desarrollo de la clase.** Dice qué franja es, qué lámina está en pantalla y qué se hace. **Los conceptos y las respuestas a las preguntas de cada lámina están en las NOTAS DEL PRESENTADOR del deck** (en PowerPoint: vista del presentador, o Ver → Notas), debajo de la lámina donde hacen falta.
+
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
@@ -25,74 +27,17 @@
 
 > La matriz se llena en una tabla del **documento del equipo** en Google Drive; si quieren dibujar el mapa de afectados, **draw.io** con la plantilla de red. **Hoy no se usa asistente de IA**: la lista de afectados de un proyecto local es justo lo que un modelo entrenado con internet no puede conocer.
 
-## Fundamento teórico para el docente
+## Dónde está cada concepto
 
-Esta sección está escrita para dictar la clase **sin consultar otra fuente**, y va dividida por diapositiva: cada bloque dice a qué diapositiva corresponde.
+Debajo de estas láminas, en las notas del presentador:
 
-### La pregunta de entrada: ¿quién queda peor? - diapositiva 4
+- **La pregunta de entrada: ¿quién queda peor?** → diapositiva 4
+- **Impacto no es intención, y el indirecto es el que muerde** → diapositiva 5
+- **Los afectados que no eligieron nada** → diapositiva 6
+- **La matriz, la calificación y los límites del método** → diapositivas 8 y 9
+- **Del adjetivo al indicador, y las tres honestidades** → diapositivas 11 y 12
 
-Proyectado en la lamina «La pregunta de entrada: ¿quién queda peor? (1/2)» (6 vinetas).
-
-- Ninguno de los dos usa el sistema para consultar, y a los dos les cambió la vida por él.
-
-- Ahí ya sabe con quién tiene que sentarse en las salas de grupo.
-
-### Impacto no es intención, y el indirecto es el que muerde - diapositiva 5
-
-Proyectado en la lamina «La pregunta de entrada: ¿quién queda peor? (2/2)» (3 vinetas).
-
-### Los afectados que no eligieron nada - diapositiva 6
-
-Proyectado en la lamina «Impacto no es intención, y el indirecto es el que muerde (1/2)» (6 vinetas).
-
-- Conviene decirlo de frente: el mundo está lleno de proyectos con buenas intenciones y malos impactos, y el propósito de una matriz es precisamente separar las dos cosas. **Directo e indirecto.** El directo es fácil porque es el que buscábamos: la persona hace menos viajes en vano.
-
-### La matriz, la calificación y los límites del método - diapositivas 7 y 8
-
-Proyectado en la lamina «Impacto no es intención, y el indirecto es el que muerde (2/2)» (3 vinetas).
-
-### Del adjetivo al indicador, y las tres honestidades - diapositivas 9 y 10
-
-Proyectado en la lamina «Los afectados que no eligieron nada (1/2)» (6 vinetas).
-
-- Casi todos lo olvidaron, y ahí está la mitad del trabajo de hoy.
-
-- Vale la pena señalar la lección de método —es la tercera vez en el curso que un material viejo resuelve un problema nuevo—: **documentar es una inversión, no un trámite.** **Paso 2: seguir la cadena de trabajo.** ¿A quién le llega más trabajo y a quién menos?
-
-- Quien no tiene celular, datos, lectura fluida, buena vista, o el idioma.
-
-## Referencias a diapositivas
-Numeración real del deck `Clases/Clase 13 - Evaluacion de impacto social y ambiental/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
-
-1. Portada · Clase 13
-2. Agenda de hoy (90 min)
-3. Objetivos de la sesión
-4. Pregunta de entrada
-5. Impacto: cuatro distinciones que hay que tener claras
-6. Cómo se encuentra a los afectados que no son usuarios
-7. La matriz de impacto: qué se pregunta en cada dimensión
-8. Cómo se califica un impacto, sin fingir precisión
-9. Un impacto declarado y un impacto medido
-10. Tres honestidades sobre el impacto
-11. La pregunta de entrada: ¿quién queda peor? (1/2)
-12. La pregunta de entrada: ¿quién queda peor? (2/2)
-13. Impacto no es intención, y el indirecto es el que muerde (1/2)
-14. Impacto no es intención, y el indirecto es el que muerde (2/2)
-15. Los afectados que no eligieron nada (1/2)
-16. Los afectados que no eligieron nada (2/2)
-17. La matriz, la calificación y los límites del método (1/3)
-18. La matriz, la calificación y los límites del método (2/3)
-19. La matriz, la calificación y los límites del método (3/3)
-20. Del adjetivo al indicador, y las tres honestidades (1/2)
-21. Del adjetivo al indicador, y las tres honestidades (2/2)
-22. Plantilla del entregable: los 5 bloques
-23. Guion de la exposicion, con tiempos
-24. Taller de hoy: Matriz de impacto social y ambiental
-25. Cómo se expone en 3 minutos
-26. Para la Clase 14
-27. Cierre · Nos vemos en la Clase 14
-
-## Plan de clase minuto a minuto (90 min)
+## Desarrollo de la clase, minuto a minuto (90 min)
 
 ### 00:00–00:10 · Apertura · [Slide 4]
 
@@ -106,7 +51,7 @@ En el muro, cada equipo escribe **un afectado que no sea usuario**. Los que trai
 
 **[Nota docente]:** la frase de encuadre, sin solemnidad: **un ingeniero que no puede responder esa pregunta no terminó el diseño.**
 
-### 00:10–00:55 · Teoría (45 min) · [Slide 5]…[Slide 10]
+### 00:10–00:55 · Teoría (45 min) · [Slide 5]…[Slide 12]
 
 Reparto:
 
@@ -114,15 +59,15 @@ Reparto:
 
 - **9 min** · Cómo se encuentra a los afectados [Slide 6]. Dé tiempo al paso 3: **si su solución solo mejora a quien ya estaba mejor, empeoró la brecha.**
 
-- **10 min** · La matriz [Slide 7]. Recórrala por la **columna de la derecha**: ahí está el aprendizaje. Insista en que «no aplica» va con razón.
+- **10 min** · La matriz [Slide 8]. Recórrala por la **columna de la derecha**: ahí está el aprendizaje. Insista en que «no aplica» va con razón.
 
-- **8 min** · Cómo se califica [Slide 8]. Diga en voz alta el límite del método: **es una convención para ordenar, no una medición.**
+- **8 min** · Cómo se califica [Slide 9]. Diga en voz alta el límite del método: **es una convención para ordenar, no una medición.**
 
-- **8 min** · Antes y después [Slide 9]. Lea la columna izquierda en voz alta y pregunte: **¿qué proyecto NO podría escribir esto?**
+- **8 min** · Antes y después [Slide 11]. Lea la columna izquierda en voz alta y pregunte: **¿qué proyecto NO podría escribir esto?**
 
-- **3 min** · Las tres honestidades [Slide 10]. La primera, repetida: «no genera impacto negativo» es la frase que más credibilidad quita.
+- **3 min** · Las tres honestidades [Slide 12]. La primera, repetida: «no genera impacto negativo» es la frase que más credibilidad quita.
 
-### 00:55–01:12 · Taller en salas de grupo (17 min) · [Slide 11]
+### 00:55–01:12 · Taller en salas de grupo (17 min) · [Slide 13]
 
 Ritmo sugerido dentro de la sala:
 
@@ -138,7 +83,7 @@ Ritmo sugerido dentro de la sala:
 
 **[Nota docente]:** el error de calibración más común es escribir adjetivos donde va un número. Pida el indicador en voz alta: «beneficia a la comunidad» → **¿cuántas personas, cuántas veces al mes?**
 
-### 01:12–01:27 · Exposiciones · [Slide 12]
+### 01:12–01:27 · Exposiciones · [Slide 14]
 
 5 equipos × 3 min. **El minuto obligatorio es el impacto NEGATIVO y su mitigación**, no la lista de bondades.
 
@@ -146,7 +91,7 @@ Ritmo sugerido dentro de la sala:
 
 **[Nota docente]:** premie en voz alta al equipo que declare el negativo más incómodo. Es la conducta que quiere ver en el informe final.
 
-### 01:27–01:30 · Cierre · [Slide 13][Slide 14]
+### 01:27–01:30 · Cierre · [Slide 15][Slide 16]
 
 Una idea: **los usuarios eligieron usarla; los afectados no eligieron nada.**
 
@@ -154,7 +99,29 @@ Recuerde la conexión que cierra cuatro sesiones: el límite de 200 KB de la ses
 
 Anuncie la Clase 14: **la preparación de la presentación final** y el **ensayo general cronometrado**. Y avise que la exposición de la Clase 15 vale el **15 %**.
 
-## Errores frecuentes y cómo cortarlos en caliente
+> **Ejemplos resueltos** (láminas 7, 10): cada uno va justo después de su concepto y se recorre **dentro del tiempo de ese concepto**, no aparte. Cómo recorrerlo está en sus notas del presentador.
+
+## Mapa de láminas
+Numeración real del deck `Clases/Clase 13 - Evaluacion de impacto social y ambiental/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
+
+1. Portada · Clase 13
+2. Agenda de hoy (90 min)
+3. Objetivos de la sesión
+4. Pregunta de entrada
+5. Impacto: cuatro distinciones que hay que tener claras
+6. Cómo se encuentra a los afectados que no son usuarios
+7. Ejemplo: afectados de la app de turnos que nunca la usan
+8. La matriz de impacto: qué se pregunta en cada dimensión
+9. Cómo se califica un impacto, sin fingir precisión
+10. Ejemplo: un impacto negativo calificado
+11. Un impacto declarado y un impacto medido
+12. Tres honestidades sobre el impacto
+13. Taller de hoy: Matriz de impacto social y ambiental
+14. Cómo se expone en 3 minutos
+15. Para la Clase 14
+16. Cierre · Nos vemos en la Clase 14
+
+## Si pasa esto en clase
 
 | Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |
 |---|---|---|
@@ -164,7 +131,7 @@ Anuncie la Clase 14: **la preparación de la presentación final** y el **ensayo
 | «Permite consultar la disponibilidad» como impacto | Eso es una función del sistema, no un impacto. El impacto es lo que le cambia a alguien por poder consultar. | «¿Y eso qué le cambia a quién?», repetido hasta llegar a una persona y un número. |
 | Una fila de la matriz en blanco | El lector no puede distinguir entre «no aplica» y «no lo pensamos», así que asume lo segundo. | «No aplica» con una línea de razón. Es una respuesta válida y bien calificada. |
 
-## Dudas frecuentes del estudiante
+## Preguntas que suelen hacer
 
 **¿Declarar un impacto negativo nos baja la nota?**
 
@@ -182,7 +149,7 @@ No, y es importante que quede claro: las escalas son **una convención para comp
 
 Sí, y muchas veces **es la mejor**. En el caso de la biblioteca, la mitigación más efectiva de la exclusión es una cartelera impresa en la puerta: cuesta una hoja a la semana y atiende justo a quien la solución digital deja fuera. La ingeniería no consiste en poner tecnología, sino en resolver el problema con los recursos que hay.
 
-## Notas operativas
+## Antes de empezar
 
 - **Avise en la Clase 12 que hay que traer dos cosas:** el listado de actores no usuarios de la **sesión 3** y el indicador ambiental de la **sesión 5**. Sin ellos, el taller de 17 minutos no alcanza.
 - En la apertura, pida en el muro **un afectado que no sea usuario** por equipo. Es el diagnóstico más rápido de quién trajo el material y quién no.

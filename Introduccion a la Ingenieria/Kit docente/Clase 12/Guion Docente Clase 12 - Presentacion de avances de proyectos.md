@@ -1,5 +1,7 @@
 # Guion docente — Clase 12: Presentación de avances de proyectos
 
+> **Guion de tiempos y desarrollo de la clase.** Dice qué franja es, qué lámina está en pantalla y qué se hace. **Los conceptos y las respuestas a las preguntas de cada lámina están en las NOTAS DEL PRESENTADOR del deck** (en PowerPoint: vista del presentador, o Ver → Notas), debajo de la lámina donde hacen falta.
+
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
@@ -27,71 +29,16 @@
 
 > El muro de **Padlet** de hoy tiene **una columna por equipo**: mientras un equipo expone, los demás escriben ahí su retroalimentación, y así queda por escrito y no se pierde. El equipo se lleva su columna. La ficha de avance y el plan de ajustes van en el **documento del equipo** en Google Drive. **Hoy no se usa asistente de IA.**
 
-## Fundamento teórico para el docente
+## Dónde está cada concepto
 
-Esta sección está escrita para dictar la clase **sin consultar otra fuente**, y va dividida por diapositiva: cada bloque dice a qué diapositiva corresponde.
+Debajo de estas láminas, en las notas del presentador:
 
-### La pregunta de entrada: «no, ahí no, toca acá» - diapositiva 4
+- **La pregunta de entrada: «no, ahí no, toca acá»** → diapositiva 4
+- **Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso** → diapositivas 5 y 7
+- **Qué es un avance: cinco minutos que no repiten nada** → diapositiva 8
+- **Dar y recibir: la única revisión externa gratis del semestre** → diapositivas 9 y 11
 
-Proyectado en la lamina «La pregunta de entrada: «no, ahí no, toca acá» (1/2)» (3 vinetas).
-
-- El gancho de hoy funciona porque todos los equipos van a reconocerse en él.
-
-- Esa frase es el dato más valioso que el equipo tiene hoy, y viene disfrazada de incomodidad.
-
-- Y en la vida real nadie va a estar al lado del usuario para aclarárselo.
-
-- Vale la pena decirlo con una frase que se les quede: **la persona que prueba nunca se equivoca; si se perdió, el diseño la perdió.** Aproveche la apertura para tomar el pulso operativo: en el muro, cada equipo escribe **cuántas veces tuvo que intervenir**.
-
-- Ese número, además de romper el hielo, le dice de inmediato quién hizo la prueba y quién no.
-
-### Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso - diapositivas 5 y 6
-
-Proyectado en la lamina «La pregunta de entrada: «no, ahí no, toca acá» (2/2)» (2 vinetas).
-
-### Qué es un avance: cinco minutos que no repiten nada - diapositiva 7
-
-Proyectado en la lamina «Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso (1/3)» (6 vinetas).
-
-- Por eso en la industria se observa y se cronometra, en vez de preguntar «¿le gustó?» — exactamente la trampa que vieron en la sesión 8. **Paso 2: escribir el tropiezo, no la solución.** Los estudiantes van a saltar directo a arreglar.
-
-- Uno de flujo exige reordenar pantallas.
-
-- Eso ya lo practicaron con el alcance mínimo de la sesión 8 y con los descartes de la sesión 11: es la misma disciplina.
-
-### Dar y recibir: la única revisión externa gratis del semestre - diapositivas 8 y 9
-
-Proyectado en la lamina «Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso (2/3)» (5 vinetas).
-
-## Referencias a diapositivas
-Numeración real del deck `Clases/Clase 12 - Presentacion de avances de proyectos/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
-
-1. Portada · Clase 12
-2. Agenda de hoy (90 min)
-3. Objetivos de la sesión
-4. Pregunta de entrada
-5. Cómo se lee una prueba con una persona real
-6. Los cuatro tipos de hallazgo y qué hacer con cada uno
-7. Qué es un avance y qué no
-8. Cómo se da retroalimentación que sirve
-9. Tres trampas de la retroalimentación entre pares
-10. La pregunta de entrada: «no, ahí no, toca acá» (1/2)
-11. La pregunta de entrada: «no, ahí no, toca acá» (2/2)
-12. Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso (1/3)
-13. Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso (2/3)
-14. Lo que hizo vale más que lo que dijo, y el patrón vale más que el caso (3/3)
-15. Qué es un avance: cinco minutos que no repiten nada (1/2)
-16. Qué es un avance: cinco minutos que no repiten nada (2/2)
-17. Dar y recibir: la única revisión externa gratis del semestre (1/2)
-18. Dar y recibir: la única revisión externa gratis del semestre (2/2)
-19. Plantilla del entregable: los 5 bloques
-20. Guion de la exposicion, con tiempos
-21. Taller de hoy: Ficha de avance y plan de ajustes
-22. Cómo se expone en 5 minutos
-23. Para la Clase 13
-24. Cierre · Nos vemos en la Clase 13
-
-## Plan de clase minuto a minuto (90 min)
+## Desarrollo de la clase, minuto a minuto (90 min)
 
 ### 00:00–00:08 · Apertura · [Slide 4]
 
@@ -105,21 +52,21 @@ En el muro, cada equipo escribe **el número**. Eso rompe el hielo y le dice de 
 
 **[Nota docente]:** si un equipo responde «ninguna, quedó perfecto», pregunte con quién probaron y si le explicaron mientras usaba. Casi siempre ahí está la respuesta.
 
-### 00:08–00:28 · Teoría (20 min) · [Slide 5][Slide 6][Slide 7][Slide 8][Slide 9]
+### 00:08–00:28 · Teoría (20 min) · [Slide 5][Slide 7][Slide 8][Slide 9][Slide 11]
 
 Reparto:
 
 - **5 min** · Cómo se lee una prueba [Slide 5]. La frase que se tiene que quedar: **lo que hizo es el dato; lo que dijo es cortesía.**
 
-- **4 min** · Los cuatro tipos de hallazgo [Slide 6]. Señale que el de **lenguaje** es el arreglo más barato y el de **suposición nuestra** el más valioso.
+- **4 min** · Los cuatro tipos de hallazgo [Slide 7]. Señale que el de **lenguaje** es el arreglo más barato y el de **suposición nuestra** el más valioso.
 
-- **4 min** · Qué es un avance [Slide 7]. Diga tres veces que **no se repite el problema** y que **cada avance trae una pregunta abierta**.
+- **4 min** · Qué es un avance [Slide 8]. Diga tres veces que **no se repite el problema** y que **cada avance trae una pregunta abierta**.
 
-- **5 min** · Cómo se da retroalimentación [Slide 8]. Deje esta diapositiva proyectada durante todas las exposiciones.
+- **5 min** · Cómo se da retroalimentación [Slide 9]. Deje esta diapositiva proyectada durante todas las exposiciones.
 
-- **2 min** · Las tres trampas [Slide 9]. Enuncie en voz alta la regla de quien recibe: **anotar, no responder.**
+- **2 min** · Las tres trampas [Slide 11]. Enuncie en voz alta la regla de quien recibe: **anotar, no responder.**
 
-### 00:28–00:40 · Taller en salas de grupo (12 min) · [Slide 10]
+### 00:28–00:40 · Taller en salas de grupo (12 min) · [Slide 12]
 
 Bloque corto a propósito: el trabajo grueso ya venía hecho. Ritmo:
 
@@ -133,7 +80,7 @@ Bloque corto a propósito: el trabajo grueso ya venía hecho. Ritmo:
 
 **[Nota docente]:** abra el muro de Padlet con **una columna por equipo** antes de que salgan de las salas, y ponga el enlace en el chat.
 
-### 00:40–01:20 · Exposiciones y retroalimentación (40 min) · [Slide 11]
+### 00:40–01:20 · Exposiciones y retroalimentación (40 min) · [Slide 13]
 
 5 equipos × 8 min: **5 de avance y 3 de retroalimentación del curso**. Cronómetro en pantalla, se corta al llegar a cero.
 
@@ -145,7 +92,7 @@ Mientras un equipo expone, los otros cuatro escriben **en la columna de ese equi
 
 **[Nota docente]:** aporte usted **un** comentario por equipo, al final de los tres minutos, y que sea el que nadie dijo. No repita lo que ya dijeron los compañeros.
 
-### 01:20–01:30 · Cierre · [Slide 12][Slide 13]
+### 01:20–01:30 · Cierre · [Slide 14][Slide 15]
 
 Cada equipo escribe en su columna del muro **las dos cosas que va a ajustar** con lo que oyó hoy. Dos minutos, y queda el compromiso por escrito.
 
@@ -153,7 +100,28 @@ Una idea: **la persona que prueba nunca se equivoca; si se perdió, el diseño l
 
 Anuncie la Clase 13: **el impacto social y ambiental** del proyecto — a quién más afecta esto, aunque no lo use. Vuelve el listado de actores no usuarios de la sesión 3.
 
-## Errores frecuentes y cómo cortarlos en caliente
+> **Ejemplos resueltos** (láminas 6, 10): cada uno va justo después de su concepto y se recorre **dentro del tiempo de ese concepto**, no aparte. Cómo recorrerlo está en sus notas del presentador.
+
+## Mapa de láminas
+Numeración real del deck `Clases/Clase 12 - Presentacion de avances de proyectos/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
+
+1. Portada · Clase 12
+2. Agenda de hoy (90 min)
+3. Objetivos de la sesión
+4. Pregunta de entrada
+5. Cómo se lee una prueba con una persona real
+6. Ejemplo: tres pruebas leídas y clasificadas
+7. Los cuatro tipos de hallazgo y qué hacer con cada uno
+8. Qué es un avance y qué no
+9. Cómo se da retroalimentación que sirve
+10. Ejemplo: retroalimentación que no sirve y que sí
+11. Tres trampas de la retroalimentación entre pares
+12. Taller de hoy: Ficha de avance y plan de ajustes
+13. Cómo se expone en 5 minutos
+14. Para la Clase 13
+15. Cierre · Nos vemos en la Clase 13
+
+## Si pasa esto en clase
 
 | Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |
 |---|---|---|
@@ -163,7 +131,7 @@ Anuncie la Clase 13: **el impacto social y ambiental** del proyecto — a quién
 | «Vamos a arreglar todo antes de la Clase 14» | No cabe, y decirlo es no haber priorizado. Priorizar es una decisión de ingeniería, no una rendición. | Qué queda fuera y por qué: fuera del alcance, excede la capacidad del equipo, o rompe una restricción. |
 | «¿Qué le mejorarían a nuestro proyecto?» | Como pregunta al curso es demasiado abierta: produce comentarios genéricos y desperdicia a los otros cuatro equipos. | Una decisión concreta con dos alternativas, cada una con su pro y su contra. |
 
-## Dudas frecuentes del estudiante
+## Preguntas que suelen hacer
 
 **¿Con cuántas personas hay que probar?**
 
@@ -181,7 +149,7 @@ En los tres minutos, no: se **anota y no se responde**, y solo se pregunta para 
 
 Para la **Clase 14**, no para la 15. La Clase 14 es la preparación de la presentación final y el ensayo general: si el prototipo no está ajustado, van a ensayar con la versión vieja y el ensayo no sirve. La 15 es la exposición con nota, y ahí ya no hay margen.
 
-## Notas operativas
+## Antes de empezar
 
 - **Reparto distinto hoy y hay que anunciarlo en el minuto 2:** teoría 20 · taller 12 · **exposiciones y retroalimentación 40** · cierre 10.
 - **Prepare el muro de Padlet con una columna por equipo** antes de la sesión, y ponga el enlace en el chat antes de que salgan de las salas de grupo.

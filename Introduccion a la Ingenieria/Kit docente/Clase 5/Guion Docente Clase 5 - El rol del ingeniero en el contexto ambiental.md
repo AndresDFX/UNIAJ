@@ -1,5 +1,7 @@
 # Guion docente — Clase 5: El rol del ingeniero en el contexto ambiental
 
+> **Guion de tiempos y desarrollo de la clase.** Dice qué franja es, qué lámina está en pantalla y qué se hace. **Los conceptos y las respuestas a las preguntas de cada lámina están en las NOTAS DEL PRESENTADOR del deck** (en PowerPoint: vista del presentador, o Ver → Notas), debajo de la lámina donde hacen falta.
+
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
@@ -25,74 +27,17 @@
 
 > El taller se hace en **Excalidraw**, que abre sin cuenta y sirve para dibujar rápido y a mano alzada — es lo que se necesita hoy, porque el diagrama de la huella es un mapa de flechas, no un plano bonito. El PNG exportado va a la carpeta del equipo en Drive. Hoy **no se usa IA**: las cifras ambientales son justo donde más inventa.
 
-## Fundamento teórico para el docente
+## Dónde está cada concepto
 
-Esta sección está escrita para dictar la clase **sin consultar otra fuente**, y va dividida por diapositiva: cada bloque dice a qué diapositiva corresponde.
+Debajo de estas láminas, en las notas del presentador:
 
-### La pregunta de entrada: darle materia a algo que parece no tenerla - diapositiva 4
+- **La pregunta de entrada: darle materia a algo que parece no tenerla** → diapositiva 4
+- **Las cuatro etapas y por qué la fabricación cambia la recomendación** → diapositiva 5
+- **PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar** → diapositiva 7
+- **De la conciencia a la decisión: la diapositiva que convierte el tema en ingeniería** → diapositivas 9 y 12
+- **Colombia, y la honestidad con las cifras** → diapositivas 11 y 14
 
-Proyectado en la lamina «La pregunta de entrada: darle materia a algo que parece no tenerla (1/2)» (3 vinetas).
-
-- Eso no debilita la clase: es la clase.
-
-- Recoja las respuestas en el muro y no las corrija.
-
-### Las cuatro etapas y por qué la fabricación cambia la recomendación - diapositiva 5
-
-Proyectado en la lamina «La pregunta de entrada: darle materia a algo que parece no tenerla (2/2)» (2 vinetas).
-
-### PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar - diapositiva 6
-
-Proyectado en la lamina «Las cuatro etapas y por qué la fabricación cambia la recomendación (1/2)» (4 vinetas).
-
-- Aquí entra el PUE. **Red.** Cada byte que viaja pasa por antenas, cables, enrutadores y equipos que consumen.
-
-### De la conciencia a la decisión: la diapositiva que convierte el tema en ingeniería - diapositivas 7 y 9
-
-Proyectado en la lamina «Las cuatro etapas y por qué la fabricación cambia la recomendación (2/2)» (5 vinetas).
-
-### Colombia, y la honestidad con las cifras - diapositivas 8 y 10
-
-Proyectado en la lamina «PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (1/3)» (6 vinetas).
-
-- Eso traslada el costo: baja la factura de luz y sube el consumo de una cuenca que normalmente abastece a población.
-
-- Lo que hay que poder decir: **obliga a los productores** a establecer sistemas de recolección y gestión, y **establece el deber del usuario** de entregar el aparato en esos puntos en vez de tirarlo a la basura común.
-
-- Cuando una nueva versión de una aplicación —o de un sistema operativo— deja de funcionar en dispositivos que servían, el software convierte en basura un aparato que estaba bien.
-
-## Referencias a diapositivas
-Numeración real del deck `Clases/Clase 5 - El rol del ingeniero en el contexto ambiental/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
-
-1. Portada · Clase 5
-2. Agenda de hoy (90 min)
-3. Objetivos de la sesión
-4. Pregunta de entrada
-5. Las cuatro etapas de la huella de un sistema
-6. Cuatro conceptos con nombre propio
-7. La misma función, dos decisiones
-8. Colombia: dos datos locales que cambian el análisis
-9. Cómo se estima una huella sin ser experto
-10. Dos trampas de esta clase
-11. La pregunta de entrada: darle materia a algo que parece no tenerla (1/2)
-12. La pregunta de entrada: darle materia a algo que parece no tenerla (2/2)
-13. Las cuatro etapas y por qué la fabricación cambia la recomendación (1/2)
-14. Las cuatro etapas y por qué la fabricación cambia la recomendación (2/2)
-15. PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (1/3)
-16. PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (2/3)
-17. PUE, agua, RAEE y obsolescencia: los cuatro conceptos que hay que dejar (3/3)
-18. De la conciencia a la decisión: la diapositiva que convierte el tema en ingeniería (1/2)
-19. De la conciencia a la decisión: la diapositiva que convierte el tema en ingeniería (2/2)
-20. Colombia, y la honestidad con las cifras (1/2)
-21. Colombia, y la honestidad con las cifras (2/2)
-22. Plantilla del entregable: los 5 bloques
-23. Guion de la exposicion, con tiempos
-24. Taller de hoy: Huella del sistema
-25. Cómo se expone en 3 minutos
-26. Para la Clase 6
-27. Cierre · Nos vemos en la sesión 6 — cierra el corte 1
-
-## Plan de clase minuto a minuto (90 min)
+## Desarrollo de la clase, minuto a minuto (90 min)
 
 ### 00:00–00:10 · Apertura · [Slide 4]
 
@@ -104,25 +49,25 @@ Comparta pantalla antes de que entre el primero:
 
 **[Nota docente]:** si alguien escribe una cifra de agua, márquela: en el minuto 35 esa cifra es el mejor ejemplo de la diapositiva de las trampas.
 
-### 00:10–00:55 · Teoría · [Slide 5][Slide 6][Slide 7][Slide 8][Slide 9][Slide 10]
+### 00:10–00:55 · Teoría · [Slide 5][Slide 7][Slide 9][Slide 11][Slide 12][Slide 14]
 
 Reparto sugerido de los 45 min:
 
 - **9 min** · Las cuatro etapas [Slide 5]. Use un solo ejemplo (la app de citas) y recórralo por las cuatro. Detenga la clase en **fabricación**: la mayor parte de la huella de un celular ya está gastada al encenderlo.
 
-- **9 min** · Los cuatro conceptos [Slide 6]. **Vuelva al muro** al explicar PUE y enfriamiento: ahí se responde «¿dónde está la nube?».
+- **9 min** · Los cuatro conceptos [Slide 7]. **Vuelva al muro** al explicar PUE y enfriamiento: ahí se responde «¿dónde está la nube?».
 
-- **10 min** · La misma función, dos decisiones [Slide 7]. Es la diapositiva que convierte el tema en ingeniería. Diga explícitamente que la columna derecha **cumple la misma función**.
+- **10 min** · La misma función, dos decisiones [Slide 9]. Es la diapositiva que convierte el tema en ingeniería. Diga explícitamente que la columna derecha **cumple la misma función**.
 
-- **7 min** · Colombia [Slide 8]. Matriz hidráulica, El Niño y la Ley 1672 de 2013.
+- **7 min** · Colombia [Slide 11]. Matriz hidráulica, El Niño y la Ley 1672 de 2013.
 
-- **5 min** · Cómo se estima una huella [Slide 9]. Es el método del taller.
+- **5 min** · Cómo se estima una huella [Slide 12]. Es el método del taller.
 
-- **5 min** · Las dos trampas [Slide 10]. **No la recorte**: es la que sostiene el rigor de la sesión y de la rúbrica.
+- **5 min** · Las dos trampas [Slide 14]. **No la recorte**: es la que sostiene el rigor de la sesión y de la rúbrica.
 
 **[Nota docente]:** si el tiempo aprieta, recorte Colombia a cuatro minutos quedándose con la matriz hidráulica y la Ley 1672. La diapositiva de las dos decisiones y la de las trampas no se recortan.
 
-### 00:55–01:12 · Taller en salas de grupo · [Slide 11]
+### 00:55–01:12 · Taller en salas de grupo · [Slide 15]
 
 **3 min** para abrir Excalidraw y repartir. Cada equipo trabaja **el sistema de su propio proyecto**, el que viene de las sesiones 1 y 3.
 
@@ -132,7 +77,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** si aparece una cifra sin fuente, pídala en el momento. Si no la tienen, que la borren y escriban la afirmación sin número: se califica mejor una afirmación honesta que una cifra inventada.
 
-### 01:12–01:27 · Exposiciones · [Slide 12]
+### 01:12–01:27 · Exposiciones · [Slide 16]
 
 5 equipos × 3 min con el diagrama compartido. **El minuto obligatorio es «la etapa que más pesa y por qué»**, y el cierre de cada exposición es el indicador.
 
@@ -140,13 +85,37 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** anote los cinco indicadores. En la Clase 16 se revisa si se cumplieron, y tener la lista de hoy es lo que hace posible esa revisión.
 
-### 01:27–01:30 · Cierre · [Slide 13][Slide 14]
+### 01:27–01:30 · Cierre · [Slide 17][Slide 18]
 
 Una idea: **el software no es inmaterial.** Tiene fabricación, consumo, red y residuo, y las decisiones que bajan la huella son decisiones de diseño, no de buena voluntad. La más fuerte que ellos pueden tomar es no obligar a cambiar de aparato.
 
 Anuncie la sesión 6: **cierra el corte 1** y sale la ficha del problema del proyecto, con evaluación de corte en ExamLab al final de la sesión.
 
-## Errores frecuentes y cómo cortarlos en caliente
+> **Ejemplos resueltos** (láminas 6, 8, 10, 13): cada uno va justo después de su concepto y se recorre **dentro del tiempo de ese concepto**, no aparte. Cómo recorrerlo está en sus notas del presentador.
+
+## Mapa de láminas
+Numeración real del deck `Clases/Clase 5 - El rol del ingeniero en el contexto ambiental/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
+
+1. Portada · Clase 5
+2. Agenda de hoy (90 min)
+3. Objetivos de la sesión
+4. Pregunta de entrada
+5. Las cuatro etapas de la huella de un sistema
+6. Ejemplo: la huella de una app de citas en el celular
+7. Cuatro conceptos con nombre propio
+8. Ejemplo: el PUE de un centro de datos, con números
+9. La misma función, dos decisiones
+10. Ejemplo: cuánto ahorra una sola decisión
+11. Colombia: dos datos locales que cambian el análisis
+12. Cómo se estima una huella sin ser experto
+13. Ejemplo resuelto: el reporte diario de una tienda
+14. Dos trampas de esta clase
+15. Taller de hoy: Huella del sistema
+16. Cómo se expone en 3 minutos
+17. Para la Clase 6
+18. Cierre · Nos vemos en la sesión 6 — cierra el corte 1
+
+## Si pasa esto en clase
 
 | Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |
 |---|---|---|
@@ -156,7 +125,7 @@ Anuncie la sesión 6: **cierra el corte 1** y sale la ficha del problema del pro
 | «Cada consulta a la IA gasta X litros de agua» | Las cifras que circulan varían por órdenes de magnitud y casi nunca dicen de qué sistema ni de qué año son. | Fuente, año y alcance. Si no lo tienen, que midan lo que sí pueden contar: el número de llamadas. |
 | «Ser un sistema sostenible» como indicador | No tiene unidad y no se puede revisar en la Clase 16. | Un número con unidad, el valor de hoy y cómo se va a medir. |
 
-## Dudas frecuentes del estudiante
+## Preguntas que suelen hacer
 
 **¿No es exagerado hablar de agua y minería en un curso de primer semestre?**
 
@@ -174,7 +143,7 @@ El operador del sistema eléctrico (XM) publica datos de generación y composici
 
 No está mal ni bien por sí solo: es una decisión con un costo. Lo que sí es un error de ingeniería es llamar a un modelo para algo que resuelve una condición simple, porque ese costo se paga en cada llamada, para siempre. Si su proyecto la usa, cuenten las llamadas: es lo único que pueden medir de verdad.
 
-## Notas operativas
+## Antes de empezar
 
 - Las cinco salas de grupo se crean **antes** de la sesión.
 - Hoy **no se usa IA**: es la sesión donde más inventa cifras. Si un equipo la usa, verifique cualquier número contra una fuente con año.

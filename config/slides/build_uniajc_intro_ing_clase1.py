@@ -34,7 +34,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from uniajc_slides_engine import (  # noqa: E402
     new_prs, class_cover, content_slide, block_timeline_slide, hook_slide,
     before_after_slide, cards_grid_slide, steps_visual_slide, checklist_slide,
-    box_note_slide, closing_slide,
+    box_note_slide, closing_slide, notas,
 )
 from guion_md_a_docx import convert  # noqa: E402
 import intro_ing_datos as D  # noqa: E402
@@ -233,6 +233,14 @@ def build_pptx():
 
     os.makedirs(DIR_CLASE, exist_ok=True)
     out = os.path.join(DIR_CLASE, "Presentacion.pptx")
+    # NOTAS DEL PRESENTADOR: cada bloque del fundamento va debajo de la lamina a la que
+    # apunta su ancla {{slide:...}}. El estudiante ve la lamina; el docente, la respuesta.
+    laminas = list(prs.slides)
+    for b in C1.FUNDAMENTO:
+        for m in _SLIDE_TOKEN.finditer(b["slide"]):
+            k = _slide_no(T, m.group(1))
+            if 1 <= k <= len(laminas):
+                notas(laminas[k - 1], [b["titulo"].upper()] + list(b["cuerpo"]))
     prs.save(out)
     return out, T
 
@@ -244,6 +252,11 @@ def md_guion(titulos):
     act = C1.ACTIVIDAD
     L = [
         "# Guion docente — Clase %d: %s" % (C1.CLASE_N, C1.TITULO),
+        "",
+        "> **Guion de tiempos y desarrollo de la clase.** Dice qué franja es, qué lámina está "
+        "en pantalla y qué se hace. **Los conceptos y las respuestas a las preguntas de cada "
+        "lámina están en las NOTAS DEL PRESENTADOR del deck** (en PowerPoint: vista del "
+        "presentador, o Ver → Notas), debajo de la lámina donde hacen falta.",
         "",
         "## Información de la clase",
         "- Asignatura: %s (%s)" % (c["nombre_acentos"], c["codigo"]),
@@ -273,7 +286,10 @@ def md_guion(titulos):
         "**Herramientas:** Padlet (muro de la pregunta de entrada) · Google Docs o Slides "
         "(ficha del equipo) · ExamLab (diagnóstico)",
         "",
-        "## Fundamento teórico para el docente",
+        "## Dónde está cada concepto",
+        "",
+        "Debajo de estas láminas, en las notas del presentador:",
+        "",
     ]
     for b in C1.FUNDAMENTO:
         # Un bloque puede cubrir mas de una diapositiva (p. ej. el metodo y el proyecto van
@@ -282,8 +298,8 @@ def md_guion(titulos):
         ns = [_slide_no(titulos, m.group(1)) for m in _SLIDE_TOKEN.finditer(b["slide"])]
         etq = ("diapositiva %d" % ns[0] if len(ns) == 1
                else "diapositivas %s y %d" % (", ".join(str(x) for x in ns[:-1]), ns[-1]))
-        L += ["### %s - %s" % (b["titulo"], etq), ""]
-        L += [p for par in b["cuerpo"] for p in (par, "")]
+        L += ["- **%s** → %s" % (b["titulo"], etq)]
+    L += [""]
 
     L += [
         "## Referencias a diapositivas",

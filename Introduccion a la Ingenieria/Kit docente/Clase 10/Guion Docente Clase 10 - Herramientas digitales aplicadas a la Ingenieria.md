@@ -1,5 +1,7 @@
 # Guion docente — Clase 10: Herramientas digitales aplicadas a la Ingeniería
 
+> **Guion de tiempos y desarrollo de la clase.** Dice qué franja es, qué lámina está en pantalla y qué se hace. **Los conceptos y las respuestas a las preguntas de cada lámina están en las NOTAS DEL PRESENTADOR del deck** (en PowerPoint: vista del presentador, o Ver → Notas), debajo de la lámina donde hacen falta.
+
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
@@ -25,70 +27,17 @@
 
 > Hoy se prototipa en **Excalidraw** (que se ve dibujado a mano, y eso es una ventaja) o en **diagrams.net (draw.io)** si el proyecto es un flujo o un proceso. Las dos abren sin cuenta. **Google Slides** sirve como prototipo navegable —una diapositiva por pantalla, enlazadas entre sí— y es el truco más útil de la sesión. Hoy no se usa IA: dibujar el flujo es la parte del diseño que hay que entender con las manos, y en la **sesión 11** la IA entra a generar variantes sobre lo que hoy dibujen.
 
-## Fundamento teórico para el docente
+## Dónde está cada concepto
 
-Esta sección está escrita para dictar la clase **sin consultar otra fuente**, y va dividida por diapositiva: cada bloque dice a qué diapositiva corresponde.
+Debajo de estas láminas, en las notas del presentador:
 
-### La pregunta de entrada: la paradoja de la fidelidad - diapositiva 4
+- **La pregunta de entrada: la paradoja de la fidelidad** → diapositiva 4
+- **Qué es un prototipo: una pregunta hecha objeto** → diapositiva 5
+- **Fidelidad: cada nivel responde una pregunta distinta** → diapositiva 7
+- **Los cinco pasos de una pantalla, y el estado de error** → diapositiva 8
+- **Elegir la herramienta por la pregunta, y las dos advertencias** → diapositivas 10 y 11
 
-Proyectado en la lamina «La pregunta de entrada: la paradoja de la fidelidad (1/2)» (4 vinetas).
-
-- Suele salir en dos o tres intentos, y sale mejor de ellos que del docente.
-
-### Qué es un prototipo: una pregunta hecha objeto - diapositiva 5
-
-Proyectado en la lamina «La pregunta de entrada: la paradoja de la fidelidad (2/2)» (4 vinetas).
-
-### Fidelidad: cada nivel responde una pregunta distinta - diapositiva 6
-
-Proyectado en la lamina «Qué es un prototipo: una pregunta hecha objeto (1/2)» (4 vinetas).
-
-- Pídale a cada equipo, en la sala, que escriba la pregunta de su prototipo en una línea antes de dibujar nada. **No es la versión 1 a medias**, y esta distinción es la que más cuesta en primer semestre.
-
-- Un prototipo que solo vio el equipo no probó nada.
-
-### Los cinco pasos de una pantalla, y el estado de error - diapositiva 7
-
-Proyectado en la lamina «Qué es un prototipo: una pregunta hecha objeto (2/2)» (2 vinetas).
-
-### Elegir la herramienta por la pregunta, y las dos advertencias - diapositivas 8 y 9
-
-Proyectado en la lamina «Fidelidad: cada nivel responde una pregunta distinta (1/2)» (2 vinetas).
-
-- Vale la pena conectarlo con la curva de la sesión 7: los niveles de fidelidad son esa misma curva vista desde el diseño.
-
-## Referencias a diapositivas
-Numeración real del deck `Clases/Clase 10 - Herramientas digitales aplicadas a la Ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
-
-1. Portada · Clase 10
-2. Agenda de hoy (90 min)
-3. Objetivos de la sesión
-4. Pregunta de entrada
-5. Qué es un prototipo y qué no
-6. Niveles de fidelidad: qué se prueba con cada uno
-7. Cómo se dibuja una pantalla que sirve
-8. Qué herramienta usar, según la pregunta
-9. La paradoja de la fidelidad, y dos advertencias
-10. La pregunta de entrada: la paradoja de la fidelidad (1/2)
-11. La pregunta de entrada: la paradoja de la fidelidad (2/2)
-12. Qué es un prototipo: una pregunta hecha objeto (1/2)
-13. Qué es un prototipo: una pregunta hecha objeto (2/2)
-14. Fidelidad: cada nivel responde una pregunta distinta (1/2)
-15. Fidelidad: cada nivel responde una pregunta distinta (2/2)
-16. Los cinco pasos de una pantalla, y el estado de error (1/3)
-17. Los cinco pasos de una pantalla, y el estado de error (2/3)
-18. Los cinco pasos de una pantalla, y el estado de error (3/3)
-19. Elegir la herramienta por la pregunta, y las dos advertencias (1/3)
-20. Elegir la herramienta por la pregunta, y las dos advertencias (2/3)
-21. Elegir la herramienta por la pregunta, y las dos advertencias (3/3)
-22. Plantilla del entregable: los 5 bloques
-23. Guion de la exposicion, con tiempos
-24. Taller de hoy: Prototipo de baja fidelidad
-25. Cómo se expone en 3 minutos
-26. Para la Clase 11
-27. Cierre · Nos vemos en la sesión 11
-
-## Plan de clase minuto a minuto (90 min)
+## Desarrollo de la clase, minuto a minuto (90 min)
 
 ### 00:00–00:10 · Apertura · [Slide 4]
 
@@ -100,23 +49,23 @@ Comparta pantalla antes de que entre el primero:
 
 **[Nota docente]:** pida que abran el **alcance mínimo de la sesión 8** y la **propuesta de mejora de la sesión 9**. Hoy se dibuja eso, no una idea nueva.
 
-### 00:10–00:55 · Teoría · [Slide 5][Slide 6][Slide 7][Slide 8][Slide 9]
+### 00:10–00:55 · Teoría · [Slide 5][Slide 7][Slide 8][Slide 10][Slide 11]
 
 Reparto sugerido de los 45 min:
 
 - **8 min** · Qué es un prototipo [Slide 5]. La frase que se queda: **un prototipo que da pesar tirar ya costó demasiado**.
 
-- **9 min** · Niveles de fidelidad [Slide 6]. Diga explícitamente que **no es una escala de calidad sino de preguntas**, y fije la regla: baja o media en el corte 2.
+- **9 min** · Niveles de fidelidad [Slide 7]. Diga explícitamente que **no es una escala de calidad sino de preguntas**, y fije la regla: baja o media en el corte 2.
 
-- **12 min** · Los cinco pasos [Slide 7]. Es la diapositiva del taller. **Dedique la mitad al paso 4**, el estado vacío y el de error.
+- **12 min** · Los cinco pasos [Slide 8]. Es la diapositiva del taller. **Dedique la mitad al paso 4**, el estado vacío y el de error.
 
-- **10 min** · Qué herramienta usar [Slide 8]. **Demuestre en vivo el prototipo navegable en Google Slides** (dos minutos de pantalla compartida): una diapositiva por pantalla, un enlace en cada botón, modo presentación.
+- **10 min** · Qué herramienta usar [Slide 10]. **Demuestre en vivo el prototipo navegable en Google Slides** (dos minutos de pantalla compartida): una diapositiva por pantalla, un enlace en cada botón, modo presentación.
 
-- **6 min** · La paradoja y las advertencias [Slide 9]. No omita la de datos inventados.
+- **6 min** · La paradoja y las advertencias [Slide 11]. No omita la de datos inventados.
 
 **[Nota docente]:** si va retrasado, recorte fidelidad a 5 minutos. **No recorte el paso 4 ni la demostración de Slides**: son las dos cosas que cambian los entregables.
 
-### 00:55–01:12 · Taller en salas de grupo · [Slide 10]
+### 00:55–01:12 · Taller en salas de grupo · [Slide 12]
 
 **2 min** para abrir Excalidraw o draw.io. Reparto sugerido: **dos dibujan, dos escriben los textos reales, uno escribe el guion de prueba**. Nadie mira sin hacer nada.
 
@@ -126,7 +75,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** si un equipo tiene proyecto de proceso sin pantallas, las «tres pantallas» son **tres pasos del proceso o el formato que se va a llenar**. Los cinco pasos aplican igual.
 
-### 01:12–01:27 · Exposiciones · [Slide 11]
+### 01:12–01:27 · Exposiciones · [Slide 13]
 
 5 equipos × 3 min con el prototipo compartido. **El minuto obligatorio es «qué se ve cuando algo falla o no hay datos»**.
 
@@ -136,7 +85,7 @@ Reparto sugerido de los 45 min:
 
 **[Nota docente]:** anote qué le falta a cada prototipo. En la sesión 11 se corrige exactamente eso, con IA y a mano.
 
-### 01:27–01:30 · Cierre · [Slide 12][Slide 13]
+### 01:27–01:30 · Cierre · [Slide 14][Slide 15]
 
 Una idea: **el prototipo no es una maqueta, es una pregunta.** Y se hace feo a propósito, para que la gente se atreva a decir lo que está mal.
 
@@ -144,7 +93,28 @@ Recuerde: textos reales, estado de error, datos inventados.
 
 Anuncie la sesión 11: **prototipo v2 con IA**, y **cierra el corte 2** con la evaluación en ExamLab sobre las sesiones 7 a 11.
 
-## Errores frecuentes y cómo cortarlos en caliente
+> **Ejemplos resueltos** (láminas 6, 9): cada uno va justo después de su concepto y se recorre **dentro del tiempo de ese concepto**, no aparte. Cómo recorrerlo está en sus notas del presentador.
+
+## Mapa de láminas
+Numeración real del deck `Clases/Clase 10 - Herramientas digitales aplicadas a la Ingenieria/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
+
+1. Portada · Clase 10
+2. Agenda de hoy (90 min)
+3. Objetivos de la sesión
+4. Pregunta de entrada
+5. Qué es un prototipo y qué no
+6. Ejemplo: maqueta decorativa y prototipo
+7. Niveles de fidelidad: qué se prueba con cada uno
+8. Cómo se dibuja una pantalla que sirve
+9. Ejemplo: la pantalla «ver mi turno», en cinco pasos
+10. Qué herramienta usar, según la pregunta
+11. La paradoja de la fidelidad, y dos advertencias
+12. Taller de hoy: Prototipo de baja fidelidad
+13. Cómo se expone en 3 minutos
+14. Para la Clase 11
+15. Cierre · Nos vemos en la sesión 11
+
+## Si pasa esto en clase
 
 | Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |
 |---|---|---|
@@ -154,7 +124,7 @@ Anuncie la sesión 11: **prototipo v2 con IA**, y **cierra el corte 2** con la e
 | Media hora eligiendo colores y tipografías | La fidelidad alta reduce la crítica útil: pulir hoy es perder información en la Clase 12. | El estado de error y los textos reales. Los colores, en la Clase 14. |
 | Datos de personas reales en el prototipo, «porque es solo de prueba» | Es tratamiento de datos personales sin autorización: la Ley 1581 de 2012 no distingue entre prueba y producción. | Datos inventados, siempre. Y en las notas de la prueba, el rol y no el nombre. |
 
-## Dudas frecuentes del estudiante
+## Preguntas que suelen hacer
 
 **¿Tiene que estar hecho en computador?**
 
@@ -172,7 +142,7 @@ Sí, si es gratuita, abre en el navegador y no pide tarjeta — esa es la regla 
 
 No, y ahí está la ventaja. Un prototipo navegable en Google Slides —una diapositiva por pantalla, un enlace en cada botón— se puede poner en manos de un usuario real y recorrer como si funcionara, sin una línea de código. Con eso se responde casi todo lo que hace falta responder en el corte 2.
 
-## Notas operativas
+## Antes de empezar
 
 - Las cinco salas de grupo se crean **antes** de la sesión.
 - **Demuestre en vivo el prototipo navegable en Google Slides** (dos minutos de pantalla compartida): una diapositiva por pantalla, un enlace en cada botón, modo presentación. Es lo que más van a usar.

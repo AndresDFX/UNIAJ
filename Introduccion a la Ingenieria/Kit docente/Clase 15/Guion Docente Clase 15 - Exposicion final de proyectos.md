@@ -1,5 +1,7 @@
 # Guion docente — Clase 15: Exposición final de proyectos
 
+> **Guion de tiempos y desarrollo de la clase.** Dice qué franja es, qué lámina está en pantalla y qué se hace. **Los conceptos y las respuestas a las preguntas de cada lámina están en las NOTAS DEL PRESENTADOR del deck** (en PowerPoint: vista del presentador, o Ver → Notas), debajo de la lámina donde hacen falta.
+
 ## Información de la clase
 - Asignatura: Introducción a la Ingeniería (FI300101)
 - Duración del bloque: **90 min**
@@ -27,65 +29,18 @@
 
 > Cada equipo comparte su propia pantalla. **Antes de empezar, todos** dejan en la carpeta del equipo la presentación **en PDF** y las **capturas del prototipo** — es el plan B de la Clase 14 y hoy es el día en que sirve. La **ficha de valoración entre pares** se llena en el muro, con una columna por equipo. **Hoy no se usa asistente de IA.**
 
-## Fundamento teórico para el docente
+## Dónde está cada concepto
 
-Esta sección está escrita para dictar la clase **sin consultar otra fuente**, y va dividida por diapositiva: cada bloque dice a qué diapositiva corresponde.
+Debajo de estas láminas, en las notas del presentador:
 
-### Cómo se encuadra el día, y por qué el sorteo importa - diapositivas 4 y 6
+- **Cómo se encuadra el día, y por qué el sorteo importa** → diapositivas 4 y 6
+- **Cómo se califica cada tramo, sin discutir con el reloj** → diapositiva 5
+- **Las preguntas: los tres minutos que destapan el trabajo real** → diapositiva 7
+- **El cierre: qué hacer con lo que salió hoy** → diapositiva 9
 
-Proyectado en la lamina «Cómo se encuadra el día, y por qué el sorteo importa (1/2)» (4 vinetas).
+## Desarrollo de la clase, minuto a minuto (90 min)
 
-- Sorteado al empezar, los cinco equipos tienen que estar listos desde el primer minuto y todos escuchan a todos.
-
-- Toma dos minutos y cada semestre salva al menos un equipo.
-
-- Una fila por equipo con lo más fuerte, lo que no quedó claro y una pregunta.
-
-### Cómo se califica cada tramo, sin discutir con el reloj - diapositiva 5
-
-Proyectado en la lamina «Cómo se encuadra el día, y por qué el sorteo importa (2/2)» (4 vinetas).
-
-### Las preguntas: los tres minutos que destapan el trabajo real - diapositiva 7
-
-Proyectado en la lamina «Cómo se califica cada tramo, sin discutir con el reloj (1/2)» (5 vinetas).
-
-- Tenga la tabla de cinco tramos por equipo abierta y anote el puntaje al terminar cada tramo, más una frase de por qué.
-
-- Esa frase es lo que después se devuelve como retroalimentación. **Los dos descuentos hay que aplicarlos, y anunciarlos antes.** Hasta 10 puntos si no todos los integrantes hablan —porque la exposición en equipo es lo que se está evaluando— y hasta 10 si nadie sabe responder una pregunta de su propio tramo.
-
-### El cierre: qué hacer con lo que salió hoy - diapositiva 8
-
-Proyectado en la lamina «Cómo se califica cada tramo, sin discutir con el reloj (2/2)» (5 vinetas).
-
-## Referencias a diapositivas
-Numeración real del deck `Clases/Clase 15 - Exposicion final de proyectos/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
-
-1. Portada · Clase 15
-2. Agenda de hoy (90 min)
-3. Objetivos de la sesión
-4. Pregunta de entrada
-5. Con qué se califica hoy
-6. El orden del día, y qué hace el equipo que no está exponiendo
-7. Los tres minutos de preguntas también se califican
-8. Tres cosas antes de empezar
-9. Cómo se encuadra el día, y por qué el sorteo importa (1/2)
-10. Cómo se encuadra el día, y por qué el sorteo importa (2/2)
-11. Cómo se califica cada tramo, sin discutir con el reloj (1/2)
-12. Cómo se califica cada tramo, sin discutir con el reloj (2/2)
-13. Las preguntas: los tres minutos que destapan el trabajo real (1/2)
-14. Las preguntas: los tres minutos que destapan el trabajo real (2/2)
-15. El cierre: qué hacer con lo que salió hoy (1/2)
-16. El cierre: qué hacer con lo que salió hoy (2/2)
-17. Plantilla del entregable: los 5 bloques
-18. Guion de la exposicion, con tiempos
-19. Taller de hoy: Exposición final del proyecto
-20. Cómo se expone en 9 minutos
-21. Para la Clase 16
-22. Cierre · Nos vemos en la Clase 16 · la última
-
-## Plan de clase minuto a minuto (90 min)
-
-### 00:00–00:10 · Apertura y encuadre · [Slide 4]…[Slide 8]
+### 00:00–00:10 · Apertura y encuadre · [Slide 4]…[Slide 9]
 
 Comparta pantalla antes de que entre el primero:
 
@@ -99,11 +54,11 @@ Una línea por equipo en el muro. Sirve para bajar la ansiedad y para recordar q
 
 - **1 min** · Las preguntas [Slide 7]. Diga que **«no lo medimos» es respuesta válida**.
 
-- **2 min** · [Slide 8] **Verifique el plan B de los cinco equipos**: PDF y capturas en la carpeta. Ahora, no después.
+- **2 min** · [Slide 9] **Verifique el plan B de los cinco equipos**: PDF y capturas en la carpeta. Ahora, no después.
 
 **[Nota docente]:** el sorteo se hace ahora y no antes, para que los últimos equipos escuchen en vez de seguir preparando.
 
-### 00:10–01:10 · Exposiciones finales (60 min) · [Slide 9][Slide 10]
+### 00:10–01:10 · Exposiciones finales (60 min) · [Slide 10][Slide 11]
 
 5 equipos × 12 min: **9 de exposición y 3 de preguntas**. Cronómetro grande en pantalla compartida, aviso en el chat a los 8 minutos, corte a los 9.
 
@@ -127,7 +82,7 @@ Cada equipo completa en el muro, en la columna de los **otros cuatro** equipos: 
 
 Lea en voz alta **dos o tres observaciones anónimas** que sean buenas. Enseña más sobre cómo se da retroalimentación que cualquier explicación.
 
-### 01:22–01:30 · Cierre · [Slide 11][Slide 12]
+### 01:22–01:30 · Cierre · [Slide 12][Slide 13]
 
 **Una observación por equipo, en una frase**: lo que más sumó y la única cosa que cambiaría. La retroalimentación detallada va después, por escrito.
 
@@ -137,7 +92,26 @@ Recuerde: el **informe final de la Clase 16 vale el 20 %**, y **once de sus doce
 
 Y dígalo una vez, corto y en serio: hace quince sesiones tenían una ocurrencia; hoy sustentaron un problema con evidencia, una decisión con criterios, un prototipo probado y un impacto con sus costos. **Eso es un proyecto de ingeniería completo.**
 
-## Errores frecuentes y cómo cortarlos en caliente
+> **Ejemplos resueltos** (láminas 8): cada uno va justo después de su concepto y se recorre **dentro del tiempo de ese concepto**, no aparte. Cómo recorrerlo está en sus notas del presentador.
+
+## Mapa de láminas
+Numeración real del deck `Clases/Clase 15 - Exposicion final de proyectos/Presentacion.pptx`. Las etiquetas [Slide N] del plan y las referencias del fundamento apuntan aquí.
+
+1. Portada · Clase 15
+2. Agenda de hoy (90 min)
+3. Objetivos de la sesión
+4. Pregunta de entrada
+5. Con qué se califica hoy
+6. El orden del día, y qué hace el equipo que no está exponiendo
+7. Los tres minutos de preguntas también se califican
+8. Ejemplo: la misma pregunta, dos respuestas
+9. Tres cosas antes de empezar
+10. Taller de hoy: Exposición final del proyecto
+11. Cómo se expone en 9 minutos
+12. Para la Clase 16
+13. Cierre · Nos vemos en la Clase 16 · la última
+
+## Si pasa esto en clase
 
 | Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |
 |---|---|---|
@@ -147,7 +121,7 @@ Y dígalo una vez, corto y en serio: hace quince sesiones tenían una ocurrencia
 | «Nuestro proyecto genera conciencia y mejora la calidad de vida» | Es una intención, no un impacto: nadie puede ir a verificarlo. Se corrigió en la Clase 13. | Un indicador que alguien más podría medir, y el impacto negativo con su mitigación. |
 | Un solo integrante responde las tres preguntas | Destapa que uno hizo el trabajo y los demás leyeron un guion. Es un descuento anunciado de hasta 10 puntos. | Que responda quien tuvo el tramo. Si preguntan por la prueba, responde quien la hizo. |
 
-## Dudas frecuentes del estudiante
+## Preguntas que suelen hacer
 
 **¿De verdad nos cortan a los nueve minutos?**
 
@@ -169,7 +143,7 @@ Se dice **«no tenemos ese dato»**, y no pasa nada. Lo que hunde una sustentaci
 
 No. Falta el **informe final de la Clase 16, que vale el 20 %** —más que la exposición— y la autoevaluación. La buena noticia es que **once de sus doce secciones ya están escritas** desde las sesiones anteriores: la próxima sesión es de armar y revisar, no de empezar de cero.
 
-## Notas operativas
+## Antes de empezar
 
 - **Reparto propio hoy:** apertura y encuadre 10 · exposiciones 60 · valoración entre pares 12 · cierre 8. Anúncielo en el minuto 1.
 - **Verifique el plan B de los cinco equipos antes de la primera exposición**: PDF descargado y capturas en la carpeta. Dos minutos que cada semestre salvan a un equipo.
