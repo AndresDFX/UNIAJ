@@ -212,7 +212,60 @@ def _apoyo_por_diapositiva(c, base=None):
     return "\n".join(L)
 
 
+
+# Ronda 4: el deck de clase no nombra el proyecto (VetCare / Huellitas / PI). El ejemplo se
+# queda con una descripcion generica del dominio. Solo se aplica al texto PROYECTADO: guion,
+# taller, solucion y quiz siguen nombrando el proyecto.
+_GEN = [
+    (r"VetCare Huellitas", "Clinica"),
+    (r"(Cl[ií]nica Veterinaria) Huellitas", r"\1"),
+    (r'(?<=")VetCare\b', "Clinica"),
+    (r'(?<=" )VetCare\b', "Clinica"),
+    (r"(?<== )VetCare\b", "Clinica"),
+    (r"\bEquipo VetCare\b", "Equipo Clinica"),
+    (r"\bpackage vetcare\b", "package clinica"),
+    (r"\bvetcare\.", "clinica."),
+    (r"VetCare(?=[A-Z])", "Clinica"),           # VetCareApp -> ClinicaApp
+    (r"(?<=[a-z])VetCare\b", "Clinica"),        # RepositorioVetCare -> RepositorioClinica
+    (r"\bvetcare\b", "clinica"),
+    (r"la cl[ií]nica veterinaria Huellitas \(VetCare\)", "una clinica veterinaria"),
+    (r"(cl[ií]nica(?: veterinaria)?) Huellitas", r"\1"),
+    (r"\b[Ee]n Huellitas\b", "en la clinica"),
+    (r"\bde Huellitas\b", "de la clinica"),
+    (r"\bHuellitas\b", "la clinica"),
+    (r"\b(?:el )?PI de VetCare\b", "el sistema de la clinica"),
+    (r"\bdominio VetCare\b", "dominio de la clinica"),
+    (r"\b[Ee]n VetCare\b", "en el sistema de la clinica"),
+    (r"\bde VetCare\b", "del sistema de la clinica"),
+    (r"\ba VetCare\b", "al sistema de la clinica"),
+    (r"\bsobre VetCare\b", "sobre el sistema de la clinica"),
+    (r"\bel VetCare\b", "el sistema de la clinica"),
+    (r"\bsu VetCare\b", "su sistema de la clinica"),
+    (r"\bVetCare\b", "el sistema de la clinica"),
+    (r"\b(?:del|el) Proyecto Integrador\b", "del proyecto"),
+    (r"\bProyecto Integrador\b", "proyecto"),
+    (r"\bdel PI\b", "del proyecto"),
+    (r"\bel PI\b", "el proyecto"),
+    (r"\bPI\b", "proyecto"),
+]
+
+
+def _gen(x):
+    if isinstance(x, str):
+        for a, b in _GEN:
+            x = re.sub(a, b, x)
+        # mayuscula inicial si la sustitucion dejo «el sistema…» al comienzo de frase
+        x = re.sub(r"(^|[.!?]\s+)(en el sistema|el sistema|del sistema|al sistema|la clinica|en la clinica)",
+                   lambda m: m.group(1) + m.group(2)[0].upper() + m.group(2)[1:], x)
+        return x
+    if isinstance(x, list):
+        return [_gen(y) for y in x]
+    if isinstance(x, tuple):
+        return tuple(_gen(y) for y in x)
+    return x
+
 def build_pptx(c):
+    c = {k: (_gen(v) if k != 'n' else v) for k, v in c.items()}
     n = c["n"]
     if n in PARCIALES:
         prs = new_prs()
@@ -242,12 +295,12 @@ def build_pptx(c):
         f"**Tema de hoy:** {c['titulo']} — {c['subtitulo']}",
         f"Herramienta: **{c['herramienta']}** · Bloque **120 min**",
         "Primero el concepto, despues el codigo que lo muestra y la demo en vivo.",
-        "Todo con el mismo dominio: la clinica veterinaria Huellitas (VetCare).",
+        "Todo con el mismo dominio: una clinica veterinaria.",
     ], idx=idx); idx += 1
     block_timeline_slide(prs, "Mapa del bloque de hoy (120 min)", [
         ("0-10", "Encuadre y repaso de la clase anterior"),
         ("10-40", "Teoria Core del tema de hoy"),
-        ("40-60", "Demo en vivo sobre VetCare"),
+        ("40-60", "Demo en vivo sobre el tema"),
         ("60-105", "Practica (opcional, guia en la carpeta)"),
         ("105-120", "Repaso de conceptos y cierre"),
     ], idx=idx); idx += 1
@@ -266,7 +319,7 @@ def build_pptx(c):
     content_slide(prs, "Demo del dia", [
         f"**Herramienta:** {c['herramienta']}",
         f"**Demo:** {c['demo']}",
-        "Mismo dominio VetCare — no otro ejemplo.",
+        "Mismo dominio de la clinica — no otro ejemplo.",
     ], idx=idx); idx += 1
     closing_slide(prs, f"Clase {n} · {c['titulo']}", [
         c["subtitulo"],

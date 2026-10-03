@@ -39,7 +39,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 8] Atomicidad: el fallo concreto en VetCare — sintaxis** — 1 vinetas.
 
-**[Slide 9] Consistencia: valido es lo que las restricciones declaran (1/2)** — 5 vinetas.
+**[Slide 9] Consistencia: valido es lo que las restricciones declaran (1/2)** — 6 vinetas.
   - Si nadie declaro la restriccion, la transaccion puede ser perfectamente atomica y dejar la base en un estado absurdo.
   - Con eso el mismo UPDATE falla con un error del motor y la transaccion se puede deshacer entera.
   - Conviene notar como se combinan las dos defensas del dia: el CHECK es la red de seguridad declarativa, y el AND stock >= p_cantidad del WHERE es el guardia que evita llegar al error y permite dar un mensaje de negocio en lugar de un error de restriccion.
@@ -170,14 +170,14 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 Numeracion real del deck `Clases/Clase 8 - Tuning y transacciones/Presentacion.pptx`.
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
-1. Portada · Clase 8 · Tuning · Transacciones · VetCare
+1. Portada · Clase 8 · Tuning · Transacciones · la clínica
 2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. Que es una transaccion, y las dos amenazas de las que protege (1/2)
 5. Que es una transaccion, y las dos amenazas de las que protege (2/2)
 6. Que es una transaccion, y las dos amenazas de... — sintaxis
-7. Atomicidad: el fallo concreto en VetCare
-8. Atomicidad: el fallo concreto en VetCare — sintaxis
+7. Atomicidad: el fallo concreto en la clínica
+8. Atomicidad: el fallo concreto en la clínica — sintaxis
 9. Consistencia: valido es lo que las restricciones declaran (1/2)
 10. Consistencia: valido es lo que las restricciones declaran (2/2)
 11. Consistencia: valido es lo que las... — sintaxis

@@ -79,7 +79,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 19] La inyeccion de SQL, explicada y no solo mencionada (1/2)** — 4 vinetas.
   - Ocurre cuando la aplicacion arma la consulta pegando texto que escribio el usuario, y ese texto termina interpretado por el motor como codigo y no como dato.
-  - En VetCare seria una pantalla de busqueda que construye SELECT * FROM mascota WHERE nombre = seguido de lo que el usuario digito entre comillas.
+  - En la clínica seria una pantalla de busqueda que construye SELECT * FROM mascota WHERE nombre = seguido de lo que el usuario digito entre comillas.
   - DELETE FROM cita; -- el motor recibe dos sentencias y la segunda borra la agenda.
   - Si dentro del cuerpo alguien escribe EXECUTE 'SELECT...
   - WHERE nombre = ' || p_nombre, el agujero se reabre igual, ahora escondido un nivel mas abajo y por lo tanto mas dificil de auditar.
@@ -174,7 +174,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 Numeracion real del deck `Clases/Clase 3 - Procedimientos almacenados/Presentacion.pptx`.
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
-1. Portada · Clase 3 · Procedimientos almacenados · VetCare
+1. Portada · Clase 3 · Procedimientos almacenados · la clínica
 2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. Que es un procedimiento almacenado, y las dos palabras que importan (1/2)
@@ -211,7 +211,7 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 35. El segundo procedimiento: sp_registrar_consulta y el EXISTS (1/2)
 36. El segundo procedimiento: sp_registrar_consulta y el EXISTS (2/2)
 37. El segundo procedimiento:... — sintaxis
-38. Como amarra con las clases vecinas y con el PI
+38. Como amarra con las clases vecinas
 39. Preguntas frecuentes del grupo (1/3)
 40. Preguntas frecuentes del grupo (2/3)
 41. Preguntas frecuentes del grupo (3/3)

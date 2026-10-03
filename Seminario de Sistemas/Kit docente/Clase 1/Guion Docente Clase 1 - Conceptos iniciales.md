@@ -31,9 +31,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Lo importante del primer dia es que el estudiante entienda su rol en esta asignatura: aqui no se construye la casa, se dibujan los planos para que cualquier equipo pueda construirla.
   - Decirlo explicitamente evita que quien esperaba programar se frustre a mitad de semestre.
 
-**Queda una pregunta que el estudiante hace el primer dia y conviene...** — 4 vinetas.
+**Queda una pregunta que el estudiante hace el primer dia y conviene...** — 5 vinetas.
   - La respuesta esta en quien lee.
-  - Por eso en este curso cada entregable tiene un lector concreto, y la pregunta que se hace al calificar no es cuantas paginas tiene sino si ese lector podria trabajar con el sin preguntarle nada al autor.
+  - Por eso en este curso cada artefacto tiene un lector concreto, y la pregunta que se hace al calificar no es cuantas paginas tiene sino si ese lector podria trabajar con el sin preguntarle nada al autor.
 
 **Conviene tambien aclarar el mapa del semestre en una sola frase, porque...** — 4 vinetas.
   - Conviene tambien aclarar el mapa del semestre en una sola frase, porque de eso depende que el estudiante sepa donde esta parado en cada clase.
@@ -48,13 +48,13 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **En un curso de diseno la deuda toma una forma particular y peligrosa:... (1/2)** — 4 vinetas.
   - Quien lo lea tomara decisiones a partir de informacion falsa y descubrira el problema tarde.
-  - De ahi salen dos reglas que este curso aplica a todos los entregables.
+  - De ahi salen dos reglas que este curso aplica a todos los artefactos.
   - Un equipo que cambio tres veces el alcance y lo registro esta mejor evaluado que uno que entrega un documento perfecto que nadie uso.
 
 **En un curso de diseno la deuda toma una forma particular y peligrosa:... (2/2)** — 2 vinetas.
 
 **El segundo concepto de fondo es la palabra modelo, que se usa todo el... (1/2)** — 4 vinetas.
-  - En VetCare, un diagrama de casos de uso responde quien hace que y con que finalidad, y le sirve al dueno de la clinica para confirmar que no falta ningun tramite; no responde en cuanto tiempo se busca un expediente ni como se guardan los datos, y quien busque eso ahi va a leer mal.
+  - En el sistema de la clinica, un diagrama de casos de uso responde quien hace que y con que finalidad, y le sirve al dueno de la clinica para confirmar que no falta ningun tramite; no responde en cuanto tiempo se busca un expediente ni como se guardan los datos, y quien busque eso ahi va a leer mal.
 
 **El segundo concepto de fondo es la palabra modelo, que se usa todo el... (2/2)** — 5 vinetas.
 
@@ -67,7 +67,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **Lo anterior conduce al criterio que gobierna todas las entregas de este... (1/2)** — 6 vinetas.
   - Uno, tiene un lector nombrado y una pregunta que responde.
   - Cuatro, esta fechado y versionado.
-  - Comparemos en VetCare.
+  - Comparemos en el sistema de la clinica.
   - Nadie puede construir eso ni puede decir si se cumplio.
   - La segunda version se puede programar, se puede probar y se puede discutir con el dueno de la clinica.
 

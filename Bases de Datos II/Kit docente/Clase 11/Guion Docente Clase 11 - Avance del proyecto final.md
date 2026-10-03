@@ -87,7 +87,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 Numeracion real del deck `Clases/Clase 11 - Avance del proyecto final/Presentacion.pptx`.
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
-1. Portada · Clase 11 · Avance PI · VetCare DB
+1. Portada · Clase 11 · Avance proyecto · la base de la clínica
 2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. Que es una revision tecnica, y con que producto se sale (1/2)

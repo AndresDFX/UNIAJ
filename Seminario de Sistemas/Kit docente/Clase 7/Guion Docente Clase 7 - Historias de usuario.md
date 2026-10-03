@@ -33,7 +33,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **Una epica es una historia grande que todavia no cabe en una iteracion... (1/2)** — 3 vinetas.
   - El nombre de la epica se conserva como etiqueta en cada historia para no perder el hilo.
 
-**Una epica es una historia grande que todavia no cabe en una iteracion... (2/2)** — 2 vinetas.
+**Una epica es una historia grande que todavia no cabe en una iteracion... (2/2)** — 3 vinetas.
 
 **Estimar en agil no es adivinar horas sino comparar tamanos, y esa es la... (1/2)** — 3 vinetas.
   - Con dos o tres iteraciones se conoce la velocidad del equipo y recien ahi se puede prometer fechas.

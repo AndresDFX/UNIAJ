@@ -93,7 +93,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 Numeracion real del deck `Clases/Clase 10 - Control de concurrencia/Presentacion.pptx`.
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
-1. Portada · Clase 10 · Control de concurrencia · VetCare
+1. Portada · Clase 10 · Control de concurrencia · la clínica
 2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. La transaccion como unidad de todo o nada (1/2)
@@ -110,8 +110,8 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 15. Control optimista: verificar unicamente al escribir (1/2)
 16. Control optimista: verificar unicamente al escribir (2/2)
 17. Control optimista: verificar unicamente al... — sintaxis
-18. Deadlock: la escena de VetCare y como se evita (1/2)
-19. Deadlock: la escena de VetCare y como se evita (2/2)
+18. Deadlock: la escena de la clínica y como se evita (1/2)
+19. Deadlock: la escena de la clínica y como se evita (2/2)
 20. Antes de los niveles: la restriccion que cuesta una linea
 21. Antes de los niveles: la restriccion que... — sintaxis
 22. La doble reserva, y la restriccion que la cierra de raiz

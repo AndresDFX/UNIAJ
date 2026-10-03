@@ -32,7 +32,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 5] Integrar no es conectarse: cual es la unica puerta de entrada (2/2)** — 4 vinetas.
 
 **[Slide 6] Inyeccion SQL: cuando el dato se interpreta como codigo (1/2)** — 4 vinetas.
-  - Concretemoslo en VetCare.
+  - Concretemoslo en la clínica.
   - El buscador de mascotas de la recepcion arma la consulta pegando la entrada del usuario, de modo que el motor recibe
   - Si la recepcionista escribe Luna, el motor recibe WHERE nombre = 'Luna', devuelve una fila, todo parece correcto y la aplicacion pasa a produccion.
   - Conviene una precision honesta, porque la hara un estudiante: en Oracle no se apilan dos sentencias en una misma llamada, asi que el clasico punto y coma seguido de DROP TABLE Cita no se comporta como en otros motores; lo que si funciona, y basta para un incidente reportable, es leer datos ajenos, saltarse un acceso o modificar informacion cuando la aplicacion ejecuta PL/SQL dinamico.
@@ -77,7 +77,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 19] Logica en la base o en la aplicacion: honestidad y no propaganda (2/2)** — 3 vinetas.
 
 **[Slide 20] Cambiar el esquema sin romper la aplicacion que ya corre (1/2)** — 5 vinetas.
-  - Suponga que VetCare necesita registrar la fecha en que una mascota fue inactivada, dato que hoy no existe.
+  - Suponga que la clínica necesita registrar la fecha en que una mascota fue inactivada, dato que hoy no existe.
   - Cuatro, mover lecturas y reportes a la columna nueva.
   - Cada paso deja funcionando al mismo tiempo la version vieja y la nueva.
   - Eso mismo entra en el informe y en el pitch de hoy, porque el estudiante no muestra pantallas: muestra su contrato, un caso de exito, un caso de error visto por el usuario y su plan de cambio de esquema, que es lo que la Clase 13 mirara desde el lado de los fallos reales y lo que la Clase 15 va a evaluar.

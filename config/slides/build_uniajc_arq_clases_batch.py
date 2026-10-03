@@ -1857,6 +1857,89 @@ def _verificar_mapa(c: dict, prs) -> None:
         )
 
 
+# --- Los decks de clase no nombran el proyecto ---------------------------------
+# El ejemplo (una app de turnos) se queda; el nombre del proyecto y la sigla PI no se
+# proyectan. Se aplica al deck YA armado, sobre el texto de cada parrafo, para cubrir
+# por igual teoria, laminas curadas, diagramas, tablas y codigo. Las notas del
+# presentador, el guion y el Kit docente siguen nombrando el proyecto.
+_ANON_PREP = {"de", "del", "en", "para", "sobre", "a", "al", "sin", "con", "que", "y", "o",
+              "el", "la", "un", "una", "por", "como", "entre", "si", "hace", "Modelar",
+              "Aterricemos", "es", "todo", "desde", "hacia", "llamada"}
+
+
+def _anon_sustantivo(m):
+    """«despliegue CloudLite» -> «despliegue de la app»; tras preposicion, «la app»."""
+    w = m.group(1)
+    return f"{w} la app" if w in _ANON_PREP or w.lower() in _ANON_PREP else f"{w} de la app"
+
+
+_ANON_REGLAS = [
+    (r"cloudlite-api", "turnos-api"),
+    (r"cloudlite_datos", "turnos_datos"),
+    (r"cloudlite\.example", "turnos.example"),
+    (r"\bcloudlite\b", "turnos"),
+    (r"servicio del PI CloudLite App", "servicio de la app"),
+    (r"\b(?:el |del |al )?PI CloudLite(?: App)?\b", "la app"),
+    (r"\bllamada CloudLite (?:Turnos|App)\b", "llamada Turnos"),
+    (r"\bpaquete CloudLite\b", "paquete"),
+    (r"\bdominio CloudLite\b", "dominio"),
+    (r"\bstub CloudLite\b", "stub de la app"),
+    (r"\bCloudLite Turnos\b", "la app de turnos"),
+    (r"\bCloudLite App\b", "la app"),
+    (r"\b(tu|su|mi) CloudLite\b", r"\1 app"),
+    (r"\b(\w+) CloudLite\b", _anon_sustantivo),
+    (r"\bCloudLite\b", "la app"),
+    (r"\b(?:informe|evidencias?|prep|pitch|escala) PI\b",
+     lambda m: m.group(0)[:-3].replace("prep", "preparación")),
+    (r"\s*\b(?:para el|en el|del|al|el|de) PI\b", ""),
+    (r"\bPI\s*", ""),
+    (r"\bProyecto Integrador\b", "proyecto"),
+    (r"\b(de|a|en|para|sobre|con|sin) la la\b", r"\1 la"),
+    (r"\bde la app\b(?= de la app)", "de la app"),
+]
+_ANON_RX = [(re.compile(p), r) for p, r in _ANON_REGLAS]
+_ANON_HIT = re.compile(r"vetcare|huellitas|cloudlite|proyecto integrador|\bPI\b", re.I)
+
+
+def _anon_texto(t: str) -> str:
+    for rx, r in _ANON_RX:
+        t = rx.sub(r, t)
+    # mayuscula al inicio de frase si el reemplazo dejo «la app» arrancando
+    t = re.sub(r"(^|[.!?:]\s+|—\s+|\n)(la app)", lambda m: m.group(1) + "La app", t)
+    return t
+
+
+def _anon_parrafo(p) -> int:
+    if not _ANON_HIT.search(p.text):
+        return 0
+    runs = list(p.runs)
+    for r in runs:
+        if _ANON_HIT.search(r.text):
+            r.text = _anon_texto(r.text)
+    if _ANON_HIT.search(p.text) and runs:
+        # El nombre quedo partido entre runs: se junta en el primero.
+        texto = _anon_texto(p.text)
+        runs[0].text = texto
+        for r in runs[1:]:
+            r.text = ""
+    return 1
+
+
+def _anonimizar(prs) -> int:
+    n = 0
+    for slide in prs.slides:
+        for sh in slide.shapes:
+            frames = []
+            if sh.has_text_frame:
+                frames.append(sh.text_frame)
+            if getattr(sh, "has_table", False) and sh.has_table:
+                frames += [c.text_frame for row in sh.table.rows for c in row.cells]
+            for tf in frames:
+                for p in tf.paragraphs:
+                    n += _anon_parrafo(p)
+    return n
+
+
 def build_pptx(c: dict) -> Path:
     n = c["n"]
     folder = CURSO / "Clases" / f"Clase {n} - {c['slug']}"
@@ -1885,6 +1968,7 @@ def build_pptx(c: dict) -> Path:
             "Hoy solo se evalúa el corte",
             "El tema continúa la próxima clase",
         ], accent="Solo evaluación")
+        _anonimizar(prs)
         _verificar_mapa(c, prs)
         prs.save(str(out))
         print("OK pptx parcial ->", out)
@@ -1988,6 +2072,7 @@ def build_pptx(c: dict) -> Path:
             [str(o).replace("**", "") for o in c["objetivos"]][:3],
             accent="Teoría al servicio del diseño",
         )
+    _anonimizar(prs)
     _verificar_mapa(c, prs)
     prs.save(str(out))
     print("OK pptx ->", out)

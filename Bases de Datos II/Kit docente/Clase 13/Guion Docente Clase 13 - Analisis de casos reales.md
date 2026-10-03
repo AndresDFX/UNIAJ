@@ -25,7 +25,7 @@ del PI VetCare. La teoria se limita a desbloquear el taller.
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
 **[Slide 4] Clase autonoma: este texto es fundamento y guia a la vez (1/2)** — 4 vinetas.
-  - Fuera de la lamina (habla de la practica): El entregable de hoy es una tabla de cuatro columnas, Contexto, Fallo, Leccion y Cambio en VetCare, con tres casos, y se sube a PostgreSQL en el navegador.
+  - Fuera de la lamina (habla de la practica): El entregable de hoy es una tabla de cuatro columnas, Contexto, Fallo, Leccion y Cambio en la clínica, con tres casos, y se sube a PostgreSQL en el navegador.
 
 **[Slide 5] Clase autonoma: este texto es fundamento y guia a la vez (2/2)** — 3 vinetas.
 
@@ -75,7 +75,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 Numeracion real del deck `Clases/Clase 13 - Analisis de casos reales/Presentacion.pptx`.
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
-1. Portada · Clase 13 · Analisis de casos reales · VetCare
+1. Portada · Clase 13 · Analisis de casos reales · la clínica
 2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. Clase autonoma: este texto es fundamento y guia a la vez (1/2)

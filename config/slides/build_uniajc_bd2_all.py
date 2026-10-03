@@ -2841,6 +2841,36 @@ _RX_ACTIVIDAD = re.compile(
     r"|\bse sube\b|se entrega\b|sube el paquete|modulo de proyectos",
     re.I)
 
+# Los decks de clase no nombran el proyecto ni el cliente: el ejemplo se queda con una
+# descripcion generica del dominio. Taller, solucion, guion y Kit siguen nombrandolos.
+_SUBS_NOMBRES = [
+    (r"vetcare", "clinica"),   # identificadores: rol_vetcare_app, 07_indices_vetcare.sql
+    (r"\b(?:la |una )?cl[ií]nica( veterinaria)?\s*[«\"“]?Huellitas[»\"”]?", r"la clínica\1"),
+    (r"[«\"“]?\bHuellitas\b[»\"”]?", "la clínica"),
+    (r"\bVetCare DB\b", "la base de la clínica"),
+    (r"\bVetCare\b", "la clínica"),
+    (r"\bProyecto Integrador\b", "proyecto del curso"),
+    (r"\b(del|al|el) PI\b", lambda m: {"del": "del proyecto", "al": "al proyecto",
+                                        "el": "el proyecto"}[m.group(1).lower()]),
+    (r"\bPI\b", "proyecto"),
+    # articulos que quedan dobles tras el reemplazo
+    (r"\b(?:el|la|los|las|un|una) (la (?:clínica|base de la clínica))\b", r"\1"),
+    (r"\bdel (la (?:clínica|base de la clínica))\b", r"de \1"),
+    (r"\bal (la (?:clínica|base de la clínica))\b", r"a \1"),
+    (r"\b(proyecto|sistema|base|esquema|modelo|dominio|caso|paquete|hilo) la (clínica)\b",
+     r"\1 de la \2"),
+]
+
+
+def _sin_nombres(t):
+    if not isinstance(t, str):
+        return t
+    for a, b in _SUBS_NOMBRES:
+        flags = 0 if a == "vetcare" else re.I
+        t = re.sub(a, b, t, flags=flags)
+    return t
+
+
 _SUBS_TEMA = [
     (r"\s*\+\s*ExamLab(?:\s*\([^)]*\))?", ""),
     (r"ExamLab\s*\((PostgreSQL[^)]*)\)", r"\1"),
@@ -2861,7 +2891,7 @@ _TITULOS_TEMA = [
     (r":\s*el molde que se califica", ""),
     (r"Los cinco nombres que se califican", "Los cinco indices"),
     (r"\s+que se califican?\b", ""),
-    (r"y con la r[uú]brica del PI", "y con el PI"),
+    (r"\s*y con la r[uú]brica del (?:PI|proyecto)", ""),
     (r"Lo que (?:ExamLab|la plataforma del curso) si puede demostrar",
      "Lo que PostgreSQL en el navegador si puede demostrar"),
     (r"Lo que pide el minimo privilegio", "Lo que pide la practica"),
@@ -2871,6 +2901,7 @@ _TITULOS_TEMA = [
 def _titulo_tema(t):
     if not isinstance(t, str):
         return t
+    t = _sin_nombres(t)
     for a, b in _TITULOS_TEMA:
         t = re.sub(a, b, t, flags=re.I)
     return t
@@ -2878,6 +2909,7 @@ def _titulo_tema(t):
 
 def _frase_tema(f, fuera):
     """Una frase: la limpia, o la manda a `fuera` si solo habla de la actividad."""
+    f = _sin_nombres(f)
     for a, b in _SUBS_TEMA:
         f = re.sub(a, b, f, flags=re.I)
     if not _RX_ACTIVIDAD.search(f):
@@ -2903,6 +2935,7 @@ def _frase_tema(f, fuera):
 def _texto_tema(t, fuera):
     if not isinstance(t, str) or not t.strip():
         return t
+    t = _sin_nombres(t)
     if t.lstrip().startswith("--"):           # comentario de codigo
         for a, b in _SUBS_TEMA:
             t = re.sub(a, b, t, flags=re.I)
@@ -2918,7 +2951,7 @@ def _texto_tema(t, fuera):
 def _tema(obj, fuera, codigo=False):
     if isinstance(obj, str):
         if codigo and not obj.lstrip().startswith("--"):
-            r = obj
+            r = _sin_nombres(obj)
             for a, b in _SUBS_TEMA:
                 r = re.sub(a, b, r, flags=re.I)
             return r
@@ -2962,8 +2995,7 @@ FLUJO_TEMA_PASOS = [
      "Pega el codigo en un visor Mermaid (por ejemplo mermaid.live) y mira como lo dibuja. "
      "Si no renderiza, corrige ahi mismo: un diagrama que no renderiza no comunica nada."),
     ("Guarda codigo e imagen",
-     "Conserva el texto Mermaid, que es la fuente, y exporta el PNG para tu informe del "
-     "Proyecto Integrador."),
+     "Conserva el texto Mermaid, que es la fuente, y exporta el PNG para tu informe."),
 ]
 
 
@@ -3051,6 +3083,7 @@ def _resolver_slides(texto, mapa, n_clase):
 
 
 def cover_pptx(prs, c):
+    c = dict(c, titulo=_titulo_tema(c['titulo']), subtitulo=_sin_nombres(c.get('subtitulo')))
     """Portada limpia: marca + título + subtítulo. Meta PI/agenda → 2ª slide."""
     class_cover(prs, c['titulo'], subtitulo=c['subtitulo'], clase_n=c['n'], idx=1)
 
@@ -3137,8 +3170,8 @@ def build_pptx(c):
             "@@el veterinario@@ el historial a la mano.",
             "Sus intereses @@entran en conflicto@@: más datos dan mejores métricas, pero "
             "hacen más lento el agendamiento. Ahí están las decisiones de diseño del semestre.",
-            "@@Caso completo:@@ anexo «Caso de estudio Clínica Huellitas» en "
-            "Clases/Proyecto Integrador — 8 entidades, 3 reglas y el elenco de nombres.",
+            "El modelo de la clínica tiene @@8 entidades@@ y @@3 reglas de negocio@@: dueño, "
+            "mascota, veterinario, cita, consulta, insumo, factura y detalle de factura.",
         ], sub=NOMENCLATURA, idx=idx); idx += 1
     for _t, _items, _notas, _tipo in _teoria_slides(c):
         if _tipo == "codigo":
@@ -3207,7 +3240,7 @@ def build_pptx(c):
     # el docente aplica por el canal que decida. Anticiparlo en la diapositiva le
     # quita sentido como comprobacion.
     if c['tipo'] == 'sustentacion':
-        closing_slide(prs, f"Clase {c['n']} · cierre de VetCare DB", [
+        _solo_tema(closing_slide)(prs, f"Clase {c['n']} · cierre de VetCare DB", [
             c['hito_pi'],
             "Conserva el paquete (ER, DDL, roles, procs, triggers, optimizacion) como portafolio",
         ], accent="Sustentar es justificar decisiones, no describir tablas")
@@ -3218,7 +3251,7 @@ def build_pptx(c):
             _b = re.sub(r"\s*\(\d+/\d+\)$|\s*— sintaxis$", "", _titulo_tema(_t)).split(":")[0].strip()
             if _b not in _vistos:
                 _vistos.append(_b)
-        closing_slide(prs, f"Clase {c['n']} · {c['titulo']}",
+        _solo_tema(closing_slide)(prs, f"Clase {c['n']} · {c['titulo']}",
                       _vistos[:3] or [c['titulo']],
                       accent="Todo lo visto queda proyectado para repasar")
     _verificar_mapa(c, prs)

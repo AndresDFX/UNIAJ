@@ -197,6 +197,74 @@ import teoria_a_slides as TS
 import codigo_a_slides as CS
 from seminario_operativo_data import OPERATIVO
 
+# ------------------------------------------------------------- texto proyectado
+# Los decks de clase no nombran el proyecto (VetCare, Huellitas, Proyecto Integrador) ni la
+# actividad evaluada (entregable, rubrica, que se califica). El ejemplo se queda; cambia el
+# nombre por la descripcion del dominio. Se aplica SOLO a lo proyectado: guion, taller,
+# solucion, quiz y ExamLab leen los mismos datos y siguen nombrando el proyecto.
+_DECK_SUBS = [
+    (r"Ejemplo de toda la clase: VetCare, el sistema de la clinica «Huellitas»\.",
+     "Ejemplo de toda la clase: el sistema de una clinica veterinaria."),
+    (r"Mismo dominio VetCare — no otro ejemplo\.",
+     "Mismo dominio: la clinica veterinaria — no otro ejemplo."),
+    (r"subgraph vetcare\[VetCare - el sistema\]",
+     "subgraph sistema_clinica[El sistema de la clinica]"),
+    (r"\bvetcare\b", "sistema_clinica"),
+    (r"subgraph sistema\[VetCare\]", "subgraph sistema[Sistema de la clinica]"),
+    (r"@@Por que importa al PI:@@ ?", "@@Por que importa:@@ "),
+    (r" Esto es la P2 del hito y vale puntos\.", ""),
+    (r"title Sustentacion VetCare", "title Sustentacion"),
+    (r"Guion de sustentacion VetCare", "Guion de sustentacion"),
+    (r"ERS VetCare", "ERS Clinica"),
+    (r"del proyecto VetCare", "del proyecto"),
+    (r"paquete VetCare", "paquete"),
+    (r"con VetCare en la mano", "con el caso de la clinica en la mano"),
+    (r"y VetCare va a", "y el sistema va a"),
+    (r"construir VetCare", "construir el sistema"),
+    (r"Trasladado a VetCare: si Huellitas", "Trasladado a la clinica: si la clinica"),
+    (r"en un proyecto como VetCare", "en un proyecto como el de la clinica"),
+    (r"\bEn VetCare\b", "En el sistema de la clinica"),
+    (r"\ben VetCare\b", "en el sistema de la clinica"),
+    (r"\bPara VetCare\b", "Para el sistema de la clinica"),
+    (r"\bpara VetCare\b", "para el sistema de la clinica"),
+    (r"\bde VetCare\b", "del sistema de la clinica"),
+    (r"\bsobre VetCare\b", "sobre la clinica"),
+    (r"\bVetCare\b", "el sistema de la clinica"),
+    (r"\bClinica Huellitas\b", "Clinica veterinaria"),
+    (r"\bclinica Huellitas\b", "clinica"),
+    (r"\b(de|a|para|en) Huellitas\b", r"\1 la clinica"),
+    (r"\| Huellitas:", "| La clinica:"),
+    (r"\bHuellitas\b", "la clinica"),
+    (r"En nuestro Proyecto Integrador", "En un proyecto de software"),
+    (r"Para nuestro Proyecto Integrador", "Para este curso"),
+    (r"En el Proyecto Integrador", "En un proyecto real"),
+    (r"del Proyecto Integrador", "del proyecto"),
+    (r"(?i)proyecto integrador", "proyecto de diseño"),
+    (r"\bPI\[", "PIN["), (r"> PI\b", "> PIN"), (r"\bPI -", "PIN -"),
+    (r"\bel PI\b", "el proyecto"), (r"\bal PI\b", "al proyecto"), (r"\bdel PI\b", "del proyecto"),
+    (r"que es el entregable real de la asignatura", "que es el producto real de la asignatura"),
+    (r"historia entregable", "historia verificable"),
+    (r"cada una entregable y", "cada una terminable y"),
+    (r"(su|el) entregable (final|ES|profesional)", r"\1 producto \2"),
+    (r"\bentregables\b", "artefactos"), (r"\bEntregables\b", "Artefactos"),
+    (r"\bentregable\b", "artefacto"), (r"\bEntregable\b", "Artefacto"),
+    (r"\brubrica\b", "lista de verificacion"),
+    (r"Lo que se califica", "Lo que importa"),
+    (r"lo que se califica", "lo que importa"),
+    (r"\bse califica\b", "se revisa"),
+]
+_DECK_RX = [(re.compile(a, re.M), b) for a, b in _DECK_SUBS]
+
+
+def _deck(t):
+    """Texto proyectado sin nombre de proyecto ni actividad evaluada (ver _DECK_SUBS)."""
+    if not isinstance(t, str):
+        return t
+    for rx, b in _DECK_RX:
+        t = rx.sub(b, t)
+    return t
+
+
 def _parrafos_fundamento(c):
     fund = (c.get("fundamento") or "").strip()
     return [p.strip() for p in fund.split("\n\n") if len(p.strip()) > 120] if fund else []
@@ -219,21 +287,22 @@ def _teoria_slides(c):
     de cada parrafo. El resto —el 90%— solo existia en el guion, asi que lo que se dictaba no
     estaba proyectado y el estudiante que faltaba no tenia de donde estudiar.
     """
-    vin = list(c.get("teoria", []))
+    vin = [_deck(x) for x in c.get("teoria", [])]
     # `fundamento` era desarrollo adicional que SOLO veia el docente. Ahora se proyecta
     # tambien: si vale la pena decirlo, vale la pena que el estudiante lo tenga. Viene en
     # prosa sin secciones, asi que cada parrafo entra como una vineta mas.
-    vin += [p for p in _parrafos_fundamento(c) if not _es_para_docente(p)]
+    vin += [_deck(p) for p in _parrafos_fundamento(c) if not _es_para_docente(p)]
     laminas = TS.slides_de_vinetas(vin)
     # Y el demo de la clase, partido por metodo. Antes se proyectaban ~15 lineas de
     # `codigo_slide_lineas` y el archivo completo quedaba en el Kit docente, que es material
     # del docente: el estudiante veia el recorte. «Mas codigo si es programacion» es esto.
-    laminas += CS.slides_de_fuente(c.get("codigo_fuente") or "",
-                                   c.get("codigo_archivo") or "")
+    laminas += [(_deck(t), [_deck(x) for x in it], nt, tp) for t, it, nt, tp in
+                CS.slides_de_fuente(c.get("codigo_fuente") or "", c.get("codigo_archivo") or "")]
     # Y el material operativo autorado. En Seminario los entregables son diagramas
     # Mermaid y plantillas de artefacto, y la sintaxis de Mermaid es el 100% de si el
     # entregable se puede calificar: uno que no renderiza en ExamLab no se califica.
-    laminas += [(tit, lineas, [], "codigo") for tit, lineas in OPERATIVO.get(c["n"], [])]
+    laminas += [(_deck(tit), [_deck(x) for x in lineas], [], "codigo")
+                for tit, lineas in OPERATIVO.get(c["n"], [])]
     return laminas
 
 
@@ -260,9 +329,11 @@ def build_pptx(c):
         prs = new_prs()
         class_cover(prs, PARCIALES[n][0], subtitulo="Solo evaluacion", clase_n=n, idx=1)
         content_slide(prs, "Indicaciones", [
-            "Hoy es **solo Parcial** (virtual sincrono por Meet).",
-            "No hay tema nuevo en esta sesion.",
-            "Duracion sugerida: **90–100 min** dentro del bloque de 120.",
+            "Hoy es el **parcial**: no hay tema nuevo en esta sesion.",
+            "Entra lo visto en el corte hasta hoy.",
+            "Modalidad **virtual sincrona por Meet**.",
+            "Duracion aproximada: **90–100 min** dentro del bloque de 120.",
+            "El enunciado y el canal de entrega se comparten al empezar.",
         ], idx=2)
         closing_slide(prs, f"{PARCIALES[n][0]} · Clase {n}",
                       ["Enfocados en la evaluacion del corte",
@@ -275,21 +346,21 @@ def build_pptx(c):
         return
 
     prs = new_prs()
-    class_cover(prs, c["titulo"], subtitulo=c["subtitulo"], clase_n=n, idx=1)
+    class_cover(prs, _deck(c["titulo"]), subtitulo=_deck(c["subtitulo"]), clase_n=n, idx=1)
     idx = 2
     # El deck solo lleva el tema. La practica es opcional (a veces se hace, a veces no) y
     # su guia vive en la carpeta: `Taller PI - Clase N - VetCare.docx`. Por eso aqui no
     # hay laminas de taller, entregable, autochequeo ni herramientas de la actividad.
     content_slide(prs, "Encuadre de hoy", [
-        f"**Tema:** {c['titulo']}",
-        f"{c['subtitulo']}",
+        f"**Tema:** {_deck(c['titulo'])}",
+        f"{_deck(c['subtitulo'])}",
         f"Herramienta del tema: **{c['herramienta']}** · Bloque **120 min**",
-        "Ejemplo de toda la clase: VetCare, el sistema de la clinica «Huellitas».",
+        "Ejemplo de toda la clase: el sistema de una clinica veterinaria.",
     ], idx=idx); idx += 1
     block_timeline_slide(prs, "Mapa del bloque de hoy (120 min)", [
         ("0-10", "Encuadre y repaso"),
         ("10-40", "Teoria Core del tema de hoy"),
-        ("40-60", "Demo en vivo sobre VetCare"),
+        ("40-60", "Demo en vivo sobre la clinica"),
         ("60-105", "Practica (opcional, guia en la carpeta)"),
         ("105-120", "Sintesis y cierre"),
     ], idx=idx); idx += 1
@@ -306,16 +377,16 @@ def build_pptx(c):
             notas(_s, ["PARA EL DOCENTE"] + notas_docente(c))
         idx += 1
     if c.get("codigo_slide_lineas"):
-        pseudo_code_slide(prs, c.get("codigo_slide_titulo", "Codigo de hoy"),
-                          c["codigo_slide_lineas"],
-                          caption=c.get("codigo_slide_caption"), idx=idx); idx += 1
+        pseudo_code_slide(prs, _deck(c.get("codigo_slide_titulo", "Codigo de hoy")),
+                          [_deck(x) for x in c["codigo_slide_lineas"]],
+                          caption=_deck(c.get("codigo_slide_caption")), idx=idx); idx += 1
     content_slide(prs, "Demo del dia", [
-        f"**Herramienta:** {c['herramienta']}",
-        f"**Demo:** {c['demo']}",
-        "Mismo dominio VetCare — no otro ejemplo. Aqui se diseña, no se programa.",
+        f"**Herramienta:** {_deck(c['herramienta'])}",
+        f"**Demo:** {_deck(c['demo'])}",
+        "Mismo dominio: la clinica veterinaria — no otro ejemplo. Aqui se diseña, no se programa.",
     ], idx=idx); idx += 1
-    closing_slide(prs, f"Clase {n} · {c['titulo']}", [
-        c["subtitulo"],
+    closing_slide(prs, f"Clase {n} · {_deck(c['titulo'])}", [
+        _deck(c["subtitulo"]),
         "Repasen las laminas de teoria: cada concepto esta completo",
         "Siguiente clase: continuamos con el siguiente tema",
     ], accent="Teoria al servicio del diseño")

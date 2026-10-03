@@ -49,7 +49,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 12] Reproducible: un tercero llega a la misma base sin hablar con el autor (3/3)** — 3 vinetas.
 
-**[Slide 13] El reparto de los 5 a 8 minutos (1/2)** — 6 vinetas.
+**[Slide 13] El reparto de los 5 a 8 minutos (1/2)** — 5 vinetas.
   - Lo que si hay que exigir dentro del turno es la ejecucion real: que el estudiante corra el procedimiento en el playground, con su caso valido y su caso invalido, en vez de proyectar capturas fijas.
   - El paquete, en cambio.
   - Fuera de la lamina (habla de la practica): Lo que si hay que exigir dentro del turno es la ejecucion real: que el estudiante corra el procedimiento en el playground, con su caso valido y su caso invalido, en vez de proyectar capturas fijas, porque una consulta ejecutandose delante del evaluador es la evidencia mas dificil de fingir y la mas rapida de calificar.
@@ -76,8 +76,8 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 Numeracion real del deck `Clases/Clase 15 - Presentacion del proyecto y cierre/Presentacion.pptx`.
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
-1. Portada · Clase 15 · Presentacion PI · Cierre VetCare
-2. Encuadre de hoy · Objetivo PI
+1. Portada · Clase 15 · Presentacion proyecto · Cierre la clínica
+2. Encuadre de hoy · Objetivo proyecto
 3. Mapa del bloque de hoy (120 min)
 4. Sustentar no es describir: el eje de toda la clase (1/2)
 5. Sustentar no es describir: el eje de toda la clase (2/2)

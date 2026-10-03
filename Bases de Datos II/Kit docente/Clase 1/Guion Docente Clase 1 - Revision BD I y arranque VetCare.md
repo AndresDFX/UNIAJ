@@ -24,10 +24,9 @@ del PI VetCare. La teoria se limita a desbloquear el taller.
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 5] El cliente: la clinica Huellitas (1/2)** — 3 vinetas.
+**El cliente: la clinica Huellitas** — 5 vinetas.
   - Antes de dibujar una sola tabla hay que decir para quien se dibuja.
-  - La Clinica Veterinaria Huellitas atiende un alto volumen de pacientes y lleva toda su gestion en carpetas de papel.
-  - Hay que fijar la nomenclatura en voz alta porque el material la usa con precision y el estudiante la mezcla: Huellitas es la CLINICA, es decir el cliente que tiene el problema
+  - Hay que fijar la nomenclatura en voz alta porque el material la usa con precision y el estudiante la mezcla: la clínica es la CLINICA, es decir el cliente que tiene el problema; la clínica es el SISTEMA que se le construye, y la base de la clínica es concretamente la base de datos de ese sistema, que es lo que se hace en esta asignatura.
   - Programacion II construye la aplicacion para el mismo cliente y Seminario disena sus planos, asi que un estudiante que curse dos de las tres materias trabaja el mismo caso desde dos angulos.
   - Los tres interesados son la herramienta de decision mas util que se le puede dar hoy al estudiante, y estan en la diapositiva por eso.
   - El dueno de la clinica quiere metricas del negocio.
@@ -35,73 +34,71 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - El veterinario quiere el historial del paciente a la mano durante la consulta.
   - Lo importante, y hay que subrayarlo, es que esos intereses ENTRAN EN CONFLICTO: pedir mas datos en el formulario de la cita da mejores metricas al dueno y le hace mas lento el trabajo a la recepcionista.
   - Ahi esta la diferencia entre un modelo copiado y uno decidido.
-  - Fuera de la lamina (habla de la practica): Antes de dibujar una sola tabla hay que decir para quien se dibuja, porque el taller de hoy y los enunciados de las quince clases estan escritos sobre un cliente concreto y con nombre.
+  - Fuera de la lamina (habla de la practica): Antes de dibujar una sola tabla hay que decir para quien se dibuja, porque el taller de hoy y los enunciados de las quince clases estan escritos sobre un cliente concreto y con nombre. la clínica Veterinaria atiende un alto volumen de pacientes y lleva toda su gestion en carpetas de papel.
   - Fuera de la lamina (habla de la practica): La administracion reporta tres problemas y conviene enunciarlos tal cual, porque cada uno se traduce despues en una decision de esquema: se extravian fichas de pacientes, y esa es la razon de que el expediente tenga que vivir en una fila con clave primaria y no en un papel; buscar un historial en el archivo fisico genera filas en la sala de espera, que es el motivo por el que en la Clase 7 se habla de indices y no como un tema abstracto de rendimiento; y no hay metricas, no saben cuantas especies atienden al mes, que es exactamente la consulta agregada que aparece en el taller de la Clase 6.
   - Fuera de la lamina (habla de la practica): Un curso de bases de datos que no nombra al cliente convierte cada taller en un ejercicio suelto; nombrarlo hace que el estudiante pueda decidir por si mismo si un dato sobra.
   - Fuera de la lamina (habla de la practica): Cuando en un taller un estudiante pregunte si una columna sobra, la respuesta del docente no deberia ser si o no sino otra pregunta: cual de los tres la necesita, y que pierde otro si la agregamos.
 
-**[Slide 6] El cliente: la clinica Huellitas (2/2)** — 3 vinetas.
-
-**[Slide 7] Por que esto no es Bases de Datos I, y el vocabulario minimo (1/2)** — 4 vinetas.
+**Por que esto no es Bases de Datos I, y el vocabulario minimo (1/2)** — 4 vinetas.
   - Esta clase parece repetir Bases de Datos I y no lo hace.
   - Conviene fijar el vocabulario operativo antes de dibujar nada.
-  - Conviene desactivar una trampa de vocabulario: la palabra dominio se usara hoy con dos sentidos, el de un atributo y el del proyecto, que es la clinica Huellitas.
+  - Conviene desactivar una trampa de vocabulario: la palabra dominio se usara hoy con dos sentidos, el de un atributo y el del proyecto, que es la clínica.
 
-**[Slide 8] Por que esto no es Bases de Datos I, y el vocabulario minimo (2/2)** — 2 vinetas.
+**Por que esto no es Bases de Datos I, y el vocabulario minimo (2/2)** — 2 vinetas.
 
-**[Slide 9] Nivel conceptual y nivel fisico: dos vistas del mismo modelo** — 4 vinetas.
+**Nivel conceptual y nivel fisico: dos vistas del mismo modelo** — 4 vinetas.
   - Antes de cualquier otra cosa hay que separar dos niveles que el estudiante mezcla y que hoy se recorren los dos.
   - Conviene decirlo en voz alta porque explica por que se exige tipo y longitud en el diagrama: no es decoracion, es lo que hace traducible el dibujo.
 
-**[Slide 10] Clave primaria: natural o sustituta** — 6 vinetas.
+**Clave primaria: natural o sustituta** — 6 vinetas.
   - Eso no es estilo, es una restriccion que el motor verifica en cada INSERT y UPDATE y que rechaza con error.
   - La natural ahorra un JOIN cuando se busca por ella; la sustituta gana cuando el dato natural cambia, se repite o todavia no existe.
   - Por eso el esquema usa identificadores sustitutos y guarda el dato natural aparte con unicidad:.
   - UNIQUE impide dos duenos con la misma cedula, permite dejarla nula un rato y permite corregirla sin tocar las filas de mascota que apuntan al dueno.
 
-**[Slide 11] Clave primaria: natural o sustituta — sintaxis** — 7 vinetas.
+**Clave primaria: natural o sustituta — sintaxis** — 7 vinetas.
 
-**[Slide 12] Normalizacion 1FN-3FN: primero la enfermedad (1/2)** — 6 vinetas.
+**Normalizacion 1FN-3FN: primero la enfermedad (1/2)** — 6 vinetas.
   - Supongamos que el estudiante guarda el telefono del dueno dentro de cada fila de cita.
   - Aparecen tres anomalias.
   - Leidas asi, las tres formas normales son tres vacunas.
 
-**[Slide 13] Normalizacion 1FN-3FN: primero la enfermedad (2/2)** — 4 vinetas.
+**Normalizacion 1FN-3FN: primero la enfermedad (2/2)** — 4 vinetas.
 
-**[Slide 14] Clave foranea, borrado y por que la FK no basta (1/2)** — 5 vinetas.
+**Clave foranea, borrado y por que la FK no basta (1/2)** — 5 vinetas.
   - Lo que casi nunca se explica es la otra mitad: que pasa al borrar el padre.
   - Al declarar la clave foranea se elige el comportamiento
   - RESTRICT o NO ACTION impide borrar el dueno mientras tenga mascotas, CASCADE borra las filas hijas en cadena y SET NULL deja la referencia nula.
   - Esa baja logica es la que obliga a validar en la Clase 3 que una mascota inactiva no agende, porque la clave foranea la sigue aceptando: el identificador existe, el negocio no lo quiere.
   - ON DELETE SET NULL deja la fila huerfana con la columna en nulo.
 
-**[Slide 15] Clave foranea, borrado y por que la FK no basta (2/2)** — 4 vinetas.
+**Clave foranea, borrado y por que la FK no basta (2/2)** — 4 vinetas.
 
-**[Slide 16] Clave foranea, borrado y por que la FK no... — sintaxis** — 2 vinetas.
+**Clave foranea, borrado y por que la FK no... — sintaxis** — 2 vinetas.
 
-**[Slide 17] Baja logica: activa CHAR(1) en vez de DELETE** — 4 vinetas.
+**Baja logica: activa CHAR(1) en vez de DELETE** — 4 vinetas.
   - Conviene detenerse en la baja logica porque es la decision que sostiene medio semestre y casi nunca se explica.
   - Lo que se hace es marcar la fila como inactiva: activa CHAR(1) DEFAULT 'S' CHECK (activa IN ('S','N')), y las consultas del dia a dia filtran WHERE activa = 'S'.
   - La consecuencia que hay que subrayar, porque es la que abre la Clase 3, es que la clave foranea NO defiende esa regla: para el motor, la mascota inactiva existe y su identificador es valido, asi que aceptara sin chistar una cita nueva sobre ella.
   - Si el estudiante sale hoy con DELETE en la cabeza, en la Clase 3 no va a entender por que hace falta sp_agendar_cita.
 
-**[Slide 18] Que separa un diagrama ER de un dibujo (1/2)** — 5 vinetas.
+**Que separa un diagrama ER de un dibujo (1/2)** — 5 vinetas.
   - Eso se materializa como consulta.id_cita NOT NULL UNIQUE, no como una clave foranea simple, y decidirlo hoy evita la pregunta que aparece en la Clase 3 cuando alguien intenta registrar la consulta antes de la cita.
 
-**[Slide 19] Que separa un diagrama ER de un dibujo (2/2)** — 3 vinetas.
+**Que separa un diagrama ER de un dibujo (2/2)** — 3 vinetas.
 
-**[Slide 20] Tipos de datos: donde se pagan las facturas mas caras (1/2)** — 4 vinetas.
+**Tipos de datos: donde se pagan las facturas mas caras (1/2)** — 4 vinetas.
 
-**[Slide 21] Tipos de datos: donde se pagan las facturas mas caras (2/2)** — 3 vinetas.
+**Tipos de datos: donde se pagan las facturas mas caras (2/2)** — 3 vinetas.
 
-**[Slide 22] Convenciones de nombres para que el DDL corra a la primera (1/2)** — 4 vinetas.
+**Convenciones de nombres para que el DDL corra a la primera (1/2)** — 4 vinetas.
   - Convenciones de nombres del curso.
   - Identificadores sustitutos uniformes con el patron id_<entidad>, el mismo nombre en la tabla propia y en la que la referencia, para que el JOIN se escriba sin buscar como se llamo la columna alla.
   - Fuera de la lamina (habla de la practica): Convenciones de nombres del curso, y hay que exigirlas desde hoy porque el taller se corrige ejecutando el guion en el PostgreSQL que PostgreSQL en el navegador trae en el navegador.
 
-**[Slide 23] Convenciones de nombres para que el DDL corra a la primera (2/2)** — 4 vinetas.
+**Convenciones de nombres para que el DDL corra a la primera (2/2)** — 4 vinetas.
 
-**[Slide 24] Herramientas del dia y que se puede demostrar con cada una** — 3 vinetas.
+**Herramientas del dia y que se puede demostrar con cada una** — 3 vinetas.
   - Sobre lo que se puede demostrar con herramientas gratuitas conviene ser preciso.
   - En DB Fiddle, sin cuenta y en menos de un minuto, se ejecuta el guion completo de CREATE TABLE con claves primarias, foraneas y CHECK, se insertan Ana Perez, Luna y su cita, se corre el JOIN de las tres tablas y, sobre todo, se provoca el error de integridad en vivo insertando una cita con id_mascota inexistente para que el grupo lea el mensaje real del motor.
   - Lo que DB Fiddle no da es persistencia: cada ejecucion recrea el esquema desde cero y no hay usuarios ni roles reales, razon por la cual la Clase 2 trabaja con matriz documentada.
@@ -109,27 +106,27 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - De ahi sale la regla operativa del curso: la fuente de verdad es el archivo sql en la carpeta del proyecto, nunca la pestana del navegador, y el estudiante va bien si reconstruye el esquema completo en menos de cinco minutos pegando su propio guion. draw.io y Excalidraw: son pizarras para pensar el modelo a mano alzada, sin instalar nada.
   - Fuera de la lamina (habla de la practica): Sobre lo que se puede demostrar con herramientas gratuitas conviene ser preciso, porque de eso depende que el taller no se atore.
 
-**[Slide 25] Del ER dibujado al codigo Mermaid** — 3 vinetas.
+**Del ER dibujado al codigo Mermaid** — 3 vinetas.
   - Ultimo tramo.
   - Eso no significa que haya que dibujar escribiendo codigo, y conviene decirlo asi para que nadie se bloquee: el camino corto es disenar visual en draw.io o Excalidraw, que es donde se piensa el modelo, y despues pedirle a una IA que traduzca ese boceto a Mermaid.
-  - El PNG exportado se conserva en la carpeta del PI para el informe, pero no reemplaza la respuesta en la plataforma.
+  - El PNG exportado se conserva en la carpeta del proyecto para el informe, pero no reemplaza la respuesta en la plataforma.
   - La demo debe terminar exactamente ahi, y deja los cuatro pasos proyectados mientras el grupo trabaja.
   - Fuera de la lamina (habla de la practica): Ultimo tramo, y es el que decide si el taller se entrega o no: como pasa el estudiante del dibujo a lo que la plataforma califica.
 
-**[Slide 26] Preguntas frecuentes del grupo** — 5 vinetas.
+**Preguntas frecuentes del grupo** — 5 vinetas.
   - Tres preguntas aparecen casi siempre y conviene tener la respuesta lista.
   - La respuesta no es doctrinal sino de costo: ahi el telefono de un dueno con veinte citas vive veinte veces y basta una actualizacion parcial para que el sistema mienta; ademas ese diseno impide registrar un dueno sin cita o un insumo sin venta.
   - Esa regla necesita otra herramienta: un CHECK cuando mira solo columnas de la misma fila, un procedimiento almacenado cuando debe consultar otra tabla, que es el hito de la Clase 3, o un disparador cuando debe aplicarse aunque nadie llame al procedimiento, que es el hito de la Clase 4.
 
-**[Slide 27] El patron de tabla: PK, obligatorios y dominio cerrado** — 10 vinetas.
+**El patron de tabla: PK, obligatorios y dominio cerrado** — 10 vinetas.
 
-**[Slide 28] La clave foranea y que pasa al borrar el padre** — 13 vinetas.
+**La clave foranea y que pasa al borrar el padre** — 13 vinetas.
 
-**[Slide 29] Integridad referencial: el error que devuelve el motor** — 10 vinetas.
+**Integridad referencial: el error que devuelve el motor** — 10 vinetas.
 
-**[Slide 30] El JOIN de tres tablas** — 10 vinetas.
+**El JOIN de tres tablas** — 10 vinetas.
 
-**[Slide 31] Lo que el DDL NO puede defender solo** — 10 vinetas.
+**Lo que el DDL NO puede defender solo** — 10 vinetas.
 
 
 **Demo que usted debe poder repetir:** Boceto ER en draw.io (Dueno-Mascota-Cita) + CREATE TABLE minimo en DB Fiddle, y cierre pasando el boceto a Mermaid con IA para pegarlo renderizado en ExamLab.
@@ -138,42 +135,41 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 Numeracion real del deck `Clases/Clase 1 - Revision BD I y arranque VetCare/Presentacion.pptx`.
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
-1. Portada · Clase 1 · Revision BD I · Arranque VetCare DB
+1. Portada · Clase 1 · Revision BD I · Arranque la base de la clínica
 2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
-4. El cliente · Clínica Veterinaria «Huellitas»
-5. El cliente: la clinica Huellitas (1/2)
-6. El cliente: la clinica Huellitas (2/2)
-7. Por que esto no es Bases de Datos I, y el vocabulario minimo (1/2)
-8. Por que esto no es Bases de Datos I, y el vocabulario minimo (2/2)
-9. Nivel conceptual y nivel fisico: dos vistas del mismo modelo
-10. Clave primaria: natural o sustituta
-11. Clave primaria: natural o sustituta — sintaxis
-12. Normalizacion 1FN-3FN: primero la enfermedad (1/2)
-13. Normalizacion 1FN-3FN: primero la enfermedad (2/2)
-14. Clave foranea, borrado y por que la FK no basta (1/2)
-15. Clave foranea, borrado y por que la FK no basta (2/2)
-16. Clave foranea, borrado y por que la FK no... — sintaxis
-17. Baja logica: activa CHAR(1) en vez de DELETE
-18. Que separa un diagrama ER de un dibujo (1/2)
-19. Que separa un diagrama ER de un dibujo (2/2)
-20. Tipos de datos: donde se pagan las facturas mas caras (1/2)
-21. Tipos de datos: donde se pagan las facturas mas caras (2/2)
-22. Convenciones de nombres para que el DDL corra a la primera (1/2)
-23. Convenciones de nombres para que el DDL corra a la primera (2/2)
-24. Herramientas del dia y que se puede demostrar con cada una
-25. Del ER dibujado al codigo Mermaid
-26. Preguntas frecuentes del grupo
-27. El patron de tabla: PK, obligatorios y dominio cerrado
-28. La clave foranea y que pasa al borrar el padre
-29. Integridad referencial: el error que devuelve el motor
-30. El JOIN de tres tablas
-31. Lo que el DDL NO puede defender solo
-32. ER minimo VetCare (con cardinalidad)
-33. El DDL minimo que sostiene el ER
-34. Demo del dia
-35. Del boceto al código Mermaid
-36. Cierre · Clase 1
+4. El cliente · la clínica Veterinaria
+5. El cliente: la clínica
+6. Por que esto no es Bases de Datos I, y el vocabulario minimo (1/2)
+7. Por que esto no es Bases de Datos I, y el vocabulario minimo (2/2)
+8. Nivel conceptual y nivel fisico: dos vistas del mismo modelo
+9. Clave primaria: natural o sustituta
+10. Clave primaria: natural o sustituta — sintaxis
+11. Normalizacion 1FN-3FN: primero la enfermedad (1/2)
+12. Normalizacion 1FN-3FN: primero la enfermedad (2/2)
+13. Clave foranea, borrado y por que la FK no basta (1/2)
+14. Clave foranea, borrado y por que la FK no basta (2/2)
+15. Clave foranea, borrado y por que la FK no... — sintaxis
+16. Baja logica: activa CHAR(1) en vez de DELETE
+17. Que separa un diagrama ER de un dibujo (1/2)
+18. Que separa un diagrama ER de un dibujo (2/2)
+19. Tipos de datos: donde se pagan las facturas mas caras (1/2)
+20. Tipos de datos: donde se pagan las facturas mas caras (2/2)
+21. Convenciones de nombres para que el DDL corra a la primera (1/2)
+22. Convenciones de nombres para que el DDL corra a la primera (2/2)
+23. Herramientas del dia y que se puede demostrar con cada una
+24. Del ER dibujado al codigo Mermaid
+25. Preguntas frecuentes del grupo
+26. El patron de tabla: PK, obligatorios y dominio cerrado
+27. La clave foranea y que pasa al borrar el padre
+28. Integridad referencial: el error que devuelve el motor
+29. El JOIN de tres tablas
+30. Lo que el DDL NO puede defender solo
+31. ER minimo la clínica (con cardinalidad)
+32. El DDL minimo que sostiene el ER
+33. Demo del dia
+34. Del boceto al código Mermaid
+35. Cierre · Clase 1
 
 > Privado, no se proyecta: `Kit docente/Clase 1/Solucion Taller Clase 1 - VetCare.docx`
 
@@ -202,12 +198,12 @@ Ideas que tienen que quedar dichas:
 - Reglas de negocio del PI que ya anticipan clases futuras: mascota inactiva no puede tener cita nueva (se validara con un procedimiento en Clase 3), stock de insumo nunca queda negativo (transacciones, Clase 8), cambios sensibles quedan auditados (triggers, Clase 4).
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 34][Slide 35]
+### 35-55 · Demo paso a paso · [Slide 33][Slide 34]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: Boceto ER en draw.io (Dueno-Mascota-Cita) + CREATE TABLE minimo en DB Fiddle, y cierre pasando el boceto a Mermaid con IA para pegarlo renderizado en ExamLab.
 Herramienta: draw.io + DB Fiddle
 
-**Cierre la demo dentro de ExamLab** [Slide 35] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
+**Cierre la demo dentro de ExamLab** [Slide 34] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
 
 **Del boceto al codigo Mermaid.** No subas una imagen: la respuesta de esta pregunta es texto Mermaid.
 
@@ -236,9 +232,9 @@ Entregable: Ficha del PI (plantilla) + ER en Mermaid renderizado en ExamLab (PNG
 Repasar los conceptos del dia volviendo a las laminas de teoria que mas costaron.
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 1 - VetCare.docx`. Clave para usted: `Quiz Clase 1 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 36]
+### 115-120 · Cierre · [Slide 35]
 **Decir:** «Queda visto: Revision BD I · Arranque VetCare DB. Si hicimos la practica, la guia y la entrega estan en la carpeta de la clase.»
-Proyectar [Slide 36] slide de cierre. Dudas finales.
+Proyectar [Slide 35] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

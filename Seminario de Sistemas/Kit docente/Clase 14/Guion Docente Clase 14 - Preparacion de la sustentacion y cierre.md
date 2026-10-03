@@ -21,7 +21,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **Sustentar un paquete de diseño no es leer diapositivas ni narrar lo que... (2/2)** — 3 vinetas.
 
 **El orden de la sustentacion no es libre, es un embudo y tiene una razon...** — 6 vinetas.
-  - Primero el problema, porque nada de lo que sigue tiene sentido si el jurado no sabe que duele en Huellitas.
+  - Primero el problema, porque nada de lo que sigue tiene sentido si el jurado no sabe que duele en la clinica.
   - Tercero el modelo, casos de uso y clases, porque muestra como se organiza la solucion.
 
 **Defender una decision de diseño tiene una estructura fija que conviene... (1/2)** — 4 vinetas.

@@ -157,7 +157,10 @@ llenar** — en lo que se pueda dejar listo.
 - **La herramienta anunciada es la que se usa y donde se califica.** ExamLab corre PostgreSQL
   (PGlite en el navegador) y no puede correr Oracle. Las menciones a Oracle que enseñan algo
   (niveles de aislamiento, portabilidad) se quedan como contraste explícito.
-- Nomenclatura estable: **Huellitas** es el cliente, **VetCare DB** la base de datos.
+- Nomenclatura estable: **Huellitas** es el cliente, **VetCare DB** la base de datos — en
+  taller, solución, guion, Kit docente y enunciado del PI. **Los decks de clase no nombran el
+  proyecto** (VetCare, Huellitas, CloudLite, «el PI»): el ejemplo se queda, con una descripción
+  genérica («una clínica veterinaria», «una app de turnos»), también en el código proyectado.
 - Modalidad correcta: **virtual síncrona (Meet)**, incluidos los parciales. Nunca «presencial».
 - El amarre con el Proyecto Integrador y con las clases vecinas, dicho explícitamente.
 - El build pasa: `_verificar_mapa()`, el resolutor de `{{slide:…}}` y

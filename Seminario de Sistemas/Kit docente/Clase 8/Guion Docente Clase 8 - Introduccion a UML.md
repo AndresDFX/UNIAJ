@@ -22,11 +22,11 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **Los diagramas se agrupan en dos grandes vistas** — 5 vinetas.
   - Los diagramas se agrupan en dos grandes vistas.
   - Un mismo sistema necesita las dos, igual que una casa necesita el plano de plantas y tambien el plano de instalaciones.
-  - En VetCare vamos a usar clases hoy, casos de uso y secuencia mas adelante, y el resto se menciona para que sepan que existen.
+  - En el sistema de la clinica vamos a usar clases hoy, casos de uso y secuencia mas adelante, y el resto se menciona para que sepan que existen.
 
 **El diagrama de clases se dibuja con una caja de tres compartimentos:... (1/2)** — 4 vinetas.
 
-**El diagrama de clases se dibuja con una caja de tres compartimentos:... (2/2)** — 2 vinetas.
+**El diagrama de clases se dibuja con una caja de tres compartimentos:... (2/2)** — 3 vinetas.
 
 **Las lineas entre clases son la mitad del valor del diagrama (1/2)** — 4 vinetas.
   - Cita relaciona a Mascota y a Veterinario, cada cita con exactamente una mascota y un veterinario, y cada veterinario con muchas citas.

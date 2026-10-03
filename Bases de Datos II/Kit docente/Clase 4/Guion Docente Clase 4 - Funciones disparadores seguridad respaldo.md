@@ -35,7 +35,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 7] Funcion y procedimiento: se distinguen por su... — sintaxis** — 6 vinetas.
 
 **[Slide 8] Los tres detalles de fn_precio_consulta que valen puntos (1/2)** — 6 vinetas.
-  - La aplicacion de Huellitas puede mandar 'Canino', 'canino' o 'CANINO', y comparar el texto tal como llega significa que dos de las tres formas caen al precio de otra especie.
+  - La aplicacion de la clínica puede mandar 'Canino', 'canino' o 'CANINO', y comparar el texto tal como llega significa que dos de las tres formas caen al precio de otra especie.
   - Si la casilla de urgencia llega en nulo, que es lo que hace una interfaz donde el usuario no marco nada, entonces IF p_urgencia THEN no entra —nulo no es verdadero— pero cualquier aritmetica con nulo si contamina: v_base * p_urgencia daria nulo y la factura saldria vacia.
 
 **[Slide 9] Los tres detalles de fn_precio_consulta que valen puntos (2/2)** — 4 vinetas.
@@ -128,7 +128,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Fuera de la lamina (habla de la practica): Por eso la pregunta 5 es un documento y no una ejecucion: se califica que el plan nombre la herramienta correcta para cada cosa, no que el estudiante la haya corrido.
 
 **[Slide 34] Como amarra con las clases vecinas y con la rubrica del PI (1/2)** — 5 vinetas.
-  - Fuera de la lamina (habla de la practica): En la rubrica del PI, seguridad y respaldo valen 15 de los 100 puntos del proyecto.
+  - Fuera de la lamina (habla de la practica): En la rubrica del proyecto, seguridad y respaldo valen 15 de los 100 puntos del proyecto.
 
 **[Slide 35] Como amarra con las clases vecinas y con la rubrica del PI (2/2)** — 3 vinetas.
 
@@ -186,8 +186,8 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 31. RPO y RTO: dos siglas que solo sirven con un numero acordado (2/3)
 32. RPO y RTO: dos siglas que solo sirven con un numero acordado (3/3)
 33. Lo que PostgreSQL en el navegador si puede demostrar, y lo que se documenta en papel
-34. Como amarra con las clases vecinas y con el PI (1/2)
-35. Como amarra con las clases vecinas y con el PI (2/2)
+34. Como amarra con las clases vecinas (1/2)
+35. Como amarra con las clases vecinas (2/2)
 36. Preguntas frecuentes del grupo (1/3)
 37. Preguntas frecuentes del grupo (2/3)
 38. Preguntas frecuentes del grupo (3/3)

@@ -41,7 +41,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 7] Privilegio: la unidad atomica, y la frontera DDL/DML (2/2)** — 4 vinetas.
 
 **[Slide 8] Rol: por que existe, con la aritmetica en el tablero (1/2)** — 4 vinetas.
-  - Existe por una razon aritmetica que conviene poner en el tablero con los numeros de VetCare.
+  - Existe por una razon aritmetica que conviene poner en el tablero con los numeros de la clínica.
   - Sobre cada uno hay hasta cinco acciones posibles, asi que la matriz completa tiene cincuenta celdas.
   - Ese es el argumento real que el docente debe transmitir: el rol no ahorra tipeo, ahorra olvidos, y los olvidos en materia de permisos son precisamente los que producen incidentes de seguridad.
 
@@ -57,7 +57,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 12] Minimo privilegio aplicado a VetCare: la matriz defendible** — 5 vinetas.
   - El principio de minimo privilegio dice que cada rol recibe exactamente lo que necesita para cumplir su funcion y ni un privilegio mas.
-  - Aplicado a VetCare deja una matriz muy concreta y defendible.
+  - Aplicado a la clínica deja una matriz muy concreta y defendible.
   - El rol recepcion necesita SELECT sobre mascota, dueno y veterinario para poder buscar y agendar, y SELECT, INSERT y UPDATE sobre cita para agendar y reprogramar; nada mas.
   - El rol auditor recibe unicamente SELECT, y jamas una escritura.
   - Eso se llama borrado logico, y hace que el privilegio DELETE sea innecesario para casi todos los usuarios, lo que a su vez elimina de raiz la posibilidad de una perdida accidental de informacion.
@@ -133,7 +133,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 32] Como amarra con las clases vecinas y con la rubrica del PI** — 5 vinetas.
   - Fuera de la lamina (habla de la practica): Lo de hoy no es una isla, y decirlo en voz alta le da sentido al entregable.
   - Fuera de la lamina (habla de la practica): La Clase 4 agrega disparadores de auditoria y el plan de respaldo, que son el otro componente de este mismo criterio de rubrica.
-  - Fuera de la lamina (habla de la practica): En la rubrica del PI, seguridad y respaldo valen 15 de los 100 puntos.
+  - Fuera de la lamina (habla de la practica): En la rubrica del proyecto, seguridad y respaldo valen 15 de los 100 puntos.
 
 **[Slide 33] Preguntas frecuentes del grupo (1/2)** — 5 vinetas.
   - O el rol no tiene USAGE sobre el esquema.
@@ -158,7 +158,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 Numeracion real del deck `Clases/Clase 2 - Administracion de bases de datos/Presentacion.pptx`.
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
-1. Portada · Clase 2 · Administracion de BD · Roles VetCare
+1. Portada · Clase 2 · Administracion de BD · Roles la clínica
 2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. Los cuatro terminos que se confunden todo el tiempo (1/2)
@@ -169,7 +169,7 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 9. Rol: por que existe, con la aritmetica en el tablero (2/2)
 10. En PostgreSQL usuario y rol son lo mismo, y por eso hoy se escribe NOLOGIN (1/2)
 11. En PostgreSQL usuario y rol son lo mismo, y por eso hoy se escribe NOLOGIN (2/2)
-12. Minimo privilegio aplicado a VetCare: la matriz defendible
+12. Minimo privilegio aplicado a la clínica: la matriz defendible
 13. Separacion de funciones: el ejemplo de la factura (1/2)
 14. Separacion de funciones: el ejemplo de la factura (2/2)
 15. GRANT y REVOKE: la sintaxis exacta que se va a escribir hoy (1/2)
@@ -189,7 +189,7 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 29. El motor de hoy es PostgreSQL, y eso decide... — sintaxis
 30. La matriz es la decision, no el script (1/2)
 31. La matriz es la decision, no el script (2/2)
-32. Como amarra con las clases vecinas y con el PI
+32. Como amarra con las clases vecinas
 33. Preguntas frecuentes del grupo (1/2)
 34. Preguntas frecuentes del grupo (2/2)
 35. Preguntas frecuentes del grupo — sintaxis

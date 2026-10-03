@@ -17,7 +17,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **Un requerimiento no es lo que el cliente dijo, es lo que el sistema... (1/2)** — 4 vinetas.
 
-**Un requerimiento no es lo que el cliente dijo, es lo que el sistema... (2/2)** — 3 vinetas.
+**Un requerimiento no es lo que el cliente dijo, es lo que el sistema... (2/2)** — 4 vinetas.
 
 **Con las necesidades en la mano se separan dos familias (1/2)** — 3 vinetas.
   - Con las necesidades en la mano se separan dos familias.
@@ -35,7 +35,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **El ultimo pedazo es la trazabilidad, que es poder seguir cada requisito...** — 4 vinetas.
   - Se lleva en una matriz simple de cuatro columnas y se actualiza cada clase.
-  - Esto no es burocracia: es lo que permite que cuando el cliente cambie de opinion, usted sepa en dos minutos que se rompe y cuanto cuesta; y en el Proyecto Integrador es lo que hace posible que el companero que solo cursa Programacion II reciba estos planos y sepa exactamente que implementar y por que, sin tener que volver a entrevistar al veterinario.
+  - Esto no es burocracia: es lo que permite que cuando el cliente cambie de opinion, usted sepa en dos minutos que se rompe y cuanto cuesta; y en el proyecto de diseño es lo que hace posible que el companero que solo cursa Programacion II reciba estos planos y sepa exactamente que implementar y por que, sin tener que volver a entrevistar al veterinario.
 
 **La priorizacion MoSCoW en Mermaid** — 17 vinetas.
 

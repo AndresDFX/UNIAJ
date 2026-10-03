@@ -15,8 +15,7 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Antes de entrar en materia, el reparto del tiempo, porque hoy son dos...** — 4 vinetas.
-  - Si el primer bloque se alarga, la ventana queda sin terminar y la clase se pierde, asi que ponga un cronometro visible.
+**Hoy son dos temas en un solo bloque: primero mapas y conjuntos con demo...** — 3 vinetas.
 
 **El problema tecnico es este: con un ArrayList, buscar por ID obliga a... (1/2)** — 3 vinetas.
   - Cuando dos claves distintas caen en la misma casilla (una colision), el mapa guarda ambas en esa casilla y usa equals() para distinguirlas al leer.

@@ -136,10 +136,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Fuera de la lamina (habla de la practica): Esa lista de limites es la seccion 5 de la pregunta 5 y vale puntos: se pierde por omitirla, no por tenerla.
 
 **[Slide 38] Preguntas frecuentes del grupo (1/2)** — 4 vinetas.
-  - Si todas las consultas del PI filtran por PROGRAMADA, entonces si sobra el completo.
+  - Si todas las consultas del proyecto filtran por PROGRAMADA, entonces si sobra el completo.
   - No, porque hace falta la linea base con Seq Scan; sin el antes, el despues no demuestra nada.
   - Fuera de la lamina (habla de la practica): Porque el archivado no tiene alternativa —DROP TABLE de una particion contra un DELETE de millones de filas— y porque son 20 puntos de la actividad, que se califican sobre SQL ejecutado y no sobre una explicacion.
-  - Fuera de la lamina (habla de la practica): Si todas las consultas del PI filtran por PROGRAMADA, entonces si sobra el completo, y decirlo asi en la columna de veredicto es la respuesta que la rubrica busca.
+  - Fuera de la lamina (habla de la practica): Si todas las consultas del proyecto filtran por PROGRAMADA, entonces si sobra el completo, y decirlo asi en la columna de veredicto es la respuesta que la rubrica busca.
   - Fuera de la lamina (habla de la practica): No, porque hace falta la linea base con Seq Scan; sin el antes, el despues no demuestra nada, y es la primera cosa que la rubrica revisa.
 
 **[Slide 39] Preguntas frecuentes del grupo (2/2)** — 5 vinetas.
@@ -159,7 +159,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 Numeracion real del deck `Clases/Clase 7 - Indices y particionamiento/Presentacion.pptx`.
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
-1. Portada · Clase 7 · Indices y particionamiento · VetCare
+1. Portada · Clase 7 · Indices y particionamiento · la clínica
 2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. De donde viene la clase: los Seq Scan de la Clase 6 (1/2)

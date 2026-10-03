@@ -403,6 +403,21 @@ evaluativo va **aparte, solo en la carpeta**. Por eso el `Presentacion.pptx` de 
 - Criterio rector intacto: lo que la actividad evalúa tiene su **lámina de concepto**. Si un
   mecanismo evaluado solo se explicaba en una lámina del taller, se vuelve lámina de concepto.
 
+### Láminas de concepto genéricas (regla 2026-10)
+
+- **Sin actividad:** ninguna lámina dice «entregable», «la pregunta N», «vale X puntos»,
+  «la rúbrica», «se califica» ni «taller». Si una frase mezcla concepto y actividad, se deja el
+  concepto; lo que solo habla de la actividad va a las notas del presentador.
+- **Sin plataforma:** ni «ExamLab» ni «la plataforma del curso» en decks de clase; solo la
+  Presentación del curso la nombra. Las demos nombran la herramienta técnica.
+- **Sin proyecto:** ni VetCare, Huellitas, CloudLite ni «el PI» en decks de clase, tampoco en
+  el código proyectado. El ejemplo se queda con descripción genérica («una clínica
+  veterinaria», «una app de turnos»). El proyecto sí se nombra en taller, guion y Kit.
+- **Parciales:** deck genérico — «Parcial N», indicaciones (entra lo visto en el corte hasta
+  hoy; enunciado y canal se comparten al empezar) y cierre. Sin temas, puntajes ni PI.
+- **Mínimo ~400 caracteres** por lámina de concepto: si queda corta, se completa con
+  contenido del tema (definición, ejemplo, error común, salida esperada), no se fusiona.
+
 ### Notas del presentador y guion de tiempos (regla 2026-10)
 
 - **Conceptos y respuestas van en las NOTAS DEL PRESENTADOR** de la lámina a la que

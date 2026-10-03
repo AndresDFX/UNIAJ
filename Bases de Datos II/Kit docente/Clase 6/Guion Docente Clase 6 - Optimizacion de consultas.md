@@ -134,7 +134,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 Numeracion real del deck `Clases/Clase 6 - Optimizacion de consultas/Presentacion.pptx`.
 Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 
-1. Portada · Clase 6 · Optimizacion de consultas · VetCare
+1. Portada · Clase 6 · Optimizacion de consultas · la clínica
 2. Encuadre de hoy · Tema y objetivo
 3. Mapa del bloque de hoy (120 min)
 4. SQL es declarativo: quien decide el como es el optimizador (1/2)
