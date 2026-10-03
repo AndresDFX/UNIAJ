@@ -35,6 +35,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Coherencia significa que todas esas piezas describen el mismo sistema.
   - Esa divergencia es el hallazgo mas comun del checkpoint y tambien el mas facil de detectar si se sabe donde mirar.
   - Las cuatro verificaciones cruzadas que el docente debe correr son: que el DDL corresponda al ER, que los GRANT correspondan a los roles declarados, que los procedimientos listados existan y sean invocables, y que la optimizacion tenga medicion antes y despues.
+  - Fuera de la lamina (habla de la practica): Cada una toma dos o tres minutos si se ejecuta con criterio, y juntas cubren los cuatro criterios de rubrica que mas peso tienen.
 
 **[Slide 7] Verificaciones uno y dos: el ER contra el DDL (1/2)** — 4 vinetas.
   - Verificacion uno, ER contra DDL.
@@ -43,29 +44,35 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 8] Verificaciones uno y dos: el ER contra el DDL (2/2)** — 3 vinetas.
 
-**[Slide 9] Verificacion tres: que compile no es que sirva (1/2)** — 3 vinetas.
+**[Slide 9] Verificacion tres: que compile no es que sirva (1/2)** — 4 vinetas.
   - Verificacion tres, procedimientos invocables.
   - La prueba de humo dura un minuto y consiste en pedir dos ejecuciones y no una.
   - Verificacion cuatro, optimizacion.
   - Se exige la consulta original, el plan de ejecucion que la acompanaba, el cambio aplicado (indice creado o consulta reescrita) y el plan despues, mostrando que el motor paso de recorrido completo de tabla a acceso por indice.
+  - Fuera de la lamina (habla de la practica): Si el estudiante no puede mostrar la segunda ejecucion, el procedimiento no tiene manejo de errores y eso resta puntos en los 25 de objetos programables.
 
 **[Slide 10] Verificacion tres: que compile no es que sirva (2/2)** — 3 vinetas.
 
-**[Slide 11] Scope creep: el crecimiento no controlado del alcance (1/2)** — 4 vinetas.
-  - Eso no resta puntos, al contrario, declarar el limite es una senal de madurez que se valora en la sustentacion.
+**[Slide 11] Scope creep: el crecimiento no controlado del alcance (1/2)** — 3 vinetas.
+  - Existe tambien el problema inverso y menos visible.
+  - Fuera de la lamina (habla de la practica): La rubrica no da puntos por cantidad de tablas: da 20 por modelo coherente y 25 por objetos programables con casos de prueba.
+  - Fuera de la lamina (habla de la practica): Eso no resta puntos, al contrario, declarar el limite es una senal de madurez que se valora en la sustentacion.
+  - Fuera de la lamina (habla de la practica): Existe tambien el problema inverso y menos visible: el estudiante que recorto tanto que ya no tiene material para los 25 puntos de procedimientos, funciones y disparadores, y ese caso tambien es un hallazgo que hay que escribir.
 
-**[Slide 12] Scope creep: el crecimiento no controlado del alcance (2/2)** — 4 vinetas.
+**[Slide 12] Scope creep: el crecimiento no controlado del alcance (2/2)** — 3 vinetas.
 
-**[Slide 13] La anatomia fija de la retroalimentacion util (1/2)** — 6 vinetas.
+**[Slide 13] La anatomia fija de la retroalimentacion util (1/2)** — 5 vinetas.
   - Comparense los dos extremos.
   - Responsable: Carlos.
+  - Fuera de la lamina (habla de la practica): Impacto: se pueden insertar detalles con insumos que no existen; afecta los 20 puntos de modelo coherente.
+  - Fuera de la lamina (habla de la practica): La regla de dosificacion es de tres a cinco hallazgos por estudiante, priorizados por puntos de rubrica en riesgo; mas de cinco desmoraliza y nadie los cierra, y menos de tres casi siempre significa que la revision fue superficial.
 
-**[Slide 14] La anatomia fija de la retroalimentacion util (2/2)** — 3 vinetas.
+**[Slide 14] La anatomia fija de la retroalimentacion util (2/2)** — 4 vinetas.
 
 **[Slide 15] Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado (1/2)** — 5 vinetas.
   - Aqui aparecen las dos preguntas previsibles del estudiante.
-  - La respuesta es que el checkpoint en si no califica el producto, pero es la ultima oportunidad de mover puntos de la rubrica antes de la entrega, y por eso conviene llegar con lo peor y no con lo mejor: un estudiante que esconde su parte floja para no verse mal pierde justamente la revision que la habria arreglado.
-  - No, porque el auditor par no califica.
+  - Fuera de la lamina (habla de la practica): La respuesta es que el checkpoint en si no califica el producto, pero es la ultima oportunidad de mover puntos de la rubrica antes de la entrega, y por eso conviene llegar con lo peor y no con lo mejor: un estudiante que esconde su parte floja para no verse mal pierde justamente la revision que la habria arreglado.
+  - Fuera de la lamina (habla de la practica): No, porque el auditor par no califica.
 
 **[Slide 16] Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado (2/2)** — 3 vinetas.
 

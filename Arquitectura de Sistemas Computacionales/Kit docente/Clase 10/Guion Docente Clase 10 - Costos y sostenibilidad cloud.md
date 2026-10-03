@@ -39,10 +39,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Una base de datos gestionada cuesta entre dos y tres veces la maquina desnuda equivalente, porque incluye respaldos, parches y conmutacion por falla.
   - Una funcion serverless suele traer free tier de alrededor de un millon de invocaciones mensuales, asi que un componente poco usado cuesta cero de verdad.
 
-**[Slide 10] Primer ejemplo: la tabla de costos, componente por componente (1/2)** — 5 vinetas.
+**[Slide 10] Primer ejemplo: la tabla de costos, componente por componente (1/2)** — 6 vinetas.
   - El contenedor de la API queda en Medio, con driver instancias por horas encendidas.
 
-**[Slide 11] Primer ejemplo: la tabla de costos, componente por componente (2/2)** — 2 vinetas.
+**[Slide 11] Primer ejemplo: la tabla de costos, componente por componente (2/2)** — 3 vinetas.
 
 **[Slide 12] Segundo ejemplo: por que el driver importa mas que el nivel (1/2)** — 4 vinetas.
   - El segundo ejemplo muestra por que el driver importa mas que el nivel.
@@ -55,10 +55,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 15] Right-sizing: tres acciones ancladas en observacion (2/2)** — 4 vinetas.
 
-**[Slide 16] Sostenibilidad tecnica antes que ambiental (1/2)** — 4 vinetas.
+**[Slide 16] Sostenibilidad tecnica antes que ambiental (1/2)** — 5 vinetas.
   - Por eso las mismas tres acciones sirven a la vez para la factura y para la huella.
 
-**[Slide 17] Sostenibilidad tecnica antes que ambiental (2/2)** — 2 vinetas.
+**[Slide 17] Sostenibilidad tecnica antes que ambiental (2/2)** — 3 vinetas.
 
 **[Slide 18] Preguntas frecuentes y cierre conceptual () (1/3)** — 5 vinetas.
   - Tres preguntas aparecen siempre.

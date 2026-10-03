@@ -26,6 +26,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 4] Los cuatro terminos que se confunden todo el tiempo (1/2)** — 5 vinetas.
   - Conviene aprovechar precisamente eso, porque los permisos son el tema del curso donde el estudiante mas necesita que alguien le diga en el momento por que su GRANT no surtio efecto.
+  - Fuera de la lamina (habla de la practica): Esta clase se dicta en sesion virtual sincrona, en el bloque normal de 120 minutos: hay explicacion en vivo, taller acompanado y espacio para preguntar, asi que este texto es el material con el que el docente dicta y no una lectura que sustituya la clase.
 
 **[Slide 5] Los cuatro terminos que se confunden todo el tiempo (2/2)** — 5 vinetas.
 
@@ -37,17 +38,17 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - La distincion practica que hay que dejar clara es la que separa DDL de DML.
   - Si su cuenta puede ejecutar DROP TABLE cita, un error de copiar y pegar borra la agenda completa, y ningun respaldo de la noche anterior devuelve las citas que se agendaron hoy.
 
-**[Slide 7] Privilegio: la unidad atomica, y la frontera DDL/DML (2/2)** — 3 vinetas.
+**[Slide 7] Privilegio: la unidad atomica, y la frontera DDL/DML (2/2)** — 4 vinetas.
 
 **[Slide 8] Rol: por que existe, con la aritmetica en el tablero (1/2)** — 4 vinetas.
   - Existe por una razon aritmetica que conviene poner en el tablero con los numeros de VetCare.
   - Sobre cada uno hay hasta cinco acciones posibles, asi que la matriz completa tiene cincuenta celdas.
   - Ese es el argumento real que el docente debe transmitir: el rol no ahorra tipeo, ahorra olvidos, y los olvidos en materia de permisos son precisamente los que producen incidentes de seguridad.
 
-**[Slide 9] Rol: por que existe, con la aritmetica en el tablero (2/2)** — 2 vinetas.
+**[Slide 9] Rol: por que existe, con la aritmetica en el tablero (2/2)** — 4 vinetas.
 
 **[Slide 10] En PostgreSQL usuario y rol son lo mismo, y por eso hoy se escribe NOLOGIN (1/2)** — 4 vinetas.
-  - Por eso los cuatro roles del taller se crean con CREATE ROLE recepcion NOLOGIN: son bolsas de privilegios, no identidades.
+  - Por eso los cuatro roles de la clase se crean con CREATE ROLE recepcion NOLOGIN: son bolsas de privilegios, no identidades.
   - La persona viene despues, como CREATE ROLE ana_gomez LOGIN PASSWORD '...', y recibe la bolsa con GRANT recepcion TO ana_gomez.
   - Esa herencia es la que hace que al modificar el rol se corrijan todas las personas a la vez.
   - Conviene decir esto tal cual, porque un estudiante despierto va a preguntar por que el sufijo y merece la respuesta correcta y no una inventada.
@@ -66,16 +67,17 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - La respuesta que el docente debe dar es que el problema no es la confianza en la persona sino el dano posible por un error o por una sesion robada.
   - Si alguien roba la sesion del recepcionista, con minimo privilegio el atacante ve agendas y datos de contacto; con privilegios de administrador, borra la base completa.
   - El permiso no mide cuanto se quiere a un empleado, mide cuanto se puede perder.
+  - Ningun rol puede a la vez crear, modificar y aprobar el mismo registro.
 
-**[Slide 14] Separacion de funciones: el ejemplo de la factura (2/2)** — 2 vinetas.
+**[Slide 14] Separacion de funciones: el ejemplo de la factura (2/2)** — 3 vinetas.
 
 **[Slide 15] GRANT y REVOKE: la sintaxis exacta que se va a escribir hoy (1/2)** — 4 vinetas.
   - GRANT otorga y REVOKE retira, y ambos operan igual sobre usuarios y sobre roles.
   - Para retirar un permiso
-  - Hay tres detalles operativos que evitan la mitad de los tropiezos del taller.
-  - Eso explica por que el REVOKE de DELETE que pide el taller es, tecnicamente, redundante; se escribe de todos modos porque es la evidencia documental de una decision de diseno, y quien revise el script tiene que poder ver que la ausencia de DELETE fue deliberada y no un olvido.
+  - Hay tres detalles operativos que evitan la mitad de los tropiezos de la clase.
+  - Fuera de la lamina (habla de la practica): Eso explica por que el REVOKE de DELETE que pide el taller es, tecnicamente, redundante; se escribe de todos modos porque es la evidencia documental de una decision de diseno, y quien revise el script tiene que poder ver que la ausencia de DELETE fue deliberada y no un olvido.
 
-**[Slide 16] GRANT y REVOKE: la sintaxis exacta que se va a escribir hoy (2/2)** — 2 vinetas.
+**[Slide 16] GRANT y REVOKE: la sintaxis exacta que se va a escribir hoy (2/2)** — 4 vinetas.
 
 **[Slide 17] GRANT y REVOKE: la sintaxis exacta que se va... — sintaxis** — 2 vinetas.
 
@@ -83,38 +85,44 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Hay dos mecanismos que conviene conocer porque hacen dano en silencio.
 
 **[Slide 19] Cuando el GRANT es demasiado: vista y privilegio por columna (1/2)** — 5 vinetas.
+  - Aqui esta el concepto que hace la diferencia entre una matriz de aficionado y una defendible.
   - Pero la recepcionista solo necesita el nombre y el telefono para identificar a quien llama, y no tiene por que ver el correo electronico de los clientes.
   - El primero es la vista.
   - Lo que hace que funcione, y es el punto que el estudiante no cree hasta que lo ve, es que la consulta de la vista se ejecuta con los privilegios de su PROPIETARIO y no con los de quien la consulta: por eso se puede dar SELECT sobre la vista a recepcion y al mismo tiempo hacer REVOKE SELECT ON dueno FROM recepcion, y el rol sigue viendo el telefono del dueno a traves de la vista pero no puede consultar la tabla directamente.
+  - Fuera de la lamina (habla de la practica): Aqui esta el concepto que hace la diferencia entre una matriz de aficionado y una defendible, y es la parte que el taller evalua con veinte puntos.
 
-**[Slide 20] Cuando el GRANT es demasiado: vista y privilegio por columna (2/2)** — 3 vinetas.
+**[Slide 20] Cuando el GRANT es demasiado: vista y privilegio por columna (2/2)** — 2 vinetas.
 
 **[Slide 21] Cuando el GRANT es demasiado: vista y... — sintaxis** — 1 vinetas.
 
 **[Slide 22] La matriz como hecho verificable: information_schema** — 4 vinetas.
   - Vale explicar por que se usa role_table_grants y no table_privileges, que es la que aparece primero al buscar: table_privileges solo muestra los privilegios en los que el usuario actual es quien otorga o quien recibe, mientras que role_table_grants incluye los de cualquier rol que este habilitado en la sesion, que es justamente lo que necesita el propietario para auditar lo que reparti.
-  - Estas dos consultas son la evidencia que la rubrica exige tres veces, y el docente deberia proyectar su salida en la demo: ver la matriz salir del motor, y no de un documento, es lo que convence al grupo de que los permisos son verificables.
+  - Fuera de la lamina (habla de la practica): Estas dos consultas son la evidencia que la rubrica exige tres veces, y el docente deberia proyectar su salida en la demo: ver la matriz salir del motor, y no de un documento, es lo que convence al grupo de que los permisos son verificables.
 
 **[Slide 23] La matriz como hecho verificable:... — sintaxis** — 3 vinetas.
 
-**[Slide 24] La politica de altas y bajas: el ciclo de vida de una cuenta (1/3)** — 5 vinetas.
-  - La diapositiva trae las cinco secciones en el mismo orden en que el taller las va a pedir, asi que se dicta recorriendola de arriba abajo.
+**[Slide 24] La politica de altas y bajas: el ciclo de vida de una cuenta (1/3)** — 4 vinetas.
   - Dos reglas la cierran.
   - Vale la pena senalar el detalle tecnico de la baja: en PostgreSQL no se puede hacer DROP ROLE de un rol que todavia posee objetos, hay que reasignarlos primero con REASSIGN OWNED BY ana_gomez TO admin_bd, y por eso la politica tiene que decir que pasa con lo que la persona era dueno.
+  - Fuera de la lamina (habla de la practica): La diapositiva trae las cinco secciones en el mismo orden en que el taller las va a pedir, asi que se dicta recorriendola de arriba abajo.
+  - Fuera de la lamina (habla de la practica): La quinta seccion es el limite de este entorno, y se desarrolla completa en «El motor de hoy es PostgreSQL» un poco mas abajo; lo que se califica ahi no es que la prueba negativa exista, sino que el estudiante sepa nombrarla como brecha de verificacion de su propia entrega.
+  - Fuera de la lamina (habla de la practica): Una politica que no dice quien firma ni en cuanto tiempo no es una politica, es una intencion, y asi esta escrita la rubrica.
 
-**[Slide 25] La politica de altas y bajas: el ciclo de vida de una cuenta (2/3)** — 5 vinetas.
+**[Slide 25] La politica de altas y bajas: el ciclo de vida de una cuenta (2/3)** — 4 vinetas.
 
-**[Slide 26] La politica de altas y bajas: el ciclo de vida de una cuenta (3/3)** — 3 vinetas.
+**[Slide 26] La politica de altas y bajas: el ciclo de vida de una cuenta (3/3)** — 4 vinetas.
 
 **[Slide 27] El motor de hoy es PostgreSQL, y eso decide que se puede demostrar (1/2)** — 5 vinetas.
-  - Ahi CREATE ROLE, GRANT, REVOKE, CREATE VIEW, los privilegios por columna y las consultas a information_schema funcionan todos: son DDL real y son verificables, asi que la evidencia del taller es la salida del motor y no una promesa.
+  - Ahi CREATE ROLE, GRANT, REVOKE, CREATE VIEW, los privilegios por columna y las consultas a information_schema funcionan todos: son DDL real y son verificables, asi que la evidencia de la clase es la salida del motor y no una promesa.
   - Lo que NO se puede hacer es abrir una segunda conexion: el entorno tiene un solo usuario con login y una sola sesion, asi que nadie va a conectarse como recepcion en otra pestana mientras el docente mira desde la suya.
   - Esa es la limitacion real, y hay que nombrarla con esa precision, porque la version anterior de esta guia decia algo mas fuerte y falso: que por eso la prueba negativa era imposible.
   - Para ver el permiso negado no hace falta otra conexion, hace falta cambiar el rol EFECTIVO dentro de la misma sesion, y eso es lo que hace SET ROLE recepcion; a partir de esa linea los privilegios que el motor revisa son los del rol y no los del propietario, de modo que devuelve permission denied for table cita y tambien, si ya se revoco el SELECT de la tabla.
   - Se cierra con RESET ROLE; y conviene no olvidarlo, porque todo lo que venga despues se seguiria ejecutando con los permisos recortados.
   - Dos advertencias para la demo.
+  - Fuera de la lamina (habla de la practica): Este punto hay que decirlo con precision porque una version anterior de esta guia decia lo contrario y costaria puntos repetirla.
+  - Fuera de la lamina (habla de la practica): Dos, si el entorno del dia no permite cambiar de rol, no hay que esconderlo — se muestra el mensaje, y entonces si aparece la brecha de verificacion que la pregunta 5 pide nombrar.
 
-**[Slide 28] El motor de hoy es PostgreSQL, y eso decide que se puede demostrar (2/2)** — 4 vinetas.
+**[Slide 28] El motor de hoy es PostgreSQL, y eso decide que se puede demostrar (2/2)** — 3 vinetas.
 
 **[Slide 29] El motor de hoy es PostgreSQL, y eso decide... — sintaxis** — 6 vinetas.
 
@@ -122,7 +130,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 31] La matriz es la decision, no el script (2/2)** — 2 vinetas.
 
-**[Slide 32] Como amarra con las clases vecinas y con la rubrica del PI** — 6 vinetas.
+**[Slide 32] Como amarra con las clases vecinas y con la rubrica del PI** — 5 vinetas.
+  - Fuera de la lamina (habla de la practica): Lo de hoy no es una isla, y decirlo en voz alta le da sentido al entregable.
+  - Fuera de la lamina (habla de la practica): La Clase 4 agrega disparadores de auditoria y el plan de respaldo, que son el otro componente de este mismo criterio de rubrica.
+  - Fuera de la lamina (habla de la practica): En la rubrica del PI, seguridad y respaldo valen 15 de los 100 puntos.
 
 **[Slide 33] Preguntas frecuentes del grupo (1/2)** — 5 vinetas.
   - O el rol no tiene USAGE sobre el esquema.

@@ -31,58 +31,60 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Ambas reciben cero filas.
   - Ambas insertan una cita.
 
-**[Slide 5] La transaccion como unidad de todo o nada (2/2)** — 3 vinetas.
+**[Slide 5] La transaccion como unidad de todo o nada (2/2)** — 4 vinetas.
 
 **[Slide 6] Serializar de verdad existe, y cuesta (1/2)** — 3 vinetas.
   - Por eso el estandar SQL no impone una sola forma de trabajar: ofrece una perilla llamada nivel de aislamiento, que permite negociar cuanta anomalia se tolera a cambio de cuanto rendimiento.
 
-**[Slide 7] Serializar de verdad existe, y cuesta (2/2)** — 2 vinetas.
+**[Slide 7] Serializar de verdad existe, y cuesta (2/2)** — 3 vinetas.
 
-**[Slide 8] Los tres fenomenos indeseables, en escenas de la clinica (1/2)** — 5 vinetas.
+**[Slide 8] Serializar de verdad existe, y cuesta — sintaxis** — 1 vinetas.
+
+**[Slide 9] Los tres fenomenos indeseables, en escenas de la clinica (1/2)** — 5 vinetas.
   - El estandar define tres fenomenos indeseables, y cada uno se entiende mejor con una escena de la clinica.
   - La misma consulta, en la misma transaccion, devolvio dos valores distintos.
 
-**[Slide 9] Los tres fenomenos indeseables, en escenas de la clinica (2/2)** — 3 vinetas.
+**[Slide 10] Los tres fenomenos indeseables, en escenas de la clinica (2/2)** — 3 vinetas.
 
-**[Slide 10] Los cuatro niveles de aislamiento se definen por lo que permiten (1/2)** — 5 vinetas.
+**[Slide 11] Los cuatro niveles de aislamiento se definen por lo que permiten (1/2)** — 5 vinetas.
   - READ COMMITTED impide la lectura sucia, porque solo se ve lo que ya fue confirmado, pero permite lectura no repetible y fantasma.
   - SERIALIZABLE impide los tres y equivale logicamente a ejecutar las transacciones una tras otra.
 
-**[Slide 11] Los cuatro niveles de aislamiento se definen por lo que permiten (2/2)** — 4 vinetas.
+**[Slide 12] Los cuatro niveles de aislamiento se definen por lo que permiten (2/2)** — 4 vinetas.
 
-**[Slide 12] Control pesimista: SELECT... FOR UPDATE (1/2)** — 4 vinetas.
+**[Slide 13] Control pesimista: SELECT... FOR UPDATE (1/2)** — 4 vinetas.
   - El control pesimista asume que el conflicto va a ocurrir, asi que bloquea el recurso antes de tocarlo.
   - Por eso existen variantes que el docente debe conocer: FOR UPDATE NOWAIT falla de inmediato en vez de esperar, y FOR UPDATE WAIT 5 espera cinco segundos y luego falla, lo cual permite devolver un mensaje honesto al usuario en vez de una pantalla congelada.
 
-**[Slide 13] Control pesimista: SELECT... FOR UPDATE (2/2)** — 3 vinetas.
+**[Slide 14] Control pesimista: SELECT... FOR UPDATE (2/2)** — 3 vinetas.
 
-**[Slide 14] Control optimista: verificar unicamente al escribir (1/2)** — 5 vinetas.
+**[Slide 15] Control optimista: verificar unicamente al escribir (1/2)** — 5 vinetas.
 
-**[Slide 15] Control optimista: verificar unicamente al escribir (2/2)** — 3 vinetas.
+**[Slide 16] Control optimista: verificar unicamente al escribir (2/2)** — 3 vinetas.
 
-**[Slide 16] Control optimista: verificar unicamente al... — sintaxis** — 3 vinetas.
+**[Slide 17] Control optimista: verificar unicamente al... — sintaxis** — 3 vinetas.
 
-**[Slide 17] Deadlock: la escena de VetCare y como se evita (1/2)** — 4 vinetas.
+**[Slide 18] Deadlock: la escena de VetCare y como se evita (1/2)** — 4 vinetas.
   - Un deadlock, o interbloqueo, ocurre cuando dos transacciones se esperan mutuamente y ninguna puede avanzar.
   - Si los dos arrancan al mismo tiempo, cada uno tiene exactamente lo que el otro necesita, nadie cede y ninguna espera termina sola.
   - La transaccion sobreviviente termina normal.
 
-**[Slide 18] Deadlock: la escena de VetCare y como se evita (2/2)** — 3 vinetas.
+**[Slide 19] Deadlock: la escena de VetCare y como se evita (2/2)** — 4 vinetas.
 
-**[Slide 19] Antes de los niveles: la restriccion que cuesta una linea** — 3 vinetas.
+**[Slide 20] Antes de los niveles: la restriccion que cuesta una linea** — 3 vinetas.
   - Con esa restriccion, cuando las dos recepcionistas insertan, el motor deja pasar la primera y rechaza la segunda con una violacion de unicidad, sin que nadie haya razonado sobre aislamiento; el procedimiento captura esa excepcion y devuelve «ese horario acaba de ser tomado, elija otro».
   - La leccion general que el docente debe transmitir es que una regla que se puede expresar como restriccion declarativa, es decir UNIQUE, CHECK, FOREIGN KEY o NOT NULL, es mas confiable que la misma regla escrita en codigo, porque el motor la aplica siempre: venga la escritura de la aplicacion, de un script de carga masiva o de alguien conectado con un cliente SQL a corregir un dato a mano.
   - La respuesta honesta es que no se puede: los playgrounds gratuitos ejecutan un script en una unica sesion, normalmente con autocommit activo, y no permiten abrir dos conexiones para intercalarlas.
   - Lo que si se demuestra con evidencia ejecutable son tres cosas: la restriccion UNIQUE rechazando el segundo INSERT, el patron optimista completo con la columna version y el UPDATE que afecta cero filas, y la sintaxis de SELECT FOR UPDATE ejecutandose sin error.
   - Lo que no se demuestra se documenta en una tabla de linea de tiempo con columnas T1, T2 y estado de la fila, paso por paso; esa tabla es un artefacto profesional legitimo, no un premio de consolacion, y es exactamente como se comunican estos escenarios en un documento de diseno real.
 
-**[Slide 20] Antes de los niveles: la restriccion que... — sintaxis** — 1 vinetas.
+**[Slide 21] Antes de los niveles: la restriccion que... — sintaxis** — 1 vinetas.
 
-**[Slide 21] La doble reserva, y la restriccion que la cierra de raiz** — 10 vinetas.
+**[Slide 22] La doble reserva, y la restriccion que la cierra de raiz** — 10 vinetas.
 
-**[Slide 22] El bloqueo explicito y la actualizacion condicional** — 10 vinetas.
+**[Slide 23] El bloqueo explicito y la actualizacion condicional** — 10 vinetas.
 
-**[Slide 23] Niveles de aislamiento: que anomalia tapa cada uno** — 13 vinetas.
+**[Slide 24] Niveles de aislamiento: que anomalia tapa cada uno** — 13 vinetas.
 
 
 **Demo que usted debe poder repetir:** Narrativa paso a paso T1/T2 sobre tabla Cita.
@@ -98,26 +100,27 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 5. La transaccion como unidad de todo o nada (2/2)
 6. Serializar de verdad existe, y cuesta (1/2)
 7. Serializar de verdad existe, y cuesta (2/2)
-8. Los tres fenomenos indeseables, en escenas de la clinica (1/2)
-9. Los tres fenomenos indeseables, en escenas de la clinica (2/2)
-10. Los cuatro niveles de aislamiento se definen por lo que permiten (1/2)
-11. Los cuatro niveles de aislamiento se definen por lo que permiten (2/2)
-12. Control pesimista: SELECT... FOR UPDATE (1/2)
-13. Control pesimista: SELECT... FOR UPDATE (2/2)
-14. Control optimista: verificar unicamente al escribir (1/2)
-15. Control optimista: verificar unicamente al escribir (2/2)
-16. Control optimista: verificar unicamente al... — sintaxis
-17. Deadlock: la escena de VetCare y como se evita (1/2)
-18. Deadlock: la escena de VetCare y como se evita (2/2)
-19. Antes de los niveles: la restriccion que cuesta una linea
-20. Antes de los niveles: la restriccion que... — sintaxis
-21. La doble reserva, y la restriccion que la cierra de raiz
-22. El bloqueo explicito y la actualizacion condicional
-23. Niveles de aislamiento: que anomalia tapa cada uno
-24. Doble reserva sin control de concurrencia
-25. La restriccion que hace imposible la doble reserva
-26. Demo del dia
-27. Cierre · Clase 10
+8. Serializar de verdad existe, y cuesta — sintaxis
+9. Los tres fenomenos indeseables, en escenas de la clinica (1/2)
+10. Los tres fenomenos indeseables, en escenas de la clinica (2/2)
+11. Los cuatro niveles de aislamiento se definen por lo que permiten (1/2)
+12. Los cuatro niveles de aislamiento se definen por lo que permiten (2/2)
+13. Control pesimista: SELECT... FOR UPDATE (1/2)
+14. Control pesimista: SELECT... FOR UPDATE (2/2)
+15. Control optimista: verificar unicamente al escribir (1/2)
+16. Control optimista: verificar unicamente al escribir (2/2)
+17. Control optimista: verificar unicamente al... — sintaxis
+18. Deadlock: la escena de VetCare y como se evita (1/2)
+19. Deadlock: la escena de VetCare y como se evita (2/2)
+20. Antes de los niveles: la restriccion que cuesta una linea
+21. Antes de los niveles: la restriccion que... — sintaxis
+22. La doble reserva, y la restriccion que la cierra de raiz
+23. El bloqueo explicito y la actualizacion condicional
+24. Niveles de aislamiento: que anomalia tapa cada uno
+25. Doble reserva sin control de concurrencia
+26. La restriccion que hace imposible la doble reserva
+27. Demo del dia
+28. Cierre · Clase 10
 
 > Privado, no se proyecta: `Kit docente/Clase 10/Solucion Taller Clase 10 - VetCare.docx`
 

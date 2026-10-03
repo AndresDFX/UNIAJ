@@ -24,10 +24,10 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 5] La teoria propia del dia: que es una revision de arquitectura (1/2)** — 3 vinetas.
+**[Slide 5] La teoria propia del dia: que es una revision de arquitectura (1/2)** — 4 vinetas.
   - Hoy el docente no dicta, audita, y el estudiante no aprende un concepto, demuestra que los que ya tiene forman un sistema.
 
-**[Slide 6] La teoria propia del dia: que es una revision de arquitectura (2/2)** — 2 vinetas.
+**[Slide 6] La teoria propia del dia: que es una revision de arquitectura (2/2)** — 4 vinetas.
 
 **[Slide 7] El insumo: las seis piezas del paquete CloudLite v1** — 4 vinetas.
   - Y se audita con preguntas mecanicas que cualquier docente puede hacer sin ser experto en el dominio del proyecto, lo que hace esta tecnica ensenable.

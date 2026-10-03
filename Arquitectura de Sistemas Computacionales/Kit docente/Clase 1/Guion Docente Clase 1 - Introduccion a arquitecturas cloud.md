@@ -57,7 +57,8 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 17] De dominio a arquitectura (mini-metodo) (3/3)** — 3 vinetas.
 
-**[Slide 18] Ejemplo de diagrama C4 - nivel Context** — 2 vinetas.
+**[Slide 18] Ejemplo de diagrama C4 - nivel Context** — 4 vinetas.
+  - En el diagrama proyectado (System, dos Person, System_Ext) el nivel Context muestra el sistema como UNA sola caja, sin abrir por dentro.
   - (Sobre la actividad, no se proyecta) Es el mismo modelo C4 explicado arriba, ahora aplicado con nombres concretos, y sirve de puente directo hacia la pregunta 2 del taller en la plataforma del curso (el diagrama Mermaid que cada estudiante entrega hoy).
 
 **[Slide 19] Preguntas frecuentes y cierre conceptual () (1/3)** — 5 vinetas.

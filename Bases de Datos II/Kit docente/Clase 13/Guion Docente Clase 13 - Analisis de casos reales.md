@@ -24,7 +24,8 @@ del PI VetCare. La teoria se limita a desbloquear el taller.
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 4] Clase autonoma: este texto es fundamento y guia a la vez (1/2)** — 5 vinetas.
+**[Slide 4] Clase autonoma: este texto es fundamento y guia a la vez (1/2)** — 4 vinetas.
+  - Fuera de la lamina (habla de la practica): El entregable de hoy es una tabla de cuatro columnas, Contexto, Fallo, Leccion y Cambio en VetCare, con tres casos, y se sube a PostgreSQL en el navegador.
 
 **[Slide 5] Clase autonoma: este texto es fundamento y guia a la vez (2/2)** — 3 vinetas.
 
@@ -56,9 +57,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 15] Caso cuatro: concurrencia, el que no llega a los titulares (2/2)** — 4 vinetas.
 
-**[Slide 16] Lecciones accionables: los cuatro elementos verificables (1/3)** — 5 vinetas.
+**[Slide 16] Lecciones accionables: los cuatro elementos verificables (1/3)** — 4 vinetas.
   - Lo que decide la calificacion de hoy no es reunir casos sino escribir lecciones accionables, y esa es la habilidad que el estudiante debe practicar sin ayuda.
   - Compare las dos versiones.
+  - Fuera de la lamina (habla de la practica): Sobre las preguntas que llegaran por el canal del curso: si piden inventar un caso, la respuesta es no, cada caso debe ser verificable con una fuente publica o declararse explicitamente como hipotetico; si el caso no tiene detalle tecnico publicado, se escribe solo lo documentado y se marca aparte lo que es inferencia propia, porque separar hecho de suposicion es parte de la nota; y si preguntan cuanto debe medir cada celda, la convencion de este entregable es de tres a cinco lineas.
 
 **[Slide 17] Lecciones accionables: los cuatro elementos verificables (2/3)** — 5 vinetas.
 

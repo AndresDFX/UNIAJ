@@ -24,11 +24,11 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 6] Latencia, throughput y concurrencia: la identidad que las une (1/2)** — 3 vinetas.
+**[Slide 6] Latencia, throughput y concurrencia: la identidad que las une (1/2)** — 4 vinetas.
   - Hay dos magnitudes que se confunden todo el tiempo.
   - La tercera magnitud es la concurrencia, cuantas peticiones estan en vuelo al mismo tiempo, y las tres se relacionan por una identidad que el docente puede escribir en el tablero: concurrencia igual a RPS por latencia.
 
-**[Slide 7] Latencia, throughput y concurrencia: la identidad que las une (2/2)** — 2 vinetas.
+**[Slide 7] Latencia, throughput y concurrencia: la identidad que las une (2/2)** — 4 vinetas.
 
 **[Slide 8] Por que el promedio miente y el percentil no (1/2)** — 4 vinetas.
   - Por eso la industria escribe sus objetivos en percentiles, y por eso un objetivo bien escrito tiene la forma "p95 del endpoint de listado menor a 300 milisegundos con 5 RPS", que tiene metrica, umbral y condicion de carga.

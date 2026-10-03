@@ -37,7 +37,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 7] El molde de PL/pgSQL, y por que el cuerpo va entre signos de dolar (1/2)** — 6 vinetas.
   - END; $proc$; y cada pieza tiene su razon.
   - LANGUAGE plpgsql hace falta porque PostgreSQL admite varios lenguajes procedimentales y no adivina cual se esta usando.
-  - Un estudiante que agregue p_id_cita no comete un error de sintaxis, comete un error de diseno, y la rubrica lo mira.
+  - Un estudiante que agregue p_id_cita no comete un error de sintaxis, comete un error de diseno.
+  - Fuera de la lamina (habla de la practica): El molde es fijo y conviene dictarlo entero antes de escribir una sola validacion, porque es donde se pierden los puntos sin haber entendido nada mal.
+  - Fuera de la lamina (habla de la practica): Un estudiante que agregue p_id_cita no comete un error de sintaxis, comete un error de diseno, y la rubrica lo mira.
 
 **[Slide 8] El molde de PL/pgSQL, y por que el cuerpo va entre signos de dolar (2/2)** — 6 vinetas.
 
@@ -46,8 +48,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 10] Los modos de parametro, y por que hoy no se usa OUT (1/2)** — 6 vinetas.
   - Dentro del cuerpo un parametro IN se comporta como una variable local, asi que se le puede asignar, aunque hacerlo confunde a quien lee y no cambia nada afuera.
   - OUT devuelve un valor a quien llama, e INOUT entra con valor y sale modificado.
-  - La otra razon es de diseno y es la que hay que defender en clase, porque es la decision que la solucion docente califica.
+  - La otra razon es de diseno y es la que hay que defender en clase.
   - Devolver el error en un parametro OUT significa que el procedimiento hizo su trabajo, dejo la fila insertada y ademas puso un texto en una variable que la aplicacion PUEDE mirar.
+  - Fuera de la lamina (habla de la practica): La otra razon es de diseno y es la que hay que defender en clase, porque es la decision que la solucion docente califica.
 
 **[Slide 11] Los modos de parametro, y por que hoy no se usa OUT (2/2)** — 4 vinetas.
 
@@ -58,6 +61,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Eso ultimo se menciona y no se desarrolla: hoy basta con el texto.
   - Quien espere la excepcion de Oracle escribe un procedimiento que, ante una mascota inexistente, compara nulo contra 'S', obtiene nulo, entra por el ELSE y termina insertando la cita.
   - Si el SELECT devuelve varias filas, en cambio, PL/pgSQL se queda con la primera sin avisar, salvo que se escriba STRICT, que entonces si lanza excepcion en los dos casos.
+  - Fuera de la lamina (habla de la practica): Esta es la parte que convierte una consulta con nombre en logica de negocio, y es el mecanismo que la pregunta 1 de la clase califica con treinta y cinco puntos.
 
 **[Slide 14] RAISE EXCEPTION: la validacion que aborta y deshace (2/3)** — 6 vinetas.
 
@@ -83,60 +87,70 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 20] La inyeccion de SQL, explicada y no solo mencionada (2/2)** — 5 vinetas.
 
 **[Slide 21] La bateria de pruebas: por que un bloque DO por caso (1/3)** — 5 vinetas.
+  - Un procedimiento sin prueba no esta terminado.
   - Aparecen tres casos sin probar y una captura que no demuestra nada.
   - EXCEPTION WHEN OTHERS THEN...
   - Su clausula EXCEPTION atrapa el error, lo convierte en una fila de resultado y deja que el siguiente bloque corra.
   - Un bloque por caso, cuatro bloques, cuatro filas.
   - Una bateria sin ese conteo prueba que el procedimiento se queja, no que no escribe.
   - Tiene dos consecuencias.
-  - Dos, y es la que importa hoy, que el procedimiento del taller NO lleva COMMIT: si lo llevara, llamarlo desde dentro de un bloque con EXCEPTION fallaria, porque PostgreSQL no permite confirmar la transaccion mientras hay un savepoint activo.
+  - Dos, y es la que importa hoy, que el procedimiento de la clase NO lleva COMMIT: si lo llevara, llamarlo desde dentro de un bloque con EXCEPTION fallaria, porque PostgreSQL no permite confirmar la transaccion mientras hay un savepoint activo.
+  - Fuera de la lamina (habla de la practica): Un procedimiento sin prueba no esta terminado, y esta parte vale veinticinco de los cien puntos de la clase, asi que hay que dictarla como tema y no como recomendacion.
 
 **[Slide 22] La bateria de pruebas: por que un bloque DO por caso (2/3)** — 4 vinetas.
 
-**[Slide 23] La bateria de pruebas: por que un bloque DO por caso (3/3)** — 4 vinetas.
+**[Slide 23] La bateria de pruebas: por que un bloque DO por caso (3/3)** — 3 vinetas.
 
-**[Slide 24] Que significa la columna paso, y la trampa del WHEN OTHERS (1/2)** — 4 vinetas.
-  - Aqui esta el matiz que separa una bateria que prueba algo de una que se prueba a si misma, y conviene dictarlo despacio porque la solucion docente lo califica.
+**[Slide 24] Que significa la columna paso, y la trampa del WHEN OTHERS (1/2)** — 5 vinetas.
+  - Aqui esta el matiz que separa una bateria que prueba algo de una que se prueba a si misma.
   - Lo que hay que verificar es el TEXTO de la excepcion, y para eso PL/pgSQL expone la variable SQLERRM con el mensaje y SQLSTATE con el codigo.
   - Si paso significa la operacion se completo, los tres casos negativos quedan en falso incluso con el procedimiento perfecto.
   - Conviene decir en voz alta la consecuencia, porque es la que evita reclamos: no se descuenta por elegir una u otra, se descuenta por las cuatro filas en verdadero sin haber verificado el texto.
+  - Fuera de la lamina (habla de la practica): Aqui esta el matiz que separa una bateria que prueba algo de una que se prueba a si misma, y conviene dictarlo despacio porque la solucion docente lo califica.
+  - Fuera de la lamina (habla de la practica): Las dos son defendibles; lo que no es defendible es no decir cual, porque entonces la columna no significa nada y el docente no puede calificar la captura.
 
-**[Slide 25] Que significa la columna paso, y la trampa del WHEN OTHERS (2/2)** — 3 vinetas.
+**[Slide 25] Que significa la columna paso, y la trampa del WHEN OTHERS (2/2)** — 4 vinetas.
 
-**[Slide 26] El contrato del procedimiento: los 6 bloques que consume la app (1/2)** — 6 vinetas.
+**[Slide 26] El contrato del procedimiento: los 6 bloques que consume la app (1/2)** — 5 vinetas.
   - Un contrato sirve si permite escribir la llamada y manejar los errores sin leer el cuerpo.
   - Sin ella, quien llama no sabe si tiene que limpiar algo.
+  - Fuera de la lamina (habla de la practica): La tabla de errores lleva el mensaje LITERAL, no una parafrasis, porque quien llama va a comparar contra ese texto —y porque es el mismo texto que la bateria de pruebas verifica, de modo que los dos entregables tienen que coincidir palabra por palabra.
 
-**[Slide 27] El contrato del procedimiento: los 6 bloques que consume la app (2/2)** — 4 vinetas.
+**[Slide 27] El contrato del procedimiento: los 6 bloques que consume la app (2/2)** — 5 vinetas.
 
 **[Slide 28] Procedimiento y funcion: la diferencia se dice hoy, no en la Clase 4 (1/2)** — 3 vinetas.
-  - Conviene cerrar la teoria con esta distincion, y decirla HOY, porque el estudiante la va a necesitar en el taller de hoy y no la semana entrante.
+  - Conviene cerrar la teoria con esta distincion, y decirla HOY.
+  - Fuera de la lamina (habla de la practica): Conviene cerrar la teoria con esta distincion, y decirla HOY, porque el estudiante la va a necesitar en el taller de hoy y no la semana entrante.
 
-**[Slide 29] Procedimiento y funcion: la diferencia se dice hoy, no en la Clase 4 (2/2)** — 2 vinetas.
+**[Slide 29] Procedimiento y funcion: la diferencia se dice hoy, no en la Clase 4 (2/2)** — 5 vinetas.
 
-**[Slide 30] Depurar sin depurador: los cuatro movimientos, en PostgreSQL (1/2)** — 5 vinetas.
+**[Slide 30] Procedimiento y funcion: la diferencia se... — sintaxis** — 3 vinetas.
+
+**[Slide 31] Depurar sin depurador: los cuatro movimientos, en PostgreSQL (1/2)** — 5 vinetas.
   - Conviene mencionar que RAISE tiene niveles —NOTICE, WARNING, EXCEPTION— y que solo el ultimo aborta.
 
-**[Slide 31] Depurar sin depurador: los cuatro movimientos, en PostgreSQL (2/2)** — 3 vinetas.
+**[Slide 32] Depurar sin depurador: los cuatro movimientos, en PostgreSQL (2/2)** — 3 vinetas.
 
-**[Slide 32] El motor de hoy es PostgreSQL, y eso decide que se puede demostrar (1/2)** — 4 vinetas.
-  - Ahi funcionan CREATE PROCEDURE, el dollar-quoting, RAISE EXCEPTION, los bloques DO, SQLERRM y SQLSTATE, y la tabla resultado_prueba: la evidencia del taller es la salida del motor y no una promesa.
+**[Slide 33] El motor de hoy es PostgreSQL, y eso decide que se puede demostrar (1/2)** — 3 vinetas.
+  - Ahi funcionan CREATE PROCEDURE, el dollar-quoting, RAISE EXCEPTION, los bloques DO, SQLERRM y SQLSTATE, y la tabla resultado_prueba: la evidencia de la clase es la salida del motor y no una promesa.
+  - Fuera de la lamina (habla de la practica): Este punto hay que decirlo con precision porque una version anterior de esta guia decia lo contrario y costaria puntos repetirla.
+  - Fuera de la lamina (habla de la practica): Oracle Live SQL sigue en el kit, pero cambia de papel y hay que decirlo sin ambiguedad: sirve como CONTRASTE de sintaxis para quien se vaya a encontrar Oracle en el trabajo, no como sitio donde se hace el taller.
 
-**[Slide 33] El motor de hoy es PostgreSQL, y eso decide que se puede demostrar (2/2)** — 2 vinetas.
+**[Slide 34] El motor de hoy es PostgreSQL, y eso decide que se puede demostrar (2/2)** — 2 vinetas.
 
-**[Slide 34] El segundo procedimiento: sp_registrar_consulta y el EXISTS (1/2)** — 4 vinetas.
+**[Slide 35] El segundo procedimiento: sp_registrar_consulta y el EXISTS (1/2)** — 4 vinetas.
   - Eso significa que registrar dos veces la consulta de la misma cita ya esta impedido por el motor: el segundo INSERT choca contra la restriccion de unicidad y falla.
   - La respuesta tiene dos partes y las dos valen.
   - Conviene decir tambien lo que NO hay que hacer: quitar la restriccion porque ya esta el procedimiento.
   - Esa jerarquia —declarativo primero, procedimiento encima— es exactamente lo que la Clase 4 va a formalizar.
 
-**[Slide 35] El segundo procedimiento: sp_registrar_consulta y el EXISTS (2/2)** — 2 vinetas.
+**[Slide 36] El segundo procedimiento: sp_registrar_consulta y el EXISTS (2/2)** — 3 vinetas.
 
-**[Slide 36] El segundo procedimiento:... — sintaxis** — 3 vinetas.
+**[Slide 37] El segundo procedimiento:... — sintaxis** — 7 vinetas.
 
-**[Slide 37] Como amarra con las clases vecinas y con la rubrica del PI (1/2)** — 3 vinetas.
-
-**[Slide 38] Como amarra con las clases vecinas y con la rubrica del PI (2/2)** — 3 vinetas.
+**[Slide 38] Como amarra con las clases vecinas y con la rubrica del PI** — 6 vinetas.
+  - Fuera de la lamina (habla de la practica): Lo de hoy no es una isla, y decirlo en voz alta le da sentido al entregable.
+  - Fuera de la lamina (habla de la practica): Y la Clase 12 consume estos procedimientos desde la aplicacion, que es cuando el contrato de la pregunta 5 deja de ser un documento y se vuelve la especificacion que alguien lee.
 
 **[Slide 39] Preguntas frecuentes del grupo (1/3)** — 5 vinetas.
   - Se limpia con DROP PROCEDURE nombrando los tipos.
@@ -189,15 +203,15 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 27. El contrato del procedimiento: los 6 bloques que consume la app (2/2)
 28. Procedimiento y funcion: la diferencia se dice hoy, no en la Clase 4 (1/2)
 29. Procedimiento y funcion: la diferencia se dice hoy, no en la Clase 4 (2/2)
-30. Depurar sin depurador: los cuatro movimientos, en PostgreSQL (1/2)
-31. Depurar sin depurador: los cuatro movimientos, en PostgreSQL (2/2)
-32. El motor de hoy es PostgreSQL, y eso decide que se puede demostrar (1/2)
-33. El motor de hoy es PostgreSQL, y eso decide que se puede demostrar (2/2)
-34. El segundo procedimiento: sp_registrar_consulta y el EXISTS (1/2)
-35. El segundo procedimiento: sp_registrar_consulta y el EXISTS (2/2)
-36. El segundo procedimiento:... — sintaxis
-37. Como amarra con las clases vecinas y con el PI (1/2)
-38. Como amarra con las clases vecinas y con el PI (2/2)
+30. Procedimiento y funcion: la diferencia se... — sintaxis
+31. Depurar sin depurador: los cuatro movimientos, en PostgreSQL (1/2)
+32. Depurar sin depurador: los cuatro movimientos, en PostgreSQL (2/2)
+33. El motor de hoy es PostgreSQL, y eso decide que se puede demostrar (1/2)
+34. El motor de hoy es PostgreSQL, y eso decide que se puede demostrar (2/2)
+35. El segundo procedimiento: sp_registrar_consulta y el EXISTS (1/2)
+36. El segundo procedimiento: sp_registrar_consulta y el EXISTS (2/2)
+37. El segundo procedimiento:... — sintaxis
+38. Como amarra con las clases vecinas y con el PI
 39. Preguntas frecuentes del grupo (1/3)
 40. Preguntas frecuentes del grupo (2/3)
 41. Preguntas frecuentes del grupo (3/3)

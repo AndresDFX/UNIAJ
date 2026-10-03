@@ -24,10 +24,10 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 5] Sustentar no es describir: el eje de toda la clase (1/2)** — 4 vinetas.
+**[Slide 5] Sustentar no es describir: el eje de toda la clase (1/2)** — 5 vinetas.
   - Conviene fijar el termino con precision: una decision de arquitectura es una eleccion que afecta la estructura del sistema, es costosa de revertir una vez implementada, y tiene al menos una alternativa razonable que se descarto.
 
-**[Slide 6] Sustentar no es describir: el eje de toda la clase (2/2)** — 3 vinetas.
+**[Slide 6] Sustentar no es describir: el eje de toda la clase (2/2)** — 4 vinetas.
 
 **[Slide 7] La prueba de tres capas que se aplica en voz alta** — 4 vinetas.
   - Existe una prueba practica de tres capas que el docente puede aplicar en voz alta a cualquier afirmacion del estudiante, y conviene ensenarla antes de que empiecen las presentaciones.
@@ -46,7 +46,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 10] El pitch de 5 a 8 minutos: el reparto que funciona (1/2)** — 4 vinetas.
   - (Sobre la actividad, no se proyecta) La razon es concreta y el docente debe decirla: si el estudiante trae veinte diapositivas, no termina, corre las ultimas, y las ultimas suelen ser justamente las de seguridad, costos y escalabilidad, donde estan los puntos de la rubrica que menos se defienden solos.
 
-**[Slide 11] El pitch de 5 a 8 minutos: el reparto que funciona (2/2)** — 3 vinetas.
+**[Slide 11] El pitch de 5 a 8 minutos: el reparto que funciona (2/2)** — 5 vinetas.
 
 **[Slide 12] La regla de los 60 segundos, anunciada desde la Clase 11 (1/2)** — 5 vinetas.
   - La respuesta del docente debe ser: en equipo se puede repartir quien HABLA de cada tema, pero no quien ENTIENDE cada tema, porque el Q&A se dirige al azar; y en modo individual no hay reparto posible, de modo que la pregunta pierde sentido y lo que queda es preparar el sistema completo.

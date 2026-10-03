@@ -33,12 +33,13 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - La palabra decisiva es independiente, y admite una prueba de una linea que el docente debe usar como criterio de correccion: si para poner en produccion el servicio A hay que desplegar tambien el servicio B, entonces A y B no son dos microservicios, son un solo sistema partido en dos repositorios, con todos los costos de la distribucion y ninguno de sus beneficios.
   - La decision se sostiene con exactamente dos criterios.
   - La razon de fondo es la que se repite en el cierre: la cantidad de servicios que una organizacion sostiene es funcion del numero de equipos autonomos, no del gusto por la modularidad.
+  - Esa frase tiene decision, 2 criterios y las 2 mitades del trade-off.
 
 **[Slide 11] Monolito: lo que la palabra realmente significa (2/4)** — 4 vinetas.
 
 **[Slide 12] Monolito: lo que la palabra realmente significa (3/4)** — 6 vinetas.
 
-**[Slide 13] Monolito: lo que la palabra realmente significa (4/4)** — 2 vinetas.
+**[Slide 13] Monolito: lo que la palabra realmente significa (4/4)** — 4 vinetas.
 
 **[Slide 14] Las tres reglas del nivel Container y la trazabilidad con el Context (1/2)** — 6 vinetas.
   - Nombre, tecnologia y responsabilidad en una frase.
@@ -80,10 +81,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 25] Timeout, reintento, idempotencia y circuit breaker (2/2)** — 2 vinetas.
 
-**[Slide 26] Los datos: donde se rompen los proyectos academicos (1/2)** — 5 vinetas.
+**[Slide 26] Los datos: donde se rompen los proyectos academicos (1/2)** — 6 vinetas.
   - Eso introduce consistencia eventual, es decir un lapso durante el cual dos partes del sistema tienen versiones distintas de la verdad, con consecuencias visibles para el usuario.
 
-**[Slide 27] Los datos: donde se rompen los proyectos academicos (2/2)** — 3 vinetas.
+**[Slide 27] Los datos: donde se rompen los proyectos academicos (2/2)** — 5 vinetas.
 
 **[Slide 28] Los tres riesgos de distribuir, y por que son esos tres (1/3)** — 5 vinetas.
   - Conviene dictarlos asi, porque un estudiante que entiende por que son esos tres no escribe generalidades.

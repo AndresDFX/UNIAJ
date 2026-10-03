@@ -24,8 +24,9 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 10] Seguridad como propiedad del diseno: la triada CIA (1/2)** — 3 vinetas.
+**[Slide 10] Seguridad como propiedad del diseno: la triada CIA (1/2)** — 4 vinetas.
   - Casi todos los incidentes reales ocurren del lado del cliente.
+  - Cada amenaza que se modele despues niega al menos una de las tres.
 
 **[Slide 11] Seguridad como propiedad del diseno: la triada CIA (2/2)** — 2 vinetas.
 
@@ -43,13 +44,13 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 14] Los controles gratuitos, en tres familias** — 6 vinetas.
   - Los controles que el estudiante puede citar sin pagar nada se ordenan en tres familias.
 
-**[Slide 15] Menor privilegio: la resta que hay que poder nombrar (1/2)** — 4 vinetas.
+**[Slide 15] Menor privilegio: la resta que hay que poder nombrar (1/2)** — 5 vinetas.
   - Si la respuesta no tiene un verbo en negativo, no esta aplicado.
   - Menor privilegio no evita el ataque, acota el dano; decirlo asi evita la objecion de «entonces igual me atacan».
   - Conviene ademas dar la version de la que casi nadie se acuerda: el principio aplica a personas igual que a servicios, y en un proyecto de un semestre el caso mas cercano es que no todo integrante del equipo necesita permiso de administracion en el repositorio.
   - (Sobre la actividad, no se proyecta) El menor privilegio vale 1.25 puntos de la pregunta 2 y se pierde casi siempre por la misma razon: el estudiante lo define bien y no lo aplica.
 
-**[Slide 16] Menor privilegio: la resta que hay que poder nombrar (2/2)** — 2 vinetas.
+**[Slide 16] Menor privilegio: la resta que hay que poder nombrar (2/2)** — 3 vinetas.
 
 **[Slide 17] Gestion de secretos: el error mas repetido y el mas facil de verificar (1/2)** — 5 vinetas.
   - Con herramientas gratis, el valor real vive en los secretos del repositorio y se inyecta como variable de entorno en ejecucion, versionando solo un archivo de ejemplo con los nombres de las variables.
@@ -84,7 +85,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - (Sobre la actividad, no se proyecta) «Si trabajo solo, quien rota los secretos?» El mismo estudiante, y es una respuesta valida: lo que se califica es que exista un responsable escrito, no que sea otra persona.
   - (Sobre la actividad, no se proyecta) Lo que se descuenta es la misma amenaza escrita dos veces con otras palabras.
 
-**[Slide 27] Preguntas frecuentes del grupo (2/2)** — 2 vinetas.
+**[Slide 27] Preguntas frecuentes del grupo (2/2)** — 5 vinetas.
 
 **[Slide 28] La politica de secretos, en comandos** — 14 vinetas.
 

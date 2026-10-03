@@ -1844,7 +1844,7 @@ DIAGRAMAS_BD2 = {
             {"src": "mascota", "dst": "cita", "label": "1 : N"},
             {"src": "vet", "dst": "cita", "label": "1 : N"},
         ],
-        "note": "“Un dueño tiene N mascotas”, “una mascota tiene N citas”. La PK identifica cada fila; la FK materializa la relación y la BD la hace cumplir.",
+        "note": "“Un dueño tiene N mascotas”, “una mascota tiene N citas”, “un veterinario atiende N citas”. La PK identifica cada fila; la FK materializa la relación y la BD la hace cumplir: una cita con id_mascota 999 que no existe se rechaza con violación de clave foránea.",
     },
     10: {
         "titulo": "Doble reserva sin control de concurrencia",
@@ -1859,7 +1859,7 @@ DIAGRAMAS_BD2 = {
             {"src": "t1a", "dst": "t1b", "label": "tiempo →"},
             {"src": "t2a", "dst": "t2b", "label": "tiempo →"},
         ],
-        "note": "Mitigación: UNIQUE(id_veterinario, fecha_hora) hace que el segundo INSERT falle automáticamente en vez de crear la doble reserva.",
+        "note": "Es una condición de carrera: cada transacción tomó su decisión con un dato que la otra estaba a punto de invalidar. Mitigación: UNIQUE(id_veterinario, fecha_hora) hace que el segundo INSERT falle en vez de crear la doble reserva.",
     },
 }
 
@@ -1973,16 +1973,24 @@ CODIGO_SLIDE = {
         "  UNIQUE (id_veterinario, fecha_hora);",
         "",
         "-- T2 intenta la misma franja que T1:",
-        "-- ORA-00001: unique constraint violated",
-    ], "Poner solo BEGIN/COMMIT no basta: ambas transacciones leen 'libre' antes de confirmar."),
+        "INSERT INTO cita (id_mascota, id_veterinario, fecha_hora, estado)",
+        "VALUES (5, 1, TIMESTAMP '2026-09-01 08:00:00', 'PROGRAMADA');",
+        "-- ERROR:  duplicate key value violates unique constraint",
+        "--         \"uq_cita_vet_franja\"",
+    ], "Poner solo BEGIN/COMMIT no basta: las dos transacciones leen «libre» antes de "
+       "confirmar. El UNIQUE lo verifica el motor al escribir: la segunda reserva falla."),
     12: ("El contrato que la app consume (no SQL suelto)", [
-        "sp_agendar_cita(",
-        "   p_id_cita     IN  NUMBER,",
-        "   p_id_mascota  IN  NUMBER,",
-        "   p_fecha       IN  TIMESTAMP,",
-        "   p_msg         OUT VARCHAR2   -- 'OK: ...' | 'ERROR: ...'",
-        ")",
-    ], "La app llama el proc con parametros tipados: por eso no hay inyeccion SQL."),
+        "-- Firma: lo unico que la aplicacion conoce de la base",
+        "CALL sp_agendar_cita(",
+        "  p_id_mascota     => 3,",
+        "  p_id_veterinario => 1,",
+        "  p_fecha_hora     => TIMESTAMP '2026-09-01 09:00:00');",
+        "",
+        "-- Si una regla falla, el CALL aborta con un mensaje literal:",
+        "-- ERROR:  ERROR: la mascota 3 esta inactiva",
+    ], "La aplicacion llama el procedimiento con parametros tipados, no arma SQL con texto: "
+       "por eso no hay inyeccion. El contrato fija la firma, el ejemplo de llamada, los "
+       "mensajes de error literales y que queda en la base si la llamada falla (nada)."),
 }
 
 # Comparaciones antes/despues (lo que mejor se entiende visualmente).
@@ -2020,7 +2028,7 @@ ANTES_DESPUES = {
               "GRANT ALL 'para que no falle nada'",
               "Nadie sabe quien borro que (sin trazabilidad)",
               "Se van del cargo y la cuenta sigue viva"],
-        "a_t": "Lo que pide el taller",
+        "a_t": "Lo que pide el minimo privilegio",
         # Los nombres van tal cual se escriben en ExamLab: minusculas, y el del
         # veterinario con sufijo `_rol` porque `veterinario` ya es una tabla.
         "a": ["4 roles: admin_bd · recepcion · veterinario_rol · auditor",
@@ -2030,6 +2038,7 @@ ANTES_DESPUES = {
     },
     3: {
         "titulo": "Por que un procedimiento y no SQL en cada pantalla",
+        "sub": "La regla de negocio vive en la base: vale igual para la app, un script de carga o soporte",
         "b_t": "Sin procedimiento",
         "b": ["Cada pantalla reescribe la regla a su manera",
               "Alguien la escribe distinta... o la olvida",
@@ -2078,10 +2087,10 @@ TEORIA_EXTRA = {
             "solo usuario con login): `SET ROLE recepcion;` cambia el rol efectivo, y ahi "
             "`DELETE FROM cita ...` debe responder @@permission denied@@. Se cierra con "
             "`RESET ROLE;`. Si el entorno no deja cambiar de rol, se documenta el intento: "
-            "eso es una @@brecha de verificacion@@ del entregable.",
+            "eso es una @@brecha de verificacion@@.",
         ],
         "Cada flecha del ciclo es un GRANT o un REVOKE. La politica es lo que le pone "
-        "responsable y plazo a cada uno: son las 5 secciones del entregable",
+        "responsable y plazo a cada uno",
     )],
     # Clase 3: la bateria de pruebas vale 25 puntos y el contrato 15 — 40 de los 100.
     # Ninguna diapositiva las mencionaba: la teoria core llegaba hasta «hay que probar
@@ -2102,7 +2111,7 @@ TEORIA_EXTRA = {
             "despues@@: tiene que pasar de @@10 a 11@@ filas. Sin ese conteo nada demuestra que "
             "el caso OK hizo algo.",
         ],
-        "Un procedimiento sin bateria no esta terminado: son 25 de los 100 puntos",
+        "Un procedimiento sin bateria no esta terminado: cada caso de error se prueba en su propio bloque",
     ), (
         # Segunda mitad de la bateria. Se separo de la diapositiva anterior porque con el
         # cuerpo a 20 pt las cinco vinetas ya no caben en una sola, y porque el guion
@@ -2142,8 +2151,8 @@ TEORIA_EXTRA = {
             "`OUT`: porque abortar @@deshace@@ lo hecho, y un codigo que nadie revise deja la "
             "cita creada igual.",
         ],
-        "Es el entregable de la pregunta 5, vale 15 puntos, y la plantilla en blanco de los "
-        "6 bloques esta en el Taller del PI",
+        "El contrato es lo que lee quien llama: firma, ejemplo, pre y postcondiciones, errores y "
+        "la decision de diseno",
     ), (
         # La pregunta 3 vale 10 puntos y contrasta PROCEDURE con FUNCTION. En las 18
         # diapositivas no aparecia ni una vez FUNCTION, RETURNS ni «funcion»: el deck
@@ -2172,7 +2181,7 @@ TEORIA_EXTRA = {
             "y @@la tarifa de la Clase 4 sera funcion@@.",
         ],
         "PROCEDURE y FUNCTION no son sinonimos: si el resultado tiene que entrar en un "
-        "SELECT, es FUNCTION. Son 10 de los 100 puntos y es la bisagra con la Clase 4",
+        "SELECT, es FUNCTION. Es la bisagra con la Clase 4",
     )],
     # Clase 4: la pregunta 4 (donde vive cada validacion) vale 15 y el plan de respaldo
     # 25 — 40 de los 100. La teoria core nombraba RPO/RTO pero ninguna diapositiva decia
@@ -2206,8 +2215,8 @@ TEORIA_EXTRA = {
             "mascota ORDER BY id_mascota;` — un canino en urgencia da @@60750@@ "
             "(45000 × 1.35).",
         ],
-        "Son 20 de los 100 puntos, y se pierden casi siempre por tres cosas: un RETURNS "
-        "TRIGGER copiado del trigger, el UPPER() olvidado y un IMMUTABLE que lee tablas",
+        "Los tres errores mas comunes: un RETURNS TRIGGER copiado del trigger, el UPPER() "
+        "olvidado y un IMMUTABLE que lee tablas",
     ), (
         "Donde vive cada validacion: CHECK, trigger o aplicacion",
         [
@@ -2228,8 +2237,8 @@ TEORIA_EXTRA = {
             "despues el dato ya esta escrito; uno que registra un hecho consumado corre "
             "`AFTER`. Poner `AFTER` en el de stock es el error mas comun del dia.",
         ],
-        "La pregunta 4 son 15 puntos y no pide codigo: pide ubicar cada validacion en su "
-        "capa y justificar por que ahi",
+        "Cada regla tiene una capa natural: la que la garantiza aunque el SQL no venga de la "
+        "aplicacion",
     ), (
         "Plan de respaldo: 6 secciones y herramientas reales de PostgreSQL",
         [
@@ -2252,8 +2261,8 @@ TEORIA_EXTRA = {
             "por error que se descubre tres dias despues, la hora de citas que cabe en el RPO. "
             "@@Es la seccion que separa un plan de una lista de comandos@@, y la que mas se olvida.",
         ],
-        "Son 25 de los 100 puntos de la clase y se califican seccion por seccion. La "
-        "plantilla en blanco esta en el Taller del PI",
+        "Un plan de respaldo dice cuanto se pierde, en cuanto se vuelve y como se comprueba "
+        "que el restore sirvio",
     )],
     # Clase 6: tres huecos del criterio rector, y los tres valian puntos.
     #
@@ -2292,8 +2301,8 @@ TEORIA_EXTRA = {
             "nodo de 0,5 ms con `loops=2006` cuesta un segundo — mas que el `Seq Scan` de "
             "arriba que parece el culpable.",
         ],
-        "Es la pregunta 2 completa — 20 de los 100 puntos — y se responde leyendo estos "
-        "campos, no pegando el plano tal cual",
+        "Un plan se lee campo por campo: nodo mas costoso, filas estimadas contra reales y "
+        "tiempo total",
     ), (
         "La subconsulta correlacionada: 2.006 pasadas o una sola",
         [
@@ -2318,8 +2327,8 @@ TEORIA_EXTRA = {
             "reporte a los duenos sin mascotas, y el ranking deja de cuadrar con el total de "
             "clientes de la clinica. Mas rapido devolviendo otra cosa no es optimizar.",
         ],
-        "Es la pregunta 3 del taller — 20 de los 100 puntos — y la afirmacion de la "
-        "pregunta 4 que mas se falla",
+        "Una subconsulta que menciona la fila de afuera se repite por cada fila: el plan lo "
+        "delata con loops",
     ), (
         "Optimizar no cambia el resultado: como se prueba",
         [
@@ -2341,8 +2350,8 @@ TEORIA_EXTRA = {
             "primera pantalla de resultados. La equivalencia se afirma con una consulta cuyo "
             "resultado @@se conoce de antemano@@: un numero que coincide o un conjunto vacio.",
         ],
-        "Vale puntos dos veces: los dos `COUNT(*)` de la pregunta 1 y el `EXCEPT` de la "
-        "pregunta 3",
+        "Optimizar sin probar la equivalencia es apostar: `COUNT(*)` de cada version y `EXCEPT` "
+        "en los dos sentidos",
     )],
     # Clase 7: el deck llegaba hasta «un indice se justifica con la consulta que lo usa» y
     # la actividad cobraba 70 de los 100 puntos por tres mecanismos que ninguna diapositiva
@@ -2356,9 +2365,9 @@ TEORIA_EXTRA = {
     7: [(
         "Los cinco indices de hoy, con su nombre exacto",
         [
-            "@@El nombre se califica.@@ La actividad dice «nombres exactos» y los compara letra "
-            "por letra: `idx_cita_fecha_hora`, `idx_mascota_dueno`, `idx_cita_programada_fecha` "
-            "en la pregunta 1, y `idx_cita_estado_fecha` + `idx_cita_fecha_estado` en la 2. "
+            "@@El nombre importa.@@ El plan imprime «Index Scan using» seguido del nombre, asi que "
+            "se lee en la salida: `idx_cita_fecha_hora`, `idx_mascota_dueno`, `idx_cita_programada_fecha` "
+            "para la medicion, y `idx_cita_estado_fecha` + `idx_cita_fecha_estado` para el orden. "
             "@@`idx_cita_fecha` no es ninguno de los cinco@@: el sufijo es `_fecha_hora`, como la "
             "columna.",
             "@@Simple o compuesto.@@ Los tres primeros son de una columna; los dos ultimos llevan "
@@ -2379,8 +2388,7 @@ TEORIA_EXTRA = {
             "igualdad va primero y la de rango al final@@; un indice cuya columna lider no "
             "aparece en el `WHERE` normalmente no se usa.",
         ],
-        "Preguntas 1 y 2 del taller — 50 de los 100 puntos — y los nombres son los que se "
-        "escriben en la plantilla del entregable",
+        "Medir antes, crear, ANALYZE, medir despues: sin la linea base el despues no prueba nada",
     ), (
         "El indice parcial: el mismo beneficio, una fraccion del tamano",
         [
@@ -2435,8 +2443,8 @@ TEORIA_EXTRA = {
             "registro de transacciones y sostiene bloqueos largos — el contraste conecta directo "
             "con la Clase 8.",
         ],
-        "Es la pregunta 3 completa —20 de los 100 puntos— y el segundo parrafo de la "
-        "pregunta 5: hoy se implementa, no se cuenta",
+        "Particionar separa los datos por rango; la poda hace que una consulta de 2026 no "
+        "toque la particion de 2025",
     )],
     # Clase 8: el fundamento ensenaba el procedimiento canonico en PL/SQL de Oracle
     # (`IN NUMBER`, `SQL%ROWCOUNT`, `RAISE_APPLICATION_ERROR`, `EXCEPTION WHEN OTHERS THEN
@@ -2476,8 +2484,8 @@ TEORIA_EXTRA = {
             "id_factura = v_id_factura;`. El caso de prueba da @@27.400@@ y deja los stocks en 11, "
             "58 y 5.",
         ],
-        "Es la pregunta 1 del taller — 35 de los 100 puntos — y el molde que la pregunta 2 "
-        "hace fallar a proposito",
+        "Cabecera, bucle de lineas y descuento condicional: si una linea falla, no queda nada "
+        "de la factura",
     ), (
         "Por que el procedimiento no lleva COMMIT ni ROLLBACK",
         [
@@ -2502,8 +2510,8 @@ TEORIA_EXTRA = {
             "`EXCEPTION WHEN OTHERS THEN NULL;` @@convierte el fallo en silencio@@: la factura "
             "queda registrada, el stock no se descuenta y nadie se entera hasta el inventario.",
         ],
-        "Es la pregunta 4 del taller —10 puntos, seleccion unica— y la explicacion de por "
-        "que la pregunta 2 sale bien sin escribir un ROLLBACK",
+        "El CALL es su propia transaccion: la excepcion que sale de el deshace todo sin "
+        "escribir ROLLBACK",
     ), (
         "fn_descontar_stock: cuando «no hay stock» es una respuesta, no un error",
         [
@@ -2529,8 +2537,8 @@ TEORIA_EXTRA = {
             "no se puede demostrar —PGlite corre @@una sola sesion@@— y ese es el gap que se "
             "declara y que abre la Clase 10.",
         ],
-        "Es la pregunta 3 del taller —15 puntos— y la decision documentada que pide la "
-        "pregunta 5",
+        "Mismo descuento condicional, contrato distinto: aqui «no alcanza» se devuelve como "
+        "FALSE, no se lanza",
     )],
 }
 
@@ -2612,6 +2620,34 @@ def _sin_secciones_de_taller(fund):
         if not any(p.startswith("### " + t) for t in SECCIONES_SOLO_TALLER))
 
 
+def _conceptos_de(c):
+    """Titulos base de las laminas de concepto, sin paginacion ni «sintaxis»."""
+    out = []
+    for t, *_ in _teoria_slides(c):
+        b = re.sub(r"\s*\(\d+/\d+\)$|\s*— sintaxis$", "", _titulo_tema(t)).split(":")[0].strip()
+        if b not in out and not b.lower().startswith(("preguntas frecuentes", "como amarra")):
+            out.append(b)
+    return out
+
+
+def _fundamento_solo_tema(fund):
+    """El fundamento sin las frases que hablan de la actividad, y esas frases por seccion."""
+    partes = re.split(r"(?m)^(###[ \t].*)$", fund)
+    out, fuera, sec = [partes[0]], {}, ""
+    for i in range(1, len(partes), 2):
+        cab, cuerpo = partes[i], partes[i + 1]
+        sec = re.sub(r"\s*-\s*\{\{slide:.+?\}\}\s*$", "", cab[4:]).strip()
+        fr = []
+        def _uno(p):
+            m = re.match(r"^(\s*)(.*?)(\s*)$", p, re.S)
+            return m.group(1) + (_texto_tema(m.group(2), fr) or "") + m.group(3)
+        parrafos = [_uno(p) if p.strip() else p
+                    for p in re.split(r"(\n\s*\n)", cuerpo)]
+        fuera[sec] = fr
+        out += [cab, "".join(parrafos)]
+    return "".join(out), fuera
+
+
 def _teoria_slides(c):
     """Las diapositivas de teoria de esta clase: UNA POR CONCEPTO, con su contenido.
 
@@ -2631,13 +2667,84 @@ def _teoria_slides(c):
     fund = (c.get("fundamento") or FUNDAMENTOS.get(c["n"]) or "").strip()
     if not fund:
         return [("Teoria Core (breve)", _slide_summary(c["teoria"]), [], "content")]
-    laminas = TS.slides_de_clase(_sin_secciones_de_taller(fund))
+    # Las frases que hablan de la actividad se quitan ANTES de paginar: si se quitaran
+    # despues, la ultima pagina de cada seccion quedaba corta. Van a las notas de la
+    # primera lamina de su seccion.
+    fund, fuera_sec = _fundamento_solo_tema(_sin_secciones_de_taller(fund))
+    laminas = TS.slides_de_clase(fund)
+    vistos = set()
+    for k, (t, it, nt, tp) in enumerate(laminas):
+        base = re.sub(r"\s*\(\d+/\d+\)$", "", t)
+        for sec, fr in fuera_sec.items():
+            if fr and sec not in vistos and TS.limpiar_tokens(sec).startswith(base[:40]):
+                vistos.add(sec)
+                laminas[k] = (t, it, list(nt) + ["Fuera de la lamina (habla de la practica): " + f
+                                               for f in fr], tp)
     # Y las consultas autoradas de la clase. Es la materia de las consultas y el deck
     # proyectaba el 7% de codigo: todo el SQL que ya existia en el material estaba
     # extraido, asi que subir de ahi era escribir SQL nuevo. Ensenan el MECANISMO que la
     # actividad de ExamLab evalua, sobre un ejemplo adyacente y no sobre el enunciado.
     laminas += [(tit, lineas, [], "codigo") for tit, lineas in QUERIES.get(c["n"], [])]
     return laminas
+
+
+# Una linea de concepto bajo las consultas proyectadas que quedaban cortas: que hace el
+# codigo y por que.
+DEMO_OBSERVAR = {
+    1: ["la FK rechaza una cita para una mascota que no existe: el motor responde con "
+        "violacion de clave foranea y no inserta nada.",
+        "el mismo modelo en tres formas que deben coincidir: el boceto, el DDL que compila y el texto erDiagram."],
+    2: ["con `SET ROLE recepcion` el `DELETE` responde permission denied, y "
+        "`information_schema.role_table_grants` muestra la matriz real que dejo cada GRANT.",
+        "la vista entrega a recepcion la agenda sin el email del dueno: el privilegio por columna recorta lo que se ve."],
+    3: ["el CALL valido inserta una cita y los invalidos abortan con su mensaje literal; el "
+        "`COUNT(*)` de cita confirma que los fallidos no dejaron nada.",
+        "el procedimiento queda guardado en el motor: cerrar la sesion no lo borra, y cualquier cliente lo invoca con CALL."],
+    4: ["tres UPDATE de estado dejan solo dos filas en audit_cita, porque el WHEN ignora el "
+        "que no cambio el valor; y el trigger de stock rechaza el negativo."],
+    6: ["las dos versiones devuelven las mismas 91 filas, pero el plan de la primera muestra "
+        "loops=2006 y el de la segunda una sola pasada.",
+        "el nodo mas costoso, las filas estimadas contra las reales y el tiempo total, leidos en ese orden en cada plan."],
+    7: ["el plan pasa de Seq Scan a Index Scan using con el nombre del indice, y con la "
+        "particion la consulta de un ano lee una sola particion.",
+        "despues de crear el indice hace falta ANALYZE: sin estadisticas frescas el planeador puede seguir eligiendo el Seq Scan."],
+    8: ["la factura que falla a mitad no deja cabecera ni lineas, y el stock del insumo "
+        "vuelve exactamente a su valor inicial."],
+    10: ["la segunda reserva de la misma franja falla por la restriccion UNIQUE en vez de "
+         "quedar guardada como doble reserva.",
+        "con FOR UPDATE la segunda sesion espera a que la primera confirme, en vez de decidir con un dato que ya cambio."],
+    11: ["cada hallazgo se demuestra con una ejecucion: el DDL contra el ER y el "
+         "procedimiento con un caso valido y uno invalido.",
+        "un hallazgo util nombra el artefacto, el problema, su impacto en VetCare y la accion concreta que lo corrige."],
+    12: ["el parametro viaja como dato: el texto `Luna' OR '1'='1` se busca literal y no "
+         "devuelve todas las mascotas.",
+        "la aplicacion solo conoce la firma del procedimiento y sus mensajes de error: no ve tablas ni arma SQL con texto."],
+    13: ["cada caso se separa en contexto, fallo, causa raiz y la leccion convertida en una "
+         "accion verificable sobre VetCare DB.",
+        "una leccion accionable tiene verbo, artefacto, frecuencia o umbral, y una forma de comprobar que se hizo."],
+}
+
+
+LEYENDA_CONSULTA = {
+    "El JOIN de tres tablas":
+        "Cada JOIN sigue una FK: cita llega a mascota por id_mascota, y mascota a dueno por "
+        "id_dueno. El WHERE filtra despues de unir; si falta una condicion ON, el resultado "
+        "no es un error sino un producto cartesiano.",
+    "El molde de un procedimiento en PL/pgSQL":
+        "LANGUAGE plpgsql y el cuerpo entre $proc$: el motor guarda el procedimiento y "
+        "cualquier cliente lo invoca con CALL. Un RAISE EXCEPTION aborta la llamada y deshace "
+        "lo que alcanzo a escribir.",
+    "La bateria de pruebas: un bloque DO por caso":
+        "Cada caso va en su propio DO con EXCEPTION: el error se captura, se registra con "
+        "SQLERRM en resultado_prueba y el script sigue al caso siguiente en vez de abortar.",
+    "Todo o nada: la transaccion explicita":
+        "BEGIN abre la transaccion; hasta el COMMIT nadie mas ve los cambios, y un ROLLBACK "
+        "o un error los deshace todos. Asi la factura y sus lineas existen juntas o no existen.",
+    "El bloqueo explicito y la actualizacion condicional":
+        "FOR UPDATE bloquea la fila leida hasta el COMMIT: la segunda sesion espera en vez de "
+        "decidir con un dato viejo. El UPDATE con la condicion en el WHERE logra lo mismo en "
+        "una sola sentencia.",
+}
 
 
 def _slide_summary(bullets_, max_chars=110, max_items=5):
@@ -2757,7 +2864,7 @@ _TITULOS_TEMA = [
     (r"y con la r[uú]brica del PI", "y con el PI"),
     (r"Lo que (?:ExamLab|la plataforma del curso) si puede demostrar",
      "Lo que PostgreSQL en el navegador si puede demostrar"),
-    (r"Lo que pide el taller", "Lo que pide la practica"),
+    (r"Lo que pide el minimo privilegio", "Lo que pide la practica"),
 ]
 
 
@@ -2992,6 +3099,8 @@ def build_pptx(c):
             f"**Hoy cerramos el PI:** {c['hito_pi']}",
             "Sesión **síncrona** de sustentaciones · Bloque **120 min** · turnos consecutivos.",
             "La sustentación es **en vivo** y con preguntas: no se reemplaza por video grabado.",
+            "Sustentar es justificar decisiones: por qué esta tabla, esta restricción, este índice.",
+            "**Ejes de hoy:** " + " · ".join(_conceptos_de(c)[:3]) + ".",
         ], idx=idx); idx += 1
     else:
         content_slide(prs, ENCUADRE_TITULO[0], [
@@ -3000,6 +3109,7 @@ def build_pptx(c):
             "Gratis + navegador · free tier · sin software de pago obligatorio.",
             "Recorrido: teoría del tema, una lámina por concepto, y demo del docente sobre VetCare DB.",
             "Cada lámina se sostiene sola: sirve para repasar aunque hayas faltado.",
+            "**Conceptos de hoy:** " + " · ".join(_conceptos_de(c)[:4]) + ".",
         ], idx=idx); idx += 1
     if c['tipo'] == 'sustentacion':
         # El bloque no se reparte en teoría + taller: son turnos de sustentación.
@@ -3032,7 +3142,8 @@ def build_pptx(c):
         ], sub=NOMENCLATURA, idx=idx); idx += 1
     for _t, _items, _notas, _tipo in _teoria_slides(c):
         if _tipo == "codigo":
-            _s = pseudo_code_slide(prs, _t, _items, idx=idx)
+            _s = pseudo_code_slide(prs, _t, _items, idx=idx,
+                                   caption=LEYENDA_CONSULTA.get(_t))
         else:
             _s = content_slide(prs, _t, _items, idx=idx)
         # Lo que teoria_a_slides manda al guion (que subrayar, como dictarlo) va
@@ -3070,13 +3181,14 @@ def build_pptx(c):
             "Turnos de **5–8 min de pitch + Q&A**; el orden se sortea al empezar.",
             "En tu turno muestra una **ejecución real** (procedimiento OK + caso rechazado), no solo capturas.",
             "Mientras otros presentan, escuchas: el cierre del curso se hace con todo el grupo.",
+            "Cada decisión se defiende con su porqué: la restricción, el rol, el índice o el procedimiento que la sostiene.",
         ], idx=idx); idx += 1
     else:
         content_slide(prs, "Demo del dia", [
             f"**Herramienta:** {c['herramienta']}",
             f"**Demo:** {c['demo']}",
             "Sigan el mismo dominio VetCare (no inventen otro caso).",
-            "Al final de la demo: dejar enlace/script compartible al grupo.",
+            *[f"**Qué observar:** {x}" for x in DEMO_OBSERVAR.get(c['n'], [])],
         ], idx=idx); idx += 1
     # Del boceto al codigo: solo en las clases cuyo taller tiene pregunta de
     # diagrama. El estudiante disena en Excalidraw/draw.io y entrega Mermaid; sin

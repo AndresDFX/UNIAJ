@@ -28,21 +28,29 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 5] SQL es declarativo: quien decide el como es el optimizador (2/2)** — 3 vinetas.
 
-**[Slide 6] Leer un plan: es un arbol y se lee de adentro hacia afuera (1/3)** — 5 vinetas.
-  - Y hay dos trampas al senalar el nodo mas costoso, que el docente tiene que conocer antes de calificar: el tiempo que muestra un nodo INCLUYE el de sus hijos, de modo que la primera linea siempre parece la mas cara sin serlo, y actual time es POR VUELTA, asi que el costo real de un nodo es su tiempo multiplicado por loops.
+**[Slide 6] Leer un plan: es un arbol y se lee de adentro hacia afuera (1/3)** — 4 vinetas.
+  - Y hay dos trampas al senalar el nodo mas costoso.
+  - Fuera de la lamina (habla de la practica): El costo NO esta en milisegundos, es una unidad relativa donde 1.0 equivale por convencion a leer secuencialmente una pagina de 8 KB, y solo sirve para comparar planes del mismo motor; confundir cost con tiempo es el error mas frecuente al calificar esta pregunta.
+  - Fuera de la lamina (habla de la practica): Advertencia que evita un accidente en clase: ANALYZE EJECUTA la sentencia, asi que sobre un UPDATE o un DELETE hay que envolverlo en BEGIN y ROLLBACK, lo cual ya anticipa la Clase 8; con SELECT no hay riesgo y el taller es solo de SELECT.
+  - Fuera de la lamina (habla de la practica): Y hay dos trampas al senalar el nodo mas costoso, que el docente tiene que conocer antes de calificar: el tiempo que muestra un nodo INCLUYE el de sus hijos, de modo que la primera linea siempre parece la mas cara sin serlo, y actual time es POR VUELTA, asi que el costo real de un nodo es su tiempo multiplicado por loops.
+  - Fuera de la lamina (habla de la practica): Un nodo de 0,5 ms con loops=2006 cuesta un segundo entero y aparece impreso como el mas barato de la pantalla; es exactamente lo que va a pasar en la pregunta 3.
 
-**[Slide 7] Leer un plan: es un arbol y se lee de adentro hacia afuera (2/3)** — 6 vinetas.
+**[Slide 7] Leer un plan: es un arbol y se lee de adentro hacia afuera (2/3)** — 4 vinetas.
 
-**[Slide 8] Leer un plan: es un arbol y se lee de adentro hacia afuera (3/3)** — 2 vinetas.
+**[Slide 8] Leer un plan: es un arbol y se lee de adentro hacia afuera (3/3)** — 4 vinetas.
 
-**[Slide 9] Las estadisticas: metadatos que describen los datos sin leerlos (1/2)** — 5 vinetas.
-  - De ahi que se comparen rows estimadas contra actual rows, que es literalmente una de las tres columnas que pide la pregunta 2: una divergencia de 2 veces es normal, una de 10 veces o mas es la senal clasica de estadisticas viejas o de predicados correlacionados, y esa es tambien la sexta afirmacion de la pregunta 4, que es correcta.
-  - Conviene marcar la diferencia de palabras en voz alta, porque van a aparecer las dos hoy: predicados correlacionados es esto, un asunto de estimacion; subconsulta correlacionada, la de la pregunta 3, es otra cosa completamente distinta y es un asunto de numero de ejecuciones.
+**[Slide 9] Las estadisticas: metadatos que describen los datos sin leerlos (1/2)** — 6 vinetas.
+  - De ahi que se comparen rows estimadas contra actual rows.
+  - Conviene marcar la diferencia de palabras en voz alta, porque van a aparecer las dos hoy: predicados correlacionados es esto, un asunto de estimacion; subconsulta correlacionada.
+  - Fuera de la lamina (habla de la practica): En la base de la clase el ANALYZE ya esta corrido, y eso es deliberado: si faltara, el estimado contra real de la pregunta 2 saldria disparatado por una razon que no es el tema de la clase y el estudiante concluiria lo contrario de lo que hay que aprender.
+  - Fuera de la lamina (habla de la practica): De ahi que se comparen rows estimadas contra actual rows, que es literalmente una de las tres columnas que pide la pregunta 2: una divergencia de 2 veces es normal, una de 10 veces o mas es la senal clasica de estadisticas viejas o de predicados correlacionados, y esa es tambien la sexta afirmacion de la pregunta 4, que es correcta.
+  - Fuera de la lamina (habla de la practica): Conviene marcar la diferencia de palabras en voz alta, porque van a aparecer las dos hoy: predicados correlacionados es esto, un asunto de estimacion; subconsulta correlacionada, la de la pregunta 3, es otra cosa completamente distinta y es un asunto de numero de ejecuciones.
 
-**[Slide 10] Las estadisticas: metadatos que describen los datos sin leerlos (2/2)** — 5 vinetas.
+**[Slide 10] Las estadisticas: metadatos que describen los datos sin leerlos (2/2)** — 4 vinetas.
 
 **[Slide 11] Cardinalidad y selectividad: por que el motor decide lo que decide (1/3)** — 4 vinetas.
   - Dos terminos explican por que el motor decide lo que decide.
+  - Fuera de la lamina (habla de la practica): Los dos filtros juntos dejan 91 filas de 30.010, el 0,3 %, y ese 91 es el numero que el estudiante tiene que ver dos veces en la pregunta 1.
 
 **[Slide 12] Cardinalidad y selectividad: por que el motor decide lo que decide (2/3)** — 4 vinetas.
 
@@ -56,62 +64,68 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 16] Full table scan contra index scan, sin caricaturas (3/3)** — 4 vinetas.
 
-**[Slide 17] Predicado sargable: el antipatron que conecta con la Clase 7 (1/3)** — 5 vinetas.
+**[Slide 17] Predicado sargable: el antipatron que conecta con la Clase 7 (1/3)** — 4 vinetas.
+  - Fuera de la lamina (habla de la practica): El antipatron de la funcion sobre la columna merece parrafo propio porque conecta con la Clase 7 y porque es el que la pregunta 4 pone de primero.
 
-**[Slide 18] Predicado sargable: el antipatron que conecta con la Clase 7 (2/3)** — 5 vinetas.
+**[Slide 18] Predicado sargable: el antipatron que conecta con la Clase 7 (2/3)** — 4 vinetas.
 
-**[Slide 19] Predicado sargable: el antipatron que conecta con la Clase 7 (3/3)** — 3 vinetas.
+**[Slide 19] Predicado sargable: el antipatron que conecta con la Clase 7 (3/3)** — 4 vinetas.
 
 **[Slide 20] Predicado sargable: el antipatron que conecta... — sintaxis** — 1 vinetas.
 
 **[Slide 21] La subconsulta correlacionada: 2.006 pasadas o una sola (1/4)** — 5 vinetas.
-  - Dos detalles que valen puntos y que el docente tiene que poder justificar en el momento.
   - No esta colgada.
+  - Fuera de la lamina (habla de la practica): Es la pregunta 3, otros 20 puntos, y la cuarta afirmacion de la pregunta 4 dice lo mismo.
+  - Fuera de la lamina (habla de la practica): Dos detalles que valen puntos y que el docente tiene que poder justificar en el momento.
 
-**[Slide 22] La subconsulta correlacionada: 2.006 pasadas o una sola (2/4)** — 5 vinetas.
+**[Slide 22] La subconsulta correlacionada: 2.006 pasadas o una sola (2/4)** — 4 vinetas.
 
 **[Slide 23] La subconsulta correlacionada: 2.006 pasadas o una sola (3/4)** — 4 vinetas.
 
-**[Slide 24] La subconsulta correlacionada: 2.006 pasadas o una sola (4/4)** — 2 vinetas.
+**[Slide 24] La subconsulta correlacionada: 2.006 pasadas o una sola (4/4)** — 3 vinetas.
 
 **[Slide 25] Optimizar no cambia el resultado, y eso se demuestra (1/2)** — 4 vinetas.
   - Y se rompe sin avisar, porque ningun motor va a lanzar un error por eso.
-  - Por eso el taller cobra la prueba dos veces, unos 6 de los 100 puntos, y hay dos formas segun lo que se compare.
   - Para conjuntos completos, donde el conteo puede coincidir con filas distintas, se usa EXCEPT en los DOS sentidos, y el docente tiene que saber por que son dos: A EXCEPT B devuelve lo que esta en A y no esta en B, asi que si sale vacio todavia puede haber filas de mas en B; se corren las dos direcciones unidas con UNION ALL y se exige cero filas en total.
-  - Tres advertencias al calificar.
+  - Fuera de la lamina (habla de la practica): Por eso el taller cobra la prueba dos veces, unos 6 de los 100 puntos, y hay dos formas segun lo que se compare.
+  - Fuera de la lamina (habla de la practica): Tres advertencias al calificar.
 
 **[Slide 26] Optimizar no cambia el resultado, y eso se demuestra (2/2)** — 2 vinetas.
 
-**[Slide 27] El antes y el despues del script de la clase (1/3)** — 4 vinetas.
+**[Slide 27] El antes y el despues del script de la clase (1/2)** — 6 vinetas.
   - La version ANTES es SELECT * FROM cita c, mascota m, dueno d, veterinario v con las cuatro condiciones de union en el WHERE, to_char sobre la fecha y UPPER sobre el estado, y el docente debe saber que esta mal en cada linea.
   - SELECT * arrastra todas las columnas de las cuatro tablas cuando la pantalla de agenda necesita seis, lo cual multiplica el ancho de la fila y con el la memoria de trabajo del ordenamiento.
   - Las dos funciones sobre columnas se explicaron en el parrafo del predicado sargable.
-  - Hay que decir aqui, y no despues, lo que la quinta afirmacion de la pregunta 4 castiga: cambiar la coma por JOIN...
+  - Hay que decir aqui, y no despues.
   - ON no acelera nada, porque PostgreSQL normaliza las dos formas al mismo plan interno; se gana legibilidad y se gana que un ON faltante salte a la vista, o sea seguridad, no milisegundos.
   - Si el docente lo presenta como una mejora de rendimiento, esta ensenando justo la opcion por la que va a descontar.
   - La version DESPUES proyecta las seis columnas, escribe los tres JOIN...
+  - Fuera de la lamina (habla de la practica): Hay que decir aqui, y no despues, lo que la quinta afirmacion de la pregunta 4 castiga: cambiar la coma por JOIN ...
+  - Fuera de la lamina (habla de la practica): El script cierra con los bloques de la subconsulta correlacionada y con las dos pruebas de equivalencia, incluido el contraejemplo de COUNT(*) contra COUNT(c.id_cita) sobre los duenos 2001 a 2006, que es medio minuto de demo y ahorra la mitad de los reclamos de la pregunta 3.
 
-**[Slide 28] El antes y el despues del script de la clase (2/3)** — 4 vinetas.
+**[Slide 28] El antes y el despues del script de la clase (2/2)** — 3 vinetas.
 
-**[Slide 29] El antes y el despues del script de la clase (3/3)** — 2 vinetas.
+**[Slide 29] Donde se corre todo esto, y que no se puede medir aqui** — 5 vinetas.
+  - Soporta EXPLAIN, EXPLAIN ANALYZE y la opcion BUFFERS; si en alguna maquina BUFFERS no responde.
+  - Lo que hay que documentar en papel.
+  - Fuera de la lamina (habla de la practica): Soporta EXPLAIN, EXPLAIN ANALYZE y la opcion BUFFERS; si en alguna maquina BUFFERS no responde, el enunciado ya autoriza usar EXPLAIN ANALYZE a secas y declararlo en la seccion 5 de la pregunta 5, asi que eso no cuesta puntos.
+  - Fuera de la lamina (habla de la practica): Hoy no se ofrece ningun playground externo como alterno, y conviene que lo digas asi de claro: en DB Fiddle o en cualquier otro no existe la base sembrada, de modo que quien mida ahi obtiene otros numeros, y la rubrica pide los del plan real -- el «Rows Removed by Filter: 29919» y las 91 filas son justo las dos anclas con las que se verifica.
+  - Fuera de la lamina (habla de la practica): Un alterno que cuesta puntos no es un alterno.
+  - Fuera de la lamina (habla de la practica): Lo que hay que documentar en papel, porque el entorno no lo permite y es literalmente la seccion 5 de la pregunta 5: los tiempos con la memoria intermedia vacia, ya que vaciarla exige privilegios de administrador; el comportamiento con varias sesiones compitiendo, que es la Clase 10; y cualquier comparacion por encima de unos cientos de miles de filas.
+  - Fuera de la lamina (habla de la practica): Los milisegundos, ademas, cambian entre dos corridas seguidas en la misma maquina: lo que no cambia son los conteos de filas, y por eso los conteos son lo que se califica y los milisegundos solo tienen que ser coherentes entre si.
 
-**[Slide 30] Donde se corre todo esto, y que no se puede medir aqui (1/2)** — 4 vinetas.
-  - Lo que hay que documentar en papel, porque el entorno no lo permite y es literalmente la seccion 5 de la pregunta 5: los tiempos con la memoria intermedia vacia, ya que vaciarla exige privilegios de administrador; el comportamiento con varias sesiones compitiendo, que es la Clase 10; y cualquier comparacion por encima de unos cientos de miles de filas.
-
-**[Slide 31] Donde se corre todo esto, y que no se puede medir aqui (2/2)** — 4 vinetas.
-
-**[Slide 32] Preguntas frecuentes del grupo (1/3)** — 4 vinetas.
+**[Slide 30] Preguntas frecuentes del grupo (1/3)** — 4 vinetas.
   - Cuatro preguntas aparecen siempre.
 
-**[Slide 33] Preguntas frecuentes del grupo (2/3)** — 4 vinetas.
+**[Slide 31] Preguntas frecuentes del grupo (2/3)** — 4 vinetas.
 
-**[Slide 34] Preguntas frecuentes del grupo (3/3)** — 3 vinetas.
+**[Slide 32] Preguntas frecuentes del grupo (3/3)** — 3 vinetas.
 
-**[Slide 35] El antipatron y su reescritura** — 12 vinetas.
+**[Slide 33] El antipatron y su reescritura** — 12 vinetas.
 
-**[Slide 36] EXPLAIN ANALYZE: la evidencia, no la opinion** — 11 vinetas.
+**[Slide 34] EXPLAIN ANALYZE: la evidencia, no la opinion** — 11 vinetas.
 
-**[Slide 37] Matar la subconsulta correlacionada** — 13 vinetas.
+**[Slide 35] Matar la subconsulta correlacionada** — 13 vinetas.
 
 
 **Demo que usted debe poder repetir:** Consulta pesada citas+mascotas+duenos -> version filtrada y proyectada, con EXPLAIN ANALYZE antes y despues, en ExamLab.
@@ -146,23 +160,21 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 24. La subconsulta correlacionada: 2.006 pasadas o una sola (4/4)
 25. Optimizar no cambia el resultado, y eso se demuestra (1/2)
 26. Optimizar no cambia el resultado, y eso se demuestra (2/2)
-27. El antes y el despues del script de la clase (1/3)
-28. El antes y el despues del script de la clase (2/3)
-29. El antes y el despues del script de la clase (3/3)
-30. Donde se corre todo esto, y que no se puede medir aqui (1/2)
-31. Donde se corre todo esto, y que no se puede medir aqui (2/2)
-32. Preguntas frecuentes del grupo (1/3)
-33. Preguntas frecuentes del grupo (2/3)
-34. Preguntas frecuentes del grupo (3/3)
-35. El antipatron y su reescritura
-36. EXPLAIN ANALYZE: la evidencia, no la opinion
-37. Matar la subconsulta correlacionada
-38. Optimizar es un ANTES medible, no una opinion
-39. Leer un plan: es un arbol y se lee de adentro hacia afuera
-40. La subconsulta correlacionada: 2.006 pasadas o una sola
-41. Optimizar no cambia el resultado: como se prueba
-42. Demo del dia
-43. Cierre · Clase 6
+27. El antes y el despues del script de la clase (1/2)
+28. El antes y el despues del script de la clase (2/2)
+29. Donde se corre todo esto, y que no se puede medir aqui
+30. Preguntas frecuentes del grupo (1/3)
+31. Preguntas frecuentes del grupo (2/3)
+32. Preguntas frecuentes del grupo (3/3)
+33. El antipatron y su reescritura
+34. EXPLAIN ANALYZE: la evidencia, no la opinion
+35. Matar la subconsulta correlacionada
+36. Optimizar es un ANTES medible, no una opinion
+37. Leer un plan: es un arbol y se lee de adentro hacia afuera
+38. La subconsulta correlacionada: 2.006 pasadas o una sola
+39. Optimizar no cambia el resultado: como se prueba
+40. Demo del dia
+41. Cierre · Clase 6
 
 > Privado, no se proyecta: `Kit docente/Clase 6/Solucion Taller Clase 6 - VetCare.docx`
 
@@ -193,7 +205,7 @@ Ideas que tienen que quedar dichas:
 - Error de docente que no domina el tema: pedir 'la consulta más rápida' sin definir contra que se compara (volumen de datos, indices existentes) — optimizar siempre es relativo a un antes medible, por eso el taller pide guardar la version antes Y despues, no solo la version final.
 Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 
-### 35-55 · Demo paso a paso · [Slide 42]
+### 35-55 · Demo paso a paso · [Slide 40]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: Consulta pesada citas+mascotas+duenos -> version filtrada y proyectada, con EXPLAIN ANALYZE antes y despues, en ExamLab.
 Herramienta: ExamLab (PostgreSQL) + Google Docs
@@ -219,9 +231,9 @@ Entregable: 2 consultas (antes/despues) + justificacion (media pag.)
 Repasar los conceptos del dia volviendo a las laminas de teoria que mas costaron.
 Pasar quiz 8–10 min **en ExamLab** (preguntas de esta clase; ver Guia Docente - Parte Practica). Version impresa/proyectable de respaldo: `Quiz Clase 6 - VetCare.docx`. Clave para usted: `Quiz Clase 6 - CLAVE DOCENTE.docx` (**no proyectar**).
 
-### 115-120 · Cierre · [Slide 43]
+### 115-120 · Cierre · [Slide 41]
 **Decir:** «Queda visto: Optimizacion de consultas · VetCare. Si hicimos la practica, la guia y la entrega estan en la carpeta de la clase.»
-Proyectar [Slide 43] slide de cierre. Dudas finales.
+Proyectar [Slide 41] slide de cierre. Dudas finales.
 
 
 ## Codigo / scripts

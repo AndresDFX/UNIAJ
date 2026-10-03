@@ -27,7 +27,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 4] Sustentar no es describir: el eje de toda la clase (1/2)** — 5 vinetas.
   - Eso convierte cada eleccion del ER en algo que se debe poder defender, y es exactamente lo que un evaluador (o un lider tecnico en una entrevista) va a probar con dos o tres preguntas bien elegidas.
 
-**[Slide 5] Sustentar no es describir: el eje de toda la clase (2/2)** — 2 vinetas.
+**[Slide 5] Sustentar no es describir: el eje de toda la clase (2/2)** — 3 vinetas.
 
 **[Slide 6] Las cuatro preguntas de por que que se hacen casi siempre (1/2)** — 3 vinetas.
   - Esa segunda mitad es la que distingue al estudiante que entendio, porque normalizar no es un dogma sino un punto de partida del que se sale con razones escritas.
@@ -49,21 +49,22 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 12] Reproducible: un tercero llega a la misma base sin hablar con el autor (3/3)** — 3 vinetas.
 
-**[Slide 13] El reparto de los 5 a 8 minutos (1/3)** — 5 vinetas.
-  - Lo que si hay que exigir dentro del turno es la ejecucion real: que el estudiante corra el procedimiento en el playground, con su caso valido y su caso invalido, en vez de proyectar capturas fijas, porque una consulta ejecutandose delante del evaluador es la evidencia mas dificil de fingir y la mas rapida de calificar.
+**[Slide 13] El reparto de los 5 a 8 minutos (1/2)** — 6 vinetas.
+  - Lo que si hay que exigir dentro del turno es la ejecucion real: que el estudiante corra el procedimiento en el playground, con su caso valido y su caso invalido, en vez de proyectar capturas fijas.
+  - El paquete, en cambio.
+  - Fuera de la lamina (habla de la practica): Lo que si hay que exigir dentro del turno es la ejecucion real: que el estudiante corra el procedimiento en el playground, con su caso valido y su caso invalido, en vez de proyectar capturas fijas, porque una consulta ejecutandose delante del evaluador es la evidencia mas dificil de fingir y la mas rapida de calificar.
+  - Fuera de la lamina (habla de la practica): El paquete, en cambio, se sube al modulo de Proyectos de PostgreSQL en el navegador ANTES del turno: quien llega a subir archivos consume su propio tiempo de sustentacion.
 
-**[Slide 14] El reparto de los 5 a 8 minutos (2/3)** — 4 vinetas.
+**[Slide 14] El reparto de los 5 a 8 minutos (2/2)** — 4 vinetas.
 
-**[Slide 15] El reparto de los 5 a 8 minutos (3/3)** — 2 vinetas.
-
-**[Slide 16] El Q&A de modelado, con las respuestas listas (1/2)** — 3 vinetas.
+**[Slide 15] El Q&A de modelado, con las respuestas listas (1/2)** — 4 vinetas.
   - El Q&A sobre modelado tiene preguntas que se repiten, y conviene que el docente tenga las respuestas listas para poder calificarlas y para poder formularlas.
   - Aqui vale la regla general del Q&A tecnico, que el docente debe anunciar antes de empezar: decir «no lo medimos» no penaliza si viene acompanado de como se mediria, por ejemplo «no medimos con volumen real porque el playground se reinicia, pero el plan de ejecucion pasa de recorrido completo a busqueda por indice, y la prueba seria cargar cincuenta mil citas y comparar los tiempos».
   - Inventar un numero, en cambio, se cae con la siguiente pregunta y cuesta mucho mas que admitir el limite.
 
-**[Slide 17] El Q&A de modelado, con las respuestas listas (2/2)** — 3 vinetas.
+**[Slide 16] El Q&A de modelado, con las respuestas listas (2/2)** — 4 vinetas.
 
-**[Slide 18] El cierre del curso: conectar lo hecho con el trabajo real** — 4 vinetas.
+**[Slide 17] El cierre del curso: conectar lo hecho con el trabajo real** — 4 vinetas.
   - Lo que el estudiante produjo (un ER justificado, un DDL con restricciones declarativas, una matriz de privilegios, procedimientos con manejo de errores, disparadores de auditoria, un analisis de plan de ejecucion y un contrato de operaciones) es literalmente el contenido de las tareas de un desarrollador de base de datos o de un administrador junior en su primer ano de trabajo.
   - Conviene tambien cerrar la duda sobre las herramientas, porque alguien la trae: Oracle Live SQL, DB Fiddle y draw.io se usaron por equidad y porque funcionan en cualquier navegador, no porque sean juguetes.
   - Esa respuesta es la que mejor predice si aprendieron, y ademas le da al docente material real para ajustar el curso el proximo semestre.
@@ -87,14 +88,13 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 10. Reproducible: un tercero llega a la misma base sin hablar con el autor (1/3)
 11. Reproducible: un tercero llega a la misma base sin hablar con el autor (2/3)
 12. Reproducible: un tercero llega a la misma base sin hablar con el autor (3/3)
-13. El reparto de los 5 a 8 minutos (1/3)
-14. El reparto de los 5 a 8 minutos (2/3)
-15. El reparto de los 5 a 8 minutos (3/3)
-16. El Q&A de modelado, con las respuestas listas (1/2)
-17. El Q&A de modelado, con las respuestas listas (2/2)
-18. El cierre del curso: conectar lo hecho con el trabajo real
-19. Como se ordena la sesion de hoy
-20. Cierre · Clase 15
+13. El reparto de los 5 a 8 minutos (1/2)
+14. El reparto de los 5 a 8 minutos (2/2)
+15. El Q&A de modelado, con las respuestas listas (1/2)
+16. El Q&A de modelado, con las respuestas listas (2/2)
+17. El cierre del curso: conectar lo hecho con el trabajo real
+18. Como se ordena la sesion de hoy
+19. Cierre · Clase 15
 
 > Privado, no se proyecta: `Kit docente/Clase 15/Solucion Taller Clase 15 - VetCare.docx`
 

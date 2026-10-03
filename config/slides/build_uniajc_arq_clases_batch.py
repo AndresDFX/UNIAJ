@@ -259,18 +259,24 @@ CLASSES = [
                 "Cloud: recursos **bajo demanda**, multi-tenant, API/automatización.",
                 "Para CloudLite App: no «comprar servidores»; **diseñar** capas y simular en labs gratis.",
                 "Bloques tipicos: cliente → API → lógica → datos → observabilidad.",
+                "Una decisión es **arquitectónica** si es cara de revertir: cambiar la base de datos a los 3 meses lo es; cambiar el color de un botón, no.",
+                "Atributos de calidad del curso: **rendimiento**, **disponibilidad**, **seguridad** y **costo**.",
             ]),
             ("CloudLite App — el hilo conductor", [
                 "Aplicación web/API de un dominio realista (citas, academia, inventario liviano…).",
                 "Lo que se construye en el semestre: diagramas + contenedor (lab) + CI/CD conceptual + informe.",
                 "Hoy solo: **problema + capacidades + boceto de contexto**.",
                 "Sin AWS/GCP/Oracle: draw.io, Killercoda, GitHub Actions.",
+                "Ejemplo de dominio: **CloudLite Turnos** — el cliente reserva turno, el barbero ve su agenda, el administrador fija horarios.",
+                "Error común: un dominio infinito (una red social completa) no cabe en un semestre.",
             ]),
             ("De dominio a arquitectura (mini-método)", [
                 "1) Actor y problema. 2) Capacidades. 3) Contenedores lógicos. 4) Datos. 5) Riesgos.",
                 "Ejemplo: *AgendaU* — estudiantes reservan tutoría; API + auth + agenda + notificaciones.",
                 "Pregunta de diseño: ¿qué es **núcleo** vs satélite?",
                 "Salida: diagrama C4 Context (sistema + actores externos).",
+                "**Núcleo** = lo que diferencia al dominio (la agenda de turnos); **satélite** = lo genérico que se delega (correo, autenticación).",
+                "Error común: empezar por la tecnología («usaremos Kubernetes») antes de nombrar actor y problema.",
             ]),
         ],
         "taller_titulo": "Taller Clase 1 — Ficha y boceto CloudLite App",
@@ -308,11 +314,13 @@ CLASSES = [
                 "@@PaaS@@: usted despliega app; el proveedor gestiona runtime/escala básica.",
                 "@@SaaS@@: consume el servicio listo (correo, CRM); poca personalización profunda.",
                 "En este curso **simulamos** con labs/navegador; no abrimos cuentas IaaS con tarjeta.",
+                "Ejemplos: IaaS = una máquina virtual (EC2, Droplet) · PaaS = Render, Railway, Heroku · SaaS = correo corporativo, proveedor de identidad.",
             ]),
             ("Cómo decidir para CloudLite", [
                 "Pregunte: ¿necesito controlar red/SO o solo desplegar API+datos?",
                 "Para un MVP académico suele ganar **PaaS conceptual** + contenedores (portable).",
                 "Si el dominio exige mucho control de red → justifique IaaS *simulado* en diagrama.",
+                "Ejemplo CloudLite Turnos: API en PaaS, base de datos gestionada y correo como SaaS — tres modelos en un mismo sistema.",
                 "SaaS solo como **satélite** (auth, email, analytics) — no como toda la app.",
             ]),
             # La responsabilidad compartida y el vendor lock-in ya estaban en el
@@ -374,6 +382,7 @@ CLASSES = [
                 "Contenedor: comparte kernel del host → portable y rápido para demos.",
                 "Imagen = capas inmutables; contenedor = instancia en ejecución.",
                 "CloudLite: contenerizamos al menos **un** servicio (API stub o front estático).",
+                "Error común: creer que el contenedor «no tiene sistema operativo»: usa el kernel del anfitrión, por eso una imagen Linux necesita un kernel Linux debajo.",
             ]),
             ("Comprobar en un lab: recomendado, no obligatorio", [
                 "Lo que se entrega hoy es el **Dockerfile** y el **ciclo justificado**: se escribe "
@@ -618,6 +627,9 @@ CLASSES = [
             ("Ejercicio guiado", [
                 "Amenaza → control → dónde se ve, en el diagrama que ya tienen.",
                 "Ej.: llaman la API sin autenticar → token verificado → **flecha** «App web → API».",
+                "Ej.: la llave del correo está escrita en el Dockerfile → secreto en variable de entorno → **flecha** «API → Worker de avisos».",
+                "Ej.: un script pide `GET /turnos` mil veces por minuto → límite de tasa → **caja** «App web» (punto de entrada).",
+                "Cada fila nombra un actor o dato concreto, un control verificable y un lugar del diagrama.",
             ]),
             ("Una fila por amenaza: ejemplo en CloudLite Turnos", [], {
                 # Encabezados LITERALMENTE los tres de la pregunta 2, de la solucion
@@ -692,20 +704,24 @@ CLASSES = [
         "slides_extra": [
             ("Red lógica para el diagrama", [
                 "Cliente → edge/balanceador → app → datos: **tres zonas**, no dos.",
-                "**La base de datos va en la zona de datos**, nunca en la pública: es el error que la nota castiga.",
+                "**La base de datos va en la zona de datos**, nunca en la pública: es el error más grave del diagrama.",
                 "**Frontera de confianza:** la flecha donde termina lo que tú controlas (un SaaS externo).",
                 "No inventen subnets AWS: usen zonas **Pública / Privada / Datos**.",
+                "Pública: balanceador y web estática · Privada: la API · Datos: la base, que solo acepta conexiones desde la API.",
             ]),
             ("Almacenamiento", [
                 "Tres tipos y sus nombres exactos: **Relacional** · **Bloque** · **Objeto**.",
                 "Relacional: el dato se cruza con otro · Bloque: lo monta un solo proceso · Objeto: se recupera entero.",
                 "Se justifica por la **característica del dato**, no por preferencia.",
-                "Si tu dominio no maneja archivos, **declara que no necesitas objeto**: eso suma.",
+                "Si tu dominio no maneja archivos, **declara que no necesitas objeto**: es una decisión válida.",
+                "Ejemplos: turnos → Relacional · disco de una VM → Bloque · fotos de perfil → Objeto.",
             ]),
             ("Checklist del diagrama Deployment", [
                 "Tres zonas rotuladas · cada componente en su zona · puerto de cada uno.",
                 "Fronteras de confianza marcadas · **que renderice sin error** en un visor Mermaid.",
                 "Debe alinearse con el C4 Containers (mismos nombres).",
+                "Cada flecha lleva protocolo y puerto: HTTPS 443 al edge, HTTP 8080 a la API, PostgreSQL 5432 a la base.",
+                "Los servicios externos (correo, pagos) se dibujan fuera de las tres zonas: ahí está la frontera de confianza.",
             ]),
         ],
         "taller_titulo": "Taller Clase 7 — Despliegue y storage CloudLite",
@@ -741,19 +757,22 @@ CLASSES = [
             ("CI/CD sin tarjeta", [
                 "CI: build + test en cada push. CD: deploy — aquí **simulado** (echo/artifact).",
                 "GitHub Actions free: runners hosted; YAML en `.github/workflows/`.",
+                "**CI** = integración continua: cada cambio se construye y se prueba solo. **CD** = entrega continua (queda listo para desplegar) o despliegue continuo (llega solo a producción).",
                 "**«Ya tenemos CD» porque el YAML tiene un paso `deploy` es falso.** Aquí llega a «listo para desplegar».",
             ]),
             ("YAML mínimo", [
                 "Tres bloques obligatorios: **disparadores** (`on`) · **entorno** (`runs-on`) · **pasos**.",
                 "Los pasos, en este orden: **construcción** → **prueba** → **despliegue simulado**.",
-                "Secrets solo vía Settings; nunca en el YAML en claro (**cero en la pregunta si aparece uno**).",
+                "Ejemplo: `on: [push, pull_request]` · `runs-on: ubuntu-latest` · pasos checkout, build, test, deploy simulado.",
+                "Secrets solo vía Settings; nunca en el YAML en claro: un secreto escrito queda en el historial del repositorio.",
                 "**Un CI que solo imprime «OK» no es CI:** tienes que poder decir qué error lo pondría rojo.",
             ]),
             ("Monitoreo y optimización", [
                 "Golden signals-lite: latencia, tráfico, errores, saturación.",
                 "**Cada señal va con su umbral**: «medimos la latencia» no permite decidir nada.",
                 "Al menos una debe ser un **registro** (log), no una métrica numérica.",
-                "Optimización: caché conceptual, paginación, límites de rate (anotar en informe).",
+                "Optimización: caché conceptual, paginación, límites de tasa, documentados en el diseño.",
+                "Ejemplo: p95 del `GET /turnos` < 300 ms; si se supera 5 minutos seguidos, se revisa el índice de la consulta.",
             ]),
         ],
         "taller_titulo": "Taller Clase 8 — Actions + monitoreo CloudLite",
@@ -802,10 +821,14 @@ CLASSES = [
                 "Escala cualitativa: Bajo / Medio / Alto por componente.",
                 "Drivers: siempre-on, egress, storage caliente, builds CI frecuentes.",
                 "CloudLite: justifiquen por qué su diseño no es «siempre XL».",
+                "Ejemplo: la base de datos siempre encendida es costo **Medio**; un worker que solo corre cuando hay mensajes en cola es **Bajo**.",
+                "**Egress** = datos que salen del proveedor hacia internet; suele cobrarse por gigabyte, y la entrada casi nunca.",
             ]),
             ("Sostenibilidad", [
                 "Menos capas innecesarias · imágenes slim · apagar labs · right-sizing.",
                 "Relación con escalabilidad: escala cuando hay carga, no por vanidad.",
+                "Sostenibilidad **técnica**: que el equipo pueda operar el diseño. **Ambiental**: no consumir cómputo que nadie usa.",
+                "Ejemplo: una imagen slim pesa decenas de MB frente a cerca de 1 GB de una completa: menos almacenamiento, menos transferencia y despliegues más rápidos.",
             ]),
         ],
         "taller_titulo": "Actividad autónoma Clase 10 — Costos CloudLite",
@@ -838,6 +861,9 @@ CLASSES = [
             ("Errores frecuentes a corregir", [
                 "Microservicios teatro · nombres distintos entre diagramas · secretos en imagen.",
                 "CI sin tests · diagrama sin puertos · dominio infinito.",
+                "**Microservicios teatro**: servicios separados que comparten base de datos y se despliegan siempre juntos.",
+                "**Nombres distintos**: «API de turnos» en el C4 y «backend» en el Despliegue rompen la trazabilidad.",
+                "**CI sin tests**: un pipeline que no puede fallar no verifica nada.",
             ]),
         ],
         "taller_titulo": "Taller Clase 11 — Checkpoint PI CloudLite v1",
@@ -872,11 +898,16 @@ CLASSES = [
                 "Definan: RPS/usuarios concurrentes objetivo · p95 latencia · error rate.",
                 "Escenario: pico de matrícula / hora pico de citas — narren carga.",
                 "Bottlenecks probables: DB, auth, I/O de objetos.",
+                "**p95** = el 95 % de las peticiones responde en ese tiempo o menos; el 5 % restante tarda más.",
+                "Ejemplo: 150 RPS en la hora pico de reservas · p95 < 300 ms · errores < 1 %.",
+                "Error común: medir con un solo usuario; el sistema se ve rápido hasta que llega la concurrencia.",
             ]),
             ("Preparación de presentación (5–8 min)", [
                 "1 min problema · 2 min arquitectura · 1 min contenedor · 1 min CI · 1 min seguridad/costos · Q&A.",
                 "Demo: diagrama + captura lab/Actions (no improvisar login cloud).",
                 "Sustentas tú los 5 bloques; si hay equipo autorizado, hablan todos.",
+                "Una idea por diapositiva: el diagrama en pantalla y la decisión dicha en voz alta.",
+                "Cerrar con el punto débil declarado: lo que no escala o lo que no se midió.",
             ]),
         ],
         "taller_titulo": "Taller Clase 12 — Rendimiento y ensayo CloudLite",
@@ -911,10 +942,15 @@ CLASSES = [
                 "Horizontal: más réplicas del API. Vertical: más CPU/RAM a un nodo.",
                 "Datos: escala distinta (read replicas conceptuales / partición — solo si aplica).",
                 "Triggers: RPS, latencia p95, profundidad de cola, CPU.",
+                "Escalar en horizontal exige una API **sin estado**: la sesión vive en un token o en un almacén compartido, no en la memoria de una instancia.",
+                "Ejemplo CloudLite: la API escala de 2 a 6 réplicas; la base de datos no escala igual y suele ser el límite.",
             ]),
             ("Límites y costos", [
-                "max replicas · min replicas · cooldown — anótenlos aunque sean hipotéticos.",
+                "max replicas · min replicas · cooldown — se definen aunque sean hipotéticos.",
                 "Escalar mal = costo (enlace con Clase 10).",
+                "**min** = capacidad base siempre encendida, y su costo fijo · **max** = techo de gasto y de conexiones a la base.",
+                "**Cooldown** = espera tras escalar (por ejemplo 5 minutos) para no subir y bajar en ciclos.",
+                "Error común: max sin límite; un pico o un ataque se convierte en factura.",
             ]),
         ],
         "taller_titulo": "Actividad autónoma Clase 13 — Autoescalado CloudLite",
@@ -962,6 +998,9 @@ CLASSES = [
             ("Cierre del curso", [
                 "RAA1–3 aplicados al PI. Conserven el repo como portafolio.",
                 "Gracias — arquitectura es trade-offs documentados, no logos de proveedores.",
+                "Recorrido: dominio → modelo de servicio → contenedor → Containers → seguridad → despliegue → CI y monitoreo → costos → rendimiento → escala.",
+                "Cada paso fue una decisión con su trade-off escrito: eso es lo que se lleva a la práctica profesional.",
+                "Un ADR por decisión importante permite, años después, saber por qué el sistema es como es.",
             ]),
         ],
         "taller_titulo": "Guía de sustentación Clase 15 — PI CloudLite",
@@ -1118,7 +1157,7 @@ def cover_slide(prs, n: int, tema: str, sub: str, pi_hoy: str, *, tipo: str = "r
 DIAGRAMAS = {
     1: {
         "titulo": "Ejemplo de diagrama C4 — nivel Context",
-        "sub": "Reemplacen actor / sistema / externo por su propio dominio CloudLite",
+        "sub": "Actor, sistema y sistema externo: el mismo esquema sirve para cualquier dominio CloudLite",
         "boxes": [
             {"id": "actor", "label": "Estudiante\n(actor)", "x": 0.9, "y": 3.0, "w": 2.3, "h": 1.2, "color": AMARILLO, "text_color": NAVY},
             {"id": "sys", "label": "CloudLite App\n(el sistema = una sola caja)", "x": 5.3, "y": 2.6, "w": 3.1, "h": 1.8, "color": NAVY},
@@ -1128,7 +1167,7 @@ DIAGRAMAS = {
             {"src": "actor", "dst": "sys", "label": "usa"},
             {"src": "sys", "dst": "ext", "label": "notifica / consume"},
         ],
-        "note": "Nivel Context: el sistema es UNA caja (sin abrir por dentro). Actores a la izquierda, sistemas externos a la derecha. El interior se dibuja en Clase 4 (Containers).",
+        "note": "Nivel Context: el sistema es UNA caja (sin abrir por dentro). Actores a la izquierda, sistemas externos a la derecha. El interior se dibuja en Clase 4 (Containers). Cada flecha lleva un verbo de negocio («reserva turno», «envía recordatorio»); la API y la base de datos no aparecen aquí porque son piezas interiores.",
     },
     # Antes la Clase 2 explicaba IaaS/PaaS/SaaS solo con bullets (diapositiva 5) y no
     # tenia ni un diagrama ni un nombre real de producto: el estudiante memorizaba tres
@@ -1227,7 +1266,7 @@ DIAGRAMAS = {
             {"src": "publica", "dst": "privada", "label": "solo el 8080"},
             {"src": "privada", "dst": "datos", "label": "solo el 5432"},
         ],
-        "note": "La base de datos NUNCA vive en la zona pública. Los nombres deben coincidir con los del C4 Containers (Clase 4) — mismo sistema, otro ángulo.",
+        "note": "La base de datos NUNCA vive en la zona pública: solo acepta conexiones de la API por el 5432. Los nombres coinciden con los del C4 Containers (Clase 4) — mismo sistema, otro ángulo. El correo externo queda fuera de las zonas.",
     },
 }
 
@@ -1396,12 +1435,14 @@ ANTES_DESPUES_ARQ = {
         "b": ["Cada instancia trae un **SO completo** (kernel propio)",
               "Aislamiento fuerte a nivel de hardware virtual",
               "Arranque en **minutos**, tamaño en **GB**",
-              "Util cuando se necesitan SO distintos"],
+              "Util cuando se necesitan SO distintos",
+              "Ej.: un servidor Windows y uno Linux en el mismo host"],
         "a_t": "Contenedor",
         "a": ["**Comparte el kernel** del anfitrion",
               "Empaqueta solo app + dependencias",
               "Arranque en **segundos**, tamaño en **MB**",
-              "Util para desplegar el mismo servicio muchas veces"],
+              "Util para desplegar el mismo servicio muchas veces",
+              "Ej.: el stub de CloudLite, replicado detras del balanceador"],
     },
     4: {
         "titulo": "Microservicios de verdad vs microservicios teatro",
@@ -1422,12 +1463,14 @@ ANTES_DESPUES_ARQ = {
         "b": ["«La app tiene que ser rapida»",
               "«Aguanta harta gente»",
               "«Si se pone lenta, le subimos recursos»",
-              "No hay con que comparar despues"],
+              "No hay con que comparar despues",
+              "Nadie puede decir si se cumplio"],
         "a_t": "Enunciado medible",
         "a": ["**p95 < 300 ms** en el endpoint de reserva",
               "Escenario: **150 RPS** en el pico de inicio de semestre",
               "Bottleneck sospechado: **consulta a la BD**",
-              "Se puede verificar: pasa o no pasa"],
+              "Se puede verificar: pasa o no pasa",
+              "Errores: **< 1 %** de respuestas 5xx"],
     },
 }
 

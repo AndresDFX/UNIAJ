@@ -24,14 +24,14 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 7] El tercer angulo: que responde el diagrama de despliegue (1/2)** — 4 vinetas.
+**[Slide 7] El tercer angulo: que responde el diagrama de despliegue (1/2)** — 5 vinetas.
   - Conviene tener claro el mapa de los tres diagramas del curso, porque el estudiante cree que dibuja lo mismo tres veces.
   - (Sobre la actividad, no se proyecta) Lo que se califica hoy son 25 de los 100 puntos de la actividad del Corte 2, en tres preguntas: 14 puntos el diagrama de despliegue, 5.5 el tipo de almacenamiento de cada componente y 5.5 la tabla de correspondencia con el C4 Containers.
   - (Sobre la actividad, no se proyecta) Y hay un dato que cambia como se dicta la clase: el entregable NO es una imagen.
   - (Sobre la actividad, no se proyecta) La pregunta 4 se responde con codigo Mermaid pegado en la plataforma del curso, que la plataforma renderiza en la misma pantalla, y 2 de esos 14 puntos son literalmente que renderice sin error.
   - (Sobre la actividad, no se proyecta) El boceto en draw.io o en Excalidraw sigue sirviendo, y es el paso 1 del metodo que se proyecta hoy, pero es un borrador de trabajo: no se entrega y no se califica.
 
-**[Slide 8] El tercer angulo: que responde el diagrama de despliegue (2/2)** — 2 vinetas.
+**[Slide 8] El tercer angulo: que responde el diagrama de despliegue (2/2)** — 3 vinetas.
 
 **[Slide 9] IP, puerto y protocolo: las tres etiquetas de cada flecha** — 4 vinetas.
   - Para etiquetar ese diagrama hacen falta tres conceptos de red que el docente debe definir en una frase.
@@ -50,7 +50,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 12] DNS y balanceador de carga (1/2)** — 4 vinetas.
   - El balanceador de carga recibe todas las peticiones y las reparte entre varias instancias iguales del mismo servicio, con algoritmos como round robin o menor numero de conexiones activas.
 
-**[Slide 13] DNS y balanceador de carga (2/2)** — 2 vinetas.
+**[Slide 13] DNS y balanceador de carga (2/2)** — 4 vinetas.
 
 **[Slide 14] Los tres nombres de almacenamiento (1/3)** — 4 vinetas.
   - Vale la pena escribirlas en el tablero y sostenerlas toda la clase.
@@ -72,12 +72,12 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - (Sobre la actividad, no se proyecta) Los 5.5 puntos se reparten asi, y conviene decirlo en voz alta: 2 puntos la explicacion de por que los nombres deben coincidir, y la respuesta esperada es que los dos diagramas son el MISMO sistema visto desde angulos distintos, uno dice que piezas hay y el otro donde se ejecutan; 2.5 puntos la tabla completa, con una fila por componente y su zona; y 1 punto listar los renombres que se aplicaron, o declarar explicitamente que no hubo ninguno, que tambien vale.
   - (Sobre la actividad, no se proyecta) La trampa esta en la palabra completa: se descuenta si la tabla deja fuera un componente que si aparece en alguno de los dos diagramas, asi que hay que instruir el gesto de llenarla con los dos diagramas abiertos al lado y contando cajas.
 
-**[Slide 20] Trazabilidad: la tabla de correspondencia (2/2)** — 2 vinetas.
+**[Slide 20] Trazabilidad: la tabla de correspondencia (2/2)** — 3 vinetas.
 
-**[Slide 21] Recorrer una peticion de CloudLite de punta a punta (1/2)** — 4 vinetas.
+**[Slide 21] Recorrer una peticion de CloudLite de punta a punta (1/2)** — 5 vinetas.
   - (Sobre la actividad, no se proyecta) Ese recorrido, con cada flecha etiquetada con protocolo y puerto y cada caja dentro de su zona, es la estructura que la pregunta 4 califica; lo que se pega en la plataforma es su version en Mermaid, que es la seccion siguiente.
 
-**[Slide 22] Recorrer una peticion de CloudLite de punta a punta (2/2)** — 2 vinetas.
+**[Slide 22] Recorrer una peticion de CloudLite de punta a punta (2/2)** — 3 vinetas.
 
 **[Slide 23] El molde de Mermaid, linea por linea (1/2)** — 6 vinetas.
   - Hay cinco cosas que el docente debe poder explicar sin titubear.

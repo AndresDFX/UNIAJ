@@ -52,25 +52,27 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 15] Monitorear y observar: la segunda mitad cambia de lado (2/2)** — 3 vinetas.
 
-**[Slide 16] Las cuatro senales de oro, con definicion operativa (1/2)** — 5 vinetas.
+**[Slide 16] Las cuatro senales de oro, con definicion operativa (1/2)** — 6 vinetas.
   - Errores es la proporcion de peticiones que fallan, tipicamente el porcentaje de respuestas 5xx; conviene expresarlo como disponibilidad, y aqui hay aritmetica que el docente debe citar: 99,9 por ciento equivale a unos 43 minutos de indisponibilidad al mes y 99,99 por ciento a unos 4 minutos, lo cual no es convencion sino calculo sobre los 43.200 minutos de un mes de treinta dias.
 
-**[Slide 17] Las cuatro senales de oro, con definicion operativa (2/2)** — 2 vinetas.
+**[Slide 17] Las cuatro senales de oro, con definicion operativa (2/2)** — 3 vinetas.
 
 **[Slide 18] La tabla de senales, con sus tres columnas (1/2)** — 5 vinetas.
   - «Medimos la latencia» no permite decidir nada
   - Una tabla de referencia para CloudLite, que el docente puede llenar en vivo: latencia p95 del inicio de sesion y del listado principal, con objetivo bajo 300 milisegundos; peticiones por minuto en la hora pico, con un valor esperado que sirva de linea base; porcentaje de respuestas 5xx, con alerta sobre el 1 por ciento sostenido; uso del pool de conexiones, con alerta sobre el 80 por ciento; y la fila que casi nadie escribe y vale un punto, un REGISTRO: el log estructurado de cada reserva rechazada y de cada intento de inicio de sesion fallido, con identificador de peticion, ruta y codigo, cuyo umbral es un evento observable, por ejemplo mas de cinco fallos del mismo usuario en diez minutos se revisa.
   - Conviene proyectar esa fila y decir «esta es la que falta en el 80 por ciento de las entregas».
+  - Esa accion no es una cuarta columna: se escribe dentro del umbral, como en el ejemplo del listado.
   - Ahi entra la optimizacion de la segunda mitad del tema: paginar, con veinte a cincuenta elementos por pagina, porque un endpoint que devuelve cincuenta mil registros es problema de latencia y de memoria; indexar la columna por la que se filtra, porque sin indice el motor recorre la tabla completa; cachear lecturas repetidas, donde una tasa de acierto del 90 por ciento significa que nueve de cada diez lecturas no llegan a la base; y limitar la tasa de peticiones, el control de denegacion de servicio de la Clase 6.
+  - La fila tiene senal, objeto concreto del dominio y una accion atada al umbral.
   - (Sobre la actividad, no se proyecta) El reparto de sus 6 puntos es un punto por senal bien formada con su umbral hasta la cuarta, hasta un punto adicional entre las senales quinta y sexta, y un punto por que al menos una sea un registro.
 
-**[Slide 19] La tabla de senales, con sus tres columnas (2/2)** — 2 vinetas.
+**[Slide 19] La tabla de senales, con sus tres columnas (2/2)** — 6 vinetas.
 
-**[Slide 20] El pipeline del stub de CloudLite, paso por paso (1/2)** — 3 vinetas.
+**[Slide 20] El pipeline del stub de CloudLite, paso por paso (1/2)** — 4 vinetas.
   - El workflow se dispara en push y en pull_request.
   - (Sobre la actividad, no se proyecta) La evidencia del entregable es doble: el archivo ci.yml en el repositorio y la captura de una corrida en verde con los nombres de los pasos visibles; si Actions falla por cuota o por red se acepta el YAML con la explicacion paso por paso, pero eso es plan B y hay que decir que lo es.
 
-**[Slide 21] El pipeline del stub de CloudLite, paso por paso (2/2)** — 2 vinetas.
+**[Slide 21] El pipeline del stub de CloudLite, paso por paso (2/2)** — 3 vinetas.
 
 **[Slide 22] La condicion de fallo: la pregunta que separa un CI de una decoracion verde** — 4 vinetas.
   - Uno y medio, que se compila o se instala.

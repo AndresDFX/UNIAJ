@@ -25,9 +25,8 @@ del PI VetCare. La teoria se limita a desbloquear el taller.
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
 **[Slide 5] El cliente: la clinica Huellitas (1/2)** — 3 vinetas.
-  - Antes de dibujar una sola tabla hay que decir para quien se dibuja, porque el taller de hoy y los enunciados de las quince clases en ExamLab estan escritos sobre un cliente concreto y con nombre.
+  - Antes de dibujar una sola tabla hay que decir para quien se dibuja.
   - La Clinica Veterinaria Huellitas atiende un alto volumen de pacientes y lleva toda su gestion en carpetas de papel.
-  - Un curso de bases de datos que no nombra al cliente convierte cada taller en un ejercicio suelto; nombrarlo hace que el estudiante pueda decidir por si mismo si un dato sobra.
   - Hay que fijar la nomenclatura en voz alta porque el material la usa con precision y el estudiante la mezcla: Huellitas es la CLINICA, es decir el cliente que tiene el problema
   - Programacion II construye la aplicacion para el mismo cliente y Seminario disena sus planos, asi que un estudiante que curse dos de las tres materias trabaja el mismo caso desde dos angulos.
   - Los tres interesados son la herramienta de decision mas util que se le puede dar hoy al estudiante, y estan en la diapositiva por eso.
@@ -36,7 +35,10 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - El veterinario quiere el historial del paciente a la mano durante la consulta.
   - Lo importante, y hay que subrayarlo, es que esos intereses ENTRAN EN CONFLICTO: pedir mas datos en el formulario de la cita da mejores metricas al dueno y le hace mas lento el trabajo a la recepcionista.
   - Ahi esta la diferencia entre un modelo copiado y uno decidido.
-  - Cuando en un taller un estudiante pregunte si una columna sobra, la respuesta del docente no deberia ser si o no sino otra pregunta: cual de los tres la necesita, y que pierde otro si la agregamos.
+  - Fuera de la lamina (habla de la practica): Antes de dibujar una sola tabla hay que decir para quien se dibuja, porque el taller de hoy y los enunciados de las quince clases estan escritos sobre un cliente concreto y con nombre.
+  - Fuera de la lamina (habla de la practica): La administracion reporta tres problemas y conviene enunciarlos tal cual, porque cada uno se traduce despues en una decision de esquema: se extravian fichas de pacientes, y esa es la razon de que el expediente tenga que vivir en una fila con clave primaria y no en un papel; buscar un historial en el archivo fisico genera filas en la sala de espera, que es el motivo por el que en la Clase 7 se habla de indices y no como un tema abstracto de rendimiento; y no hay metricas, no saben cuantas especies atienden al mes, que es exactamente la consulta agregada que aparece en el taller de la Clase 6.
+  - Fuera de la lamina (habla de la practica): Un curso de bases de datos que no nombra al cliente convierte cada taller en un ejercicio suelto; nombrarlo hace que el estudiante pueda decidir por si mismo si un dato sobra.
+  - Fuera de la lamina (habla de la practica): Cuando en un taller un estudiante pregunte si una columna sobra, la respuesta del docente no deberia ser si o no sino otra pregunta: cual de los tres la necesita, y que pierde otro si la agregamos.
 
 **[Slide 6] El cliente: la clinica Huellitas (2/2)** — 3 vinetas.
 
@@ -66,13 +68,14 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 13] Normalizacion 1FN-3FN: primero la enfermedad (2/2)** — 4 vinetas.
 
-**[Slide 14] Clave foranea, borrado y por que la FK no basta (1/2)** — 4 vinetas.
+**[Slide 14] Clave foranea, borrado y por que la FK no basta (1/2)** — 5 vinetas.
   - Lo que casi nunca se explica es la otra mitad: que pasa al borrar el padre.
   - Al declarar la clave foranea se elige el comportamiento
   - RESTRICT o NO ACTION impide borrar el dueno mientras tenga mascotas, CASCADE borra las filas hijas en cadena y SET NULL deja la referencia nula.
   - Esa baja logica es la que obliga a validar en la Clase 3 que una mascota inactiva no agende, porque la clave foranea la sigue aceptando: el identificador existe, el negocio no lo quiere.
+  - ON DELETE SET NULL deja la fila huerfana con la columna en nulo.
 
-**[Slide 15] Clave foranea, borrado y por que la FK no basta (2/2)** — 2 vinetas.
+**[Slide 15] Clave foranea, borrado y por que la FK no basta (2/2)** — 4 vinetas.
 
 **[Slide 16] Clave foranea, borrado y por que la FK no... — sintaxis** — 2 vinetas.
 
@@ -92,22 +95,26 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 **[Slide 21] Tipos de datos: donde se pagan las facturas mas caras (2/2)** — 3 vinetas.
 
 **[Slide 22] Convenciones de nombres para que el DDL corra a la primera (1/2)** — 4 vinetas.
-  - Convenciones de nombres del curso, y hay que exigirlas desde hoy porque el taller se corrige ejecutando el guion en el PostgreSQL que ExamLab trae en el navegador.
+  - Convenciones de nombres del curso.
   - Identificadores sustitutos uniformes con el patron id_<entidad>, el mismo nombre en la tabla propia y en la que la referencia, para que el JOIN se escriba sin buscar como se llamo la columna alla.
+  - Fuera de la lamina (habla de la practica): Convenciones de nombres del curso, y hay que exigirlas desde hoy porque el taller se corrige ejecutando el guion en el PostgreSQL que PostgreSQL en el navegador trae en el navegador.
 
-**[Slide 23] Convenciones de nombres para que el DDL corra a la primera (2/2)** — 2 vinetas.
+**[Slide 23] Convenciones de nombres para que el DDL corra a la primera (2/2)** — 4 vinetas.
 
-**[Slide 24] Herramientas del dia y que se puede demostrar con cada una** — 2 vinetas.
+**[Slide 24] Herramientas del dia y que se puede demostrar con cada una** — 3 vinetas.
+  - Sobre lo que se puede demostrar con herramientas gratuitas conviene ser preciso.
   - En DB Fiddle, sin cuenta y en menos de un minuto, se ejecuta el guion completo de CREATE TABLE con claves primarias, foraneas y CHECK, se insertan Ana Perez, Luna y su cita, se corre el JOIN de las tres tablas y, sobre todo, se provoca el error de integridad en vivo insertando una cita con id_mascota inexistente para que el grupo lea el mensaje real del motor.
   - Lo que DB Fiddle no da es persistencia: cada ejecucion recrea el esquema desde cero y no hay usuarios ni roles reales, razon por la cual la Clase 2 trabaja con matriz documentada.
-  - Oracle Live SQL exige cuenta gratuita pero conserva esquema y guiones entre sesiones y admite bloques PL/SQL, que es lo que se necesitara desde la Clase 3; conviene que el estudiante la cree hoy y no el dia que la necesite. draw.io corre en el navegador, no pide cuenta y exporta PNG, el formato que pide ExamLab.
-  - De ahi sale la regla operativa del curso: la fuente de verdad es el archivo sql en la carpeta del proyecto, nunca la pestana del navegador, y el estudiante va bien si reconstruye el esquema completo en menos de cinco minutos pegando su propio guion.
+  - Oracle Live SQL exige cuenta gratuita pero conserva esquema y guiones entre sesiones y admite bloques PL/SQL, que es lo que se necesitara desde la Clase 3; conviene que el estudiante la cree hoy y no el dia que la necesite. draw.io corre en el navegador, no pide cuenta y exporta PNG, el formato que pide PostgreSQL en el navegador.
+  - De ahi sale la regla operativa del curso: la fuente de verdad es el archivo sql en la carpeta del proyecto, nunca la pestana del navegador, y el estudiante va bien si reconstruye el esquema completo en menos de cinco minutos pegando su propio guion. draw.io y Excalidraw: son pizarras para pensar el modelo a mano alzada, sin instalar nada.
+  - Fuera de la lamina (habla de la practica): Sobre lo que se puede demostrar con herramientas gratuitas conviene ser preciso, porque de eso depende que el taller no se atore.
 
 **[Slide 25] Del ER dibujado al codigo Mermaid** — 3 vinetas.
-  - Ultimo tramo, y es el que decide si el taller se entrega o no: como pasa el estudiante del dibujo a lo que la plataforma califica.
+  - Ultimo tramo.
   - Eso no significa que haya que dibujar escribiendo codigo, y conviene decirlo asi para que nadie se bloquee: el camino corto es disenar visual en draw.io o Excalidraw, que es donde se piensa el modelo, y despues pedirle a una IA que traduzca ese boceto a Mermaid.
   - El PNG exportado se conserva en la carpeta del PI para el informe, pero no reemplaza la respuesta en la plataforma.
   - La demo debe terminar exactamente ahi, y deja los cuatro pasos proyectados mientras el grupo trabaja.
+  - Fuera de la lamina (habla de la practica): Ultimo tramo, y es el que decide si el taller se entrega o no: como pasa el estudiante del dibujo a lo que la plataforma califica.
 
 **[Slide 26] Preguntas frecuentes del grupo** — 5 vinetas.
   - Tres preguntas aparecen casi siempre y conviene tener la respuesta lista.

@@ -52,6 +52,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - La lista de errores posibles con codigo y significado.
   - Y la version.
   - Idempotente significa que ejecutar la operacion dos veces con los mismos datos deja el sistema igual que ejecutarla una sola vez.
+  - Fuera de la lamina (habla de la practica): Contrato, dicho en serio, es mucho mas que el nombre del procedimiento, y tiene seis partes que hay que exigir en el entregable de hoy.
 
 **[Slide 12] El contrato y sus seis partes (2/2)** — 5 vinetas.
 
