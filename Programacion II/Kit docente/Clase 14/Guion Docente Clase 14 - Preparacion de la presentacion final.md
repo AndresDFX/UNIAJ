@@ -13,50 +13,35 @@
 
 ## Apoyo por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en las notas del presentador de su lamina. Aqui va, por lamina y en su orden, lo que hay que subrayar.
 
-**Sustentar un proyecto de software no es exponer diapositivas: es... (1/2)** — 3 vinetas.
+**[Slide 4] Sustentar es demostrar** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
 
-**Sustentar un proyecto de software no es exponer diapositivas: es... (2/2)** — 3 vinetas.
+**[Slide 5] La sustentación es una coreografía** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Las transiciones entre bloques se dicen en voz alta, con una formula corta del tipo 'para mostrar como quedan guardados esos datos, abro de nuevo la aplicacion', porque los silencios incomodos al cambiar de tema son lo que mas se nota.
+  - Subrayar: Un guion escrito, con minutos y evidencia por bloque (y el nombre del responsable si hay equipo), convierte una exposicion nerviosa en algo que se puede ensayar y medir; en VetCare ese guion tiene cinco bloques y suma siete minutos, con cuatro dedicados a la demo.
 
-**La sustentacion es una coreografia y hay que repartirla como se reparte... (1/2)** — 4 vinetas.
-  - Un guion escrito, con minutos y evidencia por bloque (y el nombre del responsable si hay equipo), convierte una exposicion nerviosa en algo que se puede ensayar y medir; en VetCare ese guion tiene cinco bloques y suma siete minutos, con cuatro dedicados a la demo.
+**[Slide 6] El guion de la sustentación en código** — codigo (9 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**La sustentacion es una coreografia y hay que repartirla como se reparte... (2/2)** — 2 vinetas.
+**[Slide 7] La demo blindada: el pre-vuelo** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: La demo en vivo no falla por mala suerte, falla por falta de preparacion, y se blinda con un chequeo previo que llamaremos pre-vuelo.
 
-**La demo en vivo no falla por mala suerte, falla por falta de... (1/2)** — 4 vinetas.
-  - La demo en vivo no falla por mala suerte, falla por falta de preparacion, y se blinda con un chequeo previo que llamaremos pre-vuelo.
+**[Slide 8] sembrarDatosDemo(): datos creíbles** — codigo (16 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**La demo en vivo no falla por mala suerte, falla por falta de... (2/2)** — 2 vinetas.
+**[Slide 9] chequeoPreVuelo(): verde o no se presenta** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Las preguntas del jurado son casi siempre las mismas y se pueden... (1/2)** — 4 vinetas.
+**[Slide 10] Las preguntas del jurado** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
 
-**Las preguntas del jurado son casi siempre las mismas y se pueden... (2/2)** — 2 vinetas.
+**[Slide 11] Tiempo y nervios: el ensayo cronometrado** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Por eso hoy ensayamos con reloj y anotamos el tiempo real de cada bloque frente al planeado, y se repite hasta que el total caiga entre cinco y ocho minutos con margen.
 
-**El manejo del tiempo y del nervio se entrena, no se improvisa** — 5 vinetas.
-  - Por eso hoy ensayamos con reloj y anotamos el tiempo real de cada bloque frente al planeado, y se repite hasta que el total caiga entre cinco y ocho minutos con margen.
+**[Slide 12] ensayo(): planeado contra real** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**class EnsayoSustentacionClinica** — 20 vinetas.
+## Errores tipicos del docente que no domina el tema
 
-**EnsayoSustentacionClinica.java — responsableDe()** — 7 vinetas.
+Material de preparacion: no se proyecta.
 
-**EnsayoSustentacionClinica.java — main() (1/2)** — 20 vinetas.
-
-**EnsayoSustentacionClinica.java — main() (2/2)** — 18 vinetas.
-
-**EnsayoSustentacionClinica.java — sembrarDatosDemo() (1/2)** — 20 vinetas.
-
-**EnsayoSustentacionClinica.java — sembrarDatosDemo() (2/2)** — 4 vinetas.
-
-**EnsayoSustentacionClinica.java — escribir()** — 12 vinetas.
-
-**EnsayoSustentacionClinica.java — chequeoPreVuelo()** — 15 vinetas.
-
-**EnsayoSustentacionClinica.java — contarFilas()** — 14 vinetas.
-
-**EnsayoSustentacionClinica.java — ensayo() (1/2)** — 20 vinetas.
-
-**EnsayoSustentacionClinica.java — ensayo() (2/2)** — 10 vinetas.
+- Error tipico del docente que no domina el tema: dejar la sustentacion para el ultimo dia, decir 'preparen una exposicion' y confiar en que el guion se arma solo. Eso produce demos improvisadas con la aplicacion vacia y proyectos que se ponen a compilar en vivo mientras el jurado espera. Otras variantes: no cronometrar nunca, permitir que el estudiante muestre codigo linea por linea en lugar de la aplicacion corriendo, y no exigir plan B, para despues perder media hora del examen porque el computador de alguien no encendio. Cuando el docente autoriza equipos aparece un problema extra: si nadie exige reparto escrito, tres personas se quedan mudas y la nota la sostiene un solo orador. La clase de hoy no tiene tema tecnico nuevo, pero tiene un producto verificable, y ese es el punto: si al final del bloque cada estudiante no tiene guion escrito, datos sembrados y dos ensayos cronometrados, la clase no se cumplio.
 
 
 **Demo que usted debe poder repetir:** El docente sustenta VetCare en 6 minutos delante del grupo, provoca a proposito un error de edad para mostrar la validacion, y luego repite la misma demo con la lista vacia para que se vea el desastre de no sembrar datos.

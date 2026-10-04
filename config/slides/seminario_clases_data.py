@@ -216,7 +216,7 @@ CLASES = [
             "Dibujar el diagrama iterativo con cajas distintas a las del lineal, como si iterar cambiara las fases; iterar cambia el recorrido, no las fases.",
             "Confundir incremento con iteracion: entregar modulo tras modulo sin volver nunca sobre lo ya entregado, y llamar a eso 'trabajo iterativo'."
         ],
-        "codigo_slide_titulo": "El ciclo de vida de VetCare en Mermaid: mismas cajas, dos recorridos",
+        "codigo_slide_titulo": "El ciclo de vida en Mermaid: mismas cajas, dos recorridos",
         "codigo_slide_lineas": [
             "flowchart LR",
             "  A[Requisitos] -->|RF-01 a RF-12 aprobados| B[Diseno]",
@@ -364,7 +364,7 @@ CLASES = [
             "Dibujar la V con las mismas fases en los dos lados (requisitos abajo y requisitos arriba), perdiendo el sentido del modelo, que es emparejar cada fase con su NIVEL de prueba.",
             "Poner requisitos sin fuente ni version y luego cambiarlos en el documento sin dejar rastro, con lo cual la linea base deja de existir y ya no se puede demostrar que fue lo acordado."
         ],
-        "codigo_slide_titulo": "Ficha formal de requisito de VetCare (asi se ve un requisito con linea base)",
+        "codigo_slide_titulo": "Ficha formal de un requisito con linea base",
         "codigo_slide_lineas": [
             "ID: RF-03            Version: 1.2      Estado: Aprobado (linea base 27/08)",
             "Nombre: Buscar la historia clinica de un paciente",
@@ -514,7 +514,7 @@ CLASES = [
             "Escribir historias que en realidad son tareas tecnicas ('crear la tabla paciente', 'instalar la herramienta'), sin decir quien las necesita ni para que sirven al negocio.",
             "Dejar criterios de aceptacion solo con el camino feliz, sin definir que pasa cuando el paciente no existe, cuando hay nombres repetidos o cuando falta un dato obligatorio."
         ],
-        "codigo_slide_titulo": "Historia de usuario de VetCare con criterios de aceptacion",
+        "codigo_slide_titulo": "Historia de usuario con criterios de aceptacion",
         "codigo_slide_lineas": [
             "HU-07  Buscar historia clinica",
             "  Como veterinaria de la clinica Huellitas",
@@ -677,7 +677,7 @@ CLASES = [
             "Poner como RNF el sistema debe ser seguro y confiable sin definir perfiles, sin tiempo maximo de sesion y sin politica de respaldo: suena bien y no obliga a nada.",
             "Marcar 11 de los 12 requisitos como Must y dejar un solo Should: eso no es priorizar, es aplazar la decision para el dia en que ya no haya tiempo."
         ],
-        "codigo_slide_titulo": "Ficha de requisito RF-03 (plantilla proyectable)",
+        "codigo_slide_titulo": "Ficha completa del requisito RF-03",
         "codigo_slide_lineas": [
             "ID: RF-03",
             "Nombre: Consultar historial clinico de una mascota",
@@ -825,7 +825,7 @@ CLASES = [
             "Partir la epica en tres historias llamadas pantalla de historial, logica de historial y tabla de historial: corte horizontal por capas, ninguna se puede entregar ni demostrar sola.",
             "Estimar en horas (esta historia son 6 horas) en lugar de puntos, y ademas dejar historias de 13 y 21 puntos sin partir, con lo cual el backlog no sirve para planear nada."
         ],
-        "codigo_slide_titulo": "Historia HU-04 con criterios de aceptacion (artefacto proyectable)",
+        "codigo_slide_titulo": "Historia HU-04 con sus tres criterios",
         "codigo_slide_lineas": [
             "HU-04  [Epica: E-02 Historial y agenda]",
             "Como veterinario de la clinica Huellitas",
@@ -833,12 +833,15 @@ CLASES = [
             "para decidir el tratamiento sin depender de la carpeta fisica.",
             "",
             "Criterios de aceptacion",
-            "CA-1  Dado un dueno con 3 mascotas registradas, cuando busco por su documento, entonces el sistema lista las 3 mascotas con nombre y especie.",
-            "CA-2  Dado que selecciono la mascota Rocky, cuando abro su historial, entonces veo sus atenciones de la mas reciente a la mas antigua.",
-            "CA-3  Dado un documento no registrado, cuando busco, entonces el sistema muestra 'No hay duenos con ese documento' y ofrece crear uno.",
+            "CA-1  Dado un dueno con 3 mascotas registradas, cuando busco por su documento,",
+            "      entonces el sistema lista las 3 mascotas con nombre y especie.",
+            "CA-2  Dado que selecciono la mascota Rocky, cuando abro su historial,",
+            "      entonces veo sus atenciones de la mas reciente a la mas antigua.",
+            "CA-3  Dado un documento no registrado, cuando busco, entonces el sistema",
+            "      muestra 'No hay duenos con ese documento' y ofrece crear uno.",
             "",
             "Estimacion: 5 puntos   |   Prioridad: Must   |   Origen: RF-03 / NEC-02",
-            "Definicion de terminado: mockup aprobado + los 3 criterios verificados en el prototipo navegable"
+            "Terminado: mockup aprobado + los 3 criterios verificados en el prototipo"
         ],
         "codigo_slide_caption": "La historia dice a quien le sirve y para que; los criterios de aceptacion son la unica parte que se puede cobrar.",
         "artefacto_archivo": "Backlog-Historias-VetCare.md",
@@ -973,19 +976,19 @@ CLASES = [
             "Nombrar las clases en plural o como tablas (Mascotas, tbl_duenos) y dejar atributos sin tipo, con lo cual el diagrama deja de servir para derivar el diccionario de datos.",
             "Usar el triangulo de herencia entre Dueno y Mascota o entre Cita y Veterinario, cuando ahi no hay ningun es-un sino una simple asociacion."
         ],
-        "codigo_slide_titulo": "Modelo de dominio de VetCare en sintaxis Mermaid (diagrama, no codigo)",
+        "codigo_slide_titulo": "Modelo de dominio completo en Mermaid",
         "codigo_slide_lineas": [
             "classDiagram",
             "  class Dueno {",
             "    -documento: String",
             "    -nombre: String",
-            "    +registrarMascota(m: Mascota): void",
+            "    +registrarMascota(m: Mascota) void",
             "  }",
             "  class Mascota {",
             "    -codigo: String",
             "    -especie: String",
             "    -fechaNacimiento: Date",
-            "    +calcularEdad(): int",
+            "    +calcularEdad() int",
             "  }",
             "  class Veterinario {",
             "    -tarjetaProfesional: String",
@@ -994,7 +997,7 @@ CLASES = [
             "  class Cita {",
             "    -fechaHora: DateTime",
             "    -estado: String",
-            "    +reprogramar(nuevaFecha: DateTime): void",
+            "    +reprogramar(nuevaFecha: DateTime) void",
             "  }",
             "  class Atencion {",
             "    -diagnostico: String",
@@ -1003,11 +1006,13 @@ CLASES = [
             "  Dueno \"1\" --> \"0..*\" Mascota : es dueno de",
             "  Mascota \"1\" --> \"0..*\" Cita : tiene agendada",
             "  Veterinario \"1\" --> \"0..*\" Cita : atiende",
-            "  Cita \"1\" --> \"0..1\" Atencion : genera"
+            "  Cita \"1\" --> \"0..1\" Atencion : genera",
+            "%% En Mermaid el retorno va tras el parentesis y sin dos puntos:",
+            "%% +calcularEdad() int  se dibuja como el UML  +calcularEdad(): int"
         ],
         "codigo_slide_caption": "Las multiplicidades son las que contestan las preguntas que el espanol deja abiertas: un dueno, muchas mascotas.",
         "artefacto_archivo": "Diagrama-Clases-VetCare.md",
-        "artefacto_contenido": "# VetCare - Modelo de dominio (diagrama de clases)\n\nProyecto Integrador: Clinica Veterinaria Huellitas.\nAsignatura: Seminario de Sistemas. Herramientas: draw.io o Mermaid. Entrega: ExamLab.\n\n---\n\n## 1. Notacion minima que se exige\n\n| Elemento | Como se escribe | Ejemplo VetCare |\n|---|---|---|\n| Clase | Sustantivo en singular, mayuscula inicial | Mascota |\n| Atributo | visibilidad nombre: Tipo | -fechaNacimiento: Date |\n| Metodo | visibilidad nombre(param): Retorno | +calcularEdad(): int |\n| Visibilidad | - privado, + publico, # protegido | -documento: String |\n| Asociacion | linea con nombre de relacion | Dueno es dueno de Mascota |\n| Multiplicidad | 1 / 0..1 / 1..* / 0..* | Dueno 1 --- 0..* Mascota |\n| Composicion | rombo relleno (la parte no vive sin el todo) | Mascota contiene sus Atenciones (historia clinica) |\n| Agregacion | rombo vacio (la parte sobrevive sola) | Sede agrupa Veterinarios |\n| Herencia | triangulo (solo si hay un 'es-un' real) | Persona <|-- Veterinario |\n\n---\n\n## 2. Clases del dominio VetCare\n\n### Dueno\n- -documento: String\n- -nombre: String\n- -telefono: String\n- -direccion: String\n- +registrarMascota(m: Mascota): void\n\n### Mascota\n- -codigo: String\n- -nombre: String\n- -especie: String\n- -raza: String\n- -fechaNacimiento: Date\n- +calcularEdad(): int\n\n### Veterinario\n- -tarjetaProfesional: String\n- -nombre: String\n- -especialidad: String\n- +agendaDelDia(f: Date): List\n\n### Cita\n- -numero: int\n- -fechaHora: DateTime\n- -motivo: String\n- -estado: String\n- +reprogramar(nuevaFecha: DateTime): void\n- +cancelar(motivo: String): void\n\n### Atencion\n- -fecha: Date\n- -diagnostico: String\n- -tratamiento: String\n- -observaciones: String\n- +resumen(): String\n\n---\n\n## 3. Relaciones (leer en voz alta antes de aprobar)\n\n| Origen | Mult. | Destino | Mult. | Se lee |\n|---|---|---|---|---|\n| Dueno | 1 | Mascota | 0..* | Un dueno puede tener cero o mas mascotas; una mascota pertenece a un unico dueno |\n| Mascota | 1 | Cita | 0..* | Una mascota puede tener muchas citas; cada cita es de una sola mascota |\n| Veterinario | 1 | Cita | 0..* | Un veterinario atiende muchas citas; cada cita la atiende un veterinario |\n| Cita | 1 | Atencion | 0..1 | Una cita genera a lo sumo una atencion (si se cancela, ninguna) |\n\n---\n\n## 4. Version en Mermaid (para pegar en el documento)\n\n```mermaid\nclassDiagram\n  class Dueno {\n    -documento: String\n    -nombre: String\n    -telefono: String\n    +registrarMascota(m: Mascota): void\n  }\n  class Mascota {\n    -codigo: String\n    -nombre: String\n    -especie: String\n    -fechaNacimiento: Date\n    +calcularEdad(): int\n  }\n  class Veterinario {\n    -tarjetaProfesional: String\n    -especialidad: String\n    +agendaDelDia(f: Date): List\n  }\n  class Cita {\n    -numero: int\n    -fechaHora: DateTime\n    -estado: String\n    +reprogramar(nuevaFecha: DateTime): void\n  }\n  class Atencion {\n    -fecha: Date\n    -diagnostico: String\n    -tratamiento: String\n  }\n  Dueno \"1\" --> \"0..*\" Mascota : es dueno de\n  Mascota \"1\" --> \"0..*\" Cita : tiene agendada\n  Veterinario \"1\" --> \"0..*\" Cita : atiende\n  Cita \"1\" --> \"0..1\" Atencion : genera\n```\n\n---\n\n## 5. Del diagrama al diccionario de datos (adelanto de la proxima clase)\n\n| Clase | Tabla prevista | Campo | Tipo | Observacion |\n|---|---|---|---|---|\n| Dueno | dueno | documento | VARCHAR(15) | Llave primaria |\n| Mascota | mascota | codigo | VARCHAR(10) | Llave primaria |\n| Mascota | mascota | documento_dueno | VARCHAR(15) | Llave foranea (viene del 1 --- 0..*) |\n| Cita | cita | fecha_hora | DATETIME | No se permiten dos citas del mismo veterinario a la misma hora |\n\n---\n\n## 6. Trazabilidad clase - requisito\n\n| Clase | RF / Historia que la justifica |\n|---|---|\n| Dueno | RF-01 / HU-01 |\n| Mascota | RF-02 / HU-02 |\n| Cita | RF-05 / HU-06 |\n| Atencion | RF-04 / HU-05 |\n| Veterinario | RF-07 / HU-08 |\n\n---\n\n## 7. Checklist antes de subir a ExamLab\n\n- [ ] Clases en singular y sin nombres de tabla ni de pantalla.\n- [ ] Ninguna clase tecnica (DAO, Conexion, Login, Menu, Reporte).\n- [ ] Todos los atributos tienen visibilidad y tipo.\n- [ ] Ningun atributo repetido en dos clases.\n- [ ] Las 4 relaciones tienen nombre y multiplicidad en los dos extremos.\n- [ ] Cada relacion se leyo en voz alta y la frase es verdadera en Huellitas.\n- [ ] Se suben los dos archivos: Diagrama-Clases-VetCare-<apellidos>.png y .drawio\n",
+        "artefacto_contenido": "# VetCare - Modelo de dominio (diagrama de clases)\n\nProyecto Integrador: Clinica Veterinaria Huellitas.\nAsignatura: Seminario de Sistemas. Herramientas: draw.io o Mermaid. Entrega: ExamLab.\n\n---\n\n## 1. Notacion minima que se exige\n\n| Elemento | Como se escribe | Ejemplo VetCare |\n|---|---|---|\n| Clase | Sustantivo en singular, mayuscula inicial | Mascota |\n| Atributo | visibilidad nombre: Tipo | -fechaNacimiento: Date |\n| Metodo | visibilidad nombre(param): Retorno | +calcularEdad(): int |\n| Visibilidad | - privado, + publico, # protegido | -documento: String |\n| Asociacion | linea con nombre de relacion | Dueno es dueno de Mascota |\n| Multiplicidad | 1 / 0..1 / 1..* / 0..* | Dueno 1 --- 0..* Mascota |\n| Composicion | rombo relleno (la parte no vive sin el todo) | Mascota contiene sus Atenciones (historia clinica) |\n| Agregacion | rombo vacio (la parte sobrevive sola) | Sede agrupa Veterinarios |\n| Herencia | triangulo (solo si hay un 'es-un' real) | Persona <|-- Veterinario |\n\n---\n\n## 2. Clases del dominio VetCare\n\n### Dueno\n- -documento: String\n- -nombre: String\n- -telefono: String\n- -direccion: String\n- +registrarMascota(m: Mascota): void\n\n### Mascota\n- -codigo: String\n- -nombre: String\n- -especie: String\n- -raza: String\n- -fechaNacimiento: Date\n- +calcularEdad(): int\n\n### Veterinario\n- -tarjetaProfesional: String\n- -nombre: String\n- -especialidad: String\n- +agendaDelDia(f: Date): List\n\n### Cita\n- -numero: int\n- -fechaHora: DateTime\n- -motivo: String\n- -estado: String\n- +reprogramar(nuevaFecha: DateTime): void\n- +cancelar(motivo: String): void\n\n### Atencion\n- -fecha: Date\n- -diagnostico: String\n- -tratamiento: String\n- -observaciones: String\n- +resumen(): String\n\n---\n\n## 3. Relaciones (leer en voz alta antes de aprobar)\n\n| Origen | Mult. | Destino | Mult. | Se lee |\n|---|---|---|---|---|\n| Dueno | 1 | Mascota | 0..* | Un dueno puede tener cero o mas mascotas; una mascota pertenece a un unico dueno |\n| Mascota | 1 | Cita | 0..* | Una mascota puede tener muchas citas; cada cita es de una sola mascota |\n| Veterinario | 1 | Cita | 0..* | Un veterinario atiende muchas citas; cada cita la atiende un veterinario |\n| Cita | 1 | Atencion | 0..1 | Una cita genera a lo sumo una atencion (si se cancela, ninguna) |\n\n---\n\n## 4. Version en Mermaid (para pegar en el documento)\n\n```mermaid\nclassDiagram\n  class Dueno {\n    -documento: String\n    -nombre: String\n    -telefono: String\n    +registrarMascota(m: Mascota) void\n  }\n  class Mascota {\n    -codigo: String\n    -nombre: String\n    -especie: String\n    -fechaNacimiento: Date\n    +calcularEdad() int\n  }\n  class Veterinario {\n    -tarjetaProfesional: String\n    -especialidad: String\n    +agendaDelDia(f: Date) List\n  }\n  class Cita {\n    -numero: int\n    -fechaHora: DateTime\n    -estado: String\n    +reprogramar(nuevaFecha: DateTime) void\n  }\n  class Atencion {\n    -fecha: Date\n    -diagnostico: String\n    -tratamiento: String\n  }\n  Dueno \"1\" --> \"0..*\" Mascota : es dueno de\n  Mascota \"1\" --> \"0..*\" Cita : tiene agendada\n  Veterinario \"1\" --> \"0..*\" Cita : atiende\n  Cita \"1\" --> \"0..1\" Atencion : genera\n```\n\n---\n\n## 5. Del diagrama al diccionario de datos (adelanto de la proxima clase)\n\n| Clase | Tabla prevista | Campo | Tipo | Observacion |\n|---|---|---|---|---|\n| Dueno | dueno | documento | VARCHAR(15) | Llave primaria |\n| Mascota | mascota | codigo | VARCHAR(10) | Llave primaria |\n| Mascota | mascota | documento_dueno | VARCHAR(15) | Llave foranea (viene del 1 --- 0..*) |\n| Cita | cita | fecha_hora | DATETIME | No se permiten dos citas del mismo veterinario a la misma hora |\n\n---\n\n## 6. Trazabilidad clase - requisito\n\n| Clase | RF / Historia que la justifica |\n|---|---|\n| Dueno | RF-01 / HU-01 |\n| Mascota | RF-02 / HU-02 |\n| Cita | RF-05 / HU-06 |\n| Atencion | RF-04 / HU-05 |\n| Veterinario | RF-07 / HU-08 |\n\n---\n\n## 7. Checklist antes de subir a ExamLab\n\n- [ ] Clases en singular y sin nombres de tabla ni de pantalla.\n- [ ] Ninguna clase tecnica (DAO, Conexion, Login, Menu, Reporte).\n- [ ] Todos los atributos tienen visibilidad y tipo.\n- [ ] Ningun atributo repetido en dos clases.\n- [ ] Las 4 relaciones tienen nombre y multiplicidad en los dos extremos.\n- [ ] Cada relacion se leyo en voz alta y la frase es verdadera en Huellitas.\n- [ ] Se suben los dos archivos: Diagrama-Clases-VetCare-<apellidos>.png y .drawio\n",
         "quiz": [
             {
                 "tipo": "om",
@@ -1240,7 +1245,7 @@ CLASES = [
     },
     {
         "n": 11,
-        "slug": "Avance del proyecto integrador",
+        "slug": "Avance del proyecto de diseno",
         "titulo": "Avance del proyecto integrador",
         "subtitulo": "Hoy no se agrega nada nuevo: se verifica que todos los documentos hablen del mismo sistema",
         "herramienta": "Google Docs · draw.io",
@@ -1301,7 +1306,7 @@ CLASES = [
             "Escribir hallazgos que son opiniones y no hechos, del estilo el diagrama esta desordenado o falta mas detalle, en vez de señalar la ubicacion exacta y la inconsistencia concreta entre dos artefactos.",
             "Aceptar sinonimos por costumbre, dejando Dueño en el diagrama de clases porque asi se dibujo desde el principio, con lo cual el diccionario de datos y el trabajo de Programacion II terminan con dos conceptos donde solo debia haber uno."
         ],
-        "codigo_slide_titulo": "Auditoria cruzada de VetCare: la matriz que delata las contradicciones",
+        "codigo_slide_titulo": "Auditoria cruzada: la matriz que delata contradicciones",
         "codigo_slide_lineas": [
             "| RF     | Caso de uso                  | Clases implicadas      | Mockup | Estado      |",
             "|--------|------------------------------|------------------------|--------|-------------|",
@@ -1606,7 +1611,7 @@ CLASES = [
             "Dibujar campos que no existen en el diccionario de datos, como correo de la mascota o numero de chip, y al mismo tiempo olvidar el campo obligatorio de dueño, con lo cual la pantalla contradice el modelo de clases entregado en clases anteriores.",
             "Diseñar solo el camino feliz: no hay pantalla de resultados multiples, no hay mensaje de busqueda sin resultados y no hay confirmacion tras guardar, de modo que el prototipo se cae en la sustentacion apenas el jurado hace clic en algo distinto de lo ensayado."
         ],
-        "codigo_slide_titulo": "Flujo de tarea de VetCare en Mermaid: registrar mascota y buscar expediente con caminos alternos",
+        "codigo_slide_titulo": "Flujo de tarea con caminos alternos en Mermaid",
         "codigo_slide_lineas": [
             "flowchart TD",
             "  A[Recepcion: llega el dueño con su mascota] --> B{Dueño ya registrado?}",
@@ -1704,7 +1709,7 @@ CLASES = [
         "demo": "El docente proyecta una sustentacion mal hecha y una bien hecha del mismo paquete VetCare, y luego arma en vivo la tabla de decisiones para justificar por que Historia_Clinica es una clase aparte de Mascota.",
         "teoria": [
             "Sustentar un paquete de diseño no es leer diapositivas ni narrar lo que el equipo hizo cada semana: es demostrar que las decisiones tomadas son defendibles. El jurado, sea el docente o un cliente simulado de la clinica Huellitas, no esta evaluando cuanto trabajaron sino tres cosas concretas: si el diseño resuelve el problema declarado, si las piezas son coherentes entre si y si el equipo entiende lo que entrego. Por eso una sustentacion es un argumento con evidencia, no un recuento cronologico. La diferencia se nota en la primera frase: quien dice hicimos casos de uso, luego clases, luego pantallas, esta narrando; quien dice Huellitas pierde fichas y tarda ocho minutos en encontrar un historial, y este paquete de diseño ataca esos tres problemas asi, esta sustentando. En VetCare la evidencia esta toda disponible: la tabla de RF y RNF, los diagramas UML, el diccionario de datos y el prototipo navegable. El trabajo de hoy es ordenar esa evidencia para que cuente una sola historia. Una sustentacion es, por definicion, la defensa oral de un conjunto de decisiones frente a quien las va a evaluar o a usar. En la clinica esa historia empieza por el problema, las fichas de papel que se pierden y los ocho minutos para encontrar un historial, y termina mostrando en el prototipo como cada requisito queda resuelto. El error comun es ordenar la exposicion por documento, primero requisitos y luego diagramas, en lugar de ordenarla por problema resuelto.",
-            "El orden de la sustentacion no es libre, es un embudo y tiene una razon logica. Primero el problema, porque nada de lo que sigue tiene sentido si el jurado no sabe que duele en Huellitas. Segundo los requisitos, porque son la promesa concreta: que va a hacer el sistema y con que restricciones. Tercero el modelo, casos de uso y clases, porque muestra como se organiza la solucion. Cuarto la interfaz, porque es donde el jurado por fin ve y toca. Y quinto las decisiones, que es la parte que separa a un equipo que entendio de uno que copio plantillas. Invertir ese orden es el error mas comun: los equipos empiezan mostrando pantallas bonitas, el jurado pregunta que problema resuelve eso y ahi la sustentacion se desarma. Para VetCare doce minutos alcanzan de sobra si se respetan las proporciones: uno y medio para el problema, tres para requisitos, dos para modelo, dos para interfaz en vivo, dos para decisiones y el resto para riesgos y cierre.",
+            "El orden de la sustentacion no es libre, es un embudo y tiene una razon logica. Primero el problema, porque nada de lo que sigue tiene sentido si el jurado no sabe que duele en Huellitas. Segundo los requisitos, porque son la promesa concreta: que va a hacer el sistema y con que restricciones. Tercero el modelo, casos de uso y clases, porque muestra como se organiza la solucion. Cuarto la interfaz, porque es donde el jurado por fin ve y toca. Y quinto las decisiones, que es la parte que separa a un equipo que entendio de uno que copio plantillas. Invertir ese orden es el error mas comun: los equipos empiezan mostrando pantallas bonitas, el jurado pregunta que problema resuelve eso y ahi la sustentacion se desarma. Para VetCare doce minutos alcanzan de sobra si se respetan las proporciones: uno y medio para el problema, uno y medio para el alcance, dos para requisitos, dos para modelo, dos para interfaz en vivo, dos para decisiones y el ultimo minuto para riesgos y cierre.",
             "Defender una decision de diseño tiene una estructura fija que conviene memorizar: decision, alternativas consideradas, criterio de eleccion y consecuencia asumida. No basta decir que se hizo, hay que decir contra que se comparo y por que gano. Ejemplo concreto de VetCare: decidimos separar Historia_Clinica de Mascota como clases distintas; la alternativa era guardar diagnosticos y tratamientos como campos dentro de Mascota; el criterio fue que una mascota tiene muchas consultas a lo largo de su vida y una relacion uno a muchos no cabe en campos fijos; la consecuencia es que hay una entidad mas y una consulta adicional al mostrar la ficha, lo cual se acepta porque el RNF de busqueda menor a tres segundos se sostiene con un indice. Otro ejemplo: decidimos que la fecha de nacimiento sea opcional; la alternativa era hacerla obligatoria; el criterio fue que en Huellitas muchos dueños de mascotas rescatadas no la conocen y un campo obligatorio los llevaria a inventar datos; la consecuencia es que la edad se muestra como aproximada cuando el dato falta. Una decision defendida asi resiste cualquier pregunta, porque el jurado ya sabe que el equipo penso en la alternativa.",
             "Las preguntas del jurado son bastante predecibles y por eso se preparan. Las mas frecuentes en un proyecto como VetCare son: como sabe usted que este requisito es realmente necesario; que pasa si dos recepcionistas registran la misma mascota al mismo tiempo; por que esta clase existe y no es un atributo de otra; como se cumple el requisito no funcional que usted escribio y como se mediria; que pasa si el sistema se cae a mitad de un registro; que dejaron por fuera del alcance y por que; y quien de ustedes hizo esta parte. Hay que preparar la respuesta de cada una en dos frases, sin discursos. Y hay una regla de oro para cuando no se sabe: no se inventa. La respuesta correcta es reconocer el vacio y proponer como se resolveria, por ejemplo no lo modelamos, lo registramos como riesgo abierto y se resolveria agregando una validacion de unicidad por dueño mas nombre en el diccionario de datos. Un jurado castiga mucho mas la improvisacion detectada que la honestidad tecnica.",
             "El reparto del guion en bloques con tiempos es lo que sostiene una sustentacion, no un detalle logistico. La sustentacion es individual por defecto: el estudiante expone los cinco bloques y responde por todos, y lo que se califica es que cada bloque tenga su rango de minutos y su evidencia en pantalla, no quien lo dice. El orden que funciona para VetCare es: abrir con problema y alcance, seguir con requisitos y trazabilidad, luego los modelos UML, despues el prototipo en vivo y cerrar con decisiones, riesgos y siguiente paso hacia Programacion II. Si el docente autorizo equipo de 2 o 3, se agrega el nombre del responsable a cada bloque, todos los integrantes deben hablar al menos dos minutos y ninguno puede hablar solo de lo suyo: cada persona domina una pieza pero debe conocer el todo, porque el jurado tiene derecho a preguntarle a cualquiera sobre cualquier parte. Se ensaya cronometrado al menos dos veces, en voz alta y de pie, porque el tiempo estimado leyendo en silencio siempre es la mitad del real. Ademas se prepara el plan B tecnico: capturas del prototipo por si falla el internet, el documento en PDF descargado y los diagramas exportados a imagen. Y algo que parece obvio pero se olvida siempre: quien maneja el prototipo debe haberlo recorrido antes haciendo clic en cosas que no estaban en el guion, porque el jurado va a hacer exactamente eso.",
@@ -1756,7 +1761,7 @@ CLASES = [
             "Justificar decisiones con frases vacias como asi lo vimos en clase o porque quedaba mas ordenado, sin alternativa descartada ni criterio, lo cual delata que el equipo copio una plantilla en vez de diseñar.",
             "Que un solo integrante hable el ochenta por ciento del tiempo y los demas digan una frase, con el agravante de que ninguno puede responder preguntas fuera de su parte porque nunca leyeron el paquete completo."
         ],
-        "codigo_slide_titulo": "Guion de sustentacion VetCare: doce minutos cronometrados y quien dice que",
+        "codigo_slide_titulo": "Guion de sustentacion: doce minutos cronometrados",
         "codigo_slide_lineas": [
             "00:00-01:30 | PROBLEMA    | Huellitas: fichas extraviadas, 8 min por historial, cero metricas",
             "01:30-03:00 | ALCANCE     | Lo que si entra y lo que quedo por fuera, con la razon",
@@ -1766,7 +1771,7 @@ CLASES = [
             "09:00-11:00 | DECISIONES  | 3 decisiones con alternativa descartada, criterio y consecuencia",
             "11:00-11:30 | RIESGOS     | Que queda abierto y que recibe Programacion II",
             "11:30-12:00 | CIERRE      | Una frase de valor para la clinica, no un resumen",
-            "--- Reparto: todos hablan minimo 2 minutos y todos responden minimo 1 pregunta",
+            "--- Individual por defecto: quien sustenta responde por los cinco bloques",
             "--- Regla: nadie lee la diapositiva; la diapositiva es el plano, la voz es el argumento",
             "--- Cada pantalla proyectada debe poder señalar el RF que la origina",
             "--- Plan B: capturas del prototipo, PDF descargado y diagramas exportados a imagen"

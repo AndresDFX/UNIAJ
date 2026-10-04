@@ -43,6 +43,7 @@ from uniajc_slides_engine import (  # noqa: E402
     checklist_slide,
     class_cover,
     closing_slide,
+    concepto_slide,
     content_slide,
     herramientas_slide,
     new_prs,
@@ -196,6 +197,8 @@ def _quiz_items(c):
 import teoria_a_slides as TS
 import codigo_a_slides as CS
 from seminario_operativo_data import OPERATIVO
+import visuales
+from seminario_visuales_data import CODIGO_TRAS, LAMINAS, VISUALES
 
 # ------------------------------------------------------------- texto proyectado
 # Los decks de clase no nombran el proyecto (VetCare, Huellitas, Proyecto Integrador) ni la
@@ -300,30 +303,87 @@ def notas_docente(c):
     return [p for p in _parrafos_fundamento(c) if _es_para_docente(p)]
 
 
-def _teoria_slides(c):
-    """Las diapositivas de teoria de la clase: una por vineta, con su parrafo entero.
+def _laminas(c):
+    """Las laminas de teoria de la clase, en orden: un concepto por parrafo y, detras de cada
+    uno, el codigo (Mermaid o plantilla) que lo ilustra.
 
-    Antes era UNA diapositiva con `_resumen(c["teoria"])`, que se queda con la primera frase
-    de cada parrafo. El resto —el 90%— solo existia en el guion, asi que lo que se dictaba no
-    estaba proyectado y el estudiante que faltaba no tenia de donde estudiar.
+    Cada elemento es `(titulo, items, notas, tipo, extra)`: en `content`, `extra` es el titulo
+    original del parrafo (la clave de `seminario_visuales_data`); en `codigo`, la leyenda.
+
+    Antes el codigo iba todo al final del bloque de teoria y la lamina `codigo_slide_lineas`
+    detras de todo: el estudiante veia el modelo en V explicado en la lamina 5 y su Mermaid en
+    la 10. `TS.intercalar` lo pone detras del concepto con el que comparte vocabulario.
     """
     vin = [_deck(x) for x in c.get("teoria", [])]
-    # `fundamento` era desarrollo adicional que SOLO veia el docente. Ahora se proyecta
-    # tambien: si vale la pena decirlo, vale la pena que el estudiante lo tenga. Viene en
-    # prosa sin secciones, asi que cada parrafo entra como una vineta mas.
+    # `fundamento` era desarrollo adicional que SOLO veia el docente. Se proyecta tambien: si
+    # vale la pena decirlo, vale la pena que el estudiante lo tenga.
     vin += [_deck(p) for p in _parrafos_fundamento(c) if not _es_para_docente(p)]
-    laminas = TS.slides_de_vinetas(vin)
-    # Y el demo de la clase, partido por metodo. Antes se proyectaban ~15 lineas de
-    # `codigo_slide_lineas` y el archivo completo quedaba en el Kit docente, que es material
-    # del docente: el estudiante veia el recorte. «Mas codigo si es programacion» es esto.
-    laminas += [(_deck(t), [_deck(x) for x in it], nt, tp) for t, it, nt, tp in
-                CS.slides_de_fuente(c.get("codigo_fuente") or "", c.get("codigo_archivo") or "")]
-    # Y el material operativo autorado. En Seminario los entregables son diagramas
-    # Mermaid y plantillas de artefacto, y la sintaxis de Mermaid es el 100% de si el
-    # entregable se puede calificar: uno que no renderiza en ExamLab no se califica.
-    laminas += [(_deck(tit), [_deck(x) for x in lineas], [], "codigo")
+    conceptos = []
+    for t, it, nt, tp in TS.slides_de_vinetas(vin):
+        if tp == "content":
+            # Modo concepto: UNA lamina por parrafo, con un titulo que dice lo que es y sus
+            # ideas completas (seminario_visuales_data.LAMINAS); el parrafo entero va a notas.
+            spec = visuales.spec_de(LAMINAS, c["n"], t) or {}
+            conceptos.append((_deck(spec.get("titulo", t)),
+                              [_deck(x) for x in spec.get("ideas", it)], nt, tp, t))
+        else:
+            conceptos.append((t, it, nt, tp, None))
+    codigos = [(_deck(t), [_deck(x) for x in it], nt, tp, None) for t, it, nt, tp in
+               CS.slides_de_fuente(c.get("codigo_fuente") or "", c.get("codigo_archivo") or "")]
+    # El material operativo autorado. En Seminario los artefactos son diagramas Mermaid y
+    # plantillas, y la sintaxis de Mermaid decide si un diagrama renderiza o no.
+    codigos += [(_deck(tit), [_deck(x) for x in lineas], [], "codigo", None)
                 for tit, lineas in OPERATIVO.get(c["n"], [])]
-    return laminas
+    if c.get("codigo_slide_lineas"):
+        codigos.append((_deck(c.get("codigo_slide_titulo", "Codigo de hoy")),
+                        [_deck(x) for x in c["codigo_slide_lineas"]], [], "codigo",
+                        _deck(c.get("codigo_slide_caption"))))
+    # Los que tienen sitio declarado van detras de su concepto; el resto, por vocabulario.
+    tras = CODIGO_TRAS.get(c["n"], {})
+    fijos = {}
+    libres = []
+    for cod in codigos:
+        clave = next((k for cod_t, k in tras.items()
+                      if visuales._norm(cod[0]).startswith(visuales._norm(cod_t))), None)
+        if clave:
+            fijos.setdefault(visuales._norm(clave), []).append(cod)
+        else:
+            libres.append(cod)
+    out = []
+    for lam in TS.intercalar(conceptos, libres):
+        out.append(lam)
+        if lam[3] == "content":
+            for k in list(fijos):
+                if visuales._norm(lam[4]).startswith(k):
+                    out += fijos.pop(k)
+    if fijos:
+        raise SystemExit("CODIGO_TRAS apunta a conceptos que no existen: %s" % list(fijos))
+    return out
+
+
+def _teoria_slides(c):
+    """`(titulo, items, notas, tipo)` de cada lamina de teoria: lo que leen deck y guion."""
+    return [x[:4] for x in _laminas(c)]
+
+
+_MERMAID = ("flowchart", "graph", "classdiagram", "sequencediagram", "gantt", "statediagram",
+            "erdiagram", "journey", "mindmap")
+
+
+def _lenguaje_de(lineas):
+    """Lo que dice la barra del editor. En Seminario no hay SQL ni YAML: hay Mermaid, tablas
+    Markdown y plantillas de texto, y el detector generico del motor llamaba «YAML» a una
+    ficha de requisito («Actor: Recepcionista») y no reconocia `gantt` como Mermaid."""
+    primera = next((x.strip() for x in lineas if x.strip()), "")
+    if primera.lower().split(" ")[0] in _MERMAID:
+        return "Mermaid"
+    if primera.startswith("|"):
+        return "Tabla Markdown"
+    return "Plantilla"
+
+
+#: Laminas antes de la teoria: portada, encuadre y mapa del bloque.
+_ANTES_DE_TEORIA = 3
 
 
 def _apoyo_por_diapositiva(c, base=None):
@@ -384,11 +444,15 @@ def build_pptx(c):
         ("60-105", "Practica (opcional, guia en la carpeta)"),
         ("105-120", "Sintesis y cierre"),
     ], idx=idx); idx += 1
-    for _k, (_t, _items, _notas, _tipo) in enumerate(_teoria_slides(c)):
+    for _k, (_t, _items, _notas, _tipo, _extra) in enumerate(_laminas(c)):
         if _tipo == "codigo":
-            _s = pseudo_code_slide(prs, _t, _items, idx=idx)
+            _s = pseudo_code_slide(prs, _t, _items, caption=_extra, idx=idx,
+                                   lenguaje=_lenguaje_de(_items))
         else:
-            _s = content_slide(prs, _t, _items, idx=idx)
+            # Una lamina por concepto con su visual: los pasos de su animacion (uno por clic
+            # del docente) o una foto. Sin visual, las ideas a lo ancho.
+            _imgs, _pie = visuales.imagenes(VISUALES, n, _extra or _t)
+            _s = concepto_slide(prs, _t, _items, imagenes=_imgs, pie=_pie, idx=idx)
         if _notas and _s is not None:
             notas(_s, list(_notas))
         # Lo que el fundamento le dice al docente (organizacion del curso), debajo de la
@@ -396,10 +460,6 @@ def build_pptx(c):
         if _k == 0 and _s is not None and notas_docente(c):
             notas(_s, ["PARA EL DOCENTE"] + notas_docente(c))
         idx += 1
-    if c.get("codigo_slide_lineas"):
-        pseudo_code_slide(prs, _deck(c.get("codigo_slide_titulo", "Codigo de hoy")),
-                          [_deck(x) for x in c["codigo_slide_lineas"]],
-                          caption=_deck(c.get("codigo_slide_caption")), idx=idx); idx += 1
     content_slide(prs, "Demo del dia", [
         f"**Herramienta:** {_deck(c['herramienta'])}",
         f"**Demo:** {_deck(c['demo'])}",
@@ -607,7 +667,7 @@ def build_guion_md(c):
 
     # El contenido esta proyectado (una lamina por concepto). El guion aporta lo que no
     # cabe en pantalla: que subrayar en cada una.
-    teoria = _apoyo_por_diapositiva(c)
+    teoria = _apoyo_por_diapositiva(c, base=_ANTES_DE_TEORIA + 1)
     # `fundamento` es desarrollo adicional SOLO para el guion (no entra a la slide,
     # que resume `teoria` via _resumen). Se usa donde la teoria por si sola no
     # alcanza para dictar la clase sin consultar otra fuente.

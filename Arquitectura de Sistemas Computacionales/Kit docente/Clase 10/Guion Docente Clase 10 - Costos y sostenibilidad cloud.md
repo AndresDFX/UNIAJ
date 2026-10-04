@@ -24,52 +24,104 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 6] Clase autonoma: de gasto de capital a gasto operativo medido** — 3 vinetas.
+**[Slide 4] Clase autonoma: de gasto de capital a gasto operativo medido** — 2 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - En un centro de datos propio el gasto es de capital: se compra un servidor, se paga por adelantado, se amortiza en tres o cinco anos, y desde ese momento dejarlo encendido una hora mas no aparece en ninguna factura visible.
+  - En la nube el gasto es operativo y medido: se paga por segundo de computo, por gigabyte almacenado al mes, por gigabyte que sale hacia internet y por peticion atendida.
+  - El cambio no es contable sino arquitectonico.
+  - NOTAS:
   - Cuando cada recurso tiene precio unitario, casi cualquier decision de diseno se convierte en una cifra mensual y el arquitecto pasa a ser corresponsable del gasto.
   - Esa es la razon por la que este tema vive en un curso de arquitectura y no en uno de administracion.
   - (No se proyecta) Esta clase es autonoma por festivo: no hay encuentro sincronico y este fundamento se publica tal cual como material de lectura, asi que debe sostener por si solo la comprension del tema.
   - (No se proyecta) Conviene empezar por la economia, porque sin ella el tema suena a contabilidad.
 
-**[Slide 7] CloudLite no tiene factura real, y por que igual se estima (1/2)** — 3 vinetas.
+**[Slide 5] CloudLite no tiene factura real, y por que igual se estima** — 2 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - CloudLite App no tiene facturacion real y no la va a tener: el curso prohibe cuentas cloud de pago y tarjetas de credito, y todo se trabaja con draw.io, Excalidraw, Killercoda y el free tier de GitHub Actions.
+  - En vez de pesos se usa una escala ordinal de tres niveles, Bajo, Medio y Alto, asignada componente por componente.
+  - Una escala ordinal ordena pero no mide distancias: decir que la base de datos es Alto y el frontend estatico es Bajo afirma que uno cuesta mas que el otro, no cuantas veces mas.
+  - Alcanza de sobra para el objetivo real, que es identificar el driver de costo de cada componente.
+  - Un driver de costo es la variable concreta que, si crece, hace crecer la factura de ese componente
+  - No es "el uso" en abstracto sino algo contable: instancias encendidas, horas encendidas, gigabytes almacenados, gigabytes de trafico de salida, numero de peticiones, gigabytes de logs ingeridos.
+  - NOTAS:
   - Eso no impide el analisis de costo, solo cambia la escala de medida.
   - (No se proyecta) Un componente al que el estudiante no le sabe poner driver es un componente que todavia no entiende.
 
-**[Slide 8] CloudLite no tiene factura real, y por que igual se estima (2/2)** — 3 vinetas.
+**[Slide 6] Costos sin factura real** — 5 vinetas.
 
-**[Slide 9] Ordenes de magnitud de costo** — 5 vinetas.
+**[Slide 7] Ordenes de magnitud de costo** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Una instancia pequena de 2 vCPU y 4 GB encendida todo el mes cuesta del orden de 25 a 40 dolares.
+  - El almacenamiento de objetos cuesta del orden de 0.02 a 0.03 dolares por gigabyte al mes, es decir casi nada.
+  - El trafico de salida hacia internet, llamado egress, cuesta del orden de 0.08 a 0.12 dolares por gigabyte: unas cuatro veces mas caro por gigabyte que guardarlo un mes entero.
+  - Un balanceador de carga cobra una tarifa fija de 18 a 25 dolares al mes incluso con cero trafico.
+  - La leccion durable son tres proporciones: guardar es barato, mover datos hacia afuera es caro, y estar prendido sin hacer nada tambien cuesta.
+  - NOTAS:
   - Una base de datos gestionada cuesta entre dos y tres veces la maquina desnuda equivalente, porque incluye respaldos, parches y conmutacion por falla.
   - Una funcion serverless suele traer free tier de alrededor de un millon de invocaciones mensuales, asi que un componente poco usado cuesta cero de verdad.
   - (No se proyecta) El docente debe poder citar ordenes de magnitud, y conviene decir en voz alta que son convenciones aproximadas de precios de lista y no reglas duras: las cifras cambian por proveedor, region y ano, pero las proporciones se mantienen estables.
 
-**[Slide 10] Primer ejemplo: la tabla de costos, componente por componente (1/2)** — 5 vinetas.
+**[Slide 8] Primer ejemplo: la tabla de costos, componente por componente** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - El primer ejemplo anclado en CloudLite es la tabla de costos, recorrida componente por componente.
+  - La base de datos queda en Alto con un argumento preciso: paga computo las 24 horas de los 30 dias aunque nadie consulte, mas almacenamiento que nunca baja, mas respaldos.
+  - El frontend estatico queda en Bajo porque es almacenamiento mas trafico y no tiene computo propio.
+  - Las notificaciones quedan en Bajo si se modelan como funcion serverless de volumen pequeno
+  - Y pasan a Medio si se implementan como un worker encendido de forma permanente: el mismo requisito con dos disenos y dos costos, que es exactamente el razonamiento que se evalua.
+  - Los cuatro conductores que explican casi toda la factura son: computo siempre encendido, transferencia de salida o egress, almacenamiento caliente y volumen de logs.
+  - Un error comun es costear solo el computo y olvidar el egress: en servicios que entregan archivos a muchos usuarios, la transferencia de salida puede superar al computo.
+  - Un ejemplo de fila es: API de turnos, nivel Medio, driver computo siempre encendido; si se mueve a un servicio que escala a cero fuera de horario, baja a Bajo.
+  - NOTAS:
   - El contenedor de la API queda en Medio, con driver instancias por horas encendidas.
   - (No se proyecta) Y hay un componente que sorprende, el monitoreo de la Clase 8: un sistema que registra cada peticion con detalle puede generar mas gigabytes de logs que de datos de negocio, y la ingesta de logs se cobra por gigabyte; existen casos reales de equipos cuya observabilidad costaba mas que la aplicacion observada.
 
-**[Slide 11] Primer ejemplo: la tabla de costos, componente por componente (2/2)** — 3 vinetas.
-
-**[Slide 12] Segundo ejemplo: por que el driver importa mas que el nivel** — 5 vinetas.
+**[Slide 9] Segundo ejemplo: por que el driver importa mas que el nivel** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Suponga que CloudLite permite subir comprobantes en PDF o imagenes y que en un semestre acumula 5000 archivos de 2 MB, o sea 10 GB.
+  - Guardarlos cuesta unos 0.25 dolares al mes, despreciable.
+  - Pero si cada archivo se descarga en promedio 20 veces, el sistema mueve 200 GB de egress al mes, que a 0.09 dolares por gigabyte son unos 18 dolares: setenta veces mas que el almacenamiento.
+  - Hay dos familias de recursos: los que cobran por uso y los que cobran por existir.
+  - La base de datos gestionada, el balanceador, las IP reservadas, los volumenes huerfanos y las instantaneas viejas son de la segunda y facturan aunque el ultimo usuario se haya ido hace meses.
+  - NOTAS:
   - El segundo ejemplo muestra por que el driver importa mas que el nivel.
   - Esto tambien desarma la intuicion mas comun del estudiante, que si nadie usa el sistema el sistema no cuesta.
   - (No se proyecta) La conclusion es contraintuitiva y por eso vale en clase: el driver del componente "almacenamiento de archivos" no es el almacenamiento, es el trafico, y la mitigacion no es contable sino arquitectonica, poner una cache o una red de distribucion de contenido delante para que el mismo archivo no salga del origen veinte veces.
 
-**[Slide 13] Right-sizing: tres acciones ancladas en observacion (1/2)** — 4 vinetas.
+**[Slide 10] Right-sizing: tres acciones ancladas en observacion** — 2 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - La metrica que lo gobierna es la utilizacion, el porcentaje de la capacidad pagada que efectivamente se usa; una maquina al 5 por ciento de CPU durante un mes desperdicia el 95 por ciento de lo pagado.
+  - La convencion de industria, que es convencion y no regla, apunta a una utilizacion sostenida entre el 40 y el 70 por ciento: por debajo hay sobreaprovisionamiento y por encima no queda holgura para picos.
+  - La primera accion tipica es reducir tamano o numero de replicas hasta acercarse a ese rango.
+  - La segunda es apagar por horario lo que no es produccion: un ambiente encendido las 24 horas los siete dias consume 168 horas semanales, y encendido solo de 8 a 6 en dias habiles consume 50, un ahorro cercano al 70 por ciento sin tocar codigo.
+  - Igual de validos son fijar retencion de logs a 30 dias en vez de para siempre y borrar volumenes e instantaneas sin dueno.
+  - La tercera accion es reducir lo que esta sobredimensionado: una instancia que nunca pasa del 20 por ciento de CPU puede bajar a la mitad de su capacidad sin que nadie lo note.
+  - El orden correcto es: medir durante al menos 2 semanas, reducir un escalon y volver a medir; reducir sin datos es adivinar.
+  - NOTAS:
   - De ahi salen tres acciones de right-sizing.
   - (No se proyecta) Right-sizing es ajustar la capacidad aprovisionada a la demanda observada, y la palabra clave es observada: sin medicion es adivinanza, y la medicion viene de las senales doradas de la Clase 8, en particular la saturacion.
   - (No se proyecta) La tercera es adelgazar el artefacto, que amarra con la Clase 3: una imagen basada en python:3.12 pesa del orden de 1 GB, la variante slim unos 150 MB y una construida sobre alpine puede bajar a decenas de megabytes; eso es menos registro, menos transferencia en cada despliegue y menos tiempo de arranque, dato que reaparece en la Clase 13.
 
-**[Slide 14] Right-sizing: tres acciones ancladas en observacion (2/2)** — 3 vinetas.
-
-**[Slide 15] Sostenibilidad tecnica antes que ambiental (1/2)** — 4 vinetas.
+**[Slide 11] Sostenibilidad** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - La energia que consume un servidor depende sobre todo de la capacidad encendida, no de la usada: una maquina al 5 por ciento no consume el 5 por ciento de la energia, consume mucho mas
+  - Porque el consumo en reposo de un servidor moderno ronda la mitad del consumo a plena carga.
+  - Hay ademas una decision de arquitectura con efecto directo: la intensidad de carbono de la electricidad varia fuerte entre regiones, asi que elegir region no es solo latencia y cumplimiento normativo.
+  - Una arquitectura de ocho servicios que un equipo de tres personas no puede operar es insostenible aunque la infraestructura sea gratis.
+  - Un ejemplo en CloudLite: un monolito modular de un solo contenedor es mas sostenible para un equipo de 1 o 2 personas que cinco microservicios, porque tiene 1 pipeline, 1 despliegue y 1 lugar donde buscar un error.
+  - La cara ambiental tambien es medible: un entorno de pruebas apagado fuera del horario de trabajo consume menos de la mitad de las horas de computo de uno encendido todo el dia.
+  - Un error comun es medir la sostenibilidad solo en emisiones: un diseno que nadie del equipo entiende termina reescrito, y reescribir consume mas recursos que operarlo bien.
+  - NOTAS:
   - Por eso las mismas tres acciones sirven a la vez para la factura y para la huella.
+  - PREGUNTAS FRECUENTES Y CIERRE CONCEPTUAL ()
+  - La primera es si tiene sentido estimar costos cuando nadie va a pagar nada; la respuesta es que la estimacion no cambia la factura, cambia el diseno, y que en un trabajo real la segunda pregunta despues de "funciona" es "cuanto cuesta al mes".
+  - La segunda es si entonces lo mas barato es siempre lo mejor, y la respuesta es no
+  - Porque lo mas barato suele mover el costo hacia la operacion humana; el concepto a nombrar es costo total de propiedad, que suma infraestructura mas operacion mas incidentes mas migraciones
+  - Y bajo esa lente una base de datos autoadministrada en una maquina desnuda es mas barata al mes y mas cara al ano cuando alguien debe parcharla, respaldarla y atender su caida a las tres de la manana.
+  - La tercera es como asignar los niveles sin factura: se asignan comparando componentes entre si con el driver como argumento y escribiendo el supuesto
+  - "Alto porque es computo 24/7 mas almacenamiento acumulativo mas respaldos" es defendible, "Alto porque suena caro" no.
+  - Tres preguntas aparecen siempre.
   - (No se proyecta) La sostenibilidad en este curso es tecnica antes que ambiental, y conviene decirlo asi para no caer en discurso vacio.
   - (No se proyecta) Y hay una tercera cara que el estudiante ignora: el costo humano de mantener el diseno.
-
-**[Slide 16] Sostenibilidad tecnica antes que ambiental (2/2)** — 3 vinetas.
-
-**[Slide 17] Preguntas frecuentes y cierre conceptual (1/2)** — 3 vinetas.
-  - Tres preguntas aparecen siempre.
-
-**[Slide 18] Preguntas frecuentes y cierre conceptual (2/2)** — 3 vinetas.
 
 
 ## Referencias a diapositivas
@@ -79,22 +131,15 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 1. Portada · Clase 10 · Costos y sostenibilidad cloud
 2. Agenda de hoy (120 min)
 3. Objetivos de la clase
-4. Costos sin factura real
-5. Sostenibilidad
-6. Clase autonoma: de gasto de capital a gasto operativo medido
-7. CloudLite no tiene factura real, y por que igual se estima (1/2)
-8. CloudLite no tiene factura real, y por que igual se estima (2/2)
-9. Ordenes de magnitud de costo
-10. Primer ejemplo: la tabla de costos, componente por componente (1/2)
-11. Primer ejemplo: la tabla de costos, componente por componente (2/2)
-12. Segundo ejemplo: por que el driver importa mas que el nivel
-13. Right-sizing: tres acciones ancladas en observacion (1/2)
-14. Right-sizing: tres acciones ancladas en observacion (2/2)
-15. Sostenibilidad tecnica antes que ambiental (1/2)
-16. Sostenibilidad tecnica antes que ambiental (2/2)
-17. Preguntas frecuentes y cierre conceptual (1/2)
-18. Preguntas frecuentes y cierre conceptual (2/2)
-19. Clase 10 · cierre conceptual
+4. Clase autonoma: de gasto de capital a gasto operativo medido
+5. CloudLite no tiene factura real, y por que igual se estima
+6. Costos sin factura real
+7. Ordenes de magnitud de costo
+8. Primer ejemplo: la tabla de costos, componente por componente
+9. Segundo ejemplo: por que el driver importa mas que el nivel
+10. Right-sizing: tres acciones ancladas en observacion
+11. Sostenibilidad
+12. Clase 10 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 

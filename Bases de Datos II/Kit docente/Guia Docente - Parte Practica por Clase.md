@@ -869,9 +869,8 @@ GROUP BY d.id_dueno ORDER BY d.id_dueno;
 -- =====================================================================
 -- BLOQUE 0 · Volumen. Con 50 filas el planeador prefiere Seq Scan por
 -- muchos indices que existan: sin volumen esta clase no se puede medir.
--- Reproduce la siembra sintetica de la actividad: 30.000 citas del
--- 2026-01-05 al 2026-07-23, 5.000 mascotas, 2.000 duenos, 12 veterinarios.
--- (En ExamLab hay 10 citas mas puestas a mano en septiembre: 30.010.)
+-- Es la MISMA siembra de la actividad: 10 citas a mano en septiembre + 30.000
+-- sinteticas (2026-01-05 a 2026-07-23), 5.008 mascotas, 2.006 duenos, 16 veterinarios.
 -- =====================================================================
 DROP TABLE IF EXISTS cita_hist;
 DROP TABLE IF EXISTS cita;
@@ -881,40 +880,96 @@ DROP TABLE IF EXISTS dueno;
 
 CREATE TABLE dueno (
   id_dueno SERIAL PRIMARY KEY,
-  nombre   TEXT NOT NULL,
-  ciudad   TEXT DEFAULT 'Cali'
+  nombre TEXT NOT NULL,
+  telefono TEXT,
+  email TEXT,
+  ciudad TEXT DEFAULT 'Cali'
 );
-CREATE TABLE veterinario (
-  id_veterinario SERIAL PRIMARY KEY,
-  nombre         TEXT NOT NULL,
-  especialidad   TEXT
-);
+
 CREATE TABLE mascota (
   id_mascota SERIAL PRIMARY KEY,
-  id_dueno   INT NOT NULL REFERENCES dueno(id_dueno),
-  nombre     TEXT NOT NULL,
-  especie    TEXT NOT NULL
+  id_dueno INT NOT NULL REFERENCES dueno(id_dueno),
+  nombre TEXT NOT NULL,
+  especie TEXT NOT NULL,
+  fecha_nac DATE,
+  activa CHAR(1) NOT NULL DEFAULT 'S' CHECK (activa IN ('S','N'))
 );
+
+CREATE TABLE veterinario (
+  id_veterinario SERIAL PRIMARY KEY,
+  nombre TEXT NOT NULL,
+  especialidad TEXT,
+  activo CHAR(1) NOT NULL DEFAULT 'S' CHECK (activo IN ('S','N'))
+);
+
 CREATE TABLE cita (
-  id_cita        SERIAL PRIMARY KEY,
-  id_mascota     INT NOT NULL REFERENCES mascota(id_mascota),
+  id_cita SERIAL PRIMARY KEY,
+  id_mascota INT NOT NULL REFERENCES mascota(id_mascota),
   id_veterinario INT NOT NULL REFERENCES veterinario(id_veterinario),
-  fecha_hora     TIMESTAMP NOT NULL,
-  estado         TEXT NOT NULL DEFAULT 'PROGRAMADA'
+  fecha_hora TIMESTAMP NOT NULL,
+  estado TEXT NOT NULL DEFAULT 'PROGRAMADA'
     CHECK (estado IN ('PROGRAMADA','ATENDIDA','CANCELADA'))
 );
 
-INSERT INTO dueno (nombre) SELECT 'Dueno ' || g FROM generate_series(1, 2000) AS g;
+-- Duenos (ids 1..6 en este orden)
+INSERT INTO dueno (nombre, telefono, email) VALUES
+  ('Ana Gomez',      '3001112233', 'ana.gomez@mail.com'),
+  ('Carlos Ruiz',    '3014445566', 'carlos.ruiz@mail.com'),
+  ('Marcela Diaz',   '3027778899', 'marcela.diaz@mail.com'),
+  ('Jorge Pineda',   '3105551212', 'jorge.pineda@mail.com'),
+  ('Luisa Cardona',  '3123334455', 'luisa.cardona@mail.com'),
+  ('Andres Vallejo', '3159998877', 'andres.vallejo@mail.com');
+
+-- Veterinarios (ids 1..4)
+INSERT INTO veterinario (nombre, especialidad) VALUES
+  ('Laura Restrepo', 'General'),
+  ('Diego Moreno',   'Cirugia'),
+  ('Paula Salazar',  'Dermatologia'),
+  ('Ivan Ortiz',     'General');
+
+-- Mascotas (ids 1..8). Rocky (3) y Kiara (8) estan INACTIVAS.
+INSERT INTO mascota (id_dueno, nombre, especie, fecha_nac, activa) VALUES
+  (1, 'Firulais', 'Canino', DATE '2019-04-12', 'S'),
+  (1, 'Luna',     'Felino', DATE '2021-08-30', 'S'),
+  (2, 'Rocky',    'Canino', DATE '2015-01-20', 'N'),
+  (3, 'Mishi',    'Felino', DATE '2022-11-05', 'S'),
+  (3, 'Bobby',    'Canino', DATE '2018-06-17', 'S'),
+  (4, 'Nube',     'Felino', DATE '2023-02-09', 'S'),
+  (5, 'Toby',     'Canino', DATE '2020-09-25', 'S'),
+  (6, 'Kiara',    'Canino', DATE '2013-03-03', 'N');
+
+-- Citas (ids 1..10)
+INSERT INTO cita (id_mascota, id_veterinario, fecha_hora, estado) VALUES
+  (1, 1, TIMESTAMP '2026-09-01 08:00:00', 'PROGRAMADA'),
+  (2, 1, TIMESTAMP '2026-09-01 09:00:00', 'ATENDIDA'),
+  (4, 2, TIMESTAMP '2026-09-01 10:00:00', 'PROGRAMADA'),
+  (5, 3, TIMESTAMP '2026-09-02 08:30:00', 'CANCELADA'),
+  (6, 2, TIMESTAMP '2026-09-02 11:00:00', 'ATENDIDA'),
+  (7, 4, TIMESTAMP '2026-09-03 07:45:00', 'PROGRAMADA'),
+  (1, 1, TIMESTAMP '2026-09-05 15:00:00', 'ATENDIDA'),
+  (2, 3, TIMESTAMP '2026-09-08 16:00:00', 'PROGRAMADA'),
+  (4, 4, TIMESTAMP '2026-09-10 08:00:00', 'PROGRAMADA'),
+  (6, 1, TIMESTAMP '2026-09-10 09:00:00', 'ATENDIDA');
+
+-- Volumen sintetico para que el planeador tenga con que trabajar
+INSERT INTO dueno (nombre, telefono, email)
+SELECT 'Dueno ' || g, '300' || LPAD(g::text, 7, '0'), 'dueno' || g || '@mail.com'
+FROM generate_series(1, 2000) AS g;
+
 INSERT INTO veterinario (nombre, especialidad)
 SELECT 'Veterinario ' || g,
        CASE WHEN g % 3 = 0 THEN 'Cirugia'
             WHEN g % 3 = 1 THEN 'General'
             ELSE 'Dermatologia' END
 FROM generate_series(1, 12) AS g;
-INSERT INTO mascota (id_dueno, nombre, especie)
-SELECT 1 + (g % 2000), 'Mascota ' || g,
-       CASE WHEN g % 2 = 0 THEN 'Canino' ELSE 'Felino' END
+
+INSERT INTO mascota (id_dueno, nombre, especie, activa)
+SELECT 1 + (g % 2000),
+       'Mascota ' || g,
+       CASE WHEN g % 2 = 0 THEN 'Canino' ELSE 'Felino' END,
+       CASE WHEN g % 17 = 0 THEN 'N' ELSE 'S' END
 FROM generate_series(1, 5000) AS g;
+
 INSERT INTO cita (id_mascota, id_veterinario, fecha_hora, estado)
 SELECT 1 + (g % 5000),
        1 + (g % 12),
@@ -922,15 +977,17 @@ SELECT 1 + (g % 5000),
          + ((g % 200) * INTERVAL '1 day')
          + ((g % 9) * INTERVAL '45 minutes'),
        CASE WHEN g % 11 = 0 THEN 'CANCELADA'
-            WHEN g % 3  = 0 THEN 'ATENDIDA'
+            WHEN g % 3 = 0 THEN 'ATENDIDA'
             ELSE 'PROGRAMADA' END
 FROM generate_series(1, 30000) AS g;
 
-ANALYZE dueno;  ANALYZE veterinario;  ANALYZE mascota;  ANALYZE cita;
+ANALYZE dueno;
+ANALYZE mascota;
+ANALYZE veterinario;
+ANALYZE cita;
 
--- Control: 30.000 | 18.182 PROGRAMADA | 9.091 ATENDIDA | 2.727 CANCELADA. En la base de
--- ExamLab hay 10 citas mas sembradas a mano, y ahi el reparto es 30.010 / 18.187 / 9.095 /
--- 2.728. Si su corrida da otros numeros, el resto del script no cuadra.
+-- Control: 30.010 | 18.187 PROGRAMADA | 9.095 ATENDIDA | 2.728 CANCELADA.
+-- Si su corrida da otros numeros, el resto del script no cuadra.
 SELECT estado, COUNT(*) FROM cita GROUP BY estado ORDER BY estado;
 
 -- =====================================================================
@@ -960,7 +1017,7 @@ CREATE INDEX idx_cita_fecha_hora ON cita (fecha_hora);
 CREATE INDEX idx_mascota_dueno ON mascota (id_dueno);
 
 -- (c) PARCIAL: el WHERE es parte de la DEFINICION del indice, no de la consulta. Indexa
---     18.182 de las 30.000 de este script (18.187 de 30.010 en ExamLab) porque la pantalla
+--     18.187 de las 30.010 citas porque la pantalla
 --     de agenda nunca pregunta por atendidas ni por canceladas.
 CREATE INDEX idx_cita_programada_fecha ON cita (fecha_hora) WHERE estado = 'PROGRAMADA';
 

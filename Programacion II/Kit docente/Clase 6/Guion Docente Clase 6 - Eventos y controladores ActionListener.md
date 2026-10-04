@@ -13,66 +13,47 @@
 
 ## Apoyo por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en las notas del presentador de su lamina. Aqui va, por lamina y en su orden, lo que hay que subrayar.
 
-**Hasta ahora los programas de VetCare corrian en linea recta: el main...** — 2 vinetas.
-  - Una aplicacion con ventanas no funciona asi.
-  - Cada una de esas acciones se convierte en un objeto de evento que entra a una cola, y Swing va sacando esos eventos uno por uno y le avisa al objeto que previamente dijo 'a mi me interesa ese boton'.
-  - Eso es programacion dirigida por eventos: usted ya no decide cuando corre su codigo; usted lo deja escrito y registrado, y quien decide cuando se ejecuta es la recepcionista de Huellitas el dia que oprima 'Registrar mascota'.
-  - Por eso el metodo que guarda la mascota nunca aparece llamado desde el main: aparece registrado, no llamado, y esa diferencia es la que hay que entender hoy.
+**[Slide 4] Del programa en línea recta al evento** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Una aplicacion con ventanas no funciona asi.
+  - Subrayar: Cada una de esas acciones se convierte en un objeto de evento que entra a una cola, y Swing va sacando esos eventos uno por uno y le avisa al objeto que previamente dijo 'a mi me interesa ese boton'.
+  - Subrayar: Eso es programacion dirigida por eventos: usted ya no decide cuando corre su codigo; usted lo deja escrito y registrado, y quien decide cuando se ejecuta es la recepcionista de Huellitas el dia que oprima 'Registrar mascota'.
+  - Subrayar: Por eso el metodo que guarda la mascota nunca aparece llamado desde el main: aparece registrado, no llamado, y esa diferencia es la que hay que entender hoy.
 
-**ActionListener es una interfaz de java.awt.event que tiene un solo... (1/2)** — 4 vinetas.
-  - Con una de dos metodos no compila, y el mensaje del editor no lo dice con esas palabras y ahi adentro va su llamada.
+**[Slide 5] main(): la ventana arranca en el EDT** — codigo (8 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ActionListener es una interfaz de java.awt.event que tiene un solo... (2/2)** — 3 vinetas.
+**[Slide 6] ActionListener: el contrato del clic** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Hay tres formas validas de escribirlo en Java y conviene mostrarlas todas: una clase aparte que implements ActionListener, una clase anonima escrita ahi mismo con new ActionListener() {... }, o una expresion lambda e -> registrar() si el proyecto esta en Java 8 o superior.
+  - Subrayar: Con una de dos metodos no compila, y el mensaje del editor no lo dice con esas palabras y ahi adentro va su llamada.
 
-**Separar la logica de la interfaz significa que la ventana no conoce...** — 5 vinetas.
-  - Separar la logica de la interfaz significa que la ventana no conoce reglas de negocio y que las reglas no saben que existe una ventana.
-  - Si toca reescribir todo porque la conversion de la edad estaba adentro del boton, el diseño esta mal.
+**[Slide 7] El formulario: GridLayout de 5 × 2** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Vale la pena desarmar en camara lenta lo que ocurre en un click de... (1/2)** — 3 vinetas.
-  - Vale la pena desarmar en camara lenta lo que ocurre en un click de 'Registrar mascota'.
-  - Cuarto, la vista atrapa esa excepcion y la convierte en un JOptionPane, o, si no hubo error, limpia los campos y refresca el area de listado.
+**[Slide 8] addActionListener: el botón guarda a quien lo escucha** — codigo (6 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Vale la pena desarmar en camara lenta lo que ocurre en un click de... (2/2)** — 2 vinetas.
+**[Slide 9] Separar la lógica de la interfaz** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Separar la logica de la interfaz significa que la ventana no conoce reglas de negocio y que las reglas no saben que existe una ventana.
+  - Subrayar: Si toca reescribir todo porque la conversion de la edad estaba adentro del boton, el diseño esta mal.
 
-**Dos detalles mas que le van a servir (1/2)** — 3 vinetas.
-  - Dos detalles mas que le van a servir.
-  - Para eso existe SwingWorker.
+**[Slide 10] El repositorio no sabe de ventanas** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Dos detalles mas que le van a servir (2/2)** — 3 vinetas.
+**[Slide 11] Un clic en cámara lenta** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Vale la pena desarmar en camara lenta lo que ocurre en un click de 'Registrar mascota'.
+  - Subrayar: Cuarto, la vista atrapa esa excepcion y la convierte en un JOptionPane, o, si no hubo error, limpia los campos y refresca el area de listado.
 
-**class ClinicaEventosDemo · main()** — 14 vinetas.
+**[Slide 12] registrar(): la vista lee, delega y muestra** — codigo (12 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaEventosDemo.java — class Mascota** — 7 vinetas.
+**[Slide 13] registrarMascota(): el controlador valida y convierte** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaEventosDemo.java — Mascota()** — 16 vinetas.
+**[Slide 14] getSource y otros escuchadores** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Dos detalles mas que le van a servir.
+  - Subrayar: Para eso existe SwingWorker.
 
-**ClinicaEventosDemo.java — class RepositorioMascotas** — 4 vinetas.
+## Errores tipicos del docente que no domina el tema
 
-**ClinicaEventosDemo.java — registrar()** — 10 vinetas.
+Material de preparacion: no se proyecta.
 
-**ClinicaEventosDemo.java — buscarPorId()** — 15 vinetas.
-
-**ClinicaEventosDemo.java — class ControladorRegistro** — 4 vinetas.
-
-**ClinicaEventosDemo.java — ControladorRegistro()** — 7 vinetas.
-
-**ClinicaEventosDemo.java — registrarMascota() (1/2)** — 20 vinetas.
-
-**ClinicaEventosDemo.java — registrarMascota() (2/2)** — 3 vinetas.
-
-**ClinicaEventosDemo.java — reporteListado()** — 11 vinetas.
-
-**ClinicaEventosDemo.java — class VentanaRegistroMascota** — 12 vinetas.
-
-**ClinicaEventosDemo.java — VentanaRegistroMascota() (1/2)** — 20 vinetas.
-
-**ClinicaEventosDemo.java — VentanaRegistroMascota() (2/2)** — 12 vinetas.
-
-**ClinicaEventosDemo.java — registrar()** — 13 vinetas.
-
-**ClinicaEventosDemo.java — limpiar()** — 9 vinetas.
+- Error tipico del docente que no domina el tema: escribir toda la aplicacion adentro de actionPerformed y, peor aun, crear el repositorio dentro del listener. Se ve asi de inocente: 'RepositorioMascotas repo = new RepositorioMascotas();' como primera linea del boton. Compila, no marca error, el estudiante registra dos mascotas y la lista siempre muestra una sola, y el docente termina diciendo en voz alta que 'ArrayList no esta guardando'. Lo que realmente pasa es que en cada click se construye un repositorio vacio nuevo y el anterior se lo lleva el recolector de basura: la coleccion tiene que ser un atributo de la ventana o del controlador, creado una sola vez. El segundo error de la misma familia es registrar el escuchador dentro del metodo que corre en cada click, en vez de una sola vez en el constructor: cada click agrega OTRO listener al mismo boton, y a la quinta pulsacion la mascota se registra cinco veces. Y el tercero es capturar Exception con un catch vacio: la aplicacion no se cae, pero tampoco avisa nada, y el error se vuelve invisible para el estudiante y para usted.
 
 
 **Demo que usted debe poder repetir:** El docente oprime el boton de la ventana ya corriendo y muestra en vivo como la mascota pasa del formulario al ArrayList, incluyendo que pasa cuando la edad se escribe como texto.

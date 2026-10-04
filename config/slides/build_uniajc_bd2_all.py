@@ -95,7 +95,7 @@ TIPO_LABEL = {
 
 # Sin clave "tipo": se inyecta desde el calendario justo despues de esta lista.
 CLASES = [
-  dict(n=1, slug="Revision BD I y arranque VetCare",
+  dict(n=1, slug="Revision BD I y modelo de datos",
     titulo="Revision BD I · Arranque VetCare DB",
     subtitulo="Diagnostico · dominio PI · primer modelo",
     herramienta="draw.io + DB Fiddle",
@@ -1080,9 +1080,8 @@ GROUP BY d.id_dueno ORDER BY d.id_dueno;
 -- =====================================================================
 -- BLOQUE 0 · Volumen. Con 50 filas el planeador prefiere Seq Scan por
 -- muchos indices que existan: sin volumen esta clase no se puede medir.
--- Reproduce la siembra sintetica de la actividad: 30.000 citas del
--- 2026-01-05 al 2026-07-23, 5.000 mascotas, 2.000 duenos, 12 veterinarios.
--- (En ExamLab hay 10 citas mas puestas a mano en septiembre: 30.010.)
+-- Es la MISMA siembra de la actividad: 10 citas a mano en septiembre + 30.000
+-- sinteticas (2026-01-05 a 2026-07-23), 5.008 mascotas, 2.006 duenos, 16 veterinarios.
 -- =====================================================================
 DROP TABLE IF EXISTS cita_hist;
 DROP TABLE IF EXISTS cita;
@@ -1092,40 +1091,96 @@ DROP TABLE IF EXISTS dueno;
 
 CREATE TABLE dueno (
   id_dueno SERIAL PRIMARY KEY,
-  nombre   TEXT NOT NULL,
-  ciudad   TEXT DEFAULT 'Cali'
+  nombre TEXT NOT NULL,
+  telefono TEXT,
+  email TEXT,
+  ciudad TEXT DEFAULT 'Cali'
 );
-CREATE TABLE veterinario (
-  id_veterinario SERIAL PRIMARY KEY,
-  nombre         TEXT NOT NULL,
-  especialidad   TEXT
-);
+
 CREATE TABLE mascota (
   id_mascota SERIAL PRIMARY KEY,
-  id_dueno   INT NOT NULL REFERENCES dueno(id_dueno),
-  nombre     TEXT NOT NULL,
-  especie    TEXT NOT NULL
+  id_dueno INT NOT NULL REFERENCES dueno(id_dueno),
+  nombre TEXT NOT NULL,
+  especie TEXT NOT NULL,
+  fecha_nac DATE,
+  activa CHAR(1) NOT NULL DEFAULT 'S' CHECK (activa IN ('S','N'))
 );
+
+CREATE TABLE veterinario (
+  id_veterinario SERIAL PRIMARY KEY,
+  nombre TEXT NOT NULL,
+  especialidad TEXT,
+  activo CHAR(1) NOT NULL DEFAULT 'S' CHECK (activo IN ('S','N'))
+);
+
 CREATE TABLE cita (
-  id_cita        SERIAL PRIMARY KEY,
-  id_mascota     INT NOT NULL REFERENCES mascota(id_mascota),
+  id_cita SERIAL PRIMARY KEY,
+  id_mascota INT NOT NULL REFERENCES mascota(id_mascota),
   id_veterinario INT NOT NULL REFERENCES veterinario(id_veterinario),
-  fecha_hora     TIMESTAMP NOT NULL,
-  estado         TEXT NOT NULL DEFAULT 'PROGRAMADA'
+  fecha_hora TIMESTAMP NOT NULL,
+  estado TEXT NOT NULL DEFAULT 'PROGRAMADA'
     CHECK (estado IN ('PROGRAMADA','ATENDIDA','CANCELADA'))
 );
 
-INSERT INTO dueno (nombre) SELECT 'Dueno ' || g FROM generate_series(1, 2000) AS g;
+-- Duenos (ids 1..6 en este orden)
+INSERT INTO dueno (nombre, telefono, email) VALUES
+  ('Ana Gomez',      '3001112233', 'ana.gomez@mail.com'),
+  ('Carlos Ruiz',    '3014445566', 'carlos.ruiz@mail.com'),
+  ('Marcela Diaz',   '3027778899', 'marcela.diaz@mail.com'),
+  ('Jorge Pineda',   '3105551212', 'jorge.pineda@mail.com'),
+  ('Luisa Cardona',  '3123334455', 'luisa.cardona@mail.com'),
+  ('Andres Vallejo', '3159998877', 'andres.vallejo@mail.com');
+
+-- Veterinarios (ids 1..4)
+INSERT INTO veterinario (nombre, especialidad) VALUES
+  ('Laura Restrepo', 'General'),
+  ('Diego Moreno',   'Cirugia'),
+  ('Paula Salazar',  'Dermatologia'),
+  ('Ivan Ortiz',     'General');
+
+-- Mascotas (ids 1..8). Rocky (3) y Kiara (8) estan INACTIVAS.
+INSERT INTO mascota (id_dueno, nombre, especie, fecha_nac, activa) VALUES
+  (1, 'Firulais', 'Canino', DATE '2019-04-12', 'S'),
+  (1, 'Luna',     'Felino', DATE '2021-08-30', 'S'),
+  (2, 'Rocky',    'Canino', DATE '2015-01-20', 'N'),
+  (3, 'Mishi',    'Felino', DATE '2022-11-05', 'S'),
+  (3, 'Bobby',    'Canino', DATE '2018-06-17', 'S'),
+  (4, 'Nube',     'Felino', DATE '2023-02-09', 'S'),
+  (5, 'Toby',     'Canino', DATE '2020-09-25', 'S'),
+  (6, 'Kiara',    'Canino', DATE '2013-03-03', 'N');
+
+-- Citas (ids 1..10)
+INSERT INTO cita (id_mascota, id_veterinario, fecha_hora, estado) VALUES
+  (1, 1, TIMESTAMP '2026-09-01 08:00:00', 'PROGRAMADA'),
+  (2, 1, TIMESTAMP '2026-09-01 09:00:00', 'ATENDIDA'),
+  (4, 2, TIMESTAMP '2026-09-01 10:00:00', 'PROGRAMADA'),
+  (5, 3, TIMESTAMP '2026-09-02 08:30:00', 'CANCELADA'),
+  (6, 2, TIMESTAMP '2026-09-02 11:00:00', 'ATENDIDA'),
+  (7, 4, TIMESTAMP '2026-09-03 07:45:00', 'PROGRAMADA'),
+  (1, 1, TIMESTAMP '2026-09-05 15:00:00', 'ATENDIDA'),
+  (2, 3, TIMESTAMP '2026-09-08 16:00:00', 'PROGRAMADA'),
+  (4, 4, TIMESTAMP '2026-09-10 08:00:00', 'PROGRAMADA'),
+  (6, 1, TIMESTAMP '2026-09-10 09:00:00', 'ATENDIDA');
+
+-- Volumen sintetico para que el planeador tenga con que trabajar
+INSERT INTO dueno (nombre, telefono, email)
+SELECT 'Dueno ' || g, '300' || LPAD(g::text, 7, '0'), 'dueno' || g || '@mail.com'
+FROM generate_series(1, 2000) AS g;
+
 INSERT INTO veterinario (nombre, especialidad)
 SELECT 'Veterinario ' || g,
        CASE WHEN g % 3 = 0 THEN 'Cirugia'
             WHEN g % 3 = 1 THEN 'General'
             ELSE 'Dermatologia' END
 FROM generate_series(1, 12) AS g;
-INSERT INTO mascota (id_dueno, nombre, especie)
-SELECT 1 + (g % 2000), 'Mascota ' || g,
-       CASE WHEN g % 2 = 0 THEN 'Canino' ELSE 'Felino' END
+
+INSERT INTO mascota (id_dueno, nombre, especie, activa)
+SELECT 1 + (g % 2000),
+       'Mascota ' || g,
+       CASE WHEN g % 2 = 0 THEN 'Canino' ELSE 'Felino' END,
+       CASE WHEN g % 17 = 0 THEN 'N' ELSE 'S' END
 FROM generate_series(1, 5000) AS g;
+
 INSERT INTO cita (id_mascota, id_veterinario, fecha_hora, estado)
 SELECT 1 + (g % 5000),
        1 + (g % 12),
@@ -1133,15 +1188,17 @@ SELECT 1 + (g % 5000),
          + ((g % 200) * INTERVAL '1 day')
          + ((g % 9) * INTERVAL '45 minutes'),
        CASE WHEN g % 11 = 0 THEN 'CANCELADA'
-            WHEN g % 3  = 0 THEN 'ATENDIDA'
+            WHEN g % 3 = 0 THEN 'ATENDIDA'
             ELSE 'PROGRAMADA' END
 FROM generate_series(1, 30000) AS g;
 
-ANALYZE dueno;  ANALYZE veterinario;  ANALYZE mascota;  ANALYZE cita;
+ANALYZE dueno;
+ANALYZE mascota;
+ANALYZE veterinario;
+ANALYZE cita;
 
--- Control: 30.000 | 18.182 PROGRAMADA | 9.091 ATENDIDA | 2.727 CANCELADA. En la base de
--- ExamLab hay 10 citas mas sembradas a mano, y ahi el reparto es 30.010 / 18.187 / 9.095 /
--- 2.728. Si su corrida da otros numeros, el resto del script no cuadra.
+-- Control: 30.010 | 18.187 PROGRAMADA | 9.095 ATENDIDA | 2.728 CANCELADA.
+-- Si su corrida da otros numeros, el resto del script no cuadra.
 SELECT estado, COUNT(*) FROM cita GROUP BY estado ORDER BY estado;
 
 -- =====================================================================
@@ -1171,7 +1228,7 @@ CREATE INDEX idx_cita_fecha_hora ON cita (fecha_hora);
 CREATE INDEX idx_mascota_dueno ON mascota (id_dueno);
 
 -- (c) PARCIAL: el WHERE es parte de la DEFINICION del indice, no de la consulta. Indexa
---     18.182 de las 30.000 de este script (18.187 de 30.010 en ExamLab) porque la pantalla
+--     18.187 de las 30.010 citas porque la pantalla
 --     de agenda nunca pregunta por atendidas ni por canceladas.
 CREATE INDEX idx_cita_programada_fecha ON cita (fecha_hora) WHERE estado = 'PROGRAMADA';
 
@@ -1869,16 +1926,18 @@ DIAGRAMAS_BD2 = {
 # Codigo PROYECTABLE por clase: el fragmento minimo que el estudiante debe ver en
 # pantalla mientras el docente explica (no el script completo — ese va en Codigo/).
 CODIGO_SLIDE = {
+    # No proyecta dueno/mascota/cita: esas tres son lo que la actividad pide escribir.
+    # El mismo mecanismo (PK, FK, NOT NULL, CHECK) sobre otra tabla del modelo.
     1: ("El DDL minimo que sostiene el ER", [
-        "CREATE TABLE mascota (",
-        "  id_mascota INT PRIMARY KEY,               -- PK: identifica la fila",
-        "  id_dueno   INT NOT NULL",
-        "             REFERENCES dueno(id_dueno),    -- FK: materializa la relacion",
-        "  nombre     VARCHAR(60) NOT NULL,",
-        "  activa     CHAR(1) DEFAULT 'S'",
-        "             CHECK (activa IN ('S','N'))    -- regla de negocio en la BD",
+        "CREATE TABLE consulta (",
+        "  id_consulta SERIAL PRIMARY KEY,           -- PK: identifica la fila",
+        "  id_cita     INT NOT NULL UNIQUE",
+        "              REFERENCES cita(id_cita),     -- FK: materializa la relacion",
+        "  diagnostico TEXT NOT NULL,",
+        "  precio      NUMERIC(12,2) NOT NULL",
+        "              CHECK (precio >= 0)           -- regla de negocio en la BD",
         ");",
-    ], "La FK vive en el lado 'N' de la relacion. El CHECK ya es una regla de negocio."),
+    ], "La FK vive en la tabla que depende; con UNIQUE la relacion queda 1:1 (una consulta por cita). El CHECK ya es una regla de negocio."),
     2: ("Reducir la superficie: vista y privilegio por columna", [
         "-- 1) La vista deja fuera el email y las citas canceladas",
         "CREATE VIEW v_agenda_recepcion AS",
@@ -1919,7 +1978,7 @@ CODIGO_SLIDE = {
     # En PostgreSQL el trigger son DOS objetos. La rubrica de la pregunta 2 descuenta
     # por `:NEW`/`:OLD` y por omitir `EXECUTE FUNCTION`, asi que la diapositiva tiene
     # que proyectar la forma correcta: antes proyectaba la de Oracle.
-    4: ("Un trigger son DOS objetos: la funcion y la asociacion", [
+    4: ("La auditoria de cita: funcion, trigger y WHEN", [
         "-- 1) La funcion: NEW y OLD SIN dos puntos",
         "CREATE OR REPLACE FUNCTION fn_trg_audit_cita()",
         "RETURNS TRIGGER LANGUAGE plpgsql AS $fn$",
@@ -1943,8 +2002,8 @@ CODIGO_SLIDE = {
     # era la que le costaba los puntos. Se agrega el parcial, que tambien se califica.
     7: ("Un indice se justifica con la consulta que lo usa", [
         "-- Consulta frecuente: la agenda del dia (siempre PROGRAMADA)",
-        "SELECT ... FROM cita",
-        " WHERE fecha_hora >= :hoy AND estado = 'PROGRAMADA';",
+        "SELECT id_cita, id_mascota, fecha_hora FROM cita",
+        " WHERE fecha_hora >= CURRENT_DATE AND estado = 'PROGRAMADA';",
         "",
         "CREATE INDEX idx_cita_fecha_hora ON cita (fecha_hora);",
         "CREATE INDEX idx_cita_programada_fecha ON cita (fecha_hora)",
@@ -1958,16 +2017,23 @@ CODIGO_SLIDE = {
     # procedimiento no lleva control de transaccion: la excepcion que se propaga fuera del
     # `CALL` deshace todo, y quien copiaba esta diapositiva perdia los 10 puntos.
     8: ("Todo o nada: la transaccion de facturacion", [
-        "CREATE PROCEDURE sp_facturar(p_id_consulta INT,",
-        "        p_insumos INT[], p_cantidades INT[]) ...",
-        "  INSERT INTO factura(...) RETURNING id_factura INTO v_id_factura;",
+        "CREATE OR REPLACE PROCEDURE sp_facturar(p_id_consulta INT,",
+        "       p_insumos INT[], p_cantidades INT[])",
+        "LANGUAGE plpgsql AS $proc$",
+        "DECLARE v_fac INT; v_filas INT;",
+        "BEGIN",
+        "  INSERT INTO factura (id_consulta) VALUES (p_id_consulta)",
+        "  RETURNING id_factura INTO v_fac;",
         "  FOR i IN 1 .. array_length(p_insumos, 1) LOOP",
         "    UPDATE insumo SET stock = stock - p_cantidades[i]",
-        "     WHERE id_insumo = p_insumos[i]",
-        "       AND stock >= p_cantidades[i];   -- 0 filas si no alcanza",
-        "    GET DIAGNOSTICS v_filas = ROW_COUNT;",
-        "    IF v_filas = 0 THEN RAISE EXCEPTION '...'; END IF;",
-        "  END LOOP;   -- sin COMMIT y sin ROLLBACK: los pone el CALL",
+        "     WHERE id_insumo = p_insumos[i] AND stock >= p_cantidades[i];",
+        "    GET DIAGNOSTICS v_filas = ROW_COUNT;   -- 0: no alcanzo",
+        "    IF v_filas = 0 THEN RAISE EXCEPTION 'ERROR: stock insuficiente'; END IF;",
+        "    INSERT INTO detalle_factura (id_factura, id_insumo, cantidad, precio_unit)",
+        "    SELECT v_fac, id_insumo, p_cantidades[i], precio_unit",
+        "      FROM insumo WHERE id_insumo = p_insumos[i];",
+        "  END LOOP;   -- sin COMMIT ni ROLLBACK: los pone el CALL",
+        "END; $proc$;",
     ], "La condicion stock >= cantidad evita el stock negativo; la excepcion que sale del CALL deshace todo sola."),
     10: ("La restriccion que hace imposible la doble reserva", [
         "ALTER TABLE cita",
@@ -2098,7 +2164,7 @@ TEORIA_EXTRA = {
     # Ninguna diapositiva las mencionaba: la teoria core llegaba hasta «hay que probar
     # el proc» y el molde del bloque DO solo existia dentro de ExamLab.
     3: [(
-        "La bateria de pruebas: un bloque DO por caso",
+        "El molde de un caso de error y la prueba del conteo",
         [
             "@@Por que un bloque por caso.@@ Si los cuatro `CALL` van seguidos, el primero que "
             "falla @@aborta el resto@@ y la evidencia queda a medias. `DO $$ ... $$;` es un "
@@ -2136,7 +2202,7 @@ TEORIA_EXTRA = {
         ],
         "Los 25 puntos se califican por esta tabla, no por el CALL suelto",
     ), (
-        "El contrato del procedimiento: los 6 bloques que consume la app",
+        "Los 6 bloques del contrato, uno por uno",
         [
             "@@1. Firma exacta.@@ `sp_agendar_cita(p_id_mascota INT, p_id_veterinario INT, "
             "p_fecha_hora TIMESTAMP)`: nombre, orden y @@tipo@@ de cada parametro. Sin los tipos "
@@ -2281,7 +2347,7 @@ TEORIA_EXTRA = {
     # 3. LA PRUEBA DE EQUIVALENCIA (los dos COUNT(*) de la pregunta 1 y el EXCEPT de la 3)
     #    suma otros 6 puntos y tampoco estaba.
     6: [(
-        "Leer un plan: es un arbol y se lee de adentro hacia afuera",
+        "Un plan, campo por campo",
         [
             "@@El orden de lectura.@@ El plan @@no@@ es una lista de pasos de arriba hacia "
             "abajo: es un arbol. Los nodos @@mas indentados son las hojas@@ y se ejecutan "
@@ -2306,7 +2372,7 @@ TEORIA_EXTRA = {
         "Un plan se lee campo por campo: nodo mas costoso, filas estimadas contra reales y "
         "tiempo total",
     ), (
-        "La subconsulta correlacionada: 2.006 pasadas o una sola",
+        "La subconsulta correlacionada en el plan: loops",
         [
             "@@Que la hace correlacionada.@@ La subconsulta esta en la @@lista de columnas@@ y "
             "menciona una columna del exterior (`WHERE m.id_dueno = d.id_dueno`). No se puede "
@@ -2553,7 +2619,7 @@ FLUJO_SLIDE_TITULO = "Del boceto al código Mermaid"
 # Diapositiva de contexto del cliente. Solo en la Clase 1: es donde el estudiante
 # empieza a modelar y necesita saber para quien. Antes conocia a la clinica
 # «Huellitas» por primera vez dentro de ExamLab, el dia que se le calificaba.
-CLIENTE_SLIDE_TITULO = "El cliente · " + CLIENTE
+CLIENTE_SLIDE_TITULO = "El cliente: una clínica veterinaria en papel"
 
 
 def _apoyo_por_diapositiva(c, mapa):
@@ -2625,7 +2691,9 @@ def _sin_secciones_de_taller(fund):
 def _conceptos_de(c):
     """Titulos base de las laminas de concepto, sin paginacion ni «sintaxis»."""
     out = []
-    for t, *_ in _teoria_slides(c):
+    for t, _i, _n, tp in _teoria_slides(c):
+        if tp not in ("content", "codigo"):
+            continue
         b = re.sub(r"\s*\(\d+/\d+\)$|\s*— sintaxis$", "", _titulo_tema(t)).split(":")[0].strip()
         if b not in out and not b.lower().startswith(("preguntas frecuentes", "como amarra")):
             out.append(b)
@@ -2674,6 +2742,10 @@ def _teoria_slides(c):
     # primera lamina de su seccion.
     fund, fuera_sec = _fundamento_solo_tema(_sin_secciones_de_taller(fund))
     laminas = TS.slides_de_clase(fund)
+    # La seccion «El cliente» del fundamento ya tiene su lamina armada a mano (con las
+    # cifras del caso): su version automatica era la misma lamina dos veces seguidas.
+    if c["n"] == 1:
+        laminas = [l for l in laminas if not _es_seccion_cliente(l[0])]
     vistos = set()
     for k, (t, it, nt, tp) in enumerate(laminas):
         base = re.sub(r"\s*\(\d+/\d+\)$", "", t)
@@ -2687,9 +2759,77 @@ def _teoria_slides(c):
     # extraido, asi que subir de ahi era escribir SQL nuevo. Ensenan el MECANISMO que la
     # actividad de ExamLab evalua, sobre un ejemplo adyacente y no sobre el enunciado.
     # Cada consulta autorada va detras del concepto que ilustra, no todas al final.
+    # Las laminas EXTRA (diagrama, antes/despues, codigo de la clase y teoria extra) van
+    # en la misma pasada: antes se apilaban al final del bloque de teoria y el estudiante
+    # veia el concepto en la lamina 7 y su diagrama en la 22.
     laminas = TS.intercalar(laminas, [(tit, lineas, [], "codigo")
-                                      for tit, lineas in QUERIES.get(c["n"], [])])
+                                      for tit, lineas in QUERIES.get(c["n"], [])]
+                            + _extras_de(c["n"]))
+    # Donde el reparto por palabras en comun se equivoca, el sitio se fija a mano.
+    for extra, concepto in TRAS_DE.get(c["n"], []):
+        i = next(k for k, l in enumerate(laminas) if l[0].startswith(extra))
+        lam = laminas.pop(i)
+        j = next(k for k, l in enumerate(laminas) if l[0].startswith(concepto))
+        while j + 1 < len(laminas) and laminas[j + 1][3] in ("dg", "ad", "cs", "tx"):
+            j += 1
+        laminas.insert(j + 1, lam)
     return laminas
+
+
+#: `{clase: [(comienzo del titulo extra, comienzo del concepto que lo precede), ...]}`.
+#: El ER y su DDL ilustran «nivel conceptual y nivel fisico», no la lamina de vocabulario.
+TRAS_DE = {
+    1: [("ER minimo", "Nivel conceptual"), ("El DDL minimo", "Nivel conceptual")],
+}
+
+
+def _es_seccion_cliente(titulo):
+    return _plano(TS.limpiar_tokens(titulo)).startswith("el cliente")
+
+
+def _notas_cliente(c):
+    """Las notas de la seccion «El cliente» del fundamento, para la lamina del cliente."""
+    fund = (c.get("fundamento") or FUNDAMENTOS.get(c["n"]) or "").strip()
+    fund, _ = _fundamento_solo_tema(_sin_secciones_de_taller(fund))
+    for t, it, nt, tp in TS.slides_de_clase(fund):
+        if _es_seccion_cliente(t):
+            return list(nt)
+    return []
+
+
+def _extras_de(n):
+    """Las laminas extra de la clase como `(titulo, texto, [], tipo)` para intercalarlas.
+
+    `tipo` dice con que molde se dibuja (`dg`, `ad`, `cs`, `tx`); el texto solo sirve para
+    elegir detras de que concepto va. `_extra_payload` devuelve los datos completos.
+    """
+    out = []
+    dg = DIAGRAMAS_BD2.get(n)
+    if dg:
+        out.append((dg["titulo"], [dg.get("sub") or "", dg.get("note") or "",
+                                   *[b["label"] for b in dg["boxes"]]], [], "dg"))
+    ad = ANTES_DESPUES.get(n)
+    if ad:
+        out.append((ad["titulo"], [*ad["b"], *ad["a"], ad.get("sub") or ""], [], "ad"))
+    cs = CODIGO_SLIDE.get(n)
+    if cs:
+        out.append((cs[0], list(cs[1]) + [cs[2]], [], "cs"))
+    for ex in TEORIA_EXTRA.get(n, []):
+        out.append((ex[0], list(ex[1]), [], "tx"))
+    return out
+
+
+def _extra_payload(n, tipo, titulo):
+    if tipo == "dg":
+        return DIAGRAMAS_BD2[n]
+    if tipo == "ad":
+        return ANTES_DESPUES[n]
+    if tipo == "cs":
+        return CODIGO_SLIDE[n]
+    for ex in TEORIA_EXTRA.get(n, []):
+        if ex[0] == titulo or titulo.endswith(ex[0]):
+            return ex
+    raise KeyError(titulo)
 
 
 # Una linea de concepto bajo las consultas proyectadas que quedaban cortas: que hace el
@@ -2804,17 +2944,6 @@ def _slide_map(c):
     if c['n'] == 1:
         m.append(CLIENTE_SLIDE_TITULO)
     m += [s[0] for s in _teoria_slides(c)]
-    dg = DIAGRAMAS_BD2.get(c['n'])
-    if dg:
-        m.append(dg["titulo"])
-    ad = ANTES_DESPUES.get(c['n'])
-    if ad:
-        m.append(ad["titulo"])
-    cs = CODIGO_SLIDE.get(c['n'])
-    if cs:
-        m.append(cs[0])
-    for extra in TEORIA_EXTRA.get(c['n'], []):
-        m.append(extra[0])
     m.append("Como se ordena la sesion de hoy" if c['tipo'] == 'sustentacion' else "Demo del dia")
     # El deck solo lleva el tema: el taller es opcional y su guia, sus criterios y su
     # entrega viven en la carpeta (Taller ... .docx), no en laminas. Lo que se queda es el
@@ -3166,7 +3295,7 @@ def build_pptx(c):
             ("105-120", "Cierre conceptual · dudas"),
         ], idx=idx); idx += 1
     if c['n'] == 1:
-        content_slide(prs, CLIENTE_SLIDE_TITULO, [
+        _s = content_slide(prs, CLIENTE_SLIDE_TITULO, [
             f"@@{CLIENTE}@@ (Cali): unas @@150 citas al día@@, @@16 veterinarios@@, "
             "~5.000 mascotas de ~2.000 dueños — y todo en @@carpetas de papel@@.",
             "Duele en tres puntos: se extravían fichas, buscar un historial genera filas "
@@ -3179,7 +3308,26 @@ def build_pptx(c):
             "El modelo de la clínica tiene @@8 entidades@@ y @@3 reglas de negocio@@: dueño, "
             "mascota, veterinario, cita, consulta, insumo, factura y detalle de factura.",
         ], sub=NOMENCLATURA, idx=idx); idx += 1
+        if _notas_cliente(c):
+            notas(_s, "\n".join(_notas_cliente(c)))
     for _t, _items, _notas, _tipo in _teoria_slides(c):
+        if _tipo in ("dg", "ad", "cs", "tx"):
+            _x = _extra_payload(c["n"], _tipo, _t)
+            if _tipo == "dg":
+                _s = diagram_boxes_slide(prs, _t, _x["boxes"], arrows=_x.get("arrows"),
+                                         sub=_x.get("sub"), note=_x.get("note"), idx=idx)
+            elif _tipo == "ad":
+                # `sub` es opcional: lo usa la Clase 6 para decir en la propia diapositiva
+                # que hoy no hay indices, y que por eso la evidencia no es un cambio de nodo.
+                _s = before_after_slide(prs, _t, _x["b_t"], _x["b"], _x["a_t"], _x["a"],
+                                        sub=_x.get("sub"), idx=idx)
+            elif _tipo == "cs":
+                _s = pseudo_code_slide(prs, _t, _x[1], caption=_x[2], idx=idx)
+            else:
+                _s = content_slide(prs, _t, _x[1],
+                                   sub=(_x[2] if len(_x) > 2 else None), idx=idx)
+            idx += 1
+            continue
         if _tipo == "codigo":
             _s = pseudo_code_slide(prs, _t, _items, idx=idx,
                                    caption=LEYENDA_CONSULTA.get(_t))
@@ -3192,29 +3340,6 @@ def build_pptx(c):
         # tambien a las notas del presentador de ESA lamina.
         if _notas:
             notas(_s, "\n".join(_notas))
-        idx += 1
-    dg = DIAGRAMAS_BD2.get(c['n'])
-    if dg:
-        diagram_boxes_slide(
-            prs, dg["titulo"], dg["boxes"], arrows=dg.get("arrows"),
-            sub=dg.get("sub"), note=dg.get("note"), idx=idx,
-        )
-        idx += 1
-    ad = ANTES_DESPUES.get(c['n'])
-    if ad:
-        # `sub` es opcional: lo usa la Clase 6 para decir en la propia diapositiva que
-        # hoy no hay indices, y que por eso la evidencia no es un cambio de nodo.
-        before_after_slide(prs, ad["titulo"], ad["b_t"], ad["b"], ad["a_t"], ad["a"],
-                           sub=ad.get("sub"), idx=idx)
-        idx += 1
-    cs = CODIGO_SLIDE.get(c['n'])
-    if cs:
-        pseudo_code_slide(prs, cs[0], cs[1], caption=cs[2], idx=idx)
-        idx += 1
-    for extra in TEORIA_EXTRA.get(c['n'], []):
-        content_slide(prs, extra[0], extra[1],
-                      sub=(extra[2] if len(extra) > 2 else None), idx=idx,
-                      )
         idx += 1
     if c['tipo'] == 'sustentacion':
         # Hoy no hay demo del docente: el que demuestra es el estudiante, en su turno.
@@ -3256,7 +3381,9 @@ def build_pptx(c):
     else:
         # Cierre conceptual: los conceptos que se vieron, sin anunciar entregables.
         _vistos = []
-        for _t, *_ in _teoria_slides(c):
+        for _t, _i, _n, _tp in _teoria_slides(c):
+            if _tp != "content":
+                continue
             _b = re.sub(r"\s*\(\d+/\d+\)$|\s*— sintaxis$", "", _titulo_tema(_t)).split(":")[0].strip()
             if _b not in _vistos:
                 _vistos.append(_b)

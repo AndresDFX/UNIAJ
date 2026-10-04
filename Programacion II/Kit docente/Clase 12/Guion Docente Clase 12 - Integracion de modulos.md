@@ -13,91 +13,41 @@
 
 ## Apoyo por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en las notas del presentador de su lamina. Aqui va, por lamina y en su orden, lo que hay que subrayar.
 
-**Integrar es lograr que piezas que ya funcionan por separado funcionen... (1/2)** — 4 vinetas.
-  - ¿Por qué importa?
+**[Slide 4] Integrar: piezas que funcionan juntas** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: ¿Por qué importa?
 
-**Integrar es lograr que piezas que ya funcionan por separado funcionen... (2/2)** — 3 vinetas.
+**[Slide 5] main(): una sola instancia de cada capa** — codigo (6 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**El flujo de punta a punta se define antes de integrar, por escrito, y... (1/2)** — 4 vinetas.
-  - Eso es lo que tiene que correr sin que nadie toque código en la mitad.
+**[Slide 6] El guion de humo** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Eso es lo que tiene que correr sin que nadie toque código en la mitad.
 
-**El flujo de punta a punta se define antes de integrar, por escrito, y... (2/2)** — 2 vinetas.
+**[Slide 7] El constructor registra el cierre** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Los errores de integración tienen firma propia y conviene reconocerlos...** — 5 vinetas.
-  - Los errores de integración tienen firma propia y conviene reconocerlos por el síntoma.
-  - Quinto, la unión del código de tres personas que trajeron cada una su propia clase Mascota con constructores distintos.
-  - Y sexto, el clásico NullPointerException porque buscarPorId devuelve null cuando el ID no existe y nadie valida antes de usar el resultado.
+**[Slide 8] cerrarGuardando(): guardar antes de salir** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**El depurador de VS Code es la herramienta de esta clase y hay que... (1/2)** — 4 vinetas.
+**[Slide 9] Errores de integración y su síntoma** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Los errores de integración tienen firma propia y conviene reconocerlos por el síntoma.
+  - Subrayar: Quinto, la unión del código de tres personas que trajeron cada una su propia clase Mascota con constructores distintos.
+  - Subrayar: Y sexto, el clásico NullPointerException porque buscarPorId devuelve null cuando el ID no existe y nadie valida antes de usar el resultado.
 
-**El depurador de VS Code es la herramienta de esta clase y hay que... (2/2)** — 4 vinetas.
+**[Slide 10] ServicioClinica: dueño de la lista** — codigo (12 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**La forma de integrar sin sufrir es por goteo y no de un solo golpe (1/2)** — 4 vinetas.
-  - Cuando algo se rompe, uno sabe exactamente qué fue lo último que tocó.
+**[Slide 11] El depurador de VS Code** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
 
-**La forma de integrar sin sufrir es por goteo y no de un solo golpe (2/2)** — 3 vinetas.
+**[Slide 12] Integrar por goteo** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Cuando algo se rompe, uno sabe exactamente qué fue lo último que tocó.
 
-**ClinicaApp.java — class ClinicaApp** — 18 vinetas.
+**[Slide 13] registrar(): la regla vive en el servicio** — codigo (17 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaApp.java — ClinicaApp()** — 16 vinetas.
+**[Slide 14] registrarMascota(): la frontera con la interfaz** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaApp.java — construirInterfaz() (1/2)** — 20 vinetas.
+## Errores tipicos del docente que no domina el tema
 
-**ClinicaApp.java — construirInterfaz() (2/2)** — 12 vinetas.
+Material de preparacion: no se proyecta.
 
-**ClinicaApp.java — registrarMascota()** — 13 vinetas.
-
-**ClinicaApp.java — buscarPorId()** — 11 vinetas.
-
-**ClinicaApp.java — refrescarTabla()** — 8 vinetas.
-
-**ClinicaApp.java — limpiarFormulario()** — 7 vinetas.
-
-**ClinicaApp.java — cerrarGuardando()** — 16 vinetas.
-
-**ClinicaApp.java — main()** — 9 vinetas.
-
-**class DatosInvalidosException · DatosInvalidosException() · class Mascota** — 17 vinetas.
-
-**ClinicaApp.java — Mascota()** — 8 vinetas.
-
-**ClinicaApp.java — ficha()** — 7 vinetas.
-
-**ClinicaApp.java — class ServicioClinica** — 7 vinetas.
-
-**ClinicaApp.java — ServicioClinica()** — 4 vinetas.
-
-**ClinicaApp.java — cargarDesdeArchivo()** — 6 vinetas.
-
-**ClinicaApp.java — guardarEnArchivo()** — 4 vinetas.
-
-**ClinicaApp.java — listar()** — 4 vinetas.
-
-**ClinicaApp.java — buscarPorId()** — 12 vinetas.
-
-**ClinicaApp.java — registrar() (1/2)** — 20 vinetas.
-
-**ClinicaApp.java — registrar() (2/2)** — 6 vinetas.
-
-**ClinicaApp.java — siguienteId() (1/2)** — 20 vinetas.
-
-**ClinicaApp.java — siguienteId() (2/2)** — 1 vinetas.
-
-**ClinicaApp.java — class RepositorioMascotasCSV** — 8 vinetas.
-
-**ClinicaApp.java — RepositorioMascotasCSV()** — 4 vinetas.
-
-**ClinicaApp.java — rutaAbsoluta()** — 4 vinetas.
-
-**ClinicaApp.java — guardar()** — 15 vinetas.
-
-**ClinicaApp.java — cargar() (1/2)** — 20 vinetas.
-
-**ClinicaApp.java — cargar() (2/2)** — 15 vinetas.
-
-**ClinicaApp.java — limpiar()** — 8 vinetas.
+- Error tipico del docente que no domina el tema: junta todos los módulos la noche anterior, en clase la aplicación no arranca, y termina explicando el flujo en el tablero mientras los estudiantes nunca ven correr el producto; después culpa al editor, al JDK o al computador del salón. El segundo error es no abrir jamás el debugger: llena el código de System.out.println, y como imprime solo lo que se le ocurrió imprimir, no logra distinguir entre 'el dato llegó mal desde el formulario' y 'el dato se guardó mal en el archivo', que son dos defectos completamente distintos con el mismo síntoma. El tercero es no fijar el contrato del CSV: cada estudiante escribe su propio orden de campos, y al integrar el módulo del compañero el archivo se lee corrido, con lo que el docente concluye que 'el CSV es frágil' cuando lo frágil fue el acuerdo. La disciplina que se enseña hoy y que el docente debe haber practicado antes de entrar al salón es: integrar temprano, integrar por partes, tener un guion de humo de dos minutos que se corre después de cada cambio, y llegar a clase con VetCare ya corriendo para poder romperlo a propósito delante del grupo y arreglarlo con el debugger en vivo, que es la única forma de que el estudiante crea que la herramienta sirve.
 
 
 **Demo que usted debe poder repetir:** El docente corre el guion de humo completo (abrir, registrar, buscar, cerrar, reabrir) y luego pone un breakpoint en el botón Registrar para mostrar con el debugger por qué una edad vacía estaba entrando como cero.

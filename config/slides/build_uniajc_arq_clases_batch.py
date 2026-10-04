@@ -24,7 +24,7 @@ from docx.shared import Inches, Pt, RGBColor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import calendario_2026_2 as cal  # noqa: E402
-from arq_fundamentos import FUNDAMENTOS  # noqa: E402
+from arq_fundamentos import FUNDAMENTOS, IDEAS  # noqa: E402
 import teoria_a_slides as TS  # noqa: E402
 from arq_operativo_data import OPERATIVO  # noqa: E402
 from arq_examlab_data import (  # noqa: E402
@@ -43,10 +43,13 @@ import examlab_talleres  # noqa: E402
 # y ellos salen identicos.
 examlab_talleres.NOMBRE_PLATAFORMA = "la plataforma del curso"
 examlab_talleres.MOSTRAR_URL = False
+import visuales  # noqa: E402
+from arq_visuales_data import VISUALES  # noqa: E402
 from uniajc_slides_engine import (  # noqa: E402
     before_after_slide,
     box_note_slide,
     closing_slide,
+    concepto_slide,
     content_slide,
     new_prs,
     notas,
@@ -1279,35 +1282,41 @@ CODIGO_SLIDE = {
     2: ("ADR-001 — las 6 secciones caben en una pagina", [
         "## 1. Titulo     ADR-001 Modelo de servicio dominante de CloudLite App",
         "## 2. Estado     Aceptado — <fecha de hoy>",
-        "",
         "## 3. Contexto                    <- restricciones, no resumen del tema",
-        "Lo sostengo yo solo, 12 semanas, sin presupuesto cloud ni tarjeta; demo viva el dia de la sustentacion.",
+        "Lo sostengo yo solo, 12 semanas, sin presupuesto cloud ni tarjeta.",
         "",
         "## 4. Decision                    <- UNA frase, UN modelo dominante",
         "La aplicacion de CloudLite se despliega sobre PaaS.",
         "",
-        "## 5. Alternativas descartadas    <- exactamente 2, con motivo del dominio",
+        "## 5. Alternativas descartadas    <- exactamente 2, con motivo",
         "- IaaS: control total, pero yo opero SO y parches -> tiempo que no tengo.",
         "- SaaS como nucleo: no queda nada que arquitecturar; solo satelite (auth/email).",
         "",
         "## 6. Consecuencias               <- 3 ejes, cada uno con + y -",
         "Operacion + / -        Costo + / -        Aprendizaje + / -",
-    ], "Sin Titulo y Estado con fecha no hay ADR que citar despues: es su identidad."),
+    ], "Sin Titulo y Estado con fecha no hay ADR que citar."),
     # El `.dockerignore` va en la MISMA diapositiva y no en una nota al pie: la rubrica
     # de la pregunta 8 anula los 5 puntos del Dockerfile si se hace `COPY . .` «sin
     # .dockerignore ni mencionarlo», y esta diapositiva proyecta justo ese `COPY . .`.
     # Sin el archivo de al lado, el deck estaba ensenando el error que corta la nota.
+    # Los comentarios van en linea propia: en un Dockerfile `# ...` solo es comentario al
+    # inicio de linea. Al final de `FROM` o de `EXPOSE` es un argumento mas y el build falla.
     3: ("Dockerfile minimo del stub CloudLite", [
-        "FROM node:20-alpine          # base ligera y etiqueta FIJA: nunca latest",
+        "# ---- Dockerfile ----",
+        "# base ligera y etiqueta FIJA: nunca latest",
+        "FROM node:20-alpine",
         "WORKDIR /app",
-        "COPY package*.json ./        # dependencias PRIMERO: cambian poco",
-        "RUN npm ci --omit=dev        # se instalan DENTRO de la imagen",
-        "COPY . .                     # el codigo despues: cambia en cada commit",
-        "EXPOSE 8080                  # documenta el puerto; NO lo publica",
-        'CMD ["node", "server.js"]    # UN proceso principal por contenedor',
+        "# dependencias PRIMERO: cambian poco y se cachean",
+        "COPY package*.json ./",
+        "RUN npm ci --omit=dev",
+        "# el codigo despues: cambia en cada commit",
+        "COPY . .",
+        "# documenta el puerto; publicarlo es el -p del docker run",
+        "EXPOSE 8080",
+        'CMD ["node", "server.js"]',
         "",
-        "# .dockerignore  <- archivo aparte, en la misma carpeta que el Dockerfile.",
-        "# Sin el, el COPY . . de arriba se lleva el .env a las capas de la imagen.",
+        "# ---- .dockerignore (archivo aparte, en la misma carpeta) ----",
+        "# sin el, el COPY . . se lleva el .env a las capas de la imagen",
         "node_modules",
         ".env",
         ".env.*",
@@ -1360,17 +1369,19 @@ CODIGO_SLIDE = {
     # construye en ninguna clase, y en la misma sesion el docente proyectaba la
     # diapositiva y la captura con dos nombres distintos para el mismo comando.
     6: ("El secreto en la imagen: por qué borrarlo no sirve", [
-        "# Dockerfile — el anti-patron",
-        'ENV CORREO_API_KEY="sk_live_9f3a...c21"   # <- queda en la capa',
-        "RUN rm -f /app/.env                       # <- NO la borra: la tapa",
+        "# Dockerfile: el anti-patron",
+        "# la llave queda escrita en una capa",
+        'ENV CORREO_API_KEY="sk_live_9f3a...c21"',
+        "# este rm NO la borra: agrega otra capa encima",
+        "RUN rm -f /app/.env",
         "",
-        "$ docker history --format '{{.ID}} · {{.CreatedBy}} · {{.Size}}' cloudlite-api:0.1.0",
-        "a91d0c33 · RUN rm -f /app/.env · 12kB",
-        "b7c1e2f4 · ENV CORREO_API_KEY=sk_live_9f3a...c21 · 0B",
+        "$ docker history --format '{{.CreatedBy}} · {{.Size}}' cloudlite-api:0.1.0",
+        "RUN /bin/sh -c rm -f /app/.env # buildkit · 0B",
+        "ENV CORREO_API_KEY=sk_live_9f3a...c21 · 0B",
         "",
-        "La capa de abajo sigue ahí: el «rm» de la de arriba no la elimina.",
-        "Cualquiera que tenga la imagen lee la llave con este mismo comando.",
-        "Lo mismo con Git: el commit borrado sigue en el historial y en cada clon.",
+        "# La capa de abajo sigue ahi: el rm de la de arriba no la elimina.",
+        "# Cualquiera que tenga la imagen lee la llave con este mismo comando.",
+        "# Lo mismo con Git: el commit borrado sigue en el historial y en cada clon.",
     ], "Por eso el primer paso ante una filtración es **rotar** la credencial, no borrar el commit."),
     # La pregunta 4 cobra 14 pts sobre codigo Mermaid pegado en ExamLab —3 zonas rotuladas,
     # cada componente en su zona, el puerto de cada uno, las fronteras de confianza y 2 pts
@@ -1759,11 +1770,166 @@ def _teoria_slides(c: dict) -> list:
                 notas_ = list(notas_) + ["(No se proyecta) " + x for x in extra]
             nuevas.append((tit, lineas, notas_, tipo))
         laminas = nuevas
-    # Y el material operativo autorado: Dockerfile, CLI, Mermaid, YAML, ADR. Los
-    # entregables de ARQ son artefactos con FORMA, y el deck proyectaba el 1% de codigo:
-    # el estudiante adivinaba la forma y perdia puntos por el formato, no por el criterio.
-    laminas += [(tit, lineas, [], "codigo") for tit, lineas in OPERATIVO.get(c["n"], [])]
     return laminas
+
+
+def _clave_titulo(t: str) -> str:
+    """Titulo plegado (sin tildes, sin signos) para reconocer el mismo concepto escrito dos veces."""
+    return re.sub(r"[^a-z0-9]+", " ", _plano(TS.limpiar_tokens(str(t)))).strip()
+
+
+# Donde la coincidencia de palabras de `TS.intercalar` no basta: la lamina (por el comienzo
+# de su titulo) va detras del concepto indicado (tambien por el comienzo de su titulo).
+ANCLAS = {
+    2: {"IaaS · PaaS · SaaS": "IaaS, PaaS y SaaS: los tres cortes"},
+    6: {"Amenazas que sí importan": "STRIDE",
+        "El secreto en la imagen": "Gestion de secretos",
+        "Ejercicio guiado": "Primer ejemplo: autenticacion"},
+    7: {"Checklist del diagrama": "Trazabilidad",
+        "El Despliegue en Mermaid": "El molde de Mermaid",
+        "Red lógica para el diagrama": "IP, puerto y protocolo"},
+    8: {"Secretos en el workflow": "Donde se ejecuta de verdad"},
+    12: {"El presupuesto de latencia": "El cuello de botella",
+         "Rendimiento sin stress-tool": "Los tipos de prueba"},
+    13: {"Límites y costos": "Lo que NO escala",
+         "Politica de autoescalado": "Las cinco piezas"},
+}
+
+
+def _colocar(laminas: list, items: list, anclas: dict) -> list:
+    """`TS.intercalar` con anclas explicitas para las laminas que lo necesitan."""
+    def ancla(t):
+        return next((v for k, v in anclas.items() if _plano(t).startswith(_plano(k))), None)
+    libres = [x for x in items if not ancla(x[0])]
+    out = TS.intercalar(laminas, libres) if libres else list(laminas)
+    for x in items:
+        destino = ancla(x[0])
+        if not destino:
+            continue
+        i = next((k for k, y in enumerate(out) if _plano(y[0]).startswith(_plano(destino))), None)
+        if i is None:
+            raise SystemExit(f"ANCLAS: no hay lamina que empiece por «{destino}»")
+        # Inmediatamente detras del concepto: lo que `intercalar` ya puso ahi va despues.
+        out.insert(i + 1, x)
+    return out
+
+
+# Las ideas de una lamina de concepto, elegidas de su desarrollo. `teoria_a_slides` toma las
+# primeras frases de la seccion y las parte por clausula cuando son largas; en Arquitectura eso
+# proyectaba trozos que no se sostienen solos («Que en equipos institucionales suele estar
+# bloqueado…», «Dos razones tecnicas hay que saber explicar.») y frases al docente («Esa
+# comparacion funciona bien con estudiantes…»). Aqui se eligen, en su orden, frases COMPLETAS que
+# se entienden sin la anterior; si no hay al menos dos, se queda la seleccion original.
+_IDEA_NO_EMPIEZA = re.compile(
+    r"^(?:y|o|e|que|porque|pero|pues|esto|eso|esa|ese|esas|esos|ahi|asi|luego|de modo|lo que|"
+    r"tambien|ademas|primera|segunda|tercera|cuarta|quinta|el primero|el segundo|el tercero|"
+    r"la primera|la segunda|la tercera|no por|aqui|sin esto|con esto|por eso|para eso|de abajo|el cuarto|el segundo bloque|es la|son ocho|[0-9])\b", re.I)
+_IDEA_DOCENTE = re.compile(
+    r"obligatori[oa] porque convence|comparacion funciona|hay que saber|conviene|el docente|"
+    r"estudiante|en voz alta|esta clase|la clase|hoy se|el corazon del tema|"
+    r"es el siguiente\.?$|es esto\.?$|se lee asi|hay que (?:ver|decir)", re.I)
+
+
+def _ideas_de(items, notas_):
+    notas_ = [str(x) for x in notas_]
+    if not notas_ or not notas_[0].startswith("DESARROLLO"):
+        return list(items)
+    cand = []
+    for v in notas_[1:]:
+        if v.isupper() or v.startswith(("NOTAS:", "CÓDIGO CITADO", "(No se proyecta)")):
+            break
+        cand.append(v)
+    # Una vineta larga con «;» son dos frases: cada mitad compite por su cuenta.
+    trozos = []
+    for v in cand:
+        partes = [x.strip() for x in v.split("; ")] if len(v) > 210 else [v]
+        for k, x in enumerate(partes):
+            x = x[0].upper() + x[1:] if x else x
+            trozos.append(x if x.endswith((".", "»", ")", "?")) or k == len(partes) - 1 else x + ".")
+    ideas, car = [], 0
+    for v in trozos:
+        v = re.sub(r"COPY\s*\.\s*\.", "COPY . .", v)
+        v = re.sub(r"(\w)\.(gitignore|dockerignore|github|env)\b", r"\1 .\2", v.strip())
+        v = re.sub(r",:", ":", v)
+        plano = _plano(v)
+        if not (40 <= len(v) <= 210) or not v[0].isupper() and v[0] not in "«\"0123456789":
+            continue
+        if _IDEA_NO_EMPIEZA.match(plano) or _IDEA_DOCENTE.search(plano):
+            continue
+        if not v.endswith((".", "»", ")", "?")) or v.count("(") != v.count(")"):
+            continue
+        if ideas and (len(ideas) >= TS.MAX_VINETAS_CONCEPTO or car + len(v) > TS.MAX_CAR_CONCEPTO):
+            break
+        ideas.append(v)
+        car += len(v)
+    return ideas if len(ideas) >= 2 else list(items)
+
+
+def _secuencia(c: dict) -> list:
+    """Todas las laminas del cuerpo de la clase, EN ORDEN: `(titulo, items, notas, tipo, clase)`.
+
+    `clase` dice como se dibuja: `concepto` (una idea del fundamento con su visual),
+    `extra` / `tabla` (las laminas curadas de `slides_extra`), `codigo` (material operativo),
+    `codigo_slide`, `diagrama` y `antes_despues`. `tipo` es lo que entiende
+    `TS.intercalar`: `content` para lo que puede llevar detras su codigo o su diagrama.
+
+    Antes el orden era fijo por bloques —curadas, teoria, codigo, diagrama— y el estudiante
+    veia el Dockerfile explicado en la lamina 6 y proyectado en la 22. Ahora cada lamina
+    curada, de codigo o de diagrama va detras del concepto que ilustra; y si una curada
+    repite el titulo de una seccion del fundamento, queda UNA (la curada, que es la que
+    trae lo que la actividad cobra) con el desarrollo de la otra en sus notas.
+
+    `build_pptx`, `_slide_map` y el guion llaman a ESTA funcion: el deck y la numeracion del
+    guion no pueden desincronizarse.
+    """
+    if c.get("tipo") == "parcial":
+        return []
+    n = c["n"]
+    def _ideas(t, it, nt):
+        # Las ideas curadas (arq_fundamentos.IDEAS) mandan; si no hay, la seleccion filtrada.
+        for k, v in IDEAS.get(n, {}).items():
+            if _plano(t).startswith(_plano(k)):
+                return list(v)
+        return _ideas_de(it, nt)
+    teoria = [(t, _ideas(t, it, nt) if tp == "content" else it, list(nt), tp,
+               "concepto" if tp == "content" else "codigo")
+              for t, it, nt, tp in _teoria_slides(c)]
+    claves = [_clave_titulo(x[0]) for x in teoria]
+    sueltas = []
+    for extra in c.get("slides_extra", []):
+        tit, items = extra[0], extra[1]
+        tabla = extra[2] if len(extra) > 2 else None
+        ent = (tit, items, [], "content", "tabla" if tabla else "extra")
+        k = _clave_titulo(tit)
+        hit = next((i for i, ck in enumerate(claves)
+                    if teoria[i][4] == "concepto" and (ck.startswith(k[:28]) or k.startswith(ck[:28]))),
+                   None)
+        if hit is not None:
+            # El mismo concepto dos veces: queda la curada, con el desarrollo en las notas.
+            teoria[hit] = (tit, items, teoria[hit][2], "content", ent[4])
+            claves[hit] = None
+        else:
+            sueltas.append(ent)
+    anclas = ANCLAS.get(n, {})
+    laminas = _colocar(teoria, sueltas, anclas)
+    # Lo que ilustra un concepto va detras de el: el material operativo (Dockerfile, CLI,
+    # Mermaid, YAML), la plantilla proyectable, el diagrama de cajas y el antes/despues.
+    # Los entregables de ARQ son artefactos con FORMA: la forma se proyecta junto al concepto.
+    ilustra = [(tit, lineas, [], "codigo", "codigo") for tit, lineas in OPERATIVO.get(n, [])]
+    cs = CODIGO_SLIDE.get(n)
+    if cs:
+        ilustra.append((cs[0], cs[1], [], "codigo", "codigo_slide"))
+    dg = DIAGRAMAS.get(n)
+    if dg:
+        ilustra.append((dg["titulo"], [b["label"] for b in dg["boxes"]] + [dg.get("note", "")],
+                        [], "diagrama", "diagrama"))
+    ad = ANTES_DESPUES_ARQ.get(n)
+    if ad:
+        ilustra.append((ad["titulo"], [ad["b_t"], ad["a_t"]] + ad["b"] + ad["a"], [],
+                        "antes_despues", "antes_despues"))
+    if ilustra:
+        laminas = _colocar(laminas, ilustra, anclas)
+    return [tuple(x) for x in laminas]
 
 
 def _slide_map(c: dict) -> list:
@@ -1783,17 +1949,7 @@ def _slide_map(c: dict) -> list:
     m = [f"Portada · Clase {n} · {c['tema']}",
          "Agenda de hoy (120 min)",
          "Objetivos de la clase"]
-    m += [x[0] for x in c.get("slides_extra", [])]
-    m += [x[0] for x in _teoria_slides(c)]
-    dg = DIAGRAMAS.get(n)
-    if dg:
-        m.append(dg["titulo"])
-    ad = ANTES_DESPUES_ARQ.get(n)
-    if ad:
-        m.append(ad["titulo"])
-    cs = CODIGO_SLIDE.get(n)
-    if cs:
-        m.append(cs[0])
+    m += [x[0] for x in _secuencia(c)]
     if _tiene_diagrama(n):
         m.append(FLUJO_SLIDE_TITULO)
     m.append(f"Clase {n} · cierre del curso" if c["tipo"] == "sustentacion"
@@ -2017,48 +2173,41 @@ def build_pptx(c: dict) -> Path:
     idx += 1
     content_slide(prs, "Objetivos de la clase", c["objetivos"], idx=idx)
     idx += 1
-    for extra in c["slides_extra"]:
-        # Una entrada es (titulo, vinetas) o (titulo, vinetas, tabla). La tercera
-        # forma existe porque hay conceptos que son una comparacion y salen mejor
-        # como tabla; renderizarla aqui, y no en un diccionario aparte, la mantiene
-        # en el ORDEN de la teoria y dentro de `conceptos` (que es de donde el
-        # guion saca la lista de temas y el reparto de minutos).
-        title, bullets_ = extra[0], extra[1]
-        tabla = extra[2] if len(extra) > 2 else None
-        if tabla:
-            table_content(prs, title, tabla["headers"], tabla["rows"],
-                          note=tabla.get("note"), col_w=tabla.get("col_w"),
-                          fs_body=tabla.get("fs_body", 11), idx=idx)
-        else:
-            bullets_limpias, imagen = _limpiar_y_capturar(bullets_)
-            slide = content_slide(prs, title, bullets_limpias, idx=idx)
+    for _t, _items, _notas, _tipo, _clase in _secuencia(c):
+        if _clase == "concepto":
+            # Una lamina por concepto, con su visual si lo tiene: los pasos de su animacion
+            # (aparecen con cada clic del docente) o una foto. Sin visual, texto a lo ancho.
+            _imgs, _pie = visuales.imagenes(VISUALES, n, _t)
+            _sl = concepto_slide(prs, _t, _items, imagenes=_imgs, pie=_pie, idx=idx)
+        elif _clase == "tabla":
+            tabla = next(x[2] for x in c["slides_extra"] if x[0] == _t)
+            _sl = table_content(prs, _t, tabla["headers"], tabla["rows"],
+                                note=tabla.get("note"), col_w=tabla.get("col_w"),
+                                fs_body=tabla.get("fs_body", 11), idx=idx)
+        elif _clase == "extra":
+            bullets_limpias, imagen = _limpiar_y_capturar(_items)
+            _sl = content_slide(prs, _t, bullets_limpias, idx=idx)
             if imagen:
-                _add_captura(slide, imagen)
-        idx += 1
-    for _t, _items, _notas, _tipo in _teoria_slides(c):
-        if _tipo == "codigo":
+                _add_captura(_sl, imagen)
+        elif _clase == "codigo":
             _sl = pseudo_code_slide(prs, _t, _items, idx=idx)
+        elif _clase == "codigo_slide":
+            cs = CODIGO_SLIDE[n]
+            _sl = pseudo_code_slide(prs, cs[0], cs[1], caption=cs[2], idx=idx)
+        elif _clase == "diagrama":
+            dg = DIAGRAMAS[n]
+            _sl = diagram_boxes_slide(
+                prs, dg["titulo"], dg["boxes"], arrows=dg.get("arrows"),
+                sub=dg.get("sub"), note=dg.get("note"), legend=dg.get("legend"), idx=idx,
+            )
         else:
-            _sl = content_slide(prs, _t, _items, idx=idx)
+            ad = ANTES_DESPUES_ARQ[n]
+            _sl = before_after_slide(prs, ad["titulo"], ad["b_t"], ad["b"], ad["a_t"], ad["a"],
+                                     idx=idx)
         # Lo que el guion recoge como apoyo de esta lamina (que subrayar, como dictarla)
         # va tambien a las notas del presentador.
         if _notas and _sl is not None:
             notas(_sl, list(_notas))
-        idx += 1
-    dg = DIAGRAMAS.get(n)
-    if dg:
-        diagram_boxes_slide(
-            prs, dg["titulo"], dg["boxes"], arrows=dg.get("arrows"),
-            sub=dg.get("sub"), note=dg.get("note"), legend=dg.get("legend"), idx=idx,
-        )
-        idx += 1
-    ad = ANTES_DESPUES_ARQ.get(n)
-    if ad:
-        before_after_slide(prs, ad["titulo"], ad["b_t"], ad["b"], ad["a_t"], ad["a"], idx=idx)
-        idx += 1
-    cs = CODIGO_SLIDE.get(n)
-    if cs:
-        pseudo_code_slide(prs, cs[0], cs[1], caption=cs[2], idx=idx)
         idx += 1
     # Del boceto al codigo Mermaid: solo donde la clase trabaja un diagrama.
     if _tiene_diagrama(n):
@@ -3422,19 +3571,16 @@ def _apoyo_por_diapositiva(c: dict) -> str:
     NO repite el contenido —eso esta proyectado—: recoge las frases del fundamento que le
     hablan al docente sobre COMO dictar, que son las unicas que no tienen sitio en pantalla.
     """
-    slides = _teoria_slides(c)
+    slides = _secuencia(c)
     if not slides:
         return ""
     mapa = _slide_map(c)
-    base = None
-    for i, titulo in enumerate(mapa, 1):
-        if titulo == slides[0][0]:
-            base = i
-            break
+    # `_slide_map` es portada, agenda, objetivos y luego `_secuencia` en orden.
+    base = 4 if len(mapa) > 3 and mapa[3] == slides[0][0] else None
     L = ["## Apoyo por diapositiva", "",
          "Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en "
          "cada lamina, no repite su contenido.", ""]
-    for j, (titulo, vin, notas, _tipo) in enumerate(slides):
+    for j, (titulo, vin, notas, _tipo, _clase) in enumerate(slides):
         num = f"[Slide {base + j}] " if base else ""
         L.append(f"**{num}{titulo}** — {len(vin)} vinetas.")
         for x in notas:

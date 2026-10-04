@@ -43,7 +43,11 @@
   function codigo(ctx, lz, x, y, an, linea, visible, tam) {
     tam = tam || 20;
     L.rectRed(ctx, x, y, an, tam * 2, 8); L.rellena(ctx, L.tono(lz.marca.tinta, -0.55));
-    L.texto(ctx, linea, x + 14, y + tam * 0.45, { tam: tam, peso: 500, color: '#E8F4FA', letra: 'Consolas, monospace', visible: visible, ancho: an - 20 });
+    // Sin `L.texto`: ese parte por espacios y se comia la sangria, que en codigo es contenido.
+    var v = visible === undefined ? 1 : Math.max(0, Math.min(1, visible));
+    ctx.font = '500 ' + tam + 'px Consolas, monospace'; ctx.fillStyle = '#E8F4FA';
+    ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+    ctx.fillText(String(linea).slice(0, Math.round(String(linea).length * v)), x + 14, y + tam * 0.45, an - 24);
   }
 
   function rotulo(ctx, lz, frase, x, y, o) {

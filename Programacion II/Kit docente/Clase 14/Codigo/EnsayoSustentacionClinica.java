@@ -10,7 +10,7 @@ import java.util.Scanner;
  * Clinica Veterinaria
  * Clase 14: preparacion de la sustentacion final.
  * 1) Siembra el juego de datos de demostracion.
- * 2) Chequeo pre-vuelo antes de conectar el videobeam.
+ * 2) Chequeo pre-vuelo antes de compartir pantalla.
  * 3) Ensayo cronometrado de 5 a 8 minutos.
  * Trabajo individual por defecto: si el docente autoriza equipo, agregue los nombres
  * en PRESENTADORES y el reparto de bloques se hace automatico.
@@ -116,7 +116,7 @@ public class EnsayoSustentacionClinica {
         }
     }
 
-    /** Si esto no da verde, no se conecta el videobeam. */
+    /** Si esto no da verde, no se comparte pantalla. */
     private static boolean chequeoPreVuelo() {
         String[] requeridos = {CARPETA + "/duenos.csv", CARPETA + "/mascotas.csv", CARPETA + "/citas.csv"};
         boolean listo = true;

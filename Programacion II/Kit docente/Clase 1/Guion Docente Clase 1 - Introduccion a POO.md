@@ -13,82 +13,66 @@
 
 ## Apoyo por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en las notas del presentador de su lamina. Aqui va, por lamina y en su orden, lo que hay que subrayar.
 
-**Antes de la POO un programa era una lista de procedimientos que...** — 2 vinetas.
-  - Antes de la POO un programa era una lista de procedimientos que operaban sobre datos sueltos.
-  - Cuando el programa crecia, nadie sabia que funcion tocaba que dato, y un cambio pequeno rompia cosas en lugares inesperados.
-  - El programa deja de ser una receta y pasa a ser un conjunto de piezas que se hablan entre si.
+**[Slide 4] Del programa estructurado al objeto** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Vale la pena hacer visible el limite de ese enfoque con el mismo dominio del proyecto antes de nombrar la palabra objeto.
+  - Subrayar: Eso funciona en un ejercicio de veinte lineas y se cae en cuanto el programa crece, por tres razones concretas.
+  - Subrayar: Ordenar la lista por nombre obliga a mover los tres arreglos en perfecta sincronia, y basta olvidar uno para que Luna quede con la edad de otro animal.
+  - Subrayar: Antes de la POO un programa era una lista de procedimientos que operaban sobre datos sueltos.
+  - Subrayar: Cuando el programa crecia, nadie sabia que funcion tocaba que dato, y un cambio pequeno rompia cosas en lugares inesperados.
+  - Subrayar: El programa deja de ser una receta y pasa a ser un conjunto de piezas que se hablan entre si.
 
-**La distincion que mas cuesta el primer dia es clase contra objeto** — 6 vinetas.
+**[Slide 5] Clase y objeto: el molde y la pieza** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Recien ahora tiene sentido la analogia clasica.
+  - Subrayar: La analogia es util pero tiene tres limites que hay que decir en voz alta, porque el estudiante que se queda solo con la analogia la estira mal.
 
-**Los cuatro pilares se entienden por el problema que resuelve cada uno** — 3 vinetas.
-  - Los cuatro pilares se entienden por el problema que resuelve cada uno.
+**[Slide 6] Crear objetos con new** — codigo (8 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Herencia es que una clase puede extender a otra y reutilizar lo que ya...** — 4 vinetas.
+**[Slide 7] El objeto en memoria: pila y montón** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: En Java una variable local vive en la pila, una zona pequena y ordenada asociada al metodo que se esta ejecutando, mientras que el objeto creado con new vive en el monton, una zona grande donde el programa reserva espacio a medida que lo necesita.
+  - Subrayar: Escrito en el tablero: Mascota a =; despues Mascota b = a; despues b.setEdad(4); y finalmente imprime 4, aunque nadie toco la variable a.
+  - Subrayar: No hay dos mascotas, hay una con dos nombres.
+  - Subrayar: De aqui se deriva un tercer hecho que conviene decir hoy aunque se practique despues: cuando se pasa un objeto a un metodo, el metodo puede modificar el objeto y quien llamo vera el cambio, pero si el metodo reasigna su parametro con un new, la variable de afuera no se enteran de nada.
 
-**El constructor es el metodo que se ejecuta al crear el objeto y deja...** — 2 vinetas.
-  - La instruccion reserva memoria y llama al constructor.
-  - Por eso desde la primera clase se escribe el constructor completo.
+**[Slide 8] == compara referencias; equals, contenido** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: La respuesta es exacta y hay que darla asi: el operador == compara referencias, es decir pregunta si las dos variables apuntan al mismo objeto, no si los objetos se parecen.
+  - Subrayar: Sobrescribirlo significa escribirlo en Mascota para que dos mascotas sean iguales cuando su identificador sea igual.
+  - Subrayar: Por eso la regla practica del curso es sin excepciones: con objetos nunca se usa ==, se usa equals; == se reserva para primitivos y para preguntar si algo es null.
 
-**El constructor es el metodo que se ejecuta al... — sintaxis** — 1 vinetas.
+**[Slide 9] Abstracción y encapsulamiento** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Los cuatro pilares se entienden por el problema que resuelve cada uno.
 
-**En Programacion I el estudiante trabajo con programacion estructurada:... (1/2)** — 4 vinetas.
-  - Vale la pena hacer visible el limite de ese enfoque con el mismo dominio del proyecto antes de nombrar la palabra objeto.
-  - Eso funciona en un ejercicio de veinte lineas y se cae en cuanto el programa crece, por tres razones concretas.
-  - Ordenar la lista por nombre obliga a mover los tres arreglos en perfecta sincronia, y basta olvidar uno para que Luna quede con la edad de otro animal.
+**[Slide 10] Encapsular es proteger una regla** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: El encapsulamiento se ensena mal cuando se presenta como la orden de poner private y generar getters.
+  - Subrayar: Se ensena bien cuando se muestra el problema que resuelve, y en VetCare el problema tiene nombre.
+  - Subrayar: La respuesta concreta es que funciona hoy, con un archivo y con usted como unico autor; en la Clase 12, integrando modulos de tres companeros, quien escriba la pantalla de facturacion pondra activa en false por comodidad y usted perdera una tarde buscando por que las citas desaparecieron.
 
-**En Programacion I el estudiante trabajo con programacion estructurada:... (2/2)** — 2 vinetas.
+**[Slide 11] setEdad(): el objeto se defiende** — codigo (8 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Ahora el punto que decide el semestre, y por eso va temprano: que es un... (1/2)** — 5 vinetas.
-  - En Java una variable local vive en la pila, una zona pequena y ordenada asociada al metodo que se esta ejecutando, mientras que el objeto creado con new vive en el monton, una zona grande donde el programa reserva espacio a medida que lo necesita.
-  - No hay dos mascotas, hay una con dos nombres.
+**[Slide 12] Herencia y polimorfismo** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
 
-**Ahora el punto que decide el semestre, y por eso va temprano: que es un... (2/2)** — 3 vinetas.
+**[Slide 13] El constructor: el objeto nace válido** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Eso elimina una familia entera de errores aguas abajo, porque nadie tendra que preguntarse mas adelante si el nombre podria estar vacio.
+  - Subrayar: La instruccion reserva memoria y llama al constructor.
+  - Subrayar: Por eso desde la primera clase se escribe el constructor completo.
 
-**Ahora el punto que decide el semestre, y por... — sintaxis** — 3 vinetas.
+**[Slide 14] Atributos privados y constructor** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**De lo anterior sale la pregunta que aparece sin falta en las primeras... (1/2)** — 3 vinetas.
-  - La respuesta es exacta y hay que darla asi: el operador == compara referencias, es decir pregunta si las dos variables apuntan al mismo objeto, no si los objetos se parecen.
-  - Sobrescribirlo significa escribirlo en Mascota para que dos mascotas sean iguales cuando su identificador sea igual.
-  - Por eso la regla practica del curso es sin excepciones: con objetos nunca se usa ==, se usa equals; == se reserva para primitivos y para preguntar si algo es null.
+**[Slide 15] null y NullPointerException** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Queda el error mas frecuente de Java, y hay que nombrarlo hoy porque su causa es todo lo anterior. null significa que la referencia no apunta a ningun objeto: es un control remoto sin televisor.
+  - Subrayar: Las encuestas y los reportes de errores en produccion la ubican de forma consistente como la excepcion mas frecuente en aplicaciones Java, y conviene presentarlo asi, como observacion de la industria y no como ley.
 
-**De lo anterior sale la pregunta que aparece sin falta en las primeras... (2/2)** — 3 vinetas.
+**[Slide 16] El entorno: JDK, javac y java** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: El entorno cierra la clase y tiene dos reglas duras que producen el noventa por ciento de los tropiezos del primer dia.
+  - Subrayar: El amarre con la Clase 2 conviene decirlo explicito al cerrar: hoy quedaron mascota1, mascota2 y mascota3 como variables sueltas, y eso no escala a una clinica con cuatrocientos pacientes, asi que la proxima clase entra ArrayList de Mascota.
 
-**Recien ahora tiene sentido la analogia clasica (1/2)** — 6 vinetas.
-  - Recien ahora tiene sentido la analogia clasica.
+## Errores tipicos del docente que no domina el tema
 
-**Recien ahora tiene sentido la analogia clasica (2/2)** — 4 vinetas.
+Material de preparacion: no se proyecta.
 
-**El encapsulamiento se ensena mal cuando se presenta como la orden de... (1/2)** — 6 vinetas.
-  - El encapsulamiento se ensena mal cuando se presenta como la orden de poner private y generar getters.
-  - Se ensena bien cuando se muestra el problema que resuelve, y en VetCare el problema tiene nombre.
-  - La respuesta concreta es que funciona hoy, con un archivo y con usted como unico autor; en la Clase 12, integrando modulos de tres companeros, quien escriba la pantalla de facturacion pondra activa en false por comodidad y usted perdera una tarde buscando por que las citas desaparecieron.
-
-**El encapsulamiento se ensena mal cuando se presenta como la orden de... (2/2)** — 5 vinetas.
-
-**El constructor es la pieza que garantiza que el objeto nazca valido (1/2)** — 6 vinetas.
-  - Eso elimina una familia entera de errores aguas abajo, porque nadie tendra que preguntarse mas adelante si el nombre podria estar vacio.
-
-**El constructor es la pieza que garantiza que el objeto nazca valido (2/2)** — 3 vinetas.
-
-**Queda el error mas frecuente de Java, y hay que nombrarlo hoy porque su... (1/2)** — 5 vinetas.
-  - Las encuestas y los reportes de errores en produccion la ubican de forma consistente como la excepcion mas frecuente en aplicaciones Java, y conviene presentarlo asi, como observacion de la industria y no como ley.
-
-**Queda el error mas frecuente de Java, y hay que nombrarlo hoy porque su... (2/2)** — 5 vinetas.
-
-**El entorno cierra la clase y tiene dos reglas duras que producen el... (1/2)** — 4 vinetas.
-  - El entorno cierra la clase y tiene dos reglas duras que producen el noventa por ciento de los tropiezos del primer dia.
-
-**El entorno cierra la clase y tiene dos reglas duras que producen el... (2/2)** — 4 vinetas.
-
-**Mascota.java — class Mascota** — 7 vinetas.
-
-**Mascota.java — Mascota()** — 13 vinetas.
-
-**Mascota.java — setEdad()** — 9 vinetas.
-
-**Mascota.java — main()** — 10 vinetas.
+- Error tipico del docente que no domina el tema: presentar los cuatro pilares como cuatro definiciones que hay que memorizar. El estudiante los aprende cuando ve el problema que cada uno resuelve, no cuando los recita; por eso hoy solo se introducen con un ejemplo concreto de VetCare y se profundizan en las clases siguientes. El segundo tropiezo es olvidar sobreescribir toString(): al imprimir un objeto sale algo como clinica.Mascota@6d06d69c y medio grupo cree que el programa fallo.
+- Error tipico del docente que no domina el tema: el primero es explicar el objeto como una variable que agrupa datos y dibujarlo en el tablero dentro de la variable, sin la flecha de la referencia. Es comodo y parece suficiente el primer dia, pero deja al grupo sin modelo mental: cuando en la Clase 2 dos posiciones de la lista apunten al mismo objeto, o cuando un metodo modifique la mascota que recibio, el estudiante no podra explicar por que cambio algo que el no toco, y atribuira al azar o a un supuesto error de Java lo que en la Clase 12 se convertira en errores de estado compartido durante la integracion. El segundo es presentar el encapsulamiento como el procedimiento de poner private y pedirle al entorno que genere getters y setters. El estudiante entrega entonces clases con quince setters publicos, cero validaciones y ninguna operacion del dominio, con lo cual la regla de que una mascota inactiva no agenda cita queda escrita a mano en cada pantalla; en la revision cruzada de la Clase 11 apareceran tres versiones distintas de la misma regla y ninguna sera la oficial.
 
 
 **Demo que usted debe poder repetir:** Escribir en vivo la clase Mascota y un main que instancia dos mascotas con datos distintos, mostrando que salen del mismo molde

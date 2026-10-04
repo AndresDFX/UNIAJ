@@ -13,65 +13,39 @@
 
 ## Apoyo por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en las notas del presentador de su lamina. Aqui va, por lamina y en su orden, lo que hay que subrayar.
 
-**Refactorizar es cambiar la forma interna del código sin cambiar ni un... (1/2)** — 5 vinetas.
+**[Slide 4] Refactorizar: misma conducta, mejor forma** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
 
-**Refactorizar es cambiar la forma interna del código sin cambiar ni un... (2/2)** — 3 vinetas.
+**[Slide 5] Code smells: los olores del código** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Quinto, el catch vacío que se traga la IOException y deja al usuario creyendo que guardó.
 
-**Un code smell es un síntoma en el código que casi siempre anuncia un... (1/2)** — 6 vinetas.
-  - Quinto, el catch vacío que se traga la IOException y deja al usuario creyendo que guardó.
+**[Slide 6] Persistencia: datos que sobreviven** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Guardar en disco significa convertir cada objeto Mascota en texto y escribirlo en un archivo que queda en el computador.
 
-**Un code smell es un síntoma en el código que casi siempre anuncia un... (2/2)** — 3 vinetas.
+**[Slide 7] El contrato del CSV en código** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Persistencia es lograr que los datos sobrevivan al proceso que los creó (1/2)** — 5 vinetas.
-  - Guardar en disco significa convertir cada objeto Mascota en texto y escribirlo en un archivo que queda en el computador.
+**[Slide 8] Cerrar el recurso: try-with-resources** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Por eso el error más desconcertante para un principiante es este: el programa corre sin lanzar ninguna excepción, dice 'guardado', y el archivo mascotas.csv aparece con cero bytes.
+  - Subrayar: Reemplaza al viejo patrón de finally con verificación de null, que casi nadie escribe bien.
 
-**Persistencia es lograr que los datos sobrevivan al proceso que los creó (2/2)** — 3 vinetas.
+**[Slide 9] guardar(): escribir con try-with-resources** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Un archivo abierto es un recurso del sistema operativo, y todo recurso... (1/2)** — 4 vinetas.
-  - Por eso el error más desconcertante para un principiante es este: el programa corre sin lanzar ninguna excepción, dice 'guardado', y el archivo mascotas.csv aparece con cero bytes.
-  - Reemplaza al viejo patrón de finally con verificación de null, que casi nadie escribe bien.
+**[Slide 10] Cargar al arrancar, guardar al cerrar** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Cargar al arrancar significa que el main construye el repositorio, pide cargar() y solo después muestra la ventana con la tabla ya poblada.
+  - Subrayar: Por eso conviene imprimir una vez ruta.toAbsolutePath() para que el estudiante sepa dónde buscarlo en vez de jurar que el programa no guardó nada.
 
-**Un archivo abierto es un recurso del sistema operativo, y todo recurso... (2/2)** — 3 vinetas.
+**[Slide 11] cargar(): sin archivo no revienta** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**La persistencia se conecta al ciclo de vida de la aplicación en dos... (1/2)** — 3 vinetas.
-  - Cargar al arrancar significa que el main construye el repositorio, pide cargar() y solo después muestra la ventana con la tabla ya poblada.
-  - Por eso conviene imprimir una vez ruta.toAbsolutePath() para que el estudiante sepa dónde buscarlo en vez de jurar que el programa no guardó nada.
+**[Slide 12] desdeLinea(): una línea mala no tumba la app** — codigo (17 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**La persistencia se conecta al ciclo de vida de la aplicación en dos... (2/2)** — 3 vinetas.
+**[Slide 13] main(): cargar, guardar y reabrir** — codigo (16 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaPersistencia.java — class ClinicaPersistencia** — 2 vinetas.
+## Errores tipicos del docente que no domina el tema
 
-**ClinicaPersistencia.java — main() (1/2)** — 20 vinetas.
+Material de preparacion: no se proyecta.
 
-**ClinicaPersistencia.java — main() (2/2)** — 11 vinetas.
-
-**ClinicaPersistencia.java — siguienteId() (1/2)** — 20 vinetas.
-
-**ClinicaPersistencia.java — siguienteId() (2/2)** — 1 vinetas.
-
-**ClinicaPersistencia.java — class Mascota** — 8 vinetas.
-
-**ClinicaPersistencia.java — Mascota()** — 8 vinetas.
-
-**ClinicaPersistencia.java — class RepositorioMascotasCSV** — 8 vinetas.
-
-**ClinicaPersistencia.java — RepositorioMascotasCSV()** — 4 vinetas.
-
-**ClinicaPersistencia.java — rutaAbsoluta()** — 5 vinetas.
-
-**ClinicaPersistencia.java — guardar()** — 14 vinetas.
-
-**ClinicaPersistencia.java — cargar() (1/2)** — 20 vinetas.
-
-**ClinicaPersistencia.java — cargar() (2/2)** — 5 vinetas.
-
-**ClinicaPersistencia.java — aLinea()** — 8 vinetas.
-
-**ClinicaPersistencia.java — desdeLinea()** — 19 vinetas.
-
-**ClinicaPersistencia.java — limpiar()** — 8 vinetas.
+- Error tipico del docente que no domina el tema: le pega el enunciado a la IA, recibe una solución con ObjectOutputStream y serialización binaria o con la librería OpenCSV, y la copia al proyecto sin entenderla. En clase pasan dos cosas: o no compila porque falta poner el .jar en la carpeta lib/ del proyecto y agregarlo a «Referenced Libraries», o sí corre pero genera un archivo binario ilegible, con lo cual se pierde justo el valor pedagógico de abrir el .csv y ver la línea escrita, y además se incumple el requisito del PI, que pide .txt o .csv. La otra versión del mismo error es pedirle a la IA 'refactoriza esto', aceptar el bloque completo y no volver a correr la aplicación: la IA cambió el separador, o quitó el encabezado, o invirtió el orden de dos campos, y ahora el archivo viejo se lee corrido con el nombre en la columna de la especie. Eso ya no fue refactorizar, fue romper. La postura correcta, y hay que decirla en voz alta frente al grupo, es que la IA propone y el humano decide: se acepta únicamente lo que uno puede explicar línea por línea, se acepta de a un cambio por vez, y después de cada cambio se vuelve a correr el flujo completo de VetCare. Un docente que no puede explicar por qué su código usa try-with-resources no está en condiciones de exigirle criterio al estudiante.
 
 
 **Demo que usted debe poder repetir:** El docente registra una mascota, cierra la aplicación, la vuelve a abrir y la mascota sigue ahí; enseguida abre mascotas.csv en el Bloc de notas para mostrar la línea que escribió el programa.

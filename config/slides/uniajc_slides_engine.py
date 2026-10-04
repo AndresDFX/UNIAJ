@@ -143,7 +143,10 @@ def texto_generico(t):
     # La puntuacion se pega al texto solo cuando de verdad cierra la frase: sin el lookahead,
     # un «los .sql que pide el entregable» quedaba como «los.sql», porque la extension de
     # archivo empieza por punto y no es puntuacion.
-    return re.sub(r"[ \t]+([.,;:])(?=\s|$)", r"\1", s)
+    # Y nunca dentro de un fragmento de codigo («COPY . .» es un comando, no puntuacion).
+    trozos = re.split(r"(`[^`\n]*`|«[^»\n]*»)", s)
+    return "".join(tr if tr[:1] in "`«" else re.sub(r"[ \t]+([.,;:])(?=\s|$)", r"\1", tr)
+                   for tr in trozos)
 
 
 def new_prs(generico=True):
@@ -339,7 +342,81 @@ def bullets(slide, items, top=1.4, size=None, width=None, left=None, minimo=None
     return tf
 
 
+#: VISUAL MINIMO (2026-10): en un deck de CLASE ninguna lamina de viñetas va sin visual ni con
+#: un muro de texto. `content_slide` reduce cada viñeta a su idea (la frase en negrita, o la
+#: primera frase), deja como mucho 4, manda el texto completo a las NOTAS y pone una foto a la
+#: derecha. La Presentacion del Curso (generico=False) no pasa por aqui.
+VISUAL_MINIMO = True
+_EN_VISUAL = False
+_SIN_VISUAL = ("mapa del bloque", "agenda")
+
+
+def _cerrado(s):
+    """True si `s` no deja un fragmento de codigo abierto (« » o comillas invertidas)."""
+    return s.count("«") == s.count("»") and s.count("`") % 2 == 0
+
+
+def _idea_vineta(v, tope=150):
+    """Una viñeta reducida a lo que se lee de un vistazo, sin cortar codigo a la mitad."""
+    v = str(v).strip()
+    m = re.match(r"^(\*\*[^*]+\*\*|@@[^@]+@@)\s*(.*)$", v)
+    if m:
+        lead, resto = m.group(1), m.group(2)
+        extra = re.split(r"(?<=[.;:])\s", resto, 1)[0] if resto else ""
+        if extra and len(lead) + len(extra) <= tope and _cerrado(extra):
+            return lead + " " + extra
+        return lead
+    if len(v) <= tope:
+        return v
+    primera = re.split(r"(?<=[.;])\s", v, 1)[0]
+    if len(primera) <= tope and _cerrado(primera):
+        return primera
+    corte = v[:tope].rsplit(" ", 1)[0]
+    if corte.count("«") != corte.count("»"):
+        corte = corte[:corte.rfind("«")].rstrip()
+    if corte.count("`") % 2:
+        corte = corte[:corte.rfind("`")].rstrip()
+    return corte.rstrip(" ,;:") + "…"
+
+
+def _condensar(items, max_car=420, max_n=4):
+    out, car = [], 0
+    for it in items or []:
+        i = _idea_vineta(it)
+        if out and (len(out) >= max_n or car + len(i) > max_car):
+            break
+        out.append(i)
+        car += len(i)
+    return out
+
+
 def content_slide(prs, title, items, sub=None, idx=None, size=None):
+    global _EN_VISUAL
+    if (VISUAL_MINIMO and GENERICO and not _EN_VISUAL and items
+            and not any(_plano_titulo(title).startswith(x) for x in _SIN_VISUAL)):
+        import fotos_laminas
+        img, pie = fotos_laminas.para(title)
+        if img:
+            ideas = _condensar(items)
+            _EN_VISUAL = True
+            try:
+                s = concepto_slide(prs, title, ideas, imagenes=[img], pie=pie, idx=idx, sub=sub)
+            finally:
+                _EN_VISUAL = False
+            if [str(x) for x in ideas] != [str(x) for x in items]:
+                notas(s, ["TEXTO COMPLETO DE LA LÁMINA (se proyecta resumido):"]
+                      + [str(x) for x in items])
+            return s
+    return _content_slide_texto(prs, title, items, sub=sub, idx=idx, size=size)
+
+
+def _plano_titulo(s):
+    import unicodedata
+    s = unicodedata.normalize("NFD", str(s).lower())
+    return "".join(c for c in s if unicodedata.category(c) != "Mn").strip()
+
+
+def _content_slide_texto(prs, title, items, sub=None, idx=None, size=None):
     """Diapositiva de contenido con título UNIAJC + viñetas.
 
     `size=None` deja que `bullets()` elija el cuerpo (ver `CUERPO_PT`). Los builders ya no
@@ -1359,6 +1436,7 @@ def concepto_slide(prs, title, items, imagenes=None, pie=None, idx=None, sub=Non
     imagenes = [str(x) for x in (imagenes or []) if x]
     if not imagenes:
         return content_slide(prs, title, items, sub=sub, idx=idx)
+    items = _condensar(items, max_car=440, max_n=4) if GENERICO else items
     s = blank(prs)
     bg_white(s)
     top = title_block(s, title, sub)
@@ -1474,7 +1552,7 @@ List ArrayList Map HashMap Set HashSet Deque ArrayDeque Queue LinkedList Optiona
 Exception RuntimeException Scanner System Stream Collectors Comparator Iterator""".split())
 _YAML_CLAVES = set()
 
-_TOKEN = re.compile(r"""(--.*$|//.*$|\#(?![\{\w]).*$|/\*.*?\*/|/\*.*$|\*.*\*/)"""   # comentarios
+_TOKEN = re.compile(r"""(%%.*$|--(?!>|-|\))[^>]*$|//.*$|\#(?![\{\w]).*$|/\*.*?\*/|/\*.*$|\*.*\*/)"""   # comentarios
                     r"""|('(?:[^'\\]|\\.|'')*'?|"(?:[^"\\]|\\.)*"?)"""                # cadenas
                     r"""|(\$\w*\$)"""                                                 # $$ / $fn$
                     r"""|(\b\d+(?:\.\d+)?\b)"""                                       # numeros
@@ -1518,7 +1596,12 @@ def _tramos_color(linea, lenguaje):
         tok = m.group(0)
         if m.group(1) is not None and not (lenguaje in ("YAML", "Mermaid") and tok.startswith("//")):
             # `#` solo es comentario en YAML, Dockerfile y terminal; en SQL o Java no existe
-            if tok.startswith("#") and lenguaje not in ("YAML", "Dockerfile", "Terminal"):
+            # `--` solo es comentario en SQL; en Mermaid es parte de una flecha (`-->>`), y
+            # `%%` solo es comentario en Mermaid.
+            if ((tok.startswith("--") and not lenguaje.startswith("SQL"))
+                    or (tok.startswith("%%") and lenguaje != "Mermaid")):
+                out.append((tok, ED_TEXTO, False))
+            elif tok.startswith("#") and lenguaje not in ("YAML", "Dockerfile", "Terminal"):
                 out.append((tok, ED_TEXTO, False))
             else:
                 out.append((tok, ED_COMENT, True))
@@ -1742,6 +1825,13 @@ def before_after_slide(prs, title, before_title, before_items, after_title, afte
     tf2.paragraphs[0].alignment = PP_ALIGN.CENTER
     _run(tf2.paragraphs[0].add_run(), after_title, 16, WHITE, bold=True)
     bullets(s, after_items, top=y + 0.7, size=size, width=col_w - 0.35, left=x2 + 0.18)
+    # Un sello en cada encabezado: la comparacion se lee de un golpe (mal / bien) y la lamina
+    # lleva su visual sin quitarle sitio al contenido (visual minimo de los decks de clase).
+    for x, icono in ((MARGIN, "sello_mal.png"), (x2, "sello_bien.png")):
+        ruta = ASSETS / "iconos" / icono
+        if ruta.exists():
+            s.shapes.add_picture(str(ruta), Inches(x + 0.12), Inches(y + 0.06),
+                                 width=Inches(0.43), height=Inches(0.43))
     footer_num(s, idx)
     return s
 

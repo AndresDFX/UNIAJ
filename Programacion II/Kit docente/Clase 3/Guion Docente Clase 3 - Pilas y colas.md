@@ -13,61 +13,43 @@
 
 ## Apoyo por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en las notas del presentador de su lamina. Aqui va, por lamina y en su orden, lo que hay que subrayar.
 
-**La clase pasada nos dio un ArrayList, que es una herramienta poderosa...** — 5 vinetas.
-  - Una estructura restrictiva como Queue no ofrece ese metodo; simplemente no existe en su contrato, entonces el error se vuelve imposible de escribir.
-  - Esa es la idea grande de hoy: elegir la estructura mas limitada que resuelva el problema no es una limitacion tecnica, es una forma de blindar la regla del negocio dentro del tipo de dato.
+**[Slide 4] Cuando la lista permite demasiado** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Una estructura restrictiva como Queue no ofrece ese metodo; simplemente no existe en su contrato, entonces el error se vuelve imposible de escribir.
+  - Subrayar: Esa es la idea grande de hoy: elegir la estructura mas limitada que resuelva el problema no es una limitacion tecnica, es una forma de blindar la regla del negocio dentro del tipo de dato.
 
-**La cola, o Queue, funciona con disciplina FIFO: First In, First Out, el...** — 5 vinetas.
-  - En VetCare usamos siempre offer/poll/peek porque avisan con false o con null en vez de reventar, y en una recepcion que puede quedar vacia a media manana eso es exactamente lo que queremos. peek es lo que alimenta la pantalla de turnos que ve el publico; poll es lo que hace el medico cuando abre la puerta del consultorio.
+**[Slide 5] La cola: FIFO con Queue** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: En VetCare usamos siempre offer/poll/peek porque avisan con false o con null en vez de reventar, y en una recepcion que puede quedar vacia a media manana eso es exactamente lo que queremos. peek es lo que alimenta la pantalla de turnos que ve el publico; poll es lo que hace el medico cuando abre la puerta del consultorio.
 
-**La pila, o Stack, funciona al reves: LIFO, Last In, First Out, como la... (1/2)** — 3 vinetas.
-  - Eso es literalmente como funciona el Ctrl+Z de cualquier programa.
+**[Slide 6] Turno: lo que guarda la cola** — codigo (9 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**La pila, o Stack, funciona al reves: LIFO, Last In, First Out, como la... (2/2)** — 2 vinetas.
+**[Slide 7] SalaDeEspera: offer y peek** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Vale la pena entender por que estas estructuras son rapidas, porque ahi...** — 3 vinetas.
-  - Vale la pena entender por que estas estructuras son rapidas, porque ahi esta el argumento tecnico y no solo el pedagogico.
-  - Por eso agregar y sacar por cualquiera de los dos extremos cuesta tiempo constante.
-  - La estructura correcta no solo previene errores de negocio, tambien evita que el programa se arrastre.
+**[Slide 8] atender(): poll sin sorpresas** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Un punto que confunde mucho: una cola no se recorre para buscar** — 6 vinetas.
-  - Ademas, recorrer una cola con for-each la muestra pero no la consume; muchos estudiantes imprimen la cola con un for-each, ven todos los turnos y creen que ya los atendieron, cuando en realidad size() sigue igual.
+**[Slide 9] La pila: LIFO con Deque** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Eso es literalmente como funciona el Ctrl+Z de cualquier programa.
 
-**ClinicaSalaDeEspera.java — class ClinicaSalaDeEspera** — 2 vinetas.
+**[Slide 10] HistorialReciente: push, peek y pop** — codigo (17 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaSalaDeEspera.java — main() (1/3)** — 20 vinetas.
+**[Slide 11] La cola y la pila trabajando juntas** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaSalaDeEspera.java — main() (2/3)** — 20 vinetas.
+**[Slide 12] Por qué son rápidas: ArrayDeque y LinkedList** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Vale la pena entender por que estas estructuras son rapidas, porque ahi esta el argumento tecnico y no solo el pedagogico.
+  - Subrayar: Por eso agregar y sacar por cualquiera de los dos extremos cuesta tiempo constante.
+  - Subrayar: La estructura correcta no solo previene errores de negocio, tambien evita que el programa se arrastre.
 
-**ClinicaSalaDeEspera.java — main() (3/3)** — 8 vinetas.
+**[Slide 13] Una cola no se recorre para buscar** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Ademas, recorrer una cola con for-each la muestra pero no la consume; muchos estudiantes imprimen la cola con un for-each, ven todos los turnos y creen que ya los atendieron, cuando en realidad size() sigue igual.
 
-**ClinicaSalaDeEspera.java — class Turno** — 7 vinetas.
+**[Slide 14] La urgencia entra con addFirst** — codigo (7 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaSalaDeEspera.java — Turno()** — 13 vinetas.
+## Errores tipicos del docente que no domina el tema
 
-**ClinicaSalaDeEspera.java — class SalaDeEspera** — 4 vinetas.
+Material de preparacion: no se proyecta.
 
-**ClinicaSalaDeEspera.java — registrarLlegada()** — 6 vinetas.
-
-**ClinicaSalaDeEspera.java — siguienteEnPantalla()** — 4 vinetas.
-
-**ClinicaSalaDeEspera.java — atender()** — 10 vinetas.
-
-**ClinicaSalaDeEspera.java — estaVacia()** — 4 vinetas.
-
-**ClinicaSalaDeEspera.java — cantidad()** — 6 vinetas.
-
-**ClinicaSalaDeEspera.java — class HistorialReciente** — 4 vinetas.
-
-**ClinicaSalaDeEspera.java — registrar()** — 5 vinetas.
-
-**ClinicaSalaDeEspera.java — ultimaAtencion()** — 4 vinetas.
-
-**ClinicaSalaDeEspera.java — deshacer()** — 7 vinetas.
-
-**ClinicaSalaDeEspera.java — cantidad()** — 5 vinetas.
+- Error tipico del docente que no domina el tema: escribir Queue<Turno> sala = new Queue<>() y quedarse en blanco cuando VS Code subraya la linea, sin poder explicar que Queue es una interfaz y que necesita una implementacion concreta como LinkedList o ArrayDeque. El segundo clasico es usar la clase Stack solamente porque es la primera que aparece en Google, y no poder responder cuando un estudiante pregunta por que la documentacion recomienda ArrayDeque. El tercero, muy frecuente, es confundir peek con poll durante la demo: el docente llama a peek dentro de un while creyendo que va a vaciar la cola y arma un ciclo infinito en plena clase. El cuarto es llamar pop() sobre una pila vacia sin validar isEmpty(), que con ArrayDeque lanza NoSuchElementException y con Stack lanza EmptyStackException; hay que mostrar esa excepcion a proposito y envolverla en try-catch, porque el PI exige manejo de errores. Ensaye los cuatro casos antes de entrar al salon para que cada mensaje rojo sea una leccion planeada y no una sorpresa.
 
 
 **Demo que usted debe poder repetir:** El docente encola cuatro mascotas, muestra en pantalla la diferencia entre peek() y poll() atendiendo en orden de llegada, y luego usa push/pop para deshacer la ultima atencion registrada.

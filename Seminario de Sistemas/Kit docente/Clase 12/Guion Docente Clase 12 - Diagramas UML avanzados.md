@@ -15,35 +15,65 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Hasta ahora todos los modelos de la clinica han sido estaticos: el... (1/2)** — 3 vinetas.
+**[Slide 4] El diagrama de secuencia** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Hasta ahora todos los modelos de la clinica han sido estaticos: el diagrama de clases dice que existe una clase Cita con sus atributos, y la especificacion de caso de uso dice que la recepcionista agenda.
+  - Para eso existe el diagrama de secuencia, que es un modelo del tiempo: arriba se dibujan los participantes, de cada uno baja una linea de vida y el tiempo transcurre hacia abajo, de modo que el orden vertical de las flechas es el orden real de los eventos.
+  - Cada flecha es un mensaje, es decir, la peticion de un objeto a otro para que haga algo; la flecha llena representa una llamada sincrona, donde quien pide se queda esperando la respuesta, y la flecha punteada representa el retorno con el resultado.
+  - En la clinica, agendar una cita se ve como una cadena corta y clara: la recepcionista le habla a la pantalla de agenda, la pantalla le habla al control de agenda
+  - El control verifica la mascota, le pregunta al repositorio de citas por la disponibilidad y devuelve una confirmacion con el identificador de la cita.
+  - NOTAS:
   - Lo que ninguno de los dos muestra es la conversacion interna del sistema en el momento exacto en que eso ocurre.
   - Sobre la linea de vida se dibujan barras de activacion que muestran durante cuanto tiempo ese objeto esta trabajando.
 
-**Hasta ahora todos los modelos de la clinica han sido estaticos: el... (2/2)** — 2 vinetas.
+**[Slide 5] El diagrama de secuencia en Mermaid** — 18 vinetas.
 
-**El diagrama de actividad responde a otra pregunta completamente... (1/2)** — 2 vinetas.
+**[Slide 6] Secuencia de CU-04 Agendar cita en sintaxis Mermaid** — 19 vinetas.
+
+**[Slide 7] El diagrama de actividad y sus calles** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - El diagrama de actividad responde a otra pregunta completamente distinta: no quien le habla a quien, sino en que orden ocurre el trabajo y quien es responsable de cada paso, incluyendo pasos que suceden fuera del computador.
+  - Sus elementos son nodo inicial, acciones, nodos de decision con condiciones escritas entre corchetes, nodos de union, barras de bifurcacion y sincronizacion para el trabajo que ocurre en paralelo, y nodo final.
+  - La herramienta que lo vuelve realmente util en un proyecto como el de la clinica son las particiones o calles: una franja por cada rol, de modo que al mirar el dibujo se sabe de un vistazo que hace el Propietario
+  - Que hace la Recepcionista, que hace el Veterinario y que hace el sistema.
+  - Ese dibujo revela algo que ni los casos de uso ni las clases muestran: donde estan los cuellos de botella del proceso real de la clinica.
+  - NOTAS:
   - Eso permite modelar el proceso completo de atencion en la clinica: el propietario llega y pregunta, la recepcionista verifica la cita, si no la tiene se decide entre esperar o reagendar, el veterinario atiende, registra la consulta y si formula medicamentos el flujo se abre en dos ramas paralelas, una de facturacion y otra de programacion del control.
 
-**El diagrama de actividad responde a otra pregunta completamente... (2/2)** — 3 vinetas.
+**[Slide 8] El diagrama de actividad con decisiones en Mermaid** — 12 vinetas.
 
-**La pregunta practica es cuando usar cada uno, y la respuesta se decide... (1/2)** — 5 vinetas.
+**[Slide 9] ¿Secuencia o actividad?** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - La pregunta practica es cuando usar cada uno, y la respuesta se decide por el tipo de duda que se quiere resolver.
+  - Si la duda es de responsabilidades, es decir, cual objeto deberia encargarse de esto y con quien tiene que hablar para lograrlo, el diagrama correcto es el de secuencia
+  - Porque obliga a que cada mensaje tenga un destinatario concreto y por lo tanto una clase que lo sepa atender.
+  - Si la duda es de proceso, es decir, en que orden hace la gente las cosas, donde se decide algo y que pasa en paralelo, el diagrama correcto es el de actividad
+  - Porque admite pasos manuales, decisiones del negocio y actores humanos que no son objetos de software.
+  - Una regla practica para el aula: el diagrama de secuencia se dibuja para un caso de uso y suele cubrir su flujo principal; el diagrama de actividad se dibuja para un proceso de negocio que puede atravesar varios casos de uso.
+  - En la clinica, CU-04 Agendar cita se modela con secuencia; la atencion completa desde que el propietario entra por la puerta hasta que sale con la factura se modela con actividad, porque incluye conversaciones y esperas que ningun objeto del sistema ejecuta.
 
-**La pregunta practica es cuando usar cada uno, y la respuesta se decide... (2/2)** — 2 vinetas.
-
-**Estos diagramas no se inventan desde cero: se derivan de lo que ya esta...** — 4 vinetas.
+**[Slide 10] Del paso del caso de uso al mensaje y la operación** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Estos diagramas no se inventan desde cero: se derivan de lo que ya esta escrito, y ahi esta la parte que separa a un estudiante que entendio de uno que solo dibujo.
+  - Si el paso 2 de CU-04 dice que el sistema verifica la disponibilidad del veterinario para esa fecha, entonces debe existir un mensaje llamado consultarDisponibilidad dirigido a algun participante
+  - Y ese participante debe ser una clase que exista en el diagrama de clases.
+  - Aqui aparece el hallazgo tipico y valiosisimo: al dibujar la secuencia el equipo descubre que envio un mensaje a una clase que no tiene esa operacion, o peor, a una clase que no existe.
+  - NOTAS:
   - Cada paso del flujo principal del caso de uso se convierte en uno o varios mensajes del diagrama de secuencia, en el mismo orden y con los mismos nombres del glosario canonico que se fijo en la auditoria de la clase once.
   - Eso no es un fracaso del diagrama de secuencia, es su mayor utilidad, porque es la unica manera barata de detectar que el modelo estatico estaba incompleto.
   - Por eso el artefacto de hoy incluye la tabla de mapeo mensaje a operacion: obliga a cerrar el circulo entre lo dinamico y lo estatico.
 
-**Los flujos alternos tambien se modelan, y para eso existen los... (1/2)** — 4 vinetas.
+**[Slide 11] La tabla de mapeo mensaje a operacion** — 9 vinetas.
 
-**Los flujos alternos tambien se modelan, y para eso existen los... (2/2)** — 3 vinetas.
-
-**El diagrama de secuencia en Mermaid** — 18 vinetas.
-
-**El diagrama de actividad, con decision y carriles** — 12 vinetas.
-
-**La tabla de mapeo mensaje a operacion** — 10 vinetas.
+**[Slide 12] Fragmentos combinados: alt, opt y loop** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Los flujos alternos tambien se modelan, y para eso existen los fragmentos combinados, que son esos recuadros con una etiqueta en la esquina.
+  - El fragmento alt representa caminos excluyentes con sus condiciones de guarda escritas entre corchetes
+  - Y es el que usamos en la clinica para el horario ocupado: si hay disponibilidad se guarda la cita y se confirma, si no la hay el sistema ofrece alternativas del dia siguiente.
+  - El fragmento opt es un camino opcional que puede ocurrir o no, como enviar el recordatorio si el propietario autorizo mensajeria.
+  - El fragmento loop repite un bloque, por ejemplo mientras el veterinario agrega varias vacunas al expediente.
+  - La disciplina que hay que enseñar aqui es de alcance: un diagrama de secuencia no debe intentar mostrar los quince alternos posibles, porque se vuelve ilegible y nadie lo lee.
+  - La practica sana es dibujar el camino feliz completo mas uno o dos fragmentos que representen las decisiones criticas del negocio, y dejar el resto documentado en el texto de la especificacion, que para eso existe.
 
 
 **Demo que usted debe poder repetir:** El docente toma el flujo principal ya escrito de CU-04 Agendar cita y lo convierte linea por linea en mensajes de un diagrama de secuencia en Mermaid, mostrando en vivo que cada mensaje necesita una clase dueña que lo pueda responder.

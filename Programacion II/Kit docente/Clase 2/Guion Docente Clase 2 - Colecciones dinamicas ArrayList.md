@@ -13,65 +13,43 @@
 
 ## Apoyo por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en las notas del presentador de su lamina. Aqui va, por lamina y en su orden, lo que hay que subrayar.
 
-**El problema real de Huellitas (1/2)** — 3 vinetas.
-  - Empecemos por el problema real de Huellitas.
+**[Slide 4] El arreglo tiene tamaño fijo** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Empecemos por el problema real de Huellitas.
 
-**El problema real de Huellitas (2/2)** — 2 vinetas.
+**[Slide 5] Del arreglo fijo a la lista que crece** — codigo (17 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Un ArrayList es exactamente esa carpeta que se agranda sola, y aqui...** — 4 vinetas.
-  - Esa arquitectura explica el rendimiento: get(i) es instantaneo porque salta directo a la posicion i del arreglo interno, agregar al final es barato casi siempre, pero add(0, mascota) o remove(0) obligan a correr un puesto a todos los demas elementos.
+**[Slide 6] ArrayList por dentro: un arreglo que crece** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Esa arquitectura explica el rendimiento: get(i) es instantaneo porque salta directo a la posicion i del arreglo interno, agregar al final es barato casi siempre, pero add(0, mascota) o remove(0) obligan a correr un puesto a todos los demas elementos.
 
-**La interfaz de trabajo es corta y hay que dominarla de memoria (1/2)** — 4 vinetas.
-  - El <Mascota> entre los picos se llama generico y no es decoracion: le dice al compilador que ahi solo entran Mascotas, de modo que si un estudiante intenta guardar un String el error aparece al compilar y no como un ClassCastException en plena sustentacion.
+**[Slide 7] La interfaz List: add, get, size, remove** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: El <Mascota> entre los picos se llama generico y no es decoracion: le dice al compilador que ahi solo entran Mascotas, de modo que si un estudiante intenta guardar un String el error aparece al compilar y no como un ClassCastException en plena sustentacion.
 
-**La interfaz de trabajo es corta y hay que dominarla de memoria (2/2)** — 2 vinetas.
+**[Slide 8] agregar(): validar antes de add** — codigo (16 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**La interfaz de trabajo es corta y hay que... — sintaxis** — 1 vinetas.
+**[Slide 9] buscarPorId(): recorrer y comparar por id** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Recorrer la lista tiene dos formas y cada una tiene su momento (1/2)** — 3 vinetas.
-  - Recorrer la lista tiene dos formas y cada una tiene su momento.
+**[Slide 10] eliminarPorId(): remove(Object)** — codigo (10 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Recorrer la lista tiene dos formas y cada una tiene su momento (2/2)** — 2 vinetas.
+**[Slide 11] Recorrer: índice, for-each e Iterator** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Recorrer la lista tiene dos formas y cada una tiene su momento.
 
-**La ultima idea es de diseno, y es la que hace que este codigo sirva...** — 4 vinetas.
-  - La ultima idea es de diseno, y es la que hace que este codigo sirva para el resto del proyecto integrador.
-  - Eso es encapsulamiento aplicado a colecciones, y es lo que hara posible que en las proximas clases la misma clase RegistroMascotas alimente una tabla de Swing y despues se guarde en un archivo CSV sin cambiar una sola linea de la logica.
+**[Slide 12] listar(): el for con índice** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**class ClinicaRegistroMascotas** — 2 vinetas.
+**[Slide 13] pasarAGeriatria(): borrar con Iterator** — codigo (10 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaRegistroMascotas.java — main() (1/3)** — 20 vinetas.
+**[Slide 14] La lista encapsulada en su clase** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: La ultima idea es de diseno, y es la que hace que este codigo sirva para el resto del proyecto integrador.
+  - Subrayar: Eso es encapsulamiento aplicado a colecciones, y es lo que hara posible que en las proximas clases la misma clase RegistroMascotas alimente una tabla de Swing y despues se guarde en un archivo CSV sin cambiar una sola linea de la logica.
 
-**ClinicaRegistroMascotas.java — main() (2/3)** — 20 vinetas.
+**[Slide 15] Mascota: atributos privados y toString()** — codigo (10 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaRegistroMascotas.java — main() (3/3)** — 3 vinetas.
+## Errores tipicos del docente que no domina el tema
 
-**ClinicaRegistroMascotas.java — menu() (1/3)** — 20 vinetas.
+Material de preparacion: no se proyecta.
 
-**ClinicaRegistroMascotas.java — menu() (2/3)** — 20 vinetas.
-
-**ClinicaRegistroMascotas.java — menu() (3/3)** — 11 vinetas.
-
-**ClinicaRegistroMascotas.java — leerEntero()** — 10 vinetas.
-
-**ClinicaRegistroMascotas.java — class Mascota** — 8 vinetas.
-
-**ClinicaRegistroMascotas.java — Mascota()** — 15 vinetas.
-
-**ClinicaRegistroMascotas.java — class RegistroMascotas** — 5 vinetas.
-
-**ClinicaRegistroMascotas.java — agregar()** — 14 vinetas.
-
-**ClinicaRegistroMascotas.java — buscarPorId()** — 12 vinetas.
-
-**ClinicaRegistroMascotas.java — eliminarPorId()** — 11 vinetas.
-
-**ClinicaRegistroMascotas.java — pasarAGeriatria()** — 11 vinetas.
-
-**ClinicaRegistroMascotas.java — listar()** — 10 vinetas.
-
-**ClinicaRegistroMascotas.java — cantidad()** — 5 vinetas.
+- Error tipico del docente que no domina el tema: creer que new ArrayList<>(50) ya trae 50 mascotas adentro y hacer get(0) de una, lo que revienta con IndexOutOfBoundsException porque ese 50 es capacidad, no tamano; la lista recien creada tiene size() igual a cero. El segundo tropiezo es la confusion de nombres: los arreglos usan .length (sin parentesis), los String usan .length() (con parentesis) y las colecciones usan .size(); el docente escribe mascotas.length, no compila, y se queda mudo frente al grupo. El tercero es recorrer con i <= mascotas.size(), que siempre falla en la ultima vuelta porque los indices van de 0 a size()-1. Y el cuarto, el mas comun, es escribir ArrayList mascotas = new ArrayList(); sin generico, que compila con una advertencia amarilla, obliga a castear cada elemento al leerlo y termina en ClassCastException en tiempo de ejecucion. Antes de la clase, ejecute usted mismo estos cuatro errores en VS Code para reconocer el mensaje rojo en dos segundos y convertirlo en ensenanza en vez de en silencio incomodo.
 
 
 **Demo que usted debe poder repetir:** El docente muestra un Mascota[3] que revienta al intentar guardar la cuarta ficha y luego el mismo caso resuelto con ArrayList, imprimiendo size() despues de cada operacion.

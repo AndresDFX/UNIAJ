@@ -13,57 +13,44 @@
 
 ## Apoyo por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en las notas del presentador de su lamina. Aqui va, por lamina y en su orden, lo que hay que subrayar.
 
-**Hoy son dos temas en un solo bloque: primero mapas y conjuntos con demo...** — 3 vinetas.
+**[Slide 4] Mapas y ventanas: un mismo objetivo** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
 
-**El problema tecnico es este: con un ArrayList, buscar por ID obliga a... (1/2)** — 3 vinetas.
-  - Cuando dos claves distintas caen en la misma casilla (una colision), el mapa guarda ambas en esa casilla y usa equals() para distinguirlas al leer.
+**[Slide 5] De la búsqueda lineal al HashMap** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Cuando dos claves distintas caen en la misma casilla (una colision), el mapa guarda ambas en esa casilla y usa equals() para distinguirlas al leer.
 
-**El problema tecnico es este: con un ArrayList, buscar por ID obliga a... (2/2)** — 2 vinetas.
+**[Slide 6] Expediente: el valor que guarda el mapa** — codigo (10 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**El problema tecnico es este: con un... — sintaxis** — 1 vinetas.
+**[Slide 7] La misma ficha en una lista y en un mapa** — codigo (9 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**La API de Map es corta pero tiene trampas que hay que nombrar en voz... (1/2)** — 3 vinetas.
+**[Slide 8] Medir: recorrer contra get(clave)** — codigo (18 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**La API de Map es corta pero tiene trampas que hay que nombrar en voz... (2/2)** — 3 vinetas.
+**[Slide 9] La API de Map y sus trampas** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: La API de Map es corta pero tiene trampas que hay que nombrar en voz alta. put(clave, valor) agrega, pero si la clave ya existia reemplaza el valor anterior en silencio y devuelve el que estaba: eso significa que un HashMap nunca tiene claves repetidas, y que guardar dos veces M-001 no da error, simplemente pisa el expediente anterior, lo cual puede ser exactamente lo que usted quiere o un bug grave si no lo controla. get(clave) devuelve el valor o null si la clave no existe, por eso siempre hay que validar antes de usar el resultado; getOrDefault(clave, valorPorDefecto) es la version comoda. containsKey pregunta por la clave y containsValue por el valor, siendo esta ultima lenta porque esa si recorre todo el mapa.
 
-**La API de Map es corta pero tiene trampas que... — sintaxis** — 1 vinetas.
+**[Slide 10] guardar(): put avisa antes de reemplazar** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**El HashSet es el hermano del HashMap: por dentro es literalmente un...** — 6 vinetas.
-  - Lo que un HashSet no le garantiza es el orden: si usted agrega Labrador, Criollo y Persa y luego imprime el conjunto, pueden salir en cualquier orden, porque la posicion la decide el hash.
-  - Si necesita conservar el orden de insercion use LinkedHashSet o LinkedHashMap, y si necesita orden alfabetico use TreeSet o TreeMap, que ordenan pero cuestan un poco mas.
+**[Slide 11] HashSet: el conjunto sin duplicados** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Lo que un HashSet no le garantiza es el orden: si usted agrega Labrador, Criollo y Persa y luego imprime el conjunto, pueden salir en cualquier orden, porque la posicion la decide el hash.
+  - Subrayar: Si necesita conservar el orden de insercion use LinkedHashSet o LinkedHashMap, y si necesita orden alfabetico use TreeSet o TreeMap, que ordenan pero cuestan un poco mas.
 
-**Ahora la parte grafica, y aqui empieza el segundo bloque de la clase (1/2)** — 4 vinetas.
-  - Ahora la parte grafica, y aqui empieza el segundo bloque de la clase.
+**[Slide 12] Un mapa y un conjunto como atributos** — codigo (12 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Ahora la parte grafica, y aqui empieza el segundo bloque de la clase (2/2)** — 3 vinetas.
+**[Slide 13] Swing: ventana, paneles y componentes** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Ahora la parte grafica, y aqui empieza el segundo bloque de la clase.
 
-**class ClinicaBuscarExpediente** — 11 vinetas.
+**[Slide 14] Paneles y layouts, escritos a mano** — codigo (14 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaBuscarExpediente.java — ClinicaBuscarExpediente()** — 7 vinetas.
+**[Slide 15] El evento, el cierre y el arranque en el EDT** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaBuscarExpediente.java — cargarDatosDePrueba()** — 10 vinetas.
+**[Slide 16] buscar(): get y el caso null** — codigo (10 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaBuscarExpediente.java — guardar()** — 12 vinetas.
+## Errores tipicos del docente que no domina el tema
 
-**ClinicaBuscarExpediente.java — compararBusquedas() (1/2)** — 20 vinetas.
+Material de preparacion: no se proyecta.
 
-**ClinicaBuscarExpediente.java — compararBusquedas() (2/2)** — 11 vinetas.
-
-**ClinicaBuscarExpediente.java — construirInterfaz() (1/2)** — 20 vinetas.
-
-**ClinicaBuscarExpediente.java — construirInterfaz() (2/2)** — 5 vinetas.
-
-**ClinicaBuscarExpediente.java — buscar() (1/2)** — 20 vinetas.
-
-**ClinicaBuscarExpediente.java — buscar() (2/2)** — 2 vinetas.
-
-**ClinicaBuscarExpediente.java — main()** — 6 vinetas.
-
-**ClinicaBuscarExpediente.java — class Expediente** — 8 vinetas.
-
-**ClinicaBuscarExpediente.java — Expediente()** — 15 vinetas.
+- Error tipico del docente que no domina el tema: pegar una ventana entera —de un tutorial o de una IA— y escribir toda la logica del negocio dentro del actionPerformed del boton. Eso produce una demo bonita en cinco minutos y un curso que no entiende nada, porque el estudiante nunca ve donde se crea el JFrame ni como se conecta el evento. VS Code no trae disenador visual, y en esta clase eso es una ventaja, no una carencia: obliga a escribir la ventana a mano. Escribala completa al menos esta primera vez, y deje claro que la ventana solo lee el texto del JTextField y llama a un metodo del registro: la logica y el HashMap viven en la clase de negocio, no en la interfaz. Los otros tropiezos son mecanicos y hay que provocarlos a proposito: olvidar setVisible(true) y quedarse esperando una ventana que nunca aparece; usar setLayout(null) y posicionar todo con coordenadas fijas que se descuadran al cambiar el tamano; y en la parte de mapas, imprimir un HashMap esperando el orden de insercion y no poder explicar por que salio revuelto. Ensaye la clase completa una vez de corrido antes del miercoles, con cronometro, porque el riesgo real de hoy no es tecnico sino de tiempo.
 
 
 **Demo que usted debe poder repetir:** El docente busca la ficha H-5000 dentro de un archivo historico de 5.000 expedientes, primero recorriendo un ArrayList y luego con get() sobre un HashMap comparando los nanosegundos, y despues ejecuta la misma busqueda desde una ventana Swing escrita linea por linea.

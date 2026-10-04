@@ -13,65 +13,41 @@
 
 ## Apoyo por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en las notas del presentador de su lamina. Aqui va, por lamina y en su orden, lo que hay que subrayar.
 
-**Una excepcion es un objeto que Java crea en el momento exacto en que... (1/2)** — 3 vinetas.
-  - Toda la familia cuelga de Throwable, que se divide en Error (fallas de la maquina virtual, como quedarse sin memoria, que no debemos atrapar) y Exception (fallas del programa o del entorno, que si podemos atender).
+**[Slide 4] Qué es una excepción** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Toda la familia cuelga de Throwable, que se divide en Error (fallas de la maquina virtual, como quedarse sin memoria, que no debemos atrapar) y Exception (fallas del programa o del entorno, que si podemos atender).
 
-**Una excepcion es un objeto que Java crea en el momento exacto en que... (2/2)** — 2 vinetas.
+**[Slide 5] Checked y unchecked** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
 
-**Java parte las excepciones en dos grupos y esa division decide cuanto... (1/2)** — 4 vinetas.
+**[Slide 6] Una excepción checked propia** — codigo (7 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Java parte las excepciones en dos grupos y esa division decide cuanto... (2/2)** — 4 vinetas.
+**[Slide 7] Anatomía de try-catch-finally** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: La estructura try-catch-finally tiene una anatomia que conviene explicar despacio.
+  - Subrayar: En VetCare esto significa que si el CSV esta corrupto a la mitad, el archivo igual se cierra y la aplicacion sigue viva con las mascotas que alcanzo a leer.
 
-**La estructura try-catch-finally tiene una anatomia que conviene... (1/2)** — 5 vinetas.
-  - La estructura try-catch-finally tiene una anatomia que conviene explicar despacio.
-  - En VetCare esto significa que si el CSV esta corrupto a la mitad, el archivo igual se cierra y la aplicacion sigue viva con las mascotas que alcanzo a leer.
+**[Slide 8] registrar(): try, catch y finally** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**La estructura try-catch-finally tiene una anatomia que conviene... (2/2)** — 2 vinetas.
+**[Slide 9] finally corre aunque haya return** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**La estructura try-catch-finally tiene una... — sintaxis** — 1 vinetas.
+**[Slide 10] cargar(): del catch específico al general** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Throw y throws se parecen en el nombre y hacen cosas opuestas, y esa...** — 2 vinetas.
-  - throw y throws se parecen en el nombre y hacen cosas opuestas, y esa confusion es la que mas cuesta en el parcial. throw (sin s) es una instruccion que se ejecuta y lanza un objeto en ese instante: throw. throws (con s) es una advertencia escrita en la firma del metodo: public void setEdad(String texto) throws DatoInvalidoException, y significa 'yo no resuelvo esto, quien me llame vera que hace'.
-  - De ahi sale la regla de capas que usaremos en VetCare: las clases del dominio (Mascota, Dueno, Cita) validan y LANZAN, porque no saben si hay una ventana, una consola o un servidor al otro lado; la capa de interfaz (el JFrame o el menu de consola) CAPTURA y traduce ese error a un JOptionPane que el usuario entiende.
+**[Slide 11] throw, throws y la excepción propia** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: throw y throws se parecen en el nombre y hacen cosas opuestas, y esa confusion es la que mas cuesta en el parcial. throw (sin s) es una instruccion que se ejecuta y lanza un objeto en ese instante: throw. throws (con s) es una advertencia escrita en la firma del metodo: public void setEdad(String texto) throws DatoInvalidoException, y significa 'yo no resuelvo esto, quien me llame vera que hace'.
+  - Subrayar: De ahi sale la regla de capas que usaremos en VetCare: las clases del dominio (Mascota, Dueno, Cita) validan y LANZAN, porque no saben si hay una ventana, una consola o un servidor al otro lado; la capa de interfaz (el JFrame o el menu de consola) CAPTURA y traduce ese error a un JOptionPane que el usuario entiende.
 
-**Throw y throws se parecen en el nombre y... — sintaxis** — 1 vinetas.
+**[Slide 12] setEdad(): validar y lanzar** — codigo (16 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**El catch vacio, ese catch (Exception e) { } que aparece cuando VS Code... (1/2)** — 3 vinetas.
-  - Y la mejor excepcion es la que no ocurre: validar antes de convertir (revisar null, aplicar trim, verificar isEmpty y comprobar el rango) evita el 80 por ciento de los try-catch de VetCare y hace que el codigo se lea como las reglas del negocio.
+**[Slide 13] El catch vacío** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Y la mejor excepcion es la que no ocurre: validar antes de convertir (revisar null, aplicar trim, verificar isEmpty y comprobar el rango) evita el 80 por ciento de los try-catch de VetCare y hace que el codigo se lea como las reglas del negocio.
 
-**El catch vacio, ese catch (Exception e) { } que aparece cuando VS Code... (2/2)** — 3 vinetas.
+**[Slide 14] malaPractica(): así no** — codigo (12 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**DemoExcepcionesClinica.java — class DemoExcepcionesClinica** — 5 vinetas.
+## Errores tipicos del docente que no domina el tema
 
-**DemoExcepcionesClinica.java — class DatoInvalidoException** — 8 vinetas.
+Material de preparacion: no se proyecta.
 
-**DemoExcepcionesClinica.java — class Mascota (1/4)** — 20 vinetas.
-
-**DemoExcepcionesClinica.java — class Mascota (2/4)** — 20 vinetas.
-
-**DemoExcepcionesClinica.java — class Mascota (3/4)** — 20 vinetas.
-
-**DemoExcepcionesClinica.java — class Mascota (4/4)** — 10 vinetas.
-
-**DemoExcepcionesClinica.java — registrar()** — 16 vinetas.
-
-**DemoExcepcionesClinica.java — buscarNombrePorId()** — 14 vinetas.
-
-**DemoExcepcionesClinica.java — cargar() (1/2)** — 20 vinetas.
-
-**DemoExcepcionesClinica.java — cargar() (2/2)** — 7 vinetas.
-
-**DemoExcepcionesClinica.java — guardar()** — 16 vinetas.
-
-**DemoExcepcionesClinica.java — malaPractica()** — 12 vinetas.
-
-**DemoExcepcionesClinica.java — main() (1/3)** — 20 vinetas.
-
-**DemoExcepcionesClinica.java — main() (2/3)** — 20 vinetas.
-
-**DemoExcepcionesClinica.java — main() (3/3)** — 8 vinetas.
+- Error tipico del docente que no domina el tema: envolver todo el main en un unico try { ... } catch (Exception e) { } gigante y anunciarle al grupo que 'el programa ya quedo blindado'. Lo que quedo fue ciego: cualquier falla, venga del archivo o de la edad, cae en el mismo saco, se pierde la causa y el usuario no recibe ningun mensaje util. Otras variantes del mismo error son usar excepciones para controlar el flujo normal (lanzar una excepcion para decir que la busqueda no encontro la mascota, en vez de devolver null o un Optional), atrapar Throwable o Error creyendo que 'asi cubro todo', y explicar que las excepciones 'son cuando el programa se dana', lo cual deja al estudiante sin la idea clave: la excepcion es un canal de comunicacion entre la capa que detecta el problema y la capa que sabe como responderle al humano. Antes de la clase practique tres cosas en VS Code: provocar el error de compilacion por catch mal ordenado, mostrar que finally se ejecuta incluso cuando el try hace return, y borrar datos/mascotas.csv para que el grupo vea la diferencia entre FileNotFoundException y IOException; son las tres preguntas que el grupo siempre hace.
 
 
 **Demo que usted debe poder repetir:** El docente escribe 'tres' en el campo edad, muestra la aplicacion reventando con el stack trace rojo, y en vivo la envuelve en try-catch hasta que responde con un aviso amable.

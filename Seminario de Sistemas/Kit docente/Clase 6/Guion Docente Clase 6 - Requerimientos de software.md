@@ -15,31 +15,63 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**Un requerimiento no es lo que el cliente dijo, es lo que el sistema... (1/2)** — 4 vinetas.
+**[Slide 4] Elicitación: de lo que dijo a lo que necesita** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Un requerimiento no es lo que el cliente dijo, es lo que el sistema debe hacer para que el problema del cliente desaparezca
+  - Entre esas dos cosas hay un trabajo de traduccion que se llama elicitacion, palabra que viene de sacar a la luz algo que estaba implicito.
+  - Las tres tecnicas que caben en este curso son baratas y no necesitan software especializado: la entrevista, donde se arranca con preguntas abiertas (cuenteme como es un dia normal en la clinica) y solo al final se cierran con preguntas de si o no
+  - La observacion, donde uno se para media hora en la recepcion un sabado y cronometra cuanto tarda la auxiliar en encontrar una carpeta; y el prototipo desechable, donde uno dibuja una pantalla fea a mano o en draw.io y la pone frente al veterinario
+  - Porque la gente no sabe decir lo que quiere pero sabe perfectamente decir lo que NO quiere cuando lo ve.
+  - En la clinica la entrevista al Dr. Ramirez dejo cinco frases crudas: que las fichas no se pierdan, ver de una lo que le han hecho antes al paciente
+  - Que la auxiliar agende sin llamarlo, que el sistema sea rapido, y saber cuantas consultas se hicieron en el mes.
+  - Ninguna de esas cinco frases es todavia un requisito: son necesidades, y confundirlas es el primer error del analista novato.
 
-**Un requerimiento no es lo que el cliente dijo, es lo que el sistema... (2/2)** — 4 vinetas.
-
-**Con las necesidades en la mano se separan dos familias (1/2)** — 3 vinetas.
+**[Slide 5] Dos familias: RF y RNF** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Un requisito funcional (RF) describe una capacidad observable del sistema, algo que alguien puede hacer con el
+  - Y se escribe con la plantilla el sistema debe permitir a <actor> <accion> <objeto> [bajo <condicion>]; el truco practico es que si al leerlo usted puede imaginar un boton, un formulario o una pantalla, es funcional.
+  - Un requisito no funcional (RNF) no describe QUE hace el sistema sino QUE TAN BIEN lo hace, y se agrupa en categorias conocidas: desempeno, seguridad y control de acceso, usabilidad, disponibilidad, respaldo, mantenibilidad y portabilidad.
+  - En la clinica, la frase que la auxiliar pueda agendar sin llamarme se convierte en dos cosas distintas al mismo tiempo: RF-05 el sistema debe permitir a la auxiliar registrar una cita seleccionando mascota, veterinario, fecha y hora
+  - Y RNF-02 el sistema debe manejar dos perfiles de acceso, auxiliar y veterinario, donde la auxiliar puede crear citas pero no puede editar ni ver el diagnostico clinico.
+  - NOTAS:
   - Con las necesidades en la mano se separan dos familias.
   - Esa separacion importa porque el RF se prueba haciendo clic y el RNF se prueba midiendo o intentando lo prohibido.
 
-**Con las necesidades en la mano se separan dos familias (2/2)** — 2 vinetas.
+**[Slide 6] El RNF cuantificado: la diferencia esta en el numero** — 13 vinetas.
 
-**La regla de oro del oficio es dura y se enuncia asi: si no se puede... (1/2)** — 5 vinetas.
+**[Slide 7] Si no se puede verificar, es un deseo** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - La regla de oro del oficio es dura y se enuncia asi: si no se puede verificar, no es un requisito, es un deseo.
+  - Hay una lista negra de palabras que suenan a compromiso pero no comprometen a nada: rapido, amigable, facil, intuitivo, robusto, moderno, optimo, eficiente, seguro.
+  - Cada vez que aparece una de esas palabras hay que preguntar cuanto, en que condiciones y como lo mediriamos delante del cliente.
+  - La frase 4 del Dr. Ramirez, el sistema tiene que ser rapido, no se puede calificar ni aprobar ni rechazar
+  - Convertida queda RNF-01: la busqueda de historial por documento del dueno debe devolver resultados en maximo 3 segundos, con 5.000 fichas cargadas y 10 usuarios trabajando al mismo tiempo.
+  - Ahora si existe una prueba: se carga la base de ejemplo, se cronometra y el requisito pasa o no pasa.
+  - Lo mismo con la frase 1: que las fichas no se pierdan no es requisito, pero RF-01 registrar una ficha con codigo unico e irrepetible mas RNF-04 respaldo automatico diario con restauracion probada una vez al mes, si lo son.
 
-**La regla de oro del oficio es dura y se enuncia asi: si no se puede... (2/2)** — 2 vinetas.
+**[Slide 8] Priorizar con MoSCoW** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Priorizar no es ordenar por gusto sino decidir con el cliente que pasa si algo no esta el dia de la entrega, y para eso se usa MoSCoW: Must es lo que sin ello el sistema no sirve y no se sale a produccion
+  - Should es importante pero existe un plan B manual mientras tanto
+  - Could es lo que se hace si sobra tiempo; y Won't es lo que se declara explicitamente fuera de ESTA version, que es la categoria mas valiosa de las cuatro porque es la unica que le pone freno al alcance infinito.
+  - La regla practica es que los Must no deberian superar el 60% del esfuerzo estimado, porque si todo es Must nada es Must.
+  - En la clinica: registrar dueno y mascota, consultar historial y agendar cita son Must, porque atacan los tres dolores de la clinica; el reporte mensual de consultas es Should
+  - Porque hoy el Dr. Ramirez lo hace contando a mano y puede sobrevivir un mes mas; el envio de recordatorios por WhatsApp y la facturacion electronica son Won't de esta version
+  - Y se escriben en el documento con esa etiqueta para que nadie los reclame despues como si hubieran sido prometidos.
 
-**Priorizar no es ordenar por gusto sino decidir con el cliente que pasa... (1/2)** — 4 vinetas.
+**[Slide 9] La priorizacion MoSCoW en Mermaid** — 17 vinetas.
 
-**Priorizar no es ordenar por gusto sino decidir con el cliente que pasa... (2/2)** — 3 vinetas.
-
-**El ultimo pedazo es la trazabilidad, que es poder seguir cada requisito...** — 4 vinetas.
+**[Slide 10] Trazabilidad hacia atrás y hacia adelante** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - El ultimo pedazo es la trazabilidad, que es poder seguir cada requisito hacia atras y hacia adelante.
+  - Hacia atras: de donde salio este RF, quien lo pidio, en que frase de la entrevista, en que fecha; asi cuando alguien pregunte y esto por que esta aqui hay respuesta y no cara de sorpresa.
+  - Hacia adelante: en que caso de uso se desarrolla, en que pantalla del mockup se ve, en que clase del diagrama UML aparece y con que prueba se acepta.
+  - Quien solo cursa Seminario cierra el ciclo distinto pero completo: su matriz termina en el prototipo navegable y en el documento de diseno, y eso es una entrega profesional valida, no una version reducida.
+  - NOTAS:
   - Se lleva en una matriz simple de cuatro columnas y se actualiza cada clase.
   - Esto no es burocracia: es lo que permite que cuando el cliente cambie de opinion, usted sepa en dos minutos que se rompe y cuanto cuesta; y en el proyecto de diseño es lo que hace posible que el companero que solo cursa Programacion II reciba estos planos y sepa exactamente que implementar y por que, sin tener que volver a entrevistar al veterinario.
 
-**La priorizacion MoSCoW en Mermaid** — 17 vinetas.
-
-**El RNF cuantificado: la diferencia esta en el numero** — 13 vinetas.
+**[Slide 11] Ficha completa del requisito RF-03** — 12 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente toma en vivo dos frases crudas de la entrevista al Dr. Ramirez y las convierte, frente al grupo, en un RF y un RNF usando la plantilla.

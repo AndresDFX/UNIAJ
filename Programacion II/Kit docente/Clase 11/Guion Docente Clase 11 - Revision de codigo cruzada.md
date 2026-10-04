@@ -13,53 +13,44 @@
 
 ## Apoyo por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en las notas del presentador de su lamina. Aqui va, por lamina y en su orden, lo que hay que subrayar.
 
-**Una revisión de código es la lectura sistemática del código de otra... (1/2)** — 5 vinetas.
-  - Conviene decirlo claro porque el estudiante llega con dos ideas equivocadas: que la revisión es un examen donde lo van a rajar, o que es un trámite para poner 'todo bien' y salir rápido.
+**[Slide 4] Qué es una revisión de código** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Conviene decirlo claro porque el estudiante llega con dos ideas equivocadas: que la revisión es un examen donde lo van a rajar, o que es un trámite para poner 'todo bien' y salir rápido.
 
-**Una revisión de código es la lectura sistemática del código de otra... (2/2)** — 2 vinetas.
+**[Slide 5] El código a revisar: main()** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Revisar no es leer de arriba a abajo a ver qué salta: se revisa por... (1/2)** — 4 vinetas.
-  - Se ejecuta antes de opinar.
-  - Y solo al final, la sexta: formato e indentación, que es la que menos vale y la que todo el mundo comenta primero.
-  - Si un informe de revisión de VetCare tiene ocho comentarios de espacios y ninguno sobre el NullPointerException al buscar un ID inexistente, esa revisión no sirvió.
+**[Slide 6] Revisar por capas** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Se ejecuta antes de opinar.
+  - Subrayar: Y solo al final, la sexta: formato e indentación, que es la que menos vale y la que todo el mundo comenta primero.
+  - Subrayar: Si un informe de revisión de VetCare tiene ocho comentarios de espacios y ninguno sobre el NullPointerException al buscar un ID inexistente, esa revisión no sirvió.
 
-**Revisar no es leer de arriba a abajo a ver qué salta: se revisa por... (2/2)** — 3 vinetas.
+**[Slide 7] proceso(): ¿qué capas fallan?** — codigo (18 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**La retroalimentación útil tiene una estructura, y esa estructura se... (1/2)** — 5 vinetas.
-  - La retroalimentación útil tiene una estructura, y esa estructura se enseña con plantilla porque a punta de buena intención no sale.
-  - Cuarto, se propone una salida concreta.
-  - Compare las dos versiones.
-  - La segunda se puede atender esta tarde; la primera solo produce rabia.
+**[Slide 8] Retroalimentación: evidencia, impacto, sugerencia** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: La retroalimentación útil tiene una estructura, y esa estructura se enseña con plantilla porque a punta de buena intención no sale.
+  - Subrayar: Cuarto, se propone una salida concreta.
+  - Subrayar: Compare las dos versiones.
+  - Subrayar: La segunda se puede atender esta tarde; la primera solo produce rabia.
 
-**La retroalimentación útil tiene una estructura, y esa estructura se... (2/2)** — 2 vinetas.
+**[Slide 9] Dos búsquedas casi iguales** — codigo (17 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**El checklist es lo que impide que la revisión se vuelva una... (1/2)** — 4 vinetas.
-  - ¿la interfaz gráfica muestra la lista y permite registrar y buscar?
-  - ¿hay algún catch vacío?
-  - ¿algún método pasa de cincuenta líneas?
-  - ¿hay bloques duplicados?
+**[Slide 10] El checklist de revisión** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: ¿la interfaz gráfica muestra la lista y permite registrar y buscar?
+  - Subrayar: ¿hay algún catch vacío?
+  - Subrayar: ¿algún método pasa de cincuenta líneas?
+  - Subrayar: ¿hay bloques duplicados?
 
-**El checklist es lo que impide que la revisión se vuelva una... (2/2)** — 4 vinetas.
+**[Slide 11] imprimirFicha(): el mismo bucle otra vez** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Recibir la crítica también se practica, y es la mitad difícil (1/2)** — 5 vinetas.
+**[Slide 12] Recibir la crítica** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Hay tres antipatrones que van a aparecer y conviene nombrarlos de una vez: la revisión de sello, que aprueba en dos minutos sin haber ejecutado nada; la revisión de gusto personal, que solo señala estilo e indentación; y la revisión que rediseña el proyecto ajeno, donde el revisor propone rehacer VetCare con su propia arquitectura en vez de señalar problemas concretos del que tiene enfrente.
 
-**Recibir la crítica también se practica, y es la mitad difícil (2/2)** — 2 vinetas.
+## Errores tipicos del docente que no domina el tema
 
-**ClinicaParaRevisar.java — class ClinicaParaRevisar** — 4 vinetas.
+Material de preparacion: no se proyecta.
 
-**ClinicaParaRevisar.java — main() (1/2)** — 20 vinetas.
-
-**ClinicaParaRevisar.java — main() (2/2)** — 7 vinetas.
-
-**ClinicaParaRevisar.java — proceso()** — 19 vinetas.
-
-**ClinicaParaRevisar.java — buscarPorId()** — 9 vinetas.
-
-**ClinicaParaRevisar.java — imprimirFicha()** — 12 vinetas.
-
-**ClinicaParaRevisar.java — buscarDeNuevo()** — 10 vinetas.
+- Error tipico del docente que no domina el tema: cree que revisar código es leer y decir si le gusta, entonces la sesión se convierte en un intercambio de opiniones sobre llaves e indentación mientras el NullPointerException sigue vivo; o peor, convierte la revisión en calificación entre estudiantes y se le arma la pelea en clase, porque nadie recibe bien que un compañero le ponga la nota. Otro error muy frecuente es no exigir que el revisor ejecute el proyecto antes de escribir: así aparecen hallazgos inventados y el autor se defiende con razón, con lo cual la actividad pierde toda autoridad. Y un tercero: no dar plantilla ni checklist, esperando que el criterio salga solo. El manejo correcto es explícito desde el minuto uno: la nota la pone el docente y el informe de quien revisa es un insumo, no una sentencia; todo hallazgo va con evidencia reproducible; se revisa el código y nunca a la persona; y el docente modela en vivo, con ClinicaParaRevisar.java proyectado, cómo se reescribe un comentario agresivo en uno accionable. Un docente que nunca ha recibido una revisión de su propio código tiende a defender el suyo igual que el estudiante, y por eso conviene que empiece dejando revisar el archivo de la demo.
 
 
 **Demo que usted debe poder repetir:** El docente proyecta ClinicaParaRevisar.java, lo ejecuta en vivo, aplica el checklist delante del grupo y reescribe dos comentarios mal formulados del tipo 'este código es un desastre' en retroalimentación accionable.

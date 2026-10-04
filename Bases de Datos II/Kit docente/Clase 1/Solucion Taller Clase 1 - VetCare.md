@@ -8,7 +8,7 @@
 
 ## Alineacion con el taller
 
-- Taller del estudiante: `Clases/Clase 1 - Revision BD I y arranque VetCare/Taller PI - Clase 1 - VetCare.docx`
+- Taller del estudiante: `Clases/Clase 1 - Revision BD I y modelo de datos/Taller PI - Clase 1 - VetCare.docx`
 - Configuracion en la plataforma: `Kit docente/Clase 1/Taller en ExamLab - Clase 1 (configuracion).md`
 - Caso de estudio: `Clases/Proyecto Integrador/Anexo - Caso de estudio Clinica Huellitas - Bases de Datos II.docx`
 - Hito del PI: Arranque PI: dominio, alcance y borrador ER de VetCare DB

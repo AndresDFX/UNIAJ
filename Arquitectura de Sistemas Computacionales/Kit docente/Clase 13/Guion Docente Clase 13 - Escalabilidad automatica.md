@@ -24,50 +24,105 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 6] Clase autonoma: escalabilidad no es rendimiento** — 2 vinetas.
+**[Slide 4] Clase autonoma: escalabilidad no es rendimiento** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - La escalabilidad es la capacidad de un sistema de sostener mas carga agregando recursos, y la primera precision importante es que no es lo mismo que rendimiento.
+  - La escalabilidad pregunta que pasa cuando la carga se multiplica: si al duplicar los recursos el sistema atiende cerca del doble de trabajo, escala bien; si atiende un 20 por ciento mas, escala mal, y ninguna cantidad de dinero lo va a arreglar.
+  - NOTAS:
   - Un sistema puede ser rapido y no escalar, y puede escalar y ser lento.
   - Por eso el orden del temario no es casual: primero se mide y se identifica el cuello de botella, y solo despues se decide como agregar capacidad.
   - (No se proyecta) Esta clase es autonoma por festivo: el estudiante trabaja solo y este fundamento se publica como material de lectura, asi que esta escrito para explicar el tema completo sin apoyo de un encuentro sincronico.
   - (No se proyecta) El rendimiento, tema de la Clase 12, pregunta cuanto tarda una peticion con la carga actual.
 
-**[Slide 7] Escalar vertical y horizontalmente: las dos formas de agregar capacidad** — 5 vinetas.
+**[Slide 5] Escalar vertical y horizontalmente: las dos formas de agregar capacidad** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Escalar verticalmente, o hacia arriba, es darle mas recursos a la MISMA maquina: mas CPU, mas memoria, disco mas rapido.
+  - Es la opcion simple porque no exige cambiar el codigo, y tiene tres limites reales: existe un techo fisico
+  - Porque la instancia mas grande disponible se acaba en algun punto; el precio crece peor que linealmente, ya que las instancias grandes cuestan mas por unidad de capacidad
+  - Y el cambio suele requerir reiniciar el servicio, lo que implica una ventana de indisponibilidad del orden de 30 segundos a 2 minutos.
+  - Su precio es un requisito de diseno no negociable: la aplicacion tiene que poder correr en varias copias sin pisarse.
+  - NOTAS:
   - Ademas una sola maquina grande sigue siendo un unico punto de falla.
   - No tiene techo cercano, mejora la disponibilidad porque si una instancia muere las otras siguen atendiendo, y permite crecer en pasos pequenos y baratos.
   - (No se proyecta) Hay dos formas de agregar capacidad y el estudiante debe poder definirlas sin dudar.
   - (No se proyecta) Escalar horizontalmente, o hacia afuera, es agregar MAS instancias iguales trabajando en paralelo, con el balanceador de carga de la Clase 7 repartiendo peticiones entre ellas.
 
-**[Slide 8] Ausencia de estado: donde mas estudiantes fallan** — 4 vinetas.
+**[Slide 6] Ausencia de estado: donde mas estudiantes fallan** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Ese requisito se llama ausencia de estado, o statelessness, y es donde mas estudiantes fallan.
+  - El sintoma en CloudLite es facil de narrar: si la API guarda la sesion en un diccionario en memoria de la instancia que atendio el login
+  - Y el balanceador manda la siguiente peticion del mismo usuario a la segunda instancia, esa instancia no lo conoce y lo expulsa; el usuario percibe que la aplicacion lo saca al azar.
+  - La solucion arquitectonica es sacar el estado del proceso: guardar la sesion en un almacen compartido o usar un token firmado que el cliente presenta en cada peticion.
+  - NOTAS:
   - Un servicio sin estado no guarda en la memoria de su propio proceso ninguna informacion que necesite en la siguiente peticion; todo lo que deba persistir vive en un almacen compartido, sea la base de datos, una cache comun o el token que trae el cliente.
   - (No se proyecta) La solucion parcial que casi todos proponen es la sesion pegajosa, que amarra al usuario a una instancia, y hay que decir por que es un parche: si esa instancia se cae la sesion se pierde igual, y el balanceo se vuelve desigual.
   - (No se proyecta) Lo mismo aplica a los archivos subidos de CloudLite: si se escriben en el disco local del contenedor, la mitad de las descargas fallara porque el archivo esta en la otra instancia, y por eso van a almacenamiento de objetos, que fue la decision de la Clase 7.
 
-**[Slide 9] Las cinco piezas del autoescalado (1/2)** — 4 vinetas.
+**[Slide 7] Escala para CloudLite** — 5 vinetas.
+
+**[Slide 8] Las cinco piezas del autoescalado** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - El autoescalado es la automatizacion del escalado horizontal y consta de cinco piezas: una metrica que se observa, un umbral que dispara la accion
+  - Un periodo de evaluacion durante el cual el umbral debe sostenerse, un enfriamiento o cooldown que impide actuar de nuevo de inmediato, y un rango con minimo y maximo de instancias.
+  - Una politica completa para CloudLite se lee asi: metrica CPU promedio del grupo de instancias de la API, umbral 70 por ciento sostenido durante 5 minutos, accion agregar una instancia, cooldown de 5 minutos, minimo 2 y maximo 6.
+  - El 70 por ciento deja holgura para el pico que llega mientras la instancia nueva arranca.
+  - Los 5 minutos evitan reaccionar a un ruido de 20 segundos.
+  - El minimo es 2 y no 1 porque con una sola instancia no hay tolerancia a fallas ni despliegue sin caida.
+  - Falta una simetria que casi nadie escribe: la politica de reduccion.
+  - Si se escala hacia afuera al 70 por ciento no se puede escalar hacia adentro tambien al 70, porque el sistema oscilaria agregando y quitando instancias sin parar, fenomeno llamado flapping.
+  - La convencion es usar umbrales asimetricos, por ejemplo salir al 70 y entrar al 30, y hacer la reduccion mas lenta que la expansion, porque equivocarse agregando cuesta dinero y equivocarse quitando cuesta una caida.
+  - NOTAS:
   - Cada numero se justifica.
   - (No se proyecta) Y el maximo es la pieza mas olvidada y la mas importante: es el techo de costo decidido en la Clase 10, y sin el, un error de programacion o un ataque puede escalar la factura sin limite; hay casos documentados de facturas de miles de dolares generadas en horas por autoescalado sin tope.
 
-**[Slide 10] Las cinco piezas del autoescalado (2/2)** — 5 vinetas.
+**[Slide 9] Politica de autoescalado (tabla, no prosa)** — 5 vinetas.
 
-**[Slide 11] El limite fisico: la instancia nueva no aparece al instante** — 5 vinetas.
+**[Slide 10] La regla de autoescalado, escrita como configuracion** — 12 vinetas.
+
+**[Slide 11] La maquina de decision del autoescalado** — 10 vinetas.
+
+**[Slide 12] El limite fisico: la instancia nueva no aparece al instante** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Hay un limite fisico del autoescalado que desarma la idea de que es magia: la instancia nueva no aparece al instante.
+  - Un contenedor liviano tarda del orden de 10 a 60 segundos entre que se decide crearlo y que recibe trafico util, contando descarga de imagen
+  - Arranque del proceso, conexion a la base de datos y aprobacion del chequeo de salud; una maquina virtual completa puede tardar de 2 a 5 minutos.
+  - Las respuestas correctas son tres y ninguna es "poner mas autoescalado": mantener holgura permanente por encima de la demanda habitual
+  - Poner una cola delante para absorber la rafaga y procesarla al ritmo que el sistema aguante, o degradar con gracia devolviendo una version reducida de la respuesta.
   - (No se proyecta) Sume el periodo de evaluacion y el sistema reacciona entre 5 y 10 minutos despues de que empezo el problema, asi que un pico subito del tipo que la prueba de spike de la Clase 12 simula ocurre y termina antes de que llegue la ayuda.
   - (No se proyecta) Aqui reaparece la Clase 3: una imagen slim arranca mas rapido que una de un gigabyte, asi que adelgazar la imagen no es solo ahorro de costo, es tiempo de reaccion.
 
-**[Slide 12] Elegir la metrica: la decision mas fina del tema** — 4 vinetas.
+**[Slide 13] Elegir la metrica: la decision mas fina del tema** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Elegir bien la metrica es la decision mas fina del tema, y el ejemplo de CloudLite es contundente.
+  - La CPU es la metrica por defecto y es la equivocada para la mayoria de las APIs, porque una API que sobre todo espera respuestas de la base de datos esta limitada por entrada y salida
+  - No por procesador: cuando la latencia se dispara a 3 segundos porque el pool de conexiones esta agotado, la CPU puede seguir marcando un tranquilo 20 por ciento, el umbral del 70 nunca se cruza y el autoescalado no hace nada mientras los usuarios sufren.
+  - Para el componente de notificaciones de CloudLite la metrica natural es el numero de mensajes esperando en la cola, no la CPU del worker: si hay 500 mensajes acumulados hay que agregar workers, y da igual cuanta CPU usen.
   - (No se proyecta) Metricas mejores para ese caso son las peticiones por segundo por instancia, que se deriva del calculo hecho en la Clase 12, la latencia p95 del propio servicio, o la longitud de la cola pendiente.
   - (No se proyecta) Regla de bolsillo: la metrica correcta es la que mide el recurso que se agota primero, es decir el cuello de botella identificado en la clase anterior.
   - (No se proyecta) De ahi que el entregable de hoy no se pueda hacer bien si el de la Clase 12 quedo vacio.
 
-**[Slide 13] Lo que NO escala (1/2)** — 4 vinetas.
+**[Slide 14] Lo que NO escala** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - La capa de datos es el caso central: agregar instancias de API es casi gratis conceptualmente, pero una base de datos relacional que debe mantener consistencia tiene un unico escritor, y ese escritor no se multiplica sin cambiar el modelo.
+  - Se pueden agregar replicas de lectura, y ahi entra un concepto a definir: el retraso de replicacion, esos milisegundos o segundos en que la replica todavia no tiene el ultimo cambio
+  - Que produce el sintoma de que el usuario guarda un dato, la pagina lo relee de una replica y el dato no aparece.
+  - Las alternativas mas agresivas, particionar los datos por clave o cambiar a un modelo sin esquema fijo, son decisiones de arquitectura mayores y estan fuera del alcance de CloudLite v1
+  - Decirlo explicitamente en el informe es una respuesta correcta, no una debilidad.
+  - Hay un detalle aritmetico que es la mejor leccion del dia: si cada instancia de la API abre un pool de 20 conexiones y el autoescalado sube a 6 instancias
+  - El sistema pide 120 conexiones, mientras que una base de datos gestionada pequena suele admitir del orden de 100; el resultado es que escalar la API tumba la base de datos.
+  - NOTAS:
   - Declarar lo que NO escala separa un diseno serio de una lista de deseos.
   - Multiplicar la capa sin verificar el limite del recurso compartido no mejora el sistema, lo rompe.
+  - PREGUNTAS FRECUENTES Y CIERRE CONCEPTUAL ()
+  - La primera es por que documentar limites si el autoescalado es automatico; la respuesta es que automatico significa que ejecuta la politica que alguien escribio, no que decide bien: sin maximo escala el costo
+  - Sin minimo pierde disponibilidad, con la metrica equivocada no reacciona y con umbrales simetricos oscila; el automatismo amplifica la calidad de la decision humana en ambos sentidos.
+  - La segunda es si no seria mejor serverless, que "escala infinito"; la respuesta reconoce la ventaja real, que escala por peticion y no cobra en reposo
+  - Y nombra los tres costos: el arranque en frio, esa demora extra de cientos de milisegundos a segundos cuando una funcion se invoca despues de estar inactiva; el agotamiento de conexiones
+  - Porque mil funciones concurrentes matan a la base de datos igual que mil contenedores; y el costo por invocacion, que a volumen alto puede superar el de instancias fijas.
+  - Una regla de bolsillo: serverless sirve para cargas intermitentes y cortas; para trafico sostenido, una instancia fija suele ser mas barata y predecible.
   - (No se proyecta) Tambien conviene enumerar otras piezas que no escalan por replicacion: los limites de terceros, como un proveedor de correo que acepta 100 envios por minuto y rechaza el exceso, de modo que diez workers no envian diez veces mas rapido sino que generan diez veces mas errores; los sistemas de archivos compartidos; y las tareas programadas de tipo singleton, que si corren en seis instancias hacen el mismo trabajo seis veces y pueden duplicar cobros o correos.
 
-**[Slide 14] Lo que NO escala (2/2)** — 3 vinetas.
-
-**[Slide 15] Preguntas frecuentes y cierre conceptual (1/2)** — 3 vinetas.
-
-**[Slide 16] Preguntas frecuentes y cierre conceptual (2/2)** — 3 vinetas.
-
-**[Slide 17] La regla de autoescalado, escrita como configuracion** — 13 vinetas.
+**[Slide 15] Límites y costos** — 5 vinetas.
 
 
 ## Referencias a diapositivas
@@ -77,23 +132,20 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 1. Portada · Clase 13 · Escalabilidad automática
 2. Agenda de hoy (120 min)
 3. Objetivos de la clase
-4. Escala para CloudLite
-5. Límites y costos
-6. Clase autonoma: escalabilidad no es rendimiento
-7. Escalar vertical y horizontalmente: las dos formas de agregar capacidad
-8. Ausencia de estado: donde mas estudiantes fallan
-9. Las cinco piezas del autoescalado (1/2)
-10. Las cinco piezas del autoescalado (2/2)
-11. El limite fisico: la instancia nueva no aparece al instante
-12. Elegir la metrica: la decision mas fina del tema
-13. Lo que NO escala (1/2)
-14. Lo que NO escala (2/2)
-15. Preguntas frecuentes y cierre conceptual (1/2)
-16. Preguntas frecuentes y cierre conceptual (2/2)
-17. La regla de autoescalado, escrita como configuracion
-18. Politica de autoescalado (tabla, no prosa)
-19. Del boceto al código Mermaid
-20. Clase 13 · cierre conceptual
+4. Clase autonoma: escalabilidad no es rendimiento
+5. Escalar vertical y horizontalmente: las dos formas de agregar capacidad
+6. Ausencia de estado: donde mas estudiantes fallan
+7. Escala para CloudLite
+8. Las cinco piezas del autoescalado
+9. Politica de autoescalado (tabla, no prosa)
+10. La regla de autoescalado, escrita como configuracion
+11. La maquina de decision del autoescalado
+12. El limite fisico: la instancia nueva no aparece al instante
+13. Elegir la metrica: la decision mas fina del tema
+14. Lo que NO escala
+15. Límites y costos
+16. Del boceto al código Mermaid
+17. Clase 13 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 

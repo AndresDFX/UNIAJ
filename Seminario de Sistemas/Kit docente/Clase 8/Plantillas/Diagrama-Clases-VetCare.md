@@ -80,25 +80,25 @@ classDiagram
     -documento: String
     -nombre: String
     -telefono: String
-    +registrarMascota(m: Mascota): void
+    +registrarMascota(m: Mascota) void
   }
   class Mascota {
     -codigo: String
     -nombre: String
     -especie: String
     -fechaNacimiento: Date
-    +calcularEdad(): int
+    +calcularEdad() int
   }
   class Veterinario {
     -tarjetaProfesional: String
     -especialidad: String
-    +agendaDelDia(f: Date): List
+    +agendaDelDia(f: Date) List
   }
   class Cita {
     -numero: int
     -fechaHora: DateTime
     -estado: String
-    +reprogramar(nuevaFecha: DateTime): void
+    +reprogramar(nuevaFecha: DateTime) void
   }
   class Atencion {
     -fecha: Date

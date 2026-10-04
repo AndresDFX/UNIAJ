@@ -24,44 +24,78 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 5] La teoria propia del dia: que es una revision de arquitectura (1/2)** — 4 vinetas.
+**[Slide 4] La teoria propia del dia: que es una revision de arquitectura** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Una revision de arquitectura, en ingles architecture review, es una practica profesional formal en la que alguien distinto de quien diseno el sistema examina el diseno antes de que este construido, buscando riesgos y decisiones sin justificar.
+  - Existe en la industria con nombres concretos: ATAM en su version academica, design review o RFC review en empresas de producto, comite de arquitectura en organizaciones grandes.
+  - Todas comparten la premisa economica que sostiene el curso: un riesgo detectado en el diseno cuesta una fraccion de lo que cuesta cuando ya esta implementado y con usuarios encima.
+  - La revision no juzga si el diagrama es bonito; busca tres cosas: decisiones sin argumento, incoherencias entre artefactos y riesgos que nadie ha nombrado.
+  - Una revision de arquitectura es una lectura estructurada de los artefactos de diseno, hecha por alguien distinto del autor, antes de implementar o cambiar el diseno.
+  - Sus tres salidas son: hallazgos con evidencia, riesgos nombrados y acciones con responsable.
+  - Ejemplo en CloudLite: el Containers nombra «API de turnos» y el Despliegue nombra «backend»; el hallazgo es la incoherencia, la evidencia son los dos diagramas y la accion es unificar el nombre.
   - (No se proyecta) Esta clase no introduce teoria de un tema tecnico nuevo, y eso es deliberado, pero si tiene teoria propia: la teoria de la revision y la evaluacion.
   - (No se proyecta) Hoy el docente no dicta, audita, y el estudiante no aprende un concepto, demuestra que los que ya tiene forman un sistema.
 
-**[Slide 6] La teoria propia del dia: que es una revision de arquitectura (2/2)** — 3 vinetas.
-
-**[Slide 7] El insumo: las seis piezas del paquete CloudLite v1** — 3 vinetas.
+**[Slide 5] El insumo: las seis piezas del paquete CloudLite v1** — 2 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - El criterio central de auditoria se llama trazabilidad: la propiedad de que un elemento se pueda seguir de un artefacto al siguiente sin cambiar de nombre ni desaparecer.
+  - Las seis piezas son: diagrama Context, diagrama Containers, diagrama de despliegue, Dockerfile, workflow de Actions e informe.
+  - Un ejemplo de trazabilidad rota: el Context dibuja una pasarela de pagos y el Containers ya no la menciona; o salio del alcance y se borra, o se olvido y es un hueco.
+  - NOTAS:
   - Y se audita con preguntas mecanicas que cualquier docente puede hacer sin ser experto en el dominio del proyecto, lo que hace esta tecnica ensenable.
   - (No se proyecta) El insumo es el paquete CloudLite v1, que a estas alturas debe tener seis piezas producidas antes: el C4 de Contexto de la Clase 1, el C4 de Contenedores de la Clase 4, el modelo de amenazas con controles de la Clase 6, el diagrama de despliegue con zonas publica y privada de la Clase 7, el workflow de GitHub Actions y las metricas de monitoreo de la Clase 8, y la tabla de costos con drivers y right-sizing de la Clase 10.
   - (No se proyecta) No es una formalidad burocratica, es el unico detector confiable de que el estudiante penso el sistema en vez de producir seis tareas independientes para seis notas distintas.
 
-**[Slide 8] Las cinco preguntas de coherencia, en orden** — 3 vinetas.
+**[Slide 6] Las cinco preguntas de coherencia, en orden** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Quinta: el workflow de Actions se ejecuto al menos una vez con resultado visible, porque un archivo YAML que nunca corrio es una intencion, no evidencia.
+  - Ese es el nucleo del acta: no una nota, sino cuales de estas cinco cadenas estan rotas en cada proyecto.
+  - Un ejemplo de cadena rota: el Containers tiene un worker de avisos, pero el diagrama de despliegue no lo ubica en ninguna zona; la pieza existe en el diseno y no tiene donde correr.
   - (No se proyecta) Las preguntas de coherencia, aplicadas a CloudLite, son cinco y conviene hacerlas en orden.
   - (No se proyecta) Primera: cada contenedor del C4 de la Clase 4 aparece en el diagrama de despliegue de la Clase 7 y con el mismo nombre; si el C4 dice "servicio de notificaciones" y el despliegue dice "worker de correos", o son la misma cosa mal nombrada o son dos cosas y falta una.
   - (No se proyecta) Segunda: cada actor y sistema externo del diagrama de Contexto sigue existiendo; el caso frecuente es que el estudiante dibujo en la Clase 1 una pasarela de pagos y hoy ningun contenedor habla con ella, asi que o desaparecio del alcance y hay que borrarla o esta olvidada y es un hueco.
   - (No se proyecta) Tercera: cada amenaza del modelo STRIDE de la Clase 6 tiene un control visible en el despliegue; si la amenaza es acceso no autorizado a la base de datos y el diagrama la muestra en la subred publica, el control existe en el documento y no en el diseno.
   - (No se proyecta) Cuarta: los componentes de la tabla de costos de la Clase 10 son los mismos contenedores, no una lista inventada.
 
-**[Slide 9] Scope creep y arquitectura de papel: las dos patologias con nombre propio** — 4 vinetas.
+**[Slide 7] Scope creep y arquitectura de papel: las dos patologias con nombre propio** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - La primera es el scope creep, el crecimiento no controlado del alcance: el sistema suma capacidades clase por clase, cada una razonable por si misma, hasta que el proyecto tiene un alcance que no se puede documentar ni defender en el tiempo restante.
+  - La segunda patologia es el teatro de microservicios: servicios separados en el diagrama que en la practica no son unidades independientes.
+  - En CloudLite el caso clasico es el "servicio de autenticacion" dibujado como caja aparte que en el repositorio es un modulo dentro de la misma API, escribe en las mismas tablas y se despliega en el mismo contenedor.
+  - No es un microservicio, es un modulo, y decirlo no castiga al estudiante: corrige el vocabulario antes del Parcial 3, donde esa distincion se evalua.
+  - NOTAS:
   - Hay dos patologias con nombre propio que arruinan las sustentaciones.
   - La respuesta correcta no es prohibir ideas sino congelar el alcance y abrir una lista de aparcamiento, un anexo donde las capacidades extra quedan escritas como "fuera de alcance v1, candidatas a v2": preserva la idea, protege el cronograma y es lo que hace un equipo profesional al cerrar un release.
   - (No se proyecta) Se detecta con un dato objetivo, no con intuicion: en la Clase 1 cada estudiante definio entre tres y cinco capacidades para CloudLite, asi que basta contar las de hoy y compararlas con esa linea base; si eran cuatro y hoy son nueve, hay scope creep, y da igual que las nuevas suenen interesantes.
   - (No se proyecta) Se detecta con cuatro preguntas de una linea, todas respondibles por el estudiante: se puede desplegar ese servicio sin desplegar los otros, tiene sus propios datos o comparte tablas con el vecino, puede fallar sin tumbar a los demas, y existe una razon de negocio por la que cambiaria en un momento distinto al resto.
 
-**[Slide 10] Retroalimentacion accionable: observacion, evidencia, impacto y accion con fecha** — 4 vinetas.
+**[Slide 8] Errores frecuentes a corregir** — 5 vinetas.
+
+**[Slide 9] El C4 Component: por dentro de la API** — 21 vinetas.
+
+**[Slide 10] Retroalimentacion accionable: observacion, evidencia, impacto y accion con fecha** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - La retroalimentacion es la mitad del valor del dia y tiene tecnica propia.
+  - Una observacion accionable tiene cuatro partes: observacion, evidencia, impacto y accion con fecha.
+  - Ejemplo: «el despliegue llama backend a la API de turnos (observacion); se ve en la caja central (evidencia); rompe la trazabilidad con el Containers (impacto); unificar el nombre antes de la proxima revision (accion con fecha)».
+  - Un comentario como «mejorar el diagrama» no es accionable: no dice que, ni donde, ni cuando.
   - (No se proyecta) Una retroalimentacion accionable tiene cuatro partes: observacion, evidencia, impacto y accion con fecha. "Falta seguridad" no cumple ninguna. "En el diagrama de despliegue la base de datos esta en la subred publica, contradice el control que ustedes escribieron para la amenaza de acceso no autorizado; si lo sustentan asi en la Clase 15 el evaluador concluira que el modelo de amenazas se escribio sin mirar el diagrama; muevanla a subred privada y dejen solo la API expuesta, antes de la Clase 12" cumple las cuatro.
   - (No se proyecta) El docente debe apuntar a tres hallazgos por proyecto como maximo y marcar cual es el bloqueante, porque un estudiante que recibe once observaciones no corrige ninguna: se paraliza.
   - (No se proyecta) Conviene nombrar tambien una fortaleza concreta, no por amabilidad sino porque el estudiante necesita saber que conservar; si solo escucha fallas, en la siguiente version cambia todo, incluido lo que estaba bien.
   - (No se proyecta) Y la revision entre pares cumple una funcion que la del docente no puede: explicarle el sistema a otro estudiante obliga a verbalizar decisiones que nunca se dijeron en voz alta, y ahi el propio autor descubre sus huecos.
   - (No se proyecta) El formato eficiente es de siete a ocho minutos por proyecto, con reloj visible, y el revisor asignado (otro estudiante, u otro equipo si el docente los autorizo) entregando por escrito una observacion y una pregunta.
 
-**[Slide 11] El semaforo: el umbral que decide si el proyecto va a tiempo (1/2)** — 4 vinetas.
+**[Slide 11] El semaforo: el umbral que decide si el proyecto va a tiempo** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Con seis artefactos esperados la regla practica es un semaforo: verde si estan los seis y a lo sumo una cadena de trazabilidad rota
+  - Amarillo si hay cinco de seis, o dos o tres cadenas rotas pero corregibles editando documentos; rojo si falta el C4 de Contenedores o el diagrama de despliegue
+  - Que son la columna vertebral y sin los cuales el resto no se puede evaluar, o si el repositorio no existe.
+  - Lo transferible es la idea de fondo: un checkpoint se evalua por evidencia presente, no por promesas.
+  - Cuando un estudiante dice "eso ya lo tenemos, solo falta subirlo", el estado es amarillo y el acta lo registra con fecha de cierre; no es desconfianza, es que en un proyecto lo que no esta en el repositorio no existe.
+  - Para un proyecto en rojo el plan de recuperacion debe reducir alcance, nunca agregar trabajo: menos capacidades, menos servicios, y toda la energia en las dos piezas que faltan.
+  - PREGUNTAS FRECUENTES Y CIERRE CONCEPTUAL ()
   - (No se proyecta) Falta el criterio para decidir si un proyecto va a tiempo, y aqui el docente necesita un umbral y no una impresion.
   - (No se proyecta) El umbral de seis no es una ley de la ingenieria, es la contabilidad de este curso, y decirlo asi evita que el estudiante lo memorice como estandar internacional.
-
-**[Slide 12] El semaforo: el umbral que decide si el proyecto va a tiempo (2/2)** — 2 vinetas.
-
-**[Slide 13] El C4 Component: por dentro de la API** — 17 vinetas.
 
 
 ## Referencias a diapositivas
@@ -71,18 +105,16 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 1. Portada · Clase 11 · Avance del proyecto final
 2. Agenda de hoy (120 min)
 3. Objetivos de la clase
-4. Errores frecuentes a corregir
-5. La teoria propia del dia: que es una revision de arquitectura (1/2)
-6. La teoria propia del dia: que es una revision de arquitectura (2/2)
-7. El insumo: las seis piezas del paquete CloudLite v1
-8. Las cinco preguntas de coherencia, en orden
-9. Scope creep y arquitectura de papel: las dos patologias con nombre propio
+4. La teoria propia del dia: que es una revision de arquitectura
+5. El insumo: las seis piezas del paquete CloudLite v1
+6. Las cinco preguntas de coherencia, en orden
+7. Scope creep y arquitectura de papel: las dos patologias con nombre propio
+8. Errores frecuentes a corregir
+9. El C4 Component: por dentro de la API
 10. Retroalimentacion accionable: observacion, evidencia, impacto y accion con fecha
-11. El semaforo: el umbral que decide si el proyecto va a tiempo (1/2)
-12. El semaforo: el umbral que decide si el proyecto va a tiempo (2/2)
-13. El C4 Component: por dentro de la API
-14. Del boceto al código Mermaid
-15. Clase 11 · cierre conceptual
+11. El semaforo: el umbral que decide si el proyecto va a tiempo
+12. Del boceto al código Mermaid
+13. Clase 11 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -93,9 +125,9 @@ Teoría breve y luego taller; no es un lab suelto.»
 Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
 Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
 
-### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 4]
+### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 8]
 Cubre estos conceptos, en este orden, ~30 min cada uno, con su diapositiva:
-- **Errores frecuentes a corregir** · [Slide 4]
+- **Errores frecuentes a corregir** · [Slide 8]
 
 **Ninguna se salta**: cada una de esas diapositivas es el mecanismo con que se resuelve
 al menos una pregunta de la actividad calificada de hoy.
@@ -104,7 +136,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 14]
+### 40–55 · Demo en vivo · [Slide 12]
 Herramienta del día: **Navegador · editores de diagramas y de texto del curso**.
 **Demo que usted debe poder repetir:** Auditar en vivo el paquete de un voluntario
 
@@ -140,7 +172,7 @@ Aplica el quiz corto de `Kit docente/Clase 11/Quiz Clase 11 - Avance del proyect
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 15]
+### 115–120 · Cierre · [Slide 13]
 Di: «Queda avanzado: Integrar diagramas v1 + checklist de avance PI.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»

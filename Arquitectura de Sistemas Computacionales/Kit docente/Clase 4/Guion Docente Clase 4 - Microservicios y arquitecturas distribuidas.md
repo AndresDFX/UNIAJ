@@ -24,13 +24,38 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 8] De donde viene la clase y que se abre hoy** — 5 vinetas.
+**[Slide 4] De donde viene la clase y que se abre hoy** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Hoy se juntan las dos cosas: se abre la caja negra y se decide de cuantas piezas esta hecha por dentro y por que.
+  - Ese es el nivel 2 del modelo C4, el de contenedores, y el trabajo de este nivel son tres cosas: la decision de arquitectura en una frase con sus dos criterios
+  - El diagrama de contenedores escrito en Mermaid, y una tabla de tres contratos mas tres riesgos de distribucion.
+  - En el modelo C4 un contenedor es una unidad que se ejecuta o almacena datos por separado: una aplicacion web, una API, una base de datos, una cola.
+  - No es lo mismo que un contenedor Docker, aunque a menudo uno se despliegue dentro del otro.
   - (No se proyecta) La Clase 3 dejo al estudiante con una unidad de despliegue concreta en las manos: una imagen que se ejecuta como contenedor.
   - (No se proyecta) La Clase 1 le dejo una caja negra llamada CloudLite App con actores y sistemas externos alrededor.
   - (No se proyecta) La pregunta que organiza la clase no es que son los microservicios, sino una mas incomoda y mas util: cada vez que un sistema se parte en dos, se gana algo y se paga algo, y hoy hay que decir explicitamente que se gana y que se paga.
   - (No se proyecta) Un estudiante que solo aprende la primera mitad de esa frase sale convencido de que mas servicios es mejor arquitectura, que es exactamente el error que esta clase debe prevenir.
 
-**[Slide 9] Monolito: lo que la palabra realmente significa (1/4)** — 5 vinetas.
+**[Slide 5] Monolito: lo que la palabra realmente significa** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Un monolito es un sistema que se despliega como una sola unidad: todo su codigo se construye junto y sale al aire junto.
+  - No es un insulto ni un error, es la arquitectura correcta por defecto para la mayoria de los sistemas pequenos, y varios proyectos de este curso deberian ser monolitos bien organizados.
+  - Un microservicio, en cambio, es una unidad de despliegue independiente con una frontera de responsabilidad de negocio propia.
+  - Tres senales de una frontera real: el servicio es dueno de sus propios datos, puede liberarse a su propio ritmo y corresponde a una capacidad de negocio que se puede nombrar sin usar palabras tecnicas.
+  - En cuanto a la notacion, el nivel de contenedores del modelo C4 pide dibujar, dentro del sistema, cada cosa que se ejecuta o almacena de forma independiente
+  - Con tres datos obligatorios por caja (nombre, tecnologia y responsabilidad en una frase) y cada flecha etiquetada con protocolo y formato, nunca una linea muda.
+  - Una aplicacion web de una sola pagina que corre en el navegador, una API, una base de datos gestionada, una cola de mensajes y un proceso trabajador en segundo plano son cinco contenedores C4, aunque solo dos de ellos esten dockerizados.
+  - Confundirlo lleva al estudiante a creer que debe empaquetar cada caja con Docker para que el diagrama sea valido, lo cual no es cierto y desvia el trabajo de la semana hacia una tarea que nadie pidio.
+  - Es UNA frase y elige UNA de las dos opciones: monolito modular o microservicios.
+  - «Un poco de los dos» no es una respuesta: no es una posicion intermedia sensata, es la frase de quien no decidio, y un sistema no se puede desplegar de las dos formas a la vez.
+  - El primero es el tamano del equipo, y se exige CON numero y CON plazo: «somos dos personas y tenemos doce semanas» es un criterio
+  - «el equipo es pequeno» no lo es, porque no permite verificar nada.
+  - El segundo criterio es el acoplamiento, y se responde diciendo QUE partes cambian juntas: si al tocar el calendario de disponibilidad hay que tocar tambien el registro de clientes, esas dos cosas no son dos servicios.
+  - Y la frase se cierra con las dos mitades del trade-off: lo que se gana y lo que se pierde.
+  - Un ejemplo completo para CloudLite Turnos es: «Elegimos un monolito modular porque el equipo es de 1 persona y el dominio tiene 3 capacidades
+  - Ganamos un solo despliegue y transacciones simples; perdemos la posibilidad de escalar el envio de avisos por separado».
+  - Un monolito modular es un solo desplegable dividido por dentro en modulos con fronteras claras; es distinto del monolito enredado, donde cualquier parte llama a cualquier otra.
+  - NOTAS:
   - La decision se sostiene con exactamente dos criterios.
   - La razon de fondo es la que se repite en el cierre: la cantidad de servicios que una organizacion sostiene es funcion del numero de equipos autonomos, no del gusto por la modularidad.
   - Esa frase tiene decision, 2 criterios y las 2 mitades del trade-off.
@@ -41,13 +66,22 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - (No se proyecta) Con eso claro, lo primero que el estudiante entrega hoy es la decision, y tiene una forma exigida que conviene dictar literal porque se corrige asi.
   - (No se proyecta) Sin la segunda mitad no hubo decision, hubo una justificacion escrita despues de los hechos —el mismo defecto que la Clase 2 senalaba en los ADR sin consecuencias negativas—.
 
-**[Slide 10] Monolito: lo que la palabra realmente significa (2/4)** — 4 vinetas.
+**[Slide 6] Monolito vs microservicios (para el PI)** — 6 vinetas.
 
-**[Slide 11] Monolito: lo que la palabra realmente significa (3/4)** — 5 vinetas.
+**[Slide 7] Microservicios de verdad vs microservicios teatro** — 10 vinetas.
 
-**[Slide 12] Monolito: lo que la palabra realmente significa (4/4)** — 3 vinetas.
-
-**[Slide 13] Las tres reglas del nivel Container y la trazabilidad con el Context (1/2)** — 5 vinetas.
+**[Slide 8] Las tres reglas del nivel Container y la trazabilidad con el Context** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - La primera: cada caja lleva TRES datos, no uno.
+  - Una caja que dice solo «API» no es un contenedor descrito, es una etiqueta; con «API de turnos · Node.js · valida la franja y registra el turno» ya se puede discutir si esa frontera tiene sentido.
+  - La segunda: lo que guarda datos no es una caja mas.
+  - En la notacion se marca como almacen —en el codigo, ContainerDb en lugar de Container— y esa distincion no es cosmetica: un almacen no se replica igual que un servicio, no se despliega igual y no falla igual, y todo eso se retoma en las Clases 7 y 13.
+  - La tercera: ninguna flecha queda muda, y media etiqueta tampoco alcanza.
+  - Cada flecha lleva protocolo Y formato: HTTPS/JSON, TCP/SQL.
+  - Si alli decia «Pasarela de pagos», aqui no puede decir «Pagos».
+  - Los actores y los sistemas externos del Context siguen existiendo hoy y siguen estando FUERA del recuadro del sistema: abrir la caja no elimina lo que la rodeaba.
+  - Un ejemplo de trazabilidad: si el Context muestra «Proveedor de correo» como System_Ext, en el Containers aparece con el mismo nombre, fuera del recuadro, y la flecha que llega a el sale del contenedor que envia los avisos.
+  - NOTAS:
   - Nombre, tecnologia y responsabilidad en una frase.
   - «HTTP» a secas no dice como viajan los datos y «SQL» a secas no dice sobre que transporte; con las dos mitades, cualquiera que lea el diagrama sabe por donde puede romperse.
   - (No se proyecta) Antes del ejemplo conviene fijar las tres reglas con las que se corrige el diagrama, porque cada una tiene puntos asignados y las tres se pierden por descuido y no por no saber.
@@ -55,9 +89,21 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - (No se proyecta) No es pedanteria de notacion; es lo unico que permite afirmar que los dos dibujos son el mismo sistema visto desde distinta altura, y es exactamente lo que se volvera a verificar en la Clase 7 contra el diagrama de despliegue y en la Clase 11 en la auditoria del paquete.
   - (No se proyecta) Ese es el error de dibujo mas comun de la clase, meter al usuario o a la pasarela de pagos dentro del sistema propio, y se detecta en dos segundos preguntando quien lo opera.
 
-**[Slide 14] Las tres reglas del nivel Container y la trazabilidad con el Context (2/2)** — 4 vinetas.
+**[Slide 9] Las tres reglas del C4 Container, en codigo** — 9 vinetas.
 
-**[Slide 15] C4Container en Mermaid: la sintaxis que se renderiza (1/2)** — 4 vinetas.
+**[Slide 10] C4-lite: del Context a los Containers** — 6 vinetas.
+
+**[Slide 11] Ejemplo de diagrama C4 — nivel Containers** — 6 vinetas.
+
+**[Slide 12] C4Container en Mermaid: la sintaxis que se renderiza** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - En este curso el diagrama se escribe como codigo Mermaid, y un visor Mermaid lo renderiza.
+  - La primera linea es exactamente C4Container, sin nada antes
+  - Los actores se declaran con Person y los sistemas ajenos con System_Ext, los dos por fuera del bloque del sistema.
+  - El sistema propio se abre con System_Boundary y una llave, y dentro van las cajas: Container para lo que ejecuta y ContainerDb para lo que almacena, cada una con identificador, nombre, tecnologia y responsabilidad.
+  - La llave se cierra, y las relaciones van despues, con Rel y cuatro datos: origen, destino, que hace y con que protocolo y formato.
+  - El identificador corto de cada caja —en el molde proyectado son spa, api, db y worker— es el que usan las relaciones; si no coincide, no dibuja la flecha y tampoco avisa con claridad.
+  - La regla operativa del dia se dice como consecuencia y no como consejo: se pega el codigo, se mira renderizado, y solo entonces se envia.
   - (No se proyecta) Eso cambia lo que el docente tiene que ensenar, porque un boceto correcto escrito con la sintaxis equivocada no renderiza y entonces no hay diagrama que calificar.
   - (No se proyecta) Son cinco reglas de escritura y conviene recorrerlas sobre la diapositiva, linea por linea.
   - (No se proyecta) C4Context es el nivel de la Clase 1 y graph TD es otro tipo de diagrama, y cualquiera de los dos deja la respuesta en el nivel equivocado.
@@ -65,56 +111,108 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - (No se proyecta) Lo que NO delega el estudiante es la revision, y hay tres cosas que tiene que verificar el mismo antes de enviar, porque son las que la IA equivoca con frecuencia: que la primera linea sea C4Container, que la base de datos haya quedado como ContainerDb y no como Container, y que ninguna relacion haya perdido la mitad de su etiqueta.
   - (No se proyecta) Un codigo que no renderiza vale cero, y es el unico punto del taller donde el estudiante puede comprobar su propia nota antes de entregar.
 
-**[Slide 16] C4Container en Mermaid: la sintaxis que se renderiza (2/2)** — 3 vinetas.
+**[Slide 13] C4Container en Mermaid: el molde que un visor renderiza** — 15 vinetas.
 
-**[Slide 17] Primer ejemplo: los tres contenedores de CloudLite Turnos** — 5 vinetas.
+**[Slide 14] Primer ejemplo: los tres contenedores de CloudLite Turnos** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - CloudLite Turnos, el sistema de agendamiento de la barberia, empieza con tres contenedores: una aplicacion web que corre en el navegador del cliente, una API que atiende peticiones HTTP con cuerpo en formato JSON
+  - Y una base de datos relacional donde viven turnos, clientes y horarios.
+  - Ahora viene la parte interesante: la cuarta caja aparece solo si hay una razon.
+  - El envio del correo de confirmacion tarda, con proveedores reales de correo, entre 300 y 2000 milisegundos, y puede fallar por causas ajenas al sistema.
+  - Cuatro contenedores con una justificacion medible es mejor arquitectura que ocho por moda.
+  - NOTAS:
   - La flecha entre la web y la API dice «HTTPS/JSON, consulta disponibilidad y crea reservas»; la flecha entre la API y la base de datos dice «TCP, lee y escribe turnos».
   - Con eso ya existe un diagrama valido y defendible.
   - Si la API espera ese envio antes de responder, la reserva de un turno hereda esa latencia y ese riesgo.
   - Esa es una razon legitima para separar: se agrega una cola de mensajes y un trabajador de notificaciones, la API escribe el turno, publica un mensaje y responde en decenas de milisegundos, y el trabajador envia el correo despues, con reintentos si falla.
   - (No se proyecta) Primer ejemplo concreto, y conviene construirlo en el tablero en vivo.
 
-**[Slide 18] Los contratos: cuatro datos por fila y un 409 obligatorio (1/2)** — 6 vinetas.
+**[Slide 15] Los contratos: cuatro datos por fila y un 409 obligatorio** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Si cada flecha del diagrama lleva protocolo y formato, el paso siguiente es decir QUE se negocia por esa flecha, y eso es un contrato.
+  - Un contrato entre dos piezas de un sistema tiene cuatro datos y los cuatro se piden por separado: como se llama la interaccion en terminos de negocio
+  - Quien llama a quien, con que verbo y ruta —o con que nombre de evento, si es asincrono—, y cual es el error de negocio que puede devolver.
+  - El cuarto es el que se olvida y el que hace util al contrato.
+  - Un error de negocio es una respuesta prevista, que forma parte del diseno: la franja ya esta tomada, el cupo se agoto, el usuario no tiene permiso.
+  - La primera: al menos uno de los tres contratos tiene que ser un 409 de conflicto, y la razon es de dominio y no de capricho.
+  - El 409 es la respuesta que dice «tu peticion es valida, pero el estado actual del sistema no la admite», y en cualquier dominio de reservas ese caso existe siempre: dos clientes quieren la misma franja.
+  - Un estudiante que no encuentra ningun 409 en su sistema casi nunca tiene un dominio sin conflictos; lo que tiene es un diagrama que no modela ninguna regla de negocio.
+  - La segunda exigencia: los tres contratos no pueden ser entre el mismo par de cajas.
+  - Y si el contrato es con la base de datos, en la columna del verbo va la sentencia (INSERT, SELECT) y no una ruta REST
+  - Porque la base no expone rutas; ponerle POST /turnos a la base de datos es el error que delata que se lleno la tabla por analogia y no leyendo el propio diagrama.
   - (No se proyecta) Un 500 no es un error de negocio, es una falla del sistema; nadie lo disena, y por eso poner 500 en esa columna es la senal de que el estudiante no distinguio las dos cosas.
   - (No se proyecta) La diapositiva proyecta los tres contratos resueltos sobre CloudLite Turnos y conviene recorrerlos leyendo la cuarta columna en voz alta, porque es lo que hay que replicar.
   - (No se proyecta) Dos exigencias mas, que valen puntos y se pierden sin darse cuenta.
   - (No se proyecta) Conviene tambien tener a mano la diferencia con sus vecinos, porque se confunden: 400 es que la peticion esta mal formada, 401 que no se sabe quien eres, 403 que se sabe y no te corresponde, 404 que no existe, 422 que esta bien formada pero sus datos no pasan una validacion, y 409 que choca con el estado actual.
   - (No se proyecta) Tres filas que digan «App web → API» describen un solo canal contado tres veces, y lo que se esta evaluando es si el estudiante entendio que su sistema tiene varias fronteras.
 
-**[Slide 19] Los contratos: cuatro datos por fila y un 409 obligatorio (2/2)** — 5 vinetas.
+**[Slide 16] Los tres contratos de CloudLite: cuatro datos por fila** — 0 vinetas.
 
-**[Slide 20] Lo que se paga al distribuir: la red no es una llamada de funcion** — 5 vinetas.
+**[Slide 17] Lo que se paga al distribuir: la red no es una llamada de funcion** — 2 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - El segundo bloque de contenido es el mas importante del dia: que se paga al distribuir.
+  - Una llamada a una funcion dentro del mismo proceso cuesta del orden de nanosegundos y no puede fallar por causas de red.
+  - La misma llamada convertida en peticion HTTP entre dos contenedores de la misma maquina o del mismo centro de datos cuesta tipicamente entre 1 y 5 milisegundos, y entre regiones geograficas distintas puede subir a 50 o 200 milisegundos.
+  - Es decir, convertir una llamada local en remota empeora el costo en varios ordenes de magnitud, y a eso se suma que ahora la llamada puede perderse, llegar duplicada o tardar indefinidamente.
+  - Ese calculo es exacto y no una convencion, y es el argumento mas contundente contra multiplicar servicios sin necesidad.
   - (No se proyecta) Hay una aritmetica que conviene mostrar porque impresiona con razon: si una peticion del usuario atraviesa en cadena cinco servicios y cada uno esta disponible el 99,9 % del tiempo, la disponibilidad del recorrido completo es 0,999 elevado a la quinta potencia, alrededor del 99,5 %, lo que pasa de unos 43 minutos de indisponibilidad al mes a mas de tres horas.
 
-**[Slide 21] Timeout, reintento, idempotencia y circuit breaker (1/2)** — 3 vinetas.
+**[Slide 18] Timeout, reintento, idempotencia y circuit breaker** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Un timeout es el tiempo maximo que un servicio espera respuesta antes de darse por vencido; sin timeout explicito, un servicio lento no falla sino que deja colgado a quien lo llamo, y el bloqueo se propaga hacia arriba hasta tumbar el sistema completo.
+  - Los valores tipicos para llamadas internas estan entre 2 y 5 segundos, y son convencion, no ley.
+  - Un reintento es volver a intentar la llamada fallida, y trae una trampa: si todos los clientes reintentan de inmediato contra un servicio ya saturado, lo hunden mas, por lo que se limita a dos o tres reintentos con espera creciente entre uno y otro.
+  - En CloudLite eso es literal: si el reintento de crear turno no es idempotente, el cliente termina con dos reservas para el mismo horario, y la solucion habitual es que la peticion lleve un identificador unico que el servidor reconozca como repetido.
+  - El cuarto mecanismo es el interruptor de circuito, o circuit breaker, que tras varias fallas consecutivas deja de intentar por un rato y responde de inmediato con un error controlado, para no gastar recursos golpeando algo que esta caido.
+  - NOTAS:
   - De ahi salen cuatro mecanismos que el diagrama y la tabla deben poder mencionar.
   - Los reintentos exigen idempotencia, que significa que ejecutar la misma operacion dos veces produzca el mismo resultado que ejecutarla una vez.
 
-**[Slide 22] Timeout, reintento, idempotencia y circuit breaker (2/2)** — 2 vinetas.
-
-**[Slide 23] Los datos: donde se rompen los proyectos academicos (1/2)** — 5 vinetas.
+**[Slide 19] Los datos: donde se rompen los proyectos academicos** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - El punto donde los proyectos academicos se rompen es el de los datos.
+  - La regla ortodoxa de los microservicios dice que cada servicio es dueno exclusivo de su base de datos y que nadie mas la consulta directamente
+  - Si dos servicios comparten tablas, estan acoplados y no pueden desplegarse por separado, lo que contradice la definicion.
+  - Pero cumplir esa regla tiene un precio real: una consulta que antes era un join deja de existir y hay que resolverla llamando a otro servicio
+  - Y una operacion que abarca dos servicios ya no puede ser una transaccion unica sino una secuencia de pasos con compensaciones.
+  - Fingir ortodoxia es peor que documentar una concesion.
+  - La regla de propiedad es: cada tabla tiene un solo servicio dueno, que es el unico que escribe en ella; los demas la consultan por su API.
+  - En CloudLite Turnos la tabla de turnos es de la API de turnos, y el worker de avisos no la toca: recibe por la cola el dato que necesita.
+  - Dos servicios que escriben en la misma tabla quedan acoplados aunque se desplieguen por separado, y ese es el error mas comun.
+  - NOTAS:
   - Eso introduce consistencia eventual, es decir un lapso durante el cual dos partes del sistema tienen versiones distintas de la verdad, con consecuencias visibles para el usuario.
   - (No se proyecta) La postura honesta para este curso es que un CloudLite con una base de datos compartida y propiedad de tablas claramente documentada resulta aceptable, siempre que el estudiante lo registre como un trade-off consciente en su informe y no lo presente como microservicios puros.
 
-**[Slide 24] Los datos: donde se rompen los proyectos academicos (2/2)** — 4 vinetas.
-
-**[Slide 25] Los tres riesgos de distribuir, y por que son esos tres (1/3)** — 5 vinetas.
+**[Slide 20] Los tres riesgos de distribuir, y por que son esos tres** — 2 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Los riesgos de distribucion no son una lista libre: son TRES riesgos, cada uno responde una pregunta distinta, y estan elegidos para que ninguno se pueda contestar sin mirar el propio diagrama.
+  - Se nombra UNA caja del diagrama y se dice que deja de funcionar y —esta es la mitad que se olvida— que SIGUE funcionando.
+  - En CloudLite Turnos, si se cae el trabajador de notificaciones, los turnos se siguen reservando y lo que se pierde es el correo de confirmacion; si se cae la base de turnos, no se reserva nada
+  - Pero la aplicacion web sigue cargando y puede mostrar un mensaje decente en lugar de una pantalla en blanco.
+  - Reservar un turno en el ejemplo de tres cajas son tres saltos: el navegador a la aplicacion web, la aplicacion web a la API, y la API a la base de datos; si se agrega el correo son cuatro, y si el correo se envia por cola, cinco.
+  - El numero importa por lo que se explico arriba: cada salto agrega latencia y una probabilidad de fallo, y esa aritmetica es la unica defensa contra multiplicar cajas por gusto.
+  - Un estudiante que no puede contar sus saltos no esta leyendo su diagrama, esta recordandolo.
+  - El tercero pregunta por un dato que se escribe en dos pasos, y es el mas dificil de los tres porque exige mirar la escritura y no la lectura.
+  - En el ejemplo, el turno se escribe en la base y despues se publica el mensaje del correo: si el segundo paso falla, el turno existe y el cliente nunca se entero.
+  - Ese es el problema de fondo de todo sistema distribuido, y hoy no se resuelve con una saga completa: se reconoce, se nombra el dato concreto y se dice que queda inconsistente.
+  - Si un estudiante dice que no encuentra ningun riesgo, casi siempre es porque su diagrama tiene flechas sin protocolo o sin formato: no sabe por donde puede romperse porque nunca definio como se comunican las piezas.
+  - Los tres riesgos clasicos de un sistema distribuido son: la red falla o se demora, un servicio deja de responder mientras los demas siguen, y los datos quedan inconsistentes entre dos servicios.
+  - En la app de turnos, si el worker de avisos cae, los turnos se siguen reservando y los avisos esperan en la cola: el fallo queda contenido.
+  - NOTAS:
   - El primero pregunta que se cae.
   - El segundo pregunta cuantos saltos de red tiene una operacion de punta a punta, y se responde con un numero, contado sobre el propio dibujo.
+  - PREGUNTAS FRECUENTES Y CIERRE CONCEPTUAL ()
+  - Cuantos microservicios son los correctos: no hay numero correcto, hay justificacion por frontera
+  - Y el rango de dos a cinco contenedores que exige el curso es una restriccion pedagogica pensada para proyectos de una a tres personas en doce semanas, no un hallazgo de la ingenieria.
+  - Si las empresas grandes tienen cientos de servicios, por que nosotros solo tres: porque el numero de servicios que una organizacion puede sostener es funcion del numero de equipos autonomos y de la madurez de su automatizacion de despliegue y observabilidad
+  - Condiciones que un equipo de tres no tiene, y copiar la forma sin las condiciones produce lo que aqui se llama microservicios teatro.
+  - Y la tercera, que hay que responder sin ambiguedad: esta mal hacer un monolito.
   - (No se proyecta) Conviene dictarlos asi, porque un estudiante que entiende por que son esos tres no escribe generalidades.
   - (No se proyecta) «Se cae todo» vale la mitad de los puntos, y con razon: en un sistema bien partido nunca se cae todo, y el ejercicio consiste precisamente en descubrir que algunas cosas sobreviven.
   - (No se proyecta) Ese razonamiento es el que en la Clase 7 permite decidir que va en cada zona de red y en la Clase 13 que pieza vale la pena replicar.
   - (No se proyecta) Devolverle el diagrama es mas util que darle un ejemplo.
 
-**[Slide 26] Los tres riesgos de distribuir, y por que son esos tres (2/3)** — 5 vinetas.
-
-**[Slide 27] Los tres riesgos de distribuir, y por que son esos tres (3/3)** — 3 vinetas.
-
-**[Slide 28] Preguntas frecuentes y cierre conceptual** — 5 vinetas.
-
-**[Slide 29] El C4 Container en Mermaid: la forma que un visor renderiza** — 17 vinetas.
-
-**[Slide 30] Lo que importa del diagrama, y no es el dibujo** — 13 vinetas.
+**[Slide 21] Distribuido implica fallos** — 6 vinetas.
 
 
 ## Referencias a diapositivas
@@ -124,38 +222,26 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 1. Portada · Clase 4 · Microservicios · Arquitecturas distribuidas
 2. Agenda de hoy (120 min)
 3. Objetivos de la clase
-4. Monolito vs microservicios (para el PI)
-5. C4-lite: del Context a los Containers
-6. Los tres contratos de CloudLite: cuatro datos por fila
-7. Distribuido implica fallos
-8. De donde viene la clase y que se abre hoy
-9. Monolito: lo que la palabra realmente significa (1/4)
-10. Monolito: lo que la palabra realmente significa (2/4)
-11. Monolito: lo que la palabra realmente significa (3/4)
-12. Monolito: lo que la palabra realmente significa (4/4)
-13. Las tres reglas del nivel Container y la trazabilidad con el Context (1/2)
-14. Las tres reglas del nivel Container y la trazabilidad con el Context (2/2)
-15. C4Container en Mermaid: la sintaxis que se renderiza (1/2)
-16. C4Container en Mermaid: la sintaxis que se renderiza (2/2)
-17. Primer ejemplo: los tres contenedores de CloudLite Turnos
-18. Los contratos: cuatro datos por fila y un 409 obligatorio (1/2)
-19. Los contratos: cuatro datos por fila y un 409 obligatorio (2/2)
-20. Lo que se paga al distribuir: la red no es una llamada de funcion
-21. Timeout, reintento, idempotencia y circuit breaker (1/2)
-22. Timeout, reintento, idempotencia y circuit breaker (2/2)
-23. Los datos: donde se rompen los proyectos academicos (1/2)
-24. Los datos: donde se rompen los proyectos academicos (2/2)
-25. Los tres riesgos de distribuir, y por que son esos tres (1/3)
-26. Los tres riesgos de distribuir, y por que son esos tres (2/3)
-27. Los tres riesgos de distribuir, y por que son esos tres (3/3)
-28. Preguntas frecuentes y cierre conceptual
-29. El C4 Container en Mermaid: la forma que un visor renderiza
-30. Lo que importa del diagrama, y no es el dibujo
-31. Ejemplo de diagrama C4 — nivel Containers
-32. Microservicios de verdad vs microservicios teatro
-33. C4Container en Mermaid: el molde que un visor renderiza
-34. Del boceto al código Mermaid
-35. Clase 4 · cierre conceptual
+4. De donde viene la clase y que se abre hoy
+5. Monolito: lo que la palabra realmente significa
+6. Monolito vs microservicios (para el PI)
+7. Microservicios de verdad vs microservicios teatro
+8. Las tres reglas del nivel Container y la trazabilidad con el Context
+9. Las tres reglas del C4 Container, en codigo
+10. C4-lite: del Context a los Containers
+11. Ejemplo de diagrama C4 — nivel Containers
+12. C4Container en Mermaid: la sintaxis que se renderiza
+13. C4Container en Mermaid: el molde que un visor renderiza
+14. Primer ejemplo: los tres contenedores de CloudLite Turnos
+15. Los contratos: cuatro datos por fila y un 409 obligatorio
+16. Los tres contratos de CloudLite: cuatro datos por fila
+17. Lo que se paga al distribuir: la red no es una llamada de funcion
+18. Timeout, reintento, idempotencia y circuit breaker
+19. Los datos: donde se rompen los proyectos academicos
+20. Los tres riesgos de distribuir, y por que son esos tres
+21. Distribuido implica fallos
+22. Del boceto al código Mermaid
+23. Clase 4 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -166,12 +252,12 @@ Teoría breve y luego taller; no es un lab suelto.»
 Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
 Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
 
-### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 4]
+### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 6]
 Cubre estos conceptos, en este orden, ~7 min cada uno, con su diapositiva:
-- **Monolito vs microservicios (para el PI)** · [Slide 4]
-- **C4-lite: del Context a los Containers** · [Slide 5]
-- **Los tres contratos de CloudLite: cuatro datos por fila** · [Slide 6]
-- **Distribuido implica fallos** · [Slide 7]
+- **Monolito vs microservicios (para el PI)** · [Slide 6]
+- **C4-lite: del Context a los Containers** · [Slide 10]
+- **Los tres contratos de CloudLite: cuatro datos por fila** · [Slide 16]
+- **Distribuido implica fallos** · [Slide 21]
 
 **Ninguna se salta**: cada una de esas diapositivas es el mecanismo con que se resuelve
 al menos una pregunta de la actividad calificada de hoy.
@@ -180,7 +266,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 34]
+### 40–55 · Demo en vivo · [Slide 22]
 Herramienta del día: **Navegador · editor de diagramas del curso (Mermaid) · boceto libre opcional**.
 **Demo que usted debe poder repetir:** Convertir el Context de la Clase 1 en Containers, y dejarlo renderizado en la plataforma
 
@@ -212,7 +298,7 @@ C4Container
     Rel(api, pagos, "cobra", "API REST sobre HTTPS")
 ```
 
-Narra los clics en voz alta. Si falla la red, proyecta la [Slide 33], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
+Narra los clics en voz alta. Si falla la red, proyecta la [Slide 13], que ya trae el resultado de la demo, y recórrela rótulo por rótulo.
 Cierra la demo con: «copien la estructura, no el dominio de mi ejemplo.»
 
 **Si se hace el taller, cierra la demo en la plataforma del curso** (sin diapositiva: el flujo está en el `Taller … .docx`) — es el paso que el estudiante no adivina: pasa el boceto a codigo Mermaid con ayuda de una IA, pegalo en la pregunta de diagrama y muestralo renderizado.
@@ -239,7 +325,7 @@ Aplica el quiz corto de `Kit docente/Clase 4/Quiz Clase 4 - Microservicios y arq
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 35]
+### 115–120 · Cierre · [Slide 23]
 Di: «Queda avanzado: Diagramar componentes/servicios de CloudLite y sus contratos.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»

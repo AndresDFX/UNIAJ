@@ -24,53 +24,105 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 6] Latencia, throughput y concurrencia: la identidad que las une (1/2)** — 3 vinetas.
+**[Slide 4] Latencia, throughput y concurrencia: la identidad que las une** — 2 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - La latencia, o tiempo de respuesta, es cuanto tarda UNA peticion desde que sale del cliente hasta que llega la respuesta completa; se mide en milisegundos y es lo que siente el usuario.
+  - El throughput, o caudal, es cuantas peticiones atiende el sistema por unidad de tiempo; se mide en peticiones por segundo, abreviado RPS, y es lo que importa para la capacidad.
+  - No se mueven juntas: un sistema puede atender 500 RPS con latencia terrible porque todo espera en cola, y otro puede tener latencia excelente con 3 RPS porque nadie lo usa.
+  - Si CloudLite atiende 5 RPS con 300 milisegundos, hay en promedio 1.5 peticiones simultaneas dentro del sistema, y ese numero decide cuantos hilos, cuantas conexiones a base de datos y cuantas instancias se necesitan.
+  - La identidad que las une se llama ley de Little: concurrencia = throughput × latencia.
+  - Con 5 RPS y 0.3 segundos, 5 × 0.3 = 1.5 peticiones dentro del sistema en promedio.
+  - Si la latencia sube a 3 segundos con el mismo trafico, la concurrencia sube a 15, y el pool de conexiones que antes alcanzaba deja de alcanzar.
+  - NOTAS:
   - Hay dos magnitudes que se confunden todo el tiempo.
   - (No se proyecta) Rendimiento es la unica parte del curso donde el estudiante puede pasar de opinar a medir, y por eso conviene empezar por el vocabulario exacto.
   - (No se proyecta) La tercera magnitud es la concurrencia, cuantas peticiones estan en vuelo al mismo tiempo, y las tres se relacionan por una identidad que el docente puede escribir en el tablero: concurrencia igual a RPS por latencia.
 
-**[Slide 7] Latencia, throughput y concurrencia: la identidad que las une (2/2)** — 4 vinetas.
-
-**[Slide 8] Por que el promedio miente y el percentil no (1/2)** — 4 vinetas.
+**[Slide 5] Por que el promedio miente y el percentil no** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - El corazon del tema es entender por que el promedio miente y el percentil no.
+  - Un percentil es el valor por debajo del cual cae un porcentaje dado de las observaciones ordenadas de menor a mayor: el p95 del tiempo de respuesta es el tiempo tal que el 95 por ciento de las peticiones respondieron en ese tiempo o menos, y el 5 por ciento restante tardo mas.
+  - El ejemplo numerico es obligatorio porque convence de inmediato.
+  - Suponga 100 peticiones a CloudLite: 95 responden en 120 milisegundos y 5 responden en 4000 porque cayeron en una consulta sin indice.
+  - El promedio es 314 milisegundos, una cifra que suena aceptable y que no le paso a nadie: ninguna peticion real tardo 314 milisegundos.
+  - El p50, o mediana, es 120; el p99 es 4000.
+  - Reportar el promedio esconde a cinco usuarios de cada cien esperando cuatro segundos; reportar p95 y p99 los hace visibles.
+  - Un objetivo sin condicion de carga no significa nada: cualquier sistema es rapido sin usuarios.
+  - NOTAS:
   - Por eso la industria escribe sus objetivos en percentiles, y por eso un objetivo bien escrito tiene la forma "p95 del endpoint de listado menor a 300 milisegundos con 5 RPS", que tiene metrica, umbral y condicion de carga.
 
-**[Slide 9] Por que el promedio miente y el percentil no (2/2)** — 4 vinetas.
+**[Slide 6] Las metricas objetivo, escritas como se verifican** — 8 vinetas.
 
-**[Slide 10] Los umbrales de percepcion, y por que son convenciones** — 4 vinetas.
+**[Slide 7] Los umbrales de percepcion, y por que son convenciones** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Por debajo de unos 100 milisegundos la respuesta se percibe instantanea; hasta cerca de 1 segundo el usuario mantiene el hilo aunque note la demora; pasados unos 10 segundos pierde la atencion y cambia de tarea o recarga.
+  - Ninguna es regla dura: un reporte pesado puede tener un objetivo legitimo de 3 segundos y un autocompletado necesita estar bajo 100.
+  - Junto al tiempo va siempre la tasa de error, el porcentaje de peticiones que fallan, porque un sistema que responde rapido devolviendo errores no cumple.
+  - Aqui aparecen tres siglas: el SLI es el indicador que se mide, el SLO es el objetivo interno que el equipo se compromete a cumplir y el SLA es el compromiso contractual con penalidad.
+  - NOTAS:
   - De ahi sale la convencion practica para una API interna, que ubica el objetivo de p95 entre 200 y 300 milisegundos dejando presupuesto para que el navegador y la red agreguen lo suyo; para carga de pagina completa la referencia publica de Core Web Vitals considera bueno un renderizado del contenido principal por debajo de 2.5 segundos.
   - Lo que si es regla es que el numero se escribe antes de medir y se justifica con el caso de uso, no se ajusta despues para que la medicion salga bien.
   - (No se proyecta) Los umbrales que el docente debe poder citar son convenciones de percepcion humana bien establecidas, no leyes fisicas.
   - (No se proyecta) Un SLO de 99.9 por ciento de disponibilidad, los "tres nueves", admite unos 43 minutos de caida al mes; el 99.99 baja a poco mas de 4 minutos, y esa diferencia de un decimal suele multiplicar el costo de la arquitectura, lo que amarra con la tabla de la Clase 10.
 
-**[Slide 11] El escenario de carga: aritmetica de servilleta** — 4 vinetas.
+**[Slide 8] El escenario de carga: aritmetica de servilleta** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Suponga 1000 usuarios activos al dia, cada uno con unas 20 peticiones en su sesion: son 20000 peticiones diarias.
+  - Si un 40 por ciento cae en una ventana de dos horas, eso es 8000 peticiones en 7200 segundos, algo mas de 1 RPS promedio en la hora pico.
+  - Como el trafico real llega en rafagas, se aplica un factor de pico de 3 a 5 veces y se dimensiona para unos 5 RPS.
+  - Ese numero es el que debe aparecer en el informe, y es un orden de magnitud tres mil veces menor que los "10000 RPS" que algun estudiante escribira por sonar ambicioso.
   - (No se proyecta) El segundo componente es el escenario de carga, y el estudiante casi siempre lo inventa exagerado.
   - (No se proyecta) La forma correcta de estimarlo es aritmetica de servilleta y el docente debe hacerla en vivo con CloudLite.
   - (No se proyecta) La leccion es doble: un objetivo de rendimiento sin cuenta de sobre es marketing y no ingenieria, y dimensionar para 5 RPS en vez de 10000 es justamente lo que evita el sobreaprovisionamiento que la Clase 10 senalo como desperdicio.
 
-**[Slide 12] El cuello de botella: siempre hay uno (1/2)** — 4 vinetas.
+**[Slide 9] El cuello de botella: siempre hay uno** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - El tercer componente es el bottleneck, o cuello de botella: el componente que se agota primero y limita el rendimiento de todo el sistema.
+  - En CloudLite los candidatos son pocos y reconocibles.
+  - El primero es el problema N mas 1 en el endpoint de listado: la API pide la lista con una consulta y luego, dentro del ciclo, hace una consulta adicional por cada registro para traer un dato relacionado
+  - Con 50 registros son 51 viajes a la base de datos y el tiempo se va en latencia de red acumulada, no en CPU.
+  - El segundo es el pool de conexiones: si el pool tiene 10 conexiones y llegan 40 peticiones concurrentes, 30 esperan turno y la latencia se dispara aunque la CPU de la API y la de la base de datos esten al 20 por ciento.
+  - El tercero, si CloudLite envia notificaciones de forma sincronica dentro de la peticion, es el proveedor externo: el usuario espera a que un tercero responda, y la mitigacion no es mas CPU sino sacar el envio de la ruta critica hacia una cola.
   - (No se proyecta) La afirmacion fuerte, que conviene decir tal cual, es que en cualquier instante hay exactamente un cuello de botella; "todo esta lento" nunca es un diagnostico, es la ausencia de uno.
   - (No se proyecta) Se localiza con las senales doradas de la Clase 8, en particular la saturacion, mirando cual recurso esta cerca de su limite mientras los demas estan holgados.
   - (No se proyecta) Esos tres cubren la mayoria de los casos que los estudiantes van a sospechar.
 
-**[Slide 13] El cuello de botella: siempre hay uno (2/2)** — 2 vinetas.
+**[Slide 10] El presupuesto de latencia del camino critico** — 20 vinetas.
 
-**[Slide 14] Los tipos de prueba, por la pregunta que responden** — 4 vinetas.
+**[Slide 11] Los tipos de prueba, por la pregunta que responden** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - La prueba de estres sube la carga de forma progresiva hasta que el sistema se degrada o se rompe
+  - Y responde cual es la capacidad maxima y como se comporta al fallar; el dato interesante no es el punto de quiebre sino la forma de la falla, porque degradarse respondiendo lento es aceptable y caerse por completo no.
+  - La prueba de resistencia, o soak, mantiene carga moderada durante horas y responde si hay fugas de memoria o conexiones que no se liberan; con menos de una hora no se detecta nada y de 2 a 4 horas es lo tipico.
+  - No se necesita ninguna herramienta de pago: en Killercoda se puede lanzar un contenedor con k6, hey o Apache Bench y golpear el stub del servicio, y si el lab no carga, el escenario se documenta en papel con la aritmetica de arriba.
+  - NOTAS:
   - Los tipos de prueba se distinguen por la pregunta que responden.
   - La prueba de carga o baseline aplica la carga esperada y responde si el sistema cumple el SLO en condiciones normales.
   - Un escenario bien razonado sin ejecucion vale mas que una ejecucion sin objetivo.
   - (No se proyecta) La prueba de picos, o spike test, aplica una subida subita y grande simulando una promocion o una noticia viral, y responde si el sistema reacciona a tiempo; anticipa el limite del autoescalado de la Clase 13, porque arrancar una instancia toma decenas de segundos y un pico mas rapido golpea antes de que llegue la ayuda.
 
-**[Slide 15] El ensayo del pitch: la segunda mitad tiene su propia teoria** — 4 vinetas.
+**[Slide 12] Rendimiento sin stress-tool de pago** — 6 vinetas.
+
+**[Slide 13] «Que sea rapido» no es un requisito** — 12 vinetas.
+
+**[Slide 14] El ensayo del pitch: la segunda mitad tiene su propia teoria** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Cinco a ocho minutos son entre 700 y 1000 palabras habladas, lo que alcanza para siete u ocho ideas y no mas, asi que el guion se escribe por presupuesto de tiempo: unos 45 segundos para el problema y el usuario
+  - 60 para el diagrama de Contexto, 90 para los Contenedores y las decisiones que los separan, 60 para seguridad y despliegue, 45 para el pipeline y las metricas, 45 para costos y escalabilidad, y 30 de cierre.
+  - La regla de oro del pitch de arquitectura es que se presentan decisiones con su trade-off, no un recorrido por las cajas del diagrama: "elegimos base de datos gestionada aunque cuesta el doble
+  - Porque no podemos garantizar respaldos manuales" es una frase de arquitecto; "aqui tenemos una base de datos" es una leyenda de imagen.
+  - PREGUNTAS FRECUENTES Y CIERRE CONCEPTUAL ()
+  - La segunda es si no basta con decir que se usara cache; la respuesta es que una mitigacion sin medicion es una creencia
+  - Y que la pregunta correcta es cache de que, con que tiempo de vida, que porcentaje de aciertos se espera y que pasa cuando el dato cambia, porque una cache mal invalidada convierte un problema de lentitud en un problema de datos incorrectos, que es peor.
+  - La tercera es cual es un buen p95, y la respuesta debe resistir la tentacion de dar una cifra universal: depende del caso de uso
+  - Y el criterio es que el numero este justificado y sea alcanzable con la arquitectura dibujada
+  - Quien promete p95 de 50 milisegundos con una consulta que recorre toda la tabla tiene un objetivo incoherente, y eso es un hallazgo mas grave que tener un objetivo modesto.
+  - Tres preguntas llegan siempre.
   - (No se proyecta) La segunda mitad de la clase es el ensayo del pitch y tiene su propia teoria.
   - (No se proyecta) Se ensaya hoy con cronometro y en voz alta, porque leer mentalmente siempre da la mitad del tiempo real, y sin leer las diapositivas, ya que en la Clase 15 el criterio es que quien sustenta pueda explicar cualquier parte del sistema; si el docente autorizo equipos, se ensaya ademas con rotacion de expositor, porque alli el criterio aplica a cualquier integrante.
   - (No se proyecta) Hay que decir explicitamente que este ensayo no es la sustentacion, que es la Clase 15, ni el Parcial 3 de la Clase 14, que es evaluacion escrita: son tres cosas distintas y mezclarlas confunde al grupo.
 
-**[Slide 16] Preguntas frecuentes y cierre conceptual** — 5 vinetas.
-  - Tres preguntas llegan siempre.
-
-**[Slide 17] El presupuesto de latencia del camino critico** — 16 vinetas.
-
-**[Slide 18] Las metricas objetivo, escritas como se verifican** — 12 vinetas.
+**[Slide 15] Preparación de presentación (5–8 min)** — 5 vinetas.
 
 
 ## Referencias a diapositivas
@@ -80,24 +132,20 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 1. Portada · Clase 12 · Pruebas de rendimiento · Preparación de presentación final
 2. Agenda de hoy (120 min)
 3. Objetivos de la clase
-4. Rendimiento sin stress-tool de pago
-5. Preparación de presentación (5–8 min)
-6. Latencia, throughput y concurrencia: la identidad que las une (1/2)
-7. Latencia, throughput y concurrencia: la identidad que las une (2/2)
-8. Por que el promedio miente y el percentil no (1/2)
-9. Por que el promedio miente y el percentil no (2/2)
-10. Los umbrales de percepcion, y por que son convenciones
-11. El escenario de carga: aritmetica de servilleta
-12. El cuello de botella: siempre hay uno (1/2)
-13. El cuello de botella: siempre hay uno (2/2)
-14. Los tipos de prueba, por la pregunta que responden
-15. El ensayo del pitch: la segunda mitad tiene su propia teoria
-16. Preguntas frecuentes y cierre conceptual
-17. El presupuesto de latencia del camino critico
-18. Las metricas objetivo, escritas como se verifican
-19. «Que sea rapido» no es un requisito
-20. Del boceto al código Mermaid
-21. Clase 12 · cierre conceptual
+4. Latencia, throughput y concurrencia: la identidad que las une
+5. Por que el promedio miente y el percentil no
+6. Las metricas objetivo, escritas como se verifican
+7. Los umbrales de percepcion, y por que son convenciones
+8. El escenario de carga: aritmetica de servilleta
+9. El cuello de botella: siempre hay uno
+10. El presupuesto de latencia del camino critico
+11. Los tipos de prueba, por la pregunta que responden
+12. Rendimiento sin stress-tool de pago
+13. «Que sea rapido» no es un requisito
+14. El ensayo del pitch: la segunda mitad tiene su propia teoria
+15. Preparación de presentación (5–8 min)
+16. Del boceto al código Mermaid
+17. Clase 12 · cierre conceptual
 
 ## Plan de clase minuto a minuto (120 min)
 
@@ -108,10 +156,10 @@ Teoría breve y luego taller; no es un lab suelto.»
 Pasa la diapositiva de agenda y la de objetivos. Abre el enunciado PI si alguien aún no lo tiene.
 Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?» — sirve para detectar estudiantes rezagados antes de avanzar.
 
-### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 4]
+### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 12]
 Cubre estos conceptos, en este orden, ~15 min cada uno, con su diapositiva:
-- **Rendimiento sin stress-tool de pago** · [Slide 4]
-- **Preparación de presentación (5–8 min)** · [Slide 5]
+- **Rendimiento sin stress-tool de pago** · [Slide 12]
+- **Preparación de presentación (5–8 min)** · [Slide 15]
 
 **Ninguna se salta**: cada una de esas diapositivas es el mecanismo con que se resuelve
 al menos una pregunta de la actividad calificada de hoy.
@@ -120,7 +168,7 @@ esa sección está escrita para que puedas dictarla sin consultar otra fuente.
 Cada 8–10 min amarra al artefacto: «esto es lo que van a dejar hoy en su informe/diagrama/repo».
 Pide un estudiante voluntario y usa SU dominio como ejemplo en vivo (no el de la demo).
 
-### 40–55 · Demo en vivo · [Slide 20]
+### 40–55 · Demo en vivo · [Slide 16]
 Herramienta del día: **Navegador · editores de diagramas y de texto del curso**.
 **Demo que usted debe poder repetir:** Definir un objetivo de rendimiento que si se puede verificar
 
@@ -156,7 +204,7 @@ Aplica el quiz corto de `Kit docente/Clase 12/Quiz Clase 12 - Pruebas de rendimi
 Mientras responden, verifica que el entregable esté realmente subido.
 Retroalimenta 2–3 estudiantes en voz alta, nombrando el error y la corrección concreta.
 
-### 115–120 · Cierre · [Slide 21]
+### 115–120 · Cierre · [Slide 17]
 Di: «Queda avanzado: Escenario de rendimiento + ensayo 5–8 min de sustentación.
 Criterio de éxito: el estudiante explica su artefacto en 60 s.
 Entrega domingo 23:59 en la plataforma del curso. Siguiente hito del PI según el plan.»

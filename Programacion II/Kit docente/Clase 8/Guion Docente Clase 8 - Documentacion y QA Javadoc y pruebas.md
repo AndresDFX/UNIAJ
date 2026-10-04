@@ -13,61 +13,39 @@
 
 ## Apoyo por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en las notas del presentador de su lamina. Aqui va, por lamina y en su orden, lo que hay que subrayar.
 
-**Documentar no es llenar el codigo de comentarios** — 5 vinetas.
-  - La documentacion tecnica no describe la implementacion, describe la promesa.
+**[Slide 4] Documentar no es comentar cada línea** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: La documentacion tecnica no describe la implementacion, describe la promesa.
 
-**Un bloque Javadoc se escribe con /** y se cierra con */, y va...** — 4 vinetas.
-  - La primera frase debe ser un resumen corto que termine en punto, porque esa frase es la que aparece en las tablas resumen del HTML generado.
-  - Lo que se genera es un sitio web: en VS Code se corre la herramienta del JDK desde la terminal integrada, «javadoc -d docs -private src/clinica/*.java», que crea la carpeta docs/ y deja un index.html que se abre en el navegador con la misma cara que tiene la documentacion oficial de Java.
+**[Slide 5] Anatomía de un bloque Javadoc** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: La primera frase debe ser un resumen corto que termine en punto, porque esa frase es la que aparece en las tablas resumen del HTML generado.
+  - Subrayar: Lo que se genera es un sitio web: en VS Code se corre la herramienta del JDK desde la terminal integrada, «javadoc -d docs -private src/clinica/*.java», que crea la carpeta docs/ y deja un index.html que se abre en el navegador con la misma cara que tiene la documentacion oficial de Java.
 
-**La mejor documentacion es la que no hay que escribir, y eso se logra... (1/2)** — 3 vinetas.
-  - Ahora bien, la mejor documentacion es la que no hay que escribir, y eso se logra con nombres que se explican solos.
+**[Slide 6] Javadoc de un constructor** — codigo (12 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**La mejor documentacion es la que no hay que escribir, y eso se logra... (2/2)** — 2 vinetas.
+**[Slide 7] El contrato de agendar(), en Javadoc** — codigo (14 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**La segunda mitad de la clase es control de calidad (1/2)** — 5 vinetas.
+**[Slide 8] agendar(): cada @throws en el código** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**La segunda mitad de la clase es control de calidad (2/2)** — 3 vinetas.
+**[Slide 9] Nombres que se explican solos** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Ahora bien, la mejor documentacion es la que no hay que escribir, y eso se logra con nombres que se explican solos.
 
-**JUnit es la herramienta que convierte esos casos en codigo que se... (1/2)** — 6 vinetas.
+**[Slide 10] Un caso de prueba: preparar, ejecutar, verificar** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: Un caso de prueba tiene cuatro partes y conviene escribirlas en el tablero antes de tocar el teclado: un nombre que se lea como una frase, unos datos o estado de partida, una accion concreta y un resultado esperado.
 
-**JUnit es la herramienta que convierte esos casos en codigo que se... (2/2)** — 4 vinetas.
+**[Slide 11] nuevaAgenda(): el mismo estado de partida** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaQADemo.java — class ClinicaQADemo** — 5 vinetas.
+**[Slide 12] Caso positivo y caso negativo** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaQADemo.java — main() (1/3)** — 20 vinetas.
+**[Slide 13] JUnit: pruebas que corren solas** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: La diferencia con la prueba manual es importante y hay que decirla completa: la prueba unitaria es automatica, repetible, rapida y prueba logica aislada, y por eso se corre cada vez que se toca el codigo; la prueba manual la hace un humano usando la interfaz, sirve para lo que no se puede automatizar facil (que el JOptionPane se lea bien, que la ventana no se congele, que el flujo tenga sentido para la recepcionista) y no reemplaza a la otra.
 
-**ClinicaQADemo.java — main() (2/3)** — 20 vinetas.
+## Errores tipicos del docente que no domina el tema
 
-**ClinicaQADemo.java — main() (3/3)** — 8 vinetas.
+Material de preparacion: no se proyecta.
 
-**ClinicaQADemo.java — nuevaAgenda()** — 8 vinetas.
-
-**ClinicaQADemo.java — verificar()** — 17 vinetas.
-
-**ClinicaQADemo.java — class Mascota** — 13 vinetas.
-
-**ClinicaQADemo.java — Mascota() (1/2)** — 20 vinetas.
-
-**ClinicaQADemo.java — Mascota() (2/2)** — 4 vinetas.
-
-**ClinicaQADemo.java — class Cita** — 11 vinetas.
-
-**ClinicaQADemo.java — Cita()** — 10 vinetas.
-
-**ClinicaQADemo.java — class AgendaService** — 11 vinetas.
-
-**ClinicaQADemo.java — registrarMascota()** — 18 vinetas.
-
-**ClinicaQADemo.java — agendar() (1/4)** — 20 vinetas.
-
-**ClinicaQADemo.java — agendar() (2/4)** — 20 vinetas.
-
-**ClinicaQADemo.java — agendar() (3/4)** — 20 vinetas.
-
-**ClinicaQADemo.java — agendar() (4/4)** — 18 vinetas.
+- Error tipico del docente que no domina el tema: confundir Javadoc con comentarios normales y escribir // encima de los metodos creyendo que eso genera documentacion, o abrir el bloque con /* en vez de /** y despues no entender por que el HTML sale vacio. Muy de la mano va el vicio de documentar lo obvio (un @return 'retorna el nombre' sobre getNombre()) y dejar sin una sola linea el metodo agendar, que es justo donde vive la regla de negocio que nadie adivina. En pruebas los errores son igual de tipicos: llamar 'prueba' a un main con System.out.println donde el docente mira la consola y dice 'si, funciono' (eso no es automatico ni repetible, y nadie se entera cuando se rompe tres semanas despues); escribir pruebas que dependen del orden porque comparten un Singleton sucio de la prueba anterior; e intentar probar la ventana en vez del servicio, que es el sintoma clasico de haber metido la logica dentro del boton. Y el peor de todos, el que hay que desarmar en voz alta: creer que 'si compila, funciona'. Compilar solo significa que la sintaxis esta bien; que la mascota inactiva no pueda agendar cita es algo que solo se sabe si alguien lo comprueba.
 
 
 **Demo que usted debe poder repetir:** El docente escribe un bloque Javadoc, genera la documentacion HTML con javadoc desde la terminal integrada y luego corre las pruebas mostrando la barra en rojo, corrige la regla y la muestra en verde.

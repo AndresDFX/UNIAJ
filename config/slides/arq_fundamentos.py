@@ -15,8 +15,8 @@ no un resumen. Sin tildes a proposito, por consistencia con el resto del modulo.
 # apuntando a la diapositiva equivocada cuando el deck cambiaba.
 
 FUNDAMENTOS = {
-    1: '''### La ficha de dominio de 6 bloques - {{slide:La ficha de dominio}}
-La {{slide:La ficha de dominio}} presenta la ficha de dominio: una ficha individual con seis bloques rotulados que cada estudiante llena por su cuenta y que no vuelve a cambiar en el resto del semestre. DOMINIO fija en una linea el problema de negocio elegido (AgendaU, BiblioLite, InventarioLab, TurnosClinica, EventosCampus u otro del mismo tamano); un dominio generico (una red social, una tienda en linea sin mas detalle) hace imposible evaluar las decisiones de las clases siguientes, porque no hay nada concreto que arquitecturar. PROBLEMA obliga a nombrar en tres frases quien sufre la situacion, como se resuelve hoy sin CloudLite y una cifra medible del dolor; sin esa cifra el problema es una opinion y no algo que un diseno pueda mejorar o empeorar de forma verificable. CAPACIDADES son los verbos de negocio que el sistema debe permitir (reservar, publicar, cancelar, notificar), nunca piezas tecnicas como login o cache, porque las capacidades describen el fin y la tecnologia es solo el medio. ACTORES son las personas que interactuan con el sistema, cada una con una frase de que espera obtener; sin esto no hay a quien pedirle validacion cuando en clases futuras se revisen los diagramas. SISTEMAS EXTERNOS es el bloque nuevo de este semestre: dos o tres sistemas de terceros con los que CloudLite intercambia informacion (un proveedor de identidad, un servicio de correo, una pasarela de pagos); es exactamente lo que despues aparece como System_Ext en el diagrama C4 Context, asi que conviene que el estudiante los escriba aqui ANTES de dibujar, no despues. FUERA DE ALCANCE cierra la ficha nombrando tres cosas que CloudLite no hara este semestre; ese bloque evita que el alcance crezca sin control clase a clase y es lo primero que hay que revisar cuando un estudiante pida mas tiempo en una entrega futura.
+    1: '''### La ficha de dominio de 5 bloques - {{slide:La ficha de dominio}}
+La ficha de dominio es individual, tiene cinco bloques rotulados y siempre en el mismo orden, y no vuelve a cambiar en el resto del semestre. DOMINIO fija en una linea el problema de negocio elegido (AgendaU, BiblioLite, InventarioLab, TurnosClinica, EventosCampus u otro del mismo tamano); un dominio generico (una red social, una tienda en linea sin mas detalle) hace imposible evaluar las decisiones de las clases siguientes, porque no hay nada concreto que arquitecturar. PROBLEMA nombra en tres frases quien sufre la situacion, como se resuelve hoy sin el sistema y una cifra medible del dolor; sin esa cifra el problema es una opinion y no algo que un diseno pueda mejorar o empeorar de forma verificable. ACTORES son las personas que usan el sistema, cada una con una frase de que espera obtener, y en el mismo bloque los dos o tres sistemas externos con los que intercambia informacion (un proveedor de identidad, un servicio de correo, una pasarela de pagos); esos sistemas externos son exactamente los que despues aparecen como System_Ext en el diagrama C4 Context, asi que se escriben aqui ANTES de dibujar. CAPACIDADES son los verbos de negocio que el sistema debe permitir (reservar, publicar, cancelar, notificar), nunca piezas tecnicas como login o cache, porque las capacidades describen el fin y la tecnologia es solo el medio. FUERA DE ALCANCE cierra la ficha nombrando tres cosas que el sistema no hara este semestre; ese bloque evita que el alcance crezca sin control clase a clase.
 
 ### Que es arquitectura cloud (mapa mental) - {{slide:arquitectura cloud (mapa mental)}}
 Arquitectura de software es el conjunto de decisiones estructurales que resultan costosas o imposibles de cambiar despues: como se dividen los componentes, como se comunican, donde se despliegan y que atributos de calidad se priorizan cuando entran en conflicto. La prueba practica para saber si una decision es arquitectonica consiste en preguntar cuanto costaria revertirla en tres meses. Cambiar el color de un boton no es arquitectura; cambiar de base de datos relacional a documental si lo es, porque arrastra el modelo de datos, las consultas, el codigo de acceso y las pruebas. Esa asimetria de costo es la razon de existir de la materia: si el docente no la instala el primer dia, el curso se percibe como una coleccion de diagramas decorativos y el estudiante concluye que la arquitectura es documentacion que se produce para la nota.
@@ -419,4 +419,213 @@ El cierre del curso debe conectar lo hecho con la practica profesional, porque d
 ### Cierre conceptual y error tipico del docente (de la {{slide:Sustentar no es describir}} a la {{slide:Cierre del curso}})
 Error tipico del docente que no domina el tema: el primero es dar por sustentado un paquete sin haber hecho una sola pregunta al azar, y en los equipos autorizados permitir que un solo integrante presente todo mientras los demas observan en silencio, normalmente porque es el que habla mejor y la presentacion sale mas fluida. La consecuencia aguas abajo es la misma en los dos casos: el docente pierde el unico instrumento que tenia para verificar autoria individual, y cuando llegue el reclamo de nota no tendra con que sostener la calificacion de quien no hablo. El segundo es aceptar como sustentacion la lectura descriptiva del diagrama, del tipo «aqui esta la API, aqui la base de datos, aqui el balanceador», sin exigir nunca la tercera capa del trade-off. La consecuencia es que el estudiante cierra el curso creyendo que arquitectura es dibujar cajas, y en la siguiente asignatura o en su primer empleo no sabra defender una decision frente a un lider tecnico que le pregunte por el costo de mantenerla. Un tercer tropiezo menor pero muy frecuente: dejar el Q&A para el ultimo minuto y quedarse sin tiempo, con lo cual los 15 puntos de informe y sustentacion se califican sobre la presentacion sola y se pierde precisamente la parte que mas informacion da sobre lo que el estudiante realmente entendio.''',
 
+}
+
+
+# Las ideas que se PROYECTAN en la lamina de un concepto, cuando la seleccion automatica de
+# frases del desarrollo deja trozos que no se sostienen solos. Cada una dice, en una frase
+# completa, lo que su seccion ya desarrolla arriba: no agrega conceptos, los enuncia. Clave: el
+# comienzo del titulo de la seccion. Maximo 4 ideas y unos 440 caracteres por lamina.
+IDEAS = {
+    2: {
+        "La pila de responsabilidades": [
+            "Debajo de cualquier aplicación hay una pila: edificio y energía, hardware, virtualización, sistema operativo, runtime, aplicación y datos.",
+            "En el modelo tradicional, on-premise, todas las capas son responsabilidad del cliente.",
+            "Los tres modelos de servicio se distinguen solo por dónde se traza la línea entre lo que administra el proveedor y lo que administra el cliente.",
+        ],
+        "IaaS, PaaS y SaaS": [
+            "IaaS corta la línea encima de la virtualización: el cliente recibe una máquina casi vacía y opera su sistema operativo.",
+            "PaaS sube la línea dos escalones: el proveedor administra también el SO y el runtime; el cliente entrega código y configuración.",
+            "SaaS la lleva hasta arriba: el cliente solo configura y usa la aplicación.",
+            "Más control cuesta más operación: se elige por componente.",
+        ],
+    },
+    3: {
+        "Dockerfile, imagen, contenedor y registro": [
+            "El Dockerfile es la receta: un archivo de texto con instrucciones.",
+            "La imagen es el resultado de ejecutar la receta: un paquete inmutable con código, dependencias y configuración.",
+            "El contenedor es una instancia en ejecución de la imagen; de una imagen salen muchos contenedores iguales.",
+            "El registro es el repositorio donde las imágenes se publican y se descargan.",
+        ],
+        "Segundo ejemplo: leer las siete columnas": [
+            "docker ps lista lo que corre en siete columnas: id, imagen, comando, creado, estado, puertos y nombre.",
+            "La columna que se mira es el estado: «Up» y un tiempo, vive; «Exited» y un código, murió, y el código es la primera pista.",
+            "Dentro de un contenedor, localhost es el propio contenedor: dos contenedores se hablan por nombre en una misma red.",
+        ],
+    },
+    4: {
+        "De donde viene la clase y que se abre hoy": [
+            "El nivel 2 del modelo C4 abre la caja negra del Context y dice de cuántas piezas está hecho el sistema, y por qué.",
+            "En C4, un contenedor es una unidad que se ejecuta o guarda datos por separado: app web, API, base de datos, cola.",
+            "No es lo mismo que un contenedor Docker, aunque a menudo uno se despliegue dentro del otro.",
+            "Cada vez que un sistema se parte en dos, se gana algo y se paga algo.",
+        ],
+    },
+    6: {
+        "La politica en cuatro respuestas": [
+            "Dónde viven: en los secretos del repositorio y en variables de entorno; en local, en un .env ignorado por Git y por Docker.",
+            "Quién los rota: un responsable con rol, escrito en el README.",
+            "Cada cuánto: un número o un evento, por ejemplo al cierre de cada corte.",
+            "Ante una filtración, primero se rota la credencial; limpiar el historial va después.",
+        ],
+    },
+    7: {
+        "IP, puerto y protocolo": [
+            "Una dirección IP identifica una máquina dentro de una red.",
+            "Un puerto, entre 1 y 65535, dice a qué proceso de esa máquina se entrega el tráfico.",
+            "Un protocolo es el idioma de la conexión: HTTPS para la API, el del motor para la base de datos.",
+            "Puertos por convención registrada: 443 HTTPS, 80 HTTP, 5432 PostgreSQL, 8080 desarrollo.",
+        ],
+        "Los tres nombres de almacenamiento": [
+            "Relacional: registros estructurados que se cruzan con consultas y transacciones.",
+            "Bloque: un disco crudo que el sistema operativo monta, conectado a una sola instancia a la vez.",
+            "Objeto: archivos bajo una clave, leídos por HTTP y reemplazados completos; barato y casi ilimitado.",
+            "Se elige por la característica del dato, no por costumbre.",
+        ],
+        "El molde de Mermaid": [
+            "La primera línea es flowchart LR: el recorrido se lee de izquierda a derecha.",
+            "Cada zona es un subgraph con su rótulo y su propio end; un end olvidado impide que el diagrama se dibuje.",
+            "Los corchetes son un servicio; corchete y paréntesis, [( )], son la base de datos.",
+            "El puerto va dentro del rótulo de la caja; la flecha lleva protocolo y puerto.",
+        ],
+    },
+    8: {
+        "Integracion continua": [
+            "La integración continua resuelve el infierno de integración: semanas de trabajo por separado que chocan al juntarse.",
+            "Integración continua es esto: cada cambio que se sube se construye y se prueba solo, en un entorno limpio, y el aviso llega en minutos.",
+            "El valor no está en la automatización sino en el intervalo de retroalimentación.",
+        ],
+        "Las cuatro senales de oro": [
+            "Las cuatro señales de oro son latencia, tráfico, errores y saturación, cada una con definición operativa.",
+            "Latencia en percentiles: p95 es el tiempo en que respondió el 95 % de las peticiones.",
+            "Tráfico es la demanda en peticiones por segundo; errores, la fracción que falla.",
+            "Saturación: qué tan cerca del límite está el recurso más escaso; alerta usual, 70-80 % sostenido.",
+        ],
+        "Donde se ejecuta de verdad la politica": [
+            "El workflow recibe los secretos como variables de entorno solo durante la corrida.",
+            "La plataforma los enmascara en el registro, pero enmascarar no es impedir la fuga: nunca se imprimen.",
+            "Las corridas de un pull_request que viene de un fork no reciben secretos.",
+            "Por eso las pruebas corren sin credenciales reales, con valores ficticios.",
+        ],
+    },
+    10: {
+        "Segundo ejemplo: por que el driver": [
+            "5000 archivos de 2 MB son 10 GB: guardarlos cuesta unos US$ 0.25 al mes.",
+            "Si cada uno se descarga 20 veces, salen 200 GB al mes: a US$ 0.09 el GB, unos US$ 18, setenta veces más.",
+            "El driver es el tráfico, y la mitigación es de arquitectura: una caché o una CDN delante.",
+            "Unos recursos cobran por uso y otros por existir, aunque nadie use el sistema.",
+        ],
+    },
+    11: {
+        "La teoria propia del dia": [
+            "Una revisión de arquitectura es una lectura estructurada de los artefactos, hecha por alguien distinto del autor, antes de implementar.",
+            "Un riesgo detectado en el diseño cuesta una fracción de lo que cuesta ya implementado.",
+            "Busca tres cosas: decisiones sin argumento, incoherencias entre artefactos y riesgos sin nombrar.",
+        ],
+        "Las cinco preguntas de coherencia": [
+            "Cada contenedor del C4 aparece en el Despliegue con el mismo nombre; cada actor y sistema externo del Context sigue existiendo.",
+            "Cada amenaza de STRIDE tiene un control visible en el Despliegue.",
+            "La tabla de costos usa los mismos componentes, y el workflow se ejecutó al menos una vez.",
+            "El acta no es una nota: dice cuáles de las cinco cadenas están rotas.",
+        ],
+        "Retroalimentacion accionable": [
+            "Una observación accionable tiene cuatro partes: observación, evidencia, impacto y acción con fecha.",
+            "«Falta seguridad» o «mejorar el diagrama» no cumplen ninguna: no dicen qué, ni dónde, ni cuándo.",
+            "Tres hallazgos por proyecto como máximo, marcando cuál bloquea, y una fortaleza concreta que conservar.",
+        ],
+        "El semaforo": [
+            "Verde: los seis artefactos y a lo sumo una cadena de trazabilidad rota.",
+            "Amarillo: cinco de seis, o dos o tres cadenas rotas que se corrigen editando documentos.",
+            "Rojo: falta el C4 de Contenedores o el Despliegue, o no hay repositorio.",
+            "Un checkpoint se evalúa por evidencia presente, no por promesas.",
+        ],
+    },
+    12: {
+        "El cuello de botella": [
+            "El cuello de botella es el componente que se agota primero y limita a todo el sistema; siempre hay uno.",
+            "N+1: el listado hace una consulta por registro; con 50 registros son 51 viajes a la base.",
+            "Pool de conexiones: con 10 conexiones y 40 peticiones, 30 esperan aunque la CPU esté al 20 %.",
+            "Proveedor externo en la ruta: se saca a una cola, no se le da más CPU.",
+        ],
+        "Los tipos de prueba": [
+            "Carga: aplica lo esperado y responde si se cumple el objetivo.",
+            "Estrés: sube hasta que el sistema se degrada; responde cuál es el máximo y cómo falla.",
+            "Pico: una subida súbita; responde si el sistema reacciona a tiempo.",
+            "Resistencia (soak): carga moderada durante horas; responde si hay fugas.",
+        ],
+        "El ensayo del pitch": [
+            "Cinco a ocho minutos son 700 a 1000 palabras: siete u ocho ideas, no más.",
+            "El guion se escribe por presupuesto de tiempo, bloque por bloque.",
+            "Se presentan decisiones con su trade-off, no un recorrido por las cajas del diagrama.",
+            "Se ensaya en voz alta y con cronómetro: leer en silencio da la mitad del tiempo real.",
+        ],
+    },
+    13: {
+        "Escalar vertical y horizontalmente": [
+            "Escalar vertical es dar más recursos a la MISMA máquina: simple, pero con techo físico y reinicio de 30 s a 2 min.",
+            "Escalar horizontal es agregar MÁS instancias iguales detrás del balanceador.",
+            "Lo horizontal no tiene techo cercano y mejora la disponibilidad.",
+            "Su precio: la aplicación tiene que poder correr en varias copias sin pisarse.",
+        ],
+        "Ausencia de estado": [
+            "Un servicio sin estado no guarda en su propia memoria nada que necesite en la siguiente petición.",
+            "Si la sesión vive en la instancia 1 y el balanceador manda la siguiente petición a la 2, el usuario es expulsado.",
+            "La sesión pegajosa es un parche: si esa instancia cae, la sesión se pierde igual.",
+            "La solución es sacar el estado del proceso: un almacén compartido o un token firmado.",
+        ],
+        "Las cinco piezas del autoescalado": [
+            "Cinco piezas: métrica, umbral, periodo de evaluación, enfriamiento y rango mínimo-máximo.",
+            "Ejemplo: CPU de la API al 70 % sostenido 5 min, enfriamiento de 5 min, mínimo 2 y máximo 6.",
+            "El mínimo es 2 para tolerar fallas; el máximo es el techo de costo.",
+            "Se reduce con otro umbral (30 %) y más despacio: si no, oscila.",
+        ],
+        "El limite fisico": [
+            "La instancia nueva no aparece al instante: un contenedor liviano tarda de 10 a 60 s; una máquina virtual, de 2 a 5 min.",
+            "Con el periodo de evaluación, el sistema reacciona minutos después de que empezó el problema.",
+            "Respuestas: holgura permanente, una cola delante o degradar con gracia.",
+        ],
+        "Elegir la metrica": [
+            "La CPU es la métrica por defecto y la equivocada para una API que espera a la base de datos.",
+            "Con el pool agotado, la latencia sube a 3 s y la CPU sigue en 20 %: el umbral nunca se cruza.",
+            "Para la API: latencia p95 o peticiones por segundo por instancia; para el worker: mensajes en la cola.",
+            "La métrica correcta mide el recurso que se agota primero.",
+        ],
+        "Lo que NO escala": [
+            "Una base relacional tiene un único escritor: más instancias de la API no la multiplican.",
+            "6 instancias con 20 conexiones piden 120; una base pequeña admite del orden de 100: escalar la API tumba la base.",
+            "Las réplicas de lectura ayudan, con retraso de replicación.",
+            "Declarar lo que no escala es una respuesta correcta, no una debilidad.",
+        ],
+    },
+    15: {
+        "Sustentar no es describir": [
+            "Describir es decir qué contiene un artefacto.",
+            "Sustentar es decir por qué quedó así y no de otra forma, y qué se aceptó perder al elegirlo.",
+            "Una decisión de arquitectura afecta la estructura, es costosa de revertir y tiene una alternativa descartada.",
+            "Un trade-off es lo que se sacrifica al decidir: no hay decisión sin trade-off.",
+        ],
+        "La prueba de tres capas": [
+            "Primera capa, el QUÉ: «la app corre con un contenedor por servicio».",
+            "Segunda, el POR QUÉ: «porque la sostiene una sola persona sin presupuesto de nube».",
+            "Tercera, A CAMBIO DE QUÉ: «perdemos el aislamiento fuerte de una máquina virtual completa».",
+            "Quien llega a la tercera capa está sustentando.",
+        ],
+        "El ADR: el artefacto": [
+            "El ADR registra UNA decisión en seis secciones: título, estado, contexto, decisión, alternativas descartadas y consecuencias.",
+            "En la sustentación el ADR no se lee: se cita por su número.",
+            "«Esta decisión está en el ADR-002, y el trade-off que aceptamos fue…»",
+        ],
+        "El pitch de 5 a 8 minutos": [
+            "Un pitch de 5 a 8 minutos no se improvisa ni se llena de diapositivas.",
+            "Reparto: problema, arquitectura, decisión con su trade-off, evidencia ejecutable, punto débil y cierre.",
+            "La suma queda entre 6 y 7 minutos, con margen.",
+            "Una idea por diapositiva y ocho como máximo.",
+        ],
+        "El Q&A tecnico": [
+            "Verificación: comprueba que se hizo lo que se dice.",
+            "Profundización: empuja un nivel más allá de lo presentado.",
+            "Hipotética: «si el tráfico se multiplica por diez, ¿qué se rompe primero?».",
+            "«No lo medimos» más cómo se mediría no penaliza; un dato inventado sí.",
+        ],
+    },
 }

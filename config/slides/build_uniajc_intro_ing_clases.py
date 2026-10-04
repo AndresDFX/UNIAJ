@@ -41,7 +41,7 @@ from uniajc_slides_engine import (  # noqa: E402
     pseudo_code_slide, notas,
     before_after_slide, cards_grid_slide, steps_visual_slide, checklist_slide,
     box_note_slide, closing_slide, table_content, two_column_slide,
-    diagram_boxes_slide,
+    diagram_boxes_slide, concepto_slide,
 )
 from guion_md_a_docx import convert  # noqa: E402
 import intro_ing_datos as D  # noqa: E402
@@ -49,6 +49,8 @@ import intro_ing_temas_data as TD  # noqa: E402
 import examlab_talleres  # noqa: E402
 import teoria_a_slides as TS  # noqa: E402
 from intro_ing_ejemplos_data import EJEMPLOS  # noqa: E402
+import visuales  # noqa: E402
+from intro_ing_visuales_data import VISUALES  # noqa: E402
 
 #: Titulos de las laminas de ejemplo de cada clase, para remapear los `[Slide N]` del
 #: plan, que estan contados sobre el deck SIN ejemplos.
@@ -306,10 +308,35 @@ def _slides_desarrollo(t):
     return out
 
 
-def _slide_teoria(prs, spec, idx, t_reg):
-    """Emite una diapositiva de teoria segun su `tipo` y registra su titulo."""
+def _ideas_de(spec):
+    """Las ideas de una lamina content/steps/cards, como vinetas para `concepto_slide`."""
+    if spec["tipo"] == "content":
+        return list(spec["items"])
+    pares = spec["steps"] if spec["tipo"] == "steps" else spec["cards"]
+    # El guion va explicito: el motor toma «**1 · ...» por una lista ya numerada y no se lo pone.
+    return ["–   **%s:** %s" % (p[0], p[1]) for p in pares]
+
+
+def _slide_teoria(prs, spec, idx, t_reg, n=None):
+    """Emite una diapositiva de teoria segun su `tipo` y registra su titulo.
+
+    Si la lamina tiene visual declarado en `intro_ing_visuales_data` (animacion por pasos o
+    foto), se pinta con `concepto_slide`: las mismas ideas a la izquierda y el visual a la
+    derecha. No se agrega una lamina: la misma gana su dibujo.
+    """
     tipo = spec["tipo"]
     tit = t_reg(spec["titulo"])
+    if n is not None and tipo in ("content", "steps", "cards"):
+        imgs, pie = visuales.imagenes(VISUALES, n, spec["titulo"])
+        if imgs:
+            # `sub_en_anim`: el subtitulo ya lo dice el ultimo paso de la animacion; se deja en
+            # las notas para que las ideas quepan a media anchura.
+            en_anim = (visuales.spec_de(VISUALES, n, spec["titulo"]) or {}).get("sub_en_anim")
+            s_ = concepto_slide(prs, tit, _ideas_de(spec), imagenes=imgs, pie=pie,
+                                sub=None if en_anim else spec.get("sub"), idx=idx)
+            if en_anim and spec.get("sub"):
+                notas(s_, [spec["sub"]])
+            return tit
     if tipo == "content":
         content_slide(prs, tit, spec["items"], sub=spec.get("sub"), idx=idx,
                       )
@@ -379,14 +406,14 @@ def build_pptx(n):
             # Es la evaluacion de corte y la entrega: va solo en la carpeta y el guion.
             _TEORIA_RETIRADA[n].append(spec["titulo"])
             continue
-        _slide_teoria(prs, spec, idx, t_reg)
+        _slide_teoria(prs, spec, idx, t_reg, n)
         idx += 1
         # Los ejemplos resueltos de ESTE concepto, justo detras: es primer semestre y el
         # concepto en abstracto no se entiende hasta que se ve aplicado a un caso.
         for despues_de, ej in EJEMPLOS.get(n, []):
             if _plano(despues_de) not in _plano(spec["titulo"]):
                 continue
-            _slide_teoria(prs, ej, idx, t_reg)
+            _slide_teoria(prs, ej, idx, t_reg, n)
             _TITULOS_EJEMPLO[n].add(ej["titulo"])
             if ej.get("nota"):
                 notas(prs.slides[-1], ej["nota"])

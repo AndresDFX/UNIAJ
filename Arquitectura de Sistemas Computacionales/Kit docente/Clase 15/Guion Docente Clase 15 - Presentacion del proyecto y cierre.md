@@ -24,21 +24,41 @@
 
 Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
 
-**[Slide 5] Sustentar no es describir: el eje de toda la clase (1/2)** — 5 vinetas.
+**[Slide 4] Sustentar no es describir: el eje de toda la clase** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Describir un artefacto es decir que contiene: «este es el diagrama de despliegue de CloudLite App, aqui esta el contenedor de la API, aqui la base de datos».
+  - Sustentar es responder por que quedo asi y no de otra forma, y que se acepto perder al elegirlo.
+  - Si una eleccion no cumple esas tres condiciones no es arquitectura sino detalle de implementacion: elegir el nombre de una variable no es arquitectura, elegir si el frontend y la API viven en el mismo contenedor si lo es.
+  - Un trade-off es lo que se sacrifica al tomar esa decision.
+  - No existe decision de arquitectura sin trade-off, y cuando un estudiante afirma que su opcion es mejor en todo, lo que ocurre en realidad es que todavia no encontro que perdio.
+  - Toda la sustentacion de hoy se apoya en esta distincion, porque lo que vale no es describir bien sino justificar bien.
+  - Un ejemplo de las dos formas en CloudLite: describir es «la API corre en un contenedor sobre PaaS»
+  - Justificar es «la API corre sobre PaaS porque el equipo es de 1 persona y no puede operar parches del sistema operativo; a cambio aceptamos menos control sobre la red».
+  - Un error comun es responder con la tecnologia en lugar de la razon: «usamos Docker» no justifica nada
+  - NOTAS:
   - «usamos Docker porque el mismo artefacto corre igual en el laboratorio y en produccion» si justifica.
   - (No se proyecta) Sustentar no es describir, y esa distincion es el eje de toda la clase.
   - (No se proyecta) Conviene fijar el termino con precision: una decision de arquitectura es una eleccion que afecta la estructura del sistema, es costosa de revertir una vez implementada, y tiene al menos una alternativa razonable que se descarto.
 
-**[Slide 6] Sustentar no es describir: el eje de toda la clase (2/2)** — 4 vinetas.
-
-**[Slide 7] La prueba de tres capas** — 3 vinetas.
+**[Slide 5] La prueba de tres capas** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Primera capa, el QUE: «CloudLite corre con un contenedor por servicio».
+  - Segunda capa, el POR QUE: «porque el proyecto lo sostiene una sola persona sin presupuesto de nube, y un contenedor se levanta igual en el portatil de cualquiera y en Killercoda, sin instalar un hipervisor ni pedir tarjeta de credito».
+  - Tercera capa, A CAMBIO DE QUE: «a cambio de perder el aislamiento fuerte que da una maquina virtual completa, y de asumir que si el host cae, caen todos los servicios a la vez porque comparten el mismo kernel».
+  - NOTAS:
   - Quien llega a la segunda esta justificando.
   - Quien llega a la tercera esta sustentando como un arquitecto, porque demuestra que conocia el costo de su decision antes de tomarla y aun asi la tomo.
   - (No se proyecta) Existe una prueba practica de tres capas que el docente puede aplicar en voz alta a cualquier afirmacion del estudiante, y conviene ensenarla antes de que empiecen las presentaciones.
   - (No se proyecta) Quien solo llega a la primera capa esta leyendo el diagrama en voz alta y no deberia obtener los puntos de sustentacion.
   - (No se proyecta) La instruccion operativa para el docente es simple: ante cada afirmacion, preguntar «a cambio de que», y no aceptar la respuesta «de nada».
 
-**[Slide 8] El ADR: el artefacto que sostiene la tercera capa** — 4 vinetas.
+**[Slide 6] El ADR: el artefacto que sostiene la tercera capa** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Titulo, con el numero consecutivo, que es justamente por lo que se cita.
+  - Contexto, es decir que problema se estaba resolviendo y con que restricciones.
+  - Y consecuencias, donde se escribe lo bueno, lo malo y lo neutro que se acepta.
+  - La forma profesional es «esta decision esta registrada en el ADR-002, y el trade-off que aceptamos fue perder portabilidad entre proveedores», con el numero del ADR visible en la diapositiva.
+  - NOTAS:
   - Estado, «Aceptado» mas la fecha en que se decidio.
   - Decision, en una frase afirmativa y en presente.
   - Alternativas descartadas, exactamente dos, cada una con la razon concreta del descarte.
@@ -47,12 +67,24 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - (No se proyecta) Los estudiantes ya produjeron el ADR-001 en la Clase 2, cuando decidieron el modelo de servicio dominante entre IaaS, PaaS y SaaS; a lo largo del curso debieron acumular tres o cuatro mas: contenedores frente a maquinas virtuales (Clase 3), donde poner la frontera entre servicios (Clase 4), y que se escala y que no (Clase 13).
   - (No se proyecta) En la sustentacion el ADR no se lee en voz alta: se cita.
 
-**[Slide 9] El pitch de 5 a 8 minutos: el reparto que funciona (1/2)** — 4 vinetas.
+**[Slide 7] El pitch de 5 a 8 minutos: el reparto que funciona** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - Un pitch tecnico de 5 a 8 minutos no se improvisa ni se llena de diapositivas.
+  - El reparto que funciona, y que es convencion de industria y no regla dura, es el siguiente: 45 a 60 segundos para el problema y el dominio, es decir que hace CloudLite y para quien, sin nombrar una sola tecnologia todavia
+  - 90 segundos para la arquitectura, apoyandose en el diagrama de contexto y el de contenedores
+  - 90 segundos para la decision principal con su trade-off, citando el ADR; 60 a 90 segundos para la evidencia ejecutable, o sea la captura de la sesion del laboratorio con el contenedor corriendo y el workflow de GitHub Actions en verde
+  - 45 segundos para el punto debil declarado, lo que no escala o lo que no se midio; y 30 segundos de cierre.
+  - La suma queda entre 6 y 7 minutos, con margen para tropiezos.
+  - La regla practica de diapositivas es una idea por diapositiva y un maximo de ocho diapositivas para ocho minutos.
+  - Un error comun es gastar la mitad del tiempo en el dominio: el problema se cuenta en 1 minuto, y el resto es arquitectura y decisiones.
+  - Otro es leer las diapositivas: la diapositiva muestra el diagrama y la persona explica la decision; si el texto proyectado y lo dicho son iguales, sobra uno de los dos.
   - (No se proyecta) La razon es concreta y el docente debe decirla: si el estudiante trae veinte diapositivas, no termina, corre las ultimas, y las ultimas suelen ser justamente las de seguridad, costos y escalabilidad, donde estan los puntos de la rubrica que menos se defienden solos.
 
-**[Slide 10] El pitch de 5 a 8 minutos: el reparto que funciona (2/2)** — 5 vinetas.
-
-**[Slide 11] La regla de los 60 segundos, anunciada desde la Clase 11** — 2 vinetas.
+**[Slide 8] La regla de los 60 segundos, anunciada desde la Clase 11** — 2 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - En un equipo profesional, cuando el sistema falla a las once de la noche, contesta quien esta disponible, no el autor del diagrama; un sistema que solo una persona entiende es un riesgo operativo con nombre propio.
+  - La practica concreta que se recomienda antes de presentar es un ensayo cruzado con otro estudiante: cada uno explica en 60 segundos una parte del sistema del otro y devuelve los huecos que encontro (en equipo, cada integrante explica una parte que NO le toco preparar).
+  - NOTAS:
   - La razon no es castigar.
   - Ese ejercicio suele revelar en cinco minutos lo que la nota habria revelado demasiado tarde.
   - (No se proyecta) El criterio de calidad que se anuncio desde el checkpoint de la Clase 11 es la regla de los 60 segundos: quien sustenta debe poder explicar CUALQUIER parte del sistema en 60 segundos, sin buscar en el informe.
@@ -62,7 +94,12 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - (No se proyecta) El segundo motivo es de evaluacion: si el estudiante no puede explicar su propio diagrama de despliegue, el evaluador no tiene forma de saber si el artefacto es suyo o copiado, y ese es exactamente el vacio que la sustentacion existe para cerrar.
   - (No se proyecta) En los equipos autorizados el mismo riesgo se multiplica: si solo un integrante puede explicar el despliegue, no hay evidencia de que los demas participaran, y por eso la rubrica exige que todos hablen y descuenta cuando presenta uno solo.
 
-**[Slide 12] El Q&A tecnico: tres tipos de pregunta** — 3 vinetas.
+**[Slide 9] El Q&A tecnico: tres tipos de pregunta** — 4 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - La pregunta de profundizacion empuja un nivel mas alla de lo presentado: «por que la base de datos no esta en el mismo contenedor que la API».
+  - La pregunta hipotetica, o what-if, evalua si el diseno se entiende como sistema y no como dibujo: «si el trafico se multiplica por diez el lunes, que pieza de CloudLite se rompe primero y como se darian cuenta».
+  - No es clase autonoma y la defensa no se reemplaza por un video grabado, porque el Q&A dirigido al azar es justamente el instrumento que verifica autoria y no tiene sustituto asincronico.
+  - NOTAS:
   - Improvisar un dato falso, en cambio, se detecta con una sola pregunta de seguimiento y cuesta mucho mas que admitir el limite.
   - (No se proyecta) El Q&A tecnico tiene tres tipos de pregunta y conviene que el docente los reconozca para dosificarlos.
   - (No se proyecta) La pregunta de verificacion comprueba que el estudiante hizo lo que dice: «muestreme el archivo.yml del workflow» o «en que linea del Dockerfile esta la imagen base y por que eligieron una variante alpine».
@@ -71,12 +108,19 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - (No se proyecta) Y conviene ser explicito sobre el formato de la sesion, porque es lo que decide como se prepara el estudiante: la Clase 15 se dicta en la ultima sesion del semestre (16 de noviembre) como sustentacion EN VIVO, sincrona, con turnos de unos 6 minutos de pitch y 2 a 4 de preguntas.
   - (No se proyecta) El Q&A escrito que pide el taller (tres preguntas duras que el propio estudiante se haria, con su respuesta) no reemplaza nada: es la preparacion del Q&A en vivo, y en la practica el estudiante que lo escribio en serio responde mucho mejor cuando la pregunta llega de verdad.
 
-**[Slide 13] El cierre del curso: conectar lo hecho con la practica profesional (1/2)** — 4 vinetas.
+**[Slide 10] El cierre del curso: conectar lo hecho con la practica profesional** — 3 vinetas.
+  - DESARROLLO (para explicarlo, no se proyecta):
+  - En la industria, esta sustentacion tiene nombre propio: design review, o architecture review.
+  - Un equipo presenta una propuesta a pares y a arquitectos mas experimentados cuyo trabajo explicito es buscarle el punto debil antes de que ese punto debil cueste dinero
+  - Y lo que se pregunta ahi es exactamente lo mismo que hoy, es decir que decidieron, que descartaron, que aceptaron perder, y como sabran si se equivocaron.
+  - El ADR es un formato real, usado en equipos reales, no un invento academico del curso.
+  - La frase de cierre util es que arquitectura no es una lista de logos de proveedores, sino un conjunto de decisiones documentadas con sus consecuencias.
+  - Y el pedido final debe ser concreto y verificable: conserven el repositorio con el informe, los diagramas y el workflow como portafolio, porque eso es lo que se muestra en una primera entrevista tecnica cuando piden un ejemplo de trabajo propio.
   - (No se proyecta) El cierre del curso debe conectar lo hecho con la practica profesional, porque de eso depende que el estudiante conserve el material en vez de borrarlo al terminar el semestre.
   - (No se proyecta) Conviene tambien cerrar la duda sobre las herramientas, porque algun estudiante la trae: el curso prohibio la nube de pago por razones pedagogicas y de equidad, no porque draw.io, Killercoda y GitHub Actions sean juguetes.
   - (No se proyecta) El diagrama de contenedores, el Dockerfile y el pipeline que el estudiante escribio son los mismos artefactos que se producen con una cuenta corporativa; lo que no se aprende en un free tier es justamente lo que si se aprendio aqui, que es razonar el trade-off.
 
-**[Slide 14] El cierre del curso: conectar lo hecho con la practica profesional (2/2)** — 2 vinetas.
+**[Slide 11] Cierre del curso** — 5 vinetas.
 
 
 ## Referencias a diapositivas
@@ -86,19 +130,16 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 1. Portada · Clase 15 · Presentación del proyecto + cierre
 2. Agenda de hoy (120 min)
 3. Objetivos de la clase
-4. Cierre del curso
-5. Sustentar no es describir: el eje de toda la clase (1/2)
-6. Sustentar no es describir: el eje de toda la clase (2/2)
-7. La prueba de tres capas
-8. El ADR: el artefacto que sostiene la tercera capa
-9. El pitch de 5 a 8 minutos: el reparto que funciona (1/2)
-10. El pitch de 5 a 8 minutos: el reparto que funciona (2/2)
-11. La regla de los 60 segundos, anunciada desde la Clase 11
-12. El Q&A tecnico: tres tipos de pregunta
-13. El cierre del curso: conectar lo hecho con la practica profesional (1/2)
-14. El cierre del curso: conectar lo hecho con la practica profesional (2/2)
-15. Del boceto al código Mermaid
-16. Clase 15 · cierre del curso
+4. Sustentar no es describir: el eje de toda la clase
+5. La prueba de tres capas
+6. El ADR: el artefacto que sostiene la tercera capa
+7. El pitch de 5 a 8 minutos: el reparto que funciona
+8. La regla de los 60 segundos, anunciada desde la Clase 11
+9. El Q&A tecnico: tres tipos de pregunta
+10. El cierre del curso: conectar lo hecho con la practica profesional
+11. Cierre del curso
+12. Del boceto al código Mermaid
+13. Clase 15 · cierre del curso
 
 ## Plan de clase minuto a minuto (120 min)
 

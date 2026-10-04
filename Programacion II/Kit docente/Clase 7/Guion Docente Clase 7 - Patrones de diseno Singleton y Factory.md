@@ -13,76 +13,40 @@
 
 ## Apoyo por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en las notas del presentador de su lamina. Aqui va, por lamina y en su orden, lo que hay que subrayar.
 
-**Un patron de diseño no es una libreria que se importa ni un archivo que... (1/2)** — 3 vinetas.
+**[Slide 4] Qué es un patrón de diseño** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
 
-**Un patron de diseño no es una libreria que se importa ni un archivo que... (2/2)** — 3 vinetas.
+**[Slide 5] El problema: un solo archivador** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
+  - Subrayar: El problema que motiva el Singleton ya lo vivimos en la clase pasada, aunque no le pusimos nombre.
+  - Subrayar: En VetCare la ventana de registro creaba su propio RepositorioMascotas.
+  - Subrayar: Esa es exactamente la intencion del patron Singleton.
 
-**El problema que motiva el Singleton ya lo vivimos en la clase pasada...** — 3 vinetas.
-  - El problema que motiva el Singleton ya lo vivimos en la clase pasada, aunque no le pusimos nombre.
-  - En VetCare la ventana de registro creaba su propio RepositorioMascotas.
-  - Esa es exactamente la intencion del patron Singleton.
+**[Slide 6] Singleton: tres piezas obligatorias** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
 
-**El mecanismo en Java tiene tres piezas y las tres son obligatorias (1/2)** — 4 vinetas.
+**[Slide 7] RepositorioClinica: el Singleton** — codigo (14 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**El mecanismo en Java tiene tres piezas y las tres son obligatorias (2/2)** — 2 vinetas.
+**[Slide 8] Comprobar que es la misma instancia** — codigo (8 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**El mecanismo en Java tiene tres piezas y las... — sintaxis** — 1 vinetas.
+**[Slide 9] Cada ventana pide getInstancia()** — codigo (12 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**El segundo patron responde a otro problema distinto: quien decide como... (1/2)** — 4 vinetas.
+**[Slide 10] Factory: quién decide qué objeto crear** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
 
-**El segundo patron responde a otro problema distinto: quien decide como... (2/2)** — 2 vinetas.
+**[Slide 11] Consulta: el tipo base** — codigo (16 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Ahora la parte que casi nadie enseña: cuando NO usarlos (1/2)** — 5 vinetas.
+**[Slide 12] ConsultaUrgencia: una subclase** — codigo (10 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**Ahora la parte que casi nadie enseña: cuando NO usarlos (2/2)** — 3 vinetas.
+**[Slide 13] FabricaConsultas.crear()** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaPatronesDemo.java — class ClinicaPatronesDemo** — 2 vinetas.
+**[Slide 14] La fábrica en uso** — codigo (9 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
 
-**ClinicaPatronesDemo.java — main() (1/2)** — 20 vinetas.
+**[Slide 15] Cuándo NO usarlos** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
 
-**ClinicaPatronesDemo.java — main() (2/2)** — 11 vinetas.
+## Errores tipicos del docente que no domina el tema
 
-**ClinicaPatronesDemo.java — class Mascota** — 6 vinetas.
+Material de preparacion: no se proyecta.
 
-**ClinicaPatronesDemo.java — Mascota()** — 13 vinetas.
-
-**ClinicaPatronesDemo.java — class RepositorioClinica** — 6 vinetas.
-
-**ClinicaPatronesDemo.java — RepositorioClinica()** — 4 vinetas.
-
-**ClinicaPatronesDemo.java — getInstancia()** — 7 vinetas.
-
-**ClinicaPatronesDemo.java — registrar()** — 10 vinetas.
-
-**ClinicaPatronesDemo.java — buscarPorId()** — 18 vinetas.
-
-**ClinicaPatronesDemo.java — class Consulta** — 4 vinetas.
-
-**ClinicaPatronesDemo.java — Consulta()** — 8 vinetas.
-
-**ClinicaPatronesDemo.java — describir()** — 6 vinetas.
-
-**ClinicaPatronesDemo.java — class ConsultaVacunacion** — 11 vinetas.
-
-**ClinicaPatronesDemo.java — class ConsultaControl** — 11 vinetas.
-
-**ClinicaPatronesDemo.java — class ConsultaUrgencia** — 12 vinetas.
-
-**ClinicaPatronesDemo.java — class FabricaConsultas** — 4 vinetas.
-
-**ClinicaPatronesDemo.java — crear()** — 18 vinetas.
-
-**ClinicaPatronesDemo.java — class VentanaSucursal** — 9 vinetas.
-
-**ClinicaPatronesDemo.java — VentanaSucursal() (1/2)** — 20 vinetas.
-
-**ClinicaPatronesDemo.java — VentanaSucursal() (2/2)** — 18 vinetas.
-
-**ClinicaPatronesDemo.java — registrar()** — 13 vinetas.
-
-**ClinicaPatronesDemo.java — refrescar()** — 13 vinetas.
+- Error tipico del docente que no domina el tema: enseñar el Singleton como 'la forma correcta de compartir variables entre ventanas' y terminar poniendo el atributo publico y estatico (public static RepositorioClinica instancia), con lo cual cualquiera puede reasignarlo desde afuera y ya no hay ninguna garantia; o dejar el constructor publico 'porque el editor lo sugiere', que es exactamente lo unico que no se puede hacer. El segundo error clasico es creer que el Singleton persiste datos: los estudiantes cierran la aplicacion, la vuelven a abrir y preguntan donde quedaron las mascotas, y hay que explicar que el Singleton solo garantiza una instancia mientras el programa corre, que la persistencia en archivos es otro tema que veremos mas adelante. El tercero es la patronitis: llenar el proyecto de fabricas que solo devuelven new de una sola clase y de Singletons para cosas que deberian ser objetos comunes, como Mascota o Cita, que por definicion son muchos. Si al preguntar 'que problema resuelve este patron aqui' la respuesta es 'que lo vimos en clase', el patron esta sobrando.
 
 
 **Demo que usted debe poder repetir:** El docente abre dos ventanas de VetCare, registra una mascota en la primera y la muestra apareciendo en la segunda porque ambas comparten la unica instancia del repositorio.

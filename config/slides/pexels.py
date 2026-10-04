@@ -34,7 +34,7 @@ def _slug(s):
     return re.sub(r"[^a-z0-9]+", "-", s).strip("-")[:60]
 
 
-def foto(consulta, orientacion="landscape", indice=0):
+def foto(consulta, orientacion="landscape", indice=0, locale=None):
     """Ruta local de una foto para `consulta` (en ingles rinde mejor), o None si no hay."""
     CACHE.mkdir(parents=True, exist_ok=True)
     slug = _slug(consulta) + ("" if not indice else "-%d" % indice)
@@ -42,10 +42,13 @@ def foto(consulta, orientacion="landscape", indice=0):
     if jpg.exists():
         return jpg
     clave = _clave()
-    if not clave:
+    # PEXELS_OFFLINE=1: solo la cache. Sirve para una pasada en seco que liste los titulos
+    # sin gastar cuota de la API.
+    if not clave or os.environ.get("PEXELS_OFFLINE"):
         return None
     url = "https://api.pexels.com/v1/search?" + urllib.parse.urlencode(
-        {"query": consulta, "per_page": indice + 1, "orientation": orientacion})
+        dict({"query": consulta, "per_page": indice + 1, "orientation": orientacion},
+             **({"locale": locale} if locale else {})))
     req = urllib.request.Request(url, headers={"Authorization": clave, "User-Agent": "uniajc-slides"})
     try:
         with urllib.request.urlopen(req, timeout=20) as r:

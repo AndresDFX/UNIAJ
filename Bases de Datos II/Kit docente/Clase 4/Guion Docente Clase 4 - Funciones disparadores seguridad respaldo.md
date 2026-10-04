@@ -65,7 +65,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Si la casilla de urgencia llega en nulo, que es lo que hace una interfaz donde el usuario no marco nada, entonces IF p_urgencia THEN no entra —nulo no es verdadero— pero cualquier aritmetica con nulo si contamina: v_base * p_urgencia daria nulo y la factura saldria vacia.
   - Vale decir en voz alta el criterio general, porque reaparece todo el semestre: en SQL, nulo no significa falso, significa desconocido, y toda comparacion con nulo devuelve nulo.
 
-**[Slide 7] El trigger: el unico que nadie invoca, y en PostgreSQL son DOS objetos** — 3 vinetas.
+**[Slide 7] La funcion de tarifas: RETURNS NUMERIC, CASE, COALESCE e IMMUTABLE** — 5 vinetas.
+
+**[Slide 8] El trigger: el unico que nadie invoca, y en PostgreSQL son DOS objetos** — 3 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
   - Un trigger se distingue de todo lo anterior en que nadie lo llama: se declara una vez y el motor lo ejecuta cuando ocurre el evento declarado, un INSERT, un UPDATE o un DELETE sobre una tabla.
   - Y aqui esta la pieza de sintaxis central del dia: en PostgreSQL un trigger son SIEMPRE dos objetos separados, no uno.
@@ -86,9 +88,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - CREATE TRIGGER trg_audit_cita AFTER UPDATE OF estado ON cita FOR EACH ROW EXECUTE FUNCTION fn_trg_audit_cita()
   - Fuera de la lamina (habla de la practica): No existe la forma de Oracle con el cuerpo dentro del CREATE TRIGGER, y hay que decirlo tal cual porque es el error que la rubrica penaliza expresamente.
 
-**[Slide 8] Un trigger son DOS objetos: la funcion y la asociacion** — 18 vinetas.
+**[Slide 9] Un trigger son DOS objetos: la funcion y la asociacion** — 18 vinetas.
 
-**[Slide 9] BEFORE o AFTER, y que significa el valor que se retorna** — 3 vinetas.
+**[Slide 10] BEFORE o AFTER, y que significa el valor que se retorna** — 3 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
   - En un trigger BEFORE de fila, la fila aun no esta escrita y lo que la funcion retorna es lo que se va a guardar: si retorna NEW, se guarda tal cual
   - Si retorna una version modificada de NEW, por ejemplo tras hacer NEW.estado:= UPPER(NEW.estado), se guarda la version modificada; y si retorna NULL, la operacion se cancela en silencio, sin error y sin mensaje.
@@ -105,9 +107,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Poner AFTER en el trigger de stock es el error mas comun del dia, y conviene explicar por que es un error y no solo un descuento: un AFTER que lanza excepcion tambien deshace la transaccion, asi que el dato malo no queda, pero el motor ya hizo el trabajo de escribirlo y, sobre todo, con AFTER no se puede corregir el valor, solo abortar.
   - Fuera de la lamina (habla de la practica): La regla operativa, que es la que se califica en la pregunta 4, se dice en una frase: el que VALIDA va BEFORE, porque tiene que abortar antes de que el dato quede escrito y porque solo ahi puede corregirlo; el que AUDITA va AFTER, porque registra un hecho ya consumado.
 
-**[Slide 10] BEFORE o AFTER: uno puede impedir, el otro solo registrar** — 16 vinetas.
+**[Slide 11] BEFORE o AFTER: uno puede impedir, el otro solo registrar** — 16 vinetas.
 
-**[Slide 11] La auditoria: donde el trigger brilla, y el WHEN que cambia el resultado** — 4 vinetas.
+**[Slide 12] La auditoria: donde el trigger brilla, y el WHEN que cambia el resultado** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
   - La auditoria es el uso donde los triggers brillan, porque es el unico mecanismo que no se puede evitar olvidandose de llamarlo.
   - Y WHEN (OLD.estado IS DISTINCT FROM NEW.estado) es la pieza que decide el resultado de la prueba: hace que tres UPDATE dejen DOS filas de auditoria y no tres, porque el tercero asigna a la cita el estado que ya tenia.
@@ -127,7 +129,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Y now() devuelve el instante de inicio de la transaccion, no el del reloj, asi que si una transaccion escribe cinco filas de auditoria las cinco llevan la misma marca de tiempo; si eso importa, existe clock_timestamp().
   - Como referencia de dimensionamiento, si la clinica registra doscientos cambios auditables por dia, la tabla crece del orden de setenta y tres mil filas en doce meses, cifra que obliga a definir retencion en el mismo plan de respaldo.
 
-**[Slide 12] El trigger que impide: el hueco que el CHECK no tapa** — 4 vinetas.
+**[Slide 13] La auditoria de cita: funcion, trigger y WHEN** — 17 vinetas.
+
+**[Slide 14] El trigger que impide: el hueco que el CHECK no tapa** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
   - La segunda mitad del tema es el trigger que rechaza, y la demostracion se monta sobre un hueco real.
   - El esquema de la Clase 1 trae CHECK (stock >= 0) sobre insumo, asi que la primera reaccion sensata del grupo es que el trigger no hace falta.
@@ -146,7 +150,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - UPDATE OF stock ON insumo FOR EACH ROW
   - Fuera de la lamina (habla de la practica): La asociacion va BEFORE UPDATE OF stock ON insumo FOR EACH ROW, y el mensaje es parte del entregable, igual que en la Clase 3: es lo que la aplicacion va a mostrar y lo que la prueba va a verificar.
 
-**[Slide 13] Las cuatro capas, y en cual vive cada regla** — 3 vinetas.
+**[Slide 15] Una regla por capa: del CHECK a la aplicacion** — 11 vinetas.
+
+**[Slide 16] Las cuatro capas, y en cual vive cada regla** — 3 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
   - Primero lo declarativo de una fila: NOT NULL, CHECK y DEFAULT resuelven todo lo que se puede decidir mirando los valores finales de una sola fila —stock no negativo
   - Precio positivo, estado dentro de una lista—, y son lo mas barato y lo mas dificil de saltarse.
@@ -168,9 +174,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - ALTER TABLE cita ADD CONSTRAINT uq_vet_franja UNIQUE (id_veterinario, fecha_hora)
   - Fuera de la lamina (habla de la practica): La pregunta 4 vale quince puntos, no pide codigo y es la que mejor mide si el estudiante entendio el dia: hay que ubicar cada validacion en su capa y justificar por que ahi.
 
-**[Slide 14] Las cuatro capas, y en cual vive cada regla** — 11 vinetas.
+**[Slide 17] Donde vive cada validacion: CHECK, trigger o aplicacion** — 5 vinetas.
 
-**[Slide 15] Cuando NO se usa un trigger, y lo que un trigger no ve** — 4 vinetas.
+**[Slide 18] Cuando NO se usa un trigger, y lo que un trigger no ve** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
   - De lo anterior se deduce cuando no usar un trigger, y esta es probablemente la parte mas util de la clase.
   - No se usa cuando una restriccion declarativa resuelve el problema.
@@ -190,7 +196,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - TRUNCATE no dispara triggers de fila, asi que un TRUNCATE insumo pasa por encima de la validacion de stock sin que se escriba una sola linea de auditoria.
   - Fuera de la lamina (habla de la practica): Y no hay ninguna senal en el SQL, asi que la unica defensa es documentarlo, que es parte del entregable.
 
-**[Slide 16] Seguridad y respaldo: dos preguntas complementarias** — 4 vinetas.
+**[Slide 19] Seguridad y respaldo: dos preguntas complementarias** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
   - Seguridad y respaldo van en la misma sesion porque responden a preguntas complementarias: la seguridad intenta que nada malo pase, el respaldo asume que igual pasara.
   - Hay que separar dos familias de copia que se confunden todo el tiempo.
@@ -209,7 +215,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - NOTAS:
   - La consecuencia para este curso hay que decirla sin rodeos y esta en la seccion siguiente: nada de esto se puede EJECUTAR.
 
-**[Slide 17] RPO y RTO: dos siglas que solo sirven con un numero acordado** — 4 vinetas.
+**[Slide 20] Plan de respaldo: 6 secciones y herramientas reales de PostgreSQL** — 5 vinetas.
+
+**[Slide 21] RPO y RTO: dos siglas que solo sirven con un numero acordado** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
   - El RPO es cuanta informacion se acepta perder, medida en tiempo.
   - Si la clínica atiende del orden de cuarenta citas por dia en un horario de lunes a sabado de 7:00 a 19:00, perder cuatro horas de datos son entre quince y veinte citas con sus consultas clinicas y sus facturas
@@ -228,7 +236,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Cuatro, dejar bitacora con fecha, responsable, resultado y RTO medido; si no hay bitacora, la prueba no existe.
   - Fuera de la lamina (habla de la practica): RPO y RTO dejan de ser siglas cuando se les pone un numero acordado con el negocio, y la rubrica pide precisamente el numero con su justificacion.
 
-**[Slide 18] Lo que ExamLab si puede demostrar, y lo que se documenta en papel** — 4 vinetas.
+**[Slide 22] Lo que ExamLab si puede demostrar, y lo que se documenta en papel** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
   - El motor de la clase es PostgreSQL, que corre dentro del navegador, y ahi funciona todo el codigo del dia: CREATE FUNCTION con IMMUTABLE
   - Las dos partes del trigger, RAISE EXCEPTION y RAISE NOTICE, los bloques DO de la Clase 3, current_user, now() e IS DISTINCT FROM.
@@ -243,7 +251,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Vale un minuto senalarlo para quien se encuentre Oracle en el trabajo, y no vale mas, porque la calificacion ocurre en PostgreSQL.
   - Fuera de la lamina (habla de la practica): Por eso la pregunta 5 es un documento y no una ejecucion: se califica que el plan nombre la herramienta correcta para cada cosa, no que el estudiante la haya corrido.
 
-**[Slide 19] Como amarra con las clases vecinas y con la rubrica del PI** — 3 vinetas.
+**[Slide 23] Como amarra con las clases vecinas y con la rubrica del PI** — 3 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
   - La Clase 1 dejo el esquema, el CHECK de stock que hoy se retira a proposito para mostrar el hueco, y la restriccion de unicidad que hoy se defiende como la respuesta correcta a la doble reserva.
   - La Clase 2 dejo los roles, y hoy reaparecen en dos puntos: current_user es lo que la columna de auditoria guarda, y pg_dumpall --globals-only es lo que los respalda.
@@ -280,23 +288,23 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 4. Funcion y procedimiento: se distinguen por su papel, no por su sintaxis
 5. La funcion de tarifas, y por que IMMUTABLE importa
 6. Los tres detalles de fn_precio_consulta
-7. El trigger: el unico que nadie invoca, y en PostgreSQL son DOS objetos
-8. Un trigger son DOS objetos: la funcion y la asociacion
-9. BEFORE o AFTER, y que significa el valor que se retorna
-10. BEFORE o AFTER: uno puede impedir, el otro solo registrar
-11. La auditoria: donde el trigger brilla, y el WHEN que cambia el resultado
-12. El trigger que impide: el hueco que el CHECK no tapa
-13. Las cuatro capas, y en cual vive cada regla
-14. Las cuatro capas, y en cual vive cada regla
-15. Cuando NO se usa un trigger, y lo que un trigger no ve
-16. Seguridad y respaldo: dos preguntas complementarias
-17. RPO y RTO: dos siglas que solo sirven con un numero acordado
-18. Lo que PostgreSQL en el navegador si puede demostrar, y lo que se documenta en papel
-19. Como amarra con las clases vecinas
-20. Un trigger son DOS objetos: la funcion y la asociacion
-21. La funcion de tarifas: RETURNS NUMERIC, CASE, COALESCE e IMMUTABLE
-22. Donde vive cada validacion: CHECK, trigger o aplicacion
-23. Plan de respaldo: 6 secciones y herramientas reales de PostgreSQL
+7. La funcion de tarifas: RETURNS NUMERIC, CASE, COALESCE e IMMUTABLE
+8. El trigger: el unico que nadie invoca, y en PostgreSQL son DOS objetos
+9. Un trigger son DOS objetos: la funcion y la asociacion
+10. BEFORE o AFTER, y que significa el valor que se retorna
+11. BEFORE o AFTER: uno puede impedir, el otro solo registrar
+12. La auditoria: donde el trigger brilla, y el WHEN que cambia el resultado
+13. La auditoria de cita: funcion, trigger y WHEN
+14. El trigger que impide: el hueco que el CHECK no tapa
+15. Una regla por capa: del CHECK a la aplicacion
+16. Las cuatro capas, y en cual vive cada regla
+17. Donde vive cada validacion: CHECK, trigger o aplicacion
+18. Cuando NO se usa un trigger, y lo que un trigger no ve
+19. Seguridad y respaldo: dos preguntas complementarias
+20. Plan de respaldo: 6 secciones y herramientas reales de PostgreSQL
+21. RPO y RTO: dos siglas que solo sirven con un numero acordado
+22. Lo que PostgreSQL en el navegador si puede demostrar, y lo que se documenta en papel
+23. Como amarra con las clases vecinas
 24. Demo del dia
 25. Cierre · Clase 4
 
