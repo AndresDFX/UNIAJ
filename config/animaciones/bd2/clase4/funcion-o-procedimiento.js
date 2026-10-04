@@ -4,6 +4,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('funcion-o-procedimiento', {
     duracion: 4.6,
+    // Las pausas del docente: en cada una la lamina espera un clic.
+    pasos: [0.37, 0.66, 0.84, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho;
       // Funcion, a la izquierda

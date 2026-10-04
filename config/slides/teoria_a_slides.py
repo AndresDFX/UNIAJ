@@ -43,6 +43,18 @@ import re
 MAX_CAR = 800
 MAX_VINETAS = 6
 
+#: MODO CONCEPTO (2026-10). Una clase dura dos horas y el reparto en paginas «(1/4)» la
+#: llevaba a 50-60 laminas: cada seccion produce UNA lamina, con su titulo, y las ideas clave
+#: que caben en una mirada; el desarrollo completo va a las NOTAS del presentador, que es
+#: donde el docente lo lee mientras explica. El codigo sigue en su propia lamina.
+MODO_CONCEPTO = True
+MAX_CAR_CONCEPTO = 440
+MAX_VINETAS_CONCEPTO = 4
+MAX_CAR_IDEA = 165
+
+#: Secciones que no se proyectan como lamina: se responden de viva voz y van a las notas.
+SOLO_NOTAS = ("preguntas frecuentes",)
+
 #: Una vineta mas larga que esto se parte por el conector mas cercano al medio: son frases
 #: que en prosa se leen bien y proyectadas ocupan cuatro lineas.
 MAX_CAR_VINETA = 260
@@ -94,6 +106,13 @@ INSTRUCCIONAL = (
     r"^conviene ser preciso", r"^sobre lo que se puede demostrar conviene",
     r"^ultimo tramo", r"^de ahi sale la regla operativa",
     r"^la demo de la .* debe terminar",
+    # Frases que le hablan al docente en medio del parrafo (2026-10): van a las notas.
+    r"\bhay que (explicar|decir|mostrar|ser preciso|nombrar|dar|subrayar|insistir|repetir|exponer|leer|ejecutar|dictar|recordar|advertir)",
+    r"\bconviene (decir|dictar|exponer|mostrar|escribir|nombrar|repetir|ser |hacer|dar|explicar|separar|leer|empezar|cerrar)",
+    r"\ben voz alta\b", r"\ben el tablero\b", r"\bdel tablero\b",
+    r"\bel estudiante (no adivina|resuelve mal|intentara|intentará|no conoce|concluye|copia)",
+    r"\bla r[uú]brica\b", r"\bvale (quince|diez|veinte|cinco|\d+) puntos\b",
+    r"\bel error que (la nota|se penaliza|cuesta)", r"\bdecir como\b",
 )
 _RX = [re.compile(p, re.I) for p in INSTRUCCIONAL]
 
@@ -426,6 +445,100 @@ def _empaquetar(vinetas: list[str]) -> list[list[str]]:
     return paginas
 
 
+def _idea(v: str) -> str:
+    """Una vineta reducida a su idea: la primera clausula completa que quepa en MAX_CAR_IDEA."""
+    v = v.strip()
+    if len(v) <= MAX_CAR_IDEA:
+        return v
+    for sep in (": ", "; ", ", porque ", ", y ", ", que ", ", pero ", ", "):
+        i = v.find(sep, 50, MAX_CAR_IDEA)
+        if i > 0:
+            return v[:i].rstrip(" ,;:") + "."
+    corte = v[:MAX_CAR_IDEA].rsplit(" ", 1)[0]
+    return corte.rstrip(" ,;:") + "…"
+
+
+def _titulo_codigo(titulo: str) -> str:
+    corto = titulo.split(":")[0].strip()
+    corto = corto if len(corto) <= 46 else corto[:46].rsplit(" ", 1)[0] + "…"
+    return "En código: " + corto
+
+
+def _concepto(titulo, proyecta, notas, codigo):
+    """La lamina del concepto: ideas clave + notas con todo el desarrollo."""
+    out = []
+    if proyecta:
+        ideas, car = [], 0
+        for v in proyecta:
+            i = _idea(v)
+            if ideas and (len(ideas) >= MAX_VINETAS_CONCEPTO or car + len(i) > MAX_CAR_CONCEPTO):
+                break
+            ideas.append(i)
+            car += len(i)
+        desarrollo = ["DESARROLLO (para explicarlo, no se proyecta):"] + list(proyecta)
+        out.append((titulo, ideas, desarrollo + (["NOTAS:"] + list(notas) if notas else []),
+                    "content"))
+    if codigo and out:
+        # El codigo citado DENTRO de la prosa es casi siempre un fragmento («CREATE FUNCTION
+        # f()» sin cuerpo): proyectado no corre, y todo lo que se proyecta tiene que correr.
+        # Va a las notas como referencia; el codigo completo lo pone cada curso en su lamina.
+        t0, it0, n0, tp0 = out[-1]
+        out[-1] = (t0, it0, list(n0) + ["CÓDIGO CITADO (referencia):"] + list(codigo), tp0)
+    elif codigo:
+        lineas = []
+        for frag in codigo:
+            if lineas:
+                lineas.append("")
+            lineas += _lineas_de_codigo(frag)
+        out.append((titulo, lineas, list(notas), "codigo"))
+    return out
+
+
+def intercalar(conceptos, codigos):
+    """Pone cada lamina de codigo autorada justo detras del concepto que ilustra.
+
+    Antes iban todas al final del bloque de teoria: el estudiante veia el trigger explicado
+    en la lamina 7 y su codigo en la 21. Se elige el concepto con mas palabras en comun con
+    el titulo y el contenido del codigo; si ninguno comparte nada, el codigo va al final.
+    """
+    def palabras(s):
+        s = _sin_tildes(str(s)).lower()
+        return {w for w in re.findall(r"[a-z_][a-z0-9_]{3,}", s)} - _VACIAS
+    claves = [palabras(c[0]) | palabras(" ".join(map(str, c[1]))) for c in conceptos]
+    detras = {i: [] for i in range(len(conceptos))}
+    sueltos = []
+    for cod in codigos:
+        pc = palabras(cod[0]) | palabras(" ".join(map(str, cod[1])))
+        mejor, punt = None, 0
+        for i, k in enumerate(claves):
+            if conceptos[i][3] != "content":
+                continue
+            s = len(pc & k) + 3 * len(palabras(cod[0]) & palabras(conceptos[i][0]))
+            if s > punt:
+                mejor, punt = i, s
+        (detras[mejor] if mejor is not None and punt >= 3 else sueltos).append(cod)
+    out = []
+    for i, c in enumerate(conceptos):
+        out.append(c)
+        for cod in detras[i]:
+            # Dos laminas seguidas con el mismo titulo confunden: la de codigo se nombra.
+            if _sin_tildes(cod[0]).lower() == _sin_tildes(c[0]).lower():
+                cod = ("En código: " + cod[0],) + tuple(cod[1:])
+            out.append(cod)
+    return out + sueltos
+
+
+_VACIAS = {"para", "como", "pero", "porque", "cuando", "donde", "este", "esta", "esto",
+           "solo", "sobre", "entre", "desde", "hasta", "cada", "todo", "todos", "otra",
+           "otro", "tiene", "hace", "puede", "debe", "sin", "con", "que", "los", "las",
+           "una", "uno", "del", "por", "mas", "menos", "tambien", "select", "from", "where"}
+
+
+def es_solo_notas(titulo: str) -> bool:
+    t = _sin_tildes(limpiar_tokens(titulo)).lower()
+    return any(t.startswith(x) for x in SOLO_NOTAS)
+
+
 def slides_de_seccion(titulo: str, cuerpo: str):
     """Laminas de esta seccion, tipadas.
 
@@ -444,6 +557,9 @@ def slides_de_seccion(titulo: str, cuerpo: str):
     # Y si los tokens eran TODO el parentesis, queda «()» o «(de la  a la )»: fuera.
     titulo = re.sub(r"\s*\((?:\s|de la|del?|a la|al)*\)", "", titulo).rstrip()
     proyecta, notas, codigo = a_vinetas(cuerpo)
+
+    if MODO_CONCEPTO:
+        return _concepto(titulo, proyecta, notas, codigo)
 
     out = []
     if proyecta:
@@ -474,6 +590,13 @@ def slides_de_clase(texto: str, incluir_solo_docente: bool = False):
     out = []
     for titulo, _ancla, cuerpo in partir_secciones(texto):
         if not incluir_solo_docente and es_solo_docente(titulo):
+            continue
+        if MODO_CONCEPTO and es_solo_notas(titulo) and out:
+            # Las preguntas frecuentes se responden de viva voz: a las notas de la lamina
+            # anterior, no a una lamina propia.
+            proy, nts, _ = a_vinetas(cuerpo)
+            t0, it0, n0, tp0 = out[-1]
+            out[-1] = (t0, it0, list(n0) + [limpiar_tokens(titulo).upper()] + proy + nts, tp0)
             continue
         out += slides_de_seccion(titulo, cuerpo)
     return out

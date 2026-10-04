@@ -3,6 +3,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('cuatro-capas', {
     duracion: 5,
+    // Las pausas del docente: en cada una la lamina espera un clic.
+    pasos: [0.4, 0.64, 0.9, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, W = lz.ancho;
       var capas = [

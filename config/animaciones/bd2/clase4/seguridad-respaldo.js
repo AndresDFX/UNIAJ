@@ -17,6 +17,8 @@
   }
   FP_ANIMADOR.registrar('seguridad-respaldo', {
     duracion: 4.8,
+    // Las pausas del docente: en cada una la lamina espera un clic.
+    pasos: [0.3, 0.62, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho;
       // Seguridad

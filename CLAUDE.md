@@ -57,14 +57,23 @@ faltaba, o que repasaba para el parcial, no tenía de dónde.
 
 ### Las diapositivas
 
-- **Una diapositiva por concepto, con el concepto entero.** No su titular ni su primera frase.
-  Si el docente lo dice, está proyectado.
+- **Una diapositiva por concepto (modo concepto, 2026-10).** Cada sección del fundamento da
+  UNA lámina con su **propio título** —nunca «(1/4)»: el reparto en páginas llevaba una clase de
+  2 horas a 50-60 láminas— con **3-4 ideas clave (~250-450 caracteres)** y su **visual**. El
+  desarrollo completo del concepto va a las **notas del presentador** de esa lámina
+  (`teoria_a_slides.MODO_CONCEPTO`). Referencia de extensión: **20-30 láminas por clase**.
+- **Visual por concepto, coordinado** (`visuales.py` + `<curso>_visuales_data.py`): animación
+  del motor de Habilon (sus **pasos aparecen con cada clic del docente**: la animación va a su
+  ritmo de explicación), foto de Pexels, o solo texto si ningún visual explica algo.
+- **Código y consultas: completos, que corran, y con aspecto de editor** (`pseudo_code_slide`:
+  Consolas, números de línea, colores por sintaxis). Los fragmentos citados en la prosa no se
+  proyectan (van a notas): se proyecta el código autorado completo, **justo detrás del concepto
+  que ilustra** (`teoria_a_slides.intercalar`). SQL verificado ejecutándolo en PGlite
+  (PostgreSQL real en Node); Java compilado con `javac`.
 - **Cada tema se sostiene solo.** No se apoya en el tema anterior ni en una lámina previa: el
-  que llega tarde, falta o repasa suelto tiene que poder seguirlo.
-- Capacidad real medida: **~1150 caracteres en 8 viñetas**. `uniajc_slides_engine.bullets()`
-  baja de 20 a 15 pt hasta que entra y `verificar_desborde.py` denuncia lo que no cabe ni al
-  mínimo — ahí lo que sobra es texto, no tamaño de letra. **Ninguna lámina de contenido por
-  debajo de ~400 caracteres**: si baja de ahí, o falta contenido o sobra la lámina.
+  que llega tarde, falta o repasa suelto tiene que poder seguirlo (lámina + sus notas).
+- `uniajc_slides_engine.bullets()` baja de 20 a 15 pt hasta que entra y
+  `verificar_desborde.py` denuncia lo que no cabe ni al mínimo (mide Consolas en el código).
 - Cero marcadores crudos (`@@`, `{{slide`, `[CAP:`) en lo que ve el estudiante.
 - **El deck lleva solo el tema, nunca la actividad.** El taller es opcional y lo evaluativo va
   aparte, solo en la carpeta: ninguna lámina de taller, pasos, pistas, criterios de éxito,

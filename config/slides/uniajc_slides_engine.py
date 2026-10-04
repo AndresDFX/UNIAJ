@@ -1296,6 +1296,101 @@ def image_side_slide(prs, title, image_path, items, side="right", sub=None,
     footer_num(s, idx)
     return s
 
+# ------------------------------------------------------------------ concepto con visual
+
+def _animar_al_clic(slide, formas, fundido_ms=450):
+    """Cada forma de `formas` aparece con un clic, en orden, con un fundido breve.
+
+    Es lo que le da a la animacion los TIEMPOS DEL DOCENTE: cada paso espera a que el
+    docente termine de explicar el anterior. Se escribe el `<p:timing>` a mano porque
+    python-pptx no expone animaciones.
+    """
+    if not formas:
+        return
+    from lxml import etree
+    ns = "http://schemas.openxmlformats.org/presentationml/2006/main"
+    ids = iter(range(3, 10_000))
+    clics = []
+    for f in formas:
+        sp = f.shape_id
+        a, b, c, d, e = (next(ids) for _ in range(5))
+        clics.append(
+            f'<p:par><p:cTn id="{a}" fill="hold"><p:stCondLst><p:cond delay="indefinite"/>'
+            f'</p:stCondLst><p:childTnLst><p:par><p:cTn id="{b}" fill="hold"><p:stCondLst>'
+            f'<p:cond delay="0"/></p:stCondLst><p:childTnLst><p:par><p:cTn id="{c}" '
+            f'presetID="10" presetClass="entr" presetSubtype="0" fill="hold" '
+            f'nodeType="clickEffect"><p:stCondLst><p:cond delay="0"/></p:stCondLst>'
+            f'<p:childTnLst><p:set><p:cBhvr><p:cTn id="{d}" dur="1" fill="hold"><p:stCondLst>'
+            f'<p:cond delay="0"/></p:stCondLst></p:cTn><p:tgtEl><p:spTgt spid="{sp}"/>'
+            f'</p:tgtEl><p:attrNameLst><p:attrName>style.visibility</p:attrName>'
+            f'</p:attrNameLst></p:cBhvr><p:to><p:strVal val="visible"/></p:to></p:set>'
+            f'<p:animEffect transition="in" filter="fade"><p:cBhvr><p:cTn id="{e}" '
+            f'dur="{fundido_ms}"/><p:tgtEl><p:spTgt spid="{sp}"/></p:tgtEl></p:cBhvr>'
+            f'</p:animEffect></p:childTnLst></p:cTn></p:par></p:childTnLst></p:cTn></p:par>'
+            f'</p:childTnLst></p:cTn></p:par>')
+    xml = (f'<p:timing xmlns:p="{ns}"><p:tnLst><p:par><p:cTn id="1" dur="indefinite" '
+           f'restart="never" nodeType="tmRoot"><p:childTnLst><p:seq concurrent="1" '
+           f'nextAc="seek"><p:cTn id="2" dur="indefinite" nodeType="mainSeq"><p:childTnLst>'
+           + "".join(clics) +
+           f'</p:childTnLst></p:cTn><p:prevCondLst><p:cond evt="onPrev" delay="0"><p:tgtEl>'
+           f'<p:sldTgt/></p:tgtEl></p:cond></p:prevCondLst><p:nextCondLst><p:cond '
+           f'evt="onNext" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:nextCondLst>'
+           f'</p:seq></p:childTnLst></p:cTn></p:par></p:tnLst></p:timing>')
+    sld = slide._element
+    for viejo in sld.findall(f"{{{ns}}}timing"):
+        sld.remove(viejo)
+    nodo = etree.fromstring(xml)
+    ext = sld.find(f"{{{ns}}}extLst")
+    if ext is not None:
+        ext.addprevious(nodo)
+    else:
+        sld.append(nodo)
+
+
+def concepto_slide(prs, title, items, imagenes=None, pie=None, idx=None, sub=None):
+    """Un concepto en UNA lamina: sus ideas clave a la izquierda y su visual a la derecha.
+
+    `imagenes`: lista de rutas. Con una sola (foto o diagrama) se pone fija. Con varias son
+    los PASOS de una animacion: la primera se ve al entrar y cada una de las siguientes
+    aparece encima con un clic, cuando el docente avanza la explicacion. Al imprimir o en
+    PDF se ve la ultima, que es el estado completo.
+    Sin imagenes, las ideas van a ancho completo.
+    """
+    imagenes = [str(x) for x in (imagenes or []) if x]
+    if not imagenes:
+        return content_slide(prs, title, items, sub=sub, idx=idx)
+    s = blank(prs)
+    bg_white(s)
+    top = title_block(s, title, sub)
+    gap = 0.35
+    img_w = CONTENT_W * 0.52
+    txt_w = CONTENT_W - img_w - gap
+    y = top + 0.15
+    h = SH - y - 0.6
+    ix = MARGIN + txt_w + gap
+    from PIL import Image as _PILImage
+    iw, ih = _PILImage.open(imagenes[0]).size
+    max_w, max_h = img_w, h - (0.4 if pie else 0.05)
+    pw = min(max_w, max_h * iw / ih)
+    ph = pw * ih / iw
+    px, py = ix + (img_w - pw) / 2, y + (max_h - ph) / 2
+    marco = rounded(s, px - 0.08, py - 0.08, pw + 0.16, ph + 0.16, RGBColor(0xE8, 0xEE, 0xF4))
+    try:
+        marco.adjustments[0] = 0.04
+    except Exception:
+        pass
+    fotos = [s.shapes.add_picture(im, Inches(px), Inches(py), width=Inches(pw), height=Inches(ph))
+             for im in imagenes]
+    _animar_al_clic(s, fotos[1:])
+    if pie:
+        tc = textbox(s, ix, y + h - 0.38, img_w, 0.35)
+        tc.paragraphs[0].alignment = PP_ALIGN.CENTER
+        _rich(tc.paragraphs[0], pie, 11, SOFT, italic=True)
+    bullets(s, items, top=y + 0.1, size=20, width=txt_w, left=MARGIN)
+    footer_num(s, idx)
+    return s
+
+
 def link_callout_slide(prs, title, headline, url, notes=None, idx=None):
     """Slide para remarcar UN enlace obligatorio: caja grande verde + URL en tipografía grande."""
     s = blank(prs); bg_white(s)
@@ -1336,55 +1431,213 @@ def _partir_codigo(lineas):
     return lineas[:medio], lineas[medio:]
 
 
-def pseudo_code_slide(prs, title, lines, sub=None, idx=None, caption=None):
-    """Bloque estilo terminal / pseudo-código visual (ADR, YAML, flujo)."""
+# ------------------------------------------------------------------ codigo como editor
+#
+# El codigo proyectado se lee como en un editor real: fondo oscuro, monoespaciada, numeros de
+# linea y colores por sintaxis (paleta Dark+ de VS Code, la que el estudiante va a ver en su
+# propio equipo). Solo cambia como se PINTA: el texto de cada linea es el mismo, caracter por
+# caracter, asi que lo que se proyecta sigue siendo exactamente lo que corre.
+
+#: El editor arranca mas grande que el codigo de antes: con marco a su medida, 8 lineas a 20 pt
+#: se leen en una ventana compartida; un archivo largo baja solo hasta CODIGO_MINIMO.
+CODIGO_EDITOR_PT = 20
+ED_FONDO = RGBColor(0x1E, 0x1E, 0x1E)
+ED_BARRA = RGBColor(0x2D, 0x2D, 0x30)
+ED_GUTTER = RGBColor(0x85, 0x85, 0x85)
+ED_TEXTO = RGBColor(0xD4, 0xD4, 0xD4)
+ED_CLAVE = RGBColor(0x56, 0x9C, 0xD6)
+ED_TIPO = RGBColor(0x4E, 0xC9, 0xB0)
+ED_CADENA = RGBColor(0xCE, 0x91, 0x78)
+ED_COMENT = RGBColor(0x6A, 0x99, 0x55)
+ED_NUMERO = RGBColor(0xB5, 0xCE, 0xA8)
+ED_FUNC = RGBColor(0xDC, 0xDC, 0xAA)
+
+_SQL_CLAVES = set("""select from where and or not null is in exists between like ilike as on join
+left right inner outer full cross group by order having limit offset distinct union all except
+intersect insert into values update set delete create replace table view index unique primary
+key foreign references check default constraint alter drop add column grant revoke to with
+role user procedure function returns return language plpgsql begin end declare if then else
+elsif case when loop for while raise exception notice call do trigger before after instead of
+each row execute immutable stable volatile security definer commit rollback savepoint release
+transaction isolation level read write serializable repeatable committed uncommitted lock share
+mode nowait explain analyze using partition range list hash vacuum true false cascade restrict
+desc asc into perform found coalesce cast interval current_date current_user now nextval
+schema sequence owned usage select_all""".split())
+_SQL_TIPOS = set("""int integer bigint smallint serial bigserial numeric decimal real double
+precision text varchar char boolean bool date time timestamp timestamptz jsonb json uuid""".split())
+_JAVA_CLAVES = set("""public private protected class interface enum extends implements static final
+void new return if else for while do switch case default break continue try catch finally throw
+throws import package this super null true false instanceof abstract var record sealed permits
+yield synchronized""".split())
+_JAVA_TIPOS = set("""int long double float boolean char byte short String Integer Double Boolean
+List ArrayList Map HashMap Set HashSet Deque ArrayDeque Queue LinkedList Optional Object
+Exception RuntimeException Scanner System Stream Collectors Comparator Iterator""".split())
+_YAML_CLAVES = set()
+
+_TOKEN = re.compile(r"""(--.*$|//.*$|\#(?![\{\w]).*$|/\*.*?\*/|/\*.*$|\*.*\*/)"""   # comentarios
+                    r"""|('(?:[^'\\]|\\.|'')*'?|"(?:[^"\\]|\\.)*"?)"""                # cadenas
+                    r"""|(\$\w*\$)"""                                                 # $$ / $fn$
+                    r"""|(\b\d+(?:\.\d+)?\b)"""                                       # numeros
+                    r"""|([A-Za-z_][\w.]*)(?=\s*\()"""                                # funciones
+                    r"""|([A-Za-z_]\w*)""", re.M)
+
+
+def _lenguaje(lineas):
+    t = "\n".join(lineas)
+    tl = t.lower()
+    if re.search(r"^\s*(flowchart|graph|erdiagram|classdiagram|sequencediagram|c4\w+)\b", tl, re.M):
+        return "Mermaid"
+    if re.search(r"\b(public|private)\s+(static\s+)?(class|void|interface|record)\b|System\.out|import java", t):
+        return "Java"
+    if re.search(r"^\s*(FROM|RUN|COPY|WORKDIR|EXPOSE|CMD|ENTRYPOINT)\s", t, re.M) and "SELECT" not in t:
+        return "Dockerfile"
+    if re.search(r"\b(select|insert|update|delete|create|alter|grant|revoke|call|begin|explain)\b", tl):
+        return "SQL · PostgreSQL"
+    if re.search(r"^\s*\$ |^\s*(docker|git|npm|pg_dump|pg_restore|kubectl|curl)\s", t, re.M):
+        return "Terminal"
+    if re.search(r"^\s*[\w-]+:\s|^\s*- [\w-]+:", t, re.M):
+        return "YAML"
+    return "Código"
+
+
+def _tramos_color(linea, lenguaje):
+    """Parte una linea en tramos (texto, color, cursiva) segun la sintaxis del lenguaje."""
+    if lenguaje.startswith("SQL"):
+        claves, tipos, ci = _SQL_CLAVES, _SQL_TIPOS, True
+    elif lenguaje == "Java":
+        claves, tipos, ci = _JAVA_CLAVES, _JAVA_TIPOS, False
+    elif lenguaje == "Dockerfile":
+        claves, tipos, ci = {"FROM", "RUN", "COPY", "WORKDIR", "EXPOSE", "CMD", "ENTRYPOINT",
+                             "ENV", "ARG", "USER", "AS"}, set(), False
+    else:
+        claves, tipos, ci = set(), set(), False
+    out, pos, previo = [], 0, ""
+    for m in _TOKEN.finditer(linea):
+        if m.start() > pos:
+            out.append((linea[pos:m.start()], ED_TEXTO, False))
+        tok = m.group(0)
+        if m.group(1) is not None and not (lenguaje in ("YAML", "Mermaid") and tok.startswith("//")):
+            # `#` solo es comentario en YAML, Dockerfile y terminal; en SQL o Java no existe
+            if tok.startswith("#") and lenguaje not in ("YAML", "Dockerfile", "Terminal"):
+                out.append((tok, ED_TEXTO, False))
+            else:
+                out.append((tok, ED_COMENT, True))
+        elif m.group(2) is not None:
+            out.append((tok, ED_CADENA, False))
+        elif m.group(3) is not None:
+            out.append((tok, ED_CLAVE, False))
+        elif m.group(4) is not None:
+            out.append((tok, ED_NUMERO, False))
+        else:
+            w = tok.lower() if ci else tok
+            if previo in ("class", "interface", "record", "enum", "extends", "implements", "new"):
+                out.append((tok, ED_TIPO, False))
+            elif w in claves:
+                out.append((tok, ED_CLAVE, False))
+            elif w in tipos:
+                out.append((tok, ED_TIPO, False))
+            elif m.group(5) is not None:
+                out.append((tok, ED_FUNC, False))
+            else:
+                out.append((tok, ED_TEXTO, False))
+        pos = m.end()
+        previo = tok
+    if pos < len(linea):
+        out.append((linea[pos:], ED_TEXTO, False))
+    return out or [("", ED_TEXTO, False)]
+
+
+def _run_mono(run, text, size, color, italic=False):
+    run.text = text
+    run.font.size = Pt(size)
+    run.font.color.rgb = color
+    run.font.italic = italic
+    run.font.bold = False
+    run.font.name = "Consolas"
+    return run
+
+
+def pseudo_code_slide(prs, title, lines, sub=None, idx=None, caption=None, lenguaje=None):
+    """Codigo con aspecto de editor: barra con su lenguaje, numeros de linea y sintaxis.
+
+    Misma firma que antes (mas `lenguaje`, opcional: se deduce del codigo). El texto no se
+    toca: solo cambian la fuente, los colores y el marco.
+    """
     s = blank(prs)
     bg_white(s)
     top = title_block(s, title, sub)
     y = top + 0.15
-    h = SH - y - (0.9 if caption else 0.55)
-    rounded(s, MARGIN, y, CONTENT_W, h, RGBColor(0x1E, 0x2A, 0x38))
-    rect(s, MARGIN, y, CONTENT_W, 0.35, NAVY)
-    td = textbox(s, MARGIN + 0.25, y + 0.05, CONTENT_W - 0.5, 0.28, anchor=MSO_ANCHOR.MIDDLE)
-    _run(td.paragraphs[0].add_run(), "● ● ●", 10, CIAN, bold=True)
-    # El bloque de codigo tambien se ajusta: es la caja mas apretada del motor y la que mas
-    # se pasaba. Un `classDiagram` de 29 lineas a 14 pt pedia 6.9 pulgadas en una caja de
-    # 4.5, asi que un tercio del diagrama salia encima del pie o fuera de la diapositiva —y
-    # lo que se caia eran las multiplicidades, que era justo lo que la diapositiva ensenaba.
-    # El `space_after` baja con el tamano: 4 pt entre 29 lineas son 1.5 pulgadas solo de aire.
-    #
-    # Si ni al minimo cabe en una columna, se parte en DOS antes de seguir encogiendo: a
-    # 9 pt un nombre de variable proyectado no se lee, y perder o encoger el codigo es peor
-    # que leerlo en dos mitades. Se parte por un limite de bloque (llaves equilibradas) para
-    # no cortar una clase por la mitad.
+    h = SH - y - (0.95 if caption else 0.55)
     lineas = [str(x) for x in (lines or [])]
-    ancho_cod, alto_cod = CONTENT_W - 0.7, h - 0.7
-    size = metrica_texto.tamano_que_cabe(lineas, ancho_cod, alto_cod,
-                                         CODIGO_PT, CODIGO_MINIMO, space_after_pt=4)
+    leng = lenguaje or _lenguaje(lineas)
+    gutter = 0.55
+    # Tamano primero (con la medida de Consolas), y el marco a la altura del codigo: un
+    # editor de 8 lineas no necesita una caja de pantalla completa.
+    ancho_cod, alto_max = CONTENT_W - 0.55 - gutter, h - 0.65
+    size = metrica_texto.tamano_que_cabe(lineas, ancho_cod, alto_max, CODIGO_EDITOR_PT,
+                                         CODIGO_MINIMO, space_after_pt=3, mono=True)
+    alto_real = metrica_texto.alto_parrafos(lineas, ancho_cod, size, space_after_pt=3, mono=True)
+    if alto_real <= alto_max:
+        h = max(2.2, alto_real + 0.75)
+    caja = rounded(s, MARGIN, y, CONTENT_W, h, ED_FONDO)
+    try:
+        caja.adjustments[0] = 0.04
+    except Exception:
+        pass
+    rect(s, MARGIN, y, CONTENT_W, 0.4, ED_BARRA)
+    for k, col in enumerate((RGBColor(0xFF, 0x5F, 0x56), RGBColor(0xFF, 0xBD, 0x2E),
+                             RGBColor(0x27, 0xC9, 0x3F))):
+        d = s.shapes.add_shape(MSO_SHAPE.OVAL, Inches(MARGIN + 0.22 + k * 0.24), Inches(y + 0.13),
+                               Inches(0.14), Inches(0.14))
+        d.fill.solid(); d.fill.fore_color.rgb = col; d.line.fill.background()
+    td = textbox(s, MARGIN + 1.0, y + 0.04, CONTENT_W - 1.2, 0.32, anchor=MSO_ANCHOR.MIDDLE)
+    td.paragraphs[0].alignment = PP_ALIGN.RIGHT
+    _run(td.paragraphs[0].add_run(), leng, 11, RGBColor(0xBB, 0xBB, 0xBB), bold=True)
+
+    # El tamano se elige con la medida de Consolas: medir con Calibri subestimaba ~30 % y el
+    # codigo se salia de la caja. Si ni al minimo cabe en una columna, se parte en DOS por un
+    # limite de bloque antes de seguir encogiendo (a 9 pt un identificador no se lee).
+    alto_cod = h - 0.65
     columnas = [lineas]
-    cabe = metrica_texto.alto_parrafos(lineas, ancho_cod, size, space_after_pt=4) <= alto_cod
+    cabe = metrica_texto.alto_parrafos(lineas, ancho_cod, size, space_after_pt=3,
+                                       mono=True) <= alto_cod
     if lineas and not cabe:
         izq, der = _partir_codigo(lineas)
-        ancho_col = (ancho_cod - 0.3) / 2
+        ancho_col = (ancho_cod - gutter - 0.3) / 2
         size2 = min(
-            metrica_texto.tamano_que_cabe(izq, ancho_col, alto_cod, CODIGO_PT,
-                                          CODIGO_MINIMO, space_after_pt=4),
-            metrica_texto.tamano_que_cabe(der, ancho_col, alto_cod, CODIGO_PT,
-                                          CODIGO_MINIMO, space_after_pt=4))
+            metrica_texto.tamano_que_cabe(izq, ancho_col, alto_cod, CODIGO_EDITOR_PT,
+                                          CODIGO_MINIMO, space_after_pt=3, mono=True),
+            metrica_texto.tamano_que_cabe(der, ancho_col, alto_cod, CODIGO_EDITOR_PT,
+                                          CODIGO_MINIMO, space_after_pt=3, mono=True))
         if size2 > size:
             columnas, size, ancho_cod = [izq, der], size2, ancho_col
-    espacio = 4 * size / CODIGO_PT
+    espacio = 3 * size / CODIGO_PT
+    # Numeros de linea solo si ninguna linea envuelve: si una envuelve, el numero de abajo
+    # quedaria frente a la linea equivocada, que es peor que no numerar.
+    envuelve = any(metrica_texto.alto_parrafos([ln], ancho_cod, size, mono=True)
+                   > metrica_texto.alto_linea() * size / 72 * 1.5 + metrica_texto.INSET_V
+                   for c in columnas for ln in c)
+    n0 = 1
     for col, trozo in enumerate(columnas):
-        x = MARGIN + 0.35 + col * (ancho_cod + 0.3)
-        tf = textbox(s, x, y + 0.5, ancho_cod, alto_cod)
+        x = MARGIN + 0.25 + col * (ancho_cod + gutter + 0.3)
+        if not envuelve:
+            tg = textbox(s, x, y + 0.5, gutter, alto_cod)
+            for i in range(len(trozo)):
+                p = tg.paragraphs[0] if i == 0 else tg.add_paragraph()
+                p.space_after = Pt(espacio)
+                p.alignment = PP_ALIGN.RIGHT
+                _run_mono(p.add_run(), str(n0 + i), size, ED_GUTTER)
+        tf = textbox(s, x + gutter, y + 0.5, ancho_cod, alto_cod)
         for i, ln in enumerate(trozo):
             p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
             p.space_after = Pt(espacio)
-            _run(p.add_run(), ln, size, WHITE)
+            for txt, color, cur in _tramos_color(ln, leng):
+                _run_mono(p.add_run(), txt, size, color, italic=cur)
+        n0 += len(trozo)
     if caption:
-        tc = textbox(s, MARGIN, SH - 0.85, CONTENT_W, 0.35)
+        tc = textbox(s, MARGIN, SH - 0.9, CONTENT_W, 0.4)
         tc.paragraphs[0].alignment = PP_ALIGN.CENTER
-        _rich(tc.paragraphs[0], caption, 12, SOFT, italic=True)
+        _rich(tc.paragraphs[0], caption, 13, SOFT, italic=True)
     footer_num(s, idx)
     return s
 

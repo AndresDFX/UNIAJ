@@ -54,8 +54,9 @@ def alto_texto(tf, ancho_in: float, forzar: float | None = None) -> float:
     denuncia. `forzar` sustituye el tamano de todos los runs, para proyectar otro cuerpo sin
     regenerar el archivo.
     """
-    parrafos, tamanos, espacios = [], [], []
+    parrafos, tamanos, espacios, monos = [], [], [], []
     for p in tf.paragraphs:
+        monos.append(any((r.font.name or "").lower().startswith("consolas") for r in p.runs))
         tramos = [(r.text, bool(r.font.bold)) for r in p.runs if r.text]
         if not tramos:
             parrafos.append([("", False)])
@@ -68,9 +69,9 @@ def alto_texto(tf, ancho_in: float, forzar: float | None = None) -> float:
                          (p.space_before.pt if p.space_before else 0)))
     total = 0.0
     n = len(parrafos)
-    for i, (par, size, (sa, sb)) in enumerate(zip(parrafos, tamanos, espacios)):
-        # un parrafo a la vez: cada uno puede tener su propio tamano
-        total += metrica_texto.alto_parrafos([par], ancho_in, size) - metrica_texto.INSET_V
+    for i, (par, size, (sa, sb), mono) in enumerate(zip(parrafos, tamanos, espacios, monos)):
+        # un parrafo a la vez: cada uno puede tener su propio tamano (y su fuente)
+        total += metrica_texto.alto_parrafos([par], ancho_in, size, mono=mono) - metrica_texto.INSET_V
         total += sb / 72
         if i < n - 1:
             total += sa / 72

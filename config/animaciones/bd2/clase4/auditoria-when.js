@@ -4,6 +4,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('auditoria-when', {
     duracion: 5,
+    // Las pausas del docente: en cada una la lamina espera un clic.
+    pasos: [0.27, 0.49, 0.73, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho, R = m.malva || '#A02030';
       var ups = [['pendiente', 'confirmada', true], ['confirmada', 'atendida', true], ['atendida', 'atendida', false]];

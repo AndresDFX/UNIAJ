@@ -5,6 +5,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('fn-precio-consulta', {
     duracion: 4.8,
+    // Las pausas del docente: en cada una la lamina espera un clic.
+    pasos: [0.42, 0.6, 0.9, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho;
       var entradas = ["'Canino'", "'canino'", "'CANINO'"];

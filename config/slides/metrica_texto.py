@@ -42,7 +42,10 @@ _OK: bool | None = None
 _LH: float | None = None      # cache: leer la tabla de la fuente cuesta
 
 
-def _ruta_fuente(negrita: bool) -> str:
+def _ruta_fuente(negrita: bool, mono: bool = False) -> str:
+    if mono:
+        nombre = "consolab.ttf" if negrita else "consola.ttf"
+        return os.path.join(os.environ.get("WINDIR", r"C:\Windows"), "Fonts", nombre)
     nombre = "calibrib.ttf" if negrita else "calibri.ttf"
     return os.path.join(os.environ.get("WINDIR", r"C:\Windows"), "Fonts", nombre)
 
@@ -60,11 +63,11 @@ def disponible() -> bool:
     return _OK
 
 
-def _fuente(negrita: bool):
-    k = bool(negrita)
+def _fuente(negrita: bool, mono: bool = False):
+    k = (bool(negrita), bool(mono))
     if k not in _FUENTES:
         from PIL import ImageFont              # import perezoso: el build no lo exige
-        _FUENTES[k] = ImageFont.truetype(_ruta_fuente(k), UPM)
+        _FUENTES[k] = ImageFont.truetype(_ruta_fuente(*k), UPM)
     return _FUENTES[k]
 
 
@@ -90,9 +93,9 @@ def alto_linea() -> float:
     return _LH
 
 
-def ancho_pt(texto: str, size: float, negrita: bool = False) -> float:
-    """Ancho de avance de `texto` en puntos, escrito a `size` puntos."""
-    return _fuente(negrita).getlength(texto) / UPM * size
+def ancho_pt(texto: str, size: float, negrita: bool = False, mono: bool = False) -> float:
+    """Ancho de avance de `texto` en puntos, escrito a `size` puntos (Consolas si `mono`)."""
+    return _fuente(negrita, mono).getlength(texto) / UPM * size
 
 
 _NEGRITA = re.compile(r"(\*\*(?:[^*]|\*(?!\*))+?\*\*)")
@@ -118,7 +121,8 @@ def segmentos(texto: str) -> list[tuple[str, bool]]:
 
 
 def alto_parrafos(parrafos, ancho_in: float, size: float,
-                  space_after_pt: float = 0.0, space_before_pt: float = 0.0) -> float:
+                  space_after_pt: float = 0.0, space_before_pt: float = 0.0,
+                  mono: bool = False) -> float:
     """Alto en pulgadas de una lista de parrafos ajustados a `ancho_in`.
 
     `parrafos` es una lista donde cada elemento es o una cadena o una lista de tramos
@@ -136,7 +140,7 @@ def alto_parrafos(parrafos, ancho_in: float, size: float,
         piezas = [p for p in piezas if p[0] != ""] or [("", False)]
         lineas, x = 1, 0.0
         for j, (w, b) in enumerate(piezas):
-            aw = ancho_pt(w + (" " if j < len(piezas) - 1 else ""), size, b)
+            aw = ancho_pt(w + (" " if j < len(piezas) - 1 else ""), size, b, mono)
             if x > 0 and x + aw > disponible_pt:
                 lineas += 1
                 x = aw
@@ -150,7 +154,7 @@ def alto_parrafos(parrafos, ancho_in: float, size: float,
 
 
 def tamano_que_cabe(parrafos, ancho_in: float, alto_in: float, objetivo: float,
-                    minimo: float, space_after_pt: float = 0.0) -> float:
+                    minimo: float, space_after_pt: float = 0.0, mono: bool = False) -> float:
     """El tamano mas grande, de `objetivo` hacia abajo, con el que el texto cabe.
 
     Baja de punto en punto y nunca por debajo de `minimo`: si ni con el minimo cabe, lo que
@@ -163,7 +167,7 @@ def tamano_que_cabe(parrafos, ancho_in: float, alto_in: float, objetivo: float,
         return objetivo
     size = float(objetivo)
     while size > minimo:
-        if alto_parrafos(parrafos, ancho_in, size, space_after_pt) <= alto_in:
+        if alto_parrafos(parrafos, ancho_in, size, space_after_pt, mono=mono) <= alto_in:
             return size
         size -= 1
     return max(float(minimo), size)

@@ -16,7 +16,8 @@ import { pathToFileURL } from 'node:url'
 
 const MVP = process.env.HABILON_MVP || 'C:/Projects/Vivetori/Agente Habilon/mvp'
 const ANIM = join(MVP, 'bibliotecas', 'base', 'animaciones')
-const [MODULO, TEXTO = '', SALIDA, N = '36', ANCHO = '800', ALTO = '640'] = process.argv.slice(2)
+// TIEMPOS (opcional): lista «0.3,0.6,1» de momentos exactos a capturar (los pasos del docente).
+const [MODULO, TEXTO = '', SALIDA, N = '36', ANCHO = '800', ALTO = '640', TIEMPOS = ''] = process.argv.slice(2)
 if (!MODULO || !SALIDA) { console.log('uso: <modulo.js> "<texto>" <salida> [fotogramas] [ancho alto]'); process.exit(2) }
 const huella = basename(MODULO, '.js')
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;')
@@ -34,12 +35,21 @@ style="width:${ANCHO}px;height:${ALTO}px;overflow:hidden;font-family:'Segoe UI',
 <script src="/lienzo.js"></script><script src="/animador.js"></script><script src="/base.js"></script><script src="/modulo.js"></script>
 </body></html>`
 
+function buscarBase(dir) {
+  for (let d = dir, i = 0; i < 6; i++, d = dirname(d)) {
+    const f = join(d, '_base.js')
+    if (existsSync(f)) return f
+  }
+  return join(dir, '_base.js')
+}
+
 const srv = createServer((q, r) => {
   const ruta = (q.url || '/').split('?')[0]
   const f = ruta === '/lienzo.js' ? join(ANIM, 'lienzo.js') : ruta === '/animador.js' ? join(ANIM, 'animador.js')
     : ruta === '/modulo.js' ? MODULO
-    // `_base.js` de la misma carpeta: las piezas comunes (caja, tabla, codigo) de un curso.
-    : ruta === '/base.js' ? join(dirname(MODULO), '_base.js') : null
+    // `_base.js`: las piezas comunes (caja, tabla, codigo). Se busca en la carpeta del modulo
+    // y subiendo hasta `config/animaciones/`: un curso puede tener las suyas o usar las comunes.
+    : ruta === '/base.js' ? buscarBase(dirname(MODULO)) : null
   if (!f) { r.writeHead(200, { 'content-type': 'text/html; charset=utf-8' }); r.end(pagina); return }
   if (!existsSync(f)) { r.writeHead(200, { 'content-type': 'text/javascript' }); r.end(''); return }
   r.writeHead(200, { 'content-type': extname(f) === '.js' ? 'text/javascript' : 'application/octet-stream' })
@@ -53,9 +63,10 @@ await espera(1200)
 const ok = await nav.evaluar(`!!FP_ANIMADOR.estado('${huella}')`)
 if (!ok) { console.error('el modulo no se monto:', nav.errores()); await nav.cerrar(); srv.close(); process.exit(1) }
 mkdirSync(SALIDA, { recursive: true })
-const n = Number(N)
+const lista = TIEMPOS ? TIEMPOS.split(',').map(Number) : null
+const n = lista ? lista.length : Number(N)
 for (let i = 0; i < n; i++) {
-  const t = n === 1 ? 1 : i / (n - 1)
+  const t = lista ? lista[i] : (n === 1 ? 1 : i / (n - 1))
   await nav.evaluar(`FP_ANIMADOR.saltar('${huella}', ${t})`)
   await espera(60)
   const { data } = await nav.cdp('Page.captureScreenshot', {

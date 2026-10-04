@@ -5,6 +5,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('trigger-que-impide', {
     duracion: 4.8,
+    // Las pausas del docente: en cada una la lamina espera un clic.
+    pasos: [0.52, 0.78, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho, R = m.malva || '#A02030';
       UJ.codigo(ctx, lz, 24, 20, W - 48, 'UPDATE insumo SET stock = stock - 10 WHERE id_insumo = 2;', L.tramo(t, 0, 0.18), 17);

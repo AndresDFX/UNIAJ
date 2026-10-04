@@ -5,7 +5,7 @@ Clave: el comienzo del titulo de la seccion `###` del fundamento (sin tildes ni 
 importan: se compara normalizado). Valor:
 
 - ``anim``: carpeta/huella en `config/animaciones/` (renderizada a GIF por `renderizar.py`).
-  La primera lamina de la seccion lleva el GIF; las de continuacion, sus fijos (mitad, final).
+  En la lamina, sus pasos aparecen uno por clic del docente.
 - ``foto``: consulta para Pexels, en ingles. Se usa en las laminas que no tienen animacion.
 
 Una seccion sin entrada se queda en texto a ancho completo: el visual se pone donde explica,
@@ -25,12 +25,8 @@ VISUALES = {
         "Seguridad y respaldo": {"anim": "bd2/clase4/seguridad-respaldo",
                                  "foto": "server room data backup"},
         "RPO y RTO": {"anim": "bd2/clase4/rpo-rto", "foto": "clock deadline office"},
-        "Lo que PostgreSQL en el navegador": {"foto": "laptop code editor database"},
+        "Lo que ExamLab si puede demostrar": {"foto": "laptop code editor database"},
         "Como amarra con las clases vecinas": {"foto": "puzzle pieces connected"},
         "Preguntas frecuentes": {"foto": "students asking questions classroom"},
     },
 }
-
-#: Presupuesto de texto de una lamina que comparte el ancho con un visual.
-MAX_CAR_CON_VISUAL = 480
-MAX_VINETAS_CON_VISUAL = 4

@@ -436,20 +436,25 @@ algo. El visual se pone donde explica, nunca para decorar. Las láminas de códi
   `UJ.rotulo`, `UJ.sello`, `UJ.rayo`).
 - **Dice lo mismo que la lámina, nada más**: rótulos, no párrafos; el último fotograma se lee
   solo. Nada técnicamente falso (PostgreSQL, no Oracle). Sin nombre del proyecto.
-- Render: `python config/animaciones/renderizar.py <curso>/<claseN>` → GIF (PowerPoint lo
-  reproduce solo, en bucle) + `-fin.png` y `-mitad.png` para las láminas de continuación.
-  **Mirar siempre los `-fin.png`** antes de publicar: texto cortado o solapado no se ve en un log.
+- **Tiempos del docente:** cada módulo declara `pasos: [0.3, 0.6, 1]`, los momentos donde el
+  docente se detiene a explicar. `renderizar.py <curso>/<claseN>` saca un PNG por paso
+  (`-pasoK.png`) y `concepto_slide` los apila: el primero se ve al entrar y cada siguiente
+  aparece con un **clic** (fundido). Impreso o en PDF se ve el último, el estado completo.
+  **Mirar siempre los PNG** antes de publicar: texto cortado o solapado no se ve en un log.
+- Piezas comunes en `config/animaciones/_base.js`; un curso puede tener su propio `_base.js`.
 
 **Fotos — Pexels** (`config/slides/pexels.py`): la clave se lee de `PEXELS_API_KEY` o de
 `_privado/pexels_api_key.txt`; **nunca** en código ni en commits. Consultas en inglés; cada foto
 queda en caché en `config/slides/assets/pexels/` con su ficha (autor, url) y el pie lleva el
 crédito. Nada de fotos con personas reconocibles en contextos sensibles ni logos de terceros.
 
-**Coordinación** (`<curso>_visuales_data.py`, ej. `bd2_visuales_data.py`): por sección del
-fundamento, `{"anim": "...", "foto": "..."}`. Una sección con visual se pagina con **menos texto**
-(`MAX_CAR_CON_VISUAL` ≈ 480 car, 4 viñetas) y cada página recibe su imagen: la 1.ª el GIF, las
-siguientes la foto o los fijos. Sin entrada → texto a ancho completo. Prueba de concepto:
-**BD II Clase 4** (Funciones · Triggers · Seguridad y respaldo).
+**Coordinación** (`config/slides/visuales.py` + `<curso>_visuales_data.py`): por sección del
+fundamento, `{"anim": "...", "foto": "..."}`; la animación manda sobre la foto. **Modo concepto**
+(`teoria_a_slides.MODO_CONCEPTO`): UNA lámina por concepto con título propio (nunca «(1/4)»),
+3-4 ideas y su visual; el desarrollo a las notas. **20-30 láminas por clase de 2 horas.**
+**Código:** completo y que corra (SQL ejecutado en PGlite, Java con `javac`), en el editor de
+`pseudo_code_slide` (Consolas, números de línea, sintaxis), intercalado detrás de su concepto
+(`teoria_a_slides.intercalar`). Referencia: **BD II Clase 4**.
 
 ### Notas del presentador y guion de tiempos (regla 2026-10)
 

@@ -21,6 +21,17 @@ FOTOGRAMAS = 40
 ANCHO, ALTO = 800, 640
 
 
+def pasos_de(mod):
+    """Los momentos `t` donde el docente se detiene a explicar, declarados en el modulo."""
+    import re
+    m = re.search(r"pasos\s*:\s*\[([^\]]*)\]", mod.read_text(encoding="utf-8"))
+    if m:
+        v = [float(x) for x in m.group(1).split(",") if x.strip()]
+        if v:
+            return v if v[-1] >= 1 else v + [1.0]
+    return [0.35, 0.7, 1.0]
+
+
 def renderizar(carpeta, huellas=None):
     fuente = AQUI / carpeta
     destino = AQUI / "render" / carpeta
@@ -44,7 +55,20 @@ def renderizar(carpeta, huellas=None):
             if r.returncode:
                 raise SystemExit("%s: %s%s" % (mod.name, r.stdout, r.stderr))
             salida = gif.construir(tmp, destino / (mod.stem + ".gif"))
-        print("OK %-28s %4d KB" % (mod.stem, salida.stat().st_size // 1024))
+        # Los PASOS: un fijo en cada pausa que declara el modulo (`pasos: [0.3, 0.6, 1]`).
+        # En la lamina, cada paso aparece con un clic: la animacion avanza al ritmo del docente.
+        pasos = pasos_de(mod)
+        with tempfile.TemporaryDirectory() as tmp:
+            r = subprocess.run(["node", str(AQUI / "capturar.mjs"), str(mod), "", tmp, "1",
+                                str(ANCHO), str(ALTO), ",".join(str(x) for x in pasos)],
+                               capture_output=True, text=True, encoding="utf-8", timeout=150)
+            if r.returncode:
+                raise SystemExit("%s (pasos): %s%s" % (mod.name, r.stdout, r.stderr))
+            for viejo in destino.glob(mod.stem + "-paso*.png"):
+                viejo.unlink()
+            for k, f in enumerate(sorted(Path(tmp).glob("f*.png")), 1):
+                (destino / ("%s-paso%d.png" % (mod.stem, k))).write_bytes(f.read_bytes())
+        print("OK %-28s %4d KB · %d pasos" % (mod.stem, salida.stat().st_size // 1024, len(pasos)))
         hechos.append(salida)
     return hechos
 

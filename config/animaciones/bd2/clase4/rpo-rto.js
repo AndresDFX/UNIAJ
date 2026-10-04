@@ -5,6 +5,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('rpo-rto', {
     duracion: 5,
+    // Las pausas del docente: en cada una la lamina espera un clic.
+    pasos: [0.33, 0.68, 0.84, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho, R = m.malva || '#A02030', y = 230;
       var x0 = 50, x1 = W - 50, xr = 200, xc = 420, xv = 680;

@@ -4,6 +4,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('trigger-dos-objetos', {
     duracion: 4.8,
+    // Las pausas del docente: en cada una la lamina espera un clic.
+    pasos: [0.3, 0.56, 0.86, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho;
       // Los dos objetos
