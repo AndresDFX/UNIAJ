@@ -1274,7 +1274,7 @@ def image_side_slide(prs, title, image_path, items, side="right", sub=None,
                 ph = max_h
                 pw = ph * iw / ih if ih else max_w
             s.shapes.add_picture(
-                img_abs,
+                str(img_abs),  # python-pptx no acepta Path: caia al except y salia «[Diagrama]»
                 Inches(ix + (img_w - pw) / 2),
                 Inches(y + 0.15),
                 width=Inches(pw),

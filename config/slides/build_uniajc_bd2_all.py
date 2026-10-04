@@ -18,7 +18,7 @@ from uniajc_slides_engine import (
     new_prs, content_slide, table_content, box_note_slide, closing_slide,
     class_cover, herramientas_slide, steps_visual_slide, checklist_slide,
     block_timeline_slide, diagram_boxes_slide, pseudo_code_slide,
-    before_after_slide, notas, AMARILLO, NAVY, CIAN,
+    before_after_slide, notas, image_side_slide, AMARILLO, NAVY, CIAN,
     RED as PPTX_RED,
 )
 from uniajc_quiz_helpers import clave_text, pptx_chunks, q_abierta, q_om, q_vf, student_lines
@@ -27,6 +27,8 @@ from vetcare_contexto import CLIENTE, INTERESADOS, NOMENCLATURA, PROBLEMAS
 from bd2_taller_data import HERRAMIENTAS_DIA, TALLER_BLOQUE, SOLUCION
 from bd2_fundamentos import FUNDAMENTOS
 import teoria_a_slides as TS
+import pexels
+from bd2_visuales_data import VISUALES, MAX_CAR_CON_VISUAL, MAX_VINETAS_CON_VISUAL
 from bd2_queries_data import QUERIES
 import bd2_solucion_data as soluciones_bd2
 import solucion_taller
@@ -2648,6 +2650,76 @@ def _fundamento_solo_tema(fund):
     return "".join(out), fuera
 
 
+ANIM_RENDER = Path(__file__).resolve().parent.parent / "animaciones" / "render"
+
+#: Titulo de lamina -> (ruta de la imagen, pie). Lo llena `_laminas_con_visual` y lo lee el
+#: bucle de `build_pptx`: la lamina con visual se pinta con texto a un lado y la imagen al otro.
+_VISUAL = {}
+
+
+def _visual_de(n, titulo_seccion):
+    tit = TS._sin_tildes(TS.limpiar_tokens(titulo_seccion)).lower()
+    for clave, v in VISUALES.get(n, {}).items():
+        if tit.startswith(TS._sin_tildes(clave).lower()):
+            return v
+    return None
+
+
+def _imagenes_de(v):
+    """Las imagenes para las paginas de una seccion, en orden: el GIF, sus fijos y la foto.
+
+    La primera pagina lleva lo que mas explica (la animacion); las de continuacion, un fijo
+    de esa misma animacion o la foto. Si no hay nada renderizado ni foto, la lista va vacia y
+    la seccion se queda en texto a ancho completo.
+    """
+    out = []
+    if v.get("anim"):
+        base = ANIM_RENDER / v["anim"]
+        gif = base.with_suffix(".gif")
+        if gif.exists():
+            out.append((gif, "Animación: se reproduce sola en la presentación"))
+            for fijo in ("-fin.png", "-mitad.png"):
+                p = base.parent / (base.name + fijo)
+                if p.exists():
+                    out.append((p, None))
+    if v.get("foto"):
+        f = pexels.foto(v["foto"])
+        if f:
+            out.insert(1 if out else 0, (f, pexels.credito(f)))
+    return out
+
+
+def _laminas_con_visual(n, fund):
+    """Como `TS.slides_de_clase`, pero las secciones con visual se paginan con MENOS texto.
+
+    Una lamina que comparte el ancho con una imagen tiene la mitad de sitio: se reparte con
+    `MAX_CAR_CON_VISUAL`, y cada pagina recibe su imagen de `_imagenes_de`. Texto, imagen o
+    animacion se coordinan aqui, seccion por seccion, a partir de `VISUALES`.
+    """
+    out = []
+    for titulo, _ancla, cuerpo in TS.partir_secciones(fund):
+        if TS.es_solo_docente(titulo):
+            continue
+        v = _visual_de(n, titulo)
+        imgs = _imagenes_de(v) if v else []
+        if not imgs:
+            out += TS.slides_de_seccion(titulo, cuerpo)
+            continue
+        guardado = (TS.MAX_CAR, TS.MAX_VINETAS)
+        TS.MAX_CAR, TS.MAX_VINETAS = MAX_CAR_CON_VISUAL, MAX_VINETAS_CON_VISUAL
+        try:
+            lams = TS.slides_de_seccion(titulo, cuerpo)
+        finally:
+            TS.MAX_CAR, TS.MAX_VINETAS = guardado
+        k = 0
+        for lam in lams:
+            if lam[3] == "content":
+                _VISUAL[lam[0]] = imgs[k % len(imgs)]
+                k += 1
+        out += lams
+    return out
+
+
 def _teoria_slides(c):
     """Las diapositivas de teoria de esta clase: UNA POR CONCEPTO, con su contenido.
 
@@ -2671,7 +2743,7 @@ def _teoria_slides(c):
     # despues, la ultima pagina de cada seccion quedaba corta. Van a las notas de la
     # primera lamina de su seccion.
     fund, fuera_sec = _fundamento_solo_tema(_sin_secciones_de_taller(fund))
-    laminas = TS.slides_de_clase(fund)
+    laminas = _laminas_con_visual(c["n"], fund)
     vistos = set()
     for k, (t, it, nt, tp) in enumerate(laminas):
         base = re.sub(r"\s*\(\d+/\d+\)$", "", t)
@@ -3124,6 +3196,7 @@ def build_pptx(c):
     before_after_slide = _solo_tema(globals()["before_after_slide"])
     steps_visual_slide = _solo_tema(globals()["steps_visual_slide"])
     block_timeline_slide = _solo_tema(globals()["block_timeline_slide"])
+    image_side_slide = _solo_tema(globals()["image_side_slide"])
     tipo_lbl = {"autonoma": "autonoma (festivo)",
                 "sustentacion": "sustentacion en vivo"}.get(c['tipo'], "regular")
     # 2ª slide: encuadre / objetivos (contenido que salió de la portada)
@@ -3177,6 +3250,9 @@ def build_pptx(c):
         if _tipo == "codigo":
             _s = pseudo_code_slide(prs, _t, _items, idx=idx,
                                    caption=LEYENDA_CONSULTA.get(_t))
+        elif _t in _VISUAL:
+            _img, _pie = _VISUAL[_t]
+            _s = image_side_slide(prs, _t, str(_img), _items, caption=_pie, idx=idx)
         else:
             _s = content_slide(prs, _t, _items, idx=idx)
         # Lo que teoria_a_slides manda al guion (que subrayar, como dictarlo) va

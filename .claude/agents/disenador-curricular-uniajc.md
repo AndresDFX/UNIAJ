@@ -418,6 +418,39 @@ evaluativo va **aparte, solo en la carpeta**. Por eso el `Presentacion.pptx` de 
 - **Mínimo ~400 caracteres** por lámina de concepto: si queda corta, se completa con
   contenido del tema (definición, ejemplo, error común, salida esperada), no se fusiona.
 
+### MODO CREATIVO: texto, imagen o animación, coordinado por lámina (regla 2026-10)
+
+El docente pidió menos texto y más imagen. Cada lámina de concepto elige **dinámicamente** su
+visual, en este orden de preferencia: **animación** si el concepto es un proceso, un flujo o un
+antes/después; **foto** (Pexels) si es un contexto; **solo texto** si ninguna de las dos explica
+algo. El visual se pone donde explica, nunca para decorar. Las láminas de código no llevan visual.
+
+**Animaciones — motor canvas de Agente Habilon** (`C:\Projects\Vivetori\Agente Habilon\mvp`,
+`bibliotecas/base/animaciones/lienzo.js` + `animador.js`; agente de referencia
+`.claude/agents/animador.md` de ese repo):
+- Un módulo `.js` por concepto en `config/animaciones/<curso>/<claseN>/<huella>.js`, con el
+  contrato `FP_ANIMADOR.registrar('<huella>', { duracion: ≤5, dibujar(ctx, t, lienzo) })`:
+  `dibujar` depende **solo de `t`** (0→1); sin `Math.random`, `requestAnimationFrame`, red ni
+  colores escritos a mano (salen de `lienzo.marca`, que `capturar.mjs` llena con la paleta
+  UNIAJC). Piezas comunes del curso en `_base.js` (`UJ.caja`, `UJ.tabla`, `UJ.codigo`,
+  `UJ.rotulo`, `UJ.sello`, `UJ.rayo`).
+- **Dice lo mismo que la lámina, nada más**: rótulos, no párrafos; el último fotograma se lee
+  solo. Nada técnicamente falso (PostgreSQL, no Oracle). Sin nombre del proyecto.
+- Render: `python config/animaciones/renderizar.py <curso>/<claseN>` → GIF (PowerPoint lo
+  reproduce solo, en bucle) + `-fin.png` y `-mitad.png` para las láminas de continuación.
+  **Mirar siempre los `-fin.png`** antes de publicar: texto cortado o solapado no se ve en un log.
+
+**Fotos — Pexels** (`config/slides/pexels.py`): la clave se lee de `PEXELS_API_KEY` o de
+`_privado/pexels_api_key.txt`; **nunca** en código ni en commits. Consultas en inglés; cada foto
+queda en caché en `config/slides/assets/pexels/` con su ficha (autor, url) y el pie lleva el
+crédito. Nada de fotos con personas reconocibles en contextos sensibles ni logos de terceros.
+
+**Coordinación** (`<curso>_visuales_data.py`, ej. `bd2_visuales_data.py`): por sección del
+fundamento, `{"anim": "...", "foto": "..."}`. Una sección con visual se pagina con **menos texto**
+(`MAX_CAR_CON_VISUAL` ≈ 480 car, 4 viñetas) y cada página recibe su imagen: la 1.ª el GIF, las
+siguientes la foto o los fijos. Sin entrada → texto a ancho completo. Prueba de concepto:
+**BD II Clase 4** (Funciones · Triggers · Seguridad y respaldo).
+
 ### Notas del presentador y guion de tiempos (regla 2026-10)
 
 - **Conceptos y respuestas van en las NOTAS DEL PRESENTADOR** de la lámina a la que
