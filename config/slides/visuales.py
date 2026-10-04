@@ -3,7 +3,7 @@
 
 Cada curso declara `<curso>_visuales_data.VISUALES = {n: {comienzo_de_titulo: spec}}` con
 `spec = {"anim": "<carpeta>/<huella>"}` (renderizada por `config/animaciones/renderizar.py`)
-y/o `{"foto": "<consulta Pexels en ingles>"}`. La animacion manda sobre la foto: explica mas.
+(Las fotos de Pexels se retiraron en 2026-10: solo animaciones e ilustraciones generadas.)
 
 `imagenes(VISUALES, n, titulo)` devuelve `(rutas, pie)`. Con una animacion, `rutas` son sus
 pasos en orden (`-paso1.png`, `-paso2.png`…): `concepto_slide` pone el primero al entrar y
@@ -14,7 +14,6 @@ import re
 import unicodedata
 from pathlib import Path
 
-import pexels
 
 RENDER = Path(__file__).resolve().parent.parent / "animaciones" / "render"
 _TOKEN = re.compile(r"\{\{\s*slide:[^}]*\}\}")
@@ -52,8 +51,4 @@ def imagenes(visuales, n, titulo):
         p = pasos_de(v["anim"])
         if p:
             return p, ("Clic para avanzar la animación" if len(p) > 1 else None)
-    if v.get("foto"):
-        f = pexels.foto(v["foto"])
-        if f:
-            return [f], pexels.credito(f)
     return [], None

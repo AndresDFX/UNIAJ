@@ -45,6 +45,9 @@
 
   /** Una linea de codigo en banda oscura, que se escribe con `visible` (0..1). */
   function codigo(ctx, lz, x, y, an, linea, visible, tam) {
+    // Una linea que aun no empieza a escribirse no se dibuja: una banda vacia en pantalla
+    // anuncia algo que el docente todavia no explico.
+    if (visible !== undefined && visible <= 0) return;
     tam = tam || 20;
     L.rectRed(ctx, x, y, an, tam * 2, 8); L.rellena(ctx, L.tono(lz.marca.tinta, -0.55));
     L.texto(ctx, linea, x + 14, y + tam * 0.45, { tam: tam, peso: 500, color: '#E8F4FA', letra: 'Consolas, monospace', visible: visible, ancho: an - 20 });

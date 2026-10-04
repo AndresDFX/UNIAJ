@@ -42,7 +42,7 @@
         UJ.rotulo(ctx, lz, 'sin recargo', 684, 450, { tam: 20, peso: 800 });
       });
       UJ.rotulo(ctx, lz, 'Nunca devuelve nulo: toda entrada tiene tarifa.', W / 2, 560,
-                { tam: 22, ancho: W - 40, visible: L.tramo(t, 0.88, 1) });
+                { tam: 22, ancho: W - 40, visible: L.tramo(t, 0.91, 1) });
     }
   });
 })();

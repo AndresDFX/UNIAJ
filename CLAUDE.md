@@ -64,7 +64,16 @@ faltaba, o que repasaba para el parcial, no tenía de dónde.
   (`teoria_a_slides.MODO_CONCEPTO`). Referencia de extensión: **20-30 láminas por clase**.
 - **Visual por concepto, coordinado** (`visuales.py` + `<curso>_visuales_data.py`): animación
   del motor de Habilon (sus **pasos aparecen con cada clic del docente**: la animación va a su
-  ritmo de explicación), foto de Pexels, o solo texto si ningún visual explica algo.
+  ritmo de explicación) o **ilustración generada** con el mismo motor (`ilustraciones.py` +
+  `<curso>_ilustraciones_data.py`, un solo fotograma dibujado para ESE concepto). **Nada de
+  fotos de banco** (Pexels se retiró: una imagen «por poner imagen» no explica nada). Sin
+  ilustración que diga algo, la lámina queda en texto.
+- **Pasos lógicos:** cada paso de una animación termina una **idea completa**, y nada de la
+  idea siguiente se ve antes de su paso (nunca dos ideas intercaladas). `renderizar.py` avisa
+  «PASOS ILOGICOS» si en un paso queda una transición a medias; además se mira la hoja de
+  contacto de los pasos.
+- **Láminas de marco sin imagen:** encuadre, objetivos, agenda, mapa del bloque, indicaciones,
+  orden de la sesión y cierre (`_SIN_VISUAL` del motor).
 - **Código y consultas: completos, que corran, y con aspecto de editor** (`pseudo_code_slide`:
   Consolas, números de línea, colores por sintaxis). Los fragmentos citados en la prosa no se
   proyectan (van a notas): se proyecta el código autorado completo, **justo detrás del concepto

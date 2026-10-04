@@ -29,7 +29,7 @@
       // La fila de auditoria
       UJ.tabla(ctx, lz, 380, 410, 396, 'audit_cita', ["7 · confirmada → atendida · now()"], L.tramo(t, 0.74, 0.84), A, -1);
       UJ.rotulo(ctx, lz, 'Nadie lo llama: lo dispara el evento.', W / 2, 560,
-                { tam: 24, ancho: W - 40, visible: L.tramo(t, 0.84, 1) });
+                { tam: 24, ancho: W - 40, visible: L.tramo(t, 0.87, 1) });
     }
   });
 })();

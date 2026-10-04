@@ -344,11 +344,14 @@ def bullets(slide, items, top=1.4, size=None, width=None, left=None, minimo=None
 
 #: VISUAL MINIMO (2026-10): en un deck de CLASE ninguna lamina de viñetas va sin visual ni con
 #: un muro de texto. `content_slide` reduce cada viñeta a su idea (la frase en negrita, o la
-#: primera frase), deja como mucho 4, manda el texto completo a las NOTAS y pone una foto a la
-#: derecha. La Presentacion del Curso (generico=False) no pasa por aqui.
+#: primera frase), deja como mucho 4, manda el texto completo a las NOTAS y pone a la derecha
+#: la ILUSTRACION generada de ese concepto (`ilustraciones.py`; nada de fotos decorativas).
+#: Las laminas de marco no llevan imagen. La Presentacion del Curso no pasa por aqui.
 VISUAL_MINIMO = True
 _EN_VISUAL = False
-_SIN_VISUAL = ("mapa del bloque", "agenda")
+#: Laminas de marco: no llevan imagen (no hay concepto que dibujar).
+_SIN_VISUAL = ("mapa del bloque", "agenda", "encuadre", "objetivos", "indicaciones",
+               "como se ordena", "cierre", "conceptos de hoy")
 
 
 def _cerrado(s):
@@ -394,8 +397,8 @@ def content_slide(prs, title, items, sub=None, idx=None, size=None):
     global _EN_VISUAL
     if (VISUAL_MINIMO and GENERICO and not _EN_VISUAL and items
             and not any(_plano_titulo(title).startswith(x) for x in _SIN_VISUAL)):
-        import fotos_laminas
-        img, pie = fotos_laminas.para(title)
+        import ilustraciones
+        img, pie = ilustraciones.para(title, prs)
         if img:
             ideas = _condensar(items)
             _EN_VISUAL = True

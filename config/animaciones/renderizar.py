@@ -59,16 +59,24 @@ def renderizar(carpeta, huellas=None):
         # En la lamina, cada paso aparece con un clic: la animacion avanza al ritmo del docente.
         pasos = pasos_de(mod)
         with tempfile.TemporaryDirectory() as tmp:
-            r = subprocess.run(["node", str(AQUI / "capturar.mjs"), str(mod), "", tmp, "1",
-                                str(ANCHO), str(ALTO), ",".join(str(x) for x in pasos)],
-                               capture_output=True, text=True, encoding="utf-8", timeout=150)
+            for intento in (1, 2, 3):
+                try:
+                    r = subprocess.run(["node", str(AQUI / "capturar.mjs"), str(mod), "", tmp, "1",
+                                        str(ANCHO), str(ALTO), ",".join(str(x) for x in pasos)],
+                                       capture_output=True, text=True, encoding="utf-8", timeout=150)
+                    break
+                except subprocess.TimeoutExpired:
+                    if intento == 3:
+                        raise SystemExit("%s: el navegador no respondio (pasos)" % mod.name)
             if r.returncode:
                 raise SystemExit("%s (pasos): %s%s" % (mod.name, r.stdout, r.stderr))
             for viejo in destino.glob(mod.stem + "-paso*.png"):
                 viejo.unlink()
             for k, f in enumerate(sorted(Path(tmp).glob("f*.png")), 1):
                 (destino / ("%s-paso%d.png" % (mod.stem, k))).write_bytes(f.read_bytes())
-        print("OK %-28s %4d KB · %d pasos" % (mod.stem, salida.stat().st_size // 1024, len(pasos)))
+        avisos = [l for l in r.stdout.splitlines() if l.startswith("AVISO")]
+        print("OK %-28s %4d KB · %d pasos%s" % (mod.stem, salida.stat().st_size // 1024, len(pasos),
+              "" if not avisos else " · PASOS ILOGICOS: " + "; ".join(a[6:] for a in avisos)))
         hechos.append(salida)
     return hechos
 

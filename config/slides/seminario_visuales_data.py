@@ -18,7 +18,7 @@ Clave: el comienzo del titulo que `teoria_a_slides` le da al parrafo (su primera
 filtrada por `_deck`), comparado sin tildes ni mayusculas por `visuales.spec_de`.
 
 - ``LAMINAS[n][clave]`` = ``{"titulo": ..., "ideas": [...]}``.
-- ``VISUALES[n][clave]`` = ``{"anim": "seminario/claseN/<huella>"}`` y/o ``{"foto": "<en ingles>"}``:
+- ``VISUALES[n][clave]`` = ``{"anim": "seminario/claseN/<huella>"}`` (las fotos se retiraron: solo animaciones e ilustraciones generadas):
   la animacion se renderiza con `config/animaciones/renderizar.py seminario/claseN` y sus pasos
   aparecen uno por clic; la foto (Pexels) va donde el concepto es contexto y no proceso.
 
@@ -640,11 +640,9 @@ VISUALES = {
         "Un requisito funcional dice": {"anim": "seminario/clase1/deseo-o-requisito"},
         "Los interesados no son solo": {"anim": "seminario/clase1/interesados"},
         "Todo desarrollo pasa por las mismas fases": {"anim": "seminario/clase1/fases-planos"},
-        "Para que sirve documentar": {"foto": "architect reading blueprints"},
         "El mapa del semestre": {"anim": "seminario/clase1/mapa-semestre"},
         "Hay un concepto que explica": {"anim": "seminario/clase1/deuda-intereses"},
         "En un curso de diseno la deuda": {"anim": "seminario/clase1/artefacto-version"},
-        "El segundo concepto de fondo": {"foto": "folded paper map"},
         "De ahi se sigue": {"anim": "seminario/clase1/modelo-dos-fallas"},
         "Lo anterior conduce al criterio": {"anim": "seminario/clase1/cinco-rasgos"},
         "El rasgo tres merece": {"anim": "seminario/clase1/cadena-trazabilidad"},
@@ -659,7 +657,6 @@ VISUALES = {
     3: {
         "El modelo en cascada": {"anim": "seminario/clase3/cascada-linea-base"},
         "El modelo en V": {"anim": "seminario/clase3/modelo-v"},
-        "Cuando SI tienen sentido": {"foto": "signing contract documents"},
         "Cuando NO tienen sentido": {"anim": "seminario/clase3/costo-del-cambio"},
         "En el mundo tradicional": {"anim": "seminario/clase3/paquete-tradicional"},
     },
@@ -668,7 +665,6 @@ VISUALES = {
         "Scrum es un marco de trabajo": {"anim": "seminario/clase4/ciclo-scrum"},
         "Kanban viene de otra tradicion": {"anim": "seminario/clase4/kanban-wip"},
         "Hay dos palabras que se usan": {"anim": "seminario/clase4/iteracion-incremento"},
-        "Agil no significa trabajar sin": {"foto": "sticky notes planning board"},
     },
     6: {
         "Un requerimiento no es lo que": {"anim": "seminario/clase6/elicitacion"},
@@ -717,14 +713,11 @@ VISUALES = {
         "Los principios de usabilidad no son": {"anim": "seminario/clase13/usabilidad"},
         "Una pantalla suelta no sirve": {"anim": "seminario/clase13/flujo-tarea"},
         "La interfaz no se inventa": {"anim": "seminario/clase13/wireframe-anotado"},
-        "Una interfaz se puede evaluar": {"foto": "usability testing laptop"},
     },
     14: {
         "Sustentar un paquete de diseño": {"anim": "seminario/clase14/narrar-sustentar"},
         "El orden de la sustentacion": {"anim": "seminario/clase14/embudo"},
         "Defender una decision de diseño": {"anim": "seminario/clase14/defender-decision"},
-        "Las preguntas del jurado son": {"foto": "job interview panel table"},
-        "El reparto del guion en bloques": {"foto": "stopwatch on desk"},
     },
 }
 

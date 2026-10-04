@@ -32,7 +32,13 @@ const pagina = `<!doctype html><html lang="es"><head><meta charset="utf-8"><styl
 <body><div id="caja" data-fp-animacion="${huella}" data-fp-texto="${esc(TEXTO)}"
 style="width:${ANCHO}px;height:${ALTO}px;overflow:hidden;font-family:'Segoe UI',Calibri,Arial,sans-serif"></div>
 <script>window.matchMedia=function(q){return{matches:false,addListener(){},removeListener(){}}}</script>
-<script src="/lienzo.js"></script><script src="/animador.js"></script><script src="/base.js"></script><script src="/modulo.js"></script>
+<script src="/lienzo.js"></script><script src="/animador.js"></script><script>
+  // Detector de pasos ilogicos: cuenta las transiciones (L.tramo) que quedan A MEDIAS en el
+  // fotograma. En un paso del docente debe ser 0: cada clic cierra una idea completa.
+  window.__parciales = 0;
+  (function () { var tr = FP_LIENZO.tramo; FP_LIENZO.tramo = function (t, a, b, c) {
+    var x = tr(t, a, b); if (x > 0.02 && x < 0.98) window.__parciales++; return tr(t, a, b, c); }; })();
+</script><script src="/base.js"></script><script src="/modulo.js"></script>
 </body></html>`
 
 function buscarBase(dir) {
@@ -67,8 +73,12 @@ const lista = TIEMPOS ? TIEMPOS.split(',').map(Number) : null
 const n = lista ? lista.length : Number(N)
 for (let i = 0; i < n; i++) {
   const t = lista ? lista[i] : (n === 1 ? 1 : i / (n - 1))
-  await nav.evaluar(`FP_ANIMADOR.saltar('${huella}', ${t})`)
+  await nav.evaluar(`(window.__parciales = 0, FP_ANIMADOR.saltar('${huella}', ${t}))`)
   await espera(60)
+  if (lista) {
+    const p = await nav.evaluar('window.__parciales')
+    if (p > 0) console.log(`AVISO paso ${i + 1} (t=${t}): ${p} transiciones a medias`)
+  }
   const { data } = await nav.cdp('Page.captureScreenshot', {
     format: 'png', clip: { x: 0, y: 0, width: Number(ANCHO), height: Number(ALTO), scale: 1 } })
   writeFileSync(join(SALIDA, `f${String(i).padStart(3, '0')}.png`), Buffer.from(data, 'base64'))

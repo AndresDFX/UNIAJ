@@ -19,27 +19,22 @@ VISUALES = {
     },
     3: {
         "Los cinco elementos de un sistema": {"anim": "intro/clase3/cinco-elementos"},
-        "Ejemplo: la app que funcionó y la fila": {"foto": "people waiting in line queue"},
         "Ejemplo resuelto: el semáforo de una esquina": {"anim": "intro/clase3/semaforo"},
     },
     4: {
         "Cinco preguntas para decidir": {"anim": "intro/clase4/cinco-preguntas"},
         "Ejemplo: qué falló en el Therac-25": {"anim": "intro/clase4/therac25"},
-        "Ejemplo: el correo que deja rastro": {"foto": "person writing email laptop office"},
     },
     5: {
         "Las cuatro etapas de la huella": {"anim": "intro/clase5/etapas-huella"},
-        "Ejemplo: el PUE de un centro de datos": {"foto": "data center server room"},
         "Ejemplo resuelto: el reporte diario de una tienda": {"anim": "intro/clase5/reporte-tienda"},
     },
     6: {
         "El árbol del problema": {"anim": "intro/clase6/arbol-problema"},
         "Ejemplo: de la queja al problema": {"anim": "intro/clase6/queja-problema"},
-        "Ejemplo: cómo se saca una línea base": {"foto": "smartphone stopwatch timer hand"},
     },
     7: {
         "Las seis fases del ciclo de vida": {"anim": "intro/clase7/seis-fases", "sub_en_anim": True},
-        "Ejemplo: las seis fases en la app de turnos": {"foto": "small neighborhood grocery store"},
     },
     8: {
         "Cómo se decide entre dos alternativas": {"anim": "intro/clase8/matriz-decision", "sub_en_anim": True},

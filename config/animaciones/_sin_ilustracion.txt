@@ -1,0 +1,139 @@
+bd2	1	El cliente: una clínica veterinaria en papel
+bd2	1	Herramientas del dia y que se puede demostrar con cada una
+bd2	1	Demo del dia
+bd2	2	Ciclo de vida de una cuenta: alta, cambio, baja, revision
+bd2	2	Como amarra con las clases vecinas
+bd2	2	Demo del dia
+bd2	3	El molde de un caso de error y la prueba del conteo
+bd2	3	La columna paso y la trampa de WHEN OTHERS
+bd2	3	Los 6 bloques del contrato, uno por uno
+bd2	3	PROCEDURE o FUNCTION: cual se puede usar dentro de un SELECT
+bd2	3	Demo del dia
+bd2	6	Un plan, campo por campo
+bd2	6	La subconsulta correlacionada en el plan: loops
+bd2	6	Optimizar no cambia el resultado: como se prueba
+bd2	6	El antes y el despues del script de la clase
+bd2	6	Donde se corre todo esto, y que no se puede medir aqui
+bd2	6	Demo del dia
+bd2	7	Las siete razones por las que un indice existente no se usa
+bd2	7	Los cinco indices, y la consulta que justifica cada uno
+bd2	7	Los cinco indices de hoy, con su nombre exacto
+bd2	7	El indice parcial: el mismo beneficio, una fraccion del tamano
+bd2	7	Particionar hoy de verdad: rango por ano, poda y archivado
+bd2	7	El veredicto de particionamiento
+bd2	7	La demo, en el orden en que se proyecta
+bd2	7	Donde corre esto, y que no se puede medir aqui
+bd2	7	Demo del dia
+bd2	8	sp_facturar en PL/pgSQL
+bd2	8	Por que el procedimiento no lleva COMMIT ni ROLLBACK
+bd2	8	El contraste con Oracle
+bd2	8	fn_descontar_stock: cuando «no hay stock» es una respuesta, no un error
+bd2	8	La demo, en el orden en que se proyecta
+bd2	8	Donde corre esto, y por que el autocommit ya no es el enemigo
+bd2	8	Demo del dia
+bd2	10	Demo del dia
+bd2	11	Demo del dia
+bd2	12	Demo del dia
+bd2	13	Demo del dia
+bd2	15	El cierre del curso: conectar lo hecho con el trabajo real
+arq	1	Qué es arquitectura cloud (mapa mental)
+arq	1	CloudLite App — el hilo conductor
+arq	1	De dominio a arquitectura (mini-método)
+arq	2	De que se parte y que se decide hoy
+arq	2	IaaS · PaaS · SaaS (sin cloud de pago)
+arq	2	Cómo decidir para CloudLite
+arq	2	Responsabilidad compartida: quién responde por qué
+arq	2	Plantilla ADR-001
+arq	2	La pila dibujada: nombres reales para IaaS, PaaS y SaaS
+arq	3	De donde viene la clase: virtualizacion y contenedores
+arq	3	VM vs contenedor
+arq	3	Comprobar en un lab: recomendado, no obligatorio
+arq	3	Dockerfile mínimo para el stub
+arq	3	Construir, correr y verificar el contenedor
+arq	3	Segundo ejemplo: leer las siete columnas de docker ps
+arq	4	Monolito vs microservicios (para el PI)
+arq	4	C4-lite: del Context a los Containers
+arq	4	C4Container en Mermaid: la sintaxis que se renderiza
+arq	4	Distribuido implica fallos
+arq	6	Amenazas que sí importan al PI
+arq	6	Controles prácticos (gratis)
+arq	6	Menor privilegio: qué deja de poder hacer
+arq	6	Ejercicio guiado
+arq	7	Red lógica para el diagrama
+arq	7	Almacenamiento
+arq	7	Checklist del diagrama Deployment
+arq	7	El molde de Mermaid, linea por linea
+arq	8	CI/CD sin tarjeta
+arq	8	YAML mínimo
+arq	8	Monitoreo y optimización
+arq	8	El pipeline del stub de CloudLite, paso por paso
+arq	10	CloudLite no tiene factura real, y por que igual se estima
+arq	10	Costos sin factura real
+arq	10	Sostenibilidad
+arq	11	La teoria propia del dia: que es una revision de arquitectura
+arq	11	Errores frecuentes a corregir
+arq	12	Rendimiento sin stress-tool de pago
+arq	12	Preparación de presentación (5–8 min)
+arq	13	Clase autonoma: escalabilidad no es rendimiento
+arq	13	Escala para CloudLite
+arq	13	Límites y costos
+arq	15	El ADR: el artefacto que sostiene la tercera capa
+arq	15	La regla de los 60 segundos, anunciada desde la Clase 11
+arq	15	El cierre del curso: conectar lo hecho con la practica profesional
+prog2	1	Abstracción y encapsulamiento
+prog2	1	El entorno: JDK, javac y java
+prog2	1	Demo del dia
+prog2	2	La interfaz List: add, get, size, remove
+prog2	2	Demo del dia
+prog2	3	Demo del dia
+prog2	4	Mapas y ventanas: un mismo objetivo
+prog2	4	Demo del dia
+prog2	6	getSource y otros escuchadores
+prog2	6	Demo del dia
+prog2	7	Qué es un patrón de diseño
+prog2	7	Cuándo NO usarlos
+prog2	7	Demo del dia
+prog2	8	Documentar no es comentar cada línea
+prog2	8	Nombres que se explican solos
+prog2	8	Demo del dia
+prog2	9	Code smells: los olores del código
+prog2	9	Demo del dia
+prog2	11	Qué es una revisión de código
+prog2	11	El checklist de revisión
+prog2	11	Recibir la crítica
+prog2	11	Demo del dia
+prog2	12	El depurador de VS Code
+prog2	12	Demo del dia
+prog2	13	Demo del dia
+prog2	14	Sustentar es demostrar
+prog2	14	Las preguntas del jurado
+prog2	14	Demo del dia
+seminario	1	Para qué documentar: depende de quién lee
+seminario	1	Qué es un modelo
+seminario	1	Demo del dia
+seminario	2	Demo del dia
+seminario	3	Cuándo sí conviene el enfoque tradicional
+seminario	3	Demo del dia
+seminario	4	Ágil no es trabajar sin documentación
+seminario	4	Demo del dia
+seminario	6	Demo del dia
+seminario	7	Demo del dia
+seminario	8	Demo del dia
+seminario	9	Demo del dia
+seminario	11	Demo del dia
+seminario	12	Demo del dia
+seminario	13	Evaluar una interfaz sin programarla
+seminario	13	Demo del dia
+seminario	14	Las preguntas previsibles del jurado
+seminario	14	El guion en bloques con tiempos
+seminario	14	Demo del dia
+intro	2	Cuándo el problema dejó de ser la máquina
+intro	3	Ejemplo: la app que funcionó y la fila que no se movió
+intro	4	Ejemplo: el correo que deja rastro
+intro	5	Ejemplo: el PUE de un centro de datos, con números
+intro	5	Colombia: dos datos locales que cambian el análisis
+intro	6	La línea base: la cifra de hoy
+intro	6	Ejemplo: cómo se saca una línea base con el celular
+intro	1	Qué es la Ingeniería de Sistemas
+intro	1	El proyecto del curso
+intro	1	Cinco equipos, los mismos todo el semestre

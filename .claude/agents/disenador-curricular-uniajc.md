@@ -443,13 +443,23 @@ algo. El visual se pone donde explica, nunca para decorar. Las láminas de códi
   **Mirar siempre los PNG** antes de publicar: texto cortado o solapado no se ve en un log.
 - Piezas comunes en `config/animaciones/_base.js`; un curso puede tener su propio `_base.js`.
 
-**Fotos — Pexels** (`config/slides/pexels.py`): la clave se lee de `PEXELS_API_KEY` o de
-`_privado/pexels_api_key.txt`; **nunca** en código ni en commits. Consultas en inglés; cada foto
-queda en caché en `config/slides/assets/pexels/` con su ficha (autor, url) y el pie lleva el
-crédito. Nada de fotos con personas reconocibles en contextos sensibles ni logos de terceros.
+**Ilustraciones generadas, no fotos** (`config/slides/ilustraciones.py` +
+`<curso>_ilustraciones_data.py`): Pexels se retiró (2026-10) porque una foto «por poner imagen»
+no explica nada. Toda lámina de viñetas sin animación lleva una ILUSTRACIÓN dibujada con el mismo
+motor (`config/animaciones/<curso>/claseN/ilus-*.js`, `pasos: [1]`): esquema, flujo, árbol de
+decisión, anatomía de una sentencia. Se registra por `(curso, n)` y comienzo de título.
+`content_slide` la pone a la derecha, resume a 4 ideas y manda el texto completo a notas. Sin
+ilustración, la lámina queda en texto. **Láminas de marco** (encuadre, objetivos, agenda,
+indicaciones, orden de la sesión, cierre) **sin imagen**. Los títulos que faltan quedan en
+`config/animaciones/_sin_ilustracion.txt`.
+
+**Pasos lógicos:** cada paso de una animación cierra una idea completa; nada de la idea
+siguiente se ve antes (nunca dos ideas intercaladas en el tiempo). `renderizar.py` avisa
+«PASOS ILOGICOS»; además se revisa la hoja de contacto de todos los pasos. Referencia:
+`bd2/clase4/funcion-o-procedimiento.js`.
 
 **Coordinación** (`config/slides/visuales.py` + `<curso>_visuales_data.py`): por sección del
-fundamento, `{"anim": "...", "foto": "..."}`; la animación manda sobre la foto. **Modo concepto**
+fundamento, `{"anim": "..."}`. **Modo concepto**
 (`teoria_a_slides.MODO_CONCEPTO`): UNA lámina por concepto con título propio (nunca «(1/4)»),
 3-4 ideas y su visual; el desarrollo a las notas. **20-30 láminas por clase de 2 horas.**
 **Código:** completo y que corra (SQL ejecutado en PGlite, Java con `javac`), en el editor de

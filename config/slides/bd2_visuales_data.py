@@ -22,12 +22,8 @@ VISUALES = {
         "El trigger que impide": {"anim": "bd2/clase4/trigger-que-impide"},
         "Las cuatro capas": {"anim": "bd2/clase4/cuatro-capas"},
         "Cuando NO se usa un trigger": {"anim": "bd2/clase4/cuando-no-trigger"},
-        "Seguridad y respaldo": {"anim": "bd2/clase4/seguridad-respaldo",
-                                 "foto": "server room data backup"},
-        "RPO y RTO": {"anim": "bd2/clase4/rpo-rto", "foto": "clock deadline office"},
-        "Lo que ExamLab si puede demostrar": {"foto": "laptop code editor database"},
-        "Como amarra con las clases vecinas": {"foto": "puzzle pieces connected"},
-        "Preguntas frecuentes": {"foto": "students asking questions classroom"},
+        "Seguridad y respaldo": {"anim": "bd2/clase4/seguridad-respaldo"},
+        "RPO y RTO": {"anim": "bd2/clase4/rpo-rto"},
     },
     8: {
         "Que es una transaccion, y las dos": {"anim": "bd2/clase8/transaccion-unidad"},
@@ -63,7 +59,6 @@ VISUALES = {
         "Que separa un diagrama ER": {"anim": "bd2/clase1/er-vs-dibujo"},
         "Tipos de datos: donde se pagan": {"anim": "bd2/clase1/tipos-de-datos"},
         "Convenciones de nombres para que": {"anim": "bd2/clase1/nombres-minusculas"},
-        "Herramientas del dia y que": {"foto": "laptop browser database code screen"},
         "Del ER dibujado al codigo Mermaid": {"anim": "bd2/clase1/er-a-mermaid"},
     },
     2: {
@@ -116,7 +111,6 @@ VISUALES = {
         "Reproducible: un tercero": {"anim": "bd2/clase15/carpeta-reproducible"},
         "El reparto de los 5 a 8": {"anim": "bd2/clase15/reparto-minutos"},
         "El Q&A de modelado": {"anim": "bd2/clase15/dos-pelusa"},
-        "El cierre del curso": {"foto": "database engineer working on server code"},
     },
     3: {
         "Que es un procedimiento almacenado": {"anim": "bd2/clase3/que-es-procedimiento"},
@@ -143,7 +137,6 @@ VISUALES = {
         "Predicado sargable: el antipatron": {"anim": "bd2/clase6/sargable"},
         "La subconsulta correlacionada: 2.006 pasadas": {"anim": "bd2/clase6/subconsulta-correlacionada"},
         "Optimizar no cambia el resultado": {"anim": "bd2/clase6/mismo-resultado"},
-        "Donde se corre todo esto": {"foto": "student laptop browser code"},
     },
     7: {
         "De donde viene la clase": {"anim": "bd2/clase7/indice-puntero"},
@@ -156,6 +149,5 @@ VISUALES = {
         "El indice parcial: que indexa": {"anim": "bd2/clase7/indice-parcial"},
         "Particionar: que es, y por que": {"anim": "bd2/clase7/particionar"},
         "El DDL de la particion": {"anim": "bd2/clase7/ddl-particion"},
-        "Las siete razones por las que": {"foto": "library index card catalog"},
     },
 }

@@ -21,19 +21,16 @@ VISUALES = {
         "Ejemplo de diagrama C4 - nivel Context": {"anim": "arq/clase1/c4-context"},
     },
     2: {
-        "De que se parte y que se decide hoy": {"foto": "data center server room"},
         "La pila de responsabilidades": {"anim": "arq/clase2/pila-responsabilidades"},
         "IaaS, PaaS y SaaS: los tres cortes": {"anim": "arq/clase2/tres-cortes"},
         "El ADR-001": {"anim": "arq/clase2/adr-seis-secciones"},
     },
     3: {
-        "De donde viene la clase: virtualizacion": {"foto": "server rack cables"},
         "Antes de la virtualizacion": {"anim": "arq/clase3/un-servidor-por-app"},
         "Recorrer el diagrama de las dos pilas": {"anim": "arq/clase3/dos-pilas"},
         "El contenedor: aislamiento": {"anim": "arq/clase3/contenedor-aislado"},
         "Dockerfile, imagen, contenedor y registro": {"anim": "arq/clase3/receta-imagen-contenedor"},
         "Primer ejemplo: el stub": {"anim": "arq/clase3/capas-cache"},
-        "Segundo ejemplo: leer las siete columnas": {"foto": "terminal command line laptop"},
     },
     4: {
         "De donde viene la clase y que se abre hoy": {"anim": "arq/clase4/caja-negra-abre"},
@@ -81,14 +78,12 @@ VISUALES = {
     },
     10: {
         "Clase autonoma: de gasto de capital": {"anim": "arq/clase10/capex-opex"},
-        "CloudLite no tiene factura real": {"foto": "calculator budget notebook"},
         "Ordenes de magnitud": {"anim": "arq/clase10/ordenes-magnitud"},
         "Primer ejemplo: la tabla de costos": {"anim": "arq/clase10/escala-ordinal"},
         "Segundo ejemplo: por que el driver": {"anim": "arq/clase10/egress-driver"},
         "Right-sizing": {"anim": "arq/clase10/right-sizing"},
     },
     11: {
-        "La teoria propia del dia": {"foto": "whiteboard diagram meeting"},
         "El insumo: las seis piezas": {"anim": "arq/clase11/seis-piezas"},
         "Las cinco preguntas de coherencia": {"anim": "arq/clase11/cinco-cadenas"},
         "Scope creep": {"anim": "arq/clase11/dos-patologias"},
@@ -105,7 +100,6 @@ VISUALES = {
         "El ensayo del pitch": {"anim": "arq/clase12/pitch-presupuesto"},
     },
     13: {
-        "Clase autonoma: escalabilidad no es rendimiento": {"foto": "highway traffic night"},
         "Escalar vertical y horizontalmente": {"anim": "arq/clase13/vertical-horizontal"},
         "Ausencia de estado": {"anim": "arq/clase13/sesion-en-memoria"},
         "Las cinco piezas del autoescalado": {"anim": "arq/clase13/cinco-piezas-autoescalado"},
@@ -116,10 +110,7 @@ VISUALES = {
     15: {
         "Sustentar no es describir": {"anim": "arq/clase15/describir-vs-sustentar"},
         "La prueba de tres capas": {"anim": "arq/clase15/tres-capas"},
-        "El ADR: el artefacto": {"foto": "paper documents desk notes"},
         "El pitch de 5 a 8 minutos": {"anim": "arq/clase15/pitch-reparto"},
-        "La regla de los 60 segundos": {"foto": "stopwatch"},
         "El Q&A tecnico": {"anim": "arq/clase15/qa-tres-tipos"},
-        "El cierre del curso": {"foto": "team whiteboard planning"},
     },
 }

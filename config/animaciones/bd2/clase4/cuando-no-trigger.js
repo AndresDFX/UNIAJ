@@ -4,7 +4,7 @@
   FP_ANIMADOR.registrar('cuando-no-trigger', {
     duracion: 4.6,
     // Las pausas del docente: en cada una la lamina espera un clic.
-    pasos: [0.3, 0.46, 0.62, 1],
+    pasos: [0.23, 0.39, 0.55, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho, R = m.malva || '#A02030';
       var casos = [

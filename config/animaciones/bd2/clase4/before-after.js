@@ -17,8 +17,8 @@
       UJ.caja(ctx, lz, 490, y - 70, 170, 140, 'AFTER', 'solo registra', C, L.tramo(t, 0.05, 0.15));
       // La fila que viaja
       var x = L.claves(t, [[0, 40], [0.22, 190, 'frena'], [0.4, 190], [0.55, 380, 'suave'], [0.62, 380], [0.78, 560, 'suave'], [1, 560]]);
-      L.rectRed(ctx, x, y - 18, 60, 36, 8); L.rellena(ctx, m.sello || C, m.tinta, 2);
-      UJ.rotulo(ctx, lz, 'NEW', x + 30, y - 11, { tam: 17, peso: 800 });
+      L.rectRed(ctx, x + 25, y - 112, 60, 36, 8); L.rellena(ctx, m.sello || C, m.tinta, 2);
+      UJ.rotulo(ctx, lz, 'NEW', x + 55, y - 105, { tam: 17, peso: 800 });
       // Lo que puede retornar BEFORE
       var op = [['RETURN NEW', 'se guarda tal cual'], ['RETURN NEW cambiado', 'se guarda la versión cambiada'], ['RETURN NULL', 'se cancela en silencio']];
       for (var i = 0; i < 3; i++) {
