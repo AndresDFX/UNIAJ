@@ -4,7 +4,7 @@
 (function () {
   FP_ANIMADOR.registrar('tres-reglas-container', {
     duracion: 5,
-    pasos: [0.34, 0.64, 1],
+    pasos: [0.35, 0.64, 1],
     dibujar: function (ctx, t, lz) {
       UJ.escena(ctx, t, lz, [
         { tipo: 'chip', x: 175, y: 20, t: '1 · tres datos por caja', color: 'accion', en: 0 },
@@ -12,7 +12,7 @@
         { tipo: 'tacha', x: 20, y: 72, w: 310, h: 86, en: 0.1, sale: 0.2 },
         { tipo: 'caja', x: 30, y: 80, w: 290, h: 70, t: 'API de turnos', color: 'accion', r: 10, tam: 22, en: 0.22 },
         { tipo: 'caja', x: 30, y: 155, w: 290, h: 60, t: 'Node.js', color: 'acento', r: 10, tam: 20, en: 0.25 },
-        { tipo: 'caja', x: 30, y: 220, w: 290, h: 80, t: 'valida la franja y registra el turno', color: 'sello', r: 10, tam: 18, en: 0.28 },
+        { tipo: 'caja', x: 30, y: 220, w: 290, h: 80, t: 'valida la franja y registra el turno', color: 'sello', r: 10, tam: 18, en: 0.26 },
         { tipo: 'chip', x: 600, y: 20, t: '2 · el almacén es ContainerDb', color: 'acento', en: 0.36 },
         { tipo: 'cilindro', x: 500, y: 80, w: 200, h: 200, t: 'Base de turnos', s: 'ContainerDb · PostgreSQL', color: 'acento', en: 0.42 },
         { tipo: 'chip', x: 400, y: 340, t: '3 · cada flecha: protocolo y formato', color: 'malva', en: 0.66 },

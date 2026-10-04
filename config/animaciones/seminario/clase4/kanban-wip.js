@@ -4,8 +4,9 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('kanban-wip', {
     duracion: 5,
-    // Las pausas del docente: en cada una la lamina espera un clic.
-    pasos: [0.3, 0.6, 1],
+    // Pasos LOGICOS: 1) el tablero con limite 2 lleno; 2) la tercera tarjeta rebota; 3) una
+    // termina y recien entonces entra la siguiente; 4) la politica explicita de «Aprobado».
+    pasos: [0.3, 0.6, 0.88, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, R = m.malva, W = lz.ancho;
       function cx(i) { return 26 + i * 190; }
@@ -31,9 +32,9 @@
       var pa2 = L.tramo(t, 0.64, 0.74, 'suave');
       var xa = cx(0) + 10 + 190 * pa + 190 * pa2, ya = slot(0);
       var xb = cx(0) + 10 + 190 * pb, yb = slot(1);
-      // C: intenta entrar y rebota (0.32-0.48), entra de verdad tras la salida de A (0.78-0.88)
+      // C: intenta entrar y rebota (0.32-0.48), entra de verdad tras la salida de A (0.78-0.86)
       var ida = L.tramo(t, 0.32, 0.4, 'suave'), vuelta = L.tramo(t, 0.42, 0.5, 'suave');
-      var entra = L.tramo(t, 0.78, 0.88, 'suave');
+      var entra = L.tramo(t, 0.78, 0.86, "suave");
       var xc = cx(0) + 10 + 110 * ida - 110 * vuelta + 190 * entra;
       var yc = slot(2) + (slot(0) - slot(2)) * entra;
       UJ.alfa(ctx, ap, function () {
@@ -49,13 +50,13 @@
         UJ.rotulo(ctx, lz, 'una terminó', cx(2) + 89, slot(0) + 66, { tam: 17, peso: 700, color: m.verde });
       });
       // Política explícita de Aprobado
-      UJ.alfa(ctx, L.tramo(t, 0.88, 0.94), function () {
+      UJ.alfa(ctx, L.tramo(t, 0.89, 0.97), function () {
         L.rectRed(ctx, cx(3) + 10, 330, 158, 170, 10); L.rellena(ctx, L.tono(m.sello, 0.8), L.tono(m.sello, -0.2), 2);
         UJ.rotulo(ctx, lz, 'Política', cx(3) + 89, 342, { tam: 17, peso: 800, color: m.tinta });
         UJ.rotulo(ctx, lz, 'diagrama + mockup + visto bueno', cx(3) + 89, 374, { tam: 17, peso: 600, color: m.tinta, ancho: 140 });
       });
       UJ.rotulo(ctx, lz, 'Terminar antes de empezar.', W / 2, 556,
-        { tam: 24, peso: 800, color: A, visible: L.tramo(t, 0.92, 1) });
+        { tam: 24, peso: 800, color: A, visible: L.tramo(t, 0.82, 0.87) });
     }
   });
 })();

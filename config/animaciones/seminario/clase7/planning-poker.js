@@ -4,7 +4,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('planning-poker', {
     duracion: 5,
-    // Las pausas del docente: en cada una la lamina espera un clic.
+    // Pasos LOGICOS: 1) la escala con su referencia; 2) dos estimaciones distintas abren la
+    // pregunta; 3) se discute, se acuerda y por eso vale; 4) el 13 es la señal de partir.
     pasos: [0.24, 0.58, 0.8, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, R = m.malva, V = m.verde, W = lz.ancho;
@@ -39,7 +40,7 @@
       });
       UJ.pildora(ctx, lz, 400, 440, 'se discute y se acuerda: 5', V, acuerdo, { tam: 19, centrar: true, lleno: true });
       UJ.rotulo(ctx, lz, 'Lo que vale es la discusión cuando uno dice 2 y otro 8', W / 2, 560,
-                { tam: 21, peso: 700, ancho: W - 40, visible: L.tramo(t, 0.9, 1) });
+                { tam: 21, peso: 700, ancho: W - 40, visible: L.tramo(t, 0.72, 0.78) });
     }
   });
 })();

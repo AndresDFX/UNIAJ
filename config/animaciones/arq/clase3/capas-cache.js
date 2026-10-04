@@ -3,6 +3,9 @@
 (function () {
   FP_ANIMADOR.registrar('capas-cache', {
     duracion: 5,
+    // Pasos LOGICOS: 1) cada instruccion del Dockerfile es una capa (la pila completa, 0.37);
+    // 2) cambio una linea del codigo: las cuatro de abajo salen de la cache, las dos de arriba
+    // se reconstruyen, y la conclusion (dependencias antes que el codigo).
     pasos: [0.42, 1],
     dibujar: function (ctx, t, lz) {
       var capas = ['FROM node:20-alpine', 'WORKDIR /app', 'COPY package*.json ./', 'RUN npm ci --omit=dev', 'COPY . .', 'CMD ["node", "server.js"]'];

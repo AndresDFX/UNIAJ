@@ -4,7 +4,10 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('urgencia-addfirst', {
     duracion: 4.8,
-    pasos: [0.34, 0.66, 1],
+    // Pasos LOGICOS: 1) addLast x3: los que llegan van al final, 2) addFirst: la urgencia pasa
+    // adelante, 3) pollFirst x4: el orden de salida, 4) la conclusion (una cola no se
+    // recorre para buscar). La conclusion ya no comparte paso con el orden de salida.
+    pasos: [0.34, 0.66, 0.86, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, R = m.malva, V = m.verde, W = lz.ancho;
       UJ.codigo(ctx, lz, 20, 20, W - 40, 'Deque<Turno> sala = new ArrayDeque<>();', L.tramo(t, 0, 0.06), 18);
@@ -25,7 +28,7 @@
       UJ.rotulo(ctx, lz, 'urgencia', 100, 194, { tam: 16, peso: 700, color: R, visible: L.tramo(t, 0.54, 0.58) });
       // orden de salida
       for (var k = 0; k < 4; k++) {
-        var a = L.tramo(t, 0.72 + k * 0.05, 0.76 + k * 0.05);
+        var a = L.tramo(t, 0.7 + k * 0.04, 0.74 + k * 0.04);
         if (a <= 0) continue;
         var cx = 100 + k * 160;
         L.circulo(ctx, cx, 222 + 10, 17 * a); L.rellena(ctx, m.tinta);

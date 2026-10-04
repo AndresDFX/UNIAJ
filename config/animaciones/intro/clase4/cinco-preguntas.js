@@ -4,11 +4,13 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('cinco-preguntas', {
     duracion: 5,
-    pasos: [0.34, 0.6, 0.86, 1],
+    // Pasos LOGICOS: una pregunta por clic. La 3 llega con su marca («la más rápida para
+    // descartar») y la 5 con su conclusion (parar temprano es barato), que es lo que la explica.
+    pasos: [0.16, 0.36, 0.58, 0.76, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, S = m.sello || m.acento, W = lz.ancho;
       var q = ['¿Quién se puede dañar?', '¿Lo sabe y lo aceptó?', '¿Aguanta que se sepa?', '¿Qué dice el código de ética?', '¿Cuándo se puede parar?'];
-      var t0 = [0.02, 0.16, 0.36, 0.62, 0.72];
+      var t0 = [0.02, 0.2, 0.4, 0.62, 0.8];
       for (var i = 0; i < 5; i++) {
         var a = L.tramo(t, t0[i], t0[i] + 0.1), y = 24 + i * 100, dest = i === 2;
         UJ.alfa(ctx, a, function () {
@@ -19,8 +21,8 @@
           UJ.rotulo(ctx, lz, q[i], 176, y + 22, { tam: 27, peso: 700, alinear: 'left', ancho: 580 });
         });
       }
-      UJ.rotulo(ctx, lz, 'la más rápida para descartar', 600, 280, { tam: 17, peso: 700, color: L.tono(S, -0.45), visible: L.tramo(t, 0.46, 0.56) });
-      UJ.rotulo(ctx, lz, 'Parar temprano es barato; después de entregar cuesta mucho más.', W / 2, 540, { tam: 22, peso: 700, ancho: W - 40, visible: L.tramo(t, 0.88, 1) });
+      UJ.rotulo(ctx, lz, 'la más rápida para descartar', 600, 280, { tam: 17, peso: 700, color: L.tono(S, -0.45), visible: L.tramo(t, 0.48, 0.56) });
+      UJ.rotulo(ctx, lz, 'Parar temprano es barato; después de entregar cuesta mucho más.', W / 2, 540, { tam: 22, peso: 700, ancho: W - 40, visible: L.tramo(t, 0.88, 0.98) });
     }
   });
 })();

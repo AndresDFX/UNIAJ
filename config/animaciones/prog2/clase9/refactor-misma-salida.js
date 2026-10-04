@@ -4,6 +4,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('refactor-misma-salida', {
     duracion: 4.8,
+    // Pasos LOGICOS: 1) el metodo largo y su salida, 2) el mismo metodo partido en cuatro (mejor
+    // forma), 3) la salida despues, identica: misma conducta. La conclusion no se adelanta al paso 2.
     pasos: [0.34, 0.66, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, R = m.malva, V = m.verde, G = m.gris, W = lz.ancho;
@@ -37,7 +39,7 @@
       });
       UJ.alfa(ctx, 1 - abre, function () { UJ.rotulo(ctx, lz, 'Método largo: todo en un solo bloque.', 590, 160, { tam: 18, peso: 600, ancho: 360, visible: L.tramo(t, 0.22, 0.3) }); });
       // Paso 2
-      UJ.rotulo(ctx, lz, 'Misma conducta, mejor forma:', 590, 230, { tam: 20, peso: 800, color: A, ancho: 360, visible: L.tramo(t, 0.54, 0.6) });
+      UJ.rotulo(ctx, lz, 'Mejor forma:', 590, 230, { tam: 20, peso: 800, color: A, ancho: 360, visible: L.tramo(t, 0.54, 0.6) });
       UJ.rotulo(ctx, lz, 'cada método hace una sola cosa.', 590, 260, { tam: 18, peso: 600, ancho: 360, visible: L.tramo(t, 0.56, 0.62) });
       // Paso 3: salida despues
       UJ.alfa(ctx, L.tramo(t, 0.7, 0.78), function () {
@@ -45,7 +47,7 @@
         UJ.codigo(ctx, lz, 410, 366, 370, 'Mascota registrada con ID M004', 1, 16);
       });
       UJ.sello(ctx, lz, 590, 452, 28, true, L.tramo(t, 0.78, 0.86));
-      UJ.rotulo(ctx, lz, 'Mismos datos → mismas salidas', 590, 494, { tam: 20, peso: 800, color: V, ancho: 360, visible: L.tramo(t, 0.84, 0.9) });
+      UJ.rotulo(ctx, lz, 'Misma conducta: mismos datos → mismas salidas', 590, 492, { tam: 20, peso: 800, color: V, ancho: 360, visible: L.tramo(t, 0.84, 0.9) });
       UJ.rotulo(ctx, lz, 'No es agregar funciones, corregir lógica ni reescribir desde cero.', W / 2, 560, { tam: 18, peso: 600, ancho: W - 40, visible: L.tramo(t, 0.9, 0.98) });
     }
   });

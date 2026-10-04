@@ -3,6 +3,8 @@
 (function () {
   FP_ANIMADOR.registrar('egress-driver', {
     duracion: 5,
+    // Pasos LOGICOS: 1) guardar 10 GB cuesta centavos, 2) descargarlos 20 veces cuesta 18 dolares,
+    // 3) la comparacion lado a lado y la conclusion: el driver es el trafico de salida.
     pasos: [0.36, 0.72, 1],
     dibujar: function (ctx, t, lz) {
       UJ.escena(ctx, t, lz, [

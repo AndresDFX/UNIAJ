@@ -4,7 +4,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('manifiesto-sobre', {
     duracion: 5,
-    // Las pausas del docente: en cada una la lamina espera un clic.
+    // Pasos LOGICOS: 1) los cuatro valores que se valoran mas, completos; 2) lo que sigue
+    // valiendo, con su encabezado; 3) la conclusion. Nada de la columna derecha en el paso 1.
     pasos: [0.3, 0.75, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, W = lz.ancho;
@@ -17,12 +18,14 @@
       UJ.rotulo(ctx, lz, 'El manifiesto ágil (2001)', W / 2, 26, { tam: 26, peso: 800, color: A, visible: L.tramo(t, 0, 0.08) });
       UJ.alfa(ctx, L.tramo(t, 0.05, 0.15), function () {
         UJ.rotulo(ctx, lz, 'se valora más', 188, 88, { tam: 18, peso: 700, color: A });
+      });
+      UJ.alfa(ctx, L.tramo(t, 0.32, 0.38), function () {
         UJ.rotulo(ctx, lz, 'sigue valiendo', 612, 88, { tam: 18, peso: 700, color: m.gris });
       });
       for (var i = 0; i < 4; i++) {
         var y = 130 + i * 98;
-        var a = L.tramo(t, 0.1 + i * 0.045, 0.18 + i * 0.045);
-        var b = L.tramo(t, 0.34 + i * 0.09, 0.44 + i * 0.09);
+        var a = L.tramo(t, 0.1 + i * 0.04, 0.16 + i * 0.04);
+        var b = L.tramo(t, 0.36 + i * 0.085, 0.45 + i * 0.085);
         (function (i, y, a, b) {
           UJ.alfa(ctx, a, function () {
             L.rectRed(ctx, 26, y, 324, 70, 12); L.rellena(ctx, L.tono(A, 0.86), A, 3);

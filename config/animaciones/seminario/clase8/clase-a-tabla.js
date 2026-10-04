@@ -4,7 +4,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('clase-a-tabla', {
     duracion: 5,
-    // Las pausas del docente: en cada una la lamina espera un clic.
+    // Pasos LOGICOS: 1) la clase da la tabla; 2) la asociacion 1 a 0..* da la llave foranea
+    // (su fila llega con ella, no antes); 3) el muchos a muchos da una tabla intermedia.
     pasos: [0.32, 0.64, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, R = m.malva, V = m.verde, T = m.tinta, W = lz.ancho, MONO = 'Consolas, monospace';
@@ -20,7 +21,7 @@
       // Tabla mascota
       var filas = ['codigo (PK)', 'nombre', 'especie', 'fecha_nacimiento', 'documento_dueno (FK)'];
       var nt = L.tramo(t, 0.14, 0.28) * 4 + L.tramo(t, 0.52, 0.6);
-      if (t > 0.12) UJ.tabla(ctx, lz, 470, 30, 300, 'mascota', filas, nt, V, t > 0.6 ? 4 : undefined);
+      if (t > 0.12) UJ.tabla(ctx, lz, 470, 30, 300, 'mascota', t >= 0.52 ? filas : filas.slice(0, 4), nt, V, t > 0.6 ? 4 : undefined);
       UJ.flecha(ctx, lz, 300, 120, 456, 120, A, L.tramo(t, 0.1, 0.16), 'clase → tabla', { tam: 17 });
       // Asociacion
       var d = L.tramo(t, 0.36, 0.44);

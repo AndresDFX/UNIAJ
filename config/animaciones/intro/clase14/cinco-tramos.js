@@ -4,14 +4,21 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('cinco-tramos', {
     duracion: 5,
-    pasos: [0.3, 0.62, 0.86, 1],
+    // Pasos LOGICOS: 1-5) un tramo por clic, sobre la barra vacia de los 9 minutos que se ve
+    // desde el principio (es el marco, no un tramo); 6) la conclusion.
+    pasos: [0.13, 0.29, 0.45, 0.61, 0.77, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, V = m.verde || A, S = m.sello || C, R = m.malva || '#A02030', W = lz.ancho;
       var tr = [[1, 'El problema', '25 min de pie', A], [2, 'Afectados y decisión', 'qué se perdió', C],
         [3, 'Demo en vivo', '«Van 4 antes que usted»', L.tono(S, -0.35)], [2, 'Lo que cambió', 'tras probar', V], [1, 'Cierre', 'qué ahorra y a quién deja fuera', R]];
       var x0 = 40, ancho = 720, por = ancho / 9, x = x0;
-      var t0 = [0, 0.12, 0.34, 0.64, 0.74];
-      UJ.rotulo(ctx, lz, '9 minutos', W / 2, 30, { tam: 28, peso: 800, color: A, visible: L.tramo(t, 0, 0.06) });
+      var t0 = [0.01, 0.16, 0.32, 0.48, 0.64];
+      // El marco: los 9 minutos, vacios
+      var a0 = L.tramo(t, 0, 0.06);
+      UJ.rotulo(ctx, lz, '9 minutos', W / 2, 30, { tam: 28, peso: 800, color: A, visible: a0 });
+      UJ.alfa(ctx, a0, function () {
+        L.rectRed(ctx, x0, 90, ancho, 90, 6); L.rellena(ctx, L.tono(m.tinta, 0.93), L.tono(m.tinta, 0.6), 2);
+      });
       for (var i = 0; i < 5; i++) {
         var w = tr[i][0] * por, a = L.tramo(t, t0[i], t0[i] + 0.1, 'frena'), col = tr[i][3];
         if (a > 0) {
@@ -27,7 +34,7 @@
         }
         x += w;
       }
-      UJ.rotulo(ctx, lz, 'La demo es el tramo más largo.', W / 2, 600, { tam: 22, peso: 700, visible: L.tramo(t, 0.88, 1) });
+      UJ.rotulo(ctx, lz, 'La demo es el tramo más largo.', W / 2, 600, { tam: 22, peso: 700, visible: L.tramo(t, 0.82, 0.96) });
     }
   });
 })();

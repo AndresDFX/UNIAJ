@@ -3,7 +3,7 @@
 (function () {
   FP_ANIMADOR.registrar('rutas-subred', {
     duracion: 5,
-    pasos: [0.35, 0.7, 1],
+    pasos: [0.37, 0.7, 1],
     dibujar: function (ctx, t, lz) {
       UJ.escena(ctx, t, lz, [
         { tipo: 'caja', x: 300, y: 10, w: 200, h: 70, t: 'Internet', color: 'gris', lleno: true, tam: 24, en: 0 },

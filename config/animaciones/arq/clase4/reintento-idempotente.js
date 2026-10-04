@@ -3,7 +3,7 @@
 (function () {
   FP_ANIMADOR.registrar('reintento-idempotente', {
     duracion: 5,
-    pasos: [0.3, 0.62, 1],
+    pasos: [0.3, 0.65, 1],
     dibujar: function (ctx, t, lz) {
       UJ.escena(ctx, t, lz, [
         { tipo: 'caja', x: 20, y: 30, w: 190, h: 90, t: 'App web', en: 0 },

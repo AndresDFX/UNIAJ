@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-"""Que visual acompana a cada concepto de Arquitectura: animacion, foto o nada.
+"""Que visual acompana a cada concepto de Arquitectura: animacion o nada.
 
 Clave: el comienzo del titulo de la seccion `###` de `arq_fundamentos.FUNDAMENTOS` (se compara
 normalizado: sin tildes ni mayusculas). Valor:
 
 - ``anim``: `arq/claseN/<huella>` en `config/animaciones/` (renderizada por `renderizar.py`). En
   la lamina, sus pasos aparecen uno por clic del docente.
-- ``foto``: consulta para Pexels, en ingles. Solo para conceptos de contexto sin proceso que
-  dibujar.
+
+Las fotos de Pexels se retiraron (2026-10): una imagen «por poner imagen» no explica nada. Las
+laminas de viñetas sin animacion llevan su ILUSTRACION generada (`arq_ilustraciones_cN.py`).
 
 Una seccion sin entrada se queda en texto a ancho completo: el visual se pone donde explica, no
 por decorar. Tampoco llevan visual las secciones que el build reemplaza por su lamina curada

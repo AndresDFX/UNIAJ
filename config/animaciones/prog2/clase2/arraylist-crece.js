@@ -4,7 +4,10 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('arraylist-crece', {
     duracion: 5,
-    pasos: [0.24, 0.5, 0.72, 1],
+    // Pasos LOGICOS: 1) el arreglo interno de 4 se llena (size = capacidad), 2) el quinto add
+    // crea uno de 6 y copia los 4, 3) Nala entra y el viejo queda para el recolector,
+    // 4) remove(0) corre a todos un puesto, 5) la conclusion.
+    pasos: [0.24, 0.5, 0.72, 0.9, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, V = m.verde, R = m.malva, W = lz.ancho;
       var nom = ['Luna', 'Michi', 'Rocky', 'Toby', 'Nala'], cw = 120, ch = 64, x0 = 40;

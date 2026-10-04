@@ -372,6 +372,13 @@ def _idea_vineta(v, tope=150):
         extra = re.split(r"(?<=[.;:])\s", resto, 1)[0] if resto else ""
         if extra and len(lead) + len(extra) <= tope and _cerrado(extra):
             return lead + " " + extra
+        # Si la negrita es solo una etiqueta («Demo:», «Herramienta:»), quedarse con ella deja la
+        # linea vacia: se conserva el texto que sigue, recortado por palabras.
+        if lead.rstrip("*@").endswith(":") and resto:
+            corte = resto[:max(40, tope - len(lead))].rsplit(" ", 1)[0]
+            while not _cerrado(corte) and " " in corte:
+                corte = corte.rsplit(" ", 1)[0]
+            return lead + " " + corte.rstrip(" ,;:") + ("…" if len(corte) < len(resto) else "")
         return lead
     if len(v) <= tope:
         return v

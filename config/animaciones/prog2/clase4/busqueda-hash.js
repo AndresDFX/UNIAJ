@@ -5,6 +5,9 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('busqueda-hash', {
     duracion: 5,
+    // Pasos LOGICOS: 1) el ArrayList recorre uno por uno hasta M-004, 2) el HashMap calcula la
+    // casilla con hashCode() y va directo, 3) la colision: equals() elige dentro de la casilla,
+    // 4) la conclusion. Ningun paso deja una idea a medias.
     pasos: [0.28, 0.55, 0.8, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, R = m.malva, V = m.verde, S = m.sello;
@@ -15,6 +18,9 @@
         var y = 70 + i * 50;
         L.rectRed(ctx, 40, y, 230, 42, 6); L.rellena(ctx, i % 2 ? L.tono(A, 0.94) : m.papel, L.tono(A, 0.5), 1);
         UJ.rotulo(ctx, lz, ids[i], 60, y + 10, { tam: 19, alinear: 'left' });
+        // Solo las cuatro primeras filas se comparan (la busqueda para en M-004): las demas no
+        // tienen transicion, y calcularsela dejaba una «a medias» en el paso 1.
+        if (i > 3) continue;
         var a = L.tramo(t, 0.04 + i * 0.045, 0.07 + i * 0.045);
         if (i < 3) UJ.rotulo(ctx, lz, '≠', 300, y + 6, { tam: 26, peso: 800, color: R, visible: a });
         if (i === 3) UJ.sello(ctx, lz, 300, y + 21, 16, true, a);

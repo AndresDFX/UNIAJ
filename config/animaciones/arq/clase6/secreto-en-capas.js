@@ -3,6 +3,10 @@
 (function () {
   FP_ANIMADOR.registrar('secreto-en-capas', {
     duracion: 5,
+    // Pasos LOGICOS: 1) la llave queda escrita en una capa de la imagen, 2) el borrado es una
+    // capa mas encima y docker history sigue leyendo la de abajo, 3) el remedio: borrar el
+    // commit no sirve (Git guarda historia), rotar si. La tacha sobre el texto se cambio por
+    // un sello en la esquina: tapaba lo que habia que leer.
     pasos: [0.3, 0.62, 1],
     dibujar: function (ctx, t, lz) {
       UJ.escena(ctx, t, lz, [
@@ -15,9 +19,9 @@
         { tipo: 'flecha', de: [470, 235], a: [440, 235], color: 'malva', en: 0.46 },
         { tipo: 'texto', t: 'la llave sigue aquí: docker history la lee', x: 480, y: 210, tam: 20, alinear: 'left', ancho: 300, color: 'malva', en: 0.5 },
         { tipo: 'caja', x: 30, y: 410, w: 360, h: 100, t: 'Borrar el commit', s: 'sigue en el historial y en cada clon', color: 'gris', en: 0.66 },
-        { tipo: 'tacha', x: 40, y: 500, w: 340, h: -80, simple: true, grosor: 4, en: 0.72 },
+        { tipo: 'sello', x: 380, y: 416, r: 24, ok: false, en: 0.72 },
         { tipo: 'caja', x: 420, y: 410, w: 360, h: 100, t: 'ROTAR la llave', s: 'una nueva, y la vieja deja de servir', lleno: true, en: 0.8 },
-        { tipo: 'sello', x: 760, y: 410, r: 24, ok: true, en: 0.86 },
+        { tipo: 'sello', x: 770, y: 416, r: 24, ok: true, en: 0.84 },
         { tipo: 'texto', t: 'Lo único que invalida una llave filtrada es rotarla.', x: 400, y: 560, tam: 23, peso: 800, color: 'accion', ancho: 760, en: 0.9 }
       ]);
     }

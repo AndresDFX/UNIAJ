@@ -3,6 +3,8 @@
 (function () {
   FP_ANIMADOR.registrar('tipos-prueba', {
     duracion: 5,
+    // Pasos LOGICOS: un tipo de prueba por paso, cada uno con su forma de carga y su pregunta:
+    // 1) carga, 2) estres, 3) pico, 4) resistencia.
     pasos: [0.25, 0.5, 0.75, 1],
     dibujar: function (ctx, t, lz) {
       function panel(x, y, tit, preg, pts, color, en) {

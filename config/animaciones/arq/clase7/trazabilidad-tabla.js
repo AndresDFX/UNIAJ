@@ -3,7 +3,7 @@
 (function () {
   FP_ANIMADOR.registrar('trazabilidad-tabla', {
     duracion: 5,
-    pasos: [0.4, 0.75, 1],
+    pasos: [0.44, 0.75, 1],
     dibujar: function (ctx, t, lz) {
       var f = [['App web', 'App web (estático, 443)', 'Pública'],
                ['API de turnos', 'API de turnos (contenedor, 8080)', 'Privada'],

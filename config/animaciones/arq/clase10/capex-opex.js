@@ -4,7 +4,9 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('capex-opex', {
     duracion: 5,
-    pasos: [0.4, 1],
+    // Pasos LOGICOS: 1) centro de datos propio: se compra todo el primer dia, 2) nube: se paga lo
+    // que se usa y la factura sigue a la demanda, 3) la conclusion: el cambio es de arquitectura.
+    pasos: [0.4, 0.82, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, e = [
         { tipo: 'texto', t: 'Centro de datos propio · gasto de capital', x: 30, y: 14, tam: 23, peso: 800, alinear: 'left', color: 'malva', en: 0 },

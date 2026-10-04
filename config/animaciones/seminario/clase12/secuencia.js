@@ -4,7 +4,9 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('secuencia', {
     duracion: 5,
-    // Las pausas del docente: en cada una la lamina espera un clic.
+    // Pasos LOGICOS: 1) los participantes con su linea de vida y el eje del tiempo; 2) la
+    // primera ida y vuelta (existe la mascota); 3) la disponibilidad y la confirmacion. La
+    // barra de activacion crece por tramos: no queda a medias entre un paso y otro.
     pasos: [0.3, 0.66, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, T = m.tinta, G = m.gris, W = lz.ancho;
@@ -20,7 +22,7 @@
             var ls = nombres[i], y0 = by + bh / 2 - ls.length * 11;
             for (var k = 0; k < ls.length; k++) UJ.rotulo(ctx, lz, ls[k], xs[i], y0 + k * 22, { tam: 17, peso: 700, color: c });
           });
-          UJ.linea(ctx, xs[i], by + bh, xs[i], fin, L.tono(G, 0.2), 2, L.tramo(t, 0.1 + i * 0.03, 0.24 + i * 0.03), true);
+          UJ.linea(ctx, xs[i], by + bh, xs[i], fin, L.tono(G, 0.2), 2, L.tramo(t, 0.08 + i * 0.025, 0.18 + i * 0.025), true);
         })(i);
       }
       // El tiempo corre hacia abajo
@@ -29,7 +31,7 @@
         UJ.rotulo(ctx, lz, 'el tiempo corre hacia abajo', 24, 515, { tam: 17, peso: 700, color: L.tono(C, -0.25), alinear: 'left' });
       });
       var msgs = [
-        [0, 1, 165, 'solicitarAgendamiento()', false, 0.3, 0.38],
+        [0, 1, 165, 'solicitarAgendamiento()', false, 0.32, 0.38],
         [1, 2, 200, 'agendarCita()', false, 0.38, 0.45],
         [2, 3, 250, 'existePorCodigo()', false, 0.45, 0.53],
         [3, 2, 300, 'mascota', true, 0.55, 0.62],
@@ -51,8 +53,8 @@
         }
       }
       // Barra de activacion del control (encima de los rotulos)
-      var act = L.tramo(t, 0.36, 0.95);
-      if (act > 0) { L.rectRed(ctx, xs[2] - 7, 196, 14, (432 - 196) * act, 3); L.rellena(ctx, L.tono(A, 0.7), A, 1.5); }
+      var act = (306 - 196) * L.tramo(t, 0.38, 0.62) + (432 - 306) * L.tramo(t, 0.68, 0.95);
+      if (act > 0) { L.rectRed(ctx, xs[2] - 7, 196, 14, act, 3); L.rellena(ctx, L.tono(A, 0.7), A, 1.5); }
       UJ.rotulo(ctx, lz, 'Mensajes en orden: quién le pide qué a quién.', W / 2, 560,
                 { tam: 21, peso: 700, ancho: W - 40, visible: L.tramo(t, 0.95, 1) });
     }

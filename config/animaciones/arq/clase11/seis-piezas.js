@@ -3,7 +3,7 @@
 (function () {
   FP_ANIMADOR.registrar('seis-piezas', {
     duracion: 5,
-    pasos: [0.4, 0.72, 1],
+    pasos: [0.49, 0.77, 1],
     dibujar: function (ctx, t, lz) {
       var p = [['Context', 'accion'], ['Containers', 'accion'], ['Despliegue', 'accion'], ['Dockerfile', 'acento'], ['Workflow', 'acento'], ['Informe', 'gris']];
       var e = [];

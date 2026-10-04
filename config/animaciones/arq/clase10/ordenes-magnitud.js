@@ -3,7 +3,9 @@
 (function () {
   FP_ANIMADOR.registrar('ordenes-magnitud', {
     duracion: 5,
-    pasos: [0.45, 1],
+    // Pasos LOGICOS: 1) lo que cobra por existir (instancia, balanceador), 2) lo que cobra por uso
+    // (objetos, trafico de salida), 3) la proporcion que queda y que son ordenes de magnitud.
+    pasos: [0.45, 0.77, 1],
     dibujar: function (ctx, t, lz) {
       UJ.escena(ctx, t, lz, [
         { tipo: 'texto', t: 'Cobra por existir · al mes', x: 30, y: 14, tam: 23, peso: 800, alinear: 'left', color: 'malva', en: 0 },

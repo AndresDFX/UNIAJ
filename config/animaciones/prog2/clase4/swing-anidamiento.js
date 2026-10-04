@@ -4,7 +4,10 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('swing-anidamiento', {
     duracion: 4.8,
-    pasos: [0.22, 0.45, 0.72, 1],
+    // Pasos LOGICOS: 1) el JFrame y sus regiones de BorderLayout, 2) el JPanel con FlowLayout en
+    // NORTH, 3) los tres componentes dentro del panel y la frase que lo resume, 4) crearla en el
+    // EDT y las tres lineas obligatorias. El paso 3 cortaba la frase a medio escribir.
+    pasos: [0.22, 0.45, 0.75, 1],
     dibujar: function (ctx, t, lz) {
       var T = t; t = Math.min(1, t / 0.75);
       var m = lz.marca, A = m.accion, C = m.acento, V = m.verde, G = m.gris || m.tinta, W = lz.ancho;

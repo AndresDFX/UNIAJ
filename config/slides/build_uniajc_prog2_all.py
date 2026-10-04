@@ -527,7 +527,8 @@ def build_pptx(c):
                                    caption=("De " + archivo) if archivo else None)
         else:
             # Un concepto por lamina, con su visual si lo tiene: los pasos de su animacion
-            # (aparecen con cada clic del docente) o una foto. Sin visual, texto a lo ancho.
+            # (aparecen con cada clic del docente) o, sin animacion, la ilustracion generada
+            # del concepto (`content_slide`). Sin ninguna de las dos, texto a lo ancho.
             _imgs, _pie = visuales.imagenes(VISUALES, n, _t)
             _s = concepto_slide(prs, _t, _items, imagenes=_imgs, pie=_pie, idx=idx)
         if _s is not None and _notas:

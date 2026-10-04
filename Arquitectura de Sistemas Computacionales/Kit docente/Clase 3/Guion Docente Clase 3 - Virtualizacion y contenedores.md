@@ -97,7 +97,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 12] Imagen, contenedor y capas: los comandos que lo demuestran** — 12 vinetas.
 
-**[Slide 13] Primer ejemplo: el stub de la API de CloudLite** — 3 vinetas.
+**[Slide 13] Comprobar en un lab: el Dockerfile vive en tu carpeta** — 4 vinetas.
+
+**[Slide 14] Primer ejemplo: el stub de la API de CloudLite** — 3 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
   - FROM node:20-alpine elige la imagen base, o sea el punto de partida ya construido por otros, en este caso un Linux minimo con Node instalado; la etiqueta 20-alpine es FIJA y eso importa
   - Porque con latest la imagen de hoy no es la de manana y la reconstruccion deja de ser reproducible.
@@ -118,8 +120,6 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - (No se proyecta) En CloudLite Turnos el estudiante contenerizara un stub de su API, es decir una version minima que responde algo verificable: el endpoint GET /health, que devuelve un cuerpo en formato JSON con al menos un campo que se pueda comprobar.
   - (No se proyecta) Su Dockerfile tiene siete instrucciones, y el docente debe poder explicar cada una.
   - (No se proyecta) La diapositiva lo proyecta junto al Dockerfile y no como nota al pie a proposito: son dos archivos hermanos en la misma carpeta, y el estudiante que entrega el primero sin el segundo entrega un artefacto que filtra secretos.
-
-**[Slide 14] Comprobar en un lab: recomendado, no obligatorio** — 4 vinetas.
 
 **[Slide 15] Dockerfile mínimo para el stub** — 6 vinetas.
 
@@ -194,8 +194,8 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 10. Maquina virtual vs contenedor — que cambia de verdad
 11. Dockerfile, imagen, contenedor y registro: los cuatro terminos
 12. Imagen, contenedor y capas: los comandos que lo demuestran
-13. Primer ejemplo: el stub de la API de CloudLite
-14. Comprobar en un lab: recomendado, no obligatorio
+13. Comprobar en un lab: el Dockerfile vive en tu carpeta
+14. Primer ejemplo: el stub de la API de CloudLite
 15. Dockerfile mínimo para el stub
 16. Dockerfile minimo del stub CloudLite
 17. Construir, correr y verificar el contenedor
@@ -216,7 +216,7 @@ Pregunta de arranque (1 min): «¿En qué quedó tu CloudLite la clase pasada?»
 ### 10–40 · Teoría Core (al servicio del taller) · desde [Slide 9]
 Cubre estos conceptos, en este orden, ~7 min cada uno, con su diapositiva:
 - **VM vs contenedor** · [Slide 9]
-- **Comprobar en un lab: recomendado, no obligatorio** · [Slide 14]
+- **Comprobar en un lab: el Dockerfile vive en tu carpeta** · [Slide 13]
 - **Dockerfile mínimo para el stub** · [Slide 15]
 - **Construir, correr y verificar el contenedor** · [Slide 17]
 

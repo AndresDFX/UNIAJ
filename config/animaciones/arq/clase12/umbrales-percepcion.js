@@ -4,6 +4,8 @@
 (function () {
   FP_ANIMADOR.registrar('umbrales-percepcion', {
     duracion: 5,
+    // Pasos LOGICOS: 1) los tres umbrales de percepcion y que son convenciones, 2) el tiempo va
+    // con la tasa de error, 3) las siglas: SLI lo que se mide, SLO el objetivo.
     pasos: [0.4, 0.72, 1],
     dibujar: function (ctx, t, lz) {
       UJ.escena(ctx, t, lz, [

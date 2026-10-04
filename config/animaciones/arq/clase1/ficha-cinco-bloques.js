@@ -3,7 +3,10 @@
 (function () {
   FP_ANIMADOR.registrar('ficha-cinco-bloques', {
     duracion: 5,
-    pasos: [0.3, 0.62, 1],
+    // Pasos LOGICOS: 1) el problema: DOMINIO y PROBLEMA (con su cifra); 2) quien y que:
+    // ACTORES (con sus sistemas externos) y CAPACIDADES; 3) el limite: FUERA DE ALCANCE;
+    // 4) el puente: los sistemas externos de la ficha son los System_Ext del diagrama.
+    pasos: [0.3, 0.62, 0.82, 1],
     dibujar: function (ctx, t, lz) {
       UJ.escena(ctx, t, lz, [
         { tipo: 'caja', x: 30, y: 30, w: 360, h: 140, t: '1 · DOMINIO', s: 'el problema de negocio, en una línea', tam: 24, tamSub: 19, en: 0.02 },

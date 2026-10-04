@@ -4,6 +4,8 @@
 (function () {
   FP_ANIMADOR.registrar('menor-privilegio', {
     duracion: 5,
+    // Pasos LOGICOS: 1) el rol y lo que puede (SELECT, INSERT, UPDATE), 2) lo que deja de poder
+    // (la resta), 3) por que importa: con una inyeccion el atacante hereda solo eso.
     pasos: [0.3, 0.62, 1],
     dibujar: function (ctx, t, lz) {
       var si = ['SELECT', 'INSERT', 'UPDATE'], no = ['DELETE', 'ALTER TABLE', 'otro esquema'];

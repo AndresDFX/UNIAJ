@@ -4,7 +4,9 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('lista-encapsulada', {
     duracion: 5,
-    pasos: [0.3, 0.62, 1],
+    // Pasos LOGICOS: 1) main no puede tocar la lista private, 2) entra por agregar(m),
+    // 3) las reglas de las puertas (id repetido, null), 4) la conclusion.
+    pasos: [0.3, 0.62, 0.84, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, V = m.verde, R = m.malva, W = lz.ancho;
       // La clase y su lista privada

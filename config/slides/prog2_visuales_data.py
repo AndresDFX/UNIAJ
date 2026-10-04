@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
-"""Que visual acompana a cada concepto de Programacion II: animacion, foto o nada.
+"""Que animacion acompana a cada concepto de Programacion II.
 
 Clave: el comienzo del titulo del concepto tal como esta en `prog2_conceptos_data.CONCEPTOS`
 (se compara sin tildes ni mayusculas). Valor:
 
 - ``anim``: carpeta/huella en `config/animaciones/` (renderizada por `renderizar.py`). En la
-  lamina sus pasos aparecen uno por clic del docente.
-- ``foto``: consulta para Pexels, en ingles; se usa si no hay animacion renderizada.
+  lamina sus pasos aparecen uno por clic del docente; cada paso cierra una idea completa.
 
 Prioridad del curso: estructuras de datos (pila, cola, mapa, conjunto), eventos, patrones y
-excepciones, que son procesos con pasos. Un concepto sin entrada se queda en texto a ancho
-completo: el visual se pone donde explica. Las laminas de codigo nunca llevan visual.
+excepciones, que son procesos con pasos. Un concepto sin animacion lleva la ilustracion
+generada para el (`prog2_ilustraciones_cN.py`, un fotograma que lo explica); sin ninguna de
+las dos se queda en texto. Nada de fotos de banco (Pexels se retiro en 2026-10). Las laminas
+de codigo nunca llevan visual.
 """
 
 VISUALES = {

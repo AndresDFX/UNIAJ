@@ -3,7 +3,9 @@
 (function () {
   FP_ANIMADOR.registrar('contenedor-aislado', {
     duracion: 5,
-    pasos: [0.45, 1],
+    // Pasos LOGICOS: 1) un solo SO anfitrion con tres contenedores aislados por namespaces
+    // (termina en 0.44); 2) la consecuencia de no tener SO propio: el tamano, GB contra MB.
+    pasos: [0.46, 1],
     dibujar: function (ctx, t, lz) {
       UJ.escena(ctx, t, lz, [
         { tipo: 'marco', x: 30, y: 20, w: 740, h: 330, t: 'Un solo sistema operativo anfitrión (kernel compartido)', color: 'acento', en: 0 },

@@ -5,6 +5,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('promedio-percentil', {
     duracion: 5,
+    // Pasos LOGICOS: 1) las 100 peticiones ordenadas (95 rapidas, 5 lentas), 2) el promedio de
+    // 314 ms que no le paso a nadie, 3) p50 y p99, y el objetivo escrito en percentiles.
     pasos: [0.34, 0.66, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, base = 420, esc = 300 / 4000;

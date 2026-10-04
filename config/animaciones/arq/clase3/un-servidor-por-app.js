@@ -3,6 +3,9 @@
 (function () {
   FP_ANIMADOR.registrar('un-servidor-por-app', {
     duracion: 5,
+    // Pasos LOGICOS: 1) antes: un servidor fisico por aplicacion, usado entre el 5 y el 15 %;
+    // 2) con virtualizacion: un servidor, un hipervisor y una maquina virtual por aplicacion,
+    // cada una con su SO entero. La idea 1 termina en 0.38 y se va en 0.47.
     pasos: [0.42, 1],
     dibujar: function (ctx, t, lz) {
       var els = [{ tipo: 'texto', t: 'Antes', x: 20, y: 14, tam: 26, peso: 800, alinear: 'left', color: 'accion', en: 0, sale: 0.47 }];

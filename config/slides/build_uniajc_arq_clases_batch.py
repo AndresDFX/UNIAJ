@@ -387,13 +387,15 @@ CLASSES = [
                 "CloudLite: contenerizamos al menos **un** servicio (API stub o front estático).",
                 "Error común: creer que el contenedor «no tiene sistema operativo»: usa el kernel del anfitrión, por eso una imagen Linux necesita un kernel Linux debajo.",
             ]),
-            ("Comprobar en un lab: recomendado, no obligatorio", [
-                "Lo que se entrega hoy es el **Dockerfile** y el **ciclo justificado**: se escribe "
-                "y se razona, no hace falta ejecutarlo para entregar.",
-                "Si quieres comprobarlo —y vale la pena— hay laboratorios de contenedores "
-                "gratuitos en el navegador, sin instalar nada y sin tarjeta.",
-                "@@Ojo con hacerlos obligatorios:@@ la sesión caduca en torno a la hora y el plan "
-                "gratuito limita cuántas abres al día. Por eso tu nota no depende de que carguen.",
+            # Antes decia «lo que se entrega hoy» y «tu nota no depende»: eso es la actividad,
+            # que no va en el deck. Queda el concepto: el lab es desechable, la carpeta no.
+            ("Comprobar en un lab: el Dockerfile vive en tu carpeta", [
+                "Un **Dockerfile** se puede escribir y razonar sin ejecutarlo; ejecutarlo es la "
+                "prueba de que el razonamiento era correcto.",
+                "Hay laboratorios de contenedores gratuitos en el navegador: sin instalar nada y "
+                "sin tarjeta.",
+                "@@Son desechables:@@ la sesión caduca en torno a la hora y el plan gratuito "
+                "limita cuántas se abren al día.",
                 "El Dockerfile se escribe en **tu** carpeta del PI y se pega en el lab, nunca al "
                 "contrario: lo que se cierra con la sesión del lab se pierde.",
             ]),
@@ -2066,6 +2068,8 @@ _ANON_REGLAS = [
     (r"\bCloudLite\b", "la app"),
     (r"\b(?:informe|evidencias?|prep|pitch|escala) PI\b",
      lambda m: m.group(0)[:-3].replace("prep", "preparación")),
+    # «(para el PI)» entero, parentesis incluidos: la regla siguiente dejaba «()» en el titulo.
+    (r"\s*\((?:para el|en el|del|al|el|de) PI\)", ""),
     (r"\s*\b(?:para el|en el|del|al|el|de) PI\b", ""),
     (r"\bPI\s*", ""),
     (r"\bProyecto Integrador\b", "proyecto"),

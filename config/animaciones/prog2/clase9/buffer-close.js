@@ -4,6 +4,9 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('buffer-close', {
     duracion: 4.8,
+    // Pasos LOGICOS: 1) write() llena el buffer y el disco sigue en 0, 2) el programa termina sin
+    // close(): el buffer se pierde aunque la consola diga «guardado», 3) con try-with-resources el
+    // buffer baja al disco. Ya eran logicos; se ordeno la fila 2 (titulo, codigo, cajas).
     pasos: [0.32, 0.64, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, R = m.malva, V = m.verde, G = m.gris, S = m.sello, W = lz.ancho;
@@ -44,23 +47,25 @@
       });
       UJ.sello(ctx, lz, 400, y1 + 206, 24, false, L.tramo(t, 0.5, 0.56));
       UJ.rotulo(ctx, lz, 'pero el archivo quedó en 0 bytes', 440, y1 + 194, { tam: 18, peso: 700, alinear: 'left', color: R, visible: L.tramo(t, 0.54, 0.62) });
-      // Fila 2: con try-with-resources
-      var y2 = 270;
+      // Fila 2: con try-with-resources (el titulo arriba, luego el codigo, luego las cajas)
+      var y2 = 304;
       UJ.alfa(ctx, L.tramo(t, 0.68, 0.72), function () {
-        UJ.codigo(ctx, lz, 20, y2 - 6, W - 40, 'try (BufferedWriter s = Files.newBufferedWriter(ruta, UTF_8)) { ... }', 1, 15);
+        UJ.rotulo(ctx, lz, 'Con try-with-resources', 20, 258, { tam: 21, peso: 800, alinear: 'left', color: V });
+        UJ.codigo(ctx, lz, 20, 292, W - 40, 'try (BufferedWriter s = Files.newBufferedWriter(ruta, UTF_8)) { ... }', 1, 15);
       });
-      fila(y2 + 40, 'Con try-with-resources', V, L.tramo(t, 0.68, 0.72));
+      fila(y2, '', V, L.tramo(t, 0.68, 0.72));
       var baja = L.tramo(t, 0.8, 0.9);
-      lleno(y2 + 40, L.tramo(t, 0.72, 0.8) * 3, 1 - baja);
+      lleno(y2, L.tramo(t, 0.72, 0.8) * 3, 1 - baja);
       for (var k = 0; k < 3; k++) {
         var x = L.mezcla(256 + k * 80, 600 + k * 50, baja);
-        if (baja > 0 && baja < 1) UJ.alfa(ctx, 1, function () { L.rectRed(ctx, x, y2 + 40 + 76, 40, 30, 6); L.rellena(ctx, L.tono(A, 0.75), A, 2); });
+        if (baja > 0 && baja < 1) UJ.alfa(ctx, 1, function () { L.rectRed(ctx, x, y2 + 76, 40, 30, 6); L.rellena(ctx, L.tono(A, 0.75), A, 2); });
       }
+      if (baja > 0) L.flecha(ctx, 504, y2 + 90, 554, y2 + 90, V, 3, baja);
       UJ.alfa(ctx, L.tramo(t, 0.68, 0.72), function () {
-        disco(y2 + 40, Math.round(90 * baja), baja >= 1 ? V : G);
+        disco(y2, Math.round(90 * baja), baja >= 1 ? V : G);
       });
-      UJ.rotulo(ctx, lz, 'al salir del try se llama close(): el buffer baja al disco', W / 2, y2 + 200, { tam: 18, peso: 700, color: V, ancho: W - 40, visible: L.tramo(t, 0.86, 0.92) });
-      UJ.sello(ctx, lz, 670, y2 + 250, 24, true, L.tramo(t, 0.88, 0.94));
+      UJ.rotulo(ctx, lz, 'al salir del try se llama close(): el buffer baja al disco', W / 2, y2 + 154, { tam: 18, peso: 700, color: V, ancho: W - 40, visible: L.tramo(t, 0.86, 0.92) });
+      UJ.sello(ctx, lz, 670, y2 + 214, 24, true, L.tramo(t, 0.88, 0.94));
       UJ.rotulo(ctx, lz, 'IOException es checked: el compilador obliga a atenderla.', W / 2, 590, { tam: 18, peso: 600, ancho: W - 40, visible: L.tramo(t, 0.92, 0.99) });
     }
   });

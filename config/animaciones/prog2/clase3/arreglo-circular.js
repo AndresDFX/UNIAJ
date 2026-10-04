@@ -5,7 +5,11 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('arreglo-circular', {
     duracion: 5,
-    pasos: [0.34, 0.68, 1],
+    // Pasos LOGICOS: 1) poll: sale Luna y solo avanza el frente, 2) offer x3: el final da la
+    // vuelta a la casilla 0, 3) LinkedList: sacar el primero es mover la cabeza, 4) el
+    // contraste: ArrayList remove(0) corre a todos. La linea de LinkedList ya no comparte
+    // paso con la vuelta del arreglo circular.
+    pasos: [0.34, 0.6, 0.68, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, R = m.malva, V = m.verde, W = lz.ancho;
       UJ.rotulo(ctx, lz, 'ArrayDeque: arreglo circular con dos punteros', W / 2, 20, { tam: 22, peso: 700, color: A });
@@ -35,8 +39,8 @@
       }
       UJ.alfa(ctx, L.tramo(t, 0.04, 0.1), function () { puntero(fr, 'frente', R, 148); puntero(fi, 'final', V, 148); });
       UJ.rotulo(ctx, lz, 'poll(): sale Luna y solo avanza el frente; nadie se mueve.', W / 2, 200, { tam: 18, ancho: W - 40, visible: L.tramo(t, 0.22, 0.3) });
-      UJ.rotulo(ctx, lz, 'offer() al llegar al borde: el final da la vuelta a la casilla 0.', W / 2, 232, { tam: 18, color: V, ancho: W - 40, visible: L.tramo(t, 0.56, 0.62) });
-      UJ.rotulo(ctx, lz, 'LinkedList: cadena de nodos; sacar el primero es mover la cabeza.', W / 2, 264, { tam: 18, color: A, ancho: W - 40, visible: L.tramo(t, 0.6, 0.66) });
+      UJ.rotulo(ctx, lz, 'offer() al llegar al borde: el final da la vuelta a la casilla 0.', W / 2, 232, { tam: 18, color: V, ancho: W - 40, visible: L.tramo(t, 0.53, 0.59) });
+      UJ.rotulo(ctx, lz, 'LinkedList: cadena de nodos; sacar el primero es mover la cabeza.', W / 2, 264, { tam: 18, color: A, ancho: W - 40, visible: L.tramo(t, 0.61, 0.67) });
       // ArrayList remove(0)
       UJ.alfa(ctx, L.tramo(t, 0.7, 0.74), function () {
         ctx.strokeStyle = L.tono(m.tinta, 0.75); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(20, 316); ctx.lineTo(W - 20, 316); ctx.stroke();

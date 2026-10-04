@@ -17,7 +17,7 @@
         var total = ws.reduce(function (s, w) { return s + w; }, 0) + (ws.length - 1) * 16;
         var x = (W - total) / 2, y = 76 + f * 58;
         for (var i = 0; i < ws.length; i++) {
-          var a = L.tramo(t, 0.06 + k * 0.018, 0.1 + k * 0.018);
+          var a = L.tramo(t, 0.06 + k * 0.016, 0.1 + k * 0.016);
           UJ.pildora(ctx, lz, x, y, filas[f][i], m.gris, a, { tam: 20 });
           UJ.rayar(ctx, x + 6, y + 18, ws[i] - 12, R, L.tramo(t, 0.26 + k * 0.02, 0.3 + k * 0.02));
           x += ws[i] + 16; k++;

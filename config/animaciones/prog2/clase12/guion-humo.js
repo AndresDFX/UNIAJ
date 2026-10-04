@@ -3,6 +3,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('guion-humo', {
     duracion: 4.5,
+    // Pasos LOGICOS: 1) el arranque en el main, en su orden; 2) los cinco pasos del guion de
+    // humo; 3) cada paso en verde y la regla de repetirlo tras cada cambio.
     pasos: [0.35, 0.65, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, W = lz.ancho;
@@ -14,7 +16,8 @@
         if (i < 3) { var a = L.tramo(t, 0.1 + i * 0.07, 0.15 + i * 0.07); if (a > 0) L.flecha(ctx, x + 162, 97, x + 190, 97, A, 4, a); }
       }
       UJ.rotulo(ctx, lz, 'Guion de humo: 5 pasos, siempre los mismos', W / 2, 166, { tam: 22, peso: 700, visible: L.tramo(t, 0.38, 0.45) });
-      var pasos = ['La ventana abre sin errores', 'Registrar a Luna (M-001)', 'Aparece en la lista', 'Cerrar y volver a abrir', 'Luna sigue ahí: se guardó'];
+      // Los mismos cinco de la lamina: abrir con datos, registrar, buscar por id, cerrar guardando, reabrir.
+      var pasos = ['Abrir: la tabla trae los datos del archivo', 'Registrar a Luna: aparece en la tabla', 'Buscar por id M-001: sale su ficha', 'Cerrar: guarda y avisa cuántas', 'Reabrir: Luna sigue ahí'];
       for (var k = 0; k < 5; k++) {
         var y = 212 + k * 66;
         UJ.alfa(ctx, L.tramo(t, 0.4 + k * 0.04, 0.46 + k * 0.04), function () {

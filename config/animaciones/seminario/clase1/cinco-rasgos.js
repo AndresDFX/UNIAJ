@@ -4,7 +4,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('cinco-rasgos', {
     duracion: 5,
-    // Las pausas del docente: en cada una la lamina espera un clic.
+    // Pasos LOGICOS: 1) los cinco rasgos, 2) la frase de relleno los falla todos, 3) el
+    // requisito numerado los cumple todos.
     pasos: [0.3, 0.64, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, R = m.malva, V = m.verde, W = lz.ancho;
@@ -26,8 +27,12 @@
           L.rectRed(ctx, x0, y, w0, rh - 8, 10); L.rellena(ctx, L.tono(A, 0.9), A, 2);
           UJ.rotulo(ctx, lz, (i + 1) + '. ' + rasgos[i], x0 + 16, y + 14, { tam: 19, peso: 700, color: L.tono(A, -0.2), alinear: 'left' });
         });
-        UJ.alfa(ctx, L.tramo(t, 0.04 + i * 0.045, 0.1 + i * 0.045) * 0.6, function () {
+        // Las celdas de cada columna llegan con SU columna: en el paso 1 no hay casillas vacias
+        // que anuncien la comparacion antes de explicarla.
+        UJ.alfa(ctx, L.tramo(t, 0.32, 0.4) * 0.6, function () {
           L.rectRed(ctx, x1, y, w1, rh - 8, 10); L.rellena(ctx, L.tono(m.gris, 0.94));
+        });
+        UJ.alfa(ctx, L.tramo(t, 0.66, 0.72) * 0.6, function () {
           L.rectRed(ctx, x2, y, w2, rh - 8, 10); L.rellena(ctx, L.tono(m.gris, 0.94));
         });
         UJ.sello(ctx, lz, x1 + w1 / 2, y + (rh - 8) / 2, 18, false, L.tramo(t, 0.4 + i * 0.045, 0.46 + i * 0.045));
