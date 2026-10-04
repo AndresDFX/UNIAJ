@@ -4,7 +4,9 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('tipos-de-datos', {
     duracion: 5,
-    pasos: [0.36, 0.66, 1],
+    // Pasos LOGICOS: un caso completo por clic (tipo tentador, lo que falla, tipo correcto)
+    // y al final la tentacion contraria, todo VARCHAR(4000).
+    pasos: [0.3, 0.62, 0.9, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, W = lz.ancho, R = m.malva || '#A02030', V = m.verde || A;
       var casos = [

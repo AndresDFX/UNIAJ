@@ -23,7 +23,7 @@
       UJ.rotulo(ctx, lz, mala > 0.5 ? 'condición siempre verdadera → todas las mascotas' : 'devuelve a Luna', W / 2, 182,
                 { tam: 20, peso: 700, color: mala > 0.5 ? R : A, visible: L.tramo(t, 0.18, 0.24) + (mala > 0.5 ? 1 : 0) });
       UJ.alfa(ctx, L.tramo(t, 0.4, 0.5), function () {
-        UJ.tabla(ctx, lz, 30, 220, 330, 'mascota', ['Luna', 'Firulais', 'Michi', 'Rocky', '…'], 5, R, -1);
+        UJ.tabla(ctx, lz, 30, 220, 330, 'mascota', ['Luna', 'Firulais', 'Mishi', 'Rocky', '…'], 5, R, -1);
         UJ.sello(ctx, lz, 340, 222, 22, false, 1);
       });
       // Parametro

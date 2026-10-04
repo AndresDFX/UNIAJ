@@ -26,8 +26,10 @@
           UJ.rotulo(ctx, lz, partes[i][1], 284, y + 12, { tam: 19, peso: 500, alinear: 'left', ancho: 460 });
         });
       }
-      UJ.rotulo(ctx, lz, 'La diferencia es verificabilidad: se sabe cuándo está resuelto.', W / 2, 545,
-                { tam: 21, peso: 700, ancho: W - 40, visible: L.tramo(t, 0.88, 1) });
+      UJ.rotulo(ctx, lz, 'La diferencia es verificabilidad: se sabe cuándo está resuelto.', W / 2, 532,
+                { tam: 21, peso: 700, ancho: W - 40, visible: L.tramo(t, 0.88, 0.94) });
+      UJ.rotulo(ctx, lz, 'De 3 a 5 hallazgos por persona, los de más peso primero.', W / 2, 578,
+                { tam: 18, peso: 600, color: L.tono(m.tinta, 0.2), ancho: W - 40, visible: L.tramo(t, 0.93, 0.99) });
     }
   });
 })();

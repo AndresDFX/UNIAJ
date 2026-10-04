@@ -5,6 +5,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('capital-one', {
     duracion: 5,
+    // Pasos LOGICOS: 1) la cadena del ataque, 2) lo que el rol podia leer frente a lo que
+    // necesitaba, 3) la causa raiz y la leccion: privilegio minimo.
     pasos: [0.36, 0.76, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho, R = m.malva || '#A02030', V = m.verde || A;
@@ -26,12 +28,14 @@
         });
       }
       UJ.rotulo(ctx, lz, 'verde: lo que necesitaba · rojo: lo que además podía leer (esquema, no a escala)', 590, 340, { tam: 16, peso: 700, ancho: 360, visible: L.tramo(t, 0.66, 0.74) });
+      // Causa raiz y leccion
       UJ.alfa(ctx, L.tramo(t, 0.78, 0.86), function () {
         L.rectRed(ctx, 30, 400, 740, 90, 12); L.rellena(ctx, L.tono(C, 0.88), C, 3);
         UJ.rotulo(ctx, lz, 'Causa raíz: privilegio mucho mayor que su función', 400, 412, { tam: 21, peso: 800, color: L.tono(C, -0.35), ancho: 700 });
         UJ.rotulo(ctx, lz, '≈ 100 millones de personas afectadas en EE. UU.', 400, 450, { tam: 18, ancho: 700 });
       });
-      UJ.rotulo(ctx, lz, 'Sin hazaña: un permiso de más.', W / 2, 545, { tam: 22, peso: 700, ancho: W - 40, visible: L.tramo(t, 0.88, 1) });
+      UJ.rotulo(ctx, lz, 'Lección: privilegio mínimo, cada rol solo con lo que su tarea necesita.', W / 2, 530,
+                { tam: 21, peso: 700, ancho: W - 60, visible: L.tramo(t, 0.88, 1) });
     }
   });
 })();

@@ -1,5 +1,5 @@
 /* La secuencia exacta: el rol nace en cero, recibe privilegios sobre tablas, y se otorga a la
- * persona. REVOKE quita lo otorgado. */
+ * persona. REVOKE DELETE: redundante a proposito, documenta que recepcion no borra. */
 (function () {
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('grant-revoke', {
@@ -18,8 +18,8 @@
         UJ.codigo(ctx, lz, 30, y, W - 60, lineas[i][0], L.tramo(t, lineas[i][1], lineas[i][1] + 0.12), 18);
         UJ.rotulo(ctx, lz, '→ ' + lineas[i][2], 50, y + 50, { tam: 18, peso: 600, alinear: 'left', color: L.tono(C, -0.3), visible: L.tramo(t, lineas[i][1] + 0.1, lineas[i][1] + 0.16) });
       }
-      UJ.codigo(ctx, lz, 30, 478, W - 60, 'REVOKE INSERT ON cita FROM recepcion;', L.tramo(t, 0.84, 0.94), 18);
-      UJ.rotulo(ctx, lz, '→ quita lo otorgado; afecta a todos los que tienen el rol', 50, 528, { tam: 18, peso: 600, alinear: 'left', color: R, ancho: W - 80, visible: L.tramo(t, 0.92, 1) });
+      UJ.codigo(ctx, lz, 30, 478, W - 60, 'REVOKE DELETE ON cita FROM recepcion;', L.tramo(t, 0.84, 0.94), 18);
+      UJ.rotulo(ctx, lz, '→ nunca se otorgó: no falla, y deja escrita la decisión', 50, 528, { tam: 18, peso: 600, alinear: 'left', color: R, ancho: W - 80, visible: L.tramo(t, 0.92, 1) });
     }
   });
 })();

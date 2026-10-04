@@ -24,7 +24,7 @@
       UJ.rotulo(ctx, lz, 'El orden es dependencia', 600, 40, { tam: 22, peso: 800, color: A, visible: L.tramo(t, 0.52, 0.58) });
       UJ.caja(ctx, lz, 440, 90, 330, 120, 'FOREIGN KEY', 'no se crea antes que la tabla a la que apunta', A, L.tramo(t, 0.56, 0.64));
       L.trazo(ctx, [[436, 150], [400, 150], [400, 123], [374, 123]], L.tramo(t, 0.62, 0.7), A, 3);
-      UJ.caja(ctx, lz, 440, 250, 330, 120, 'Trigger', 'no compila si su tabla no existe', C, L.tramo(t, 0.66, 0.74));
+      UJ.caja(ctx, lz, 440, 250, 330, 120, 'Trigger', 'no se puede crear si su tabla no existe', C, L.tramo(t, 0.66, 0.74));
       L.trazo(ctx, [[436, 310], [400, 310], [400, 398], [374, 398]], L.tramo(t, 0.72, 0.8), C, 3);
       UJ.alfa(ctx, L.tramo(t, 0.84, 0.92), function () {
         L.rectRed(ctx, 440, 410, 330, 140, 12); L.rellena(ctx, L.tono(A, 0.9), A, 2);

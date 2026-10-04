@@ -8,7 +8,7 @@
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho;
       var cols = ['id_mascota', 'nombre', 'especie', 'id_dueno'];
-      var filas = [['1', 'Luna', 'Canino', '1'], ['2', 'Michi', 'Felino', '2'], ['3', 'Kiwi', 'Ave', '1']];
+      var filas = [['1', 'Luna', 'Canino', '1'], ['2', 'Mishi', 'Felino', '2'], ['3', 'Kiwi', 'Ave', '1']];
       var x0 = 70, y0 = 90, cw = 165, ch = 48;
       var a = L.tramo(t, 0, 0.12);
       UJ.alfa(ctx, a, function () {

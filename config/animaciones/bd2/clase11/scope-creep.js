@@ -29,8 +29,10 @@
         UJ.rotulo(ctx, lz, '+ ' + extras[k], 560, 412 + k * 28, { tam: 18, peso: 600, color: R, alinear: 'left', visible: L.tramo(t, 0.46 + k * 0.08, 0.52 + k * 0.08) });
       UJ.rotulo(ctx, lz, '15', x0 + 14.5 * paso, yb + alto + 14, { tam: 22, peso: 800, color: R, visible: L.tramo(t, 0.74, 0.78) });
       UJ.rotulo(ctx, lz, 'Nadie decidió agregarlo y nada se quitó a cambio.', 40, 412, { tam: 19, alinear: 'left', ancho: 480, visible: L.tramo(t, 0.5, 0.7) });
-      UJ.rotulo(ctx, lz, 'Mismo esfuerzo, el doble de superficie.', W / 2, 560,
-                { tam: 23, peso: 700, ancho: W - 40, visible: L.tramo(t, 0.84, 1) });
+      UJ.rotulo(ctx, lz, 'Mismo esfuerzo, el doble de superficie.', W / 2, 538,
+                { tam: 23, peso: 700, ancho: W - 40, visible: L.tramo(t, 0.82, 0.9) });
+      UJ.rotulo(ctx, lz, 'Acción: las que sobran pasan a «alcance futuro» del informe, con su porqué.', W / 2, 584,
+                { tam: 17, peso: 600, color: V, ancho: W - 40, visible: L.tramo(t, 0.9, 0.98) });
     }
   });
 })();

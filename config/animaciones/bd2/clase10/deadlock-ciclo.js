@@ -28,10 +28,15 @@
         ctx.restore();
         UJ.rotulo(ctx, lz, 'espera', 600, 86, { tam: 17, peso: 700, color: C, visible: L.tramo(t, 0.34, 0.38) });
       });
-      ctx.save(); ctx.setLineDash([10, 8]);
-      L.flecha(ctx, 180, 228, 298, 300, A, 3, L.tramo(t, 0.24, 0.3));
-      ctx.restore();
-      UJ.rotulo(ctx, lz, 'espera', 200, 290, { tam: 17, peso: 700, color: A, visible: L.tramo(t, 0.28, 0.32) });
+      // La espera de Facturacion: cuando la victima cae, deja de esperar y obtiene la fila.
+      UJ.alfa(ctx, 1 - L.tramo(t, 0.6, 0.66), function () {
+        ctx.save(); ctx.setLineDash([10, 8]);
+        L.flecha(ctx, 180, 228, 298, 300, A, 3, L.tramo(t, 0.24, 0.3));
+        ctx.restore();
+        UJ.rotulo(ctx, lz, 'espera', 200, 290, { tam: 17, peso: 700, color: A, visible: L.tramo(t, 0.28, 0.32) });
+      });
+      L.flecha(ctx, 180, 228, 298, 300, A, 4, L.tramo(t, 0.6, 0.66));
+      UJ.rotulo(ctx, lz, 'la obtiene y termina', 130, 300, { tam: 16, peso: 800, color: V, visible: L.tramo(t, 0.64, 0.7) });
       UJ.rotulo(ctx, lz, 'ciclo: ninguna avanza', 400, 172, { tam: 18, peso: 800, color: R, visible: L.tramo(t, 0.36, 0.42) * (1 - victima) });
       // Victima
       UJ.sello(ctx, lz, 760, 150, 26, false, L.tramo(t, 0.46, 0.54));

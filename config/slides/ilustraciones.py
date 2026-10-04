@@ -18,12 +18,16 @@ import visuales
 
 # Un archivo de datos por curso (`<curso>_ilustraciones_data.py`), para que el trabajo de un
 # curso no pise el de otro; se juntan aqui.
+# Tambien `<curso>_ilustraciones_cN.py` (uno por clase) para trabajar clases en paralelo.
+import glob as _glob
+import importlib as _importlib
+import os as _os
+
 ILUSTRACIONES = {}
-for _m in ("bd2", "arq", "prog2", "seminario", "intro"):
-    try:
-        _d = __import__("%s_ilustraciones_data" % _m).ILUSTRACIONES
-    except ImportError:
-        continue
+_aqui = _os.path.dirname(_os.path.abspath(__file__))
+for _f in sorted(_glob.glob(_os.path.join(_aqui, "*_ilustraciones_data.py"))
+                 + _glob.glob(_os.path.join(_aqui, "*_ilustraciones_c*.py"))):
+    _d = _importlib.import_module(_os.path.splitext(_os.path.basename(_f))[0]).ILUSTRACIONES
     for _k, _v in _d.items():
         ILUSTRACIONES.setdefault(_k, {}).update(_v)
 

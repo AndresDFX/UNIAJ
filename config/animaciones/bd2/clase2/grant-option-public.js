@@ -4,7 +4,9 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('grant-option-public', {
     duracion: 5,
-    pasos: [0.28, 0.54, 1],
+    // Pasos LOGICOS: 1) la cadena de reotorgamientos, 2) el REVOKE que exige CASCADE, 3) PUBLIC
+    // entrega el historial a todos, 4) como se limpia.
+    pasos: [0.28, 0.54, 0.88, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho, R = m.malva || '#A02030';
       UJ.rotulo(ctx, lz, 'WITH GRANT OPTION', 30, 16, { tam: 22, peso: 800, color: A, alinear: 'left', visible: L.tramo(t, 0, 0.05) });

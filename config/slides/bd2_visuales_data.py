@@ -96,7 +96,7 @@ VISUALES = {
         "Cambiar el esquema sin romper": {"anim": "bd2/clase12/expandir-contraer"},
     },
     13: {
-        "Clase autonoma": {"anim": "bd2/clase13/post-mortem"},
+        "El post-mortem analiza el fallo": {"anim": "bd2/clase13/post-mortem"},
         "Causa proxima y causa raiz": {"anim": "bd2/clase13/causa-raiz"},
         "Caso uno: el respaldo": {"anim": "bd2/clase13/gitlab-2017"},
         "Caso dos: permisos excesivos": {"anim": "bd2/clase13/capital-one"},

@@ -4,7 +4,9 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('er-vs-dibujo', {
     duracion: 5,
-    pasos: [0.2, 0.82, 1],
+    // Pasos LOGICOS: 1) el dibujo, 2) el mismo modelo como diagrama, 3) las cinco
+    // condiciones que lo hacen diagrama, 4) la prueba de aceptacion.
+    pasos: [0.2, 0.31, 0.82, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho, R = m.malva || '#A02030', V = m.verde || A;
       // El dibujo
@@ -22,11 +24,11 @@
       UJ.alfa(ctx, L.tramo(t, 0.22, 0.3), function () {
         UJ.rotulo(ctx, lz, 'Un diagrama ER', 570, 16, { tam: 22, peso: 800, color: V });
         L.rectRed(ctx, 360, 56, 190, 104, 6); L.rellena(ctx, L.tono(A, 0.92), A, 2);
-        L.texto(ctx, 'Dueno', 455, 62, { tam: 17, peso: 800, color: A, alinear: 'center', letra: lz.letra });
+        L.texto(ctx, 'dueno', 455, 62, { tam: 17, peso: 800, color: A, alinear: 'center', letra: lz.letra });
         L.texto(ctx, 'PK id_dueno INT', 372, 92, { tam: 15, color: m.tinta, letra: 'Consolas, monospace' });
         L.texto(ctx, 'telefono VARCHAR(30)', 372, 118, { tam: 15, color: m.tinta, letra: 'Consolas, monospace' });
         L.rectRed(ctx, 600, 56, 190, 104, 6); L.rellena(ctx, L.tono(A, 0.92), A, 2);
-        L.texto(ctx, 'Mascota', 695, 62, { tam: 17, peso: 800, color: A, alinear: 'center', letra: lz.letra });
+        L.texto(ctx, 'mascota', 695, 62, { tam: 17, peso: 800, color: A, alinear: 'center', letra: lz.letra });
         L.texto(ctx, 'PK id_mascota INT', 612, 92, { tam: 15, color: m.tinta, letra: 'Consolas, monospace' });
         L.texto(ctx, 'FK id_dueno INT', 612, 118, { tam: 15, color: m.tinta, letra: 'Consolas, monospace' });
         L.trazo(ctx, [[550, 108], [600, 108]], 1, m.tinta, 2);
@@ -35,7 +37,7 @@
         UJ.rotulo(ctx, lz, 'posee', 575, 172, { tam: 16, peso: 700, color: C });
       });
       var cond = ['Entidades en singular, con su PK marcada', 'Cada atributo con tipo y longitud', 'Cada FK señalada: a qué entidad apunta',
-                  'Cardinalidad en los dos extremos (mín. y máx.)', 'Cada relación con nombre verbal: Dueño posee Mascota'];
+                  'Cardinalidad en los dos extremos (mín. y máx.)', 'Cada relación con nombre verbal: dueno posee mascota'];
       for (var i = 0; i < 5; i++) {
         var a = L.tramo(t, 0.32 + i * 0.1, 0.4 + i * 0.1);
         UJ.alfa(ctx, a, function () {

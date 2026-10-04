@@ -143,7 +143,9 @@ SELECT (SELECT COUNT(*) FROM factura)         AS facturas,
 CALL sp_facturar(4, ARRAY[3, 2], ARRAY[2, 3]);
 SELECT id_factura, id_consulta, total FROM factura ORDER BY id_factura;
 SELECT id_insumo, nombre, stock FROM insumo ORDER BY id_insumo;
--- Esperado: factura 2 por 9500*2 + 31000*3 = 112.000; insumo 3 en 38 e insumo 2 en 0.
+-- Esperado: una segunda factura por 9500*2 + 31000*3 = 112.000, con id_factura = 3 (el
+-- CALL fallido consumio el 2 de la secuencia: nextval no se deshace con el ROLLBACK);
+-- insumo 3 en 38 e insumo 2 en 0.
 
 -- =====================================================================
 -- BLOQUE 4 · EL MISMO PATRON COMO FUNCION REUTILIZABLE

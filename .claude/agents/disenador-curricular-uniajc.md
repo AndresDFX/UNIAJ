@@ -466,6 +466,19 @@ fundamento, `{"anim": "..."}`. **Modo concepto**
 `pseudo_code_slide` (Consolas, números de línea, sintaxis), intercalado detrás de su concepto
 (`teoria_a_slides.intercalar`). Referencia: **BD II Clase 4**.
 
+### Notas = guion de la lámina, e ideas escritas (regla 2026-10, vinculante)
+
+El docente: «en las notas, todo lo necesario para poder dar esa diapositiva; estoy usando
+demasiado Gemini para explicar el tema». Por eso cada lámina (salvo la portada) lleva en sus
+notas un guion con forma fija, escrito en `<curso>_contenido_data.py` (o `<curso>_contenido_cN.py`
+por clase) y aplicado por `notas_guion.aplicar(prs, …)` antes de guardar:
+`explica` (QUÉ ES, dilo así), `min`, `pasos` («Al entrar» + uno por **cada clic** de su
+animación; en código, qué recorrer; en ilustraciones, cómo leerla), `ejemplo` (caso de la
+clínica/app con resultados reales), `preguntas` [(pregunta, respuesta)], `cuidado`, `puente`.
+Las láminas de concepto llevan además `ideas`: 3-4 frases completas (≤150 car, **negrita** en la
+clave) que reemplazan las viñetas recortadas. Todo coincide con la animación y el código
+(mismos nombres y cifras) y nada es técnicamente falso. Modelo: **BD II Clase 4**.
+
 ### Notas del presentador y guion de tiempos (regla 2026-10)
 
 - **Conceptos y respuestas van en las NOTAS DEL PRESENTADOR** de la lámina a la que

@@ -4,13 +4,14 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('prefijo-izquierdo', {
     duracion: 5,
-    // Las pausas del docente: en cada una la lamina espera un clic.
-    pasos: [0.3, 0.62, 1],
+    // Pasos LOGICOS: 1) como se ordena el indice compuesto; 2) las dos consultas que empiezan
+    // por la columna lider; 3) la que no, y la regla.
+    pasos: [0.3, 0.64, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho, R = m.malva || '#A02030', V = m.verde || A;
       var e = ['ATENDIDA · 03-02', 'ATENDIDA · 03-09', 'CANCELADA · 03-05', 'PROGRAMADA · 03-01', 'PROGRAMADA · 03-10', 'PROGRAMADA · 03-14'];
       var res = -1;
-      if (t > 0.34 && t < 0.62) res = 4;
+      if (t > 0.34 && t < 0.66) res = 4;
       UJ.alfa(ctx, L.tramo(t, 0, 0.12), function () {
         UJ.tabla(ctx, lz, 30, 30, 340, 'idx_cita_estado_fecha', e, 6, A, res);
       });
@@ -28,8 +29,10 @@
         UJ.codigo(ctx, lz, 30, 360 + i * 60, 660, q[i][0], L.tramo(t, q[i][2], q[i][2] + 0.08), 17);
         UJ.sello(ctx, lz, 732, 377 + i * 60, 20, q[i][1], L.tramo(t, q[i][2] + 0.08, q[i][2] + 0.14));
       }
-      UJ.rotulo(ctx, lz, 'Sin la columna líder, el índice no sirve para buscar.', W / 2, 560,
-                { tam: 21, ancho: W - 40, color: R, visible: L.tramo(t, 0.84, 1) });
+      UJ.rotulo(ctx, lz, 'sin búsqueda directa: PostgreSQL 18 puede «saltar» una vez por estado (skip scan)', W / 2, 546,
+                { tam: 15, ancho: W - 60, color: L.tono(m.tinta, 0.2), visible: L.tramo(t, 0.8, 0.86) });
+      UJ.rotulo(ctx, lz, 'Sin la columna líder no hay búsqueda directa en el índice.', W / 2, 590,
+                { tam: 21, ancho: W - 40, color: R, visible: L.tramo(t, 0.88, 0.98) });
     }
   });
 })();

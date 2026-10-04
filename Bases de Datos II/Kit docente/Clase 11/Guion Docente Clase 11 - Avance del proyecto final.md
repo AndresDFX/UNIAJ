@@ -5,7 +5,7 @@
 - **Hilo:** Proyecto Integrador **VetCare DB**
 - **Hoy avanzamos el PI en:** Demo parcial + checklist de avance (hito formal PI)
 - **Entregable de hoy:** Checklist firmada + enlace/ZIP avance (DDL+procs+ER)
-- **Herramienta:** Live SQL / DB Fiddle + draw.io + ExamLab
+- **Herramienta:** ExamLab (PostgreSQL/PGlite) + draw.io / Mermaid
 - **Slides:** Clases/Clase 11 - Avance del proyecto final/Presentacion.pptx
 - **Caso de estudio (anexo del estudiante):** `Clases/Proyecto Integrador/Anexo - Caso de estudio Clinica Huellitas - Bases de Datos II.docx`
   — perfil de la clinica, las 8 entidades, las 3 reglas, el elenco de nombres y la escala por clase.
@@ -20,113 +20,236 @@ El objetivo de la clase no es «cubrir un capitulo» aislado, sino producir evid
 del PI VetCare. La teoria se limita a desbloquear el taller.
 
 
-## Apoyo por diapositiva
+## Guion por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Es el mismo texto que llevan las **notas del presentador** de cada lámina: qué decir al entrar y en cada clic, el ejemplo, las preguntas típicas y el puente a la siguiente.
 
-**[Slide 4] Que es una revision tecnica, y con que producto se sale** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Una revision tecnica es una reunion con un proposito unico: encontrar defectos en un artefacto antes de que cuesten caro, y salir con un producto escrito.
-  - No es una reunion de avance, no es una calificacion y no es una demostracion para lucirse.
-  - La practica tiene nombres y roles establecidos desde hace decadas en ingenieria de software: el autor presenta, uno o mas revisores buscan defectos, un moderador cuida el tiempo y el tono, y un escriba registra los hallazgos.
-  - El estandar clasico, IEEE 1028, distingue la inspeccion (formal, con lista de verificacion y metricas), el walkthrough (el autor guia y explica) y la revision tecnica propiamente dicha (los pares evaluan si el artefacto sirve para su proposito).
-  - NOTAS:
-  - Lo que se hace hoy es una revision tecnica con lista de verificacion, comprimida a diez minutos por estudiante.
-  - Dos reglas gobiernan la sesion y hay que decirlas en voz alta antes de empezar: se revisa el artefacto y no la persona, y no se resuelve el problema dentro de la revision, solo se registra.
-  - Un estudiante que se pone a corregir el DDL en vivo consume el tiempo de los demas y sale con un hallazgo menos que si hubiera seguido escuchando.
+### [Slide 2] Encuadre de hoy · Tema y objetivo
 
-**[Slide 5] Lo que se audita es la coherencia entre piezas** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Un artefacto es cualquier producto de trabajo: el diagrama entidad-relacion, el script DDL, la matriz de roles, los procedimientos, el informe de optimizacion.
-  - Es perfectamente posible que un estudiante tenga un ER bien dibujado, un DDL que ejecuta sin errores
-  - Y que ambos describan bases de datos distintas, porque el ER se dibujo en la Clase 1 y el DDL se fue parchando en las Clases 3 a 8 sin volver a actualizar el diagrama.
-  - Cada una toma dos o tres minutos si se ejecuta con criterio.
-  - NOTAS:
-  - Lo que se audita en una base de datos no es cada pieza por separado sino la coherencia entre piezas.
-  - Coherencia significa que todas esas piezas describen el mismo sistema.
-  - Esa divergencia es el hallazgo mas comun del checkpoint y tambien el mas facil de detectar si se sabe donde mirar.
-  - Las cuatro verificaciones cruzadas que el docente debe correr son: que el DDL corresponda al ER, que los GRANT correspondan a los roles declarados, que los procedimientos listados existan y sean invocables, y que la optimizacion tenga medicion antes y despues.
-  - Fuera de la lamina (habla de la practica): Cada una toma dos o tres minutos si se ejecuta con criterio, y juntas cubren los cuatro criterios de rubrica que mas peso tienen.
+QUÉ ES (dilo así): Hoy no hay SQL nuevo: hoy se revisa lo construido. Una revisión técnica bien hecha encuentra los defectos mientras todavía hay tiempo de corregirlos, y deja una lista escrita de qué arreglar.
 
-**[Slide 6] Verificaciones uno y dos: el ER contra el DDL** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Se recorre el diagrama entidad por entidad y se busca su CREATE TABLE: toda entidad sin tabla es un hallazgo.
-  - Luego se recorre en sentido contrario, porque es el que nadie hace: toda tabla sin entidad en el diagrama tambien es un hallazgo, ya que significa que el modelo crecio sin registrarse.
-  - Si el ER dice que una cita pertenece a exactamente una mascota, el DDL debe tener id_mascota con NOT NULL y una FOREIGN KEY hacia Mascota
-  - Si dice que un dueno puede tener varias mascotas pero una mascota tiene un solo dueno, la clave foranea vive en Mascota y no en Dueno.
-  - Una cardinalidad dibujada que no tiene su restriccion correspondiente en el DDL es decoracion, no modelo.
-  - Se toma la matriz de la Clase 2 y se comprueba que los cuatro roles declarados existan en el script y que las celdas se hayan traducido en sentencias.
-  - El hallazgo tipico aqui es el rol AUDITOR que en la matriz solo lee y en el script recibio privilegios de escritura, porque alguien copio el bloque de RECEPCION y cambio unicamente el nombre.
-  - NOTAS:
-  - Verificacion uno, ER contra DDL.
-  - Despues se verifican las relaciones.
-  - Verificacion dos, roles contra GRANT.
+CÓMO DARLA (≈4 min):
+- Al entrar: Lee el tema y pregunta: «si hoy alguien abriera su base sin conocerlos, ¿qué sería lo primero que no coincide con lo que dice su diagrama?». Toma dos respuestas.
+- Después: Cierra: «al final cada uno sale con su acta de hallazgos; cada hallazgo, demostrado con una ejecución».
 
-**[Slide 7] Verificacion tres: que compile no es que sirva** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - La distincion que separa a un estudiante que va bien de uno que va mal es esta: un procedimiento que compila no es un procedimiento que funciona.
-  - Primero CALL sp_agendar_cita con datos validos, que debe insertar la cita y devolver confirmacion.
-  - Segundo, CALL sp_agendar_cita con el caso invalido que el propio estudiante declaro, es decir una mascota inactiva o un horario ya tomado, que debe devolver el mensaje de negocio y no un error crudo del motor.
-  - Si el estudiante no puede mostrar la segunda ejecucion.
-  - Un informe de optimizacion sin medicion no es optimizacion, es una opinion.
-  - Si el estudiante creo tres indices y no puede senalar cual consulta aprovecha cada uno, el hallazgo es que indexo por costumbre y no por medicion, que es exactamente el error que se analiza como caso real en la Clase 13.
-  - Ejemplo: un sp_agendar_cita que compila pero no valida la mascota inactiva pasa la primera ejecucion y falla la segunda, la que deberia haber sido rechazada.
-  - NOTAS:
-  - Verificacion tres, procedimientos invocables.
-  - La prueba de humo dura un minuto y consiste en pedir dos ejecuciones y no una.
-  - Verificacion cuatro, optimizacion.
-  - Se exige la consulta original, el plan de ejecucion que la acompanaba, el cambio aplicado (indice creado o consulta reescrita) y el plan despues, mostrando que el motor paso de recorrido completo de tabla a acceso por indice.
-  - Fuera de la lamina (habla de la practica): Si el estudiante no puede mostrar la segunda ejecucion, el procedimiento no tiene manejo de errores y eso resta puntos en los 25 de objetos programables.
+CUIDADO: Esta sesión es doble: la Clase 11 y la 12 van el mismo día. Cuida el tiempo de la revisión para que la integración no quede comprimida.
 
-**[Slide 8] La bateria de verificacion del avance** — 11 vinetas.
+PASA A LA SIGUIENTE: Primero, qué es una revisión técnica y con qué producto se sale.
 
-**[Slide 9] Scope creep: el crecimiento no controlado del alcance** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Scope creep es el crecimiento no controlado del alcance: funcionalidad que se va agregando sin que nadie decida agregarla y sin que se quite nada a cambio.
-  - En un proyecto de base de datos tiene un sintoma cuantificable, que es el numero de entidades. la clínica pide seis entidades minimas (Dueno, Mascota, Veterinario, Cita
-  - Insumo y Factura con su detalle) y el rango sano al llegar a la Clase 11 es de seis a nueve, contando una o dos ampliaciones propias justificadas como Consulta o historial clinico.
-  - Un estudiante que llega con quince entidades porque agrego proveedores, inventario multialmacen, portal para duenos y notificaciones no esta adelantado: esta repartiendo el mismo esfuerzo en el doble de superficie
-  - Y termina con quince tablas vacias en vez de siete tablas con procedimientos probados.
-  - La accion correctiva es explicita y se registra en el acta: las entidades que sobran se mueven a una seccion de alcance futuro del informe, con una frase que diga por que quedaron fuera.
-  - NOTAS:
-  - Existe tambien el problema inverso y menos visible.
-  - Fuera de la lamina (habla de la practica): La rubrica no da puntos por cantidad de tablas: da 20 por modelo coherente y 25 por objetos programables con casos de prueba.
-  - Fuera de la lamina (habla de la practica): Eso no resta puntos, al contrario, declarar el limite es una senal de madurez que se valora en la sustentacion.
-  - Fuera de la lamina (habla de la practica): Existe tambien el problema inverso y menos visible: el estudiante que recorto tanto que ya no tiene material para los 25 puntos de procedimientos, funciones y disparadores, y ese caso tambien es un hallazgo que hay que escribir.
+### [Slide 3] Mapa del bloque de hoy (120 min)
 
-**[Slide 10] La anatomia fija de la retroalimentacion util** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - La retroalimentacion util tiene una anatomia fija, y conviene que el docente la escriba siempre igual porque asi el acta se vuelve una lista de tareas y no un desahogo.
-  - Un hallazgo bien formulado tiene cinco partes: artefacto, observacion verificable, impacto, accion y responsable con fecha.
-  - Retroalimentacion inutil: «el modelo esta flojo, mejorenlo»; no dice que mirar ni como saber cuando esta resuelto.
-  - Retroalimentacion accionable: «Artefacto: script DDL.
-  - Observacion: la tabla detalle_factura no tiene FOREIGN KEY hacia insumo, aunque el ER dibuja la relacion.
-  - Impacto: se pueden insertar detalles con insumos que no existen.
-  - Accion: agregar la restriccion y volver a ejecutar el script completo desde cero en un entorno limpio.
-  - Fecha: antes de la Clase 12.» La diferencia entre las dos no es cortesia, es verificabilidad: el segundo hallazgo se puede cerrar y cualquiera puede comprobar que se cerro.
-  - La regla de dosificacion es de tres a cinco hallazgos por estudiante.
-  - NOTAS:
-  - Comparense los dos extremos.
-  - Responsable: Carlos.
-  - Fuera de la lamina (habla de la practica): Impacto: se pueden insertar detalles con insumos que no existen; afecta los 20 puntos de modelo coherente.
-  - Fuera de la lamina (habla de la practica): La regla de dosificacion es de tres a cinco hallazgos por estudiante, priorizados por puntos de rubrica en riesgo; mas de cinco desmoraliza y nadie los cierra, y menos de tres casi siempre significa que la revision fue superficial.
+QUÉ ES (dilo así): El recorrido del bloque: teoría con una lámina por concepto, demo de una revisión real y práctica opcional.
 
-**[Slide 11] Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado, y esa afirmacion merece justificacion porque suena severa.
-  - El unico valor de un punto de control intermedio es que todavia existe tiempo para corregir, y ese valor se realiza solo si de la sesion sale una lista escrita de cosas por corregir.
-  - Cuando el docente dice «todo bien, sigan asi», el estudiante interpreta legitimamente que su trabajo esta aprobado, deja de revisarlo, y el defecto reaparece en la entrega final cuando ya no hay clases para arreglarlo: es un costo diferido, no un ahorro.
-  - La primera: «esto tiene nota?».
-  - La segunda: «si quien me audita encuentra fallas, me baja la nota?».
-  - Y revisar el trabajo de otro tiene un beneficio propio bien documentado: los defectos ajenos se ven mucho mas rapido que los propios, y casi siempre quien audita vuelve a su carpeta y arregla en silencio el mismo problema que acaba de senalar.
-  - Todo esto se apoya en lo hecho hasta la Clase 10 (el informe de escenarios de concurrencia es una de las evidencias que hoy se audita) y alimenta directamente la Clase 12
-  - Donde el contrato de operaciones solo puede escribirse sobre procedimientos que existan y funcionen, y la Clase 15, donde se sustenta.
-  - NOTAS:
-  - Aqui aparecen las dos preguntas previsibles del estudiante.
-  - Fuera de la lamina (habla de la practica): La respuesta es que el checkpoint en si no califica el producto, pero es la ultima oportunidad de mover puntos de la rubrica antes de la entrega, y por eso conviene llegar con lo peor y no con lo mejor: un estudiante que esconde su parte floja para no verse mal pierde justamente la revision que la habria arreglado.
-  - Fuera de la lamina (habla de la practica): No, porque el auditor par no califica.
+CÓMO DARLA (≈1 min):
+- Al entrar: Señala solo los tramos; no te detengas. La práctica está en la carpeta de la clase y es opcional.
 
-**[Slide 12] Integridad y objetos de negocio, contados** — 14 vinetas.
+### [Slide 4] Que es una revision tecnica, y con que producto se sale
+
+QUÉ ES (dilo así): Una revisión técnica es una reunión con un solo propósito: encontrar defectos en un producto de trabajo mientras todavía es barato corregirlos, y salir con una lista escrita. No es una reunión de avance, ni una calificación, ni una demostración para lucirse.
+
+CÓMO DARLA (≈5 min):
+- Al entrar: El objetivo arriba y el artefacto al centro: puede ser el ER, el script DDL, la matriz de roles o un procedimiento. Todo gira alrededor del producto, no de quien lo hizo.
+- Clic 1: Los cuatro roles: el autor presenta y responde, los revisores buscan defectos, el moderador cuida tiempo y tono, el escriba anota cada hallazgo. Entre dos personas, una hace de autor y la otra de revisor y escriba.
+- Clic 2: El producto es el acta de hallazgos. Si de la reunión no sale nada escrito, no hubo revisión: hubo conversación.
+- Clic 3: Las dos reglas, dichas antes de empezar: se revisa el artefacto y no la persona, y el problema no se arregla dentro de la revisión. Quien se pone a corregir el DDL en vivo consume el tiempo de todos.
+
+EJEMPLO: El estándar IEEE 1028 distingue la inspección (formal, con lista de verificación y métricas), el walkthrough (el autor guía) y la revisión técnica (los pares evalúan si el artefacto sirve). Hoy se hace una revisión técnica con lista de verificación, de unos diez minutos por persona.
+
+SI PREGUNTAN:
+- «¿Esto tiene nota?» → La revisión no califica el producto: es la última oportunidad de mover puntos antes de la entrega. Conviene llegar con lo más flojo, no con lo mejor.
+- «¿Si el revisor encuentra fallas me bajan la nota?» → No: el revisor par no califica. Encontrar fallas es el objetivo de la sesión.
+
+CUIDADO: El error típico del docente es convertir la revisión en «va bien, faltan detalles»: amable, global y sin nada escrito. Sin acta, los defectos llegan intactos a la entrega final.
+
+PASA A LA SIGUIENTE: ¿Qué se revisa en una base de datos? No cada pieza: la coherencia entre ellas.
+
+### [Slide 5] Lo que se audita es la coherencia entre piezas
+
+QUÉ ES (dilo así): En una base de datos no se audita cada pieza por separado sino la coherencia entre piezas: que todas describan el mismo sistema. Un ER bien dibujado y un DDL que ejecuta sin errores pueden describir dos bases distintas, y ninguna de las dos piezas «falla» por sí sola.
+
+CÓMO DARLA (≈5 min):
+- Al entrar: Las cinco piezas del proyecto, cada una con su visto: el ER, el DDL, la matriz de roles, los procedimientos y el informe de optimización. Revisadas solas, todas pasan.
+- Clic 1: El enlace entre el ER y el DDL se rompe: el diagrama se dibujó en la Clase 1 y el DDL se parchó en las Clases 3 a 8 (una tabla de auditoría, una columna nueva) sin volver al diagrama. Es el hallazgo más común y el más fácil de encontrar si se sabe dónde mirar.
+- Clic 2: Las cuatro verificaciones cruzadas, cada una entre dos piezas: el ER contra el DDL, la matriz de roles contra los GRANT, los procedimientos contra una llamada real y el informe contra el EXPLAIN de antes y después. Cada una toma dos o tres minutos.
+- Clic 3: La frase de la lámina: se audita la coherencia entre piezas, no cada pieza.
+
+EJEMPLO: La tabla audit_cita apareció en la Clase 4 con su trigger. Si el ER no la tiene, el DDL describe una base con una tabla más que el diagrama: hallazgo de coherencia, aunque las dos piezas estén bien hechas.
+
+SI PREGUNTAN:
+- «¿Y si el DDL es el correcto y el ER el viejo?» → Entonces se actualiza el ER: la fuente de verdad es lo que corre. El hallazgo es que no coinciden, no cuál de los dos tiene la culpa.
+
+CUIDADO: No aceptes como evidencia lo que el autor dice («sí, está actualizado»): pide abrir las dos piezas lado a lado.
+
+PASA A LA SIGUIENTE: Las dos primeras verificaciones, en detalle.
+
+### [Slide 6] Verificaciones uno y dos: el ER contra el DDL
+
+QUÉ ES (dilo así): La verificación uno compara el diagrama con el script en los dos sentidos y después mira las relaciones. La verificación dos compara la matriz de roles de la Clase 2 con los GRANT que de verdad se ejecutaron.
+
+CÓMO DARLA (≈6 min):
+- Al entrar: De ida: se recorre el ER entidad por entidad buscando su CREATE TABLE. Dueño, mascota y cita lo tienen; insumo no: entidad sin tabla.
+- Clic 1: De vuelta: el script tiene CREATE TABLE proveedor y el ER no tiene esa entidad. El modelo creció sin registrarse, y es el sentido que nadie revisa.
+- Clic 2: Las relaciones: si el ER dice que una cita pertenece a exactamente una mascota, el DDL debe tener id_mascota INT NOT NULL y REFERENCES mascota(id_mascota). Si dice que un dueño tiene varias mascotas, la clave foránea vive en mascota, no en dueño. Una cardinalidad sin restricción es decoración.
+- Clic 3: Verificación dos: la matriz dice que el auditor solo lee cita, pero el script le dio GRANT SELECT, INSERT, UPDATE ON cita TO auditor. Pasa cuando se copia el bloque de recepción y solo se cambia el nombre del rol.
+
+EJEMPLO: La consulta del catálogo que lista las claves foráneas devuelve 7 filas en la base completa del curso: una por cada relación del ER (cita con mascota y con veterinario, mascota con dueño, consulta con cita, factura con consulta y detalle_factura con factura y con insumo).
+
+SI PREGUNTAN:
+- «¿Cómo veo los privilegios reales de un rol?» → Con el catálogo: SELECT grantee, table_name, privilege_type FROM information_schema.role_table_grants WHERE grantee = 'auditor'; con el GRANT del ejemplo devuelve tres filas: INSERT, SELECT y UPDATE sobre cita.
+- «¿Una FK sin NOT NULL está mal?» → Depende de la cardinalidad: sin NOT NULL la relación es opcional. Si el ER dice «exactamente una», falta el NOT NULL.
+
+CUIDADO: Revisar solo de ida deja pasar las tablas que crecieron sin diagrama, que son justo las que la sustentación pregunta.
+
+PASA A LA SIGUIENTE: La verificación tres separa a quien va bien de quien no: que compile no es que sirva.
+
+### [Slide 7] Verificacion tres: que compile no es que sirva
+
+QUÉ ES (dilo así): Las verificaciones tres y cuatro piden ejecuciones, no afirmaciones. Un procedimiento se prueba con dos llamadas: una que debe pasar y una que debe ser rechazada. Una optimización se prueba con el plan de ejecución de antes y de después.
+
+CÓMO DARLA (≈5 min):
+- Al entrar: CREATE PROCEDURE sp_agendar_cita(…) compiló. Eso solo dice que la sintaxis es correcta; todavía no se sabe si la regla funciona.
+- Clic 1: Caso válido: CALL sp_agendar_cita(1, 2, …) con una mascota activa (Firulais) y una franja libre: inserta la cita.
+- Clic 2: Caso inválido declarado: CALL sp_agendar_cita(3, 2, …) con Rocky, que está inactiva: el procedimiento aborta con «ERROR: la mascota 3 esta inactiva; no se agenda cita» y no inserta nada. Si el autor no puede mostrar esta segunda ejecución, el procedimiento no tiene manejo de errores.
+- Clic 3: Verificación cuatro: se pide la consulta, el plan de antes (Seq Scan on cita), el cambio aplicado y el plan de después (Index Scan using idx_cita_fecha_hora on cita). Sin medición, el informe es una opinión; y un índice que ninguna consulta aprovecha se anota como hallazgo.
+
+EJEMPLO: Un sp_agendar_cita que compila pero no valida la mascota inactiva pasa la primera llamada y también la segunda: inserta la cita de Rocky, que debía rechazarse. Solo la segunda ejecución lo delata.
+
+SI PREGUNTAN:
+- «¿Cómo confirmo que el caso inválido no dejó nada?» → Con SELECT COUNT(*) FROM cita; antes y después: el número no cambia.
+- «¿El plan de después siempre muestra Index Scan?» → No necesariamente: con pocas filas el planificador puede preferir Seq Scan aunque el índice exista. Lo que se exige es la medición y que el informe explique lo que muestra.
+
+CUIDADO: No marques en verde un procedimiento porque el autor dice que funciona: pide la ejecución del caso inválido en pantalla.
+
+PASA A LA SIGUIENTE: Las verificaciones en SQL: el catálogo responde qué existe de verdad.
+
+### [Slide 8] La bateria de verificacion del avance
+
+QUÉ ES (dilo así): El catálogo de la base, information_schema, responde con datos qué tablas existen y cuáles tienen clave primaria. Así se verifica el DDL sin leerlo línea por línea.
+
+CÓMO DARLA (≈4 min):
+- Líneas 1-3: Lista las tablas del esquema public en orden alfabético. En una base con el modelo completo y la auditoría aparecen 9: audit_cita, cita, consulta, detalle_factura, dueno, factura, insumo, mascota y veterinario. Cualquier otra es una tabla sin entidad que revisar.
+- Líneas 5-10: Une cada tabla con sus restricciones PRIMARY KEY mediante LEFT JOIN y se queda con las que no encontraron ninguna (c.constraint_name IS NULL).
+- Línea 11: Cero filas significa que todas las tablas tienen clave primaria. Cada fila que aparezca es un hallazgo.
+
+EJEMPLO: En la base completa del curso la segunda consulta devuelve 0 filas: todas las tablas, incluida audit_cita, tienen su clave primaria.
+
+SI PREGUNTAN:
+- «¿Por qué LEFT JOIN y no JOIN?» → Porque se buscan las tablas que NO tienen PK: un JOIN las descartaría; el LEFT JOIN las conserva con NULL en las columnas de la restricción, y el WHERE … IS NULL las deja solas.
+- «¿information_schema es de PostgreSQL?» → Es del estándar SQL: también existe en MySQL y SQL Server. PostgreSQL tiene además su catálogo propio, pg_catalog.
+
+CUIDADO: Corre las consultas sobre la base que el autor va a entregar, no sobre una copia de prueba: el catálogo describe la base en la que se ejecuta.
+
+PASA A LA SIGUIENTE: Una revisión también encuentra lo contrario de lo que falta: lo que sobra.
+
+### [Slide 9] Scope creep: el crecimiento no controlado del alcance
+
+QUÉ ES (dilo así): Scope creep es el crecimiento no controlado del alcance: se agregan cosas sin decidirlo y sin quitar nada. En un proyecto de base de datos tiene un síntoma que se cuenta: el número de entidades.
+
+CÓMO DARLA (≈4 min):
+- Al entrar: El mínimo son seis entidades (dueño, mascota, veterinario, cita, insumo y factura con su detalle) y el rango sano llega a nueve con una o dos ampliaciones justificadas, como consulta o un historial clínico. El modelo del curso tiene 8 tablas: dentro del rango.
+- Clic 1: Se agregan proveedores, inventario multialmacén, portal de dueños, notificaciones… y se llega a 15. Nadie decidió agregarlas y nada se quitó a cambio.
+- Clic 2: Mismo esfuerzo, el doble de superficie: se termina con quince tablas vacías en vez de ocho con procedimientos probados. La acción va al acta: las sobrantes pasan a una sección de alcance futuro, con su porqué.
+
+EJEMPLO: Un hallazgo bien escrito: «Artefacto: ER. Observación: 15 entidades, 7 sin procedimientos ni datos. Acción: mover proveedor, almacén, portal y notificación a alcance futuro.»
+
+SI PREGUNTAN:
+- «¿Mover entidades a alcance futuro no se ve mal?» → Al contrario: declarar el límite con su razón es señal de madurez y se valora al sustentar.
+
+CUIDADO: Existe el problema inverso: quien recortó tanto que ya no tiene material para procedimientos, funciones y triggers. También se escribe como hallazgo.
+
+PASA A LA SIGUIENTE: ¿Cómo se escribe un hallazgo para que sirva? Tiene una anatomía fija.
+
+### [Slide 10] La anatomia fija de la retroalimentacion util
+
+QUÉ ES (dilo así): La retroalimentación útil se escribe siempre con la misma forma, para que el acta sea una lista de tareas y no un desahogo. Cada hallazgo dice qué pieza, qué se observó, por qué importa, qué hacer y quién lo hace para cuándo.
+
+CÓMO DARLA (≈5 min):
+- Al entrar: La versión inútil: «el modelo está flojo, mejórenlo». No dice qué mirar ni cómo saber cuándo está resuelto.
+- Clic 1: La versión accionable, parte por parte: artefacto, el script DDL; observación, detalle_factura no tiene FOREIGN KEY hacia insumo aunque el ER dibuja la relación; impacto, se pueden insertar detalles con insumos que no existen; acción, agregar la restricción y re-ejecutar el script completo desde cero; responsable y fecha, el autor, antes de la próxima sesión.
+- Clic 2: La diferencia no es cortesía, es verificabilidad. Y la dosis: de tres a cinco hallazgos por persona; más de cinco desmoraliza y nadie los cierra, menos de tres suele ser una revisión superficial.
+
+EJEMPLO: La observación se prueba con SQL: INSERT INTO detalle_factura (id_factura, id_insumo, cantidad, precio_unit) VALUES (1, 999, 1, 1000); si entra, falta la FK; si responde «violates foreign key constraint», el hallazgo está cerrado.
+
+SI PREGUNTAN:
+- «¿Por qué re-ejecutar todo el script desde cero?» → Porque un ALTER aplicado a mano en la base de uno no queda en el script: la prueba de que quedó es que el script completo corra limpio en una base vacía.
+
+CUIDADO: La observación tiene que ser verificable: «la FK no existe» se comprueba; «el modelo está raro», no.
+
+PASA A LA SIGUIENTE: ¿Y si la revisión no encuentra nada? Entonces se desperdició.
+
+### [Slide 11] Un checkpoint sin hallazgos concretos es un checkpoint desperdiciado
+
+QUÉ ES (dilo así): Un punto de control intermedio solo vale si de él sale una lista de cosas por corregir mientras aún hay clases para hacerlo. Un «todo bien» no ahorra trabajo: lo aplaza al momento en que ya no se puede arreglar.
+
+CÓMO DARLA (≈4 min):
+- Al entrar: La línea del tiempo: checkpoint y entrega. Entre los dos, la franja verde es el tiempo que queda para corregir.
+- Clic 1: Con hallazgos concretos: el defecto aparece en el checkpoint, se anota y se corrige dentro de esa franja.
+- Clic 2: Con «todo bien, sigan así»: el estudiante entiende, con razón, que su trabajo está aprobado; deja de revisarlo y el defecto llega intacto a la entrega, cuando ya no hay tiempo. Es un costo diferido, no un ahorro.
+
+EJEMPLO: La revisión entre pares tiene un beneficio propio: quien revisa casi siempre vuelve a su carpeta y arregla en silencio el mismo problema que acaba de señalar.
+
+SI PREGUNTAN:
+- «¿Llego con lo mejor o con lo peor?» → Con lo peor: es lo que la revisión puede arreglar. Esconder la parte floja es perder justo la ayuda que se vino a buscar.
+
+CUIDADO: Convertir el checkpoint en una clase de repaso porque incomoda no tener tema nuevo: el tiempo se va explicando y nadie sale con su acta, que era el producto del día.
+
+PASA A LA SIGUIENTE: Para que los hallazgos salgan de datos y no de opiniones: más consultas al catálogo.
+
+### [Slide 12] Integridad y objetos de negocio, contados
+
+QUÉ ES (dilo así): Dos verificaciones más con el catálogo: qué claves foráneas existen y qué procedimientos, funciones y triggers hay de verdad en la base, no en el informe.
+
+CÓMO DARLA (≈4 min):
+- Líneas 1-9: Une las restricciones FOREIGN KEY con la columna que las lleva (key_column_usage) y con la tabla a la que apuntan (constraint_column_usage). En la base completa devuelve 7 filas: cita→veterinario, cita→mascota, consulta→cita, detalle_factura→factura, detalle_factura→insumo, factura→consulta y mascota→dueno.
+- Líneas 11-13: information_schema.routines lista lo que existe con su tipo: con el avance completo aparecen fn_trg_audit_cita (FUNCTION), sp_agendar_cita y sp_facturar (PROCEDURE).
+- Línea 14: information_schema.triggers devuelve trg_audit_cita sobre cita. Un trigger aparece una vez por cada evento que lo dispara; este solo escucha UPDATE.
+
+EJEMPLO: Si el informe dice «tres procedimientos» y routines devuelve dos, el tercero está en un archivo y no en la base: hallazgo.
+
+SI PREGUNTAN:
+- «¿Por qué la función del trigger aparece como FUNCTION?» → Porque en PostgreSQL el trigger son dos objetos: la función RETURNS TRIGGER, que es una rutina más, y la asociación CREATE TRIGGER, que está en information_schema.triggers.
+
+CUIDADO: La consulta de claves foráneas une solo por nombre de restricción: una FK de dos columnas aparecería repetida. En el modelo del curso todas son de una columna.
+
+PASA A LA SIGUIENTE: Ahora todo esto en la demo.
+
+### [Slide 13] Demo del dia
+
+QUÉ ES (dilo así): La demo es una revisión real de diez minutos sobre una base completa: el docente hace de revisor, ejecuta las verificaciones y escribe los hallazgos en vivo con sus cinco partes.
+
+CÓMO DARLA (≈15 min):
+- 1 · Catálogo: Ejecuta las consultas de las dos láminas de código: tablas, tablas sin PK (0 filas), claves foráneas (7) y rutinas y triggers. Compara cada resultado con el ER.
+- 2 · Procedimiento: CALL sp_agendar_cita(1, 2, TIMESTAMP '2026-11-05 10:00:00') inserta; CALL sp_agendar_cita(3, 2, TIMESTAMP '2026-11-05 09:00:00') responde «ERROR: la mascota 3 esta inactiva; no se agenda cita». Muestra SELECT COUNT(*) FROM cita antes y después de la segunda.
+- 3 · Hallazgo: Escribe un hallazgo completo en el acta, en voz alta, parte por parte. Si la base no tiene ninguno real, usa el de detalle_factura sin FK y pruébalo con el INSERT del insumo 999.
+- 4 · Cierre: Muestra el acta terminada: de 3 a 5 hallazgos, cada uno con responsable y fecha.
+
+EJEMPLO: Tiempos sugeridos: catálogo 5 min, procedimiento 4 min, hallazgo 4 min, cierre 2 min.
+
+SI PREGUNTAN:
+- «¿Y si la base del estudiante no corre?» → Ese es el primer hallazgo, y el más grave: sin un script que corra de principio a fin en una base vacía no hay sobre qué montar lo demás.
+
+CUIDADO: No corrijas en vivo lo que encuentres: anótalo. Corregir dentro de la revisión es la regla que más se rompe.
+
+PASA A LA SIGUIENTE: Para el ER del avance: del boceto al código Mermaid.
+
+### [Slide 14] Del boceto al código Mermaid
+
+QUÉ ES (dilo así): El diagrama se entrega como texto Mermaid, no como imagen: la imagen sale del código. Se piensa dibujando, se traduce a texto, se comprueba que dibuje y se guardan las dos cosas.
+
+CÓMO DARLA (≈3 min):
+- Paso 1: Diseña visual: en Excalidraw o draw.io arrastrar cajas es más rápido, y ahí se piensa el modelo.
+- Paso 2: Traduce con IA: pide el código erDiagram a partir del boceto. Revisa el resultado: la IA acierta la sintaxis, no el modelo; los nombres tienen que ser los del DDL.
+- Paso 3: Renderiza y corrige en un visor Mermaid (mermaid.live): si no dibuja, no comunica.
+- Paso 4: Guarda el texto Mermaid, que es la fuente, y exporta el PNG.
+
+EJEMPLO: Una relación en erDiagram: dueno ||--o{ mascota : tiene (un dueño, cero o muchas mascotas). Cada entidad lleva sus atributos con tipo y PK o FK: int id_mascota PK.
+
+SI PREGUNTAN:
+- «¿Por qué no basta una imagen del diagrama?» → Porque el texto se puede revisar, comparar con el DDL y versionar; una imagen no se corrige sin volver a dibujarla.
+
+CUIDADO: Revisa que los nombres del erDiagram sean exactamente los del DDL (dueno, no Dueño): un diagrama que no coincide con el script es justo el hallazgo de coherencia de hoy.
+
+PASA A LA SIGUIENTE: Cierre de la clase.
 
 
 **Demo que usted debe poder repetir:** Recorrido de checklist + ejemplo demo de 3 min.
@@ -178,7 +301,7 @@ Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 ### 35-55 · Demo paso a paso · [Slide 13][Slide 14]
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: Recorrido de checklist + ejemplo demo de 3 min.
-Herramienta: Live SQL / DB Fiddle + draw.io + ExamLab
+Herramienta: ExamLab (PostgreSQL/PGlite) + draw.io / Mermaid
 
 **Cierre la demo dentro de ExamLab** [Slide 14] — es la parte que el estudiante no adivina: pase el boceto a codigo Mermaid con ayuda de una IA, peguelo en la pregunta de diagrama y muestrelo renderizado.
 
@@ -188,7 +311,7 @@ Herramienta: Live SQL / DB Fiddle + draw.io + ExamLab
 - **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `erDiagram`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
 - **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
-📸 Salida esperada de la demo de la Clase 11 [[captura: cap01_demo.png | receta: 1) Abra Live SQL / DB Fiddle + draw.io + ExamLab y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 11/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda embebida aqui sola.]]
+📸 Salida esperada de la demo de la Clase 11 [[captura: cap01_demo.png | receta: 1) Abra ExamLab (PostgreSQL/PGlite) + draw.io / Mermaid y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 11/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda embebida aqui sola.]]
 Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Practica (opcional) · sin lamina

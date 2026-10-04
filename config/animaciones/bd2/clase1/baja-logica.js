@@ -40,8 +40,9 @@
         UJ.rotulo(ctx, lz, buenos[j], 430, 200 + j * 40, { tam: 18, peso: 600, alinear: 'left', color: V, visible: L.tramo(t, 0.66 + j * 0.03, 0.72 + j * 0.03) });
       UJ.alfa(ctx, L.tramo(t, 0.82, 0.94), function () {
         L.rectRed(ctx, 40, 450, W - 80, 140, 14); L.rellena(ctx, L.tono(m.sello || C, 0.8), m.tinta, 2);
-        UJ.codigo(ctx, lz, 70, 466, W - 140, "activa CHAR(1) CHECK (activa IN ('S','N'))", 1, 18);
-        UJ.rotulo(ctx, lz, 'Un CHECK basta si la regla solo mira columnas de la misma fila', W / 2, 528, { tam: 18, peso: 600, ancho: W - 120 });
+        UJ.codigo(ctx, lz, 70, 466, W - 140, "activa CHAR(1) DEFAULT 'S' CHECK (activa IN ('S','N'))", 1, 18);
+        UJ.rotulo(ctx, lz, "Las consultas del día filtran WHERE activa = 'S'", W / 2, 522, { tam: 18, peso: 600, ancho: W - 120 });
+        UJ.rotulo(ctx, lz, 'Ojo: para la FK, la mascota inactiva sigue existiendo', W / 2, 554, { tam: 18, peso: 700, color: R, ancho: W - 120 });
       });
     }
   });

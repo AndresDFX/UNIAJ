@@ -23,6 +23,7 @@
         UJ.codigo(ctx, lz, 20, 396, 540, 'GRANT INSERT ON cita TO recepcion;', 1, 15);
         UJ.sello(ctx, lz, 590, 411, 18, false, 1);
         UJ.rotulo(ctx, lz, 'agenda, pero no escribe filas a mano', 700, 362, { tam: 16, ancho: 170 });
+        UJ.rotulo(ctx, lz, 'Ojo: solo si el procedimiento es SECURITY DEFINER; si no, corre con los permisos de quien llama', W / 2, 432, { tam: 15, peso: 700, color: R, ancho: W - 40 });
       });
       UJ.alfa(ctx, L.tramo(t, 0.68, 0.8), function () {
         L.rectRed(ctx, 20, 460, 370, 140, 12); L.rellena(ctx, L.tono(A, 0.9), A, 2);

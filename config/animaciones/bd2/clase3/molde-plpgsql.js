@@ -4,6 +4,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('molde-plpgsql', {
     duracion: 5,
+    // Pasos LOGICOS: 1) el molde y AS (no IS), 2) el cuerpo es una cadena entre $proc$ (y $$
+    // vale igual), 3) como se cierra: ; obligatorio y sin la barra de Oracle.
     pasos: [0.35, 0.65, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, R = m.malva || '#A02030', W = lz.ancho;
@@ -41,9 +43,9 @@
       nota(y0 + 14 + 2 * h, 'AS, no IS', A, L.tramo(t, 0.26, 0.34));
       nota(y0 + 14 + 5 * h, 'cuerpo = una cadena', C, L.tramo(t, 0.46, 0.56));
       nota(y0 + 14 + 8 * h, '; final obligatorio', A, L.tramo(t, 0.66, 0.74));
-      UJ.rotulo(ctx, lz, 'Entre $proc$ caben ; y comillas sin duplicarlas.', W / 2, 440, { tam: 20, ancho: W - 40, visible: L.tramo(t, 0.55, 0.65) });
-      UJ.rotulo(ctx, lz, '$$ funciona igual; la etiqueta sirve para bloques anidados.', W / 2, 480, { tam: 18, ancho: W - 40, visible: L.tramo(t, 0.74, 0.82) });
-      UJ.alfa(ctx, L.tramo(t, 0.84, 0.94), function () {
+      UJ.rotulo(ctx, lz, 'Entre $proc$ caben ; y comillas sin duplicarlas.', W / 2, 440, { tam: 20, ancho: W - 40, visible: L.tramo(t, 0.5, 0.56) });
+      UJ.rotulo(ctx, lz, '$$ funciona igual; la etiqueta sirve para bloques anidados.', W / 2, 480, { tam: 18, ancho: W - 40, visible: L.tramo(t, 0.56, 0.64) });
+      UJ.alfa(ctx, L.tramo(t, 0.76, 0.9), function () {
         UJ.codigo(ctx, lz, 150, 540, 60, '/', 1, 22);
         UJ.sello(ctx, lz, 250, 562, 22, false, 1);
         UJ.rotulo(ctx, lz, 'la barra de Oracle aquí es error', 290, 550, { tam: 19, color: R, alinear: 'left', ancho: 400 });

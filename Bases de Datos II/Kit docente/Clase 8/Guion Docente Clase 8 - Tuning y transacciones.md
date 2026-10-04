@@ -20,299 +20,427 @@ El objetivo de la clase no es «cubrir un capitulo» aislado, sino producir evid
 del PI VetCare. La teoria se limita a desbloquear el taller.
 
 
-## Apoyo por diapositiva
+## Guion por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Es el mismo texto que llevan las **notas del presentador** de cada lámina: qué decir al entrar y en cada clic, el ejemplo, las preguntas típicas y el puente a la siguiente.
 
-**[Slide 4] Que es una transaccion, y las dos amenazas de las que protege** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Una transaccion es una unidad logica de trabajo formada por una o mas sentencias que el motor trata como indivisible frente a dos amenazas distintas: las fallas
-  - Porque no puede quedar aplicada a medias, y las demas sesiones, porque nadie debe ver el estado intermedio.
-  - Lo primero que hay que aclarar, porque el estudiante lo asume mal, es donde empieza y donde termina.
-  - En PostgreSQL, si no se abre explicitamente con BEGIN, cada sentencia de nivel superior es su propia transaccion y se confirma sola; en Oracle empieza sola con la primera sentencia DML, sin que nadie escriba BEGIN, y termina con COMMIT o con ROLLBACK.
-  - El ejemplo del proyecto es la facturacion de una consulta: se inserta la cabecera en factura, se insertan las lineas en detalle_factura y se descuenta el stock de cada insumo.
-  - Son varias sentencias que describen UN hecho de negocio, cobrar una consulta con sus insumos, no varios hechos independientes que casualmente ocurren juntos.
-  - Vale detenerse en la sentencia del descuento, porque es el centro de la clase
-  - En PL/pgSQL, cuantas filas afecto la sentencia anterior se pregunta con GET DIAGNOSTICS v_filas = ROW_COUNT; no existe SQL%ROWCOUNT, que es de Oracle.
-  - Los datos con los que se trabaja hoy son seis insumos: 1 Vacuna antirrabica con stock 12, 2 Vacuna triple felina con stock 3, 3 Antiparasitario oral con stock 40, 4 Suero fisiologico con stock 25, 5 Gasa esteril con stock 8 y 6 Jeringa 5ml con stock 60.
-  - El insumo 2, con sus 3 unidades, es el que se va a quedar corto en la demo.
-  - NOTAS:
-  - La condicion stock >= 2 no es decoracion, es la que impide que el descuento se aplique cuando no hay existencias y hace que el motor informe cero filas afectadas en lugar de dejar un numero negativo.
-  - CÓDIGO CITADO (referencia):
-  - UPDATE insumo SET stock = stock - 2 WHERE id_insumo = 2 AND stock >= 2
-  - Fuera de la lamina (habla de la practica): En PL/pgSQL, cuantas filas afecto la sentencia anterior se pregunta con GET DIAGNOSTICS v_filas = ROW_COUNT; no existe SQL%ROWCOUNT, que es de Oracle, y esa sola diferencia decide si el codigo del entregable compila o no.
+### [Slide 2] Encuadre de hoy · Tema y objetivo
 
-**[Slide 5] Atomicidad: el fallo concreto en VetCare** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Atomicidad significa que la transaccion se aplica completa o no se aplica en absoluto, sin estados intermedios visibles ni persistentes.
-  - El fallo concreto en la clínica cuando falta: se ejecuta el INSERT en factura, se ejecuta el INSERT de la primera linea en detalle_factura, se descuenta el stock de ese primer insumo y justo antes de la segunda linea se cae la red del consultorio.
-  - La consulta que detecta el descuadre conviene tenerla escrita porque es tambien buen ejercicio: AS vendido FROM detalle_factura d GROUP BY d.id_insumo, contrastada contra los movimientos registrados en insumo.
-  - Con atomicidad, el corte de red deja la transaccion sin confirmar y el motor la deshace por su cuenta al detectar que la sesion murio: no queda factura, no queda detalle, no se descuenta nada, y la recepcionista repite la operacion.
-  - NOTAS:
-  - Sin atomicidad queda una factura cobrando dos productos con una sola linea registrada, y un insumo descontado que nadie entrego.
-  - Nadie recibe un error, la clinica cobro, y el dano aparece semanas despues, cuando el inventario fisico no cuadra y ya no hay forma de saber que factura lo desajusto.
-  - CÓDIGO CITADO (referencia):
-  - SELECT d.id_insumo, SUM(d.cantidad)
-  - Fuera de la lamina (habla de la practica): Esa es la razon por la que el entregable no pide tres sentencias sueltas sino un procedimiento que las agrupa, y por la que la pregunta 2 de la clase vale 25 puntos por demostrar con datos —foto inicial y foto final— que el descuento que SI habia alcanzado se deshizo.
+QUÉ ES (dilo así): Las dos clases anteriores hicieron que las consultas leyeran menos. Hoy el foco pasa a las escrituras: que una factura con sus líneas y sus descuentos de stock quede completa o no quede, aunque algo falle a mitad.
 
-**[Slide 6] Consistencia: valido es lo que las restricciones declaran** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Consistencia significa que la transaccion lleva la base de un estado valido a otro estado valido
-  - Y valido no es palabra filosofica: valido es lo que cumplen las restricciones declaradas, claves primarias, claves foraneas, UNIQUE, NOT NULL, CHECK y los disparadores de la Clase 4.
-  - Aqui esta el malentendido mas costoso del tema y hay que enunciarlo de frente: la atomicidad NO produce consistencia.
-  - El fallo concreto: la regla de la clínica dice que el stock de un insumo nunca queda negativo
-  - Pero si la tabla insumo no tiene la restriccion y la aplicacion factura 10 unidades de las 3 disponibles del insumo 2
-  - El UPDATE insumo SET stock = stock - 10 WHERE id_insumo = 2 deja stock en menos 7, confirma sin quejarse y el sistema queda vendiendo lo que no existe.
-  - La regla se declara una vez y vale para siempre, sin importar quien escriba el SQL despues:.
-  - Y hay una diferencia entre motores que conviene conocer antes de la demo porque desconcierta en vivo: cuando una restriccion falla
-  - PostgreSQL aborta la transaccion completa y toda sentencia posterior responde que la transaccion actual esta abortada hasta que se deshaga
-  - Mientras Oracle aborta solo la sentencia que fallo y deja la transaccion abierta, de modo que el programa decide si continua o si deshace.
-  - NOTAS:
-  - Si nadie declaro la restriccion, la transaccion puede ser perfectamente atomica y dejar la base en un estado absurdo.
-  - Con eso el mismo UPDATE falla con un error del motor y la transaccion se puede deshacer entera.
-  - Conviene notar como se combinan las dos defensas del dia: el CHECK es la red de seguridad declarativa, y el AND stock >= p_cantidad del WHERE es el guardia que evita llegar al error y permite dar un mensaje de negocio en lugar de un error de restriccion.
-  - CÓDIGO CITADO (referencia):
-  - ALTER TABLE insumo ADD CONSTRAINT ck_insumo_stock_no_negativo CHECK (stock >= 0)
+CÓMO DARLA (≈4 min):
+- Al entrar: Pregunta de arranque: «si el sistema registra la factura, descuenta una vacuna y se cae antes de la segunda línea, ¿qué queda en la base?». Deja que respondan; casi siempre dirán «la mitad».
+- Después: Cierra: «hoy vamos a ver por qué no queda nada, y a demostrarlo con una foto antes y una foto después».
 
-**[Slide 7] Aislamiento: el fallo mas facil de reproducir** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - El fallo concreto, el mas facil de contar: quedan 3 vacunas triples y dos recepcionistas facturan cada una 3 al mismo tiempo.
-  - Ambas leen stock igual a 3, ambas calculan 3 menos 3 y ambas escriben 0; el resultado es stock 0 con seis vacunas vendidas y tres entregadas de aire.
-  - La segunda defensa es el nivel de aislamiento, la perilla que decide cuanto ve una transaccion de lo que otra hace.
-  - Numeros para citar: el estandar SQL define cuatro niveles, READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ y SERIALIZABLE
-  - PostgreSQL acepta los cuatro nombres pero READ UNCOMMITTED se comporta como READ COMMITTED, y su valor por omision es READ COMMITTED
-  - NOTAS:
-  - Aislamiento significa que dos transacciones concurrentes producen un resultado equivalente al que darian ejecutadas una despues de la otra.
-  - Eso se llama actualizacion perdida o lost update, y la primera defensa es de diseno, no de configuracion: no leer y luego escribir con el valor leido, sino dejar que el motor haga la resta en la misma sentencia, UPDATE insumo SET stock = stock - 3 WHERE id_insumo = 2 AND stock >= 3, porque esa sentencia es atomica y toma un bloqueo sobre la fila mientras se ejecuta.
-  - Oracle implementa solo dos, READ COMMITTED por omision y SERIALIZABLE
-  - MySQL con InnoDB usa REPEATABLE READ por omision, valor distinto que explica diferencias reales al portar un script.
-  - Aqui queda el gancho explicito, y hay que decirlo tal cual: hoy se garantiza que UNA transaccion sea correcta consigo misma, y la Clase 10 estudia que pasa cuando dos se cruzan, con la lectura sucia, la lectura no repetible, la lectura fantasma, los bloqueos y el interbloqueo o deadlock.
-  - Tambien hay que decir que hoy no se puede demostrar, porque el motor de la clase corre una sola sesion.
-  - Fuera de la lamina (habla de la practica): Esa es exactamente la decision que la pregunta 5 pide documentar en una frase defendible.
+PASA A LA SIGUIENTE: Primero, qué es exactamente una transacción.
 
-**[Slide 8] Durabilidad: el registro de transacciones** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Lo hace posible el registro de transacciones, llamado WAL o write-ahead log en PostgreSQL y redo log en Oracle: un archivo secuencial donde el motor escribe lo que va a cambiar ANTES de tocar las paginas de datos.
-  - La consecuencia practica es contraintuitiva y muy citable: el COMMIT no necesita escribir en disco las paginas de datos modificadas, solo necesita que su registro del log quede fisicamente grabado
-  - Por eso un COMMIT cuesta una escritura secuencial de unos cientos de bytes en lugar de varias escrituras dispersas
-  - Y por eso mismo hacer un COMMIT por cada fila en una carga de 100.000 filas puede resultar entre cinco y veinte veces mas lento que agrupar, cifra que es orden de magnitud y hay que medir en cada motor.
-  - El ROLLBACK tampoco es magia: el motor conserva la version anterior de cada fila modificada, como versiones antiguas de fila bajo MVCC en PostgreSQL o en el area de undo en Oracle, y deshacer consiste en descartar lo nuevo o restaurar lo viejo.
-  - La recuperacion tras una caida usa el mismo mecanismo en dos fases: al arrancar, el motor relee el log, vuelve a aplicar todo lo confirmado y deshace todo lo que quedo sin confirmar.
-  - Vale decirlo el mismo dia que se explica la reversion, porque conecta con el respaldo de la Clase 4: el respaldo restaura el estado hasta un punto y el log es lo que permite avanzar desde ese punto hasta el instante anterior a la falla.
-  - NOTAS:
-  - Durabilidad significa que despues de confirmar, el dato sobrevive incluso si el servidor se apaga un segundo mas tarde.
-  - Fuera de la lamina (habla de la practica): Es tambien el ultimo item del checklist de la pregunta 5, el del restore probado.
+### [Slide 3] Mapa del bloque de hoy (120 min)
 
-**[Slide 9] La firma de sp_facturar, y por que recibe dos arreglos** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Primera, los tipos son INT y NUMERIC, no NUMBER: NUMBER es de Oracle y en PostgreSQL no existe.
-  - Uno: validar que los dos arreglos midan lo mismo, con IF array_length(p_insumos, 1) IS DISTINCT THEN RAISE EXCEPTION...; dos arreglos de longitud distinta significan que el llamador se equivoco, y eso se rechaza antes de tocar la base.
-  - Se usa IS DISTINCT FROM y no el signo de distinto porque array_length puede devolver nulo si el arreglo viene vacio, y con nulo una comparacion normal no es verdadera ni falsa.
-  - Dos: la cabecera, RETURNING id_factura INTO v_id_factura.
-  - El total entra en cero porque todavia no se sabe, y RETURNING...
-  - Tres: el bucle, FOR i IN 1.. array_length(p_insumos, 1) LOOP, que es la seccion siguiente.
-  - Cuatro: al salir del bucle
-  - El caso de prueba del enunciado da 22000 por 1 mas 900 por 2 mas 1200 por 3, o sea 27.400, y deja los stocks de los insumos 1, 6 y 5 en 11, 58 y 5.
-  - NOTAS:
-  - Tres observaciones.
-  - Segunda, y es la que sorprende, recibe DOS ARREGLOS PARALELOS y no un insumo suelto, porque una factura real tiene varias lineas; se invoca, que significa una unidad del insumo 1, dos del 6 y tres del 5.
-  - Tercera, el cuerpo va entre delimitadores de dolar, y conviene usar una etiqueta como $proc$ en lugar de $$ pelado para que no choque con otro bloque anidado.
-  - El cuerpo tiene cuatro partes y vale recorrerlas en orden.
-  - INTO evita ir a buscar con otro SELECT el identificador que se acaba de generar.
-  - CÓDIGO CITADO (referencia):
-  - CALL sp_facturar(4, ARRAY[1, 6, 5], ARRAY[1, 2, 3])
-  - FROM array_length(p_cantidades, 1)
-  - INSERT INTO factura (id_consulta, total) VALUES (p_id_consulta, 0)
-  - UPDATE factura SET total = v_total WHERE id_factura = v_id_factura
-  - Fuera de la lamina (habla de la practica): Aqui empieza lo que se califica, y la primera cosa que hay que proyectar es la firma exacta, porque no es la que uno escribiria de memoria: CREATE PROCEDURE sp_facturar(p_id_consulta INT, p_insumos INT[], p_cantidades INT[]) LANGUAGE plpgsql AS $proc$ ... $proc$.
+QUÉ ES (dilo así): El recorrido de las dos horas: teoría con una lámina por concepto, demo sobre la base de la clínica y práctica opcional.
 
-**[Slide 10] Todo o nada: la transaccion de facturacion** — 18 vinetas.
+CÓMO DARLA (≈1 min):
+- Al entrar: Señala solo los tramos; no te detengas. La práctica está en la carpeta de la clase y es opcional.
 
-**[Slide 11] sp_facturar en PL/pgSQL: el molde que se califica** — 5 vinetas.
+### [Slide 4] Que es una transaccion, y las dos amenazas de las que protege
 
-**[Slide 12] El guardia del stock, sentencia por sentencia** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Dentro del bucle estan las cuatro sentencias que hay que saber defender.
-  - Primera, el precio vigente: seguida de IF NOT FOUND THEN RAISE EXCEPTION 'ERROR: el insumo % no existe', p_insumos[i]
-  - NOT FOUND es una variable especial de PL/pgSQL que dice si el SELECT INTO anterior trajo fila; sin esa comprobacion, un insumo inexistente deja v_precio nulo y la factura termina con total nulo, que es peor que un error.
-  - Se lee el precio de la tabla y no se recibe por parametro a proposito: el precio que se cobra es el vigente, no el que la aplicacion crea recordar.
-  - Segunda, el guardia, que es el corazon del dia
-  - La comprobacion viaja DENTRO del WHERE, de modo que comprobar y escribir son una sola sentencia y nadie puede colarse entre las dos.
-  - Tercera, como se sabe si alcanzo: GET DIAGNOSTICS v_filas = ROW_COUNT, que guarda cuantas filas toco el UPDATE anterior.
-  - Uno significa que alcanzo; cero significa que no habia stock, y ese cero es un dato de negocio, no un error del motor: la sentencia se ejecuto perfectamente, simplemente no encontro ninguna fila que cumpliera la condicion.
-  - Cuarta, el aborto: IF v_filas = 0 THEN RAISE EXCEPTION 'ERROR: stock insuficiente del insumo % (se pidieron %)', p_insumos[i], p_cantidades[i]
-  - El signo de porcentaje es la marca de sustitucion de RAISE, y los argumentos van despues de la cadena en el orden en que aparecen.
-  - No lleva RAISE_APPLICATION_ERROR ni un numero de error negativo: eso es Oracle.
-  - Cierran el ciclo el INSERT de la linea en detalle_factura con el precio vigente y la acumulacion v_total:= v_total + (v_precio * p_cantidades[i]); notese el operador de asignacion de PL/pgSQL, dos puntos y un igual.
-  - CÓDIGO CITADO (referencia):
-  - SELECT precio_unit INTO v_precio FROM insumo WHERE id_insumo = p_insumos[i]
-  - UPDATE insumo SET stock = stock - p_cantidades[i] WHERE id_insumo = p_insumos[i] AND stock >= p_cantidades[i]
+QUÉ ES (dilo así): Una transacción es un grupo de sentencias que el motor trata como una sola: se aplican todas o ninguna. Facturar una consulta son varias sentencias (la cabecera, las líneas y los descuentos de stock), pero es un solo hecho de negocio, y por eso va en una sola transacción.
 
-**[Slide 13] Error del motor y error de negocio: se atienden distinto** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Un error del motor es la violacion de una regla que la base conoce: una restriccion CHECK, una clave foranea, un tipo incompatible, un interbloqueo; el motor lo detecta, lanza la excepcion y aborta.
-  - Un error de negocio es la violacion de una regla que la base NO conoce en esa forma: que no haya stock suficiente, que la mascota este inactiva, que el total no cuadre con el detalle.
-  - El motor no va a deshacer nada por su cuenta, porque desde su punto de vista todo salio bien: el UPDATE que no afecta ninguna fila es una sentencia exitosa.
-  - La primera: nada de capturar y silenciar.
-  - Un EXCEPTION WHEN OTHERS THEN NULL convierte el fallo en silencio, la factura queda registrada, el stock no se descuenta y nadie se entera hasta el inventario; si se captura, se vuelve a lanzar con RAISE a secas, que relanza la excepcion actual.
-  - La segunda: quien decide confirmar es uno solo, y en PostgreSQL ese uno solo NO es el procedimiento, que es lo que explica la diapositiva siguiente.
-  - Existe ademas el SAVEPOINT para el caso en que la transaccion es larga y solo una parte puede fallar: una marca intermedia con nombre a la que se vuelve sin abortar todo, SAVEPOINT sp_linea3 y mas adelante ROLLBACK TO SAVEPOINT sp_linea3.
-  - En la clínica serviria para una factura de cinco lineas donde el insumo de la tercera esta agotado: se deshace esa linea, se avisa y se cobran las otras cuatro.
-  - NOTAS:
-  - Hay que separar dos tipos de fallo a mitad de transaccion porque se atienden distinto, y esta distincion es la que ordena todo el procedimiento.
-  - De ahi que el procedimiento tenga que convertir el cero filas en una excepcion, con el RAISE EXCEPTION de la seccion anterior, y de ahi tambien que el mensaje deba nombrar el insumo concreto: quien lea el error en la sustentacion tiene que poder decir cual linea fallo.
-  - Hoy NO se usa.
-  - Fuera de la lamina (habla de la practica): Dos exigencias del entregable salen de aqui.
-  - Fuera de la lamina (habla de la practica): Hoy NO se usa, porque la regla del negocio que la actividad implementa es todo o nada, pero conviene nombrarlo para que nadie crea que la unica opcion es abortar la factura completa.
+CÓMO DARLA (≈4 min):
+- Al entrar: El bloque: BEGIN, el INSERT de la factura, el de su detalle, el UPDATE del stock y COMMIT o ROLLBACK. Lee la etiqueta: un solo hecho de negocio.
+- Clic 1: Amenaza 1, la falla: si algo se cae a mitad, la transacción no puede quedar aplicada a medias.
+- Clic 2: Amenaza 2, las otras sesiones: mientras la transacción trabaja, nadie más debe ver el estado intermedio, por ejemplo una factura sin líneas.
+- Clic 3: Dónde empieza y termina: en PostgreSQL, sin BEGIN cada sentencia es su propia transacción y se confirma sola; en Oracle la transacción empieza sola con la primera sentencia que modifica datos y dura hasta el COMMIT o el ROLLBACK.
 
-**[Slide 14] Donde empieza y termina la transaccion de un CALL** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - La afirmacion central es corta: un CALL escrito por fuera de cualquier BEGIN es su propia transaccion.
-  - Se demuestra con datos: el descuenta 2 unidades del insumo 3, que tiene 40 y por lo tanto alcanza, y se estrella en el insumo 2, que tiene 3 y no puede dar 10; al final el stock del insumo 3 vuelve a 40 sin intervencion de nadie.
-  - La consecuencia practica hay que enunciarla como regla de diseno: quien decide el COMMIT es uno solo, el llamador.
-  - Un procedimiento que confirma por su cuenta le quita al llamador la posibilidad de deshacer, y es la fuente numero uno de facturas a medias cuando la Clase 12 conecte la aplicacion con la base.
-  - Y hay un detalle de sintaxis que conviene mencionar antes de que alguien lo intente: en PostgreSQL un procedimiento SI puede contener COMMIT y ROLLBACK
-  - Pero solo cuando se invoca desde un contexto que lo permita; si el CALL esta dentro de un bloque con manejador de excepciones, el control de transaccion dentro del procedimiento no esta permitido y el motor lo rechaza.
-  - O sea que la version con ROLLBACK adentro no es solo innecesaria: en el escenario de la clase ni siquiera corre.
-  - NOTAS:
-  - Si la excepcion se propaga hasta afuera del procedimiento, el motor deshace TODO lo que ese CALL habia hecho —la cabecera de la factura, las lineas ya insertadas y los descuentos de stock ya aplicados— y nadie escribio ROLLBACK.
-  - CÓDIGO CITADO (referencia):
-  - CALL sp_facturar(4, ARRAY[3, 2], ARRAY[2, 10])
+EJEMPLO: Facturar la consulta 4 con tres insumos son cinco sentencias: la cabecera, tres líneas con su descuento de stock y la actualización del total. Si una falla, no debe quedar ninguna.
 
-**[Slide 15] Todo o nada: la transaccion explicita** — 11 vinetas.
+SI PREGUNTAN:
+- «Si PostgreSQL confirma solo, ¿para qué sirve COMMIT?» → Para agrupar varias sentencias en un único hecho: con BEGIN … COMMIT, todas se confirman juntas o ninguna.
 
-**[Slide 16] Por que el procedimiento no lleva COMMIT ni ROLLBACK** — 5 vinetas.
+CUIDADO: No enseñes la regla de Oracle («la transacción empieza sola») como si fuera la de PostgreSQL: aquí, sin BEGIN, cada sentencia ya quedó confirmada.
 
-**[Slide 17] El savepoint implicito del bloque EXCEPTION** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - El segundo mecanismo es menos conocido: un bloque BEGIN...
-  - Capturar no es lo mismo que dejar propagar, y la diferencia se ve en la practica: el
-  - EXCEPTION WHEN OTHERS THEN RAISE NOTICE 'Fallo esperado: %', SQLERRM
-  - END $$ del enunciado esta ahi para que el script no se detenga y se pueda seguir midiendo, no para arreglar nada.
-  - Ese savepoint implicito tiene un costo que hay que mencionar: envolver cada iteracion de un bucle largo en su propio bloque con EXCEPTION crea un savepoint por vuelta y eso se paga
-  - Asi que no se pone un manejador de excepciones «por si acaso» dentro de un ciclo de miles de iteraciones.
-  - La regla practica: manejadores donde haya una decision que tomar, y en ningun otro sitio.
-  - Consecuencia practica: dentro del bloque que captura el error, lo escrito antes del fallo en ese mismo bloque se deshace, pero lo escrito antes del BEGIN del bloque sigue en pie hasta que la transaccion termine.
-  - NOTAS:
-  - EXCEPTION WHEN...
-  - END en PL/pgSQL crea un savepoint implicito al entrar.
-  - Por eso, cuando el codigo captura el error, se revierte solo lo hecho DENTRO de ese bloque y el resto de la transaccion sigue vivo.
-  - El savepoint implicito de ese DO deshace todo lo que el CALL habia hecho, el mensaje se imprime, y la foto final demuestra que la base quedo igual.
-  - SQLERRM es la variable que trae el texto del error, y conviene nombrarla porque el estudiante la va a necesitar para que su NOTICE diga algo util en vez de «fallo».
-  - CÓDIGO CITADO (referencia):
-  - DO $$ BEGIN CALL sp_facturar(...)
+PASA A LA SIGUIENTE: Las cuatro propiedades de una transacción, empezando por la atomicidad.
 
-**[Slide 18] SAVEPOINT: deshacer una parte sin perder el resto** — 10 vinetas.
+### [Slide 5] Atomicidad: el fallo concreto en la clínica
 
-**[Slide 19] El bloque EXCEPTION y la trampa de tragarse el error** — 15 vinetas.
+QUÉ ES (dilo así): Atómico quiere decir indivisible. Si la facturación tiene cuatro pasos y el tercero falla, la base no debe guardar los dos primeros: o están los cuatro o no está ninguno.
 
-**[Slide 20] El contraste con Oracle, que es la pregunta 4** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Por que la base quedo intacta: la respuesta correcta reune las dos ideas de las dos secciones anteriores: el CALL de nivel superior es su propia transaccion y al propagarse la excepcion se deshace todo, y ademas un bloque con EXCEPTION crea un savepoint implicito.
-  - Es una respuesta razonable para quien aprendio PL/SQL, y es falsa aqui por dos motivos: el procedimiento de la clase no tiene ese bloque, y ese ROLLBACK no es lo que produjo la reversion.
-  - Las otras tres opciones son falsas de forma mas simple, y vale enunciarlo para que nadie las considere: PostgreSQL no guarda una copia de seguridad de cada tabla antes de cada CALL, eso seria carisimo y no existe
-  - PL/pgSQL no acumula los UPDATE en memoria para escribirlos al final, cada sentencia se aplica cuando se ejecuta y es visible dentro de la misma transaccion; y no hay ningun trigger de stock en el esquema de la clase, asi que no pudo deshacer nada.
-  - El contraste con Oracle no se borra del curso, se coloca donde corresponde: como contraste.
-  - Portar este procedimiento a Oracle exige cambiar los tipos, cambiar GET DIAGNOSTICS por SQL%ROWCOUNT, cambiar RAISE EXCEPTION por RAISE_APPLICATION_ERROR y anadir el control de transaccion
-  - Que la misma logica de negocio necesite cuatro cambios de sintaxis es en si mismo el aprendizaje.
-  - Resumen del contraste: en Oracle el COMMIT o ROLLBACK suele escribirse dentro del procedimiento; en PostgreSQL un CALL dentro de una transaccion abierta no puede hacer COMMIT, y es la excepcion propagada la que deshace.
-  - En PostgreSQL ese responsable es siempre quien abrio la transaccion.
-  - NOTAS:
-  - La opcion incorrecta que mas gente marca es «porque el procedimiento incluia un ROLLBACK explicito en su bloque EXCEPTION, igual que en Oracle», y hay que decir de frente por que aparece: es la forma canonica en Oracle, donde el procedimiento es parte de la transaccion del llamador y si se escribe EXCEPTION WHEN OTHERS THEN ROLLBACK
-  - Por eso el mismo procedimiento no se traduce linea por linea entre motores: cambia quien es responsable de confirmar, y con eso cambia donde se escribe el manejo del error.
-  - Fuera de la lamina (habla de la practica): La pregunta 4 vale 10 puntos y es de seleccion unica, asi que conviene que el docente sepa exactamente que se pregunta y por que las otras opciones son falsas.
+CÓMO DARLA (≈3 min):
+- Al entrar: La línea de tiempo: INSERT de la factura, INSERT de la línea 1, UPDATE del stock del insumo 1… y se cae la red antes de la línea 2.
+- Clic 1: Sin atomicidad: la factura queda, la línea 1 queda, el stock quedó descontado y la línea 2 nunca llegó. Nadie recibe un error; el descuadre aparece semanas después en el inventario.
+- Clic 2: Con atomicidad: la sesión murió sin COMMIT, así que el motor deshace todo. Cero facturas, cero líneas, stock intacto. La recepcionista repite la operación. Lee la conclusión.
 
-**[Slide 21] Abortar o informar: fn_descontar_stock** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - fn_descontar_stock aplica el mismo patron de descuento con un contrato distinto, que es una de las distinciones mas utiles del curso.
-  - Misma regla de negocio, dos contratos, y hay que saber cual se esta pidiendo.
-  - La firma: RETURNS BOOLEAN LANGUAGE plpgsql AS $fn$... $fn$.
-  - RETURNS BOOLEAN y no PROCEDURE: devuelve verdadero si desconto y falso si no habia suficiente, SIN lanzar excepcion en ese segundo caso.
-  - Adentro hay tres partes: validar que p_cantidad sea positiva, y si no, RAISE EXCEPTION; el mismo UPDATE con la condicion en el WHERE; y GET DIAGNOSTICS seguido de RETURN v_filas = 1
-  - Que devuelve directamente el resultado de la comparacion sin necesidad de un IF.
-  - Distinguir el dato invalido del resultado negativo es la mitad de la pregunta.
-  - Se prueba en una sola consulta, AS caso_ok, fn_descontar_stock(2, 10) AS caso_sin_stock, fn_descontar_stock(2, 3) AS caso_limite, que devuelve verdadero, falso y verdadero.
-  - El tercer caso es el interesante y conviene detenerse: pide EXACTAMENTE el stock que queda, y con el operador mayor o igual en el guardia tiene que pasar; si alguien escribio solo mayor, ese caso devuelve falso y ahi se ve el error.
-  - El estado final deja el insumo 5 en 5 y el insumo 2 en 0, sin ningun negativo.
-  - Y el comentario que cierra la pregunta es la decision documentada: leer primero y decidir despues deja una ventana entre la lectura y la escritura
-  - Con dos recepcionistas las dos leen 3, las dos deciden que alcanza y el stock termina en menos 2 o el CHECK revienta; el UPDATE con la condicion en el WHERE no tiene ventana.
-  - NOTAS:
-  - El procedimiento ABORTA la factura completa cuando no hay stock; la funcion INFORMA y deja que el llamador decida.
-  - Lo que hay que enfatizar es la linea que separa un caso del otro: una cantidad negativa o cero no es «no hay stock», es una llamada mal hecha, y eso SI es una excepcion; el resultado negativo legitimo se devuelve como dato.
-  - Eso aqui no se puede demostrar, porque el motor corre una sola sesion.
-  - CÓDIGO CITADO (referencia):
-  - CREATE FUNCTION fn_descontar_stock(p_id_insumo INT, p_cantidad INT)
-  - SELECT fn_descontar_stock(5, 3)
-  - Fuera de la lamina (habla de la practica): Eso aqui no se puede demostrar, porque el motor corre una sola sesion, y ese es el gap que la pregunta 5 pide declarar.
+EJEMPLO: Una factura que cobra dos productos con una sola línea registrada y un insumo descontado que nadie entregó: eso es lo que evita la atomicidad.
 
-**[Slide 22] fn_descontar_stock: cuando «no hay stock» es una respuesta, no un error** — 5 vinetas.
+SI PREGUNTAN:
+- «¿Qué pasa si me desconecto sin COMMIT?» → Si la sesión muere de forma anormal, el motor deshace la transacción. Algunos clientes confirman al cerrar de forma ordenada, así que nunca hay que depender de eso.
 
-**[Slide 23] Tuning: habitos de escritura, no parametros del servidor** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - El ultimo bloque conceptual es el de tuning, que aqui no significa tocar parametros del servidor —imposible en el navegador y peligroso sin medicion— sino habitos con numeros.
-  - Primero: la transaccion debe ser corta.
-  - Una transaccion de negocio bien hecha vive en el orden de milisegundos a pocos cientos de milisegundos, y cualquier cosa que sostenga bloqueos durante segundos es sospechosa; la regla absoluta es no esperar nunca una accion humana con la transaccion abierta
-  - Porque el clasico de abrir, mostrar un cuadro de confirmacion y confirmar convierte una pausa de almuerzo en 45 minutos de filas bloqueadas para el resto de la clinica.
-  - Lo correcto es hacer lecturas y validaciones primero y abrir la transaccion solo cuando ya se tienen todos los datos para escribir.
-  - Segundo: en cargas masivas, agrupar los COMMIT en lotes del orden de 1.000 a 5.000 filas, convencion de oficio y no regla dura
-  - En lugar de uno por fila, lentisimo, o uno solo para un millon de filas, que hincha las versiones antiguas y sostiene bloqueos enormes.
-  - Tercero: apoyarse en los indices de la Clase 7, porque el UPDATE del descuento filtra por id_insumo, que es clave primaria, y por eso bloquea una sola fila; el mismo UPDATE filtrando por una columna sin indice puede recorrer y bloquear muchas mas.
-  - Cuarto: estadisticas frescas de la Clase 6 y ningun disparador con trabajo pesado dentro de la transaccion, de la Clase 4.
-  - NOTAS:
-  - Esos cuatro habitos, mas el de no usar SELECT asterisco en los reportes, mas los predicados sargables, mas el respaldo con restore probado.
-  - Fuera de la lamina (habla de la practica): Esos cuatro habitos, mas el de no usar SELECT asterisco en los reportes, mas los predicados sargables, mas el respaldo con restore probado, son literalmente los siete items del checklist que la pregunta 5 pide llenar, y cada item exige estado Y evidencia concreta —un nombre de indice, un archivo, una consulta— porque siete casillas marcadas sin evidencia no demuestran nada.
+CUIDADO: Atomicidad no garantiza que los datos sean válidos; solo que no queden a medias. Eso es la lámina siguiente.
 
-**[Slide 24] La demo, en el orden en que se proyecta** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - La demo es el script Codigo/08_transacciones_clinica.sql y se corre.
-  - Tiene cinco bloques y el valor esta en el tercero, asi que hay que administrar el tiempo para llegar ahi con calma.
-  - El bloque 0 crea insumo, factura y detalle_factura y siembra los seis insumos con los stocks del enunciado; empieza con los DROP para que el script se pueda correr dos veces sin limpiar a mano.
-  - El bloque 2 es el caso feliz:, factura por 27.400 y los stocks 1, 6 y 5 quedan en 11, 58 y 5.
-  - El bloque 3 es la clase entera y tiene tres pasos que no se pueden desordenar: la foto inicial
-  - Que debe dar una factura, tres lineas, el insumo 3 en 40 y el insumo 2 en 3; el intento que falla a mitad, envuelto en el DO con su manejador para que el script siga; y la foto final, que debe dar EXACTAMENTE los mismos cuatro numeros.
-  - Ese es el momento de preguntarle al grupo donde quedo el descuento del insumo 3 y dejar que alguien diga que se deshizo solo.
-  - El bloque 3 cierra con la version viable,, que crea la segunda factura por 112.000 y deja el insumo 3 en 38 y el 2 en 0.
-  - El bloque 4 es la funcion, con su prueba de tres columnas que devuelve verdadero, falso, verdadero; ese bloque reinicia los stocks de los insumos 5 y 2 antes de probar, porque si no los numeros esperados no salen.
-  - Si el tiempo aprieta, lo que se recorta es el bloque 4.
-  - NOTAS:
-  - El bloque 1 crea el procedimiento, y conviene proyectarlo leyendo en voz alta el guardia y el GET DIAGNOSTICS, no pasarlo de largo.
-  - CÓDIGO CITADO (referencia):
-  - CALL sp_facturar(4, ARRAY[1, 6, 5], ARRAY[1, 2, 3])
-  - CALL sp_facturar(4, ARRAY[3, 2], ARRAY[2, 3])
-  - Fuera de la lamina (habla de la practica): Si el tiempo aprieta, lo que se recorta es el bloque 4, que el estudiante rehace en la pregunta 3 de la clase; lo que NO se recorta es la pareja de fotos del bloque 3.
+PASA A LA SIGUIENTE: Completa no quiere decir correcta: eso es la consistencia.
 
-**[Slide 25] Donde corre esto, y por que el autocommit ya no es el enemigo** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - ROW_COUNT, RAISE EXCEPTION con porcentaje y una funcion que devuelve BOOLEAN.
-  - Nadie escribe BEGIN ni COMMIT: el CALL de nivel superior ya es su propia transaccion, y la excepcion que se propaga la deshace entera.
-  - La demostracion de atomicidad no depende de dejar una transaccion abierta entre dos ejecuciones, que es justamente lo que un playground no permite; depende de tomar una foto, correr el CALL que falla y volver a tomar la foto, todo en el mismo panel.
-  - Por lo mismo, la vieja advertencia de que en Oracle y en MySQL cualquier DDL provoca un COMMIT implicito —y que por eso no hay que mezclar CREATE TABLE con la demostracion— no aplica aqui: en PostgreSQL el DDL es transaccional.
-  - NOTAS:
-  - La herramienta de hoy es PostgreSQL en el navegador, que ejecuta PostgreSQL sobre PGlite dentro del navegador, y hay que decirlo sin ambiguedad porque este es el tema donde la herramienta equivocada no da un resultado distinto sino que no compila.
-  - Nada de eso corre en Oracle Live SQL.
-  - Sobre el autocommit, que en versiones anteriores de este material era la advertencia central.
-  - Se menciona como diferencia entre motores, no como precaucion de la clase.
-  - Lo que si hay que declarar es el limite real: PGlite corre UNA SOLA sesion, asi que la espera por bloqueo, el interbloqueo, la lectura sucia y la actualizacion perdida no se pueden reproducir y se documentan en papel como una linea de tiempo de T1 y T2 con lo que ve cada una en cada paso, formato que usara la Clase 10.
-  - Tampoco se demuestra la durabilidad real, porque nadie puede apagar el servidor.
-  - PREGUNTAS FRECUENTES DEL GRUPO
-  - Primera: si el motor confirma solo, para que sirve COMMIT.
-  - Para agrupar varias sentencias en un unico hecho de negocio, que es justamente lo que el modo de confirmacion automatica impide; y hoy no hace falta escribirlo porque el CALL ya agrupa todo el procedimiento en una transaccion.
-  - Segunda: que pasa si me desconecto sin confirmar.
-  - El motor deshace la transaccion cuando la sesion muere de forma anormal, aunque algunos clientes confirman al salir de manera ordenada, asi que jamas se debe depender de eso.
-  - Tercera: se puede hacer ROLLBACK despues de un COMMIT.
-  - No, confirmar es definitivo, y lo unico que queda es restaurar desde el respaldo de la Clase 4 con recuperacion a un punto en el tiempo, operacion de administrador y no correccion de rutina.
-  - Cuarta, y la que sale siempre en esta clase: si no escribo ROLLBACK, como se deshizo.
-  - Porque el CALL de nivel superior es su propia transaccion y la excepcion que sale del procedimiento la aborta completa; el motor conserva las versiones anteriores de las filas y descarta las nuevas.
-  - Quinta: entonces nunca se escribe COMMIT en un procedimiento de PostgreSQL.
-  - Se puede, en procedimientos disenados para ejecutar por lotes y solo si el contexto de la llamada lo permite, pero no en un procedimiento de negocio como este, donde quitarle al llamador la posibilidad de deshacer es un defecto.
-  - Sexta: por que la funcion devuelve falso en vez de lanzar una excepcion, si tambien es un fallo.
-  - Porque no es un fallo: es un resultado.
-  - La funcion esta pensada para que el llamador decida si sigue con las demas lineas o cancela, y esa decision no se puede tomar si la excepcion ya aborto todo.
-  - Septima: puedo probar dos recepcionistas al mismo tiempo abriendo dos pestanas.
-  - No, cada pestana levanta su propia base en memoria y no comparten nada; ese escenario se documenta en papel y se estudia en la Clase 10.
-  - Fuera de la lamina (habla de la practica): Las tres preguntas de SQL del dia suman 75 de los 100 puntos y son PL/pgSQL: CALL, GET DIAGNOSTICS ...
-  - Fuera de la lamina (habla de la practica): Nada de eso corre en Oracle Live SQL, asi que Live SQL se queda solamente como el contraste de sintaxis de la pregunta 4.
-  - Fuera de la lamina (habla de la practica): Sobre el autocommit, que en versiones anteriores de este material era la advertencia central: con la forma del entregable de hoy deja de ser un problema, y conviene explicar por que en lugar de repetir la advertencia.
+### [Slide 6] Consistencia: valido es lo que las restricciones declaran
+
+QUÉ ES (dilo así): Consistencia quiere decir que después de la transacción la base sigue cumpliendo sus reglas. Pero el motor solo conoce las reglas que alguien declaró: si nadie escribió el CHECK, una transacción perfectamente atómica puede guardar un absurdo.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: Sin restricción: UPDATE insumo SET stock = stock - 10 WHERE id_insumo = 2 sobre un stock de 3. El contador baja a −7 y el COMMIT pasa sin quejarse: atómico, pero inválido.
+- Clic 1: Con CHECK (stock >= 0) en la tabla: el mismo UPDATE se rechaza y el stock sigue en 3.
+- Clic 2: Lee la idea: la atomicidad NO produce consistencia. La regla se declara una vez y vale para quien escriba SQL después.
+
+EJEMPLO: Con el CHECK declarado, el motor responde: «new row for relation "insumo" violates check constraint "insumo_stock_check"» y en el detalle muestra la fila que habría quedado, con stock −7.
+
+SI PREGUNTAN:
+- «Si el procedimiento ya revisa el stock, ¿para qué el CHECK?» → Porque el CHECK vale también para el UPDATE manual o para otro programa que no use el procedimiento. El guardia del procedimiento evita llegar al error; el CHECK es la red de seguridad.
+- «¿Y después del error puedo seguir en la misma transacción?» → En PostgreSQL no: toda sentencia siguiente responde «current transaction is aborted, commands ignored until end of transaction block» hasta el ROLLBACK. Oracle, en cambio, solo aborta la sentencia que falló.
+
+CUIDADO: El malentendido más caro del tema es creer que la transacción garantiza las reglas de negocio. Solo garantiza las que están declaradas.
+
+PASA A LA SIGUIENTE: La tercera letra: qué pasa cuando dos transacciones se cruzan.
+
+### [Slide 7] Aislamiento: el fallo mas facil de reproducir
+
+QUÉ ES (dilo así): Aislamiento quiere decir que, aunque dos transacciones trabajen a la vez, el resultado debe ser el mismo que si hubieran ido una detrás de la otra. El fallo más fácil de contar es la actualización perdida.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: Quedan 3 vacunas. Recepción 1 y recepción 2 facturan 3 cada una, al mismo tiempo, y las dos leen stock = 3.
+- Clic 1: Las dos calculan 3 − 3 = 0 y las dos escriben 0. Cada una confirmó una venta válida según lo que leyó.
+- Clic 2: El resultado: stock 0 con seis vacunas vendidas y tres entregadas de aire. Lee la definición de aislamiento.
+
+EJEMPLO: La defensa de diseño: UPDATE insumo SET stock = stock - 3 WHERE id_insumo = 2 AND stock >= 3. La resta y la comprobación ocurren en una sola sentencia, que bloquea la fila mientras se ejecuta: la segunda recepción encuentra 0 y no descuenta.
+
+SI PREGUNTAN:
+- «¿Cuáles son los niveles de aislamiento?» → El estándar define cuatro: READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ y SERIALIZABLE. PostgreSQL acepta los cuatro nombres, pero READ UNCOMMITTED se comporta como READ COMMITTED, que es el valor por omisión.
+- «¿Lo podemos ver hoy en el navegador?» → No: ahí corre una sola sesión. Se documenta como una línea de tiempo de dos transacciones y se estudia en la Clase 10.
+
+CUIDADO: Hoy solo se nombran los niveles; los fenómenos (lectura sucia, no repetible, fantasma, interbloqueo) son la Clase 10.
+
+PASA A LA SIGUIENTE: La última letra: qué asegura que lo confirmado no se pierda.
+
+### [Slide 8] Durabilidad: el registro de transacciones
+
+QUÉ ES (dilo así): Durable quiere decir que, una vez que el motor dijo «confirmado», el dato no se pierde aunque se caiga el servidor. Lo logra con un registro de transacciones (WAL en PostgreSQL, redo log en Oracle) donde anota cada cambio antes de tocar las páginas de datos.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: El cambio va primero al WAL, un archivo que solo se escribe al final, de corrido. El COMMIT termina cuando su registro (el verde) quedó grabado.
+- Clic 1: Las páginas de datos se escriben después, sin prisa: el COMMIT no las esperó.
+- Clic 2: Se cae el servidor. Al volver, el motor relee el WAL: aplica lo confirmado y descarta lo que quedó sin confirmar.
+- Clic 3: La consecuencia práctica: confirmar fila por fila en una carga de 100.000 filas puede ser de 5 a 20 veces más lento que agrupar. Es orden de magnitud: se mide en cada motor.
+
+EJEMPLO: El ROLLBACK tampoco es magia: PostgreSQL conserva la versión anterior de cada fila modificada y, al deshacer, se queda con ella.
+
+SI PREGUNTAN:
+- «¿Puedo hacer ROLLBACK después de un COMMIT?» → No. Confirmar es definitivo; lo único que queda es restaurar desde un respaldo (Clase 4).
+
+CUIDADO: En el navegador no se puede demostrar la durabilidad: nadie puede apagar el servidor. Se explica, no se mide.
+
+PASA A LA SIGUIENTE: Con ACID claro, el procedimiento que factura: su firma.
+
+### [Slide 9] La firma de sp_facturar, y por que recibe dos arreglos
+
+QUÉ ES (dilo así): Una factura tiene varias líneas, así que el procedimiento no recibe un insumo suelto: recibe dos arreglos emparejados por posición. El insumo de la posición 1 va con la cantidad de la posición 1, y así sucesivamente.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: CALL sp_facturar(4, ARRAY[1, 6, 5], ARRAY[1, 2, 3]): consulta 4, una unidad del insumo 1, dos del 6 y tres del 5. Las líneas punteadas emparejan cada posición.
+- Clic 1: Lo primero del cuerpo: si los arreglos no miden lo mismo, RAISE EXCEPTION antes de tocar la base. Se usa IS DISTINCT FROM porque con un arreglo vacío array_length devuelve NULL, y con NULL el signo de distinto no da ni verdadero ni falso.
+- Clic 2: La cabecera entra con total 0, porque todavía no se sabe, y RETURNING id_factura INTO v_id_factura evita otro SELECT. El total sale del bucle: 27.400.
+
+EJEMPLO: CALL sp_facturar(4, ARRAY[1, 2], ARRAY[1]); se rechaza con «ERROR: insumos y cantidades deben tener la misma longitud» y no deja nada escrito.
+
+SI PREGUNTAN:
+- «¿Por qué INT y no NUMBER?» → NUMBER es de Oracle y en PostgreSQL no existe: se usa INT para los ids y NUMERIC para el dinero.
+- «¿Por qué $proc$ y no $$?» → Cualquier etiqueta entre signos de dólar sirve; una con nombre evita choques si adentro hay otro bloque entre $$.
+
+CUIDADO: Si se proyecta una firma con un solo insumo, la llamada con dos arreglos no compila contra ella.
+
+PASA A LA SIGUIENTE: El procedimiento en código.
+
+### [Slide 10] Todo o nada: la transaccion de facturacion
+
+QUÉ ES (dilo así): Una versión corta de sp_facturar para ver el esqueleto: cabecera, bucle con el descuento condicional, el total al final y ningún COMMIT ni ROLLBACK adentro. La versión completa está en la lámina siguiente.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Líneas 1-4: la firma con los dos arreglos, LANGUAGE plpgsql y las variables v_id_factura y v_filas.
+- Líneas 5-6: La cabecera con RETURNING id_factura INTO v_id_factura.
+- Líneas 7-11: El bucle: el UPDATE con stock >= p_cantidades[i] en el WHERE, GET DIAGNOSTICS para saber cuántas filas tocó y RAISE EXCEPTION si fueron 0.
+- Líneas 12-15: La línea de detalle con el precio leído de insumo, y el comentario clave de la línea 15: sin COMMIT ni ROLLBACK.
+- Líneas 16-18: Al salir del bucle, el total de la cabecera es la suma de sus líneas: cantidad por precio.
+
+EJEMPLO: Con el caso feliz, CALL sp_facturar(4, ARRAY[1, 6, 5], ARRAY[1, 2, 3]) inserta tres líneas a 22.000, 900 y 1.200 y deja la factura con total 27.400,00. Con ARRAY[3, 2] y ARRAY[2, 10] responde «ERROR: stock insuficiente» y no queda nada: ni cabecera ni el descuento del insumo 3.
+
+CUIDADO: No la presentes como la versión final: le faltan la validación de los arreglos y el NOT FOUND del insumo, y su mensaje de error no dice qué insumo faltó.
+
+PASA A LA SIGUIENTE: La versión completa, parte por parte.
+
+### [Slide 11] sp_facturar en PL/pgSQL
+
+QUÉ ES (dilo así): La versión completa del procedimiento, recorrida de arriba abajo. Cada parte tiene una razón: rechazar una llamada mal hecha, registrar la cabecera, cobrar línea por línea con el precio vigente y dejar el total correcto.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: La llamada de prueba arriba y la parte 1: validar que los arreglos midan lo mismo.
+- Parte 2 y 3: La cabecera con total 0 y el bucle: SELECT precio_unit INTO v_precio con IF NOT FOUND; el UPDATE con el guardia; GET DIAGNOSTICS; RAISE si fue 0; INSERT de la línea; v_total := v_total + v_precio * cantidad (el := es la asignación de PL/pgSQL).
+- Parte 4 y abajo: UPDATE factura SET total = v_total. Resultado: 27.400, y los stocks de los insumos 1, 6 y 5 pasan de 12, 60 y 8 a 11, 58 y 5.
+
+EJEMPLO: CALL sp_facturar(4, ARRAY[99], ARRAY[1]); responde «ERROR: el insumo 99 no existe»: sin el NOT FOUND, v_precio quedaría NULL y la factura terminaría con total NULL.
+
+SI PREGUNTAN:
+- «¿Por qué el precio se lee de la tabla y no se recibe como parámetro?» → Porque se cobra el precio vigente, no el que la aplicación crea recordar.
+- «¿Por qué el mensaje sale como «ERROR: ERROR: …»?» → Porque el texto del RAISE ya empieza con «ERROR:» y el motor antepone el suyo. Es solo el texto; no son dos errores.
+
+CUIDADO: El error de sintaxis más común es cerrar el cuerpo con una etiqueta distinta de la que lo abrió: $proc$ al principio y $proc$ al final.
+
+PASA A LA SIGUIENTE: El corazón del procedimiento: el guardia del stock.
+
+### [Slide 12] El guardia del stock, sentencia por sentencia
+
+QUÉ ES (dilo así): El descuento de stock no se hace en dos pasos (leer y luego escribir) sino en uno: el UPDATE solo toca la fila si alcanza. Después, ROW_COUNT dice si la tocó. Ese cero no es un error del motor: es la señal de que no había stock, y el procedimiento la convierte en excepción.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: Las cuatro sentencias dentro del bucle, numeradas, con la condición del WHERE resaltada: comprobar y escribir en una sola sentencia.
+- Clic 1: Caso que alcanza: insumo 3, hay 40 y se piden 2. ROW_COUNT = 1, el stock pasa a 38 y el bucle sigue.
+- Clic 2: Caso que no alcanza: insumo 2, hay 3 y se piden 10. ROW_COUNT = 0, el stock queda intacto y se lanza la excepción. Lee la nota: el precio se lee de la tabla.
+
+EJEMPLO: El mensaje real: «ERROR: stock insuficiente del insumo 2 (se pidieron 10)». Cada % del RAISE se reemplaza por los argumentos, en orden.
+
+SI PREGUNTAN:
+- «¿Por qué no SQL%ROWCOUNT?» → Es de Oracle. En PL/pgSQL se pregunta con GET DIAGNOSTICS v_filas = ROW_COUNT, y esa diferencia decide si el código compila.
+
+CUIDADO: Si alguien escribe stock > cantidad en vez de >=, pedir exactamente lo que queda falla: el caso límite lo delata.
+
+PASA A LA SIGUIENTE: Ese cero filas no es un error para el motor: hay dos clases de error.
+
+### [Slide 13] Error del motor y error de negocio: se atienden distinto
+
+QUÉ ES (dilo así): Hay dos clases de fallo a mitad de transacción. El motor detecta solo lo que viola sus reglas declaradas y aborta por su cuenta. Lo que solo es una regla de negocio, como «no hay stock suficiente», el motor no lo ve: hay que convertirlo en excepción.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: Error del motor: CHECK, clave foránea, tipo incompatible, interbloqueo. El motor lanza y aborta solo.
+- Clic 1: Error de negocio: stock insuficiente, mascota inactiva, un total que no cuadra. Un UPDATE que no toca filas es una sentencia exitosa: el RAISE EXCEPTION lo pones tú.
+- Clic 2: Nada de capturar y silenciar: EXCEPTION WHEN OTHERS THEN NULL convierte el fallo en silencio. Si se captura, se relanza con RAISE a secas.
+
+EJEMPLO: Un UPDATE insumo SET stock = stock - 10 WHERE id_insumo = 2 AND stock >= 10 devuelve «0 filas afectadas», sin error. Solo el procedimiento sabe que eso significa «no hay stock».
+
+SI PREGUNTAN:
+- «¿Y si quiero cobrar las demás líneas aunque una falle?» → Existe el SAVEPOINT: deshacer solo esa línea y seguir. Hoy la regla es todo o nada, pero conviene saber que la opción existe.
+
+CUIDADO: El mensaje debe nombrar el insumo concreto: quien lea el error tiene que poder decir qué línea falló.
+
+PASA A LA SIGUIENTE: Cuando la excepción sale del procedimiento, ¿qué se deshace y quién lo hace?
+
+### [Slide 14] Donde empieza y termina la transaccion de un CALL
+
+QUÉ ES (dilo así): Un CALL escrito por fuera de cualquier BEGIN es una transacción completa. Si dentro del procedimiento salta una excepción y nadie la atrapa, sale del CALL y el motor deshace todo lo que ese CALL había hecho: cabecera, líneas y descuentos.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: CALL sp_facturar(4, ARRAY[3, 2], ARRAY[2, 10]) dentro de su recuadro: una sola transacción. Se inserta la cabecera y el insumo 3 baja de 40 a 38: alcanzaba.
+- Clic 1: El insumo 2 tiene 3 y se piden 10: RAISE EXCEPTION, y la excepción sale del CALL.
+- Clic 2: El motor deshace todo: no queda factura y el insumo 3 vuelve a 40 solo. Lee la conclusión: confirma el llamador.
+
+EJEMPLO: Fotos reales: antes del CALL, 1 factura, 3 líneas, stock_3 = 40 y stock_2 = 3; después, exactamente lo mismo. La siguiente factura que sí se crea sale con id_factura 3, no 2: el intento fallido consumió el 2 de la secuencia, y las secuencias no se deshacen.
+
+SI PREGUNTAN:
+- «¿Por qué el id saltó del 1 al 3?» → Porque nextval de una secuencia no se deshace con el ROLLBACK, para que dos sesiones nunca reciban el mismo número. Los huecos son normales.
+
+CUIDADO: No digas que la reversión «no se puede demostrar en el navegador»: se demuestra con una foto antes y una después del CALL que falla.
+
+PASA A LA SIGUIENTE: Y cuando sí se quiere agrupar a mano: la transacción explícita.
+
+### [Slide 15] Todo o nada: la transaccion explicita
+
+QUÉ ES (dilo así): La misma idea sin procedimiento: BEGIN abre la transacción, las sentencias se acumulan y COMMIT las confirma juntas. Hasta el COMMIT, nadie más ve los cambios.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Línea 1: BEGIN. Líneas 3-4: la cabecera con RETURNING, que muestra el id generado.
+- Líneas 6-11: La línea de detalle (2 gasas a 1.200), el descuento de stock y el total de la cabecera, 2.400. currval devuelve el id que esta misma sesión acaba de generar.
+- Línea 13: COMMIT: las cuatro sentencias quedan juntas. Con ROLLBACK, o si cualquiera falla, no queda ninguna.
+
+EJEMPLO: Con los datos de la clase, después del COMMIT la factura queda con total 2.400,00 y la gasa estéril baja de 8 a 6.
+
+SI PREGUNTAN:
+- «¿currval puede devolver el id de otra persona?» → No: currval es por sesión; devuelve el último valor que generó ESTA sesión.
+
+CUIDADO: Entre el BEGIN y el COMMIT no se espera a nadie: una transacción abierta sostiene bloqueos.
+
+PASA A LA SIGUIENTE: ¿Y si eso mismo se pone dentro del procedimiento?
+
+### [Slide 16] Por que el procedimiento no lleva COMMIT ni ROLLBACK
+
+QUÉ ES (dilo así): El procedimiento no decide cuándo confirmar: lo decide quien lo llama. Llamado con un CALL suelto, el CALL es la transacción y la excepción la deshace. Llamado dentro de una transacción abierta, intentar confirmar desde adentro es un error.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Arriba, el CALL suelto: es su propia transacción; la excepción que sale deshace cabecera, líneas y stock, y nadie escribió ROLLBACK.
+- En el medio: El CALL dentro de BEGIN … COMMIT: el que decide es ese COMMIT de afuera. Si el procedimiento intenta un COMMIT propio, el motor responde «invalid transaction termination»; lo mismo dentro de un bloque con EXCEPTION.
+- Abajo: La regla: confirma uno solo, el llamador. Y si se atrapa el error, se relanza con RAISE; nunca WHEN OTHERS THEN NULL.
+
+EJEMPLO: Prueba real con un CALL suelto: un procedimiento que descuenta el insumo 3, hace COMMIT, descuenta el insumo 4 y después falla deja el 3 descontado (40 → 39) y el 4 intacto: justo la factura a medias que se quería evitar. Y con BEGIN; CALL …; el COMMIT de adentro responde «invalid transaction termination».
+
+SI PREGUNTAN:
+- «Entonces, ¿nunca se escribe COMMIT en un procedimiento de PostgreSQL?» → Se puede en procesos por lotes y solo si el CALL es de nivel superior. En un procedimiento de negocio como este es un defecto: le quita al llamador la posibilidad de deshacer.
+
+CUIDADO: No afirmes que PostgreSQL prohíbe siempre el ROLLBACK dentro de un procedimiento: con un CALL suelto lo permite. Lo que no permite es terminar la transacción desde adentro cuando el CALL está dentro de otra o de un bloque con EXCEPTION.
+
+PASA A LA SIGUIENTE: El otro mecanismo que deshace sin que nadie lo escriba: el savepoint implícito.
+
+### [Slide 17] El savepoint implicito del bloque EXCEPTION
+
+QUÉ ES (dilo así): En PL/pgSQL, un bloque que tiene sección EXCEPTION marca un punto de retorno al entrar. Si algo falla adentro, el motor vuelve a ese punto (deshace lo del bloque) y ejecuta el manejador. Lo que se escribió antes del bloque no se toca.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: La transacción: la escritura A, y luego el bloque BEGIN … EXCEPTION con su bandera (el savepoint implícito) y la escritura B adentro.
+- Clic 1: Algo falla dentro del bloque: se vuelve al savepoint, B se deshace y corre el manejador. A se conserva.
+- Clic 2: La lección: capturar no es lo mismo que dejar propagar. Y el costo: dentro de un bucle, un savepoint por vuelta; manejadores solo donde hay una decisión que tomar.
+
+EJEMPLO: DO $$ BEGIN CALL sp_facturar(4, ARRAY[3, 2], ARRAY[2, 10]); EXCEPTION WHEN OTHERS THEN RAISE NOTICE 'Fallo esperado: %', SQLERRM; END $$; imprime «Fallo esperado: ERROR: stock insuficiente del insumo 2 (se pidieron 10)» y la base queda igual: el savepoint deshizo lo del CALL.
+
+SI PREGUNTAN:
+- «¿Qué es SQLERRM?» → La variable con el texto del error que se atrapó. Sirve para que el aviso diga algo útil en vez de «falló».
+
+CUIDADO: Ese DO con manejador es para que un script siga corriendo y se pueda medir, no para arreglar el error.
+
+PASA A LA SIGUIENTE: El savepoint también se puede escribir a mano.
+
+### [Slide 18] SAVEPOINT: deshacer una parte sin perder el resto
+
+QUÉ ES (dilo así): Un SAVEPOINT es una marca con nombre dentro de la transacción. ROLLBACK TO SAVEPOINT vuelve a esa marca sin deshacer lo anterior, y la transacción sigue viva.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Líneas 1-3: BEGIN, la cabecera y la marca antes_del_detalle.
+- Líneas 4-7: Una línea con el insumo 9999, que no existe: la clave foránea la rechaza con el error de las líneas 6 y 7.
+- Líneas 8-11: ROLLBACK TO SAVEPOINT: la cabecera sigue viva. Se inserta la línea correcta (insumo 5) y COMMIT.
+
+EJEMPLO: Resultado: la factura con una línea de 1 gasa. Sin el ROLLBACK TO SAVEPOINT, cualquier sentencia después del error respondería «current transaction is aborted».
+
+SI PREGUNTAN:
+- «¿Cuándo usaría esto en la clínica?» → En una factura de varias líneas donde se acepta cobrar las que sí alcanzan y avisar de la que no. Hoy la regla es todo o nada, así que no se usa.
+
+CUIDADO: En esta versión la cabecera queda con total 0: el ejemplo muestra el SAVEPOINT, no el cálculo del total.
+
+PASA A LA SIGUIENTE: Y la trampa de atrapar el error sin relanzarlo.
+
+### [Slide 19] El bloque EXCEPTION y la trampa de tragarse el error
+
+QUÉ ES (dilo así): Un bloque que atrapa el error y solo avisa deshace su parte, pero deja confirmado lo que estaba antes. El resultado puede ser una factura sin líneas que nadie notó.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Líneas 1-3: el DO y la cabecera, fuera del bloque interno.
+- Líneas 4-10: El bloque con EXCEPTION: descuenta una gasa e inserta una línea con un insumo que no existe. El manejador solo imprime un aviso: es la trampa.
+- Líneas 12-15: El efecto: el bloque se deshizo (el stock quedó igual), pero el DO terminó bien y la cabecera quedó guardada sin líneas. La corrección: EXCEPTION WHEN OTHERS THEN RAISE;
+
+EJEMPLO: Prueba real: el aviso dice «algo fallo: insert or update on table "detalle_factura" violates foreign key constraint …», queda una factura con 0 líneas y la gasa conserva su stock. Con RAISE en el manejador, el DO falla y no queda ninguna factura nueva.
+
+CUIDADO: El síntoma de esta trampa no es un error: es una factura con total 0 y sin líneas que aparece días después.
+
+PASA A LA SIGUIENTE: Por qué todo esto se escribe distinto en Oracle.
+
+### [Slide 20] El contraste con Oracle
+
+QUÉ ES (dilo así): Oracle sigue siendo un motor importante y por eso se compara, pero el motor del curso es PostgreSQL. La misma lógica de facturación necesita cuatro cambios de sintaxis para pasar de un motor al otro, y además cambia quién confirma.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Recorre fila por fila: tipos, filas afectadas, cómo se aborta, qué se hace al fallar y quién confirma.
+- Abajo: La respuesta a «¿por qué la base quedó intacta?»: el CALL es su propia transacción y la excepción propagada la deshace entera. Ningún ROLLBACK escrito lo hizo.
+
+EJEMPLO: En Oracle: EXCEPTION WHEN OTHERS THEN ROLLBACK; RAISE;. En PostgreSQL ese bloque no hace falta: sin manejador, la excepción sale del CALL y deshace todo.
+
+SI PREGUNTAN:
+- «¿PostgreSQL guarda una copia de cada tabla antes del CALL?» → No. Conserva la versión anterior de cada fila que cambia (MVCC) y, al deshacer, se queda con ella.
+- «¿Los UPDATE se acumulan en memoria y se escriben al final?» → No. Cada sentencia se aplica cuando se ejecuta y se ve dentro de la misma transacción; lo que se decide al final es confirmarla o no.
+
+CUIDADO: Enseñar la forma de Oracle como si fuera la del curso es el error que más cuesta: no compila en PostgreSQL.
+
+PASA A LA SIGUIENTE: La misma regla de stock con otro contrato: informar en vez de abortar.
+
+### [Slide 21] Abortar o informar: fn_descontar_stock
+
+QUÉ ES (dilo así): Hay dos maneras de responder «no hay stock». El procedimiento lo trata como un fallo y aborta todo. La función lo trata como un resultado: devuelve verdadero o falso y deja que quien la llama decida si sigue con las demás líneas.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: La misma regla arriba (el UPDATE con el guardia) y el primer contrato: sp_facturar, 0 filas → RAISE EXCEPTION, se deshace toda la factura.
+- Clic 1: El segundo contrato: fn_descontar_stock RETURNS BOOLEAN, RETURN v_filas = 1. Si no alcanza devuelve false, sin excepción.
+- Clic 2: Cuatro llamadas reales: (5, 3) → true, hay 8 y quedan 5; (2, 10) → false, hay 3; (2, 3) → true, pide justo lo que queda; (5, 0) → error, porque una cantidad no positiva es una llamada mal hecha.
+
+EJEMPLO: fn_descontar_stock(5, 0) responde «ERROR: la cantidad debe ser positiva (llego 0)». El false se reserva para «no alcanza».
+
+SI PREGUNTAN:
+- «¿Por qué devolver false si también es un fallo?» → Porque para quien llama es un resultado: puede decidir seguir con otras líneas o cancelar. Si la función lanzara la excepción, esa decisión ya no se podría tomar.
+
+CUIDADO: El caso límite (2, 3) es el que delata un guardia escrito con > en vez de >=: devolvería false.
+
+PASA A LA SIGUIENTE: La función completa y su prueba en una sola consulta.
+
+### [Slide 22] fn_descontar_stock: cuando «no hay stock» es una respuesta, no un error
+
+QUÉ ES (dilo así): La función tiene tres partes cortas y se prueba en una sola consulta con tres casos. Lo que la hace segura es lo mismo que en el procedimiento: la condición viaja dentro del UPDATE.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: La firma y las tres partes: p_cantidad <= 0 → RAISE; el UPDATE con el guardia; GET DIAGNOSTICS y RETURN v_filas = 1, que devuelve directamente el resultado de la comparación.
+- En el medio: La prueba con stocks 8 y 3: SELECT fn_descontar_stock(5, 3) AS caso_ok, fn_descontar_stock(2, 10) AS caso_sin_stock, fn_descontar_stock(2, 3) AS caso_limite; → true | false | true. Después: insumo 5 en 5 e insumo 2 en 0.
+- Abajo: La ventana: si se lee el stock y luego se decide, dos recepciones pueden leer 3 a la vez y las dos descontar. Con la condición en el WHERE no hay ventana.
+
+EJEMPLO: Antes de la prueba se reinician los stocks (insumo 5 en 8 e insumo 2 en 3); si no, los valores esperados no salen.
+
+SI PREGUNTAN:
+- «¿Puedo probar la ventana con dos pestañas del navegador?» → No: cada pestaña levanta su propia base en memoria y no comparten nada. Se documenta en papel y se estudia en la Clase 10.
+
+CUIDADO: Distinguir el dato inválido (cantidad cero o negativa, excepción) del resultado negativo (no alcanza, false) es la mitad del tema.
+
+PASA A LA SIGUIENTE: Tuning: hábitos de escritura que evitan problemas.
+
+### [Slide 23] Tuning: habitos de escritura, no parametros del servidor
+
+QUÉ ES (dilo así): Aquí tuning no es mover parámetros del servidor, que en el navegador no se puede y sin medición es peligroso. Son hábitos de escritura con números: transacciones cortas, lotes razonables y filtros que tocan pocas filas.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: Bien: leer y validar primero, sin transacción, y abrir BEGIN … COMMIT solo para escribir. Dura milisegundos.
+- Clic 1: Mal: abrir la transacción, mostrar un «¿confirmar?» y que la recepcionista se vaya a almorzar. Esas filas quedan bloqueadas para el resto de la clínica mientras nadie vuelve.
+- Clic 2: Cargas masivas: COMMIT por lotes, del orden de 1.000 a 5.000 filas como convención de oficio. Ni uno por fila, que es lentísimo, ni uno solo para un millón.
+
+EJEMPLO: UPDATE insumo SET stock = stock - 2 WHERE id_insumo = 3 filtra por la clave primaria y bloquea una sola fila; el mismo UPDATE filtrando por una columna sin índice tiene que recorrer la tabla para encontrar las filas.
+
+SI PREGUNTAN:
+- «¿Cuánto es «corta»?» → Del orden de milisegundos a unos cientos de milisegundos. Cualquier cosa que sostenga bloqueos durante segundos es sospechosa.
+
+CUIDADO: No prometas cifras exactas de mejora: los tamaños de lote y los tiempos se miden en cada motor.
+
+PASA A LA SIGUIENTE: Vamos a la demo, en el orden en que se proyecta.
+
+### [Slide 24] La demo, en el orden en que se proyecta
+
+QUÉ ES (dilo así): El script tiene cinco bloques y el valor está en el tercero: hay que administrar el tiempo para llegar ahí con calma.
+
+CÓMO DARLA (≈1 min):
+- Al entrar: Bloques 0 a 2: el esquema (se puede correr dos veces porque empieza con los DROP), el procedimiento leído en voz alta y el caso feliz, 27.400.
+- Bloque 3: Foto inicial (1 | 3 | 40 | 3), el CALL que falla dentro de un DO con manejador y la foto final idéntica. Pregunta al grupo dónde quedó el descuento del insumo 3. Cierra con la factura viable: 112.000, insumo 3 en 38 e insumo 2 en 0.
+
+EJEMPLO: La factura viable sale con id_factura 3: el intento fallido consumió el 2 de la secuencia.
+
+CUIDADO: Si el tiempo aprieta se recorta el bloque 4; nunca la pareja de fotos del bloque 3.
+
+PASA A LA SIGUIENTE: Qué se puede demostrar en el navegador y qué no.
+
+### [Slide 25] Donde corre esto, y por que el autocommit ya no es el enemigo
+
+QUÉ ES (dilo así): Todo el código de hoy es PL/pgSQL y corre en PostgreSQL dentro del navegador. Como el CALL ya es su propia transacción, no hace falta dejar una transacción abierta entre dos ejecuciones para demostrar la atomicidad.
+
+CÓMO DARLA (≈1 min):
+- Al entrar: Izquierda, lo que corre: CALL, GET DIAGNOSTICS, RAISE, la función BOOLEAN, las fotos y el DDL dentro de una transacción. Derecha, lo que no: dos sesiones a la vez (espera por bloqueo, interbloqueo, actualización perdida) y apagar el servidor. Eso se documenta en papel y es la Clase 10.
+
+CUIDADO: En PostgreSQL el DDL es transaccional: la vieja advertencia de que un CREATE TABLE confirma solo (Oracle, MySQL) no aplica aquí; se menciona como diferencia entre motores.
+
+PASA A LA SIGUIENTE: Vamos a la demo.
+
+### [Slide 26] Demo del dia
+
+QUÉ ES (dilo así): La demo corre el script de la clase y demuestra la atomicidad con dos fotos de la misma consulta, antes y después de un CALL que falla a mitad.
+
+CÓMO DARLA (≈15 min):
+- Al entrar: 1) Esquema y seis insumos. 2) El procedimiento, leyendo el guardia y el GET DIAGNOSTICS. 3) CALL sp_facturar(4, ARRAY[1, 6, 5], ARRAY[1, 2, 3]): 27.400 y stocks 11, 58 y 5.
+- Después: 4) Foto inicial: 1 | 3 | 40 | 3. 5) El CALL con ARRAY[3, 2] y ARRAY[2, 10] dentro de un DO con manejador: «Fallo esperado: ERROR: stock insuficiente del insumo 2 (se pidieron 10)». 6) Foto final: 1 | 3 | 40 | 3. 7) Si hay tiempo, la función: true | false | true.
+
+EJEMPLO: Después de las fotos, CALL sp_facturar(4, ARRAY[3, 2], ARRAY[2, 3]) crea la factura por 112.000 (9.500×2 + 31.000×3) y deja el insumo 3 en 38 y el 2 en 0.
+
+CUIDADO: Sin la foto inicial no hay demostración: hay que tomarla antes del CALL que falla, con exactamente la misma consulta que la final.
+
+PASA A LA SIGUIENTE: Cierre de la clase.
 
 
 **Demo que usted debe poder repetir:** CALL sp_facturar(4, ARRAY[1,6,5], ARRAY[1,2,3]) que factura 27.400, y CALL sp_facturar(4, ARRAY[3,2], ARRAY[2,10]) que falla en la segunda linea: el stock del insumo 3 vuelve a 40 sin ROLLBACK escrito.

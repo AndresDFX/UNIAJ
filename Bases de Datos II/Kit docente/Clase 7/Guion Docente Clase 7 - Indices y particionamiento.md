@@ -20,272 +20,442 @@ El objetivo de la clase no es «cubrir un capitulo» aislado, sino producir evid
 del PI VetCare. La teoria se limita a desbloquear el taller.
 
 
-## Apoyo por diapositiva
+## Guion por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Es el mismo texto que llevan las **notas del presentador** de cada lámina: qué decir al entrar y en cada clic, el ejemplo, las preguntas típicas y el puente a la siguiente.
 
-**[Slide 4] De donde viene la clase: los Seq Scan de la Clase 6** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - La Clase 6 dejo al grupo mirando planes que decian Seq Scan donde se esperaba algo mejor; hoy se construye la estructura que cambia esa linea.
-  - Un indice es una estructura de datos auxiliar, redundante y opcional, que el motor crea a partir de una o mas columnas de una tabla, mantiene ordenada por esas columnas y sincroniza automaticamente con cada cambio de los datos.
-  - Cada entrada guarda dos cosas: el valor de la clave y un puntero fisico a la fila completa, que en PostgreSQL se llama ctid y en Oracle ROWID.
-  - Redundante: no agrega informacion nueva, duplica columnas que ya estan en la tabla, y por eso se puede borrar y volver a crear sin perder un dato.
-  - Opcional: ninguna consulta deja de funcionar si el indice no existe, solo tarda mas.
-  - Automatico: nadie escribe codigo para mantenerlo, el motor lo actualiza dentro de la misma operacion del INSERT, del UPDATE o del DELETE, y de ahi sale el costo del que habla la segunda mitad de la clase.
-  - La base de hoy es la misma de la clase anterior: 30.010 citas del 5 de enero al 23 de julio de 2026, 5.008 mascotas, 2.006 duenos y 16 veterinarios, con estadisticas frescas y sin ningun indice salvo los de las claves primarias.
-  - Sobre esa tabla, un indice de una columna sobre cita(fecha_hora) guarda 30.010 entradas de unos 20 a 25 bytes y ocupa del orden de 700 KB frente a los 2 MB de la tabla
-  - Como orden de magnitud, cada indice de una columna cuesta entre el 10 % y el 30 % del tamano de la tabla, y esa cifra es estimacion de oficio, no constante del motor.
-  - El numero real se lee con; y es el que hay que reportar, no el de esta linea.
-  - NOTAS:
-  - Los tres adjetivos de la definicion importan.
-  - CÓDIGO CITADO (referencia):
-  - SELECT pg_size_pretty(pg_relation_size('idx_cita_fecha_hora'))
+### [Slide 2] Encuadre de hoy · Tema y objetivo
 
-**[Slide 5] El B-Tree por dentro, en cinco minutos** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - El tipo de indice por omision en PostgreSQL, Oracle, MySQL y SQL Server es el B-Tree, arbol balanceado, y entenderlo por dentro toma cinco minutos bien invertidos.
-  - Tiene tres clases de nodos: una raiz, cero o mas niveles intermedios o de rama, y un nivel de hojas donde estan todas las claves con sus punteros.
-  - Cada nodo ocupa una pagina, tipicamente de 8 KB, y si cada entrada pesa unos 20 bytes, en una pagina caben del orden de 400 claves; ese numero se llama grado de ramificacion o fan-out.
-  - Con 400 hijos por nodo, un arbol de un nivel cubre 400 filas, de dos niveles 160.000, de tres niveles 64 millones y de cuatro niveles mas de 25 mil millones.
-  - El crecimiento es logaritmico: duplicar la tabla no duplica el tiempo de busqueda, apenas lo mueve.
-  - El indice de cita de hoy, con 30.010 entradas, tiene apenas dos niveles: unas 75 paginas de hojas y una raiz que apunta a todas.
-  - Un detalle mas explica la mitad de los usos reales: las hojas estan enlazadas entre si formando una lista, de modo que al llegar a la primera clave que cumple la condicion se puede seguir avanzando en orden
-  - Por eso un B-Tree sirve para BETWEEN, para mayor que, para menor que y para devolver filas ya ordenadas sin ejecutar un ordenamiento aparte, no solo para igualdades.
-  - NOTAS:
-  - Balanceado significa que todas las hojas quedan a la misma profundidad, asi que cualquier busqueda cuesta lo mismo y no hay valores afortunados.
-  - De ahi la afirmacion que el docente debe poder defender: tres o cuatro niveles alcanzan para tablas de millones de filas, y encontrar una fila cuesta tres o cuatro lecturas de pagina, sin importar si la tabla tiene cien mil filas o cincuenta millones.
-  - Esa es exactamente la forma de la consulta C1 de la clase, que pide un rango de un dia.
+QUÉ ES (dilo así): La clase anterior terminó con planes que decían Seq Scan: el motor leía la tabla entera porque no tenía otra forma de llegar a las filas. Hoy se construye esa otra forma, el índice, se mide cuándo sirve y cuánto cuesta, y se ve una herramienta distinta para tablas enormes: la partición.
 
-**[Slide 6] El precio se paga en cada escritura, y se cuantifica** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - El precio de indexar se paga en cada escritura y hay que cuantificarlo.
-  - Un INSERT en cita con cuatro indices no es una operacion, son cinco: la fila en la tabla mas una insercion ordenada en cada arbol, cada una bajando dos o tres niveles y a veces partiendo en dos una pagina llena, lo que ademas fragmenta el indice.
-  - Como orden de magnitud de oficio, cada indice adicional encarece las escrituras entre un 5 % y un 15 %
-  - Y una tabla con diez indices puede escribir varias veces mas lento que la misma con dos; el numero exacto depende del motor y hay que medirlo, pero la direccion nunca cambia.
-  - El UPDATE tiene un matiz util y muy citable: solo se actualizan los indices que contienen alguna columna modificada, asi que cambiar cita.estado de PROGRAMADA a ATENDIDA toca idx_cita_estado_fecha pero no idx_cita_fecha_hora
-  - De donde sale la advertencia de no indexar columnas que cambian en cada operacion salvo que una consulta muy frecuente lo exija.
-  - Ojo con una excepcion que aparece hoy: el indice PARCIAL sobre las citas PROGRAMADA si se toca cuando el estado cambia, porque la fila entra o sale del indice.
-  - En espacio, no es raro que la suma de los indices supere el tamano de la tabla.
-  - La guia es concreta: dos a cuatro indices por tabla caliente ademas de los que ya trae la clave primaria, cada uno con su consulta escrita al lado
-  - Y la regla de descarte mas util que existe, si el estudiante no puede escribir la consulta que usa el indice, el indice se borra.
-  - En produccion eso se decide con datos: PostgreSQL expone pg_stat_user_indexes, donde idx_scan en cero significa que el indice nunca se uso.
-  - Fuera de la lamina (habla de la practica): El precio de indexar se paga en cada escritura y hay que cuantificarlo, porque es la mitad del veredicto que la pregunta 5 pide por escrito.
-  - Fuera de la lamina (habla de la practica): En produccion eso se decide con datos: PostgreSQL expone pg_stat_user_indexes, donde idx_scan en cero significa que el indice nunca se uso; conviene mencionarlo aunque en una sesion de taller no de tiempo de acumular estadisticas de uso.
+CÓMO DARLA (≈4 min):
+- Al entrar: Proyecta mentalmente el plan de la Clase 6 y pregunta: «¿por qué el motor leyó las 30.010 citas para encontrar 150?». Deja que respondan: no había otra forma de encontrarlas.
+- Después: Cierra: «hoy esa línea del plan cambia, y lo vamos a demostrar con el antes y el después, no con una opinión».
 
-**[Slide 7] El costo de sobre-indexar, que casi nunca se menciona** — 11 vinetas.
+PASA A LA SIGUIENTE: Empecemos por qué es exactamente un índice.
 
-**[Slide 8] Indice compuesto: la regla del prefijo izquierdo** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Un indice compuesto es el creado sobre dos o mas columnas, y su regla de uso es la fuente de error mas frecuente del tema.
-  - Las entradas se ordenan por la primera columna y solo dentro de los valores iguales de la primera se ordenan por la segunda; es el orden de un directorio telefonico por apellido y luego nombre.
-  - En la clínica: idx_cita_estado_fecha sirve para WHERE estado = 'PROGRAMADA' AND fecha_hora >= TIMESTAMP '2026-03-01 00:00:00' y para WHERE estado = 'PROGRAMADA' a secas, y no sirve para un filtro que solo trae fecha_hora; para eso existe idx_cita_fecha_hora.
-  - Y un numero citable que desarma la idea de indexar todo por si acaso: un indice de k columnas atiende solamente los k prefijos, no las combinaciones, asi que uno de tres columnas atiende tres formas de consulta y no seis.
-  - NOTAS:
-  - De ahi la regla del prefijo mas a la izquierda: un indice sobre (estado, fecha_hora) resuelve una busqueda por estado, y una por estado junto con fecha_hora, pero NO resuelve eficientemente una busqueda solo por fecha_hora, igual que en el directorio no se pueden encontrar todas las personas llamadas Ana sin leerlo entero.
-  - El corolario de diseno cabe en una linea, y es la que hay que dejar escrita en la pizarra: las columnas comparadas por igualdad van primero y la comparada por rango va al final, porque despues del primer rango el orden interno del indice deja de ser aprovechable.
+### [Slide 3] Mapa del bloque de hoy (120 min)
 
-**[Slide 9] Cuando el indice responde solo, sin tocar la tabla** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Cuando todas las columnas que la consulta necesita, las del WHERE y las del SELECT, estan dentro del indice, el motor responde sin tocar la tabla, y eso se llama index-only scan o indice cubridor.
-  - Ejemplo exacto con los indices de hoy: SELECT estado, fecha_hora FROM cita WHERE estado = 'PROGRAMADA' AND fecha_hora >= TIMESTAMP '2026-03-01 00:00:00' se puede responder entera desde idx_cita_estado_fecha, y el plan lo dice con las palabras Index Only Scan.
-  - El ahorro es justamente la parte cara del acceso por indice: en lugar de dos o tres lecturas para bajar el arbol mas un centenar de lecturas dispersas a la tabla, quedan unas pocas lecturas de hojas contiguas.
-  - Si la consulta agrega id_mascota la ventaja se pierde, y hay dos maneras de recuperarla: agregar la columna a la clave, o usar la clausula INCLUDE de PostgreSQL, INCLUDE (id_mascota)
-  - Que guarda la columna en las hojas sin usarla para ordenar y por lo tanto sin engordar los niveles superiores
-  - Un detalle honesto que evita una confusion en vivo: en PostgreSQL el index-only scan depende del mapa de visibilidad
-  - Asi que inmediatamente despues de una carga masiva el plan puede seguir mostrando Index Scan hasta que pase VACUUM, y eso no significa que el indice este mal disenado.
-  - NOTAS:
-  - Oracle no tiene INCLUDE y la columna se agrega al final de la clave.
-  - CÓDIGO CITADO (referencia):
-  - CREATE INDEX idx_cita_cubridor ON cita (estado, fecha_hora)
-  - Fuera de la lamina (habla de la practica): Esto NO se califica hoy, pero es la respuesta a la pregunta que va a salir cuando alguien vea Index Only Scan en su plan y no sepa si esta bien.
+QUÉ ES (dilo así): El recorrido de las dos horas: teoría con una lámina por concepto, demo sobre la base de la clínica y práctica opcional.
 
-**[Slide 10] Las siete razones por las que un indice existente no se usa** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Un indice existente puede quedar sin usar por siete razones, y recitarlas separa al docente que responde del que dice que el motor es raro.
-  - Uno, la tabla es demasiado pequena: dueno con 2.006 filas cabe en unas 20 paginas y ningun indice le gana a leer 20 paginas seguidas; con las 20 filas de prueba de una base propia jamas se usara un indice y el motor esta en lo correcto.
-  - Dos, el predicado no es sargable, como se vio en la Clase 6: UPPER(nombre), EXTRACT(YEAR FROM fecha_hora) o una conversion implicita de tipo bloquean el indice
-  - Y la salida es el indice funcional, CREATE INDEX idx_mascota_nombre_upper ON mascota (UPPER(nombre)).
-  - Tres, la selectividad es mala: WHERE activa = 'S' devuelve mas del 90 % de mascota y el recorrido completo gana con razon.
-  - Cuatro, las estadisticas estan viejas y el motor cree que la tabla es diminuta; se corrige con ANALYZE cita, y es el paso que se salta medio salon.
-  - Con la base de hoy la excusa del volumen no aplica: 30.010 citas son suficientes para que el planeador prefiera el indice, asi que si el plan no cambia el problema esta en el predicado, en el nombre de la columna lider o en el ANALYZE que falto.
-  - NOTAS:
-  - Cinco, se violo el prefijo mas a la izquierda.
-  - Seis, la condicion combina columnas de indices distintos con OR, caso en el que el motor arma una combinacion de mapas de bits o simplemente escanea.
-  - Siete, el tipo de dato o la ordenacion no coincide con lo que el predicado compara.
+CÓMO DARLA (≈1 min):
+- Al entrar: Señala solo los tramos; no te detengas. La práctica está en la carpeta de la clase y es opcional.
 
-**[Slide 11] Los cinco nombres que se califican, y la consulta que justifica cada uno** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Los tres de la medicion: idx_cita_fecha_hora sobre cita (fecha_hora), que atiende cualquier consulta por rango de fecha con o sin estado; idx_mascota_dueno sobre mascota (id_dueno)
-  - Que atiende el historial de un dueno; y idx_cita_programada_fecha, el indice parcial sobre cita (fecha_hora) WHERE estado = 'PROGRAMADA', que atiende la agenda del dia de la recepcion.
-  - Los dos del experimento de orden: idx_cita_estado_fecha sobre cita (estado, fecha_hora) e idx_cita_fecha_estado sobre cita (fecha_hora, estado), las mismas dos columnas en orden inverso, creados a proposito para medir la diferencia.
-  - Un aviso concreto: idx_cita_fecha no es ninguno de los cinco, el sufijo es _fecha_hora como la columna, y ese fue durante un tiempo el nombre que aparecia en el material.
-  - Primero: declarar PRIMARY KEY o UNIQUE crea automaticamente un indice unico para sostener la restriccion, asi que id_dueno, id_mascota e id_cita YA tienen indice y crear otro encima solo duplica espacio y trabajo de escritura.
-  - Segundo, menos conocido: declarar una FOREIGN KEY NO crea indice en ninguno de los dos motores. mascota.id_dueno apunta a dueno, pero del lado de mascota no hay nada ordenado
-  - Y por eso idx_mascota_dueno si es una adicion legitima; sin el, ademas, borrar un dueno obliga a recorrer mascota completa para verificar la integridad.
-  - NOTAS:
-  - El nombre de cada indice importa.
-  - Dos hechos sobre claves evitan la mitad de los indices inutiles que se entregan en los proyectos.
-  - Fuera de la lamina (habla de la practica): Aqui empieza la parte que se califica letra por letra, y conviene decirlo con esas palabras.
-  - Fuera de la lamina (habla de la practica): El nombre de cada indice importa, porque el plan de ejecucion imprime literalmente Index Scan using seguido del nombre y porque la tabla de justificacion de la pregunta 5 se llena con esos mismos nombres.
-  - Fuera de la lamina (habla de la practica): Un aviso concreto: idx_cita_fecha no es ninguno de los cinco, el sufijo es _fecha_hora como la columna, y ese fue durante un tiempo el nombre que aparecia en el material; si alguien lo escribe asi pierde puntos por el nombre y no por el concepto.
+### [Slide 4] De donde viene la clase: los Seq Scan de la Clase 6
 
-**[Slide 12] Un indice se justifica con la consulta que lo usa** — 11 vinetas.
+QUÉ ES (dilo así): Un índice es como el índice de un libro: no agrega información, repite una columna en orden y dice en qué página está cada valor. El motor lo crea a partir de la tabla, lo mantiene sincronizado solo y lo usa si le conviene. Si se borra, los datos siguen intactos; solo las consultas se vuelven más lentas.
 
-**[Slide 13] La secuencia de medicion, y por que el ANALYZE del medio no es opcional** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - La clase entera vive en una secuencia de cuatro pasos que hay que proyectar en ese orden, porque cambiarlo destruye la evidencia.
-  - Primero, EXPLAIN ANALYZE de las dos consultas frecuentes ANTES de crear nada: tiene que salir Seq Scan on cita y Seq Scan on mascota, y ese es el punto de comparacion.
-  - C1 es la agenda del dia, SELECT id_cita, fecha_hora, estado FROM cita WHERE fecha_hora >= TIMESTAMP '2026-03-10 00:00:00' AND fecha_hora < TIMESTAMP '2026-03-11 00:00:00' AND estado = 'PROGRAMADA', y devuelve 91 filas de las 150 citas que tiene ese dia
-  - Tercero, y este es el paso que se salta medio salon, ANALYZE cita; y ANALYZE mascota;: crear el indice NO actualiza las estadisticas, el planeador decide por costo estimado, y con numeros viejos puede ignorar un indice perfectamente bueno.
-  - La mitad de los avisos de «cree el indice y no me sirvio» de la clase son este paso omitido.
-  - Cuarto, las MISMAS dos consultas otra vez, sin cambiar una coma: si se cambia una fecha o un id la comparacion deja de valer.
-  - Y el cierre es la evidencia de que existen: ORDER BY tablename, indexname; la columna indexdef devuelve el CREATE INDEX completo, asi que ahi se ve tambien la clausula WHERE del indice parcial, que es lo que confirma que se creo parcial y no completo.
-  - El enunciado ademas exige comentar CUAL de los dos indices sobre fecha_hora eligio el planeador para C1.
-  - NOTAS:
-  - Segundo, los CREATE INDEX.
-  - CÓDIGO CITADO (referencia):
-  - SELECT id_mascota, nombre, especie FROM mascota WHERE id_dueno = 1234
-  - SELECT indexname, tablename, indexdef FROM pg_indexes WHERE tablename IN ('cita','mascota')
-  - Fuera de la lamina (habla de la practica): El enunciado ademas exige comentar CUAL de los dos indices sobre fecha_hora eligio el planeador para C1, y la rubrica descuenta si no se comenta: no basta pegar el plan, hay que leerlo.
+CÓMO DARLA (≈3 min):
+- Al entrar: La tabla cita con sus filas en el orden en que llegaron: el 12, el 9, el 15, el 10, el 11. Cada fila tiene su dirección física, (0,1), (0,2)…, que en PostgreSQL se llama ctid.
+- Clic 1: El índice: las fechas ordenadas, cada una con la dirección de su fila. Para buscar el 2026-03-10 basta encontrar la entrada y seguir la flecha a (0,4). Lee los dos recuadros: valor + puntero; ctid o ROWID.
+- Clic 2: Lee la conclusión: auxiliar, redundante y opcional. Subraya «opcional»: ninguna consulta falla si el índice no existe.
 
-**[Slide 14] Crear el indice y probar que se usa** — 11 vinetas.
+EJEMPLO: En la base de hoy, el índice sobre cita(fecha_hora) mide 256 kB frente a los 2 MB de la tabla: PostgreSQL deduplica las claves repetidas y fecha_hora tiene solo 1.810 valores distintos. Se mide con SELECT pg_size_pretty(pg_relation_size('idx_cita_fecha_hora'));
 
-**[Slide 15] El experimento del orden de columnas, paso a paso** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Se crean los dos compuestos, se corre ANALYZE cita, y se miden tres consultas.
-  - Q1 filtra por estado con igualdad y por fecha_hora con rango: favorece a idx_cita_estado_fecha, porque la columna de igualdad es la lider y el rango queda al final.
-  - Q2 filtra solo por rango de fecha_hora: favorece a idx_cita_fecha_estado, porque ahi fecha_hora si es la lider.
-  - Q3 filtra solo por estado, sin fecha: idx_cita_fecha_estado no le sirve, porque su columna lider no aparece en el WHERE, y con CANCELADA siendo apenas 2.728 de 30.010 filas el motor puede elegir idx_cita_estado_fecha o resolver por conteo.
-  - Despues viene la parte que convierte la observacion en experimento: se hace DROP INDEX idx_cita_fecha_estado y se vuelve a medir Q2.
-  - El plan cae en idx_cita_fecha_hora, que tambien tiene fecha_hora como lider, o vuelve al recorrido completo, pero NO se pasa a idx_cita_estado_fecha.
-  - Un matiz honesto: el planeador decide por costo y puede sorprender, sobre todo entre dos indices que compiten de cerca; la instruccion al grupo es reportar lo que VIO en su plan, no lo que decia la diapositiva, y explicar la eleccion.
-  - NOTAS:
-  - Eso es la regla del prefijo izquierdo vista en vivo, y es la unica manera de que no quede como una frase que se memoriza.
-  - Un plan distinto bien leido vale mas que el plan esperado copiado.
-  - Fuera de la lamina (habla de la practica): La pregunta 2 no pide creer la regla del prefijo izquierdo, pide demostrarla, y el docente tiene que poder anticipar los tres resultados.
+SI PREGUNTAN:
+- «Si es redundante, ¿por qué no se crean índices para todo?» → Porque cada índice se actualiza en cada escritura y ocupa espacio. Se crea el que una consulta frecuente necesita; lo vemos en dos láminas.
+- «¿Puedo ver el ctid?» → Sí: SELECT ctid, id_cita FROM cita LIMIT 5; muestra la dirección física de cada fila. Cambia si la fila se actualiza, así que no sirve como identificador.
 
-**[Slide 16] El orden de columnas en un indice compuesto** — 10 vinetas.
+CUIDADO: No digas que el índice «ordena la tabla»: la tabla queda igual; el índice es una estructura aparte.
 
-**[Slide 17] Los cinco indices de hoy, con su nombre exacto** — 5 vinetas.
+PASA A LA SIGUIENTE: ¿Cómo encuentra el motor una clave dentro del índice sin leerlo entero? Con un árbol.
 
-**[Slide 18] El indice parcial: que indexa, cuanto ahorra y cuando gana** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Un indice parcial es el que solo contiene las filas que cumplen una condicion, y la sintaxis es WHERE estado = 'PROGRAMADA'.
-  - Lo primero que hay que aclarar, porque es donde se confunde todo el mundo: ese WHERE no es el de la consulta, es parte de la DEFINICION del indice y decide que filas entran en el arbol.
-  - Con los datos de hoy el ahorro se puede decir con numeros exactos: de las 30.010 citas, 18.187 estan PROGRAMADA, el 61 %; el indice completo indexa 30.010 entradas y el parcial 18.187, cuatro de cada diez menos.
-  - Menos entradas es menos disco, menos memoria intermedia ocupada y menos trabajo en cada escritura de una cita que no este programada.
-  - La condicion para que el planeador lo use es estricta: tiene que poder demostrar que la consulta trae la misma condicion del indice.
-  - WHERE estado = 'PROGRAMADA' AND fecha_hora >=... si lo aprovecha; la misma consulta sin el filtro de estado no, porque el indice no contiene las filas atendidas ni las canceladas y el motor no puede arriesgarse a devolver un resultado incompleto.
-  - Cuando el filtro es parte del caso de uso y no del capricho de una consulta, el parcial es la respuesta correcta.
-  - Y en C1 los dos indices sobre fecha_hora compiten: se espera que gane el parcial
-  - Porque recorre 91 entradas y ya sabe que todas cumplen el estado, mientras el completo recorreria las 150 del dia y tendria que descartar 59 despues de ir a la tabla a leer el estado.
-  - La diferencia de costo es pequena con este volumen, asi que si en la corrida gana el completo la respuesta correcta sigue siendo la que reporta lo que se vio.
-  - NOTAS:
-  - El caso de la clínica que lo justifica hay que nombrarlo: la agenda del dia de la recepcion SIEMPRE filtra por PROGRAMADA, porque nadie abre esa pantalla para ver las citas que ya se atendieron.
-  - CÓDIGO CITADO (referencia):
-  - CREATE INDEX idx_cita_programada_fecha ON cita (fecha_hora)
+### [Slide 5] El B-Tree por dentro, en cinco minutos
 
-**[Slide 19] El indice parcial: el mismo beneficio, una fraccion del tamano** — 5 vinetas.
+QUÉ ES (dilo así): El índice por omisión en PostgreSQL, Oracle, MySQL y SQL Server es el B-Tree, un árbol balanceado. Cada nodo ocupa una página y guarda cientos de claves, así que el árbol es muy ancho y muy bajo. Encontrar una clave es bajar de la raíz a una hoja: una lectura por nivel. Duplicar la tabla casi no cambia ese número.
 
-**[Slide 20] Particionar: que es, y por que hoy si se implementa** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Particionar es dividir una sola tabla logica en fragmentos fisicos llamados particiones, segun una clave, de modo que el motor descarte de entrada las que no pueden contener lo buscado; ese descarte se llama poda de particiones o partition pruning.
-  - La forma mas frecuente es por rango de fechas: una particion por ano, de manera que una consulta de 2026 lee unicamente la particion de 2026 y el plan lo muestra.
-  - La frase que lo separa del tema anterior es corta: el indice ordena, la particion separa.
-  - El particionamiento se implementa completo —DDL, dos particiones, migracion de las citas, prueba de enrutamiento y prueba de poda— sobre una base de 5.010 citas repartidas entre 2025 y 2026.
-  - Si el docente anuncia que hoy no se implementa.
-  - Error comun: declarar la clave primaria solo sobre id_cita.
-  - NOTAS:
-  - El umbral en el que empieza a pagar en produccion es alto y hay que decirlo con numeros para que nadie lo use de adorno: como convencion de oficio se piensa en particionar por encima de unas decenas de millones de filas o de tablas de decenas de gigabytes, y por debajo de eso un indice sobre fecha_hora hace el mismo trabajo con mucho menos mantenimiento.
-  - Ahora la advertencia importante para el docente, porque es la que ha costado puntos: eso NO significa que hoy el particionamiento sea una idea conceptual que solo se cuenta.
-  - Lo que si es cierto, y hay que decirlo en la misma frase, es que con 5.010 filas la ganancia de RENDIMIENTO no es apreciable: lo que se demuestra hoy es que el motor descarta particiones enteras antes de leer, y que archivar un ano se vuelve trivial.
-  - En una tabla particionada PostgreSQL exige que la PK incluya la columna de particion, asi que la clave pasa a ser (id_cita, fecha_hora).
-  - Fuera de la lamina (habla de la practica): Si el docente anuncia que hoy no se implementa, el estudiante llega al taller con una respuesta en prosa a una pregunta que pide SQL ejecutado.
+CÓMO DARLA (≈3 min):
+- Al entrar: El árbol: raíz (50), ramas (30 y 70) y hojas con todas las claves y sus punteros. Balanceado: todas las hojas a la misma profundidad, así que ninguna búsqueda tiene suerte ni mala suerte.
+- Clic 1: Buscar 60: la raíz dice «mayor que 50, a la derecha»; la rama dice «menor que 70»; la hoja 55·60 lo tiene. Tres lecturas, una por nivel.
+- Clic 2: Cada nodo es una página de 8 KB. Con entradas de unos 20 bytes caben del orden de 400 claves: dos niveles cubren 160.000 filas, tres, 64 millones.
 
-**[Slide 21] Particionar el historico por rango de fecha** — 14 vinetas.
+EJEMPLO: El índice de hoy sobre cita(fecha_hora) tiene 32 páginas en total: una raíz y unas 31 hojas, o sea dos niveles. Encontrar una fecha cuesta dos lecturas de índice.
 
-**[Slide 22] El DDL de la particion, con sus dos trampas** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - El DDL son tres sentencias y dos trampas.
-  - La primera sentencia declara la tabla particionada: PARTITION BY RANGE (fecha_hora)
-  - Las otras dos crean las particiones: TO (TIMESTAMP '2026-01-01'); y su gemela de 2026.
-  - Primera trampa, la que cuesta la pregunta: en una tabla particionada la clave primaria DEBE incluir la columna de particion, asi que PRIMARY KEY (id_cita, fecha_hora) y no PRIMARY KEY (id_cita) a secas.
-  - Esto no es una rareza de MySQL, es la regla de PostgreSQL, y el mensaje de error del motor no dice «te falta la columna de particion» con esas palabras, asi que el estudiante que lo intenta se queda mirando un error que no entiende.
-  - Segunda trampa, mas silenciosa: el rango es cerrado por abajo y abierto por arriba, de modo que el TO de una particion es exactamente el FROM de la siguiente y nunca se solapan
-  - Quien escriba TO (TIMESTAMP '2025-12-31') se queda sin sitio donde poner las citas del 31 de diciembre y el INSERT falla con un error de que no se encontro particion.
-  - Despues del DDL viene la migracion,, y la prueba de que el reparto ocurrio:, MIN(fecha_hora), MAX(fecha_hora) tableoid es una columna de sistema que dice en que tabla FISICA vive cada fila y::regclass la traduce a nombre.
-  - La poda se comprueba con EXPLAIN ANALYZE de una consulta acotada a 2026: en el plan debe aparecer SOLO cita_hist_2026.
-  - NOTAS:
-  - Sin esa consulta no hay evidencia del enrutamiento, solo un INSERT que no dio error.
-  - CÓDIGO CITADO (referencia):
-  - CREATE TABLE cita_hist (id_cita INT, id_mascota INT, id_veterinario INT, fecha_hora TIMESTAMP NOT NULL, estado TEXT, PRIMARY KEY (id_cita, fecha_hora))
-  - CREATE TABLE cita_hist_2025 PARTITION OF cita_hist FOR VALUES FROM (TIMESTAMP '2025-01-01')
-  - INSERT INTO cita_hist SELECT id_cita, id_mascota, id_veterinario, fecha_hora, estado FROM cita
-  - SELECT tableoid::regclass AS particion, COUNT(*)
-  - FROM cita_hist GROUP BY 1 ORDER BY 1
-  - Fuera de la lamina (habla de la practica): Sin esa consulta no hay evidencia del enrutamiento, solo un INSERT que no dio error, y la rubrica lo pide explicitamente.
+SI PREGUNTAN:
+- «¿Por qué sirve para BETWEEN o para ORDER BY?» → Porque las hojas están enlazadas en orden: al llegar a la primera clave del rango, el motor sigue avanzando por las hojas sin volver a la raíz.
+- «¿Hay otros tipos de índice?» → Sí (hash, GIN, GiST, BRIN), pero el B-Tree es el que se usa salvo que se pida otro, y es el de hoy.
 
-**[Slide 23] Particionar hoy de verdad: rango por ano, poda y archivado** — 5 vinetas.
+CUIDADO: No confundas «B-Tree» con «árbol binario»: cada nodo tiene cientos de hijos, no dos; por eso el árbol es tan bajo.
 
-**[Slide 24] El veredicto de particionamiento que pide la pregunta 5** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Primera: el volumen que espera la clínica, con numeros propios del estudiante, del estilo tantas citas por dia por tantos dias de operacion al ano por tantos anos de historia.
-  - Un dato de referencia para calibrar: 40 citas diarias durante 300 dias son 12.000 citas al ano
-  - Y a cinco anos son 60.000; eso esta tres ordenes de magnitud por debajo del umbral de particionamiento, asi que el veredicto honesto para la clínica es que NO se particiona, y decirlo con el numero al lado vale mas que decir que si por quedar bien.
-  - Segunda: la ganancia de rendimiento con 5.010 filas no es apreciable.
-  - Tercera: lo que si quedo comprobado, que son dos cosas concretas, la poda de particiones en el plan y la facilidad de archivado.
-  - Y ahi esta el caso que no tiene alternativa, el que justifica aprender el tema aunque hoy no se aplique: borrar cinco anos de historia con DELETE FROM cita WHERE fecha_hora < TIMESTAMP '2021-01-01 00:00:00' toca millones de filas
-  - Genera un registro de transacciones enorme, sostiene bloqueos largos y deja la tabla que hay que limpiar despues
-  - En cambio DROP TABLE cita_hist_2021 es una operacion de metadatos que tarda un instante, y ALTER TABLE cita_hist DETACH PARTITION cita_hist_2021 la separa sin borrar los datos si hay que conservarlos aparte.
-  - En Oracle la sentencia equivalente es ALTER TABLE cita DROP PARTITION cita_2021, y la diferencia de sintaxis conviene mencionarla porque el motor de hoy es PostgreSQL.
-  - Ese contraste entre DROP de particion y DELETE masivo conecta directo con la Clase 8, donde el registro de transacciones y la duracion de los bloqueos son el tema.
-  - NOTAS:
-  - Un veredicto de particionamiento tiene tres exigencias distintas.
-  - Fuera de la lamina (habla de la practica): Segunda: la ganancia de rendimiento con 5.010 filas no es apreciable, y reconocerlo suma puntos en vez de restarlos, porque la alternativa es inventar una mejora que el plan no muestra.
+PASA A LA SIGUIENTE: Leer es más rápido; escribir, no. El precio se paga en cada escritura.
 
-**[Slide 25] La demo, en el orden en que se proyecta** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - La demo es el script Codigo/07_indices_clinica.sql y se corre, no en otra herramienta, porque el volumen sembrado es el que hace cambiar el plan.
-  - Termina con una consulta de control que debe devolver 18.187 PROGRAMADA, 9.095 ATENDIDA y 2.728 CANCELADA; si esos numeros no salen, nada de lo que sigue cuadra y hay que parar ahi.
-  - El bloque 1 es la linea base, con los dos Seq Scan.
-  - El bloque 3 es el experimento del orden, con su DROP INDEX al final.
-  - Si el bloque 0 no alcanza el tiempo.
-  - NOTAS:
-  - El script trae cinco bloques y el orden importa.
-  - El bloque 2 crea los tres indices, corre ANALYZE y repite las dos consultas: ese es el momento de la clase, y conviene proyectar las dos salidas una debajo de la otra y leer en voz alta la linea del nodo.
-  - El bloque 4 es el particionamiento completo, con una salvedad que hay que decir en vivo: como la siembra del bloque 0 pone todas las citas en 2026, todo cae en cita_hist_2026 y cita_hist_2025 queda vacia; eso ya demuestra el enrutamiento.
-  - Lo que no se puede hacer es medir en una base de 20 filas: el plan no va a cambiar y el grupo se va a llevar la conclusion contraria.
-  - Fuera de la lamina (habla de la practica): El bloque 0 crea las tablas y siembra la misma base de la actividad: 10 citas a mano mas 30.000 con generate_series, 30.010 en total; hay que advertir que ese bloque recrea las tablas, asi que se corre en una base vacia y no sobre la base de la clínica con datos que alguien quiera conservar.
-  - Fuera de la lamina (habla de la practica): El bloque 4 es el particionamiento completo, con una salvedad que hay que decir en vivo: como la siembra del bloque 0 pone todas las citas en 2026, todo cae en cita_hist_2026 y cita_hist_2025 queda vacia; eso ya demuestra el enrutamiento, y la base de la pregunta 3 si reparte sus 5.010 citas entre los dos anos.
-  - Fuera de la lamina (habla de la practica): Si el bloque 0 no alcanza el tiempo, la alternativa es abrir directamente la pregunta 1 de la clase, que ya trae la base sembrada, y correr los bloques 1 y 2 ahi.
+### [Slide 6] El precio se paga en cada escritura, y se cuantifica
 
-**[Slide 26] Donde corre esto, y que no se puede medir aqui** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - En particular DB Fiddle queda fuera, aunque tambien tenga PostgreSQL, por un motivo concreto: la base sembrada con las 30.010 citas no existe alli.
-  - Lo medible con confianza: el tipo de nodo, las filas estimadas contra reales y el numero de particiones leidas.
-  - Los milisegundos no se comparan entre maquinas: cambian incluso entre 2 corridas seguidas en el mismo equipo.
-  - NOTAS:
-  - La herramienta de hoy es una sola y conviene decirlo sin ambiguedad: PostgreSQL en el navegador, que ejecuta PostgreSQL sobre PGlite dentro del navegador.
-  - Ahi corre la demo.
-  - Lo que si se puede medir aqui: el cambio de Seq Scan a Index Scan, la eleccion entre dos indices que compiten, el efecto del orden de columnas con su DROP INDEX, el particionamiento declarativo completo y la poda en el plan, y el tamano de cada indice con pg_relation_size.
-  - Lo que NO se puede medir, y hay que declararlo en el informe en vez de inventarlo: los tiempos con la memoria intermedia vacia, porque vaciarla exige privilegios de administrador; el tiempo de creacion de un indice sobre decenas de millones de filas; la fragmentacion despues de meses de escrituras; la degradacion medible de un INSERT con diez indices, que necesita una carga sostenida; y cualquier cosa que exija dos sesiones simultaneas, porque PGlite corre una sola, que es el tema de la Clase 10.
-  - PREGUNTAS FRECUENTES DEL GRUPO
-  - Primera, y la mas previsible: entonces creo (estado, fecha_hora) y tambien (fecha_hora, estado).
-  - En produccion rara vez se justifica tener los dos, porque el segundo queda casi siempre cubierto por el indice de una sola columna sobre fecha_hora mas el filtro de estado aplicado sobre las pocas filas que sobreviven, y cada indice extra se paga en cada escritura.
-  - Hoy se crean los dos a proposito, para medir, y el experimento termina con un DROP INDEX que muestra que pasa cuando falta uno: crear para medir y crear para dejar son dos cosas distintas, y esa distincion es la respuesta.
-  - Segunda: cree el indice y el plan no cambio, entonces sirve o no sirve.
-  - Con 20 filas el indice puede estar bien elegido y el motor tener razon en no usarlo; con las 30.010 de hoy el volumen ya no es excusa, asi que se revisa en este orden, el ANALYZE, el nombre de la columna lider, y si el predicado es sargable.
-  - Tercera: si particionar no mejora nada con este volumen, para que lo hacemos.
-  - Cuarta: el indice parcial y el completo indexan la misma columna, no es redundante.
-  - No lo es mientras existan consultas que no traigan el filtro de estado: esas solo pueden usar el completo.
-  - Quinta: puedo poner el indice y ya, sin medir.
-  - Si todas las consultas del proyecto filtran por PROGRAMADA, entonces si sobra el completo.
-  - No, porque hace falta la linea base con Seq Scan; sin el antes, el despues no demuestra nada.
-  - Fuera de la lamina (habla de la practica): Ahi corre la demo, ahi se resuelve el taller y ahi se califica, asi que no hay razon para trabajar en otro sitio.
-  - Fuera de la lamina (habla de la practica): En particular DB Fiddle queda fuera, aunque tambien tenga PostgreSQL, por un motivo concreto: la base sembrada con las 30.010 citas no existe alli, y sin ella no se puede reproducir ni el cambio de plan ni las 91 filas que la rubrica menciona.
-  - Fuera de la lamina (habla de la practica): Un alterno que cuesta puntos no es un alterno.
-  - Fuera de la lamina (habla de la practica): Google Docs se usa para la tabla de justificacion de la pregunta 5, que es prosa y no SQL.
-  - Fuera de la lamina (habla de la practica): Esa lista de limites es la seccion 5 de la pregunta 5 y vale puntos: se pierde por omitirla, no por tenerla.
+QUÉ ES (dilo así): El índice acelera lecturas, pero se mantiene en cada escritura: cada INSERT agrega una entrada ordenada en cada índice de la tabla, y cada DELETE la quita. Por eso indexar tiene un costo que se paga siempre, se use o no se use el índice.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: INSERT INTO cita: la fila va a la tabla y además a cada uno de los cuatro índices. Lee la frase: un INSERT con cuatro índices no es una operación, son cinco.
+- Clic 1: Cuánto pesa, medido en el navegador: copiar las 30.010 citas a una tabla sin índices tardó unos 250 ms; a una con cuatro índices, unos 1.230 ms. Di que el número exacto cambia por motor y por carga, pero la dirección nunca. Cierra con la regla: se indexa lo que se consulta.
+
+EJEMPLO: Cambiar cita.estado de PROGRAMADA a ATENDIDA actualiza idx_cita_estado_fecha, que contiene estado, pero no idx_cita_fecha_hora. Ojo: el índice parcial de las PROGRAMADA sí se toca, porque la fila sale de él.
+
+SI PREGUNTAN:
+- «¿Cuántos índices son demasiados?» → Como guía de oficio, dos a cuatro por tabla muy escrita además de la clave primaria, cada uno con su consulta escrita al lado.
+
+CUIDADO: No prometas porcentajes exactos («cada índice cuesta un 10 %»): depende del motor y de la carga; lo honesto es medirlo.
+
+PASA A LA SIGUIENTE: ¿Cómo se sabe qué índices existen, cuánto pesan y si alguien los usa?
+
+### [Slide 7] El costo de sobre-indexar, que casi nunca se menciona
+
+QUÉ ES (dilo así): PostgreSQL lleva la cuenta de cuántas veces se usó cada índice. Con esa cuenta y el tamaño se detecta el índice que se paga en cada escritura y no le sirve a nadie.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Líneas 1-2: el recordatorio del precio. Seis índices sobre cita son seis escrituras extra por cada cita agendada.
+- Líneas 4-9: La consulta a pg_stat_user_indexes: nombre del índice, idx_scan (cuántas veces se usó) y su tamaño, ordenados del menos usado al más usado.
+- Líneas 11-12: La lectura: idx_scan = 0 después de días de uso real significa que ninguna consulta lo necesita. Candidato a DROP INDEX.
+
+EJEMPLO: En la base de hoy, idx_cita_fecha_hora mide 256 kB y idx_cita_estado_fecha 368 kB; la tabla cita, 2 MB. Con los cinco índices de la clase, los índices de cita ya suman más que la mitad de la tabla.
+
+SI PREGUNTAN:
+- «¿Por qué en el navegador idx_scan sale en 0 aunque acabo de usar el índice?» → Porque las estadísticas de uso se vuelcan con retraso y en una sesión corta casi no se acumulan. Esta consulta tiene sentido en un servidor con días de tráfico.
+
+CUIDADO: No borres un índice por idx_scan = 0 en una base recién creada: solo dice algo después de un período de uso real.
+
+PASA A LA SIGUIENTE: Ahora el índice de varias columnas y su regla, la fuente de error más frecuente del tema.
+
+### [Slide 8] Indice compuesto: la regla del prefijo izquierdo
+
+QUÉ ES (dilo así): Un índice compuesto sobre (estado, fecha_hora) se ordena como un directorio telefónico por apellido y luego por nombre: primero todas las ATENDIDA en orden de fecha, después las CANCELADA, después las PROGRAMADA. Por eso sirve para buscar por estado, o por estado y fecha; pero no para buscar solo por fecha, igual que en el directorio no se encuentran todas las Ana sin leerlo entero.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: El índice idx_cita_estado_fecha: primero agrupado por estado y, dentro de cada estado, ordenado por fecha. Señala los corchetes de la derecha.
+- Clic 1: Las dos consultas que empiezan por la columna líder: estado = 'PROGRAMADA' con un rango de fecha (resaltada la fila PROGRAMADA · 03-10) y estado = 'PROGRAMADA' a secas. Las dos sirven.
+- Clic 2: La tercera filtra solo por fecha_hora: no hay búsqueda directa. Lee la nota: PostgreSQL 18 puede usar el índice «saltando» una vez por cada estado (skip scan), pero es un recurso del motor, no un diseño. Lee la regla.
+
+EJEMPLO: Sin un índice que empiece por fecha_hora, una consulta solo por fecha usó idx_cita_estado_fecha con Index Searches: 7 en lugar de 1: siete búsquedas en el árbol, una por cada salto entre estados.
+
+SI PREGUNTAN:
+- «Un índice de tres columnas, ¿sirve para cualquier combinación?» → No: atiende sus prefijos (la primera; la primera y la segunda; las tres). Tres formas de consulta, no seis.
+- «Entonces, ¿el skip scan hace innecesaria la regla?» → No. Solo sale barato cuando la columna líder tiene muy pocos valores, y existe desde PostgreSQL 18; en versiones anteriores ese filtro termina en Seq Scan.
+
+CUIDADO: Decir que un índice compuesto sirve para cualquier combinación de sus columnas es el error más caro de la clase: el estudiante crea (estado, fecha_hora) y cree cubierta una consulta que solo filtra por fecha.
+
+PASA A LA SIGUIENTE: A veces el índice basta para responder sin tocar la tabla.
+
+### [Slide 9] Cuando el indice responde solo, sin tocar la tabla
+
+QUÉ ES (dilo así): El acceso por índice normal tiene dos partes: buscar en el índice y luego ir a la tabla por cada fila encontrada. Si la consulta solo pide columnas que el índice ya tiene, la segunda parte sobra y el plan dice Index Only Scan. Es la forma más barata de leer.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: SELECT estado, fecha_hora con filtro por estado y fecha: todo está en idx_cita_estado_fecha. El plan real: Index Only Scan using idx_cita_estado_fecha, Heap Fetches: 0, 13.187 filas.
+- Clic 1: Se agrega id_mascota al SELECT: ya no está en el índice. El plan pasa a Bitmap Heap Scan: va a la tabla a buscar cada fila.
+- Clic 2: La salida: CREATE INDEX idx_cita_cubridor ON cita (estado, fecha_hora) INCLUDE (id_mascota). El plan vuelve a Index Only Scan, ahora usando idx_cita_cubridor.
+
+EJEMPLO: Con INCLUDE, las 13.187 filas salen con Heap Fetches: 0: ninguna lectura de la tabla. Oracle no tiene INCLUDE; ahí la columna se agrega al final de la clave.
+
+SI PREGUNTAN:
+- «Creé el índice y el plan dice Index Scan, no Index Only Scan. ¿Está mal?» → No necesariamente. En PostgreSQL el Index Only Scan necesita el mapa de visibilidad al día: justo después de una carga sale Index Scan hasta que corre VACUUM. En la prueba, antes del VACUUM salió Bitmap Heap Scan; después, Index Only Scan.
+
+CUIDADO: Esto es un adelanto útil, no algo para exigir: si alguien ve Index Only Scan en su plan, que sepa qué significa.
+
+PASA A LA SIGUIENTE: ¿Y si el índice existe y el plan no lo usa? Hay siete razones.
+
+### [Slide 10] Las siete razones por las que un indice existente no se usa
+
+QUÉ ES (dilo así): Que un índice exista no obliga al motor a usarlo: lo usa si le sale más barato. Hay siete razones típicas por las que no le sale, y conocerlas permite responder «¿por qué no usa mi índice?» sin decir que el motor es raro.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Recorre la lista de arriba abajo. 1 tabla pequeña (dueno, 20 páginas); 2 función sobre la columna; 3 selectividad mala (activa = 'S' deja pasar el 94 % de mascota); 4 estadísticas viejas, resaltada porque es la más frecuente.
+- Luego: 5 falta la columna líder; 6 un OR entre columnas de índices distintos; 7 el valor comparado no es del tipo de la columna.
+- Abajo: El orden de revisión cuando algo no cambia: primero ANALYZE, después la columna líder, después si el predicado es sargable.
+
+EJEMPLO: SELECT * FROM mascota WHERE activa = 'S'; sale con Seq Scan aunque hubiera índice sobre activa: devuelve 4.712 de 5.008 filas.
+
+SI PREGUNTAN:
+- «Con mis 20 filas de la Clase 1 el plan nunca usa el índice. ¿Lo hice mal?» → No: con 20 filas todo cabe en una página y leerla es lo más barato. El motor tiene razón. Por eso hoy se mide sobre 30.010 citas.
+
+CUIDADO: No respondas «el motor es impredecible»: casi siempre es una de estas siete, y la primera que hay que revisar es el ANALYZE.
+
+PASA A LA SIGUIENTE: Los cinco índices de hoy, cada uno con la consulta que lo justifica.
+
+### [Slide 11] Los cinco indices, y la consulta que justifica cada uno
+
+QUÉ ES (dilo así): Cada índice de la clase existe porque una consulta concreta lo necesita. Tres sirven para la medición del antes y el después; dos existen a propósito para demostrar que el orden de las columnas importa.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Los tres de la medición: idx_cita_fecha_hora (cualquier rango de fechas), idx_mascota_dueno (las mascotas de un dueño) e idx_cita_programada_fecha, parcial, para la agenda de recepción. A la derecha, su tamaño real.
+- Abajo: Los dos del experimento: idx_cita_estado_fecha e idx_cita_fecha_estado, las mismas columnas al revés. Cierra con la línea final: PK sí trae índice, FK no.
+
+EJEMPLO: SELECT id_mascota, nombre, especie FROM mascota WHERE id_dueno = 1234; devuelve 2 filas. Sin índice es Seq Scan sobre las 5.008 mascotas; con idx_mascota_dueno, Bitmap Index Scan on idx_mascota_dueno.
+
+SI PREGUNTAN:
+- «¿Por qué el índice sobre la FK ayuda también al borrar un dueño?» → Porque al borrar el dueño el motor tiene que verificar que ninguna mascota lo referencia; sin índice en mascota.id_dueno recorre la tabla entera.
+
+CUIDADO: El nombre se escribe exacto: idx_cita_fecha_hora, no idx_cita_fecha. No lo dictes de memoria: cópialo de la lámina.
+
+PASA A LA SIGUIENTE: Así se ve en código un índice justificado por su consulta.
+
+### [Slide 12] Un indice se justifica con la consulta que lo usa
+
+QUÉ ES (dilo así): Un índice se justifica escribiendo al lado la consulta frecuente que lo usa. Aquí, la agenda del día: siempre filtra por fecha y por estado PROGRAMADA.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Líneas 1-4: la consulta frecuente, la agenda del 2026-03-10 en estado PROGRAMADA: 91 filas.
+- Líneas 6-8: Los dos índices que la atienden: el completo sobre fecha_hora y el parcial, que solo contiene las PROGRAMADA.
+- Líneas 10-11: El mal candidato, comentado a propósito: activa solo toma 'S' o 'N' y deja pasar casi todas las filas; un índice ahí no ayuda.
+
+EJEMPLO: Con los dos índices creados y ANALYZE, el plan de esa consulta es Bitmap Heap Scan on cita con Bitmap Index Scan on idx_cita_programada_fecha debajo: gana el parcial, y salen las 91 filas.
+
+CUIDADO: Lee la leyenda de abajo: el nombre es el que aparece en el plan. En el navegador suele salir como «Bitmap Index Scan on <nombre>».
+
+PASA A LA SIGUIENTE: Para demostrar que un índice sirve hay una secuencia que no se puede alterar.
+
+### [Slide 13] La secuencia de medicion, y por que el ANALYZE del medio no es opcional
+
+QUÉ ES (dilo así): Un índice se demuestra con un antes y un después de la misma consulta. Son cuatro pasos y en este orden: si se cambia el orden o la consulta, la comparación deja de valer.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: Paso 1: EXPLAIN ANALYZE antes de crear nada. Tiene que salir Seq Scan on cita: ese es el punto de comparación.
+- Clic 1: Paso 2: los CREATE INDEX, con el nombre exacto, porque ese nombre es el que imprimirá el plan.
+- Clic 2: Paso 3, resaltado: ANALYZE cita; ANALYZE mascota;. Es el paso que se salta medio salón; con estadísticas viejas el planeador puede ignorar un índice perfectamente bueno.
+- Clic 3: Paso 4: la misma consulta otra vez. Si se cambia una fecha o un id, ya no es la misma medición. Lee la frase final.
+
+EJEMPLO: Agenda del 2026-03-10: antes, Seq Scan on cita con Rows Removed by Filter: 29919; después, Bitmap Heap Scan on cita con Bitmap Index Scan on idx_cita_programada_fecha debajo. Las 91 filas, iguales.
+
+SI PREGUNTAN:
+- «¿Cómo compruebo qué índices existen?» → SELECT indexname, tablename, indexdef FROM pg_indexes WHERE tablename IN ('cita','mascota') ORDER BY tablename, indexname; indexdef muestra el CREATE INDEX completo, con el WHERE del parcial.
+
+CUIDADO: Cuando alguien diga «creé el índice y no sirvió», lo primero que se pregunta es si corrió el ANALYZE.
+
+PASA A LA SIGUIENTE: La secuencia en código, con su salida real.
+
+### [Slide 14] Crear el indice y probar que se usa
+
+QUÉ ES (dilo así): La secuencia completa sobre la agenda de un día: crear los índices, actualizar estadísticas y volver a medir la misma consulta.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Líneas 1-4: los dos índices de una columna y los ANALYZE de las dos tablas.
+- Líneas 6-9: La consulta: todas las citas del 2026-03-10 con rango semiabierto. Es la misma que se midió antes de crear nada.
+- Líneas 11-13: La salida real. Antes: Seq Scan on cita, 150 filas y 29.860 descartadas. Después: Bitmap Heap Scan on cita con Bitmap Index Scan on idx_cita_fecha_hora. El nombre del índice aparece en el plan.
+
+EJEMPLO: En una corrida en el navegador la misma consulta pasó de unos 22 ms a unos 8 ms. Lo que se afirma con seguridad es el cambio de nodo; los milisegundos varían.
+
+SI PREGUNTAN:
+- «¿Por qué Bitmap y no Index Scan?» → Es otra forma de usar el mismo índice: primero marca todas las filas que cumplen y luego visita la tabla en orden físico. El planeador la elige cuando salen decenas o cientos de filas.
+
+CUIDADO: Si el plan no cambia, revisa en este orden: el ANALYZE, que la consulta sea exactamente la misma y que el filtro sea sargable.
+
+PASA A LA SIGUIENTE: Con dos índices compuestos se demuestra la regla del prefijo.
+
+### [Slide 15] El experimento del orden de columnas, paso a paso
+
+QUÉ ES (dilo así): La regla del prefijo no se cree: se demuestra. Se crean dos índices con las mismas columnas en orden inverso y se miran tres consultas, cada una con un filtro distinto. El plan dice cuál índice le sirve a cuál.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: Q1, estado por igualdad y fecha por rango: idx_cita_estado_fecha le sirve plenamente; idx_cita_fecha_estado, menos.
+- Clic 1: Q2, solo rango de fecha: ahora es al revés, sirve el que empieza por fecha_hora.
+- Clic 2: Q3, solo estado: idx_cita_estado_fecha sirve; el que empieza por fecha no le sirve, porque su columna líder no aparece en el filtro.
+- Clic 3: La regla y el procedimiento: igualdad primero, rango al final; ANALYZE entre medición y medición, y DROP INDEX del que sobra al terminar.
+
+EJEMPLO: En la demo, con los tres índices de la medición todavía creados, el motor del navegador eligió el parcial idx_cita_programada_fecha para Q1, idx_cita_fecha_hora para Q2 e idx_cita_estado_fecha para Q3. Con solo los dos compuestos, Q1 fue a idx_cita_estado_fecha y Q2 a idx_cita_fecha_estado.
+
+SI PREGUNTAN:
+- «¿Entonces creo los dos compuestos y listo?» → Hoy se crean los dos para medir; en producción rara vez se justifica tener ambos. Crear para medir y crear para dejar son cosas distintas.
+- «Mi plan eligió otro índice. ¿Me equivoqué?» → No necesariamente: el planeador decide por costo entre índices que compiten de cerca. Se reporta lo que se vio y se explica.
+
+CUIDADO: Si el plan del grupo no coincide con la lámina, no lo corrijas hacia la lámina: un plan distinto bien leído vale más que el esperado copiado.
+
+PASA A LA SIGUIENTE: La misma regla sobre otro par de columnas, en código.
+
+### [Slide 16] El orden de columnas en un indice compuesto
+
+QUÉ ES (dilo así): La agenda de un veterinario usa igualdad en id_veterinario y rango u orden en fecha_hora. Por eso el índice va en ese orden: primero la igualdad, después el rango.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Líneas 1-3: el índice (id_veterinario, fecha_hora) y su ANALYZE.
+- Líneas 5-9: Veterinario 5 el 2026-03-10: el Index Cond usa las DOS columnas y una sola búsqueda en el árbol (Index Searches: 1). Salen 50 citas.
+- Líneas 11-13: El mismo veterinario ordenado por fecha con LIMIT 10: Index Scan using idx_cita_vet_fecha y ningún Sort, porque las hojas ya están en ese orden.
+- Líneas 15-16: Sin la columna líder no hay búsqueda directa. En la prueba, sin otro índice disponible, PostgreSQL 18 lo usó saltando por cada veterinario: Index Searches: 13.
+
+EJEMPLO: Veterinarios con citas el 2026-03-10 en la base sembrada: el 1, el 5 y el 9, con 50 citas cada uno.
+
+SI PREGUNTAN:
+- «¿Qué es Index Searches?» → Cuántas veces el motor bajó por el árbol. Una búsqueda directa da 1; un skip scan da una por cada valor de la columna líder que salta.
+
+CUIDADO: El skip scan existe desde PostgreSQL 18; si el motor de alguien es más viejo, el filtro solo por fecha termina en Seq Scan. La regla de diseño es la misma en las dos versiones.
+
+PASA A LA SIGUIENTE: Los nombres exactos, y dónde se leen.
+
+### [Slide 17] Los cinco indices de hoy, con su nombre exacto
+
+QUÉ ES (dilo así): El nombre de un índice no es decorativo: es lo que el plan imprime cuando lo usa y lo que se escribe en cualquier documento que lo justifique. Por eso se lee de la salida, no de la memoria.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Arriba, el plan real de la agenda: Bitmap Heap Scan on cita (rows=91) y, debajo, Bitmap Index Scan on idx_cita_programada_fecha, resaltado. En un servidor también puede salir como «Index Scan using <nombre>»: es el mismo acceso por índice.
+- En el medio: pg_indexes: su columna indexdef devuelve el CREATE INDEX completo. En el parcial termina en WHERE (estado = 'PROGRAMADA'::text): esa es la prueba de que se creó parcial.
+- Abajo: El nombre que no es: idx_cita_fecha está tachado; el bueno es idx_cita_fecha_hora, con el sufijo de la columna.
+
+EJEMPLO: La consulta a pg_indexes sobre cita y mascota devuelve 7 filas: los 5 índices de hoy más cita_pkey y mascota_pkey, que creó la clave primaria.
+
+CUIDADO: Es el error que más cuesta y no es conceptual: un nombre mal copiado de la pizarra. Deja los cinco nombres proyectados mientras el grupo trabaja.
+
+PASA A LA SIGUIENTE: Uno de los cinco es especial: el índice parcial.
+
+### [Slide 18] El indice parcial: que indexa, cuanto ahorra y cuando gana
+
+QUÉ ES (dilo así): Un índice parcial indexa solo una parte de la tabla: la que cumple el WHERE de su definición. Si la pantalla de recepción siempre busca citas PROGRAMADA, no tiene sentido indexar las atendidas ni las canceladas.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: CREATE INDEX idx_cita_programada_fecha ON cita (fecha_hora) WHERE estado = 'PROGRAMADA'. Lee el recuadro: ese WHERE no filtra una consulta, decide qué filas entran al índice.
+- Clic 1: Las barras: el índice completo indexa 30.010 entradas; el parcial, 18.187, el 61 %. Cuatro de cada diez entradas menos.
+- Clic 2: El beneficio: menos disco, menos memoria y menos trabajo en las escrituras de citas que no están programadas. Y la condición para usarlo: que la consulta diga estado = 'PROGRAMADA'.
+
+EJEMPLO: En bytes: el parcial mide 168 kB y el completo 256 kB.
+
+SI PREGUNTAN:
+- «Si la consulta pide estado IN ('PROGRAMADA', 'ATENDIDA'), ¿lo usa?» → No: el índice no tiene las atendidas, y el motor no puede arriesgarse a devolver un resultado incompleto.
+
+CUIDADO: El error típico es leer el WHERE del CREATE INDEX como si fuera el filtro de una consulta.
+
+PASA A LA SIGUIENTE: ¿Y cuál gana cuando el completo y el parcial compiten por la misma consulta?
+
+### [Slide 19] El indice parcial: el mismo beneficio, una fraccion del tamano
+
+QUÉ ES (dilo así): Con el índice completo y el parcial creados, la agenda del día tiene dos caminos. El completo encuentra todas las citas del día y luego debe descartar las que no están programadas; el parcial solo tiene programadas y va directo a las 91.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Izquierda, idx_cita_fecha_hora: 150 entradas encontradas y 59 descartadas después de ir a la tabla a leer el estado. Derecha, idx_cita_programada_fecha: 91 entradas, todas útiles, y un índice más chico.
+- En el medio: El plan real: Bitmap Index Scan on idx_cita_programada_fecha (rows=91). Si en otra corrida gana el completo, se reporta lo que salió: con este volumen la diferencia de costo es pequeña.
+- Abajo: La condición: la consulta tiene que traer el mismo filtro de estado.
+
+EJEMPLO: SELECT id_cita, fecha_hora, estado FROM cita WHERE fecha_hora >= TIMESTAMP '2026-03-10 00:00:00' AND fecha_hora < TIMESTAMP '2026-03-11 00:00:00' AND estado = 'PROGRAMADA'; devuelve 91 filas usando el parcial.
+
+SI PREGUNTAN:
+- «¿Tener el completo y el parcial sobre la misma columna es redundante?» → No mientras haya consultas sin el filtro de estado: esas solo pueden usar el completo. Si todas filtraran por PROGRAMADA, el completo sobraría.
+
+CUIDADO: No fuerces la respuesta «gana el parcial»: lo que se exige es leer el plan y escribir cuál salió.
+
+PASA A LA SIGUIENTE: Cambiamos de herramienta: partir una tabla en pedazos.
+
+### [Slide 20] Particionar: que es, y por que hoy si se implementa
+
+QUÉ ES (dilo así): Particionar es partir una tabla en varias tablas físicas, llamadas particiones, según una clave como la fecha. Para quien consulta sigue siendo una sola tabla; el motor, al ver el filtro, descarta de entrada las particiones que no pueden tener lo buscado.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: Una sola tabla lógica, cita_hist, partida en dos particiones por año: cita_hist_2025 y cita_hist_2026, cada una con su rango.
+- Clic 1: Una consulta de 2026: el motor descarta cita_hist_2025 sin leerla (queda atenuada) y el plan solo nombra cita_hist_2026. Eso es la poda de particiones.
+- Clic 2: La frase para recordar: el índice ordena, la partición separa.
+
+EJEMPLO: SELECT COUNT(*) FROM cita_hist WHERE fecha_hora >= TIMESTAMP '2026-01-01'; produce un plan con Seq Scan on cita_hist_2026 y ninguna mención de cita_hist_2025.
+
+SI PREGUNTAN:
+- «¿Cuándo vale la pena particionar?» → Como convención de oficio, por encima de decenas de millones de filas o decenas de gigabytes. Por debajo, un índice sobre fecha_hora hace lo mismo con menos mantenimiento.
+
+CUIDADO: No digas que hoy es solo teoría: hoy se implementa completo (DDL, migración, prueba de reparto y de poda). Lo que no se aprecia con este volumen es la ganancia de rendimiento.
+
+PASA A LA SIGUIENTE: El DDL que la crea, con sus dos trampas.
+
+### [Slide 21] El DDL de la particion, con sus dos trampas
+
+QUÉ ES (dilo así): El DDL de una tabla particionada tiene dos trampas que dan error de una vez o, peor, más tarde. La primera es la clave primaria; la segunda, los límites de los rangos.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: Las tres sentencias: CREATE TABLE cita_hist ( …, PRIMARY KEY (id_cita, fecha_hora)) PARTITION BY RANGE (fecha_hora) y las dos particiones.
+- Clic 1: Trampa 1: la PK debe incluir fecha_hora. Con PRIMARY KEY (id_cita) a secas, el motor responde «unique constraint on partitioned table must include all partitioning columns».
+- Clic 2: Trampa 2: FROM incluye y TO excluye. Si alguien escribe TO (TIMESTAMP '2025-12-31'), las citas del 31 de diciembre no tienen partición y el INSERT falla con «no partition of relation … found for row».
+
+EJEMPLO: Prueba real: con la partición de 2025 cerrada en '2025-12-31', una cita del 2025-12-31 a las 10:00 fue rechazada: «no partition of relation "cita_hist" found for row».
+
+SI PREGUNTAN:
+- «¿Puedo agregar la partición de 2027 después?» → Sí: CREATE TABLE cita_hist_2027 PARTITION OF cita_hist FOR VALUES FROM (TIMESTAMP '2027-01-01') TO (TIMESTAMP '2028-01-01'); y desde ahí las citas de 2027 caen solas en ella.
+
+CUIDADO: La trampa 2 no da error al crear la tabla, sino el día que llega una fila del hueco.
+
+PASA A LA SIGUIENTE: El DDL completo, en código, listo para correr.
+
+### [Slide 22] Particionar el historico por rango de fecha
+
+QUÉ ES (dilo así): Tres sentencias: la tabla particionada, que no guarda filas, y una partición por año, que sí las guarda.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Líneas 1-8: la tabla cita_hist con PARTITION BY RANGE (fecha_hora). Subraya la línea 7: la clave primaria incluye fecha_hora, que es la clave de partición; sin eso el motor rechaza la tabla.
+- Líneas 10-13: Las dos particiones con FOR VALUES FROM … TO …: 2025 y 2026.
+- Línea 15: El rango: FROM incluye, TO excluye. El TO de 2025 es el FROM de 2026, así que no hay huecos ni solapes.
+
+EJEMPLO: Después del DDL, INSERT INTO cita_hist SELECT id_cita, id_mascota, id_veterinario, fecha_hora, estado FROM cita; mueve las 30.010 citas. Como todas son de 2026, todas caen en cita_hist_2026.
+
+SI PREGUNTAN:
+- «¿Por qué la PK tiene que incluir la fecha?» → Porque PostgreSQL garantiza la unicidad dentro de cada partición; para garantizarla en toda la tabla, la clave tiene que contener la columna que decide la partición.
+
+CUIDADO: Con PRIMARY KEY (id_cita) a secas el motor responde «unique constraint on partitioned table must include all partitioning columns»: tradúcelo en voz alta cuando aparezca.
+
+PASA A LA SIGUIENTE: ¿Cómo se prueba que el reparto y la poda ocurrieron?
+
+### [Slide 23] Particionar hoy de verdad: rango por ano, poda y archivado
+
+QUÉ ES (dilo así): Particionar se demuestra con tres pruebas: dónde quedó cada fila, qué particiones lee una consulta y cuánto cuesta archivar un año. La tercera es la razón que no tiene alternativa.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Arriba, el reparto: SELECT tableoid::regclass AS particion, COUNT(*) FROM cita_hist GROUP BY 1; con la siembra de la demo devuelve una sola fila, cita_hist_2026 con 30.010, porque todas las citas son de 2026.
+- En el medio: La poda: el plan de una consulta acotada a 2026 solo nombra cita_hist_2026.
+- Abajo: El archivado: DROP TABLE cita_hist_2025 es una operación de metadatos y tarda un instante; DETACH PARTITION la separa sin borrarla. Sin particiones, el DELETE equivalente toca fila por fila, llena el registro de transacciones y sostiene bloqueos.
+
+EJEMPLO: Sin filtro, SELECT COUNT(*) FROM cita_hist recorre las dos particiones (el plan muestra un Append con ambas); con el filtro de 2026, solo una.
+
+SI PREGUNTAN:
+- «Si cita_hist_2025 queda vacía, ¿se probó algo?» → Sí: que el motor envió cada fila a la partición que le corresponde. Con datos de dos años aparecerían las dos filas en el conteo.
+
+CUIDADO: Sin la consulta de tableoid no hay evidencia del reparto: un INSERT que no dio error no prueba dónde quedaron las filas.
+
+PASA A LA SIGUIENTE: Entonces, ¿la clínica debería particionar?
+
+### [Slide 24] El veredicto de particionamiento
+
+QUÉ ES (dilo así): Saber particionar no obliga a particionar. La decisión se toma con el volumen esperado al lado del umbral, y para una clínica de este tamaño el número dice que no.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: La cuenta: 40 citas al día por 300 días son 12.000 al año; en cinco años, 60.000.
+- En el medio: La escala va de mil a cien millones, y cada marca es diez veces la anterior. La base de hoy y la clínica a cinco años están juntas a la izquierda; el umbral, en decenas de millones, a la derecha: entre 10 millones y 60.000 hay más de 160 veces, y con 50 millones, más de 800.
+- Abajo: El veredicto: no se particiona. Reconocer que con este volumen la ganancia no se aprecia es la respuesta correcta; inventar una mejora que el plan no muestra, no.
+
+EJEMPLO: Con 60.000 citas, un índice sobre fecha_hora encuentra un día en dos o tres lecturas: no hay nada que la partición mejore en lectura.
+
+SI PREGUNTAN:
+- «Entonces, ¿para qué lo aprendimos?» → Porque el archivado no tiene alternativa en tablas grandes: un DROP de partición contra un DELETE de millones de filas. Y porque la poda se lee en el plan igual que un índice.
+
+CUIDADO: No digas «sí conviene» para quedar bien: el número manda.
+
+PASA A LA SIGUIENTE: Vamos a la demo, en el orden en que se proyecta.
+
+### [Slide 25] La demo, en el orden en que se proyecta
+
+QUÉ ES (dilo así): El script de la demo tiene cinco bloques y el orden importa: cada uno se apoya en el anterior.
+
+CÓMO DARLA (≈1 min):
+- Al entrar: Recorre los bloques de arriba abajo. El 0 recrea las tablas: se corre en una base vacía. Si el conteo de control no da 18.187, 9.095 y 2.728, se para ahí.
+- Bloque 2: Es el corazón de la clase: proyecta las dos salidas, antes y después, una debajo de la otra, y lee en voz alta la línea del nodo.
+
+EJEMPLO: En el bloque 4, como la siembra pone todas las citas en 2026, cita_hist_2025 queda vacía: igual demuestra el reparto.
+
+CUIDADO: Si el tiempo aprieta, se recorta el bloque 3, nunca el 2.
+
+PASA A LA SIGUIENTE: Qué se puede medir en el navegador y qué no.
+
+### [Slide 26] Donde corre esto, y que no se puede medir aqui
+
+QUÉ ES (dilo así): Todo lo de hoy corre en PostgreSQL dentro del navegador, con la base de 30.010 citas ya sembrada. Hay cosas que ahí no se pueden medir, y se declaran en vez de inventarlas.
+
+CÓMO DARLA (≈1 min):
+- Al entrar: Izquierda, lo que se mide y se ve en el plan; derecha, lo que no: tiempos con memoria vacía, índices sobre millones de filas, fragmentación tras meses de escrituras y dos sesiones a la vez (Clase 10). Cierra con la frase de abajo.
+
+CUIDADO: No ofrezcas otra herramienta en línea: no tiene la base sembrada, así que ni el cambio de plan ni las 91 filas se pueden reproducir.
+
+PASA A LA SIGUIENTE: Vamos a la demo.
+
+### [Slide 27] Demo del dia
+
+QUÉ ES (dilo así): La demo corre el script de la clase y muestra el antes y el después con planes reales: el mismo resultado, otro camino.
+
+CÓMO DARLA (≈15 min):
+- Al entrar: 1) Siembra y control. 2) Línea base: C1 (agenda del 2026-03-10, 91 filas) y C2 (mascotas del dueño 1234, 2 filas), las dos con Seq Scan. 3) Los tres CREATE INDEX, ANALYZE cita y ANALYZE mascota, y las mismas dos consultas.
+- Después: 4) Lee los planes nuevos: C1 con Bitmap Index Scan on idx_cita_programada_fecha; C2 con Bitmap Index Scan on idx_mascota_dueno. 5) pg_indexes con el WHERE del parcial. 6) Si hay tiempo, el orden de columnas y la partición con su poda.
+
+EJEMPLO: C1 antes: Seq Scan on cita, Rows Removed by Filter: 29919. C1 después: Bitmap Heap Scan on cita, Bitmap Index Scan on idx_cita_programada_fecha, 91 filas.
+
+CUIDADO: Nunca hagas la demo sobre una base de 20 filas «porque es lo mismo»: el plan no cambia y el grupo concluye que indexar no sirve.
+
+PASA A LA SIGUIENTE: Cierre de la clase.
 
 
 **Demo que usted debe poder repetir:** EXPLAIN ANALYZE con Seq Scan, CREATE INDEX idx_cita_fecha_hora, ANALYZE, y el mismo EXPLAIN mostrando Index Scan.
@@ -314,8 +484,8 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 18. El indice parcial: que indexa, cuanto ahorra y cuando gana
 19. El indice parcial: el mismo beneficio, una fraccion del tamano
 20. Particionar: que es, y por que hoy si se implementa
-21. Particionar el historico por rango de fecha
-22. El DDL de la particion, con sus dos trampas
+21. El DDL de la particion, con sus dos trampas
+22. Particionar el historico por rango de fecha
 23. Particionar hoy de verdad: rango por ano, poda y archivado
 24. El veredicto de particionamiento
 25. La demo, en el orden en que se proyecta
@@ -355,7 +525,7 @@ Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: EXPLAIN ANALYZE con Seq Scan, CREATE INDEX idx_cita_fecha_hora, ANALYZE, y el mismo EXPLAIN mostrando Index Scan.
 Herramienta: ExamLab (PostgreSQL/PGlite)
-📸 El plan de C1 antes y despues: Seq Scan -> Index Scan using idx_cita_programada_fecha [[captura: salida-indice-antes-despues.png]]
+📸 El plan de C1 antes y despues: Seq Scan -> Bitmap Index Scan on idx_cita_programada_fecha [[captura: salida-indice-antes-despues.png]]
 Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Practica (opcional) · sin lamina

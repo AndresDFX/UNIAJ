@@ -4,7 +4,9 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('er-a-mermaid', {
     duracion: 5,
-    pasos: [0.3, 0.62, 1],
+    // Pasos LOGICOS: 1) el camino boceto -> IA -> texto, 2) el texto erDiagram, 3) lo que se
+    // revisa, 4) el visor que lo dibuja.
+    pasos: [0.3, 0.5, 0.66, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho, V = m.verde || A;
       UJ.caja(ctx, lz, 30, 30, 220, 90, 'Boceto', 'draw.io · Excalidraw', C, L.tramo(t, 0, 0.08));
@@ -12,7 +14,7 @@
       UJ.caja(ctx, lz, 316, 30, 180, 90, 'IA', 'traduce la sintaxis', A, L.tramo(t, 0.12, 0.2));
       L.flecha(ctx, 502, 75, 556, 75, L.tono(m.tinta, 0.4), 3, L.tramo(t, 0.18, 0.24));
       UJ.caja(ctx, lz, 562, 30, 210, 90, 'Texto', 'erDiagram', A, L.tramo(t, 0.22, 0.3));
-      var lineas = ['erDiagram', 'DUENO ||--o{ MASCOTA : posee', 'DUENO {', 'int id_dueno PK', 'string telefono', '}'], sangria = [0, 1, 1, 2, 2, 1];
+      var lineas = ['erDiagram', 'dueno ||--o{ mascota : posee', 'dueno {', 'int id_dueno PK', 'varchar telefono', '}'], sangria = [0, 1, 1, 2, 2, 1];
       var n = L.tramo(t, 0.32, 0.5) * lineas.length;
       UJ.alfa(ctx, L.tramo(t, 0.3, 0.34), function () {
         L.rectRed(ctx, 30, 150, 420, 250, 10); L.rellena(ctx, L.tono(m.tinta, -0.55));
@@ -32,9 +34,9 @@
         L.rectRed(ctx, 30, 446, W - 60, 130, 12); L.rellena(ctx, m.papel, V, 3);
         UJ.rotulo(ctx, lz, 'Visor Mermaid', 110, 456, { tam: 17, peso: 800, color: V });
         L.rectRed(ctx, 230, 480, 150, 60, 6); L.rellena(ctx, L.tono(A, 0.9), A, 2);
-        UJ.rotulo(ctx, lz, 'DUENO', 305, 497, { tam: 18, peso: 700, color: A });
+        UJ.rotulo(ctx, lz, 'dueno', 305, 497, { tam: 18, peso: 700, color: A });
         L.rectRed(ctx, 480, 480, 150, 60, 6); L.rellena(ctx, L.tono(A, 0.9), A, 2);
-        UJ.rotulo(ctx, lz, 'MASCOTA', 555, 497, { tam: 18, peso: 700, color: A });
+        UJ.rotulo(ctx, lz, 'mascota', 555, 497, { tam: 18, peso: 700, color: A });
         L.trazo(ctx, [[380, 510], [480, 510]], 1, m.tinta, 2);
         UJ.rotulo(ctx, lz, 'posee', 430, 484, { tam: 15, color: C });
       });

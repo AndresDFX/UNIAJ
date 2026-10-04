@@ -5,6 +5,9 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('savepoint-exception', {
     duracion: 5,
+    // Pasos LOGICOS: 1) la transaccion, la escritura A y el bloque con su savepoint y la
+    // escritura B; 2) algo falla dentro: se vuelve al savepoint, B se deshace y A queda;
+    // 3) la leccion y su costo.
     pasos: [0.4, 0.72, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, R = m.malva || '#A02030', V = m.verde || A, W = lz.ancho;
@@ -35,11 +38,11 @@
         UJ.rotulo(ctx, lz, 'escritura B', 230, 231, { tam: 19, peso: 700 });
       });
       UJ.alfa(ctx, deshace, function () { L.trazo(ctx, [[90, 243], [370, 243]], 1, R, 4); });
-      UJ.alfa(ctx, L.tramo(t, 0.38, 0.44), function () {
+      UJ.alfa(ctx, L.tramo(t, 0.42, 0.48), function () {
         L.rectRed(ctx, 420, 220, 300, 46, 8); L.rellena(ctx, L.tono(R, 0.85), R, 2);
         UJ.rotulo(ctx, lz, 'falla', 570, 231, { tam: 19, peso: 800, color: R });
       });
-      UJ.rayo(ctx, 690, 200, 50, R, L.tramo(t, 0.4, 0.46));
+      UJ.rayo(ctx, 690, 200, 50, R, L.tramo(t, 0.44, 0.5));
       UJ.alfa(ctx, L.tramo(t, 0.62, 0.7), function () {
         UJ.rotulo(ctx, lz, 'vuelve al savepoint: B se deshace', 520, 296, { tam: 18, peso: 700, color: R, ancho: 340 });
       });

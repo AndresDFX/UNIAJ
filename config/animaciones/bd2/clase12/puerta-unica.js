@@ -29,9 +29,13 @@
         }
       }
       UJ.rotulo(ctx, lz, 'Texto SQL contra las tablas', 20, 4, { tam: 21, peso: 800, color: R, alinear: 'left', visible: L.tramo(t, 0, 0.06) });
-      escena(20, L.tramo(t, 0, 0.08), false, L.tramo(t, 0.08, 0.38));
+      escena(20, L.tramo(t, 0, 0.08), false, L.tramo(t, 0.08, 0.32));
+      UJ.rotulo(ctx, lz, 'inyección · la regla repetida en cada pantalla · tablas atadas al código', 20, 228,
+                { tam: 15, peso: 700, color: R, alinear: 'left', ancho: 760, visible: L.tramo(t, 0.32, 0.4) });
       UJ.rotulo(ctx, lz, 'Una sola puerta', 20, 270, { tam: 21, peso: 800, color: V, alinear: 'left', visible: L.tramo(t, 0.44, 0.5) });
-      escena(286, L.tramo(t, 0.44, 0.52), true, L.tramo(t, 0.52, 0.82));
+      escena(286, L.tramo(t, 0.44, 0.52), true, L.tramo(t, 0.52, 0.74));
+      UJ.rotulo(ctx, lz, 'una regla, un lugar · la aplicación solo tiene EXECUTE · las tablas pueden cambiar por dentro', 20, 494,
+                { tam: 15, peso: 700, color: L.tono(V, -0.2), alinear: 'left', ancho: 760, visible: L.tramo(t, 0.74, 0.82) });
       UJ.rotulo(ctx, lz, 'Conectarse son dos líneas; integrar es elegir la puerta.', W / 2, 560,
                 { tam: 21, peso: 700, ancho: W - 40, visible: L.tramo(t, 0.86, 1) });
     }

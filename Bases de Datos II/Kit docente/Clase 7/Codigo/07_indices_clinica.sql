@@ -3,7 +3,8 @@
 -- EN ORDEN: el valor de la clase esta en el antes/despues, no en el CREATE INDEX.
 --
 -- Los CINCO nombres de indice de aqui son los EXACTOS que califica la actividad. No los
--- cambie: el plan de ejecucion imprime "Index Scan using <nombre>" y la tabla de
+-- cambie: el plan imprime el nombre junto al nodo ("Bitmap Index Scan on <nombre>" en
+-- PGlite, "Index Scan using <nombre>" en otros planes) y la tabla de
 -- justificacion de la pregunta 5 se llena con estos nombres.
 --
 -- ATENCION: el BLOQUE 0 recrea las tablas desde cero. Correlo en una base vacia o en la
@@ -176,13 +177,14 @@ SELECT id_cita, fecha_hora, estado
  WHERE fecha_hora >= TIMESTAMP '2026-03-10 00:00:00'
    AND fecha_hora <  TIMESTAMP '2026-03-11 00:00:00'
    AND estado = 'PROGRAMADA';
--- Esperado: Index Scan using idx_cita_programada_fecha (gana el PARCIAL: recorre 91
+-- Esperado (PGlite, PostgreSQL 18): Bitmap Heap Scan con Bitmap Index Scan on
+-- idx_cita_programada_fecha (gana el PARCIAL: recorre 91
 -- entradas y ya sabe que todas cumplen el estado; el completo recorreria 150 y tendria
 -- que descartar 59 despues de leer la tabla). Reporte el que VEA, no el que diga esto.
 
 EXPLAIN ANALYZE
 SELECT id_mascota, nombre, especie FROM mascota WHERE id_dueno = 1234;
--- Esperado: Index Scan (o Bitmap Index Scan) using idx_mascota_dueno.
+-- Esperado: Bitmap Index Scan on idx_mascota_dueno (o Index Scan using), 2 filas.
 
 -- Evidencia de que existen. indexdef devuelve el CREATE INDEX completo, asi que aqui se
 -- ve tambien el WHERE del parcial.
@@ -200,6 +202,10 @@ CREATE INDEX idx_cita_estado_fecha ON cita (estado, fecha_hora);
 CREATE INDEX idx_cita_fecha_estado ON cita (fecha_hora, estado);
 ANALYZE cita;
 
+-- Lo que el orden favorece: Q1 a (estado, fecha_hora), Q2 a (fecha_hora, estado). Pero el
+-- planeador elige por costo entre TODOS los indices: con los del bloque 2 todavia creados,
+-- PGlite usa idx_cita_programada_fecha en Q1, idx_cita_fecha_hora en Q2 e
+-- idx_cita_estado_fecha en Q3. Se reporta el que salga y se explica por que.
 EXPLAIN ANALYZE   -- Q1 · estado (igualdad) + fecha (rango) -> favorece (estado, fecha_hora)
 SELECT id_cita, fecha_hora FROM cita
  WHERE estado = 'PROGRAMADA'
@@ -212,20 +218,23 @@ SELECT id_cita, estado FROM cita
 EXPLAIN ANALYZE   -- Q3 · solo estado, sin fecha -> columna lider ausente en el de fecha
 SELECT COUNT(*) FROM cita WHERE estado = 'CANCELADA';
 
--- Fuerce el experimento: quite el que Q2 estaba usando y vuelva a medir.
+-- Fuerce el experimento: quite el compuesto que empieza por fecha_hora y vuelva a medir.
 DROP INDEX idx_cita_fecha_estado;
 ANALYZE cita;
 EXPLAIN ANALYZE
 SELECT id_cita, estado FROM cita
  WHERE fecha_hora >= TIMESTAMP '2026-03-01' AND fecha_hora < TIMESTAMP '2026-04-01';
--- Esperado: cae en idx_cita_fecha_hora o vuelve a Seq Scan, pero NO usa
--- idx_cita_estado_fecha: su columna lider (estado) no aparece en el WHERE.
+-- Esperado: Bitmap Index Scan on idx_cita_fecha_hora, que tambien tiene fecha_hora como
+-- lider; no idx_cita_estado_fecha, cuya lider (estado) no aparece en el WHERE. Matiz de
+-- PostgreSQL 18: si no existiera ningun indice que empiece por fecha_hora, podria usar
+-- idx_cita_estado_fecha con un skip scan (el plan lo dice con Index Searches: 7).
 
 -- =====================================================================
 -- BLOQUE 4 · PARTICIONAMIENTO (pregunta 3). HOY SE IMPLEMENTA.
 -- =====================================================================
 -- La trampa: en una tabla particionada la PK DEBE incluir la columna de particion.
--- PRIMARY KEY (id_cita) a secas no compila, y el mensaje del motor no lo dice asi.
+-- PRIMARY KEY (id_cita) a secas no compila: "unique constraint on partitioned table must
+-- include all partitioning columns", y el DETAIL nombra la columna que falta (fecha_hora).
 CREATE TABLE cita_hist (
   id_cita        INT,
   id_mascota     INT,

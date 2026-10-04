@@ -1,5 +1,5 @@
 /* Los tres fenomenos indeseables. Lectura sucia: T2 ve una cita que T1 luego deshace. Lectura no
- * repetible: el mismo stock leido dos veces da 5 y luego 2. Fantasma: el mismo conteo da 4 y luego
+ * repetible: el mismo stock leido dos veces da 3 y luego 0. Fantasma: el mismo conteo da 4 y luego
  * 5 porque aparecio una fila nueva. */
 (function () {
   var L = FP_LIENZO;
@@ -27,7 +27,7 @@
         ['T1 inserta cita 10:00, sin COMMIT', 'T2 la ve: «franja ocupada»', 'T1 hace ROLLBACK'],
         'T2 decidió con un dato que jamás fue real', L.tramo(t, 0.04, 0.3));
       panel(222, 'Lectura no repetible', C, L.tramo(t, 0.34, 0.38),
-        ['T1 lee stock del insumo 40: 5', 'T2 vende 3 y hace COMMIT', 'T1 relee el mismo stock: 2'],
+        ['T1 lee el stock del insumo 2: 3', 'T2 vende 3 y hace COMMIT', 'T1 relee el mismo stock: 0'],
         'la misma fila, dos valores dentro de una transacción', L.tramo(t, 0.38, 0.64));
       panel(428, 'Lectura fantasma', A, L.tramo(t, 0.67, 0.71),
         ['T1 cuenta citas del martes: 4', 'T2 inserta otra y confirma', 'T1 vuelve a contar: 5'],

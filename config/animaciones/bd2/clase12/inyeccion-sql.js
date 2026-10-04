@@ -29,8 +29,11 @@
       UJ.rotulo(ctx, lz, 'siempre verdadero', 365, 312, { tam: 17, peso: 700, color: R, visible: L.tramo(t, 0.5, 0.56) });
       UJ.rotulo(ctx, lz, 'comentario', 540, 312, { tam: 17, peso: 700, color: L.tono(m.tinta, 0.3), visible: L.tramo(t, 0.52, 0.58) });
       // Toda la tabla
-      UJ.tabla(ctx, lz, 30, 360, 420, 'mascota · todas las filas', ['1 · Firulais', '2 · Michi', '3 · Pelusa', '4 · Toby'], L.claves(t, [[0.64, 0], [0.82, 4]]), R, -1);
-      UJ.rotulo(ctx, lz, 'El dato se interpretó como código.', 620, 420, { tam: 22, peso: 800, color: R, ancho: 300, visible: L.tramo(t, 0.84, 1) });
+      // La tabla no existe en pantalla hasta su paso: una tabla vacia anunciaria el final.
+      UJ.alfa(ctx, L.tramo(t, 0.64, 0.68), function () {
+        UJ.tabla(ctx, lz, 30, 360, 420, 'mascota · las 8 filas', ['1 · Firulais', '2 · Luna', '3 · Rocky', '4 · Mishi  … y 4 más'], 1 + 3 * L.tramo(t, 0.68, 0.82), R, -1);
+      });
+      UJ.rotulo(ctx, lz, 'El dato se interpretó como código.', 620, 420, { tam: 22, peso: 800, color: R, ancho: 300, visible: L.tramo(t, 0.84, 0.96) });
     }
   });
 })();

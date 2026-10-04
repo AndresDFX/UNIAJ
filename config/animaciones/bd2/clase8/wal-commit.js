@@ -5,7 +5,9 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('wal-commit', {
     duracion: 5,
-    pasos: [0.4, 0.7, 1],
+    // Pasos LOGICOS: 1) el cambio va primero al WAL y el COMMIT espera solo eso; 2) las paginas
+    // de datos se escriben despues; 3) la caida y la recuperacion; 4) la consecuencia practica.
+    pasos: [0.4, 0.62, 0.82, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, R = m.malva || '#A02030', V = m.verde || A, W = lz.ancho;
       UJ.caja(ctx, lz, 30, 40, 200, 90, 'Cambio', 'UPDATE ...', A, L.tramo(t, 0, 0.08));
@@ -26,15 +28,15 @@
         for (var k = 0; k < 4; k++) { L.rectRed(ctx, 350 + k * 102, 256, 88, 58, 6); L.rellena(ctx, m.papel, L.tono(m.tinta, 0.5), 2); }
         UJ.rotulo(ctx, lz, 'se escriben después, sin prisa', 545, 340, { tam: 18 });
       });
-      L.flecha(ctx, 545, 160, 545, 205, L.tono(m.tinta, 0.4), 3, L.tramo(t, 0.5, 0.58));
+      L.flecha(ctx, 545, 176, 545, 206, L.tono(m.tinta, 0.4), 3, L.tramo(t, 0.5, 0.58));
       // Caida y recuperacion
-      UJ.rayo(ctx, 100, 190, 80, R, L.tramo(t, 0.72, 0.78));
-      UJ.alfa(ctx, L.tramo(t, 0.74, 0.82), function () {
+      UJ.rayo(ctx, 100, 190, 80, R, L.tramo(t, 0.64, 0.7));
+      UJ.alfa(ctx, L.tramo(t, 0.66, 0.74), function () {
         UJ.rotulo(ctx, lz, 'se cae el servidor', 120, 280, { tam: 19, peso: 800, color: R, ancho: 200 });
         UJ.rotulo(ctx, lz, 'al volver, reproduce el WAL: lo confirmado sigue ahí', 150, 320, { tam: 18, ancho: 250 });
       });
       // Consecuencia
-      UJ.alfa(ctx, L.tramo(t, 0.86, 0.96), function () {
+      UJ.alfa(ctx, L.tramo(t, 0.84, 0.94), function () {
         L.rectRed(ctx, 40, 440, 720, 140, 16); L.rellena(ctx, L.tono(C, 0.9), C, 2);
         UJ.rotulo(ctx, lz, 'Un COMMIT por fila en 100.000 filas:', 400, 460, { tam: 21, peso: 800, color: L.tono(C, -0.35), ancho: 680 });
         UJ.rotulo(ctx, lz, 'entre 5 y 20 veces más lento que agrupar (orden de magnitud: se mide)', 400, 504, { tam: 19, ancho: 680 });

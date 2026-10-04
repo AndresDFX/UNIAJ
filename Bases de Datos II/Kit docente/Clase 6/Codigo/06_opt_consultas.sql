@@ -145,8 +145,9 @@ WHERE c.fecha_hora >= TIMESTAMP '2026-03-10 00:00:00'
   AND c.estado = 'PROGRAMADA'
 ORDER BY c.fecha_hora;
 
--- Lo que la pantalla de agenda realmente necesita. El LIMIT deja de leer en
--- cuanto tiene 50 filas: por eso baja el tiempo aunque el plan sea el mismo.
+-- Lo que la pantalla de agenda realmente necesita. Sin un indice que entregue las
+-- filas ya ordenadas, el plan conserva el Seq Scan completo: lee las 30.010, encuentra
+-- las 91 y las ordena antes de entregar 50. El LIMIT solo ahorra transportar 41 filas.
 EXPLAIN ANALYZE
 SELECT c.id_cita, c.fecha_hora, m.nombre AS mascota, d.nombre AS dueno,
        v.nombre AS veterinario, c.estado
@@ -167,6 +168,9 @@ LIMIT 50;
 -- ANTES. La subconsulta esta en la LISTA DE COLUMNAS y menciona d.id_dueno, del
 -- exterior: no se puede calcular una vez y reusar. El plan lo delata con un nodo
 -- SubPlan y loops=2006 — un dueno, una ejecucion.
+-- OJO: tarda MINUTOS en el navegador (en una prueba sobre PGlite, unos 3,5 min). No esta
+-- colgada. Si no hay tiempo, agregue WHERE d.id_dueno <= 200 antes del ORDER BY: el plan
+-- dice loops=200 y tarda unos 20 s; la version completa es diez veces eso.
 EXPLAIN ANALYZE
 SELECT d.id_dueno, d.nombre,
        (SELECT COUNT(*) FROM cita c JOIN mascota m ON m.id_mascota = c.id_mascota

@@ -20,106 +20,176 @@ El objetivo de la clase no es «cubrir un capitulo» aislado, sino producir evid
 del PI VetCare. La teoria se limita a desbloquear el taller.
 
 
-## Apoyo por diapositiva
+## Guion por diapositiva
 
-Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en cada lamina, no repite su contenido.
+Es el mismo texto que llevan las **notas del presentador** de cada lámina: qué decir al entrar y en cada clic, el ejemplo, las preguntas típicas y el puente a la siguiente.
 
-**[Slide 4] Sustentar no es describir: el eje de toda la clase** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Sustentar una base de datos no es recorrer el diagrama entidad-relacion nombrando tablas.
-  - Describir es decir que hay: «tenemos Dueno, Mascota, Cita, Veterinario, Insumo y Factura».
-  - Sustentar es responder por que quedo asi y que alternativa se descarto.
-  - La razon por la que esto importa mas en bases de datos que en casi cualquier otra parte del software es el costo de revertir: cambiar el texto de un boton cuesta minutos
-  - Mientras que partir en dos una tabla que ya tiene cien mil filas y seis procedimientos apuntando a ella cuesta una migracion, una ventana de mantenimiento y el riesgo real de perder datos.
-  - Una decision de modelado es, por definicion, una decision costosa de deshacer.
-  - La clase de hoy no trae tema nuevo: trae la teoria de como se comunica y se empaqueta un trabajo tecnico para que un tercero pueda evaluarlo, reproducirlo y usarlo sin hablar con quien lo hizo.
-  - Describir es decir que hay una tabla cita con una FK; sustentar es explicar por que la FK va en cita y no en mascota, y que pasaria si no estuviera.
-  - NOTAS:
-  - Eso convierte cada eleccion del ER en algo que se debe poder defender, y es exactamente lo que un evaluador (o un lider tecnico en una entrevista) va a probar con dos o tres preguntas bien elegidas.
+### [Slide 2] Encuadre de hoy · Objetivo proyecto
 
-**[Slide 5] Las cuatro preguntas de por que que se hacen casi siempre** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Hay cuatro preguntas de por que que se hacen casi siempre, y el estudiante debe llegar con las cuatro respondidas.
-  - Por que esa normalizacion: la respuesta esperada es que el modelo esta en tercera forma normal, es decir que cada atributo depende de la clave completa y de nada mas, y por eso el telefono del dueno vive en la tabla Dueno y no repetido en cada fila de Mascota.
-  - Y a continuacion se declara la desnormalizacion deliberada si existe: «guardamos el total en Factura aunque se pueda calcular sumando el detalle, porque el total es un valor historico que no debe cambiar si manana sube el precio del insumo».
-  - Por que ese indice: la respuesta debe nombrar la consulta concreta que lo aprovecha, por ejemplo un indice sobre (id_veterinario
-  - Fecha_hora) porque la busqueda de agenda filtra por veterinario y ordena por hora, y debe venir con la medicion de antes y despues.
-  - Por que ese tipo de dato: por que la fecha de la cita es DATE o TIMESTAMP y no VARCHAR, y por que el telefono es VARCHAR y no numerico, porque con telefonos no se hace aritmetica y porque un tipo numerico pierde los ceros iniciales.
-  - NOTAS:
-  - Esa segunda mitad es la que distingue al estudiante que entendio, porque normalizar no es un dogma sino un punto de partida del que se sale con razones escritas.
+QUÉ ES (dilo así): Hoy no hay tema nuevo: es la sustentación en vivo del proyecto y el cierre del curso. Cada estudiante, o equipo, defiende sus decisiones en 5 a 8 minutos y responde preguntas al azar.
 
-**[Slide 6] La cuarta pregunta, la que mas se falla** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Un disparador, o trigger, es un bloque de codigo que el motor ejecuta automaticamente cuando ocurre un evento sobre una tabla, sin que nadie lo invoque.
-  - El argumento a favor, y el unico que vale en una sustentacion, es la cobertura: el disparador se ejecuta no importa quien escriba.
-  - Si la regla «el stock de un insumo nunca queda negativo» vive en el disparador, se cumple cuando escribe la aplicacion, cuando escribe un script de carga masiva y cuando alguien se conecta con un cliente SQL a corregir un dato a mano.
-  - Lo mismo aplica al disparador de auditoria de precios: si se quiere saber quien cambio el precio de una vacuna, ese registro tiene que escribirse dentro de la base, porque quien edita a mano no lo va a escribir por cortesia.
-  - NOTAS:
-  - La cuarta pregunta merece parrafo propio porque es la que mas se falla: por que esa regla esta en un disparador y no en la aplicacion.
-  - Si vive en la aplicacion, los dos ultimos caminos la evaden sin esfuerzo.
-  - Y hay que dar tambien el contra-argumento, porque un evaluador atento lo va a pedir: los disparadores son logica invisible, no aparecen en el codigo de la aplicacion, sorprenden a quien depura, y se disparan en cascada si uno modifica una tabla que a su vez tiene otro disparador.
-  - Por eso la convencion sana, que el estudiante puede citar como criterio propio, es reservarlos para invariantes de integridad y auditoria, y dejar el flujo de negocio en procedimientos que se invocan explicitamente.
+CÓMO DARLA (≈2 min):
+- Al entrar: Lee la lámina y anuncia lo práctico: el orden de los turnos se sortea en un momento, el paquete tenía que estar subido antes del turno y la sustentación no se reemplaza por un video.
+- Antes del primer turno: Lee en voz alta el reparto de los 100 puntos del proyecto: 20 modelo y DDL, 15 seguridad y respaldo, 25 procedimientos, funciones y disparadores con pruebas, 15 optimización, 10 integración y 15 informe y sustentación. Vale el 20 % del Corte 3; el Parcial 3 vale 15 % y la asistencia 5 %. El proyecto no reemplaza al parcial.
 
-**[Slide 7] Reproducible: un tercero llega a la misma base sin hablar con el autor** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - Un proyecto de base de datos es reproducible si un tercero, con solo el archivo comprimido y sin hablar con el autor, obtiene la misma base funcionando.
-  - La estructura que la garantiza es una carpeta con archivos numerados en el orden exacto de ejecucion: 00_LEEME.txt, 01_ddl.sql, 02_datos_prueba.sql, 03_roles.sql, 04_procedimientos.sql, 05_funciones.sql, 06_triggers.sql, 07_optimizacion.sql y 08_pruebas.sql.
-  - El orden no es estetico, es una dependencia real: una tabla con clave foranea no se puede crear antes que la tabla a la que apunta, y un disparador no compila si su tabla todavia no existe.
-  - Los datos de prueba tampoco son triviales, porque con dos filas por tabla no se demuestra nada: el minimo razonable para la clínica es tres duenos
-  - Cinco mascotas, dos veterinarios, diez citas repartidas en varios dias, cinco insumos con stock y tres facturas con su detalle
-  - Incluyendo deliberadamente los casos borde que los procedimientos deben rechazar, es decir una mascota marcada como inactiva y un insumo con stock en uno, porque sin esas dos filas el estudiante no puede demostrar su manejo de errores.
-  - Uno, no declarar motor y version: el SQL no es un solo idioma, porque una columna autoincremental se escribe SERIAL en PostgreSQL
-  - AUTO_INCREMENT en MySQL e IDENTITY o una secuencia en Oracle y SQL Server, el texto variable es VARCHAR en unos y VARCHAR2 en Oracle
-  - Y la fecha actual es NOW() en unos y SYSDATE en Oracle; un script sin la linea «probado en PostgreSQL 15 en DB Fiddle» o «probado en Oracle 19c en Oracle Live SQL» obliga al evaluador a adivinar, y si adivina mal falla en la primera sentencia.
-  - Dos, scripts que asumen un estado previo: quien ejecuta debe poder empezar desde una base vacia.
-  - Tres, falta de idempotencia: si el script no se puede correr dos veces porque falla al encontrar que la tabla ya existe, se pierde tiempo en cada intento, y anteponer DROP TABLE IF EXISTS en orden inverso al de creacion lo resuelve.
-  - Cuatro, el LEEME ausente o inutil; uno que sirve tiene cuatro cosas y cabe en media pagina: motor y version exactos, el orden de ejecucion de los archivos
-  - Como verificar que quedo bien (una consulta cuyo resultado se conoce, por ejemplo SELECT COUNT(*) FROM cita devolviendo 10) y las limitaciones conocidas.
-  - NOTAS:
-  - Esa es la definicion operativa y es la unica prueba que importa; el docente puede aplicarla literalmente abriendo el ZIP en un playground limpio y ejecutando.
-  - Sobre esa base, cuatro detalles rompen la reproducibilidad y son los que el docente debe buscar primero al abrir el paquete.
+CUIDADO: Los 15 puntos de sustentación son la sexta parte, pero la sustentación es como se verifica que los otros 85 son de quien presenta. Dilo para evitar el reclamo de «solo vale 15».
 
-**[Slide 8] El reparto de los 5 a 8 minutos** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - La sustentacion dura de 5 a 8 minutos y ese limite obliga a decidir que se deja fuera.
-  - El reparto que funciona, y que es convencion y no regla dura, es: 45 segundos para el problema de la clínica en lenguaje de negocio, sin una sola tabla en pantalla
-  - 90 segundos para el modelo, mostrando el ER y justificando dos decisiones y no las quince; 60 segundos para seguridad, con la matriz de roles y una frase sobre por que recepcion no ve el historial clinico
-  - 90 segundos para la automatizacion, ejecutando un procedimiento con su caso valido y su caso invalido; 60 segundos para la optimizacion, con el plan de ejecucion antes y despues; 45 segundos para la integracion y el punto debil declarado; y 30 de cierre.
-  - No es clase autonoma y la defensa no se reemplaza por un video grabado, porque el Q&A dirigido al azar es lo unico que permite verificar que el modelo y los procedimientos son de quien los presenta.
-  - Y el criterio de dominio es el mismo trabajando solo o en equipo autorizado: quien sustenta debe poder explicar cualquier parte en 60 segundos
-  - Y si hubo equipo, cualquier integrante debe poder hacerlo con cualquier parte, no solo con la suya, porque el Q&A se dirige al azar y porque si solo una persona entiende el modelo el evaluador no tiene forma de atribuir el trabajo a los demas.
-  - NOTAS:
-  - Y conviene ser explicito sobre el formato, porque de eso depende como se prepara el estudiante: la Clase 15 se dicta el 16 de noviembre en la ultima sesion del semestre, dedicada por completo a sustentaciones EN VIVO, con turnos consecutivos y preguntas del docente al cierre de cada uno.
-  - Lo que si hay que exigir dentro del turno es la ejecucion real: que el estudiante corra el procedimiento en el playground, con su caso valido y su caso invalido, en vez de proyectar capturas fijas.
-  - El paquete, en cambio.
-  - Fuera de la lamina (habla de la practica): Lo que si hay que exigir dentro del turno es la ejecucion real: que el estudiante corra el procedimiento en el playground, con su caso valido y su caso invalido, en vez de proyectar capturas fijas, porque una consulta ejecutandose delante del evaluador es la evidencia mas dificil de fingir y la mas rapida de calificar.
-  - Fuera de la lamina (habla de la practica): El paquete, en cambio, se sube al modulo de Proyectos de PostgreSQL en el navegador ANTES del turno: quien llega a subir archivos consume su propio tiempo de sustentacion.
+PASA A LA SIGUIENTE: Cómo se reparte el bloque de hoy.
 
-**[Slide 9] El Q&A de modelado, con las respuestas listas** — 3 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - «Por que nombre y apellido separados y no un solo campo nombre_completo?»: porque se necesita ordenar y buscar por apellido, y separar despues un campo unido es un trabajo sucio y lleno de errores con nombres compuestos.
-  - «Que pasa si un dueno tiene dos mascotas llamadas Pelusa?»: nada, porque la identidad la da id_mascota y no el nombre
-  - Y si se quisiera prohibirlo habria que declarar UNIQUE (id_dueno, nombre), decision que el estudiante debe poder defender en cualquiera de los dos sentidos.
-  - «Por que no borran las citas canceladas?»: porque el historial de cancelaciones es informacion de negocio, ya que permite ver que dueno cancela siempre
-  - Y porque borrar filas referenciadas por facturas rompe la integridad referencial; se usa borrado logico con un campo de estado.
-  - Y la pregunta que desarma a quien no midio: «cuanto mejoro esa consulta?».
-  - Una respuesta solida tiene 3 partes: la decision, la alternativa descartada y la razon concreta en la clínica, por ejemplo el volumen de citas o una regla del negocio.
-  - Error comun: responder con lo que hace la tabla en vez de por que existe; la pregunta de modelado siempre es un por que, no un que.
-  - NOTAS:
-  - El Q&A sobre modelado tiene preguntas que se repiten, y conviene que el docente tenga las respuestas listas para poder calificarlas y para poder formularlas.
-  - Aqui vale la regla general del Q&A tecnico, que el docente debe anunciar antes de empezar: decir «no lo medimos» no penaliza si viene acompanado de como se mediria, por ejemplo «no medimos con volumen real porque el playground se reinicia, pero el plan de ejecucion pasa de recorrido completo a busqueda por indice, y la prueba seria cargar cincuenta mil citas y comparar los tiempos».
-  - Inventar un numero, en cambio, se cae con la siguiente pregunta y cuesta mucho mas que admitir el limite.
+### [Slide 3] Mapa del bloque de hoy (120 min)
 
-**[Slide 10] El cierre del curso: conectar lo hecho con el trabajo real** — 4 vinetas.
-  - DESARROLLO (para explicarlo, no se proyecta):
-  - El cierre del curso debe conectar lo hecho con el trabajo real, porque de eso depende que el estudiante conserve los scripts en vez de borrarlos al terminar el semestre.
-  - Leer un plan de ejecucion y decidir si un indice sobra es una habilidad que se paga.
-  - El SQL que se escribio ahi es el mismo que corre en un servidor de produccion; lo que cambia en un entorno profesional es el volumen de datos y las consecuencias de un error, no la sintaxis.
-  - Y la autoevaluacion de la clase conviene pedirla con una consigna concreta en vez de una reflexion vaga: nombren la decision de modelado que mas les costo revertir y en que clase se dieron cuenta de que estaba mal.
-  - NOTAS:
-  - Lo que el estudiante produjo (un ER justificado, un DDL con restricciones declarativas, una matriz de privilegios, procedimientos con manejo de errores, disparadores de auditoria, un analisis de plan de ejecucion y un contrato de operaciones) es literalmente el contenido de las tareas de un desarrollador de base de datos o de un administrador junior en su primer ano de trabajo.
-  - Conviene tambien cerrar la duda sobre las herramientas, porque alguien la trae: Oracle Live SQL, DB Fiddle y draw.io se usaron por equidad y porque funcionan en cualquier navegador, no porque sean juguetes.
-  - Esa respuesta es la que mejor predice si aprendieron, y ademas le da al docente material real para ajustar el curso el proximo semestre.
+QUÉ ES (dilo así): El bloque es casi todo turnos: encuadre y sorteo, sustentaciones con su Q&A, y el cierre del curso al final.
+
+CÓMO DARLA (≈1 min):
+- Al entrar: Señala los tres tramos. Las láminas de concepto que siguen son lo que se va a preguntar: recórrelas en unos 12 minutos, así que los turnos empiezan hacia el minuto 15 y no en el 10.
+
+PASA A LA SIGUIENTE: Lo primero que hay que tener claro: sustentar no es describir.
+
+### [Slide 4] Sustentar no es describir: el eje de toda la clase
+
+QUÉ ES (dilo así): La sustentación no es una visita guiada por el diagrama. Es explicar por qué cada decisión quedó como quedó y qué se descartó, porque en una base de datos deshacer una decisión cuesta caro.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: A la izquierda, describir: una lista de «tenemos…». Pregunta: ¿qué aprende el evaluador de esa lista que no vea ya en el diagrama? Nada.
+- Clic 1: A la derecha, sustentar: por qué quedó así y qué se descartó. Son las dos preguntas que se van a hacer en cada turno.
+- Clic 2: El costo de revertir: cambiar código es la barra corta; cambiar un esquema con datos (partir una tabla con cien mil filas y seis procedimientos apuntándole) es la barra larga: migración, ventana de mantenimiento y riesgo de perder datos.
+
+EJEMPLO: Describir: «hay una tabla cita con una FK». Sustentar: «la FK va en cita y no en mascota porque una mascota tiene muchas citas; sin ella podría existir una cita de una mascota que no existe».
+
+SI PREGUNTAN:
+- «¿Entonces no muestro el diagrama?» → Sí, pero como apoyo de dos decisiones justificadas, no para nombrar las tablas una por una.
+
+CUIDADO: No califiques bien un recorrido de seis minutos por el ER porque «explicaron todo»: si nadie dio un porqué, no hubo sustentación.
+
+PASA A LA SIGUIENTE: Las preguntas de porqué que casi siempre llegan son cuatro.
+
+### [Slide 5] Las cuatro preguntas de por que que se hacen casi siempre
+
+QUÉ ES (dilo así): Casi toda sustentación de bases de datos termina en las mismas cuatro preguntas. Quien las trae respondidas sustenta; quien no, improvisa.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: Normalización: «está en tercera forma normal», es decir, cada atributo depende de la clave completa y de nada más (el teléfono del dueño vive en dueno, no repetido en cada mascota). Y si existe, la desnormalización deliberada: guardar el total en factura porque es un valor histórico.
+- Clic 1: Índice: nombrar la consulta que lo usa (la agenda filtra por veterinario y ordena por hora, de ahí un índice sobre (id_veterinario, fecha_hora)) y mostrar EXPLAIN ANALYZE antes y después.
+- Clic 2: Tipo de dato: la fecha es TIMESTAMP porque se compara y se ordena; el teléfono es VARCHAR porque no se hace aritmética con él y un tipo numérico pierde el cero inicial.
+- Clic 3: La cuarta, la del disparador, es la que más se falla: tiene lámina propia.
+
+EJEMPLO: «Guardamos el total en factura aunque se pueda sumar del detalle, porque es un valor histórico: si mañana sube el precio del insumo, la factura de ayer no debe cambiar.»
+
+SI PREGUNTAN:
+- «¿Desnormalizar es un error?» → No, si es deliberado y está escrito con su razón. El error es desnormalizar sin saberlo.
+
+CUIDADO: «Está normalizado», sin decir qué forma normal ni dar un ejemplo, no responde la pregunta.
+
+PASA A LA SIGUIENTE: La cuarta pregunta, la que más se falla.
+
+### [Slide 6] La cuarta pregunta, la que mas se falla
+
+QUÉ ES (dilo así): La pregunta es por qué una regla vive en un disparador y no en la aplicación. La respuesta que vale es una sola, la cobertura, y hay que saber también el contra-argumento.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Regla en la aplicación: escriben en insumo la aplicación, un script de carga y alguien con un cliente SQL. Solo el primero pasa por la regla; los otros dos llegan a la tabla con la X roja.
+- Clic 1: Regla en el disparador: la barra del trigger está pegada a la tabla y los tres caminos pasan por ella.
+- Clic 2: A favor: cobertura. En contra: lógica invisible (no aparece en el código de la aplicación, sorprende al que depura y puede dispararse en cascada). Criterio: disparadores para integridad y auditoría; el flujo de negocio, en procedimientos que se llaman a propósito.
+
+EJEMPLO: La auditoría de precios: si alguien cambia a mano el precio de una vacuna desde un cliente SQL, solo un disparador deja constancia de quién y cuándo.
+
+SI PREGUNTAN:
+- «¿Un CHECK no hace lo mismo?» → Para una regla que mira una sola fila, sí, y es preferible (Clase 4). El disparador se justifica cuando mira otra fila u otra tabla, o escribe en otra tabla, como la auditoría.
+
+CUIDADO: Si el estudiante solo da el argumento a favor, pide el contra-argumento: es la mitad de la respuesta.
+
+PASA A LA SIGUIENTE: Además de defenderse, el proyecto tiene que poder correrlo otra persona.
+
+### [Slide 7] Reproducible: un tercero llega a la misma base sin hablar con el autor
+
+QUÉ ES (dilo así): Reproducible quiere decir que otra persona ejecuta tus archivos en una base vacía y obtiene lo mismo que tú, sin preguntarte nada. Es la prueba que el evaluador aplica literalmente.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: La carpeta con nueve archivos numerados: 00_LEEME, 01_ddl, 02_datos_prueba, 03_roles, 04_procedimientos, 05_funciones, 06_triggers, 07_optimizacion y 08_pruebas.
+- Clic 1: Por qué el orden importa: una FOREIGN KEY no se crea antes que la tabla a la que apunta, y un trigger no se puede crear si su tabla todavía no existe.
+- Clic 2: La definición, en la caja final. Repasa los cuatro detalles que la rompen: no declarar motor y versión, suponer un estado previo, no ser idempotente (los DROP … IF EXISTS van primero, en orden inverso) y un LEEME que no sirve.
+
+EJEMPLO: Un LEEME que sirve: «Motor: PostgreSQL 16.4 (lo dice SELECT version()). Ejecutar 01 a 08 en orden. Verificación: SELECT COUNT(*) FROM cita; devuelve 10. Límite: los datos de prueba no traen facturas anuladas.»
+
+SI PREGUNTAN:
+- «¿Cuántos datos de prueba hacen falta?» → Con dos filas por tabla no se demuestra nada. Un mínimo razonable: 3 dueños, 5 mascotas, 2 veterinarios, 10 citas, 5 insumos y 3 facturas, incluidos los casos borde: una mascota inactiva y un insumo con stock 1.
+- «¿Qué es idempotente?» → Que se puede correr dos veces seguidas sin fallar: por eso los DROP TABLE IF EXISTS van primero, en orden inverso al de creación.
+
+CUIDADO: Evalúalo ejecutando en una base limpia: un script que se ve bien puede fallar en la tercera sentencia por una FK que apunta a una tabla creada más abajo.
+
+PASA A LA SIGUIENTE: Con el paquete listo: ¿cómo caben las decisiones en 5 a 8 minutos?
+
+### [Slide 8] El reparto de los 5 a 8 minutos
+
+QUÉ ES (dilo así): Siete minutos no alcanzan para todo, así que el reparto es una decisión. Este es el que funciona; es una convención, no una regla dura.
+
+CÓMO DARLA (≈1 min):
+- Al entrar: Lo que se cuenta: 45 s para el problema de la clínica en lenguaje de negocio, sin tablas en pantalla, y 90 s para el modelo: el ER y dos decisiones justificadas, no quince.
+- Clic 1: Lo que se demuestra ejecutando: 60 s de seguridad (la matriz de roles y por qué recepción no ve el historial clínico), 90 s de automatización (un procedimiento con su caso válido y su caso inválido, en vivo) y 60 s de optimización (el plan antes y después).
+- Clic 2: El cierre: 45 s de integración con su punto débil declarado y 30 s finales. En total, unos 7 minutos de un máximo de 8.
+
+EJEMPLO: Los 45 segundos del problema: «la clínica atiende unas 150 citas al día con agenda de papel; perder una cita o dar dos en la misma franja le cuesta clientes».
+
+SI PREGUNTAN:
+- «¿Puedo mostrar capturas en vez de ejecutar?» → No para la automatización: el caso válido y el inválido se ejecutan en vivo. Una consulta corriendo delante del evaluador es la evidencia más difícil de fingir.
+- «Si trabajamos en equipo, ¿cada uno presenta su parte?» → Cada integrante debe poder explicar cualquier parte en 60 segundos, porque el Q&A se dirige al azar.
+
+CUIDADO: Cronometra cada turno: el que pasa de 8 minutos le quita tiempo al Q&A, que es donde se verifica la autoría.
+
+PASA A LA SIGUIENTE: Después del pitch, las preguntas: las de modelado se repiten.
+
+### [Slide 9] El Q&A de modelado, con las respuestas listas
+
+QUÉ ES (dilo así): El Q&A de modelado tiene preguntas que se repiten, y todas son de porqué, no de qué. Tener las respuestas listas sirve para formularlas bien y para calificar igual a todos.
+
+CÓMO DARLA (≈2 min):
+- Al entrar: Dos mascotas del mismo dueño con el mismo nombre: la tabla las acepta porque cada una tiene su id_mascota. No pasa nada.
+- Clic 1: Si se quisiera prohibirlo: UNIQUE (id_dueno, nombre), y la segunda Pelusa se rechaza.
+- Clic 2: Es una decisión que se defiende en cualquiera de los dos sentidos; lo que no vale es no haberla pensado. Repasa las otras: nombre y apellido separados (para ordenar y buscar por apellido) y citas canceladas (borrado lógico con un campo de estado).
+
+EJEMPLO: «¿Cuánto mejoró esa consulta?» Respuesta válida: «No lo medimos con volumen real porque la base de práctica se reinicia, pero el plan pasa de Seq Scan a Index Scan; la prueba sería cargar cincuenta mil citas y comparar los tiempos».
+
+SI PREGUNTAN:
+- «¿Por qué nombre y apellido separados?» → Para ordenar y buscar por apellido; separar después un campo unido falla con los nombres compuestos.
+- «¿Por qué no borrar las citas canceladas?» → Son información de negocio (quién cancela siempre) y una cita con consulta y factura no se puede borrar sin dejar filas huérfanas: la FK lo impide.
+
+CUIDADO: Anuncia la regla antes del primer turno: «no lo medimos» no penaliza si viene con cómo se mediría. Inventar un número se cae en la siguiente pregunta.
+
+PASA A LA SIGUIENTE: Ahora, cómo se ordena la sesión; el cierre del curso viene al final de los turnos.
+
+### [Slide 10] El cierre del curso: conectar lo hecho con el trabajo real
+
+QUÉ ES (dilo así): El cierre conecta el semestre con el trabajo: lo que se produjo es lo que hace un desarrollador de bases de datos o un administrador junior en su primer año. Se termina con una autoevaluación concreta, no con una reflexión vaga.
+
+CÓMO DARLA (≈5 min):
+- Al entrar: Dala al final, después del último turno (minuto 110). Recorre la columna de la izquierda, los siete productos del semestre, y la flecha a «tareas del primer año». Subraya la caja azul: leer un plan y decidir si un índice sobra.
+- Banda del medio: Las herramientas: PostgreSQL en el navegador, Excalidraw o draw.io y Mermaid se usaron por equidad, porque funcionan en cualquier navegador. El SQL es el mismo de un servidor PostgreSQL de producción.
+- Banda amarilla: Lanza la autoevaluación y pide la respuesta escrita en el chat. Lee dos o tres en voz alta.
+
+EJEMPLO: Una respuesta útil: «separar nombre y apellido; lo noté en la Clase 6, cuando la búsqueda por apellido sobre un nombre completo no podía usar un índice».
+
+SI PREGUNTAN:
+- «¿Vale la pena guardar los scripts?» → Sí: son portafolio. El paquete (ER, DDL, roles, procedimientos, triggers y optimización) se muestra en una entrevista técnica mejor que un certificado.
+
+CUIDADO: No cierres con «¿qué aprendieron?»: da respuestas genéricas. La consigna concreta da material real para ajustar el curso el próximo semestre.
+
+PASA A LA SIGUIENTE: La lámina de cierre.
+
+### [Slide 11] Como se ordena la sesion de hoy
+
+QUÉ ES (dilo así): Las reglas de los turnos, dichas una vez para todos. Después de esta lámina empiezan las sustentaciones, que ocupan el resto del bloque hasta el minuto 110.
+
+CÓMO DARLA (≈3 min):
+- Al entrar: Lee las cinco reglas y sortea el orden en voz alta; pega la lista en el chat de Meet para que cada quien sepa cuándo le toca.
+- En cada turno: El estudiante comparte su pantalla. Cronometra 5 a 8 minutos de pitch con la ejecución real de un procedimiento (caso válido y caso rechazado) y haz dos o tres preguntas de porqué, al azar, a cualquier integrante.
+- Entre turnos: Anota la calificación en 30 segundos, antes de llamar al siguiente: al final del bloque ya no se recuerda quién dijo qué.
+- Si alguien se desconecta: Pasa al siguiente turno y vuelve a llamarlo al final de la lista. Si no logra reconectarse, deja constancia de la hora y acuerda por correo cómo se completa la sustentación.
+
+EJEMPLO: Con turnos de unos 11 minutos (7 de pitch y 3-4 de Q&A) caben unos 8 en el bloque; si el grupo es más grande, reduce el Q&A a dos preguntas y anúncialo al sortear.
+
+CUIDADO: Haz las preguntas a quien no está hablando: si siempre responde el mismo integrante, no se verifica que el trabajo sea de todos.
+
+PASA A LA SIGUIENTE: Al terminar el último turno, vuelve a «El cierre del curso».
 
 
 **Demo que usted debe poder repetir:** Checklist final de empaquetado del ZIP.

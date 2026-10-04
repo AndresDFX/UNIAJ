@@ -28,6 +28,8 @@ from bd2_taller_data import HERRAMIENTAS_DIA, TALLER_BLOQUE, SOLUCION
 from bd2_fundamentos import FUNDAMENTOS
 import teoria_a_slides as TS
 import visuales
+import notas_guion
+from bd2_contenido_data import CONTENIDO
 from bd2_visuales_data import VISUALES
 from bd2_queries_data import QUERIES
 import bd2_solucion_data as soluciones_bd2
@@ -96,8 +98,8 @@ TIPO_LABEL = {
 # Sin clave "tipo": se inyecta desde el calendario justo despues de esta lista.
 CLASES = [
   dict(n=1, slug="Revision BD I y modelo de datos",
-    titulo="Revision BD I · Arranque VetCare DB",
-    subtitulo="Diagnostico · dominio PI · primer modelo",
+    titulo="Revision BD I · Arranque de la base de datos",
+    subtitulo="Diagnostico · el dominio y el primer modelo",
     herramienta="draw.io + DB Fiddle",
     hito_pi="Arranque PI: dominio, alcance y borrador ER de VetCare DB",
     entregable="Ficha del PI (plantilla) + ER en Mermaid renderizado en ExamLab (PNG para tu carpeta) + 3 reglas Condicion -> Accion",
@@ -114,8 +116,8 @@ CLASES = [
             "Exportar tambien el PNG del ER a la carpeta del PI y verificar que los nombres coincidan con el DDL (minusculas, singular, id_<entidad>)."],
     quiz=True, sql="01_arranque_clinica.sql"),
   dict(n=2, slug="Administracion de bases de datos",
-    titulo="Administracion de BD · Roles VetCare",
-    subtitulo="Privilegios y usuarios del PI",
+    titulo="Administracion de BD · Roles y privilegios",
+    subtitulo="Privilegios y usuarios de la base",
     herramienta="ExamLab (PostgreSQL) + Google Docs",
     hito_pi="Plan de roles/privilegios de VetCare",
     entregable="Documento Roles_VetCare + script GRANT/REVOKE ejecutado en ExamLab",
@@ -134,7 +136,7 @@ CLASES = [
     quiz=True, sql="02_roles_clinica.sql"),
   dict(n=3, slug="Procedimientos almacenados",
     titulo="Procedimientos almacenados · VetCare",
-    subtitulo="Logica de negocio en la BD del PI",
+    subtitulo="Logica de negocio dentro de la base",
     # El motor es el que califica: las 5 preguntas de ExamLab son PL/pgSQL que
     # corre en PGlite. Oracle Live SQL queda como contraste de sintaxis, no como
     # sitio de trabajo — igual que en la Clase 2.
@@ -158,7 +160,7 @@ CLASES = [
     quiz=True, sql="03_procs_clinica.sql"),
   dict(n=4, slug="Funciones disparadores seguridad respaldo",
     titulo="Funciones · Triggers · Seguridad y respaldo",
-    subtitulo="Integridad + RAA1 del PI VetCare",
+    subtitulo="La base que calcula, reacciona y se recupera",
     herramienta="ExamLab (PostgreSQL) + Google Docs",
     hito_pi=">=1 funcion + >=1 trigger + borrador plan de respaldo",
     entregable="fn_precio_consulta + 2 triggers corriendo en ExamLab + Plan_Backup_VetCare con sus 6 secciones (1 pag.)",
@@ -182,7 +184,7 @@ CLASES = [
     quiz=False, sql=None, parcial="Parcial 1 - Administracion procedimientos y seguridad.docx"),
   dict(n=6, slug="Optimizacion de consultas",
     titulo="Optimizacion de consultas · VetCare",
-    subtitulo="Antes/despues sobre el DDL del PI",
+    subtitulo="Medir antes y despues de optimizar",
     # El taller se resuelve y se califica en ExamLab, que corre PostgreSQL (PGlite) y
     # trae la base con VOLUMEN sembrado: 30.010 citas, sin indices y con ANALYZE ya
     # corrido. Decia «DB Fiddle / SQLTest.online», que es donde NO se califica, y
@@ -210,7 +212,7 @@ CLASES = [
     quiz=True, sql="06_opt_consultas.sql"),
   dict(n=7, slug="Indices y particionamiento",
     titulo="Indices y particionamiento · VetCare",
-    subtitulo="Diseno fisico al servicio del PI",
+    subtitulo="Diseno fisico: indices y particiones",
     # Decia «DB Fiddle + draw.io (opcional)», y los 100 puntos del dia se califican en
     # ExamLab, que corre PostgreSQL sobre PGlite. En DB Fiddle no existe la base sembrada
     # de 30.010 citas, asi que quien mida ahi no puede reproducir el cambio de plan que la
@@ -286,7 +288,8 @@ CLASES = [
   dict(n=10, slug="Control de concurrencia",
     titulo="Control de concurrencia · VetCare",
     subtitulo="Clase autonoma · refuerzo sin parcial",
-    herramienta="Google Docs + Live SQL",
+    # Decia «Google Docs + Live SQL»: Live SQL es Oracle y el curso corre PostgreSQL (PGlite).
+    herramienta="ExamLab (PostgreSQL/PGlite) + Google Docs",
     hito_pi="Escenarios de concurrencia del PI documentados",
     entregable="Informe corto: 2 escenarios (cita doble / stock) + mitigacion",
     teoria=["Concurrencia = varias transacciones ejecutandose al mismo tiempo sobre los mismos datos. El problema clasico de VetCare: dos recepcionistas, en dos computadores distintos, intentan agendar la MISMA franja horaria para el MISMO veterinario en el mismo instante; sin control, ambas lecturas ven la franja libre y ambas insertan — doble reserva.",
@@ -304,7 +307,7 @@ CLASES = [
   dict(n=11, slug="Avance del proyecto final",
     titulo="Avance PI · VetCare DB",
     subtitulo="Checklist viva + demo parcial",
-    herramienta="Live SQL / DB Fiddle + draw.io + ExamLab",
+    herramienta="ExamLab (PostgreSQL/PGlite) + draw.io / Mermaid",
     hito_pi="Demo parcial + checklist de avance (hito formal PI)",
     entregable="Checklist firmada + enlace/ZIP avance (DDL+procs+ER)",
     teoria=["Hoy no hay tema nuevo: se cierran huecos del PI con rubrica.",
@@ -318,8 +321,8 @@ CLASES = [
     quiz=True, sql="11_checklist_seed.sql"),
   dict(n=12, slug="Integracion y preparacion final",
     titulo="Integracion app <-> BD · Prep. presentacion",
-    subtitulo="Contrato de operaciones + ensayo PI",
-    herramienta="Google Docs + Live SQL + Excalidraw",
+    subtitulo="Contrato de operaciones + ensayo de la presentacion",
+    herramienta="ExamLab (PostgreSQL/PGlite) + Excalidraw / Mermaid",
     hito_pi="Contrato integracion + preparacion de entrega/sustentacion",
     entregable="Contrato app<->BD + outline de slides de sustentacion (5-8 min)",
     teoria=["Integrar app<->BD significa que la aplicacion NUNCA arma SQL dinamico contra las tablas directamente; llama procedimientos y funciones ya construidos (Clases 3-4). Esto evita SQL injection (nadie concatena texto de usuario dentro de una consulta), centraliza la regla de negocio en un solo lugar, y permite cambiar el esquema interno sin romper la app mientras el contrato del proc se mantenga igual.",
@@ -336,7 +339,7 @@ CLASES = [
     quiz=True, sql="12_contrato_ops.sql"),
   dict(n=13, slug="Analisis de casos reales",
     titulo="Analisis de casos reales · VetCare",
-    subtitulo="Clase autonoma · lecciones para el PI",
+    subtitulo="Clase autonoma · lecciones de fallos reales",
     herramienta="Google Docs",
     hito_pi="Informe de caso -> mejoras concretas al PI",
     entregable="Informe 1-2 pag.: caso + 3 mejoras aplicables a VetCare",
@@ -358,7 +361,7 @@ CLASES = [
     parcial="Parcial 3 - Integracion casos y cierre de proyecto.docx"),
   dict(n=15, slug="Presentacion del proyecto y cierre",
     titulo="Presentacion PI · Cierre VetCare",
-    subtitulo="Sustentacion en vivo del PI · cierre del curso",
+    subtitulo="Sustentacion en vivo · cierre del curso",
     herramienta="ExamLab (Proyectos) + slides propias",
     hito_pi="Sustentacion en vivo y entrega final del PI (20% Corte 3)",
     entregable="ZIP/PDF final subido antes del turno + sustentacion en vivo 5-8 min + Q&A",
@@ -971,8 +974,9 @@ WHERE c.fecha_hora >= TIMESTAMP '2026-03-10 00:00:00'
   AND c.estado = 'PROGRAMADA'
 ORDER BY c.fecha_hora;
 
--- Lo que la pantalla de agenda realmente necesita. El LIMIT deja de leer en
--- cuanto tiene 50 filas: por eso baja el tiempo aunque el plan sea el mismo.
+-- Lo que la pantalla de agenda realmente necesita. Sin un indice que entregue las
+-- filas ya ordenadas, el plan conserva el Seq Scan completo: lee las 30.010, encuentra
+-- las 91 y las ordena antes de entregar 50. El LIMIT solo ahorra transportar 41 filas.
 EXPLAIN ANALYZE
 SELECT c.id_cita, c.fecha_hora, m.nombre AS mascota, d.nombre AS dueno,
        v.nombre AS veterinario, c.estado
@@ -993,6 +997,9 @@ LIMIT 50;
 -- ANTES. La subconsulta esta en la LISTA DE COLUMNAS y menciona d.id_dueno, del
 -- exterior: no se puede calcular una vez y reusar. El plan lo delata con un nodo
 -- SubPlan y loops=2006 — un dueno, una ejecucion.
+-- OJO: tarda MINUTOS en el navegador (en una prueba sobre PGlite, unos 3,5 min). No esta
+-- colgada. Si no hay tiempo, agregue WHERE d.id_dueno <= 200 antes del ORDER BY: el plan
+-- dice loops=200 y tarda unos 20 s; la version completa es diez veces eso.
 EXPLAIN ANALYZE
 SELECT d.id_dueno, d.nombre,
        (SELECT COUNT(*) FROM cita c JOIN mascota m ON m.id_mascota = c.id_mascota
@@ -1070,7 +1077,8 @@ GROUP BY d.id_dueno ORDER BY d.id_dueno;
 -- EN ORDEN: el valor de la clase esta en el antes/despues, no en el CREATE INDEX.
 --
 -- Los CINCO nombres de indice de aqui son los EXACTOS que califica la actividad. No los
--- cambie: el plan de ejecucion imprime "Index Scan using <nombre>" y la tabla de
+-- cambie: el plan imprime el nombre junto al nodo ("Bitmap Index Scan on <nombre>" en
+-- PGlite, "Index Scan using <nombre>" en otros planes) y la tabla de
 -- justificacion de la pregunta 5 se llena con estos nombres.
 --
 -- ATENCION: el BLOQUE 0 recrea las tablas desde cero. Correlo en una base vacia o en la
@@ -1243,13 +1251,14 @@ SELECT id_cita, fecha_hora, estado
  WHERE fecha_hora >= TIMESTAMP '2026-03-10 00:00:00'
    AND fecha_hora <  TIMESTAMP '2026-03-11 00:00:00'
    AND estado = 'PROGRAMADA';
--- Esperado: Index Scan using idx_cita_programada_fecha (gana el PARCIAL: recorre 91
+-- Esperado (PGlite, PostgreSQL 18): Bitmap Heap Scan con Bitmap Index Scan on
+-- idx_cita_programada_fecha (gana el PARCIAL: recorre 91
 -- entradas y ya sabe que todas cumplen el estado; el completo recorreria 150 y tendria
 -- que descartar 59 despues de leer la tabla). Reporte el que VEA, no el que diga esto.
 
 EXPLAIN ANALYZE
 SELECT id_mascota, nombre, especie FROM mascota WHERE id_dueno = 1234;
--- Esperado: Index Scan (o Bitmap Index Scan) using idx_mascota_dueno.
+-- Esperado: Bitmap Index Scan on idx_mascota_dueno (o Index Scan using), 2 filas.
 
 -- Evidencia de que existen. indexdef devuelve el CREATE INDEX completo, asi que aqui se
 -- ve tambien el WHERE del parcial.
@@ -1267,6 +1276,10 @@ CREATE INDEX idx_cita_estado_fecha ON cita (estado, fecha_hora);
 CREATE INDEX idx_cita_fecha_estado ON cita (fecha_hora, estado);
 ANALYZE cita;
 
+-- Lo que el orden favorece: Q1 a (estado, fecha_hora), Q2 a (fecha_hora, estado). Pero el
+-- planeador elige por costo entre TODOS los indices: con los del bloque 2 todavia creados,
+-- PGlite usa idx_cita_programada_fecha en Q1, idx_cita_fecha_hora en Q2 e
+-- idx_cita_estado_fecha en Q3. Se reporta el que salga y se explica por que.
 EXPLAIN ANALYZE   -- Q1 · estado (igualdad) + fecha (rango) -> favorece (estado, fecha_hora)
 SELECT id_cita, fecha_hora FROM cita
  WHERE estado = 'PROGRAMADA'
@@ -1279,20 +1292,23 @@ SELECT id_cita, estado FROM cita
 EXPLAIN ANALYZE   -- Q3 · solo estado, sin fecha -> columna lider ausente en el de fecha
 SELECT COUNT(*) FROM cita WHERE estado = 'CANCELADA';
 
--- Fuerce el experimento: quite el que Q2 estaba usando y vuelva a medir.
+-- Fuerce el experimento: quite el compuesto que empieza por fecha_hora y vuelva a medir.
 DROP INDEX idx_cita_fecha_estado;
 ANALYZE cita;
 EXPLAIN ANALYZE
 SELECT id_cita, estado FROM cita
  WHERE fecha_hora >= TIMESTAMP '2026-03-01' AND fecha_hora < TIMESTAMP '2026-04-01';
--- Esperado: cae en idx_cita_fecha_hora o vuelve a Seq Scan, pero NO usa
--- idx_cita_estado_fecha: su columna lider (estado) no aparece en el WHERE.
+-- Esperado: Bitmap Index Scan on idx_cita_fecha_hora, que tambien tiene fecha_hora como
+-- lider; no idx_cita_estado_fecha, cuya lider (estado) no aparece en el WHERE. Matiz de
+-- PostgreSQL 18: si no existiera ningun indice que empiece por fecha_hora, podria usar
+-- idx_cita_estado_fecha con un skip scan (el plan lo dice con Index Searches: 7).
 
 -- =====================================================================
 -- BLOQUE 4 · PARTICIONAMIENTO (pregunta 3). HOY SE IMPLEMENTA.
 -- =====================================================================
 -- La trampa: en una tabla particionada la PK DEBE incluir la columna de particion.
--- PRIMARY KEY (id_cita) a secas no compila, y el mensaje del motor no lo dice asi.
+-- PRIMARY KEY (id_cita) a secas no compila: "unique constraint on partitioned table must
+-- include all partitioning columns", y el DETAIL nombra la columna que falta (fecha_hora).
 CREATE TABLE cita_hist (
   id_cita        INT,
   id_mascota     INT,
@@ -1478,7 +1494,9 @@ SELECT (SELECT COUNT(*) FROM factura)         AS facturas,
 CALL sp_facturar(4, ARRAY[3, 2], ARRAY[2, 3]);
 SELECT id_factura, id_consulta, total FROM factura ORDER BY id_factura;
 SELECT id_insumo, nombre, stock FROM insumo ORDER BY id_insumo;
--- Esperado: factura 2 por 9500*2 + 31000*3 = 112.000; insumo 3 en 38 e insumo 2 en 0.
+-- Esperado: una segunda factura por 9500*2 + 31000*3 = 112.000, con id_factura = 3 (el
+-- CALL fallido consumio el 2 de la secuencia: nextval no se deshace con el ROLLBACK);
+-- insumo 3 en 38 e insumo 2 en 0.
 
 -- =====================================================================
 -- BLOQUE 4 · EL MISMO PATRON COMO FUNCION REUTILIZABLE
@@ -1528,38 +1546,117 @@ SELECT id_insumo, nombre, stock FROM insumo ORDER BY id_insumo;
 -- Aqui no se puede demostrar: PGlite corre UNA SOLA sesion. Ese es el gap que se declara
 -- en la pregunta 5 y lo que abre la Clase 10.
 """,
-"10_concurrencia_clinica.sql": """-- VetCare DB · Clase 10 · Demo ejecutable: doble reserva y su mitigacion
--- Ejecutar EN ORDEN: primero se ve el problema, despues la solucion.
+"10_concurrencia_clinica.sql": """-- VetCare DB · Clase 10 · Demo ejecutable: doble reserva, su mitigacion y el doble descuento
+-- Ejecutable en PostgreSQL, incluido PGlite (la consola de ExamLab). Corre completo y EN ORDEN:
+-- primero el problema, despues la solucion. La ULTIMA sentencia falla A PROPOSITO: es la prueba
+-- de que la base ya no acepta la doble reserva.
+--
+-- Limite declarado: PGlite tiene UNA sola sesion. No se pueden ver dos transacciones
+-- esperandose; lo que si se demuestra es que sin la regla la base ACEPTA el dato invalido y que
+-- con la regla lo RECHAZA siempre, sin importar el orden ni la velocidad. La espera de T2 se
+-- documenta en una linea de tiempo T1/T2.
+--
+-- Usa tablas propias (cita_demo, insumo_demo) para no tocar la base del proyecto.
 
--- Paso 1: tabla de demo SIN restriccion (asi llegaria si nadie penso en concurrencia)
+-- =====================================================================
+-- BLOQUE 0 · Esquema minimo y datos (los DROP permiten correrlo dos veces)
+-- =====================================================================
+DROP TABLE IF EXISTS cita_demo;
+DROP TABLE IF EXISTS insumo_demo;
+
 CREATE TABLE cita_demo (
-  id_cita INT PRIMARY KEY,
-  id_mascota INT NOT NULL,
+  id_cita        SERIAL PRIMARY KEY,
+  id_mascota     INT NOT NULL,
   id_veterinario INT NOT NULL,
-  fecha_hora TIMESTAMP NOT NULL,
-  estado VARCHAR(20) DEFAULT 'PROGRAMADA'
+  fecha_hora     TIMESTAMP NOT NULL,
+  estado         TEXT NOT NULL DEFAULT 'PROGRAMADA'
+                 CHECK (estado IN ('PROGRAMADA', 'ATENDIDA', 'CANCELADA'))
 );
+INSERT INTO cita_demo (id_mascota, id_veterinario, fecha_hora, estado) VALUES
+  (1, 1, TIMESTAMP '2026-09-01 08:00:00', 'PROGRAMADA'),
+  (2, 1, TIMESTAMP '2026-09-01 09:00:00', 'ATENDIDA'),
+  (4, 2, TIMESTAMP '2026-09-01 10:00:00', 'PROGRAMADA'),
+  (5, 3, TIMESTAMP '2026-09-02 08:30:00', 'CANCELADA');
 
--- Paso 2: T1 (Recepcion A) agenda la franja - OK
-INSERT INTO cita_demo VALUES (1, 10, 5, TIMESTAMP '2026-10-12 09:00:00', 'PROGRAMADA');
+CREATE TABLE insumo_demo (
+  id_insumo INT PRIMARY KEY,
+  nombre    TEXT NOT NULL,
+  stock     INT NOT NULL CHECK (stock >= 0)
+);
+INSERT INTO insumo_demo VALUES (2, 'Vacuna triple felina', 3);
 
--- Paso 3: T2 (Recepcion B) agenda OTRA mascota, MISMO veterinario, MISMA franja.
--- Sin restriccion esto se inserta SIN ERROR -> aqui esta la doble reserva.
-INSERT INTO cita_demo VALUES (2, 22, 5, TIMESTAMP '2026-10-12 09:00:00', 'PROGRAMADA');
+-- =====================================================================
+-- BLOQUE 1 · El problema: sin regla, la base acepta la doble reserva
+-- =====================================================================
+-- T1 (recepcion A) y T2 (recepcion B) agendan al veterinario 2 a la misma hora.
+INSERT INTO cita_demo (id_mascota, id_veterinario, fecha_hora, estado)
+VALUES (4, 2, TIMESTAMP '2026-09-15 10:00:00', 'PROGRAMADA');      -- T1: INSERT 0 1
+INSERT INTO cita_demo (id_mascota, id_veterinario, fecha_hora, estado)
+VALUES (5, 2, TIMESTAMP '2026-09-15 10:00:00', 'PROGRAMADA');      -- T2: INSERT 0 1, sin error
 
--- Evidencia del problema: dos citas para el mismo veterinario en la misma franja
+-- Deteccion: franjas con mas de una cita vigente.
 SELECT id_veterinario, fecha_hora, COUNT(*) AS citas_en_la_misma_franja
 FROM cita_demo
+WHERE estado <> 'CANCELADA'
 GROUP BY id_veterinario, fecha_hora
 HAVING COUNT(*) > 1;
+-- Esperado: 1 fila -> 2 | 2026-09-15 10:00:00 | 2
 
--- Paso 4: la mitigacion real - la restriccion que debio existir desde el diseño
-ALTER TABLE cita_demo
-  ADD CONSTRAINT uq_cita_demo_vet_fecha UNIQUE (id_veterinario, fecha_hora);
+-- =====================================================================
+-- BLOQUE 2 · Limpiar ANTES de crear la regla
+-- =====================================================================
+-- Con el duplicado adentro, el indice no se puede crear:
+--   ERROR:  could not create unique index "uq_cita_demo_vet_franja"
+--   DETAIL:  Key (id_veterinario, fecha_hora)=(2, 2026-09-15 10:00:00) is duplicated.
+-- Se borra la segunda reserva (la de mayor id).
+DELETE FROM cita_demo WHERE id_cita = (SELECT MAX(id_cita) FROM cita_demo);
 
--- Paso 5: repetir el intento de doble reserva - AHORA debe fallar
-INSERT INTO cita_demo VALUES (3, 35, 5, TIMESTAMP '2026-10-12 09:00:00', 'PROGRAMADA');
--- Esperado: error de restriccion unica (ORA-00001 en Oracle) -> la BD rechaza la doble reserva.
+-- =====================================================================
+-- BLOQUE 3 · La regla: indice unico PARCIAL (una cita CANCELADA libera su franja)
+-- =====================================================================
+CREATE UNIQUE INDEX uq_cita_demo_vet_franja
+  ON cita_demo (id_veterinario, fecha_hora)
+  WHERE estado <> 'CANCELADA';
+
+-- La excepcion correcta: una CANCELADA en una franja ocupada SI entra (el indice no la mira).
+INSERT INTO cita_demo (id_mascota, id_veterinario, fecha_hora, estado)
+VALUES (6, 1, TIMESTAMP '2026-09-01 08:00:00', 'CANCELADA');       -- INSERT 0 1
+
+-- El rechazo, capturado y traducido a lenguaje de negocio (asi lo haria un procedimiento):
+DO $$
+BEGIN
+  INSERT INTO cita_demo (id_mascota, id_veterinario, fecha_hora, estado)
+  VALUES (5, 1, TIMESTAMP '2026-09-01 08:00:00', 'PROGRAMADA');
+  RAISE NOTICE 'FALLO: se permitio la doble reserva';
+EXCEPTION WHEN unique_violation THEN
+  RAISE NOTICE 'Ese horario acaba de ser tomado, elija otro (%)', SQLSTATE;
+END $$;
+-- Esperado: NOTICE:  Ese horario acaba de ser tomado, elija otro (23505)
+
+-- =====================================================================
+-- BLOQUE 4 · El doble descuento de stock: la condicion dentro del UPDATE
+-- =====================================================================
+-- Dos ventas de 3 unidades sobre un stock de 3: solo una puede pasar.
+UPDATE insumo_demo SET stock = stock - 3 WHERE id_insumo = 2 AND stock >= 3;   -- UPDATE 1
+UPDATE insumo_demo SET stock = stock - 3 WHERE id_insumo = 2 AND stock >= 3;   -- UPDATE 0
+SELECT id_insumo, nombre, stock FROM insumo_demo;
+-- Esperado: 2 | Vacuna triple felina | 0   (nunca negativo)
+
+-- FOR UPDATE corre sin error, pero aqui nunca espera: nadie mas tiene la fila.
+SELECT stock FROM insumo_demo WHERE id_insumo = 2 FOR UPDATE;      -- 0
+
+SELECT id_cita, id_mascota, id_veterinario, fecha_hora, estado
+FROM cita_demo ORDER BY id_cita;
+-- Esperado: 6 filas; las dos del veterinario 1 a las 08:00 son una PROGRAMADA y una CANCELADA.
+
+-- =====================================================================
+-- BLOQUE 5 · La prueba final: la doble reserva ya no entra (FALLA A PROPOSITO)
+-- =====================================================================
+INSERT INTO cita_demo (id_mascota, id_veterinario, fecha_hora, estado)
+VALUES (5, 1, TIMESTAMP '2026-09-01 08:00:00', 'PROGRAMADA');
+-- Esperado (PostgreSQL, SQLSTATE 23505):
+--   ERROR:  duplicate key value violates unique constraint "uq_cita_demo_vet_franja"
+--   DETAIL:  Key (id_veterinario, fecha_hora)=(1, 2026-09-01 08:00:00) already exists.
 """,
 "11_checklist_seed.sql": """-- VetCare DB · Clase 11 · Seed ejecutable para la demo de checklist
 -- Autocontenido: cree estas tablas minimas si aun no las tiene, o
@@ -1590,33 +1687,197 @@ INSERT INTO insumo_demo VALUES (50, 'Vacuna antirrabica', 3);  -- stock bajo a p
 -- (solo hay 3) y confirme que su transaccion de Clase 8 hace ROLLBACK.
 SELECT m.nombre, m.activa, d.nombre AS dueno FROM mascota_demo m JOIN dueno_demo d ON d.id_dueno = m.id_dueno;
 """,
-"12_contrato_ops.sql": """-- VetCare DB · Clase 12 · Contrato app<->BD (Oracle PL/SQL, ejecutable)
--- Regla: la app NUNCA hace INSERT directo a cita/consulta/factura; solo llama estos procs.
+"12_contrato_ops.sql": """-- VetCare DB · Clase 12 · Contrato app<->BD · PostgreSQL (PL/pgSQL), ejecutable
+-- Corre completo y EN ORDEN en PostgreSQL, incluido PGlite (la consola de ExamLab).
+-- Regla: la app NUNCA hace INSERT ni UPDATE directo sobre cita; solo llama la capa de API.
+--
+-- Las dos formas de informar un fallo que fija el contrato:
+--   * el error que ABORTA: RAISE EXCEPTION ... USING ERRCODE, con un codigo propio que la
+--     aplicacion captura (sp_agendar_cita, BLOQUE 1);
+--   * el rechazo de negocio que se DEVUELVE en la fila del contrato (ok, mensaje,
+--     id_generado), que la aplicacion esta obligada a revisar (api_cancelar_cita, BLOQUE 2).
+--
+-- NO es Oracle: nada de IN NUMBER, VARCHAR2, un p_msg OUT con el error, COMMIT/ROLLBACK
+-- dentro del procedimiento ni barra / final. En PostgreSQL el CALL es su propia
+-- transaccion: si una validacion lanza el error, no queda nada escrito.
 
-CREATE OR REPLACE PROCEDURE sp_agendar_cita (
-  p_id_cita IN NUMBER, p_id_mascota IN NUMBER, p_fecha IN TIMESTAMP, p_msg OUT VARCHAR2
-) AS
+-- =====================================================================
+-- BLOQUE 0 · Esquema minimo y datos. RECREA las tablas: correr en una base vacia.
+-- =====================================================================
+DROP FUNCTION  IF EXISTS api_cancelar_cita(INT);
+DROP PROCEDURE IF EXISTS sp_agendar_cita(INT, INT, TIMESTAMP);
+DROP TABLE IF EXISTS cita, mascota, veterinario, dueno;
+
+CREATE TABLE dueno (
+  id_dueno SERIAL PRIMARY KEY,
+  nombre   TEXT NOT NULL
+);
+CREATE TABLE mascota (
+  id_mascota SERIAL PRIMARY KEY,
+  id_dueno   INT NOT NULL REFERENCES dueno(id_dueno),
+  nombre     TEXT NOT NULL,
+  especie    TEXT NOT NULL,
+  activa     CHAR(1) NOT NULL DEFAULT 'S' CHECK (activa IN ('S','N'))
+);
+CREATE TABLE veterinario (
+  id_veterinario SERIAL PRIMARY KEY,
+  nombre         TEXT NOT NULL
+);
+CREATE TABLE cita (
+  id_cita        SERIAL PRIMARY KEY,
+  id_mascota     INT NOT NULL REFERENCES mascota(id_mascota),
+  id_veterinario INT NOT NULL REFERENCES veterinario(id_veterinario),
+  fecha_hora     TIMESTAMP NOT NULL,
+  estado         TEXT NOT NULL DEFAULT 'PROGRAMADA'
+                 CHECK (estado IN ('PROGRAMADA','ATENDIDA','CANCELADA'))
+);
+-- La franja la GARANTIZA el motor (Clase 10); la validacion del procedimiento solo da un
+-- mensaje claro. Una cita CANCELADA libera la franja, por eso el indice es parcial.
+CREATE UNIQUE INDEX uq_cita_vet_franja ON cita (id_veterinario, fecha_hora)
+  WHERE estado <> 'CANCELADA';
+
+INSERT INTO dueno (nombre) VALUES
+  ('Ana Gomez'), ('Carlos Ruiz'), ('Marcela Diaz'),
+  ('Jorge Pineda'), ('Luisa Cardona'), ('Andres Vallejo');
+INSERT INTO veterinario (nombre) VALUES
+  ('Laura Restrepo'), ('Diego Moreno'), ('Paula Salazar'), ('Ivan Ortiz');
+-- Rocky (3) y Kiara (8) estan INACTIVAS.
+INSERT INTO mascota (id_dueno, nombre, especie, activa) VALUES
+  (1,'Firulais','Canino','S'), (1,'Luna','Felino','S'), (2,'Rocky','Canino','N'),
+  (3,'Mishi','Felino','S'),    (3,'Bobby','Canino','S'), (4,'Nube','Felino','S'),
+  (5,'Toby','Canino','S'),     (6,'Kiara','Canino','N');
+INSERT INTO cita (id_mascota, id_veterinario, fecha_hora, estado) VALUES
+  (1,1,TIMESTAMP '2026-09-01 08:00','PROGRAMADA'), (2,1,TIMESTAMP '2026-09-01 09:00','ATENDIDA'),
+  (4,2,TIMESTAMP '2026-09-01 10:00','PROGRAMADA'), (5,3,TIMESTAMP '2026-09-02 08:30','CANCELADA'),
+  (6,2,TIMESTAMP '2026-09-02 11:00','ATENDIDA'),   (7,4,TIMESTAMP '2026-09-03 07:45','PROGRAMADA'),
+  (1,1,TIMESTAMP '2026-09-05 15:00','ATENDIDA'),   (2,3,TIMESTAMP '2026-09-08 16:00','PROGRAMADA'),
+  (4,4,TIMESTAMP '2026-09-10 08:00','PROGRAMADA'), (6,1,TIMESTAMP '2026-09-10 09:00','ATENDIDA');
+
+-- =====================================================================
+-- BLOQUE 1 · El error que ABORTA, con codigo propio (USING ERRCODE)
+-- =====================================================================
+-- Sin USING ERRCODE todo error propio sale con el mismo codigo, P0001. Con un codigo por
+-- regla la aplicacion sabe CUAL fallo sin leer el texto: MA = mascotas, CI = citas
+-- (convencion propia del proyecto, un SQLSTATE de cinco caracteres).
+CREATE PROCEDURE sp_agendar_cita(
+  p_id_mascota     INT,
+  p_id_veterinario INT,
+  p_fecha_hora     TIMESTAMP
+)
+LANGUAGE plpgsql
+AS $proc$
+DECLARE
+  v_activa CHAR(1);
 BEGIN
-  INSERT INTO cita(id_cita, id_mascota, fecha_hora, estado) VALUES (p_id_cita, p_id_mascota, p_fecha, 'PROGRAMADA');
-  p_msg := 'OK: cita agendada'; COMMIT;
-EXCEPTION WHEN OTHERS THEN p_msg := 'ERROR: ' || SQLERRM; ROLLBACK;
-END;
-/
+  SELECT activa INTO v_activa FROM mascota WHERE id_mascota = p_id_mascota;
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'ERROR: la mascota % no existe', p_id_mascota
+      USING ERRCODE = 'MA002';
+  END IF;
 
-CREATE OR REPLACE PROCEDURE sp_registrar_consulta (
-  p_id_consulta IN NUMBER, p_id_cita IN NUMBER, p_notas IN VARCHAR2, p_precio IN NUMBER, p_msg OUT VARCHAR2
-) AS
+  IF v_activa <> 'S' THEN
+    RAISE EXCEPTION 'ERROR: la mascota % esta inactiva; no se agenda cita', p_id_mascota
+      USING ERRCODE = 'MA001';
+  END IF;
+
+  IF EXISTS (SELECT 1 FROM cita
+              WHERE id_veterinario = p_id_veterinario
+                AND fecha_hora     = p_fecha_hora
+                AND estado <> 'CANCELADA') THEN
+    RAISE EXCEPTION 'ERROR: el veterinario % ya tiene cita en %',
+                    p_id_veterinario, p_fecha_hora
+      USING ERRCODE = 'CI001';
+  END IF;
+
+  INSERT INTO cita (id_mascota, id_veterinario, fecha_hora, estado)
+  VALUES (p_id_mascota, p_id_veterinario, p_fecha_hora, 'PROGRAMADA');
+END;
+$proc$;
+
+-- El caso valido: se llama con parametros, nunca armando SQL con texto.
+CALL sp_agendar_cita(1, 2, TIMESTAMP '2026-09-15 10:00:00');   -- crea la cita 11
+
+-- Lo que recibe la aplicacion cuando falla: el codigo (SQLSTATE) y el mensaje. Cada DO hace
+-- de aplicacion: atrapa el error, lo muestra y deja seguir el script. La app real traduce el
+-- codigo a un mensaje para recepcion y guarda el texto tecnico en su log.
+DO $$
 BEGIN
-  INSERT INTO consulta(id_consulta, id_cita, notas, precio) VALUES (p_id_consulta, p_id_cita, p_notas, p_precio);
-  p_msg := 'OK: consulta registrada'; COMMIT;
-EXCEPTION WHEN OTHERS THEN p_msg := 'ERROR: ' || SQLERRM; ROLLBACK;
-END;
-/
+  CALL sp_agendar_cita(3, 2, TIMESTAMP '2026-09-21 08:00:00');    -- Rocky, inactiva
+EXCEPTION WHEN OTHERS THEN
+  RAISE NOTICE 'codigo % · %', SQLSTATE, SQLERRM;                 -- codigo MA001
+END $$;
 
--- Contrato para la sustentacion (documentar tal cual en el informe):
--- sp_agendar_cita(id_cita, id_mascota, fecha)      -> p_msg: 'OK: ...' | 'ERROR: ...'
--- sp_registrar_consulta(id_consulta, id_cita, notas, precio) -> p_msg idem
--- sp_facturar(id_factura, id_consulta, lineas...)  -> ver Clase 8 (transaccion factura+stock)
+DO $$
+BEGIN
+  CALL sp_agendar_cita(99, 2, TIMESTAMP '2026-09-22 08:00:00');   -- no existe
+EXCEPTION WHEN OTHERS THEN
+  RAISE NOTICE 'codigo % · %', SQLSTATE, SQLERRM;                 -- codigo MA002
+END $$;
+
+DO $$
+BEGIN
+  CALL sp_agendar_cita(2, 1, TIMESTAMP '2026-09-01 08:00:00');    -- franja de la cita 1
+EXCEPTION WHEN OTHERS THEN
+  RAISE NOTICE 'codigo % · %', SQLSTATE, SQLERRM;                 -- codigo CI001
+END $$;
+
+-- La prueba de que los rechazos no dejaron nada: 11 citas (las 10 sembradas + la valida).
+SELECT COUNT(*) AS citas_totales FROM cita;
+
+-- =====================================================================
+-- BLOQUE 2 · El rechazo de negocio DEVUELTO en la fila del contrato
+-- =====================================================================
+-- Una funcion de la capa de API no lanza el rechazo esperado: lo devuelve en
+-- (ok, mensaje, id_generado). Lo inesperado se captura con WHEN OTHERS: el bloque deshace lo
+-- que alcanzo a escribir y tambien se devuelve como ok = false. Nunca WHEN OTHERS THEN NULL.
+CREATE FUNCTION api_cancelar_cita(p_id_cita INT)
+RETURNS TABLE (ok BOOLEAN, mensaje TEXT, id_generado INT)
+LANGUAGE plpgsql
+AS $fn$
+BEGIN
+  UPDATE cita SET estado = 'CANCELADA'
+   WHERE id_cita = p_id_cita AND estado = 'PROGRAMADA';
+  IF NOT FOUND THEN                -- rechazo de negocio esperado: se devuelve
+    RETURN QUERY SELECT FALSE, 'No se puede cancelar', NULL::INT;
+    RETURN;                        -- RETURN QUERY no termina la funcion: falta este RETURN
+  END IF;
+  RETURN QUERY SELECT TRUE, 'Cita cancelada', p_id_cita;
+EXCEPTION WHEN OTHERS THEN         -- lo inesperado: se deshace y se informa
+  RETURN QUERY SELECT FALSE, SQLERRM, NULL::INT;
+END;
+$fn$;
+
+SELECT * FROM api_cancelar_cita(1);    -- t | Cita cancelada       | 1
+SELECT * FROM api_cancelar_cita(1);    -- f | No se puede cancelar | NULL (ya esta cancelada)
+SELECT * FROM api_cancelar_cita(99);   -- f | No se puede cancelar | NULL (no existe)
+
+-- La cancelacion libero la franja del veterinario 1 el 2026-09-01 a las 08:00: el mismo CALL
+-- que en el BLOQUE 1 se rechazo con CI001 ahora entra.
+CALL sp_agendar_cita(2, 1, TIMESTAMP '2026-09-01 08:00:00');   -- crea la cita 12
+SELECT id_cita, id_mascota, estado
+  FROM cita
+ WHERE id_veterinario = 1 AND fecha_hora = TIMESTAMP '2026-09-01 08:00:00'
+ ORDER BY id_cita;
+-- 2 filas: la 1 CANCELADA y la 12 PROGRAMADA (el indice unico parcial lo permite).
+
+-- =====================================================================
+-- BLOQUE 3 · El contrato, como se documenta (las seis partes)
+-- =====================================================================
+-- sp_agendar_cita(p_id_mascota INT, p_id_veterinario INT, p_fecha_hora TIMESTAMP)
+--   Llamada      : CALL sp_agendar_cita(1, 2, TIMESTAMP '2026-09-15 10:00:00');
+--   Precondicion : la mascota existe y tiene activa = 'S'; la franja del veterinario
+--                  esta libre (una cita CANCELADA no la ocupa).
+--   Efecto       : 1 fila nueva en cita, estado 'PROGRAMADA'. Si falla, NINGUNA.
+--   Errores      : MA002 mascota inexistente · MA001 mascota inactiva · CI001 franja
+--                  ocupada (y 23505 si dos sesiones chocan contra uq_cita_vet_franja).
+--   Idempotente  : NO. Un doble clic intentaria dos citas; la segunda la rechaza la base.
+--   Version      : 1.
+-- api_cancelar_cita(p_id_cita INT) -> (ok BOOLEAN, mensaje TEXT, id_generado INT)
+--   Efecto       : la cita pasa a 'CANCELADA' solo si estaba 'PROGRAMADA'.
+--   Retorno      : ok = true con id_generado = el id de la cita; ok = false con el motivo e
+--                  id_generado NULL (ni 0 ni -1).
+--   Idempotente  : SI. Repetirla deja la base igual y responde ok = false.
+--   Version      : 1.
 """,
 }
 
@@ -1890,7 +2151,7 @@ def bullets(doc, items):
 
 DIAGRAMAS_BD2 = {
     1: {
-        "titulo": "ER minimo VetCare (con cardinalidad)",
+        "titulo": "ER minimo de la clinica (con cardinalidad)",
         "sub": "La FK siempre vive en la tabla del lado “N” de la relacion",
         "boxes": [
             {"id": "dueno", "label": "Dueño\nid_dueno (PK)\nnombre, telefono", "x": 0.6, "y": 2.2, "w": 2.7, "h": 1.6, "color": NAVY},
@@ -1956,20 +2217,22 @@ CODIGO_SLIDE = {
     # de sintaxis PL/pgSQL. Antes esta diapositiva proyectaba un parametro OUT con el
     # mensaje de error, que es exactamente lo que la rubrica NO acepta.
     3: ("El molde de PL/pgSQL y la validacion que aborta", [
-        "CREATE OR REPLACE PROCEDURE sp_agendar_cita(",
-        "  p_id_mascota INT, p_id_veterinario INT,",
-        "  p_fecha_hora TIMESTAMP)          -- id_cita es SERIAL: no se pasa",
+        "CREATE OR REPLACE PROCEDURE sp_agendar_cita(p_id_mascota INT,",
+        "  p_id_veterinario INT, p_fecha_hora TIMESTAMP)  -- id_cita es SERIAL: no se pasa",
         "LANGUAGE plpgsql AS $proc$         -- ni IS, ni VARCHAR2, ni / final",
         "DECLARE v_activa CHAR(1);",
         "BEGIN",
-        "  SELECT activa INTO v_activa FROM mascota",
-        "   WHERE id_mascota = p_id_mascota;",
+        "  SELECT activa INTO v_activa FROM mascota WHERE id_mascota = p_id_mascota;",
         "  IF NOT FOUND THEN",
         "    RAISE EXCEPTION 'ERROR: la mascota % no existe', p_id_mascota;",
         "  END IF;",
         "  IF v_activa <> 'S' THEN",
         "    RAISE EXCEPTION 'ERROR: la mascota % esta inactiva', p_id_mascota;",
-        "  END IF;                          -- aborta: no inserta NADA",
+        "  END IF;",
+        "  IF EXISTS (SELECT 1 FROM cita WHERE id_veterinario = p_id_veterinario",
+        "     AND fecha_hora = p_fecha_hora AND estado <> 'CANCELADA') THEN",
+        "    RAISE EXCEPTION 'ERROR: el veterinario % ya tiene cita en %', p_id_veterinario, p_fecha_hora;",
+        "  END IF;                          -- cualquiera de los tres aborta: no inserta NADA",
         "  INSERT INTO cita(id_mascota, id_veterinario, fecha_hora, estado)",
         "  VALUES (p_id_mascota, p_id_veterinario, p_fecha_hora, 'PROGRAMADA');",
         "END; $proc$;",
@@ -2001,9 +2264,10 @@ CODIGO_SLIDE = {
     # `idx_cita_fecha_hora`: esta es la diapositiva de la que el estudiante copia, asi que
     # era la que le costaba los puntos. Se agrega el parcial, que tambien se califica.
     7: ("Un indice se justifica con la consulta que lo usa", [
-        "-- Consulta frecuente: la agenda del dia (siempre PROGRAMADA)",
+        "-- Consulta frecuente: la agenda del dia (siempre PROGRAMADA): 91 filas",
         "SELECT id_cita, id_mascota, fecha_hora FROM cita",
-        " WHERE fecha_hora >= CURRENT_DATE AND estado = 'PROGRAMADA';",
+        " WHERE fecha_hora >= TIMESTAMP '2026-03-10'",
+        "   AND fecha_hora <  TIMESTAMP '2026-03-11' AND estado = 'PROGRAMADA';",
         "",
         "CREATE INDEX idx_cita_fecha_hora ON cita (fecha_hora);",
         "CREATE INDEX idx_cita_programada_fecha ON cita (fecha_hora)",
@@ -2011,42 +2275,53 @@ CODIGO_SLIDE = {
         "",
         "-- Mal candidato: baja cardinalidad (solo 'S' o 'N')",
         "-- CREATE INDEX idx_mascota_activa ON mascota(activa);",
-    ], "Cada indice acelera lecturas y encarece INSERT/UPDATE/DELETE. El nombre es el que el plan imprime en «Index Scan using»."),
+    ], "Cada indice acelera lecturas y encarece INSERT/UPDATE/DELETE. El nombre es el que el "
+       "plan imprime junto al nodo: «Bitmap Index Scan on <nombre>» o «Index Scan using <nombre>»."),
     # Decia «ROLLBACK; -- de lo contrario: COMMIT;», que es literalmente la opcion
     # INCORRECTA de la pregunta 4 (10 pts) proyectada como respuesta. En PostgreSQL el
     # procedimiento no lleva control de transaccion: la excepcion que se propaga fuera del
     # `CALL` deshace todo, y quien copiaba esta diapositiva perdia los 10 puntos.
     8: ("Todo o nada: la transaccion de facturacion", [
-        "CREATE OR REPLACE PROCEDURE sp_facturar(p_id_consulta INT,",
-        "       p_insumos INT[], p_cantidades INT[])",
+        "CREATE OR REPLACE PROCEDURE sp_facturar(p_id_consulta INT, p_insumos INT[], p_cantidades INT[])",
         "LANGUAGE plpgsql AS $proc$",
-        "DECLARE v_fac INT; v_filas INT;",
+        "DECLARE v_id_factura INT; v_filas INT;",
         "BEGIN",
         "  INSERT INTO factura (id_consulta) VALUES (p_id_consulta)",
-        "  RETURNING id_factura INTO v_fac;",
+        "  RETURNING id_factura INTO v_id_factura;",
         "  FOR i IN 1 .. array_length(p_insumos, 1) LOOP",
         "    UPDATE insumo SET stock = stock - p_cantidades[i]",
         "     WHERE id_insumo = p_insumos[i] AND stock >= p_cantidades[i];",
         "    GET DIAGNOSTICS v_filas = ROW_COUNT;   -- 0: no alcanzo",
         "    IF v_filas = 0 THEN RAISE EXCEPTION 'ERROR: stock insuficiente'; END IF;",
         "    INSERT INTO detalle_factura (id_factura, id_insumo, cantidad, precio_unit)",
-        "    SELECT v_fac, id_insumo, p_cantidades[i], precio_unit",
+        "    SELECT v_id_factura, id_insumo, p_cantidades[i], precio_unit",
         "      FROM insumo WHERE id_insumo = p_insumos[i];",
         "  END LOOP;   -- sin COMMIT ni ROLLBACK: los pone el CALL",
+        "  UPDATE factura SET total = (SELECT SUM(cantidad * precio_unit) FROM detalle_factura",
+        "   WHERE id_factura = v_id_factura) WHERE id_factura = v_id_factura;   -- 27.400",
         "END; $proc$;",
     ], "La condicion stock >= cantidad evita el stock negativo; la excepcion que sale del CALL deshace todo sola."),
-    10: ("La restriccion que hace imposible la doble reserva", [
-        "ALTER TABLE cita",
-        "  ADD CONSTRAINT uq_cita_vet_franja",
-        "  UNIQUE (id_veterinario, fecha_hora);",
+    # Era un UNIQUE de tabla. Lo que la actividad pide (y lo correcto: una cita cancelada libera
+    # su franja) es el indice unico PARCIAL, con este nombre exacto. Corre en PGlite detras de
+    # «La doble reserva, reproducida y detectada», que deja la tabla sin duplicados.
+    10: ("El indice unico parcial que hace imposible la doble reserva", [
+        "-- Solo citas vigentes: una CANCELADA libera su franja",
+        "CREATE UNIQUE INDEX uq_cita_vet_franja",
+        "  ON cita (id_veterinario, fecha_hora)",
+        "  WHERE estado <> 'CANCELADA';",
         "",
-        "-- T2 intenta la misma franja que T1:",
+        "-- Una cancelada en una franja ocupada entra: el indice no la mira",
+        "INSERT INTO cita (id_mascota, id_veterinario, fecha_hora, estado)",
+        "VALUES (5, 1, TIMESTAMP '2026-09-01 08:00:00', 'CANCELADA');",
+        "",
+        "-- Una vigente en la misma franja, no:",
         "INSERT INTO cita (id_mascota, id_veterinario, fecha_hora, estado)",
         "VALUES (5, 1, TIMESTAMP '2026-09-01 08:00:00', 'PROGRAMADA');",
         "-- ERROR:  duplicate key value violates unique constraint",
-        "--         \"uq_cita_vet_franja\"",
+        "--         \"uq_cita_vet_franja\"      (SQLSTATE 23505)",
     ], "Poner solo BEGIN/COMMIT no basta: las dos transacciones leen «libre» antes de "
-       "confirmar. El UNIQUE lo verifica el motor al escribir: la segunda reserva falla."),
+       "confirmar. El indice unico se verifica al escribir, y por ser parcial deja que una "
+       "cita cancelada libere su franja."),
     12: ("El contrato que la app consume (no SQL suelto)", [
         "-- Firma: lo unico que la aplicacion conoce de la base",
         "CALL sp_agendar_cita(",
@@ -2055,7 +2330,7 @@ CODIGO_SLIDE = {
         "  p_fecha_hora     => TIMESTAMP '2026-09-01 09:00:00');",
         "",
         "-- Si una regla falla, el CALL aborta con un mensaje literal:",
-        "-- ERROR:  ERROR: la mascota 3 esta inactiva",
+        "-- ERROR:  ERROR: la mascota 3 esta inactiva; no se agenda cita",
     ], "La aplicacion llama el procedimiento con parametros tipados, no arma SQL con texto: "
        "por eso no hay inyeccion. El contrato fija la firma, el ejemplo de llamada, los "
        "mensajes de error literales y que queda en la base si la llamada falla (nada)."),
@@ -2433,7 +2708,8 @@ TEORIA_EXTRA = {
     7: [(
         "Los cinco indices de hoy, con su nombre exacto",
         [
-            "@@El nombre importa.@@ El plan imprime «Index Scan using» seguido del nombre, asi que "
+            "@@El nombre importa.@@ El plan imprime el nombre junto al nodo («Bitmap Index Scan on» "
+            "o «Index Scan using», segun el acceso que elija), asi que "
             "se lee en la salida: `idx_cita_fecha_hora`, `idx_mascota_dueno`, `idx_cita_programada_fecha` "
             "para la medicion, y `idx_cita_estado_fecha` + `idx_cita_fecha_estado` para el orden. "
             "@@`idx_cita_fecha` no es ninguno de los cinco@@: el sufijo es `_fecha_hora`, como la "
@@ -2479,7 +2755,8 @@ TEORIA_EXTRA = {
             "consulta, el parcial es la respuesta correcta.",
             "@@Cual de los dos elige.@@ Con `idx_cita_fecha_hora` y `idx_cita_programada_fecha` "
             "compitiendo por la misma consulta, el plan nombra al ganador: hay que leer el "
-            "`Index Scan using ...` y @@escribir cual salio@@, porque la rubrica descuenta si no "
+            "nodo de acceso por indice (`Bitmap Index Scan on ...` o `Index Scan using ...`) y "
+            "@@escribir cual salio@@, porque la rubrica descuenta si no "
             "se comenta.",
         ],
         "La pregunta 1 lo exige por nombre y su rubrica descuenta si falta; la pregunta 4 lo "
@@ -2494,8 +2771,9 @@ TEORIA_EXTRA = {
             "`TO` de una particion es el `FROM` de la siguiente y nunca se solapan.",
             "@@La trampa que cuesta la pregunta.@@ En una tabla particionada la clave primaria "
             "@@debe incluir la columna de particion@@: `PRIMARY KEY (id_cita, fecha_hora)`. Un "
-            "`PRIMARY KEY (id_cita)` a secas no compila, y el error del motor no dice «te falta "
-            "la columna de particion» con esas palabras.",
+            "`PRIMARY KEY (id_cita)` a secas no compila: el motor responde «unique constraint on "
+            "partitioned table must include all partitioning columns» y el detalle nombra la "
+            "columna que falta, `fecha_hora`.",
             "@@La prueba de que el reparto ocurrio.@@ `SELECT tableoid::regclass AS particion, "
             "COUNT(*), MIN(fecha_hora), MAX(fecha_hora) FROM cita_hist GROUP BY 1 ORDER BY 1;` — "
             "`tableoid` es la columna de sistema que dice @@en que tabla fisica vive cada fila@@, "
@@ -2568,8 +2846,11 @@ TEORIA_EXTRA = {
             "Capturar no es lo mismo que dejar propagar.",
             "@@El contraste con Oracle, que es lo que se pregunta.@@ En Oracle el procedimiento "
             "es parte de la transaccion del llamador y ahi si se escribe `EXCEPTION WHEN OTHERS "
-            "THEN ROLLBACK; RAISE;`. En PostgreSQL ese `ROLLBACK` dentro de un procedimiento "
-            "invocado por un `CALL` de nivel superior @@ni siquiera esta permitido@@.",
+            "THEN ROLLBACK; RAISE;`. En PostgreSQL no hace falta: la excepcion que sale del "
+            "`CALL` ya lo deshace todo. Con un `CALL` suelto el motor @@si permite@@ un `ROLLBACK` "
+            "dentro del procedimiento; lo que rechaza (`invalid transaction termination`) es "
+            "terminar la transaccion desde adentro cuando el `CALL` esta dentro de un `BEGIN` o "
+            "de un bloque con `EXCEPTION`.",
             "@@La consecuencia practica.@@ Quien decide el `COMMIT` es @@uno solo@@: el llamador. "
             "Un procedimiento que confirma por su cuenta le quita al llamador la posibilidad de "
             "deshacer, y es la fuente numero uno de facturas a medias cuando la Clase 12 conecte "
@@ -2629,6 +2910,24 @@ def _apoyo_por_diapositiva(c, mapa):
     el —que remarcar, que preguntar, por que ese orden—, que es justo lo que no cabe en la
     pantalla y lo unico que el guion aporta sobre el deck.
     """
+    # Si la clase tiene guion por lamina (bd2_contenido_*), el apoyo ES ese guion, lamina por
+    # lamina y con su numero real: el Kit y las notas del presentador dicen lo mismo.
+    _cont = CONTENIDO.get(c["n"], {})
+    if _cont:
+        L = ["", "## Guion por diapositiva", "",
+             "Es el mismo texto que llevan las **notas del presentador** de cada lámina: qué "
+             "decir al entrar y en cada clic, el ejemplo, las preguntas típicas y el puente a la "
+             "siguiente.", ""]
+        for i, titulo in enumerate(mapa, 1):
+            e = (notas_guion.entrada(_cont, titulo)
+                 or notas_guion.entrada(_cont, _titulo_tema(titulo)))
+            if not e or not e.get("notas"):
+                continue
+            L.append(f"### [Slide {i}] {_titulo_tema(titulo)}")
+            L.append("")
+            L.append(notas_guion.texto(e["notas"]).replace("\n  • ", "\n- "))
+            L.append("")
+        return "\n".join(L)
     slides = _teoria_slides(c)
     if not slides:
         return ""
@@ -2849,7 +3148,8 @@ DEMO_OBSERVAR = {
     6: ["las dos versiones devuelven las mismas 91 filas, pero el plan de la primera muestra "
         "loops=2006 y el de la segunda una sola pasada.",
         "el nodo mas costoso, las filas estimadas contra las reales y el tiempo total, leidos en ese orden en cada plan."],
-    7: ["el plan pasa de Seq Scan a Index Scan using con el nombre del indice, y con la "
+    7: ["el plan pasa de Seq Scan a un acceso por indice con su nombre (en el navegador, "
+        "Bitmap Index Scan on idx_cita_programada_fecha), y con la "
         "particion la consulta de un ano lee una sola particion.",
         "despues de crear el indice hace falta ANALYZE: sin estadisticas frescas el planeador puede seguir eligiendo el Seq Scan."],
     8: ["la factura que falla a mitad no deja cabecera ni lineas, y el stock del insumo "
@@ -2872,8 +3172,8 @@ DEMO_OBSERVAR = {
 LEYENDA_CONSULTA = {
     "El JOIN de tres tablas":
         "Cada JOIN sigue una FK: cita llega a mascota por id_mascota, y mascota a dueno por "
-        "id_dueno. El WHERE filtra despues de unir; si falta una condicion ON, el resultado "
-        "no es un error sino un producto cartesiano.",
+        "id_dueno. El WHERE filtra despues de unir. En PostgreSQL un JOIN sin ON es un error "
+        "de sintaxis; el producto cartesiano sale con la coma (o CROSS JOIN) sin la condicion.",
     "El molde de un procedimiento en PL/pgSQL":
         "LANGUAGE plpgsql y el cuerpo entre $proc$: el motor guarda el procedimiento y "
         "cualquier cliente lo invoca con CALL. Un RAISE EXCEPTION aborta la llamada y deshace "
@@ -3241,24 +3541,37 @@ def build_pptx(c):
             "Duración aproximada: **90 a 110 min** dentro del bloque de 120.",
             "El enunciado y el canal de entrega se comparten al empezar.",
         ], idx=2)
+        _sig = next((x['n'] for x in CLASES if x['n'] > c['n']), None)
         closing_slide(prs, f"{c['titulo']} · Clase {c['n']}",
-                      ["Hoy solo se evalúa", "El tema continúa la próxima clase"],
+                      ["Hoy solo se evalúa",
+                       "La próxima sesión es la sustentación del proyecto"
+                       if _sig and _sig == CLASES[-1]['n'] else "El tema continúa la próxima clase"],
                       accent="Solo evaluación")
         _verificar_mapa(c, prs)
+        # Tambien el parcial lleva guion en sus notas: como conducir la sesion por Meet.
+        notas_guion.aplicar(prs, CONTENIDO.get(c["n"], {}))
         out_dir = CLASES_DIR / f"Clase {c['n']} - {c['titulo']}"
         out_dir.mkdir(parents=True, exist_ok=True)
         out = out_dir / "Presentacion.pptx"
         prs.save(str(out)); print("PPTX", out)
         return out
     prs = new_prs(); cover_pptx(prs, c); idx = 2
-    content_slide = _solo_tema(globals()["content_slide"])
+    # Ideas escritas a mano (bd2_contenido_data) en lugar de las vinetas recortadas del
+    # fundamento, cuando la lamina las tiene. Se aplican sobre el titulo ya filtrado.
+    _cont = CONTENIDO.get(c["n"], {})
+
+    def _con_ideas(fn):
+        def w(prs, title, items, *a, **k):
+            return fn(prs, title, notas_guion.ideas(_cont, title) or items, *a, **k)
+        return w
+    content_slide = _solo_tema(_con_ideas(globals()["content_slide"]))
     pseudo_code_slide = _solo_tema(globals()["pseudo_code_slide"], codigo=True)
     diagram_boxes_slide = _solo_tema(globals()["diagram_boxes_slide"])
     before_after_slide = _solo_tema(globals()["before_after_slide"])
     steps_visual_slide = _solo_tema(globals()["steps_visual_slide"])
     block_timeline_slide = _solo_tema(globals()["block_timeline_slide"])
     image_side_slide = _solo_tema(globals()["image_side_slide"])
-    concepto_slide = _solo_tema(globals()["concepto_slide"])
+    concepto_slide = _solo_tema(_con_ideas(globals()["concepto_slide"]))
     tipo_lbl = {"autonoma": "autonoma (festivo)",
                 "sustentacion": "sustentacion en vivo"}.get(c['tipo'], "regular")
     # 2ª slide: encuadre / objetivos (contenido que salió de la portada)
@@ -3307,7 +3620,8 @@ def build_pptx(c):
             "hacen más lento el agendamiento. Ahí están las decisiones de diseño del semestre.",
             "El modelo de la clínica tiene @@8 entidades@@ y @@3 reglas de negocio@@: dueño, "
             "mascota, veterinario, cita, consulta, insumo, factura y detalle de factura.",
-        ], sub=NOMENCLATURA, idx=idx); idx += 1
+        ], sub="El cliente es una clínica veterinaria; la base de datos que usted "
+               "construye es para ella.", idx=idx); idx += 1
         if _notas_cliente(c):
             notas(_s, "\n".join(_notas_cliente(c)))
     for _t, _items, _notas, _tipo in _teoria_slides(c):
@@ -3391,6 +3705,8 @@ def build_pptx(c):
                       _vistos[:3] or [c['titulo']],
                       accent="Todo lo visto queda proyectado para repasar")
     _verificar_mapa(c, prs)
+    # El guion de cada lamina en sus notas: todo lo necesario para darla (bd2_contenido_data).
+    notas_guion.aplicar(prs, CONTENIDO.get(c["n"], {}))
     out_dir = CLASES_DIR / f"Clase {c['n']} - {c['slug']}"
     out_dir.mkdir(parents=True, exist_ok=True)
     out = out_dir / "Presentacion.pptx"
@@ -4004,7 +4320,7 @@ CAPTURAS_CLASE = {
     # (eso es la Clase 7). El docente que intentara producir esa captura no podia.
     6: [("EXPLAIN ANALYZE ANTES vs DESPUES: el nodo no cambia, las pasadas si (loops 2006 -> 1)",
          "salida-explain-antes-despues.png")],
-    7: [("El plan de C1 antes y despues: Seq Scan -> Index Scan using idx_cita_programada_fecha",
+    7: [("El plan de C1 antes y despues: Seq Scan -> Bitmap Index Scan on idx_cita_programada_fecha",
          "salida-indice-antes-despues.png")],
     8: [("CALL sp_facturar que falla a mitad: foto inicial y foto final identicas, sin ROLLBACK escrito",
          "salida-rollback-stock.png")],
@@ -4605,10 +4921,10 @@ Teoria breve; talleres = entregables del PI.
 - Dias 5/9/14: Guia aplicacion Parcial N (solo evaluacion)
 
 ## Builds
-`ash
+```bash
 python .config/slides/build_uniajc_bd2_all.py
 python .config/slides/build_uniajc_bd2_curso.py
-`
+```
 
 ## PI
 - Estudiante: Clases/Proyecto Integrador/

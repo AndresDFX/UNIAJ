@@ -1,10 +1,11 @@
 /* Correccion y tiempo son ejes independientes. Se comprueba con SELECT COUNT(*) de cada version
- * en la misma corrida: conteos iguales -> optimizacion; distintos -> respuesta equivocada. */
+ * en la misma corrida: la agenda del 2026-03-10 da 91 en las dos. Si la version nueva perdio el
+ * filtro de estado devuelve las 150 citas del dia: es la respuesta equivocada, no una mejora. */
 (function () {
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('mismo-resultado', {
     duracion: 5,
-    // Las pausas del docente: en cada una la lamina espera un clic.
+    // Pasos LOGICOS: 1) la prueba y el caso correcto; 2) el caso equivocado; 3) la regla.
     pasos: [0.4, 0.75, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, W = lz.ancho, R = m.malva || '#A02030', V = m.verde || A;
@@ -24,10 +25,10 @@
         });
         UJ.sello(ctx, lz, x + 170, 320, 28, ok, L.tramo(t, a0 + 0.08, a0 + 0.14));
       }
-      caso(40, 0.24, '150', '150', true, 'Es una optimización', 'mismo resultado, menos tiempo');
-      caso(420, 0.58, '150', '148', false, 'Respuesta equivocada', 'no es una versión más rápida');
+      caso(40, 0.24, '91', '91', true, 'Es una optimización', 'mismo resultado, menos trabajo');
+      caso(420, 0.56, '91', '150', false, 'Respuesta equivocada', 'se perdió el filtro de estado: no es una versión más rápida');
       UJ.rotulo(ctx, lz, 'Corrección y tiempo son ejes independientes.', W / 2, 530,
-                { tam: 22, ancho: W - 40, color: A, visible: L.tramo(t, 0.86, 1) });
+                { tam: 22, ancho: W - 40, color: A, visible: L.tramo(t, 0.84, 0.98) });
     }
   });
 })();

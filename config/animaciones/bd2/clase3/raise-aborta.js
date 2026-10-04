@@ -18,7 +18,7 @@
       for (var i = 0; i < 3; i++) {
         UJ.caja(ctx, lz, 40, 270 + i * 76, 320, 60, pasos[i], null, i === 0 ? A : R, L.tramo(t, 0.36 + i * 0.08, 0.42 + i * 0.08));
       }
-      var filas = ['1 · Firulais · 09:00', '2 · Michi · 10:00', '3 · Luna · 11:00'];
+      var filas = ['1 · Firulais · 09:00', '2 · Mishi · 10:00', '3 · Luna · 11:00'];
       var nueva = L.tramo(t, 0.4, 0.46), borra = L.tramo(t, 0.62, 0.72);
       UJ.alfa(ctx, L.tramo(t, 0.34, 0.4), function () {
         UJ.tabla(ctx, lz, 420, 270, 340, 'cita', filas, 2 + nueva * (1 - borra), A, nueva > 0.5 && borra < 0.5 ? 2 : -1);

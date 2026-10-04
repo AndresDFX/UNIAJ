@@ -4,7 +4,9 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('procedimiento-funcion', {
     duracion: 4.8,
-    pasos: [0.4, 0.72, 1],
+    // Pasos LOGICOS: 1) el procedimiento hace, 2) la funcion devuelve (no son dos sabores),
+    // 3) el motor no deja confundirlos.
+    pasos: [0.2, 0.52, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, R = m.malva || '#A02030', W = lz.ancho;
       var X = W / 2 + 10;

@@ -14,10 +14,10 @@ Teoria breve; talleres = entregables del PI.
 - Dias 5/9/14: Guia aplicacion Parcial N (solo evaluacion)
 
 ## Builds
-`ash
+```bash
 python .config/slides/build_uniajc_bd2_all.py
 python .config/slides/build_uniajc_bd2_curso.py
-`
+```
 
 ## PI
 - Estudiante: Clases/Proyecto Integrador/

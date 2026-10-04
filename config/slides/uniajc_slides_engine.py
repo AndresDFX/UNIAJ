@@ -362,6 +362,10 @@ def _cerrado(s):
 def _idea_vineta(v, tope=150):
     """Una viñeta reducida a lo que se lee de un vistazo, sin cortar codigo a la mitad."""
     v = str(v).strip()
+    # Una idea que ya cabe se deja ENTERA: las ideas escritas a mano (`<curso>_contenido_data`)
+    # empiezan en negrita y antes se cortaban en su primer «:», que dejaba la frase a medias.
+    if len(v) <= tope and _cerrado(v):
+        return v
     m = re.match(r"^(\*\*[^*]+\*\*|@@[^@]+@@)\s*(.*)$", v)
     if m:
         lead, resto = m.group(1), m.group(2)

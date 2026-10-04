@@ -92,6 +92,14 @@ faltaba, o que repasaba para el parcial, no tenía de dónde.
   sigue necesitando su lámina de **concepto** (§0).
 - **Conceptos y respuestas van en las notas del presentador** de su lámina
   (`uniajc_slides_engine.notas`). La lámina no le habla al docente.
+- **Las notas son el GUION DE ESA LÁMINA** (`notas_guion.py` + `<curso>_contenido_data.py`):
+  todo lo necesario para darla sin buscar fuera — QUÉ ES (dilo así), CÓMO DARLA (al entrar y en
+  **cada clic** de su animación, con minutos), EJEMPLO concreto, SI PREGUNTAN (pregunta →
+  respuesta), CUIDADO y PASA A LA SIGUIENTE. Todas las láminas lo llevan, salvo la portada. El
+  docente no debería necesitar otra herramienta para explicar el tema.
+- **Ideas escritas, no recortadas:** las viñetas de una lámina de concepto son 3-4 frases
+  completas que se entienden solas (`ideas` en `<curso>_contenido_data.py`), no frases del
+  fundamento cortadas por longitud. Referencia: **BD II Clase 4**.
 
 ### El guion
 

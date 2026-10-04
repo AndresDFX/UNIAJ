@@ -4,7 +4,9 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('anomalias', {
     duracion: 5,
-    pasos: [0.2, 0.42, 0.64, 1],
+    // Pasos LOGICOS: 1) la tabla con el dato repetido, 2) actualizacion, 3) insercion,
+    // 4) borrado, 5) la cura. Una anomalia por clic.
+    pasos: [0.2, 0.33, 0.46, 0.64, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho, R = m.malva || '#A02030', V = m.verde || A;
       var x0 = 60, y0 = 30, cw = [120, 210, 230, 120], ch = 44;

@@ -4,7 +4,9 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('set-role-prueba', {
     duracion: 5,
-    pasos: [0.3, 0.72, 1],
+    // Pasos LOGICOS: 1) SET ROLE y lo que si tiene, 2) lo que no tiene falla, 3) RESET ROLE y la
+    // regla de ejecutar una por una.
+    pasos: [0.33, 0.72, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho, R = m.malva || '#A02030', V = m.verde || A;
       UJ.codigo(ctx, lz, 30, 30, W - 60, 'SET ROLE recepcion;', L.tramo(t, 0, 0.08), 19);

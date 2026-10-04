@@ -5,6 +5,8 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('abortar-o-informar', {
     duracion: 5,
+    // Pasos LOGICOS: 1) la misma regla y el contrato que aborta; 2) el contrato que informa;
+    // 3) las cuatro llamadas reales y lo que devuelve cada una.
     pasos: [0.36, 0.7, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, R = m.malva || '#A02030', V = m.verde || A, W = lz.ancho;
@@ -35,14 +37,15 @@
       });
       // Tres llamadas
       var casos = [
-        ['fn_descontar_stock(3, 2)', 'true', V],
-        ['fn_descontar_stock(2, 10)', 'false', C],
-        ['fn_descontar_stock(3, 0)', 'ERROR: dato inválido', R]
+        ['fn_descontar_stock(5, 3)', 'true: hay 8, quedan 5', V],
+        ['fn_descontar_stock(2, 10)', 'false: hay 3, no alcanza', C],
+        ['fn_descontar_stock(2, 3)', 'true: pide justo lo que queda', V],
+        ['fn_descontar_stock(5, 0)', 'ERROR: cantidad no positiva', R]
       ];
-      for (var i = 0; i < 3; i++) {
-        UJ.alfa(ctx, L.tramo(t, 0.72 + i * 0.08, 0.78 + i * 0.08), function () {
-          L.texto(ctx, casos[i][0], 60, 490 + i * 46, { tam: 19, peso: 600, color: m.tinta, letra: 'Consolas, monospace' });
-          L.texto(ctx, '→ ' + casos[i][1], 420, 490 + i * 46, { tam: 20, peso: 800, color: casos[i][2], letra: lz.letra });
+      for (var i = 0; i < 4; i++) {
+        UJ.alfa(ctx, L.tramo(t, 0.72 + i * 0.06, 0.76 + i * 0.06), function () {
+          L.texto(ctx, casos[i][0], 40, 474 + i * 40, { tam: 18, peso: 600, color: m.tinta, letra: 'Consolas, monospace' });
+          L.texto(ctx, '→ ' + casos[i][1], 340, 474 + i * 40, { tam: 18, peso: 800, color: casos[i][2], letra: lz.letra });
         });
       }
     }

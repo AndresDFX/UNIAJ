@@ -4,7 +4,7 @@
   var L = FP_LIENZO;
   FP_ANIMADOR.registrar('sargable', {
     duracion: 5,
-    // Las pausas del docente: en cada una la lamina espera un clic.
+    // Pasos LOGICOS: 1) las dos formas no sargables; 2) su reescritura sargable; 3) la idea.
     pasos: [0.4, 0.82, 1],
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, W = lz.ancho, R = m.malva || '#A02030', V = m.verde || A;
@@ -21,7 +21,7 @@
       UJ.codigo(ctx, lz, 40, 424, 650, "c.estado = 'PROGRAMADA'", L.tramo(t, 0.68, 0.74), 17);
       UJ.sello(ctx, lz, 732, 360, 20, true, L.tramo(t, 0.74, 0.8));
       UJ.sello(ctx, lz, 732, 441, 20, true, L.tramo(t, 0.76, 0.82));
-      UJ.rotulo(ctx, lz, 'Mismo resultado; ahora el motor puede navegar un índice.', W / 2, 520,
+      UJ.rotulo(ctx, lz, 'Mismo resultado; ahora un índice sobre fecha_hora sí podría usarse.', W / 2, 520,
                 { tam: 21, ancho: W - 40, color: A, visible: L.tramo(t, 0.86, 1) });
     }
   });

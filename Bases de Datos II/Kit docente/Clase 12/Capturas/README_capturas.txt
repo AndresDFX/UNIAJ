@@ -5,7 +5,7 @@ El guion embebe automaticamente cualquier PNG que exista en esta carpeta con
 el nombre esperado. Mientras no exista, el .docx imprime la receta en su lugar.
 
 1) cap01_demo.png — salida de la demo del docente
-   - Abrir Google Docs + Live SQL + Excalidraw y repetir la demo: Plantilla contrato sp_agendar_cita + storyboard 6 slides.
+   - Abrir ExamLab (PostgreSQL/PGlite) + Excalidraw / Mermaid y repetir la demo: Plantilla contrato sp_agendar_cita + storyboard 6 slides.
    - Capturar solo la ventana con el resultado (no el escritorio completo).
    - Recortar a ~1200 px de ancho y guardar aqui como cap01_demo.png.
 
