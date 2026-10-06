@@ -59,7 +59,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Porque hoy el Dr. Ramirez lo hace contando a mano y puede sobrevivir un mes mas; el envio de recordatorios por WhatsApp y la facturacion electronica son Won't de esta version
   - Y se escriben en el documento con esa etiqueta para que nadie los reclame despues como si hubieran sido prometidos.
 
-**[Slide 9] La priorizacion MoSCoW en Mermaid** — 17 vinetas.
+**[Slide 9] La priorizacion MoSCoW en Mermaid** — 14 vinetas.
 
 **[Slide 10] Trazabilidad hacia atrás y hacia adelante** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):

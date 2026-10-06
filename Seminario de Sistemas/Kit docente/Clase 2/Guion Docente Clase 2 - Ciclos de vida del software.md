@@ -24,9 +24,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Lo importante no es memorizar los nombres sino entender que cada fase tiene tres cosas: una entrada (lo que recibe de la fase anterior), una salida tangible llamada artefacto (un documento, un diagrama, un programa) y un criterio para decir 'esto ya quedo'.
   - Si una fase no produce un artefacto verificable, esa fase no existe, existe una conversacion.
 
-**[Slide 5] El recorrido lineal del ciclo de vida** — 6 vinetas.
+**[Slide 5] El recorrido lineal del ciclo de vida** — 3 vinetas.
 
-**[Slide 6] El ciclo de vida en Mermaid: mismas cajas, dos recorridos** — 12 vinetas.
+**[Slide 6] El ciclo de vida en Mermaid: mismas cajas, dos recorridos** — 6 vinetas.
 
 **[Slide 7] Qué produce cada fase** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
@@ -50,7 +50,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Recorrerlas una sola vez y en orden significa cerrar requisitos de TODO el sistema, luego diseñar TODO el sistema, luego construir TODO.
   - Recorrerlas en ciclos significa tomar un pedazo util del sistema y pasarlo por las cinco fases en una vuelta corta, y despues repetir con el siguiente pedazo.
 
-**[Slide 9] El mismo ciclo en tres vueltas** — 15 vinetas.
+**[Slide 9] El mismo ciclo en tres vueltas** — 17 vinetas.
 
 **[Slide 10] Proyecto, producto y la segunda vida del sistema** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):

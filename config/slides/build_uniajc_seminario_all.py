@@ -332,8 +332,11 @@ def _laminas(c):
                CS.slides_de_fuente(c.get("codigo_fuente") or "", c.get("codigo_archivo") or "")]
     # El material operativo autorado. En Seminario los artefactos son diagramas Mermaid y
     # plantillas, y la sintaxis de Mermaid decide si un diagrama renderiza o no.
-    codigos += [(_deck(tit), [_deck(x) for x in lineas], [], "codigo", None)
-                for tit, lineas in OPERATIVO.get(c["n"], [])]
+    # Un tercer elemento opcional es la leyenda: la regla que antes iba como comentario `%%`
+    # dentro del codigo y ahora se lee debajo del editor (el dibujo va al lado).
+    codigos += [(_deck(e[0]), [_deck(x) for x in e[1]], [], "codigo",
+                 _deck(e[2]) if len(e) > 2 else None)
+                for e in OPERATIVO.get(c["n"], [])]
     if c.get("codigo_slide_lineas"):
         codigos.append((_deck(c.get("codigo_slide_titulo", "Codigo de hoy")),
                         [_deck(x) for x in c["codigo_slide_lineas"]], [], "codigo",

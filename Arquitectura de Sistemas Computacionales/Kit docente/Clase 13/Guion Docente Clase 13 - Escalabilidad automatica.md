@@ -79,7 +79,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 10] La regla de autoescalado, escrita como configuracion** — 12 vinetas.
 
-**[Slide 11] La maquina de decision del autoescalado** — 10 vinetas.
+**[Slide 11] La maquina de decision del autoescalado** — 17 vinetas.
 
 **[Slide 12] El limite fisico: la instancia nueva no aparece al instante** — 3 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):

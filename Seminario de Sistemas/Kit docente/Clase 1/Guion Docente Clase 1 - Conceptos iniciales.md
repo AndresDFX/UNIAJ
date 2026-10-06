@@ -53,7 +53,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Esos intereses entran en conflicto: pedir mas datos da mejores metricas al dueño pero vuelve mas lento el registro para la recepcionista.
   - Resolver ese conflicto, decidiendo que se prioriza y documentando por que, es trabajo de analisis, no de programacion.
 
-**[Slide 10] El mapa de dominio en Mermaid** — 18 vinetas.
+**[Slide 10] El mapa de dominio en Mermaid** — 16 vinetas.
 
 **[Slide 11] Las mismas fases, distinto recorrido** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):

@@ -47,7 +47,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - NOTAS:
   - En la clinica el tablero seria Por hacer / Modelando / En revision del cliente / Aprobado, y la politica de la ultima columna podria ser 'solo pasa a Aprobado si tiene diagrama, mockup y visto bueno de la clinica'.
 
-**[Slide 8] El tablero de flujo con limite de trabajo en curso** — 20 vinetas.
+**[Slide 8] El tablero de flujo con limite de trabajo en curso** — 17 vinetas.
 
 **[Slide 9] Iteración e incremento** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):

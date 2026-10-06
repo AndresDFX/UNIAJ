@@ -19,7 +19,7 @@
         { tipo: 'texto', t: '300 a 2000 ms y puede fallar: la reserva espera al correo', x: 650, y: 285, tam: 20, ancho: 260, color: 'malva', en: 0.44, sale: 0.62 },
         { tipo: 'caja', x: 300, y: 270, w: 200, h: 90, t: 'Cola', s: 'aviso-de-turno', color: 'sello', en: 0.66 },
         { tipo: 'flecha', de: [400, 172], a: [400, 266], r: 'publica y responde', dx: -100, dy: -12, ancho: 180, en: 0.68 },
-        { tipo: 'caja', x: 300, y: 420, w: 200, h: 100, t: 'Worker de avisos', s: 'reintenta', en: 0.74 },
+        { tipo: 'caja', x: 300, y: 420, w: 200, h: 100, t: 'Worker', s: 'avisos, reintenta', en: 0.74 },
         { tipo: 'flecha', de: [400, 362], a: [400, 416], en: 0.76 },
         { tipo: 'caja', x: 580, y: 425, w: 190, h: 90, t: 'Correo', s: 'externo', color: 'gris', en: 0.8 },
         { tipo: 'flecha', de: [502, 470], a: [576, 470], en: 0.82 },

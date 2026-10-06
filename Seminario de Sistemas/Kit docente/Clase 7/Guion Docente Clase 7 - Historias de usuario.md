@@ -77,7 +77,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Se toma una historia mediana y conocida como referencia (por ejemplo registrar un dueno vale 3 puntos) y todas las demas se comparan contra ella usando una escala tipo Fibonacci 1, 2, 3, 5, 8, 13, donde el salto grande refleja que entre mas grande la historia, menos confiable la estimacion; si algo llega a 13 o mas, la senal no es de dificultad sino de que hay que partirla.
   - Con dos o tres iteraciones se conoce la velocidad del equipo y recien ahi se puede prometer fechas.
 
-**[Slide 11] El mapa del backlog: epicas, historias y orden** — 12 vinetas.
+**[Slide 11] El mapa del backlog: epicas, historias y orden** — 8 vinetas.
 
 
 **Demo que usted debe poder repetir:** El docente toma el RF-03 del catalogo, lo convierte en vivo en historia con criterios y luego muestra una historia partida por capas para tumbarla con INVEST.

@@ -93,7 +93,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 10] C4-lite: del Context a los Containers** — 6 vinetas.
 
-**[Slide 11] Ejemplo de diagrama C4 — nivel Containers** — 6 vinetas.
+**[Slide 11] Ejemplo de diagrama C4 — nivel Containers** — 7 vinetas.
 
 **[Slide 12] C4Container en Mermaid: la sintaxis que se renderiza** — 3 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):

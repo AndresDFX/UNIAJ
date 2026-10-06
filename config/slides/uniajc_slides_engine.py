@@ -1668,6 +1668,12 @@ def pseudo_code_slide(prs, title, lines, sub=None, idx=None, caption=None, lengu
     h = SH - y - (0.95 if caption else 0.55)
     lineas = [str(x) for x in (lines or [])]
     leng = lenguaje or _lenguaje(lineas)
+    if imagen is None and GENERICO:
+        try:
+            import diagramas_codigo
+            imagen = diagramas_codigo.para(prs, title)
+        except Exception:
+            imagen = None
     gutter = 0.55
     # Con `imagen` (p. ej. el diagrama que produce un codigo Mermaid), el editor ocupa el 58 %
     # y a la derecha va lo que ese codigo DIBUJA: el texto de un diagrama solo no se entiende.

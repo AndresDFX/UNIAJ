@@ -1246,13 +1246,18 @@ DIAGRAMAS = {
             {"id": "api", "label": "API de turnos\n(Container · Node.js)", "x": 5.2, "y": 2.2, "w": 2.6, "h": 1.2, "color": NAVY, "size": 11},
             {"id": "db", "label": "Base de turnos\n(ContainerDb · PostgreSQL)", "x": 9.4, "y": 2.2, "w": 2.6, "h": 1.2, "color": CIAN, "size": 11},
             {"id": "cliente", "label": "Cliente\n(Person)", "x": 0.9, "y": 4.3, "w": 2.6, "h": 1.0, "color": AMARILLO, "text_color": NAVY},
-            {"id": "notif", "label": "Worker de avisos\n(Container · cola)", "x": 5.2, "y": 4.3, "w": 2.6, "h": 1.0, "color": NAVY, "size": 11},
+            # Mismos nombres, tecnologias y rotulos que el molde C4Container de la diapositiva
+            # del codigo (CODIGO_SLIDE[4]): «Worker [cola]» y el «Correo» externo, que antes
+            # faltaba aqui y el molde si declara.
+            {"id": "notif", "label": "Worker\n(Container · cola)", "x": 5.2, "y": 4.3, "w": 2.6, "h": 1.0, "color": NAVY, "size": 11},
+            {"id": "correo", "label": "Correo\n(System_Ext)", "x": 9.4, "y": 4.3, "w": 2.6, "h": 1.0, "color": type(NAVY)(0x8C, 0x8C, 0x8C), "size": 11},
         ],
         "arrows": [
-            {"src": "cliente", "dst": "spa", "label": "usa · HTTPS"},
-            {"src": "spa", "dst": "api", "label": "HTTPS/JSON"},
-            {"src": "api", "dst": "db", "label": "TCP/SQL"},
-            {"src": "api", "dst": "notif", "label": "evento/cola (AMQP)"},
+            {"src": "cliente", "dst": "spa", "label": "Reserva un turno · HTTPS"},
+            {"src": "spa", "dst": "api", "label": "POST /turnos · HTTPS/JSON"},
+            {"src": "api", "dst": "db", "label": "INSERT / SELECT · TCP/SQL"},
+            {"src": "api", "dst": "notif", "label": "Publica aviso · evento (AMQP)"},
+            {"src": "notif", "dst": "correo", "label": "Envia · REST/HTTPS"},
         ],
         "note": "Lo que guarda datos va como ContainerDb, no como un Container más. La cuarta caja (el worker) existe porque el correo tarda: sin esa razón, no va. Y estos nombres deben reaparecer igual en el Deployment (Clase 7).",
     },
@@ -1403,18 +1408,19 @@ CODIGO_SLIDE = {
         '    edge["Edge / balanceador<br/>443 HTTPS"]',
         "  end",
         '  subgraph privada["Zona privada - solo desde el edge"]',
-        '    api["API CloudLite<br/>8080 HTTP"]',
+        '    api["API de turnos<br/>8080 HTTP"]',
         "  end",
-        # El aviso va DENTRO del rotulo de la zona, no como comentario `%%` al final de la
-        # linea: Mermaid solo acepta comentarios en linea propia y un `%%` pegado al nodo
-        # puede tumbar el renderizado, que son 2 de los 14 pts.
-        '  subgraph datos["Zona de datos - sin internet: la BD va AQUI"]',
-        '    db[("Base de datos<br/>5432 TCP")]',
+        # Nada de `%%` ni de avisos en los rotulos: «la base va AQUI» y «la flecha al
+        # externo es la frontera de confianza» se marcan sobre el dibujo de la derecha
+        # (arq/clase7/dg-despliegue). Nombres: los del C4Container de la Clase 4.
+        '  subgraph datos["Zona de datos - sin internet"]',
+        '    db[("Base de turnos<br/>5432 TCP")]',
         "  end",
         '  web -->|"HTTPS 443"| edge',
         '  edge -->|"HTTP 8080"| api',
         '  api -->|"TCP 5432"| db',
-        '  api -->|"HTTPS 443 - frontera de confianza"| pagos["Pasarela de pagos externa"]',
+        '  pagos["Pasarela de pagos externa"]',
+        '  api -->|"HTTPS 443 - frontera de confianza"| pagos',
     ], "Una `subgraph` por zona, el puerto en cada caja y la base con `[( )]`. La flecha al externo ES la frontera de confianza. Nombres: los mismos del C4 Containers de la Clase 4."),
     8: (".github/workflows/ci.yml — CI real, no un echo", [
         "name: CI",

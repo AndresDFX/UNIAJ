@@ -41,7 +41,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - NOTAS:
   - Los requisitos se emparejan con las pruebas de aceptacion, el diseño de la arquitectura con las pruebas de integracion y el diseño detallado con las pruebas unitarias.
 
-**[Slide 8] El modelo en V con trazabilidad** — 17 vinetas.
+**[Slide 8] El modelo en V con trazabilidad** — 14 vinetas.
 
 **[Slide 9] Cuándo sí conviene el enfoque tradicional** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):

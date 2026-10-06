@@ -44,11 +44,11 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Hoy hacemos modelo de dominio, asi que en la clinica no aparece ninguna clase llamada MascotaDAO ni ConexionBD: aparecen Dueno, Mascota, Cita, Veterinario y Atencion, que son las cosas de las que habla el Dr. Ramirez cuando cuenta como funciona la clinica.
   - Los metodos, en el modelo de dominio, son solo los que pertenecen naturalmente al concepto, como calcularEdad en Mascota.
 
-**[Slide 7] El diagrama de clases en Mermaid** — 19 vinetas.
+**[Slide 7] El diagrama de clases en Mermaid** — 16 vinetas.
 
-**[Slide 8] Lo que NO es una clase del dominio** — 15 vinetas.
+**[Slide 8] Lo que NO es una clase del dominio** — 7 vinetas.
 
-**[Slide 9] Modelo de dominio completo en Mermaid** — 31 vinetas.
+**[Slide 9] Modelo de dominio completo en Mermaid** — 19 vinetas.
 
 **[Slide 10] Asociaciones y multiplicidades** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):

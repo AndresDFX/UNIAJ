@@ -25,7 +25,8 @@ comprobacion real es pegarlos en ExamLab, que los renderiza al instante — y el
 pide al estudiante hacer exactamente eso antes de enviar.
 """
 
-#: `{clase: [(titulo, [lineas]), ...]}`. Cada entrada es una lamina de codigo.
+#: `{clase: [(titulo, [lineas]) | (titulo, [lineas], leyenda), ...]}`. Cada entrada es una lamina
+#: de codigo; la leyenda (opcional) dice la regla que el codigo ya no lleva como comentario.
 OPERATIVO = {
 
     # ── Clase 1 · Mapa de dominio ───────────────────────────────────────────
@@ -47,9 +48,7 @@ OPERATIVO = {
             "  rec -->|agenda| agenda",
             "  vet -->|consulta| exped",
             "  exped -->|pide examen| lab",
-            "",
-            "%% Complete con SUS capacidades y actores: estas son dos de cada uno.",
-        ]),
+        ], "Son dos actores y dos capacidades de muestra: el mapa real lleva todos los del dominio."),
         ("La ficha de requisito bien escrito, campo por campo", [
             "RF-01  Registrar mascota",
             "",
@@ -73,27 +72,26 @@ OPERATIVO = {
             "flowchart LR",
             "  R[Requisitos] --> D[Diseno] --> C[Construccion]",
             "  C --> P[Pruebas] --> M[Mantenimiento]",
-            "",
-            "%% Lineal significa: no se vuelve. Cada fase cierra con un entregable",
-            "%% aprobado y la siguiente empieza sobre el.",
-        ]),
+        ], "Lineal significa que no se vuelve: cada fase cierra con un artefacto aprobado y la siguiente empieza sobre el."),
         ("El mismo ciclo en tres vueltas", [
             "flowchart TB",
             "  subgraph v1[Vuelta 1 - ficha del paciente]",
-            "    r1[Requisitos] --> d1[Diseno] --> c1[Construccion] --> p1[Pruebas]",
+            "    direction LR",
+            "    r1[Requisitos] --> d1[Diseno]",
+            "    d1 --> c1[Construccion] --> p1[Pruebas]",
             "  end",
             "  subgraph v2[Vuelta 2 - historia clinica y busqueda]",
-            "    r2[Requisitos] --> d2[Diseno] --> c2[Construccion] --> p2[Pruebas]",
+            "    direction LR",
+            "    r2[Requisitos] --> d2[Diseno]",
+            "    d2 --> c2[Construccion] --> p2[Pruebas]",
             "  end",
             "  subgraph v3[Vuelta 3 - reportes y metricas]",
-            "    r3[Requisitos] --> d3[Diseno] --> c3[Construccion] --> p3[Pruebas]",
+            "    direction LR",
+            "    r3[Requisitos] --> d3[Diseno]",
+            "    d3 --> c3[Construccion] --> p3[Pruebas]",
             "  end",
-            "  p1 --> r2",
-            "  p2 --> r3",
-            "",
-            "%% Iterativo no es «hacerlo mal y repetir»: cada vuelta entrega algo",
-            "%% que funciona, sobre un subconjunto del alcance.",
-        ]),
+            "  v1 --> v2 --> v3",
+        ], "Iterativo no es «hacerlo mal y repetir»: cada vuelta entrega algo que funciona, sobre una parte del alcance."),
     ],
 
     # ── Clase 3 · Modelo en V ───────────────────────────────────────────────
@@ -113,10 +111,7 @@ OPERATIVO = {
             "  AF -.verifica.-> PS",
             "  DA -.verifica.-> PI",
             "  DD -.verifica.-> PU",
-            "",
-            "%% Las lineas punteadas SON el modelo en V: cada nivel de diseno tiene",
-            "%% su nivel de prueba. Sin ellas es una U y no trazabilidad.",
-        ]),
+        ], "Las lineas punteadas SON el modelo en V: cada nivel de diseno tiene su nivel de prueba. Sin ellas es una U."),
         ("La solicitud de cambio sobre linea base", [
             "SC-001  Solicitud de cambio",
             "",
@@ -153,7 +148,7 @@ OPERATIVO = {
             "",
             "  section Sprint 3",
             "  Consolidacion paquete  :s3a, after s2b, 7d",
-        ]),
+        ], "Cada tarea empieza «after» la anterior: si una se atrasa, el plan entero se corre."),
         ("El tablero de flujo con limite de trabajo en curso", [
             "flowchart LR",
             "  subgraph backlog[Backlog]",
@@ -172,10 +167,7 @@ OPERATIVO = {
             "  end",
             "",
             "  backlog --> curso --> rev --> listo",
-            "",
-            "%% El LIMITE es lo que hace que el tablero sirva: sin el, todo esta",
-            "%% «en curso» y nada termina. Para empezar HU-04 hay que cerrar una.",
-        ]),
+        ], "El limite es lo que hace servir el tablero: sin el todo esta «en curso» y nada termina."),
     ],
 
     # ── Clase 6 · Requerimientos ────────────────────────────────────────────
@@ -195,10 +187,7 @@ OPERATIVO = {
             "  subgraph wont[Wont - fuera de este alcance]",
             "    w1[RF-15 App movil]",
             "  end",
-            "",
-            "%% Wont NO es «nunca»: es «no en esta version», y va escrito para que",
-            "%% nadie lo de por incluido. Es la mitad del valor de MoSCoW.",
-        ]),
+        ], "Wont no es «nunca»: es «no en esta version», y va escrito para que nadie lo de por incluido."),
         ("El RNF cuantificado: la diferencia esta en el numero", [
             "RNF-02  Disponibilidad del agendamiento",
             "",
@@ -246,11 +235,7 @@ OPERATIVO = {
             "  E1 --> H2[HU-02 Registrar mascota<br/>5 pts]",
             "  E1 --> H3[HU-03 Agendar cita<br/>8 pts]",
             "  E2 --> H4[HU-04 Abrir expediente<br/>5 pts]",
-            "",
-            "%% Los puntos son RELATIVOS, no horas: HU-03 es «como HU-02 pero mas»,",
-            "%% y esa comparacion es toda la estimacion que se pide hoy.",
-            "%% El orden del backlog sale del valor, no del numero de puntos.",
-        ]),
+        ], "Los puntos son relativos, no horas; el orden del backlog sale del valor, no de los puntos."),
     ],
 
     # ── Clase 8 · UML: clases ───────────────────────────────────────────────
@@ -272,10 +257,7 @@ OPERATIVO = {
             "  }",
             "",
             "  Dueno \"1\" --> \"0..*\" Mascota : posee",
-            "",
-            "%% Complete con SUS clases. Lo que se califica: visibilidad (- privado,",
-            "%% + publico), TIPO de cada atributo, y multiplicidad en LOS DOS extremos.",
-        ]),
+        ], "Visibilidad (- privado, + publico), tipo de cada atributo y multiplicidad en los dos extremos."),
         ("Lo que NO es una clase del dominio", [
             "classDiagram",
             "  class Dueno",
@@ -283,16 +265,8 @@ OPERATIVO = {
             "  class Cita",
             "  Dueno \"1\" --> \"0..*\" Mascota : posee",
             "  Mascota \"1\" --> \"0..*\" Cita : tiene",
-            "  note for Mascota \"Del dominio: el cliente la nombra\\ny tiene estado y reglas propias\"",
-            "",
-            "%% NO van en el modelo de dominio, y es el error mas comun:",
-            "%%   FormularioRegistroMascota -> una PANTALLA (Clase 13)",
-            "%%   ConexionBaseDatos         -> INFRAESTRUCTURA",
-            "%%   GestorDeMascotas          -> un «gestor» que solo mueve datos",
-            "%%   BotonGuardar              -> un control de interfaz",
-            "%% La prueba: sin sistema, la clinica seguiria hablando de «la mascota»",
-            "%% y de «la cita». De «GestorDeMascotas», no.",
-        ]),
+            "  note for Mascota \"La nombra el cliente\\ny tiene reglas\"",
+        ], "No son del dominio: FormularioRegistroMascota (pantalla), ConexionBaseDatos (infraestructura), GestorDeMascotas, BotonGuardar."),
     ],
 
     # ── Clase 9 · Casos de uso ──────────────────────────────────────────────
@@ -313,10 +287,7 @@ OPERATIVO = {
             "  rec --> cu3",
             "  vet --> cu2",
             "  cu3 -.include.-> cu4",
-            "",
-            "%% include: el caso base SIEMPRE lo ejecuta (agendar siempre valida).",
-            "%% extend:  solo si se cumple una condicion (buscar expediente + exportar a PDF).",
-        ]),
+        ], "include: el caso base siempre lo ejecuta (agendar siempre valida). extend: solo si se cumple una condicion."),
         ("La especificacion textual del caso de uso", [
             "CU-01  Registrar mascota",
             "",
@@ -390,10 +361,7 @@ OPERATIVO = {
             "  urg -->|No| agendar[Agendar para otro dia] --> fin([Fin])",
             "  atiende --> receta[Emitir receta e insumos]",
             "  receta --> fin",
-            "",
-            "%% Cada rombo tiene que tener TODAS sus salidas rotuladas. Un rombo con",
-            "%% una sola flecha de salida no es una decision: es un paso.",
-        ]),
+        ], "Cada rombo lleva todas sus salidas rotuladas: un rombo con una sola salida no es una decision, es un paso."),
         ("La tabla de mapeo mensaje a operacion", [
             "| Mensaje            | Clase receptora    | Operacion            |",
             "|--------------------|--------------------|----------------------|",
@@ -421,10 +389,7 @@ OPERATIVO = {
             "  busc -->|1 resultado| det[Detalle del expediente]",
             "  busc -->|varios| lista[Lista de resultados] --> det",
             "  busc -->|ninguno| vacio[Estado vacio<br/>con accion sugerida]",
-            "",
-            "%% Los tres caminos de una busqueda —uno, varios, ninguno— son lo que",
-            "%% separa un wireframe de un dibujo. El «ninguno» es el que se olvida.",
-        ]),
+        ], "Los tres caminos de una busqueda —uno, varios, ninguno— separan un wireframe de un dibujo."),
         ("La tabla de anotaciones del wireframe", [
             "| Campo de la pantalla | RF que lo exige | Atributo de la clase  | Validacion        |",
             "|----------------------|-----------------|-----------------------|-------------------|",
@@ -455,9 +420,6 @@ OPERATIVO = {
             "  Prototipo en vivo      :g5, after g4, 2m",
             "  Decisiones defendidas  :g6, after g5, 2m",
             "  Riesgos y cierre       :g7, after g6, 1m",
-            "",
-            "%% Si el guion no esta cronometrado, el bloque de decisiones —el que mas",
-            "%% pesa ante el jurado— se queda sin tiempo. Siempre.",
-        ]),
+        ], "Sin cronometro, el bloque de decisiones —el que mas pesa ante el jurado— se queda sin tiempo."),
     ],
 }

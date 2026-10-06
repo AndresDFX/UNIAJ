@@ -40,7 +40,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - NOTAS:
   - Eso permite modelar el proceso completo de atencion en la clinica: el propietario llega y pregunta, la recepcionista verifica la cita, si no la tiene se decide entre esperar o reagendar, el veterinario atiende, registra la consulta y si formula medicamentos el flujo se abre en dos ramas paralelas, una de facturacion y otra de programacion del control.
 
-**[Slide 8] El diagrama de actividad con decisiones en Mermaid** — 12 vinetas.
+**[Slide 8] El diagrama de actividad con decisiones en Mermaid** — 9 vinetas.
 
 **[Slide 9] ¿Secuencia o actividad?** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):

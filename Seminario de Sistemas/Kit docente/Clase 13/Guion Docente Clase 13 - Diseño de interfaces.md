@@ -49,9 +49,9 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Y ahi la respuesta de diseño es mostrar en la lista de resultados la especie, la edad y el nombre del dueño para poder desambiguar de un vistazo.
   - Un flujo que solo dibuja el camino feliz no es un diseño, es una postal.
 
-**[Slide 7] El mapa de navegacion del prototipo** — 14 vinetas.
+**[Slide 7] El mapa de navegacion del prototipo** — 11 vinetas.
 
-**[Slide 8] Flujo de tarea con caminos alternos en Mermaid** — 14 vinetas.
+**[Slide 8] Flujo de tarea con caminos alternos en Mermaid** — 15 vinetas.
 
 **[Slide 9] La interfaz se deriva de los artefactos** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):

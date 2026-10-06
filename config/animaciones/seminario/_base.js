@@ -222,3 +222,146 @@
   UJ.medir = medir; UJ.linea = linea; UJ.flecha = flecha; UJ.pildora = pildora; UJ.tarjeta = tarjeta;
   UJ.tachar = tachar; UJ.rayar = rayar; UJ.monigote = monigote; UJ.elipse = elipse;
 })(window);
+
+/*
+ * DG: piezas para dibujar lo que renderiza un codigo Mermaid (flowchart, classDiagram,
+ * sequenceDiagram, gantt) junto a la lamina que lo proyecta. Formas de nodo, subgrafos,
+ * flechas con rotulo sobre fondo blanco, clases con compartimentos, lineas de vida y marcas
+ * numeradas para las reglas. Todo estatico: se usan con `pasos: [1]`.
+ */
+(function (global) {
+  'use strict';
+  var L = global.FP_LIENZO;
+  var NODO = '#E3EEF8', BORDE = '#095292', TXT = '#1A2B3C';
+
+  /** Texto centrado en (cx,cy); `s` puede traer varias lineas separadas por salto. */
+  function txtc(ctx, lz, s, cx, cy, tam, peso, color, ancho) {
+    var lineas = String(s).split('\n'), alto = tam * 1.25 * lineas.length;
+    for (var i = 0; i < lineas.length; i++)
+      L.texto(ctx, lineas[i], cx, cy - alto / 2 + i * tam * 1.25, { tam: tam, peso: peso || 600, color: color || TXT, alinear: 'center', letra: lz.letra, ancho: ancho });
+  }
+
+  /** Nodo centrado en (cx,cy). forma: rect | redondo (stadium) | circulo | rombo. */
+  function nodo(ctx, lz, cx, cy, w, h, texto, forma, o) {
+    o = o || {};
+    var f = o.relleno || NODO, b = o.borde || BORDE;
+    ctx.save();
+    if (forma === 'rombo') {
+      ctx.beginPath(); ctx.moveTo(cx, cy - h / 2); ctx.lineTo(cx + w / 2, cy); ctx.lineTo(cx, cy + h / 2); ctx.lineTo(cx - w / 2, cy); ctx.closePath();
+      L.rellena(ctx, o.relleno || '#FFF6D6', o.borde || '#B8860B', 2.5);
+    } else if (forma === 'circulo') {
+      ctx.beginPath(); ctx.ellipse(cx, cy, w / 2, h / 2, 0, 0, Math.PI * 2); L.rellena(ctx, f, b, 2.5);
+    } else {
+      L.rectRed(ctx, cx - w / 2, cy - h / 2, w, h, forma === 'redondo' ? h / 2 : 8); L.rellena(ctx, f, b, 2.5);
+    }
+    ctx.restore();
+    txtc(ctx, lz, texto, cx, cy, o.tam || 16, o.peso || 600, o.color, o.ancho);
+  }
+
+  /** Subgrafo: recuadro claro con su titulo arriba. */
+  function grupo(ctx, lz, x, y, w, h, titulo, o) {
+    o = o || {};
+    L.rectRed(ctx, x, y, w, h, 10); L.rellena(ctx, o.relleno || '#F6F8FB', o.borde || '#8FA6BD', 2);
+    if (titulo) L.texto(ctx, titulo, x + w / 2, y + 8, { tam: o.tam || 15, peso: 700, color: o.color || '#3A5068', alinear: 'center', letra: lz.letra, ancho: w - 12 });
+  }
+
+  /** Rotulo sobre fondo blanco centrado en (x,y): la linea no lo cruza. */
+  function etiqueta(ctx, lz, s, x, y, o) {
+    o = o || {};
+    var tam = o.tam || 14, lineas = String(s).split('\n'), w = 0;
+    var letra = o.mono ? 'Consolas, monospace' : lz.letra;
+    ctx.save(); ctx.font = (o.peso || 600) + ' ' + tam + 'px ' + letra;
+    for (var i = 0; i < lineas.length; i++) w = Math.max(w, ctx.measureText(lineas[i]).width);
+    ctx.restore();
+    var h = tam * 1.25 * lineas.length + 6;
+    L.rectRed(ctx, x - w / 2 - 6, y - h / 2, w + 12, h, 4); L.rellena(ctx, o.fondo || '#FFFFFF', o.marco || null, 1);
+    for (var k = 0; k < lineas.length; k++)
+      L.texto(ctx, lineas[k], x, y - h / 2 + 3 + k * tam * 1.25, { tam: tam, peso: o.peso || 600, color: o.color || '#333', alinear: 'center', letra: letra });
+  }
+
+  /**
+   * Flecha por una polilinea `pts` ([[x,y],...]) con punta al final. `o`: { punteada, color,
+   * grosor, rotulo, en: [x,y] del rotulo (por defecto el medio del tramo central), abierta,
+   * sinPunta }.
+   */
+  function flecha(ctx, lz, pts, o) {
+    o = o || {};
+    var c = o.color || '#4A5A6A', g = o.grosor || 2.4;
+    ctx.save(); ctx.strokeStyle = c; ctx.lineWidth = g; ctx.lineJoin = 'round';
+    if (o.punteada) ctx.setLineDash([8, 6]);
+    ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+    for (var i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+    ctx.stroke(); ctx.setLineDash([]);
+    if (!o.sinPunta) {
+      var a = pts[pts.length - 2], b = pts[pts.length - 1], ang = Math.atan2(b[1] - a[1], b[0] - a[0]), t = 12;
+      ctx.beginPath(); ctx.moveTo(b[0], b[1]);
+      ctx.lineTo(b[0] - t * Math.cos(ang - 0.42), b[1] - t * Math.sin(ang - 0.42));
+      if (o.abierta) { ctx.moveTo(b[0], b[1]); ctx.lineTo(b[0] - t * Math.cos(ang + 0.42), b[1] - t * Math.sin(ang + 0.42)); ctx.stroke(); }
+      else { ctx.lineTo(b[0] - t * Math.cos(ang + 0.42), b[1] - t * Math.sin(ang + 0.42)); ctx.closePath(); ctx.fillStyle = c; ctx.fill(); }
+    }
+    ctx.restore();
+    if (o.rotulo) {
+      var p = o.en;
+      if (!p) { var m = Math.floor((pts.length - 1) / 2), p0 = pts[m], p1 = pts[m + 1]; p = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2]; }
+      etiqueta(ctx, lz, o.rotulo, p[0], p[1], { tam: o.tam || 14, color: o.colorRotulo || '#333', mono: o.mono });
+    }
+  }
+
+  /** Marca numerada (circulo amarillo) con su regla al lado (a la izquierda con `izq`). */
+  function marca(ctx, lz, x, y, n, txt, ancho, izq) {
+    L.circulo(ctx, x, y, 14); L.rellena(ctx, lz.marca.sello || '#FFD000', '#333', 2);
+    L.texto(ctx, String(n), x, y - 10, { tam: 17, peso: 800, color: '#333', alinear: 'center', letra: lz.letra });
+    if (txt) L.texto(ctx, txt, izq ? x - 22 : x + 22, y - 10, { tam: 14, peso: 700, color: lz.marca.tinta, ancho: ancho || 220, alinear: izq ? 'right' : 'left', letra: lz.letra });
+  }
+
+  /** Clase UML con compartimentos: nombre, atributos, metodos. Devuelve la altura. */
+  function clase(ctx, lz, x, y, w, nombre, atrs, mets, o) {
+    o = o || {};
+    var tam = o.tam || 14, fila = tam * 1.45, cab = 34;
+    var vacia = !atrs && !mets;
+    var hA = atrs && atrs.length ? atrs.length * fila + 10 : 12, hM = mets && mets.length ? mets.length * fila + 10 : 12;
+    var h = vacia ? cab + 4 : cab + hA + hM;
+    L.rectRed(ctx, x, y, w, h, 4); L.rellena(ctx, NODO, BORDE, 2.5);
+    L.texto(ctx, nombre, x + w / 2, y + 8, { tam: 17, peso: 800, color: TXT, alinear: 'center', letra: lz.letra });
+    if (!vacia) {
+      L.trazo(ctx, [[x, y + cab], [x + w, y + cab]], 1, BORDE, 2);
+      L.trazo(ctx, [[x, y + cab + hA], [x + w, y + cab + hA]], 1, BORDE, 2);
+      (atrs || []).forEach(function (s, i) { L.texto(ctx, s, x + 10, y + cab + 6 + i * fila, { tam: tam, peso: 500, color: TXT, letra: 'Consolas, monospace' }); });
+      (mets || []).forEach(function (s, i) { L.texto(ctx, s, x + 10, y + cab + hA + 6 + i * fila, { tam: tam, peso: 500, color: TXT, letra: 'Consolas, monospace' }); });
+    }
+    return h;
+  }
+
+  /** Participante de secuencia (caja o monigote) con su linea de vida hasta `yFin`. */
+  function participante(ctx, lz, cx, y, w, nombre, yFin, actor) {
+    ctx.save(); ctx.setLineDash([6, 6]); ctx.strokeStyle = '#8FA6BD'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(cx, y + 50); ctx.lineTo(cx, yFin); ctx.stroke(); ctx.restore();
+    if (actor) {
+      UJ.monigote(ctx, lz, cx, y - 8, 34, null, TXT);
+      L.texto(ctx, nombre, cx, y + 30, { tam: 14, peso: 700, color: TXT, alinear: 'center', letra: lz.letra });
+    } else nodo(ctx, lz, cx, y + 24, w, 46, nombre, 'rect', { tam: 13, ancho: w - 8 });
+  }
+
+  /** Mensaje de secuencia en la fila `y`: continuo (llamada) o punteado (respuesta). */
+  function mensaje(ctx, lz, x1, x2, y, texto, resp, num) {
+    flecha(ctx, lz, [[x1, y], [x2 + (x2 > x1 ? -2 : 2), y]], { punteada: resp, abierta: resp, color: '#333', grosor: 2 });
+    // El rotulo se centra en la flecha, pero sin salirse del lienzo.
+    ctx.save(); ctx.font = '600 13px ' + lz.letra; var mw = ctx.measureText(texto).width / 2 + 10; ctx.restore();
+    var mx = Math.max(mw, Math.min(lz.ancho - mw, (x1 + x2) / 2));
+    etiqueta(ctx, lz, texto, mx, y - 17, { tam: 13, peso: 600 });
+    if (num) {
+      var nx = x1 + (x2 > x1 ? 13 : -13);
+      L.circulo(ctx, nx, y, 10); L.rellena(ctx, '#333');
+      L.texto(ctx, String(num), nx, y - 8, { tam: 12, peso: 800, color: '#FFF', alinear: 'center', letra: lz.letra });
+    }
+  }
+
+  /** Nota amarilla (note for de classDiagram). */
+  function nota(ctx, lz, x, y, w, h, texto) {
+    L.rectRed(ctx, x, y, w, h, 4); L.rellena(ctx, '#FFF5AD', '#C9B037', 2);
+    txtc(ctx, lz, texto, x + w / 2, y + h / 2, 14, 500, '#333', w - 12);
+  }
+
+  global.DG = { nodo: nodo, grupo: grupo, etiqueta: etiqueta, flecha: flecha, marca: marca,
+                clase: clase, participante: participante, mensaje: mensaje, nota: nota, txtc: txtc };
+})(window);

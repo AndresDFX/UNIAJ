@@ -46,7 +46,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - El peligro real no es equivocarse en la flecha sino usar include para descomponer funcionalmente: si el diagrama muestra Registrar mascota incluyendo Abrir formulario
   - Incluyendo Digitar datos, incluyendo Guardar en base de datos, ya no es un modelo de casos de uso sino un diagrama de flujo disfrazado, y ese error contagia despues al diagrama de clases.
 
-**[Slide 7] El diagrama de casos de uso en Mermaid** — 18 vinetas.
+**[Slide 7] El diagrama de casos de uso en Mermaid** — 15 vinetas.
 
 **[Slide 8] La especificación textual** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):

@@ -77,7 +77,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - NOTAS:
   - Se ensaya cronometrado al menos dos veces, en voz alta y de pie, porque el tiempo estimado leyendo en silencio siempre es la mitad del real.
 
-**[Slide 9] El guion cronometrado de la sustentacion** — 16 vinetas.
+**[Slide 9] El guion cronometrado de la sustentacion** — 13 vinetas.
 
 **[Slide 10] Guion de sustentacion: doce minutos cronometrados** — 12 vinetas.
 

@@ -102,7 +102,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 11] Almacenamiento** — 5 vinetas.
 
-**[Slide 12] Que tipo de almacenamiento pide cada componente** — 6 vinetas.
+**[Slide 12] Que tipo de almacenamiento pide cada componente** — 8 vinetas.
 
 **[Slide 13] El caso de la foto de perfil, y cuando la respuesta correcta es «no necesito objeto»** — 2 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
@@ -175,7 +175,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - (No se proyecta) El procedimiento que se proyecta en la demo es el que conviene repetir tres veces: dibujar el boceto donde sea, traducirlo a Mermaid (una IA lo hace bien, y ahi hay que decir la frase exacta: la IA acierta la sintaxis, no el modelo), pegarlo en un visor Mermaid y MIRARLO RENDERIZADO.
   - (No se proyecta) Si no se dibuja, se corrige ahi mismo; nadie califica un codigo que no dibuja.
 
-**[Slide 18] El Despliegue en Mermaid: el molde que un visor renderiza** — 15 vinetas.
+**[Slide 18] El Despliegue en Mermaid: el molde que un visor renderiza** — 16 vinetas.
 
 
 ## Referencias a diapositivas

@@ -300,12 +300,205 @@
     L.flecha(ctx, x1, y1, x2, y2, '#555', 2.5, 1);
     var mx = (x1 + x2) / 2 + (dx || 0), my = (y1 + y2) / 2 + (dy || 0);
     ctx.font = '700 13px ' + lz.letra;
-    var w = Math.max(ctx.measureText(verbo).width, ctx.measureText('[' + proto + ']').width) + 12;
-    L.rectRed(ctx, mx - w / 2, my - 13, w, 36, 4); L.rellena(ctx, 'rgba(255,255,255,0.92)');
+    // Sin protocolo (una llamada dentro del mismo contenedor) el rotulo es solo el verbo.
+    var w = Math.max(ctx.measureText(verbo).width, proto ? ctx.measureText('[' + proto + ']').width : 0) + 12;
+    L.rectRed(ctx, mx - w / 2, my - 13, w, proto ? 36 : 22, 4); L.rellena(ctx, 'rgba(255,255,255,0.92)');
     L.texto(ctx, verbo, mx, my - 10, { tam: 13, peso: 700, color: '#333', alinear: 'center', letra: lz.letra });
-    L.texto(ctx, '[' + proto + ']', mx, my + 6, { tam: 12, peso: 500, color: '#555', alinear: 'center', letra: lz.letra });
+    if (proto) L.texto(ctx, '[' + proto + ']', mx, my + 6, { tam: 12, peso: 500, color: '#555', alinear: 'center', letra: lz.letra });
+  }
+
+  /** Sistema de software (nivel Context): caja azul con [Software System]. */
+  function sistema(ctx, lz, x, y, an, al, nombre, desc) {
+    var c = '#1168BD';
+    L.rectRed(ctx, x, y, an, al, 10); L.rellena(ctx, c, L.tono(c, -0.25), 2);
+    centrado(ctx, lz, nombre, x + an / 2, y + 14, 19, 800, '#FFFFFF', an - 16);
+    centrado(ctx, lz, '[Software System]', x + an / 2, y + 42, 13, 500, '#DCE9F7', an - 16);
+    if (desc) centrado(ctx, lz, desc, x + an / 2, y + 64, 13, 400, '#FFFFFF', an - 20);
+  }
+
+  /** Componente (nivel Component): azul claro con texto oscuro. */
+  function componente(ctx, lz, x, y, an, al, nombre, tec, desc) {
+    var c = '#85BBF0';
+    L.rectRed(ctx, x, y, an, al, 10); L.rellena(ctx, c, '#5D82A8', 2);
+    centrado(ctx, lz, nombre, x + an / 2, y + 8, 16, 800, '#0B2545', an - 12);
+    centrado(ctx, lz, '[' + tec + ']', x + an / 2, y + 30, 12, 500, '#1F3B5C', an - 12);
+    if (desc) centrado(ctx, lz, desc, x + an / 2, y + 48, 12, 400, '#0B2545', an - 14);
+  }
+
+  /** Cola (ContainerQueue): tubo horizontal. */
+  function cola(ctx, lz, x, y, an, al, nombre, tec, desc) {
+    var c = '#1168BD', e = 14;
+    ctx.fillStyle = c; ctx.fillRect(x + e, y, an - 2 * e, al);
+    ctx.beginPath(); ctx.ellipse(x + e, y + al / 2, e, al / 2, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(x + an - e, y + al / 2, e, al / 2, 0, 0, Math.PI * 2);
+    ctx.fillStyle = L.tono(c, 0.25); ctx.fill(); ctx.strokeStyle = L.tono(c, -0.25); ctx.lineWidth = 2; ctx.stroke();
+    centrado(ctx, lz, nombre, x + an / 2 - 6, y + 10, 16, 800, '#FFFFFF', an - 40);
+    centrado(ctx, lz, '[' + tec + ']', x + an / 2 - 6, y + 32, 12, 500, '#DCE9F7', an - 40);
+    if (desc) centrado(ctx, lz, desc, x + an / 2 - 6, y + 50, 12, 400, '#FFFFFF', an - 40);
+  }
+
+  /** Limite de un contenedor abierto (Container_Boundary): punteado con [Container]. */
+  function limiteContenedor(ctx, lz, x, y, an, al, nombre, derecha) {
+    ctx.save(); ctx.setLineDash([10, 7]); ctx.strokeStyle = '#444'; ctx.lineWidth = 2;
+    L.rectRed(ctx, x, y, an, al, 8); ctx.stroke(); ctx.restore();
+    L.texto(ctx, nombre + '  [Container]', derecha ? x + an - 12 : x + 12, y + al - 26,
+            { tam: 14, peso: 700, color: '#444', alinear: derecha ? 'right' : 'left', letra: lz.letra });
+  }
+
+  /** Marca numerada de una regla, sobre el elemento donde se cumple. */
+  function marca(ctx, lz, x, y, n, txt, ancho) {
+    L.circulo(ctx, x, y, 14); L.rellena(ctx, lz.marca.sello || '#FFD000', '#333', 2);
+    L.texto(ctx, String(n), x, y - 10, { tam: 17, peso: 800, color: '#333', alinear: 'center', letra: lz.letra });
+    if (txt) L.texto(ctx, txt, x + 22, y - 10, { tam: 14, peso: 700, color: lz.marca.tinta, ancho: ancho || 260, letra: lz.letra });
   }
 
   global.C4 = { contenedor: contenedor, baseDatos: baseDatos, persona: persona, externo: externo,
-                limite: limite, rel: rel };
+                limite: limite, rel: rel, sistema: sistema, componente: componente, cola: cola,
+                limiteContenedor: limiteContenedor, marca: marca };
+})(window);
+/*
+ * Piezas de flowchart y sequenceDiagram de Mermaid, con su aspecto por defecto: nodos lila con
+ * borde morado, rombo de decision, cilindro, subgraph con su rotulo, flecha (continua o
+ * punteada, recta o en codo) con rotulo de fondo blanco; y para secuencia: participante,
+ * actor, linea de vida, mensaje (con su numero si hay autonumber), nota y recuadro alt/else.
+ */
+(function (global) {
+  'use strict';
+  var L = global.FP_LIENZO;
+  var RELL = '#ECECFF', BORDE = '#9370DB', TINTA = '#222';
+
+  function lineas(ctx, lz, txt, cx, cy, tam, peso, ancho, color) {
+    var partes = String(txt).split('\n'), al = tam * 1.25, y0 = cy - partes.length * al / 2;
+    for (var i = 0; i < partes.length; i++)
+      L.texto(ctx, partes[i], cx, y0 + i * al, { tam: tam, peso: peso || 600, color: color || TINTA, alinear: 'center', ancho: ancho, letra: lz.letra });
+  }
+
+  function nodo(ctx, lz, x, y, an, al, txt, o) {
+    o = o || {};
+    L.rectRed(ctx, x, y, an, al, o.radio === undefined ? 6 : o.radio);
+    L.rellena(ctx, o.relleno || RELL, o.borde || BORDE, 2);
+    lineas(ctx, lz, txt, x + an / 2, y + al / 2, o.tam || 16, o.peso || 600, an - 12, o.color);
+  }
+
+  function rombo(ctx, lz, cx, cy, sa, sb, txt, o) {
+    o = o || {};
+    ctx.beginPath(); ctx.moveTo(cx, cy - sb); ctx.lineTo(cx + sa, cy); ctx.lineTo(cx, cy + sb); ctx.lineTo(cx - sa, cy); ctx.closePath();
+    L.rellena(ctx, o.relleno || RELL, o.borde || BORDE, 2);
+    lineas(ctx, lz, txt, cx, cy, o.tam || 15, 600, sa * 1.1);
+  }
+
+  function cilindro(ctx, lz, x, y, an, al, txt, o) {
+    o = o || {};
+    var e = 12, r = o.relleno || RELL, b = o.borde || BORDE;
+    ctx.beginPath(); ctx.moveTo(x, y + e); ctx.lineTo(x, y + al - e);
+    ctx.ellipse(x + an / 2, y + al - e, an / 2, e, 0, Math.PI, 0, true);
+    ctx.lineTo(x + an, y + e); ctx.ellipse(x + an / 2, y + e, an / 2, e, 0, 0, Math.PI, true);
+    ctx.closePath(); L.rellena(ctx, r, b, 2);
+    ctx.beginPath(); ctx.ellipse(x + an / 2, y + e, an / 2, e, 0, 0, Math.PI * 2); ctx.strokeStyle = b; ctx.lineWidth = 2; ctx.stroke();
+    lineas(ctx, lz, txt, x + an / 2, y + al / 2 + e / 2, o.tam || 15, 600, an - 12);
+  }
+
+  function zona(ctx, lz, x, y, an, al, titulo, o) {
+    o = o || {};
+    L.rectRed(ctx, x, y, an, al, 4); L.rellena(ctx, o.relleno || '#FFFFDE', o.borde || '#AAAA33', 1.5);
+    L.texto(ctx, titulo, x + an / 2, y + 6, { tam: o.tam || 14, peso: 700, color: '#333', alinear: 'center', ancho: an - 10, letra: lz.letra });
+  }
+
+  function rotulo(ctx, lz, txt, x, y, tam, color) {
+    tam = tam || 13;
+    var partes = String(txt).split('\n'), w = 0;
+    ctx.font = '600 ' + tam + 'px ' + lz.letra;
+    for (var i = 0; i < partes.length; i++) w = Math.max(w, ctx.measureText(partes[i]).width);
+    var al = partes.length * tam * 1.25 + 6;
+    L.rectRed(ctx, x - w / 2 - 6, y - al / 2, w + 12, al, 4); L.rellena(ctx, 'rgba(255,255,255,0.96)', '#DDD', 1);
+    lineas(ctx, lz, txt, x, y + 1, tam, 600, w + 20, color || '#333');
+  }
+
+  function punta(ctx, a, b, c, abierta) {
+    var ang = Math.atan2(b[1] - a[1], b[0] - a[0]), p = 11;
+    ctx.beginPath(); ctx.moveTo(b[0] - p * Math.cos(ang - 0.42), b[1] - p * Math.sin(ang - 0.42));
+    ctx.lineTo(b[0], b[1]);
+    ctx.lineTo(b[0] - p * Math.cos(ang + 0.42), b[1] - p * Math.sin(ang + 0.42));
+    if (abierta) { ctx.strokeStyle = c; ctx.lineWidth = 2; ctx.stroke(); return; }
+    ctx.closePath(); ctx.fillStyle = c; ctx.fill();
+  }
+
+  /** Flecha por una lista de puntos; `o.punteada`, `o.rot` (texto), `o.en` ([x,y] del rotulo). */
+  function flecha(ctx, lz, pts, o) {
+    o = o || {};
+    var c = o.color || '#333';
+    ctx.save();
+    if (o.punteada) ctx.setLineDash([7, 6]);
+    ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+    for (var i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+    ctx.strokeStyle = c; ctx.lineWidth = o.grosor || 2; ctx.stroke(); ctx.restore();
+    var a = pts[pts.length - 2], b = pts[pts.length - 1];
+    punta(ctx, a, b, c);
+    if (o.rot) {
+      var en = o.en || [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+      rotulo(ctx, lz, o.rot, en[0], en[1], o.tam);
+    }
+  }
+
+  // ---------------------------------------------------------------- secuencia
+
+  function participante(ctx, lz, cx, y, an, txt) {
+    nodo(ctx, lz, cx - an / 2, y, an, 44, txt, { tam: 15, peso: 700, radio: 3 });
+  }
+
+  function actor(ctx, lz, cx, y, txt) {
+    ctx.strokeStyle = BORDE; ctx.lineWidth = 2.5; ctx.fillStyle = RELL;
+    L.circulo(ctx, cx, y + 9, 8); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx, y + 17); ctx.lineTo(cx, y + 34);
+    ctx.moveTo(cx - 12, y + 23); ctx.lineTo(cx + 12, y + 23);
+    ctx.moveTo(cx, y + 34); ctx.lineTo(cx - 10, y + 46); ctx.moveTo(cx, y + 34); ctx.lineTo(cx + 10, y + 46);
+    ctx.stroke();
+    L.texto(ctx, txt, cx, y + 50, { tam: 15, peso: 700, color: TINTA, alinear: 'center', letra: lz.letra });
+  }
+
+  function vida(ctx, cx, y1, y2) {
+    ctx.save(); ctx.setLineDash([5, 4]); ctx.strokeStyle = '#999'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(cx, y1); ctx.lineTo(cx, y2); ctx.stroke(); ctx.restore();
+  }
+
+  /** Mensaje de x1 a x2 en la altura y: `->>` continuo, `-->>` punteado (respuesta). */
+  function mensaje(ctx, lz, x1, x2, y, txt, o) {
+    o = o || {};
+    ctx.save(); if (o.respuesta) ctx.setLineDash([7, 5]);
+    ctx.beginPath(); ctx.moveTo(x1, y); ctx.lineTo(x2, y); ctx.strokeStyle = '#333'; ctx.lineWidth = 2; ctx.stroke(); ctx.restore();
+    punta(ctx, [x1, y], [x2, y], '#333');
+    var cx = o.cx === undefined ? (x1 + x2) / 2 : o.cx;
+    L.texto(ctx, txt, cx, y - 22, { tam: o.tam || 14, peso: 600, color: TINTA, alinear: 'center', letra: lz.letra });
+    if (o.n) {
+      L.circulo(ctx, x1, y, 11); L.rellena(ctx, '#333');
+      L.texto(ctx, String(o.n), x1, y - 8, { tam: 13, peso: 800, color: '#FFF', alinear: 'center', letra: lz.letra });
+    }
+  }
+
+  function nota(ctx, lz, x, y, an, al, txt, o) {
+    o = o || {};
+    L.rectRed(ctx, x, y, an, al, 2); L.rellena(ctx, o.relleno || '#FFF5AD', o.borde || '#AAAA33', o.borde ? 2.5 : 1.5);
+    lineas(ctx, lz, txt, x + an / 2, y + al / 2, o.tam || 13, 600, an - 10, o.color);
+  }
+
+  /** Recuadro alt / else: `cortes` son las alturas donde empieza cada rama, con su condicion. */
+  function alt(ctx, lz, x, y, an, al, ramas) {
+    ctx.strokeStyle = '#555'; ctx.lineWidth = 1.5;
+    L.rectRed(ctx, x, y, an, al, 2); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + 46, y); ctx.lineTo(x + 46, y + 16); ctx.lineTo(x + 38, y + 24); ctx.lineTo(x, y + 24); ctx.closePath();
+    L.rellena(ctx, '#E0E0E0', '#555', 1.5);
+    L.texto(ctx, 'alt', x + 21, y + 4, { tam: 14, peso: 800, color: '#222', alinear: 'center', letra: lz.letra });
+    for (var i = 0; i < ramas.length; i++) {
+      var r = ramas[i];
+      if (i > 0) {
+        ctx.save(); ctx.setLineDash([6, 5]); ctx.strokeStyle = '#555'; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(x, r.y); ctx.lineTo(x + an, r.y); ctx.stroke(); ctx.restore();
+      }
+      L.texto(ctx, '[' + r.cond + ']', x + an / 2, r.y + 5, { tam: 14, peso: 700, color: '#555', alinear: 'center', letra: lz.letra });
+    }
+  }
+
+  global.MF = { nodo: nodo, rombo: rombo, cilindro: cilindro, zona: zona, rotulo: rotulo, flecha: flecha,
+                lineas: lineas, participante: participante, actor: actor, vida: vida,
+                mensaje: mensaje, nota: nota, alt: alt };
 })(window);
