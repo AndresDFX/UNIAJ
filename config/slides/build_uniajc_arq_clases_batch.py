@@ -44,7 +44,8 @@ import examlab_talleres  # noqa: E402
 examlab_talleres.NOMBRE_PLATAFORMA = "la plataforma del curso"
 examlab_talleres.MOSTRAR_URL = False
 import visuales  # noqa: E402
-from arq_visuales_data import VISUALES  # noqa: E402
+from arq_visuales_data import VISUALES, CODIGO_DIAGRAMA  # noqa: E402
+import notas_guion  # noqa: E402
 from uniajc_slides_engine import (  # noqa: E402
     before_after_slide,
     box_note_slide,
@@ -1337,20 +1338,20 @@ CODIGO_SLIDE = {
     # dos lineas en blanco se van para no pasar de 15 renglones, que es lo que cabe.
     4: ("C4Container en Mermaid: el molde que un visor renderiza", [
         "C4Container",
-        "title Diagrama de contenedores - CloudLite Turnos",
-        'Person(cliente, "Cliente de la barberia", "Reserva y consulta sus turnos")',
-        'System_Boundary(cloudlite, "CloudLite App") {',
-        '  Container(spa, "App web", "React", "Muestra franjas libres y crea la reserva")',
-        '  Container(api, "API de turnos", "Node.js", "Valida la franja y registra el turno")',
-        '  ContainerDb(db, "Base de turnos", "PostgreSQL", "Turnos, clientes y horarios")',
-        '  Container(worker, "Worker de avisos", "cola", "Envia el aviso, con reintentos")',
+        "title Contenedores - App de turnos",
+        'Person(cliente, "Cliente", "Reserva sus turnos")',
+        'System_Boundary(app, "App de turnos") {',
+        '  Container(spa, "App web", "React", "Reserva")',
+        '  Container(api, "API de turnos", "Node.js", "Valida")',
+        '  ContainerDb(db, "Base de turnos", "PostgreSQL")',
+        '  Container(worker, "Worker", "cola", "Avisos")',
         "}",
-        'System_Ext(correo, "Correo transaccional", "Entrega el correo al cliente")',
+        'System_Ext(correo, "Correo", "Entrega el correo")',
         'Rel(cliente, spa, "Reserva un turno", "HTTPS")',
         'Rel(spa, api, "POST /turnos", "HTTPS/JSON")',
-        'Rel(api, db, "INSERT / SELECT de turnos", "TCP/SQL")',
-        'Rel(api, worker, "Publica aviso-de-turno", "evento/cola (AMQP)")',
-        'Rel(worker, correo, "Envia la confirmacion", "API REST sobre HTTPS")',
+        'Rel(api, db, "INSERT / SELECT", "TCP/SQL")',
+        'Rel(api, worker, "Publica aviso", "evento (AMQP)")',
+        'Rel(worker, correo, "Envia", "REST/HTTPS")',
     ], "La base va como `ContainerDb` y cada `Rel` lleva protocolo Y formato. Los externos, FUERA del `System_Boundary`."),
     # Antes esta diapositiva era la tabla amenaza -> control -> evidencia, que ahora
     # vive en `slides_extra` como tabla de verdad: alli caben los encabezados exactos
@@ -2194,10 +2195,20 @@ def build_pptx(c: dict) -> Path:
             if imagen:
                 _add_captura(_sl, imagen)
         elif _clase == "codigo":
-            _sl = pseudo_code_slide(prs, _t, _items, idx=idx)
+            _dg = visuales.spec_de(CODIGO_DIAGRAMA, n, _t)
+            _im = visuales.pasos_de(_dg["anim"])[-1] if _dg and visuales.pasos_de(_dg["anim"]) else None
+            _sl = pseudo_code_slide(prs, _t, _items, idx=idx, imagen=_im)
+            if _dg and _dg.get("notas"):
+                _sl.notes_slide.notes_text_frame.text = notas_guion.texto(_dg["notas"])
+                _notas = []
         elif _clase == "codigo_slide":
             cs = CODIGO_SLIDE[n]
-            _sl = pseudo_code_slide(prs, cs[0], cs[1], caption=cs[2], idx=idx)
+            _dg = visuales.spec_de(CODIGO_DIAGRAMA, n, cs[0])
+            _im = visuales.pasos_de(_dg["anim"])[-1] if _dg and visuales.pasos_de(_dg["anim"]) else None
+            _sl = pseudo_code_slide(prs, cs[0], cs[1], caption=cs[2], idx=idx, imagen=_im)
+            if _dg and _dg.get("notas"):
+                _sl.notes_slide.notes_text_frame.text = notas_guion.texto(_dg["notas"])
+                _notas = []
         elif _clase == "diagrama":
             dg = DIAGRAMAS[n]
             _sl = diagram_boxes_slide(

@@ -113,15 +113,14 @@ OPERATIVO = {
     # ── Clase 4 · las reglas del C4 Container ───────────────────────────────
     4: [
         ("Las tres reglas del C4 Container, en codigo", [
+            # Solo el codigo: las tres reglas se marcan sobre el diagrama que dibuja (a la
+            # derecha de la lamina) y se explican en las notas. Antes iban como comentarios %%
+            # mezclados con el codigo, y la lamina no se entendia.
             "C4Container",
-            "title Tres reglas que el visor no revisa por ti",
-            "%% 1. Cada contenedor con TECNOLOGIA.  Mal: Container(api, \"API\")",
-            'Container(api, "API de turnos", "Node.js", "Valida la franja y registra el turno")',
-            "%% 2. Lo que guarda datos es ContainerDb, no un Container mas",
-            'ContainerDb(db, "Base de turnos", "PostgreSQL", "Turnos y horarios")',
-            "%% 3. Cada Rel con verbo, protocolo Y formato.  Mal: Rel(api, db, \"usa\")",
-            'Rel(api, db, "INSERT y SELECT de turnos", "TCP/SQL")',
-            "%% Y los nombres se repiten IGUALES en el Despliegue y en el Component.",
+            "title Tres reglas del nivel Container",
+            'Container(api, "API de turnos", "Node.js")',
+            'ContainerDb(db, "Base de turnos", "PostgreSQL")',
+            'Rel(api, db, "INSERT y SELECT", "TCP/SQL")',
         ]),
     ],
 

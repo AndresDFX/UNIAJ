@@ -89,7 +89,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - (No se proyecta) No es pedanteria de notacion; es lo unico que permite afirmar que los dos dibujos son el mismo sistema visto desde distinta altura, y es exactamente lo que se volvera a verificar en la Clase 7 contra el diagrama de despliegue y en la Clase 11 en la auditoria del paquete.
   - (No se proyecta) Ese es el error de dibujo mas comun de la clase, meter al usuario o a la pasarela de pagos dentro del sistema propio, y se detecta en dos segundos preguntando quien lo opera.
 
-**[Slide 9] Las tres reglas del C4 Container, en codigo** — 9 vinetas.
+**[Slide 9] Las tres reglas del C4 Container, en codigo** — 5 vinetas.
 
 **[Slide 10] C4-lite: del Context a los Containers** — 6 vinetas.
 

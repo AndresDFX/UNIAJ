@@ -243,3 +243,69 @@
 
   UJ.escena = escena; UJ.col = col; UJ.centrado = centrado;
 })(window);
+/*
+ * Piezas C4 para dibujar lo que renderiza un C4Container de Mermaid: persona, contenedor,
+ * base de datos (cilindro), sistema externo, limite del sistema y relacion con su rotulo.
+ * Se cargan junto a `_base.js` desde cada ilustracion de la clase (ver `window.C4`).
+ */
+(function (global) {
+  'use strict';
+  var L = global.FP_LIENZO;
+
+  function centrado(ctx, lz, txt, x, y, tam, peso, color, ancho) {
+    return L.texto(ctx, txt, x, y, { tam: tam, peso: peso, color: color, alinear: 'center', ancho: ancho, letra: lz.letra });
+  }
+
+  function contenedor(ctx, lz, x, y, an, al, nombre, tec, desc, color) {
+    var c = color || '#1168BD';
+    L.rectRed(ctx, x, y, an, al, 10); L.rellena(ctx, c, L.tono(c, -0.25), 2);
+    centrado(ctx, lz, nombre, x + an / 2, y + 12, 18, 800, '#FFFFFF', an - 16);
+    centrado(ctx, lz, '[' + tec + ']', x + an / 2, y + 38, 14, 500, '#DCE9F7', an - 16);
+    if (desc) centrado(ctx, lz, desc, x + an / 2, y + 60, 13, 400, '#FFFFFF', an - 20);
+  }
+
+  function baseDatos(ctx, lz, x, y, an, al, nombre, tec, desc) {
+    var c = '#1168BD', e = 14;
+    ctx.fillStyle = c; ctx.fillRect(x, y + e, an, al - 2 * e);
+    ctx.beginPath(); ctx.ellipse(x + an / 2, y + al - e, an / 2, e, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(x + an / 2, y + e, an / 2, e, 0, 0, Math.PI * 2);
+    ctx.fillStyle = L.tono(c, 0.25); ctx.fill(); ctx.strokeStyle = L.tono(c, -0.25); ctx.lineWidth = 2; ctx.stroke();
+    centrado(ctx, lz, nombre, x + an / 2, y + 2 * e + 4, 17, 800, '#FFFFFF', an - 12);
+    centrado(ctx, lz, '[' + tec + ']', x + an / 2, y + 2 * e + 28, 13, 500, '#DCE9F7', an - 12);
+    if (desc) centrado(ctx, lz, desc, x + an / 2, y + 2 * e + 48, 13, 400, '#FFFFFF', an - 16);
+  }
+
+  function persona(ctx, lz, x, y, nombre, desc) {
+    var c = '#08427B';
+    L.circulo(ctx, x, y + 18, 18); L.rellena(ctx, c);
+    L.rectRed(ctx, x - 60, y + 40, 120, 64, 16); L.rellena(ctx, c);
+    centrado(ctx, lz, nombre, x, y + 50, 16, 800, '#FFFFFF', 112);
+    if (desc) centrado(ctx, lz, desc, x, y + 74, 12, 400, '#FFFFFF', 112);
+  }
+
+  function externo(ctx, lz, x, y, an, al, nombre, desc) {
+    L.rectRed(ctx, x, y, an, al, 10); L.rellena(ctx, '#8C8C8C', '#6B6B6B', 2);
+    centrado(ctx, lz, nombre, x + an / 2, y + 14, 17, 800, '#FFFFFF', an - 16);
+    if (desc) centrado(ctx, lz, desc, x + an / 2, y + 42, 13, 400, '#FFFFFF', an - 16);
+  }
+
+  function limite(ctx, lz, x, y, an, al, nombre) {
+    ctx.save(); ctx.setLineDash([10, 7]); ctx.strokeStyle = '#444'; ctx.lineWidth = 2;
+    L.rectRed(ctx, x, y, an, al, 8); ctx.stroke(); ctx.restore();
+    L.texto(ctx, nombre + '  [Sistema]', x + 12, y + al - 26, { tam: 14, peso: 700, color: '#444', letra: lz.letra });
+  }
+
+  /** Relacion: flecha de (x1,y1) a (x2,y2) con verbo y [protocolo] junto al punto medio. */
+  function rel(ctx, lz, x1, y1, x2, y2, verbo, proto, dx, dy) {
+    L.flecha(ctx, x1, y1, x2, y2, '#555', 2.5, 1);
+    var mx = (x1 + x2) / 2 + (dx || 0), my = (y1 + y2) / 2 + (dy || 0);
+    ctx.font = '700 13px ' + lz.letra;
+    var w = Math.max(ctx.measureText(verbo).width, ctx.measureText('[' + proto + ']').width) + 12;
+    L.rectRed(ctx, mx - w / 2, my - 13, w, 36, 4); L.rellena(ctx, 'rgba(255,255,255,0.92)');
+    L.texto(ctx, verbo, mx, my - 10, { tam: 13, peso: 700, color: '#333', alinear: 'center', letra: lz.letra });
+    L.texto(ctx, '[' + proto + ']', mx, my + 6, { tam: 12, peso: 500, color: '#555', alinear: 'center', letra: lz.letra });
+  }
+
+  global.C4 = { contenedor: contenedor, baseDatos: baseDatos, persona: persona, externo: externo,
+                limite: limite, rel: rel };
+})(window);

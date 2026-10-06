@@ -115,3 +115,69 @@ VISUALES = {
         "El Q&A tecnico": {"anim": "arq/clase15/qa-tres-tipos"},
     },
 }
+
+
+#: Laminas de CODIGO de diagramas (Mermaid C4): el texto solo no se entiende, asi que a su
+#: derecha va lo que ese codigo DIBUJA (`pseudo_code_slide(..., imagen=...)`), y sus notas
+#: llevan el guion para darla. Clave: comienzo del titulo de la lamina.
+CODIGO_DIAGRAMA = {
+    4: {
+        "Las tres reglas del C4 Container": {
+            "anim": "arq/clase4/ilus-c4-reglas",
+            "notas": {
+                "min": 3,
+                "explica": "En Mermaid un diagrama C4 se escribe como texto. A la izquierda está ese "
+                           "texto; a la derecha, lo que dibuja. El visor dibuja cualquier cosa que "
+                           "tenga la sintaxis correcta, pero hay tres reglas que no revisa por ti.",
+                "pasos": [
+                    "Lee el código línea por línea señalando su caja en el dibujo: Container → la "
+                    "caja de la API; ContainerDb → el cilindro; Rel → la flecha con su rótulo.",
+                    "Regla 1: el tercer dato del Container es la tecnología (Node.js). Sin ella, "
+                    "el diagrama no dice con qué se construye.",
+                    "Regla 2: lo que guarda datos se declara ContainerDb, por eso sale como "
+                    "cilindro y no como una caja más.",
+                    "Regla 3: cada Rel lleva verbo («INSERT y SELECT») y protocolo/formato "
+                    "(«TCP/SQL»). «usa» no le dice nada a quien lee.",
+                ],
+                "ejemplo": "Mal: Container(api, \"API\") — sin tecnología. Rel(api, db, \"usa\") — sin "
+                           "verbo concreto ni protocolo.",
+                "preguntas": [
+                    ("¿Dónde pruebo el código?",
+                     "En cualquier visor de Mermaid (por ejemplo mermaid.live): se pega el texto y "
+                     "se ve el dibujo."),
+                ],
+                "cuidado": "Los nombres (api, db) se repiten idénticos en el diagrama de Despliegue "
+                           "y en el de Componentes: si cambian, ya no se puede seguir una pieza entre "
+                           "diagramas.",
+                "puente": "Ahora el diagrama completo de la app de turnos con el mismo molde.",
+            },
+        },
+        "C4Container en Mermaid: el molde": {
+            "anim": "arq/clase4/ilus-c4-molde",
+            "notas": {
+                "min": 4,
+                "explica": "Es el diagrama de contenedores completo de una app de turnos: quién la "
+                           "usa, de qué piezas está hecha por dentro y con qué sistema externo habla.",
+                "pasos": [
+                    "Arriba del código y del dibujo: Person es el cliente, fuera del sistema. "
+                    "System_Boundary es el recuadro punteado: todo lo que va dentro es nuestro.",
+                    "Dentro, los cuatro contenedores: app web (React), API (Node.js), base "
+                    "(PostgreSQL, cilindro) y worker de avisos. Fuera, el correo, en gris "
+                    "porque es un sistema externo.",
+                    "Recorre las Rel en el orden de una reserva: el cliente reserva por HTTPS, la "
+                    "app hace POST a la API, la API escribe en la base y publica un evento, el "
+                    "worker envía el correo.",
+                ],
+                "ejemplo": "Seguir una reserva de punta a punta sobre el dibujo es la mejor prueba de "
+                           "que el diagrama está completo.",
+                "preguntas": [
+                    ("¿Por qué el correo va fuera del recuadro?",
+                     "Porque no lo construimos ni lo operamos: es un servicio de terceros. Los "
+                     "externos siempre van fuera del System_Boundary."),
+                ],
+                "cuidado": "Si un contenedor no tiene ninguna flecha, sobra o falta una relación.",
+                "puente": "Con este molde se arma el diagrama de cualquier sistema.",
+            },
+        },
+    },
+}

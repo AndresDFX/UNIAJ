@@ -1654,7 +1654,8 @@ def _run_mono(run, text, size, color, italic=False):
     return run
 
 
-def pseudo_code_slide(prs, title, lines, sub=None, idx=None, caption=None, lenguaje=None):
+def pseudo_code_slide(prs, title, lines, sub=None, idx=None, caption=None, lenguaje=None,
+                      imagen=None, imagen_pie="Lo que dibuja este código"):
     """Codigo con aspecto de editor: barra con su lenguaje, numeros de linea y sintaxis.
 
     Misma firma que antes (mas `lenguaje`, opcional: se deduce del codigo). El texto no se
@@ -1668,26 +1669,36 @@ def pseudo_code_slide(prs, title, lines, sub=None, idx=None, caption=None, lengu
     lineas = [str(x) for x in (lines or [])]
     leng = lenguaje or _lenguaje(lineas)
     gutter = 0.55
+    # Con `imagen` (p. ej. el diagrama que produce un codigo Mermaid), el editor ocupa el 58 %
+    # y a la derecha va lo que ese codigo DIBUJA: el texto de un diagrama solo no se entiende.
+    EW = CONTENT_W * 0.62 if imagen else CONTENT_W
     # Tamano primero (con la medida de Consolas), y el marco a la altura del codigo: un
     # editor de 8 lineas no necesita una caja de pantalla completa.
-    ancho_cod, alto_max = CONTENT_W - 0.55 - gutter, h - 0.65
+    ancho_cod, alto_max = EW - 0.55 - gutter, h - 0.65
     size = metrica_texto.tamano_que_cabe(lineas, ancho_cod, alto_max, CODIGO_EDITOR_PT,
                                          CODIGO_MINIMO, space_after_pt=3, mono=True)
+    # Mejor una letra un poco menor que una linea partida: el codigo partido se lee mal y pierde
+    # los numeros de linea. Se baja hasta que ninguna linea envuelva, sin pasar del minimo.
+    _lh = metrica_texto.alto_linea()
+    while size > CODIGO_MINIMO and any(
+            metrica_texto.alto_parrafos([ln], ancho_cod * 0.93, size, mono=True)
+            > _lh * size / 72 * 1.5 + metrica_texto.INSET_V for ln in lineas):
+        size -= 1
     alto_real = metrica_texto.alto_parrafos(lineas, ancho_cod, size, space_after_pt=3, mono=True)
     if alto_real <= alto_max:
         h = max(2.2, alto_real + 0.75)
-    caja = rounded(s, MARGIN, y, CONTENT_W, h, ED_FONDO)
+    caja = rounded(s, MARGIN, y, EW, h, ED_FONDO)
     try:
         caja.adjustments[0] = 0.04
     except Exception:
         pass
-    rect(s, MARGIN, y, CONTENT_W, 0.4, ED_BARRA)
+    rect(s, MARGIN, y, EW, 0.4, ED_BARRA)
     for k, col in enumerate((RGBColor(0xFF, 0x5F, 0x56), RGBColor(0xFF, 0xBD, 0x2E),
                              RGBColor(0x27, 0xC9, 0x3F))):
         d = s.shapes.add_shape(MSO_SHAPE.OVAL, Inches(MARGIN + 0.22 + k * 0.24), Inches(y + 0.13),
                                Inches(0.14), Inches(0.14))
         d.fill.solid(); d.fill.fore_color.rgb = col; d.line.fill.background()
-    td = textbox(s, MARGIN + 1.0, y + 0.04, CONTENT_W - 1.2, 0.32, anchor=MSO_ANCHOR.MIDDLE)
+    td = textbox(s, MARGIN + 1.0, y + 0.04, EW - 1.2, 0.32, anchor=MSO_ANCHOR.MIDDLE)
     td.paragraphs[0].alignment = PP_ALIGN.RIGHT
     _run(td.paragraphs[0].add_run(), leng, 11, RGBColor(0xBB, 0xBB, 0xBB), bold=True)
 
@@ -1711,7 +1722,7 @@ def pseudo_code_slide(prs, title, lines, sub=None, idx=None, caption=None, lengu
     espacio = 3 * size / CODIGO_PT
     # Numeros de linea solo si ninguna linea envuelve: si una envuelve, el numero de abajo
     # quedaria frente a la linea equivocada, que es peor que no numerar.
-    envuelve = any(metrica_texto.alto_parrafos([ln], ancho_cod, size, mono=True)
+    envuelve = any(metrica_texto.alto_parrafos([ln], ancho_cod * 0.93, size, mono=True)
                    > metrica_texto.alto_linea() * size / 72 * 1.5 + metrica_texto.INSET_V
                    for c in columnas for ln in c)
     n0 = 1
@@ -1731,6 +1742,25 @@ def pseudo_code_slide(prs, title, lines, sub=None, idx=None, caption=None, lengu
             for txt, color, cur in _tramos_color(ln, leng):
                 _run_mono(p.add_run(), txt, size, color, italic=cur)
         n0 += len(trozo)
+    if imagen:
+        from PIL import Image as _PILImage
+        ix = MARGIN + EW + 0.3
+        iw_in = CONTENT_W - EW - 0.3
+        ih_max = SH - (top + 0.15) - (1.35 if caption else 0.95)
+        w0, h0 = _PILImage.open(str(imagen)).size
+        pw = min(iw_in, ih_max * w0 / h0)
+        ph = pw * h0 / w0
+        px = ix + (iw_in - pw) / 2
+        marco = rounded(s, px - 0.06, top + 0.15, pw + 0.12, ph + 0.12, RGBColor(0xE8, 0xEE, 0xF4))
+        try:
+            marco.adjustments[0] = 0.04
+        except Exception:
+            pass
+        s.shapes.add_picture(str(imagen), Inches(px), Inches(top + 0.21), width=Inches(pw),
+                             height=Inches(ph))
+        tl = textbox(s, ix, top + 0.27 + ph, iw_in, 0.35)
+        tl.paragraphs[0].alignment = PP_ALIGN.CENTER
+        _rich(tl.paragraphs[0], imagen_pie, 12, SOFT, italic=True)
     if caption:
         tc = textbox(s, MARGIN, SH - 0.9, CONTENT_W, 0.4)
         tc.paragraphs[0].alignment = PP_ALIGN.CENTER
