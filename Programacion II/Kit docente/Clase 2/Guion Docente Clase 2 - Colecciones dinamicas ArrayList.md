@@ -18,7 +18,7 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
 **[Slide 4] El arreglo tiene tamaño fijo** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Empecemos por el problema real de Huellitas.
 
-**[Slide 5] Del arreglo fijo a la lista que crece** — codigo (17 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 5] Del arreglo fijo a la lista que crece** — programa completo (49 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 6] ArrayList por dentro: un arreglo que crece** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Esa arquitectura explica el rendimiento: get(i) es instantaneo porque salta directo a la posicion i del arreglo interno, agregar al final es barato casi siempre, pero add(0, mascota) o remove(0) obligan a correr un puesto a todos los demas elementos.
@@ -26,24 +26,24 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
 **[Slide 7] La interfaz List: add, get, size, remove** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: El <Mascota> entre los picos se llama generico y no es decoracion: le dice al compilador que ahi solo entran Mascotas, de modo que si un estudiante intenta guardar un String el error aparece al compilar y no como un ClassCastException en plena sustentacion.
 
-**[Slide 8] agregar(): validar antes de add** — codigo (16 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 8] agregar(): validar antes de add** — programa completo (50 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 9] buscarPorId(): recorrer y comparar por id** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 9] buscarPorId(): recorrer y comparar por id** — programa completo (44 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 10] eliminarPorId(): remove(Object)** — codigo (10 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 10] eliminarPorId(): remove(Object)** — programa completo (50 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 11] Recorrer: índice, for-each e Iterator** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Recorrer la lista tiene dos formas y cada una tiene su momento.
 
-**[Slide 12] listar(): el for con índice** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 12] listar(): el for con índice** — programa completo (48 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 13] pasarAGeriatria(): borrar con Iterator** — codigo (10 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 13] pasarAGeriatria(): borrar con Iterator** — programa completo (45 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 14] La lista encapsulada en su clase** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: La ultima idea es de diseno, y es la que hace que este codigo sirva para el resto del proyecto integrador.
   - Subrayar: Eso es encapsulamiento aplicado a colecciones, y es lo que hara posible que en las proximas clases la misma clase RegistroMascotas alimente una tabla de Swing y despues se guarde en un archivo CSV sin cambiar una sola linea de la logica.
 
-**[Slide 15] Mascota: atributos privados y toString()** — codigo (10 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 15] Mascota: atributos privados y toString()** — programa completo (30 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 ## Errores tipicos del docente que no domina el tema
 

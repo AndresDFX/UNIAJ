@@ -73,24 +73,6 @@ CLASES = [
             "No sobreescribir toString(): imprime la direccion de memoria y el estudiante cree que el programa fallo."
         ],
         "codigo_slide_titulo": "La primera clase de VetCare",
-        "codigo_slide_lineas": [
-            "public class Mascota {",
-            "    private String id;          // private = nadie lo toca desde afuera",
-            "    private String nombre;",
-            "    private String especie;",
-            "",
-            "    public Mascota(String id, String nombre, String especie) {",
-            "        this.id = id;           // this. distingue atributo de parametro",
-            "        this.nombre = nombre;",
-            "        this.especie = especie;",
-            "    }",
-            "",
-            "    @Override",
-            "    public String toString() {  // sin esto se imprime clinica.Mascota@6d06d69c",
-            "        return id + \" - \" + nombre + \" (\" + especie + \")\";",
-            "    }",
-            "}"
-        ],
         "codigo_slide_caption": "La clase es el molde; cada new Mascota(...) fabrica un objeto distinto con ese molde.",
         "codigo_archivo": "Mascota.java",
         "codigo_fuente": "package clinica;\n\n/**\n * Clinica Veterinaria\n * Clase 1: primera clase del dominio. Es el molde a partir del cual se crean\n * los objetos Mascota; todo el proyecto se apoya en ella.\n */\npublic class Mascota {\n\n    private String id;\n    private String nombre;\n    private String especie;\n    private int edad;\n\n    public Mascota(String id, String nombre, String especie, int edad) {\n        this.id = id;\n        this.nombre = nombre;\n        this.especie = especie;\n        this.edad = edad;\n    }\n\n    public String getId() { return id; }\n    public String getNombre() { return nombre; }\n    public String getEspecie() { return especie; }\n    public int getEdad() { return edad; }\n\n    /** El objeto se defiende: una edad negativa no tiene sentido en el dominio. */\n    public void setEdad(int edad) {\n        if (edad < 0) {\n            System.out.println(\"Edad invalida, se conserva la anterior: \" + this.edad);\n            return;\n        }\n        this.edad = edad;\n    }\n\n    @Override\n    public String toString() {\n        return id + \" - \" + nombre + \" (\" + especie + \", \" + edad + \" anios)\";\n    }\n\n    public static void main(String[] args) {\n        Mascota luna = new Mascota(\"M-001\", \"Luna\", \"Canino\", 3);\n        Mascota michi = new Mascota(\"M-002\", \"Michi\", \"Felino\", 5);\n        System.out.println(\"Pacientes registrados hoy en la clinica:\");\n        System.out.println(luna);\n        System.out.println(michi);\n        luna.setEdad(-2);\n    }\n}\n",
@@ -220,25 +202,6 @@ CLASES = [
             "Borrar con mascotas.remove(m) dentro de un for-each y recibir ConcurrentModificationException, en vez de usar Iterator.remove() o removeIf."
         ],
         "codigo_slide_titulo": "El arreglo se llena; la lista crece sola",
-        "codigo_slide_lineas": [
-            "Mascota nieve = new Mascota(\"M-004\", \"Nieve\", \"Felino\", 1, \"Sara Diaz\");",
-            "Mascota[] fichero = new Mascota[3];          // tamano decidido HOY, para siempre",
-            "fichero[3] = nieve;                          // ArrayIndexOutOfBoundsException",
-            "",
-            "List<Mascota> mascotas = new ArrayList<>();  // interfaz List, implementacion ArrayList",
-            "mascotas.add(nieve);                         // add SIEMPRE agrega al final",
-            "System.out.println(mascotas.size());         // size() = cuantas hay, no capacidad",
-            "Mascota m = mascotas.get(0);                 // get(indice): de 0 a size()-1",
-            "",
-            "for (Mascota x : mascotas) {                 // for-each: solo para LEER",
-            "    System.out.println(x);                   // usa toString() de Mascota",
-            "}",
-            "",
-            "Iterator<Mascota> it = mascotas.iterator();  // para BORRAR mientras se recorre",
-            "while (it.hasNext()) {",
-            "    if (it.next().getEdad() >= 9) it.remove();   // geriatria, sin excepcion",
-            "}"
-        ],
         "codigo_slide_caption": "El arreglo obliga a adivinar el futuro; el ArrayList lo administra por usted, siempre que respete size() y borre con Iterator.",
         "quiz": [
             {
@@ -373,25 +336,6 @@ CLASES = [
             "Llamar a pop() o remove() sobre una estructura vacia sin validar isEmpty(), lo que lanza NoSuchElementException o EmptyStackException y tumba el programa."
         ],
         "codigo_slide_titulo": "FIFO para la sala, LIFO para el historial",
-        "codigo_slide_lineas": [
-            "// Turno firulais, michi, nieve y canela ya fueron creados con new Turno(...)",
-            "Queue<Turno> sala = new LinkedList<>();      // Queue es INTERFAZ, no se instancia sola",
-            "sala.offer(firulais);                        // offer = encolar al final (FIFO)",
-            "sala.offer(michi);",
-            "Turno enPantalla = sala.peek();              // MIRA el primero, size() NO cambia",
-            "Turno atendido   = sala.poll();              // SACA el primero, size() baja en 1",
-            "System.out.println(sala.poll());             // cola vacia -> null, no explota",
-            "",
-            "Deque<String> historial = new ArrayDeque<>(); // pila moderna, mejor que Stack",
-            "historial.push(\"Consulta de Firulais\");      // push = poner encima (LIFO)",
-            "historial.push(\"Consulta de Michi\");",
-            "System.out.println(historial.peek());        // Michi: el ultimo que entro",
-            "if (!historial.isEmpty()) historial.pop();   // deshacer, siempre validando primero",
-            "",
-            "Deque<Turno> fila = new ArrayDeque<>();      // urgencia sin colarse a escondidas",
-            "fila.addLast(nieve);                         // llegada normal: al final",
-            "fila.addFirst(canela);                       // URGENCIA: al frente, con nombre propio"
-        ],
         "codigo_slide_caption": "La estructura restrictiva no le quita poder: le quita la posibilidad de romper la regla del negocio sin darse cuenta.",
         "quiz": [
             {
@@ -527,25 +471,6 @@ CLASES = [
             "Escribir la busqueda, la coleccion de expedientes y las validaciones dentro del ActionListener del boton, dejando la clase de negocio vacia y haciendo imposible reutilizar la logica en la persistencia."
         ],
         "codigo_slide_titulo": "El mapa busca; la ventana solo pregunta",
-        "codigo_slide_lineas": [
-            "Map<String, Expediente> fichas = new HashMap<>();   // clave = ID unico",
-            "fichas.put(\"M-001\", firulais);                      // put REEMPLAZA si la clave existe",
-            "Expediente e = fichas.get(\"M-004\");                 // O(1) promedio: no recorre nada",
-            "if (e == null) { /* la clave no existe: validar SIEMPRE */ }",
-            "",
-            "Set<String> razas = new HashSet<>();",
-            "boolean nueva = razas.add(\"Labrador\");              // false si ya estaba: sin duplicados",
-            "",
-            "JFrame v = new JFrame(\"Clinica\");                   // 1) la ventana",
-            "JPanel p = new JPanel();                            // 2) el panel contenedor",
-            "JTextField txtId = new JTextField(12);              // 3) los componentes",
-            "JButton btn = new JButton(\"Buscar\");",
-            "p.add(new JLabel(\"ID:\")); p.add(txtId); p.add(btn);",
-            "v.add(p, BorderLayout.NORTH);",
-            "btn.addActionListener(ev -> buscar());              // la GUI llama, NO calcula",
-            "v.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);",
-            "v.setVisible(true);                                 // sin esta linea no aparece nada"
-        ],
         "codigo_slide_caption": "El HashMap guarda la inteligencia y la ventana solo pregunta: si la logica se le mete al boton, el sistema deja de ser reutilizable.",
         "quiz": [
             {
@@ -693,25 +618,6 @@ CLASES = [
             "Escribir la validacion dentro de actionPerformed y llenar la vista de ifs, de modo que la misma regla se vuelve a copiar y pegar en la ventana de citas."
         ],
         "codigo_slide_titulo": "El listener que solo lee, delega y muestra",
-        "codigo_slide_lineas": [
-            "private final ControladorRegistro controlador =",
-            "        new ControladorRegistro(new RepositorioMascotas());  // ATRIBUTO: una sola vez",
-            "",
-            "btnRegistrar.addActionListener(new ActionListener() {        // se registra, no se llama",
-            "    @Override",
-            "    public void actionPerformed(ActionEvent e) {             // lo invoca Swing, en el EDT",
-            "        try {",
-            "            Mascota m = controlador.registrarMascota(        // la regla vive afuera",
-            "                    txtId.getText(), txtNombre.getText(),",
-            "                    txtEspecie.getText(), txtEdad.getText());",
-            "            areaListado.setText(controlador.reporteListado());",
-            "            JOptionPane.showMessageDialog(null, \"Guardada: \" + m.getNombre());",
-            "        } catch (IllegalArgumentException ex) {              // el error no tumba la app",
-            "            JOptionPane.showMessageDialog(null, ex.getMessage());",
-            "        }",
-            "    }",
-            "});"
-        ],
         "codigo_slide_caption": "El boton no sabe reglas: lee texto, delega en el controlador y muestra el resultado o el error.",
         "quiz": [
             {
@@ -846,22 +752,6 @@ CLASES = [
             "Aplicar Singleton a Mascota, Cita o Dueno, o crear una fabrica que solo hace un new de una sola clase sin ninguna regla ni validacion."
         ],
         "codigo_slide_titulo": "Singleton: un solo archivador para toda la clinica",
-        "codigo_slide_lineas": [
-            "public class RepositorioClinica {                  // el archivador de Huellitas",
-            "    private static RepositorioClinica instancia;   // 1. unica referencia, privada y estatica",
-            "    private final List<Mascota> mascotas = new ArrayList<Mascota>();",
-            "",
-            "    private RepositorioClinica() { }               // 2. privado: nadie puede hacer new",
-            "",
-            "    public static synchronized RepositorioClinica getInstancia() {",
-            "        if (instancia == null) {                   // 3. se crea la primera vez que la piden",
-            "            instancia = new RepositorioClinica();",
-            "        }",
-            "        return instancia;                          // 4. de ahi en adelante, siempre la misma",
-            "    }",
-            "}",
-            "// En cada ventana: RepositorioClinica repo = RepositorioClinica.getInstancia();  // nunca new"
-        ],
         "codigo_slide_caption": "El constructor privado no es un adorno: es lo unico que le garantiza al compilador que existira una sola instancia.",
         "quiz": [
             {
@@ -996,24 +886,6 @@ CLASES = [
             "Llamar prueba a un main con System.out.println revisado a ojo, o escribir pruebas que dependen del orden porque comparten estado sucio del caso anterior."
         ],
         "codigo_slide_titulo": "El contrato documentado y su prueba",
-        "codigo_slide_lineas": [
-            "/**",
-            " * Agenda una cita para una mascota registrada y activa.",
-            " * @param idMascota identificador del expediente, por ejemplo {@code M-001}",
-            " * @param fechaHora fecha y hora en formato yyyy-MM-dd HH:mm",
-            " * @return la cita creada",
-            " * @throws IllegalStateException si la mascota esta inactiva",
-            " */",
-            "public Cita agendar(String idMascota, String fechaHora) { /* reglas en AgendaService */ }",
-            "",
-            "@Test   // un caso = un metodo cuyo nombre se lee como una frase",
-            "public void agendar_mascotaInactiva_lanzaIllegalStateException() {",
-            "    agenda.registrarMascota(new Mascota(\"M-009\", \"Rocky\", false));   // Arrange",
-            "    assertThrows(IllegalStateException.class,                         // Act + Assert",
-            "            () -> agenda.agendar(\"M-009\", \"2026-09-30 10:00\"));",
-            "    assertEquals(0, agenda.totalCitas());   // y ademas no dejo la cita a medias",
-            "}"
-        ],
         "codigo_slide_caption": "Lo que el Javadoc promete es exactamente lo que la prueba obliga a cumplir.",
         "quiz": [
             {
@@ -1148,21 +1020,6 @@ CLASES = [
             "Escribir los campos en un orden al guardar y leerlos en otro al cargar (por ejemplo, especie y edad intercambiadas), de modo que el archivo se ve bien pero la tabla muestra 'Canino' en la columna de edad."
         ],
         "codigo_slide_titulo": "guardar(): el archivo como memoria larga de VetCare",
-        "codigo_slide_lineas": [
-            "// Sin esto, al cerrar la ventana la clinica Huellitas vuelve al papel.",
-            "try (BufferedWriter salida = Files.newBufferedWriter(ruta, StandardCharsets.UTF_8)) {",
-            "    salida.write(\"id;nombre;especie;edad;cedula_dueno\"); // encabezado = contrato del CSV",
-            "    salida.newLine();",
-            "    for (Mascota m : mascotas) {",
-            "        salida.write(m.getId() + \";\" + m.getNombre() + \";\" + m.getEspecie()",
-            "                   + \";\" + m.getEdad() + \";\" + m.getCedulaDueno());",
-            "        salida.newLine();                 // una mascota = una linea, siempre 4 separadores",
-            "    }",
-            "}                                          // aqui se cierra solo y el buffer baja al disco",
-            "catch (IOException e) {                    // IOException es checked: el compilador la exige",
-            "    JOptionPane.showMessageDialog(null, \"No se pudo guardar: \" + e.getMessage());",
-            "}                                          // un catch vacio aqui = mascota perdida en silencio"
-        ],
         "codigo_slide_caption": "El try-with-resources cierra el archivo pase lo que pase; si no cierra, el .csv queda en cero bytes aunque el programa diga que guardó.",
         "quiz": [
             {
@@ -1310,21 +1167,6 @@ CLASES = [
             "Entregar treinta comentarios sin priorizar y todos del mismo peso, mezclando un catch vacío que pierde datos con una línea en blanco de más; el autor no sabe por dónde empezar y termina no atendiendo ninguno."
         ],
         "codigo_slide_titulo": "Un método real de VetCare y sus seis hallazgos",
-        "codigo_slide_lineas": [
-            "public static void proceso(String a, String b, String c, String d, String e) { // 1. nombre y parametros sin significado",
-            "    int x = 0;",
-            "    try {",
-            "        x = Integer.parseInt(d);",
-            "    } catch (Exception ex) {            // 2. catch vacio: la edad \"dos\" se vuelve 0 en silencio",
-            "    }",
-            "    if (x > 25) {                       // 3. numero magico: por que 25? y la edad -3 pasa derecho",
-            "        System.out.println(\"edad rara\"); // 4. el aviso muere en consola: la ventana no se entera",
-            "    }",
-            "    String[] v = new String[5];         // 5. arreglo de String en vez de la clase Mascota",
-            "    v[0] = a; v[1] = b; v[2] = c; v[3] = String.valueOf(x); v[4] = e;",
-            "    datos.add(v);                       // 6. 'datos' es public static: cualquiera lo modifica",
-            "}"
-        ],
         "codigo_slide_caption": "El código compila y corre; la revisión no busca errores del compilador, busca lo que va a doler en el mostrador de la clínica.",
         "quiz": [
             {
@@ -1459,21 +1301,6 @@ CLASES = [
             "Usar el resultado de buscarPorId() sin validar null, de modo que la aplicación se cae con NullPointerException justo cuando el usuario escribe un ID que no existe, que es el caso más común del mostrador."
         ],
         "codigo_slide_titulo": "El main que amarra las cuatro capas de VetCare",
-        "codigo_slide_lineas": [
-            "public static void main(String[] args) {",
-            "    RepositorioMascotasCSV repositorio = new RepositorioMascotasCSV(\"mascotas.csv\"); // capa de datos",
-            "    ServicioClinica servicio = new ServicioClinica(repositorio);   // logica: dueno del ArrayList",
-            "    servicio.cargarDesdeArchivo();      // PRIMERO los datos...",
-            "    SwingUtilities.invokeLater(() -> new ClinicaApp(servicio).setVisible(true)); // ...DESPUES la ventana",
-            "}",
-            "// Una sola instancia de servicio para toda la app: la ventana NO crea la suya.",
-            "// Breakpoint en la linea del cargarDesdeArchivo (Ctrl+F8) y F7 para entrar:",
-            "// en la ventana Variables se ve cuantas mascotas trajo el CSV antes de que",
-            "// exista un solo boton en pantalla.",
-            "// Si la tabla sale vacia pero la consola dice \"Mascotas cargadas: 12\", el",
-            "// defecto NO esta en el archivo: esta en refrescarTabla() o en que la ventana",
-            "// esta mirando otro objeto servicio."
-        ],
         "codigo_slide_caption": "El orden de arranque y la instancia única no son detalles de estilo: son la causa de los dos defectos de integración más frecuentes.",
         "quiz": [
             {
@@ -1608,23 +1435,6 @@ CLASES = [
             "Mostrar e.getMessage() de la NumberFormatException original al usuario: el cliente de la clinica lee 'For input string: tres', que no le dice que hacer; hay que traducir la excepcion tecnica a un mensaje del negocio."
         ],
         "codigo_slide_titulo": "Validar la edad sin que VetCare se caiga",
-        "codigo_slide_lineas": [
-            "public void setEdad(String texto) throws DatoInvalidoException {   // el dominio LANZA, no muestra ventanas",
-            "    if (texto == null || texto.trim().isEmpty()) {",
-            "        throw new DatoInvalidoException(\"La edad no puede quedar vacia.\");   // validar ANTES de convertir",
-            "    }",
-            "    int valor;",
-            "    try {",
-            "        valor = Integer.parseInt(texto.trim());        // aqui nace NumberFormatException (unchecked)",
-            "    } catch (NumberFormatException e) {",
-            "        throw new DatoInvalidoException(\"La edad debe ser un numero entero. Escribieron: \" + texto);",
-            "    }",
-            "    if (valor < 0 || valor > 30) {                     // regla del negocio, no del lenguaje",
-            "        throw new DatoInvalidoException(\"Edad fuera de rango (0-30 anios). Recibi: \" + valor);",
-            "    }",
-            "    this.edad = valor;   // solo se asigna cuando el dato paso las tres validaciones",
-            "}"
-        ],
         "codigo_slide_caption": "El objeto valida y lanza; la ventana captura y traduce: asi el mismo codigo sirve en Swing, en consola o en un servidor.",
         "quiz": [
             {
@@ -1759,20 +1569,6 @@ CLASES = [
             "Repartir la exposicion en frases sueltas en vez de bloques completos con evidencia: el jurado pregunta por cualquier parte del proyecto. Y si el docente autorizo equipo, dejar que hable solo el que mas sabe: los integrantes mudos arrastran la nota de todos."
         ],
         "codigo_slide_titulo": "Chequeo pre-vuelo: la demo que no falla",
-        "codigo_slide_lineas": [
-            "private static boolean chequeoPreVuelo() {          // se ejecuta 10 minutos antes de sustentar",
-            "    String[] requeridos = {\"datos_demo/duenos.csv\", \"datos_demo/mascotas.csv\", \"datos_demo/citas.csv\"};",
-            "    boolean listo = true;",
-            "    for (String ruta : requeridos) {",
-            "        int filas = contarFilas(ruta);              // 0 filas = pantalla vacia frente al jurado",
-            "        System.out.println((filas > 0 ? \"[OK]    \" : \"[FALLA] \") + ruta + \" -> \" + filas + \" filas\");",
-            "        if (filas == 0) {",
-            "            listo = false;",
-            "        }",
-            "    }",
-            "    return listo;   // si devuelve false, todavia no se sustenta ni se ensaya",
-            "}"
-        ],
         "codigo_slide_caption": "Una demo se prepara con codigo, no con fe: si el pre-vuelo no da verde, la sustentacion no arranca.",
         "quiz": [
             {

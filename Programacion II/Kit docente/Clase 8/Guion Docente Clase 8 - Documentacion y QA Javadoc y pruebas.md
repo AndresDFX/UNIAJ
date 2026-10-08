@@ -22,11 +22,11 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
   - Subrayar: La primera frase debe ser un resumen corto que termine en punto, porque esa frase es la que aparece en las tablas resumen del HTML generado.
   - Subrayar: Lo que se genera es un sitio web: en VS Code se corre la herramienta del JDK desde la terminal integrada, «javadoc -d docs -private src/clinica/*.java», que crea la carpeta docs/ y deja un index.html que se abre en el navegador con la misma cara que tiene la documentacion oficial de Java.
 
-**[Slide 6] Javadoc de un constructor** — codigo (12 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 6] Javadoc de un constructor** — programa completo (25 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 7] El contrato de agendar(), en Javadoc** — codigo (14 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 7] El contrato de agendar(), en Javadoc** — programa completo (47 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 8] agendar(): cada @throws en el código** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 8] agendar(): cada @throws en el código** — programa completo (49 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 9] Nombres que se explican solos** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Ahora bien, la mejor documentacion es la que no hay que escribir, y eso se logra con nombres que se explican solos.
@@ -34,9 +34,9 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
 **[Slide 10] Un caso de prueba: preparar, ejecutar, verificar** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Un caso de prueba tiene cuatro partes y conviene escribirlas en el tablero antes de tocar el teclado: un nombre que se lea como una frase, unos datos o estado de partida, una accion concreta y un resultado esperado.
 
-**[Slide 11] nuevaAgenda(): el mismo estado de partida** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 11] nuevaAgenda(): el mismo estado de partida** — programa completo (45 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 12] Caso positivo y caso negativo** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 12] Caso positivo y caso negativo** — programa completo (46 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 13] JUnit: pruebas que corren solas** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: La diferencia con la prueba manual es importante y hay que decirla completa: la prueba unitaria es automatica, repetible, rapida y prueba logica aislada, y por eso se corre cada vez que se toca el codigo; la prueba manual la hace un humano usando la interfaz, sirve para lo que no se puede automatizar facil (que el JOptionPane se lea bien, que la ventana no se congele, que el flujo tenga sentido para la recepcionista) y no reemplaza a la otra.

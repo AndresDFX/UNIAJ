@@ -22,18 +22,18 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
 **[Slide 5] La cola: FIFO con Queue** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: En VetCare usamos siempre offer/poll/peek porque avisan con false o con null en vez de reventar, y en una recepcion que puede quedar vacia a media manana eso es exactamente lo que queremos. peek es lo que alimenta la pantalla de turnos que ve el publico; poll es lo que hace el medico cuando abre la puerta del consultorio.
 
-**[Slide 6] Turno: lo que guarda la cola** — codigo (9 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 6] Turno: lo que guarda la cola** — programa completo (31 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 7] SalaDeEspera: offer y peek** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 7] SalaDeEspera: offer y peek** — programa completo (40 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 8] atender(): poll sin sorpresas** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 8] atender(): poll sin sorpresas** — programa completo (39 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 9] La pila: LIFO con Deque** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Eso es literalmente como funciona el Ctrl+Z de cualquier programa.
 
-**[Slide 10] HistorialReciente: push, peek y pop** — codigo (17 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 10] HistorialReciente: push, peek y pop** — programa completo (38 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 11] La cola y la pila trabajando juntas** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 11] La cola y la pila trabajando juntas** — programa completo (36 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 12] Por qué son rápidas: ArrayDeque y LinkedList** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Vale la pena entender por que estas estructuras son rapidas, porque ahi esta el argumento tecnico y no solo el pedagogico.
@@ -43,7 +43,7 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
 **[Slide 13] Una cola no se recorre para buscar** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Ademas, recorrer una cola con for-each la muestra pero no la consume; muchos estudiantes imprimen la cola con un for-each, ven todos los turnos y creen que ya los atendieron, cuando en realidad size() sigue igual.
 
-**[Slide 14] La urgencia entra con addFirst** — codigo (7 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 14] La urgencia entra con addFirst** — programa completo (35 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 ## Errores tipicos del docente que no domina el tema
 

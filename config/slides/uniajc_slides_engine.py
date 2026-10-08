@@ -1506,21 +1506,37 @@ def _partir_codigo(lineas):
     """Parte una lista de lineas de codigo en dos mitades por un limite de bloque.
 
     Busca el corte mas cercano a la mitad en el que las llaves estan equilibradas, para que
-    una clase o una funcion no quede cortada entre columnas. Si no hay ningun punto asi
-    —codigo sin llaves— parte por la mitad exacta.
+    una clase o una funcion no quede cortada entre columnas. Si ese limite deja una columna
+    con mas de 3/5 del codigo (un `Main` corto y una clase larga), corta en una linea en
+    blanco entre dos miembros de una clase y, si tampoco alcanza, en una linea en blanco
+    entre dos bloques de un metodo largo: nunca a mitad de una sentencia. Si no hay ningun
+    punto asi —codigo sin llaves— parte por la mitad exacta.
     """
     n = len(lineas)
     medio = (n + 1) // 2
-    saldo, candidatos = 0, []
+    saldo, niveles = 0, {}
     for i, ln in enumerate(lineas):
         saldo += ln.count("{") - ln.count("}")
         if saldo == 0:
-            candidatos.append(i + 1)          # se puede cortar DESPUES de esta linea
-    if candidatos:
-        corte = min(candidatos, key=lambda c: (abs(c - medio), c))
-        if 0 < corte < n:
-            return lineas[:corte], lineas[corte:]
-    return lineas[:medio], lineas[medio:]
+            niveles.setdefault(0, []).append(i + 1)   # se puede cortar DESPUES de esta linea
+        elif not ln.strip():
+            niveles.setdefault(min(saldo, 2), []).append(i + 1)
+    peor = (lambda c: max(c, n - c))
+    mejor = None
+    for nivel in sorted(niveles):
+        corte = min(niveles[nivel], key=lambda c: (abs(c - medio), c))
+        if mejor is None or peor(corte) < peor(mejor):
+            mejor = corte
+        if peor(mejor) <= 0.6 * n:
+            break
+    corte = mejor if mejor is not None and 0 < mejor < n else medio
+    izq, der = list(lineas[:corte]), list(lineas[corte:])
+    # La linea en blanco del corte no se dibuja: una columna no empieza ni termina en blanco.
+    while izq and not str(izq[-1]).strip():
+        izq.pop()
+    while der and not str(der[0]).strip():
+        der.pop(0)
+    return izq, der
 
 
 # ------------------------------------------------------------------ codigo como editor
@@ -1655,12 +1671,19 @@ def _run_mono(run, text, size, color, italic=False):
 
 
 def pseudo_code_slide(prs, title, lines, sub=None, idx=None, caption=None, lenguaje=None,
-                      imagen=None, imagen_pie="Lo que dibuja este código"):
+                      imagen=None, imagen_pie="Lo que dibuja este código", archivo=None,
+                      interlineado_pt=3, minimo_pt=None):
     """Codigo con aspecto de editor: barra con su lenguaje, numeros de linea y sintaxis.
 
     Misma firma que antes (mas `lenguaje`, opcional: se deduce del codigo). El texto no se
-    toca: solo cambian la fuente, los colores y el marco.
+    toca: solo cambian la fuente, los colores y el marco. `archivo` (p. ej. «Main.java»)
+    reemplaza al lenguaje en la barra: dice en que archivo se pega para que corra.
+    `interlineado_pt` (espacio entre lineas): 1 deja el codigo apretado como en el editor y
+    caben ~24 lineas por columna en vez de 21; sirve para programas completos.
+    `minimo_pt` (por defecto CODIGO_MINIMO): letra minima, para programas completos que se
+    leen en pantalla (clase por Meet) y no proyectados en un salon.
     """
+    minimo_pt = minimo_pt or CODIGO_MINIMO
     s = blank(prs)
     bg_white(s)
     top = title_block(s, title, sub)
@@ -1682,15 +1705,15 @@ def pseudo_code_slide(prs, title, lines, sub=None, idx=None, caption=None, lengu
     # editor de 8 lineas no necesita una caja de pantalla completa.
     ancho_cod, alto_max = EW - 0.55 - gutter, h - 0.65
     size = metrica_texto.tamano_que_cabe(lineas, ancho_cod, alto_max, CODIGO_EDITOR_PT,
-                                         CODIGO_MINIMO, space_after_pt=3, mono=True)
+                                         minimo_pt, space_after_pt=interlineado_pt, mono=True)
     # Mejor una letra un poco menor que una linea partida: el codigo partido se lee mal y pierde
     # los numeros de linea. Se baja hasta que ninguna linea envuelva, sin pasar del minimo.
     _lh = metrica_texto.alto_linea()
-    while size > CODIGO_MINIMO and any(
+    while size > minimo_pt and any(
             metrica_texto.alto_parrafos([ln], ancho_cod * 0.93, size, mono=True)
             > _lh * size / 72 * 1.5 + metrica_texto.INSET_V for ln in lineas):
         size -= 1
-    alto_real = metrica_texto.alto_parrafos(lineas, ancho_cod, size, space_after_pt=3, mono=True)
+    alto_real = metrica_texto.alto_parrafos(lineas, ancho_cod, size, space_after_pt=interlineado_pt, mono=True)
     if alto_real <= alto_max:
         h = max(2.2, alto_real + 0.75)
     caja = rounded(s, MARGIN, y, EW, h, ED_FONDO)
@@ -1706,26 +1729,33 @@ def pseudo_code_slide(prs, title, lines, sub=None, idx=None, caption=None, lengu
         d.fill.solid(); d.fill.fore_color.rgb = col; d.line.fill.background()
     td = textbox(s, MARGIN + 1.0, y + 0.04, EW - 1.2, 0.32, anchor=MSO_ANCHOR.MIDDLE)
     td.paragraphs[0].alignment = PP_ALIGN.RIGHT
-    _run(td.paragraphs[0].add_run(), leng, 11, RGBColor(0xBB, 0xBB, 0xBB), bold=True)
+    _run(td.paragraphs[0].add_run(), archivo or leng, 11, RGBColor(0xBB, 0xBB, 0xBB), bold=True)
 
     # El tamano se elige con la medida de Consolas: medir con Calibri subestimaba ~30 % y el
     # codigo se salia de la caja. Si ni al minimo cabe en una columna, se parte en DOS por un
     # limite de bloque antes de seguir encogiendo (a 9 pt un identificador no se lee).
     alto_cod = h - 0.65
     columnas = [lineas]
-    cabe = metrica_texto.alto_parrafos(lineas, ancho_cod, size, space_after_pt=3,
+    cabe = metrica_texto.alto_parrafos(lineas, ancho_cod, size, space_after_pt=interlineado_pt,
                                        mono=True) <= alto_cod
     if lineas and not cabe:
         izq, der = _partir_codigo(lineas)
         ancho_col = (ancho_cod - gutter - 0.3) / 2
         size2 = min(
             metrica_texto.tamano_que_cabe(izq, ancho_col, alto_cod, CODIGO_EDITOR_PT,
-                                          CODIGO_MINIMO, space_after_pt=3, mono=True),
+                                          minimo_pt, space_after_pt=interlineado_pt, mono=True),
             metrica_texto.tamano_que_cabe(der, ancho_col, alto_cod, CODIGO_EDITOR_PT,
-                                          CODIGO_MINIMO, space_after_pt=3, mono=True))
-        if size2 > size:
+                                          minimo_pt, space_after_pt=interlineado_pt, mono=True))
+        # En una columna ya no cabe: dos columnas aunque sea al mismo tamano (antes solo si
+        # ganaban letra, y un codigo largo al minimo se salia del editor), y en ellas tambien
+        # se baja la letra hasta que ninguna linea envuelva.
+        if size2 >= size:
             columnas, size, ancho_cod = [izq, der], size2, ancho_col
-    espacio = 3 * size / CODIGO_PT
+            while size > minimo_pt and any(
+                    metrica_texto.alto_parrafos([ln], ancho_cod * 0.93, size, mono=True)
+                    > _lh * size / 72 * 1.5 + metrica_texto.INSET_V for ln in lineas):
+                size -= 1
+    espacio = interlineado_pt * size / CODIGO_PT
     # Numeros de linea solo si ninguna linea envuelve: si una envuelve, el numero de abajo
     # quedaria frente a la linea equivocada, que es peor que no numerar.
     envuelve = any(metrica_texto.alto_parrafos([ln], ancho_cod * 0.93, size, mono=True)

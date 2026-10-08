@@ -18,14 +18,14 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
 **[Slide 4] Qué es una revisión de código** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Conviene decirlo claro porque el estudiante llega con dos ideas equivocadas: que la revisión es un examen donde lo van a rajar, o que es un trámite para poner 'todo bien' y salir rápido.
 
-**[Slide 5] El código a revisar: main()** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 5] El código a revisar: main()** — programa completo (50 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 6] Revisar por capas** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Se ejecuta antes de opinar.
   - Subrayar: Y solo al final, la sexta: formato e indentación, que es la que menos vale y la que todo el mundo comenta primero.
   - Subrayar: Si un informe de revisión de VetCare tiene ocho comentarios de espacios y ninguno sobre el NullPointerException al buscar un ID inexistente, esa revisión no sirvió.
 
-**[Slide 7] proceso(): ¿qué capas fallan?** — codigo (18 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 7] proceso(): ¿qué capas fallan?** — programa completo (39 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 8] Retroalimentación: evidencia, impacto, sugerencia** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: La retroalimentación útil tiene una estructura, y esa estructura se enseña con plantilla porque a punta de buena intención no sale.
@@ -33,7 +33,7 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
   - Subrayar: Compare las dos versiones.
   - Subrayar: La segunda se puede atender esta tarde; la primera solo produce rabia.
 
-**[Slide 9] Dos búsquedas casi iguales** — codigo (17 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 9] Dos búsquedas casi iguales** — programa completo (36 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 10] El checklist de revisión** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: ¿la interfaz gráfica muestra la lista y permite registrar y buscar?
@@ -41,7 +41,7 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
   - Subrayar: ¿algún método pasa de cincuenta líneas?
   - Subrayar: ¿hay bloques duplicados?
 
-**[Slide 11] imprimirFicha(): el mismo bucle otra vez** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 11] imprimirFicha(): el mismo bucle otra vez** — programa completo (28 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 12] Recibir la crítica** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Hay tres antipatrones que van a aparecer y conviene nombrarlos de una vez: la revisión de sello, que aprueba en dos minutos sin haber ejecutado nada; la revisión de gusto personal, que solo señala estilo e indentación; y la revisión que rediseña el proyecto ajeno, donde el revisor propone rehacer VetCare con su propia arquitectura en vez de señalar problemas concretos del que tiene enfrente.

@@ -23,23 +23,23 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
 **[Slide 6] Persistencia: datos que sobreviven** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Guardar en disco significa convertir cada objeto Mascota en texto y escribirlo en un archivo que queda en el computador.
 
-**[Slide 7] El contrato del CSV en código** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 7] El contrato del CSV en código** — programa completo (49 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 8] Cerrar el recurso: try-with-resources** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Por eso el error más desconcertante para un principiante es este: el programa corre sin lanzar ninguna excepción, dice 'guardado', y el archivo mascotas.csv aparece con cero bytes.
   - Subrayar: Reemplaza al viejo patrón de finally con verificación de null, que casi nadie escribe bien.
 
-**[Slide 9] guardar(): escribir con try-with-resources** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 9] guardar(): escribir con try-with-resources** — programa completo (50 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 10] Cargar al arrancar, guardar al cerrar** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Cargar al arrancar significa que el main construye el repositorio, pide cargar() y solo después muestra la ventana con la tabla ya poblada.
   - Subrayar: Por eso conviene imprimir una vez ruta.toAbsolutePath() para que el estudiante sepa dónde buscarlo en vez de jurar que el programa no guardó nada.
 
-**[Slide 11] cargar(): sin archivo no revienta** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 11] cargar(): sin archivo no revienta** — programa completo (49 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 12] desdeLinea(): una línea mala no tumba la app** — codigo (17 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 12] desdeLinea(): una línea mala no tumba la app** — programa completo (48 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 13] main(): cargar, guardar y reabrir** — codigo (16 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 13] main(): cargar, guardar y reabrir** — programa completo (49 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 ## Errores tipicos del docente que no domina el tema
 

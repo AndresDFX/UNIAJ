@@ -171,9 +171,9 @@ def _quiz_items(c):
 
 # ----------------------------------------------------------------------- slides
 import teoria_a_slides as TS
-import textwrap
 import visuales
-from prog2_conceptos_data import CONCEPTOS, CODIGO
+from prog2_conceptos_data import CONCEPTOS
+import prog2_codigo_laminas as CODIGO_LAMINAS
 from prog2_visuales_data import VISUALES
 
 #: Laminas fijas antes de la teoria: portada, encuadre y mapa del bloque. El guion numera
@@ -190,182 +190,15 @@ def _parrafos(c):
     return vin
 
 
-# ------------------------------------------------------------ codigo por unidad
-_CADENA = re.compile(r'"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'')
-
-
-def _util(linea):
-    """La linea sin literales ni comentario de fin de linea: lo que cuenta para las llaves."""
-    return _CADENA.sub('""', linea).split("//", 1)[0]
-
-
-def _llaves(linea):
-    s = _util(linea)
-    return s.count("{") - s.count("}")
-
-
-def _fin_bloque(L, i):
-    """Indice de la linea que cierra el bloque que abre la linea `i` (o una siguiente)."""
-    prof, abierto = 0, False
-    for j in range(i, len(L)):
-        if "{" in _util(L[j]):
-            abierto = True
-        prof += _llaves(L[j])
-        if abierto and prof <= 0:
-            return j
-    raise ValueError("bloque sin cerrar desde la linea %d" % (i + 1))
-
-
-def _con_comentario(L, i):
-    """Sube desde `i` mientras haya Javadoc, comentarios o anotaciones pegados a la unidad."""
-    k = i
-    while k > 0:
-        s = L[k - 1].strip()
-        if s.startswith(("/**", "/*", "*", "//", "@")) or s.endswith("*/"):
-            k -= 1
-        else:
-            break
-    return k
-
-
-def _clase(L, nombre):
-    rx = re.compile(r"\b(class|interface|enum|record)\s+%s\b" % re.escape(nombre))
-    for i, l in enumerate(L):
-        if rx.search(_util(l)):
-            return i, _fin_bloque(L, i)
-    raise ValueError("no existe la clase %s" % nombre)
-
-
-def _metodo(L, a, b, nombre):
-    rx = re.compile(r"^\s*(?:[\w<>\[\],.?]+\s+)*%s\s*\(" % re.escape(nombre))
-    for i in range(a + 1, b):
-        s = _util(L[i])
-        if not rx.match(s) or s.strip().startswith(("return", "new ", "throw")):
-            continue
-        if "=" in s.split("(")[0] or s.rstrip().endswith(";"):
-            continue                      # una llamada o una asignacion, no la declaracion
-        return i, _fin_bloque(L, i)
-    raise ValueError("no existe el metodo %s" % nombre)
-
-
-def _campos(L, a, b):
-    """Atributos de la clase [a, b]: lo que hay a profundidad de cuerpo y no es un metodo."""
-    out, i = [], a + 1
-    while i < b:
-        s = L[i].strip()
-        if not s or s.startswith(("/**", "/*", "*", "//", "@")) or s.endswith("*/"):
-            i += 1
-            continue
-        cab = _util(s)
-        if "(" in cab.split("=")[0] or re.match(r"(?:\w+\s+)*(class|interface|enum)\b", cab):
-            i = _fin_bloque(L, i) + 1     # metodo, constructor o clase anidada: se salta
-            continue
-        k, j, prof = _con_comentario(L, i), i, 0
-        while True:                       # un atributo puede ocupar varias lineas
-            prof += _llaves(L[j])
-            if prof <= 0 and _util(L[j]).rstrip().endswith(";"):
-                break
-            j += 1
-        if out and not L[k - 1].strip():   # se respeta la separacion del archivo
-            out.append("")
-        out += L[k:j + 1]
-        i = j + 1
-    return out
-
-
-def _quitar_vacias_dobles(ls):
-    out = []
-    for x in ls:
-        if not x.strip() and out and not out[-1].strip():
-            continue
-        out.append(x)
-    while out and not out[-1].strip():
-        out.pop()
-    return out
-
-
-def _buscar(ls, texto, desde=0):
-    for p in range(desde, len(ls)):
-        if texto in ls[p]:
-            return p
-    raise ValueError("no aparece %r en la unidad" % texto)
-
-
-def _cerrar(ls, p, q):
-    """Extiende el tramo ls[p..q] hasta que cierre todas las llaves que abre."""
-    prof = sum(_llaves(x) for x in ls[p:q + 1])
-    while prof > 0:
-        q += 1
-        prof += _llaves(ls[q])
-    if prof < 0:
-        raise ValueError("tramo desbalanceado: %r" % ls[p])
-    return q
-
-
-def unidad_de_codigo(fuente, sel, extra=None):
-    """Las lineas que designa el selector `sel` (ver `prog2_conceptos_data`), sin sangria.
-
-    Formas: ``Clase`` · ``Clase#campos`` · ``Clase#campos:a,b`` · ``Clase.metodo``, y sobre
-    una unidad ``@desde|hasta`` (solo ese tramo) y ``~desde|hasta`` (ese tramo se resume en
-    ``// ...``), repetibles. Todo tramo se extiende hasta cerrar sus llaves: lo proyectado
-    sigue siendo codigo balanceado y copiado tal cual del archivo que compila.
-    """
-    if sel == "@extra":
-        return list(extra or [])
-    L = fuente.replace("\t", "    ").split("\n")
-    if "#" in sel:
-        cl, resto = sel.split("#", 1)
-        a, b = _clase(L, cl)
-        ls = _campos(L, a, b)
-        if ":" in resto:
-            nombres = resto.split(":", 1)[1].split(",")
-            grupos, g = [], []
-            for x in ls + [""]:
-                if x.strip():
-                    g.append(x)
-                elif g:
-                    grupos.append(g)
-                    g = []
-            ls = []
-            for g in grupos:
-                decl = " ".join(_util(x) for x in g if not x.strip().startswith(("//", "/*", "*")))
-                if any(re.search(r"\b%s\b" % re.escape(nm), decl) for nm in nombres):
-                    ls += ([""] if ls else []) + g
-    else:
-        mods = re.split(r"(?=[@~])", sel)
-        base, mods = mods[0], mods[1:]
-        if "." in base:
-            cl, met = base.split(".", 1)
-            a, b = _clase(L, cl)
-            i, j = _metodo(L, a, b, met)
-            ls = L[_con_comentario(L, i):j + 1]
-        else:
-            a, b = _clase(L, base)
-            ls = L[_con_comentario(L, a):b + 1]
-        for m in mods:
-            desde, hasta = m[1:].split("|")
-            p = _buscar(ls, desde)
-            q = _cerrar(ls, p, _buscar(ls, hasta, p))
-            if m[0] == "@":
-                ls = ls[p:q + 1]
-            else:
-                sangria = re.match(r"\s*", ls[p]).group(0)
-                ls = ls[:p] + [sangria + "// ..."] + ls[q + 1:]
-    return textwrap.dedent("\n".join(x.rstrip() for x in ls)).split("\n")
-
-
+# ------------------------------------------------------------ codigo por lamina
 def laminas_de_codigo(c):
-    """`[(k, titulo, lineas)]`: el codigo de la clase que va detras del concepto k."""
-    fuente = c.get("codigo_fuente") or ""
-    out = []
-    for k, titulo, sels in CODIGO.get(c["n"], []):
-        lineas = []
-        for sel in sels:
-            if lineas:
-                lineas.append("")
-            lineas += unidad_de_codigo(fuente, sel, c.get("codigo_slide_lineas"))
-        out.append((k, titulo, _quitar_vacias_dobles(lineas)))
-    return out
+    """`[(k, titulo, lineas, notas)]`: los programas completos que van detras del concepto k.
+
+    Cada lamina es un `Main.java` que corre solo (`prog2_codigo_laminas`), no un recorte del
+    archivo de la clase: el estudiante lo copia de la lamina y corre sin nada mas.
+    """
+    return [(e["k"], e["titulo"], CODIGO_LAMINAS.lineas(e), CODIGO_LAMINAS.notas(e))
+            for e in CODIGO_LAMINAS.CODIGO.get(c["n"], [])]
 
 
 def _teoria_slides(c):
@@ -373,7 +206,7 @@ def _teoria_slides(c):
 
     Cada concepto lleva el titulo y las ideas que decide `prog2_conceptos_data`; el parrafo
     completo (y lo que `teoria_a_slides` aparta como frase al docente) va a sus notas. Detras
-    de cada concepto, las unidades del archivo de la clase que lo muestran, completas.
+    de cada concepto, los programas completos que lo muestran (cada uno corre solo).
     """
     vin = _parrafos(c)
     codigo = laminas_de_codigo(c)
@@ -383,9 +216,9 @@ def _teoria_slides(c):
         # cortaban por las comas del codigo citado («add(0» / «MascotaDelAmigo)»).
         desarrollo = ["DESARROLLO (para explicarlo, no se proyecta):"] + [vin[i] for i in indices]
         out.append((titulo, list(ideas), desarrollo, "content"))
-        for kk, tit, lineas in codigo:
+        for kk, tit, lineas, notas_cod in codigo:
             if kk == k:
-                out.append((tit, lineas, [], "codigo"))
+                out.append((tit, lineas, notas_cod, "codigo"))
     return out
 
 
@@ -405,8 +238,9 @@ def _apoyo_por_diapositiva(c, base=PRIMERA_TEORIA):
     for j, (titulo, vin, notas_, tipo) in enumerate(slides):
         num = f"[Slide {base + j}] " if base else ""
         if tipo == "codigo":
-            L.append(f"**{num}{titulo}** — codigo ({len(vin)} lineas). Leerlo de arriba abajo "
-                     "y ejecutarlo en la demo.")
+            L.append(f"**{num}{titulo}** — programa completo ({len(vin)} lineas): se copia en "
+                     "Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida "
+                     "esperada esta en las notas del presentador.")
         else:
             # Al guion baja solo lo que le habla al docente (que subrayar, como dictarlo); el
             # desarrollo completo esta en las notas del presentador de la lamina.
@@ -516,7 +350,6 @@ def build_pptx(c):
         ("60-105", "Practica sobre el codigo de la demo"),
         ("105-120", "Repaso de conceptos y cierre"),
     ], idx=idx); idx += 1
-    archivo = c.get("codigo_archivo") or ""
     # El guion numera sus «[Slide N]» desde PRIMERA_TEORIA con esta misma lista: si alguien
     # agrega una lamina antes de la teoria y no mueve la constante, el build falla aqui en
     # vez de publicar un guion mal numerado.
@@ -524,7 +357,9 @@ def build_pptx(c):
     for _t, _items, _notas, _tipo in _teoria_slides(c):
         if _tipo == "codigo":
             _s = pseudo_code_slide(prs, _t, _items, idx=idx, lenguaje="Java",
-                                   caption=("De " + archivo) if archivo else None)
+                                   archivo=CODIGO_LAMINAS.ARCHIVO,
+                                   interlineado_pt=CODIGO_LAMINAS.INTERLINEADO,
+                                   minimo_pt=CODIGO_LAMINAS.MINIMO_PT)
         else:
             # Un concepto por lamina, con su visual si lo tiene: los pasos de su animacion
             # (aparecen con cada clic del docente) o, sin animacion, la ilustracion generada

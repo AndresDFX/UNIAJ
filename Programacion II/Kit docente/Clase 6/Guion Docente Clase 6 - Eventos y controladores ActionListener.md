@@ -21,29 +21,29 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
   - Subrayar: Eso es programacion dirigida por eventos: usted ya no decide cuando corre su codigo; usted lo deja escrito y registrado, y quien decide cuando se ejecuta es la recepcionista de Huellitas el dia que oprima 'Registrar mascota'.
   - Subrayar: Por eso el metodo que guarda la mascota nunca aparece llamado desde el main: aparece registrado, no llamado, y esa diferencia es la que hay que entender hoy.
 
-**[Slide 5] main(): la ventana arranca en el EDT** — codigo (8 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 5] main(): la ventana arranca en el EDT** — programa completo (24 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 6] ActionListener: el contrato del clic** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Hay tres formas validas de escribirlo en Java y conviene mostrarlas todas: una clase aparte que implements ActionListener, una clase anonima escrita ahi mismo con new ActionListener() {... }, o una expresion lambda e -> registrar() si el proyecto esta en Java 8 o superior.
   - Subrayar: Con una de dos metodos no compila, y el mensaje del editor no lo dice con esas palabras y ahi adentro va su llamada.
 
-**[Slide 7] El formulario: GridLayout de 5 × 2** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 7] El formulario: GridLayout de 5 × 2** — programa completo (45 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 8] addActionListener: el botón guarda a quien lo escucha** — codigo (6 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 8] addActionListener: el botón guarda a quien lo escucha** — programa completo (38 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 9] Separar la lógica de la interfaz** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Separar la logica de la interfaz significa que la ventana no conoce reglas de negocio y que las reglas no saben que existe una ventana.
   - Subrayar: Si toca reescribir todo porque la conversion de la edad estaba adentro del boton, el diseño esta mal.
 
-**[Slide 10] El repositorio no sabe de ventanas** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 10] El repositorio no sabe de ventanas** — programa completo (49 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 11] Un clic en cámara lenta** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Vale la pena desarmar en camara lenta lo que ocurre en un click de 'Registrar mascota'.
   - Subrayar: Cuarto, la vista atrapa esa excepcion y la convierte en un JOptionPane, o, si no hubo error, limpia los campos y refresca el area de listado.
 
-**[Slide 12] registrar(): la vista lee, delega y muestra** — codigo (12 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 12] registrar(): la vista lee, delega y muestra** — programa completo (46 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 13] registrarMascota(): el controlador valida y convierte** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 13] registrarMascota(): el controlador valida y convierte** — programa completo (43 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 14] getSource y otros escuchadores** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Dos detalles mas que le van a servir.

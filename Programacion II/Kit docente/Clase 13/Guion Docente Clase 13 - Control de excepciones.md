@@ -20,28 +20,28 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
 
 **[Slide 5] Checked y unchecked** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
 
-**[Slide 6] Una excepción checked propia** — codigo (7 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 6] Una excepción checked propia** — programa completo (24 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 7] Anatomía de try-catch-finally** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: La estructura try-catch-finally tiene una anatomia que conviene explicar despacio.
   - Subrayar: En VetCare esto significa que si el CSV esta corrupto a la mitad, el archivo igual se cierra y la aplicacion sigue viva con las mascotas que alcanzo a leer.
 
-**[Slide 8] registrar(): try, catch y finally** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 8] registrar(): try, catch y finally** — programa completo (47 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 9] finally corre aunque haya return** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 9] finally corre aunque haya return** — programa completo (41 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 10] cargar(): del catch específico al general** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 10] cargar(): del catch específico al general** — programa completo (43 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 11] throw, throws y la excepción propia** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: throw y throws se parecen en el nombre y hacen cosas opuestas, y esa confusion es la que mas cuesta en el parcial. throw (sin s) es una instruccion que se ejecuta y lanza un objeto en ese instante: throw. throws (con s) es una advertencia escrita en la firma del metodo: public void setEdad(String texto) throws DatoInvalidoException, y significa 'yo no resuelvo esto, quien me llame vera que hace'.
   - Subrayar: De ahi sale la regla de capas que usaremos en VetCare: las clases del dominio (Mascota, Dueno, Cita) validan y LANZAN, porque no saben si hay una ventana, una consola o un servidor al otro lado; la capa de interfaz (el JFrame o el menu de consola) CAPTURA y traduce ese error a un JOptionPane que el usuario entiende.
 
-**[Slide 12] setEdad(): validar y lanzar** — codigo (16 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 12] setEdad(): validar y lanzar** — programa completo (43 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 13] El catch vacío** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Y la mejor excepcion es la que no ocurre: validar antes de convertir (revisar null, aplicar trim, verificar isEmpty y comprobar el rango) evita el 80 por ciento de los try-catch de VetCare y hace que el codigo se lea como las reglas del negocio.
 
-**[Slide 14] malaPractica(): así no** — codigo (12 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 14] malaPractica(): así no** — programa completo (39 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 ## Errores tipicos del docente que no domina el tema
 

@@ -24,21 +24,21 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
 
 **[Slide 6] Singleton: tres piezas obligatorias** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
 
-**[Slide 7] RepositorioClinica: el Singleton** — codigo (14 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 7] RepositorioClinica: el Singleton** — programa completo (25 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 8] Comprobar que es la misma instancia** — codigo (8 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 8] Comprobar que es la misma instancia** — programa completo (42 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 9] Cada ventana pide getInstancia()** — codigo (12 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 9] Cada ventana pide getInstancia()** — programa completo (49 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 10] Factory: quién decide qué objeto crear** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
 
-**[Slide 11] Consulta: el tipo base** — codigo (16 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 11] Consulta: el tipo base** — programa completo (25 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 12] ConsultaUrgencia: una subclase** — codigo (10 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 12] ConsultaUrgencia: una subclase** — programa completo (25 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 13] FabricaConsultas.crear()** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 13] FabricaConsultas.crear()** — programa completo (45 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 14] La fábrica en uso** — codigo (9 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 14] La fábrica en uso** — programa completo (43 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 15] Cuándo NO usarlos** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
 

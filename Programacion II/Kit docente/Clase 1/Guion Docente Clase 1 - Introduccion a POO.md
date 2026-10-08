@@ -27,7 +27,7 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
   - Subrayar: Recien ahora tiene sentido la analogia clasica.
   - Subrayar: La analogia es util pero tiene tres limites que hay que decir en voz alta, porque el estudiante que se queda solo con la analogia la estira mal.
 
-**[Slide 6] Crear objetos con new** — codigo (8 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 6] Crear objetos con new** — programa completo (33 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 7] El objeto en memoria: pila y montón** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: En Java una variable local vive en la pila, una zona pequena y ordenada asociada al metodo que se esta ejecutando, mientras que el objeto creado con new vive en el monton, una zona grande donde el programa reserva espacio a medida que lo necesita.
@@ -48,7 +48,7 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
   - Subrayar: Se ensena bien cuando se muestra el problema que resuelve, y en VetCare el problema tiene nombre.
   - Subrayar: La respuesta concreta es que funciona hoy, con un archivo y con usted como unico autor; en la Clase 12, integrando modulos de tres companeros, quien escriba la pantalla de facturacion pondra activa en false por comodidad y usted perdera una tarde buscando por que las citas desaparecieron.
 
-**[Slide 11] setEdad(): el objeto se defiende** — codigo (8 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 11] setEdad(): el objeto se defiende** — programa completo (35 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 12] Herencia y polimorfismo** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
 
@@ -57,7 +57,7 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
   - Subrayar: La instruccion reserva memoria y llama al constructor.
   - Subrayar: Por eso desde la primera clase se escribe el constructor completo.
 
-**[Slide 14] Atributos privados y constructor** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 14] Atributos privados y constructor** — programa completo (29 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 15] null y NullPointerException** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Queda el error mas frecuente de Java, y hay que nombrarlo hoy porque su causa es todo lo anterior. null significa que la referencia no apunta a ningun objeto: es un control remoto sin televisor.

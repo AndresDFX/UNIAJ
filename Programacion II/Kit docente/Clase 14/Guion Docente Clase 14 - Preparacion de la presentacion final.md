@@ -21,21 +21,21 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
   - Subrayar: Las transiciones entre bloques se dicen en voz alta, con una formula corta del tipo 'para mostrar como quedan guardados esos datos, abro de nuevo la aplicacion', porque los silencios incomodos al cambiar de tema son lo que mas se nota.
   - Subrayar: Un guion escrito, con minutos y evidencia por bloque (y el nombre del responsable si hay equipo), convierte una exposicion nerviosa en algo que se puede ensayar y medir; en VetCare ese guion tiene cinco bloques y suma siete minutos, con cuatro dedicados a la demo.
 
-**[Slide 6] El guion de la sustentación en código** — codigo (9 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 6] El guion de la sustentación en código** — programa completo (22 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 7] La demo blindada: el pre-vuelo** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: La demo en vivo no falla por mala suerte, falla por falta de preparacion, y se blinda con un chequeo previo que llamaremos pre-vuelo.
 
-**[Slide 8] sembrarDatosDemo(): datos creíbles** — codigo (16 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 8] sembrarDatosDemo(): datos creíbles** — programa completo (42 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 9] chequeoPreVuelo(): verde o no se presenta** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 9] chequeoPreVuelo(): verde o no se presenta** — programa completo (50 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 10] Las preguntas del jurado** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
 
 **[Slide 11] Tiempo y nervios: el ensayo cronometrado** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Por eso hoy ensayamos con reloj y anotamos el tiempo real de cada bloque frente al planeado, y se repite hasta que el total caiga entre cinco y ocho minutos con margen.
 
-**[Slide 12] ensayo(): planeado contra real** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 12] ensayo(): planeado contra real** — programa completo (29 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 ## Errores tipicos del docente que no domina el tema
 

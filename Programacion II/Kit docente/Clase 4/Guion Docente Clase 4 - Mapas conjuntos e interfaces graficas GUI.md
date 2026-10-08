@@ -20,31 +20,31 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
 **[Slide 5] De la búsqueda lineal al HashMap** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Cuando dos claves distintas caen en la misma casilla (una colision), el mapa guarda ambas en esa casilla y usa equals() para distinguirlas al leer.
 
-**[Slide 6] Expediente: el valor que guarda el mapa** — codigo (10 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 6] Expediente: el valor que guarda el mapa** — programa completo (31 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 7] La misma ficha en una lista y en un mapa** — codigo (9 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 7] La misma ficha en una lista y en un mapa** — programa completo (36 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 8] Medir: recorrer contra get(clave)** — codigo (18 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 8] Medir: recorrer contra get(clave)** — programa completo (45 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 9] La API de Map y sus trampas** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: La API de Map es corta pero tiene trampas que hay que nombrar en voz alta. put(clave, valor) agrega, pero si la clave ya existia reemplaza el valor anterior en silencio y devuelve el que estaba: eso significa que un HashMap nunca tiene claves repetidas, y que guardar dos veces M-001 no da error, simplemente pisa el expediente anterior, lo cual puede ser exactamente lo que usted quiere o un bug grave si no lo controla. get(clave) devuelve el valor o null si la clave no existe, por eso siempre hay que validar antes de usar el resultado; getOrDefault(clave, valorPorDefecto) es la version comoda. containsKey pregunta por la clave y containsValue por el valor, siendo esta ultima lenta porque esa si recorre todo el mapa.
 
-**[Slide 10] guardar(): put avisa antes de reemplazar** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 10] guardar(): put avisa antes de reemplazar** — programa completo (46 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 11] HashSet: el conjunto sin duplicados** — 3 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Lo que un HashSet no le garantiza es el orden: si usted agrega Labrador, Criollo y Persa y luego imprime el conjunto, pueden salir en cualquier orden, porque la posicion la decide el hash.
   - Subrayar: Si necesita conservar el orden de insercion use LinkedHashSet o LinkedHashMap, y si necesita orden alfabetico use TreeSet o TreeMap, que ordenan pero cuestan un poco mas.
 
-**[Slide 12] Un mapa y un conjunto como atributos** — codigo (12 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 12] Un mapa y un conjunto como atributos** — programa completo (46 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 13] Swing: ventana, paneles y componentes** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Ahora la parte grafica, y aqui empieza el segundo bloque de la clase.
 
-**[Slide 14] Paneles y layouts, escritos a mano** — codigo (14 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 14] Paneles y layouts, escritos a mano** — programa completo (37 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 15] El evento, el cierre y el arranque en el EDT** — codigo (11 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 15] El evento, el cierre y el arranque en el EDT** — programa completo (36 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 16] buscar(): get y el caso null** — codigo (10 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 16] buscar(): get y el caso null** — programa completo (45 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 ## Errores tipicos del docente que no domina el tema
 

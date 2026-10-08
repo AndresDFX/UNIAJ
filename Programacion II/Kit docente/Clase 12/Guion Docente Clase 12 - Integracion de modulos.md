@@ -18,30 +18,30 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
 **[Slide 4] Integrar: piezas que funcionan juntas** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: ¿Por qué importa?
 
-**[Slide 5] main(): una sola instancia de cada capa** — codigo (6 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 5] main(): una sola instancia de cada capa** — programa completo (41 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 6] El guion de humo** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Eso es lo que tiene que correr sin que nadie toque código en la mitad.
 
-**[Slide 7] El constructor registra el cierre** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 7] El constructor registra el cierre** — programa completo (43 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 8] cerrarGuardando(): guardar antes de salir** — codigo (15 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 8] cerrarGuardando(): guardar antes de salir** — programa completo (48 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 9] Errores de integración y su síntoma** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Los errores de integración tienen firma propia y conviene reconocerlos por el síntoma.
   - Subrayar: Quinto, la unión del código de tres personas que trajeron cada una su propia clase Mascota con constructores distintos.
   - Subrayar: Y sexto, el clásico NullPointerException porque buscarPorId devuelve null cuando el ID no existe y nadie valida antes de usar el resultado.
 
-**[Slide 10] ServicioClinica: dueño de la lista** — codigo (12 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 10] ServicioClinica: dueño de la lista** — programa completo (44 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 **[Slide 11] El depurador de VS Code** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
 
 **[Slide 12] Integrar por goteo** — 4 ideas proyectadas; el desarrollo, en las notas del presentador.
   - Subrayar: Cuando algo se rompe, uno sabe exactamente qué fue lo último que tocó.
 
-**[Slide 13] registrar(): la regla vive en el servicio** — codigo (17 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 13] registrar(): la regla vive en el servicio** — programa completo (50 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
-**[Slide 14] registrarMascota(): la frontera con la interfaz** — codigo (13 lineas). Leerlo de arriba abajo y ejecutarlo en la demo.
+**[Slide 14] registrarMascota(): la frontera con la interfaz** — programa completo (50 lineas): se copia en Main.java y corre solo. Leerlo de arriba abajo y ejecutarlo; la salida esperada esta en las notas del presentador.
 
 ## Errores tipicos del docente que no domina el tema
 
