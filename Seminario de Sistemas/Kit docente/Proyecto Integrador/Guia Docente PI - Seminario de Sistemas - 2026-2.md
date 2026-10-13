@@ -39,14 +39,17 @@ Requisitos 20 · UML 25 · Interfaz 20 · Arquitectura de datos 15 · Plan de pr
 - Mockup que no cubre el flujo crítico (registrar → buscar → ver historial).
 - Diccionario de datos sin tipos ni restricciones.
 
-## Entrega (común a los cinco cursos)
+## Entrega y sustentación
 
-- **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
-- **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
-  **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás
-  entregables conservan su modalidad. Cada integrante sube el .zip del equipo desde su cuenta
-  (una entrega por estudiante).
-- **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
+- **Plazo único:** domingo 15 de noviembre de 2026, 11:59 p. m., en ExamLab.
+- **Un solo .zip** (cualquier tipo de archivo, máx. 50 MB) con:
+  - **Documento de diseño** — PDF: requisitos RF/RNF, casos de uso, diagrama de clases, diagrama dinámico (actividad o secuencia) y diccionario de datos con el formato de almacenamiento.
+  - **diagramas/** — Cada diagrama exportado en PNG, con su archivo fuente.
+  - **Mockup** — El PDF exportado de las pantallas. El enlace al mockup navegable (Figma, Penpot o Balsamiq) va dentro del documento de diseño.
+  - **Plan de pruebas** — Los casos de prueba, cada uno trazado al requisito que verifica.
+- **Enlace obligatorio:** la carpeta de Drive del equipo o el repositorio, con los mismos archivos.
+- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
+- **Sustentación:** jueves 19/11/2026, en la última clase (sesión 13, mismo día del Parcial 3), por Meet: 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
+- **Qué muestran:** el mockup navegable recorriendo el flujo crítico (registrar, buscar y ver el historial) y la trazabilidad de un requisito hasta su caso de uso y su caso de prueba.
 
 Enunciado del estudiante en `Clases/Proyecto Integrador/`.

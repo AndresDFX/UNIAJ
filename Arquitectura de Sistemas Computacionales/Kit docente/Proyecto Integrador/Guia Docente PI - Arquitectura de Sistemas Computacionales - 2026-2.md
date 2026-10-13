@@ -23,15 +23,18 @@ Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 
 > sustentaciones: no es autónoma y no es parcial. El paquete final se sube a ExamLab a más
 > tardar el **domingo 15/11/2026, 11:59 p. m.**; el 16/11 solo se defiende.
 
-## Entrega (común a los cinco cursos)
+## Entrega y sustentación
 
-- **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
-- **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
-  **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás
-  entregables conservan su modalidad. Cada integrante sube el .zip del equipo desde su cuenta
-  (una entrega por estudiante).
-- **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
+- **Plazo único:** domingo 15 de noviembre de 2026, 11:59 p. m., en ExamLab.
+- **Un solo .zip** (cualquier tipo de archivo, máx. 50 MB) con:
+  - **Documento de arquitectura** — PDF o DOCX: contexto, ADRs breves, riesgos, costos estimados en lenguaje cualitativo y las secciones de seguridad, monitoreo, rendimiento y escalabilidad.
+  - **diagramas/** — Componentes (C4), despliegue y flujo CI/CD, exportados en PNG, con su archivo fuente (.drawio o el texto Mermaid).
+  - **contenedores/** — El Dockerfile o el docker-compose.yml, y las capturas del lab (LabEx Docker Playground o Killercoda) con la fecha visible.
+  - **.github/workflows/** — El workflow de GitHub Actions (.yml) y el stub que compila y prueba.
+- **Enlace obligatorio:** el repositorio de GitHub donde está el workflow, o la carpeta de Drive del equipo si el workflow se entrega solo como archivo.
+- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
+- **Sustentación:** lunes 16/11/2026, en la última clase (sesión 13; es festivo, pero sí hay clase), por Meet: 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
+- **Qué muestran:** el diagrama de despliegue, el contenedor corriendo en el lab (o sus capturas, si la sesión del lab caducó) y el workflow con sus etapas.
 
 ## Rúbrica (100 pts)
 

@@ -23,21 +23,19 @@ Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 
 > sustentaciones: no es autónoma y no es parcial. El paquete final se sube a ExamLab a más
 > tardar el **domingo 15/11/2026, 11:59 p. m.**; el 16/11 solo se defiende.
 
-## Entrega (común a los cinco cursos)
+## Entrega y sustentación
 
-- **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
-- **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
-  **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás
-  entregables conservan su modalidad. Cada integrante sube el .zip del equipo desde su cuenta
-  (una entrega por estudiante).
-- **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
+- **Plazo único:** domingo 15 de noviembre de 2026, 11:59 p. m., en ExamLab.
+- **Un solo .zip** (cualquier tipo de archivo, máx. 50 MB) con:
+  - **scripts/** — Los scripts SQL, numerados en el orden en que se ejecutan: el DDL (tablas, llaves y restricciones), los roles y privilegios, los procedimientos, funciones y disparadores con sus casos de prueba, y las consultas de optimización antes y después. Corren en PostgreSQL tal cual, sin retoques.
+  - **Diagrama ER** — El modelo exportado en PNG o SVG: el mismo que implementa el DDL.
+  - **Informe** — PDF o DOCX: el plan de respaldo y recuperación, la justificación de cada optimización y el contrato de integración app ↔ BD con su ejemplo.
+  - **capturas/** — La ejecución de los scripts y de los casos de prueba, con la salida visible.
+- **Enlace obligatorio:** el repositorio de GitHub o la carpeta de Drive del equipo, con los mismos scripts.
+- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
+- **Sustentación:** lunes 16/11/2026, en la última clase (sesión 13; es festivo, pero sí hay clase), por Meet: 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
+- **Qué muestran:** ejecutar en vivo un procedimiento y un disparador con sus casos de prueba, y una consulta antes y después de optimizarla.
 
 ## Rúbrica (100 pts)
 
 Modelo/DDL 20 · Seguridad/respaldo 15 · Programables 25 · Optimización 15 · Integración 10 · Informe+sustentación 15.
-
-## Evidencias
-
-Dentro del .zip: scripts SQL · ER · capturas Live SQL/DB Fiddle · informe. Aparte, el enlace
-a GitHub o Drive. Sustentación de 15 min + 5 de preguntas.

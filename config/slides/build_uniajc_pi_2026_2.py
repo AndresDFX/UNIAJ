@@ -69,11 +69,12 @@ def _plat():
 
 
 # ---------------------------------------------------------------------------
-# Entrega y sustentacion: COMUNES a los cinco cursos (decision docente, 13/10/2026)
+# Entrega y sustentacion: lo COMUN a los cinco cursos (decision docente, 13/10/2026)
 #
-# Un solo plazo para los siete grupos, una sola forma de entregar y la misma duracion de
-# sustentacion. Viven aqui, una vez, porque repetidas en cada curso divergieron: cuatro
-# cursos decian 5-8 min de sustentacion e Introduccion 9 + 3.
+# Comun es solo esto: un plazo para los siete grupos, un .zip de hasta 50 MB con un enlace
+# obligatorio, cada integrante sube la entrega de su equipo y la sustentacion dura 15 + 5
+# minutos. Repetidas en cada curso, estas reglas divergieron (cuatro cursos decian 5-8 min de
+# sustentacion e Introduccion 9 + 3); por eso viven aqui, una vez.
 # ---------------------------------------------------------------------------
 
 #: Modalidad del PI en los cinco cursos este semestre (decision docente, 13/10/2026): antes
@@ -85,9 +86,124 @@ PLAZO = "domingo 15 de noviembre de 2026, 11:59 p. m."
 PLAZO_CORTO = "dom 15/11/2026, 11:59 p. m."
 SUSTENTACION = ("15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 "
                 "minutos); hablan todos los integrantes")
-ZIP = ("un solo archivo .zip con todo —código, documentos, diagramas y capturas—; dentro "
-       "puede ir cualquier tipo de archivo, y pesa como máximo 50 MB")
-ENLACE = "el enlace al repositorio de GitHub o a la carpeta de Drive del proyecto"
+ZIP = "un solo archivo .zip —dentro puede ir cualquier tipo de archivo; máximo 50 MB—"
+QUIEN_SUBE = ("@@Cada integrante sube la entrega del equipo@@ desde su propia cuenta: el mismo "
+              ".zip y el mismo enlace; una sola entrega por estudiante.")
+
+
+# ---------------------------------------------------------------------------
+# Plantilla de entrega de CADA curso: especifica, nunca generica (decision docente, 13/10/2026)
+#
+# NOTA PARA LAS SIGUIENTES VERSIONES. Que va dentro del .zip, que enlace se pide y que se
+# muestra en la sustentacion se escribe con los entregables y las herramientas de ESE curso.
+# Hubo un texto unico para los cinco («codigo, documentos, diagramas y capturas»): le pedia
+# codigo a Introduccion, donde no se programa, y no le decia a ningun estudiante que archivos
+# de su curso se califican. Cada fila sale de los entregables que el enunciado del curso ya
+# exige —aqui no se inventan requisitos: se dice como se empacan—. Si cambia un entregable o
+# se agrega un curso, se cambia o se agrega SU entrada; lo comun sigue arriba. El enunciado,
+# la guia docente (.docx) y la guia en Markdown leen la misma entrada, asi no se desalinean.
+# Los textos van con tildes: los enunciados de Prog. II y Seminario se las quitan al imprimir.
+# ---------------------------------------------------------------------------
+
+ENTREGA = {
+    "bd2": {
+        "zip": [
+            ("scripts/", "Los scripts SQL, numerados en el orden en que se ejecutan: el DDL "
+             "(tablas, llaves y restricciones), los roles y privilegios, los procedimientos, "
+             "funciones y disparadores con sus casos de prueba, y las consultas de optimización "
+             "antes y después. Corren en PostgreSQL tal cual, sin retoques."),
+            ("Diagrama ER", "El modelo exportado en PNG o SVG: el mismo que implementa el DDL."),
+            ("Informe", "PDF o DOCX: el plan de respaldo y recuperación, la justificación de "
+             "cada optimización y el contrato de integración app ↔ BD con su ejemplo."),
+            ("capturas/", "La ejecución de los scripts y de los casos de prueba, con la salida "
+             "visible."),
+        ],
+        "enlace": "el repositorio de GitHub o la carpeta de Drive del equipo, con los mismos "
+                  "scripts",
+        "cuando": "lunes 16/11/2026, en la última clase (sesión 13; es festivo, pero sí hay "
+                  "clase), por Meet",
+        "muestra": "ejecutar en vivo un procedimiento y un disparador con sus casos de prueba, "
+                   "y una consulta antes y después de optimizarla",
+    },
+    "arq": {
+        "zip": [
+            ("Documento de arquitectura", "PDF o DOCX: contexto, ADRs breves, riesgos, costos "
+             "estimados en lenguaje cualitativo y las secciones de seguridad, monitoreo, "
+             "rendimiento y escalabilidad."),
+            ("diagramas/", "Componentes (C4), despliegue y flujo CI/CD, exportados en PNG, con "
+             "su archivo fuente (.drawio o el texto Mermaid)."),
+            ("contenedores/", "El Dockerfile o el docker-compose.yml, y las capturas del lab "
+             "(LabEx Docker Playground o Killercoda) con la fecha visible."),
+            (".github/workflows/", "El workflow de GitHub Actions (.yml) y el stub que compila "
+             "y prueba."),
+        ],
+        "enlace": "el repositorio de GitHub donde está el workflow, o la carpeta de Drive del "
+                  "equipo si el workflow se entrega solo como archivo",
+        "cuando": "lunes 16/11/2026, en la última clase (sesión 13; es festivo, pero sí hay "
+                  "clase), por Meet",
+        "muestra": "el diagrama de despliegue, el contenedor corriendo en el lab (o sus "
+                   "capturas, si la sesión del lab caducó) y el workflow con sus etapas",
+    },
+    "prog2": {
+        "zip": [
+            ("proyecto/", "El proyecto Java completo: la carpeta src con todos los .java, listo "
+             "para compilar y ejecutar. Sin carpetas de compilación (bin, out, target): pesan y "
+             "no se califican."),
+            ("datos/", "El archivo .csv o .txt con registros de prueba: el mismo que la "
+             "aplicación lee al arrancar."),
+            ("Manual de usuario", "PDF de 1 a 2 páginas con capturas de la interfaz."),
+        ],
+        "enlace": "el repositorio de GitHub con el mismo código, o la carpeta de Drive del "
+                  "equipo",
+        "cuando": "miércoles 18/11/2026, en la última clase (sesión 13, mismo día del Parcial "
+                  "3), por Meet",
+        "muestra": "la aplicación corriendo en vivo: registrar una mascota, buscarla por su ID, "
+                   "escribir un dato inválido sin que se cierre, y cerrar y volver a abrir para "
+                   "mostrar que los datos siguen ahí",
+    },
+    "seminario": {
+        "zip": [
+            ("Documento de diseño", "PDF: requisitos RF/RNF, casos de uso, diagrama de clases, "
+             "diagrama dinámico (actividad o secuencia) y diccionario de datos con el formato "
+             "de almacenamiento."),
+            ("diagramas/", "Cada diagrama exportado en PNG, con su archivo fuente."),
+            ("Mockup", "El PDF exportado de las pantallas. El enlace al mockup navegable "
+             "(Figma, Penpot o Balsamiq) va dentro del documento de diseño."),
+            ("Plan de pruebas", "Los casos de prueba, cada uno trazado al requisito que "
+             "verifica."),
+        ],
+        "enlace": "la carpeta de Drive del equipo o el repositorio, con los mismos archivos",
+        "cuando": "jueves 19/11/2026, en la última clase (sesión 13, mismo día del Parcial 3), "
+                  "por Meet",
+        "muestra": "el mockup navegable recorriendo el flujo crítico (registrar, buscar y ver "
+                   "el historial) y la trazabilidad de un requisito hasta su caso de uso y su "
+                   "caso de prueba",
+    },
+    "intro": {
+        "zip": [
+            ("Informe final", "PDF de 9 a 11 páginas con las 12 secciones (sección 5)."),
+            ("prototipo/", "Las imágenes del prototipo v1 (Clase 10) y v2 (Clase 11), en PNG o "
+             "PDF. El enlace al prototipo navegable va en la sección 7 del informe."),
+            ("Registro de IA", "El de la Clase 11, exportado en PDF desde el documento del "
+             "equipo: el prompt completo, las tres variantes, la elegida con su razón, lo "
+             "corregido a mano y lo descartado."),
+            ("Ficha de avance", "La de la Clase 12, exportada en PDF: los hallazgos de la "
+             "prueba con la persona ajena al equipo, con su tipo, y el plan de ajustes."),
+        ],
+        "enlace": "la carpeta de Drive del equipo —la de la bitácora—, compartida con permiso "
+                  "de lector",
+        # ExamLab no tiene los equipos de Introduccion cargados: mientras eso no cambie, la
+        # entrega (que es del equipo) la sube cada integrante desde su propia cuenta.
+        "quien_sube": "@@Cada integrante sube la entrega del equipo desde su propia cuenta@@ "
+                      "(ExamLab todavía no tiene los equipos cargados): el mismo .zip y el "
+                      "mismo enlace, una sola entrega por estudiante.",
+        "cuando": "en la última clase de su grupo (SB141C y LB141F martes 17/11; SB141B "
+                  "jueves 19/11), por Microsoft Teams",
+        "corte": "Se corta a los 15 minutos, sin excepción.",
+        "muestra": "el prototipo navegable, recorriendo en vivo una de las tareas del guion de "
+                   "prueba de principio a fin, como si funcionara",
+    },
+}
 
 
 def _sin_tildes(texto):
@@ -96,19 +212,24 @@ def _sin_tildes(texto):
     return "".join(c for c in s if unicodedata.category(c) != "Mn")
 
 
-def entrega_y_sustentacion(doc, titulo, sustentacion, *, que_se_sube=None, quien_sube=None,
-                           sin_tildes=False):
-    """Seccion del enunciado: plazo unico, que se sube, enlace obligatorio y sustentacion."""
+def _linea_sustentacion(e):
+    return e["cuando"] + ": " + SUSTENTACION + "." + (" " + e["corte"] if e.get("corte") else "")
+
+
+def entrega_y_sustentacion(doc, curso, titulo, *, sin_tildes=False):
+    """Seccion del enunciado: lo comun (plazo, .zip, quien sube, 15 + 5) y la plantilla del curso."""
+    e = ENTREGA[curso]
     f = _sin_tildes if sin_tildes else str
     h2(doc, f(titulo))
+    bullets(doc, [f("@@Plazo único:@@ " + PLAZO + ", en " + _plat() + "."),
+                  f("@@Qué se sube:@@ " + ZIP + ", con esto adentro:")])
+    table(doc, [f("En el .zip"), f("Qué contiene")], [[f(a), f(b)] for a, b in e["zip"]],
+          anchos=[1.7, 5.1])
     bullets(doc, [f(x) for x in [
-        "@@Plazo único:@@ " + PLAZO + ", en " + _plat() + ".",
-        "@@Qué se sube:@@ " + (que_se_sube or ZIP) + ".",
-        "@@Enlace obligatorio:@@ junto al .zip va " + ENLACE + ".",
-        quien_sube or ("@@Cada integrante sube la entrega del equipo@@ desde su propia "
-                       "cuenta: el mismo .zip y el mismo enlace; una sola entrega por "
-                       "estudiante."),
-        "@@Sustentación:@@ " + sustentacion,
+        "@@Enlace obligatorio:@@ junto al .zip, " + e["enlace"] + ".",
+        e.get("quien_sube", QUIEN_SUBE),
+        "@@Sustentación:@@ " + _linea_sustentacion(e),
+        "@@Qué se muestra en la sustentación:@@ " + e["muestra"] + ".",
     ]])
 
 
@@ -125,17 +246,37 @@ def modalidad_equipo(doc, *, sin_tildes=False):
          shade="FFF8D6", space_after=8)
 
 
-def entrega_docente(doc, sustentacion, *, quien_sube=None):
-    """Lo mismo, en la guia docente: para responder dudas sin abrir el enunciado."""
-    h2(doc, "Entrega y sustentación (común a los cinco cursos)")
-    bullets(doc, [
-        "Plazo único en ExamLab: " + PLAZO + ".",
-        "Se sube " + ZIP + ", y " + ENLACE + " (obligatorio).",
-        quien_sube or ("Proyecto en equipo de 4 a 5 integrantes (máximo 5); solo el proyecto, "
-                       "los demás entregables conservan su modalidad. Cada integrante sube el "
-                       ".zip del equipo desde su cuenta: una entrega por estudiante."),
-        "Sustentación: " + sustentacion,
-    ])
+def entrega_docente(doc, curso, *, sin_tildes=False):
+    """La misma plantilla en la guia docente, con lo que hay que revisar al calificar."""
+    e = ENTREGA[curso]
+    f = _sin_tildes if sin_tildes else str
+    h2(doc, f("Entrega y sustentación"))
+    bullets(doc, [f(x) for x in [
+        "Plazo único en ExamLab: " + PLAZO + ". " + ZIP[0].upper() + ZIP[1:] + ", y " +
+        e["enlace"] + " (obligatorio).",
+        "Proyecto " + EQUIPO + " —solo el proyecto: los demás entregables conservan su "
+        "modalidad—. " + e.get("quien_sube", QUIEN_SUBE),
+        "Sustentación: " + _linea_sustentacion(e),
+        "Lo que deben mostrar: " + e["muestra"] + ".",
+    ]])
+    h3(doc, f("Qué revisar en el .zip"))
+    table(doc, [f("En el .zip"), f("Qué debe traer")], [[f(a), f(b)] for a, b in e["zip"]],
+          anchos=[1.7, 5.1])
+
+
+def _md_entrega(curso):
+    """La seccion de entrega de la guia en Markdown, desde la misma plantilla del curso."""
+    e = ENTREGA[curso]
+    md = (lambda t: re.sub(r"@@(.*?)@@", r"**\1**", t))
+    filas = "\n".join("  - **%s** — %s" % (a, b) for a, b in e["zip"])
+    return ("## Entrega y sustentación\n\n"
+            "- **Plazo único:** " + PLAZO + ", en ExamLab.\n"
+            "- **Un solo .zip** (cualquier tipo de archivo, máx. 50 MB) con:\n" + filas + "\n"
+            "- **Enlace obligatorio:** " + e["enlace"] + ".\n"
+            "- **Proyecto " + EQUIPO + "** — solo el proyecto: los demás entregables "
+            "conservan su modalidad. " + md(e.get("quien_sube", QUIEN_SUBE)) + "\n"
+            "- **Sustentación:** " + _linea_sustentacion(e) + "\n"
+            "- **Qué muestran:** " + e["muestra"] + ".\n")
 
 
 def _shade(paragraph, fill: str) -> None:
@@ -205,9 +346,14 @@ def bullets(doc, items):
         _run_inline(p, it, size=11, color=GRIS)
 
 
-def table(doc, headers, rows):
+def table(doc, headers, rows, anchos=None):
+    """Tabla con encabezado azul. `anchos` (pulgadas, uno por columna; el ancho util de la
+    pagina es 6.8): sin ellos Word reparte en partes iguales y una columna de una palabra se
+    come media pagina mientras la de texto largo se estira hacia abajo."""
     t = doc.add_table(rows=1 + len(rows), cols=len(headers))
     t.style = "Table Grid"
+    if anchos:
+        t.autofit = False
     for i, h in enumerate(headers):
         cell = t.rows[0].cells[i]
         cell.text = ""
@@ -230,6 +376,10 @@ def table(doc, headers, rows):
                 shd.set(qn("w:val"), "clear")
                 shd.set(qn("w:fill"), "F2F2F2")
                 cell._tc.get_or_add_tcPr().append(shd)
+    if anchos:
+        for fila in t.rows:
+            for celda, ancho in zip(fila.cells, anchos):
+                celda.width = Inches(ancho)
     para(doc, "", space_after=4)
 
 
@@ -379,8 +529,8 @@ def enunciado_bd2(doc):
 
     h2(doc, "5. Herramientas (gratis + navegador)")
     bullets(doc, [
-        "SQL: DB Fiddle, OneCompiler SQL, SQLTest.online o RunSQL.",
-        "Procedimientos / PL-SQL: Oracle Live SQL (cuenta free, sin tarjeta).",
+        "SQL y PL/pgSQL (procedimientos, funciones y disparadores): PostgreSQL, el mismo "
+        "motor de ExamLab, o DB Fiddle con PostgreSQL.",
         "Diagramas: draw.io / diagrams.net · Excalidraw.",
         "Entrega: documentos en Google Docs/Drive o Word Online, dentro del .zip que se sube "
         "a ExamLab.",
@@ -418,10 +568,7 @@ def enunciado_bd2(doc):
         "No se copia un enunciado de otra institución: el dominio es VetCare DB UNIAJC.",
     ])
 
-    entrega_y_sustentacion(
-        doc, "9. Entrega y sustentación",
-        "lunes 16/11/2026, en la última clase (sesión 13; es festivo, pero sí hay clase), "
-        "por Meet: " + SUSTENTACION + ".")
+    entrega_y_sustentacion(doc, "bd2", "9. Entrega y sustentación")
 
 
 def guia_bd2(doc):
@@ -454,7 +601,7 @@ def guia_bd2(doc):
               ["13", "16/11", "Clase 15",
                "Sesión síncrona de sustentaciones: turnos de 20 min (15 + 5), preguntas y cierre"],
           ])
-    entrega_docente(doc, "lunes 16/11 (festivo, sí hay clase), por Meet: " + SUSTENTACION + ".")
+    entrega_docente(doc, "bd2")
     h2(doc, "Rúbrica detallada (calificar sobre 100 → escala a 20% del corte)")
     bullets(doc, [
         "Modelo/DDL (20): normalización razonable, FK, constraints, nombres claros.",
@@ -467,11 +614,8 @@ def guia_bd2(doc):
         "Informe+sustentación (15): 15 min de exposición + 5 de preguntas; preguntas cruzadas "
         "al azar sobre cualquier parte del trabajo.",
     ])
-    h2(doc, "Evidencias a pedir")
+    h2(doc, "En la sustentación, además")
     bullets(doc, [
-        "El .zip (scripts .sql, diagrama, informe, capturas) Y el enlace al repositorio o a la "
-        "carpeta de Drive: los dos son obligatorios.",
-        "Capturas de ejecución en Live SQL / DB Fiddle.",
         "Reparto del guion por bloques temáticos y quién del equipo presenta qué.",
     ])
     h2(doc, "Post-clase Padlet")
@@ -601,10 +745,7 @@ def enunciado_arq(doc):
         "No se pide producción real en Internet: el foco es diseño + simulación en labs gratis.",
     ])
 
-    entrega_y_sustentacion(
-        doc, "9. Entrega y sustentación",
-        "lunes 16/11/2026, en la última clase (sesión 13; es festivo, pero sí hay clase), "
-        "por Meet: " + SUSTENTACION + ".")
+    entrega_y_sustentacion(doc, "arq", "9. Entrega y sustentación")
 
 
 def guia_arq(doc):
@@ -636,7 +777,7 @@ def guia_arq(doc):
               ["13", "16/11", "Clase 15",
                "Sesión síncrona de sustentaciones: turnos de 20 min (15 + 5), preguntas y cierre"],
           ])
-    entrega_docente(doc, "lunes 16/11 (festivo, sí hay clase), por Meet: " + SUSTENTACION + ".")
+    entrega_docente(doc, "arq")
     h2(doc, "Rúbrica detallada")
     bullets(doc, [
         "Dominio/servicio (15): problema real, límites claros, no «todo AWS».",
@@ -646,12 +787,6 @@ def guia_arq(doc):
         "Seguridad/costos/escala (10): amenazas básicas, estimación cualitativa, autoescalado conceptual.",
         "Sustentación (15): 15 min de exposición + 5 de preguntas al azar a cualquier "
         "integrante sobre cualquier parte; penalizar que hable solo uno.",
-    ])
-    h2(doc, "Evidencias")
-    bullets(doc, [
-        "El .zip (con .yml, Dockerfile, diagramas PNG, informe) Y el enlace al repo GitHub o a "
-        "la carpeta de Drive: los dos son obligatorios.",
-        "Enlace Killercoda/LabEx o capturas con timestamp.",
     ])
 
 
@@ -784,10 +919,7 @@ def enunciado_prog2(doc):
               ["Sustentacion", "15", "Se pregunta al azar a cualquier integrante sobre cualquier parte"],
           ])
 
-    entrega_y_sustentacion(
-        doc, "8. Entrega y sustentacion",
-        "miercoles 18/11/2026, en la ultima clase (sesion 13, mismo dia del Parcial 3), por "
-        "Meet: " + SUSTENTACION + ".", sin_tildes=True)
+    entrega_y_sustentacion(doc, "prog2", "8. Entrega y sustentacion", sin_tildes=True)
 
 
 def guia_prog2(doc):
@@ -835,15 +967,7 @@ def guia_prog2(doc):
         "Que uno solo del equipo haya programado todo: por eso las preguntas al azar a "
         "cualquier integrante en la sustentacion.",
     ])
-    h2(doc, "Evidencias a pedir")
-    bullets(doc, [
-        "El .zip con el codigo fuente compilable Y el enlace al repositorio: los dos son "
-        "obligatorios.",
-        "Archivo .csv/.txt con datos de prueba.",
-        "Captura de la aplicacion corriendo + manual breve.",
-    ])
-    entrega_docente(doc, "miercoles 18/11 (mismo dia del Parcial 3), por Meet: "
-                    + SUSTENTACION + ".")
+    entrega_docente(doc, "prog2", sin_tildes=True)
 
 
 def enunciado_seminario(doc):
@@ -938,10 +1062,7 @@ def enunciado_seminario(doc):
               ["Sustentacion", "10", "Se pregunta al azar a cualquier integrante sobre cualquier parte"],
           ])
 
-    entrega_y_sustentacion(
-        doc, "8. Entrega y sustentacion",
-        "jueves 19/11/2026, en la ultima clase (sesion 13, mismo dia del Parcial 3), por "
-        "Meet: " + SUSTENTACION + ".", sin_tildes=True)
+    entrega_y_sustentacion(doc, "seminario", "8. Entrega y sustentacion", sin_tildes=True)
 
 
 def guia_seminario(doc):
@@ -990,16 +1111,7 @@ def guia_seminario(doc):
         "Mockup bonito que no cubre el flujo critico (registrar → buscar → ver historial).",
         "Diccionario de datos sin tipos ni restricciones: queda inservible para quien programe.",
     ])
-    h2(doc, "Evidencias a pedir")
-    bullets(doc, [
-        "Documento de diseno (PDF o DOCX) con RF/RNF, UML y diccionario de datos.",
-        "Enlace al mockup navegable (Figma/Penpot) o PDF exportado.",
-        "Plan de pruebas con casos trazados a requisitos.",
-        "Todo dentro del .zip, Y el enlace a la carpeta de Drive o al repositorio: los dos son "
-        "obligatorios.",
-    ])
-    entrega_docente(doc, "jueves 19/11 (mismo dia del Parcial 3), por Meet: "
-                    + SUSTENTACION + ".")
+    entrega_docente(doc, "seminario", sin_tildes=True)
 
 
 # ---------------------------------------------------------------------------
@@ -1031,24 +1143,10 @@ Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 
 > sustentaciones: no es autónoma y no es parcial. El paquete final se sube a ExamLab a más
 > tardar el **domingo 15/11/2026, 11:59 p. m.**; el 16/11 solo se defiende.
 
-## Entrega (común a los cinco cursos)
-
-- **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
-- **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
-  **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás
-  entregables conservan su modalidad. Cada integrante sube el .zip del equipo desde su cuenta
-  (una entrega por estudiante).
-- **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
-
+{{entrega}}
 ## Rúbrica (100 pts)
 
 Modelo/DDL 20 · Seguridad/respaldo 15 · Programables 25 · Optimización 15 · Integración 10 · Informe+sustentación 15.
-
-## Evidencias
-
-Dentro del .zip: scripts SQL · ER · capturas Live SQL/DB Fiddle · informe. Aparte, el enlace
-a GitHub o Drive. Sustentación de 15 min + 5 de preguntas.
 """
 
 MD_ARQ = """# Guía docente — Proyecto Integrador · Arquitectura · 2026-2
@@ -1076,16 +1174,7 @@ Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 
 > sustentaciones: no es autónoma y no es parcial. El paquete final se sube a ExamLab a más
 > tardar el **domingo 15/11/2026, 11:59 p. m.**; el 16/11 solo se defiende.
 
-## Entrega (común a los cinco cursos)
-
-- **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
-- **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
-  **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás
-  entregables conservan su modalidad. Cada integrante sube el .zip del equipo desde su cuenta
-  (una entrega por estudiante).
-- **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
-
+{{entrega}}
 ## Rúbrica (100 pts)
 
 Dominio/servicio 15 · Diagramas 25 · Contenedores 20 · CI/CD 15 · Seg/costos/escala 10 · Informe+sustentación 15.
@@ -1182,14 +1271,10 @@ def anexo_caso_estudio(doc, meta: dict):
 # fechas de cada grupo, que ya estan en su propio CALENDARIO_2026-2. Por eso
 # este documento ancla las etapas a la sesion y remite al calendario del grupo.
 # Solo fecha dos cosas: el plazo unico de entrega (comun a los cinco cursos) y
-# el dia de la exposicion final de cada grupo.
+# el dia de la exposicion final de cada grupo. Lo leen estudiantes de PRIMER
+# semestre y en el curso no se programa: por eso explica cada palabra y le da al
+# prototipo una seccion propia (ver enunciado_intro_ing).
 # ---------------------------------------------------------------------------
-
-#: ExamLab no tiene los equipos cargados: mientras eso no cambie, el informe (que es del
-#: equipo) lo sube cada integrante desde su propia cuenta.
-INTRO_QUIEN_SUBE = ("@@Cada integrante sube la entrega del equipo desde su propia cuenta@@ "
-                    "(ExamLab todavía no tiene los equipos cargados): el mismo .zip y el "
-                    "mismo enlace, una sola entrega por estudiante.")
 
 INTRO_ING_META = {
     "titulo": "Proyecto Integrador 2026-2 — Proyecto de equipo",
@@ -1204,44 +1289,251 @@ INTRO_ING_META = {
 }
 
 
+#: Que Clase(s) cubre cada sesion de Introduccion, igual en los tres grupos. La tabla «sesion
+#: por sesion» del enunciado se apoya en esto y se comprueba contra el calendario al generar:
+#: si el calendario cambia y esta tabla no, el build falla en vez de publicar un mapa equivocado.
+INTRO_SESIONES = {1: [1], 2: [2, 3], 3: [4, 5], 4: [6], 5: [7, 8], 6: [9, 10], 7: [11],
+                  8: [12], 9: [13], 10: [14], 11: [15, 16]}
+
+
+def _verificar_sesiones_intro():
+    import json
+    ruta = ROOT / "config" / "calendario" / "introduccion_ingenieria_2026_2.json"
+    grupos = json.loads(ruta.read_text(encoding="utf-8"))["grupos"]
+    for g in (grupos.values() if isinstance(grupos, dict) else grupos):
+        real = {int(s["sesion"]): [int(c) for c in s["clases_material"]] for s in g["sesiones"]}
+        if real != INTRO_SESIONES:
+            raise SystemExit("Introduccion %s: el calendario reparte las clases distinto de "
+                             "INTRO_SESIONES; corrija la tabla del enunciado." % g.get("grupo"))
+
+
 def enunciado_intro_ing(doc):
+    """Enunciado para estudiantes de PRIMER semestre: todo explicado, nada dado por sabido.
+
+    En este curso no se programa (Clase 1: «la programacion se aprende en otros cursos»). Por
+    eso el prototipo tiene seccion propia: la palabra les hace pensar en una app que funciona,
+    y el curso pide otra cosa —baja fidelidad, navegable, probada con alguien de afuera—. Todo
+    lo que se explica aqui sale de las Clases 10, 11 y 12 (teoria, ejemplo de la biblioteca y
+    metodo de prueba): el enunciado no pide nada que esas clases no ensenen.
+    """
+    _verificar_sesiones_intro()
     portada_estudiante(doc, INTRO_ING_META)
 
-    h2(doc, "1. Propósito")
+    h2(doc, "1. De qué se trata")
     para(doc,
-         "Este curso no se aprueba con un examen final: se aprueba con un proyecto de "
-         "equipo que arranca desde la primera sesión y se defiende en la última semana "
-         "de clases. Es una propuesta de mejora tecnológica para un problema real del "
-         "entorno de ustedes. No hay que programarla: hay que diseñarla y defenderla con "
-         "evidencia.")
+         "Este curso no se aprueba con un examen final: se aprueba con un @@proyecto de "
+         "equipo@@ que arranca en la primera sesión y se defiende en la última. El proyecto es "
+         "una @@propuesta de mejora tecnológica@@ para un problema real que ustedes conocen "
+         "—en el barrio, la universidad, el trabajo o la casa—: algo que hoy sale mal, que le "
+         "pasa a personas concretas y que se puede medir.")
+    para(doc,
+         "@@En este curso no se programa.@@ No hace falta saber programar ni instalar nada. Se "
+         "aprende lo que un ingeniero hace ANTES de construir: entender bien el problema, "
+         "decidir qué solución vale la pena, dibujarla como @@prototipo@@ y probarla con una "
+         "persona real para descubrir qué falla cuando corregirlo todavía es barato. Programar "
+         "se aprende en otros cursos de la carrera; aquí se aprende a decidir qué vale la pena "
+         "programar.",
+         shade="E8F4FA")
+    para(doc, "Al final del semestre el equipo entrega tres cosas:")
+    bullets(doc, [
+        "@@Un prototipo@@ de la solución, en dos versiones y probado con una persona ajena al "
+        "equipo (sección 4).",
+        "@@Un informe final@@ de 9 a 11 páginas, con 12 secciones (sección 5).",
+        "@@Una exposición final@@ en vivo: 15 minutos más 5 de preguntas (sección 6).",
+    ])
     para(doc,
          "Peso: 40% del Corte 3 (exposición final 15% + informe final 20% + asistencia "
          "5%), más una parte de las exposiciones y actividades en clase de los Cortes 1 y "
          "2 (ver el desglose completo en el Acuerdo Pedagógico y en su CALENDARIO_2026-2).")
     modalidad_equipo(doc)
 
-    h2(doc, "2. Cómo se construye, etapa por etapa")
-    table(doc,
-          ["Etapa", "Qué queda listo"],
-          [
-              ["1 · Problema y propuesta inicial",
-               "Problema del entorno con su cifra, a quién le pasa y las causas "
-               "principales. Con esto cierra el Corte 1."],
-              ["2 · Ciclo de vida y prototipo",
-               "Requisitos, alternativas y decisión, prototipo de baja fidelidad probado "
-               "con una persona ajena al equipo. Con esto cierra el Corte 2."],
-              ["3 · Evaluación de impacto y ensayo",
-               "Impacto positivo y negativo con mitigación, limitaciones y siguiente "
-               "paso, guion y ensayo de la exposición final."],
-              ["4 · Informe y exposición final",
-               "El informe final se entrega en ExamLab a más tardar el domingo 15/11/2026, "
-               "11:59 p. m.; la defensa en vivo es en la última clase. Con esto cierra el "
-               "Corte 3 y el curso."],
-          ])
-    para(doc,
-         "Las fechas exactas de cada etapa están en el calendario de su grupo.")
+    h2(doc, "2. Palabras que van a escuchar todo el semestre")
+    table(doc, ["Palabra", "Qué quiere decir en este proyecto"], [
+        ["Problema del entorno", "Algo que hoy sale mal, le pasa a personas concretas y se "
+         "puede medir. El equipo lo propone en la Clase 1 y lo deja cerrado en la Clase 6."],
+        ["Línea base", "La cifra de cómo está el problema hoy: cuántas personas lo sufren, "
+         "cuánto tiempo o dinero se pierde. Sin ella no se puede demostrar que algo mejoró."],
+        ["Criterio de éxito", "La cifra que, al final, dirá si la solución funcionó."],
+        ["Requisito y criterio de aceptación", "Lo que la solución tiene que hacer, y la "
+         "prueba concreta con la que se comprueba que lo hace."],
+        ["Alcance mínimo", "Lo que la solución SÍ hará este semestre. Todo lo demás se "
+         "escribe como «lo que no se hará», con su razón."],
+        ["Antecedente", "Una solución que ya existe para un problema parecido, con su "
+         "fuente. Sirve para no inventar lo que ya está inventado."],
+        ["Prototipo", "Un dibujo de la solución que otra persona puede recorrer como si "
+         "funcionara. Se hace sin programar (sección 4)."],
+        ["Persona ajena al equipo", "Alguien que no participó en el proyecto y que prueba el "
+         "prototipo. De ella se anota solo el rol —por ejemplo, «usuaria de la biblioteca»—, "
+         "nunca el nombre."],
+        ["Impacto y mitigación", "Lo que la solución cambia, para bien y para mal. La "
+         "mitigación es lo que se hace para reducir un impacto negativo."],
+        ["Bitácora y vocero", "La bitácora es el registro del equipo en su carpeta de Drive; "
+         "el vocero es quien habla por el equipo en cada sesión, y cambia cada vez."],
+    ], anchos=[1.9, 4.9])
 
-    h2(doc, "3. El informe final — 12 secciones (20% del curso)")
+    h2(doc, "3. El proyecto, sesión por sesión")
+    para(doc,
+         "Cada sesión deja lista una pieza del proyecto, y la siguiente trabaja sobre ella: si "
+         "una pieza queda pendiente, la sesión siguiente no tiene con qué arrancar. La "
+         "@@sesión@@ es el encuentro del calendario (11 en el semestre) y la @@clase@@ es el "
+         "tema (16); por eso algunas sesiones cubren dos clases. Las fechas de cada sesión "
+         "están en el CALENDARIO_2026-2 de su grupo.", size=10)
+    table(doc, ["Sesión", "Clase", "Qué queda listo para el proyecto"], [
+        ["1", "1", "El equipo, su carpeta compartida en Drive (con permiso de lectura para el "
+         "docente) y la ficha semilla: el primer problema candidato."],
+        ["2", "2 y 3", "Un problema real y medible, visto como un sistema completo —con "
+         "actores y frontera—, no como «una app que falta»."],
+        ["3", "4 y 5", "A quién podría perjudicar el proyecto y qué norma colombiana obliga a "
+         "cuidarlo (sobre todo si maneja datos de personas), y una restricción ambiental con "
+         "un indicador que se pueda medir."],
+        ["4", "6", "El problema cerrado: enunciado en una frase, línea base con cifra, árbol "
+         "de causas, actores y criterio de éxito. Cierra el Corte 1 (evaluación en ExamLab)."],
+        ["5", "7 y 8", "Los requisitos mínimos con su criterio de aceptación y el plan de "
+         "hitos; la alternativa elegida con su matriz de criterios y el alcance mínimo."],
+        ["6", "9 y 10", "Tres antecedentes con fuente verificable y la mejora que propone el "
+         "equipo; el prototipo v1 de baja fidelidad y su guion de prueba."],
+        ["7", "11", "El prototipo v2, mejorado con IA y corregido a mano, con el registro de "
+         "lo que se pidió y lo que se corrigió. Cierra el Corte 2 (evaluación en ExamLab)."],
+        ["Antes de la 8", "—", "La prueba: una persona ajena al equipo usa el prototipo v2 "
+         "navegable y el equipo anota lo que falló."],
+        ["8", "12", "La ficha de avance con los hallazgos de la prueba y el plan de ajustes "
+         "que sale de la retroalimentación del curso."],
+        ["9", "13", "La matriz de impacto social y ambiental: impactos positivos con "
+         "indicador y negativos con su mitigación."],
+        ["10", "14", "El guion de la exposición, las diapositivas, el reparto entre "
+         "integrantes, la demostración del prototipo y un plan B por si algo falla."],
+        ["—", "—", "Entrega en ExamLab del informe final y del prototipo: domingo 15/11/2026, "
+         "11:59 p. m. (sección 7)."],
+        ["11", "15 y 16", "La exposición final, la socialización del proyecto en la galería "
+         "del curso, la autoevaluación y la coevaluación."],
+    ], anchos=[1.0, 0.8, 5.0])
+
+    h2(doc, "4. El prototipo: qué es, cómo se hace y cómo se prueba")
+    para(doc,
+         "«Prototipo» suele hacer pensar en una aplicación que ya funciona. @@En este curso no "
+         "es eso.@@ Un prototipo es un @@dibujo de la solución que otra persona puede "
+         "recorrer@@, paso a paso, como si funcionara, para descubrir si la idea sirve antes de "
+         "gastar meses construyéndola. Se hace sin programar: con papel, con herramientas de "
+         "dibujo o con diapositivas enlazadas.")
+    h3(doc, "Qué es y qué no es")
+    bullets(doc, [
+        "@@Es una pregunta hecha objeto.@@ Se hace para responder algo concreto: ¿la gente "
+        "entiende esta pantalla?, ¿el flujo tiene sentido?, ¿le alcanza el tiempo?",
+        "@@No es la aplicación a medias.@@ No intenta ser el producto: puede ser de papel y no "
+        "tener datos reales, y aun así responde la pregunta.",
+        "@@Es desechable.@@ Se hace sabiendo que se va a cambiar o a tirar; por eso se dibuja "
+        "rápido y sin adornos. Un prototipo que da pesar tirar ya costó demasiado.",
+        "@@Se hace feo a propósito.@@ Delante de un dibujo a lápiz la gente dice qué no "
+        "entiende; delante de una pantalla con colores dice «está muy bonito», y eso no ayuda.",
+        "@@Se prueba con alguien de afuera.@@ Si solo lo vio el equipo, no probó nada.",
+    ])
+    para(doc,
+         "@@¿Y si la solución no es una aplicación?@@ Muchas no lo son: un formulario, un "
+         "procedimiento, una nueva forma de atender. Entonces el prototipo muestra los pasos "
+         "que vive la persona —tres pasos en vez de tres pantallas—, dibujados como un flujo "
+         "en diagrams.net (draw.io).", size=10)
+    h3(doc, "Las versiones del prototipo, en orden")
+    table(doc, ["Versión", "Cuándo", "Qué es", "Con qué se hace"], [
+        ["v1 · baja fidelidad", "Sesión 6 (Clase 10)",
+         "El camino principal del alcance mínimo en tres pantallas o tres pasos, con textos "
+         "reales, el estado vacío, el estado de error y el guion de prueba.",
+         "Papel y una foto legible, Excalidraw o draw.io"],
+        ["Navegable", "Después de la Clase 10, como trabajo independiente",
+         "La v1 pasada a diapositivas: una por pantalla y un enlace en cada botón hacia su "
+         "destino. En modo presentación se recorre como si funcionara.",
+         "Google Slides"],
+        ["v2 · con IA", "Sesión 7 (Clase 11)",
+         "La v1 mejorada con un asistente de IA: un prompt con contexto, tres variantes, una "
+         "elegida con su razón y corregida a mano. Se guarda el registro de todo eso, y la v2 "
+         "también queda navegable.",
+         "Asistente de IA gratuito, Excalidraw o draw.io, y Google Slides"],
+        ["Probada", "Antes de la sesión 8 (Clase 12)",
+         "La v2 navegable en manos de una persona ajena al equipo, con el guion de prueba. Lo "
+         "que falló se presenta en la Clase 12.",
+         "El prototipo navegable y el guion de tres tareas"],
+    ], anchos=[1.1, 1.3, 2.9, 1.5])
+    h3(doc, "Lo que todo prototipo tiene que tener")
+    bullets(doc, [
+        "@@Una frase de propósito en cada pantalla o paso:@@ «aquí el usuario averigua si el "
+        "libro está disponible». Si la frase necesita una «y», esa pantalla hace dos cosas y "
+        "hay que partirla.",
+        "@@Un solo camino principal,@@ grande y primero: lo que la persona va a hacer el 90 % "
+        "de las veces.",
+        "@@Textos reales, nunca relleno:@@ «Buscar título», no «texto aquí». El botón que no "
+        "se sabe cómo llamar es un botón que no se sabe qué hace.",
+        "@@El estado vacío y el estado de error:@@ qué ve la persona cuando no hay datos, "
+        "cuando no se encuentra nada o cuando algo falla. Ahí se cae casi todo prototipo.",
+        "@@Un destino para cada botón:@@ una flecha y una palabra que digan qué pasa al "
+        "tocarlo.",
+        "@@Datos inventados:@@ ningún nombre, cédula, teléfono, dirección ni foto de una "
+        "persona real, ni siquiera de ustedes.",
+        "@@El guion de prueba:@@ tres tareas que la persona de afuera intentará hacer sola, "
+        "sacadas de los criterios de aceptación de la Clase 7.",
+    ])
+    h3(doc, "Un ejemplo completo: la biblioteca del barrio")
+    para(doc,
+         "Es el caso que el curso resuelve en clase. Su alcance mínimo es una lista de los "
+         "libros que se prestan, que se consulta desde el celular con un enlace y sin crear "
+         "cuenta. El prototipo v1 tiene tres pantallas:")
+    bullets(doc, [
+        "@@1 · Consultar.@@ Aquí el usuario busca un título para saber si está disponible.",
+        "@@2 · Resultado.@@ Aquí el usuario ve si el título está disponible, prestado o no "
+        "está en la biblioteca: tres resultados posibles, no dos.",
+        "@@3 · Actualizar (solo la voluntaria).@@ Aquí la voluntaria marca un título como "
+        "prestado o devuelto, al cerrar el día.",
+    ])
+    para(doc,
+         "Cada frase tiene un solo verbo y un solo actor. Y como el equipo decidió que la lista "
+         "se actualiza una vez al día y no al minuto, la pantalla de resultado muestra la fecha "
+         "de la última actualización: así una decisión del proyecto se vuelve algo visible en "
+         "el prototipo.", size=10)
+    h3(doc, "Cómo se prueba con una persona ajena al equipo")
+    para(doc,
+         "Antes de la Clase 12, el equipo consigue a una persona que no participó en el "
+         "proyecto, le entrega el prototipo navegable y le pide las tres tareas del guion. "
+         "@@El equipo no ayuda ni explica:@@ observa en silencio y anota.")
+    bullets(doc, [
+        "@@Lo que hizo es el dato, no lo que dijo.@@ Si dudó cinco segundos frente a un botón, "
+        "eso pasó, aunque después diga «estaba clarísimo».",
+        "@@Se anota el tropiezo, no la solución:@@ «buscó el botón de volver en la esquina de "
+        "arriba» es un hallazgo; «hay que poner un botón arriba» es una conclusión apresurada.",
+        "@@Cada tropiezo se clasifica@@ con la tabla de abajo, porque cada tipo se arregla "
+        "distinto.",
+        "@@El mismo tropiezo en dos de tres personas es un defecto de diseño,@@ y esos se "
+        "arreglan primero. Lo que se decide no arreglar se escribe con su razón: también es "
+        "una decisión de ingeniería.",
+    ])
+    table(doc, ["Tipo de hallazgo", "Cómo se reconoce", "Qué se cambia"], [
+        ["Lenguaje", "Preguntó qué significa una palabra, o entendió otra cosa.",
+         "El texto. Es el arreglo más barato y el que más rinde."],
+        ["Flujo", "Hizo los pasos en otro orden, o se quedó sin saber dónde seguir.",
+         "El orden de las pantallas, o el botón que falta."],
+        ["Expectativa", "Buscó una función que no existe: «¿y aquí puedo reservarlo?».",
+         "Nada, si está fuera del alcance; pero el prototipo debe decirlo, no callarlo."],
+        ["Suposición nuestra", "Falló algo que el equipo daba por obvio: que tiene datos, que "
+         "sabe leer una tabla.", "La restricción. Es el hallazgo más caro y el más valioso."],
+    ], anchos=[1.4, 2.8, 2.6])
+    h3(doc, "Herramientas para el prototipo")
+    bullets(doc, [
+        "@@Papel y una foto legible:@@ es un entregable válido en este curso, y a veces el "
+        "mejor.",
+        "@@Excalidraw:@@ pantallas de baja fidelidad. Se ve dibujado a mano, y eso invita a "
+        "criticar. Abre sin cuenta.",
+        "@@diagrams.net (draw.io):@@ cuando la solución es un flujo o un proceso con "
+        "decisiones.",
+        "@@Google Slides:@@ el prototipo navegable, una diapositiva por pantalla y un enlace "
+        "en cada botón.",
+        "@@Asistente de IA@@ (gratuito): para el prototipo, solo en la Clase 11, entregando "
+        "el prompt y lo que se corrigió. Nunca se le pasan datos personales.",
+    ])
+    para(doc,
+         "Todas son gratuitas, abren en el navegador y no piden tarjeta. No se instala nada ni "
+         "se programa nada.", shade="FFF8D6", space_after=8)
+
+    h2(doc, "5. El informe final — 12 secciones (20% del curso)")
+    para(doc,
+         "Se escribe durante todo el semestre: once de las doce secciones salen de lo que cada "
+         "sesión deja listo (sección 3). Al final se revisa, se completa y se arma.", size=10)
     table(doc,
           ["#", "Sección", "Tiene que contener"],
           [
@@ -1259,32 +1551,37 @@ def enunciado_intro_ing(doc):
               ["6", "Alternativas y decisión",
                "Al menos dos alternativas, los criterios, la elegida y qué se sacrificó."],
               ["7", "La solución y el prototipo",
-               "Descripción, capturas y el recorrido principal paso a paso."],
+               "Descripción de la solución, capturas del prototipo v1 y v2, el enlace al "
+               "prototipo navegable y el recorrido principal paso a paso."],
               ["8", "Prueba y hallazgos",
-               "Con quién se probó (solo el rol, no el nombre), qué hizo, la "
-               "clasificación y el patrón."],
+               "Con quién se probó (solo el rol, no el nombre), qué tareas intentó, los "
+               "hallazgos con su tipo y el patrón; qué se arregló y qué no, con su razón."],
               ["9", "Impacto", "Positivos con indicador y negativos con mitigación."],
               ["10", "Limitaciones y siguiente paso",
                "Lo que se decidió no hacer, con el motivo, y por dónde seguiría."],
               ["11", "Declaración del uso de IA",
-               "Qué se pidió, qué se corrigió, qué no se le entregó."],
+               "Qué se le pidió (Clases 3 y 11), qué se corrigió a mano y qué no se le "
+               "entregó."],
               ["12", "Referencias",
                "Lo que se citó, en el formato acordado. Nada que no se haya leído."],
-          ])
+          ],
+          anchos=[0.4, 1.7, 4.7])
     para(doc, "Extensión total: 9 a 11 páginas. La extensión no es una virtud: un informe "
               "donde la decisión está en la página 18 es un informe que no se va a leer.",
          size=10)
 
-    h2(doc, "4. La exposición final (15% del curso)")
+    h2(doc, "6. La exposición final (15% del curso)")
     bullets(doc, [
         "15 minutos de exposición + 5 minutos de preguntas, por equipo (turno de 20 "
-        "minutos). Se corta a los 15 minutos sin excepción.",
+        "minutos). Se corta a los 15 minutos, sin excepción.",
         "Fecha: la última clase de su grupo — SB141C y LB141F el martes 17/11/2026; "
         "SB141B el jueves 19/11/2026.",
         "Formato: comparte pantalla un integrante; plan B = PDF/capturas en la carpeta "
         "del equipo, subidos antes de exponer.",
         "Todos los integrantes tienen que hablar, y quien responda una pregunta debe "
         "responder sobre SU propio tramo.",
+        "Repartan los 15 minutos entre los cinco tramos de la tabla. El tramo 3 —el "
+        "prototipo en vivo— es el que más puntos tiene: denle el tiempo que merece.",
     ])
     table(doc,
           ["Tramo", "Qué se busca", "Pts"],
@@ -1295,30 +1592,49 @@ def enunciado_intro_ing(doc):
               ["2 · Los afectados y la decisión",
                "Incluye un afectado que no es usuario y dice qué se sacrificó.", "20"],
               ["3 · La solución y el prototipo en vivo",
-               "Muestra una tarea cumpliéndose, no describe la pantalla.", "25"],
+               "Recorren el prototipo navegable en vivo y muestran una tarea cumpliéndose de "
+               "principio a fin —por ejemplo, una de las tres del guion de prueba—. No se "
+               "describe la pantalla: se usa.", "25"],
               ["4 · Lo que falló y lo que aprendimos",
                "Hallazgos con personas reales, qué se arregló y qué se decidió no "
                "arreglar.", "20"],
               ["5 · Impacto y siguiente paso",
                "Impacto positivo con número y el negativo con su mitigación.", "15"],
-          ])
+          ],
+          anchos=[2.0, 4.2, 0.6])
 
-    h2(doc, "5. Herramientas (gratis + navegador)")
+    entrega_y_sustentacion(doc, "intro", "7. Entrega en ExamLab")
+    h3(doc, "Cómo armar el .zip y el enlace, paso a paso")
     bullets(doc, [
-        "Bitácora y soporte de la exposición: Google Drive (Docs y Slides).",
-        "Diagramas y línea de tiempo: diagrams.net (draw.io) · Excalidraw para bocetos.",
+        "@@El .zip:@@ pongan los archivos en una carpeta, selecciónenla, clic derecho y "
+        "«Comprimir en archivo ZIP» (en versiones anteriores de Windows: «Enviar a» → "
+        "«Carpeta comprimida»; en Mac: «Comprimir»). Revisen que pese menos de 50 MB.",
+        "@@El nombre del archivo:@@ el del equipo y el grupo, por ejemplo «Proyecto - Equipo "
+        "Biblioteca - SB141C.zip».",
+        "@@El enlace de la carpeta:@@ en Drive, «Compartir» → «Cualquier persona con el "
+        "enlace» → «Lector», y copien el enlace.",
+        "@@Antes de subir:@@ abran el enlace en una ventana de incógnito. Si pide permiso, "
+        "el docente tampoco lo va a poder abrir.",
+    ])
+
+    h2(doc, "8. Herramientas (gratis + navegador)")
+    bullets(doc, [
+        "Bitácora, informe y soporte de la exposición: Google Drive (Docs y Slides).",
+        "Prototipo: papel y foto, Excalidraw, diagrams.net (draw.io) y Google Slides "
+        "(sección 4).",
         "Póster/infografía (opcional): Canva, alternativa Google Slides.",
-        "Asistente de IA (Gemini/Claude/ChatGPT, plan gratuito): solo en los momentos "
-        "puntuales que anuncie el docente, con declaración de qué se pidió y qué se "
-        "corrigió a mano.",
-        "Entrega de talleres, diagnóstico, evaluaciones de corte e informe final: ExamLab.",
+        "Asistente de IA (Gemini/Claude/ChatGPT, plan gratuito): solo en las Clases 3 y 11, "
+        "entregando el prompt y lo que se corrigió a mano. Nunca se le pasan datos "
+        "personales.",
+        "Entrega de talleres, diagnóstico, evaluaciones de corte, informe final y prototipo: "
+        "ExamLab.",
     ])
     para(doc,
          "Prohibido como requisito: cualquier nube que pida tarjeta de crédito. Nada de "
          "software de pago ni instalaciones obligatorias.",
          shade="FBE4E4", space_after=8)
 
-    h2(doc, "6. Modalidad de trabajo")
+    h2(doc, "9. Modalidad de trabajo")
     bullets(doc, [
         "Es un proyecto DE EQUIPO, no individual: el equipo del proyecto es de 4 a 5 "
         "integrantes (máximo 5) y se mantiene todo el semestre. El tamaño es regla del "
@@ -1329,26 +1645,17 @@ def enunciado_intro_ing(doc):
         "docente, uno por integrante.",
     ])
 
-    h2(doc, "7. Qué NO es este proyecto")
+    h2(doc, "10. Qué NO es este proyecto")
     bullets(doc, [
+        "No es una aplicación: no se programa, no se instala nada y no hace falta saber "
+        "programar. Se diseña, se prototipa y se prueba con personas.",
         "No es un examen final escrito: el Corte 3 no tiene evaluación escrita, se "
         "califica con producto (exposición + informe).",
-        "No hay que programarlo ni implementarlo: es una propuesta diseñada y defendida, "
-        "no un sistema en producción.",
         "No reemplaza las evaluaciones de corte de ExamLab de los Cortes 1 y 2: son "
         "evaluaciones distintas del mismo semestre.",
         "No tiene un dominio fijo: no es «CloudLite» ni ningún otro producto de otro "
         "curso — el problema lo elige cada equipo.",
     ])
-
-    entrega_y_sustentacion(
-        doc, "8. Entrega en ExamLab y exposición",
-        "en la última clase de su grupo (SB141C y LB141F martes 17/11; SB141B jueves "
-        "19/11), por Microsoft Teams: " + SUSTENTACION + ". Se corta a los 15 minutos.",
-        que_se_sube=("un solo archivo .zip con el informe final y todo lo que lo respalda "
-                     "—documentos, diagramas, capturas del prototipo—; dentro puede ir "
-                     "cualquier tipo de archivo, y pesa como máximo 50 MB"),
-        quien_sube=INTRO_QUIEN_SUBE)
 
 
 def guia_intro_ing(doc):
@@ -1362,6 +1669,11 @@ def guia_intro_ing(doc):
          "`config/calendario/introduccion_ingenieria_2026_2.json` para el calendario real "
          "de cada grupo — este documento ancla todo a la sesión, salvo el plazo único de "
          "entrega (dom 15/11) y el día de la exposición de cada grupo.")
+    para(doc,
+         "En este curso no se programa. El enunciado le explica al estudiante de primer "
+         "semestre qué es el prototipo (baja fidelidad, navegable, probado con una persona "
+         "ajena al equipo), sus versiones, lo que debe tener, el ejemplo de la biblioteca y "
+         "cómo se prueba: todo sale de las Clases 10, 11 y 12.", size=10)
     h2(doc, "Hitos docentes (por sesión — igual en los 3 grupos)")
     table(doc,
           ["Sesión", "Clase(s)", "Rol docente"],
@@ -1369,26 +1681,28 @@ def guia_intro_ing(doc):
               ["4", "Clase 6",
                "Cierra el Corte 1. Evaluación de corte en ExamLab (últimos 20 min) + "
                "revisar que el problema del entorno traiga cifra y a quién le pasa."],
+              ["6", "Clases 9 y 10",
+               "Prototipo v1: exigir textos reales, estado vacío y de error y un destino por "
+               "botón, y que se dibuje el alcance mínimo, no una idea nueva."],
               ["7", "Clase 11",
-               "Cierra el Corte 2. Evaluación de corte en ExamLab (últimos 20 min) + "
-               "verificar que el prototipo se haya probado con una persona ajena al "
-               "equipo."],
-              ["8 a 10", "Clases 12 a 14",
+               "Cierra el Corte 2. Evaluación de corte en ExamLab (últimos 20 min) + revisar "
+               "el registro de IA (prompt, tres variantes, correcciones y descartes) y pedir "
+               "la prueba con una persona ajena antes de la sesión 8."],
+              ["8", "Clase 12",
+               "Sin prueba hecha no hay ficha de avance: los hallazgos se cuentan por lo que "
+               "la persona hizo, con su tipo."],
+              ["9 y 10", "Clases 13 y 14",
                "Revisar impacto/mitigación y bloquear equipos que lleguen sin línea "
                "base o sin criterio de aceptación verificable."],
               ["—", "—",
-               "Plazo único del informe en ExamLab: domingo 15/11/2026, 11:59 p. m. Cada "
-               "integrante sube el .zip del equipo desde su cuenta."],
+               "Plazo único del informe y del prototipo en ExamLab: domingo 15/11/2026, "
+               "11:59 p. m. Cada integrante sube el .zip del equipo desde su cuenta."],
               ["11 (doble)", "Clases 15+16",
                "Sustentaciones en turnos de 20 min por equipo (15 + 5; se corta a los 15) y "
                "cierre del proyecto. SB141C y LB141F mar 17/11 · SB141B jue 19/11. El "
                "informe ya está entregado."],
           ])
-    entrega_docente(doc, "última clase de cada grupo (SB141C y LB141F mar 17/11 · SB141B jue "
-                    "19/11), por Teams: " + SUSTENTACION + "; se corta a los 15 minutos.",
-                    quien_sube=("Cada integrante sube el .zip del equipo desde su propia "
-                                "cuenta: ExamLab no tiene equipos cargados. Una entrega por "
-                                "estudiante."))
+    entrega_docente(doc, "intro")
     h2(doc, "Rúbrica detallada")
     bullets(doc, [
         "Exposición final (100 pts → 15% del curso): 5 tramos de 20/20/25/20/15 — ver "
@@ -1408,6 +1722,8 @@ def guia_intro_ing(doc):
         "con su mitigación.",
         "Equipos que dejan la prueba con persona ajena para el final: sin ella no hay "
         "hallazgos que mostrar en la exposición.",
+        "Equipos que intentan programar el prototipo: el curso pide baja fidelidad navegable, "
+        "y aprender a programarlo se come el tiempo de diseñar y de probar.",
     ])
     para(doc, "Enunciado del estudiante en `Clases/Proyecto Integrador/`, común a los "
               "tres grupos.", size=10)
@@ -1425,12 +1741,19 @@ los tres grupos SB141B, SB141C, LB141F.
 **Equipo del proyecto: 4 a 5 integrantes (máximo 5)**, el mismo todo el semestre. Es regla
 del proyecto, no de los talleres ni de las demás actividades.
 
+**En este curso no se programa.** El prototipo es de baja fidelidad y navegable, y se prueba
+con una persona ajena al equipo. El enunciado lo explica en detalle para primer semestre: qué
+es, sus versiones, lo que debe tener, el ejemplo de la biblioteca y cómo se prueba.
+
 ## Hitos (por sesión — igual en los 3 grupos; fecha real en el CALENDARIO de cada grupo)
 
 | Sesión | Clase(s) | Qué cierra |
 |---|---|---|
 | 4 | Clase 6 | Corte 1: problema y propuesta inicial + evaluación de corte en ExamLab |
-| 7 | Clase 11 | Corte 2: ciclo de vida y prototipo probado + evaluación de corte en ExamLab |
+| 6 | Clases 9 y 10 | Antecedentes + prototipo v1 de baja fidelidad y guion de prueba |
+| 7 | Clase 11 | Corte 2: prototipo v2 con IA y su registro + evaluación de corte en ExamLab |
+| antes de la 8 | — | Prueba del prototipo v2 con una persona ajena al equipo |
+| 8 | Clase 12 | Ficha de avance con los hallazgos y plan de ajustes |
 | 11 (doble) | Clases 15+16 | Corte 3: exposición final (15%, 15 + 5 min por equipo; se corta a los 15) e informe final (20%, ya entregado en ExamLab) |
 
 Exposición: SB141C y LB141F martes 17/11/2026 · SB141B jueves 19/11/2026.
@@ -1444,16 +1767,9 @@ Exposición: SB141C y LB141F martes 17/11/2026 · SB141B jueves 19/11/2026.
 - Alternativas descartadas sin motivo atado al dominio propio.
 - Consecuencias que solo listan lo positivo.
 - Prototipo sin probar con una persona ajena al equipo.
+- Equipos que intentan programar el prototipo: se come el tiempo de diseñar y de probar.
 
-## Entrega (común a los cinco cursos)
-
-- **Plazo único del informe:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
-- **Un solo .zip** con el informe y lo que lo respalda (cualquier tipo de archivo, máx. 50 MB)
-  **+ enlace obligatorio** a la carpeta de Drive o al repositorio de GitHub del equipo.
-- **Cada integrante sube la entrega del equipo desde su propia cuenta** (ExamLab no tiene
-  equipos cargados): una entrega por estudiante.
-- **Exposición:** 15 min + 5 de preguntas por equipo (turno de 20 min); se corta a los 15.
-
+{{entrega}}
 Enunciado del estudiante en `Clases/Proyecto Integrador/`, común a los tres grupos.
 """
 
@@ -1531,16 +1847,7 @@ POO 20 · Estructuras de datos 15 · GUI 20 · Manejo de errores 15 · Persisten
 - `try-catch` vacío que oculta el error.
 - Que uno solo del equipo haya programado todo → preguntas al azar a cualquier integrante en la sustentación.
 
-## Entrega (común a los cinco cursos)
-
-- **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
-- **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
-  **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás
-  entregables conservan su modalidad. Cada integrante sube el .zip del equipo desde su cuenta
-  (una entrega por estudiante).
-- **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
-
+{{entrega}}
 Enunciado del estudiante en `Clases/Proyecto Integrador/`.
 """
 
@@ -1585,19 +1892,18 @@ Requisitos 20 · UML 25 · Interfaz 20 · Arquitectura de datos 15 · Plan de pr
 - Mockup que no cubre el flujo crítico (registrar → buscar → ver historial).
 - Diccionario de datos sin tipos ni restricciones.
 
-## Entrega (común a los cinco cursos)
-
-- **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
-- **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
-  **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás
-  entregables conservan su modalidad. Cada integrante sube el .zip del equipo desde su cuenta
-  (una entrega por estudiante).
-- **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
-
+{{entrega}}
 Enunciado del estudiante en `Clases/Proyecto Integrador/`.
 """
 
+
+# Las guias en Markdown toman su seccion de entrega de la plantilla de cada curso (ENTREGA).
+MD_BD2 = MD_BD2.replace("{{entrega}}", _md_entrega("bd2"))
+MD_ARQ = MD_ARQ.replace("{{entrega}}", _md_entrega("arq"))
+MD_PROG2 = MD_PROG2.replace("{{entrega}}", _md_entrega("prog2"))
+MD_SEMIN = MD_SEMIN.replace("{{entrega}}", _md_entrega("seminario"))
+MD_INTRO_ING = MD_INTRO_ING.replace("{{entrega}}", _md_entrega("intro"))
+assert all("{{entrega}}" not in _m for _m in (MD_BD2, MD_ARQ, MD_PROG2, MD_SEMIN, MD_INTRO_ING))
 
 CURSOS = [
     ("Bases de Datos II", "BD2_META", "enunciado_bd2", "guia_bd2", "MD_BD2"),

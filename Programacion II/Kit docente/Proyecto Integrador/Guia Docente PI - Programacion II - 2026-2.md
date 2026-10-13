@@ -32,14 +32,16 @@ POO 20 · Estructuras de datos 15 · GUI 20 · Manejo de errores 15 · Persisten
 - `try-catch` vacío que oculta el error.
 - Que uno solo del equipo haya programado todo → preguntas al azar a cualquier integrante en la sustentación.
 
-## Entrega (común a los cinco cursos)
+## Entrega y sustentación
 
-- **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
-- **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
-  **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás
-  entregables conservan su modalidad. Cada integrante sube el .zip del equipo desde su cuenta
-  (una entrega por estudiante).
-- **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
+- **Plazo único:** domingo 15 de noviembre de 2026, 11:59 p. m., en ExamLab.
+- **Un solo .zip** (cualquier tipo de archivo, máx. 50 MB) con:
+  - **proyecto/** — El proyecto Java completo: la carpeta src con todos los .java, listo para compilar y ejecutar. Sin carpetas de compilación (bin, out, target): pesan y no se califican.
+  - **datos/** — El archivo .csv o .txt con registros de prueba: el mismo que la aplicación lee al arrancar.
+  - **Manual de usuario** — PDF de 1 a 2 páginas con capturas de la interfaz.
+- **Enlace obligatorio:** el repositorio de GitHub con el mismo código, o la carpeta de Drive del equipo.
+- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
+- **Sustentación:** miércoles 18/11/2026, en la última clase (sesión 13, mismo día del Parcial 3), por Meet: 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
+- **Qué muestran:** la aplicación corriendo en vivo: registrar una mascota, buscarla por su ID, escribir un dato inválido sin que se cierre, y cerrar y volver a abrir para mostrar que los datos siguen ahí.
 
 Enunciado del estudiante en `Clases/Proyecto Integrador/`.
