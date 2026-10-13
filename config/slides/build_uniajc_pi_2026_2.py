@@ -113,10 +113,15 @@ def entrega_y_sustentacion(doc, titulo, sustentacion, *, que_se_sube=None, quien
 
 
 def modalidad_equipo(doc, *, sin_tildes=False):
-    """Recuadro de modalidad al comienzo del enunciado: que nadie lo lea como individual."""
+    """Recuadro de modalidad al comienzo del enunciado: que nadie lo lea como individual.
+
+    La regla es SOLO del proyecto: talleres, quices, parciales y demas entregables conservan
+    la modalidad que el docente define para cada uno (decision docente, 13/10/2026)."""
     f = _sin_tildes if sin_tildes else str
-    para(doc, f("@@Modalidad: " + EQUIPO + ".@@ Este semestre el proyecto no es individual: lo "
-                "construye el equipo completo y lo sustentan todos sus integrantes."),
+    para(doc, f("@@Modalidad del proyecto: " + EQUIPO + ".@@ Este semestre el Proyecto "
+                "Integrador no es individual: lo construye el equipo completo y lo sustentan "
+                "todos sus integrantes. Esta regla es solo para el proyecto: talleres, quices, "
+                "parciales y demás entregables mantienen la modalidad que se indique en cada uno."),
          shade="FFF8D6", space_after=8)
 
 
@@ -126,7 +131,8 @@ def entrega_docente(doc, sustentacion, *, quien_sube=None):
     bullets(doc, [
         "Plazo único en ExamLab: " + PLAZO + ".",
         "Se sube " + ZIP + ", y " + ENLACE + " (obligatorio).",
-        quien_sube or ("En equipo de 4 a 5 integrantes (máximo 5). Cada integrante sube el "
+        quien_sube or ("Proyecto en equipo de 4 a 5 integrantes (máximo 5); solo el proyecto, "
+                       "los demás entregables conservan su modalidad. Cada integrante sube el "
                        ".zip del equipo desde su cuenta: una entrega por estudiante."),
         "Sustentación: " + sustentacion,
     ])
@@ -1030,8 +1036,9 @@ Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 
 - **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
 - **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
   **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **En equipo de 4 a 5 integrantes (máximo 5)**: cada integrante sube el .zip del equipo
-  desde su cuenta (una entrega por estudiante).
+- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás
+  entregables conservan su modalidad. Cada integrante sube el .zip del equipo desde su cuenta
+  (una entrega por estudiante).
 - **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
 
 ## Rúbrica (100 pts)
@@ -1074,8 +1081,9 @@ Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 
 - **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
 - **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
   **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **En equipo de 4 a 5 integrantes (máximo 5)**: cada integrante sube el .zip del equipo
-  desde su cuenta (una entrega por estudiante).
+- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás
+  entregables conservan su modalidad. Cada integrante sube el .zip del equipo desde su cuenta
+  (una entrega por estudiante).
 - **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
 
 ## Rúbrica (100 pts)
@@ -1312,8 +1320,9 @@ def enunciado_intro_ing(doc):
 
     h2(doc, "6. Modalidad de trabajo")
     bullets(doc, [
-        "Es un proyecto DE EQUIPO, no individual: equipos de 4 a 5 integrantes (máximo 5), "
-        "fijos todo el semestre.",
+        "Es un proyecto DE EQUIPO, no individual: el equipo del proyecto es de 4 a 5 "
+        "integrantes (máximo 5) y se mantiene todo el semestre. El tamaño es regla del "
+        "proyecto; las actividades de clase se arman como indique el docente en cada una.",
         "El vocero rota en cada sesión y se anota en la bitácora: al final del semestre "
         "todos han expuesto al menos dos veces.",
         "La autoevaluación individual del cierre del proyecto sí se entrega solo al "
@@ -1413,7 +1422,8 @@ No hay dominio fijo: cada EQUIPO elige su propio problema real del entorno desde
 ficha semilla de la Clase 1 (cinco campos de acción, retomada en la Clase 6). Común a
 los tres grupos SB141B, SB141C, LB141F.
 
-**Equipos de 4 a 5 integrantes (máximo 5)**, fijos todo el semestre.
+**Equipo del proyecto: 4 a 5 integrantes (máximo 5)**, el mismo todo el semestre. Es regla
+del proyecto, no de los talleres ni de las demás actividades.
 
 ## Hitos (por sesión — igual en los 3 grupos; fecha real en el CALENDARIO de cada grupo)
 
@@ -1526,8 +1536,9 @@ POO 20 · Estructuras de datos 15 · GUI 20 · Manejo de errores 15 · Persisten
 - **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
 - **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
   **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **En equipo de 4 a 5 integrantes (máximo 5)**: cada integrante sube el .zip del equipo
-  desde su cuenta (una entrega por estudiante).
+- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás
+  entregables conservan su modalidad. Cada integrante sube el .zip del equipo desde su cuenta
+  (una entrega por estudiante).
 - **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
 
 Enunciado del estudiante en `Clases/Proyecto Integrador/`.
@@ -1579,8 +1590,9 @@ Requisitos 20 · UML 25 · Interfaz 20 · Arquitectura de datos 15 · Plan de pr
 - **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
 - **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
   **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **En equipo de 4 a 5 integrantes (máximo 5)**: cada integrante sube el .zip del equipo
-  desde su cuenta (una entrega por estudiante).
+- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás
+  entregables conservan su modalidad. Cada integrante sube el .zip del equipo desde su cuenta
+  (una entrega por estudiante).
 - **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
 
 Enunciado del estudiante en `Clases/Proyecto Integrador/`.
