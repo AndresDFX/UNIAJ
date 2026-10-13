@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Genera Proyecto Integrador 2026-2 (BD II + Arquitectura).
+"""Genera el Proyecto Integrador 2026-2 de los cinco cursos.
+
+BD II, Arquitectura, Programacion II, Seminario e Introduccion a la Ingenieria. La entrega
+y la sustentacion son comunes a los cinco (ver `entrega_y_sustentacion`); el resto es de
+cada curso.
 
 Estudiante (compartible):
   <Curso>/Clases/Proyecto Integrador/Enunciado Proyecto Integrador - <Curso> - 2026-2.docx
@@ -13,6 +17,7 @@ from __future__ import annotations
 import os
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 from docx import Document
@@ -61,6 +66,54 @@ NOMBRE_PLATAFORMA = "ExamLab"
 
 def _plat():
     return NOMBRE_PLATAFORMA
+
+
+# ---------------------------------------------------------------------------
+# Entrega y sustentacion: COMUNES a los cinco cursos (decision docente, 13/10/2026)
+#
+# Un solo plazo para los siete grupos, una sola forma de entregar y la misma duracion de
+# sustentacion. Viven aqui, una vez, porque repetidas en cada curso divergieron: cuatro
+# cursos decian 5-8 min de sustentacion e Introduccion 9 + 3.
+# ---------------------------------------------------------------------------
+
+PLAZO = "domingo 15 de noviembre de 2026, 11:59 p. m."
+PLAZO_CORTO = "dom 15/11/2026, 11:59 p. m."
+SUSTENTACION = "15 minutos de exposición + 5 minutos de preguntas (turno de 20 minutos)"
+ZIP = ("un solo archivo .zip con todo —código, documentos, diagramas y capturas—; dentro "
+       "puede ir cualquier tipo de archivo, y pesa como máximo 50 MB")
+ENLACE = "el enlace al repositorio de GitHub o a la carpeta de Drive del proyecto"
+
+
+def _sin_tildes(texto):
+    """Los enunciados de Prog. II y Seminario se escribieron sin tildes ni enes."""
+    s = unicodedata.normalize("NFD", str(texto))
+    return "".join(c for c in s if unicodedata.category(c) != "Mn")
+
+
+def entrega_y_sustentacion(doc, titulo, sustentacion, *, que_se_sube=None, quien_sube=None,
+                           sin_tildes=False):
+    """Seccion del enunciado: plazo unico, que se sube, enlace obligatorio y sustentacion."""
+    f = _sin_tildes if sin_tildes else str
+    h2(doc, f(titulo))
+    bullets(doc, [f(x) for x in [
+        "@@Plazo único:@@ " + PLAZO + ", en " + _plat() + ".",
+        "@@Qué se sube:@@ " + (que_se_sube or ZIP) + ".",
+        "@@Enlace obligatorio:@@ junto al .zip va " + ENLACE + ".",
+        quien_sube or ("@@Una sola entrega por estudiante,@@ también si el docente autorizó "
+                       "trabajar en equipo."),
+        "@@Sustentación:@@ " + sustentacion,
+    ]])
+
+
+def entrega_docente(doc, sustentacion, *, quien_sube=None):
+    """Lo mismo, en la guia docente: para responder dudas sin abrir el enunciado."""
+    h2(doc, "Entrega y sustentación (común a los cinco cursos)")
+    bullets(doc, [
+        "Plazo único en ExamLab: " + PLAZO + ".",
+        "Se sube " + ZIP + ", y " + ENLACE + " (obligatorio).",
+        quien_sube or "Una sola entrega por estudiante, aunque haya equipo autorizado.",
+        "Sustentación: " + sustentacion,
+    ])
 
 
 def _shade(paragraph, fill: str) -> None:
@@ -181,7 +234,7 @@ def portada_estudiante(doc, meta):
          size=11, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER)
     para(doc, f"Docente: {DOCENTE}  ·  {CORREO}",
          size=10, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
-    para(doc, "Versión estudiante — Entrega en %s según hitos del plan." % _plat(),
+    para(doc, "Versión estudiante — Entrega final en %s: %s" % (_plat(), PLAZO_CORTO),
          size=10, bold=True, color=AZUL, align=WD_ALIGN_PARAGRAPH.CENTER,
          shade="E8F4FA", space_after=10)
 
@@ -265,8 +318,9 @@ def enunciado_bd2(doc):
         "Optimización: ≥2 consultas «antes/después» con justificación de índices o reescritura.",
         "Integración: propuesta de cómo una app (API/cliente) consumiría la BD "
         "(contrato de operaciones + ejemplo SQL o pseudocódigo de llamada a procedimientos).",
-        "Informe breve (PDF o DOCX) + carpeta de scripts SQL + diagrama exportado (PNG/SVG).",
-        "Sustentación / presentación (5–8 min) en el cierre del PI.",
+        "Informe breve (PDF o DOCX) + carpeta de scripts SQL + diagrama exportado (PNG/SVG), "
+        "todo dentro del .zip de la entrega (sección 9).",
+        "Sustentación en vivo en la última clase: " + SUSTENTACION + ".",
     ])
 
     h2(doc, "4. Hitos y fechas orientativas (Plan 2026-2)")
@@ -279,28 +333,31 @@ def enunciado_bd2(doc):
                "DDL, seguridad, procs/triggers, tuning"],
               ["Avance PI + integración", "Sesión 10 (doble · Clases 11+12)", "26/10/2026",
                "Demo parcial + checklist · contrato app ↔ BD y pruebas "
-               "(cierre: domingo 01/11 23:59)"],
+               "(cierre: domingo 01/11, 11:59 p. m.)"],
               ["Casos reales", "Sesión 11 (autónoma · Clase 13)", "02/11/2026",
-               "Aplicar el análisis de casos al PI (cierre: domingo 08/11 23:59)"],
-              ["Parcial 3 · paquete final", "Sesión 12 (Clase 14)", "09/11/2026",
-               "Día de parcial = solo evaluación (virtual síncrona por Meet). El paquete final "
-               "cierra el domingo 15/11 23:59; el ensayo y la preparación fueron "
-               "en la Sesión 10 (Clase 12)"],
+               "Aplicar el análisis de casos al PI (cierre: domingo 08/11, 11:59 p. m.)"],
+              ["Parcial 3", "Sesión 12 (Clase 14)", "09/11/2026",
+               "Día de parcial = solo evaluación (virtual síncrona por Meet); el ensayo y la "
+               "preparación fueron en la Sesión 10 (Clase 12)"],
+              ["Entrega final del PI", "—", "15/11/2026",
+               "Plazo único en ExamLab: domingo, 11:59 p. m. Un .zip + el enlace al "
+               "repositorio o a la carpeta de Drive"],
               ["Sustentación / cierre", "Sesión 13 (Clase 15)", "16/11/2026",
-               "Defensa en vivo del PI + cierre del curso"],
+               "Defensa en vivo del PI (15 min + 5 de preguntas) + cierre del curso"],
           ])
     para(doc,
          "Nota: la sesión 13 (16/11) cae en festivo, pero por decisión docente es la "
          "sesión de sustentaciones: no es autónoma y no es parcial. El Parcial 3 es el "
-         "09/11 (sesión 12 · material Clase 14). El paquete final se sube a ExamLab "
-         "antes del 16/11; ese día solo se defiende.")
+         "09/11 (sesión 12 · material Clase 14). El paquete final se sube a ExamLab a más "
+         "tardar el domingo 15/11, 11:59 p. m.; el 16/11 solo se defiende.")
 
     h2(doc, "5. Herramientas (gratis + navegador)")
     bullets(doc, [
         "SQL: DB Fiddle, OneCompiler SQL, SQLTest.online o RunSQL.",
         "Procedimientos / PL-SQL: Oracle Live SQL (cuenta free, sin tarjeta).",
         "Diagramas: draw.io / diagrams.net · Excalidraw.",
-        "Entregas: Google Docs/Drive o Word Online → subir a ExamLab.",
+        "Entrega: documentos en Google Docs/Drive o Word Online, dentro del .zip que se sube "
+        "a ExamLab.",
     ])
     para(doc,
          "No se exige instalar Oracle/MySQL/PostgreSQL/SQL Server ni Docker en el PC. "
@@ -334,6 +391,11 @@ def enunciado_bd2(doc):
         "No se copia un enunciado de otra institución: el dominio es VetCare DB UNIAJC.",
     ])
 
+    entrega_y_sustentacion(
+        doc, "9. Entrega y sustentación",
+        "lunes 16/11/2026, en la última clase (sesión 13; es festivo, pero sí hay clase), "
+        "por Meet: " + SUSTENTACION + ".")
+
 
 def guia_bd2(doc):
     portada_docente(doc, BD2_META)
@@ -358,10 +420,14 @@ def guia_bd2(doc):
               ["11 (autónoma)", "02/11", "Clase 13",
                "Publicar el caso real y revisar la entrega asíncrona (dom 08/11)"],
               ["12", "09/11", "Clase 14",
-               "Parcial 3 (virtual síncrona) + ensayo de presentación PI"],
+               "Parcial 3 (virtual síncrona · solo evaluación: el ensayo fue en la sesión 10)"],
+              ["—", "15/11", "—",
+               "Cierra la entrega en ExamLab (domingo, 11:59 p. m.): un .zip + enlace por "
+               "estudiante"],
               ["13", "16/11", "Clase 15",
-               "Sesión síncrona de sustentaciones: turnos, preguntas y cierre"],
+               "Sesión síncrona de sustentaciones: turnos de 20 min (15 + 5), preguntas y cierre"],
           ])
+    entrega_docente(doc, "lunes 16/11 (festivo, sí hay clase), por Meet: " + SUSTENTACION + ".")
     h2(doc, "Rúbrica detallada (calificar sobre 100 → escala a 20% del corte)")
     bullets(doc, [
         "Modelo/DDL (20): normalización razonable, FK, constraints, nombres claros.",
@@ -371,11 +437,13 @@ def guia_bd2(doc):
         "(agendar cita, registrar consulta, descontar stock).",
         "Optimización (15): EXPLAIN o narrativa equivalente en playground; índices justificados.",
         "Integración (10): operaciones CRUD vía procs; no hace falta desplegar API real.",
-        "Informe+sustentación (15): 5–8 min; preguntas cruzadas al azar sobre cualquier parte del trabajo.",
+        "Informe+sustentación (15): 15 min de exposición + 5 de preguntas; preguntas cruzadas "
+        "al azar sobre cualquier parte del trabajo.",
     ])
     h2(doc, "Evidencias a pedir")
     bullets(doc, [
-        "Enlace o ZIP: scripts .sql, diagrama, informe.",
+        "El .zip (scripts .sql, diagrama, informe, capturas) Y el enlace al repositorio o a la "
+        "carpeta de Drive: los dos son obligatorios.",
         "Capturas de ejecución en Live SQL / DB Fiddle.",
         "Reparto del guion por bloques temáticos (y, si hubo equipo autorizado, quién presentó qué).",
     ])
@@ -435,7 +503,8 @@ def enunciado_arq(doc):
         "LabEx Docker Playground o Killercoda.",
         "Repo o carpeta con workflow GitHub Actions (.yml) que compile/pruebe un stub "
         "(aunque el «deploy» sea simulado).",
-        "Presentación de sustentación (5–8 min) con demo de diagrama + lab.",
+        "Sustentación en vivo en la última clase: " + SUSTENTACION + ", con demo de "
+        "diagrama + lab.",
     ])
 
     h2(doc, "4. Hitos y fechas orientativas (Plan 2026-2)")
@@ -448,15 +517,17 @@ def enunciado_arq(doc):
                "Seguridad, redes, monitoreo, CI/CD"],
               ["Avance PI + rendimiento", "Sesión 10 (doble · Clases 11+12)", "26/10/2026",
                "Diagramas v1 + checklist · escenario de prueba y métricas objetivo "
-               "(cierre: domingo 01/11 23:59)"],
+               "(cierre: domingo 01/11, 11:59 p. m.)"],
               ["Escalabilidad", "Sesión 11 (autónoma · Clase 13)", "02/11/2026",
-               "Sección de autoescalado del informe (cierre: domingo 08/11 23:59)"],
-              ["Parcial 3 · paquete final", "Sesión 12 (Clase 14)", "09/11/2026",
-               "Día de parcial = solo evaluación (virtual síncrona por Meet). El paquete final "
-               "cierra el domingo 15/11 23:59; el ensayo y la preparación fueron "
-               "en la Sesión 10 (Clase 12)"],
+               "Sección de autoescalado del informe (cierre: domingo 08/11, 11:59 p. m.)"],
+              ["Parcial 3", "Sesión 12 (Clase 14)", "09/11/2026",
+               "Día de parcial = solo evaluación (virtual síncrona por Meet); el ensayo y la "
+               "preparación fueron en la Sesión 10 (Clase 12)"],
+              ["Entrega final del PI", "—", "15/11/2026",
+               "Plazo único: domingo, 11:59 p. m. Un .zip + el enlace al repositorio o a la "
+               "carpeta de Drive"],
               ["Sustentación / cierre", "Sesión 13 (Clase 15)", "16/11/2026",
-               "Defensa en vivo del PI CloudLite + cierre del curso"],
+               "Defensa en vivo del PI CloudLite (15 min + 5 de preguntas) + cierre del curso"],
           ])
     para(doc,
          "Nota: la sesión 13 (16/11) cae en festivo, pero por decisión docente es la "
@@ -468,7 +539,7 @@ def enunciado_arq(doc):
         "Diagramas: draw.io / diagrams.net · Excalidraw.",
         "Contenedores: LabEx Docker Playground · Killercoda (sin Docker Desktop obligatorio).",
         "CI/CD: GitHub Actions (cuenta free) — pipelines simples.",
-        "Entregas: documento propio → subir a %s." % _plat(),
+        "Entrega: documento propio, dentro del .zip que se sube a %s." % _plat(),
     ])
     para(doc,
          "Prohibido como requisito: AWS/GCP/Oracle Cloud/Azure Free Tier con tarjeta; "
@@ -502,6 +573,11 @@ def enunciado_arq(doc):
         "No se pide producción real en Internet: el foco es diseño + simulación en labs gratis.",
     ])
 
+    entrega_y_sustentacion(
+        doc, "9. Entrega y sustentación",
+        "lunes 16/11/2026, en la última clase (sesión 13; es festivo, pero sí hay clase), "
+        "por Meet: " + SUSTENTACION + ".")
+
 
 def guia_arq(doc):
     portada_docente(doc, ARQ_META)
@@ -524,10 +600,15 @@ def guia_arq(doc):
                "métricas/pruebas de rendimiento en el mismo bloque"],
               ["11 (autónoma)", "02/11", "Clase 13",
                "Publicar el ejercicio de autoescalado y revisar la entrega (dom 08/11)"],
-              ["12", "09/11", "Clase 14", "Parcial 3 + ensayo de pitch (5–8 min)"],
+              ["12", "09/11", "Clase 14",
+               "Parcial 3 (solo evaluación: el ensayo de la sustentación fue en la sesión 10)"],
+              ["—", "15/11", "—",
+               "Cierra la entrega en ExamLab (domingo, 11:59 p. m.): un .zip + enlace por "
+               "estudiante"],
               ["13", "16/11", "Clase 15",
-               "Sesión síncrona de sustentaciones: turnos, preguntas y cierre"],
+               "Sesión síncrona de sustentaciones: turnos de 20 min (15 + 5), preguntas y cierre"],
           ])
+    entrega_docente(doc, "lunes 16/11 (festivo, sí hay clase), por Meet: " + SUSTENTACION + ".")
     h2(doc, "Rúbrica detallada")
     bullets(doc, [
         "Dominio/servicio (15): problema real, límites claros, no «todo AWS».",
@@ -535,11 +616,13 @@ def guia_arq(doc):
         "Contenedores (20): lab reproducible; si el lab caduca, capturas + Dockerfile bastan.",
         "CI/CD (15): stages claros; deploy puede ser «echo/simulate».",
         "Seguridad/costos/escala (10): amenazas básicas, estimación cualitativa, autoescalado conceptual.",
-        "Sustentación (15): preguntas al azar sobre cualquier parte; si hubo equipo, penalizar que hable solo uno.",
+        "Sustentación (15): 15 min de exposición + 5 de preguntas al azar sobre cualquier "
+        "parte; si hubo equipo, penalizar que hable solo uno.",
     ])
     h2(doc, "Evidencias")
     bullets(doc, [
-        "Repo GitHub o ZIP con .yml, Dockerfile, diagramas PNG, informe.",
+        "El .zip (con .yml, Dockerfile, diagramas PNG, informe) Y el enlace al repo GitHub o a "
+        "la carpeta de Drive: los dos son obligatorios.",
         "Enlace Killercoda/LabEx o capturas con timestamp.",
     ])
 
@@ -644,15 +727,20 @@ def enunciado_prog2(doc):
                "la aplicacion corre de punta a punta"],
               ["S11 (Clase 13)", "04/11", "Manejo de excepciones y validaciones incorporado"],
               ["S12 (Clase 14)", "11/11", "Version final + ensayo de la presentacion"],
-              ["S13 (Clase 15)", "18/11", "Sustentacion final (mismo dia del Parcial 3)"],
+              ["Plazo unico", "dom 15/11",
+               "Entrega final en ExamLab hasta las 11:59 p. m.: un .zip + el enlace al repositorio"],
+              ["S13 (Clase 15)", "18/11",
+               "Sustentacion final: 15 min + 5 de preguntas (mismo dia del Parcial 3)"],
           ])
 
     h2(doc, "6. Entregables finales")
     bullets(doc, [
-        "Codigo fuente del proyecto (ZIP o enlace al repositorio).",
+        "Codigo fuente del proyecto, dentro del .zip; ademas, el enlace al repositorio "
+        "(obligatorio, seccion 8).",
         "Archivo de datos de ejemplo (.txt o .csv) con registros de prueba.",
         "Manual de usuario breve (1-2 paginas) con capturas de la interfaz.",
-        "Sustentacion de 5-8 minutos (si hay equipo autorizado, deben participar todos los integrantes).",
+        "Sustentacion: 15 minutos de exposicion + 5 de preguntas, turno de 20 minutos (si hay "
+        "equipo autorizado, deben participar todos los integrantes).",
     ])
 
     h2(doc, "7. Criterios de evaluacion (100 puntos)")
@@ -667,8 +755,10 @@ def enunciado_prog2(doc):
               ["Sustentacion", "15", "Se pregunta al azar sobre cualquier parte; con equipo, todos explican"],
           ])
 
-    h2(doc, "8. Entrega")
-    para(doc, "Entrega en @@ExamLab@@ segun los hitos del plan. Envio individual.")
+    entrega_y_sustentacion(
+        doc, "8. Entrega y sustentacion",
+        "miercoles 18/11/2026, en la ultima clase (sesion 13, mismo dia del Parcial 3), por "
+        "Meet: " + SUSTENTACION + ".", sin_tildes=True)
 
 
 def guia_prog2(doc):
@@ -701,8 +791,11 @@ def guia_prog2(doc):
                "Revision cruzada (cada estudiante lee el codigo de otro) y empujar la "
                "integracion; detectar trabajos con modulos sueltos"],
               ["S11 (Clase 13)", "04/11", "Verificar que las validaciones existan de verdad, no en el papel"],
-              ["S12 (Clase 14)", "11/11", "Ensayo cronometrado de la sustentacion"],
-              ["S13 (Clase 15)", "18/11", "Parcial 3 + sustentacion final"],
+              ["S12 (Clase 14)", "11/11", "Ensayo cronometrado de la sustentacion (15 + 5 min)"],
+              ["Plazo", "dom 15/11",
+               "Cierra la entrega en ExamLab (11:59 p. m.): un .zip + enlace por estudiante"],
+              ["S13 (Clase 15)", "18/11",
+               "Parcial 3 + sustentacion final en turnos de 20 min (15 + 5)"],
           ])
     h2(doc, "Errores frecuentes a vigilar")
     bullets(doc, [
@@ -713,10 +806,13 @@ def guia_prog2(doc):
     ])
     h2(doc, "Evidencias a pedir")
     bullets(doc, [
-        "ZIP o repositorio con el codigo fuente compilable.",
+        "El .zip con el codigo fuente compilable Y el enlace al repositorio: los dos son "
+        "obligatorios.",
         "Archivo .csv/.txt con datos de prueba.",
         "Captura de la aplicacion corriendo + manual breve.",
     ])
+    entrega_docente(doc, "miercoles 18/11 (mismo dia del Parcial 3), por Meet: "
+                    + SUSTENTACION + ".")
 
 
 def enunciado_seminario(doc):
@@ -782,7 +878,11 @@ def enunciado_seminario(doc):
                "(clases + dinamico)"],
               ["S11 (Clase 13)", "05/11", "Diseno de interfaz: wireframes y mockup navegable"],
               ["S12 (Clase 14)", "12/11", "Documento consolidado + ensayo de la sustentacion"],
-              ["S13 (Clase 15)", "19/11", "Sustentacion final (mismo dia del Parcial 3)"],
+              ["Plazo unico", "dom 15/11",
+               "Entrega final en ExamLab hasta las 11:59 p. m.: un .zip + el enlace a la carpeta "
+               "o al repositorio"],
+              ["S13 (Clase 15)", "19/11",
+               "Sustentacion final: 15 min + 5 de preguntas (mismo dia del Parcial 3)"],
           ])
 
     h2(doc, "6. Entregables finales")
@@ -790,7 +890,8 @@ def enunciado_seminario(doc):
         "Documento de diseno de arquitectura con RF/RNF, UML y diccionario de datos.",
         "Mockup navegable (enlace o PDF exportado).",
         "Plan de pruebas: casos de prueba documentados sobre los requisitos.",
-        "Sustentacion de 5-8 minutos (si hay equipo autorizado, deben participar todos los integrantes).",
+        "Sustentacion: 15 minutos de exposicion + 5 de preguntas, turno de 20 minutos (si hay "
+        "equipo autorizado, deben participar todos los integrantes).",
     ])
 
     h2(doc, "7. Criterios de evaluacion (100 puntos)")
@@ -805,8 +906,10 @@ def enunciado_seminario(doc):
               ["Sustentacion", "10", "Se pregunta al azar sobre cualquier parte; con equipo, todos explican"],
           ])
 
-    h2(doc, "8. Entrega")
-    para(doc, "Entrega en @@ExamLab@@ segun los hitos del plan. Envio individual.")
+    entrega_y_sustentacion(
+        doc, "8. Entrega y sustentacion",
+        "jueves 19/11/2026, en la ultima clase (sesion 13, mismo dia del Parcial 3), por "
+        "Meet: " + SUSTENTACION + ".", sin_tildes=True)
 
 
 def guia_seminario(doc):
@@ -840,8 +943,12 @@ def guia_seminario(doc):
                "Revisar que los RF sean verificables (no deseos vagos) y la coherencia "
                "entre casos de uso y diagrama de clases"],
               ["S11 (Clase 13)", "05/11", "Wireframes: exigir flujo completo de una tarea real"],
-              ["S12 (Clase 14)", "12/11", "Consolidacion del documento + ensayo cronometrado"],
-              ["S13 (Clase 15)", "19/11", "Parcial 3 + sustentacion final"],
+              ["S12 (Clase 14)", "12/11",
+               "Consolidacion del documento + ensayo cronometrado (15 + 5 min)"],
+              ["Plazo", "dom 15/11",
+               "Cierra la entrega en ExamLab (11:59 p. m.): un .zip + enlace por estudiante"],
+              ["S13 (Clase 15)", "19/11",
+               "Parcial 3 + sustentacion final en turnos de 20 min (15 + 5)"],
           ])
     h2(doc, "Errores frecuentes a vigilar")
     bullets(doc, [
@@ -855,7 +962,11 @@ def guia_seminario(doc):
         "Documento de diseno (PDF o DOCX) con RF/RNF, UML y diccionario de datos.",
         "Enlace al mockup navegable (Figma/Penpot) o PDF exportado.",
         "Plan de pruebas con casos trazados a requisitos.",
+        "Todo dentro del .zip, Y el enlace a la carpeta de Drive o al repositorio: los dos son "
+        "obligatorios.",
     ])
+    entrega_docente(doc, "jueves 19/11 (mismo dia del Parcial 3), por Meet: "
+                    + SUSTENTACION + ".")
 
 
 # ---------------------------------------------------------------------------
@@ -874,18 +985,26 @@ MD_BD2 = """# Guía docente — Proyecto Integrador · Bases de Datos II · 2026
 ## Hitos (Plan 2026-2 · semestre acortado a 13 sesiones)
 
 Las carpetas de material siguen numeradas 1–15; lo que cambia es en qué sesión se dicta cada una.
-Toda entrega intermedia cierra el **domingo 23:59 siguiente** a la sesión correspondiente.
+Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 p. m.**
 
 | Sesión | Fecha | Material | Foco | Cierre de entrega |
 |---|---|---|---|---|
-| S10 (doble) | 26/10/2026 | Clases 11 + 12 | Avance PI — checklist · Integración app ↔ BD · **preparación de la sustentación** | dom 01/11/2026 23:59 |
-| S11 (autónoma) | 02/11/2026 | Clase 13 | Análisis de casos reales aplicado al PI | dom 08/11/2026 23:59 |
-| S12 | 09/11/2026 | Clase 14 | **Parcial 3** (virtual síncrono por Meet · solo evaluación) | **paquete final:** dom 15/11/2026 23:59 |
-| S13 | 16/11/2026 | Clase 15 | **Sustentación en vivo del PI** + cierre (sesión síncrona) | — (el paquete ya está entregado) |
+| S10 (doble) | 26/10/2026 | Clases 11 + 12 | Avance PI — checklist · Integración app ↔ BD · **preparación de la sustentación** | dom 01/11/2026, 11:59 p. m. |
+| S11 (autónoma) | 02/11/2026 | Clase 13 | Análisis de casos reales aplicado al PI | dom 08/11/2026, 11:59 p. m. |
+| S12 | 09/11/2026 | Clase 14 | **Parcial 3** (virtual síncrono por Meet · solo evaluación) | **paquete final:** dom 15/11/2026, 11:59 p. m. |
+| S13 | 16/11/2026 | Clase 15 | **Sustentación en vivo del PI** (15 min + 5 de preguntas, turno de 20) + cierre (sesión síncrona) | — (el paquete ya está entregado) |
 
 > S13 cae en festivo (Independencia de Cartagena), pero por decisión docente es sesión de
-> sustentaciones: no es autónoma y no es parcial. El paquete final se sube a ExamLab antes
-> de la sesión; el 16/11 solo se defiende.
+> sustentaciones: no es autónoma y no es parcial. El paquete final se sube a ExamLab a más
+> tardar el **domingo 15/11/2026, 11:59 p. m.**; el 16/11 solo se defiende.
+
+## Entrega (común a los cinco cursos)
+
+- **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
+- **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
+  **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
+- **Una sola entrega por estudiante**, aunque haya equipo autorizado.
+- **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
 
 ## Rúbrica (100 pts)
 
@@ -893,7 +1012,8 @@ Modelo/DDL 20 · Seguridad/respaldo 15 · Programables 25 · Optimización 15 ·
 
 ## Evidencias
 
-Scripts SQL · ER · capturas Live SQL/DB Fiddle · informe · presentación 5–8 min.
+Dentro del .zip: scripts SQL · ER · capturas Live SQL/DB Fiddle · informe. Aparte, el enlace
+a GitHub o Drive. Sustentación de 15 min + 5 de preguntas.
 """
 
 MD_ARQ = """# Guía docente — Proyecto Integrador · Arquitectura · 2026-2
@@ -908,18 +1028,26 @@ MD_ARQ = """# Guía docente — Proyecto Integrador · Arquitectura · 2026-2
 ## Hitos (Plan 2026-2 · semestre acortado a 13 sesiones)
 
 Las carpetas de material siguen numeradas 1–15; lo que cambia es en qué sesión se dicta cada una.
-Toda entrega intermedia cierra el **domingo 23:59 siguiente** a la sesión correspondiente.
+Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 p. m.**
 
 | Sesión | Fecha | Material | Foco | Cierre de entrega |
 |---|---|---|---|---|
-| S10 (doble) | 26/10/2026 | Clases 11 + 12 | Avance PI — diagramas v1 · Pruebas de rendimiento · **preparación de la sustentación** | dom 01/11/2026 23:59 |
-| S11 (autónoma) | 02/11/2026 | Clase 13 | Escalabilidad automática aplicada al PI | dom 08/11/2026 23:59 |
-| S12 | 09/11/2026 | Clase 14 | **Parcial 3** (virtual síncrono por Meet · solo evaluación) | **paquete final:** dom 15/11/2026 23:59 |
-| S13 | 16/11/2026 | Clase 15 | **Sustentación en vivo del PI** + cierre (sesión síncrona) | — (el paquete ya está entregado) |
+| S10 (doble) | 26/10/2026 | Clases 11 + 12 | Avance PI — diagramas v1 · Pruebas de rendimiento · **preparación de la sustentación** | dom 01/11/2026, 11:59 p. m. |
+| S11 (autónoma) | 02/11/2026 | Clase 13 | Escalabilidad automática aplicada al PI | dom 08/11/2026, 11:59 p. m. |
+| S12 | 09/11/2026 | Clase 14 | **Parcial 3** (virtual síncrono por Meet · solo evaluación) | **paquete final:** dom 15/11/2026, 11:59 p. m. |
+| S13 | 16/11/2026 | Clase 15 | **Sustentación en vivo del PI** (15 min + 5 de preguntas, turno de 20) + cierre (sesión síncrona) | — (el paquete ya está entregado) |
 
 > S13 cae en festivo (Independencia de Cartagena), pero por decisión docente es sesión de
-> sustentaciones: no es autónoma y no es parcial. El paquete final se sube a ExamLab antes
-> de la sesión; el 16/11 solo se defiende.
+> sustentaciones: no es autónoma y no es parcial. El paquete final se sube a ExamLab a más
+> tardar el **domingo 15/11/2026, 11:59 p. m.**; el 16/11 solo se defiende.
+
+## Entrega (común a los cinco cursos)
+
+- **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
+- **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
+  **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
+- **Una sola entrega por estudiante**, aunque haya equipo autorizado.
+- **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
 
 ## Rúbrica (100 pts)
 
@@ -1015,9 +1143,16 @@ def anexo_caso_estudio(doc, meta: dict):
 # grupos (SB141B, SB141C, LB141F) comparten el mismo enunciado, la misma
 # rubrica y el mismo calendario POR SESION -- solo cambian el dia y las
 # fechas de cada grupo, que ya estan en su propio CALENDARIO_2026-2. Por eso
-# este documento no fecha nada: ancla todo a la sesion y remite al
-# calendario del grupo para la fecha real.
+# este documento ancla las etapas a la sesion y remite al calendario del grupo.
+# Solo fecha dos cosas: el plazo unico de entrega (comun a los cinco cursos) y
+# el dia de la exposicion final de cada grupo.
 # ---------------------------------------------------------------------------
+
+#: ExamLab no tiene los equipos cargados: mientras eso no cambie, el informe (que es del
+#: equipo) lo sube cada integrante desde su propia cuenta.
+INTRO_QUIEN_SUBE = ("@@Cada integrante sube la entrega del equipo desde su propia cuenta@@ "
+                    "(ExamLab todavía no tiene los equipos cargados): el mismo .zip y el "
+                    "mismo enlace, una sola entrega por estudiante.")
 
 INTRO_ING_META = {
     "titulo": "Proyecto Integrador 2026-2 — Proyecto de equipo",
@@ -1060,9 +1195,10 @@ def enunciado_intro_ing(doc):
               ["3 · Evaluación de impacto y ensayo",
                "Impacto positivo y negativo con mitigación, limitaciones y siguiente "
                "paso, guion y ensayo de la exposición final."],
-              ["4 · Exposición final e informe",
-               "Defensa en vivo del proyecto y el informe final armado en clase. Con "
-               "esto cierra el Corte 3 y el curso."],
+              ["4 · Informe y exposición final",
+               "El informe final se entrega en ExamLab a más tardar el domingo 15/11/2026, "
+               "11:59 p. m.; la defensa en vivo es en la última clase. Con esto cierra el "
+               "Corte 3 y el curso."],
           ])
     para(doc,
          "Las fechas exactas de cada etapa están en el calendario de su grupo.")
@@ -1103,8 +1239,10 @@ def enunciado_intro_ing(doc):
 
     h2(doc, "4. La exposición final (15% del curso)")
     bullets(doc, [
-        "9 minutos de exposición + 3 minutos de preguntas, por equipo. Se corta a los 9 "
-        "minutos sin excepción.",
+        "15 minutos de exposición + 5 minutos de preguntas, por equipo (turno de 20 "
+        "minutos). Se corta a los 15 minutos sin excepción.",
+        "Fecha: la última clase de su grupo — SB141C y LB141F el martes 17/11/2026; "
+        "SB141B el jueves 19/11/2026.",
         "Formato: comparte pantalla un integrante; plan B = PDF/capturas en la carpeta "
         "del equipo, subidos antes de exponer.",
         "Todos los integrantes tienen que hablar, y quien responda una pregunta debe "
@@ -1135,7 +1273,7 @@ def enunciado_intro_ing(doc):
         "Asistente de IA (Gemini/Claude/ChatGPT, plan gratuito): solo en los momentos "
         "puntuales que anuncie el docente, con declaración de qué se pidió y qué se "
         "corrigió a mano.",
-        "Entrega de talleres, diagnóstico y evaluaciones de corte: ExamLab.",
+        "Entrega de talleres, diagnóstico, evaluaciones de corte e informe final: ExamLab.",
     ])
     para(doc,
          "Prohibido como requisito: cualquier nube que pida tarjeta de crédito. Nada de "
@@ -1164,6 +1302,15 @@ def enunciado_intro_ing(doc):
         "curso — el problema lo elige cada equipo.",
     ])
 
+    entrega_y_sustentacion(
+        doc, "8. Entrega en ExamLab y exposición",
+        "en la última clase de su grupo (SB141C y LB141F martes 17/11; SB141B jueves "
+        "19/11), por Microsoft Teams: " + SUSTENTACION + ". Se corta a los 15 minutos.",
+        que_se_sube=("un solo archivo .zip con el informe final y todo lo que lo respalda "
+                     "—documentos, diagramas, capturas del prototipo—; dentro puede ir "
+                     "cualquier tipo de archivo, y pesa como máximo 50 MB"),
+        quien_sube=INTRO_QUIEN_SUBE)
+
 
 def guia_intro_ing(doc):
     portada_docente(doc, INTRO_ING_META)
@@ -1173,7 +1320,8 @@ def guia_intro_ing(doc):
          "microcurrículo (5 sesiones dobles). El proyecto es de EQUIPO, sin dominio fijo: "
          "cada equipo elige su problema real desde la ficha semilla de la Clase 1. Ver "
          "`config/calendario/introduccion_ingenieria_2026_2.json` para el calendario real "
-         "de cada grupo — este documento ancla todo a la sesión, no a la fecha.")
+         "de cada grupo — este documento ancla todo a la sesión, salvo el plazo único de "
+         "entrega (dom 15/11) y el día de la exposición de cada grupo.")
     h2(doc, "Hitos docentes (por sesión — igual en los 3 grupos)")
     table(doc,
           ["Sesión", "Clase(s)", "Rol docente"],
@@ -1188,10 +1336,19 @@ def guia_intro_ing(doc):
               ["8 a 10", "Clases 12 a 14",
                "Revisar impacto/mitigación y bloquear equipos que lleguen sin línea "
                "base o sin criterio de aceptación verificable."],
+              ["—", "—",
+               "Plazo único del informe en ExamLab: domingo 15/11/2026, 11:59 p. m. Cada "
+               "integrante sube el .zip del equipo desde su cuenta."],
               ["11 (doble)", "Clases 15+16",
-               "Sustentaciones (9+3 min por equipo) e informe armado en clase; cierre "
-               "del proyecto."],
+               "Sustentaciones en turnos de 20 min por equipo (15 + 5; se corta a los 15) y "
+               "cierre del proyecto. SB141C y LB141F mar 17/11 · SB141B jue 19/11. El "
+               "informe ya está entregado."],
           ])
+    entrega_docente(doc, "última clase de cada grupo (SB141C y LB141F mar 17/11 · SB141B jue "
+                    "19/11), por Teams: " + SUSTENTACION + "; se corta a los 15 minutos.",
+                    quien_sube=("Cada integrante sube el .zip del equipo desde su propia "
+                                "cuenta: ExamLab no tiene equipos cargados. Una entrega por "
+                                "estudiante."))
     h2(doc, "Rúbrica detallada")
     bullets(doc, [
         "Exposición final (100 pts → 15% del curso): 5 tramos de 20/20/25/20/15 — ver "
@@ -1231,7 +1388,9 @@ los tres grupos SB141B, SB141C, LB141F.
 |---|---|---|
 | 4 | Clase 6 | Corte 1: problema y propuesta inicial + evaluación de corte en ExamLab |
 | 7 | Clase 11 | Corte 2: ciclo de vida y prototipo probado + evaluación de corte en ExamLab |
-| 11 (doble) | Clases 15+16 | Corte 3: exposición final (15%) e informe final (20%) |
+| 11 (doble) | Clases 15+16 | Corte 3: exposición final (15%, 15 + 5 min por equipo; se corta a los 15) e informe final (20%, ya entregado en ExamLab) |
+
+Exposición: SB141C y LB141F martes 17/11/2026 · SB141B jueves 19/11/2026.
 
 ## Rúbrica
 - Exposición final: 100 pts → 15% (tramos 20/20/25/20/15).
@@ -1243,8 +1402,16 @@ los tres grupos SB141B, SB141C, LB141F.
 - Consecuencias que solo listan lo positivo.
 - Prototipo sin probar con una persona ajena al equipo.
 
-Entrega en **ExamLab**. Enunciado del estudiante en `Clases/Proyecto Integrador/`,
-común a los tres grupos.
+## Entrega (común a los cinco cursos)
+
+- **Plazo único del informe:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
+- **Un solo .zip** con el informe y lo que lo respalda (cualquier tipo de archivo, máx. 50 MB)
+  **+ enlace obligatorio** a la carpeta de Drive o al repositorio de GitHub del equipo.
+- **Cada integrante sube la entrega del equipo desde su propia cuenta** (ExamLab no tiene
+  equipos cargados): una entrega por estudiante.
+- **Exposición:** 15 min + 5 de preguntas por equipo (turno de 20 min); se corta a los 15.
+
+Enunciado del estudiante en `Clases/Proyecto Integrador/`, común a los tres grupos.
 """
 
 
@@ -1303,14 +1470,14 @@ PI **compartido con Seminario de Sistemas**: mismo producto, distinto entregable
 
 ## Hitos
 Semestre acortado a **13 sesiones**; las carpetas de material siguen numeradas 1–15.
-Toda entrega intermedia cierra el **domingo 23:59 siguiente** a la sesión.
+Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 p. m.**
 
 | Sesión | Fecha | Material | Entrega | Cierre |
 |---|---|---|---|---|
-| S10 (doble) | 28/10 | Clases 11 + 12 | Avance de código + revisión cruzada e integración de módulos | dom 01/11/2026 23:59 |
-| S11 | 04/11 | Clase 13 | Excepciones y validaciones | dom 08/11/2026 23:59 |
-| S12 | 11/11 | Clase 14 | Versión final + ensayo | **paquete final:** dom 15/11/2026 23:59 |
-| S13 | 18/11 | Clase 15 | Sustentación (mismo día del Parcial 3) | — |
+| S10 (doble) | 28/10 | Clases 11 + 12 | Avance de código + revisión cruzada e integración de módulos | dom 01/11/2026, 11:59 p. m. |
+| S11 | 04/11 | Clase 13 | Excepciones y validaciones | dom 08/11/2026, 11:59 p. m. |
+| S12 | 11/11 | Clase 14 | Versión final + ensayo | **paquete final:** dom 15/11/2026, 11:59 p. m. |
+| S13 | 18/11 | Clase 15 | Sustentación 15 + 5 min (mismo día del Parcial 3) | — |
 
 ## Rúbrica (100 pts → 20% del Corte 3)
 POO 20 · Estructuras de datos 15 · GUI 20 · Manejo de errores 15 · Persistencia 15 · Sustentación 15
@@ -1321,7 +1488,15 @@ POO 20 · Estructuras de datos 15 · GUI 20 · Manejo de errores 15 · Persisten
 - `try-catch` vacío que oculta el error.
 - Si hubo equipo autorizado, que uno solo haya programado todo → preguntas al azar en la sustentación.
 
-Entrega en **ExamLab**. Enunciado del estudiante en `Clases/Proyecto Integrador/`.
+## Entrega (común a los cinco cursos)
+
+- **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
+- **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
+  **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
+- **Una sola entrega por estudiante**, aunque haya equipo autorizado.
+- **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
+
+Enunciado del estudiante en `Clases/Proyecto Integrador/`.
 """
 
 MD_SEMIN = """# Guía docente — Proyecto Integrador · Seminario de Sistemas · 2026-2
@@ -1347,14 +1522,14 @@ PI **compartido con Programación II**: mismo producto, distinto entregable
 
 ## Hitos
 Semestre acortado a **13 sesiones**; las carpetas de material siguen numeradas 1–15.
-Toda entrega intermedia cierra el **domingo 23:59 siguiente** a la sesión.
+Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 p. m.**
 
 | Sesión | Fecha | Material | Entrega | Cierre |
 |---|---|---|---|---|
-| S10 (doble) | 29/10 | Clases 11 + 12 | Requisitos + casos de uso y UML avanzado | dom 01/11/2026 23:59 |
-| S11 | 05/11 | Clase 13 | Wireframes y mockup | dom 08/11/2026 23:59 |
-| S12 | 12/11 | Clase 14 | Documento consolidado + ensayo | **paquete final:** dom 15/11/2026 23:59 |
-| S13 | 19/11 | Clase 15 | Sustentación (mismo día del Parcial 3) | — |
+| S10 (doble) | 29/10 | Clases 11 + 12 | Requisitos + casos de uso y UML avanzado | dom 01/11/2026, 11:59 p. m. |
+| S11 | 05/11 | Clase 13 | Wireframes y mockup | dom 08/11/2026, 11:59 p. m. |
+| S12 | 12/11 | Clase 14 | Documento consolidado + ensayo | **paquete final:** dom 15/11/2026, 11:59 p. m. |
+| S13 | 19/11 | Clase 15 | Sustentación 15 + 5 min (mismo día del Parcial 3) | — |
 
 ## Rúbrica (100 pts → 20% del Corte 3)
 Requisitos 20 · UML 25 · Interfaz 20 · Arquitectura de datos 15 · Plan de pruebas 10 · Sustentación 10
@@ -1365,7 +1540,15 @@ Requisitos 20 · UML 25 · Interfaz 20 · Arquitectura de datos 15 · Plan de pr
 - Mockup que no cubre el flujo crítico (registrar → buscar → ver historial).
 - Diccionario de datos sin tipos ni restricciones.
 
-Entrega en **ExamLab**. Enunciado del estudiante en `Clases/Proyecto Integrador/`.
+## Entrega (común a los cinco cursos)
+
+- **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
+- **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
+  **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
+- **Una sola entrega por estudiante**, aunque haya equipo autorizado.
+- **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
+
+Enunciado del estudiante en `Clases/Proyecto Integrador/`.
 """
 
 

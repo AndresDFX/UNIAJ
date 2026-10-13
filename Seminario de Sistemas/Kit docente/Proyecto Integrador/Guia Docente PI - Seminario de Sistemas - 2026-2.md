@@ -21,14 +21,14 @@ PI **compartido con Programación II**: mismo producto, distinto entregable
 
 ## Hitos
 Semestre acortado a **13 sesiones**; las carpetas de material siguen numeradas 1–15.
-Toda entrega intermedia cierra el **domingo 23:59 siguiente** a la sesión.
+Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 p. m.**
 
 | Sesión | Fecha | Material | Entrega | Cierre |
 |---|---|---|---|---|
-| S10 (doble) | 29/10 | Clases 11 + 12 | Requisitos + casos de uso y UML avanzado | dom 01/11/2026 23:59 |
-| S11 | 05/11 | Clase 13 | Wireframes y mockup | dom 08/11/2026 23:59 |
-| S12 | 12/11 | Clase 14 | Documento consolidado + ensayo | **paquete final:** dom 15/11/2026 23:59 |
-| S13 | 19/11 | Clase 15 | Sustentación (mismo día del Parcial 3) | — |
+| S10 (doble) | 29/10 | Clases 11 + 12 | Requisitos + casos de uso y UML avanzado | dom 01/11/2026, 11:59 p. m. |
+| S11 | 05/11 | Clase 13 | Wireframes y mockup | dom 08/11/2026, 11:59 p. m. |
+| S12 | 12/11 | Clase 14 | Documento consolidado + ensayo | **paquete final:** dom 15/11/2026, 11:59 p. m. |
+| S13 | 19/11 | Clase 15 | Sustentación 15 + 5 min (mismo día del Parcial 3) | — |
 
 ## Rúbrica (100 pts → 20% del Corte 3)
 Requisitos 20 · UML 25 · Interfaz 20 · Arquitectura de datos 15 · Plan de pruebas 10 · Sustentación 10
@@ -39,4 +39,12 @@ Requisitos 20 · UML 25 · Interfaz 20 · Arquitectura de datos 15 · Plan de pr
 - Mockup que no cubre el flujo crítico (registrar → buscar → ver historial).
 - Diccionario de datos sin tipos ni restricciones.
 
-Entrega en **ExamLab**. Enunciado del estudiante en `Clases/Proyecto Integrador/`.
+## Entrega (común a los cinco cursos)
+
+- **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
+- **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
+  **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
+- **Una sola entrega por estudiante**, aunque haya equipo autorizado.
+- **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
+
+Enunciado del estudiante en `Clases/Proyecto Integrador/`.

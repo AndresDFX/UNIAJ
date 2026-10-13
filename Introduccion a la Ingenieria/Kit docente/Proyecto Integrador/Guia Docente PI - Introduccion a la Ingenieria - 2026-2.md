@@ -13,7 +13,9 @@ los tres grupos SB141B, SB141C, LB141F.
 |---|---|---|
 | 4 | Clase 6 | Corte 1: problema y propuesta inicial + evaluación de corte en ExamLab |
 | 7 | Clase 11 | Corte 2: ciclo de vida y prototipo probado + evaluación de corte en ExamLab |
-| 11 (doble) | Clases 15+16 | Corte 3: exposición final (15%) e informe final (20%) |
+| 11 (doble) | Clases 15+16 | Corte 3: exposición final (15%, 15 + 5 min por equipo; se corta a los 15) e informe final (20%, ya entregado en ExamLab) |
+
+Exposición: SB141C y LB141F martes 17/11/2026 · SB141B jueves 19/11/2026.
 
 ## Rúbrica
 - Exposición final: 100 pts → 15% (tramos 20/20/25/20/15).
@@ -25,5 +27,13 @@ los tres grupos SB141B, SB141C, LB141F.
 - Consecuencias que solo listan lo positivo.
 - Prototipo sin probar con una persona ajena al equipo.
 
-Entrega en **ExamLab**. Enunciado del estudiante en `Clases/Proyecto Integrador/`,
-común a los tres grupos.
+## Entrega (común a los cinco cursos)
+
+- **Plazo único del informe:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
+- **Un solo .zip** con el informe y lo que lo respalda (cualquier tipo de archivo, máx. 50 MB)
+  **+ enlace obligatorio** a la carpeta de Drive o al repositorio de GitHub del equipo.
+- **Cada integrante sube la entrega del equipo desde su propia cuenta** (ExamLab no tiene
+  equipos cargados): una entrega por estudiante.
+- **Exposición:** 15 min + 5 de preguntas por equipo (turno de 20 min); se corta a los 15.
+
+Enunciado del estudiante en `Clases/Proyecto Integrador/`, común a los tres grupos.
