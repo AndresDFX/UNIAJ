@@ -7,6 +7,8 @@ No hay dominio fijo: cada EQUIPO elige su propio problema real del entorno desde
 ficha semilla de la Clase 1 (cinco campos de acción, retomada en la Clase 6). Común a
 los tres grupos SB141B, SB141C, LB141F.
 
+**Equipos de 4 a 5 integrantes (máximo 5)**, fijos todo el semestre.
+
 ## Hitos (por sesión — igual en los 3 grupos; fecha real en el CALENDARIO de cada grupo)
 
 | Sesión | Clase(s) | Qué cierra |

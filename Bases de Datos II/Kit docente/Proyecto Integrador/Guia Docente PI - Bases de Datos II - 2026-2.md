@@ -28,7 +28,8 @@ Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 
 - **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
 - **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
   **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **Una sola entrega por estudiante**, aunque haya equipo autorizado.
+- **En equipo de 4 a 5 integrantes (máximo 5)**: cada integrante sube el .zip del equipo
+  desde su cuenta (una entrega por estudiante).
 - **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
 
 ## Rúbrica (100 pts)

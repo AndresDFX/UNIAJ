@@ -76,9 +76,15 @@ def _plat():
 # cursos decian 5-8 min de sustentacion e Introduccion 9 + 3.
 # ---------------------------------------------------------------------------
 
+#: Modalidad del PI en los cinco cursos este semestre (decision docente, 13/10/2026): antes
+#: BD II y Arquitectura eran individuales con equipos de 2-3 «si el docente autoriza», Prog. II
+#: y Seminario no lo decian, e Introduccion era de equipo sin tamano.
+EQUIPO = "en equipo de 4 a 5 integrantes (máximo 5)"
+
 PLAZO = "domingo 15 de noviembre de 2026, 11:59 p. m."
 PLAZO_CORTO = "dom 15/11/2026, 11:59 p. m."
-SUSTENTACION = "15 minutos de exposición + 5 minutos de preguntas (turno de 20 minutos)"
+SUSTENTACION = ("15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 "
+                "minutos); hablan todos los integrantes")
 ZIP = ("un solo archivo .zip con todo —código, documentos, diagramas y capturas—; dentro "
        "puede ir cualquier tipo de archivo, y pesa como máximo 50 MB")
 ENLACE = "el enlace al repositorio de GitHub o a la carpeta de Drive del proyecto"
@@ -99,10 +105,19 @@ def entrega_y_sustentacion(doc, titulo, sustentacion, *, que_se_sube=None, quien
         "@@Plazo único:@@ " + PLAZO + ", en " + _plat() + ".",
         "@@Qué se sube:@@ " + (que_se_sube or ZIP) + ".",
         "@@Enlace obligatorio:@@ junto al .zip va " + ENLACE + ".",
-        quien_sube or ("@@Una sola entrega por estudiante,@@ también si el docente autorizó "
-                       "trabajar en equipo."),
+        quien_sube or ("@@Cada integrante sube la entrega del equipo@@ desde su propia "
+                       "cuenta: el mismo .zip y el mismo enlace; una sola entrega por "
+                       "estudiante."),
         "@@Sustentación:@@ " + sustentacion,
     ]])
+
+
+def modalidad_equipo(doc, *, sin_tildes=False):
+    """Recuadro de modalidad al comienzo del enunciado: que nadie lo lea como individual."""
+    f = _sin_tildes if sin_tildes else str
+    para(doc, f("@@Modalidad: " + EQUIPO + ".@@ Este semestre el proyecto no es individual: lo "
+                "construye el equipo completo y lo sustentan todos sus integrantes."),
+         shade="FFF8D6", space_after=8)
 
 
 def entrega_docente(doc, sustentacion, *, quien_sube=None):
@@ -111,7 +126,8 @@ def entrega_docente(doc, sustentacion, *, quien_sube=None):
     bullets(doc, [
         "Plazo único en ExamLab: " + PLAZO + ".",
         "Se sube " + ZIP + ", y " + ENLACE + " (obligatorio).",
-        quien_sube or "Una sola entrega por estudiante, aunque haya equipo autorizado.",
+        quien_sube or ("En equipo de 4 a 5 integrantes (máximo 5). Cada integrante sube el "
+                       ".zip del equipo desde su cuenta: una entrega por estudiante."),
         "Sustentación: " + sustentacion,
     ])
 
@@ -236,7 +252,10 @@ def portada_estudiante(doc, meta):
          size=10, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
     para(doc, "Versión estudiante — Entrega final en %s: %s" % (_plat(), PLAZO_CORTO),
          size=10, bold=True, color=AZUL, align=WD_ALIGN_PARAGRAPH.CENTER,
-         shade="E8F4FA", space_after=10)
+         shade="E8F4FA", space_after=4)
+    para(doc, "Proyecto " + EQUIPO + " — no es individual",
+         size=11, bold=True, color=AZUL, align=WD_ALIGN_PARAGRAPH.CENTER,
+         shade="FFF8D6", space_after=10)
 
 
 def portada_docente(doc, meta):
@@ -282,6 +301,7 @@ def enunciado_bd2(doc):
     para(doc,
          "Peso: 20% del Corte 3 (Acuerdo pedagógico). El Parcial 3 (15%) y la asistencia "
          "(5%) se evalúan por separado.")
+    modalidad_equipo(doc)
 
     h2(doc, "2. Contexto del cliente y dominio — VetCare DB")
     para(doc, CONTEXTO_VETCARE)
@@ -378,10 +398,11 @@ def enunciado_bd2(doc):
 
     h2(doc, "7. Modalidad de trabajo")
     bullets(doc, [
-        "Individual por defecto: cada estudiante desarrolla y entrega su propio proyecto.",
-        "Opcional: el docente puede autorizar equipos de 2 o 3 integrantes.",
-        "Debes poder explicar cualquier parte en la sustentación (si hay equipo, cualquier integrante).",
-        "La entrega en ExamLab es siempre individual, incluso si el artefacto se trabajó en equipo.",
+        "@@En equipo, no individual:@@ equipos de 4 a 5 integrantes (máximo 5).",
+        "Todo el equipo trabaja el proyecto completo: en la sustentación hablan todos, y "
+        "cualquier integrante debe poder explicar cualquier parte (las preguntas van al azar).",
+        "Cada integrante sube la entrega del equipo en ExamLab desde su propia cuenta "
+        "(sección 9).",
     ])
 
     h2(doc, "8. Qué NO es este proyecto")
@@ -422,8 +443,8 @@ def guia_bd2(doc):
               ["12", "09/11", "Clase 14",
                "Parcial 3 (virtual síncrona · solo evaluación: el ensayo fue en la sesión 10)"],
               ["—", "15/11", "—",
-               "Cierra la entrega en ExamLab (domingo, 11:59 p. m.): un .zip + enlace por "
-               "estudiante"],
+               "Cierra la entrega en ExamLab (domingo, 11:59 p. m.): cada integrante sube el "
+               ".zip + enlace del equipo"],
               ["13", "16/11", "Clase 15",
                "Sesión síncrona de sustentaciones: turnos de 20 min (15 + 5), preguntas y cierre"],
           ])
@@ -445,7 +466,7 @@ def guia_bd2(doc):
         "El .zip (scripts .sql, diagrama, informe, capturas) Y el enlace al repositorio o a la "
         "carpeta de Drive: los dos son obligatorios.",
         "Capturas de ejecución en Live SQL / DB Fiddle.",
-        "Reparto del guion por bloques temáticos (y, si hubo equipo autorizado, quién presentó qué).",
+        "Reparto del guion por bloques temáticos y quién del equipo presenta qué.",
     ])
     h2(doc, "Post-clase Padlet")
     para(doc, "Si usó Padlet en Clase 1: ⋯ → Clear posts → código → Delete (reutilizar cupo gratis).")
@@ -482,6 +503,7 @@ def enunciado_arq(doc):
     para(doc,
          "Peso: 20% del Corte 3 (Acuerdo pedagógico). El Parcial 3 (15%) y la asistencia "
          "(5%) se evalúan por separado.")
+    modalidad_equipo(doc)
 
     h2(doc, "2. Alcance de CloudLite App")
     bullets(doc, [
@@ -560,10 +582,10 @@ def enunciado_arq(doc):
 
     h2(doc, "7. Modalidad de trabajo")
     bullets(doc, [
-        "Individual por defecto: cada estudiante desarrolla y entrega su propio proyecto.",
-        "Opcional: el docente puede autorizar equipos de 2 o 3 integrantes.",
-        "Debes poder explicar los diagramas y el workflow CI/CD (si hay equipo, cualquier integrante).",
-        "La entrega es siempre individual, incluso si el artefacto se trabajó en equipo.",
+        "@@En equipo, no individual:@@ equipos de 4 a 5 integrantes (máximo 5).",
+        "Todo el equipo trabaja el proyecto completo: en la sustentación hablan todos, y "
+        "cualquier integrante debe poder explicar los diagramas y el workflow CI/CD.",
+        "Cada integrante sube la entrega del equipo desde su propia cuenta (sección 9).",
     ])
 
     h2(doc, "8. Qué NO es este proyecto")
@@ -603,8 +625,8 @@ def guia_arq(doc):
               ["12", "09/11", "Clase 14",
                "Parcial 3 (solo evaluación: el ensayo de la sustentación fue en la sesión 10)"],
               ["—", "15/11", "—",
-               "Cierra la entrega en ExamLab (domingo, 11:59 p. m.): un .zip + enlace por "
-               "estudiante"],
+               "Cierra la entrega en ExamLab (domingo, 11:59 p. m.): cada integrante sube el "
+               ".zip + enlace del equipo"],
               ["13", "16/11", "Clase 15",
                "Sesión síncrona de sustentaciones: turnos de 20 min (15 + 5), preguntas y cierre"],
           ])
@@ -616,8 +638,8 @@ def guia_arq(doc):
         "Contenedores (20): lab reproducible; si el lab caduca, capturas + Dockerfile bastan.",
         "CI/CD (15): stages claros; deploy puede ser «echo/simulate».",
         "Seguridad/costos/escala (10): amenazas básicas, estimación cualitativa, autoescalado conceptual.",
-        "Sustentación (15): 15 min de exposición + 5 de preguntas al azar sobre cualquier "
-        "parte; si hubo equipo, penalizar que hable solo uno.",
+        "Sustentación (15): 15 min de exposición + 5 de preguntas al azar a cualquier "
+        "integrante sobre cualquier parte; penalizar que hable solo uno.",
     ])
     h2(doc, "Evidencias")
     bullets(doc, [
@@ -686,6 +708,7 @@ def enunciado_prog2(doc):
     para(doc,
          "Peso: 20% del Corte 3 (Acuerdo pedagogico). El Parcial 3 (15%) y la asistencia (5%) "
          "se evaluan por separado.")
+    modalidad_equipo(doc, sin_tildes=True)
 
     h2(doc, "2. Contexto del cliente")
     para(doc, CONTEXTO_VETCARE)
@@ -739,8 +762,8 @@ def enunciado_prog2(doc):
         "(obligatorio, seccion 8).",
         "Archivo de datos de ejemplo (.txt o .csv) con registros de prueba.",
         "Manual de usuario breve (1-2 paginas) con capturas de la interfaz.",
-        "Sustentacion: 15 minutos de exposicion + 5 de preguntas, turno de 20 minutos (si hay "
-        "equipo autorizado, deben participar todos los integrantes).",
+        "Sustentacion: 15 minutos de exposicion + 5 de preguntas por equipo, turno de 20 "
+        "minutos; participan todos los integrantes.",
     ])
 
     h2(doc, "7. Criterios de evaluacion (100 puntos)")
@@ -752,7 +775,7 @@ def enunciado_prog2(doc):
               ["Interfaz grafica", "20", "Ventanas funcionales; el usuario puede completar las tareas"],
               ["Manejo de errores", "15", "La aplicacion no se cae ante entradas invalidas"],
               ["Persistencia", "15", "Los datos sobreviven al cierre del programa"],
-              ["Sustentacion", "15", "Se pregunta al azar sobre cualquier parte; con equipo, todos explican"],
+              ["Sustentacion", "15", "Se pregunta al azar a cualquier integrante sobre cualquier parte"],
           ])
 
     entrega_y_sustentacion(
@@ -793,7 +816,8 @@ def guia_prog2(doc):
               ["S11 (Clase 13)", "04/11", "Verificar que las validaciones existan de verdad, no en el papel"],
               ["S12 (Clase 14)", "11/11", "Ensayo cronometrado de la sustentacion (15 + 5 min)"],
               ["Plazo", "dom 15/11",
-               "Cierra la entrega en ExamLab (11:59 p. m.): un .zip + enlace por estudiante"],
+               "Cierra la entrega en ExamLab (11:59 p. m.): cada integrante sube el .zip + "
+               "enlace del equipo"],
               ["S13 (Clase 15)", "18/11",
                "Parcial 3 + sustentacion final en turnos de 20 min (15 + 5)"],
           ])
@@ -802,7 +826,8 @@ def guia_prog2(doc):
         "Herencia forzada solo para «cumplir el requisito» (una clase Animal que nadie usa).",
         "GUI que se ve bien pero no guarda nada: pedir siempre la prueba de cerrar y reabrir.",
         "try-catch vacio que se traga el error sin avisar al usuario.",
-        "Si hubo equipo, que uno solo haya programado todo: por eso las preguntas al azar en la sustentacion.",
+        "Que uno solo del equipo haya programado todo: por eso las preguntas al azar a "
+        "cualquier integrante en la sustentacion.",
     ])
     h2(doc, "Evidencias a pedir")
     bullets(doc, [
@@ -827,6 +852,7 @@ def enunciado_seminario(doc):
     para(doc,
          "Peso: 20% del Corte 3 (Acuerdo pedagogico). El Parcial 3 (15%) y la asistencia (5%) "
          "se evaluan por separado.")
+    modalidad_equipo(doc, sin_tildes=True)
 
     h2(doc, "2. Contexto del cliente")
     para(doc, CONTEXTO_VETCARE)
@@ -890,8 +916,8 @@ def enunciado_seminario(doc):
         "Documento de diseno de arquitectura con RF/RNF, UML y diccionario de datos.",
         "Mockup navegable (enlace o PDF exportado).",
         "Plan de pruebas: casos de prueba documentados sobre los requisitos.",
-        "Sustentacion: 15 minutos de exposicion + 5 de preguntas, turno de 20 minutos (si hay "
-        "equipo autorizado, deben participar todos los integrantes).",
+        "Sustentacion: 15 minutos de exposicion + 5 de preguntas por equipo, turno de 20 "
+        "minutos; participan todos los integrantes.",
     ])
 
     h2(doc, "7. Criterios de evaluacion (100 puntos)")
@@ -903,7 +929,7 @@ def enunciado_seminario(doc):
               ["Diseno de interfaz", "20", "Wireframes usables; el flujo se entiende sin explicacion"],
               ["Arquitectura de datos", "15", "Diccionario de datos completo y formato justificado"],
               ["Plan de pruebas", "10", "Casos de prueba que cubren los requisitos criticos"],
-              ["Sustentacion", "10", "Se pregunta al azar sobre cualquier parte; con equipo, todos explican"],
+              ["Sustentacion", "10", "Se pregunta al azar a cualquier integrante sobre cualquier parte"],
           ])
 
     entrega_y_sustentacion(
@@ -946,7 +972,8 @@ def guia_seminario(doc):
               ["S12 (Clase 14)", "12/11",
                "Consolidacion del documento + ensayo cronometrado (15 + 5 min)"],
               ["Plazo", "dom 15/11",
-               "Cierra la entrega en ExamLab (11:59 p. m.): un .zip + enlace por estudiante"],
+               "Cierra la entrega en ExamLab (11:59 p. m.): cada integrante sube el .zip + "
+               "enlace del equipo"],
               ["S13 (Clase 15)", "19/11",
                "Parcial 3 + sustentacion final en turnos de 20 min (15 + 5)"],
           ])
@@ -1003,7 +1030,8 @@ Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 
 - **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
 - **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
   **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **Una sola entrega por estudiante**, aunque haya equipo autorizado.
+- **En equipo de 4 a 5 integrantes (máximo 5)**: cada integrante sube el .zip del equipo
+  desde su cuenta (una entrega por estudiante).
 - **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
 
 ## Rúbrica (100 pts)
@@ -1046,7 +1074,8 @@ Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 
 - **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
 - **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
   **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **Una sola entrega por estudiante**, aunque haya equipo autorizado.
+- **En equipo de 4 a 5 integrantes (máximo 5)**: cada integrante sube el .zip del equipo
+  desde su cuenta (una entrega por estudiante).
 - **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
 
 ## Rúbrica (100 pts)
@@ -1181,6 +1210,7 @@ def enunciado_intro_ing(doc):
          "Peso: 40% del Corte 3 (exposición final 15% + informe final 20% + asistencia "
          "5%), más una parte de las exposiciones y actividades en clase de los Cortes 1 y "
          "2 (ver el desglose completo en el Acuerdo Pedagógico y en su CALENDARIO_2026-2).")
+    modalidad_equipo(doc)
 
     h2(doc, "2. Cómo se construye, etapa por etapa")
     table(doc,
@@ -1282,8 +1312,8 @@ def enunciado_intro_ing(doc):
 
     h2(doc, "6. Modalidad de trabajo")
     bullets(doc, [
-        "Es un proyecto DE EQUIPO, no individual: los 5 equipos de cada grupo son fijos "
-        "todo el semestre.",
+        "Es un proyecto DE EQUIPO, no individual: equipos de 4 a 5 integrantes (máximo 5), "
+        "fijos todo el semestre.",
         "El vocero rota en cada sesión y se anota en la bitácora: al final del semestre "
         "todos han expuesto al menos dos veces.",
         "La autoevaluación individual del cierre del proyecto sí se entrega solo al "
@@ -1317,7 +1347,8 @@ def guia_intro_ing(doc):
     h2(doc, "Contexto")
     para(doc,
          "Tres grupos (SB141B, SB141C, LB141F), 11 sesiones cada uno, 16 Clases de "
-         "microcurrículo (5 sesiones dobles). El proyecto es de EQUIPO, sin dominio fijo: "
+         "microcurrículo (5 sesiones dobles). El proyecto es de EQUIPO (4 a 5 integrantes, "
+         "máximo 5), sin dominio fijo: "
          "cada equipo elige su problema real desde la ficha semilla de la Clase 1. Ver "
          "`config/calendario/introduccion_ingenieria_2026_2.json` para el calendario real "
          "de cada grupo — este documento ancla todo a la sesión, salvo el plazo único de "
@@ -1381,6 +1412,8 @@ MD_INTRO_ING = """# Guía docente — Proyecto de equipo · Introducción a la I
 No hay dominio fijo: cada EQUIPO elige su propio problema real del entorno desde la
 ficha semilla de la Clase 1 (cinco campos de acción, retomada en la Clase 6). Común a
 los tres grupos SB141B, SB141C, LB141F.
+
+**Equipos de 4 a 5 integrantes (máximo 5)**, fijos todo el semestre.
 
 ## Hitos (por sesión — igual en los 3 grupos; fecha real en el CALENDARIO de cada grupo)
 
@@ -1486,14 +1519,15 @@ POO 20 · Estructuras de datos 15 · GUI 20 · Manejo de errores 15 · Persisten
 - Herencia forzada solo para cumplir el requisito.
 - GUI que no persiste: pedir siempre la prueba de cerrar y reabrir.
 - `try-catch` vacío que oculta el error.
-- Si hubo equipo autorizado, que uno solo haya programado todo → preguntas al azar en la sustentación.
+- Que uno solo del equipo haya programado todo → preguntas al azar a cualquier integrante en la sustentación.
 
 ## Entrega (común a los cinco cursos)
 
 - **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
 - **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
   **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **Una sola entrega por estudiante**, aunque haya equipo autorizado.
+- **En equipo de 4 a 5 integrantes (máximo 5)**: cada integrante sube el .zip del equipo
+  desde su cuenta (una entrega por estudiante).
 - **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
 
 Enunciado del estudiante en `Clases/Proyecto Integrador/`.
@@ -1545,7 +1579,8 @@ Requisitos 20 · UML 25 · Interfaz 20 · Arquitectura de datos 15 · Plan de pr
 - **Plazo único:** domingo 15/11/2026, 11:59 p. m., en ExamLab.
 - **Un solo .zip** con todo (código, documentos, diagramas, capturas; cualquier tipo de archivo, máx. 50 MB)
   **+ enlace obligatorio** al repositorio de GitHub o a la carpeta de Drive.
-- **Una sola entrega por estudiante**, aunque haya equipo autorizado.
+- **En equipo de 4 a 5 integrantes (máximo 5)**: cada integrante sube el .zip del equipo
+  desde su cuenta (una entrega por estudiante).
 - **Sustentación:** 15 min de exposición + 5 de preguntas (turno de 20 min).
 
 Enunciado del estudiante en `Clases/Proyecto Integrador/`.
