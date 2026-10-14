@@ -1257,7 +1257,7 @@ TEMAS[8] = {
                              "la pena el viaje.\n\n"
                              "**Versión siguiente (declarado fuera):** búsqueda por tema · registro "
                              "histórico de préstamos · aviso automático de devolución · el "
-                             "catálogo completo del acervo · reservas.\n\n"
+                             "catálogo de todos los libros · reservas.\n\n"
                              "**Plan de validación:**\n\n"
                              "- **Con quién:** la coordinadora (rol de voluntaria) y **dos usuarios "
                              "reales en la puerta de la biblioteca**, ninguno del equipo.\n"
@@ -1289,8 +1289,8 @@ TEMAS[8] = {
                       "independiente durante veinte minutos: deles cinco para escribir dos frases, "
                       "y sugiera el truco que desbloquea siempre — **una de las dos alternativas no "
                       "puede usar ninguna tecnología nueva**. La comparación entre «lo que se puede "
-                      "hacer con lo que ya existe» y «lo que queremos construir» es la más "
-                      "instructiva de todas."},
+                      "hacer con lo que ya existe» y «lo que queremos construir» es la que más "
+                      "enseña de todas."},
             {"caso": "Equipos donde la alternativa ambiciosa gana la matriz",
              "clave": "Puede ser legítimo y no hay que forzar el resultado de la biblioteca. La "
                       "verificación es si los pesos son coherentes: si «construible en las sesiones "
@@ -1338,7 +1338,7 @@ TEMAS[8] = {
     "errores": [
         {"dice": "«(A) una app y (B) una app con más funciones»",
          "por_que": "Es la misma idea dos veces: no hay decisión que tomar y la matriz no enseña nada.",
-         "pida": "Una alternativa que **no use ninguna tecnología nueva**. La comparación entre lo que ya se puede hacer y lo que se quiere construir es la más instructiva."},
+         "pida": "Una alternativa que **no use ninguna tecnología nueva**. La comparación entre lo que ya se puede hacer y lo que se quiere construir es la que más enseña."},
         {"dice": "Los pesos y las calificaciones escritos al mismo tiempo",
          "por_que": "Ahí se cuela la decisión ya tomada: sin mala intención, los pesos se acomodan para que gane el favorito.",
          "pida": "Los criterios y los pesos primero, en el documento, y solo después las calificaciones."},
@@ -1562,7 +1562,7 @@ TEMAS[9] = {
                 "cincuenta años de software publicado, la probabilidad de que un problema común "
                 "—disponibilidad, inventario, turnos, avisos— no tenga antecedentes es "
                 "prácticamente cero.",
-                "Lo que hay que evitar es que el grupo lo lea como un desaire. El encuadre que "
+                "Lo que hay que evitar es que el grupo lo lea como una ofensa. El encuadre que "
                 "funciona: **buscar antecedentes no le quita mérito al proyecto, le da "
                 "argumento**. Un equipo que dice «esto no existe» está apostando; un equipo que "
                 "dice «existen estas tres soluciones, ninguna funciona sin computador en el "
@@ -1682,7 +1682,7 @@ TEMAS[9] = {
                 "curso lo autoriza en dos sesiones y lo prohíbe en el resto. Sirve para buscar "
                 "—pistas, sinónimos, el término en inglés que uno no conoce— y **no sirve para "
                 "citar**. La razón técnica hay que decirla explícitamente: un modelo de lenguaje "
-                "genera texto plausible, y una referencia bibliográfica plausible tiene autor, "
+                "genera texto que suena creíble, y una referencia bibliográfica que suena creíble tiene autor, "
                 "título, revista y año con formato perfecto **aunque no exista**. Ha habido "
                 "abogados sancionados por presentar ante un juez citas de jurisprudencia generadas "
                 "así. La regla del curso es simple y verificable: **si no puede abrir el enlace y "
@@ -1858,7 +1858,7 @@ TEMAS[9] = {
                 "cero, sin computador en el mostrador, voluntarias que rotan sin capacitación larga, "
                 "menos de 200 KB por consulta. La búsqueda de hoy es sobre **esa** decisión: cómo "
                 "publican su disponibilidad las bibliotecas pequeñas que no tienen sistema.",
-        "por_que_este_caso": "Porque la búsqueda encuentra algo incómodo y muy instructivo: existe "
+        "por_que_este_caso": "Porque la búsqueda encuentra algo incómodo que enseña mucho: existe "
                              "software libre maduro que resuelve el problema completo desde hace más "
                              "de veinte años, y **no sirve para este caso**. Ver por qué un "
                              "antecedente excelente no aplica es exactamente lo que hay que "
@@ -1902,7 +1902,7 @@ TEMAS[9] = {
                              "—catálogo, circulación, préstamos, catálogo público en línea—, "
                              "software libre, sin costo de licencia\n"
                              "- **Qué le falta para nuestro caso:** requiere instalarse y "
-                             "administrarse en un servidor, y catalogar el acervo completo antes de "
+                             "administrarse en un servidor, y catalogar todos los libros antes de "
                              "servir de algo. Con presupuesto cero, sin computador en el mostrador y "
                              "con voluntarias que rotan, **la barrera no es el precio: es la "
                              "administración**\n"
@@ -1940,7 +1940,7 @@ TEMAS[9] = {
                              "más de veinte años, y **no sirve para este caso**. Eso no invalida el "
                              "proyecto: define su lugar. La brecha real no es «no hay software de "
                              "bibliotecas», es «**no hay una solución que funcione sin administrador, "
-                             "sin computador en el mostrador y sin catalogar el acervo completo "
+                             "sin computador en el mostrador y sin catalogar todos los libros "
                              "primero**». Ese es un problema legítimo de ingeniería y está "
                              "sustentado con fuentes.",
                 "como_calificar": "30 pts, el bloque que decide. La verificación es literal y hay que "
@@ -1989,7 +1989,7 @@ TEMAS[9] = {
             {
                 "clave": "LA PROPUESTA DE MEJORA",
                 "respuesta": "**La mejora, en una frase:** *publicar la disponibilidad sin catalogar "
-                             "el acervo completo y sin administrar un sistema — solo los títulos que "
+                             "todos los libros y sin administrar un sistema — solo los títulos que "
                              "se prestan, actualizados una vez al día desde el celular de la "
                              "voluntaria.*\n\n"
                              "**La operación usada: QUITAR.** Se le quitan al antecedente principal "
@@ -2061,7 +2061,7 @@ TEMAS[9] = {
                       "vuelve el argumento de por qué hay que verificar todo lo que devuelve."},
             {"caso": "Equipos que encuentran que su solución ya existe, completa y gratis",
              "clave": "Es el mejor escenario pedagógico y hay que celebrarlo, no consolarlo. La "
-                      "pregunta que reencuadra el proyecto: **¿y por qué la biblioteca / el negocio "
+                      "pregunta que replantea el proyecto: **¿y por qué la biblioteca / el negocio "
                       "/ el colegio no la está usando?** La respuesta —hay que administrarla, exige "
                       "capacitación, cuesta después del primer año, no funciona sin internet— **es "
                       "el problema real**, y suele ser más interesante que el original. El proyecto "
@@ -2089,7 +2089,7 @@ TEMAS[9] = {
                   "la más importante del curso en materia académica: **si no puede abrir el enlace "
                   "y ver el documento, no lo cite** — y recuerde que un asistente de IA devuelve "
                   "referencias con formato perfecto que pueden no existir. Cierre con el hallazgo "
-                  "del caso modelo, porque es contraintuitivo y se recuerda: existe software libre "
+                  "del caso modelo, porque sorprende y se recuerda: existe software libre "
                   "excelente que resuelve el problema completo desde hace veinte años, y no sirve "
                   "aquí; ver por qué un antecedente magnífico no aplica es de lo que está hecha la "
                   "ingeniería. Anuncie la sesión 10: se prototipa el alcance mínimo, y de lo que "
@@ -2156,7 +2156,7 @@ TEMAS[9] = {
         "En las salas y en las exposiciones, **pida abrir el enlace en pantalla**. Es la única forma "
         "de cortar la cita inventada, y hacerlo en vivo enseña más que descontar en la nota.",
         "Hoy no se usa IA, y la razón hay que decirla: la sesión es sobre fuentes verificables y un "
-        "asistente devuelve referencias plausibles inexistentes. En la **sesión 11** sí está "
+        "asistente devuelve referencias creíbles que no existen. En la **sesión 11** sí está "
         "autorizada, con verificación obligatoria.",
         "Si un equipo descubre que su solución ya existe completa, **no lo deje cambiar de tema**: "
         "pregúntele por qué no la están usando. Ahí está el proyecto afilado.",
@@ -2194,7 +2194,7 @@ TEMAS[10] = {
         "Y por eso el primer prototipo se hace a propósito feo.",
     ],
     "objetivos": [
-        "Distinguir un **prototipo** de una versión inacabada, y saber qué pregunta responde cada nivel de **fidelidad**.",
+        "Distinguir un **prototipo** de una versión sin terminar, y saber qué pregunta responde cada nivel de **fidelidad**.",
         "Dibujar las **tres pantallas o pasos** del flujo principal del proyecto, con textos reales.",
         "Diseñar el **estado vacío y el estado de error**, que es donde se cae la mayoría de los prototipos.",
         "Elegir la **herramienta según la pregunta** que se quiere responder, no según la que se conoce.",
@@ -2224,7 +2224,7 @@ TEMAS[10] = {
                  "entiende esta pantalla? ¿alcanza el tiempo? ¿el flujo tiene sentido? Sin pregunta "
                  "es una maqueta decorativa."),
                 ("No es la versión 1 a medias",
-                 "Una versión inacabada intenta ser el producto y falla. **Un prototipo no intenta "
+                 "Una versión sin terminar intenta ser el producto y falla. **Un prototipo no intenta "
                  "ser el producto**: puede ser papel, puede no tener datos reales, y aun así "
                  "responde la pregunta."),
                 ("Es desechable, y eso lo libera",
@@ -2363,7 +2363,7 @@ TEMAS[10] = {
                 "una maqueta decorativa. Pídale a cada equipo, en la sala, que escriba la pregunta "
                 "de su prototipo en una línea antes de dibujar nada.",
                 "**No es la versión 1 a medias**, y esta distinción es la que más cuesta en primer "
-                "semestre. Una versión inacabada intenta ser el producto y falla en el intento; un "
+                "semestre. Una versión sin terminar intenta ser el producto y falla en el intento; un "
                 "prototipo no intenta ser el producto, así que puede ser papel, puede no tener "
                 "datos reales, puede no funcionar, y aun así responder la pregunta con precisión.",
                 "**Es desechable, y eso lo libera.** Se hace sabiendo que se va a tirar, y por eso "
@@ -2614,7 +2614,7 @@ TEMAS[10] = {
         "caso": "Alcance mínimo de la sesión 8: la lista de disponibilidad consultable por enlace, "
                 "con una pantalla de consulta para el usuario y una de actualización para la "
                 "voluntaria, funcionando desde un celular y sin cuenta. Propuesta de mejora de la "
-                "sesión 9: publicar la disponibilidad **sin catalogar el acervo completo y sin "
+                "sesión 9: publicar la disponibilidad **sin catalogar todos los libros y sin "
                 "administrar un sistema**, solo los títulos que se prestan. Requisitos no "
                 "funcionales vigentes: sin computador en el mostrador, se aprende sin manual, menos "
                 "de 200 KB por consulta.",
@@ -3113,7 +3113,7 @@ TEMAS[11] = {
             "titulo": "Qué hace bien y qué hace mal: un mapa honesto",
             "slide": "{{slide:Qué hace bien y qué hace mal}}",
             "cuerpo": [
-                "Conviene ser preciso y no moralizante, porque estos estudiantes van a trabajar con "
+                "Conviene ser preciso y no dar sermones, porque estos estudiantes van a trabajar con "
                 "estas herramientas toda su carrera y lo que necesitan es criterio, no prohibición.",
                 "**Hace bien: variantes.** Pedir tres maneras distintas de organizar una pantalla o "
                 "diez nombres para un botón es un uso excelente. La razón es concreta: un equipo que "
@@ -3130,8 +3130,8 @@ TEMAS[11] = {
                 "Y como no lo sabe, propone para un contexto que no es el suyo.",
                 "**Hace mal: inventar con seguridad.** Esta es la característica que hay que dejar "
                 "instalada para siempre, y ya la vieron en la sesión 9 con las referencias "
-                "bibliográficas inexistentes: **un modelo de lenguaje genera texto plausible, y no "
-                "tiene manera de señalar cuándo lo plausible es incorrecto**. Va a proponer "
+                "bibliográficas inexistentes: **un modelo de lenguaje genera texto que suena creíble, y no "
+                "tiene manera de señalar cuándo lo que suena creíble es falso**. Va a proponer "
                 "funciones que violan las restricciones del equipo y a veces la ley, con el mismo "
                 "tono seguro con el que propone las buenas. No hay una alarma; la alarma son "
                 "ustedes.",

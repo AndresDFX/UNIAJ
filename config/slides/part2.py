@@ -142,7 +142,7 @@ PASOS = {
     "Seccion Redes y almacenamiento."],
 8: ["Repo free + stub.","ci.yml build/test + deploy simulado.","4-6 metricas.",
     "Captura run o YAML+explicacion.","Secciones CI/CD y Monitoreo."],
-10: ["Tabla componente→driver→B/M/A→apalancamiento.","3 acciones sostenibilidad.",
+10: ["Tabla componente→driver→B/M/A→medida de ahorro.","3 acciones sostenibilidad.",
      "Integrar 1 pagina en informe."],
 11: ["Checklist si/no + enlaces.","Unificar nombres C4/Deployment.","ZIP/repo evidencias.",
      "Feedback docente + backlog 5 items Clase 12."],

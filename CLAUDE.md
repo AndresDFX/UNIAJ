@@ -175,8 +175,8 @@ llenar** — en lo que se pueda dejar listo.
   instruye no descontar.
 - **Nada técnicamente falso**, ni siquiera al justificar un nombre.
 - Espejada en `*_examlab_data.py`: la plataforma no es alcanzable desde aquí.
-- Al cerrar la clase, **reportar qué pregunta cambió, cuál se añadió y cuál se retiró**. Es un
-  checklist accionable para el docente, porque ExamLab no importa preguntas desde archivo.
+- Al cerrar la clase, **reportar qué pregunta cambió, cuál se añadió y cuál se retiró**. Es una
+  lista concreta para el docente, porque ExamLab no importa preguntas desde archivo.
 
 ## 6. Coherencia transversal
 
@@ -188,6 +188,9 @@ llenar** — en lo que se pueda dejar listo.
   proyecto** (VetCare, Huellitas, CloudLite, «el PI»): el ejemplo se queda, con una descripción
   genérica («una clínica veterinaria», «una app de turnos»), también en el código proyectado.
 - Modalidad correcta: **virtual síncrona (Meet)**, incluidos los parciales. Nunca «presencial».
+- **Palabras sencillas y comunes.** Nada de palabras rebuscadas, jerga o anglicismos con
+  equivalente: «computa» → «procesa datos», «accionable» → «concreta», «apalancamiento» →
+  «medida de ahorro». El término técnico que el curso enseña se queda, explicado.
 - El amarre con el Proyecto Integrador y con las clases vecinas, dicho explícitamente.
 - El build pasa: `_verificar_mapa()`, el resolutor de `{{slide:…}}` y
   `config/calendario/validar_calendario.py`.

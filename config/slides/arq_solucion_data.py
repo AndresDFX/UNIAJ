@@ -118,7 +118,7 @@ noto el vencimiento.""",
                     "sirve; «mucho tiempo» o «se pierde informacion» no.",
                     "**Si el dominio es generico** («una red social», «una app de la "
                     "universidad», «un e-commerce»), **toda la pregunta vale cero**: sin "
-                    "dominio concreto no hay nada que arquitecturar en las clases siguientes, "
+                    "dominio concreto no hay nada que disenar en las clases siguientes, "
                     "y el estudiante llegaria a la pregunta 13 sin sistema que dibujar.",
                     "Se descuenta si el problema pasa de 3 frases.",
                 ],
@@ -465,7 +465,7 @@ equipo conserva la responsabilidad del codigo, de los permisos y de los datos de
   del ISBN en el mostrador: es una perdida aceptable frente al costo de operar la maquina.
 
 - **SaaS.** Se descarta porque un sistema de prestamos comprado ya resuelve el problema, y
-  entonces no queda nada que arquitecturar ni nada que sustentar en la Clase 15: el
+  entonces no queda nada que disenar ni nada que sustentar en la Clase 15: el
   entregable del semestre seria una configuracion. Ademas el modelo de licenciamiento por
   usuario no encaja con una biblioteca donde el auxiliar de mostrador rota cada semestre, y
   las 38 devoluciones tardias del semestre pasado se resolverian con la regla que traiga el
@@ -1680,7 +1680,7 @@ pasar por la interfaz.""",
                     "el control esta puesto. «Usar buenas practicas», «mejorar la seguridad» o "
                     "«validar los datos» **no suman nada**.",
                     "2.5 pts por senalar correctamente la **caja o la flecha** de cada "
-                    "control, prorrateado: 0.5 pts por fila. Se acepta «caja X» o «flecha X -> "
+                    "control, repartido: 0.5 pts por fila. Se acepta «caja X» o «flecha X -> "
                     "Y» siempre que el nombre exista en el C4 Container de la Clase 4 o en el "
                     "diagrama de despliegue de la Clase 7.",
                     "1.25 pts el **principio de menor privilegio aplicado a un componente "
@@ -1771,7 +1771,7 @@ proyecto pasa a dos personas, el responsable sigue siendo un rol, no un nombre.
    despuegar.
 3. Revisar los registros de acceso del proveedor por el periodo en que la clave estuvo
    expuesta, para saber si alguien la uso.
-4. **Solo despues**, limpiar el historial de git — y sabiendo que es cosmetico: si el
+4. **Solo despues**, limpiar el historial de git — y sabiendo que no arregla el fondo: si el
    repositorio es publico, cualquier clon o cualquier indexador ya tiene la copia.
 
 Borrar el commit primero es el orden equivocado: da la sensacion de haber resuelto el
@@ -1945,13 +1945,13 @@ con responsabilidad de negocio. Ese detalle es justo lo que la pregunta 6 pide d
                     "existir como frontera visible. Dos zonas valen la mitad.",
                     "4 pts **cada componente en la zona que le corresponde**. **Se pierden los "
                     "4 completos si la base de datos queda en la zona publica**, sin "
-                    "prorrateo. Es la penalizacion mas dura del diagrama y hay que anunciarla "
+                    "puntaje parcial. Es la penalizacion mas dura del diagrama y hay que anunciarla "
                     "antes del taller: es el error que la pregunta busca detectar.",
                     "2 pts las **fronteras de confianza marcadas**: donde termina lo que el "
                     "estudiante controla y empieza lo que no. Se acepta como etiqueta en la "
                     "flecha, como nota o como estilo distinto, siempre que se pueda senalar.",
                     "2 pts **el puerto de cada componente**. Si falta el de una pieza se "
-                    "prorratea; si no hay ningun puerto, es cero. Los puertos tienen que ser "
+                    "descuenta su parte; si no hay ningun puerto, es cero. Los puertos tienen que ser "
                     "creibles y **coherentes con el Dockerfile de la Clase 3**: si alla el "
                     "`EXPOSE` era 3000 y aqui aparece 8080 sin explicacion, comentelo.",
                     "2 pts que renderice sin error en la plataforma.",
@@ -2042,7 +2042,7 @@ relacional **y** se apoya en un disco de bloque; decir solo lo primero deja la m
 historia sin contar.""",
                 "como_calificar": [
                     "3 pts la **clasificacion correcta de cada componente** del despliegue. Se "
-                    "prorratea entre las filas. La base como relacional y el bundle como "
+                    "reparte entre las filas. La base como relacional y el bundle como "
                     "objeto son las dos que tienen que estar bien; el volumen de bloque es la "
                     "que distingue una buena respuesta.",
                     "2.5 pts que **cada justificacion nombre la caracteristica del dato** —se "
@@ -2143,7 +2143,7 @@ entendio para que sirve cada nivel, y no solo que copio nombres.""",
                     "«Para que se entienda mejor» o «por orden» valen la mitad: no dicen que es "
                     "el mismo sistema.",
                     "2.5 pts la tabla completa, **una fila por componente, con su zona**. Se "
-                    "prorratea. **Se descuenta si la tabla deja fuera algun componente que si "
+                    "reparte por fila. **Se descuenta si la tabla deja fuera algun componente que si "
                     "aparece en alguno de los dos diagramas** — y eso incluye el edge y el "
                     "cliente, que solo estan en el despliegue.",
                     "1 pt **listar los renombres aplicados, o declarar explicitamente que no "
@@ -2164,7 +2164,7 @@ entendio para que sirve cada nivel, y no solo que copio nombres.""",
                     "Tabla con tres filas que ignora los sistemas externos y el edge. Es la "
                     "omision mas comun y la que descuenta: el enunciado dice «algun componente "
                     "que si aparece en **alguno de los dos** diagramas».",
-                    "Explicar la coincidencia de nombres como una cuestion de prolijidad. La "
+                    "Explicar la coincidencia de nombres como una cuestion de orden. La "
                     "razon es de fondo: sin el nombre compartido no hay forma de saber que los "
                     "diagramas describen un solo sistema.",
                     "Renombrar en el despliegue «porque en produccion se llama distinto» y no "
@@ -2778,7 +2778,7 @@ decision no se mira nunca.""",
                 "puntos": 16.25,
                 "tabla": {
                     "headers": ["Componente", "Driver de costo", "Nivel B/M/A",
-                                "Apalancamiento"],
+                                "Medida de ahorro"],
                     "rows": [
                         ["`API de prestamos`",
                          "**Horas de instancia encendida**: 24 x 30 = **720 h/mes** aunque la "
@@ -2834,7 +2834,7 @@ crecen con la actividad, no con el reloj, y la actividad de un proyecto de curso
 
 La escala es **ordinal**: afirma que la API cuesta mas que el edge, **no cuantas veces mas**.
 Ese matiz es la razon de que la pregunta prohiba precios: con B/M/A se puede ordenar
-honestamente sin inventar una factura, y ordenar es lo que permite decidir donde apalancar
+honestamente sin inventar una factura, y ordenar es lo que permite decidir donde ahorrar
 primero.
 
 **Sin precios en dolares, a proposito.** No hay una sola cifra de moneda en la tabla. Cualquier
@@ -2844,12 +2844,12 @@ es la aritmetica de las **720 horas**, que sale del calendario y no de una lista
 
 **El componente que mas ensena.** La fila de la base de datos es la unica cuyo driver crece
 solo, sin que nadie haga nada: cada prestamo cerrado que se acumula suma GB para siempre. Es la
-fila donde el apalancamiento tiene que ser una politica escrita (retencion) y no una accion
+fila donde la medida de ahorro tiene que ser una politica escrita (retencion) y no una accion
 puntual, y es la que conecta con la Clase 13, donde se vera que esa tabla es tambien la que no
 escala.""",
                 "como_calificar": [
                     "4 pts **una fila por cada componente del despliegue, sin dejar ninguno "
-                    "fuera**. Se compara con el diagrama de la Clase 7 y se prorratea. Los "
+                    "fuera**. Se compara con el diagrama de la Clase 7 y se reparte por fila. Los "
                     "sistemas externos (identidad, correo) pueden omitirse porque no los "
                     "factura el estudiante, pero si los incluye con su driver, mejor.",
                     "5 pts los **drivers**: cada uno tiene que ser una **variable contable** —"
@@ -2857,9 +2857,9 @@ escala.""",
                     "uso»** ni «la cantidad de usuarios». La prueba: ¿se puede poner un numero "
                     "al final del mes? Si no, no es un driver.",
                     "3.25 pts los niveles, **con al menos un Alto y un Bajo justificados**. "
-                    "**Si todo es Medio, este criterio vale cero**, sin prorrateo: es la "
+                    "**Si todo es Medio, este criterio vale cero**, sin puntaje parcial: es la "
                     "respuesta que la pregunta busca descartar.",
-                    "4 pts los **apalancamientos, uno por fila, concretos y comprobables**. "
+                    "4 pts las **medidas de ahorro, una por fila, concretas y comprobables**. "
                     "«Optimizar», «reducir costos» o «usar mejor los recursos» no suman. La "
                     "forma que vale: una accion y donde se ve que se aplico.",
                     "**Se descuenta fuerte por inventar precios en dolares** o por presentar "
@@ -2889,12 +2889,12 @@ escala.""",
                     "Incluir una fila de almacenamiento de objetos del dominio cuando el "
                     "dominio no maneja archivos. Es el mismo error de la pregunta 5 de la Clase "
                     "7: agregar la pieza porque suena a cloud.",
-                    "Apalancamientos que son deseos: «reducir el consumo», «ser mas "
+                    "Medidas de ahorro que son deseos: «reducir el consumo», «ser mas "
                     "eficientes». Sin una accion y sin donde se comprueba, la fila no suma. "
                     "Anticipa que la pregunta 12 tambien va a fallar.",
-                    "Confundir el driver con el apalancamiento: poner «cachear» en la columna "
-                    "del driver. El driver es lo que **hace crecer** la factura; el "
-                    "apalancamiento es lo que la **baja**.",
+                    "Confundir el driver con la medida de ahorro: poner «cachear» en la columna "
+                    "del driver. El driver es lo que **hace crecer** la factura; la "
+                    "medida de ahorro es lo que la **baja**.",
                 ],
             },
             {
@@ -2933,10 +2933,10 @@ escala.""",
                 },
                 "respuesta": """**El vinculo con los drivers de costo de la pregunta 11**
 
-Las tres se apalancan sobre un driver de la tabla anterior, y la segunda es la mas directa:
+Las tres actuan sobre un driver de la tabla anterior, y la segunda es la mas directa:
 
 - **Accion 2 -> driver «horas de instancia encendida» de la fila `API de prestamos` (nivel A).**
-  Es literalmente el mismo apalancamiento escrito en esa fila: pasar de 720 a 480 horas al mes.
+  Es literalmente la misma medida de ahorro escrita en esa fila: pasar de 720 a 480 horas al mes.
   Un tercio menos de horas es un tercio menos de energia consumida y un tercio menos de
   factura; la misma decision baja las dos cosas.
 - **Accion 3 -> driver «minutos de CI».** Menos corridas y corridas mas cortas.
@@ -3003,7 +3003,7 @@ enunciado, asi que la use como referencia y no como respuesta.""",
                     "Proponer apagar la base de datos por la noche. No se puede sin perder el "
                     "servicio y sin arriesgar el respaldo: es el ejemplo de una accion que "
                     "suena sostenible y rompe el sistema. Corrijala mostrando que la fila de "
-                    "la base tiene otro apalancamiento (la retencion).",
+                    "la base tiene otra medida de ahorro (la retencion).",
                 ],
             },
         ],
@@ -3011,14 +3011,14 @@ enunciado, asi que la use como referencia y no como respuesta.""",
             ("¿Puedo poner precios reales si los busco en la calculadora del proveedor?",
              "No, y se descuenta fuerte. El curso no abre cuentas de pago y los precios cambian "
              "por region y por nivel: cualquier cifra seria una adivinanza con aspecto de dato. "
-             "La escala es B/M/A y con eso alcanza para decidir donde apalancar."),
+             "La escala es B/M/A y con eso alcanza para decidir donde ahorrar."),
             ("¿Que hago con un componente al que no le encuentro driver?",
              "Volver al diagrama de la Clase 7, que es lo que dice el enunciado. Si un "
              "componente no tiene una variable que haga crecer su factura, o esta mal entendido "
              "o no deberia estar en el diagrama. Las dos conclusiones son utiles."),
             ("¿Por que no puede ser todo Medio?",
              "Porque entonces la tabla no ordena nada, y ordenar es lo unico que la escala "
-             "ordinal permite hacer. Sin un Alto no se sabe donde apalancar primero, y ese es "
+             "ordinal permite hacer. Sin un Alto no se sabe donde ahorrar primero, y ese es "
              "el proposito del ejercicio. El criterio de niveles queda en cero."),
             ("¿La escala B/M/A dice cuantas veces mas cuesta un componente?",
              "No. Es ordinal: dice que uno cuesta mas que otro, no cuantas veces mas. "
@@ -3045,7 +3045,7 @@ enunciado, asi que la use como referencia y no como respuesta.""",
             "Lo que queda de hoy es que una decision de arquitectura se puede defender con una "
             "variable contable en la mano: no «la nube es cara», sino «esta pieza se paga por "
             "horas encendidas y la mia esta encendida 720 al mes». Deje anotadas las tres "
-            "conexiones hacia adelante: el apalancamiento de escalar a cero es la politica que "
+            "conexiones hacia adelante: la medida de ahorro de escalar a cero es la politica que "
             "la Clase 13 va a escribir con su metrica y su ventana de enfriamiento, la fila de "
             "la base de datos es el componente que alli se vera que **no** escala, y la tabla "
             "completa es una de las piezas del paquete que el checkpoint de la Clase 11 revisa. "
@@ -3435,8 +3435,8 @@ enunciado, asi que la use como referencia y no como respuesta.""",
                         ["B-05",
                          "La seccion de costos no tiene fila para la cola ni para el procesador "
                          "de avisos - Clase 10, fila 9 del checklist",
-                         "Agregar dos filas con driver de costo y nivel B/M/A, y reescribir el "
-                         "apalancamiento del procesador: escala a cero fuera de la ventana de "
+                         "Agregar dos filas con driver de costo y nivel B/M/A, y reescribir la "
+                         "medida de ahorro del procesador: escala a cero fuera de la ventana de "
                          "avisos de las 06:00",
                          "Autor del paquete", "09/11/2026"],
                     ],
@@ -3532,7 +3532,7 @@ enunciado, asi que la use como referencia y no como respuesta.""",
                     5: "**No es hueco: es el acierto de la Clase 7.** La base en la zona de datos "
                        "y sin IP publica es la regla dura del diagrama de despliegue, la que "
                        "cuesta los 4 pts completos cuando se incumple. Marcarla como hueco "
-                       "senala que el estudiante no interiorizo las zonas.",
+                       "senala que el estudiante no aprendio las zonas.",
                 },
                 "como_calificar": [
                     "**4 pts por cada hueco correctamente identificado, con techo de 10.** Las "
@@ -3825,7 +3825,7 @@ enunciado, asi que la use como referencia y no como respuesta.""",
                     "igual, pero deja al tercero dentro del camino critico y contradice la "
                     "decision de la Clase 11. Vale senalarlo aunque el diagrama este bien "
                     "formado: es material del Q&A.",
-                    "**Sin `autonumber`.** Parece cosmetico y no lo es: sin numeros de salto la "
+                    "**Sin `autonumber`.** Parece un detalle de forma y no lo es: sin numeros de salto la "
                     "parte A de la pregunta 4 no puede citar «el salto 8-9». Se pide agregarlo "
                     "en el momento.",
                     "**Notas de milisegundos sin unidad** (`330` en vez de `330 ms`). Se acepta "
@@ -4335,12 +4335,12 @@ enunciado, asi que la use como referencia y no como respuesta.""",
                     "disponibilidad: una se puede reiniciar sin cortar el servicio. Con 1, un "
                     "reinicio son unos 20 segundos de caida. Se elige 1 a proposito, porque la "
                     "tabla de costos de la Clase 10 dejo la fila de la API en nivel **A** por "
-                    "horas encendidas y el apalancamiento declarado alli era bajar de 720 a 480 "
+                    "horas encendidas y la medida de ahorro declarada alli era bajar de 720 a 480 "
                     "horas al mes. Es una **deuda aceptada**, no un olvido, y asi debe quedar "
                     "escrita en el informe: se acepta una ventana de 20 segundos en los reinicios "
                     "para conseguir un tercio menos de horas encendidas.\n\n"
                     "**Por que el minimo del procesador de avisos es 0, y la trampa que eso "
-                    "esconde.** Escalar a cero es el apalancamiento que la Clase 10 anoto para el "
+                    "esconde.** Escalar a cero es la medida de ahorro que la Clase 10 anoto para el "
                     "worker, y aqui se puede porque el aviso de vencimiento sale **dos dias antes** "
                     "de la fecha: un retraso de dos minutos es irrelevante para el negocio. Pero "
                     "hay un detalle que se le escapa a casi todo el mundo: **si el worker esta en "
@@ -4650,16 +4650,16 @@ enunciado, asi que la use como referencia y no como respuesta.""",
                     "la API quedo en nivel **A** porque el driver era horas encendidas y se "
                     "calculo sobre **720 al mes** (encendida siempre). En el escenario de valle "
                     "baja a **B** precisamente porque la politica reduce esas horas a unas **480**: "
-                    "el nivel no cambio de opinion, cambio de escenario, y el apalancamiento que "
-                    "alli estaba anunciado —«escalar a cero fuera de la ventana de uso»— es el que "
+                    "el nivel no cambio de opinion, cambio de escenario, y la medida de ahorro que "
+                    "alli estaba anunciada —«escalar a cero fuera de la ventana de uso»— es la que "
                     "hoy quedo escrito como disparador con numero. La tabla de la Clase 10 sigue "
                     "siendo valida como promedio del mes; esta la desagrega en tres momentos.\n\n"
                     "**Frase de cierre.** De las 4 replicas maximas de la API, **3 solo existen "
                     "durante los 40 minutos del pico**: el 75 por ciento de la capacidad maxima "
                     "instalada vive **menos del 0.1 por ciento de las horas del mes** (40 minutos "
                     "sobre 43 200). Dicho al reves, y esta es la conclusion que importa: casi todo "
-                    "el costo del PI viene de la **capacidad base**, no del pico, y por eso el "
-                    "apalancamiento real esta en el valle —bajar a 1 replica ocho horas cada "
+                    "el costo del PI viene de la **capacidad base**, no del pico, y por eso la "
+                    "medida de ahorro real esta en el valle —bajar a 1 replica ocho horas cada "
                     "noche— y no en recortar el pico, que es donde la intuicion manda mirar.\n\n"
                     "**Por que la accion del pico es «pre-escalar a mano» y no un disparador "
                     "mejor.** Es la consecuencia aritmetica de la pregunta 1 y conviene decirla "
@@ -4685,7 +4685,7 @@ enunciado, asi que la use como referencia y no como respuesta.""",
                     "pico. Se acepta cualitativa si esta razonada, pero la version con la "
                     "division hecha (minutos de pico sobre minutos del mes) es la que muestra el "
                     "punto.",
-                    "Se valora que el estudiante llegue a la conclusion contraintuitiva —el "
+                    "Se valora que el estudiante llegue a la conclusion que sorprende —el "
                     "ahorro esta en el valle, no en el pico—. No es obligatoria para los puntos, "
                     "pero es la mejor respuesta posible a esta pregunta y conviene reconocerla en "
                     "la devolucion.",
@@ -4763,7 +4763,7 @@ enunciado, asi que la use como referencia y no como respuesta.""",
                 ],
                 "errores": [
                     "**Marcar la del enfriamiento de 10 segundos** porque «mas rapido reacciona, "
-                    "mejor». Es el error mas instructivo del taller: reaccionar mas rapido que la "
+                    "mejor». Es el error que mas ensena del taller: reaccionar mas rapido que la "
                     "medicion es decidir con informacion vieja.",
                     "**Marcar la de la base de datos** por analogia con la API. La diferencia es "
                     "el estado, no la tecnologia; conviene devolver al bloque uno de la pregunta "
@@ -5050,7 +5050,7 @@ enunciado, asi que la use como referencia y no como respuesta.""",
                     "salida** (por NAT), y por eso el worker puede llamar al correo transaccional. "
                     "La que no tiene salida es la **zona de datos**: la base y la cola no pueden "
                     "iniciar conexiones hacia afuera, que es exactamente el control que evita la "
-                    "exfiltracion de la Clase 6. Entrante y saliente son dos reglas distintas y "
+                    "fuga de datos de la Clase 6. Entrante y saliente son dos reglas distintas y "
                     "es el error conceptual mas comun sobre subredes.\n\n"
                     "**Por que el rango dice 1 a 4 y no 2 a 6.** El enunciado pone `2 a 6` como "
                     "ejemplo; lo que se califica es que el rango sea **el de la politica propia** "
@@ -5160,7 +5160,7 @@ enunciado, asi que la use como referencia y no como respuesta.""",
                     "techo de la API lo fija la base, no la API.\n"
                     "> **Trade-off aceptado:** el minimo son **1 replica**, no 2, asi que un "
                     "reinicio son unos 20 segundos de caida. Se acepta para bajar de 720 a 480 "
-                    "horas encendidas al mes, que era el apalancamiento declarado en la seccion "
+                    "horas encendidas al mes, que era la medida de ahorro declarada en la seccion "
                     "de costos."
                 ),
                 "como_calificar": [
@@ -5270,7 +5270,7 @@ enunciado, asi que la use como referencia y no como respuesta.""",
                     "que se perdio, no hubo trade-off: hubo una eleccion obvia. Pedir la decision "
                     "en la que las dos opciones tenian defensa.",
                     "**Alternativa descartada generica** («la otra opcion era hacerlo mal»). No "
-                    "es una alternativa, es un espantapajaros. La alternativa descartada tiene "
+                    "es una alternativa, es una opcion de relleno. La alternativa descartada tiene "
                     "que ser la que alguien razonable defenderia.",
                     "**Bloque 4 sin artefacto** («quedo en el informe»). Cuesta los 3 pts. Es el "
                     "bloque mas facil de la pregunta y el que mas se pierde por descuido: solo "

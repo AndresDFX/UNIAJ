@@ -42,7 +42,7 @@ Del listado de la sesión 3, completado con los pasos 2 a 5:
 
 **Lo que NO es un afectado:** «la comunidad», «los ciudadanos», «la sociedad». Son palabras que evitan el trabajo de nombrar. Si un equipo las usa, la pregunta que las rompe es: **¿quién, exactamente, y qué le pasa?**
 
-**Cómo calificar:** 15 pts, 5 por afectado bien identificado hasta tres. La verificación: **¿es alguien que no usa la solución?** Si el equipo listó usuarios, vale 5 en total y hay que reencuadrar con el paso 3 —quién no puede usarla—, que produce resultados en un minuto. «La comunidad» vale 0 y hay que decir por qué: es una palabra que evita nombrar. Valore el equipo que trajo el listado de la sesión 3: es la conducta que el curso quiere premiar.
+**Cómo calificar:** 15 pts, 5 por afectado bien identificado hasta tres. La verificación: **¿es alguien que no usa la solución?** Si el equipo listó usuarios, vale 5 en total y hay que replantear con el paso 3 —quién no puede usarla—, que produce resultados en un minuto. «La comunidad» vale 0 y hay que decir por qué: es una palabra que evita nombrar. Valore el equipo que trajo el listado de la sesión 3: es la conducta que el curso quiere premiar.
 
 ### 2. TRES IMPACTOS POSITIVOS CON SU INDICADOR
 
@@ -56,7 +56,7 @@ Del listado de la sesión 3, completado con los pasos 2 a 5:
 
 **3 · Menos desplazamientos, menos emisiones.** *Indicador:* **30 trayectos de ida y vuelta menos al mes**, la mayoría en transporte público o a pie. No calculamos toneladas de CO₂ porque no tenemos con qué hacerlo bien; el indicador honesto es el número de trayectos evitados.
 
-**Sobre el tercero, que es el más instructivo:** la tentación es escribir «reduce la huella de carbono en X toneladas», con un número sacado de una calculadora en línea sin entenderlo. Es preferible —y más profesional— **contar trayectos evitados y decir explícitamente que no se convierte a emisiones por falta de datos confiables**. Un número honesto y modesto vale más que uno grande e indefendible, y esa es la misma lección de la sesión 9 sobre las fuentes.
+**Sobre el tercero, que es el que más enseña:** la tentación es escribir «reduce la huella de carbono en X toneladas», con un número sacado de una calculadora en línea sin entenderlo. Es preferible —y más profesional— **contar trayectos evitados y decir explícitamente que no se convierte a emisiones por falta de datos confiables**. Un número honesto y modesto vale más que uno grande e indefendible, y esa es la misma lección de la sesión 9 sobre las fuentes.
 
 **Y un cuarto que NO incluimos, a propósito:** «promueve el acceso a la cultura». Es cierto, es bonito y no se puede medir con nada que tengamos. Se puede mencionar en el informe como efecto esperado de largo plazo, pero **no entra a la matriz como impacto medido**.
 
@@ -144,7 +144,7 @@ Del listado de la sesión 3, completado con los pasos 2 a 5:
 
 **Equipos que insisten en que no hay ningún impacto negativo.** Es el caso más frecuente y se resuelve con dos preguntas en este orden: **«¿quién trabaja más por su solución?»** —aparece el negativo de carga— y **«¿quién no puede usarla?»** —aparece el de exclusión—. No lo trate como falta de honestidad: es falta de entrenamiento, porque nadie les había pedido antes buscar el costo de su propia idea. Hágalo delante del curso: es el intercambio del que más se aprende hoy.
 
-**Equipos que quieren calcular toneladas de CO₂.** Aparece siempre y hay que encauzarlo sin apagar el entusiasmo. Pregunte de dónde sacaron el factor de conversión y si pueden explicar qué supone. Casi nunca pueden, y ahí está la lección de la sesión 9 aplicada: **un número que no se puede defender es peor que no tener número**. La salida profesional es contar **trayectos evitados** y declarar que no se convierte a emisiones por falta de datos confiables.
+**Equipos que quieren calcular toneladas de CO₂.** Aparece siempre y hay que orientarlo sin apagar el entusiasmo. Pregunte de dónde sacaron el factor de conversión y si pueden explicar qué supone. Casi nunca pueden, y ahí está la lección de la sesión 9 aplicada: **un número que no se puede defender es peor que no tener número**. La salida profesional es contar **trayectos evitados** y declarar que no se convierte a emisiones por falta de datos confiables.
 
 **Equipos cuyo proyecto no tiene impacto ambiental evidente.** Pasa con proyectos de gestión o de procesos, y la respuesta correcta no es inventar uno. Se buscan los consumos reales —**hojas impresas al mes**, horas de equipo encendido, datos móviles— y si de verdad son marginales **se escribe «marginal» con la razón y el número**. Un «no aplica» con una línea de justificación es una respuesta válida y bien calificada; un «no aplica» solo, no.
 

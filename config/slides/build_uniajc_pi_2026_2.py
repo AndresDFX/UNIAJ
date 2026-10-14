@@ -181,7 +181,7 @@ ENTREGA = {
     },
     "intro": {
         "zip": [
-            ("Informe final", "PDF de 9 a 11 páginas con las 12 secciones (sección 5)."),
+            ("Informe final", "PDF de 9 a 11 páginas con las 12 secciones (sección 4)."),
             ("prototipo/", "Las imágenes del prototipo v1 (Clase 10) y v2 (Clase 11), en PNG o "
              "PDF. El enlace al prototipo navegable va en la sección 7 del informe."),
             ("Registro de IA", "El de la Clase 11, exportado en PDF desde el documento del "
@@ -499,7 +499,7 @@ def enunciado_bd2(doc):
         "Sustentación en vivo en la última clase: " + SUSTENTACION + ".",
     ])
 
-    h2(doc, "4. Hitos y fechas orientativas (Plan 2026-2)")
+    h2(doc, "4. Hitos y fechas de referencia (Plan 2026-2)")
     table(doc,
           ["Hito", "Sesión", "Fecha", "Qué entregar / hacer"],
           [
@@ -679,7 +679,7 @@ def enunciado_arq(doc):
         "diagrama + lab.",
     ])
 
-    h2(doc, "4. Hitos y fechas orientativas (Plan 2026-2)")
+    h2(doc, "4. Hitos y fechas de referencia (Plan 2026-2)")
     table(doc,
           ["Hito", "Sesión", "Fecha", "Qué entregar / hacer"],
           [
@@ -1272,8 +1272,8 @@ def anexo_caso_estudio(doc, meta: dict):
 # este documento ancla las etapas a la sesion y remite al calendario del grupo.
 # Solo fecha dos cosas: el plazo unico de entrega (comun a los cinco cursos) y
 # el dia de la exposicion final de cada grupo. Lo leen estudiantes de PRIMER
-# semestre y en el curso no se programa: por eso explica cada palabra y le da al
-# prototipo una seccion propia (ver enunciado_intro_ing).
+# semestre: es corto, el informe final es su punto clave y deja claro que en el
+# curso no se programa (ver enunciado_intro_ing).
 # ---------------------------------------------------------------------------
 
 INTRO_ING_META = {
@@ -1308,232 +1308,86 @@ def _verificar_sesiones_intro():
 
 
 def enunciado_intro_ing(doc):
-    """Enunciado para estudiantes de PRIMER semestre: todo explicado, nada dado por sabido.
+    """Enunciado para estudiantes de PRIMER semestre: corto, con el informe final como centro.
 
-    En este curso no se programa (Clase 1: «la programacion se aprende en otros cursos»). Por
-    eso el prototipo tiene seccion propia: la palabra les hace pensar en una app que funciona,
-    y el curso pide otra cosa —baja fidelidad, navegable, probada con alguien de afuera—. Todo
-    lo que se explica aqui sale de las Clases 10, 11 y 12 (teoria, ejemplo de la biblioteca y
-    metodo de prueba): el enunciado no pide nada que esas clases no ensenen.
+    El docente lo pidio resumido y con el informe como punto clave (13/10/2026), despues de una
+    version larga con glosario y ejemplo resuelto. En este curso no se programa (Clase 1): el
+    prototipo se explica lo justo para que nadie lo confunda con una app; el ejemplo de la
+    biblioteca y los tipos de hallazgo viven en las Clases 10 a 12.
     """
     _verificar_sesiones_intro()
     portada_estudiante(doc, INTRO_ING_META)
 
     h2(doc, "1. De qué se trata")
     para(doc,
-         "Este curso no se aprueba con un examen final: se aprueba con un @@proyecto de "
-         "equipo@@ que arranca en la primera sesión y se defiende en la última. El proyecto es "
-         "una @@propuesta de mejora tecnológica@@ para un problema real que ustedes conocen "
-         "—en el barrio, la universidad, el trabajo o la casa—: algo que hoy sale mal, que le "
-         "pasa a personas concretas y que se puede medir.")
+         "Este curso se aprueba con un @@proyecto de equipo@@, no con un examen final: una "
+         "@@propuesta de mejora tecnológica@@ para un problema real de su entorno —el barrio, la "
+         "universidad, el trabajo o la casa— que se construye clase a clase y se defiende en la "
+         "última sesión.")
     para(doc,
-         "@@En este curso no se programa.@@ No hace falta saber programar ni instalar nada. Se "
-         "aprende lo que un ingeniero hace ANTES de construir: entender bien el problema, "
-         "decidir qué solución vale la pena, dibujarla como @@prototipo@@ y probarla con una "
-         "persona real para descubrir qué falla cuando corregirlo todavía es barato. Programar "
-         "se aprende en otros cursos de la carrera; aquí se aprende a decidir qué vale la pena "
-         "programar.",
+         "@@En este curso no se programa.@@ La solución se diseña, se dibuja como prototipo y se "
+         "prueba con una persona real. No hace falta saber programar ni instalar nada.",
          shade="E8F4FA")
-    para(doc, "Al final del semestre el equipo entrega tres cosas:")
     bullets(doc, [
-        "@@Un prototipo@@ de la solución, en dos versiones y probado con una persona ajena al "
-        "equipo (sección 4).",
-        "@@Un informe final@@ de 9 a 11 páginas, con 12 secciones (sección 5).",
-        "@@Una exposición final@@ en vivo: 15 minutos más 5 de preguntas (sección 6).",
+        "@@El informe final@@ (20% del curso) es el punto clave: reúne todo el proyecto en 12 "
+        "secciones (sección 4).",
+        "@@El prototipo@@, en dos versiones y probado con una persona ajena al equipo "
+        "(sección 3).",
+        "@@La exposición final@@: 15 minutos más 5 de preguntas (sección 5).",
     ])
     para(doc,
-         "Peso: 40% del Corte 3 (exposición final 15% + informe final 20% + asistencia "
-         "5%), más una parte de las exposiciones y actividades en clase de los Cortes 1 y "
-         "2 (ver el desglose completo en el Acuerdo Pedagógico y en su CALENDARIO_2026-2).")
+         "Peso: 40% del Corte 3 (informe final 20% + exposición final 15% + asistencia 5%), más "
+         "una parte de las actividades de los Cortes 1 y 2 (ver el Acuerdo Pedagógico).",
+         size=10)
     modalidad_equipo(doc)
 
-    h2(doc, "2. Palabras que van a escuchar todo el semestre")
-    table(doc, ["Palabra", "Qué quiere decir en este proyecto"], [
-        ["Problema del entorno", "Algo que hoy sale mal, le pasa a personas concretas y se "
-         "puede medir. El equipo lo propone en la Clase 1 y lo deja cerrado en la Clase 6."],
-        ["Línea base", "La cifra de cómo está el problema hoy: cuántas personas lo sufren, "
-         "cuánto tiempo o dinero se pierde. Sin ella no se puede demostrar que algo mejoró."],
-        ["Criterio de éxito", "La cifra que, al final, dirá si la solución funcionó."],
-        ["Requisito y criterio de aceptación", "Lo que la solución tiene que hacer, y la "
-         "prueba concreta con la que se comprueba que lo hace."],
-        ["Alcance mínimo", "Lo que la solución SÍ hará este semestre. Todo lo demás se "
-         "escribe como «lo que no se hará», con su razón."],
-        ["Antecedente", "Una solución que ya existe para un problema parecido, con su "
-         "fuente. Sirve para no inventar lo que ya está inventado."],
-        ["Prototipo", "Un dibujo de la solución que otra persona puede recorrer como si "
-         "funcionara. Se hace sin programar (sección 4)."],
-        ["Persona ajena al equipo", "Alguien que no participó en el proyecto y que prueba el "
-         "prototipo. De ella se anota solo el rol —por ejemplo, «usuaria de la biblioteca»—, "
-         "nunca el nombre."],
-        ["Impacto y mitigación", "Lo que la solución cambia, para bien y para mal. La "
-         "mitigación es lo que se hace para reducir un impacto negativo."],
-        ["Bitácora y vocero", "La bitácora es el registro del equipo en su carpeta de Drive; "
-         "el vocero es quien habla por el equipo en cada sesión, y cambia cada vez."],
-    ], anchos=[1.9, 4.9])
+    h2(doc, "2. El proyecto, sesión por sesión")
+    para(doc,
+         "Cada sesión deja lista una pieza del proyecto, y de ahí salen once de las doce "
+         "secciones del informe. Las fechas están en el CALENDARIO_2026-2 de su grupo.", size=10)
+    table(doc, ["Sesión", "Clase", "Qué queda listo"], [
+        ["1", "1", "El equipo, su carpeta en Drive y el primer problema candidato."],
+        ["2 y 3", "2 a 5", "Un problema real y medible, a quién podría perjudicar la solución y una "
+         "restricción ambiental."],
+        ["4", "6", "El problema cerrado: su cifra, sus causas y su criterio de éxito. Cierra el "
+         "Corte 1."],
+        ["5", "7 y 8", "Los requisitos, la alternativa elegida y el alcance mínimo."],
+        ["6", "9 y 10", "Tres soluciones que ya existen y el prototipo v1."],
+        ["7", "11", "El prototipo v2, mejorado con IA. Cierra el Corte 2."],
+        ["8", "12", "Lo que falló en la prueba con una persona ajena al equipo."],
+        ["9 y 10", "13 y 14", "El impacto, positivo y negativo, y el ensayo de la exposición."],
+        ["—", "—", "Entrega del informe y del prototipo en ExamLab: domingo 15/11/2026, "
+         "11:59 p. m."],
+        ["11", "15 y 16", "La exposición final y el cierre del curso."],
+    ], anchos=[0.9, 0.9, 5.0])
 
-    h2(doc, "3. El proyecto, sesión por sesión")
+    h2(doc, "3. El prototipo")
     para(doc,
-         "Cada sesión deja lista una pieza del proyecto, y la siguiente trabaja sobre ella: si "
-         "una pieza queda pendiente, la sesión siguiente no tiene con qué arrancar. La "
-         "@@sesión@@ es el encuentro del calendario (11 en el semestre) y la @@clase@@ es el "
-         "tema (16); por eso algunas sesiones cubren dos clases. Las fechas de cada sesión "
-         "están en el CALENDARIO_2026-2 de su grupo.", size=10)
-    table(doc, ["Sesión", "Clase", "Qué queda listo para el proyecto"], [
-        ["1", "1", "El equipo, su carpeta compartida en Drive (con permiso de lectura para el "
-         "docente) y la ficha semilla: el primer problema candidato."],
-        ["2", "2 y 3", "Un problema real y medible, visto como un sistema completo —con "
-         "actores y frontera—, no como «una app que falta»."],
-        ["3", "4 y 5", "A quién podría perjudicar el proyecto y qué norma colombiana obliga a "
-         "cuidarlo (sobre todo si maneja datos de personas), y una restricción ambiental con "
-         "un indicador que se pueda medir."],
-        ["4", "6", "El problema cerrado: enunciado en una frase, línea base con cifra, árbol "
-         "de causas, actores y criterio de éxito. Cierra el Corte 1 (evaluación en ExamLab)."],
-        ["5", "7 y 8", "Los requisitos mínimos con su criterio de aceptación y el plan de "
-         "hitos; la alternativa elegida con su matriz de criterios y el alcance mínimo."],
-        ["6", "9 y 10", "Tres antecedentes con fuente verificable y la mejora que propone el "
-         "equipo; el prototipo v1 de baja fidelidad y su guion de prueba."],
-        ["7", "11", "El prototipo v2, mejorado con IA y corregido a mano, con el registro de "
-         "lo que se pidió y lo que se corrigió. Cierra el Corte 2 (evaluación en ExamLab)."],
-        ["Antes de la 8", "—", "La prueba: una persona ajena al equipo usa el prototipo v2 "
-         "navegable y el equipo anota lo que falló."],
-        ["8", "12", "La ficha de avance con los hallazgos de la prueba y el plan de ajustes "
-         "que sale de la retroalimentación del curso."],
-        ["9", "13", "La matriz de impacto social y ambiental: impactos positivos con "
-         "indicador y negativos con su mitigación."],
-        ["10", "14", "El guion de la exposición, las diapositivas, el reparto entre "
-         "integrantes, la demostración del prototipo y un plan B por si algo falla."],
-        ["—", "—", "Entrega en ExamLab del informe final y del prototipo: domingo 15/11/2026, "
-         "11:59 p. m. (sección 7)."],
-        ["11", "15 y 16", "La exposición final, la socialización del proyecto en la galería "
-         "del curso, la autoevaluación y la coevaluación."],
-    ], anchos=[1.0, 0.8, 5.0])
+         "Un prototipo @@no es una aplicación@@: es un dibujo de la solución que otra persona "
+         "puede recorrer, paso a paso, como si funcionara. Sirve para descubrir qué falla antes "
+         "de construir nada, y se hace sencillo a propósito, porque así recibe críticas útiles. "
+         "Si la solución no es una app —un formulario, un procedimiento—, el prototipo muestra "
+         "los pasos que vive la persona.")
+    table(doc, ["Versión", "Cuándo", "Qué es"], [
+        ["v1", "Clase 10", "El camino principal en tres pantallas o tres pasos, en papel, "
+         "Excalidraw o draw.io."],
+        ["Navegable", "Después de la Clase 10", "La v1 en Google Slides: una diapositiva por "
+         "pantalla y un enlace en cada botón."],
+        ["v2", "Clase 11", "La v1 mejorada con un asistente de IA y corregida a mano, con el "
+         "registro de lo que se pidió y lo que se corrigió."],
+        ["Probada", "Antes de la Clase 12", "Una persona ajena al equipo intenta tres tareas con "
+         "la v2; el equipo observa en silencio y anota lo que falló."],
+    ], anchos=[1.0, 1.6, 4.2])
+    para(doc,
+         "@@Todo prototipo debe tener:@@ una frase de propósito en cada pantalla, textos reales "
+         "(nunca «texto aquí»), lo que se ve cuando no hay datos o algo falla, un destino para "
+         "cada botón y datos inventados, nunca de personas reales.", size=10)
 
-    h2(doc, "4. El prototipo: qué es, cómo se hace y cómo se prueba")
+    h2(doc, "4. El informe final — el punto clave (20% del curso)")
     para(doc,
-         "«Prototipo» suele hacer pensar en una aplicación que ya funciona. @@En este curso no "
-         "es eso.@@ Un prototipo es un @@dibujo de la solución que otra persona puede "
-         "recorrer@@, paso a paso, como si funcionara, para descubrir si la idea sirve antes de "
-         "gastar meses construyéndola. Se hace sin programar: con papel, con herramientas de "
-         "dibujo o con diapositivas enlazadas.")
-    h3(doc, "Qué es y qué no es")
-    bullets(doc, [
-        "@@Es una pregunta hecha objeto.@@ Se hace para responder algo concreto: ¿la gente "
-        "entiende esta pantalla?, ¿el flujo tiene sentido?, ¿le alcanza el tiempo?",
-        "@@No es la aplicación a medias.@@ No intenta ser el producto: puede ser de papel y no "
-        "tener datos reales, y aun así responde la pregunta.",
-        "@@Es desechable.@@ Se hace sabiendo que se va a cambiar o a tirar; por eso se dibuja "
-        "rápido y sin adornos. Un prototipo que da pesar tirar ya costó demasiado.",
-        "@@Se hace feo a propósito.@@ Delante de un dibujo a lápiz la gente dice qué no "
-        "entiende; delante de una pantalla con colores dice «está muy bonito», y eso no ayuda.",
-        "@@Se prueba con alguien de afuera.@@ Si solo lo vio el equipo, no probó nada.",
-    ])
-    para(doc,
-         "@@¿Y si la solución no es una aplicación?@@ Muchas no lo son: un formulario, un "
-         "procedimiento, una nueva forma de atender. Entonces el prototipo muestra los pasos "
-         "que vive la persona —tres pasos en vez de tres pantallas—, dibujados como un flujo "
-         "en diagrams.net (draw.io).", size=10)
-    h3(doc, "Las versiones del prototipo, en orden")
-    table(doc, ["Versión", "Cuándo", "Qué es", "Con qué se hace"], [
-        ["v1 · baja fidelidad", "Sesión 6 (Clase 10)",
-         "El camino principal del alcance mínimo en tres pantallas o tres pasos, con textos "
-         "reales, el estado vacío, el estado de error y el guion de prueba.",
-         "Papel y una foto legible, Excalidraw o draw.io"],
-        ["Navegable", "Después de la Clase 10, como trabajo independiente",
-         "La v1 pasada a diapositivas: una por pantalla y un enlace en cada botón hacia su "
-         "destino. En modo presentación se recorre como si funcionara.",
-         "Google Slides"],
-        ["v2 · con IA", "Sesión 7 (Clase 11)",
-         "La v1 mejorada con un asistente de IA: un prompt con contexto, tres variantes, una "
-         "elegida con su razón y corregida a mano. Se guarda el registro de todo eso, y la v2 "
-         "también queda navegable.",
-         "Asistente de IA gratuito, Excalidraw o draw.io, y Google Slides"],
-        ["Probada", "Antes de la sesión 8 (Clase 12)",
-         "La v2 navegable en manos de una persona ajena al equipo, con el guion de prueba. Lo "
-         "que falló se presenta en la Clase 12.",
-         "El prototipo navegable y el guion de tres tareas"],
-    ], anchos=[1.1, 1.3, 2.9, 1.5])
-    h3(doc, "Lo que todo prototipo tiene que tener")
-    bullets(doc, [
-        "@@Una frase de propósito en cada pantalla o paso:@@ «aquí el usuario averigua si el "
-        "libro está disponible». Si la frase necesita una «y», esa pantalla hace dos cosas y "
-        "hay que partirla.",
-        "@@Un solo camino principal,@@ grande y primero: lo que la persona va a hacer el 90 % "
-        "de las veces.",
-        "@@Textos reales, nunca relleno:@@ «Buscar título», no «texto aquí». El botón que no "
-        "se sabe cómo llamar es un botón que no se sabe qué hace.",
-        "@@El estado vacío y el estado de error:@@ qué ve la persona cuando no hay datos, "
-        "cuando no se encuentra nada o cuando algo falla. Ahí se cae casi todo prototipo.",
-        "@@Un destino para cada botón:@@ una flecha y una palabra que digan qué pasa al "
-        "tocarlo.",
-        "@@Datos inventados:@@ ningún nombre, cédula, teléfono, dirección ni foto de una "
-        "persona real, ni siquiera de ustedes.",
-        "@@El guion de prueba:@@ tres tareas que la persona de afuera intentará hacer sola, "
-        "sacadas de los criterios de aceptación de la Clase 7.",
-    ])
-    h3(doc, "Un ejemplo completo: la biblioteca del barrio")
-    para(doc,
-         "Es el caso que el curso resuelve en clase. Su alcance mínimo es una lista de los "
-         "libros que se prestan, que se consulta desde el celular con un enlace y sin crear "
-         "cuenta. El prototipo v1 tiene tres pantallas:")
-    bullets(doc, [
-        "@@1 · Consultar.@@ Aquí el usuario busca un título para saber si está disponible.",
-        "@@2 · Resultado.@@ Aquí el usuario ve si el título está disponible, prestado o no "
-        "está en la biblioteca: tres resultados posibles, no dos.",
-        "@@3 · Actualizar (solo la voluntaria).@@ Aquí la voluntaria marca un título como "
-        "prestado o devuelto, al cerrar el día.",
-    ])
-    para(doc,
-         "Cada frase tiene un solo verbo y un solo actor. Y como el equipo decidió que la lista "
-         "se actualiza una vez al día y no al minuto, la pantalla de resultado muestra la fecha "
-         "de la última actualización: así una decisión del proyecto se vuelve algo visible en "
-         "el prototipo.", size=10)
-    h3(doc, "Cómo se prueba con una persona ajena al equipo")
-    para(doc,
-         "Antes de la Clase 12, el equipo consigue a una persona que no participó en el "
-         "proyecto, le entrega el prototipo navegable y le pide las tres tareas del guion. "
-         "@@El equipo no ayuda ni explica:@@ observa en silencio y anota.")
-    bullets(doc, [
-        "@@Lo que hizo es el dato, no lo que dijo.@@ Si dudó cinco segundos frente a un botón, "
-        "eso pasó, aunque después diga «estaba clarísimo».",
-        "@@Se anota el tropiezo, no la solución:@@ «buscó el botón de volver en la esquina de "
-        "arriba» es un hallazgo; «hay que poner un botón arriba» es una conclusión apresurada.",
-        "@@Cada tropiezo se clasifica@@ con la tabla de abajo, porque cada tipo se arregla "
-        "distinto.",
-        "@@El mismo tropiezo en dos de tres personas es un defecto de diseño,@@ y esos se "
-        "arreglan primero. Lo que se decide no arreglar se escribe con su razón: también es "
-        "una decisión de ingeniería.",
-    ])
-    table(doc, ["Tipo de hallazgo", "Cómo se reconoce", "Qué se cambia"], [
-        ["Lenguaje", "Preguntó qué significa una palabra, o entendió otra cosa.",
-         "El texto. Es el arreglo más barato y el que más rinde."],
-        ["Flujo", "Hizo los pasos en otro orden, o se quedó sin saber dónde seguir.",
-         "El orden de las pantallas, o el botón que falta."],
-        ["Expectativa", "Buscó una función que no existe: «¿y aquí puedo reservarlo?».",
-         "Nada, si está fuera del alcance; pero el prototipo debe decirlo, no callarlo."],
-        ["Suposición nuestra", "Falló algo que el equipo daba por obvio: que tiene datos, que "
-         "sabe leer una tabla.", "La restricción. Es el hallazgo más caro y el más valioso."],
-    ], anchos=[1.4, 2.8, 2.6])
-    h3(doc, "Herramientas para el prototipo")
-    bullets(doc, [
-        "@@Papel y una foto legible:@@ es un entregable válido en este curso, y a veces el "
-        "mejor.",
-        "@@Excalidraw:@@ pantallas de baja fidelidad. Se ve dibujado a mano, y eso invita a "
-        "criticar. Abre sin cuenta.",
-        "@@diagrams.net (draw.io):@@ cuando la solución es un flujo o un proceso con "
-        "decisiones.",
-        "@@Google Slides:@@ el prototipo navegable, una diapositiva por pantalla y un enlace "
-        "en cada botón.",
-        "@@Asistente de IA@@ (gratuito): para el prototipo, solo en la Clase 11, entregando "
-        "el prompt y lo que se corrigió. Nunca se le pasan datos personales.",
-    ])
-    para(doc,
-         "Todas son gratuitas, abren en el navegador y no piden tarjeta. No se instala nada ni "
-         "se programa nada.", shade="FFF8D6", space_after=8)
-
-    h2(doc, "5. El informe final — 12 secciones (20% del curso)")
-    para(doc,
-         "Se escribe durante todo el semestre: once de las doce secciones salen de lo que cada "
-         "sesión deja listo (sección 3). Al final se revisa, se completa y se arma.", size=10)
+         "Es la pieza que más pesa y la que reúne todo el proyecto. Se escribe durante el "
+         "semestre y al final se revisa y se arma. Extensión: 9 a 11 páginas; la extensión no "
+         "es una virtud.", size=10)
     table(doc,
           ["#", "Sección", "Tiene que contener"],
           [
@@ -1554,8 +1408,8 @@ def enunciado_intro_ing(doc):
                "Descripción de la solución, capturas del prototipo v1 y v2, el enlace al "
                "prototipo navegable y el recorrido principal paso a paso."],
               ["8", "Prueba y hallazgos",
-               "Con quién se probó (solo el rol, no el nombre), qué tareas intentó, los "
-               "hallazgos con su tipo y el patrón; qué se arregló y qué no, con su razón."],
+               "Con quién se probó (solo el rol, no el nombre), qué tareas intentó, qué falló "
+               "y qué se arregló."],
               ["9", "Impacto", "Positivos con indicador y negativos con mitigación."],
               ["10", "Limitaciones y siguiente paso",
                "Lo que se decidió no hacer, con el motivo, y por dónde seguiría."],
@@ -1566,95 +1420,48 @@ def enunciado_intro_ing(doc):
                "Lo que se citó, en el formato acordado. Nada que no se haya leído."],
           ],
           anchos=[0.4, 1.7, 4.7])
-    para(doc, "Extensión total: 9 a 11 páginas. La extensión no es una virtud: un informe "
-              "donde la decisión está en la página 18 es un informe que no se va a leer.",
-         size=10)
 
-    h2(doc, "6. La exposición final (15% del curso)")
+    h2(doc, "5. La exposición final (15% del curso)")
     bullets(doc, [
-        "15 minutos de exposición + 5 minutos de preguntas, por equipo (turno de 20 "
-        "minutos). Se corta a los 15 minutos, sin excepción.",
-        "Fecha: la última clase de su grupo — SB141C y LB141F el martes 17/11/2026; "
-        "SB141B el jueves 19/11/2026.",
-        "Formato: comparte pantalla un integrante; plan B = PDF/capturas en la carpeta "
-        "del equipo, subidos antes de exponer.",
-        "Todos los integrantes tienen que hablar, y quien responda una pregunta debe "
-        "responder sobre SU propio tramo.",
-        "Repartan los 15 minutos entre los cinco tramos de la tabla. El tramo 3 —el "
-        "prototipo en vivo— es el que más puntos tiene: denle el tiempo que merece.",
+        "15 minutos de exposición + 5 de preguntas por equipo (turno de 20 minutos). Se corta "
+        "a los 15 minutos, sin excepción.",
+        "En la última clase de su grupo: SB141C y LB141F el martes 17/11/2026; SB141B el "
+        "jueves 19/11/2026.",
+        "Hablan todos los integrantes, y cada uno responde sobre su propio tramo.",
     ])
     table(doc,
           ["Tramo", "Qué se busca", "Pts"],
           [
               ["1 · El problema con su cifra",
-               "Arranca por el problema, no por presentaciones. Trae un número y de "
-               "dónde salió.", "20"],
+               "Arranca por el problema, con un número y de dónde salió.", "20"],
               ["2 · Los afectados y la decisión",
-               "Incluye un afectado que no es usuario y dice qué se sacrificó.", "20"],
+               "Un afectado que no es usuario y qué se sacrificó.", "20"],
               ["3 · La solución y el prototipo en vivo",
-               "Recorren el prototipo navegable en vivo y muestran una tarea cumpliéndose de "
-               "principio a fin —por ejemplo, una de las tres del guion de prueba—. No se "
-               "describe la pantalla: se usa.", "25"],
+               "Recorren el prototipo navegable cumpliendo una tarea de principio a fin.", "25"],
               ["4 · Lo que falló y lo que aprendimos",
-               "Hallazgos con personas reales, qué se arregló y qué se decidió no "
-               "arreglar.", "20"],
+               "Qué falló en la prueba, qué se arregló y qué no.", "20"],
               ["5 · Impacto y siguiente paso",
                "Impacto positivo con número y el negativo con su mitigación.", "15"],
           ],
           anchos=[2.0, 4.2, 0.6])
 
-    entrega_y_sustentacion(doc, "intro", "7. Entrega en ExamLab")
-    h3(doc, "Cómo armar el .zip y el enlace, paso a paso")
-    bullets(doc, [
-        "@@El .zip:@@ pongan los archivos en una carpeta, selecciónenla, clic derecho y "
-        "«Comprimir en archivo ZIP» (en versiones anteriores de Windows: «Enviar a» → "
-        "«Carpeta comprimida»; en Mac: «Comprimir»). Revisen que pese menos de 50 MB.",
-        "@@El nombre del archivo:@@ el del equipo y el grupo, por ejemplo «Proyecto - Equipo "
-        "Biblioteca - SB141C.zip».",
-        "@@El enlace de la carpeta:@@ en Drive, «Compartir» → «Cualquier persona con el "
-        "enlace» → «Lector», y copien el enlace.",
-        "@@Antes de subir:@@ abran el enlace en una ventana de incógnito. Si pide permiso, "
-        "el docente tampoco lo va a poder abrir.",
-    ])
-
-    h2(doc, "8. Herramientas (gratis + navegador)")
-    bullets(doc, [
-        "Bitácora, informe y soporte de la exposición: Google Drive (Docs y Slides).",
-        "Prototipo: papel y foto, Excalidraw, diagrams.net (draw.io) y Google Slides "
-        "(sección 4).",
-        "Póster/infografía (opcional): Canva, alternativa Google Slides.",
-        "Asistente de IA (Gemini/Claude/ChatGPT, plan gratuito): solo en las Clases 3 y 11, "
-        "entregando el prompt y lo que se corrigió a mano. Nunca se le pasan datos "
-        "personales.",
-        "Entrega de talleres, diagnóstico, evaluaciones de corte, informe final y prototipo: "
-        "ExamLab.",
-    ])
+    entrega_y_sustentacion(doc, "intro", "6. Entrega en ExamLab")
     para(doc,
-         "Prohibido como requisito: cualquier nube que pida tarjeta de crédito. Nada de "
-         "software de pago ni instalaciones obligatorias.",
-         shade="FBE4E4", space_after=8)
+         "@@Cómo armarlo:@@ para el .zip, clic derecho sobre la carpeta → «Comprimir en archivo "
+         "ZIP». Para el enlace, en Drive: «Compartir» → «Cualquier persona con el enlace» → "
+         "«Lector»; ábranlo en una ventana de incógnito antes de subirlo para comprobar que "
+         "abre.", size=10)
 
-    h2(doc, "9. Modalidad de trabajo")
+    h2(doc, "7. Reglas del proyecto")
     bullets(doc, [
-        "Es un proyecto DE EQUIPO, no individual: el equipo del proyecto es de 4 a 5 "
-        "integrantes (máximo 5) y se mantiene todo el semestre. El tamaño es regla del "
-        "proyecto; las actividades de clase se arman como indique el docente en cada una.",
-        "El vocero rota en cada sesión y se anota en la bitácora: al final del semestre "
-        "todos han expuesto al menos dos veces.",
-        "La autoevaluación individual del cierre del proyecto sí se entrega solo al "
-        "docente, uno por integrante.",
-    ])
-
-    h2(doc, "10. Qué NO es este proyecto")
-    bullets(doc, [
-        "No es una aplicación: no se programa, no se instala nada y no hace falta saber "
-        "programar. Se diseña, se prototipa y se prueba con personas.",
-        "No es un examen final escrito: el Corte 3 no tiene evaluación escrita, se "
-        "califica con producto (exposición + informe).",
-        "No reemplaza las evaluaciones de corte de ExamLab de los Cortes 1 y 2: son "
-        "evaluaciones distintas del mismo semestre.",
-        "No tiene un dominio fijo: no es «CloudLite» ni ningún otro producto de otro "
-        "curso — el problema lo elige cada equipo.",
+        "Herramientas gratuitas y en el navegador: Google Drive, Excalidraw, draw.io y Google "
+        "Slides. Nada de pago, con tarjeta ni para instalar.",
+        "IA solo en las Clases 3 y 11, declarando qué se pidió y qué se corrigió; nunca con "
+        "datos personales.",
+        "El vocero rota cada sesión: al final del semestre todos han expuesto al menos dos "
+        "veces. La autoevaluación del cierre la entrega cada integrante al docente.",
+        "No es un examen escrito ni un sistema en producción: se califican el informe y la "
+        "exposición.",
     ])
 
 
@@ -1670,10 +1477,10 @@ def guia_intro_ing(doc):
          "de cada grupo — este documento ancla todo a la sesión, salvo el plazo único de "
          "entrega (dom 15/11) y el día de la exposición de cada grupo.")
     para(doc,
-         "En este curso no se programa. El enunciado le explica al estudiante de primer "
-         "semestre qué es el prototipo (baja fidelidad, navegable, probado con una persona "
-         "ajena al equipo), sus versiones, lo que debe tener, el ejemplo de la biblioteca y "
-         "cómo se prueba: todo sale de las Clases 10, 11 y 12.", size=10)
+         "En este curso no se programa. El enunciado es corto a propósito y su punto clave "
+         "es el informe final; del prototipo dice lo justo (qué es, sus versiones y qué debe "
+         "tener). El ejemplo de la biblioteca y los tipos de hallazgo están en las Clases 10 a "
+         "12.", size=10)
     h2(doc, "Hitos docentes (por sesión — igual en los 3 grupos)")
     table(doc,
           ["Sesión", "Clase(s)", "Rol docente"],
@@ -1742,8 +1549,8 @@ los tres grupos SB141B, SB141C, LB141F.
 del proyecto, no de los talleres ni de las demás actividades.
 
 **En este curso no se programa.** El prototipo es de baja fidelidad y navegable, y se prueba
-con una persona ajena al equipo. El enunciado lo explica en detalle para primer semestre: qué
-es, sus versiones, lo que debe tener, el ejemplo de la biblioteca y cómo se prueba.
+con una persona ajena al equipo. El enunciado es corto y su punto clave es el informe final; el
+detalle del prototipo está en las Clases 10 a 12.
 
 ## Hitos (por sesión — igual en los 3 grupos; fecha real en el CALENDARIO de cada grupo)
 

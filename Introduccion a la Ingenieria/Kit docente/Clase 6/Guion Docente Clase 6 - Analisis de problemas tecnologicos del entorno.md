@@ -36,7 +36,7 @@ Debajo de estas láminas, en las notas del presentador:
 
 - **La pregunta de entrada: la solución disfrazada de problema** → diapositiva 4
 - **Las tres cosas que se confunden y cómo se escribe un problema** → diapositiva 5
-- **El árbol del problema: la herramienta que evita las soluciones cosméticas** → diapositiva 7
+- **El árbol del problema: la herramienta que evita las soluciones superficiales** → diapositiva 7
 - **La línea base y los cuatro criterios de viabilidad** → diapositivas 9 y 11
 - **Cómo cerrar el corte: la ficha y la evaluación en ExamLab** → sin lámina: es la actividad, su guía está en la carpeta de la clase
 
@@ -128,7 +128,7 @@ Numeración real del deck `Clases/Clase 6 - Analisis de problemas tecnologicos d
 | Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |
 |---|---|---|
 | «Falta una app / un sistema para X» | Es una solución disfrazada de problema: cierra el diseño antes de empezar y hace que cualquier app «resuelva» el problema. | Que respondan «¿esto se podría resolver sin ninguna app?». Si es sí, el problema es otro y hay que escribirlo. |
-| «La gente se queja» / «se pierden libros» | Es un síntoma: la señal visible. Atacar el síntoma produce soluciones cosméticas. | A quién le pasa qué, con qué consecuencia. Y la cifra. |
+| «La gente se queja» / «se pierden libros» | Es un síntoma: la señal visible. Atacar el síntoma produce soluciones superficiales. | A quién le pasa qué, con qué consecuencia. Y la cifra. |
 | Una cifra sin decir de dónde salió | No se puede volver a medir en la Clase 16, así que no sirve como línea base. | Número, unidad y método: preguntando a quién, contando qué, o cronometrando cuándo. |
 | Un árbol con diez raíces | Es una lista de todo lo que se les ocurrió, no un análisis, y con eso no se puede decidir qué atacar. | Dos o tres causas directas, su segundo nivel, y las que no pueden cambiar marcadas como restricciones. |
 | «El éxito es tener 200 usuarios en la app» | Mide la adopción de la solución, no la resolución del problema. Se puede tener 200 usuarios y el problema intacto. | El criterio con la misma medición de la línea base: de X a Y, medido así. |

@@ -14,7 +14,7 @@
         if (i < 3) e.push({ tipo: 'flecha', de: [260, 108 + i * 100], a: [260, 128 + i * 100], en: 0.08 + i * 0.1 });
       }
       e.push({ tipo: 'caja', x: 520, y: 40, w: 255, h: 150, t: 'Activo', s: 'lo que vale proteger: datos personales, token, disponibilidad', color: 'acento', tamSub: 17, en: 0.5 });
-      e.push({ tipo: 'caja', x: 520, y: 220, w: 255, h: 150, t: 'Amenaza', s: 'el evento indeseado: un tercero lee la tabla de usuarios', color: 'malva', tamSub: 17, en: 0.6 });
+      e.push({ tipo: 'caja', x: 520, y: 220, w: 255, h: 150, t: 'Amenaza', s: 'el evento no deseado: un tercero lee la tabla de usuarios', color: 'malva', tamSub: 17, en: 0.6 });
       e.push({ tipo: 'texto', t: 'Primero se nombra lo que se protege; después, lo que puede pasarle.', x: 400, y: 470, tam: 22, ancho: 740, en: 0.84 });
       UJ.escena(ctx, t, lz, e);
     }

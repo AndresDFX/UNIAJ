@@ -219,7 +219,7 @@ TEMAS[2] = {
                 "doble: sobre el ciclo de vida (que se ve en la sesión 7) y sobre cómo se "
                 "deforman las ideas cuando se citan de segunda mano.",
                 "1975 es Brooks y «The Mythical Man-Month». La idea que hay que dejar es "
-                "contraintuitiva y utilísima para un curso donde se trabaja en equipos de cinco: "
+                "sorprendente y utilísima para un curso donde se trabaja en equipos de cinco: "
                 "**agregar gente a un proyecto atrasado lo atrasa más**, porque los canales de "
                 "comunicación crecen mucho más rápido que las personas. Con 5 personas hay 10 "
                 "parejas que se tienen que entender; con 10 personas hay 45. Es un dato "
@@ -562,27 +562,27 @@ TEMAS[2] = {
         ],
         "variantes": [
             {"caso": "Periodo 1945–1957 · Equipo 1",
-             "clave": "Hitos esperables: ENIAC (1945), arquitectura de von Neumann (1945), "
+             "clave": "Hitos esperados: ENIAC (1945), arquitectura de von Neumann (1945), "
                       "el primer «bug» documentado de Grace Hopper y su trabajo en compiladores, "
                       "Fortran (1957). Lo que **no** puede faltar: que el problema de la época era "
                       "**traducir** —hablarle a la máquina sin usar su idioma— y que el trabajo "
                       "cabía en pocas personas. Error típico: contar la historia del hardware sin "
                       "decir qué problema humano resolvía."},
             {"caso": "Periodo 1976–1990 · Equipo 3",
-             "clave": "Hitos esperables: el computador personal (Apple II 1977, IBM PC 1981), las "
+             "clave": "Hitos esperados: el computador personal (Apple II 1977, IBM PC 1981), las "
                       "primeras bases de datos relacionales comerciales sobre el modelo de Codd, "
                       "el modelo en espiral de Boehm (1988), la aparición de los estándares IEEE "
                       "de software. Lo que **no** puede faltar: el problema muda a **muchos "
                       "usuarios que no son técnicos**, y con eso nace el requisito de usabilidad. "
                       "Error típico: quedarse en las marcas de computadores."},
             {"caso": "Periodo 1991–2005 · Equipo 4",
-             "clave": "Hitos esperables: la web (1991), Linux (1991), los patrones de diseño "
+             "clave": "Hitos esperados: la web (1991), Linux (1991), los patrones de diseño "
                       "(1994), el Manifiesto Ágil (2001). Lo que **no** puede faltar: el problema "
                       "es que **los requisitos cambian mientras se construye**, y que ágil no "
                       "elimina las fases sino que las hace pequeñas y repetidas. Error típico: "
                       "presentar ágil como «trabajar sin plan»."},
             {"caso": "Periodo 2006–hoy · Equipo 5",
-             "clave": "Hitos esperables: la nube como servicio por horas (AWS, 2006), el "
+             "clave": "Hitos esperados: la nube como servicio por horas (AWS, 2006), el "
                       "teléfono inteligente como plataforma (2007–2008), DevOps y la entrega "
                       "continua, la IA generativa en producción (2022 en adelante). Lo que **no** "
                       "puede faltar: cuando construir se vuelve barato, la pregunta difícil deja "
@@ -898,7 +898,7 @@ TEMAS[3] = {
             "slide": "{{slide:El asistente de IA}} {{slide:Cómo se descompone un sistema}}",
             "cuerpo": [
                 "Esta es una de las dos sesiones donde el Plan de curso autoriza IA, y conviene "
-                "encuadrarla bien porque de cómo se haga hoy depende cómo la usen todo el "
+                "presentarla bien porque de cómo se haga hoy depende cómo la usen todo el "
                 "semestre. La postura del curso no es prohibirla ni celebrarla: es **usarla y "
                 "verificarla**. El asistente es bueno dándole estructura a algo que el equipo ya "
                 "entiende, y es bueno sugiriendo actores que se pasaron por alto. Es malo, y de "
@@ -910,7 +910,7 @@ TEMAS[3] = {
                 "exactamente el tipo de dato que un estudiante de primer semestre no puede "
                 "distinguir, y por eso el entregable de hoy no es el texto de la IA: es **la "
                 "lista de lo que el equipo detectó y corrigió**.",
-                "Operativamente: el equipo escribe su prompt, pega la respuesta, y luego marca en "
+                "En la práctica: el equipo escribe su prompt, pega la respuesta, y luego marca en "
                 "el documento cada cosa que cambió y por qué. Tres correcciones bien "
                 "argumentadas valen más que un texto largo. Y hay una consecuencia útil que "
                 "conviene decirles: **la IA solo se puede verificar si uno sabe del tema**, así "
@@ -1207,7 +1207,7 @@ TEMAS[3] = {
                              "como es.",
                 "como_calificar": "30 pts, el bloque que decide la nota. Exija **tres correcciones "
                                   "con su razón**. Vale más una corrección profunda (la (2) o la "
-                                  "(5)) que tres cosméticas de redacción. Si el equipo entrega el "
+                                  "(5)) que tres retoques de redacción. Si el equipo entrega el "
                                   "texto de la IA sin correcciones, 0 en este bloque, y dígaselo en "
                                   "voz alta con el argumento correcto: no es castigo por usar la "
                                   "herramienta, es que sin verificación no hay nada de ingeniería "
@@ -1422,7 +1422,7 @@ TEMAS[4] = {
                  "El sistema dependía de **un solo sensor** y no se explicó en el manual de vuelo. "
                  "La alerta que avisaba era un accesorio opcional."],
                 ["Cambridge Analytica\n2018",
-                 "Datos de decenas de millones de personas usados para perfilamiento político sin "
+                 "Datos de decenas de millones de personas usados para clasificar votantes con fines políticos sin "
                  "que ellas lo supieran.",
                  "Una interfaz permitía a una aplicación tomar datos **de los amigos** del "
                  "usuario. Era legal, estaba documentado, y nadie preguntó si debía existir."],
@@ -1476,7 +1476,7 @@ TEMAS[4] = {
                 "funcionaba perfecto: hacía exactamente lo que se le pidió, sin errores. En 2017 "
                 "ese ingeniero se declaró culpable en Estados Unidos y fue condenado a cuarenta "
                 "meses de prisión, además de una multa.",
-                "El estudiante de primer semestre tiene interiorizada la idea de que la "
+                "El estudiante de primer semestre trae aprendida la idea de que la "
                 "responsabilidad es del jefe y que el programador ejecuta. Este caso la rompe con "
                 "un hecho verificable, y por eso es mejor abrir con él que con una definición de "
                 "ética. Recoja las respuestas en el muro los primeros diez minutos —van a aparecer "
@@ -1574,7 +1574,7 @@ TEMAS[4] = {
                 "anteriores, con errores que antes quedaban tapados por esos seguros; había una "
                 "condición de carrera que se disparaba cuando la operadora corregía la pantalla "
                 "muy rápido, algo que hacían las operadoras expertas; los mensajes de error eran "
-                "crípticos («MALFUNCTION 54») y aparecían tan seguido que se ignoraban; nunca hubo "
+                "difíciles de entender («MALFUNCTION 54») y aparecían tan seguido que se ignoraban; nunca hubo "
                 "revisión independiente del código; y el fabricante sostuvo al principio que la "
                 "sobredosis era imposible. La investigación de Nancy Leveson y Clark Turner (1993) "
                 "es la fuente canónica y está disponible. **El momento de parar** fue la decisión "
@@ -1600,7 +1600,7 @@ TEMAS[4] = {
                 "**Cambridge Analytica (2018).** Una aplicación de cuestionarios recogía datos del "
                 "usuario **y de sus amigos**, que nunca la instalaron ni supieron de ella, "
                 "aprovechando una interfaz de la plataforma que lo permitía. Los datos de decenas "
-                "de millones de personas terminaron en perfilamiento político. La consecuencia fue "
+                "de millones de personas terminaron usados para clasificar votantes con fines políticos. La consecuencia fue "
                 "una multa histórica a la plataforma. **El momento de parar** fue el diseño de esa "
                 "interfaz: alguien decidió que el consentimiento de una persona alcanzara para "
                 "entregar los datos de sus contactos. Es el caso que conecta directo con la Ley "
@@ -1619,7 +1619,7 @@ TEMAS[4] = {
             "cuerpo": [
                 "«Yo solo programé lo que me pidieron» es la frase que el estudiante va a usar "
                 "espontáneamente en el taller, y hay que desarmarla con hechos en vez de con "
-                "moralina. Legalmente no funciona: el caso Volkswagen tiene un ingeniero condenado "
+                "sermones. Legalmente no funciona: el caso Volkswagen tiene un ingeniero condenado "
                 "a prisión por ejecutar. Profesionalmente tampoco: el código ACM/IEEE pone el "
                 "interés público por encima del empleador, así que el conflicto ya está resuelto "
                 "en el texto.",
@@ -1798,7 +1798,7 @@ TEMAS[4] = {
                 "Therac-25 se eliminaron y se dejó la protección **solo en el software**, "
                 "reutilizando código de los modelos previos. Existía una condición de carrera que "
                 "se activaba cuando la operadora corregía la pantalla muy rápido —justo lo que "
-                "hacían las operadoras con experiencia—. Los mensajes de error eran crípticos "
+                "hacían las operadoras con experiencia—. Los mensajes de error eran difíciles de entender "
                 "(«MALFUNCTION 54») y tan frecuentes que se ignoraban. No hubo revisión "
                 "independiente del código, y el fabricante sostuvo inicialmente que una sobredosis "
                 "era imposible.",
@@ -2146,8 +2146,8 @@ TEMAS[5] = {
             "cards": [
                 ("PUE · Power Usage Effectiveness",
                  "Energía total del centro de datos ÷ energía que llega a los servidores. **1.0 "
-                 "sería perfecto**: todo va a computar. Un valor de 1.6 significa que por cada "
-                 "vatio de cómputo se gastan 0,6 en enfriar, iluminar y perder."),
+                 "sería perfecto**: todo llega a los servidores. Un valor de 1.6 significa que por cada "
+                 "vatio que usan los servidores se gastan 0,6 en enfriar, iluminar y perder."),
                 ("Agua de enfriamiento",
                  "Muchos centros de datos se enfrían **evaporando agua**, porque es más barato que "
                  "enfriar con electricidad. El costo se muda de la factura de luz a la cuenca de "
@@ -2178,7 +2178,7 @@ TEMAS[5] = {
             "after": [
                 "Cada 5 minutos, o cuando el usuario se mueve. **Batería y red.**",
                 "Imágenes ajustadas al tamaño real. **Menos bytes por la red.**",
-                "Se guarda el resultado y se recalcula al cambiar. **Menos cómputo.**",
+                "Se guarda el resultado y se recalcula al cambiar. **Menos trabajo para los servidores.**",
                 "Se sostiene el soporte para dispositivos viejos. **Menos RAEE.**",
                 "Se usa el `if`. **La IA cuesta energía en cada llamada.**",
             ],
@@ -2193,7 +2193,7 @@ TEMAS[5] = {
                 "que el mismo kilovatio en un país que quema carbón. Un análisis serio no copia "
                 "cifras de emisiones de otro país: **usa el factor local**, que publica el "
                 "operador del sistema (XM).",
-                "@@Y su contracara.@@ Cuando llega el fenómeno de El Niño y baja el nivel de los "
+                "@@Y su otra cara.@@ Cuando llega el fenómeno de El Niño y baja el nivel de los "
                 "embalses, entran las plantas térmicas y **la misma aplicación pasa a emitir "
                 "más sin cambiar una línea de código**. La huella de un sistema no es un número "
                 "fijo: depende de cuándo y dónde corre.",
@@ -2258,7 +2258,7 @@ TEMAS[5] = {
                 "Recoja las respuestas en el muro y no las corrija. En el minuto 20, al llegar al "
                 "PUE y al enfriamiento, vuelva al muro: alguien va a haber escrito «en internet» o "
                 "«en un servidor», y ahí se muestra que el servidor está en un edificio que "
-                "consume tanto en enfriarse como en computar.",
+                "consume tanto en enfriarse como en procesar datos.",
             ],
         },
         {
@@ -2274,7 +2274,7 @@ TEMAS[5] = {
                 "transporte. Este es el punto que más sorprende y el más importante para las "
                 "decisiones: **en muchos dispositivos personales la mayor parte de la huella de "
                 "toda su vida ya está gastada cuando se enciende por primera vez**. La consecuencia "
-                "es contraintuitiva: optimizar el consumo de batería es útil, pero **alargar la "
+                "sorprende: optimizar el consumo de batería es útil, pero **alargar la "
                 "vida útil del aparato pesa mucho más**, y eso depende de decisiones de software.",
                 "**Uso.** Electricidad del dispositivo, del servidor y —esto es lo que se olvida— "
                 "del enfriamiento del centro de datos. Aquí entra el PUE.",
@@ -2295,12 +2295,12 @@ TEMAS[5] = {
             "cuerpo": [
                 "**PUE (Power Usage Effectiveness).** Es la energía total que entra al centro de "
                 "datos dividida por la energía que efectivamente llega a los servidores. Si fuera "
-                "1.0, todo lo que entra se usa en computar. Un PUE de 1.6 significa que por cada "
-                "vatio de cómputo se gastan 0,6 en enfriar, iluminar y en pérdidas. Los centros de "
+                "1.0, todo lo que entra lo usan los servidores. Un PUE de 1.6 significa que por cada "
+                "vatio que usan los servidores se gastan 0,6 en enfriar, iluminar y en pérdidas. Los centros de "
                 "datos grandes y modernos operan bastante mejor que el promedio de las salas de "
                 "servidores de empresa, que suelen estar en el rango de 1.5 a 1.6 según las "
                 "encuestas del sector. La idea que hay que dejar no es el número exacto: es que "
-                "**una parte grande de la energía de un centro de datos no computa nada**, y que "
+                "**una parte grande de la energía de un centro de datos no procesa ningún dato**, y que "
                 "existe una métrica con nombre para medirlo. Un ingeniero que sabe que el PUE "
                 "existe puede preguntar por él.",
                 "**El agua.** Enfriar con evaporación de agua es más barato en electricidad que "
@@ -2323,7 +2323,7 @@ TEMAS[5] = {
                 "está bajo su control profesional. Cuando una nueva versión de una aplicación "
                 "—o de un sistema operativo— deja de funcionar en dispositivos que servían, el "
                 "software convierte en basura un aparato que estaba bien. No hace falta discutir "
-                "si hay intención: el efecto es material y medible. Y la contracara es una "
+                "si hay intención: el efecto es material y medible. Y la otra cara es una "
                 "decisión concreta que un equipo de este curso puede tomar: **sostener el soporte "
                 "para dispositivos viejos**, que además es lo correcto para el contexto de la "
                 "universidad, donde muchos estudiantes trabajan con equipos de varios años.",
@@ -2340,9 +2340,9 @@ TEMAS[5] = {
                 "La primera —pedir la ubicación cada cinco segundos o cada cinco minutos— es la "
                 "más fácil de entender y toca batería y red a la vez. La tercera —guardar el "
                 "resultado en vez de recalcular el reporte completo en cada consulta— es la que "
-                "más sorprende, porque el estudiante todavía no tiene la intuición de que el "
-                "cómputo cuesta energía; sirve para conectar con la sesión 7 y con la idea de que "
-                "la eficiencia no es coquetería de programador. La cuarta —sostener dispositivos "
+                "más sorprende, porque el estudiante todavía no tiene la intuición de que "
+                "procesar datos cuesta energía; sirve para conectar con la sesión 7 y con la idea de que "
+                "la eficiencia no es un capricho de programador. La cuarta —sostener dispositivos "
                 "viejos— es la de mayor impacto real por lo dicho sobre la fabricación. Y la "
                 "quinta es la más contemporánea y hay que decirla sin miedo: **agregarle un "
                 "asistente de IA a una función que resolvía una condición simple gasta energía en "
@@ -2368,7 +2368,7 @@ TEMAS[5] = {
                 "local, y el operador del sistema (XM) publica datos de generación. Un equipo que "
                 "cite una fuente colombiana en vez de un blog extranjero ya está haciendo "
                 "ingeniería.",
-                "La contracara es igual de importante y menos conocida: cuando el fenómeno de El "
+                "La otra cara es igual de importante y menos conocida: cuando el fenómeno de El "
                 "Niño reduce los aportes a los embalses, entran las plantas térmicas y el factor "
                 "de emisiones del país sube. Es decir, **la misma aplicación, sin cambiar una "
                 "línea de código, emite más en un año seco**. Eso enseña algo que vale para todo "
@@ -2557,7 +2557,7 @@ TEMAS[5] = {
                              "abierta (pantalla y radio son lo que más gasta), electricidad del "
                              "computador del consultorio encendido ocho horas al día, y "
                              "electricidad del servidor **más su enfriamiento** —aquí entra el "
-                             "PUE: si el centro de datos tiene PUE 1.5, por cada vatio que computa "
+                             "PUE: si el centro de datos tiene PUE 1.5, por cada vatio que usan los servidores "
                              "el sistema se gasta medio vatio en enfriar.\n\n"
                              "**Etapa 3 · Red.** Cada consulta viaja del celular a la antena "
                              "celular, de ahí a la red del operador y al centro de datos. Se dibuja "
@@ -2595,7 +2595,7 @@ TEMAS[5] = {
                              "cifra de internet, sino una estimación construida y declarada**.",
                 "como_calificar": "15 pts. El criterio es doble: que haya un número **y** que esté "
                                   "declarado como estimación con el razonamiento visible. Una cifra "
-                                  "sin razonamiento vale 5, aunque sea plausible. Un razonamiento "
+                                  "sin razonamiento vale 5, aunque suene bien. Un razonamiento "
                                   "correcto sin número vale 8. Los 15 completos exigen "
                                   "«aproximadamente X, calculado así»."
             },
@@ -2680,7 +2680,7 @@ TEMAS[5] = {
             {"caso": "Proyecto de tipo inventario o ventas de un negocio",
              "clave": "La operación repetida suele ser la consulta de existencias o la "
                       "recalculación de un reporte en cada carga. La etapa más pesada suele ser "
-                      "**uso**, por el cómputo repetido, y la decisión fuerte es guardar el "
+                      "**uso**, por el cálculo repetido, y la decisión fuerte es guardar el "
                       "resultado y recalcular solo al cambiar. Buen indicador: «segundos para "
                       "cargar el reporte» o «consultas a la base por venta registrada». Cuidado con "
                       "la trampa: los equipos proponen «imprimir menos facturas», que es "
@@ -2695,7 +2695,7 @@ TEMAS[5] = {
                       "margen de acción es pequeño, dé la nota completa: eso es análisis correcto."},
             {"caso": "Proyecto que incluye un asistente de IA",
              "clave": "Es el caso donde la clase pega más fuerte. La etapa **uso** domina, porque "
-                      "cada llamada al modelo consume cómputo en un centro de datos. La decisión de "
+                      "cada llamada al modelo pone a trabajar servidores en un centro de datos. La decisión de "
                       "diseño más potente es la de la diapositiva: **no llamar al modelo cuando una "
                       "regla simple resuelve**, y guardar respuestas repetidas en vez de volver a "
                       "preguntar. Indicador: «llamadas al modelo por usuario atendido». Exija "
@@ -2885,7 +2885,7 @@ TEMAS[6] = {
                 ("PROBLEMA (el tronco)", "Una sola frase: a quién le pasa qué, con qué consecuencia. Es lo que se ataca"),
                 ("EFECTOS (las ramas)", "Lo que se ve y lo que duele: quejas, demoras, pérdidas. Aquí viven los síntomas"),
             ],
-            "sub": "Se dibuja de arriba hacia abajo y se lee de abajo hacia arriba, como está aquí. Regla: el proyecto ataca una CAUSA, no una rama — quien diseña para los efectos produce una solución cosmética",
+            "sub": "Se dibuja de arriba hacia abajo y se lee de abajo hacia arriba, como está aquí. Regla: el proyecto ataca una CAUSA, no una rama — quien diseña para los efectos produce una solución superficial",
         },
         {
             "tipo": "content",
@@ -2983,7 +2983,7 @@ TEMAS[6] = {
                 "**El síntoma** es la señal visible: la queja, la demora, la pérdida. «La gente se "
                 "queja del servicio» es un síntoma perfecto y un problema inservible, porque no "
                 "dice de qué se queja ni qué no puede hacer. Los síntomas son útiles —son la pista "
-                "que lleva al problema— pero atacar un síntoma produce soluciones cosméticas: si el "
+                "que lleva al problema— pero atacar un síntoma produce soluciones superficiales: si el "
                 "síntoma es que la fila es larga, poner sillas mejora la fila y no toca el "
                 "problema.",
                 "**La solución disfrazada** es la más peligrosa porque se ve profesional. «Falta un "
@@ -3007,7 +3007,7 @@ TEMAS[6] = {
             ],
         },
         {
-            "titulo": "El árbol del problema: la herramienta que evita las soluciones cosméticas",
+            "titulo": "El árbol del problema: la herramienta que evita las soluciones superficiales",
             "slide": "{{slide:El árbol del problema}}",
             "cuerpo": [
                 "El árbol de problemas es una técnica vieja y muy usada en formulación de "
@@ -3407,7 +3407,7 @@ TEMAS[6] = {
                              "**Frontera — lo que queda FUERA, declarado explícitamente:**\n\n"
                              "- La pérdida de libros y el cobro de multas: es otro problema, con "
                              "otro dueño (la coordinadora). No se aborda.\n"
-                             "- La catalogación completa del acervo: no cabe en un semestre.\n"
+                             "- Catalogar todos los libros: no cabe en un semestre.\n"
                              "- La compra de libros o de equipos: presupuesto cero, es restricción.\n"
                              "- La reserva de libros en línea: se deja fuera de esta primera "
                              "versión porque exige que alguien atienda las reservas, y eso choca "
@@ -3515,7 +3515,7 @@ TEMAS[6] = {
          "por_que": "Es una solución disfrazada de problema: cierra el diseño antes de empezar y hace que cualquier app «resuelva» el problema.",
          "pida": "Que respondan «¿esto se podría resolver sin ninguna app?». Si es sí, el problema es otro y hay que escribirlo."},
         {"dice": "«La gente se queja» / «se pierden libros»",
-         "por_que": "Es un síntoma: la señal visible. Atacar el síntoma produce soluciones cosméticas.",
+         "por_que": "Es un síntoma: la señal visible. Atacar el síntoma produce soluciones superficiales.",
          "pida": "A quién le pasa qué, con qué consecuencia. Y la cifra."},
         {"dice": "Una cifra sin decir de dónde salió",
          "por_que": "No se puede volver a medir en la Clase 16, así que no sirve como línea base.",

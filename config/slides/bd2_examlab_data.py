@@ -5599,7 +5599,7 @@ Sobre el mismo esquema de VetCare (ya creado y poblado) y **asumiendo que los ro
                                   'causa aparente suele ser "alguien se equivoco"; la raiz suele '
                                   'ser "no habia un control que detuviera ese error".\n'
                                   '4. **Impacto**: datos, dinero, tiempo, confianza.\n'
-                                  '5. **Leccion en una frase**, redactada como regla accionable '
+                                  '5. **Leccion en una frase**, redactada como regla concreta '
                                   '("un respaldo que no se ha restaurado no es un respaldo").\n'
                                   '6. **Traduccion a VetCare**: cual de las tablas o procesos de '
                                   'tu proyecto (`cita`, `insumo`, `factura`, `audit_cita`, tu capa '
@@ -5611,7 +5611,7 @@ Sobre el mismo esquema de VetCare (ya creado y poblado) y **asumiendo que los ro
                      'rubrica': 'Las 6 secciones estan presentes. La causa raiz se distingue '
                                 'explicitamente de la causa aparente y apunta a un control '
                                 'ausente, no a la culpa de una persona. El impacto es concreto. La '
-                                'leccion esta redactada como regla accionable. La traduccion a '
+                                'leccion esta redactada como regla concreta. La traduccion a '
                                 'VetCare nombra tablas o procesos reales del proyecto y explica el '
                                 'mecanismo de la vulnerabilidad, no una analogia vaga. Si el caso '
                                 'es propio, trae fuente.',

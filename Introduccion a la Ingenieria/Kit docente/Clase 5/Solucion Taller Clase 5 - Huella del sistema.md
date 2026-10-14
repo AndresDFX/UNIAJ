@@ -30,7 +30,7 @@ El sistema: los pacientes piden cita desde el celular, la secretaria administra 
 
 **Etapa 1 · Fabricación.** 60 celulares de pacientes al día (que ya existen y se usan para otras cosas), 1 computador de escritorio de siete años en el consultorio, y la fracción que le corresponde al sistema de los servidores del proveedor de nube, que están compartidos con miles de otros clientes.
 
-**Etapa 2 · Uso.** Electricidad del celular mientras la app está abierta (pantalla y radio son lo que más gasta), electricidad del computador del consultorio encendido ocho horas al día, y electricidad del servidor **más su enfriamiento** —aquí entra el PUE: si el centro de datos tiene PUE 1.5, por cada vatio que computa el sistema se gasta medio vatio en enfriar.
+**Etapa 2 · Uso.** Electricidad del celular mientras la app está abierta (pantalla y radio son lo que más gasta), electricidad del computador del consultorio encendido ocho horas al día, y electricidad del servidor **más su enfriamiento** —aquí entra el PUE: si el centro de datos tiene PUE 1.5, por cada vatio que usan los servidores el sistema se gasta medio vatio en enfriar.
 
 **Etapa 3 · Red.** Cada consulta viaja del celular a la antena celular, de ahí a la red del operador y al centro de datos. Se dibuja como una cadena, no como una flecha: la antena y los equipos intermedios también consumen.
 
@@ -50,7 +50,7 @@ La segunda operación repetida es la carga de la foto del consultorio en cada pa
 
 Las dos cifras están calculadas a partir de datos que el equipo puede medir en su propio sistema (peso del archivo, número de pantallas, número de pacientes). Eso es lo que se pide: **no una cifra de internet, sino una estimación construida y declarada**.
 
-**Cómo calificar:** 15 pts. El criterio es doble: que haya un número **y** que esté declarado como estimación con el razonamiento visible. Una cifra sin razonamiento vale 5, aunque sea plausible. Un razonamiento correcto sin número vale 8. Los 15 completos exigen «aproximadamente X, calculado así».
+**Cómo calificar:** 15 pts. El criterio es doble: que haya un número **y** que esté declarado como estimación con el razonamiento visible. Una cifra sin razonamiento vale 5, aunque suene bien. Un razonamiento correcto sin número vale 8. Los 15 completos exigen «aproximadamente X, calculado así».
 
 ### 3. LA ETAPA QUE MÁS PESA
 
@@ -110,11 +110,11 @@ Los tres tienen unidad (o son un sí/no verificable), se miden con algo que el e
 
 ## Si el equipo trabajó otro caso
 
-**Proyecto de tipo inventario o ventas de un negocio.** La operación repetida suele ser la consulta de existencias o la recalculación de un reporte en cada carga. La etapa más pesada suele ser **uso**, por el cómputo repetido, y la decisión fuerte es guardar el resultado y recalcular solo al cambiar. Buen indicador: «segundos para cargar el reporte» o «consultas a la base por venta registrada». Cuidado con la trampa: los equipos proponen «imprimir menos facturas», que es comportamiento del negocio, no diseño.
+**Proyecto de tipo inventario o ventas de un negocio.** La operación repetida suele ser la consulta de existencias o la recalculación de un reporte en cada carga. La etapa más pesada suele ser **uso**, por el cálculo repetido, y la decisión fuerte es guardar el resultado y recalcular solo al cambiar. Buen indicador: «segundos para cargar el reporte» o «consultas a la base por venta registrada». Cuidado con la trampa: los equipos proponen «imprimir menos facturas», que es comportamiento del negocio, no diseño.
 
 **Proyecto con formularios o encuestas.** La huella es baja y hay que decírselo: no todo proyecto tiene un problema ambiental grande, y **reconocerlo es más honesto que inflarlo**. La etapa que suele pesar es **red**, por adjuntos y fotos sin ajustar. Decisión fuerte: comprimir en el dispositivo antes de subir. Indicador: «KB promedio por respuesta enviada». Si el equipo dice honestamente que su huella dominante es la fabricación de los dispositivos que ya existen y que su margen de acción es pequeño, dé la nota completa: eso es análisis correcto.
 
-**Proyecto que incluye un asistente de IA.** Es el caso donde la clase pega más fuerte. La etapa **uso** domina, porque cada llamada al modelo consume cómputo en un centro de datos. La decisión de diseño más potente es la de la diapositiva: **no llamar al modelo cuando una regla simple resuelve**, y guardar respuestas repetidas en vez de volver a preguntar. Indicador: «llamadas al modelo por usuario atendido». Exija honestidad con las cifras: no hay un número público confiable de energía por consulta, así que se mide **el número de llamadas**, que sí se puede contar.
+**Proyecto que incluye un asistente de IA.** Es el caso donde la clase pega más fuerte. La etapa **uso** domina, porque cada llamada al modelo pone a trabajar servidores en un centro de datos. La decisión de diseño más potente es la de la diapositiva: **no llamar al modelo cuando una regla simple resuelve**, y guardar respuestas repetidas en vez de volver a preguntar. Indicador: «llamadas al modelo por usuario atendido». Exija honestidad con las cifras: no hay un número público confiable de energía por consulta, así que se mide **el número de llamadas**, que sí se puede contar.
 
 **Proyecto de hardware, sensores o IoT.** Aquí la etapa 1 (fabricación) y la 4 (fin de vida) son las dominantes y por primera vez son físicas y propias del equipo: cada sensor es un aparato que se fabricó y que va a ser residuo. Decisión fuerte: menos dispositivos con más cobertura, y batería reemplazable. Indicador: «número de dispositivos por área cubierta» o «meses de vida útil esperada». Es el único caso donde el equipo debería mencionar explícitamente la Ley 1672 de 2013, porque va a generar RAEE de verdad.
 

@@ -398,7 +398,7 @@ Herramienta: ExamLab (PostgreSQL/PGlite) + Excalidraw / Mermaid
 - **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `sequenceDiagram`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
 - **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
-📸 Salida esperada de la demo de la Clase 12 [[captura: cap01_demo.png | receta: 1) Abra ExamLab (PostgreSQL/PGlite) + Excalidraw / Mermaid y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 12/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda embebida aqui sola.]]
+📸 Salida esperada de la demo de la Clase 12 [[captura: cap01_demo.png | receta: 1) Abra ExamLab (PostgreSQL/PGlite) + Excalidraw / Mermaid y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 12/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda insertada aqui sola.]]
 Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Practica (opcional) · sin lamina
@@ -411,7 +411,7 @@ Actividades:
 2. Diagrama flujo app->BD (Excalidraw) opcional.
 3. Outline presentacion 5-8 min + quien habla que.
 4. Empaquetar borrador entrega final.
-Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
+Circular por estudiantes (o salas). Empujar evidencia, no perfeccionismo.
 Entregable: Contrato app<->BD + outline de slides de sustentacion (5-8 min)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 12/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
@@ -430,7 +430,7 @@ Carpeta Codigo/ — archivo 12_contrato_ops.sql.
 ## Capturas
 Carpeta `Kit docente/Clase 12/Capturas/`. Cada linea de pantallazo de arriba trae
 el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
-tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se inserta sola.
 Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia

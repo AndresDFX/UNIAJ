@@ -37,14 +37,14 @@ Redacta **media pagina** con esta estructura:
 2. **Que fallo**: la secuencia de hechos, en orden. Se lo mas concreto que puedas.
 3. **Causa raiz**, distinguiendola de la causa aparente. La causa aparente suele ser "alguien se equivoco"; la raiz suele ser "no habia un control que detuviera ese error".
 4. **Impacto**: datos, dinero, tiempo, confianza.
-5. **Leccion en una frase**, redactada como regla accionable ("un respaldo que no se ha restaurado no es un respaldo").
+5. **Leccion en una frase**, redactada como regla concreta ("un respaldo que no se ha restaurado no es un respaldo").
 6. **Traduccion a VetCare**: cual de las tablas o procesos de tu proyecto (`cita`, `insumo`, `factura`, `audit_cita`, tu capa `api_*`) es vulnerable al **mismo** tipo de fallo, y por que.
 
 Si eliges un caso propio, incluye la fuente (enlace o publicacion) al final.
 
 **Rubrica esperada (campo Rubrica):**
 
-Las 6 secciones estan presentes. La causa raiz se distingue explicitamente de la causa aparente y apunta a un control ausente, no a la culpa de una persona. El impacto es concreto. La leccion esta redactada como regla accionable. La traduccion a VetCare nombra tablas o procesos reales del proyecto y explica el mecanismo de la vulnerabilidad, no una analogia vaga. Si el caso es propio, trae fuente.
+Las 6 secciones estan presentes. La causa raiz se distingue explicitamente de la causa aparente y apunta a un control ausente, no a la culpa de una persona. El impacto es concreto. La leccion esta redactada como regla concreta. La traduccion a VetCare nombra tablas o procesos reales del proyecto y explica el mecanismo de la vulnerabilidad, no una analogia vaga. Si el caso es propio, trae fuente.
 
 ---
 

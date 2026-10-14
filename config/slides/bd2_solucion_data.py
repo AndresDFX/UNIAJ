@@ -132,7 +132,7 @@ ORDER BY c.fecha_hora;""",
                 "como_calificar": [
                     "12 pts las tres tablas creadas sin error, con su PK, las **2 FK**, el "
                     "`DEFAULT 'Cali'` de ciudad y los **2 CHECK** exigidos (`activa` y "
-                    "`estado`). Se prorratea: cada restriccion que falte descuenta.",
+                    "`estado`). Se califica por partes: cada restriccion que falte descuenta.",
                     "8 pts los datos: al menos 3 duenos, 4 mascotas con **>=1 inactiva** y 3 "
                     "citas coherentes con las FK. Si un INSERT viola una FK y el script no "
                     "corre, esta parte vale cero.",
@@ -436,7 +436,7 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
                     "esta asignatura el entregable es la capa de datos, y que la aplicacion "
                     "es el alcance de Programacion II sobre el mismo cliente.",
                     "Riesgo escrito como excusa anticipada («no tengo tiempo»). El riesgo debe "
-                    "ser tecnico y con mitigacion accionable.",
+                    "ser tecnico y con mitigacion concreta.",
                 ],
             },
         ],
@@ -2700,7 +2700,7 @@ despues; si algo falta, se agrega con ALTER TABLE en vez de recrear.""",
                     "Si un mes no se ensayo, se escribe que no se ensayo: un renglon vacio en la "
                     "bitacora es informacion, un renglon inventado es un riesgo.\n\n"
                     "**6. Que NO cubre este plan, y el riesgo residual.**\n\n"
-                    "- **No cubre el borrado correcto pero indeseado.** Si alguien cancela 40 "
+                    "- **No cubre el borrado correcto pero no deseado.** Si alguien cancela 40 "
                     "citas por error y lo hace bien, el respaldo lo copia fielmente. Eso se "
                     "recupera con la auditoria de la pregunta 2, no con el respaldo.\n"
                     "- **No cubre lo que no esta en la base:** radiografias, consentimientos "
@@ -3212,7 +3212,7 @@ vale la pena senalarlo en la devolucion.""",
 primeros son deterministas**:
 
 1. **`Rows Removed by Filter: 29919`, igual en las dos.** Es la parte incomoda y es
-   la mas instructiva: sin indice, las dos versiones leen las 30.010 filas y tiran
+   la que mas ensena: sin indice, las dos versiones leen las 30.010 filas y tiran
    las mismas 29.919. El predicado sargable **por si solo** no evita el `Seq Scan`;
    lo que hace es dejar la puerta abierta para el indice de la Clase 7. Un estudiante
    que reporte «desaparecio el Seq Scan» no leyo su plan.
@@ -3455,7 +3455,7 @@ indices, porque lo que se elimino no fue un escaneo: fueron 2.005 escaneos.""",
                     "la pregunta y se verifican con una sola consulta: los duenos 2001 a 2006 "
                     "tienen que decir **0**, no 1.",
                     "**3 pts — el `ORDER BY total_citas DESC, d.id_dueno` y el `LIMIT 20`.** El "
-                    "desempate no es cosmetico: hay 987 duenos empatados en 18 y sin el las filas "
+                    "desempate no es un detalle de forma: hay 987 duenos empatados en 18 y sin el las filas "
                     "7 a 20 cambian entre corridas.",
                     "**4 pts — los dos `EXPLAIN ANALYZE`** corren y se aprecia la diferencia de "
                     "plan. El ancla verificable es el `loops=2006` del `SubPlan` en la version "
@@ -3770,7 +3770,7 @@ indices, porque lo que se elimino no fue un escaneo: fueron 2.005 escaneos.""",
              "`upper(estado)` —solo las tiene sobre las columnas desnudas—, asi que aplica una "
              "selectividad por omision del 0,5 % a cada condicion de igualdad. La cuenta sale "
              "exacta: 30.010 x 0,005 x 0,005 = 0,75, que se redondea a 1. Y esa estimacion "
-             "equivocada no es cosmetica: el planeador dimensiona los joins creyendo que va a "
+             "equivocada no es un detalle de forma: el planeador dimensiona los joins creyendo que va a "
              "unir **una** cita. Comparar `rows=` estimadas contra `actual rows=` es el "
              "diagnostico mas rentable que existe; en una consulta normal, una brecha asi suele "
              "significar que falta correr `ANALYZE`."),
@@ -6342,7 +6342,7 @@ true. Un regalo de inventario disfrazado de descuento, y ademas silencioso.""",
                     "existe si las dos lecturas caen **antes** de la primera escritura.",
                     "**Decir que `READ COMMITTED` «lee datos sucios» o que «lee mal».** Es al "
                     "contrario: PostgreSQL **nunca** permite lecturas sucias, en ningun nivel. "
-                    "Aqui las dos lecturas son veraces. Confundir esto lleva directo a marcar mal "
+                    "Aqui las dos lecturas son correctas. Confundir esto lleva directo a marcar mal "
                     "la opcion de `READ UNCOMMITTED` en la pregunta 4.",
                     "**Proponer «poner el `SELECT` y el `INSERT` mas cerca» o «hacer la "
                     "transaccion mas rapida» como mitigacion.** Reducir la ventana **no** es "
@@ -10015,7 +10015,7 @@ error, y el script continua.""",
                     "texto **del motor** cuando cayo en el manejador de excepciones. "
                     "`id_generado INT` trae el `id_cita` creado si `ok` es verdadero y **`NULL` "
                     "siempre que `ok` sea falso** —`NULL`, no `0` ni `-1`: el cliente debe "
-                    "tipificarlo como nullable—.\n\n"
+                    "tratarlo como nullable—.\n\n"
                     "**Precondiciones del llamador.** Los tres parametros no nulos; "
                     "`p_fecha_hora` como `TIMESTAMP` sin zona; el rol necesita `EXECUTE` de esta "
                     "funcion. No se exige que la mascota exista ni este activa: **eso lo valida la "
@@ -10592,7 +10592,7 @@ error, y el script continua.""",
             "`SELECT id_mascota, nombre ... WHERE nombre = p_nombre`— **falla** con «column "
             "reference “id_mascota” is ambiguous», porque los nombres del `RETURNS TABLE` son "
             "variables de PL/pgSQL y chocan con las columnas; se arregla con alias "
-            "(`m.id_mascota`, `m.nombre`, …) y es instructivo que la version con `EXECUTE` no tenga "
+            "(`m.id_mascota`, `m.nombre`, …) y ensena mucho que la version con `EXECUTE` no tenga "
             "ese problema. (2) En la pregunta 3, `RETURN NEW` en un trigger de `DELETE` devuelve "
             "`NULL` y **cancela el borrado en silencio**: el estudiante vera 10 filas en las dos "
             "tablas y creera que funciono. (3) `DROP FUNCTION buscar_mascota_insegura(TEXT);` es lo "
@@ -10684,7 +10684,7 @@ error, y el script continua.""",
                     "incidente, con los cinco mecanismos y por que fallo cada uno. Esa "
                     "transparencia es la razon por la que hoy se puede estudiar en un curso, y es "
                     "en si misma una practica que vale la pena copiar.\n\n"
-                    "### 5. Leccion en una frase accionable\n\n"
+                    "### 5. Leccion en una frase concreta\n\n"
                     "> **Un respaldo que no se ha restaurado no es un respaldo: es un archivo con "
                     "un nombre tranquilizador. La copia no es el control; el control es la "
                     "restauracion verificada.**\n\n"
@@ -10754,8 +10754,8 @@ error, y el script continua.""",
                     "ordenes de magnitud, no adjetivos. «Fue muy grave» vale 0; «unas seis horas de "
                     "escrituras perdidas sin posibilidad de reconstruirlas» vale completo. Se "
                     "acepta «aproximadamente» y se agradece: es mas honesto que una cifra falsa.",
-                    "**3 pts — la leccion redactada como regla accionable,** en imperativo o como "
-                    "afirmacion verificable. «Hay que cuidar los respaldos» no es accionable; «un "
+                    "**3 pts — la leccion redactada como regla concreta,** en imperativo o como "
+                    "afirmacion verificable. «Hay que cuidar los respaldos» no es concreta; «un "
                     "respaldo que no se ha restaurado no es un respaldo» si, porque se puede "
                     "comprobar si se cumple o no.",
                     "**3 pts — la traduccion a VetCare nombrando tablas, funciones o triggers "
@@ -10788,9 +10788,9 @@ error, y el script continua.""",
                     "informacion». No informa y no se puede comparar con nada. Cualquier magnitud "
                     "aproximada —horas de datos, horas de servicio, numero de usuarios afectados— "
                     "vale mas que tres superlativos.",
-                    "**Una leccion que no es accionable:** «hay que ser cuidadoso con la base de "
+                    "**Una leccion que no es concreta:** «hay que ser cuidadoso con la base de "
                     "datos», «la seguridad es importante». No se puede comprobar si se cumple. Una "
-                    "regla accionable siempre se puede convertir en una pregunta de si o no: ¿se "
+                    "regla concreta siempre se puede convertir en una pregunta de si o no: ¿se "
                     "restauro el ultimo respaldo? ¿se comparo el conteo?",
                     "**Una traduccion a VetCare por analogia y no por mecanismo:** «a VetCare "
                     "tambien le podria pasar algo parecido». Hay que nombrar el objeto —`cita`, "
@@ -11144,7 +11144,7 @@ calificando las columnas, no cambiando la consulta.""",
                     "que ya no se puede volver a ejecutar y la evidencia del incidente desaparece. "
                     "La demostracion va primero; el `DROP` es la ultima linea.",
                     "**`DROP FUNCTION buscar_mascota_insegura;` sin la firma.** Falla con «could "
-                    "not find a function named ...» o pide desambiguar. Es el mismo aprendizaje de "
+                    "not find a function named ...» o pide aclarar cual. Es el mismo aprendizaje de "
                     "la Clase 12 con los `GRANT`: las funciones se identifican por nombre **mas** "
                     "tipos de argumentos.",
                     "**Probar solo que el ataque falla.** Media prueba. Falta comprobar que la "
@@ -12012,7 +12012,7 @@ SELECT id_entrega, estudiante, codigo, proyecto, fecha_entrega
 -- ======================================================================
 -- BLOQUE 1 - DDL COMPLETO (8 tablas + auditoria)
 --
--- Las restricciones CHECK van con NOMBRE propio, y no es cosmetica: el
+-- Las restricciones CHECK van con NOMBRE propio, y no es un detalle de forma: el
 -- nombre aparece en el mensaje de error, y es lo que permite que la
 -- aplicacion traduzca "ck_insumo_stock" a "stock insuficiente" en vez de
 -- mostrarle al usuario el texto crudo del motor (Clase 12). Con nombres
@@ -12746,7 +12746,7 @@ SELECT m.nombre       AS mascota,
 -- -- K4: Ana Gomez tiene 4 citas y 2 sin consulta, una de ellas PROGRAMADA
 -- --     para el 2026-09-08. DECISION: es la lista de llamadas de
 -- --     confirmacion de la semana, y ademas explica por que la ficha usa
--- --     LEFT JOIN: las citas sin consulta son precisamente las accionables.
+-- --     LEFT JOIN: las citas sin consulta son precisamente las que hay que atender.
 -- ======================================================================""",
                 "salida": """K1 - Carga por veterinario (5 filas, con Sara Quintero ya insertada)
 
@@ -12840,7 +12840,7 @@ vacias, porque son citas PROGRAMADA que todavia no generaron consulta.
 Esas dos filas vacias son la razon de ser del LEFT JOIN, y conviene decirlo asi
 en la sustentacion: con JOIN interno la ficha mostraria 2 filas en vez de 4 y
 seria un historial de cobros, no una historia clinica. Ademas la cita del
-2026-09-08 sigue PROGRAMADA: es exactamente la fila accionable del reporte.""",
+2026-09-08 sigue PROGRAMADA: es exactamente la fila que hay que atender del reporte.""",
                 "como_calificar": [
                     "**6 pts — K1.** 2 pts que corra y devuelva las cuatro columnas pedidas mas el "
                     "porcentaje redondeado a un decimal; **2 pts el `LEFT JOIN` que conserva al "
@@ -12905,7 +12905,7 @@ seria un historial de cobros, no una historia clinica. Ademas la cita del
                     "`LEFT JOIN` con agregados y conviene mostrarlo en pantalla.",
                     "**Agrupar K2 por `f.fecha` en vez de por `date_trunc('month', f.fecha)`.** "
                     "Devuelve una fila por factura, no por mes, y con tres facturas parece "
-                    "plausible. La comprobacion es contar filas: si hay tantas filas como "
+                    "correcta. La comprobacion es contar filas: si hay tantas filas como "
                     "facturas, no se agrupo por mes.",
                     "**Sumar en K3 `SUM(d.cantidad) * i.precio_unit` en vez de "
                     "`SUM(d.cantidad * d.precio_unit)`.** Usa el precio **actual** del insumo en "

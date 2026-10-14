@@ -46,7 +46,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Pero los caminos alternos son igual de reales: el dueño no esta registrado y hay que crearlo sin perder lo que ya se habia escrito de la mascota
   - La mascota ya existe porque otro turno la registro ayer y hay que avisarlo en vez de duplicarla; el dueño no trae documento y hay que permitir el registro con telefono como identificador temporal.
   - En Buscar expediente pasa lo mismo: el camino feliz es buscar por documento del dueño y encontrar una sola ficha, pero hay que diseñar que ocurre cuando la busqueda por nombre devuelve doce mascotas llamadas Firulais
-  - Y ahi la respuesta de diseño es mostrar en la lista de resultados la especie, la edad y el nombre del dueño para poder desambiguar de un vistazo.
+  - Y ahi la respuesta de diseño es mostrar en la lista de resultados la especie, la edad y el nombre del dueño para poder distinguirlas de un vistazo.
   - Un flujo que solo dibuja el camino feliz no es un diseño, es una postal.
 
 **[Slide 7] El mapa de navegacion del prototipo** — 11 vinetas.
@@ -103,7 +103,7 @@ Si hoy no se hace, usar el tiempo para profundizar la teoria y la demo.
 Actividades:
 1. Paso 1. En Excalidraw o en papel, dibujen el wireframe en gris de la pantalla Registrar mascota de VetCare, sin colores ni logos, ubicando bloque de dueño, bloque de datos de la mascota y zona de accion; el wireframe debe caber en una sola vista sin scroll y no puede tener mas de nueve campos.
 2. Paso 2. Numeren de uno a seis los elementos criticos del wireframe y llenen la tabla de anotaciones indicando para cada numero el atributo del diccionario de datos que lo respalda, el RF que lo exige y si es obligatorio u opcional; si un elemento no tiene RF, borrenlo o creen el requisito y dejenlo escrito.
-3. Paso 3. Diseñen la pantalla Buscar expediente resolviendo explicitamente el caso de resultados multiples: definan los tres criterios de busqueda, las columnas de la lista de resultados que permiten desambiguar y el mensaje exacto que se muestra cuando no hay ningun resultado.
+3. Paso 3. Diseñen la pantalla Buscar expediente resolviendo explicitamente el caso de resultados multiples: definan los tres criterios de busqueda, las columnas de la lista de resultados que permiten distinguir una de otra y el mensaje exacto que se muestra cuando no hay ningun resultado.
 4. Paso 4. Pasen las dos pantallas a Figma o Penpot como mockup y conecten minimo tres transiciones navegables: Registrar mascota hacia la confirmacion con codigo, confirmacion hacia Buscar expediente, y un resultado de la lista hacia la ficha del paciente; escriban al lado de cada transicion que principio de usabilidad estan cumpliendo.
 5. Paso 5. Hagan prueba de pasillo con otro compañero, denle la tarea registrar la mascota Luna de la señora Perez y encontrar su ficha, no le expliquen nada, cronometren, cuenten clics y anoten los dos puntos donde dudo; escriban abajo los dos cambios concretos que haran al diseño por lo observado.
 Circular por los puestos. Empujar evidencia funcionando, no perfeccionismo.

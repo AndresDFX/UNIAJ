@@ -29,7 +29,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - DESARROLLO (para explicarlo, no se proyecta):
   - El actor es un rol, no una persona ni un cargo del organigrama.
   - Doña Marta, la recepcionista de la clinica, no es un actor: el actor es Recepcionista, y si mañana la reemplazan el modelo no cambia.
-  - Una misma persona puede encarnar dos actores, por ejemplo el veterinario dueño de la clinica que a veces atiende y a veces revisa las metricas: alli actua como Veterinario y como Administrador, y por eso aparecen dos monigotes.
+  - Una misma persona puede encarnar dos actores, por ejemplo el veterinario dueño de la clinica que a veces atiende y a veces revisa las metricas: alli actua como Veterinario y como Administrador, y por eso aparecen dos figuras de actor.
   - Ademas existen actores que no son humanos: un sistema externo que enviaria los recordatorios por mensajeria seria un actor secundario del sistema, porque participaria en el caso de uso pero no es quien lo inicia.
   - Todo esto se ordena con el limite del sistema, ese rectangulo que muchos omiten y que en realidad es la decision de arquitectura mas importante del diagrama: adentro va lo que nosotros vamos a construir y por lo tanto especificar, y afuera queda lo que solo vamos a consumir o a recibir.
   - NOTAS:

@@ -7,7 +7,7 @@
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, C = m.acento, W = lz.ancho;
       var R = m.malva || '#A02030', V = m.verde || A;
-      var d = {"titulo": "Qué observar en la demo", "izq": ["Comentario vago", "«Este código es un desastre»", "No dice dónde", "No dice por qué importa", "No dice qué hacer"], "der": ["Comentario accionable", "Se aplica el checklist", "Dónde: archivo:línea", "Impacto: qué falla", "Sugerencia concreta"], "fin": "Se corre el programa, se revisa y se reescribe el comentario"};
+      var d = {"titulo": "Qué observar en la demo", "izq": ["Comentario vago", "«Este código es un desastre»", "No dice dónde", "No dice por qué importa", "No dice qué hacer"], "der": ["Comentario concreto", "Se aplica el checklist", "Dónde: archivo:línea", "Impacto: qué falla", "Sugerencia concreta"], "fin": "Se corre el programa, se revisa y se reescribe el comentario"};
       UJ.rotulo(ctx, lz, d.titulo, W / 2, 14, { tam: 26, peso: 800, color: A, ancho: W - 40 });
       var cols = d.neutro ? [[d.izq, A, 24], [d.der, C, 412]] : [[d.izq, R, 24], [d.der, V, 412]];
       for (var c = 0; c < 2; c++) {

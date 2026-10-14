@@ -1,7 +1,7 @@
 Capturas de la Clase 1 — Introduccion a la Ingenieria (FI300101)
 ================================================================
 
-El guion embebe automaticamente cualquier PNG que exista aqui con el nombre
+El guion inserta automaticamente cualquier PNG que exista aqui con el nombre
 esperado. Mientras no exista, el .docx imprime la receta en su lugar.
 
 Pendiente: muro-clase01.png — el muro de Padlet con las respuestas de entrada

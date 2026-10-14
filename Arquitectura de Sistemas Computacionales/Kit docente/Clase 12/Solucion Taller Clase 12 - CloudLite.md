@@ -149,7 +149,7 @@ sequenceDiagram
 - **Margen calculado al ojo** (suma 585, objetivo 800, margen «unos 200»). Cuesta parte de los 4 pts: el margen es una resta, no una impresion.
 - **Cuatro o seis participantes.** El enunciado pide 5. Falta tipicamente la cola, porque el estudiante todavia piensa el sistema como el de la Clase 4; es la senal de que el trabajo de la Clase 11 no se propago.
 - **El correo como quinto participante en lugar de la cola.** Renderiza igual, pero deja al tercero dentro del camino critico y contradice la decision de la Clase 11. Vale senalarlo aunque el diagrama este bien formado: es material del Q&A.
-- **Sin `autonumber`.** Parece cosmetico y no lo es: sin numeros de salto la parte A de la pregunta 4 no puede citar «el salto 8-9». Se pide agregarlo en el momento.
+- **Sin `autonumber`.** Parece un detalle de forma y no lo es: sin numeros de salto la parte A de la pregunta 4 no puede citar «el salto 8-9». Se pide agregarlo en el momento.
 - **Notas de milisegundos sin unidad** (`330` en vez de `330 ms`). Se acepta con observacion la primera vez; en el paquete final debe llevar unidad.
 
 ---

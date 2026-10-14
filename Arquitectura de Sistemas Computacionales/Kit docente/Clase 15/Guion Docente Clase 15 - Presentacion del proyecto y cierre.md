@@ -101,7 +101,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - No es clase autonoma y la defensa no se reemplaza por un video grabado, porque el Q&A dirigido al azar es justamente el instrumento que verifica autoria y no tiene sustituto asincronico.
   - NOTAS:
   - Improvisar un dato falso, en cambio, se detecta con una sola pregunta de seguimiento y cuesta mucho mas que admitir el limite.
-  - (No se proyecta) El Q&A tecnico tiene tres tipos de pregunta y conviene que el docente los reconozca para dosificarlos.
+  - (No se proyecta) El Q&A tecnico tiene tres tipos de pregunta y conviene que el docente los reconozca para repartirlos bien.
   - (No se proyecta) La pregunta de verificacion comprueba que el estudiante hizo lo que dice: «muestreme el archivo.yml del workflow» o «en que linea del Dockerfile esta la imagen base y por que eligieron una variante alpine».
   - (No se proyecta) Aqui aparece la segunda pregunta previsible del estudiante: «y si no sabemos la respuesta?».
   - (No se proyecta) La respuesta correcta es que decir «no lo medimos» no penaliza si va acompanado de como se mediria: «no medimos el p95 porque no hay trafico real, pero el plan es simular 50 peticiones por segundo y observar la latencia de la API, que es el cuello de botella que sospechamos por lo que vimos en la Clase 12».
@@ -240,7 +240,7 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 15/Quiz Clase 15 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase15.png | receta: 1) Abre Navegador · editores de texto y de diagramas del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 15/Capturas/demo-clase15.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase15.png | receta: 1) Abre Navegador · editores de texto y de diagramas del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 15/Capturas/demo-clase15.png.  5) Vuelve a generar el guion y la imagen queda insertada aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase15.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 15/Capturas/evidencia-clase15.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas

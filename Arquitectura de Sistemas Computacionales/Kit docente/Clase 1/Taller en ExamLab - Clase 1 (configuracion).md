@@ -47,7 +47,7 @@ misma actividad, y las Clases 7, 11 y 15, reutilizan estos nombres.
 
 **Rubrica esperada (campo Rubrica):**
 
-3 pts el dominio concreto y del tamano adecuado. Si es generico (red social, app de la universidad), toda la pregunta vale cero: sin dominio no hay nada que arquitecturar en las clases siguientes. 1.5 pts que el problema nombre a QUIEN lo sufre con un rol concreto. 1.75 pts que incluya una cifra que mida el dolor; una cifra estimada sirve, «mucho tiempo» no. Se descuenta si el problema pasa de 3 frases.
+3 pts el dominio concreto y del tamano adecuado. Si es generico (red social, app de la universidad), toda la pregunta vale cero: sin dominio no hay nada que disenar en las clases siguientes. 1.5 pts que el problema nombre a QUIEN lo sufre con un rol concreto. 1.75 pts que incluya una cifra que mida el dolor; una cifra estimada sirve, «mucho tiempo» no. Se descuenta si el problema pasa de 3 frases.
 
 ---
 

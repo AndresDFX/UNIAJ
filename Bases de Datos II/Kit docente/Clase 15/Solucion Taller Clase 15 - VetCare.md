@@ -63,7 +63,7 @@ SELECT id_entrega, estudiante, codigo, proyecto, fecha_entrega
 -- ======================================================================
 -- BLOQUE 1 - DDL COMPLETO (8 tablas + auditoria)
 --
--- Las restricciones CHECK van con NOMBRE propio, y no es cosmetica: el
+-- Las restricciones CHECK van con NOMBRE propio, y no es un detalle de forma: el
 -- nombre aparece en el mensaje de error, y es lo que permite que la
 -- aplicacion traduzca "ck_insumo_stock" a "stock insuficiente" en vez de
 -- mostrarle al usuario el texto crudo del motor (Clase 12). Con nombres
@@ -722,7 +722,7 @@ SELECT m.nombre       AS mascota,
 -- -- K4: Ana Gomez tiene 4 citas y 2 sin consulta, una de ellas PROGRAMADA
 -- --     para el 2026-09-08. DECISION: es la lista de llamadas de
 -- --     confirmacion de la semana, y ademas explica por que la ficha usa
--- --     LEFT JOIN: las citas sin consulta son precisamente las accionables.
+-- --     LEFT JOIN: las citas sin consulta son precisamente las que hay que atender.
 -- ======================================================================
 ```
 
@@ -821,7 +821,7 @@ vacias, porque son citas PROGRAMADA que todavia no generaron consulta.
 Esas dos filas vacias son la razon de ser del LEFT JOIN, y conviene decirlo asi
 en la sustentacion: con JOIN interno la ficha mostraria 2 filas en vez de 4 y
 seria un historial de cobros, no una historia clinica. Ademas la cita del
-2026-09-08 sigue PROGRAMADA: es exactamente la fila accionable del reporte.
+2026-09-08 sigue PROGRAMADA: es exactamente la fila que hay que atender del reporte.
 ```
 
 ### Como calificar
@@ -838,7 +838,7 @@ seria un historial de cobros, no una historia clinica. Ademas la cita del
 - **`JOIN` interno donde el enunciado pide `LEFT JOIN`,** en K1, K3 o K4. En K4 se detecta al instante —devuelve 2 filas en vez de 4—, pero en K1 y K3 **no se nota con esta semilla**, y ahi esta el riesgo: el estudiante entrega una consulta incorrecta que da el resultado correcto, la proyecta en la sustentacion, y el dia que la clinica contrate un veterinario el reporte lo borra del informe.
 - **Dividir sin proteger el cero.** `canceladas * 100.0 / total_citas` no devuelve un valor raro para el veterinario sin citas: **la consulta entera falla** con «division by zero» y no hay diapositiva. `NULLIF(total, 0)` la deja en `NULL` y el `COALESCE` externo la muestra como 0.0.
 - **`COUNT(*)` en lugar de `COUNT(c.id_cita)` con `LEFT JOIN`.** La fila extendida con nulos existe, asi que `COUNT(*)` devuelve **1** para el veterinario sin citas: el reporte inventa una cita. Es el error clasico del `LEFT JOIN` con agregados y conviene mostrarlo en pantalla.
-- **Agrupar K2 por `f.fecha` en vez de por `date_trunc('month', f.fecha)`.** Devuelve una fila por factura, no por mes, y con tres facturas parece plausible. La comprobacion es contar filas: si hay tantas filas como facturas, no se agrupo por mes.
+- **Agrupar K2 por `f.fecha` en vez de por `date_trunc('month', f.fecha)`.** Devuelve una fila por factura, no por mes, y con tres facturas parece correcta. La comprobacion es contar filas: si hay tantas filas como facturas, no se agrupo por mes.
 - **Sumar en K3 `SUM(d.cantidad) * i.precio_unit` en vez de `SUM(d.cantidad * d.precio_unit)`.** Usa el precio **actual** del insumo en lugar del precio al que se vendio. Con esta semilla coinciden y no se nota; en produccion, cualquier cambio de precio reescribe la historia de ventas. `detalle_factura.precio_unit` existe exactamente para eso.
 - **Reportar solo el ranking por unidades y decidir con el.** Es el error de interpretacion mas caro de esta pregunta: la gasa esteril encabeza la lista y es el insumo que **menos** importa reponer. La decision de reposicion se toma cruzando valor generado con stock restante.
 - **Comentarios de cierre genericos:** «este KPI sirve para tomar decisiones». El enunciado pide el numero concreto obtenido y la decision concreta que habilita. Sin el numero no hay evidencia; sin la decision, el KPI es un adorno.

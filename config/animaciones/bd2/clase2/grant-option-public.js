@@ -20,7 +20,7 @@
           if (i > 0) L.flecha(ctx, nodos[i - 1][1] + 42, 100, nodos[i][1] - 44, 100, L.tono(m.tinta, 0.4), 3);
         });
       }
-      UJ.rotulo(ctx, lz, 'cada uno lo reotorga: el admin pierde el control', W / 2, 156, { tam: 18, visible: L.tramo(t, 0.18, 0.26) });
+      UJ.rotulo(ctx, lz, 'cada uno lo vuelve a otorgar: el admin pierde el control', W / 2, 156, { tam: 18, visible: L.tramo(t, 0.18, 0.26) });
       UJ.codigo(ctx, lz, 30, 196, W - 60, 'REVOKE SELECT ON consulta FROM rol_a CASCADE;', L.tramo(t, 0.3, 0.38), 18);
       UJ.rotulo(ctx, lz, 'sin CASCADE el motor lo rechaza: toca más de lo pedido', W / 2, 250, { tam: 18, peso: 600, color: R, ancho: W - 60, visible: L.tramo(t, 0.4, 0.5) });
       // PUBLIC

@@ -103,7 +103,7 @@ Las dos son aceptables y la diferencia hay que enseñarla: la primera es una **m
 **Frontera — lo que queda FUERA, declarado explícitamente:**
 
 - La pérdida de libros y el cobro de multas: es otro problema, con otro dueño (la coordinadora). No se aborda.
-- La catalogación completa del acervo: no cabe en un semestre.
+- Catalogar todos los libros: no cabe en un semestre.
 - La compra de libros o de equipos: presupuesto cero, es restricción.
 - La reserva de libros en línea: se deja fuera de esta primera versión porque exige que alguien atienda las reservas, y eso choca con la restricción de personal.
 
@@ -154,7 +154,7 @@ Declarar lo que queda fuera es lo que evita que el proyecto crezca sin control e
 ## Errores que hay que ver y no dejar pasar
 
 - **«Falta una app / un sistema para X»** → Es una solución disfrazada de problema: cierra el diseño antes de empezar y hace que cualquier app «resuelva» el problema. Que respondan «¿esto se podría resolver sin ninguna app?». Si es sí, el problema es otro y hay que escribirlo.
-- **«La gente se queja» / «se pierden libros»** → Es un síntoma: la señal visible. Atacar el síntoma produce soluciones cosméticas. A quién le pasa qué, con qué consecuencia. Y la cifra.
+- **«La gente se queja» / «se pierden libros»** → Es un síntoma: la señal visible. Atacar el síntoma produce soluciones superficiales. A quién le pasa qué, con qué consecuencia. Y la cifra.
 - **Una cifra sin decir de dónde salió** → No se puede volver a medir en la Clase 16, así que no sirve como línea base. Número, unidad y método: preguntando a quién, contando qué, o cronometrando cuándo.
 - **Un árbol con diez raíces** → Es una lista de todo lo que se les ocurrió, no un análisis, y con eso no se puede decidir qué atacar. Dos o tres causas directas, su segundo nivel, y las que no pueden cambiar marcadas como restricciones.
 - **«El éxito es tener 200 usuarios en la app»** → Mide la adopción de la solución, no la resolución del problema. Se puede tener 200 usuarios y el problema intacto. El criterio con la misma medición de la línea base: de X a Y, medido así.

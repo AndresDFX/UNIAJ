@@ -4224,7 +4224,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                   '\n'
                                   'Un revisor escribio estos comentarios sobre '
                                   '`ClinicaParaRevisar.java`. Marque **todos** los que son '
-                                  'retroalimentacion accionable (se refieren al codigo, traen '
+                                  'retroalimentacion util (se refieren al codigo, traen '
                                   'evidencia y proponen algo).',
                      'opciones': ['cargarDesdeCsv:linea 78 tiene un catch (Exception ex) vacio: si '
                                   'el archivo no existe la aplicacion no informa nada y el usuario '
@@ -4465,7 +4465,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                      'rubrica': 'Los cinco hallazgos tienen decision explicita (acepto / justifico '
                                 '/ difiero) y un responsable identificado por linea. El bloqueante '
                                 'quedo en ACEPTO Y CORRIJO con el cambio descrito. Al menos una '
-                                'justificacion o diferimiento trae argumento tecnico. Cierra con '
+                                'justificacion o aplazamiento trae argumento tecnico. Cierra con '
                                 'la reflexion sobre la devolucion.',
                      'tipo': 'abierta'}],
       'resumen': 'El estudiante ejecuta y audita un VetCare ajeno con un checklist de doce items, '
@@ -5828,7 +5828,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                   'Reporte:\n'
                                   '\n'
                                   '**(a) Video de la ruta feliz** (2 a 3 minutos, sin cortes, con '
-                                  'la pantalla legible). Escriba el **minutaje** de cada momento:\n'
+                                  'la pantalla legible). Escriba **en que minuto** ocurre cada momento:\n'
                                   '\n'
                                   '| Momento | Minuto:segundo en el video |\n'
                                   '|---------|---------------------------|\n'
@@ -5853,7 +5853,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Molde y objetos: la clase `Mascot
                                   'demo tomaria esa decision (por ejemplo: "si a los 30 segundos '
                                   'la aplicacion no abrio, paso al video").',
                      'puntos': 15,
-                     'rubrica': 'El video existe y esta descrito con el minutaje de los seis '
+                     'rubrica': 'El video existe y esta descrito con el minuto de cada uno de los seis '
                                 'momentos de la ruta feliz. Lista las seis capturas con nombre de '
                                 'archivo y carpeta. La verificacion sin internet reporta ubicacion '
                                 'local, reproductor, formato y peso (no un enlace en la nube). '

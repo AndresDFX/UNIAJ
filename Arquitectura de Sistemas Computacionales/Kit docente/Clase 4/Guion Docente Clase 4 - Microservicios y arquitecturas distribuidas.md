@@ -70,12 +70,13 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 7] Microservicios de verdad vs microservicios teatro** — 10 vinetas.
 
-**[Slide 8] Las tres reglas del nivel Container y la trazabilidad con el Context** — 3 vinetas.
+**[Slide 8] Las tres reglas del nivel Container y la trazabilidad con el Context** — 4 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
   - La primera: cada caja lleva TRES datos, no uno.
   - Una caja que dice solo «API» no es un contenedor descrito, es una etiqueta; con «API de turnos · Node.js · valida la franja y registra el turno» ya se puede discutir si esa frontera tiene sentido.
   - La segunda: lo que guarda datos no es una caja mas.
-  - En la notacion se marca como almacen —en el codigo, ContainerDb en lugar de Container— y esa distincion no es cosmetica: un almacen no se replica igual que un servicio, no se despliega igual y no falla igual, y todo eso se retoma en las Clases 7 y 13.
+  - En la notacion se marca como almacen —en el codigo, ContainerDb en lugar de Container— y esa distincion no es un detalle de forma: un almacen no se replica igual que un servicio
+  - No se despliega igual y no falla igual, y todo eso se retoma en las Clases 7 y 13.
   - La tercera: ninguna flecha queda muda, y media etiqueta tampoco alcanza.
   - Cada flecha lleva protocolo Y formato: HTTPS/JSON, TCP/SQL.
   - Si alli decia «Pasarela de pagos», aqui no puede decir «Pagos».
@@ -86,7 +87,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - «HTTP» a secas no dice como viajan los datos y «SQL» a secas no dice sobre que transporte; con las dos mitades, cualquiera que lea el diagrama sabe por donde puede romperse.
   - (No se proyecta) Antes del ejemplo conviene fijar las tres reglas con las que se corrige el diagrama, porque cada una tiene puntos asignados y las tres se pierden por descuido y no por no saber.
   - (No se proyecta) Y hay una cuarta condicion que no es del nivel sino de la continuidad del proyecto: los nombres tienen que ser IDENTICOS a los del C4 Context de la Clase 1.
-  - (No se proyecta) No es pedanteria de notacion; es lo unico que permite afirmar que los dos dibujos son el mismo sistema visto desde distinta altura, y es exactamente lo que se volvera a verificar en la Clase 7 contra el diagrama de despliegue y en la Clase 11 en la auditoria del paquete.
+  - (No se proyecta) No es exceso de rigor con la notacion; es lo unico que permite afirmar que los dos dibujos son el mismo sistema visto desde distinta altura, y es exactamente lo que se volvera a verificar en la Clase 7 contra el diagrama de despliegue y en la Clase 11 en la auditoria del paquete.
   - (No se proyecta) Ese es el error de dibujo mas comun de la clase, meter al usuario o a la pasarela de pagos dentro del sistema propio, y se detecta en dos segundos preguntando quien lo opera.
 
 **[Slide 9] Las tres reglas del C4 Container, en codigo** — 5 vinetas.
@@ -368,7 +369,7 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 4/Quiz Clase 4 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase04.png | receta: 1) Abre Navegador · editor de diagramas del curso (Mermaid) · boceto libre opcional y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 4/Capturas/demo-clase04.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase04.png | receta: 1) Abre Navegador · editor de diagramas del curso (Mermaid) · boceto libre opcional y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 4/Capturas/demo-clase04.png.  5) Vuelve a generar el guion y la imagen queda insertada aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase04.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 4/Capturas/evidencia-clase04.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas

@@ -120,7 +120,7 @@ Numeración real del deck `Clases/Clase 8 - Taller de aplicacion del ciclo de vi
 
 | Lo que dice el equipo | Por qué no sirve | Qué pedir en su lugar |
 |---|---|---|
-| «(A) una app y (B) una app con más funciones» | Es la misma idea dos veces: no hay decisión que tomar y la matriz no enseña nada. | Una alternativa que **no use ninguna tecnología nueva**. La comparación entre lo que ya se puede hacer y lo que se quiere construir es la más instructiva. |
+| «(A) una app y (B) una app con más funciones» | Es la misma idea dos veces: no hay decisión que tomar y la matriz no enseña nada. | Una alternativa que **no use ninguna tecnología nueva**. La comparación entre lo que ya se puede hacer y lo que se quiere construir es la que más enseña. |
 | Los pesos y las calificaciones escritos al mismo tiempo | Ahí se cuela la decisión ya tomada: sin mala intención, los pesos se acomodan para que gane el favorito. | Los criterios y los pesos primero, en el documento, y solo después las calificaciones. |
 | Una matriz de puros números, sin justificaciones | El número no se puede discutir ni defender; la justificación sí. Sin ella la matriz es un adorno. | Media línea por casilla: por qué ese número para esa alternativa en ese criterio. |
 | «No perdemos nada con esta decisión» | Si una alternativa fuera mejor en todos los criterios no habría habido nada que decidir. | Qué se sacrifica, concreto y verificable. Y que se diga en la exposición final. |

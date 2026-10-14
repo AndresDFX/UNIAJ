@@ -79,7 +79,7 @@ componente de SU sistema lo aplica y que deja de poder hacer al aplicarlo.
 
 **Rubrica esperada (campo Rubrica):**
 
-1 pt por cada control concreto y verificable, hasta 5. 2.5 pts por senalar correctamente la caja o la flecha de cada uno; se prorratea. 1.25 pts por el principio de menor privilegio aplicado a un componente concreto, diciendo que deja de poder hacer. Un control tipo «usar buenas practicas» no suma.
+1 pt por cada control concreto y verificable, hasta 5. 2.5 pts por senalar correctamente la caja o la flecha de cada uno; se califica por partes. 1.25 pts por el principio de menor privilegio aplicado a un componente concreto, diciendo que deja de poder hacer. Un control tipo «usar buenas practicas» no suma.
 
 ---
 

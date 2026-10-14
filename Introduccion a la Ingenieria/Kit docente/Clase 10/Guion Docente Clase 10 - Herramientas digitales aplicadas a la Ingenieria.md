@@ -12,7 +12,7 @@
 - Enfoque: Aprendizaje basado en competencia + Aprendizaje Invertido · Estrategia: ABPr — Aprendizaje Basado en Proyectos
 
 ## Objetivos de la clase
-- Distinguir un **prototipo** de una versión inacabada, y saber qué pregunta responde cada nivel de **fidelidad**.
+- Distinguir un **prototipo** de una versión sin terminar, y saber qué pregunta responde cada nivel de **fidelidad**.
 - Dibujar las **tres pantallas o pasos** del flujo principal del proyecto, con textos reales.
 - Diseñar el **estado vacío y el estado de error**, que es donde se cae la mayoría de los prototipos.
 - Elegir la **herramienta según la pregunta** que se quiere responder, no según la que se conoce.

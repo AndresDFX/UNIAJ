@@ -376,7 +376,7 @@ CONTENIDO = {
         },
         "WITH GRANT OPTION y PUBLIC": {
             "ideas": [
-                "**WITH GRANT OPTION** deja que quien recibe un privilegio lo reotorgue, y el "
+                "**WITH GRANT OPTION** deja que quien recibe un privilegio lo otorgue a otros, y el "
                 "control se pierde en cadena.",
                 "Para revocar esa cadena el motor exige **CASCADE**: avisa que tocará más de lo "
                 "pedido.",
@@ -414,20 +414,20 @@ CONTENIDO = {
             "notas": {
                 "min": 2,
                 "explica": "Tres REVOKE con propósitos distintos: dejar escrita una decisión, "
-                           "limpiar PUBLIC y deshacer una cadena de reotorgamientos.",
+                           "limpiar PUBLIC y deshacer una cadena de privilegios otorgados a otros.",
                 "pasos": [
                     ("Línea 1", "REVOKE DELETE ON cita FROM recepcion: redundante a propósito; es "
                      "la evidencia de que recepción no borra."),
                     ("Líneas 3-4", "REVOKE ALL ON consulta FROM PUBLIC: nadie lee el historial por "
                      "ser «todo el mundo»."),
                     ("Líneas 6-10", "GRANT ... WITH GRANT OPTION al auditor, y cómo se le quita "
-                     "solo la opción de reotorgar: REVOKE GRANT OPTION FOR SELECT ... CASCADE. El "
+                     "solo la opción de otorgarlo a otros: REVOKE GRANT OPTION FOR SELECT ... CASCADE. El "
                      "auditor conserva su SELECT; lo que él concedió desaparece."),
                 ],
                 "ejemplo": "Si el auditor alcanzó a dar SELECT sobre cita a veterinario_rol, el "
                            "REVOKE sin CASCADE responde «dependent privileges exist»; con CASCADE, "
                            "veterinario_rol pierde ese SELECT y el auditor queda con el suyo, sin "
-                           "opción de reotorgar.",
+                           "opción de otorgarlo a otros.",
                 "preguntas": [
                     ("¿Qué diferencia hay entre REVOKE SELECT y REVOKE GRANT OPTION FOR SELECT?",
                      "El primero le quita el privilegio; el segundo solo le quita la capacidad de "

@@ -196,7 +196,7 @@ Marque **todos** los enunciados que **NO** pueden entrar al catalogo de VetCare 
 
 **Rubrica esperada (campo Rubrica):**
 
-Correctas: 0, 2, 3 y 5. La 0 mezcla dos capacidades con «y». La 2 es ambigua e inmedible. La 3 describe implementacion tecnica, no comportamiento requerido. La 5 no es un requisito del sistema sino una tarea del equipo. Las opciones 1 y 4 estan bien formuladas.
+Correctas: 0, 2, 3 y 5. La 0 mezcla dos capacidades con «y». La 2 es ambigua y no se puede medir. La 3 describe implementacion tecnica, no comportamiento requerido. La 5 no es un requisito del sistema sino una tarea del equipo. Las opciones 1 y 4 estan bien formuladas.
 
 ---
 

@@ -78,7 +78,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Si una instancia no responde a su /health, el balanceador deja de enviarle trafico: es la primera forma de disponibilidad que el sistema obtiene sin escribir codigo.
   - NOTAS:
   - El balanceador de carga recibe todas las peticiones y las reparte entre varias instancias iguales del mismo servicio, con algoritmos como round robin o menor numero de conexiones activas.
-  - (No se proyecta) Dos piezas mas hay que explicar sin titubear.
+  - (No se proyecta) Dos piezas mas hay que explicar sin dudar.
   - (No se proyecta) En el diagrama de hoy el balanceador es el habitante de la zona publica, y el /health que consulta es el mismo contrato de salud que se verifico con curl en la Clase 3 y el primer monitoreo real de la Clase 8.
 
 **[Slide 10] Los tres nombres de almacenamiento** — 4 vinetas.
@@ -127,7 +127,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - (No se proyecta) Los nombres de las cajas del despliegue deben ser los mismos que los contenedores del C4 Containers de la Clase 4: si alli el servicio se llamaba api-citas, hoy no puede aparecer como backend, ni puede aparecer una caja nueva que nadie declaro.
   - (No se proyecta) Los 5.5 puntos se reparten asi, y conviene decirlo en voz alta: 2 puntos la explicacion de por que los nombres deben coincidir, y la respuesta esperada es que los dos diagramas son el MISMO sistema visto desde angulos distintos, uno dice que piezas hay y el otro donde se ejecutan; 2.5 puntos la tabla completa, con una fila por componente y su zona; y 1 punto listar los renombres que se aplicaron, o declarar explicitamente que no hubo ninguno, que tambien vale.
   - (No se proyecta) La trampa esta en la palabra completa: se descuenta si la tabla deja fuera un componente que si aparece en alguno de los dos diagramas, asi que hay que instruir el gesto de llenarla con los dos diagramas abiertos al lado y contando cajas.
-  - (No se proyecta) La cadena aguas abajo es directa: la Clase 6 identifico amenazas y fronteras de confianza en texto y hoy esas fronteras se vuelven zonas dibujadas; la Clase 8 tomara cada flecha para definir que se mide en ella, porque no se puede monitorear un camino que no esta dibujado; la Clase 10 costeara estas mismas cajas, asi que la eleccion de almacenamiento es tambien decision de costo; y la Clase 13 discutira cual caja se replica y cual no.
+  - (No se proyecta) La cadena aguas abajo es directa: la Clase 6 identifico amenazas y fronteras de confianza en texto y hoy esas fronteras se vuelven zonas dibujadas; la Clase 8 tomara cada flecha para definir que se mide en ella, porque no se puede monitorear un camino que no esta dibujado; la Clase 10 calculara el costo de estas mismas cajas, asi que la eleccion de almacenamiento es tambien decision de costo; y la Clase 13 discutira cual caja se replica y cual no.
 
 **[Slide 15] Checklist del diagrama Deployment** — 5 vinetas.
 
@@ -170,7 +170,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Por eso las zonas se llaman Publica, Privada y Datos.
   - El PNG exportado va a la carpeta del Proyecto Integrador, para el informe, y no reemplaza la respuesta.
   - (No se proyecta) La diapositiva del molde existe porque el estudiante puede tener el modelo correcto en la cabeza y perder puntos por sintaxis, y porque 2 de los 14 son que el diagrama renderice.
-  - (No se proyecta) Hay cinco cosas que el docente debe poder explicar sin titubear.
+  - (No se proyecta) Hay cinco cosas que el docente debe poder explicar sin dudar.
   - (No se proyecta) Vale la pena senalar la caja de la base de datos y decir «esta forma, dentro de este subgraph, son 4 de los 14 puntos».
   - (No se proyecta) El procedimiento que se proyecta en la demo es el que conviene repetir tres veces: dibujar el boceto donde sea, traducirlo a Mermaid (una IA lo hace bien, y ahi hay que decir la frase exacta: la IA acierta la sintaxis, no el modelo), pegarlo en un visor Mermaid y MIRARLO RENDERIZADO.
   - (No se proyecta) Si no se dibuja, se corrige ahi mismo; nadie califica un codigo que no dibuja.
@@ -323,7 +323,7 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 7/Quiz Clase 7 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase07.png | receta: 1) Abre Navegador · editor de diagramas del curso (Mermaid) · boceto libre opcional y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 7/Capturas/demo-clase07.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase07.png | receta: 1) Abre Navegador · editor de diagramas del curso (Mermaid) · boceto libre opcional y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 7/Capturas/demo-clase07.png.  5) Vuelve a generar el guion y la imagen queda insertada aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase07.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 7/Capturas/evidencia-clase07.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas

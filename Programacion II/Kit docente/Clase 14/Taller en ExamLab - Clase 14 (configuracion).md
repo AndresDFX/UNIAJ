@@ -223,7 +223,7 @@ El dia de la sustentacion se cae el wifi, el portatil no proyecta o VS Code deci
 
 Reporte:
 
-**(a) Video de la ruta feliz** (2 a 3 minutos, sin cortes, con la pantalla legible). Escriba el **minutaje** de cada momento:
+**(a) Video de la ruta feliz** (2 a 3 minutos, sin cortes, con la pantalla legible). Escriba **en que minuto** ocurre cada momento:
 
 | Momento | Minuto:segundo en el video |
 |---------|---------------------------|
@@ -242,7 +242,7 @@ Reporte:
 
 **Rubrica esperada (campo Rubrica):**
 
-El video existe y esta descrito con el minutaje de los seis momentos de la ruta feliz. Lista las seis capturas con nombre de archivo y carpeta. La verificacion sin internet reporta ubicacion local, reproductor, formato y peso (no un enlace en la nube). Incluye la frase disparadora y el criterio de segundos para activar el plan B.
+El video existe y esta descrito con el minuto de cada uno de los seis momentos de la ruta feliz. Lista las seis capturas con nombre de archivo y carpeta. La verificacion sin internet reporta ubicacion local, reproductor, formato y peso (no un enlace en la nube). Incluye la frase disparadora y el criterio de segundos para activar el plan B.
 
 ---
 

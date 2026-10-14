@@ -50,10 +50,10 @@ Las ideas de cada concepto estan proyectadas y el desarrollo completo esta en la
 
 Material de preparacion: no se proyecta.
 
-- Error tipico del docente que no domina el tema: cree que revisar código es leer y decir si le gusta, entonces la sesión se convierte en un intercambio de opiniones sobre llaves e indentación mientras el NullPointerException sigue vivo; o peor, convierte la revisión en calificación entre estudiantes y se le arma la pelea en clase, porque nadie recibe bien que un compañero le ponga la nota. Otro error muy frecuente es no exigir que el revisor ejecute el proyecto antes de escribir: así aparecen hallazgos inventados y el autor se defiende con razón, con lo cual la actividad pierde toda autoridad. Y un tercero: no dar plantilla ni checklist, esperando que el criterio salga solo. El manejo correcto es explícito desde el minuto uno: la nota la pone el docente y el informe de quien revisa es un insumo, no una sentencia; todo hallazgo va con evidencia reproducible; se revisa el código y nunca a la persona; y el docente modela en vivo, con ClinicaParaRevisar.java proyectado, cómo se reescribe un comentario agresivo en uno accionable. Un docente que nunca ha recibido una revisión de su propio código tiende a defender el suyo igual que el estudiante, y por eso conviene que empiece dejando revisar el archivo de la demo.
+- Error tipico del docente que no domina el tema: cree que revisar código es leer y decir si le gusta, entonces la sesión se convierte en un intercambio de opiniones sobre llaves e indentación mientras el NullPointerException sigue vivo; o peor, convierte la revisión en calificación entre estudiantes y se le arma la pelea en clase, porque nadie recibe bien que un compañero le ponga la nota. Otro error muy frecuente es no exigir que el revisor ejecute el proyecto antes de escribir: así aparecen hallazgos inventados y el autor se defiende con razón, con lo cual la actividad pierde toda autoridad. Y un tercero: no dar plantilla ni checklist, esperando que el criterio salga solo. El manejo correcto es explícito desde el minuto uno: la nota la pone el docente y el informe de quien revisa es un insumo, no una sentencia; todo hallazgo va con evidencia reproducible; se revisa el código y nunca a la persona; y el docente modela en vivo, con ClinicaParaRevisar.java proyectado, cómo se reescribe un comentario agresivo en uno útil. Un docente que nunca ha recibido una revisión de su propio código tiende a defender el suyo igual que el estudiante, y por eso conviene que empiece dejando revisar el archivo de la demo.
 
 
-**Demo que usted debe poder repetir:** El docente proyecta ClinicaParaRevisar.java, lo ejecuta en vivo, aplica el checklist delante del grupo y reescribe dos comentarios mal formulados del tipo 'este código es un desastre' en retroalimentación accionable.
+**Demo que usted debe poder repetir:** El docente proyecta ClinicaParaRevisar.java, lo ejecuta en vivo, aplica el checklist delante del grupo y reescribe dos comentarios mal formulados del tipo 'este código es un desastre' en retroalimentación útil.
 
 ## Plan minuto a minuto (120 min)
 
@@ -69,7 +69,7 @@ Pregunta al aire (2 min): ¿donde encaja esto en su VetCare?
 
 ### 40-60 · Demo en vivo
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
-Demo: El docente proyecta ClinicaParaRevisar.java, lo ejecuta en vivo, aplica el checklist delante del grupo y reescribe dos comentarios mal formulados del tipo 'este código es un desastre' en retroalimentación accionable.
+Demo: El docente proyecta ClinicaParaRevisar.java, lo ejecuta en vivo, aplica el checklist delante del grupo y reescribe dos comentarios mal formulados del tipo 'este código es un desastre' en retroalimentación útil.
 Escribir el codigo en vivo (no copiar-pegar). Codigo de apoyo:
 `Kit docente/Clase 11/Codigo/ClinicaParaRevisar.java`
 

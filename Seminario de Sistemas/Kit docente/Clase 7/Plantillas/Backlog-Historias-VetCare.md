@@ -70,7 +70,7 @@ para decidir el tratamiento sin depender de la carpeta fisica.
 | I - Independiente | Se puede entregar sin esperar otra historia? |
 | N - Negociable | Describe la necesidad y no la solucion tecnica? |
 | V - Valiosa | Alguien de Huellitas gana algo concreto? |
-| E - Estimable | El equipo entiende lo suficiente para tallarla? |
+| E - Estimable | El equipo entiende lo suficiente para estimarla? |
 | S - Pequena | Cabe en una iteracion (8 puntos o menos)? |
 | T - Testeable | Tiene criterios verificables con si/no? |
 

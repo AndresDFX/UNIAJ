@@ -10,7 +10,7 @@ Este documento trae el prototipo completo del caso de la biblioteca: las tres pa
 
 **La biblioteca del barrio · el prototipo de la lista de disponibilidad**
 
-Alcance mínimo de la sesión 8: la lista de disponibilidad consultable por enlace, con una pantalla de consulta para el usuario y una de actualización para la voluntaria, funcionando desde un celular y sin cuenta. Propuesta de mejora de la sesión 9: publicar la disponibilidad **sin catalogar el acervo completo y sin administrar un sistema**, solo los títulos que se prestan. Requisitos no funcionales vigentes: sin computador en el mostrador, se aprende sin manual, menos de 200 KB por consulta.
+Alcance mínimo de la sesión 8: la lista de disponibilidad consultable por enlace, con una pantalla de consulta para el usuario y una de actualización para la voluntaria, funcionando desde un celular y sin cuenta. Propuesta de mejora de la sesión 9: publicar la disponibilidad **sin catalogar todos los libros y sin administrar un sistema**, solo los títulos que se prestan. Requisitos no funcionales vigentes: sin computador en el mostrador, se aprende sin manual, menos de 200 KB por consulta.
 
 > Porque el prototipo obliga a resolver visualmente el sacrificio que el equipo aceptó en la sesión 8: la información no está al minuto. La solución de diseño —mostrar en pantalla cuándo se actualizó por última vez— es pequeña, evidente en retrospectiva, y ningún equipo la piensa solo. Ver eso es ver cómo una decisión de la sesión 8 se convierte en un elemento de interfaz en la 10.
 

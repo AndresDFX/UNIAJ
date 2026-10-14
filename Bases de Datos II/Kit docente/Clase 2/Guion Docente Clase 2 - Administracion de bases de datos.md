@@ -225,14 +225,14 @@ PASA A LA SIGUIENTE: Las dos cosas en código, con la REVOKE de la matriz.
 
 ### [Slide 14] REVOKE, y los dos que hacen dano en silencio
 
-QUÉ ES (dilo así): Tres REVOKE con propósitos distintos: dejar escrita una decisión, limpiar PUBLIC y deshacer una cadena de reotorgamientos.
+QUÉ ES (dilo así): Tres REVOKE con propósitos distintos: dejar escrita una decisión, limpiar PUBLIC y deshacer una cadena de privilegios otorgados a otros.
 
 CÓMO DARLA (≈2 min):
 - Línea 1: REVOKE DELETE ON cita FROM recepcion: redundante a propósito; es la evidencia de que recepción no borra.
 - Líneas 3-4: REVOKE ALL ON consulta FROM PUBLIC: nadie lee el historial por ser «todo el mundo».
-- Líneas 6-10: GRANT ... WITH GRANT OPTION al auditor, y cómo se le quita solo la opción de reotorgar: REVOKE GRANT OPTION FOR SELECT ... CASCADE. El auditor conserva su SELECT; lo que él concedió desaparece.
+- Líneas 6-10: GRANT ... WITH GRANT OPTION al auditor, y cómo se le quita solo la opción de otorgarlo a otros: REVOKE GRANT OPTION FOR SELECT ... CASCADE. El auditor conserva su SELECT; lo que él concedió desaparece.
 
-EJEMPLO: Si el auditor alcanzó a dar SELECT sobre cita a veterinario_rol, el REVOKE sin CASCADE responde «dependent privileges exist»; con CASCADE, veterinario_rol pierde ese SELECT y el auditor queda con el suyo, sin opción de reotorgar.
+EJEMPLO: Si el auditor alcanzó a dar SELECT sobre cita a veterinario_rol, el REVOKE sin CASCADE responde «dependent privileges exist»; con CASCADE, veterinario_rol pierde ese SELECT y el auditor queda con el suyo, sin opción de otorgarlo a otros.
 
 SI PREGUNTAN:
 - «¿Qué diferencia hay entre REVOKE SELECT y REVOKE GRANT OPTION FOR SELECT?» → El primero le quita el privilegio; el segundo solo le quita la capacidad de darlo a otros.
@@ -482,7 +482,7 @@ Pregunta al aire (2 min): ¿como se conecta esto con su VetCare?
 **Decir:** «Miren mi pantalla. Dominio VetCare — no otro ejemplo.»
 Demo: Los 4 roles de VetCare con CREATE ROLE/GRANT/REVOKE en ExamLab, verificados con information_schema.role_table_grants.
 Herramienta: ExamLab (PostgreSQL) + Google Docs
-📸 Salida esperada de la demo de la Clase 2 [[captura: cap01_demo.png | receta: 1) Abra ExamLab (PostgreSQL) + Google Docs y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 2/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda embebida aqui sola.]]
+📸 Salida esperada de la demo de la Clase 2 [[captura: cap01_demo.png | receta: 1) Abra ExamLab (PostgreSQL) + Google Docs y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 2/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda insertada aqui sola.]]
 Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Practica (opcional) · sin lamina
@@ -495,7 +495,7 @@ Actividades:
 2. Recortar la superficie: vista v_agenda_recepcion + privilegio por columna sobre dueno.
 3. Matriz rol x objeto x privilegio de los 10 objetos, justificando privilegio minimo.
 4. Redactar 1 pagina: politica de altas/bajas de usuarios, con la prueba negativa (SET ROLE) corrida y su mensaje de error.
-Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
+Circular por estudiantes (o salas). Empujar evidencia, no perfeccionismo.
 Entregable: Documento Roles_VetCare + script GRANT/REVOKE ejecutado en ExamLab
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 2/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
@@ -514,7 +514,7 @@ Carpeta Codigo/ — archivo 02_roles_clinica.sql.
 ## Capturas
 Carpeta `Kit docente/Clase 2/Capturas/`. Cada linea de pantallazo de arriba trae
 el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
-tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se inserta sola.
 Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia

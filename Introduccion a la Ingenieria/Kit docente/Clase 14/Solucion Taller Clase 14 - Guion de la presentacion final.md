@@ -59,7 +59,7 @@ Recorrido de tres pasos, sin describir la interfaz: (1) buscar «cien años», (
 
 ---
 
-**Lo que quedó fuera, y es la parte instructiva del guion:** el árbol de causas completo de la sesión 6, los tres antecedentes de la sesión 9 —se mencionan en una frase: «revisamos qué existía y encontramos software libre maduro que no servía para este caso»—, las quince filas de la matriz, el prototipo v1, y toda la matriz de impacto salvo dos números. **Todo eso va en el informe final de la Clase 16.**
+**Lo que quedó fuera, y es la parte que más enseña del guion:** el árbol de causas completo de la sesión 6, los tres antecedentes de la sesión 9 —se mencionan en una frase: «revisamos qué existía y encontramos software libre maduro que no servía para este caso»—, las quince filas de la matriz, el prototipo v1, y toda la matriz de impacto salvo dos números. **Todo eso va en el informe final de la Clase 16.**
 
 *Tiempos: 1 + 2 + 3 + 2 + 1 = 9 minutos exactos. En el ensayo real, este guion dio 10:40 la primera vez y 9:10 la tercera.*
 

@@ -23,7 +23,7 @@ Nuestra frase: ______________________________________________
 | Modelo | 05:00-07:00 | Casos de uso y diagrama de clases |  |  |
 | Interfaz | 07:00-09:00 | Prototipo en vivo, 1 flujo completo |  |  |
 | Decisiones | 09:00-11:00 | Tabla de 3 decisiones |  |  |
-| Riesgos y siguiente paso | 11:00-11:30 | Lo abierto y el handoff |  |  |
+| Riesgos y siguiente paso | 11:00-11:30 | Lo pendiente y a quien se le entrega |  |  |
 | Cierre | 11:30-12:00 | Frase de valor |  |  |
 
 > Regla: todos los bloques llevan su rango de minutos y su evidencia en pantalla, y quien sustenta debe poder responder sobre cualquier parte. Si el docente autorizo equipo, ademas ningun integrante habla menos de 2 minutos.

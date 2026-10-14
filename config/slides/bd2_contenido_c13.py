@@ -23,7 +23,7 @@ CONTENIDO = {
                 "El tema es el **análisis de casos reales**: cómo falla una base en producción y qué "
                 "se cambia para que no se repita.",
                 "Seis casos públicos, una forma de analizarlos (**causa raíz** y **lección "
-                "accionable**) y dos mejoras en SQL.",
+                "concreta**) y dos mejoras en SQL.",
                 "Cada lámina se sostiene sola: sirve para repasar aunque no hayas visto las "
                 "anteriores.",
             ],
@@ -49,7 +49,7 @@ CONTENIDO = {
         "Mapa del bloque": {
             "notas": {
                 "min": 1,
-                "explica": "El reparto orientativo de las dos horas de trabajo autónomo: teoría con "
+                "explica": "El reparto sugerido de las dos horas de trabajo autónomo: teoría con "
                            "una lámina por concepto, un análisis guiado completo y la práctica "
                            "opcional de la carpeta.",
                 "pasos": [
@@ -451,7 +451,7 @@ CONTENIDO = {
                     ("Abajo",
                      "Lo que dice el plan: Seq Scan sobre la tabla grande, que recorre todo para "
                      "quedarse con pocas filas, es la firma de un índice que falta. La lección "
-                     "accionable: solo las columnas que se muestran e índice en el filtro, medido "
+                     "concreta: solo las columnas que se muestran e índice en el filtro, medido "
                      "con EXPLAIN ANALYZE antes y después."),
                 ],
                 "ejemplo": "En la clínica: un tablero que cada minuto cuenta las citas del día "
@@ -513,11 +513,11 @@ CONTENIDO = {
                 "puente": "Ya hay seis casos. ¿Cómo se convierte un caso en una lección que sirva?",
             },
         },
-        "Lecciones accionables": {
+        "Lecciones concretas": {
             "ideas": [
                 "Una lección es un **lugar común** si se pudo escribir antes del caso: «hay que "
                 "probar los respaldos».",
-                "Es **accionable** si tiene verbo concreto, artefacto, frecuencia o umbral, y forma "
+                "Es **concreta** si tiene verbo de acción, artefacto, frecuencia o umbral, y forma "
                 "de comprobarla.",
                 "Ejemplo: el primer lunes de cada mes se restaura el respaldo en una base de prueba "
                 "y se comparan conteos.",

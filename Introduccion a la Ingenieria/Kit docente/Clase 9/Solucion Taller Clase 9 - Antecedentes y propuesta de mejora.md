@@ -14,7 +14,7 @@ Este documento trae la búsqueda completa del caso de la biblioteca: la pregunta
 
 Decisión de la sesión 8: una **lista de disponibilidad publicada** que la voluntaria actualiza una vez al día desde su celular. Restricciones vigentes: presupuesto cero, sin computador en el mostrador, voluntarias que rotan sin capacitación larga, menos de 200 KB por consulta. La búsqueda de hoy es sobre **esa** decisión: cómo publican su disponibilidad las bibliotecas pequeñas que no tienen sistema.
 
-> Porque la búsqueda encuentra algo incómodo y muy instructivo: existe software libre maduro que resuelve el problema completo desde hace más de veinte años, y **no sirve para este caso**. Ver por qué un antecedente excelente no aplica es exactamente lo que hay que enseñar.
+> Porque la búsqueda encuentra algo incómodo que enseña mucho: existe software libre maduro que resuelve el problema completo desde hace más de veinte años, y **no sirve para este caso**. Ver por qué un antecedente excelente no aplica es exactamente lo que hay que enseñar.
 
 ## Consigna que se les dio
 
@@ -56,7 +56,7 @@ El término técnico **OPAC** (*Online Public Access Catalog*) es un buen ejempl
 - *Año:* 1999, en desarrollo continuo desde entonces
 - *Dónde:* sitio y documentación oficial del proyecto
 - *Qué hace:* sistema integrado completo de gestión bibliotecaria —catálogo, circulación, préstamos, catálogo público en línea—, software libre, sin costo de licencia
-- **Qué le falta para nuestro caso:** requiere instalarse y administrarse en un servidor, y catalogar el acervo completo antes de servir de algo. Con presupuesto cero, sin computador en el mostrador y con voluntarias que rotan, **la barrera no es el precio: es la administración**
+- **Qué le falta para nuestro caso:** requiere instalarse y administrarse en un servidor, y catalogar todos los libros antes de servir de algo. Con presupuesto cero, sin computador en el mostrador y con voluntarias que rotan, **la barrera no es el precio: es la administración**
 - *Enlace:* sitio oficial del proyecto (anotar fecha de consulta)
 
 **Ficha 2 · Norma nacional sobre bibliotecas públicas (Colombia)**
@@ -77,7 +77,7 @@ El término técnico **OPAC** (*Online Public Access Catalog*) es un buen ejempl
 - **Qué le falta para nuestro caso:** está construido sobre un sistema de gestión con personal dedicado; **lo que sí se puede reusar es el diseño de la pantalla de consulta** —qué campos muestra, en qué orden, qué dice cuando un libro no está disponible—, que es información de diseño gratis
 - *Enlace:* portal consultado (anotar fecha de consulta)
 
-**El hallazgo de la búsqueda, y la lección de la sesión:** existe software libre y maduro que resuelve el problema completo desde hace más de veinte años, y **no sirve para este caso**. Eso no invalida el proyecto: define su lugar. La brecha real no es «no hay software de bibliotecas», es «**no hay una solución que funcione sin administrador, sin computador en el mostrador y sin catalogar el acervo completo primero**». Ese es un problema legítimo de ingeniería y está sustentado con fuentes.
+**El hallazgo de la búsqueda, y la lección de la sesión:** existe software libre y maduro que resuelve el problema completo desde hace más de veinte años, y **no sirve para este caso**. Eso no invalida el proyecto: define su lugar. La brecha real no es «no hay software de bibliotecas», es «**no hay una solución que funcione sin administrador, sin computador en el mostrador y sin catalogar todos los libros primero**». Ese es un problema legítimo de ingeniería y está sustentado con fuentes.
 
 **Cómo calificar:** 30 pts, el bloque que decide. La verificación es literal y hay que hacerla en la sala o en la exposición: **pida que abran el enlace en pantalla**. Una referencia con formato impecable que no abre vale 0 en esa ficha, y hay que explicar por qué sin dramatizar: es la falta más grave del trabajo académico y hoy se comete sin querer. 10 pts por ficha completa con sus seis campos; el campo **«qué le falta para nuestro caso»** vale la mitad de cada ficha, porque es el único que exige haber leído. Si el equipo trae dos fichas excelentes en vez de tres regulares, dé 25: premie la lectura, no el conteo.
 
@@ -103,7 +103,7 @@ Lo que **no** se hizo, y no hay que hacer: rellenar el bloque con tres referenci
 
 **Respuesta modelo:**
 
-**La mejora, en una frase:** *publicar la disponibilidad sin catalogar el acervo completo y sin administrar un sistema — solo los títulos que se prestan, actualizados una vez al día desde el celular de la voluntaria.*
+**La mejora, en una frase:** *publicar la disponibilidad sin catalogar todos los libros y sin administrar un sistema — solo los títulos que se prestan, actualizados una vez al día desde el celular de la voluntaria.*
 
 **La operación usada: QUITAR.** Se le quitan al antecedente principal —el sistema integrado de gestión— las tres cosas que lo vuelven inaplicable en este contexto: el servidor que hay que administrar, la catalogación completa previa, y el registro en el momento de la atención. Lo que queda es mucho menos potente y **es lo único que puede existir en esta biblioteca**.
 
@@ -147,7 +147,7 @@ Escribir esto explícitamente tiene un efecto adicional que vale la pena señala
 
 **Equipos que llegan con tres referencias que no abren.** Va a pasar, sobre todo si usaron un asistente pese a la indicación. No lo trate como trampa: pida abrir los tres enlaces en pantalla y deje que el resultado hable. Ahí es donde la advertencia de la diapositiva 9 deja de ser teórica. Deles diez minutos para reemplazar las que no abran, y anote el caso para la sesión 11, donde la IA sí está autorizada y esta experiencia se vuelve el argumento de por qué hay que verificar todo lo que devuelve.
 
-**Equipos que encuentran que su solución ya existe, completa y gratis.** Es el mejor escenario pedagógico y hay que celebrarlo, no consolarlo. La pregunta que reencuadra el proyecto: **¿y por qué la biblioteca / el negocio / el colegio no la está usando?** La respuesta —hay que administrarla, exige capacitación, cuesta después del primer año, no funciona sin internet— **es el problema real**, y suele ser más interesante que el original. El proyecto no muere: se afila.
+**Equipos que encuentran que su solución ya existe, completa y gratis.** Es el mejor escenario pedagógico y hay que celebrarlo, no consolarlo. La pregunta que replantea el proyecto: **¿y por qué la biblioteca / el negocio / el colegio no la está usando?** La respuesta —hay que administrarla, exige capacitación, cuesta después del primer año, no funciona sin internet— **es el problema real**, y suele ser más interesante que el original. El proyecto no muere: se afila.
 
 **Equipos que no encuentran absolutamente nada.** Casi siempre es un problema de términos, no de vacío. Dos intervenciones rápidas que funcionan: pedirles el término en inglés, y pedirles **el término técnico del dominio** —como OPAC en el caso de la biblioteca—, que se consigue mirando cómo se llama a sí mismo el sector. Si de verdad no hay nada, hágalos escribir bien el bloque de lo que no encontraron: es un hallazgo y se califica igual.
 
@@ -163,7 +163,7 @@ Escribir esto explícitamente tiene un efecto adicional que vale la pena señala
 
 ## Cierre: qué decir en los 3 minutos finales
 
-Tres minutos y una idea que vale para toda la carrera: **nadie parte de cero, y decirlo es una fortaleza.** Contraste las dos frases en voz alta, porque la diferencia es lo que se califica en la Clase 15: «esto no existe» es una apuesta; «existen estas tres soluciones, ninguna funciona sin computador en el mostrador ni sin administrador, y nosotros resolvemos justamente eso» es una posición defendible ante cualquier jurado. Repita la regla de integridad, que es la más importante del curso en materia académica: **si no puede abrir el enlace y ver el documento, no lo cite** — y recuerde que un asistente de IA devuelve referencias con formato perfecto que pueden no existir. Cierre con el hallazgo del caso modelo, porque es contraintuitivo y se recuerda: existe software libre excelente que resuelve el problema completo desde hace veinte años, y no sirve aquí; ver por qué un antecedente magnífico no aplica es de lo que está hecha la ingeniería. Anuncie la sesión 10: se prototipa el alcance mínimo, y de lo que ficharon hoy sale el diseño de las pantallas.
+Tres minutos y una idea que vale para toda la carrera: **nadie parte de cero, y decirlo es una fortaleza.** Contraste las dos frases en voz alta, porque la diferencia es lo que se califica en la Clase 15: «esto no existe» es una apuesta; «existen estas tres soluciones, ninguna funciona sin computador en el mostrador ni sin administrador, y nosotros resolvemos justamente eso» es una posición defendible ante cualquier jurado. Repita la regla de integridad, que es la más importante del curso en materia académica: **si no puede abrir el enlace y ver el documento, no lo cite** — y recuerde que un asistente de IA devuelve referencias con formato perfecto que pueden no existir. Cierre con el hallazgo del caso modelo, porque sorprende y se recuerda: existe software libre excelente que resuelve el problema completo desde hace veinte años, y no sirve aquí; ver por qué un antecedente magnífico no aplica es de lo que está hecha la ingeniería. Anuncie la sesión 10: se prototipa el alcance mínimo, y de lo que ficharon hoy sale el diseño de las pantallas.
 
 ## Con qué se conecta
 

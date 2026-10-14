@@ -83,7 +83,7 @@
 
 **El detalle que va a preguntar el jurado: «¿por que el procesador de avisos no tiene puerto?».** Porque no atiende peticiones: **el trabajo lo va a buscar a la cola**. Un contenedor sin puerto expuesto es un contenedor al que nadie puede llegar desde fuera, y esa es su mejor propiedad de seguridad, no una carencia. Decirlo asi —«sin puerto expuesto»— en la etiqueta es mas fuerte que dejarla en blanco: la ausencia deliberada se escribe.
 
-**El otro detalle fino: el `worker` esta en la zona privada y sale a internet.** No es contradiccion, y conviene tener la respuesta lista: la zona privada **no acepta trafico entrante** de internet pero **si tiene salida** (por NAT), y por eso el worker puede llamar al correo transaccional. La que no tiene salida es la **zona de datos**: la base y la cola no pueden iniciar conexiones hacia afuera, que es exactamente el control que evita la exfiltracion de la Clase 6. Entrante y saliente son dos reglas distintas y es el error conceptual mas comun sobre subredes.
+**El otro detalle fino: el `worker` esta en la zona privada y sale a internet.** No es contradiccion, y conviene tener la respuesta lista: la zona privada **no acepta trafico entrante** de internet pero **si tiene salida** (por NAT), y por eso el worker puede llamar al correo transaccional. La que no tiene salida es la **zona de datos**: la base y la cola no pueden iniciar conexiones hacia afuera, que es exactamente el control que evita la fuga de datos de la Clase 6. Entrante y saliente son dos reglas distintas y es el error conceptual mas comun sobre subredes.
 
 **Por que el rango dice 1 a 4 y no 2 a 6.** El enunciado pone `2 a 6` como ejemplo; lo que se califica es que el rango sea **el de la politica propia** de la Clase 13. En BiblioLite el maximo es 4 porque cada replica abre 5 conexiones y el motor acepta 20, y el minimo es 1 como deuda aceptada por horas encendidas. Copiar el `2 a 6` del enunciado teniendo otra politica es la incoherencia que esta pregunta busca.
 
@@ -205,7 +205,7 @@ flowchart LR
 > El pico esta medido, no imaginado: 15 peticiones por segundo durante 40 minutos (21/09/2026, 11:40 a 12:20), del escenario de carga de la Clase 12.
 > La reserva completa cuesta **585 ms** contra un presupuesto de **800 ms** (`diagrama de secuencia con el presupuesto de 800 ms`), con el commit de la base como cuello: 330 de esos 585 ms.
 > Lo que **no** escala es la base primaria de escrituras, y ahi esta el numero que importa: acepta 20 conexiones, cada replica abre 5, luego el maximo de la API son **4 replicas** (`politica de escalado, fila API`). El techo de la API lo fija la base, no la API.
-> **Trade-off aceptado:** el minimo son **1 replica**, no 2, asi que un reinicio son unos 20 segundos de caida. Se acepta para bajar de 720 a 480 horas encendidas al mes, que era el apalancamiento declarado en la seccion de costos.
+> **Trade-off aceptado:** el minimo son **1 replica**, no 2, asi que un reinicio son unos 20 segundos de caida. Se acepta para bajar de 720 a 480 horas encendidas al mes, que era la medida de ahorro declarada en la seccion de costos.
 
 ### Como calificar
 
@@ -252,7 +252,7 @@ flowchart LR
 
 - **La carta de agradecimiento.** «Aprendi mucho, el curso fue muy completo, gracias por la paciencia». No responde ninguno de los 5 bloques. Devolver con una pregunta concreta: ¿cual decision te costo mas trabajo tomar?
 - **Trade-off que no es un trade-off** («decidi usar Docker»). Si no hubo algo que se perdio, no hubo trade-off: hubo una eleccion obvia. Pedir la decision en la que las dos opciones tenian defensa.
-- **Alternativa descartada generica** («la otra opcion era hacerlo mal»). No es una alternativa, es un espantapajaros. La alternativa descartada tiene que ser la que alguien razonable defenderia.
+- **Alternativa descartada generica** («la otra opcion era hacerlo mal»). No es una alternativa, es una opcion de relleno. La alternativa descartada tiene que ser la que alguien razonable defenderia.
 - **Bloque 4 sin artefacto** («quedo en el informe»). Cuesta los 3 pts. Es el bloque mas facil de la pregunta y el que mas se pierde por descuido: solo hay que copiar una ruta.
 - **Fuera del rango de palabras.** 120 palabras es no haber hecho el ejercicio; 500 es no haber decidido que importa. Ambos casos descuentan sobre los 8 pts del primer renglon.
 - **«Que haria distinto: nada, todo salio bien».** Con un `parcial` en el indice y un cuello de botella identificado, esa frase se contradice con el propio paquete. Devolver senalando la contradiccion, que es la mejor ensenanza posible de la pregunta.

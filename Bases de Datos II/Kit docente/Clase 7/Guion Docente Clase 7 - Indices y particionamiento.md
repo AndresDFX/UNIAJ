@@ -539,7 +539,7 @@ Actividades:
 3. Repetir los EXPLAIN y decir cual indice eligio el planeador y por que.
 4. Construir cita_hist particionada por ano, migrar las citas y demostrar el enrutamiento y la poda.
 5. Llenar la tabla de justificacion consulta->indice (7 columnas) y el veredicto de particionamiento.
-Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
+Circular por estudiantes (o salas). Empujar evidencia, no perfeccionismo.
 Entregable: Script CREATE INDEX + cita_hist particionada + tabla justificacion consulta->indice
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 7/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
@@ -564,7 +564,7 @@ Carpeta Codigo/ — archivo 07_indices_clinica.sql.
 ## Capturas
 Carpeta `Kit docente/Clase 7/Capturas/`. Cada linea de pantallazo de arriba trae
 el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
-tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se inserta sola.
 Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia

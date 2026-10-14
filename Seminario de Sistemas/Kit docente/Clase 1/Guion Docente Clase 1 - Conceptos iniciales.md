@@ -37,8 +37,8 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - DESARROLLO (para explicarlo, no se proyecta):
   - Un requisito funcional dice QUE debe hacer el sistema: «registrar una mascota con ID, nombre y especie».
   - Un requisito no funcional dice COMO debe comportarse: «la busqueda de un expediente responde en menos de dos segundos», «la informacion no se pierde ante un corte de energia».
-  - Los no funcionales son los que mas se olvidan y, paradojicamente, los que mas condicionan la arquitectura.
-  - La regla practica que el estudiante debe interiorizar desde hoy es: si no se puede verificar, no es un requisito, es un deseo.
+  - Los no funcionales son los que mas se olvidan y, curiosamente, los que mas condicionan la arquitectura.
+  - La regla practica que el estudiante debe tener clara desde hoy es: si no se puede verificar, no es un requisito, es un deseo.
   - «El sistema debe ser rapido» no sirve
   - «responde en menos de 2 s con 50 usuarios simultaneos» si, porque alguien puede sentarse a comprobarlo.
 
@@ -144,7 +144,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Son cinco rasgos y todos son verificables desde afuera.
   - Dos, es verificable: sus afirmaciones se pueden confirmar o refutar, lo que en requisitos significa criterios de aceptacion.
   - Tres, es trazable: cada requisito tiene identificador y se puede seguir hasta el artefacto donde se resuelve.
-  - Cinco, es accionable: alguien puede tomar una decision o construir algo con el.
+  - Cinco, sirve para actuar: alguien puede tomar una decision o construir algo con el.
   - Version para la nota: el sistema debe ser amigable e intuitivo y permitir gestionar la informacion de las mascotas de manera eficiente.
   - Version usable: RF-012, el sistema permite registrar una mascota con identificador, nombre, especie, fecha de nacimiento y dueno asociado
   - Criterio de aceptacion, dado un dueno ya registrado, cuando la recepcionista guarda la mascota con esos cinco datos, entonces la mascota aparece en el listado de ese dueno

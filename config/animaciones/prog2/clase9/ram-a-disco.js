@@ -28,7 +28,7 @@
         UJ.rotulo(ctx, lz, 'cerrar ventana', 480, 84, { tam: 17, peso: 700, color: R });
       });
       UJ.rotulo(ctx, lz, '(vacía)', 190, 116, { tam: 20, peso: 600, color: L.tono(m.tinta, 0.4), visible: L.tramo(t, 0.24, 0.28) });
-      UJ.rotulo(ctx, lz, 'Al cerrar, las mascotas se evaporan.', 400, 140, { tam: 18, peso: 700, alinear: 'left', color: R, ancho: 380, visible: L.tramo(t, 0.24, 0.3) });
+      UJ.rotulo(ctx, lz, 'Al cerrar, las mascotas se pierden.', 400, 140, { tam: 18, peso: 700, alinear: 'left', color: R, ancho: 380, visible: L.tramo(t, 0.24, 0.3) });
       // Paso 2: cada objeto -> linea CSV -> archivo
       var y2 = 230;
       UJ.rotulo(ctx, lz, 'Persistiendo', 20, y2 - 34, { tam: 22, peso: 800, alinear: 'left', color: V, visible: L.tramo(t, 0.36, 0.4) });

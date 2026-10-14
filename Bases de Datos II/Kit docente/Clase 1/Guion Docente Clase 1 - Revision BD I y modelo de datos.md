@@ -216,7 +216,7 @@ CÓMO DARLA (≈3 min):
 - Clic 1: El INSERT con id_mascota 999: el motor lo rechaza y nombra la restricción violada, cita_id_mascota_fkey. Nada se insertó.
 - Clic 2: El DELETE de la mascota 1, que tiene citas: rechazado. «Sin cláusula ON DELETE el comportamiento es restrictivo; eso es regla del estándar SQL, no una costumbre».
 
-EJEMPLO: Decisión por relación: mascota → dueño, restrictiva (borrar un dueño no puede evaporar el historial); consulta → cita, restrictiva; detalle_factura → factura, CASCADE (una línea no significa nada sin su factura); detalle_factura → insumo, restrictiva (no se borra un insumo ya facturado).
+EJEMPLO: Decisión por relación: mascota → dueño, restrictiva (borrar un dueño no puede borrar el historial); consulta → cita, restrictiva; detalle_factura → factura, CASCADE (una línea no significa nada sin su factura); detalle_factura → insumo, restrictiva (no se borra un insumo ya facturado).
 
 SI PREGUNTAN:
 - «¿Qué diferencia hay entre RESTRICT y NO ACTION?» → Las dos impiden borrar el padre con hijos. NO ACTION, la opción por omisión, revisa al final de la sentencia y puede diferirse; RESTRICT revisa de inmediato. Para este curso se comportan igual.
@@ -494,7 +494,7 @@ Actividades:
 2. Llenar la plantilla de la ficha del PI: alcance SI / alcance NO y 3 reglas de negocio propias en formato Condicion -> Accion.
 3. Dibujar el ER borrador en Excalidraw o draw.io, pasarlo a Mermaid (erDiagram) con ayuda de una IA y pegarlo renderizado en ExamLab.
 4. Exportar tambien el PNG del ER a la carpeta del PI y verificar que los nombres coincidan con el DDL (minusculas, singular, id_<entidad>).
-Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
+Circular por estudiantes (o salas). Empujar evidencia, no perfeccionismo.
 Entregable: Ficha del PI (plantilla) + ER en Mermaid renderizado en ExamLab (PNG para tu carpeta) + 3 reglas Condicion -> Accion
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 1/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
@@ -513,7 +513,7 @@ Carpeta Codigo/ — archivo 01_arranque_clinica.sql.
 ## Capturas
 Carpeta `Kit docente/Clase 1/Capturas/`. Cada linea de pantallazo de arriba trae
 el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
-tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se inserta sola.
 Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia

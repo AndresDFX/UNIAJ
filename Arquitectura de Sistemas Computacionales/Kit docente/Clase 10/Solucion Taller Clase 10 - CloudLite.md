@@ -25,7 +25,7 @@
 
 ### Respuesta esperada
 
-| Componente | Driver de costo | Nivel B/M/A | Apalancamiento |
+| Componente | Driver de costo | Nivel B/M/A | Medida de ahorro |
 |---|---|---|---|
 | `API de prestamos` | **Horas de instancia encendida**: 24 x 30 = **720 h/mes** aunque la biblioteca este cerrada de noche. El costo no depende de las reservas, depende del reloj. | **A** | Escalar a cero fuera del horario de biblioteca (6:00 a 22:00): de 720 h a **480 h/mes**, un 33% menos. **Comprobable** en la politica de escalado y en el conteo de horas facturables. |
 | `Base de datos de prestamos` | **Horas encendida** (no se puede apagar sin perder el servicio) **mas GB almacenados**, que solo crecen: un prestamo cerrado nunca se borra. | **A** | Politica de retencion: los prestamos cerrados con mas de 2 anos se mueven a un archivo en almacenamiento de objetos y se borran de la tabla caliente. Y resolver la lentitud con **indices** antes que con mas CPU. **Comprobable** en el tamano de la tabla mes a mes. |
@@ -35,18 +35,18 @@
 
 **Por que dos Altos y un Bajo, y no todo Medio.** La API y la base son Alto por el mismo motivo y vale decirlo en voz alta: **su costo no depende del uso, depende del tiempo**. Se pagan encendidas aunque nadie reserve un libro a las tres de la manana. El almacenamiento de objetos es Bajo porque BiblioLite no digitaliza contenidos —lo dice el «fuera de alcance» de la ficha de la Clase 1— y por eso guarda megabytes, no terabytes. CI y edge quedan en Medio porque crecen con la actividad, no con el reloj, y la actividad de un proyecto de curso es pequena.
 
-La escala es **ordinal**: afirma que la API cuesta mas que el edge, **no cuantas veces mas**. Ese matiz es la razon de que la pregunta prohiba precios: con B/M/A se puede ordenar honestamente sin inventar una factura, y ordenar es lo que permite decidir donde apalancar primero.
+La escala es **ordinal**: afirma que la API cuesta mas que el edge, **no cuantas veces mas**. Ese matiz es la razon de que la pregunta prohiba precios: con B/M/A se puede ordenar honestamente sin inventar una factura, y ordenar es lo que permite decidir donde ahorrar primero.
 
 **Sin precios en dolares, a proposito.** No hay una sola cifra de moneda en la tabla. Cualquier precio que pusiera seria inventado: no tengo cuenta de nube de pago —eso es la politica del curso desde el ADR-001— y los precios cambian por region y por nivel. Lo que si es verificable es la aritmetica de las **720 horas**, que sale del calendario y no de una lista de precios.
 
-**El componente que mas ensena.** La fila de la base de datos es la unica cuyo driver crece solo, sin que nadie haga nada: cada prestamo cerrado que se acumula suma GB para siempre. Es la fila donde el apalancamiento tiene que ser una politica escrita (retencion) y no una accion puntual, y es la que conecta con la Clase 13, donde se vera que esa tabla es tambien la que no escala.
+**El componente que mas ensena.** La fila de la base de datos es la unica cuyo driver crece solo, sin que nadie haga nada: cada prestamo cerrado que se acumula suma GB para siempre. Es la fila donde la medida de ahorro tiene que ser una politica escrita (retencion) y no una accion puntual, y es la que conecta con la Clase 13, donde se vera que esa tabla es tambien la que no escala.
 
 ### Como calificar
 
-- 4 pts **una fila por cada componente del despliegue, sin dejar ninguno fuera**. Se compara con el diagrama de la Clase 7 y se prorratea. Los sistemas externos (identidad, correo) pueden omitirse porque no los factura el estudiante, pero si los incluye con su driver, mejor.
+- 4 pts **una fila por cada componente del despliegue, sin dejar ninguno fuera**. Se compara con el diagrama de la Clase 7 y se reparte por fila. Los sistemas externos (identidad, correo) pueden omitirse porque no los factura el estudiante, pero si los incluye con su driver, mejor.
 - 5 pts los **drivers**: cada uno tiene que ser una **variable contable** —horas encendidas, GB de salida, GB almacenados, minutos de CI— y **no «el uso»** ni «la cantidad de usuarios». La prueba: ¿se puede poner un numero al final del mes? Si no, no es un driver.
-- 3.25 pts los niveles, **con al menos un Alto y un Bajo justificados**. **Si todo es Medio, este criterio vale cero**, sin prorrateo: es la respuesta que la pregunta busca descartar.
-- 4 pts los **apalancamientos, uno por fila, concretos y comprobables**. «Optimizar», «reducir costos» o «usar mejor los recursos» no suman. La forma que vale: una accion y donde se ve que se aplico.
+- 3.25 pts los niveles, **con al menos un Alto y un Bajo justificados**. **Si todo es Medio, este criterio vale cero**, sin puntaje parcial: es la respuesta que la pregunta busca descartar.
+- 4 pts las **medidas de ahorro, una por fila, concretas y comprobables**. «Optimizar», «reducir costos» o «usar mejor los recursos» no suman. La forma que vale: una accion y donde se ve que se aplico.
 - **Se descuenta fuerte por inventar precios en dolares** o por presentar una factura de un proveedor. La escala es cualitativa y el motivo es honestidad: el estudiante no tiene cuenta de pago, asi que cualquier cifra seria adivinada.
 - Que el nivel Alto se justifique con «el costo depende del tiempo, no del uso» es la mejor version de esta respuesta. Si aparece, comentelo: es la idea central del tema y la que hace util toda la tabla.
 - Un driver aritmeticamente verificable (las 720 horas del mes, los 5 minutos por corrida) vale mas que uno correcto pero abstracto. No es un criterio aparte: es lo que distingue el 5 de 5 del 3 de 5 en los drivers.
@@ -58,8 +58,8 @@ La escala es **ordinal**: afirma que la API cuesta mas que el edge, **no cuantas
 - «El uso» como driver. No es contable. La pregunta de correccion es directa: «¿el uso de que, medido en que unidad, al final del mes?».
 - Dejar fuera la integracion continua o el edge porque «no cuestan». Los minutos de CI y los GB de salida son los dos costos que mas sorprenden a un equipo real. El enunciado los nombra explicitamente como componentes de la tabla.
 - Incluir una fila de almacenamiento de objetos del dominio cuando el dominio no maneja archivos. Es el mismo error de la pregunta 5 de la Clase 7: agregar la pieza porque suena a cloud.
-- Apalancamientos que son deseos: «reducir el consumo», «ser mas eficientes». Sin una accion y sin donde se comprueba, la fila no suma. Anticipa que la pregunta 12 tambien va a fallar.
-- Confundir el driver con el apalancamiento: poner «cachear» en la columna del driver. El driver es lo que **hace crecer** la factura; el apalancamiento es lo que la **baja**.
+- Medidas de ahorro que son deseos: «reducir el consumo», «ser mas eficientes». Sin una accion y sin donde se comprueba, la fila no suma. Anticipa que la pregunta 12 tambien va a fallar.
+- Confundir el driver con la medida de ahorro: poner «cachear» en la columna del driver. El driver es lo que **hace crecer** la factura; la medida de ahorro es lo que la **baja**.
 
 ---
 
@@ -75,9 +75,9 @@ La escala es **ordinal**: afirma que la API cuesta mas que el edge, **no cuantas
 
 **El vinculo con los drivers de costo de la pregunta 11**
 
-Las tres se apalancan sobre un driver de la tabla anterior, y la segunda es la mas directa:
+Las tres actuan sobre un driver de la tabla anterior, y la segunda es la mas directa:
 
-- **Accion 2 -> driver «horas de instancia encendida» de la fila `API de prestamos` (nivel A).** Es literalmente el mismo apalancamiento escrito en esa fila: pasar de 720 a 480 horas al mes. Un tercio menos de horas es un tercio menos de energia consumida y un tercio menos de factura; la misma decision baja las dos cosas.
+- **Accion 2 -> driver «horas de instancia encendida» de la fila `API de prestamos` (nivel A).** Es literalmente la misma medida de ahorro escrita en esa fila: pasar de 720 a 480 horas al mes. Un tercio menos de horas es un tercio menos de energia consumida y un tercio menos de factura; la misma decision baja las dos cosas.
 - **Accion 3 -> driver «minutos de CI».** Menos corridas y corridas mas cortas.
 - **Accion 1 -> driver «GB almacenados» del registro y, de rebote, «minutos de CI»**, porque una imagen ocho veces mas pequena se descarga y arranca mas rapido en cada corrida.
 
@@ -103,7 +103,7 @@ Que costo y sostenibilidad se apalanquen con la misma decision no es una coincid
 - Nombrar el artefacto y dejar en blanco el como. Es la mitad de cada accion. La pregunta de correccion: «abro ese archivo, ¿que linea me dice que se aplico?».
 - Atar la accion a un driver que no aparece en su tabla de la pregunta 11. Se ve poniendo las dos respuestas al lado y cuesta el 1.25. Suele pasar cuando la tabla se hizo de ultimo y sin revisar la 12.
 - Tres acciones que son la misma: cache de npm, cache de Docker y cache del navegador. Son tres formas de una decision. Pida que toquen artefactos distintos.
-- Proponer apagar la base de datos por la noche. No se puede sin perder el servicio y sin arriesgar el respaldo: es el ejemplo de una accion que suena sostenible y rompe el sistema. Corrijala mostrando que la fila de la base tiene otro apalancamiento (la retencion).
+- Proponer apagar la base de datos por la noche. No se puede sin perder el servicio y sin arriesgar el respaldo: es el ejemplo de una accion que suena sostenible y rompe el sistema. Corrijala mostrando que la fila de la base tiene otra medida de ahorro (la retencion).
 
 ---
 
@@ -113,7 +113,7 @@ Estas son las dudas que aparecen todos los semestres. Tenerlas resueltas por esc
 
 **¿Puedo poner precios reales si los busco en la calculadora del proveedor?**
 
-No, y se descuenta fuerte. El curso no abre cuentas de pago y los precios cambian por region y por nivel: cualquier cifra seria una adivinanza con aspecto de dato. La escala es B/M/A y con eso alcanza para decidir donde apalancar.
+No, y se descuenta fuerte. El curso no abre cuentas de pago y los precios cambian por region y por nivel: cualquier cifra seria una adivinanza con aspecto de dato. La escala es B/M/A y con eso alcanza para decidir donde ahorrar.
 
 **¿Que hago con un componente al que no le encuentro driver?**
 
@@ -121,7 +121,7 @@ Volver al diagrama de la Clase 7, que es lo que dice el enunciado. Si un compone
 
 **¿Por que no puede ser todo Medio?**
 
-Porque entonces la tabla no ordena nada, y ordenar es lo unico que la escala ordinal permite hacer. Sin un Alto no se sabe donde apalancar primero, y ese es el proposito del ejercicio. El criterio de niveles queda en cero.
+Porque entonces la tabla no ordena nada, y ordenar es lo unico que la escala ordinal permite hacer. Sin un Alto no se sabe donde ahorrar primero, y ese es el proposito del ejercicio. El criterio de niveles queda en cero.
 
 **¿La escala B/M/A dice cuantas veces mas cuesta un componente?**
 
@@ -147,7 +147,7 @@ Solo una es obligatoria y vale 1.25 pts. Atar las tres no suma mas, pero suele s
 
 ## Cierre de la clase
 
-Lo que queda de hoy es que una decision de arquitectura se puede defender con una variable contable en la mano: no «la nube es cara», sino «esta pieza se paga por horas encendidas y la mia esta encendida 720 al mes». Deje anotadas las tres conexiones hacia adelante: el apalancamiento de escalar a cero es la politica que la Clase 13 va a escribir con su metrica y su ventana de enfriamiento, la fila de la base de datos es el componente que alli se vera que **no** escala, y la tabla completa es una de las piezas del paquete que el checkpoint de la Clase 11 revisa. Con esto cierra el Corte 2: el sistema ya tiene amenazas con controles, un lugar donde ejecutarse, un pipeline que lo verifica y un costo que se puede ordenar.
+Lo que queda de hoy es que una decision de arquitectura se puede defender con una variable contable en la mano: no «la nube es cara», sino «esta pieza se paga por horas encendidas y la mia esta encendida 720 al mes». Deje anotadas las tres conexiones hacia adelante: la medida de ahorro de escalar a cero es la politica que la Clase 13 va a escribir con su metrica y su ventana de enfriamiento, la fila de la base de datos es el componente que alli se vera que **no** escala, y la tabla completa es una de las piezas del paquete que el checkpoint de la Clase 11 revisa. Con esto cierra el Corte 2: el sistema ya tiene amenazas con controles, un lugar donde ejecutarse, un pipeline que lo verifica y un costo que se puede ordenar.
 
 ---
 

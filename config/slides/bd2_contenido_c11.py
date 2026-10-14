@@ -329,7 +329,7 @@ CONTENIDO = {
                 "pasos": [
                     "La versión inútil: «el modelo está flojo, mejórenlo». No dice qué mirar ni cómo "
                     "saber cuándo está resuelto.",
-                    "La versión accionable, parte por parte: artefacto, el script DDL; observación, "
+                    "La versión concreta, parte por parte: artefacto, el script DDL; observación, "
                     "detalle_factura no tiene FOREIGN KEY hacia insumo aunque el ER dibuja la "
                     "relación; impacto, se pueden insertar detalles con insumos que no existen; "
                     "acción, agregar la restricción y re-ejecutar el script completo desde cero; "

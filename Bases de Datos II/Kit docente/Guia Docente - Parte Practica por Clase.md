@@ -1811,7 +1811,7 @@ SELECT id_cita, id_mascota, estado
 ## Clase 13 — Analisis de casos reales · VetCare
 
 **Objetivo practico:** Informe de caso -> mejoras concretas al PI
-**Por que importa:** lecciónes accionables.
+**Por que importa:** lecciones concretas.
 
 **Demo en vivo:**
 - Pizarra: Tabla 4 columnas: Contexto | Fallo | Leccion | Cambio en VetCare — una fila por caso discutido.

@@ -99,7 +99,7 @@ Este dominio **no vuelve a cambiar** en el resto del curso: las Clases 2, 3 y 4 
 misma actividad, y las Clases 7, 11 y 15, reutilizan estos nombres.
 
 > La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
-                          'rubrica': '3 pts el dominio concreto y del tamano adecuado. Si es generico (red social, app de la universidad), toda la pregunta vale cero: sin dominio no hay nada que arquitecturar en las clases siguientes. 1.5 pts que el problema nombre a QUIEN lo sufre con un rol concreto. 1.75 pts que incluya una cifra que mida el dolor; una cifra estimada sirve, «mucho tiempo» no. Se descuenta si el problema pasa de 3 frases.',
+                          'rubrica': '3 pts el dominio concreto y del tamano adecuado. Si es generico (red social, app de la universidad), toda la pregunta vale cero: sin dominio no hay nada que disenar en las clases siguientes. 1.5 pts que el problema nombre a QUIEN lo sufre con un rol concreto. 1.75 pts que incluya una cifra que mida el dolor; una cifra estimada sirve, «mucho tiempo» no. Se descuenta si el problema pasa de 3 frases.',
                       },
                       {
                           'n_global': 2,
@@ -670,7 +670,7 @@ componente de SU sistema lo aplica y que deja de poder hacer al aplicarlo.
 > probablemente le falta una caja o una frontera en el diagrama.
 
 > La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
-                          'rubrica': '1 pt por cada control concreto y verificable, hasta 5. 2.5 pts por senalar correctamente la caja o la flecha de cada uno; se prorratea. 1.25 pts por el principio de menor privilegio aplicado a un componente concreto, diciendo que deja de poder hacer. Un control tipo «usar buenas practicas» no suma.',
+                          'rubrica': '1 pt por cada control concreto y verificable, hasta 5. 2.5 pts por senalar correctamente la caja o la flecha de cada uno; se califica por partes. 1.25 pts por el principio de menor privilegio aplicado a un componente concreto, diciendo que deja de poder hacer. Un control tipo «usar buenas practicas» no suma.',
                       },
                       {
                           'n_global': 3,
@@ -911,7 +911,7 @@ escribe para poder reconstruir que paso despues.
      'resumen': '''Las preguntas 7 a 10 de la actividad del Corte 2. El estudiante escribe el workflow de CI de su stub, explica que valida de verdad, ubica hasta donde llega su pipeline y define las senales con las que operaria CloudLite.''',
      'titulo': '''Actividad del Corte 2 (preguntas 7 a 10) - Integracion continua y monitoreo'''},
  10: {'pasos': [
-                   'Paso 1: construya en la pregunta 11 la tabla de costos con una fila por cada componente de su despliegue y las columnas componente, driver, nivel B/M/A y apalancamiento; verifique que cada driver sea una variable contable (horas encendidas, GB de salida, GB almacenados, minutos de CI) y no «el uso».',
+                   'Paso 1: construya en la pregunta 11 la tabla de costos con una fila por cada componente de su despliegue y las columnas componente, driver, nivel B/M/A y medida de ahorro; verifique que cada driver sea una variable contable (horas encendidas, GB de salida, GB almacenados, minutos de CI) y no «el uso».',
                    'Paso 2: fuerce al menos un Alto y un Bajo con su justificacion. Marcar todo como Medio para no decidir es lo que la pregunta busca descartar, y ese criterio vale cero si todas las filas quedan iguales.',
                    'Paso 3: escriba en la pregunta 12 tres acciones de sostenibilidad, cada una con el artefacto donde se comprueba y como se comprueba; aplique la prueba de que otra persona pueda decir en seis meses, mirando el repositorio, si la accion se aplico.',
                    'Paso 4: ate al menos una de las tres acciones a un driver de costo de la pregunta 11 y suba la actividad completa del Corte 2 a la plataforma del curso antes del domingo 23:59. Es una clase autonoma: no hay encuentro sincrono, y las dudas van por el foro.',
@@ -927,7 +927,7 @@ Construya la tabla de costos con **una fila por componente** —API, base de dat
 almacenamiento de objetos si lo tiene, integracion continua y edge— y **estas cuatro
 columnas**:
 
-`Componente | Driver de costo | Nivel B/M/A | Apalancamiento`
+`Componente | Driver de costo | Nivel B/M/A | Medida de ahorro`
 
 - **Driver de costo**: la variable concreta que, si crece, hace crecer la factura de ese
   componente. Drivers a considerar: **tiempo inactivo** (instancias encendidas sin trabajo),
@@ -935,7 +935,7 @@ columnas**:
 - **Nivel**: **B**ajo, **M**edio o **A**lto. Es una escala **ordinal**: ordena, no mide
   distancias. Decir que la base de datos es Alto y el edge es Bajo afirma que una cuesta mas
   que la otra, no cuantas veces mas.
-- **Apalancamiento**: **que palanca concreta baja ese costo**. No «optimizar»: algo que se
+- **Medida de ahorro**: **que accion concreta baja ese costo**. No «optimizar»: algo que se
   pueda hacer y comprobar.
 
 > **Prohibido inventar precios en dolares o facturas de un proveedor.** La estimacion es
@@ -946,7 +946,7 @@ columnas**:
 respuesta que esta pregunta busca descartar.
 
 > La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
-                           'rubrica': '4 pts una fila por cada componente del despliegue, sin dejar ninguno fuera. 5 pts los drivers: cada uno tiene que ser una variable contable (horas encendidas, GB de salida, GB almacenados, minutos de CI) y no «el uso». 3.25 pts los niveles, con al menos un Alto y un Bajo justificados; si todo es Medio, este criterio vale cero. 4 pts los apalancamientos, uno por fila, concretos y comprobables. **Se descuenta fuerte por inventar precios en dolares**: la escala es cualitativa.',
+                           'rubrica': '4 pts una fila por cada componente del despliegue, sin dejar ninguno fuera. 5 pts los drivers: cada uno tiene que ser una variable contable (horas encendidas, GB de salida, GB almacenados, minutos de CI) y no «el uso». 3.25 pts los niveles, con al menos un Alto y un Bajo justificados; si todo es Medio, este criterio vale cero. 4 pts las medidas de ahorro, una por fila, concretas y comprobables. **Se descuenta fuerte por inventar precios en dolares**: la escala es cualitativa.',
                        },
                        {
                            'n_global': 12,
@@ -972,7 +972,7 @@ Ejemplos de la **forma** esperada, no para copiarlos:
 > es una intencion.
 
 Ate al menos una de las tres a un **driver de costo** de la tabla anterior: sostenibilidad y
-costo suelen apalancarse con la misma decision.
+costo suelen bajar con la misma decision.
 
 > La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.''',
                            'rubrica': '2.5 pts por accion verificable, hasta 3 acciones: suma completo solo si nombra el artefacto y como se comprueba. 1.25 pts por atar al menos una accion a un driver de costo de la pregunta 11. Una accion que no se pueda comprobar mirando un artefacto vale cero, aunque sea razonable.',

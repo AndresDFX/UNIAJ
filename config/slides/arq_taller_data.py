@@ -313,7 +313,7 @@ TALLER_BLOQUE = {
             'Contratos en Doc o notas junto al diagrama.',
         ],
         'pistas': [
-            '□ Hay 2-5 cajas (no 1 monolito innominado ni 12 microservicios)?',
+            '□ Hay 2-5 cajas (no 1 monolito sin nombre ni 12 microservicios)?',
             '□ Los nombres coincidirán luego con Deployment?',
             '□ Cada contrato tiene error de negocio (ej. 409 conflicto)?',
         ],
@@ -398,7 +398,7 @@ TALLER_BLOQUE = {
         ],
         'objetivo': 'Sección Costos/Sostenibilidad del PI con tabla por componente.',
         'criterios': [
-            'Tabla componente -> driver -> B/M/A -> apalancamiento.',
+            'Tabla componente -> driver -> B/M/A -> medida de ahorro.',
             '>=3 acciones de sostenibilidad verificables.',
             '1 página integrada al informe.',
             'Entrega domingo 23:59 (autónoma).',

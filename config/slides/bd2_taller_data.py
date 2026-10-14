@@ -717,7 +717,7 @@ TALLER_BLOQUE = {
     },
     13: {
         'contexto': [
-            '@@Por qué importa al PI:@@ lecciónes accionables.',
+            '@@Por qué importa al PI:@@ lecciones concretas.',
             'Autónoma: 1 caso -> 3 mejoras.',
         ],
         'objetivo': 'Caso real -> 3 mejoras VetCare.',
@@ -732,7 +732,7 @@ TALLER_BLOQUE = {
             'Plantilla: contexto->fallo->lección->cambio.',
         ],
         'pistas': [
-            '□ Mejoras accionables?',
+            '□ Mejoras concretas?',
             '□ Conectan al PI?',
             '□ Evidencia de lectura?',
         ],

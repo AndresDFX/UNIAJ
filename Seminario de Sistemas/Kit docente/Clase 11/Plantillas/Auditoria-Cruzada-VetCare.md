@@ -48,7 +48,7 @@ Prohibido proponer soluciones durante la revision: solo se reportan hechos.
 
 ## 4. Acta de hallazgos
 
-Severidad: BLOQUEANTE (impide construir) / MAYOR (obliga a rehacer un artefacto) / MENOR (cosmetico).
+Severidad: BLOQUEANTE (impide construir) / MAYOR (obliga a rehacer un artefacto) / MENOR (de forma).
 
 | ID | Ubicacion exacta | Descripcion objetiva del hallazgo | Severidad | Decision |
 |---|---|---|---|---|

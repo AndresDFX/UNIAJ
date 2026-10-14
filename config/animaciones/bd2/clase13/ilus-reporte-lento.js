@@ -40,7 +40,7 @@
       UJ.codigo(ctx, lz, 46, 470, 328, 'Seq Scan on cita', 1, 16);
       UJ.rotulo(ctx, lz, 'recorre la tabla entera para quedarse con pocas filas: falta un índice', 210, 518, { tam: 16, peso: 600, ancho: 330 });
       L.rectRed(ctx, 410, 420, 360, 196, 14); L.rellena(ctx, L.tono(V, 0.88), V, 2);
-      UJ.rotulo(ctx, lz, 'La lección accionable', 590, 432, { tam: 20, peso: 800, color: L.tono(V, -0.3) });
+      UJ.rotulo(ctx, lz, 'La lección concreta', 590, 432, { tam: 20, peso: 800, color: L.tono(V, -0.3) });
       UJ.rotulo(ctx, lz, '1 · Pedir solo las columnas que se muestran (adiós SELECT *)', 590, 470, { tam: 16, peso: 600, ancho: 330 });
       UJ.rotulo(ctx, lz, '2 · Índice en el filtro, con EXPLAIN ANALYZE antes y después', 590, 540, { tam: 16, peso: 600, ancho: 330 });
     }

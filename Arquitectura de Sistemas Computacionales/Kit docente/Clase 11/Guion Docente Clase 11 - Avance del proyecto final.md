@@ -67,22 +67,22 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Hay dos patologias con nombre propio que arruinan las sustentaciones.
   - La respuesta correcta no es prohibir ideas sino congelar el alcance y abrir una lista de aparcamiento, un anexo donde las capacidades extra quedan escritas como "fuera de alcance v1, candidatas a v2": preserva la idea, protege el cronograma y es lo que hace un equipo profesional al cerrar un release.
   - (No se proyecta) Se detecta con un dato objetivo, no con intuicion: en la Clase 1 cada estudiante definio entre tres y cinco capacidades para CloudLite, asi que basta contar las de hoy y compararlas con esa linea base; si eran cuatro y hoy son nueve, hay scope creep, y da igual que las nuevas suenen interesantes.
-  - (No se proyecta) Se detecta con cuatro preguntas de una linea, todas respondibles por el estudiante: se puede desplegar ese servicio sin desplegar los otros, tiene sus propios datos o comparte tablas con el vecino, puede fallar sin tumbar a los demas, y existe una razon de negocio por la que cambiaria en un momento distinto al resto.
+  - (No se proyecta) Se detecta con cuatro preguntas de una linea que el estudiante puede responder: se puede desplegar ese servicio sin desplegar los otros, tiene sus propios datos o comparte tablas con el vecino, puede fallar sin tumbar a los demas, y existe una razon de negocio por la que cambiaria en un momento distinto al resto.
 
 **[Slide 8] Errores frecuentes a corregir** — 5 vinetas.
 
 **[Slide 9] El C4 Component: por dentro de la API** — 21 vinetas.
 
-**[Slide 10] Retroalimentacion accionable: observacion, evidencia, impacto y accion con fecha** — 3 vinetas.
+**[Slide 10] Retroalimentacion util: observacion, evidencia, impacto y accion con fecha** — 3 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
   - La retroalimentacion es la mitad del valor del dia y tiene tecnica propia.
-  - Una observacion accionable tiene cuatro partes: observacion, evidencia, impacto y accion con fecha.
+  - Una observacion util tiene cuatro partes: observacion, evidencia, impacto y accion con fecha.
   - Ejemplo: «el despliegue llama backend a la API de turnos (observacion); se ve en la caja central (evidencia); rompe la trazabilidad con el Containers (impacto); unificar el nombre antes de la proxima revision (accion con fecha)».
-  - Un comentario como «mejorar el diagrama» no es accionable: no dice que, ni donde, ni cuando.
-  - (No se proyecta) Una retroalimentacion accionable tiene cuatro partes: observacion, evidencia, impacto y accion con fecha. "Falta seguridad" no cumple ninguna. "En el diagrama de despliegue la base de datos esta en la subred publica, contradice el control que ustedes escribieron para la amenaza de acceso no autorizado; si lo sustentan asi en la Clase 15 el evaluador concluira que el modelo de amenazas se escribio sin mirar el diagrama; muevanla a subred privada y dejen solo la API expuesta, antes de la Clase 12" cumple las cuatro.
+  - Un comentario como «mejorar el diagrama» no sirve: no dice que, ni donde, ni cuando.
+  - (No se proyecta) Una retroalimentacion util tiene cuatro partes: observacion, evidencia, impacto y accion con fecha. "Falta seguridad" no cumple ninguna. "En el diagrama de despliegue la base de datos esta en la subred publica, contradice el control que ustedes escribieron para la amenaza de acceso no autorizado; si lo sustentan asi en la Clase 15 el evaluador concluira que el modelo de amenazas se escribio sin mirar el diagrama; muevanla a subred privada y dejen solo la API expuesta, antes de la Clase 12" cumple las cuatro.
   - (No se proyecta) El docente debe apuntar a tres hallazgos por proyecto como maximo y marcar cual es el bloqueante, porque un estudiante que recibe once observaciones no corrige ninguna: se paraliza.
   - (No se proyecta) Conviene nombrar tambien una fortaleza concreta, no por amabilidad sino porque el estudiante necesita saber que conservar; si solo escucha fallas, en la siguiente version cambia todo, incluido lo que estaba bien.
-  - (No se proyecta) Y la revision entre pares cumple una funcion que la del docente no puede: explicarle el sistema a otro estudiante obliga a verbalizar decisiones que nunca se dijeron en voz alta, y ahi el propio autor descubre sus huecos.
+  - (No se proyecta) Y la revision entre pares cumple una funcion que la del docente no puede: explicarle el sistema a otro estudiante obliga a explicar decisiones que nunca se dijeron en voz alta, y ahi el propio autor descubre sus huecos.
   - (No se proyecta) El formato eficiente es de siete a ocho minutos por proyecto, con reloj visible, y el revisor asignado (otro estudiante, u otro equipo si el docente los autorizo) entregando por escrito una observacion y una pregunta.
 
 **[Slide 11] El semaforo: el umbral que decide si el proyecto va a tiempo** — 4 vinetas.
@@ -111,7 +111,7 @@ de esta clase). Las etiquetas [Slide N] del plan y del fundamento apuntan aquí.
 7. Scope creep y arquitectura de papel: las dos patologias con nombre propio
 8. Errores frecuentes a corregir
 9. El C4 Component: por dentro de la API
-10. Retroalimentacion accionable: observacion, evidencia, impacto y accion con fecha
+10. Retroalimentacion util: observacion, evidencia, impacto y accion con fecha
 11. El semaforo: el umbral que decide si el proyecto va a tiempo
 12. Del boceto al código Mermaid
 13. Clase 11 · cierre conceptual
@@ -210,7 +210,7 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 11/Quiz Clase 11 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase11.png | receta: 1) Abre Navegador · editores de diagramas y de texto del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 11/Capturas/demo-clase11.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase11.png | receta: 1) Abre Navegador · editores de diagramas y de texto del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 11/Capturas/demo-clase11.png.  5) Vuelve a generar el guion y la imagen queda insertada aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase11.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 11/Capturas/evidencia-clase11.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas

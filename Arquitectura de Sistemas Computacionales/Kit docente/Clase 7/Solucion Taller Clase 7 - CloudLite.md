@@ -89,9 +89,9 @@ flowchart LR
 ### Como calificar
 
 - 4 pts las **tres zonas presentes y rotuladas**: publica, privada y de datos. Los rotulos pueden variar en las palabras, pero las tres tienen que existir como frontera visible. Dos zonas valen la mitad.
-- 4 pts **cada componente en la zona que le corresponde**. **Se pierden los 4 completos si la base de datos queda en la zona publica**, sin prorrateo. Es la penalizacion mas dura del diagrama y hay que anunciarla antes del taller: es el error que la pregunta busca detectar.
+- 4 pts **cada componente en la zona que le corresponde**. **Se pierden los 4 completos si la base de datos queda en la zona publica**, sin puntaje parcial. Es la penalizacion mas dura del diagrama y hay que anunciarla antes del taller: es el error que la pregunta busca detectar.
 - 2 pts las **fronteras de confianza marcadas**: donde termina lo que el estudiante controla y empieza lo que no. Se acepta como etiqueta en la flecha, como nota o como estilo distinto, siempre que se pueda senalar.
-- 2 pts **el puerto de cada componente**. Si falta el de una pieza se prorratea; si no hay ningun puerto, es cero. Los puertos tienen que ser creibles y **coherentes con el Dockerfile de la Clase 3**: si alla el `EXPOSE` era 3000 y aqui aparece 8080 sin explicacion, comentelo.
+- 2 pts **el puerto de cada componente**. Si falta el de una pieza se descuenta su parte; si no hay ningun puerto, es cero. Los puertos tienen que ser creibles y **coherentes con el Dockerfile de la Clase 3**: si alla el `EXPOSE` era 3000 y aqui aparece 8080 sin explicacion, comentelo.
 - 2 pts que renderice sin error en la plataforma.
 - **Se descuenta por nombrar subredes o servicios de un proveedor concreto** (VPC, nombres de servicios de marca, zonas de disponibilidad). No es un capricho: el diagrama es conceptual y el curso no abre cuentas de pago, asi que un diagrama atado a un proveedor no se puede ni verificar.
 - Los sistemas externos **fuera** de las tres zonas es lo correcto. Si el estudiante los mete en la zona publica, no descuente de la ubicacion de componentes: comente que lo que esta en las zonas es lo que el despliega.
@@ -129,7 +129,7 @@ Si manana el alcance cambiara y se agregara «adjuntar la portada del titulo», 
 
 ### Como calificar
 
-- 3 pts la **clasificacion correcta de cada componente** del despliegue. Se prorratea entre las filas. La base como relacional y el bundle como objeto son las dos que tienen que estar bien; el volumen de bloque es la que distingue una buena respuesta.
+- 3 pts la **clasificacion correcta de cada componente** del despliegue. Se reparte entre las filas. La base como relacional y el bundle como objeto son las dos que tienen que estar bien; el volumen de bloque es la que distingue una buena respuesta.
 - 2.5 pts que **cada justificacion nombre la caracteristica del dato** —se cruza con otros, lo monta un solo proceso, se recupera entero— **y no una preferencia**. «Porque PostgreSQL es lo que se usa» o «porque es mas rapido» no nombran ninguna caracteristica del dato: esa fila no suma en este criterio aunque el tipo este bien.
 - **Suma completo quien declare que su dominio no necesita almacenamiento de objetos y lo justifique.** Eso incluye justificarlo con el «fuera de alcance» de su propia ficha, que es la forma mas solida.
 - **Se descuenta quien incluya objeto sin un dato que lo pida**: un almacen de archivos en un dominio que no maneja archivos. Es la decision «porque suena a cloud» que la pregunta esta diseñada para detectar.
@@ -175,7 +175,7 @@ Declararlas es mejor que esconderlas: son las dos filas que demuestran que el es
 ### Como calificar
 
 - 2 pts la explicacion de por que los nombres deben coincidir, **en terminos de que son el mismo sistema visto desde angulos distintos**. «Para que se entienda mejor» o «por orden» valen la mitad: no dicen que es el mismo sistema.
-- 2.5 pts la tabla completa, **una fila por componente, con su zona**. Se prorratea. **Se descuenta si la tabla deja fuera algun componente que si aparece en alguno de los dos diagramas** — y eso incluye el edge y el cliente, que solo estan en el despliegue.
+- 2.5 pts la tabla completa, **una fila por componente, con su zona**. Se reparte por fila. **Se descuenta si la tabla deja fuera algun componente que si aparece en alguno de los dos diagramas** — y eso incluye el edge y el cliente, que solo estan en el despliegue.
 - 1 pt **listar los renombres aplicados, o declarar explicitamente que no hubo ninguno**. Dejar el tema en silencio es cero en este criterio, aunque de hecho no haya renombres: la declaracion es el entregable.
 - Si hubo renombres, la respuesta completa dice **cual de los dos diagramas se actualizo** para que queden iguales. No importa cual: importa que quede uno solo de los dos nombres vivo.
 - Las filas «no existe en el C4 Containers» para el edge y el cliente, con su explicacion, son la mejor version de esta respuesta. No se exige, pero si el estudiante las omite y ademas no menciona el edge en ninguna parte, descuente de los 2.5 pts de la tabla.
@@ -184,7 +184,7 @@ Declararlas es mejor que esconderlas: son las dos filas que demuestran que el es
 ### Errores frecuentes y que hacer
 
 - Tabla con tres filas que ignora los sistemas externos y el edge. Es la omision mas comun y la que descuenta: el enunciado dice «algun componente que si aparece en **alguno de los dos** diagramas».
-- Explicar la coincidencia de nombres como una cuestion de prolijidad. La razon es de fondo: sin el nombre compartido no hay forma de saber que los diagramas describen un solo sistema.
+- Explicar la coincidencia de nombres como una cuestion de orden. La razon es de fondo: sin el nombre compartido no hay forma de saber que los diagramas describen un solo sistema.
 - Renombrar en el despliegue «porque en produccion se llama distinto» y no declararlo. Si de verdad se llama distinto, se declara el renombre y se elige un nombre unico. Dos nombres vivos es la peor de las tres opciones.
 - No decir nada sobre renombres. Cuesta el punto completo aunque no haya habido ninguno. La frase «no aplique ningun renombre» es literalmente la respuesta que vale.
 - Poner el edge como si fuera un contenedor del C4 y volver atras a agregarlo alli. No hace falta y desordena el nivel Container: el edge no tiene responsabilidad de negocio. Basta declararlo en esta tabla.

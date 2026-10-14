@@ -271,7 +271,7 @@ Carpeta Codigo/ — archivo N/A.
 ## Capturas
 Carpeta `Kit docente/Clase 15/Capturas/`. Cada linea de pantallazo de arriba trae
 el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
-tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se inserta sola.
 Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia

@@ -88,7 +88,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Arranque del proceso, conexion a la base de datos y aprobacion del chequeo de salud; una maquina virtual completa puede tardar de 2 a 5 minutos.
   - Las respuestas correctas son tres y ninguna es "poner mas autoescalado": mantener holgura permanente por encima de la demanda habitual
   - Poner una cola delante para absorber la rafaga y procesarla al ritmo que el sistema aguante, o degradar con gracia devolviendo una version reducida de la respuesta.
-  - (No se proyecta) Sume el periodo de evaluacion y el sistema reacciona entre 5 y 10 minutos despues de que empezo el problema, asi que un pico subito del tipo que la prueba de spike de la Clase 12 simula ocurre y termina antes de que llegue la ayuda.
+  - (No se proyecta) Sume el periodo de evaluacion y el sistema reacciona entre 5 y 10 minutos despues de que empezo el problema, asi que un pico repentino del tipo que la prueba de spike de la Clase 12 simula ocurre y termina antes de que llegue la ayuda.
   - (No se proyecta) Aqui reaparece la Clase 3: una imagen slim arranca mas rapido que una de un gigabyte, asi que adelgazar la imagen no es solo ahorro de costo, es tiempo de reaccion.
 
 **[Slide 13] Elegir la metrica: la decision mas fina del tema** — 4 vinetas.
@@ -226,7 +226,7 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 13/Quiz Clase 13 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase13.png | receta: 1) Abre Navegador · editores de texto y de diagramas del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 13/Capturas/demo-clase13.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase13.png | receta: 1) Abre Navegador · editores de texto y de diagramas del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 13/Capturas/demo-clase13.png.  5) Vuelve a generar el guion y la imagen queda insertada aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase13.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 13/Capturas/evidencia-clase13.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas

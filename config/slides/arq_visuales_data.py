@@ -88,7 +88,7 @@ VISUALES = {
         "El insumo: las seis piezas": {"anim": "arq/clase11/seis-piezas"},
         "Las cinco preguntas de coherencia": {"anim": "arq/clase11/cinco-cadenas"},
         "Scope creep": {"anim": "arq/clase11/dos-patologias"},
-        "Retroalimentacion accionable": {"anim": "arq/clase11/retro-cuatro-partes"},
+        "Retroalimentacion util": {"anim": "arq/clase11/retro-cuatro-partes"},
         "El semaforo": {"anim": "arq/clase11/semaforo"},
     },
     12: {

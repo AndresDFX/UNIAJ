@@ -289,7 +289,7 @@ Version ANTES -- forma del plan (los nombres de los nodos son los que hay que
 
 Los cuatro numeros que hay que saber leer en esta salida, y **solo los tres primeros son deterministas**:
 
-1. **`Rows Removed by Filter: 29919`, igual en las dos.** Es la parte incomoda y es la mas instructiva: sin indice, las dos versiones leen las 30.010 filas y tiran las mismas 29.919. El predicado sargable **por si solo** no evita el `Seq Scan`; lo que hace es dejar la puerta abierta para el indice de la Clase 7. Un estudiante que reporte «desaparecio el Seq Scan» no leyo su plan.
+1. **`Rows Removed by Filter: 29919`, igual en las dos.** Es la parte incomoda y es la que mas ensena: sin indice, las dos versiones leen las 30.010 filas y tiran las mismas 29.919. El predicado sargable **por si solo** no evita el `Seq Scan`; lo que hace es dejar la puerta abierta para el indice de la Clase 7. Un estudiante que reporte «desaparecio el Seq Scan» no leyo su plan.
 2. **`rows=1` estimadas contra `rows=91` reales, en la version ANTES.** Ese 1 no es casualidad: cuando el filtro es una funcion sobre la columna, el motor no tiene estadisticas y aplica una selectividad por omision del 0,5 % por cada condicion; 30.010 x 0,005 x 0,005 da 0,75, que se redondea a 1. Con el predicado desnudo usa el histograma de `fecha_hora` y la lista de valores frecuentes de `estado`, y estima ~90 contra 91 reales.
 3. **El plan del `LIMIT 50` conserva el `Seq Scan` completo.** Tiene que conservarlo: para saber cuales son las 50 primeras por `fecha_hora` sin un indice que ya venga ordenado, hay que encontrar y ordenar las 91. El `LIMIT` solo ahorra el transporte de 41 filas. Es el segundo argumento para el indice de la Clase 7.
 4. **`Execution Time`.** Aqui 118 -> 41 ms, un factor de 2,9x. **Este es el unico numero que cambia de maquina a maquina** y en el navegador puede variar el doble entre dos corridas seguidas. Se acepta cualquier factor entre 1,5x y 3x; lo que no se acepta es un factor inventado.
@@ -469,7 +469,7 @@ Version DESPUES -- 20 filas
 ### Como calificar
 
 - **7 pts — la version DESPUES elimina la correlacion.** 3 pts los dos `LEFT JOIN`, 2 pts el `GROUP BY d.id_dueno, d.nombre` y 2 pts **`COUNT(c.id_cita)` y no `COUNT(*)`**. Estos ultimos 2 pts son el corazon de la pregunta y se verifican con una sola consulta: los duenos 2001 a 2006 tienen que decir **0**, no 1.
-- **3 pts — el `ORDER BY total_citas DESC, d.id_dueno` y el `LIMIT 20`.** El desempate no es cosmetico: hay 987 duenos empatados en 18 y sin el las filas 7 a 20 cambian entre corridas.
+- **3 pts — el `ORDER BY total_citas DESC, d.id_dueno` y el `LIMIT 20`.** El desempate no es un detalle de forma: hay 987 duenos empatados en 18 y sin el las filas 7 a 20 cambian entre corridas.
 - **4 pts — los dos `EXPLAIN ANALYZE`** corren y se aprecia la diferencia de plan. El ancla verificable es el `loops=2006` del `SubPlan` en la version ANTES: quien lo cita, lo leyo.
 - **6 pts — la prueba de equivalencia con `EXCEPT` en los dos sentidos devuelve cero filas.** 4 pts que este la prueba con las dos direcciones y 2 pts que el resultado sea cero. Un `EXCEPT` en un solo sentido vale 2 de los 6, y conviene explicar por que: `A EXCEPT B` vacio no prueba que B no tenga filas extra.
 - **Se descuenta segun la rubrica** por usar `INNER JOIN` —que hace desaparecer a los seis duenos sin citas— o por omitir la verificacion. El primero es un error de resultado, no de rendimiento: el reporte que ve la clinica queda con 2.000 duenos en vez de 2.006.
@@ -578,7 +578,7 @@ No, esta correcto, y darse cuenta es el mejor resultado del taller. En **esta** 
 
 **¿Por que la version ANTES estima `rows=1` si devuelve 91 filas?**
 
-Porque el motor no tiene estadisticas sobre `to_char(fecha_hora, ...)` ni sobre `upper(estado)` —solo las tiene sobre las columnas desnudas—, asi que aplica una selectividad por omision del 0,5 % a cada condicion de igualdad. La cuenta sale exacta: 30.010 x 0,005 x 0,005 = 0,75, que se redondea a 1. Y esa estimacion equivocada no es cosmetica: el planeador dimensiona los joins creyendo que va a unir **una** cita. Comparar `rows=` estimadas contra `actual rows=` es el diagnostico mas rentable que existe; en una consulta normal, una brecha asi suele significar que falta correr `ANALYZE`.
+Porque el motor no tiene estadisticas sobre `to_char(fecha_hora, ...)` ni sobre `upper(estado)` —solo las tiene sobre las columnas desnudas—, asi que aplica una selectividad por omision del 0,5 % a cada condicion de igualdad. La cuenta sale exacta: 30.010 x 0,005 x 0,005 = 0,75, que se redondea a 1. Y esa estimacion equivocada no es un detalle de forma: el planeador dimensiona los joins creyendo que va a unir **una** cita. Comparar `rows=` estimadas contra `actual rows=` es el diagnostico mas rentable que existe; en una consulta normal, una brecha asi suele significar que falta correr `ANALYZE`.
 
 **¿`JOIN ... ON` es mas rapido que separar las tablas con comas?**
 

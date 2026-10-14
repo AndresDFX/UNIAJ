@@ -102,7 +102,7 @@ VISUALES = {
         "Caso dos: permisos excesivos": {"anim": "bd2/clase13/capital-one"},
         "Caso tres: perdida de datos": {"anim": "bd2/clase13/migracion-sin-retorno"},
         "Caso cuatro: concurrencia": {"anim": "bd2/clase13/actualizacion-perdida"},
-        "Lecciones accionables": {"anim": "bd2/clase13/leccion-accionable"},
+        "Lecciones concretas": {"anim": "bd2/clase13/leccion-accionable"},
     },
     15: {
         "Sustentar no es describir": {"anim": "bd2/clase15/describir-sustentar"},

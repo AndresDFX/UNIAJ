@@ -9,7 +9,7 @@
 
 ## Objetivos de la clase
 - Identificar drivers de costo (cómputo, datos, transferencia, idle).
-- Proponer 3 apalancamientos de ahorro sin romper el diseño.
+- Proponer 3 medidas de ahorro sin romper el diseño.
 - Redactar sostenibilidad (apagado de labs, imágenes ligeras, sobredimensionamiento).
 
 ## Hoy avanzamos el PI en…
@@ -26,7 +26,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
 
 **[Slide 4] Clase autonoma: de gasto de capital a gasto operativo medido** — 2 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
-  - En un centro de datos propio el gasto es de capital: se compra un servidor, se paga por adelantado, se amortiza en tres o cinco anos, y desde ese momento dejarlo encendido una hora mas no aparece en ninguna factura visible.
+  - En un centro de datos propio el gasto es de capital: se compra un servidor, se paga por adelantado, su costo se reparte en tres o cinco anos, y desde ese momento dejarlo encendido una hora mas no aparece en ninguna factura visible.
   - En la nube el gasto es operativo y medido: se paga por segundo de computo, por gigabyte almacenado al mes, por gigabyte que sale hacia internet y por peticion atendida.
   - El cambio no es contable sino arquitectonico.
   - NOTAS:
@@ -69,7 +69,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Las notificaciones quedan en Bajo si se modelan como funcion serverless de volumen pequeno
   - Y pasan a Medio si se implementan como un worker encendido de forma permanente: el mismo requisito con dos disenos y dos costos, que es exactamente el razonamiento que se evalua.
   - Los cuatro conductores que explican casi toda la factura son: computo siempre encendido, transferencia de salida o egress, almacenamiento caliente y volumen de logs.
-  - Un error comun es costear solo el computo y olvidar el egress: en servicios que entregan archivos a muchos usuarios, la transferencia de salida puede superar al computo.
+  - Un error comun es calcular solo el costo del computo y olvidar el egress: en servicios que entregan archivos a muchos usuarios, la transferencia de salida puede superar al computo.
   - Un ejemplo de fila es: API de turnos, nivel Medio, driver computo siempre encendido; si se mueve a un servicio que escala a cero fuera de horario, baja a Bajo.
   - NOTAS:
   - El contenedor de la API queda en Medio, con driver instancias por horas encendidas.
@@ -85,7 +85,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - NOTAS:
   - El segundo ejemplo muestra por que el driver importa mas que el nivel.
   - Esto tambien desarma la intuicion mas comun del estudiante, que si nadie usa el sistema el sistema no cuesta.
-  - (No se proyecta) La conclusion es contraintuitiva y por eso vale en clase: el driver del componente "almacenamiento de archivos" no es el almacenamiento, es el trafico, y la mitigacion no es contable sino arquitectonica, poner una cache o una red de distribucion de contenido delante para que el mismo archivo no salga del origen veinte veces.
+  - (No se proyecta) La conclusion sorprende y por eso vale en clase: el driver del componente "almacenamiento de archivos" no es el almacenamiento, es el trafico, y la mitigacion no es contable sino arquitectonica, poner una cache o una red de distribucion de contenido delante para que el mismo archivo no salga del origen veinte veces.
 
 **[Slide 10] Right-sizing: tres acciones ancladas en observacion** — 2 vinetas.
   - DESARROLLO (para explicarlo, no se proyecta):
@@ -188,7 +188,7 @@ para detectar quién entendió y quién solo copió la plantilla. No adelantes c
 
 
 ## Actividad / taller (detalle)
-1. Paso 1: construya en la pregunta 11 la tabla de costos con una fila por cada componente de su despliegue y las columnas componente, driver, nivel B/M/A y apalancamiento; verifique que cada driver sea una variable contable (horas encendidas, GB de salida, GB almacenados, minutos de CI) y no «el uso».
+1. Paso 1: construya en la pregunta 11 la tabla de costos con una fila por cada componente de su despliegue y las columnas componente, driver, nivel B/M/A y medida de ahorro; verifique que cada driver sea una variable contable (horas encendidas, GB de salida, GB almacenados, minutos de CI) y no «el uso».
 2. Paso 2: fuerce al menos un Alto y un Bajo con su justificacion. Marcar todo como Medio para no decidir es lo que la pregunta busca descartar, y ese criterio vale cero si todas las filas quedan iguales.
 3. Paso 3: escriba en la pregunta 12 tres acciones de sostenibilidad, cada una con el artefacto donde se comprueba y como se comprueba; aplique la prueba de que otra persona pueda decir en seis meses, mirando el repositorio, si la accion se aplico.
 4. Paso 4: ate al menos una de las tres acciones a un driver de costo de la pregunta 11 y suba la actividad completa del Corte 2 a la plataforma del curso antes del domingo 23:59. Es una clase autonoma: no hay encuentro sincrono, y las dudas van por el foro.
@@ -218,7 +218,7 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 10/Quiz Clase 10 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase10.png | receta: 1) Abre Navegador · editor de texto del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 10/Capturas/demo-clase10.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase10.png | receta: 1) Abre Navegador · editor de texto del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 10/Capturas/demo-clase10.png.  5) Vuelve a generar el guion y la imagen queda insertada aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase10.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 10/Capturas/evidencia-clase10.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas

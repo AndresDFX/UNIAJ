@@ -523,7 +523,7 @@ Actividades:
 3. Encapsular el descuento en fn_descontar_stock, que devuelve BOOLEAN y no lanza excepcion.
 4. Llenar la seccion Transacciones y tuning del informe: inventario de 3 transacciones y checklist de 7 items.
 5. Declarar el gap de concurrencia: PGlite corre una sola sesion, y eso es la Clase 10.
-Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
+Circular por estudiantes (o salas). Empujar evidencia, no perfeccionismo.
 Entregable: sp_facturar + fn_descontar_stock + seccion Transacciones y tuning del informe (1 pag.)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 8/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
@@ -548,7 +548,7 @@ Carpeta Codigo/ — archivo 08_transacciones_clinica.sql.
 ## Capturas
 Carpeta `Kit docente/Clase 8/Capturas/`. Cada linea de pantallazo de arriba trae
 el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
-tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se inserta sola.
 Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia

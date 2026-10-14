@@ -230,13 +230,13 @@ EJEMPLOS = {
             "titulo": "Ejemplo: el PUE de un centro de datos, con números",
             "items": [
                 "Un centro de datos consume **1.600 kWh** en un día.",
-                "De esos, a los servidores —los que computan— llegan **1.000 kWh**.",
+                "De esos, a los servidores —los que procesan los datos— llegan **1.000 kWh**.",
                 "**PUE = 1.600 ÷ 1.000 = 1,6**",
-                "Los otros **600 kWh** se van en enfriar, iluminar y en pérdidas. **No computan nada.**",
-                "Un PUE de **1,0** sería perfecto. Uno de **2,0** gasta la mitad de la energía en no computar.",
+                "Los otros **600 kWh** se van en enfriar, iluminar y en pérdidas. **No procesan ningún dato.**",
+                "Un PUE de **1,0** sería perfecto. Uno de **2,0** gasta la mitad de la energía en cosas distintas de procesar datos.",
                 "Sirve para comparar: entre dos proveedores, el de PUE más bajo desperdicia menos.",
             ],
-            "nota": "No hace falta que memoricen el número. Lo que tiene que quedar es que una parte grande de la energía de un centro de datos no computa, y que hay una métrica con nombre para medirlo.",
+            "nota": "No hace falta que memoricen el número. Lo que tiene que quedar es que una parte grande de la energía de un centro de datos no se usa para procesar datos, y que hay una métrica con nombre para medirlo.",
         }),
         ("La misma función, dos decisiones", {
             "tipo": "tabla",

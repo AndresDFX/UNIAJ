@@ -9,7 +9,7 @@
       UJ.rotulo(ctx, lz, 'Total del día: 1.600 kWh', W / 2, 20, { tam: 26, peso: 800, color: A });
       L.rectRed(ctx, 40, 70, 450, 120, 8); L.rellena(ctx, A);
       UJ.rotulo(ctx, lz, 'servidores: 1.000 kWh', 265, 96, { tam: 24, peso: 800, color: m.papel });
-      UJ.rotulo(ctx, lz, 'computan', 265, 136, { tam: 20, color: m.papel });
+      UJ.rotulo(ctx, lz, 'procesan datos', 265, 136, { tam: 20, color: m.papel });
       L.rectRed(ctx, 490, 70, 270, 120, 8); L.rellena(ctx, L.tono(R, 0.75), R, 2);
       UJ.rotulo(ctx, lz, '600 kWh', 625, 86, { tam: 24, peso: 800, color: R });
       UJ.rotulo(ctx, lz, 'enfriar, iluminar, pérdidas', 625, 122, { tam: 18, ancho: 250 });
@@ -22,8 +22,8 @@
       L.circulo(ctx, 700, 424, 14); L.rellena(ctx, R);
       ctx.beginPath(); ctx.moveTo(px, 410); ctx.lineTo(px - 16, 380); ctx.lineTo(px + 16, 380); ctx.closePath(); ctx.fillStyle = A; ctx.fill();
       UJ.rotulo(ctx, lz, '1,6 · este centro', px, 346, { tam: 20, peso: 800, color: A });
-      UJ.rotulo(ctx, lz, '1,0 · perfecto: todo computa', 160, 450, { tam: 19, peso: 700, color: V, ancho: 260 });
-      UJ.rotulo(ctx, lz, '2,0 · la mitad no computa', 650, 450, { tam: 19, peso: 700, color: R, ancho: 260 });
+      UJ.rotulo(ctx, lz, '1,0 · perfecto: no se desperdicia nada', 160, 450, { tam: 19, peso: 700, color: V, ancho: 260 });
+      UJ.rotulo(ctx, lz, '2,0 · se desperdicia la mitad', 650, 450, { tam: 19, peso: 700, color: R, ancho: 260 });
       UJ.rotulo(ctx, lz, 'Más bajo = desperdicia menos', W / 2, 560, { tam: 24, peso: 800 });
     }
   });

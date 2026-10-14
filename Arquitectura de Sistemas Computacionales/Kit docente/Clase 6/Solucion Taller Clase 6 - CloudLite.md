@@ -82,7 +82,7 @@ Lo aplico sobre la **conexion de la `API de prestamos` a la `Base de datos de pr
 ### Como calificar
 
 - 1 pt por cada control **concreto y verificable**, hasta 5. La prueba de «verificable» es poder decir en una frase que se hace para comprobar que el control esta puesto. «Usar buenas practicas», «mejorar la seguridad» o «validar los datos» **no suman nada**.
-- 2.5 pts por senalar correctamente la **caja o la flecha** de cada control, prorrateado: 0.5 pts por fila. Se acepta «caja X» o «flecha X -> Y» siempre que el nombre exista en el C4 Container de la Clase 4 o en el diagrama de despliegue de la Clase 7.
+- 2.5 pts por senalar correctamente la **caja o la flecha** de cada control, repartido: 0.5 pts por fila. Se acepta «caja X» o «flecha X -> Y» siempre que el nombre exista en el C4 Container de la Clase 4 o en el diagrama de despliegue de la Clase 7.
 - 1.25 pts el **principio de menor privilegio aplicado a un componente concreto, diciendo que deja de poder hacer**. Las dos mitades pesan igual: definirlo sin aplicarlo vale 0.6, y aplicarlo sin decir que se pierde tambien.
 - Un control ubicado en la caja equivocada se corrige y se descuenta solo esa fila. El caso tipico es poner en la `Aplicacion web` un control de autorizacion: comente por que no sirve (la peticion se puede enviar sin el front) en vez de solo tachar.
 - Que varios controles caigan en la misma caja **no se penaliza**. La API concentra la autorizacion y eso es normal. Lo que se revisa es que la caja senalada sea la correcta, no que esten repartidos.
@@ -127,7 +127,7 @@ Los tres secretos de BiblioLite son: `DATABASE_URL`, `CORREO_API_KEY` y el secre
 1. **Rotar la credencial**, primero y ya: generar una nueva en el proveedor e invalidar la anterior. El historial ya salio del equipo y no se puede recuperar; lo unico que esta bajo mi control es que la clave filtrada deje de servir.
 2. Actualizar el secreto en la configuracion del repositorio y en el PaaS, y volver a despuegar.
 3. Revisar los registros de acceso del proveedor por el periodo en que la clave estuvo expuesta, para saber si alguien la uso.
-4. **Solo despues**, limpiar el historial de git — y sabiendo que es cosmetico: si el repositorio es publico, cualquier clon o cualquier indexador ya tiene la copia.
+4. **Solo despues**, limpiar el historial de git — y sabiendo que no arregla el fondo: si el repositorio es publico, cualquier clon o cualquier indexador ya tiene la copia.
 
 Borrar el commit primero es el orden equivocado: da la sensacion de haber resuelto el problema mientras la credencial sigue siendo valida.
 

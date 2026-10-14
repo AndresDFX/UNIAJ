@@ -903,7 +903,7 @@ TEMAS[13] = {
         },
         {
             "tipo": "box",
-            "titulo": "Tres honestidades sobre el impacto",
+            "titulo": "Tres verdades sobre el impacto",
             "notas": [
                 ("advertencia",
                  "**«No genera ningún impacto negativo» es la frase que más credibilidad quita en un "
@@ -945,7 +945,7 @@ TEMAS[13] = {
                 "análisis técnico, igual que estimar el consumo o el costo. Los proyectos que fallan "
                 "socialmente casi nunca fallan por el código; fallan porque nadie preguntó a quién "
                 "más le pasaba algo.",
-                "Operativamente, use la apertura para verificar el insumo: pida que cada equipo "
+                "En la práctica, use la apertura para verificar el insumo: pida que cada equipo "
                 "escriba en el muro **un afectado que no sea usuario**. Los equipos que traigan el "
                 "listado de la sesión 3 lo van a hacer en treinta segundos; los que no, van a "
                 "escribir «los usuarios». Ahí ya sabe con quién tiene que sentarse en las salas de "
@@ -1009,7 +1009,7 @@ TEMAS[13] = {
                 "electrónica. En la sesión 5 ya midieron un pedazo de su huella; hoy ese número entra "
                 "a la matriz.",
                 "**Paso 5: preguntar a quién desplaza.** Si la solución reemplaza algo, alguien hacía "
-                "ese algo. Aquí conviene ser equilibrado y no moralizar: no siempre es malo ni "
+                "ese algo. Aquí conviene ser equilibrado y no sermonear: no siempre es malo ni "
                 "siempre es evitable —la ingeniería lleva dos siglos automatizando trabajo—, pero "
                 "**omitirlo del análisis sí es un error técnico**.",
             ],
@@ -1047,8 +1047,8 @@ TEMAS[13] = {
             ],
         },
         {
-            "titulo": "Del adjetivo al indicador, y las tres honestidades",
-            "slide": "{{slide:Un impacto declarado y un impacto medido}} {{slide:Tres honestidades}}",
+            "titulo": "Del adjetivo al indicador, y las tres verdades",
+            "slide": "{{slide:Un impacto declarado y un impacto medido}} {{slide:Tres verdades}}",
             "cuerpo": [
                 "La diapositiva de antes y después es la que más rinde en clase, porque la columna "
                 "izquierda es literalmente lo que van a escribir si no se les enseña otra cosa: "
@@ -1062,7 +1062,7 @@ TEMAS[13] = {
                 "la derecha son impactos negativos** —1 de cada 5 vecinos queda fuera, 10 minutos "
                 "diarios extra para la voluntaria— **y son precisamente las que hacen creíbles a las "
                 "otras tres**. Un lector experimentado confía en un informe que reconoce sus costos.",
-                "De las tres honestidades, la primera es la que hay que repetir hasta que se instale: "
+                "De las tres verdades, la primera es la que hay que repetir hasta que se instale: "
                 "**«no genera ningún impacto negativo» es la frase que más credibilidad quita en un "
                 "informe de ingeniería.** Toda solución tiene costos. Un equipo que no encuentra "
                 "ninguno no buscó.",
@@ -1113,7 +1113,7 @@ TEMAS[13] = {
                 "**es una convención para ordenar, no una medición.**",
                 "- **8 min** · Antes y después [Slide 9]. Lea la columna izquierda en voz alta y "
                 "pregunte: **¿qué proyecto NO podría escribir esto?**",
-                "- **3 min** · Las tres honestidades [Slide 10]. La primera, repetida: «no genera "
+                "- **3 min** · Las tres verdades [Slide 10]. La primera, repetida: «no genera "
                 "impacto negativo» es la frase que más credibilidad quita.",
             ],
         },
@@ -1271,7 +1271,7 @@ TEMAS[13] = {
                              "pasa?**",
                 "como_calificar": "15 pts, 5 por afectado bien identificado hasta tres. La "
                                   "verificación: **¿es alguien que no usa la solución?** Si el equipo "
-                                  "listó usuarios, vale 5 en total y hay que reencuadrar con el paso "
+                                  "listó usuarios, vale 5 en total y hay que replantear con el paso "
                                   "3 —quién no puede usarla—, que produce resultados en un minuto. "
                                   "«La comunidad» vale 0 y hay que decir por qué: es una palabra que "
                                   "evita nombrar. Valore el equipo que trajo el listado de la sesión "
@@ -1292,7 +1292,7 @@ TEMAS[13] = {
                              "público o a pie. No calculamos toneladas de CO₂ porque no tenemos con "
                              "qué hacerlo bien; el indicador honesto es el número de trayectos "
                              "evitados.\n\n"
-                             "**Sobre el tercero, que es el más instructivo:** la tentación es "
+                             "**Sobre el tercero, que es el que más enseña:** la tentación es "
                              "escribir «reduce la huella de carbono en X toneladas», con un número "
                              "sacado de una calculadora en línea sin entenderlo. Es preferible "
                              "—y más profesional— **contar trayectos evitados y decir explícitamente "
@@ -1448,7 +1448,7 @@ TEMAS[13] = {
                       "antes buscar el costo de su propia idea. Hágalo delante del curso: es el "
                       "intercambio del que más se aprende hoy."},
             {"caso": "Equipos que quieren calcular toneladas de CO₂",
-             "clave": "Aparece siempre y hay que encauzarlo sin apagar el entusiasmo. Pregunte de "
+             "clave": "Aparece siempre y hay que orientarlo sin apagar el entusiasmo. Pregunte de "
                       "dónde sacaron el factor de conversión y si pueden explicar qué supone. Casi "
                       "nunca pueden, y ahí está la lección de la sesión 9 aplicada: **un número que "
                       "no se puede defender es peor que no tener número**. La salida profesional es "
@@ -2063,7 +2063,7 @@ TEMAS[14] = {
                              "quien llega caminando. El siguiente equipo que lo continúe debería "
                              "empezar por la búsqueda tolerante a errores.»\n\n"
                              "---\n\n"
-                             "**Lo que quedó fuera, y es la parte instructiva del guion:** el árbol de "
+                             "**Lo que quedó fuera, y es la parte que más enseña del guion:** el árbol de "
                              "causas completo de la sesión 6, los tres antecedentes de la sesión 9 "
                              "—se mencionan en una frase: «revisamos qué existía y encontramos "
                              "software libre maduro que no servía para este caso»—, las quince filas "
@@ -3280,7 +3280,7 @@ TEMAS[16] = {
                 "para un proyecto de primer semestre. Si un equipo pregunta si puede ser más largo, "
                 "la respuesta es que **la extensión no es una virtud**: un informe donde la decisión "
                 "está en la página 18 es un informe que no se va a leer.",
-                "**El orden de armado importa y es contraintuitivo**, así que hay que insistir: "
+                "**El orden de armado importa y sorprende**, así que hay que insistir: "
                 "**pegar primero, revisar después, y el resumen al final.** El error que hace que no "
                 "alcancen los veinticuatro minutos es empezar por el resumen —o peor, por la "
                 "portada— porque el resumen exige tener todo lo demás decidido. Se escribe último "

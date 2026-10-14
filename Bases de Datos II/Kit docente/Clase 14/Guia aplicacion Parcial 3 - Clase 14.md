@@ -54,7 +54,7 @@ La linea es una sola: **si la respuesta a la duda es un dato que la pregunta eva
 
 - Se responde: «¿esto pide una consulta o una explicacion?», «¿cuantas lineas?», «¿el
   punto b) es obligatorio?», «no puedo abrir el archivo».
-- No se responde, en este parcial: «¿embeber la contraseña en el codigo pasa si el repo es privado?» · «¿hay que validar las entradas de la API?» · «¿esta opcion es la correcta?».
+- No se responde, en este parcial: «¿escribir la contraseña dentro del codigo pasa si el repo es privado?» · «¿hay que validar las entradas de la API?» · «¿esta opcion es la correcta?».
 
 Cuando la duda es de contenido, la respuesta es siempre la misma: «Eso es lo que la
 pregunta evalua; responde con lo que recuerdes de la clase.» Dila igual para todos: en
@@ -62,7 +62,7 @@ Meet las preguntas llegan por privado y nadie ve que a otro le dijiste lo mismo.
 
 ## Errores tipicos del docente que no domina el tema
 
-- **Responder la duda de contenido porque parece inofensiva.** «¿embeber la contraseña en el codigo pasa si el repo es privado?» es
+- **Responder la duda de contenido porque parece inofensiva.** «¿escribir la contraseña dentro del codigo pasa si el repo es privado?» es
   literalmente la respuesta de una pregunta de este parcial.
 - **No decidir el canal de entrega antes de empezar.** Si no lo anunciaste al minuto 0,
   lo vas a improvisar al minuto 105 con medio grupo escribiendo por privado.

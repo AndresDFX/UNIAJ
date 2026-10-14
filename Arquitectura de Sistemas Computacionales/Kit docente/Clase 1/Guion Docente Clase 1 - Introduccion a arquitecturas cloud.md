@@ -32,7 +32,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Esos sistemas externos son exactamente los que despues aparecen como System_Ext en el diagrama C4 Context, asi que se escriben aqui ANTES de dibujar.
   - CAPACIDADES son los verbos de negocio que el sistema debe permitir (reservar, publicar, cancelar, notificar), nunca piezas tecnicas como login o cache, porque las capacidades describen el fin y la tecnologia es solo el medio.
   - NOTAS:
-  - DOMINIO fija en una linea el problema de negocio elegido (AgendaU, BiblioLite, InventarioLab, TurnosClinica, EventosCampus u otro del mismo tamano); un dominio generico (una red social, una tienda en linea sin mas detalle) hace imposible evaluar las decisiones de las clases siguientes, porque no hay nada concreto que arquitecturar.
+  - DOMINIO fija en una linea el problema de negocio elegido (AgendaU, BiblioLite, InventarioLab, TurnosClinica, EventosCampus u otro del mismo tamano); un dominio generico (una red social, una tienda en linea sin mas detalle) hace imposible evaluar las decisiones de las clases siguientes, porque no hay nada concreto que disenar.
   - FUERA DE ALCANCE cierra la ficha nombrando tres cosas que el sistema no hara este semestre; ese bloque evita que el alcance crezca sin control clase a clase.
 
 **[Slide 5] Qué es arquitectura cloud (mapa mental)** — 6 vinetas.
@@ -47,7 +47,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Los cuatro que este curso usa de forma permanente son rendimiento, disponibilidad, seguridad y costo.
   - Disponibilidad se expresa como porcentaje de tiempo en que el sistema responde, y ahi el numero si es aritmetica exacta: 99 % permite unas 7 horas de caida al mes, 99,9 % (los llamados tres nueves) alrededor de 43 minutos, y 99,99 % poco mas de 4 minutos.
   - El punto central es que estos atributos compiten entre si: mas disponibilidad exige redundancia, la redundancia cuesta dinero, y por eso la arquitectura es sobre todo el oficio de elegir que se sacrifica.
-  - El cambio economico que esto produce es lo relevante para la arquitectura, porque la infraestructura deja de ser una compra que se hace por adelantado y se amortiza a largo plazo, y pasa a ser un gasto operativo que cambia con cada decision de diseno.
+  - El cambio economico que esto produce es lo relevante para la arquitectura, porque la infraestructura deja de ser una compra que se hace por adelantado y su costo se reparte en el tiempo, y pasa a ser un gasto operativo que cambia con cada decision de diseno.
   - NOTAS:
   - Nadie puede contestar, porque el stack no contiene esa informacion; las respuestas viven en la arquitectura.
   - Hacer visible ese vacio en los primeros veinte minutos ahorra tres semanas de malentendidos.
@@ -159,7 +159,7 @@ Herramienta del día: **Navegador · editor de diagramas del curso · boceto lib
 **Demo que usted debe poder repetir:** Dibujar en vivo el C4 Context de un CloudLite de ejemplo
 
 1. Abra draw.io en blanco y dibuje UNA caja al centro rotulada «CloudLite App».
-2. Agregue 2 monigotes a la izquierda (Usuario final, Administrador) con flechas rotuladas «consulta», «administra».
+2. Agregue 2 figuras de persona a la izquierda (Usuario final, Administrador) con flechas rotuladas «consulta», «administra».
 3. Agregue 1 caja gris a la derecha rotulada «Pasarela de pagos (externo)» y una flecha «cobra».
 4. Diga en voz alta: «no dibuje que hay ADENTRO de la caja; eso es Clase 4».
 
@@ -243,7 +243,7 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 1/Quiz Clase 1 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase01.png | receta: 1) Abre Navegador · editor de diagramas del curso · boceto libre (papel o Excalidraw) opcional y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 1/Capturas/demo-clase01.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase01.png | receta: 1) Abre Navegador · editor de diagramas del curso · boceto libre (papel o Excalidraw) opcional y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 1/Capturas/demo-clase01.png.  5) Vuelve a generar el guion y la imagen queda insertada aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase01.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 1/Capturas/evidencia-clase01.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas

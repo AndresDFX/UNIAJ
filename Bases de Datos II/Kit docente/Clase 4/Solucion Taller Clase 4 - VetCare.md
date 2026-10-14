@@ -548,7 +548,7 @@ Las dos ultimas columnas son las que hacen que esta consulta sirva de algo. Cont
 
 **6. Que NO cubre este plan, y el riesgo residual.**
 
-- **No cubre el borrado correcto pero indeseado.** Si alguien cancela 40 citas por error y lo hace bien, el respaldo lo copia fielmente. Eso se recupera con la auditoria de la pregunta 2, no con el respaldo.
+- **No cubre el borrado correcto pero no deseado.** Si alguien cancela 40 citas por error y lo hace bien, el respaldo lo copia fielmente. Eso se recupera con la auditoria de la pregunta 2, no con el respaldo.
 - **No cubre lo que no esta en la base:** radiografias, consentimientos escaneados, hojas de calculo en el escritorio de recepcion.
 - **No cubre la infraestructura.** Restaurar datos en un servidor que no existe no sirve; el plan asume que hay una maquina donde restaurar.
 - **Riesgo residual asumido, escrito y firmado:** la copia remota se verifica una vez al mes, no todos los dias. Entre dos ensayos puede haber hasta 30 dias de copias que nadie probo. Se acepta porque la copia local si se verifica con el ensayo mensual y porque el costo de un ensayo diario no se justifica para una clinica de este tamano. **Queda por escrito para que sea una decision y no un olvido.**

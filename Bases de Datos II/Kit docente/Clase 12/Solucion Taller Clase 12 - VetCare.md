@@ -943,7 +943,7 @@ error, y el script continua.
 
 **Firma e invocacion.** `api_agendar_cita(p_id_mascota INT, p_id_veterinario INT, p_fecha_hora TIMESTAMP)`. Se invoca como `SELECT * FROM api_agendar_cita($1, $2, $3);` —en el `FROM`, porque es una funcion `RETURNS TABLE`; un `CALL` falla—.
 
-**Retorno.** `ok BOOLEAN` dice si la operacion se realizo. `mensaje TEXT` es texto para el usuario cuando `ok` es verdadero o falso por regla de negocio, y texto **del motor** cuando cayo en el manejador de excepciones. `id_generado INT` trae el `id_cita` creado si `ok` es verdadero y **`NULL` siempre que `ok` sea falso** —`NULL`, no `0` ni `-1`: el cliente debe tipificarlo como nullable—.
+**Retorno.** `ok BOOLEAN` dice si la operacion se realizo. `mensaje TEXT` es texto para el usuario cuando `ok` es verdadero o falso por regla de negocio, y texto **del motor** cuando cayo en el manejador de excepciones. `id_generado INT` trae el `id_cita` creado si `ok` es verdadero y **`NULL` siempre que `ok` sea falso** —`NULL`, no `0` ni `-1`: el cliente debe tratarlo como nullable—.
 
 **Precondiciones del llamador.** Los tres parametros no nulos; `p_fecha_hora` como `TIMESTAMP` sin zona; el rol necesita `EXECUTE` de esta funcion. No se exige que la mascota exista ni este activa: **eso lo valida la funcion**, que es el punto de tener una API.
 

@@ -23,7 +23,7 @@
 
 ## Diagrama de casos de uso de VetCare
 
-**Aviso honesto sobre la herramienta:** Mermaid **no tiene** un tipo nativo de diagrama de casos de uso (no dibuja monigotes ni elipses con limite de sistema). Lo vamos a representar con un `flowchart LR` que respeta la **semantica** de UML aunque no la forma exacta:
+**Aviso honesto sobre la herramienta:** Mermaid **no tiene** un tipo nativo de diagrama de casos de uso (no dibuja figuras de actor ni elipses con limite de sistema). Lo vamos a representar con un `flowchart LR` que respeta la **semantica** de UML aunque no la forma exacta:
 
 - **Actores**: nodos rectangulares `ACT[Nombre del rol]` ubicados **fuera** del subgraph.
 - **Limite del sistema**: un `subgraph VC[Sistema VetCare]` que contiene todos los casos de uso.
@@ -142,7 +142,7 @@ Diligencie la plantilla completa de **CU-02 Buscar expediente** con los **mismos
 Exigencias propias de este caso de uso:
 - **Flujo principal: minimo 6 pasos** en pares actor-sistema. Debe quedar explicito **por que criterios se puede buscar**: nombre de la mascota, documento del dueno o numero de microchip.
 - **Minimo 2 flujos alternos**, obligatoriamente estos dos, numerados respecto al paso donde se desvian:
-  - **(A) Resultados multiples**: hay varias mascotas que se llaman igual. Diga **que columnas muestra el sistema para desambiguar** (minimo 3) y como sigue el flujo cuando el actor escoge una.
+  - **(A) Resultados multiples**: hay varias mascotas que se llaman igual. Diga **que columnas muestra el sistema para distinguirlas** (minimo 3) y como sigue el flujo cuando el actor escoge una.
   - **(B) Sin resultados**: la busqueda no encuentra nada. Escriba el **mensaje exacto entre comillas** que muestra el sistema y **que opcion le ofrece** al actor para no dejarlo bloqueado.
 - Agregue al final un campo extra:
 
@@ -154,7 +154,7 @@ Ese RNF debe ser el de los 3 segundos con 5.000 mascotas y debe decir en que pas
 
 **Rubrica esperada (campo Rubrica):**
 
-Plantilla completa con flujo principal de minimo 6 pasos en pares actor-sistema y los tres criterios de busqueda explicitos. Los dos flujos alternos exigidos estan numerados respecto a su paso de desvio: resultados multiples con minimo 3 columnas de desambiguacion, y sin resultados con el mensaje exacto entre comillas y una salida ofrecida al actor. El campo RNF asociado indica el ID y el paso donde se mide.
+Plantilla completa con flujo principal de minimo 6 pasos en pares actor-sistema y los tres criterios de busqueda explicitos. Los dos flujos alternos exigidos estan numerados respecto a su paso de desvio: resultados multiples con minimo 3 columnas para distinguirlas, y sin resultados con el mensaje exacto entre comillas y una salida ofrecida al actor. El campo RNF asociado indica el ID y el paso donde se mide.
 
 ---
 

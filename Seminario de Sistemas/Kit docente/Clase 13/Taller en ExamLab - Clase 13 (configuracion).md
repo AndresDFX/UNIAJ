@@ -85,7 +85,7 @@ Diseñe la segunda pantalla resolviendo por escrito el caso que casi todo el mun
 
 1. `ENLACE:` la URL publica de la pantalla **Buscar expediente** (wireframe en gris) en Figma, Penpot o Excalidraw.
 2. `CRITERIOS DE BUSQUEDA:` los **3 criterios exactos** con los que se puede buscar (deben coincidir con RF-03) y diga cual es el criterio por defecto y por que.
-3. `COLUMNAS DE LA LISTA DE RESULTADOS:` **minimo 4 columnas** que permitan **desambiguar** entre las cuatro Lunas. Para cada columna explique en media linea por que ayuda a distinguirlas (pista: dueno responsable, especie y raza, edad o fecha de nacimiento, ultima atencion).
+3. `COLUMNAS DE LA LISTA DE RESULTADOS:` **minimo 4 columnas** que permitan **distinguir** entre las cuatro Lunas. Para cada columna explique en media linea por que ayuda a distinguirlas (pista: dueno responsable, especie y raza, edad o fecha de nacimiento, ultima atencion).
 4. `MENSAJE DE CERO RESULTADOS:` el **texto exacto entre comillas** que se muestra cuando no hay ningun resultado, mas la **accion de salida** que se le ofrece al actor para que no quede bloqueado (por ejemplo un boton que lleve a registrar la mascota con el criterio ya digitado). El mensaje no puede ser «Error» ni «No hay datos».
 5. `ESTADO DESPUES DE GUARDAR:` describa el mensaje de estado que confirma una operacion exitosa en Registrar mascota, con el **codigo generado** visible, y cuanto tiempo permanece en pantalla.
 
@@ -93,7 +93,7 @@ Cierre con un renglon indicando **cuantos clics** necesita la recepcionista para
 
 **Rubrica esperada (campo Rubrica):**
 
-Los 5 bloques completos. Tres criterios de busqueda coherentes con RF-03 y criterio por defecto justificado. Minimo 4 columnas de desambiguacion con su razon. Mensaje de cero resultados escrito textualmente entre comillas, con accion de salida y sin usar Error ni No hay datos. Mensaje de estado con codigo generado visible y conteo de clics del camino mas corto.
+Los 5 bloques completos. Tres criterios de busqueda coherentes con RF-03 y criterio por defecto justificado. Minimo 4 columnas para distinguirlas, cada una con su razon. Mensaje de cero resultados escrito textualmente entre comillas, con accion de salida y sin usar Error ni No hay datos. Mensaje de estado con codigo generado visible y conteo de clics del camino mas corto.
 
 ---
 

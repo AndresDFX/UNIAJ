@@ -13,7 +13,7 @@
         ['Qué falló', 'cortafuegos mal configurado → credenciales de un rol de servicio', A],
         ['Causa raíz', 'ese rol podía leer todos los buckets: privilegio excesivo', C],
         ['Impacto', '≈ 100 millones de personas en EE. UU. · multa de 80 millones de dólares', R],
-        ['Lección accionable', 'cada rol con solo los permisos de su tarea, revisados cada mes contra la matriz', V],
+        ['Lección concreta', 'cada rol con solo los permisos de su tarea, revisados cada mes contra la matriz', V],
         ['Cambio en la base', 'la aplicación entra con su propio rol: GRANT EXECUTE sí, SELECT directo no', V]
       ];
       for (var i = 0; i < filas.length; i++) {

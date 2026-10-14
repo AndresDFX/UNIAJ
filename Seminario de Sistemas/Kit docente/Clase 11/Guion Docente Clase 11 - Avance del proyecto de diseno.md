@@ -58,7 +58,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - La revision entre pares se hace con reglas o no sirve.
   - Se revisa el artefacto, nunca a la persona, y para eso se asignan tres roles: el autor, que entrega su paquete y permanece en silencio mientras lo revisan; el revisor
   - Que recorre la lista de verificacion punto por punto y solo reporta hechos observables; y el moderador, que controla el tiempo y escribe los hallazgos.
-  - Cada hallazgo se anota con ubicacion exacta, descripcion de la inconsistencia y severidad: bloqueante cuando impide construir el sistema, mayor cuando obliga a rehacer un artefacto completo, menor cuando es cosmetico.
+  - Cada hallazgo se anota con ubicacion exacta, descripcion de la inconsistencia y severidad: bloqueante cuando impide construir el sistema, mayor cuando obliga a rehacer un artefacto completo, menor cuando es de forma.
   - Prohibido discutir la solucion durante la revision, porque ahi es donde se van los cuarenta minutos y no se revisa nada.
   - En la clinica, un hallazgo bien escrito se ve asi: en el diagrama de clases, la clase Consulta no tiene relacion con Veterinario, pero el flujo principal de CU-03 dice que toda consulta queda a nombre del veterinario que atendio; severidad mayor.
   - En cambio esta mal hecho, no me gusta o le falta orden no es un hallazgo, es una opinion.

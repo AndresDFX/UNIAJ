@@ -40,7 +40,7 @@ Reglas duras:
 
 **Rubrica esperada (campo Rubrica):**
 
-Dos epicas con objetivo y RF agrupados. Ocho historias en formato Como/quiero/para con roles concretos de Huellitas, sin la palabra usuario, con beneficio real y no tautologico. Todas son cortes verticales de valor y traen RF de origen; el catalogo queda cubierto sin RF sueltos.
+Dos epicas con objetivo y RF agrupados. Ocho historias en formato Como/quiero/para con roles concretos de Huellitas, sin la palabra usuario, con beneficio real, que no repita la misma accion. Todas son cortes verticales de valor y traen RF de origen; el catalogo queda cubierto sin RF sueltos.
 
 ---
 
@@ -78,7 +78,7 @@ CA-3 (error o validacion):
 
 Escenarios alternos obligatorios (uno por historia, en el orden de arriba):
 - Registrar mascota: el documento del dueno **ya esta registrado**, entonces el sistema no vuelve a pedir sus datos.
-- Buscar expediente: la busqueda devuelve **varias mascotas con el mismo nombre**, entonces el sistema muestra columnas que permiten desambiguar (diga cuales).
+- Buscar expediente: la busqueda devuelve **varias mascotas con el mismo nombre**, entonces el sistema muestra columnas que permiten distinguir una de otra (diga cuales).
 - Agendar cita: el veterinario **ya tiene una cita a esa hora**, entonces el sistema la rechaza y propone alternativas.
 
 Cada `Entonces` debe indicar un resultado observable: el mensaje exacto entre comillas, el codigo generado o el estado en que queda el registro.

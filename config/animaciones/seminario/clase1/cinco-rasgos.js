@@ -10,7 +10,7 @@
     dibujar: function (ctx, t, lz) {
       var m = lz.marca, A = m.accion, R = m.malva, V = m.verde, W = lz.ancho;
       UJ.rotulo(ctx, lz, 'Cinco rasgos de un documento usable', W / 2, 24, { tam: 26, peso: 800, color: A, visible: L.tramo(t, 0, 0.06) });
-      var rasgos = ['Tiene lector y pregunta', 'Verificable', 'Trazable', 'Fechado y versionado', 'Accionable'];
+      var rasgos = ['Tiene lector y pregunta', 'Verificable', 'Trazable', 'Fechado y versionado', 'Sirve para actuar'];
       var x0 = 24, w0 = 330, x1 = 366, w1 = 196, x2 = 574, w2 = 202;
       var hy = 76, hh = 126, ry = hy + hh + 10, rh = 58;
 

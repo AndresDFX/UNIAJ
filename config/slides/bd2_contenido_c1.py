@@ -405,7 +405,7 @@ CONTENIDO = {
                     "una costumbre».",
                 ],
                 "ejemplo": "Decisión por relación: mascota → dueño, restrictiva (borrar un dueño no "
-                           "puede evaporar el historial); consulta → cita, restrictiva; "
+                           "puede borrar el historial); consulta → cita, restrictiva; "
                            "detalle_factura → factura, CASCADE (una línea no significa nada sin su "
                            "factura); detalle_factura → insumo, restrictiva (no se borra un insumo "
                            "ya facturado).",

@@ -190,7 +190,7 @@ Los doce items estan marcados. Cada 'no cumple' trae evidencia localizable en fo
 
 ## ¿Cuales de estos comentarios sirven como retroalimentacion?
 
-Un revisor escribio estos comentarios sobre `ClinicaParaRevisar.java`. Marque **todos** los que son retroalimentacion accionable (se refieren al codigo, traen evidencia y proponen algo).
+Un revisor escribio estos comentarios sobre `ClinicaParaRevisar.java`. Marque **todos** los que son retroalimentacion util (se refieren al codigo, traen evidencia y proponen algo).
 
 **Opciones:**
 
@@ -395,7 +395,7 @@ Requisitos:
 
 **Rubrica esperada (campo Rubrica):**
 
-Los cinco hallazgos tienen decision explicita (acepto / justifico / difiero) y un responsable identificado por linea. El bloqueante quedo en ACEPTO Y CORRIJO con el cambio descrito. Al menos una justificacion o diferimiento trae argumento tecnico. Cierra con la reflexion sobre la devolucion.
+Los cinco hallazgos tienen decision explicita (acepto / justifico / difiero) y un responsable identificado por linea. El bloqueante quedo en ACEPTO Y CORRIJO con el cambio descrito. Al menos una justificacion o aplazamiento trae argumento tecnico. Cierra con la reflexion sobre la devolucion.
 
 ---
 

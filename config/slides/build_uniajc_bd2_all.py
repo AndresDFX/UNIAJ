@@ -2036,7 +2036,7 @@ QUIZ = {
     q_om("Durante la viva/demo parcial, lo más útil es:",
          ["A) Improvisar sin script", "B) Mostrar flujo real (agendar/facturar) con datos seed",
           "C) Leer el microcurrículo completo", "D) Ocultar errores siempre"], "B"),
-    q_vf("Anti-patrón: SQL suelto en la app que bypasea procs y auditoría.", "V"),
+    q_vf("Anti-patrón: SQL suelto en la app que se salta los procs y la auditoría.", "V"),
     q_abierta("Liste 3 ítems del checklist PI que YA tienen evidencia en su proyecto.",
               "Respuesta concreta: ER PNG, sp_*, trigger, TX, índices, etc."),
     q_abierta("Nombre el mayor hueco actual y la clase/hito donde lo cerrarán.",
@@ -3165,7 +3165,7 @@ DEMO_OBSERVAR = {
         "la aplicacion solo conoce la firma del procedimiento y sus mensajes de error: no ve tablas ni arma SQL con texto."],
     13: ["cada caso se separa en contexto, fallo, causa raiz y la leccion convertida en una "
          "accion verificable sobre VetCare DB.",
-        "una leccion accionable tiene verbo, artefacto, frecuencia o umbral, y una forma de comprobar que se hizo."],
+        "una leccion concreta tiene verbo, artefacto, frecuencia o umbral, y una forma de comprobar que se hizo."],
 }
 
 
@@ -4342,7 +4342,7 @@ def _receta_demo(c):
         "escritorio completo.  "
         "3) Recorte a ~1200 px de ancho.  "
         f"4) Guardela como Kit docente/Clase {c['n']}/Capturas/cap01_demo.png.  "
-        "5) Vuelva a generar el guion: la imagen queda embebida aqui sola."
+        "5) Vuelva a generar el guion: la imagen queda insertada aqui sola."
     )
 
 
@@ -4382,7 +4382,7 @@ PARCIALES_BD2 = {
                      "¿que es un deadlock?",
                      "¿esta opcion es la correcta?"]},
     14: {"corte": 3, "ultima": 13,
-         "dudas_no": ["¿embeber la contraseña en el codigo pasa si el repo es privado?",
+         "dudas_no": ["¿escribir la contraseña dentro del codigo pasa si el repo es privado?",
                       "¿hay que validar las entradas de la API?",
                       "¿esta opcion es la correcta?"]},
 }
@@ -4776,7 +4776,7 @@ Si hoy se hace, el estudiante la abre desde la carpeta de la clase. Solucion en 
 Si se hace, avanza el PI en: {c['hito_pi']}
 Actividades:
 """ + "\n".join(f"{i+1}. {t}" for i,t in enumerate(c['taller'])) + f"""
-Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
+Circular por estudiantes (o salas). Empujar evidencia, no perfeccionismo.
 Entregable: {c['entregable']}
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase {c['n']}/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
@@ -4835,7 +4835,7 @@ Carpeta Codigo/ — archivo {c['sql'] or 'N/A'}.
 ## Capturas
 Carpeta `Kit docente/Clase {c['n']}/Capturas/`. Cada linea de pantallazo de arriba trae
 el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
-tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se inserta sola.
 Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia
@@ -4848,7 +4848,7 @@ Detalle por captura en `Capturas/README_capturas.txt`.
     (kit/"Capturas"/"README_capturas.txt").write_text(
         f"Capturas de la Clase {c['n']} — Bases de Datos II\n"
         f"{'=' * 46}\n\n"
-        "El guion embebe automaticamente cualquier PNG que exista en esta carpeta con\n"
+        "El guion inserta automaticamente cualquier PNG que exista en esta carpeta con\n"
         "el nombre esperado. Mientras no exista, el .docx imprime la receta en su lugar.\n\n"
         "1) cap01_demo.png — salida de la demo del docente\n"
         f"   - Abrir {c['herramienta']} y repetir la demo: {c['demo']}\n"

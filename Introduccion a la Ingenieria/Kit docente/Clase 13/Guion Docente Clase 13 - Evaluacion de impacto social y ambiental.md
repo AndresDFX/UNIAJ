@@ -35,7 +35,7 @@ Debajo de estas láminas, en las notas del presentador:
 - **Impacto no es intención, y el indirecto es el que muerde** → diapositiva 5
 - **Los afectados que no eligieron nada** → diapositiva 6
 - **La matriz, la calificación y los límites del método** → diapositivas 8 y 9
-- **Del adjetivo al indicador, y las tres honestidades** → diapositivas 11 y 12
+- **Del adjetivo al indicador, y las tres verdades** → diapositivas 11 y 12
 
 ## Desarrollo de la clase, minuto a minuto (90 min)
 
@@ -65,7 +65,7 @@ Reparto:
 
 - **8 min** · Antes y después [Slide 11]. Lea la columna izquierda en voz alta y pregunte: **¿qué proyecto NO podría escribir esto?**
 
-- **3 min** · Las tres honestidades [Slide 12]. La primera, repetida: «no genera impacto negativo» es la frase que más credibilidad quita.
+- **3 min** · Las tres verdades [Slide 12]. La primera, repetida: «no genera impacto negativo» es la frase que más credibilidad quita.
 
 ### 00:55–01:12 · Taller en salas de grupo (17 min) · [fuera del deck · guía del taller en la carpeta]
 
@@ -115,7 +115,7 @@ Numeración real del deck `Clases/Clase 13 - Evaluacion de impacto social y ambi
 9. Cómo se califica un impacto, sin fingir precisión
 10. Ejemplo: un impacto negativo calificado
 11. Un impacto declarado y un impacto medido
-12. Tres honestidades sobre el impacto
+12. Tres verdades sobre el impacto
 13. Cierre · Nos vemos en la Clase 14
 
 ## Si pasa esto en clase

@@ -132,7 +132,7 @@ LAMINAS = {
             "titulo": "Cinco rasgos de un documento usable",
             "ideas": [
                 "Tiene lector y pregunta · es verificable · es trazable · está fechado y versionado · "
-                "es accionable.",
+                "sirve para actuar.",
                 "De relleno: «el sistema debe ser amigable e intuitivo». Nadie puede construirlo "
                 "ni decir si se cumplió.",
                 "Usable: RF-012 registrar mascota con cinco datos y dueño asociado, con criterio de "
@@ -566,7 +566,7 @@ LAMINAS = {
                 "Se diseña el recorrido completo, de la intención a la tarea cumplida.",
                 "Camino feliz: buscar al dueño, encontrarlo, registrar la mascota y recibir el código.",
                 "Alternos: dueño no registrado, mascota ya existente, dueño sin documento.",
-                "Doce mascotas llamadas Firulais: mostrar especie, edad y dueño para desambiguar.",
+                "Doce mascotas llamadas Firulais: mostrar especie, edad y dueño para distinguirlas.",
             ]},
         "La interfaz no se inventa": {
             "titulo": "La interfaz se deriva de los artefactos",

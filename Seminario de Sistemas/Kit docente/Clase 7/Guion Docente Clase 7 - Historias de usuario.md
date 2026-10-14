@@ -52,7 +52,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Independiente: se puede hacer sin esperar a otra; si la historia de agendar cita necesita obligatoriamente que exista la de registrar mascota, hay dependencia y toca ordenarlas.
   - Negociable: la historia describe la necesidad, no la solucion tecnica; decir quiero un combo desplegable con autocompletar en JavaScript ya no es historia, es diseno impuesto.
   - Valiosa: alguien de la clinica gana algo real; si nadie de la clinica nota la diferencia, no es historia sino tarea interna.
-  - Estimable: el equipo entiende lo suficiente para tallarla; si nadie sabe cuanto pesa, falta conversacion o hace falta investigar aparte.
+  - Estimable: el equipo entiende lo suficiente para estimarla; si nadie sabe cuanto pesa, falta conversacion o hace falta investigar aparte.
   - Small o pequena: cabe en una iteracion; si toma tres semanas es una epica disfrazada.
   - Testeable: tiene criterios verificables, que es exactamente la misma regla de oro de la clase pasada aplicada en formato agil.
   - Una historia que falla dos letras de INVEST no se planea todavia, se vuelve a partir.

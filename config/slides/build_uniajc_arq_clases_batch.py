@@ -819,7 +819,7 @@ CLASSES = [
         "herramienta": "Navegador · editor de texto del curso",
         "objetivos": [
             "Identificar drivers de costo (cómputo, datos, transferencia, idle).",
-            "Proponer 3 apalancamientos de ahorro sin romper el diseño.",
+            "Proponer 3 medidas de ahorro sin romper el diseño.",
             "Redactar sostenibilidad (apagado de labs, imágenes ligeras, sobredimensionamiento).",
         ],
         "slides_extra": [
@@ -839,7 +839,7 @@ CLASSES = [
         ],
         "taller_titulo": "Actividad autónoma Clase 10 — Costos CloudLite",
         "taller_pasos": [
-            "Tabla componente → driver de costo → nivel (B/M/A) → apalancamiento.",
+            "Tabla componente → driver de costo → nivel (B/M/A) → medida de ahorro.",
             "3 acciones de sostenibilidad aplicables al diseño.",
             "Integre en el informe PI (1 página).",
             "Entrega domingo 23:59.",
@@ -1298,7 +1298,7 @@ CODIGO_SLIDE = {
         "",
         "## 5. Alternativas descartadas    <- exactamente 2, con motivo",
         "- IaaS: control total, pero yo opero SO y parches -> tiempo que no tengo.",
-        "- SaaS como nucleo: no queda nada que arquitecturar; solo satelite (auth/email).",
+        "- SaaS como nucleo: no queda nada que disenar; solo satelite (auth/email).",
         "",
         "## 6. Consecuencias               <- 3 ejes, cada uno con + y -",
         "Operacion + / -        Costo + / -        Aprendizaje + / -",
@@ -2745,7 +2745,7 @@ TALLER_BLOQUE = {
             "¿La decisión de la p12 elige @@una@@ —monolito modular o microservicios— en una sola frase?",
             "¿Los dos criterios traen @@número y plazo@@ del equipo, y dicen qué partes cambian juntas?",
             "¿Dijiste qué se gana @@y@@ qué se pierde? (sin la segunda mitad no hay decisión)",
-            "¿Hay 2-5 cajas (no 1 monolito innominado ni 12 microservicios), coherentes con la p12?",
+            "¿Hay 2-5 cajas (no 1 monolito sin nombre ni 12 microservicios), coherentes con la p12?",
             "¿La primera línea del código del diagrama es exactamente `C4Container`?",
             "¿Cada caja tiene sus @@tres@@ datos: nombre, tecnología y responsabilidad?",
             "¿Lo que guarda datos está como `ContainerDb` y los externos @@fuera@@ del `System_Boundary`?",
@@ -3108,7 +3108,7 @@ def _capturas_md(n: int) -> str:
 DEMO_ARQ = {
     1: ("Dibujar en vivo el C4 Context de un CloudLite de ejemplo", [
         "Abra draw.io en blanco y dibuje UNA caja al centro rotulada «CloudLite App».",
-        "Agregue 2 monigotes a la izquierda (Usuario final, Administrador) con flechas rotuladas «consulta», «administra».",
+        "Agregue 2 figuras de persona a la izquierda (Usuario final, Administrador) con flechas rotuladas «consulta», «administra».",
         "Agregue 1 caja gris a la derecha rotulada «Pasarela de pagos (externo)» y una flecha «cobra».",
         "Diga en voz alta: «no dibuje que hay ADENTRO de la caja; eso es Clase 4».",
     ]),
@@ -3953,7 +3953,7 @@ comparas lo que entregan {mod(c, "entregan_word")}. **No proyectarla completa** 
 y `Kit docente/Clase {n}/Quiz Clase {n} - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase{n:02d}.png | receta: 1) Abre {c['herramienta']} y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase {n}/Capturas/demo-clase{n:02d}.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase{n:02d}.png | receta: 1) Abre {c['herramienta']} y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase {n}/Capturas/demo-clase{n:02d}.png.  5) Vuelve a generar el guion y la imagen queda insertada aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase{n:02d}.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase {n}/Capturas/evidencia-clase{n:02d}.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas
@@ -3975,7 +3975,7 @@ def _escribir_readme_capturas(c: dict, cap: Path) -> None:
     demo = DEMO_ARQ.get(n)
     L = [f"Capturas de la Clase {n} — Arquitectura de Sistemas Computacionales",
          "=" * 62, "",
-         "El guion embebe automaticamente cualquier PNG que exista aqui con el nombre",
+         "El guion inserta automaticamente cualquier PNG que exista aqui con el nombre",
          "esperado. Mientras no exista, el .docx imprime la receta en su lugar.", ""]
     ya = CAPTURAS_CLASE.get(n) or []
     if ya:

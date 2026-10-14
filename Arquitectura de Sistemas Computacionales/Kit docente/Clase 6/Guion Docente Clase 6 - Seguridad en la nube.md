@@ -39,7 +39,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - DESARROLLO (para explicarlo, no se proyecta):
   - Modelar amenazas es responder en orden cuatro preguntas: que estamos construyendo, que puede salir mal, que hacemos al respecto y si lo hicimos bien.
   - Un activo es algo que vale la pena proteger: los datos personales de los usuarios de CloudLite, el token de administrador, la disponibilidad de la API.
-  - Una amenaza es el evento indeseado: que un tercero lea la tabla de usuarios.
+  - Una amenaza es el evento no deseado: que un tercero lea la tabla de usuarios.
   - Una vulnerabilidad es la debilidad que lo hace posible: la base de datos acepta conexiones desde internet.
   - Un control reduce probabilidad o impacto: mover esa base a una zona privada.
   - Reducir superficie es el control mas barato que existe: lo que no esta expuesto no se puede atacar.
@@ -57,7 +57,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Denial of service agota un recurso hasta que el sistema deja de responder y niega la disponibilidad.
   - Elevation of privilege obtiene mas permisos de los asignados y niega la autorizacion.
   - De ahi sale la distincion que mas se confunde: autenticacion es demostrar quien eres, autorizacion es determinar que puedes hacer una vez identificado.
-  - Un sistema puede autenticar impecablemente y seguir siendo inseguro si despues no verifica permisos.
+  - Un sistema puede autenticar perfectamente y seguir siendo inseguro si despues no verifica permisos.
 
 **[Slide 7] Amenazas que sí importan al PI** — 5 vinetas.
 
@@ -306,7 +306,7 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 6/Quiz Clase 6 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase06.png | receta: 1) Abre Navegador · editor de texto del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 6/Capturas/demo-clase06.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase06.png | receta: 1) Abre Navegador · editor de texto del curso y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 6/Capturas/demo-clase06.png.  5) Vuelve a generar el guion y la imagen queda insertada aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase06.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 6/Capturas/evidencia-clase06.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas

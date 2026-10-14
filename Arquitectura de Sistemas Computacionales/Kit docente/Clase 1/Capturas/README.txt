@@ -1,7 +1,7 @@
 Capturas de la Clase 1 — Arquitectura de Sistemas Computacionales
 ==============================================================
 
-El guion embebe automaticamente cualquier PNG que exista aqui con el nombre
+El guion inserta automaticamente cualquier PNG que exista aqui con el nombre
 esperado. Mientras no exista, el .docx imprime la receta en su lugar.
 
 Ya generadas por `python config/slides/mockups.py` (no hay que tomarlas):
@@ -11,7 +11,7 @@ Pendiente: demo-clase01.png — la herramienta del dia en uso
   1. Abrir Navegador · editor de diagramas del curso · boceto libre (papel o Excalidraw) opcional.
   2. Repetir la demo: Dibujar en vivo el C4 Context de un CloudLite de ejemplo.
      1. Abra draw.io en blanco y dibuje UNA caja al centro rotulada «CloudLite App».
-     2. Agregue 2 monigotes a la izquierda (Usuario final, Administrador) con flechas rotuladas «consulta», «administra».
+     2. Agregue 2 figuras de persona a la izquierda (Usuario final, Administrador) con flechas rotuladas «consulta», «administra».
      3. Agregue 1 caja gris a la derecha rotulada «Pasarela de pagos (externo)» y una flecha «cobra».
      4. Diga en voz alta: «no dibuje que hay ADENTRO de la caja; eso es Clase 4».
   3. Capturar solo la ventana util, no el escritorio completo.

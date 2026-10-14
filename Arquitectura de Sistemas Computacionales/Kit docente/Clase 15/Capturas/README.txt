@@ -1,7 +1,7 @@
 Capturas de la Clase 15 — Arquitectura de Sistemas Computacionales
 ==============================================================
 
-El guion embebe automaticamente cualquier PNG que exista aqui con el nombre
+El guion inserta automaticamente cualquier PNG que exista aqui con el nombre
 esperado. Mientras no exista, el .docx imprime la receta en su lugar.
 
 Pendiente: demo-clase15.png — la herramienta del dia en uso

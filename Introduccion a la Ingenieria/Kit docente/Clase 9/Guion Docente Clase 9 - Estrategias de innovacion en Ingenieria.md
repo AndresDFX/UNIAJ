@@ -147,7 +147,7 @@ Eso es exactamente el uso correcto, y en la sesión 11 se practica formalmente. 
 - Haga escribir **la pregunta de búsqueda en el chat** antes de repartir salas, un equipo por línea. Son dos minutos y cambia la calidad de todo el taller.
 - **Reparta la búsqueda dentro del equipo** (2 académico · 2 soluciones reales · 1 normas). Cinco personas buscando lo mismo producen una sola ficha.
 - En las salas y en las exposiciones, **pida abrir el enlace en pantalla**. Es la única forma de cortar la cita inventada, y hacerlo en vivo enseña más que descontar en la nota.
-- Hoy no se usa IA, y la razón hay que decirla: la sesión es sobre fuentes verificables y un asistente devuelve referencias plausibles inexistentes. En la **sesión 11** sí está autorizada, con verificación obligatoria.
+- Hoy no se usa IA, y la razón hay que decirla: la sesión es sobre fuentes verificables y un asistente devuelve referencias creíbles que no existen. En la **sesión 11** sí está autorizada, con verificación obligatoria.
 - Si un equipo descubre que su solución ya existe completa, **no lo deje cambiar de tema**: pregúntele por qué no la están usando. Ahí está el proyecto afilado.
 
 ## Material de esta clase

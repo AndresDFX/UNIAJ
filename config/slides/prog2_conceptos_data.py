@@ -279,7 +279,7 @@ CONCEPTOS = {
             "VS Code los ataca seguro: Rename Symbol (F2), Extract Method y Move.",
         ]),
         ([2], "Persistencia: datos que sobreviven", [
-            "La lista vive en RAM: al cerrar la ventana, las mascotas se evaporan.",
+            "La lista vive en RAM: al cerrar la ventana, las mascotas se pierden.",
             "Persistir es convertir cada objeto en texto y escribirlo en un archivo.",
             "CSV: una línea por registro y un separador; aquí id;nombre;especie;edad;cedula_dueno.",
             "Punto y coma porque los nombres traen comas; y el CSV se puede abrir y leer.",
@@ -400,7 +400,7 @@ CONCEPTOS = {
             "Orden: problema, solución, arquitectura en 30 segundos, demo en vivo, aprendizajes.",
         ]),
         ([1], "La sustentación es una coreografía", [
-            "La exposición se trocea en bloques completos, con evidencia en pantalla.",
+            "La exposición se parte en bloques completos, con evidencia en pantalla.",
             "Las transiciones se dicen: «para mostrar cómo quedan guardados, abro de nuevo la app».",
             "Un guion con minutos y evidencia por bloque: cinco bloques, siete minutos, cuatro de demo.",
             "En equipo, cada integrante toma bloques completos y nadie se queda callado.",

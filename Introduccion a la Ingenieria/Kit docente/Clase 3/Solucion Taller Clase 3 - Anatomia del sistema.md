@@ -100,7 +100,7 @@ El auxiliar anota los préstamos en un cuaderno: nombre, libro y fecha. No hay r
 
 **(5) Retroalimentación optimista.** Suele afirmar que «el sistema se retroalimenta con el registro de devoluciones». **Corrección:** el registro existe pero **nadie lo lee hacia atrás**, así que no hay retroalimentación. La IA describe el sistema como debería ser, no como es.
 
-**Cómo calificar:** 30 pts, el bloque que decide la nota. Exija **tres correcciones con su razón**. Vale más una corrección profunda (la (2) o la (5)) que tres cosméticas de redacción. Si el equipo entrega el texto de la IA sin correcciones, 0 en este bloque, y dígaselo en voz alta con el argumento correcto: no es castigo por usar la herramienta, es que sin verificación no hay nada de ingeniería que calificar. **Corrección de tipo (1) o (3) —cifra o norma inventada— cuenta doble**: es la falla que más daño hace en un trabajo profesional.
+**Cómo calificar:** 30 pts, el bloque que decide la nota. Exija **tres correcciones con su razón**. Vale más una corrección profunda (la (2) o la (5)) que tres retoques de redacción. Si el equipo entrega el texto de la IA sin correcciones, 0 en este bloque, y dígaselo en voz alta con el argumento correcto: no es castigo por usar la herramienta, es que sin verificación no hay nada de ingeniería que calificar. **Corrección de tipo (1) o (3) —cifra o norma inventada— cuenta doble**: es la falla que más daño hace en un trabajo profesional.
 
 ## Rúbrica del taller
 

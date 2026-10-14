@@ -165,7 +165,7 @@ QUÉ ES (dilo así): La retroalimentación útil se escribe siempre con la misma
 
 CÓMO DARLA (≈5 min):
 - Al entrar: La versión inútil: «el modelo está flojo, mejórenlo». No dice qué mirar ni cómo saber cuándo está resuelto.
-- Clic 1: La versión accionable, parte por parte: artefacto, el script DDL; observación, detalle_factura no tiene FOREIGN KEY hacia insumo aunque el ER dibuja la relación; impacto, se pueden insertar detalles con insumos que no existen; acción, agregar la restricción y re-ejecutar el script completo desde cero; responsable y fecha, el autor, antes de la próxima sesión.
+- Clic 1: La versión concreta, parte por parte: artefacto, el script DDL; observación, detalle_factura no tiene FOREIGN KEY hacia insumo aunque el ER dibuja la relación; impacto, se pueden insertar detalles con insumos que no existen; acción, agregar la restricción y re-ejecutar el script completo desde cero; responsable y fecha, el autor, antes de la próxima sesión.
 - Clic 2: La diferencia no es cortesía, es verificabilidad. Y la dosis: de tres a cinco hallazgos por persona; más de cinco desmoraliza y nadie los cierra, menos de tres suele ser una revisión superficial.
 
 EJEMPLO: La observación se prueba con SQL: INSERT INTO detalle_factura (id_factura, id_insumo, cantidad, precio_unit) VALUES (1, 999, 1, 1000); si entra, falta la FK; si responde «violates foreign key constraint», el hallazgo está cerrado.
@@ -311,7 +311,7 @@ Herramienta: ExamLab (PostgreSQL/PGlite) + draw.io / Mermaid
 - **2. Traduce con IA** Copia o describe tu boceto a una IA y pidele el codigo Mermaid: «convierte este diagrama a Mermaid usando `erDiagram`». Revisa el resultado: la IA acierta la sintaxis, no tu modelo.
 - **3. Pega y renderiza en ExamLab** Pega ese codigo en la caja de texto de la pregunta y mira como lo dibuja la plataforma. Si no renderiza, corrige ahi mismo: lo que se califica es el diagrama renderizado dentro de ExamLab.
 - **4. Guarda el PNG para tu PI** Exporta tambien la imagen a la carpeta de tu Proyecto Integrador. Esa copia es para tu informe; no reemplaza la respuesta en la plataforma.
-📸 Salida esperada de la demo de la Clase 11 [[captura: cap01_demo.png | receta: 1) Abra ExamLab (PostgreSQL/PGlite) + draw.io / Mermaid y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 11/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda embebida aqui sola.]]
+📸 Salida esperada de la demo de la Clase 11 [[captura: cap01_demo.png | receta: 1) Abra ExamLab (PostgreSQL/PGlite) + draw.io / Mermaid y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 11/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda insertada aqui sola.]]
 Dejar script/enlace en el chat o en ExamLab.
 
 ### 55-105 · Practica (opcional) · sin lamina
@@ -324,7 +324,7 @@ Actividades:
 2. Demo 3-5 min: ER + 1 proc + 1 trigger.
 3. Lista de gaps con responsable.
 4. Subir avance intermedio a ExamLab (Talleres) si se pide.
-Circular por estudiantes (o salas). Empujar evidencia, no perfectionismo.
+Circular por estudiantes (o salas). Empujar evidencia, no perfeccionismo.
 Entregable: Checklist firmada + enlace/ZIP avance (DDL+procs+ER)
 📸 Evidencia de avance de un estudiante (para su registro del corte) [[captura: cap02_taller.png | receta: 1) Con permiso del estudiante, capture SU pantalla con el artefacto de hoy a medio construir.  2) Recorte datos personales (nombre, correo) antes de guardar.  3) Guardela como Kit docente/Clase 11/Capturas/cap02_taller.png.  4) Sirve de referencia del nivel esperado en el proximo semestre; no se proyecta.]]
 
@@ -349,7 +349,7 @@ Carpeta Codigo/ — archivo 11_checklist_seed.sql.
 ## Capturas
 Carpeta `Kit docente/Clase 11/Capturas/`. Cada linea de pantallazo de arriba trae
 el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
-tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se inserta sola.
 Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia

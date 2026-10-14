@@ -98,7 +98,7 @@ mascota  |    dueno     |     fecha_hora
 
 ### Como calificar
 
-- 12 pts las tres tablas creadas sin error, con su PK, las **2 FK**, el `DEFAULT 'Cali'` de ciudad y los **2 CHECK** exigidos (`activa` y `estado`). Se prorratea: cada restriccion que falte descuenta.
+- 12 pts las tres tablas creadas sin error, con su PK, las **2 FK**, el `DEFAULT 'Cali'` de ciudad y los **2 CHECK** exigidos (`activa` y `estado`). Se califica por partes: cada restriccion que falte descuenta.
 - 8 pts los datos: al menos 3 duenos, 4 mascotas con **>=1 inactiva** y 3 citas coherentes con las FK. Si un INSERT viola una FK y el script no corre, esta parte vale cero.
 - 5 pts el `SELECT` final: devuelve filas y usa **JOIN explicito**. Un producto cartesiano (`FROM cita, mascota`) no suma aunque el resultado parezca correcto.
 - 3 pts sintaxis 100 % PostgreSQL: `SERIAL` o `GENERATED ALWAYS AS IDENTITY`, `TEXT`/`VARCHAR`. Se penaliza `NUMBER`, `VARCHAR2` y las comillas dobles mal usadas.
@@ -304,7 +304,7 @@ La clave se lee del banco de la plataforma, asi que esta es la que se califica. 
 - Copiar las tres reglas del enunciado. Es lo mas frecuente. Devuelvala pidiendo una regla que se le haya ocurrido a el mirando el caso: la doble reserva del veterinario suele salir sola si se le pregunta que pasa si dos recepcionistas agendan a la vez.
 - Reglas sin mecanismo. Son 3 de los 15 puntos. Basta con nombrar el instrumento (`CHECK`, `UNIQUE`, `FK`, procedimiento, trigger); no hace falta el codigo todavia.
 - Alcance SI que promete la aplicacion y las pantallas. Recuerdele que en esta asignatura el entregable es la capa de datos, y que la aplicacion es el alcance de Programacion II sobre el mismo cliente.
-- Riesgo escrito como excusa anticipada («no tengo tiempo»). El riesgo debe ser tecnico y con mitigacion accionable.
+- Riesgo escrito como excusa anticipada («no tengo tiempo»). El riesgo debe ser tecnico y con mitigacion concreta.
 
 ---
 

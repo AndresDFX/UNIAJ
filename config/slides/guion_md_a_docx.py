@@ -146,7 +146,7 @@ def _receta_generica(caption, explicit):
         "en que se ve el resultado: " + (caption or "el resultado del paso") + ".  "
         "3) Recorta a ~1200 px de ancho para que se lea dentro del documento.  "
         "4) Guárdala como " + destino + ".  "
-        "5) Vuelve a generar el guion: la imagen queda embebida aquí sola."
+        "5) Vuelve a generar el guion: la imagen queda insertada aquí sola."
     )
 
 

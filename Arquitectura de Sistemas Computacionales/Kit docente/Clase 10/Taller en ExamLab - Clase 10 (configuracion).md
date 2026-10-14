@@ -27,7 +27,7 @@ Construya la tabla de costos con **una fila por componente** —API, base de dat
 almacenamiento de objetos si lo tiene, integracion continua y edge— y **estas cuatro
 columnas**:
 
-`Componente | Driver de costo | Nivel B/M/A | Apalancamiento`
+`Componente | Driver de costo | Nivel B/M/A | Medida de ahorro`
 
 - **Driver de costo**: la variable concreta que, si crece, hace crecer la factura de ese
   componente. Drivers a considerar: **tiempo inactivo** (instancias encendidas sin trabajo),
@@ -35,7 +35,7 @@ columnas**:
 - **Nivel**: **B**ajo, **M**edio o **A**lto. Es una escala **ordinal**: ordena, no mide
   distancias. Decir que la base de datos es Alto y el edge es Bajo afirma que una cuesta mas
   que la otra, no cuantas veces mas.
-- **Apalancamiento**: **que palanca concreta baja ese costo**. No «optimizar»: algo que se
+- **Medida de ahorro**: **que accion concreta baja ese costo**. No «optimizar»: algo que se
   pueda hacer y comprobar.
 
 > **Prohibido inventar precios en dolares o facturas de un proveedor.** La estimacion es
@@ -49,7 +49,7 @@ respuesta que esta pregunta busca descartar.
 
 **Rubrica esperada (campo Rubrica):**
 
-4 pts una fila por cada componente del despliegue, sin dejar ninguno fuera. 5 pts los drivers: cada uno tiene que ser una variable contable (horas encendidas, GB de salida, GB almacenados, minutos de CI) y no «el uso». 3.25 pts los niveles, con al menos un Alto y un Bajo justificados; si todo es Medio, este criterio vale cero. 4 pts los apalancamientos, uno por fila, concretos y comprobables. **Se descuenta fuerte por inventar precios en dolares**: la escala es cualitativa.
+4 pts una fila por cada componente del despliegue, sin dejar ninguno fuera. 5 pts los drivers: cada uno tiene que ser una variable contable (horas encendidas, GB de salida, GB almacenados, minutos de CI) y no «el uso». 3.25 pts los niveles, con al menos un Alto y un Bajo justificados; si todo es Medio, este criterio vale cero. 4 pts las medidas de ahorro, una por fila, concretas y comprobables. **Se descuenta fuerte por inventar precios en dolares**: la escala es cualitativa.
 
 ---
 
@@ -79,7 +79,7 @@ Ejemplos de la **forma** esperada, no para copiarlos:
 > es una intencion.
 
 Ate al menos una de las tres a un **driver de costo** de la tabla anterior: sostenibilidad y
-costo suelen apalancarse con la misma decision.
+costo suelen bajar con la misma decision.
 
 > La entrega oficial es esta respuesta en la plataforma del curso. El documento en Word o Google Docs es opcional y solo sirve para conservar sus respuestas.
 

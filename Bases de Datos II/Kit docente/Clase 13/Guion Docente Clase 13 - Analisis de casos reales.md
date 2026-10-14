@@ -38,7 +38,7 @@ PASA A LA SIGUIENTE: Empezamos por ese documento: el post-mortem.
 
 ### [Slide 3] Mapa del bloque de hoy (120 min)
 
-QUÉ ES (dilo así): El reparto orientativo de las dos horas de trabajo autónomo: teoría con una lámina por concepto, un análisis guiado completo y la práctica opcional de la carpeta.
+QUÉ ES (dilo así): El reparto sugerido de las dos horas de trabajo autónomo: teoría con una lámina por concepto, un análisis guiado completo y la práctica opcional de la carpeta.
 
 CÓMO DARLA (≈1 min):
 - Al entrar: Señala los tramos sin detenerte. La teoría, leída con calma, toma unos 50 minutos (más que el tramo 10-35); el «demo» de hoy es el análisis guiado de la lámina «Demo del día», y la práctica empieza hacia el minuto 65.
@@ -208,7 +208,7 @@ CÓMO DARLA (≈4 min):
 - Al entrar: Recorre la ilustración en tres franjas, de arriba abajo.
 - Arriba: Un reporte programado cada minuto (min 0 a 5) en el que cada ejecución tarda más que un minuto y más que la anterior, porque compiten entre sí: la siguiente empieza antes de que termine la anterior y se apilan.
 - Centro: En el minuto 5 hay tres reportes a la vez y, en hora pico, la aplicación usa el resto: las 10 conexiones del esquema quedan ocupadas y la siguiente petición de recepción no consigue ninguna.
-- Abajo: Lo que dice el plan: Seq Scan sobre la tabla grande, que recorre todo para quedarse con pocas filas, es la firma de un índice que falta. La lección accionable: solo las columnas que se muestran e índice en el filtro, medido con EXPLAIN ANALYZE antes y después.
+- Abajo: Lo que dice el plan: Seq Scan sobre la tabla grande, que recorre todo para quedarse con pocas filas, es la firma de un índice que falta. La lección concreta: solo las columnas que se muestran e índice en el filtro, medido con EXPLAIN ANALYZE antes y después.
 
 EJEMPLO: En la clínica: un tablero que cada minuto cuenta las citas del día leyendo toda la tabla de citas, con años de historia, en lugar de usar un índice por fecha.
 
@@ -241,7 +241,7 @@ CUIDADO: Con tablas pequeñas el Seq Scan es la decisión correcta: no lo presen
 
 PASA A LA SIGUIENTE: Ya hay seis casos. ¿Cómo se convierte un caso en una lección que sirva?
 
-### [Slide 14] Lecciones accionables: los cuatro elementos verificables
+### [Slide 14] Lecciones concretas: los cuatro elementos verificables
 
 QUÉ ES (dilo así): La parte difícil del análisis no es contar el caso sino sacar una lección que alguien pueda cumplir y otro pueda verificar. La prueba es simple: si la lección se pudo escribir antes de conocer el caso, es un lugar común.
 
@@ -361,7 +361,7 @@ Las etiquetas [Slide N] del plan y del fundamento apuntan aqui.
 11. SQL dinamico: concatenar el texto o ligar el parametro
 12. Caso seis: el reporte que tumba el servicio (rendimiento)
 13. Leer un plan de ejecucion ajeno
-14. Lecciones accionables: los cuatro elementos verificables
+14. Lecciones concretas: los cuatro elementos verificables
 15. Del caso a la mejora: el borrado con rastro y la restauracion comprobada
 16. El borrado con rastro: BEFORE DELETE y RETURN OLD
 17. La restauracion comprobada: una consulta, un veredicto
@@ -385,7 +385,7 @@ Leer Teoria Core. Tomar notas en el informe del PI.
 Seguir el taller estudiante. Herramienta: Google Docs.
 Salida esperada de la practica (publiquela junto al enunciado para que el
 estudiante autonomo sepa si le quedo bien):
-📸 Salida esperada de la demo de la Clase 13 [[captura: cap01_demo.png | receta: 1) Abra Google Docs y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 13/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda embebida aqui sola.]]
+📸 Salida esperada de la demo de la Clase 13 [[captura: cap01_demo.png | receta: 1) Abra Google Docs y repita la demo de este bloque sobre el dominio VetCare (no otro ejemplo).  2) Capture la ventana en el momento en que se ve el resultado, no el escritorio completo.  3) Recorte a ~1200 px de ancho.  4) Guardela como Kit docente/Clase 13/Capturas/cap01_demo.png.  5) Vuelva a generar el guion: la imagen queda insertada aqui sola.]]
 
 ### Bloque D (100-120) · Empaquetado y cierre
 Subir entregable a ExamLab. Actualizar el checklist PI del proyecto.
@@ -397,7 +397,7 @@ Carpeta Codigo/ — archivo N/A.
 ## Capturas
 Carpeta `Kit docente/Clase 13/Capturas/`. Cada linea de pantallazo de arriba trae
 el nombre exacto del archivo y, si todavia no existe, el paso a paso para producirlo:
-tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se embebe sola.
+tomelo, guardelo con ese nombre y vuelva a generar el guion — la imagen se inserta sola.
 Detalle por captura en `Capturas/README_capturas.txt`.
 
 ## Criterios de exito del dia

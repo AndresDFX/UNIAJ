@@ -28,7 +28,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - DESARROLLO (para explicarlo, no se proyecta):
   - El problema que resuelve la integracion continua tiene nombre historico, infierno de integracion: varios desarrolladores trabajan semanas por separado y al juntar el codigo aparecen conflictos y fallas que nadie sabe de donde vienen.
   - Su version cotidiana en un equipo de estudiantes es la frase «en mi maquina funciona».
-  - Integracion continua, definida operativamente, es esto: cada vez que alguien sube un cambio al repositorio, un servidor automatico toma el codigo en un entorno limpio, lo construye, le corre las pruebas y avisa en minutos si algo se rompio.
+  - Integracion continua, en la practica, es esto: cada vez que alguien sube un cambio al repositorio, un servidor automatico toma el codigo en un entorno limpio, lo construye, le corre las pruebas y avisa en minutos si algo se rompio.
   - El valor no esta en la automatizacion sino en el intervalo de retroalimentacion: encontrar el error tres minutos despues de escribirlo, cuando el autor recuerda que hizo, cuesta una fraccion de hallarlo tres semanas despues en el computador de otra persona.
   - (No se proyecta) Esta clase junta dos temas que parecen distintos y son el mismo asunto en dos momentos: automatizar la verificacion antes de que un cambio llegue a los usuarios, y observar el sistema despues de que llego.
   - (No se proyecta) Lo que se califica hoy son 25 de los 100 puntos de la actividad del Corte 2, en cuatro preguntas: 10 puntos el contenido completo del ci.yml, 5 explicar que hace de verdad la construccion y la prueba y con que condicion el pipeline debe fallar, 4 distinguir CI de CD y ubicar hasta donde llego el propio trabajo, y 6 la tabla de senales de monitoreo con umbral.
@@ -45,7 +45,7 @@ Todo lo que hay que decir **esta proyectado**. Esta seccion dice que subrayar en
   - Entrega continua significa que cada cambio que pasa la validacion queda listo para desplegarse, empaquetado y probado, pero un humano decide cuando se aprieta el boton.
   - El pipeline llega hasta «listo para desplegar» y la etapa final imprime un mensaje y publica un artefacto en lugar de subir a un servidor real.
   - (No se proyecta) Hay que decirlo explicito: lo simulado es el ultimo paso, no el pipeline; todo lo anterior es real y ejecutable.
-  - (No se proyecta) Y hay que anunciar como se califica esa frontera, porque es contraintuitivo para el estudiante que cree que reconocer un limite es admitir una carencia: la pregunta 9 SUMA un punto por ubicar correctamente el propio trabajo y decir que llega hasta «listo para desplegar», y DESCUENTA la mitad de la pregunta a quien afirme haber construido CD.
+  - (No se proyecta) Y hay que anunciar como se califica esa frontera, porque le parece raro al estudiante que cree que reconocer un limite es admitir una carencia: la pregunta 9 SUMA un punto por ubicar correctamente el propio trabajo y decir que llega hasta «listo para desplegar», y DESCUENTA la mitad de la pregunta a quien afirme haber construido CD.
 
 **[Slide 6] CI/CD sin tarjeta** — 4 vinetas.
 
@@ -293,7 +293,7 @@ comparas lo que entregan los estudiantes. **No proyectarla completa** antes de q
 y `Kit docente/Clase 8/Quiz Clase 8 - CLAVE DOCENTE.docx` (clave, privada).
 
 ## Capturas sugeridas
-- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase08.png | receta: 1) Abre Navegador · editor de código del curso (YAML) y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 8/Capturas/demo-clase08.png.  5) Vuelve a generar el guion y la imagen queda embebida aquí sola. Detalle en Capturas/README.txt.]]
+- 📸 La herramienta del día en uso con el artefacto CloudLite [[captura: demo-clase08.png | receta: 1) Abre Navegador · editor de código del curso (YAML) y repite la demo de este guion.  2) Captura solo la ventana útil, no el escritorio completo.  3) Recorta a ~1200 px de ancho.  4) Guárdala como Kit docente/Clase 8/Capturas/demo-clase08.png.  5) Vuelve a generar el guion y la imagen queda insertada aquí sola. Detalle en Capturas/README.txt.]]
 - 📸 Evidencia del entregable de un estudiante (diagrama / YAML / lab) [[captura: evidencia-clase08.png | receta: 1) Con permiso del estudiante, captura su artefacto de hoy.  2) Recorta nombre y correo antes de guardar.  3) Guárdala como Kit docente/Clase 8/Capturas/evidencia-clase08.png.  4) Es para tu registro del corte; no se proyecta en clase.]]
 
 ## Notas operativas

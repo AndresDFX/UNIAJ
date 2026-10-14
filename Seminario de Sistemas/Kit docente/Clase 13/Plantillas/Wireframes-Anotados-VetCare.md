@@ -56,7 +56,7 @@ Pegar aqui la imagen del wireframe con numeros de 1 a N.
 | Criterios de busqueda | Documento del dueño / Nombre de la mascota / Codigo de ficha |
 | Columnas de la lista de resultados | Codigo, Nombre, Especie, Edad, Dueño |
 | Mensaje si hay 0 resultados | `No encontramos ninguna ficha con ese dato.` mas las acciones Buscar por otro criterio y Registrar mascota nueva |
-| Que pasa con 12 resultados iguales | Se desambigua por especie, edad y nombre del dueño sin abrir la ficha |
+| Que pasa con 12 resultados iguales | Se distingue por especie, edad y nombre del dueño sin abrir la ficha |
 | Tiempo maximo de respuesta | 3 segundos (RNF-02) |
 
 ---

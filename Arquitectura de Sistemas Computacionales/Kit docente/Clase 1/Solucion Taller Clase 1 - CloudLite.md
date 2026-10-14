@@ -36,7 +36,7 @@
 - 3 pts el dominio concreto y del tamano adecuado.
 - 1.5 pts que el problema nombre a **QUIEN** lo sufre con un rol concreto. «Los usuarios» no es un rol; «el auxiliar de biblioteca» si.
 - 1.75 pts que incluya **una cifra** que mida el dolor. Una cifra estimada sirve; «mucho tiempo» o «se pierde informacion» no.
-- **Si el dominio es generico** («una red social», «una app de la universidad», «un e-commerce»), **toda la pregunta vale cero**: sin dominio concreto no hay nada que arquitecturar en las clases siguientes, y el estudiante llegaria a la pregunta 13 sin sistema que dibujar.
+- **Si el dominio es generico** («una red social», «una app de la universidad», «un e-commerce»), **toda la pregunta vale cero**: sin dominio concreto no hay nada que disenar en las clases siguientes, y el estudiante llegaria a la pregunta 13 sin sistema que dibujar.
 - Se descuenta si el problema pasa de 3 frases.
 
 ### Errores frecuentes y que hacer

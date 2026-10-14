@@ -967,7 +967,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Ficha de dominio y problema de la
                                  '8.'],
                     'puntos': 13,
                     'rubrica': 'Correctas: 0, 2, 3 y 5. La 0 mezcla dos capacidades con «y». La 2 '
-                               'es ambigua e inmedible. La 3 describe implementacion tecnica, no '
+                               'es ambigua y no se puede medir. La 3 describe implementacion tecnica, no '
                                'comportamiento requerido. La 5 no es un requisito del sistema sino '
                                'una tarea del equipo. Las opciones 1 y 4 estan bien formuladas.',
                     'tipo': 'cerrada_multi'}],
@@ -1007,7 +1007,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Ficha de dominio y problema de la
                     'puntos': 30,
                     'rubrica': 'Dos epicas con objetivo y RF agrupados. Ocho historias en formato '
                                'Como/quiero/para con roles concretos de Huellitas, sin la palabra '
-                               'usuario, con beneficio real y no tautologico. Todas son cortes '
+                               'usuario, con beneficio real, que no repita la misma accion. Todas son cortes '
                                'verticales de valor y traen RF de origen; el catalogo queda '
                                'cubierto sin RF sueltos.',
                     'tipo': 'abierta'},
@@ -1046,7 +1046,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Ficha de dominio y problema de la
                                  'registrado**, entonces el sistema no vuelve a pedir sus datos.\n'
                                  '- Buscar expediente: la busqueda devuelve **varias mascotas con '
                                  'el mismo nombre**, entonces el sistema muestra columnas que '
-                                 'permiten desambiguar (diga cuales).\n'
+                                 'permiten distinguir una de otra (diga cuales).\n'
                                  '- Agendar cita: el veterinario **ya tiene una cita a esa hora**, '
                                  'entonces el sistema la rechaza y propone alternativas.\n'
                                  '\n'
@@ -1439,7 +1439,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Ficha de dominio y problema de la
  9: {'preguntas': [{'enunciado': '## Diagrama de casos de uso de VetCare\n'
                                  '\n'
                                  '**Aviso honesto sobre la herramienta:** Mermaid **no tiene** un '
-                                 'tipo nativo de diagrama de casos de uso (no dibuja monigotes ni '
+                                 'tipo nativo de diagrama de casos de uso (no dibuja figuras de actor ni '
                                  'elipses con limite de sistema). Lo vamos a representar con un '
                                  '`flowchart LR` que respeta la **semantica** de UML aunque no la '
                                  'forma exacta:\n'
@@ -1579,7 +1579,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Ficha de dominio y problema de la
                                  'numerados respecto al paso donde se desvian:\n'
                                  '  - **(A) Resultados multiples**: hay varias mascotas que se '
                                  'llaman igual. Diga **que columnas muestra el sistema para '
-                                 'desambiguar** (minimo 3) y como sigue el flujo cuando el actor '
+                                 'distinguirlas** (minimo 3) y como sigue el flujo cuando el actor '
                                  'escoge una.\n'
                                  '  - **(B) Sin resultados**: la busqueda no encuentra nada. '
                                  'Escriba el **mensaje exacto entre comillas** que muestra el '
@@ -1598,8 +1598,8 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Ficha de dominio y problema de la
                     'rubrica': 'Plantilla completa con flujo principal de minimo 6 pasos en pares '
                                'actor-sistema y los tres criterios de busqueda explicitos. Los dos '
                                'flujos alternos exigidos estan numerados respecto a su paso de '
-                               'desvio: resultados multiples con minimo 3 columnas de '
-                               'desambiguacion, y sin resultados con el mensaje exacto entre '
+                               'desvio: resultados multiples con minimo 3 columnas '
+                               'para distinguirlas, y sin resultados con el mensaje exacto entre '
                                'comillas y una salida ofrecida al actor. El campo RNF asociado '
                                'indica el ID y el paso donde se mide.',
                     'tipo': 'abierta'},
@@ -2324,7 +2324,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Ficha de dominio y problema de la
                                   'que se puede buscar (deben coincidir con RF-03) y diga cual es '
                                   'el criterio por defecto y por que.\n'
                                   '3. `COLUMNAS DE LA LISTA DE RESULTADOS:` **minimo 4 columnas** '
-                                  'que permitan **desambiguar** entre las cuatro Lunas. Para cada '
+                                  'que permitan **distinguir** entre las cuatro Lunas. Para cada '
                                   'columna explique en media linea por que ayuda a distinguirlas '
                                   '(pista: dueno responsable, especie y raza, edad o fecha de '
                                   'nacimiento, ultima atencion).\n'
@@ -2345,7 +2345,7 @@ EXAMLAB = {1: {'preguntas': [{'enunciado': '## Ficha de dominio y problema de la
                      'puntos': 20,
                      'rubrica': 'Los 5 bloques completos. Tres criterios de busqueda coherentes '
                                 'con RF-03 y criterio por defecto justificado. Minimo 4 columnas '
-                                'de desambiguacion con su razon. Mensaje de cero resultados '
+                                'para distinguirlas, cada una con su razon. Mensaje de cero resultados '
                                 'escrito textualmente entre comillas, con accion de salida y sin '
                                 'usar Error ni No hay datos. Mensaje de estado con codigo generado '
                                 'visible y conteo de clics del camino mas corto.',
