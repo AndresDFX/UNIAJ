@@ -11,6 +11,7 @@ Aquí no hay material de clase: esto es el "cómo se alista y se opera el semest
 |---|---|
 | [01 — Alistar un curso: encuentros, Meet y correo](01%20-%20Alistar%20un%20curso%20%28encuentros%2C%20Meet%2C%20correo%20e%20invitaciones%29.md) | Al arrancar un periodo. Hay dos caminos: un proyecto de Apps Script por curso, o **uno solo con todos los cursos** |
 | [02 — Instalar y probar el Apps Script de grabaciones](02%20-%20Instalar%20y%20probar%20el%20Apps%20Script%20de%20grabaciones.md) | Una vez por cuenta; sirve para todos los cursos y periodos |
+| [03 — Registrar las notas de un corte](03%20-%20Registrar%20las%20notas%20de%20un%20corte%20%28ExamLab%20a%20Campus%20TI%29.docx) | Al cerrar cada corte: pasa la nota «Corte N» del libro de calificaciones de ExamLab a Campus TI (Academusoft), a mano |
 
 ## El orden, en corto
 
