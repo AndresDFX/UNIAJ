@@ -1,0 +1,10 @@
+Proyecto Integrador · Programacion II · VetCare
+
+Equipo: <nombre del equipo>
+Integrantes: <nombre y codigo de cada uno>
+Caso de matricula: <A (tambien Seminario) o B (solo Programacion II)>
+
+Como se ejecuta:
+1. Abrir la carpeta proyecto en VS Code (o el IDE del equipo).
+2. Ejecutar la clase <NombreDeLaClaseConMain>.
+3. Los datos se leen y se guardan en datos/<archivo>.

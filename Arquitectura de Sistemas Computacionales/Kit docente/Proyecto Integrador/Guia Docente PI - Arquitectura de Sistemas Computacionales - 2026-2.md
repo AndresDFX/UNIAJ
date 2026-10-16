@@ -26,14 +26,33 @@ Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 
 ## Entrega y sustentación
 
 - **Plazo único:** domingo 15 de noviembre de 2026, 11:59 p. m., en ExamLab.
-- **Un solo .zip** (cualquier tipo de archivo, máx. 50 MB) con:
-  - **Documento de arquitectura** — PDF o DOCX: contexto, ADRs breves, riesgos, costos estimados en lenguaje cualitativo y las secciones de seguridad, monitoreo, rendimiento y escalabilidad.
-  - **diagramas/** — Componentes (C4), despliegue y flujo CI/CD, exportados en PNG, con su archivo fuente (.drawio o el texto Mermaid).
-  - **contenedores/** — El Dockerfile o el docker-compose.yml, y las capturas del lab (LabEx Docker Playground o Killercoda) con la fecha visible.
-  - **.github/workflows/** — El workflow de GitHub Actions (.yml) y el stub que compila y prueba.
+- **Un solo .zip** (máx. 50 MB) con esta forma —los estudiantes tienen la carpeta «Plantilla de entrega» ya armada—:
+
+```
+Equipo <nombre>.zip
+├── Documento de arquitectura.docx  ← con las secciones de la plantilla
+├── diagramas/  ← cada uno en PNG + su fuente (.drawio o .mmd)
+│   ├── 1 componentes.png
+│   ├── 2 despliegue.png
+│   └── 3 ci-cd.png
+├── app/  ← el servicio mínimo (stub)
+├── contenedores/
+│   ├── Dockerfile  ← o docker-compose.yml
+│   └── capturas/  ← el lab corriendo, con la fecha visible
+└── .github/
+    └── workflows/
+        └── ci.yml  ← construye y prueba app/
+```
+
+- **Qué debe traer cada pieza:**
+  - **Documento de arquitectura.docx** — Las secciones de la plantilla: dominio y alcance (3 a 5 capacidades), modelo de servicio (IaaS, PaaS o SaaS, y por qué), decisiones, despliegue y contenedores, CI/CD, seguridad · monitoreo · costos · escalabilidad, y riesgos.
+  - **diagramas/** — Los tres —componentes (C4), despliegue y flujo de CI/CD—, legibles y con los mismos nombres en los tres.
+  - **app/** — El servicio mínimo que se contiene y que el workflow construye y prueba.
+  - **contenedores/** — El Dockerfile (o el docker-compose.yml) y las capturas del lab (LabEx o Killercoda) donde se ve corriendo, con la fecha visible.
+  - **.github/workflows/ci.yml** — Las etapas de construir y probar, que pasan; el despliegue puede ser simulado.
 - **Enlace obligatorio:** el repositorio de GitHub donde está el workflow, o la carpeta de Drive del equipo si el workflow se entrega solo como archivo.
 - **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
-- **Sustentación:** lunes 16/11/2026, en la última clase (sesión 13; es festivo, pero sí hay clase), por Meet: 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
+- **Sustentación:** lunes 16/11/2026, en la última clase (es festivo, pero sí hay clase), por Meet: 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
 - **Qué muestran:** el diagrama de despliegue, el contenedor corriendo en el lab (o sus capturas, si la sesión del lab caducó) y el workflow con sus etapas.
 
 ## Rúbrica (100 pts)

@@ -42,14 +42,25 @@ Requisitos 20 · UML 25 · Interfaz 20 · Arquitectura de datos 15 · Plan de pr
 ## Entrega y sustentación
 
 - **Plazo único:** domingo 15 de noviembre de 2026, 11:59 p. m., en ExamLab.
-- **Un solo .zip** (cualquier tipo de archivo, máx. 50 MB) con:
-  - **Documento de diseño** — PDF: requisitos RF/RNF, casos de uso, diagrama de clases, diagrama dinámico (actividad o secuencia) y diccionario de datos con el formato de almacenamiento.
-  - **diagramas/** — Cada diagrama exportado en PNG, con su archivo fuente.
-  - **Mockup** — El PDF exportado de las pantallas. El enlace al mockup navegable (Figma, Penpot o Balsamiq) va dentro del documento de diseño.
-  - **Plan de pruebas** — Los casos de prueba, cada uno trazado al requisito que verifica.
+- **Un solo .zip** (máx. 50 MB) con esta forma —los estudiantes tienen la carpeta «Plantilla de entrega» ya armada—:
+
+```
+Equipo <nombre>.zip
+├── Documento de diseno.docx  ← requisitos, UML y datos, en el orden de la plantilla
+├── diagramas/  ← cada diagrama en PNG + su archivo fuente
+├── mockup/
+│   └── Mockup.pdf  ← las pantallas exportadas
+└── Plan de pruebas.docx  ← la tabla de casos de prueba de la plantilla
+```
+
+- **Qué debe traer cada pieza:**
+  - **Documento de diseno.docx** — Requisitos RF y RNF verificables y trazables, casos de uso, diagrama de clases, un diagrama dinámico (actividad o secuencia), diccionario de datos con el formato de almacenamiento y el enlace al mockup navegable.
+  - **diagramas/** — Casos de uso, clases y el dinámico, en PNG, con su archivo fuente.
+  - **mockup/Mockup.pdf** — Las pantallas del flujo crítico (registrar, buscar y ver el historial), exportadas desde Figma, Penpot o Balsamiq.
+  - **Plan de pruebas.docx** — Un caso de prueba por requisito crítico, trazado a su RF.
 - **Enlace obligatorio:** la carpeta de Drive del equipo o el repositorio, con los mismos archivos.
 - **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
-- **Sustentación:** jueves 19/11/2026, en la última clase (sesión 13, mismo día del Parcial 3), por Meet: 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
+- **Sustentación:** jueves 19/11/2026, en la última clase (mismo día del Parcial 3), por Meet: 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
 - **Qué muestran:** el mockup navegable recorriendo el flujo crítico (registrar, buscar y ver el historial) y la trazabilidad de un requisito hasta su caso de uso y su caso de prueba.
 
 Enunciado del estudiante en `Clases/Proyecto Integrador/`.

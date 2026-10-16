@@ -1,0 +1,1 @@
+Aquí va el servicio mínimo (stub): el código que el Dockerfile contiene y que el workflow construye y prueba. Responde en una ruta de salud y trae al menos una prueba. Borren este archivo al terminar.

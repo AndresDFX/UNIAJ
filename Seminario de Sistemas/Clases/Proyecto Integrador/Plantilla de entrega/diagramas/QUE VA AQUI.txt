@@ -1,0 +1,1 @@
+Aqui van los diagramas en PNG (casos de uso, clases y el dinamico), cada uno con su archivo fuente. Borren este archivo al terminar.

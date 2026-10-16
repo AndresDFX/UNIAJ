@@ -26,14 +26,32 @@ Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 
 ## Entrega y sustentación
 
 - **Plazo único:** domingo 15 de noviembre de 2026, 11:59 p. m., en ExamLab.
-- **Un solo .zip** (cualquier tipo de archivo, máx. 50 MB) con:
-  - **scripts/** — Los scripts SQL, numerados en el orden en que se ejecutan: el DDL (tablas, llaves y restricciones), los roles y privilegios, los procedimientos, funciones y disparadores con sus casos de prueba, y las consultas de optimización antes y después. Corren en PostgreSQL tal cual, sin retoques.
-  - **Diagrama ER** — El modelo exportado en PNG o SVG: el mismo que implementa el DDL.
-  - **Informe** — PDF o DOCX: el plan de respaldo y recuperación, la justificación de cada optimización y el contrato de integración app ↔ BD con su ejemplo.
-  - **capturas/** — La ejecución de los scripts y de los casos de prueba, con la salida visible.
-- **Enlace obligatorio:** el repositorio de GitHub o la carpeta de Drive del equipo, con los mismos scripts.
+- **Un solo .zip** (máx. 50 MB) con esta forma —los estudiantes tienen la carpeta «Plantilla de entrega» ya armada—:
+
+```
+Equipo <nombre>.zip
+├── Informe.docx  ← el informe, con las secciones de la plantilla
+├── diagrama/
+│   └── Diagrama ER.png  ← el modelo: el mismo que crea el DDL
+├── scripts/  ← corren en PostgreSQL tal cual, en orden
+│   ├── 01_ddl.sql  ← tablas, llaves y restricciones
+│   ├── 02_roles_y_privilegios.sql  ← roles, GRANT y REVOKE
+│   ├── 03_programables.sql  ← procedimientos, funciones, disparadores y pruebas
+│   └── 04_optimizacion.sql  ← consultas antes y después
+└── capturas/  ← la salida de cada script y de cada prueba
+```
+
+- **Qué debe traer cada pieza:**
+  - **Informe.docx** — Las secciones de la plantilla: portada con integrantes, modelo, seguridad y respaldo (con el plan de respaldo y recuperación), objetos programables, optimización, integración app ↔ BD y cómo correr los scripts.
+  - **Diagrama ER.png** — Las entidades del caso Huellitas (ver el anexo), con sus llaves y cardinalidades. Coincide con el DDL.
+  - **01_ddl.sql** — Todas las tablas, con llaves primarias y foráneas y las restricciones de las reglas del negocio.
+  - **02_roles_y_privilegios.sql** — Al menos 2 roles con privilegios distintos.
+  - **03_programables.sql** — Al menos 2 procedimientos, 1 función y 2 disparadores, cada uno con su caso de prueba.
+  - **04_optimizacion.sql** — Al menos 2 consultas con su EXPLAIN antes y después, y el índice o la reescritura que las mejora.
+  - **capturas/** — La salida de cada script y de cada caso de prueba.
+- **Enlace obligatorio:** el repositorio de GitHub o la carpeta de Drive del equipo, con los mismos archivos.
 - **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
-- **Sustentación:** lunes 16/11/2026, en la última clase (sesión 13; es festivo, pero sí hay clase), por Meet: 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
+- **Sustentación:** lunes 16/11/2026, en la última clase (es festivo, pero sí hay clase), por Meet: 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
 - **Qué muestran:** ejecutar en vivo un procedimiento y un disparador con sus casos de prueba, y una consulta antes y después de optimizarla.
 
 ## Rúbrica (100 pts)

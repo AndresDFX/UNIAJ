@@ -2,8 +2,9 @@
 """Genera el Proyecto Integrador 2026-2 de los cinco cursos.
 
 BD II, Arquitectura, Programacion II, Seminario e Introduccion a la Ingenieria. La entrega
-y la sustentacion son comunes a los cinco (ver `entrega_y_sustentacion`); el resto es de
-cada curso.
+y la sustentacion son comunes a los cinco; lo que entrega cada uno esta en `ENTREGA` y su
+carpeta «Plantilla de entrega» en `PLANTILLAS`. El enunciado es corto: que se hace, que se
+entrega, como se califica y como se entrega.
 
 Estudiante (compartible):
   <Curso>/Clases/Proyecto Integrador/Enunciado Proyecto Integrador - <Curso> - 2026-2.docx
@@ -16,6 +17,7 @@ from __future__ import annotations
 
 import os
 import re
+import shutil
 import sys
 import unicodedata
 from pathlib import Path
@@ -92,103 +94,154 @@ QUIEN_SUBE = ("@@Cada integrante sube la entrega del equipo@@ desde su propia cu
 
 
 # ---------------------------------------------------------------------------
-# Plantilla de entrega de CADA curso: especifica, nunca generica (decision docente, 13/10/2026)
+# Lo que entrega CADA curso: especifico, nunca generico (decision docente, 13/10/2026)
 #
 # NOTA PARA LAS SIGUIENTES VERSIONES. Que va dentro del .zip, que enlace se pide y que se
 # muestra en la sustentacion se escribe con los entregables y las herramientas de ESE curso.
-# Hubo un texto unico para los cinco («codigo, documentos, diagramas y capturas»): le pedia
-# codigo a Introduccion, donde no se programa, y no le decia a ningun estudiante que archivos
-# de su curso se califican. Cada fila sale de los entregables que el enunciado del curso ya
-# exige —aqui no se inventan requisitos: se dice como se empacan—. Si cambia un entregable o
-# se agrega un curso, se cambia o se agrega SU entrada; lo comun sigue arriba. El enunciado,
-# la guia docente (.docx) y la guia en Markdown leen la misma entrada, asi no se desalinean.
-# Los textos van con tildes: los enunciados de Prog. II y Seminario se las quitan al imprimir.
+# (Hubo un texto unico para los cinco que le pedia codigo a Introduccion, donde no se
+# programa.) Cada pieza sale de lo que el curso ya exige y de su rubrica: aqui no se inventan
+# requisitos, se dice como se empacan. El enunciado (arbol + tabla), la carpeta «Plantilla de
+# entrega», la guia docente y la guia en Markdown leen la misma entrada: no se desalinean.
+#
+# Desde el 16/10/2026 el enunciado es CORTO y la entrega trae PLANTILLA (pedido docente: «se
+# pierde que tienen que hacer los estudiantes»; «un template de como se deberia ver»). El
+# enunciado dice que se hace, que se entrega, como se califica y como se entrega. Los hitos de
+# clase y las actividades intermedias NO van ahi: el docente los da por otro medio y siguen
+# en la guia docente.
 # ---------------------------------------------------------------------------
 
+#: Por curso:
+#:   arbol  — lo que se ve al abrir el .zip: (ruta, nota); una ruta con «/» al final es carpeta.
+#:   zip    — lo que tiene que tener cada pieza: la tabla del enunciado y de la guia docente.
+#:   enlace, cuando, muestra (y opcionales quien_sube, corte) — entrega y sustentacion.
+#: Los textos van con tildes: Prog. II y Seminario se las quitan al imprimir.
 ENTREGA = {
     "bd2": {
+        "arbol": [
+            ("Informe.docx", "el informe, con las secciones de la plantilla"),
+            ("diagrama/Diagrama ER.png", "el modelo: el mismo que crea el DDL"),
+            ("scripts/", "corren en PostgreSQL tal cual, en orden"),
+            ("scripts/01_ddl.sql", "tablas, llaves y restricciones"),
+            ("scripts/02_roles_y_privilegios.sql", "roles, GRANT y REVOKE"),
+            ("scripts/03_programables.sql", "procedimientos, funciones, disparadores y pruebas"),
+            ("scripts/04_optimizacion.sql", "consultas antes y después"),
+            ("capturas/", "la salida de cada script y de cada prueba"),
+        ],
         "zip": [
-            ("scripts/", "Los scripts SQL, numerados en el orden en que se ejecutan: el DDL "
-             "(tablas, llaves y restricciones), los roles y privilegios, los procedimientos, "
-             "funciones y disparadores con sus casos de prueba, y las consultas de optimización "
-             "antes y después. Corren en PostgreSQL tal cual, sin retoques."),
-            ("Diagrama ER", "El modelo exportado en PNG o SVG: el mismo que implementa el DDL."),
-            ("Informe", "PDF o DOCX: el plan de respaldo y recuperación, la justificación de "
-             "cada optimización y el contrato de integración app ↔ BD con su ejemplo."),
-            ("capturas/", "La ejecución de los scripts y de los casos de prueba, con la salida "
-             "visible."),
+            ("Informe.docx", "Las secciones de la plantilla: portada con integrantes, modelo, "
+             "seguridad y respaldo (con el plan de respaldo y recuperación), objetos "
+             "programables, optimización, integración app ↔ BD y cómo correr los scripts."),
+            ("Diagrama ER.png", "Las entidades del caso Huellitas (ver el anexo), con sus llaves "
+             "y cardinalidades. Coincide con el DDL."),
+            ("01_ddl.sql", "Todas las tablas, con llaves primarias y foráneas y las "
+             "restricciones de las reglas del negocio."),
+            ("02_roles_y_privilegios.sql", "Al menos 2 roles con privilegios distintos."),
+            ("03_programables.sql", "Al menos 2 procedimientos, 1 función y 2 disparadores, "
+             "cada uno con su caso de prueba."),
+            ("04_optimizacion.sql", "Al menos 2 consultas con su EXPLAIN antes y después, y el "
+             "índice o la reescritura que las mejora."),
+            ("capturas/", "La salida de cada script y de cada caso de prueba."),
         ],
         "enlace": "el repositorio de GitHub o la carpeta de Drive del equipo, con los mismos "
-                  "scripts",
-        "cuando": "lunes 16/11/2026, en la última clase (sesión 13; es festivo, pero sí hay "
-                  "clase), por Meet",
+                  "archivos",
+        "cuando": "lunes 16/11/2026, en la última clase (es festivo, pero sí hay clase), por "
+                  "Meet",
         "muestra": "ejecutar en vivo un procedimiento y un disparador con sus casos de prueba, "
                    "y una consulta antes y después de optimizarla",
     },
     "arq": {
+        "arbol": [
+            ("Documento de arquitectura.docx", "con las secciones de la plantilla"),
+            ("diagramas/", "cada uno en PNG + su fuente (.drawio o .mmd)"),
+            ("diagramas/1 componentes.png", ""),
+            ("diagramas/2 despliegue.png", ""),
+            ("diagramas/3 ci-cd.png", ""),
+            ("app/", "el servicio mínimo (stub)"),
+            ("contenedores/Dockerfile", "o docker-compose.yml"),
+            ("contenedores/capturas/", "el lab corriendo, con la fecha visible"),
+            (".github/workflows/ci.yml", "construye y prueba app/"),
+        ],
         "zip": [
-            ("Documento de arquitectura", "PDF o DOCX: contexto, ADRs breves, riesgos, costos "
-             "estimados en lenguaje cualitativo y las secciones de seguridad, monitoreo, "
-             "rendimiento y escalabilidad."),
-            ("diagramas/", "Componentes (C4), despliegue y flujo CI/CD, exportados en PNG, con "
-             "su archivo fuente (.drawio o el texto Mermaid)."),
-            ("contenedores/", "El Dockerfile o el docker-compose.yml, y las capturas del lab "
-             "(LabEx Docker Playground o Killercoda) con la fecha visible."),
-            (".github/workflows/", "El workflow de GitHub Actions (.yml) y el stub que compila "
-             "y prueba."),
+            ("Documento de arquitectura.docx", "Las secciones de la plantilla: dominio y "
+             "alcance (3 a 5 capacidades), modelo de servicio (IaaS, PaaS o SaaS, y por qué), "
+             "decisiones, despliegue y contenedores, CI/CD, seguridad · monitoreo · costos · "
+             "escalabilidad, y riesgos."),
+            ("diagramas/", "Los tres —componentes (C4), despliegue y flujo de CI/CD—, legibles "
+             "y con los mismos nombres en los tres."),
+            ("app/", "El servicio mínimo que se contiene y que el workflow construye y prueba."),
+            ("contenedores/", "El Dockerfile (o el docker-compose.yml) y las capturas del lab "
+             "(LabEx o Killercoda) donde se ve corriendo, con la fecha visible."),
+            (".github/workflows/ci.yml", "Las etapas de construir y probar, que pasan; el "
+             "despliegue puede ser simulado."),
         ],
         "enlace": "el repositorio de GitHub donde está el workflow, o la carpeta de Drive del "
                   "equipo si el workflow se entrega solo como archivo",
-        "cuando": "lunes 16/11/2026, en la última clase (sesión 13; es festivo, pero sí hay "
-                  "clase), por Meet",
+        "cuando": "lunes 16/11/2026, en la última clase (es festivo, pero sí hay clase), por "
+                  "Meet",
         "muestra": "el diagrama de despliegue, el contenedor corriendo en el lab (o sus "
                    "capturas, si la sesión del lab caducó) y el workflow con sus etapas",
     },
     "prog2": {
+        "arbol": [
+            ("LEEME.txt", "integrantes, caso de matrícula y cómo se ejecuta"),
+            ("proyecto/src/", "todos los .java"),
+            ("datos/", "el .csv o .txt con registros de prueba"),
+            ("Manual de usuario.docx", "1 a 2 páginas con capturas"),
+        ],
         "zip": [
-            ("proyecto/", "El proyecto Java completo: la carpeta src con todos los .java, listo "
-             "para compilar y ejecutar. Sin carpetas de compilación (bin, out, target): pesan y "
-             "no se califican."),
-            ("datos/", "El archivo .csv o .txt con registros de prueba: el mismo que la "
-             "aplicación lee al arrancar."),
-            ("Manual de usuario", "PDF de 1 a 2 páginas con capturas de la interfaz."),
+            ("LEEME.txt", "Nombre del equipo, integrantes, caso de matrícula (A o B) y los pasos "
+             "para compilar y ejecutar."),
+            ("proyecto/src/", "La aplicación completa y que compila: clases del dominio, "
+             "colecciones, ventanas, manejo de errores y lectura y escritura del archivo de "
+             "datos. Sin carpetas de compilación (bin, out, target)."),
+            ("datos/", "El archivo que la aplicación lee al arrancar y en el que guarda, con "
+             "registros de prueba inventados."),
+            ("Manual de usuario.docx", "1 a 2 páginas con capturas, en el orden de la "
+             "plantilla: registrar, agendar, buscar, ver el historial y qué pasa con un dato "
+             "mal escrito."),
         ],
         "enlace": "el repositorio de GitHub con el mismo código, o la carpeta de Drive del "
                   "equipo",
-        "cuando": "miércoles 18/11/2026, en la última clase (sesión 13, mismo día del Parcial "
-                  "3), por Meet",
+        "cuando": "miércoles 18/11/2026, en la última clase (mismo día del Parcial 3), por "
+                  "Meet",
         "muestra": "la aplicación corriendo en vivo: registrar una mascota, buscarla por su ID, "
                    "escribir un dato inválido sin que se cierre, y cerrar y volver a abrir para "
                    "mostrar que los datos siguen ahí",
     },
     "seminario": {
+        "arbol": [
+            ("Documento de diseno.docx", "requisitos, UML y datos, en el orden de la plantilla"),
+            ("diagramas/", "cada diagrama en PNG + su archivo fuente"),
+            ("mockup/Mockup.pdf", "las pantallas exportadas"),
+            ("Plan de pruebas.docx", "la tabla de casos de prueba de la plantilla"),
+        ],
         "zip": [
-            ("Documento de diseño", "PDF: requisitos RF/RNF, casos de uso, diagrama de clases, "
-             "diagrama dinámico (actividad o secuencia) y diccionario de datos con el formato "
-             "de almacenamiento."),
-            ("diagramas/", "Cada diagrama exportado en PNG, con su archivo fuente."),
-            ("Mockup", "El PDF exportado de las pantallas. El enlace al mockup navegable "
-             "(Figma, Penpot o Balsamiq) va dentro del documento de diseño."),
-            ("Plan de pruebas", "Los casos de prueba, cada uno trazado al requisito que "
-             "verifica."),
+            ("Documento de diseno.docx", "Requisitos RF y RNF verificables y trazables, casos de "
+             "uso, diagrama de clases, un diagrama dinámico (actividad o secuencia), "
+             "diccionario de datos con el formato de almacenamiento y el enlace al mockup "
+             "navegable."),
+            ("diagramas/", "Casos de uso, clases y el dinámico, en PNG, con su archivo fuente."),
+            ("mockup/Mockup.pdf", "Las pantallas del flujo crítico (registrar, buscar y ver el "
+             "historial), exportadas desde Figma, Penpot o Balsamiq."),
+            ("Plan de pruebas.docx", "Un caso de prueba por requisito crítico, trazado a su RF."),
         ],
         "enlace": "la carpeta de Drive del equipo o el repositorio, con los mismos archivos",
-        "cuando": "jueves 19/11/2026, en la última clase (sesión 13, mismo día del Parcial 3), "
-                  "por Meet",
+        "cuando": "jueves 19/11/2026, en la última clase (mismo día del Parcial 3), por Meet",
         "muestra": "el mockup navegable recorriendo el flujo crítico (registrar, buscar y ver "
                    "el historial) y la trazabilidad de un requisito hasta su caso de uso y su "
                    "caso de prueba",
     },
     "intro": {
+        "arbol": [
+            ("Informe final.docx", "las 12 secciones de la plantilla"),
+            ("prototipo/v1.png", "el prototipo de baja fidelidad"),
+            ("prototipo/v2.png", "el prototipo mejorado"),
+        ],
         "zip": [
-            ("Informe final", "PDF de 9 a 11 páginas con las 12 secciones (sección 4)."),
-            ("prototipo/", "Las imágenes del prototipo v1 (Clase 10) y v2 (Clase 11), en PNG o "
-             "PDF. El enlace al prototipo navegable va en la sección 7 del informe."),
-            ("Registro de IA", "El de la Clase 11, exportado en PDF desde el documento del "
-             "equipo: el prompt completo, las tres variantes, la elegida con su razón, lo "
-             "corregido a mano y lo descartado."),
-            ("Ficha de avance", "La de la Clase 12, exportada en PDF: los hallazgos de la "
-             "prueba con la persona ajena al equipo, con su tipo, y el plan de ajustes."),
+            ("Informe final.docx", "Las 12 secciones de la plantilla, en 9 a 11 páginas. Se "
+             "puede entregar en .docx o exportado a .pdf."),
+            ("prototipo/", "La v1 y la v2, en PNG o PDF. El enlace al prototipo navegable va en "
+             "la sección 7 del informe."),
         ],
         "enlace": "la carpeta de Drive del equipo —la de la bitácora—, compartida con permiso "
                   "de lector",
@@ -200,10 +253,15 @@ ENTREGA = {
         "cuando": "en la última clase de su grupo (SB141C y LB141F martes 17/11; SB141B "
                   "jueves 19/11), por Microsoft Teams",
         "corte": "Se corta a los 15 minutos, sin excepción.",
-        "muestra": "el prototipo navegable, recorriendo en vivo una de las tareas del guion de "
-                   "prueba de principio a fin, como si funcionara",
+        "muestra": "el prototipo navegable, recorriendo en vivo una tarea de principio a fin, "
+                   "como si funcionara",
     },
 }
+
+#: Carpeta que acompana al enunciado en «Clases/Proyecto Integrador/»: el .zip ya armado,
+#: listo para llenar (CLAUDE.md §4: si la forma del entregable se califica, se entrega).
+CARPETA_PLANTILLA = "Plantilla de entrega"
+GUIA_GRIS = RGBColor(0x7F, 0x7F, 0x7F)
 
 
 def _sin_tildes(texto):
@@ -216,67 +274,374 @@ def _linea_sustentacion(e):
     return e["cuando"] + ": " + SUSTENTACION + "." + (" " + e["corte"] if e.get("corte") else "")
 
 
-def entrega_y_sustentacion(doc, curso, titulo, *, sin_tildes=False):
-    """Seccion del enunciado: lo comun (plazo, .zip, quien sube, 15 + 5) y la plantilla del curso."""
+def _arbol_lineas(arbol, raiz):
+    """[(texto, nota)] del arbol del .zip, con conectores ├── └── como en un explorador."""
+    hijos = {"": []}
+    for ruta, nota in arbol:
+        partes = ruta.rstrip("/").split("/")
+        padre = ""
+        for k, parte in enumerate(partes):
+            ultima = k == len(partes) - 1
+            clave = padre + "/" + parte if padre else parte
+            nombre = parte + ("/" if (not ultima or ruta.endswith("/")) else "")
+            hermanos = hijos.setdefault(padre, [])
+            if not any(c == clave for c, _, _ in hermanos):
+                hermanos.append((clave, nombre, nota if ultima else ""))
+            elif ultima and nota:
+                hijos[padre] = [(c, n, nota if c == clave else x) for c, n, x in hermanos]
+            hijos.setdefault(clave, [])
+            padre = clave
+    lineas = [(raiz, "")]
+
+    def pintar(padre, prefijo):
+        hs = hijos.get(padre, [])
+        for i, (clave, nombre, nota) in enumerate(hs):
+            ultimo = i == len(hs) - 1
+            lineas.append((prefijo + ("└── " if ultimo else "├── ") + nombre, nota))
+            pintar(clave, prefijo + ("    " if ultimo else "│   "))
+    pintar("", "")
+    return lineas
+
+
+def arbol_docx(doc, arbol, f=str):
+    """El arbol del .zip en monoespaciada, con su nota al lado: «asi se debe ver»."""
+    lineas = _arbol_lineas([(f(r), n) for r, n in arbol], f("Equipo <nombre>.zip"))
+    ancho = max(len(t) for t, _ in lineas) + 2
+    for texto, nota in lineas:
+        p = doc.add_paragraph()
+        p.paragraph_format.space_after = Pt(0)
+        p.paragraph_format.space_before = Pt(0)
+        _shade(p, "F4F6F8")
+        r = p.add_run(texto.ljust(ancho) + ("← " + f(nota) if nota else ""))
+        _run(r, size=9.5, color=GRIS, name="Consolas")
+    para(doc, "", space_after=4)
+
+
+def seccion_entregable(doc, curso, titulo, *, sin_tildes=False):
+    """«Qué se entrega»: el arbol del .zip, la plantilla y lo que tiene que tener cada pieza."""
     e = ENTREGA[curso]
     f = _sin_tildes if sin_tildes else str
     h2(doc, f(titulo))
-    bullets(doc, [f("@@Plazo único:@@ " + PLAZO + ", en " + _plat() + "."),
-                  f("@@Qué se sube:@@ " + ZIP + ", con esto adentro:")])
-    table(doc, [f("En el .zip"), f("Qué contiene")], [[f(a), f(b)] for a, b in e["zip"]],
-          anchos=[1.7, 5.1])
+    para(doc, f("Un solo archivo .zip con esta forma. La carpeta @@«" + CARPETA_PLANTILLA + "»@@, "
+                "en esta misma carpeta, ya la trae armada: descárguenla, llénenla siguiendo "
+                "sus INSTRUCCIONES y comprímanla."), shade="E8F4FA")
+    arbol_docx(doc, e["arbol"], f)
+    table(doc, [f("Pieza"), f("Qué tiene que tener")], [[f(a), f(b)] for a, b in e["zip"]],
+          anchos=[1.9, 4.9])
+
+
+def seccion_entrega(doc, curso, titulo, *, sin_tildes=False):
+    """«Entrega y sustentación»: plazo, cómo se sube, quién sube y qué se muestra."""
+    e = ENTREGA[curso]
+    f = _sin_tildes if sin_tildes else str
+    h2(doc, f(titulo))
     bullets(doc, [f(x) for x in [
-        "@@Enlace obligatorio:@@ junto al .zip, " + e["enlace"] + ".",
+        "@@Plazo único:@@ " + PLAZO + ", en " + _plat() + ".",
+        "@@Qué se sube:@@ el .zip (máximo 50 MB) y, junto a él, " + e["enlace"] + ".",
         e.get("quien_sube", QUIEN_SUBE),
         "@@Sustentación:@@ " + _linea_sustentacion(e),
-        "@@Qué se muestra en la sustentación:@@ " + e["muestra"] + ".",
+        "@@Qué se muestra:@@ " + e["muestra"] + ".",
     ]])
 
 
-def modalidad_equipo(doc, *, sin_tildes=False):
-    """Recuadro de modalidad al comienzo del enunciado: que nadie lo lea como individual.
-
-    La regla es SOLO del proyecto: talleres, quices, parciales y demas entregables conservan
-    la modalidad que el docente define para cada uno (decision docente, 13/10/2026)."""
-    f = _sin_tildes if sin_tildes else str
-    para(doc, f("@@Modalidad del proyecto: " + EQUIPO + ".@@ Este semestre el Proyecto "
-                "Integrador no es individual: lo construye el equipo completo y lo sustentan "
-                "todos sus integrantes. Esta regla es solo para el proyecto: talleres, quices, "
-                "parciales y demás entregables mantienen la modalidad que se indique en cada uno."),
-         shade="FFF8D6", space_after=8)
-
-
 def entrega_docente(doc, curso, *, sin_tildes=False):
-    """La misma plantilla en la guia docente, con lo que hay que revisar al calificar."""
+    """La misma entrega en la guia docente, con lo que hay que revisar al calificar."""
     e = ENTREGA[curso]
     f = _sin_tildes if sin_tildes else str
     h2(doc, f("Entrega y sustentación"))
     bullets(doc, [f(x) for x in [
         "Plazo único en ExamLab: " + PLAZO + ". " + ZIP[0].upper() + ZIP[1:] + ", y " +
-        e["enlace"] + " (obligatorio).",
+        e["enlace"] + " (obligatorio). Los estudiantes tienen la carpeta «" + CARPETA_PLANTILLA +
+        "» con la forma exacta del .zip.",
         "Proyecto " + EQUIPO + " —solo el proyecto: los demás entregables conservan su "
         "modalidad—. " + e.get("quien_sube", QUIEN_SUBE),
         "Sustentación: " + _linea_sustentacion(e),
         "Lo que deben mostrar: " + e["muestra"] + ".",
     ]])
     h3(doc, f("Qué revisar en el .zip"))
-    table(doc, [f("En el .zip"), f("Qué debe traer")], [[f(a), f(b)] for a, b in e["zip"]],
-          anchos=[1.7, 5.1])
+    table(doc, [f("Pieza"), f("Qué debe traer")], [[f(a), f(b)] for a, b in e["zip"]],
+          anchos=[1.9, 4.9])
 
 
 def _md_entrega(curso):
-    """La seccion de entrega de la guia en Markdown, desde la misma plantilla del curso."""
+    """La seccion de entrega de la guia en Markdown, desde la misma entrada del curso."""
     e = ENTREGA[curso]
     md = (lambda t: re.sub(r"@@(.*?)@@", r"**\1**", t))
+    arbol = "\n".join((t + "  ← " + n) if n else t
+                      for t, n in _arbol_lineas(e["arbol"], "Equipo <nombre>.zip"))
     filas = "\n".join("  - **%s** — %s" % (a, b) for a, b in e["zip"])
     return ("## Entrega y sustentación\n\n"
             "- **Plazo único:** " + PLAZO + ", en ExamLab.\n"
-            "- **Un solo .zip** (cualquier tipo de archivo, máx. 50 MB) con:\n" + filas + "\n"
+            "- **Un solo .zip** (máx. 50 MB) con esta forma —los estudiantes tienen la "
+            "carpeta «" + CARPETA_PLANTILLA + "» ya armada—:\n\n```\n" + arbol + "\n```\n\n"
+            "- **Qué debe traer cada pieza:**\n" + filas + "\n"
             "- **Enlace obligatorio:** " + e["enlace"] + ".\n"
             "- **Proyecto " + EQUIPO + "** — solo el proyecto: los demás entregables "
             "conservan su modalidad. " + md(e.get("quien_sube", QUIEN_SUBE)) + "\n"
             "- **Sustentación:** " + _linea_sustentacion(e) + "\n"
             "- **Qué muestran:** " + e["muestra"] + ".\n")
+
+
+# ---------------------------------------------------------------------------
+# La carpeta «Plantilla de entrega» de cada curso
+#
+# Es el .zip ya armado: cada documento con sus secciones (y sus tablas vacias, donde la forma
+# se califica), cada script o archivo de configuracion con su encabezado y sus marcas, y un
+# «QUE VA AQUI» en cada carpeta que dice que va ahi. Solo estructura: nada de la solucion.
+# ---------------------------------------------------------------------------
+
+def _leeme_raiz(asignatura):
+    return ("Plantilla de entrega del Proyecto Integrador · " + asignatura + " · 2026-2\n\n"
+            "1. Descarguen esta carpeta completa (Drive la baja como .zip) y descomprímanla.\n"
+            "2. Llenen cada archivo: reemplacen el texto en gris y lo que está entre < >.\n"
+            "3. Pongan en cada carpeta lo que dice su «QUE VA AQUI», y al terminar borren esos "
+            "archivos y este.\n"
+            "4. Compriman la carpeta en un solo .zip (máximo 50 MB) con el nombre del equipo.\n"
+            "5. Cada integrante sube ese mismo .zip, con el enlace, en " + _plat() + " antes "
+            "del " + PLAZO + "\n")
+
+
+def _sql(n, titulo, cuerpo):
+    return ("-- Proyecto Integrador · Bases de Datos II · VetCare DB\n"
+            "-- Equipo: <nombre del equipo>\n"
+            "-- Archivo " + n + " de 04: " + titulo + "\n"
+            "-- Corre en PostgreSQL tal cual, en orden: 01, 02, 03, 04.\n\n" + cuerpo)
+
+
+PLANTILLAS = {
+    "bd2": [
+        ("Informe.docx", ("docx", "Informe del proyecto · VetCare DB", [
+            ("Portada", "Nombre del equipo, integrantes (nombre y código de cada uno), curso, "
+             "grupo y fecha."),
+            ("Modelo de datos", "Pegue el diagrama ER y explique en 3 a 5 frases las decisiones: "
+             "por qué cada tabla, cada llave foránea y cada restricción."),
+            ("Seguridad y respaldo", "Lo que puede y no puede hacer cada rol. Debajo de la "
+             "tabla, el plan de respaldo y recuperación: cada cuánto se respalda, cómo se "
+             "restaura y cuántos datos se pueden perder como máximo.",
+             (["Rol", "Qué puede hacer", "Qué no puede hacer"], 2)),
+            ("Objetos programables", "Cada procedimiento, función y disparador, con su caso de "
+             "prueba y lo que devolvió.",
+             (["Objeto", "Tipo", "Qué hace", "Caso de prueba", "Resultado"], 5)),
+            ("Optimización", "Cada consulta antes y después, con el costo que da EXPLAIN. Debajo "
+             "de la tabla, por qué el cambio la mejora.",
+             (["Consulta", "Costo antes", "Qué se cambió", "Costo después"], 2)),
+            ("Integración app ↔ BD", "Las operaciones que una aplicación llamaría y un ejemplo "
+             "de llamada en SQL.",
+             (["Operación", "Recibe", "Devuelve", "Procedimiento que la cumple"], 3)),
+            ("Cómo correr los scripts", "El orden (01 a 04), el motor (PostgreSQL) y cualquier "
+             "dato que haya que cargar antes."),
+        ])),
+        ("diagrama/QUE VA AQUI.txt", ("texto", "Aquí va «Diagrama ER.png»: el modelo exportado desde "
+         "draw.io o Excalidraw, el mismo que crea 01_ddl.sql. Borren este archivo al "
+         "terminar.\n")),
+        ("scripts/01_ddl.sql", ("texto", _sql("01", "tablas, llaves y restricciones",
+         "-- Una sección por tabla, en el orden en que se pueden crear\n"
+         "-- (primero las que no tienen llaves foráneas).\n\n"
+         "-- Tabla: <nombre>\n-- CREATE TABLE ...\n"))),
+        ("scripts/02_roles_y_privilegios.sql", ("texto", _sql("02", "roles y privilegios",
+         "-- 1. Roles\n-- CREATE ROLE ...\n\n-- 2. Privilegios de cada rol\n-- GRANT ...\n"
+         "-- REVOKE ...\n\n-- 3. Prueba: lo que cada rol puede y no puede hacer\n"))),
+        ("scripts/03_programables.sql", ("texto", _sql("03",
+         "procedimientos, funciones y disparadores",
+         "".join("-- " + t + "\n-- Qué hace: <una frase>\n-- CREATE ...\n"
+                 "-- Caso de prueba: <qué se ejecuta y qué debe pasar>\n\n"
+                 for t in ("Procedimiento 1", "Procedimiento 2", "Función 1",
+                           "Disparador 1", "Disparador 2"))))),
+        ("scripts/04_optimizacion.sql", ("texto", _sql("04", "optimización de consultas",
+         "".join("-- Consulta " + n + " · ANTES\n-- EXPLAIN ...\n\n"
+                 "-- Consulta " + n + " · CAMBIO (índice o reescritura)\n-- CREATE INDEX ...\n\n"
+                 "-- Consulta " + n + " · DESPUÉS\n-- EXPLAIN ...\n\n" for n in ("1", "2"))))),
+        ("capturas/QUE VA AQUI.txt", ("texto", "Aquí van las capturas de la ejecución: una por "
+         "script (01 a 04) y una por cada caso de prueba, con la salida visible. Nómbrenlas "
+         "como el script, por ejemplo 03_procedimiento1_prueba.png. Borren este archivo al "
+         "terminar.\n")),
+    ],
+    "arq": [
+        ("Documento de arquitectura.docx", ("docx", "Documento de arquitectura · CloudLite App", [
+            ("Portada", "Nombre del equipo, integrantes (nombre y código de cada uno), curso, "
+             "grupo y fecha."),
+            ("Dominio y alcance", "El problema en 3 frases y quién lo sufre; las 3 a 5 "
+             "capacidades que el sistema sí tendrá, y en una lista lo que no hará."),
+            ("Modelo de servicio", "IaaS, PaaS o SaaS para cada parte, y por qué. Qué gestiona el "
+             "equipo y qué el proveedor."),
+            ("Decisiones de arquitectura", "Una fila por decisión importante.",
+             (["Decisión", "Opciones consideradas", "Elegida y por qué", "Qué se sacrifica"],
+              3)),
+            ("Despliegue y contenedores", "Pegue el diagrama de despliegue. Qué servicio se "
+             "contiene, cómo se construye la imagen y en qué lab se probó."),
+            ("CI/CD", "Pegue el diagrama del flujo. Qué hace cada etapa del workflow y qué pasa "
+             "cuando una falla."),
+            ("Seguridad, monitoreo, costos y escalabilidad", "Una subsección por tema: amenazas "
+             "y controles; qué se mide y con qué alerta; el costo de cada componente (Bajo, "
+             "Medio o Alto, con su driver); cómo escala ante un pico."),
+            ("Riesgos", "Los riesgos que quedan abiertos.",
+             (["Riesgo", "Qué pasa si ocurre", "Cómo se mitiga"], 3)),
+        ])),
+        ("diagramas/QUE VA AQUI.txt", ("texto", "Aquí van los tres diagramas en PNG, cada uno con su "
+         "archivo fuente (.drawio o .mmd): «1 componentes», «2 despliegue» y «3 ci-cd». Las "
+         "cajas se llaman igual en los tres. Borren este archivo al terminar.\n")),
+        ("app/QUE VA AQUI.txt", ("texto", "Aquí va el servicio mínimo (stub): el código que el "
+         "Dockerfile contiene y que el workflow construye y prueba. Responde en una ruta de "
+         "salud y trae al menos una prueba. Borren este archivo al terminar.\n")),
+        ("contenedores/Dockerfile", ("texto",
+         "# Dockerfile del servicio <nombre>: construye la imagen del stub de app/.\n"
+         "# Llenen cada paso; las líneas con # son instrucciones de la plantilla.\n\n"
+         "# 1. Imagen base (una oficial y liviana)\n# FROM ...\n\n"
+         "# 2. Carpeta de trabajo\n# WORKDIR /app\n\n"
+         "# 3. Copiar el código y las dependencias\n# COPY ...\n\n"
+         "# 4. Puerto que expone el servicio\n# EXPOSE ...\n\n"
+         "# 5. Comando que lo arranca\n# CMD [...]\n")),
+        ("contenedores/capturas/QUE VA AQUI.txt", ("texto", "Aquí van las capturas del lab (LabEx o "
+         "Killercoda) donde se ve el contenedor corriendo y respondiendo, con la fecha visible. "
+         "Si la sesión del lab caducó, las capturas bastan. Borren este archivo al terminar.\n")),
+        (".github/workflows/ci.yml", ("texto",
+         "# Workflow de CI: construye y prueba el stub de app/ en cada push.\n"
+         "# Llenen los pasos marcados con #; el despliegue puede ser simulado.\n"
+         "name: ci\n"
+         "on: [push]\n"
+         "jobs:\n"
+         "  construir-y-probar:\n"
+         "    runs-on: ubuntu-latest\n"
+         "    steps:\n"
+         "      - uses: actions/checkout@v4\n"
+         "      # - name: Instalar dependencias\n"
+         "      # - name: Construir\n"
+         "      # - name: Probar\n"
+         "      # - name: Construir la imagen (docker build con contenedores/Dockerfile)\n")),
+    ],
+    "prog2": [
+        ("LEEME.txt", ("texto",
+         "Proyecto Integrador · Programacion II · VetCare\n\n"
+         "Equipo: <nombre del equipo>\n"
+         "Integrantes: <nombre y codigo de cada uno>\n"
+         "Caso de matricula: <A (tambien Seminario) o B (solo Programacion II)>\n\n"
+         "Como se ejecuta:\n"
+         "1. Abrir la carpeta proyecto en VS Code (o el IDE del equipo).\n"
+         "2. Ejecutar la clase <NombreDeLaClaseConMain>.\n"
+         "3. Los datos se leen y se guardan en datos/<archivo>.\n")),
+        ("proyecto/src/QUE VA AQUI.txt", ("texto",
+         "Aqui van todos los archivos .java del proyecto. Una forma de ordenarlos es la de la "
+         "Clase 12: modelo (Mascota, Dueno, Cita), datos (leer y escribir el archivo), servicio "
+         "(las reglas) y vista (las ventanas). No incluyan las carpetas bin, out ni target. "
+         "Borren este archivo al terminar.\n")),
+        ("datos/QUE VA AQUI.txt", ("texto",
+         "Aqui va el archivo .csv o .txt que la aplicacion lee al arrancar y en el que guarda, "
+         "con registros de prueba inventados (nunca datos de personas reales). Borren este "
+         "archivo al terminar.\n")),
+        ("Manual de usuario.docx", ("docx", "Manual de usuario · VetCare", [
+            ("Qué hace la aplicación", "En 2 o 3 frases, para alguien que no la conoce. Todo el "
+             "manual: 1 a 2 páginas."),
+            ("Cómo se abre", "Qué se ejecuta y qué ve la persona al arrancar. Una captura."),
+            ("Registrar un dueño y su mascota", "Los pasos, con una captura."),
+            ("Agendar una cita", "Los pasos, con una captura."),
+            ("Buscar un expediente por su ID", "Los pasos, con una captura."),
+            ("Ver el historial de una mascota", "Los pasos, con una captura."),
+            ("Si se escribe un dato mal", "Qué mensaje aparece y cómo se corrige."),
+            ("Dónde quedan los datos", "En qué archivo se guardan y qué pasa al cerrar y volver "
+             "a abrir."),
+        ])),
+    ],
+    "seminario": [
+        ("Documento de diseno.docx", ("docx", "Documento de diseño · VetCare", [
+            ("Portada", "Nombre del equipo, integrantes (nombre y código de cada uno), caso de "
+             "matrícula (A o C), curso, grupo y fecha."),
+            ("Requisitos", "Cada requisito, verificable: si no se puede comprobar, es un deseo.",
+             (["ID", "Requisito", "RF o RNF", "Cómo se verifica", "Frase del cliente que lo "
+               "origina"], 5)),
+            ("Casos de uso", "Pegue el diagrama y especifique el caso principal: actor, "
+             "precondición, flujo normal y flujos alternos."),
+            ("Diagrama de clases", "Pegue el diagrama: clases del dominio, atributos y "
+             "relaciones con su multiplicidad."),
+            ("Diagrama dinámico", "Actividad o secuencia del flujo crítico: registrar, buscar y "
+             "ver el historial."),
+            ("Diccionario de datos", "Cada dato que guarda el sistema. Debajo de la tabla, el "
+             "formato de almacenamiento: la estructura del CSV o un modelo entidad-relación "
+             "básico.",
+             (["Dato", "Tipo", "Obligatorio", "Regla o formato", "Ejemplo"], 5)),
+            ("Mockup", "El enlace al mockup navegable (Figma, Penpot o Balsamiq) y la lista de "
+             "pantallas que cubre."),
+        ])),
+        ("diagramas/QUE VA AQUI.txt", ("texto",
+         "Aqui van los diagramas en PNG (casos de uso, clases y el dinamico), cada uno con su "
+         "archivo fuente. Borren este archivo al terminar.\n")),
+        ("mockup/QUE VA AQUI.txt", ("texto",
+         "Aqui va Mockup.pdf: las pantallas del flujo critico exportadas desde Figma, Penpot o "
+         "Balsamiq. El enlace al mockup navegable va en el documento de diseno. Borren este "
+         "archivo al terminar.\n")),
+        ("Plan de pruebas.docx", ("docx", "Plan de pruebas · VetCare", [
+            ("Casos de prueba", "Un caso por requisito crítico, trazado a su RF.",
+             (["ID", "Requisito (RF)", "Pasos", "Resultado esperado", "Resultado obtenido"], 6)),
+        ])),
+    ],
+    "intro": [
+        ("Informe final.docx", ("docx", "Informe final del proyecto", [
+            ("Portada y resumen", "Título, integrantes y curso. Resumen de media página: el "
+             "problema con su número, la solución en dos frases y el impacto principal."),
+            ("El problema", "La cifra, cómo se obtuvo, a quién le pasa y las causas "
+             "principales."),
+            ("Actores y afectados", "Usuarios, quien opera, y al menos un afectado que no es "
+             "usuario."),
+            ("Antecedentes", "Tres soluciones que ya existen, qué hace cada una y por qué no "
+             "sirve aquí."),
+            ("Requisitos y criterios", "Funcionales, no funcionales, y cómo se verifica cada "
+             "criterio."),
+            ("Alternativas y decisión", "Al menos dos alternativas, los criterios, la elegida y "
+             "qué se sacrificó."),
+            ("La solución y el prototipo", "Descripción de la solución, capturas del prototipo v1 "
+             "y v2, el enlace al prototipo navegable y el recorrido principal paso a paso."),
+            ("Prueba y hallazgos", "Con quién se probó (solo el rol, no el nombre), qué tareas "
+             "intentó, qué falló y qué se arregló."),
+            ("Impacto", "Positivos con indicador y negativos con su mitigación."),
+            ("Limitaciones y siguiente paso", "Lo que se decidió no hacer, con el motivo, y por "
+             "dónde seguiría."),
+            ("Declaración del uso de IA", "Qué se le pidió (Clases 3 y 11), qué se corrigió a "
+             "mano y qué no se le entregó."),
+            ("Referencias", "Lo que se citó, en el formato acordado. Nada que no se haya leído."),
+        ])),
+        ("prototipo/QUE VA AQUI.txt", ("texto", "Aquí van v1.png (el prototipo de baja fidelidad) y "
+         "v2.png (el mejorado), o en PDF. El enlace al prototipo navegable va en la sección 7 "
+         "del informe. Borren este archivo al terminar.\n")),
+    ],
+}
+
+
+def _plantilla_docx(ruta, titulo, meta, secciones, f):
+    d = Document()
+    margins(d)
+    banda(d, f(titulo))
+    para(d, f(meta["asignatura"] + " · Grupo " + meta["grupo"] + " · Periodo " + meta["periodo"]),
+         size=10, color=CIAN)
+    para(d, f("Plantilla: reemplacen cada texto en gris por el del equipo y borren esta línea."),
+         size=10, bold=True, color=AZUL, shade="E8F4FA")
+    for i, sec in enumerate(secciones, 1):
+        h2(d, f("%d. %s" % (i, sec[0])))
+        para(d, f(sec[1]), size=10, color=GUIA_GRIS)
+        if len(sec) > 2:
+            encabezados, filas = sec[2]
+            table(d, [f(x) for x in encabezados], [[""] * len(encabezados)
+                                                   for _ in range(filas)])
+    d.save(ruta)
+
+
+def escribir_plantilla(est_dir: Path, curso: str, meta: dict, *, sin_tildes=False):
+    """La carpeta «Plantilla de entrega»: el .zip del curso ya armado, listo para llenar."""
+    f = _sin_tildes if sin_tildes else str
+    base = est_dir / CARPETA_PLANTILLA
+    if base.exists():
+        shutil.rmtree(base, ignore_errors=True)
+    base.mkdir(parents=True, exist_ok=True)
+    # Nombres de archivo solo ASCII: un .zip armado en Windows puede dañar la «ó» o la «ñ».
+    (base / "INSTRUCCIONES - Como usar esta plantilla.txt").write_text(
+        f(_leeme_raiz(meta["asignatura"])), encoding="utf-8")
+    for ruta, (tipo, *datos) in PLANTILLAS[curso]:
+        destino = base / f(ruta)
+        destino.parent.mkdir(parents=True, exist_ok=True)
+        if tipo == "docx":
+            titulo, secciones = datos
+            _plantilla_docx(destino, titulo, meta, secciones, f)
+        else:
+            destino.write_text(f(datos[0]), encoding="utf-8")
+    print("OK ->", base)
 
 
 def _shade(paragraph, fill: str) -> None:
@@ -444,133 +809,6 @@ BD2_META = {
 }
 
 
-def enunciado_bd2(doc):
-    portada_estudiante(doc, BD2_META)
-
-    h2(doc, "1. Propósito")
-    para(doc,
-         "Diseñar, administrar y optimizar una base de datos relacional avanzada para "
-         "VetCare DB, el sistema de la Clínica Veterinaria «Huellitas», integrando "
-         "seguridad/respaldo, objetos "
-         "programables (procedimientos, funciones y disparadores), optimización e "
-         "integración conceptual con una aplicación externa. Hilo conductor ABPr del curso.")
-    para(doc,
-         "Peso: 20% del Corte 3 (Acuerdo pedagógico). El Parcial 3 (15%) y la asistencia "
-         "(5%) se evalúan por separado.")
-    modalidad_equipo(doc)
-
-    h2(doc, "2. Contexto del cliente y dominio — VetCare DB")
-    para(doc, CONTEXTO_VETCARE)
-    para(doc,
-         "@@Nomenclatura:@@ «Huellitas» es la clínica, es decir el cliente que tiene el "
-         "problema; @@VetCare DB@@ es la base de datos que usted construye para ella. "
-         "Los enunciados de los talleres en ExamLab usan estos mismos dos nombres.")
-    para(doc,
-         "@@Anexo obligatorio:@@ el caso completo —perfil de la clínica, las 8 entidades, las 3 "
-         "reglas de negocio, el elenco de nombres y cómo crece la base durante el semestre— está "
-         "en @@Anexo - Caso de estudio Clinica Huellitas@@, en esta misma carpeta. Téngalo a mano "
-         "en todas las clases: los talleres se refieren a esos datos.",
-         shade="E8F4FA")
-    h3(doc, "Qué le toca a Bases de Datos II")
-    para(doc,
-         "Usted modela y opera la @@capa de datos@@ de VetCare: mascotas, dueños, "
-         "veterinarios, citas, historial clínico, insumos/medicamentos y facturación "
-         "básica. No se exige la aplicación ni la interfaz gráfica: eso es el alcance de "
-         "Programación II sobre el mismo cliente.")
-    bullets(doc, [
-        "Entidades mínimas sugeridas: Dueño, Mascota, Veterinario, Cita, Consulta/Historial, "
-        "Insumo/Medicamento, DetalleFactura (ajuste el modelo con justificación).",
-        "Reglas de negocio: no citar mascotas inactivas; stock de insumos no negativo; "
-        "auditoría de cambios sensibles (precios, cancelaciones).",
-        "Puede ampliar el dominio con 1–2 módulos propios si mantiene coherencia.",
-    ])
-
-    h2(doc, "3. Entregables obligatorios")
-    bullets(doc, [
-        "Modelo de datos: diagrama ER (draw.io / diagrams.net o Excalidraw) + script DDL.",
-        "Administración y seguridad: roles/usuarios (o plan de privilegios), política de "
-        "respaldo/recuperación documentada.",
-        "Objetos programables: ≥2 procedimientos, ≥1 función, ≥2 disparadores con casos de prueba.",
-        "Optimización: ≥2 consultas «antes/después» con justificación de índices o reescritura.",
-        "Integración: propuesta de cómo una app (API/cliente) consumiría la BD "
-        "(contrato de operaciones + ejemplo SQL o pseudocódigo de llamada a procedimientos).",
-        "Informe breve (PDF o DOCX) + carpeta de scripts SQL + diagrama exportado (PNG/SVG), "
-        "todo dentro del .zip de la entrega (sección 9).",
-        "Sustentación en vivo en la última clase: " + SUSTENTACION + ".",
-    ])
-
-    h2(doc, "4. Hitos y fechas de referencia (Plan 2026-2)")
-    table(doc,
-          ["Hito", "Sesión", "Fecha", "Qué entregar / hacer"],
-          [
-              ["Arranque (opcional)", "Sesiones 1–5", "ago–sep",
-               "Definir dominio, borrador ER y alcance"],
-              ["Construcción", "Sesiones 6–9", "sep–oct",
-               "DDL, seguridad, procs/triggers, tuning"],
-              ["Avance PI + integración", "Sesión 10 (doble · Clases 11+12)", "26/10/2026",
-               "Demo parcial + checklist · contrato app ↔ BD y pruebas "
-               "(cierre: domingo 01/11, 11:59 p. m.)"],
-              ["Casos reales", "Sesión 11 (autónoma · Clase 13)", "02/11/2026",
-               "Aplicar el análisis de casos al PI (cierre: domingo 08/11, 11:59 p. m.)"],
-              ["Parcial 3", "Sesión 12 (Clase 14)", "09/11/2026",
-               "Día de parcial = solo evaluación (virtual síncrona por Meet); el ensayo y la "
-               "preparación fueron en la Sesión 10 (Clase 12)"],
-              ["Entrega final del PI", "—", "15/11/2026",
-               "Plazo único en ExamLab: domingo, 11:59 p. m. Un .zip + el enlace al "
-               "repositorio o a la carpeta de Drive"],
-              ["Sustentación / cierre", "Sesión 13 (Clase 15)", "16/11/2026",
-               "Defensa en vivo del PI (15 min + 5 de preguntas) + cierre del curso"],
-          ])
-    para(doc,
-         "Nota: la sesión 13 (16/11) cae en festivo, pero por decisión docente es la "
-         "sesión de sustentaciones: no es autónoma y no es parcial. El Parcial 3 es el "
-         "09/11 (sesión 12 · material Clase 14). El paquete final se sube a ExamLab a más "
-         "tardar el domingo 15/11, 11:59 p. m.; el 16/11 solo se defiende.")
-
-    h2(doc, "5. Herramientas (gratis + navegador)")
-    bullets(doc, [
-        "SQL y PL/pgSQL (procedimientos, funciones y disparadores): PostgreSQL, el mismo "
-        "motor de ExamLab, o DB Fiddle con PostgreSQL.",
-        "Diagramas: draw.io / diagrams.net · Excalidraw.",
-        "Entrega: documentos en Google Docs/Drive o Word Online, dentro del .zip que se sube "
-        "a ExamLab.",
-    ])
-    para(doc,
-         "No se exige instalar Oracle/MySQL/PostgreSQL/SQL Server ni Docker en el PC. "
-         "No se pide cloud IaaS con tarjeta.",
-         shade="FFF8D6", space_after=8)
-
-    h2(doc, "6. Criterios de evaluación (rúbrica resumida — 100 pts → 20% del corte)")
-    table(doc,
-          ["Criterio", "Pts", "Evidencia"],
-          [
-              ["Modelo + DDL coherente", "20", "ER + scripts ejecutables"],
-              ["Seguridad y respaldo", "15", "Roles/privilegios + plan backup"],
-              ["Procs / funciones / triggers", "25", "Código + pruebas"],
-              ["Optimización", "15", "Antes/después + justificación"],
-              ["Integración app ↔ BD", "10", "Contrato + ejemplos"],
-              ["Informe + sustentación", "15", "Claridad, demo, respuestas"],
-          ])
-
-    h2(doc, "7. Modalidad de trabajo")
-    bullets(doc, [
-        "@@En equipo, no individual:@@ equipos de 4 a 5 integrantes (máximo 5).",
-        "Todo el equipo trabaja el proyecto completo: en la sustentación hablan todos, y "
-        "cualquier integrante debe poder explicar cualquier parte (las preguntas van al azar).",
-        "Cada integrante sube la entrega del equipo en ExamLab desde su propia cuenta "
-        "(sección 9).",
-    ])
-
-    h2(doc, "8. Qué NO es este proyecto")
-    bullets(doc, [
-        "No sustituye el Parcial 3 (evaluación síncrona por Meet del 09/11).",
-        "No es una app GUI completa: el foco es la capa de datos avanzada.",
-        "No se copia un enunciado de otra institución: el dominio es VetCare DB UNIAJC.",
-    ])
-
-    entrega_y_sustentacion(doc, "bd2", "9. Entrega y sustentación")
-
-
 def guia_bd2(doc):
     portada_docente(doc, BD2_META)
     h2(doc, "Contexto")
@@ -641,113 +879,6 @@ ARQ_META = {
 }
 
 
-def enunciado_arq(doc):
-    portada_estudiante(doc, ARQ_META)
-
-    h2(doc, "1. Propósito")
-    para(doc,
-         "Diseñar y simular el despliegue de una arquitectura cloud para CloudLite App "
-         "(aplicación web/API de un dominio realista a su elección: citas, academia, "
-         "inventario liviano, etc.). Integra diagramas, contenedores en lab de navegador "
-         "y CI/CD conceptual con GitHub Actions — sin cloud de pago ni tarjeta.")
-    para(doc,
-         "Peso: 20% del Corte 3 (Acuerdo pedagógico). El Parcial 3 (15%) y la asistencia "
-         "(5%) se evalúan por separado.")
-    modalidad_equipo(doc)
-
-    h2(doc, "2. Alcance de CloudLite App")
-    bullets(doc, [
-        "Elegir un dominio concreto y justificar 3–5 capacidades funcionales.",
-        "Decidir modelo de servicio dominante (IaaS / PaaS / SaaS) y por qué.",
-        "Arquitectura lógica + de despliegue (capas, componentes, red, almacenamiento).",
-        "Contenedorización de al menos un servicio (demo en LabEx Docker Playground o Killercoda).",
-        "Pipeline CI/CD conceptual (GitHub Actions): build + test + artefactos (sin runner de pago).",
-        "Seguridad, monitoreo, costos/sostenibilidad y escalabilidad (al menos un escenario).",
-    ])
-
-    h2(doc, "3. Entregables obligatorios")
-    bullets(doc, [
-        "Documento de arquitectura (PDF/DOCX): contexto, ADRs breves, riesgos, costos estimados "
-        "en lenguaje cualitativo (bajo/medio — sin factura real).",
-        "Diagramas (draw.io / diagrams.net): al menos (a) componentes/C4-lite, (b) despliegue, "
-        "(c) flujo CI/CD.",
-        "Lab de contenedores: Dockerfile o compose mínimo + captura/enlace de sesión "
-        "LabEx Docker Playground o Killercoda.",
-        "Repo o carpeta con workflow GitHub Actions (.yml) que compile/pruebe un stub "
-        "(aunque el «deploy» sea simulado).",
-        "Sustentación en vivo en la última clase: " + SUSTENTACION + ", con demo de "
-        "diagrama + lab.",
-    ])
-
-    h2(doc, "4. Hitos y fechas de referencia (Plan 2026-2)")
-    table(doc,
-          ["Hito", "Sesión", "Fecha", "Qué entregar / hacer"],
-          [
-              ["Fundamentos", "Sesiones 1–5", "ago–sep",
-               "Dominio, IaaS/PaaS/SaaS, boceto C4"],
-              ["Profundización", "Sesiones 6–9", "sep–oct",
-               "Seguridad, redes, monitoreo, CI/CD"],
-              ["Avance PI + rendimiento", "Sesión 10 (doble · Clases 11+12)", "26/10/2026",
-               "Diagramas v1 + checklist · escenario de prueba y métricas objetivo "
-               "(cierre: domingo 01/11, 11:59 p. m.)"],
-              ["Escalabilidad", "Sesión 11 (autónoma · Clase 13)", "02/11/2026",
-               "Sección de autoescalado del informe (cierre: domingo 08/11, 11:59 p. m.)"],
-              ["Parcial 3", "Sesión 12 (Clase 14)", "09/11/2026",
-               "Día de parcial = solo evaluación (virtual síncrona por Meet); el ensayo y la "
-               "preparación fueron en la Sesión 10 (Clase 12)"],
-              ["Entrega final del PI", "—", "15/11/2026",
-               "Plazo único: domingo, 11:59 p. m. Un .zip + el enlace al repositorio o a la "
-               "carpeta de Drive"],
-              ["Sustentación / cierre", "Sesión 13 (Clase 15)", "16/11/2026",
-               "Defensa en vivo del PI CloudLite (15 min + 5 de preguntas) + cierre del curso"],
-          ])
-    para(doc,
-         "Nota: la sesión 13 (16/11) cae en festivo, pero por decisión docente es la "
-         "sesión de sustentaciones: no es autónoma y no es parcial. El Parcial 3 es el "
-         "09/11 (sesión 12 · material Clase 14).")
-
-    h2(doc, "5. Herramientas (gratis + navegador)")
-    bullets(doc, [
-        "Diagramas: draw.io / diagrams.net · Excalidraw.",
-        "Contenedores: LabEx Docker Playground · Killercoda (sin Docker Desktop obligatorio).",
-        "CI/CD: GitHub Actions (cuenta free) — pipelines simples.",
-        "Entrega: documento propio, dentro del .zip que se sube a %s." % _plat(),
-    ])
-    para(doc,
-         "Prohibido como requisito: AWS/GCP/Oracle Cloud/Azure Free Tier con tarjeta; "
-         "instalar VirtualBox/VMware/Docker Desktop/WSL; software de modelado de pago.",
-         shade="FBE4E4", space_after=8)
-
-    h2(doc, "6. Criterios de evaluación (rúbrica resumida — 100 pts → 20% del corte)")
-    table(doc,
-          ["Criterio", "Pts", "Evidencia"],
-          [
-              ["Dominio + decisión IaaS/PaaS/SaaS", "15", "Justificación clara"],
-              ["Diagramas de arquitectura", "25", "Componentes + despliegue"],
-              ["Contenedores (lab navegador)", "20", "Dockerfile/compose + captura"],
-              ["CI/CD conceptual", "15", "Workflow .yml + explicación"],
-              ["Seguridad / costos / escalabilidad", "10", "Sección en informe"],
-              ["Informe + sustentación", "15", "Claridad, demo, respuestas"],
-          ])
-
-    h2(doc, "7. Modalidad de trabajo")
-    bullets(doc, [
-        "@@En equipo, no individual:@@ equipos de 4 a 5 integrantes (máximo 5).",
-        "Todo el equipo trabaja el proyecto completo: en la sustentación hablan todos, y "
-        "cualquier integrante debe poder explicar los diagramas y el workflow CI/CD.",
-        "Cada integrante sube la entrega del equipo desde su propia cuenta (sección 9).",
-    ])
-
-    h2(doc, "8. Qué NO es este proyecto")
-    bullets(doc, [
-        "No sustituye el Parcial 3 (09/11, virtual síncrona por Meet).",
-        "No exige cuenta cloud de pago ni gastos del estudiante.",
-        "No se pide producción real en Internet: el foco es diseño + simulación en labs gratis.",
-    ])
-
-    entrega_y_sustentacion(doc, "arq", "9. Entrega y sustentación")
-
-
 def guia_arq(doc):
     portada_docente(doc, ARQ_META)
     h2(doc, "Contexto")
@@ -803,17 +934,6 @@ def guia_arq(doc):
 # como .gdoc: el de Prog II en Kit docente y el de Seminario dentro de Clase 1).
 # ---------------------------------------------------------------------------
 
-CASOS_MATRICULA = [
-    "@@Caso A — cursa AMBAS materias (modo full stack):@@ trabaja sobre un unico "
-    "VetCare. En Programacion II se califica la calidad del codigo Java; en Seminario, la "
-    "calidad de los diagramas y la documentacion de ESE mismo sistema.",
-    "@@Caso B — solo Programacion II (modo developer):@@ el docente le entrega los diagramas "
-    "UML ya hechos. Su mision es traducir esos planos a codigo Java funcional.",
-    "@@Caso C — solo Seminario (modo arquitecto/QA):@@ se encarga del diseno y el plan de "
-    "pruebas. Para validar su diseno entrega un prototipo navegable (mockup) o un prototipo "
-    "minimo en consola; no se le exige software con interfaz grafica.",
-]
-
 PROG2_META = {
     "titulo": "Proyecto Integrador 2026-2 — VetCare (aplicacion Java)",
     "titulo_docente": "Guia docente · Proyecto Integrador — Programacion II",
@@ -835,91 +955,6 @@ SEMIN_META = {
     "horario": "Jueves 18:00–20:00 (120 min)",
     "dominio": "VetCare",
 }
-
-
-def enunciado_prog2(doc):
-    portada_estudiante(doc, PROG2_META)
-
-    h2(doc, "1. Proposito")
-    para(doc,
-         "Construir en Java la aplicacion de escritorio VetCare para la clinica veterinaria "
-         "«Huellitas», aplicando los pilares de la POO, estructuras de datos, interfaz grafica, "
-         "manejo de errores y persistencia. Es el hilo conductor ABPr del curso: cada clase "
-         "aporta una pieza del mismo producto, no ejercicios sueltos.")
-    para(doc,
-         "Peso: 20% del Corte 3 (Acuerdo pedagogico). El Parcial 3 (15%) y la asistencia (5%) "
-         "se evaluan por separado.")
-    modalidad_equipo(doc, sin_tildes=True)
-
-    h2(doc, "2. Contexto del cliente")
-    para(doc, CONTEXTO_VETCARE)
-    h3(doc, "El sistema debe permitir, como minimo")
-    bullets(doc, [
-        "Registrar duenos (clientes) y sus mascotas (pacientes).",
-        "Agendar citas medicas.",
-        "Guardar un historial clinico basico por mascota.",
-        "Buscar rapidamente el expediente de un animal por su identificador.",
-        "Conservar la informacion aunque se cierre el programa.",
-    ])
-
-    h2(doc, "3. Requisitos tecnicos obligatorios")
-    bullets(doc, [
-        "@@Pilares de POO:@@ clases del dominio (Mascota, Dueno, Cita), objetos, "
-        "encapsulamiento y herencia usados con criterio, no decorativos.",
-        "@@Estructuras de datos:@@ colecciones de Java (List / Map) para gestionar los "
-        "registros en memoria.",
-        "@@Interfaz grafica:@@ ventanas funcionales con Swing o JavaFX.",
-        "@@Manejo de errores:@@ bloques try-catch que eviten que el programa se cierre "
-        "(ej.: el usuario escribe texto donde va la edad de la mascota).",
-        "@@Persistencia:@@ guardar y leer desde archivos .txt o .csv para no perder datos "
-        "al cerrar la aplicacion.",
-    ])
-
-    h2(doc, "4. Como se conecta con Seminario de Sistemas")
-    para(doc,
-         "VetCare es el MISMO producto en las dos asignaturas: aqui se construye el software, "
-         "en Seminario se disenan los planos (requisitos, UML, pruebas, manuales). Su "
-         "situacion depende de su matricula:")
-    bullets(doc, CASOS_MATRICULA)
-
-    h2(doc, "5. Hitos de entrega")
-    table(doc,
-          ["Sesion (material)", "Fecha", "Que se entrega"],
-          [
-              ["S10 (doble · Clases 11+12)", "28/10",
-               "Avance de codigo + revision cruzada e integracion de modulos: "
-               "la aplicacion corre de punta a punta"],
-              ["S11 (Clase 13)", "04/11", "Manejo de excepciones y validaciones incorporado"],
-              ["S12 (Clase 14)", "11/11", "Version final + ensayo de la presentacion"],
-              ["Plazo unico", "dom 15/11",
-               "Entrega final en ExamLab hasta las 11:59 p. m.: un .zip + el enlace al repositorio"],
-              ["S13 (Clase 15)", "18/11",
-               "Sustentacion final: 15 min + 5 de preguntas (mismo dia del Parcial 3)"],
-          ])
-
-    h2(doc, "6. Entregables finales")
-    bullets(doc, [
-        "Codigo fuente del proyecto, dentro del .zip; ademas, el enlace al repositorio "
-        "(obligatorio, seccion 8).",
-        "Archivo de datos de ejemplo (.txt o .csv) con registros de prueba.",
-        "Manual de usuario breve (1-2 paginas) con capturas de la interfaz.",
-        "Sustentacion: 15 minutos de exposicion + 5 de preguntas por equipo, turno de 20 "
-        "minutos; participan todos los integrantes.",
-    ])
-
-    h2(doc, "7. Criterios de evaluacion (100 puntos)")
-    table(doc,
-          ["Criterio", "Pts", "Que se mira"],
-          [
-              ["POO", "20", "Clases del dominio bien modeladas; encapsulamiento y herencia con proposito"],
-              ["Estructuras de datos", "15", "Coleccion adecuada al caso y justificada"],
-              ["Interfaz grafica", "20", "Ventanas funcionales; el usuario puede completar las tareas"],
-              ["Manejo de errores", "15", "La aplicacion no se cae ante entradas invalidas"],
-              ["Persistencia", "15", "Los datos sobreviven al cierre del programa"],
-              ["Sustentacion", "15", "Se pregunta al azar a cualquier integrante sobre cualquier parte"],
-          ])
-
-    entrega_y_sustentacion(doc, "prog2", "8. Entrega y sustentacion", sin_tildes=True)
 
 
 def guia_prog2(doc):
@@ -968,101 +1003,6 @@ def guia_prog2(doc):
         "cualquier integrante en la sustentacion.",
     ])
     entrega_docente(doc, "prog2", sin_tildes=True)
-
-
-def enunciado_seminario(doc):
-    portada_estudiante(doc, SEMIN_META)
-
-    h2(doc, "1. Proposito")
-    para(doc,
-         "Disenar la arquitectura, los requisitos y la interfaz del sistema VetCare para la "
-         "clinica veterinaria «Huellitas». Su rol en esta asignatura es de @@analista funcional "
-         "y arquitecto de software@@: aqui no se construye la casa, se dibujan los planos para "
-         "que cualquier equipo pueda construirla.")
-    para(doc,
-         "Peso: 20% del Corte 3 (Acuerdo pedagogico). El Parcial 3 (15%) y la asistencia (5%) "
-         "se evaluan por separado.")
-    modalidad_equipo(doc, sin_tildes=True)
-
-    h2(doc, "2. Contexto del cliente")
-    para(doc, CONTEXTO_VETCARE)
-    h3(doc, "Requerimientos que el veterinario jefe pidio en la primera entrevista")
-    bullets(doc, [
-        "«Necesito registrar el ID, el nombre y la especie del animal que llega.»",
-        "«Necesito buscar rapido el expediente de un animal usando solo su ID.»",
-        "«Quiero ver una lista de quienes estan en la sala de espera.»",
-        "«Tiene que ser muy facil de usar: no somos expertos en computadoras.»",
-        "«La informacion no puede borrarse si se va la luz o apagamos el computador.»",
-    ])
-    para(doc,
-         "Esas cinco frases son material crudo de entrevista, no requisitos formales. "
-         "Convertirlas en RF/RNF bien escritos es parte del trabajo.")
-
-    h2(doc, "3. Fases de entrega")
-    table(doc,
-          ["Fase", "Que produce"],
-          [
-              ["1. Ingenieria de requisitos",
-               "Requisitos funcionales (RF) y no funcionales (RNF) formales y trazables"],
-              ["2. Modelado UML",
-               "Casos de uso, diagrama de clases del dominio y un diagrama dinamico "
-               "(actividad o secuencia)"],
-              ["3. Diseno de interfaz (UX/UI)",
-               "Wireframes y mockup navegable de las pantallas (Figma, Penpot o Balsamiq)"],
-              ["4. Arquitectura de datos",
-               "Diccionario de datos y formato de almacenamiento (estructura del CSV o "
-               "modelo entidad-relacion basico)"],
-          ])
-
-    h2(doc, "4. Como se conecta con Programacion II")
-    para(doc,
-         "VetCare es el MISMO producto en las dos asignaturas: aqui se disenan los planos y "
-         "en Programacion II se construye el software. Su situacion depende de su matricula:")
-    bullets(doc, CASOS_MATRICULA)
-    para(doc,
-         "@@Independencia curricular:@@ si NO cursa Programacion II, su proyecto termina con el "
-         "documento de diseno y el prototipo visual navegable. No necesita escribir ni compilar "
-         "codigo: su nota depende de la calidad, coherencia y profesionalismo de sus planos.",
-         shade="E8F4FA")
-
-    h2(doc, "5. Hitos de entrega")
-    table(doc,
-          ["Sesion (material)", "Fecha", "Que se entrega"],
-          [
-              ["S10 (doble · Clases 11+12)", "29/10",
-               "Avance: requisitos (RF/RNF) + casos de uso y diagramas UML avanzados "
-               "(clases + dinamico)"],
-              ["S11 (Clase 13)", "05/11", "Diseno de interfaz: wireframes y mockup navegable"],
-              ["S12 (Clase 14)", "12/11", "Documento consolidado + ensayo de la sustentacion"],
-              ["Plazo unico", "dom 15/11",
-               "Entrega final en ExamLab hasta las 11:59 p. m.: un .zip + el enlace a la carpeta "
-               "o al repositorio"],
-              ["S13 (Clase 15)", "19/11",
-               "Sustentacion final: 15 min + 5 de preguntas (mismo dia del Parcial 3)"],
-          ])
-
-    h2(doc, "6. Entregables finales")
-    bullets(doc, [
-        "Documento de diseno de arquitectura con RF/RNF, UML y diccionario de datos.",
-        "Mockup navegable (enlace o PDF exportado).",
-        "Plan de pruebas: casos de prueba documentados sobre los requisitos.",
-        "Sustentacion: 15 minutos de exposicion + 5 de preguntas por equipo, turno de 20 "
-        "minutos; participan todos los integrantes.",
-    ])
-
-    h2(doc, "7. Criterios de evaluacion (100 puntos)")
-    table(doc,
-          ["Criterio", "Pts", "Que se mira"],
-          [
-              ["Requisitos", "20", "RF/RNF verificables y trazables al pedido del cliente"],
-              ["Modelado UML", "25", "Diagramas coherentes entre si y con los requisitos"],
-              ["Diseno de interfaz", "20", "Wireframes usables; el flujo se entiende sin explicacion"],
-              ["Arquitectura de datos", "15", "Diccionario de datos completo y formato justificado"],
-              ["Plan de pruebas", "10", "Casos de prueba que cubren los requisitos criticos"],
-              ["Sustentacion", "10", "Se pregunta al azar a cualquier integrante sobre cualquier parte"],
-          ])
-
-    entrega_y_sustentacion(doc, "seminario", "8. Entrega y sustentacion", sin_tildes=True)
 
 
 def guia_seminario(doc):
@@ -1289,182 +1229,6 @@ INTRO_ING_META = {
 }
 
 
-#: Que Clase(s) cubre cada sesion de Introduccion, igual en los tres grupos. La tabla «sesion
-#: por sesion» del enunciado se apoya en esto y se comprueba contra el calendario al generar:
-#: si el calendario cambia y esta tabla no, el build falla en vez de publicar un mapa equivocado.
-INTRO_SESIONES = {1: [1], 2: [2, 3], 3: [4, 5], 4: [6], 5: [7, 8], 6: [9, 10], 7: [11],
-                  8: [12], 9: [13], 10: [14], 11: [15, 16]}
-
-
-def _verificar_sesiones_intro():
-    import json
-    ruta = ROOT / "config" / "calendario" / "introduccion_ingenieria_2026_2.json"
-    grupos = json.loads(ruta.read_text(encoding="utf-8"))["grupos"]
-    for g in (grupos.values() if isinstance(grupos, dict) else grupos):
-        real = {int(s["sesion"]): [int(c) for c in s["clases_material"]] for s in g["sesiones"]}
-        if real != INTRO_SESIONES:
-            raise SystemExit("Introduccion %s: el calendario reparte las clases distinto de "
-                             "INTRO_SESIONES; corrija la tabla del enunciado." % g.get("grupo"))
-
-
-def enunciado_intro_ing(doc):
-    """Enunciado para estudiantes de PRIMER semestre: corto, con el informe final como centro.
-
-    El docente lo pidio resumido y con el informe como punto clave (13/10/2026), despues de una
-    version larga con glosario y ejemplo resuelto. En este curso no se programa (Clase 1): el
-    prototipo se explica lo justo para que nadie lo confunda con una app; el ejemplo de la
-    biblioteca y los tipos de hallazgo viven en las Clases 10 a 12.
-    """
-    _verificar_sesiones_intro()
-    portada_estudiante(doc, INTRO_ING_META)
-
-    h2(doc, "1. De qué se trata")
-    para(doc,
-         "Este curso se aprueba con un @@proyecto de equipo@@, no con un examen final: una "
-         "@@propuesta de mejora tecnológica@@ para un problema real de su entorno —el barrio, la "
-         "universidad, el trabajo o la casa— que se construye clase a clase y se defiende en la "
-         "última sesión.")
-    para(doc,
-         "@@En este curso no se programa.@@ La solución se diseña, se dibuja como prototipo y se "
-         "prueba con una persona real. No hace falta saber programar ni instalar nada.",
-         shade="E8F4FA")
-    bullets(doc, [
-        "@@El informe final@@ (20% del curso) es el punto clave: reúne todo el proyecto en 12 "
-        "secciones (sección 4).",
-        "@@El prototipo@@, en dos versiones y probado con una persona ajena al equipo "
-        "(sección 3).",
-        "@@La exposición final@@: 15 minutos más 5 de preguntas (sección 5).",
-    ])
-    para(doc,
-         "Peso: 40% del Corte 3 (informe final 20% + exposición final 15% + asistencia 5%), más "
-         "una parte de las actividades de los Cortes 1 y 2 (ver el Acuerdo Pedagógico).",
-         size=10)
-    modalidad_equipo(doc)
-
-    h2(doc, "2. El proyecto, sesión por sesión")
-    para(doc,
-         "Cada sesión deja lista una pieza del proyecto, y de ahí salen once de las doce "
-         "secciones del informe. Las fechas están en el CALENDARIO_2026-2 de su grupo.", size=10)
-    table(doc, ["Sesión", "Clase", "Qué queda listo"], [
-        ["1", "1", "El equipo, su carpeta en Drive y el primer problema candidato."],
-        ["2 y 3", "2 a 5", "Un problema real y medible, a quién podría perjudicar la solución y una "
-         "restricción ambiental."],
-        ["4", "6", "El problema cerrado: su cifra, sus causas y su criterio de éxito. Cierra el "
-         "Corte 1."],
-        ["5", "7 y 8", "Los requisitos, la alternativa elegida y el alcance mínimo."],
-        ["6", "9 y 10", "Tres soluciones que ya existen y el prototipo v1."],
-        ["7", "11", "El prototipo v2, mejorado con IA. Cierra el Corte 2."],
-        ["8", "12", "Lo que falló en la prueba con una persona ajena al equipo."],
-        ["9 y 10", "13 y 14", "El impacto, positivo y negativo, y el ensayo de la exposición."],
-        ["—", "—", "Entrega del informe y del prototipo en ExamLab: domingo 15/11/2026, "
-         "11:59 p. m."],
-        ["11", "15 y 16", "La exposición final y el cierre del curso."],
-    ], anchos=[0.9, 0.9, 5.0])
-
-    h2(doc, "3. El prototipo")
-    para(doc,
-         "Un prototipo @@no es una aplicación@@: es un dibujo de la solución que otra persona "
-         "puede recorrer, paso a paso, como si funcionara. Sirve para descubrir qué falla antes "
-         "de construir nada, y se hace sencillo a propósito, porque así recibe críticas útiles. "
-         "Si la solución no es una app —un formulario, un procedimiento—, el prototipo muestra "
-         "los pasos que vive la persona.")
-    table(doc, ["Versión", "Cuándo", "Qué es"], [
-        ["v1", "Clase 10", "El camino principal en tres pantallas o tres pasos, en papel, "
-         "Excalidraw o draw.io."],
-        ["Navegable", "Después de la Clase 10", "La v1 en Google Slides: una diapositiva por "
-         "pantalla y un enlace en cada botón."],
-        ["v2", "Clase 11", "La v1 mejorada con un asistente de IA y corregida a mano, con el "
-         "registro de lo que se pidió y lo que se corrigió."],
-        ["Probada", "Antes de la Clase 12", "Una persona ajena al equipo intenta tres tareas con "
-         "la v2; el equipo observa en silencio y anota lo que falló."],
-    ], anchos=[1.0, 1.6, 4.2])
-    para(doc,
-         "@@Todo prototipo debe tener:@@ una frase de propósito en cada pantalla, textos reales "
-         "(nunca «texto aquí»), lo que se ve cuando no hay datos o algo falla, un destino para "
-         "cada botón y datos inventados, nunca de personas reales.", size=10)
-
-    h2(doc, "4. El informe final — el punto clave (20% del curso)")
-    para(doc,
-         "Es la pieza que más pesa y la que reúne todo el proyecto. Se escribe durante el "
-         "semestre y al final se revisa y se arma. Extensión: 9 a 11 páginas; la extensión no "
-         "es una virtud.", size=10)
-    table(doc,
-          ["#", "Sección", "Tiene que contener"],
-          [
-              ["1", "Portada y resumen",
-               "Título, integrantes, curso. Resumen de ½ pág: problema con su número, "
-               "solución en dos frases, impacto principal."],
-              ["2", "El problema",
-               "La cifra, cómo se obtuvo, a quién le pasa y las causas principales."],
-              ["3", "Actores y afectados",
-               "Usuarios, quien opera, y al menos un afectado que no es usuario."],
-              ["4", "Antecedentes",
-               "Tres soluciones que ya existen, qué hace cada una y por qué no sirve aquí."],
-              ["5", "Requisitos y criterios",
-               "Funcionales, no funcionales, y cómo se verifica cada criterio."],
-              ["6", "Alternativas y decisión",
-               "Al menos dos alternativas, los criterios, la elegida y qué se sacrificó."],
-              ["7", "La solución y el prototipo",
-               "Descripción de la solución, capturas del prototipo v1 y v2, el enlace al "
-               "prototipo navegable y el recorrido principal paso a paso."],
-              ["8", "Prueba y hallazgos",
-               "Con quién se probó (solo el rol, no el nombre), qué tareas intentó, qué falló "
-               "y qué se arregló."],
-              ["9", "Impacto", "Positivos con indicador y negativos con mitigación."],
-              ["10", "Limitaciones y siguiente paso",
-               "Lo que se decidió no hacer, con el motivo, y por dónde seguiría."],
-              ["11", "Declaración del uso de IA",
-               "Qué se le pidió (Clases 3 y 11), qué se corrigió a mano y qué no se le "
-               "entregó."],
-              ["12", "Referencias",
-               "Lo que se citó, en el formato acordado. Nada que no se haya leído."],
-          ],
-          anchos=[0.4, 1.7, 4.7])
-
-    h2(doc, "5. La exposición final (15% del curso)")
-    bullets(doc, [
-        "15 minutos de exposición + 5 de preguntas por equipo (turno de 20 minutos). Se corta "
-        "a los 15 minutos, sin excepción.",
-        "En la última clase de su grupo: SB141C y LB141F el martes 17/11/2026; SB141B el "
-        "jueves 19/11/2026.",
-        "Hablan todos los integrantes, y cada uno responde sobre su propio tramo.",
-    ])
-    table(doc,
-          ["Tramo", "Qué se busca", "Pts"],
-          [
-              ["1 · El problema con su cifra",
-               "Arranca por el problema, con un número y de dónde salió.", "20"],
-              ["2 · Los afectados y la decisión",
-               "Un afectado que no es usuario y qué se sacrificó.", "20"],
-              ["3 · La solución y el prototipo en vivo",
-               "Recorren el prototipo navegable cumpliendo una tarea de principio a fin.", "25"],
-              ["4 · Lo que falló y lo que aprendimos",
-               "Qué falló en la prueba, qué se arregló y qué no.", "20"],
-              ["5 · Impacto y siguiente paso",
-               "Impacto positivo con número y el negativo con su mitigación.", "15"],
-          ],
-          anchos=[2.0, 4.2, 0.6])
-
-    entrega_y_sustentacion(doc, "intro", "6. Entrega en ExamLab")
-    para(doc,
-         "@@Cómo armarlo:@@ para el .zip, clic derecho sobre la carpeta → «Comprimir en archivo "
-         "ZIP». Para el enlace, en Drive: «Compartir» → «Cualquier persona con el enlace» → "
-         "«Lector»; ábranlo en una ventana de incógnito antes de subirlo para comprobar que "
-         "abre.", size=10)
-
-    h2(doc, "7. Reglas del proyecto")
-    bullets(doc, [
-        "Herramientas gratuitas y en el navegador: Google Drive, Excalidraw, draw.io y Google "
-        "Slides. Nada de pago, con tarjeta ni para instalar.",
-        "IA solo en las Clases 3 y 11, declarando qué se pidió y qué se corrigió; nunca con "
-        "datos personales.",
-        "El vocero rota cada sesión: al final del semestre todos han expuesto al menos dos "
-        "veces. La autoevaluación del cierre la entrega cada integrante al docente.",
-        "No es un examen escrito ni un sistema en producción: se califican el informe y la "
-        "exposición.",
-    ])
-
-
 def guia_intro_ing(doc):
     portada_docente(doc, INTRO_ING_META)
     h2(doc, "Contexto")
@@ -1580,6 +1344,208 @@ Exposición: SB141C y LB141F martes 17/11/2026 · SB141B jueves 19/11/2026.
 Enunciado del estudiante en `Clases/Proyecto Integrador/`, común a los tres grupos.
 """
 
+#: Primeras reglas de todos los enunciados: el equipo y quién responde en la sustentación.
+REGLAS_EQUIPO = [
+    "@@Equipo de 4 a 5 integrantes (máximo 5)@@, el mismo hasta el final. Es regla solo del "
+    "proyecto: talleres, quices y parciales tienen su propia modalidad.",
+    "Todos los integrantes deben poder explicar cualquier parte: en la sustentación las "
+    "preguntas van al azar a cualquiera.",
+]
+
+
+def _bloques(doc, bloques, f):
+    """Texto de «Qué van a hacer»: str = párrafo, list = viñetas, ("caja", str) = recuadro."""
+    for b in bloques:
+        if isinstance(b, list):
+            bullets(doc, [f(x) for x in b])
+        elif isinstance(b, tuple):
+            para(doc, f(b[1]), shade="E8F4FA")
+        else:
+            para(doc, f(b))
+
+
+def _enunciado_corto(doc, meta, curso, que_hacer, rubrica, reglas, *, sin_tildes=False):
+    """Enunciado de una página y media: qué se hace, qué se entrega (con su plantilla), cómo
+    se califica, cómo se entrega y las reglas. Nada de hitos de clase ni de actividades
+    intermedias: el docente los da por otro medio (pedido del 16/10/2026)."""
+    f = _sin_tildes if sin_tildes else str
+    portada_estudiante(doc, meta)
+    h2(doc, f("1. Qué van a hacer"))
+    _bloques(doc, que_hacer, f)
+    seccion_entregable(doc, curso, "2. Qué se entrega", sin_tildes=sin_tildes)
+    h2(doc, f("3. Cómo se califica (100 puntos)"))
+    table(doc, [f("Criterio"), f("Pts"), f("Qué se mira")],
+          [[f(a), b, f(c)] for a, b, c in rubrica], anchos=[2.1, 0.5, 4.2])
+    seccion_entrega(doc, curso, "4. Entrega y sustentación", sin_tildes=sin_tildes)
+    h2(doc, f("5. Reglas"))
+    bullets(doc, [f(x) for x in REGLAS_EQUIPO + reglas])
+
+
+def enunciado_bd2(doc):
+    _enunciado_corto(doc, BD2_META, "bd2", [
+        "Construir @@VetCare DB@@, la base de datos de la Clínica Veterinaria «Huellitas»: el "
+        "modelo, la seguridad y el respaldo, los objetos programables (procedimientos, funciones "
+        "y disparadores), la optimización de consultas y la propuesta de cómo una aplicación "
+        "la usaría. Todo en PostgreSQL. No se pide la aplicación: solo la base de datos.",
+        ("caja", "El caso completo —las 8 entidades, las 3 reglas del negocio y los datos— está "
+                 "en el @@Anexo - Caso de estudio Clínica Huellitas@@, en esta misma carpeta."),
+        "Vale el 20% del Corte 3.",
+    ], [
+        ("Modelo y DDL", "20", "El ER y el DDL coinciden; llaves y restricciones de las reglas "
+         "del negocio."),
+        ("Seguridad y respaldo", "15", "Roles con privilegios distintos y un plan de respaldo y "
+         "recuperación."),
+        ("Objetos programables", "25", "Procedimientos, funciones y disparadores que corren, con "
+         "sus pruebas."),
+        ("Optimización", "15", "Antes y después medidos, con la justificación."),
+        ("Integración app ↔ BD", "10", "Las operaciones y un ejemplo de llamada."),
+        ("Informe y sustentación", "15", "Claridad, demostración en vivo y respuestas de todos."),
+    ], [
+        "Herramientas gratuitas: PostgreSQL (el mismo motor de ExamLab) o DB Fiddle con "
+        "PostgreSQL, y draw.io para el diagrama. No hay que instalar nada de pago.",
+    ])
+
+
+def enunciado_arq(doc):
+    _enunciado_corto(doc, ARQ_META, "arq", [
+        "Diseñar y simular el despliegue en la nube de @@CloudLite App@@, una aplicación web de "
+        "un dominio que elige el equipo (citas, inventario, una academia…): sus diagramas, un "
+        "servicio en contenedor y un flujo de CI/CD.",
+        ("caja", "Sin nube de pago ni tarjeta: todo se hace en laboratorios gratuitos del "
+                 "navegador."),
+        "Vale el 20% del Corte 3.",
+    ], [
+        ("Dominio y modelo de servicio", "15", "Un problema concreto y la decisión IaaS, PaaS o "
+         "SaaS justificada."),
+        ("Diagramas", "25", "Legibles, con la notación correcta y los mismos nombres en los tres."),
+        ("Contenedores", "20", "El Dockerfile y el servicio corriendo en el lab."),
+        ("CI/CD", "15", "Etapas claras que construyen y prueban."),
+        ("Seguridad, costos y escalabilidad", "10", "Amenazas, costo por componente y cómo "
+         "escala."),
+        ("Documento y sustentación", "15", "Claridad, demostración y respuestas de todos."),
+    ], [
+        "Herramientas gratuitas del navegador: draw.io, LabEx Docker Playground o Killercoda y "
+        "GitHub Actions. Nada de AWS, GCP o Azure con tarjeta, ni instalaciones obligatorias.",
+    ])
+
+
+def enunciado_prog2(doc):
+    _enunciado_corto(doc, PROG2_META, "prog2", [
+        "Construir en Java la aplicación de escritorio @@VetCare@@ para la clínica veterinaria "
+        "«Huellitas». Tiene que permitir:",
+        ["Registrar dueños y sus mascotas.",
+         "Agendar citas.",
+         "Guardar el historial clínico de cada mascota.",
+         "Buscar el expediente de una mascota por su ID.",
+         "Conservar los datos al cerrar y volver a abrir."],
+        ("caja", "Si cursa también Seminario (@@caso A@@), es el mismo VetCare. Si solo cursa "
+                 "Programación II (@@caso B@@), el docente le entrega los diagramas UML."),
+        "Vale el 20% del Corte 3.",
+    ], [
+        ("POO", "20", "Clases del dominio con encapsulamiento, y herencia con propósito."),
+        ("Estructuras de datos", "15", "La colección adecuada para cada caso."),
+        ("Interfaz gráfica", "20", "Ventanas con las que se completan las tareas."),
+        ("Manejo de errores", "15", "La aplicación no se cae con datos inválidos."),
+        ("Persistencia", "15", "Los datos siguen ahí al cerrar y volver a abrir."),
+        ("Sustentación", "15", "Preguntas al azar a cualquier integrante."),
+    ], [
+        "Java con Swing o JavaFX, en VS Code o el IDE del equipo. Los datos se guardan en "
+        "archivos .csv o .txt.",
+    ], sin_tildes=True)
+
+
+def enunciado_seminario(doc):
+    _enunciado_corto(doc, SEMIN_META, "seminario", [
+        "Diseñar los planos del sistema @@VetCare@@ para la clínica veterinaria «Huellitas»: "
+        "requisitos, diagramas UML, interfaz y datos. Aquí no se programa: se diseña para que "
+        "cualquier equipo pueda construirlo.",
+        "Lo que pidió el veterinario jefe en la primera entrevista (es material crudo: "
+        "convertirlo en requisitos es parte del trabajo):",
+        ["«Necesito registrar el ID, el nombre y la especie del animal que llega.»",
+         "«Necesito buscar rápido el expediente de un animal usando solo su ID.»",
+         "«Quiero ver una lista de quiénes están en la sala de espera.»",
+         "«Tiene que ser muy fácil de usar: no somos expertos en computadoras.»",
+         "«La información no puede borrarse si se va la luz o apagamos el computador.»"],
+        ("caja", "Si cursa también Programación II (@@caso A@@), es el mismo VetCare. Si solo "
+                 "cursa Seminario (@@caso C@@), el proyecto termina en el diseño y el mockup: "
+                 "no hay que escribir código."),
+        "Vale el 20% del Corte 3.",
+    ], [
+        ("Requisitos", "20", "RF y RNF verificables y trazables al pedido del cliente."),
+        ("Modelado UML", "25", "Diagramas coherentes entre sí y con los requisitos."),
+        ("Diseño de interfaz", "20", "El mockup cubre el flujo crítico y se entiende sin "
+         "explicación."),
+        ("Arquitectura de datos", "15", "Diccionario completo y formato justificado."),
+        ("Plan de pruebas", "10", "Casos que cubren los requisitos críticos."),
+        ("Sustentación", "10", "Preguntas al azar a cualquier integrante."),
+    ], [
+        "Herramientas gratuitas: draw.io para los diagramas y Figma, Penpot o Balsamiq para el "
+        "mockup.",
+    ], sin_tildes=True)
+
+
+def enunciado_intro_ing(doc):
+    """Introducción: lo mismo que los otros cuatro, con el informe final como punto clave
+    (pedido docente, 13/10/2026) y la exposición calificada por tramos. En este curso no se
+    programa: el prototipo se explica en dos frases y su detalle vive en las Clases 10 a 12."""
+    portada_estudiante(doc, INTRO_ING_META)
+    h2(doc, "1. Qué van a hacer")
+    para(doc,
+         "Una @@propuesta de mejora tecnológica@@ para un problema real de su entorno —el "
+         "barrio, la universidad, el trabajo o la casa—, que se construye clase a clase y se "
+         "defiende en la última sesión. Este curso se aprueba con este proyecto, no con un "
+         "examen final.")
+    para(doc,
+         "@@En este curso no se programa.@@ La solución se diseña y se dibuja como "
+         "@@prototipo@@: un dibujo que otra persona puede recorrer como si funcionara (en papel, "
+         "Excalidraw, draw.io o Google Slides), que se prueba con una persona ajena al equipo. "
+         "No hace falta saber programar ni instalar nada.", shade="E8F4FA")
+    para(doc, "Vale el 40% del Corte 3: informe final 20%, exposición final 15% y asistencia 5%.")
+
+    seccion_entregable(doc, "intro", "2. Qué se entrega")
+    h3(doc, "El informe final: el punto clave")
+    table(doc, ["#", "Sección", "Tiene que contener"],
+          [[str(i), t, g] for i, (t, g) in enumerate(
+              [(s[0], s[1]) for s in PLANTILLAS["intro"][0][1][2]], 1)],
+          anchos=[0.4, 1.8, 4.6])
+
+    h2(doc, "3. Cómo se califica")
+    bullets(doc, [
+        "@@Informe final (20%):@@ las 12 secciones completas y coherentes entre sí.",
+        "@@Exposición final (15%):@@ por tramos, así:",
+    ])
+    table(doc, ["Tramo", "Qué se busca", "Pts"], [
+        ["1 · El problema con su cifra", "Arranca por el problema, con un número y de dónde "
+         "salió.", "20"],
+        ["2 · Los afectados y la decisión", "Un afectado que no es usuario y qué se "
+         "sacrificó.", "20"],
+        ["3 · La solución y el prototipo en vivo", "Recorren el prototipo navegable cumpliendo "
+         "una tarea de principio a fin.", "25"],
+        ["4 · Lo que falló y lo que aprendimos", "Qué falló en la prueba, qué se arregló y qué "
+         "no.", "20"],
+        ["5 · Impacto y siguiente paso", "Impacto positivo con número y el negativo con su "
+         "mitigación.", "15"],
+    ], anchos=[2.1, 4.1, 0.6])
+
+    seccion_entrega(doc, "intro", "4. Entrega y exposición")
+    h2(doc, "5. Reglas")
+    bullets(doc, REGLAS_EQUIPO + [
+        "Hablan todos los integrantes, y cada uno responde sobre su propio tramo.",
+        "Herramientas gratuitas y en el navegador: Google Drive, Excalidraw, draw.io y Google "
+        "Slides. IA solo en las Clases 3 y 11, declarando qué se pidió y qué se corrigió; "
+        "nunca con datos personales.",
+    ])
+
+
+# Clave de cada curso en ENTREGA/PLANTILLAS, y si su material va sin tildes.
+CLAVE_CURSO = {
+    "Bases de Datos II": ("bd2", False),
+    "Arquitectura de Sistemas Computacionales": ("arq", False),
+    "Programacion II": ("prog2", True),
+    "Seminario de Sistemas": ("seminario", True),
+    "Introduccion a la Ingenieria": ("intro", False),
+}
+
 
 def build_one(curso_dir: Path, meta: dict, build_est, build_doc, md_text: str, slug: str):
     est_dir = curso_dir / "Clases" / "Proyecto Integrador"
@@ -1598,6 +1564,8 @@ def build_one(curso_dir: Path, meta: dict, build_est, build_doc, md_text: str, s
     margins(d1)
     build_est(d1)
     d1.save(est_path)
+    clave, sin_tildes = CLAVE_CURSO[slug]
+    escribir_plantilla(est_dir, clave, meta, sin_tildes=sin_tildes)
 
     # El anexo del caso de estudio acompana al enunciado en la carpeta del PI.
     # Solo para los cursos cuyo PI es la Clinica Huellitas: Arquitectura trabaja

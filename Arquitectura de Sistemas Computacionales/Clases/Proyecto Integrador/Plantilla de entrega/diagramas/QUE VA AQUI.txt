@@ -1,0 +1,1 @@
+Aquí van los tres diagramas en PNG, cada uno con su archivo fuente (.drawio o .mmd): «1 componentes», «2 despliegue» y «3 ci-cd». Las cajas se llaman igual en los tres. Borren este archivo al terminar.

@@ -1,0 +1,1 @@
+Aqui van todos los archivos .java del proyecto. Una forma de ordenarlos es la de la Clase 12: modelo (Mascota, Dueno, Cita), datos (leer y escribir el archivo), servicio (las reglas) y vista (las ventanas). No incluyan las carpetas bin, out ni target. Borren este archivo al terminar.

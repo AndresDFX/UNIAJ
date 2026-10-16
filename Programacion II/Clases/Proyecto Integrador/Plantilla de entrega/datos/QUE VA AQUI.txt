@@ -1,0 +1,1 @@
+Aqui va el archivo .csv o .txt que la aplicacion lee al arrancar y en el que guarda, con registros de prueba inventados (nunca datos de personas reales). Borren este archivo al terminar.

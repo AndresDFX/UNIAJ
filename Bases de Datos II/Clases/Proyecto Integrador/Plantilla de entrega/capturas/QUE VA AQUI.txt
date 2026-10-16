@@ -1,0 +1,1 @@
+Aquí van las capturas de la ejecución: una por script (01 a 04) y una por cada caso de prueba, con la salida visible. Nómbrenlas como el script, por ejemplo 03_procedimiento1_prueba.png. Borren este archivo al terminar.

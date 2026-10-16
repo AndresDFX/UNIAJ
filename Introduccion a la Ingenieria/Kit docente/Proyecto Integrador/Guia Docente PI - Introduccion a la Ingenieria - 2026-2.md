@@ -41,14 +41,22 @@ Exposición: SB141C y LB141F martes 17/11/2026 · SB141B jueves 19/11/2026.
 ## Entrega y sustentación
 
 - **Plazo único:** domingo 15 de noviembre de 2026, 11:59 p. m., en ExamLab.
-- **Un solo .zip** (cualquier tipo de archivo, máx. 50 MB) con:
-  - **Informe final** — PDF de 9 a 11 páginas con las 12 secciones (sección 4).
-  - **prototipo/** — Las imágenes del prototipo v1 (Clase 10) y v2 (Clase 11), en PNG o PDF. El enlace al prototipo navegable va en la sección 7 del informe.
-  - **Registro de IA** — El de la Clase 11, exportado en PDF desde el documento del equipo: el prompt completo, las tres variantes, la elegida con su razón, lo corregido a mano y lo descartado.
-  - **Ficha de avance** — La de la Clase 12, exportada en PDF: los hallazgos de la prueba con la persona ajena al equipo, con su tipo, y el plan de ajustes.
+- **Un solo .zip** (máx. 50 MB) con esta forma —los estudiantes tienen la carpeta «Plantilla de entrega» ya armada—:
+
+```
+Equipo <nombre>.zip
+├── Informe final.docx  ← las 12 secciones de la plantilla
+└── prototipo/
+    ├── v1.png  ← el prototipo de baja fidelidad
+    └── v2.png  ← el prototipo mejorado
+```
+
+- **Qué debe traer cada pieza:**
+  - **Informe final.docx** — Las 12 secciones de la plantilla, en 9 a 11 páginas. Se puede entregar en .docx o exportado a .pdf.
+  - **prototipo/** — La v1 y la v2, en PNG o PDF. El enlace al prototipo navegable va en la sección 7 del informe.
 - **Enlace obligatorio:** la carpeta de Drive del equipo —la de la bitácora—, compartida con permiso de lector.
 - **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo desde su propia cuenta** (ExamLab todavía no tiene los equipos cargados): el mismo .zip y el mismo enlace, una sola entrega por estudiante.
 - **Sustentación:** en la última clase de su grupo (SB141C y LB141F martes 17/11; SB141B jueves 19/11), por Microsoft Teams: 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes. Se corta a los 15 minutos, sin excepción.
-- **Qué muestran:** el prototipo navegable, recorriendo en vivo una de las tareas del guion de prueba de principio a fin, como si funcionara.
+- **Qué muestran:** el prototipo navegable, recorriendo en vivo una tarea de principio a fin, como si funcionara.
 
 Enunciado del estudiante en `Clases/Proyecto Integrador/`, común a los tres grupos.

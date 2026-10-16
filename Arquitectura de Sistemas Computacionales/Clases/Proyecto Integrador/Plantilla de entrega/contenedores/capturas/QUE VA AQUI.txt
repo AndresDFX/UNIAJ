@@ -1,0 +1,1 @@
+Aquí van las capturas del lab (LabEx o Killercoda) donde se ve el contenedor corriendo y respondiendo, con la fecha visible. Si la sesión del lab caducó, las capturas bastan. Borren este archivo al terminar.

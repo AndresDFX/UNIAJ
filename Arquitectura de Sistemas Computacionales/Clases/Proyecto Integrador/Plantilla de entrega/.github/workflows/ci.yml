@@ -1,0 +1,13 @@
+# Workflow de CI: construye y prueba el stub de app/ en cada push.
+# Llenen los pasos marcados con #; el despliegue puede ser simulado.
+name: ci
+on: [push]
+jobs:
+  construir-y-probar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # - name: Instalar dependencias
+      # - name: Construir
+      # - name: Probar
+      # - name: Construir la imagen (docker build con contenedores/Dockerfile)

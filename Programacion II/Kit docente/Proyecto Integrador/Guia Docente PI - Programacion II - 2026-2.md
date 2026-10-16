@@ -35,13 +35,25 @@ POO 20 · Estructuras de datos 15 · GUI 20 · Manejo de errores 15 · Persisten
 ## Entrega y sustentación
 
 - **Plazo único:** domingo 15 de noviembre de 2026, 11:59 p. m., en ExamLab.
-- **Un solo .zip** (cualquier tipo de archivo, máx. 50 MB) con:
-  - **proyecto/** — El proyecto Java completo: la carpeta src con todos los .java, listo para compilar y ejecutar. Sin carpetas de compilación (bin, out, target): pesan y no se califican.
-  - **datos/** — El archivo .csv o .txt con registros de prueba: el mismo que la aplicación lee al arrancar.
-  - **Manual de usuario** — PDF de 1 a 2 páginas con capturas de la interfaz.
+- **Un solo .zip** (máx. 50 MB) con esta forma —los estudiantes tienen la carpeta «Plantilla de entrega» ya armada—:
+
+```
+Equipo <nombre>.zip
+├── LEEME.txt  ← integrantes, caso de matrícula y cómo se ejecuta
+├── proyecto/
+│   └── src/  ← todos los .java
+├── datos/  ← el .csv o .txt con registros de prueba
+└── Manual de usuario.docx  ← 1 a 2 páginas con capturas
+```
+
+- **Qué debe traer cada pieza:**
+  - **LEEME.txt** — Nombre del equipo, integrantes, caso de matrícula (A o B) y los pasos para compilar y ejecutar.
+  - **proyecto/src/** — La aplicación completa y que compila: clases del dominio, colecciones, ventanas, manejo de errores y lectura y escritura del archivo de datos. Sin carpetas de compilación (bin, out, target).
+  - **datos/** — El archivo que la aplicación lee al arrancar y en el que guarda, con registros de prueba inventados.
+  - **Manual de usuario.docx** — 1 a 2 páginas con capturas, en el orden de la plantilla: registrar, agendar, buscar, ver el historial y qué pasa con un dato mal escrito.
 - **Enlace obligatorio:** el repositorio de GitHub con el mismo código, o la carpeta de Drive del equipo.
 - **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
-- **Sustentación:** miércoles 18/11/2026, en la última clase (sesión 13, mismo día del Parcial 3), por Meet: 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
+- **Sustentación:** miércoles 18/11/2026, en la última clase (mismo día del Parcial 3), por Meet: 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
 - **Qué muestran:** la aplicación corriendo en vivo: registrar una mascota, buscarla por su ID, escribir un dato inválido sin que se cierre, y cerrar y volver a abrir para mostrar que los datos siguen ahí.
 
 Enunciado del estudiante en `Clases/Proyecto Integrador/`.
