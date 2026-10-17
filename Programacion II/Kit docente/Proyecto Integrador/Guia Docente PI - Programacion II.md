@@ -51,8 +51,8 @@ Equipo <nombre>.zip
   - **proyecto/src/** — La aplicación completa y que compila: clases del dominio, colecciones, ventanas, manejo de errores y lectura y escritura del archivo de datos. Sin carpetas de compilación (bin, out, target).
   - **datos/** — El archivo que la aplicación lee al arrancar y en el que guarda, con registros de prueba inventados.
   - **Manual de usuario.docx** — 1 a 2 páginas con capturas, en el orden de la plantilla: registrar, agendar, buscar, ver el historial y qué pasa con un dato mal escrito.
-- **Enlace obligatorio:** el repositorio de GitHub con el mismo código, o la carpeta de Drive del equipo.
-- **Proyecto en equipo** (el número de integrantes lo indica el docente cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
+- **Sin enlace:** el campo de enlace de ExamLab está apagado; todo va dentro del .zip.
+- **Proyecto en equipo** (el número de integrantes lo indica el docente cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. **Uno de los integrantes sube la entrega del equipo** en ExamLab y queda para todos.
 - **Sustentación:** en la última clase del curso, 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
 - **Qué muestran:** la aplicación corriendo en vivo: registrar una mascota, buscarla por su ID, escribir un dato inválido sin que se cierre, y cerrar y volver a abrir para mostrar que los datos siguen ahí.
 

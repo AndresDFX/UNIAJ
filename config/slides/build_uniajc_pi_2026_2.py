@@ -82,10 +82,14 @@ def _plat():
 # ---------------------------------------------------------------------------
 # Entrega y sustentacion: lo COMUN a los cinco cursos (decision docente, 13/10/2026)
 #
-# Comun es solo esto: un plazo unico para todos los grupos, un .zip de hasta 50 MB con un
-# enlace obligatorio, cada integrante sube la entrega de su equipo y la sustentacion dura
-# 15 + 5 minutos. Repetidas en cada curso, estas reglas divergieron (cuatro cursos decian 5-8
-# min de sustentacion e Introduccion 9 + 3); por eso viven aqui, una vez.
+# Comun es solo esto: un plazo unico para todos los grupos, un solo .zip de hasta 50 MB, uno
+# de los integrantes lo sube y queda para todo el equipo, y la sustentacion dura 15 + 5
+# minutos. Repetidas en cada curso, estas reglas divergieron (cuatro cursos decian 5-8 min de
+# sustentacion e Introduccion 9 + 3); por eso viven aqui, una vez.
+#
+# SIN ENLACE (17/10/2026): el campo de enlace de la entrega en ExamLab esta apagado desde el
+# 13/10/2026, asi que no se pide repositorio ni carpeta de Drive aparte: todo va en el .zip.
+# Los enlaces que van DENTRO de un documento (al prototipo o al mockup navegable) se quedan.
 # ---------------------------------------------------------------------------
 
 #: El PI es en equipo en los cinco cursos (decision docente, 13/10/2026): antes BD II y
@@ -95,8 +99,14 @@ EQUIPO = "en equipo"
 SUSTENTACION = ("15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 "
                 "minutos); hablan todos los integrantes")
 ZIP = "un solo archivo .zip —dentro puede ir cualquier tipo de archivo; máximo 50 MB—"
-QUIEN_SUBE = ("@@Cada integrante sube la entrega del equipo@@ desde su propia cuenta: el mismo "
-              ".zip y el mismo enlace; una sola entrega por estudiante.")
+SIN_ENLACE = "No se sube ningún enlace aparte: todo va dentro del .zip."
+
+
+def _quien_sube(plataforma=None):
+    """Una entrega por equipo: ExamLab ya tiene los grupos y lo que sube uno queda para todos
+    (17/10/2026; antes cada integrante subia la misma entrega desde su cuenta)."""
+    return ("@@Uno de los integrantes sube la entrega del equipo@@ en " + (plataforma or _plat())
+            + " y queda para todos.")
 
 
 def _plazo():
@@ -108,7 +118,7 @@ def _plazo():
 # ---------------------------------------------------------------------------
 # Lo que entrega CADA curso: especifico, nunca generico (decision docente, 13/10/2026)
 #
-# NOTA PARA LAS SIGUIENTES VERSIONES. Que va dentro del .zip, que enlace se pide y que se
+# NOTA PARA LAS SIGUIENTES VERSIONES. Que va dentro del .zip y que se
 # muestra en la sustentacion se escribe con los entregables y las herramientas de ESE curso.
 # (Hubo un texto unico para los cinco que le pedia codigo a Introduccion, donde no se
 # programa.) Cada pieza sale de lo que el curso ya exige y de su rubrica: aqui no se inventan
@@ -125,7 +135,7 @@ def _plazo():
 #: Por curso:
 #:   arbol  — lo que se ve al abrir el .zip: (ruta, nota); una ruta con «/» al final es carpeta.
 #:   zip    — lo que tiene que tener cada pieza: la tabla del enunciado y de la guia docente.
-#:   enlace, cuando, muestra (y opcionales quien_sube, corte) — entrega y sustentacion.
+#:   cuando, muestra (y opcional corte) — entrega y sustentacion. Sin enlace: ver arriba.
 #: Los textos van con tildes: Prog. II y Seminario se las quitan al imprimir.
 ENTREGA = {
     "bd2": {
@@ -154,8 +164,6 @@ ENTREGA = {
              "índice o la reescritura que las mejora."),
             ("capturas/", "La salida de cada script y de cada caso de prueba."),
         ],
-        "enlace": "el repositorio de GitHub o la carpeta de Drive del equipo, con los mismos "
-                  "archivos",
         "cuando": "en la última clase del curso",
         "muestra": "ejecutar en vivo un procedimiento y un disparador con sus casos de prueba, "
                    "y una consulta antes y después de optimizarla",
@@ -185,8 +193,6 @@ ENTREGA = {
             (".github/workflows/ci.yml", "Las etapas de construir y probar, que pasan; el "
              "despliegue puede ser simulado."),
         ],
-        "enlace": "el repositorio de GitHub donde está el workflow, o la carpeta de Drive del "
-                  "equipo si el workflow se entrega solo como archivo",
         "cuando": "en la última clase del curso",
         "muestra": "el diagrama de despliegue, el contenedor corriendo en el lab (o sus "
                    "capturas, si la sesión del lab caducó) y el workflow con sus etapas",
@@ -210,8 +216,6 @@ ENTREGA = {
              "plantilla: registrar, agendar, buscar, ver el historial y qué pasa con un dato "
              "mal escrito."),
         ],
-        "enlace": "el repositorio de GitHub con el mismo código, o la carpeta de Drive del "
-                  "equipo",
         "cuando": "en la última clase del curso",
         "muestra": "la aplicación corriendo en vivo: registrar una mascota, buscarla por su ID, "
                    "escribir un dato inválido sin que se cierre, y cerrar y volver a abrir para "
@@ -234,7 +238,6 @@ ENTREGA = {
              "historial), exportadas desde Figma, Penpot o Balsamiq."),
             ("Plan de pruebas.docx", "Un caso de prueba por requisito crítico, trazado a su RF."),
         ],
-        "enlace": "la carpeta de Drive del equipo o el repositorio, con los mismos archivos",
         "cuando": "en la última clase del curso",
         "muestra": "el mockup navegable recorriendo el flujo crítico (registrar, buscar y ver "
                    "el historial) y la trazabilidad de un requisito hasta su caso de uso y su "
@@ -252,8 +255,6 @@ ENTREGA = {
             ("prototipo/", "La v1 y la v2, en PNG o PDF. El enlace al prototipo navegable va en "
              "la sección 7 del informe."),
         ],
-        "enlace": "la carpeta de Drive del equipo —la de la bitácora—, compartida con permiso "
-                  "de lector",
         "cuando": "en la última clase de su grupo",
         "corte": "Se corta a los 15 minutos, sin excepción.",
         "muestra": "el prototipo navegable, recorriendo en vivo una tarea de principio a fin, "
@@ -340,8 +341,8 @@ def seccion_entrega(doc, curso, titulo, *, sin_tildes=False):
     h2(doc, f(titulo))
     bullets(doc, [f(x) for x in [
         "@@Plazo único para todo el curso:@@ " + _plazo() + ".",
-        "@@Qué se sube:@@ el .zip (máximo 50 MB) y, junto a él, " + e["enlace"] + ".",
-        e.get("quien_sube", QUIEN_SUBE),
+        "@@Qué se sube:@@ solo el .zip, de máximo 50 MB. " + SIN_ENLACE,
+        _quien_sube(),
         "@@Sustentación:@@ " + _linea_sustentacion(e),
         "@@Qué se muestra:@@ " + e["muestra"] + ".",
     ]])
@@ -354,12 +355,12 @@ def entrega_docente(doc, curso, *, sin_tildes=False):
     h2(doc, f("Entrega y sustentación"))
     bullets(doc, [f(x) for x in [
         "Plazo único en ExamLab: el que usted publique allí, el mismo para todos los grupos. " +
-        ZIP[0].upper() + ZIP[1:] + ", y " +
-        e["enlace"] + " (obligatorio). Los estudiantes tienen la carpeta «" + CARPETA_PLANTILLA +
+        ZIP[0].upper() + ZIP[1:] + ", sin enlace: el campo de enlace de ExamLab está apagado "
+        "y todo va dentro del .zip. Los estudiantes tienen la carpeta «" + CARPETA_PLANTILLA +
         "» con la forma exacta del .zip.",
         "Proyecto " + EQUIPO + " (el número de integrantes lo indica usted cada semestre) "
         "—solo el proyecto: los demás entregables conservan su modalidad—. " +
-        e.get("quien_sube", QUIEN_SUBE),
+        _quien_sube("ExamLab"),
         "Sustentación: " + _linea_sustentacion(e),
         "Lo que deben mostrar: " + e["muestra"] + ".",
     ]])
@@ -381,9 +382,11 @@ def _md_entrega(curso):
             "- **Un solo .zip** (máx. 50 MB) con esta forma —los estudiantes tienen la "
             "carpeta «" + CARPETA_PLANTILLA + "» ya armada—:\n\n```\n" + arbol + "\n```\n\n"
             "- **Qué debe traer cada pieza:**\n" + filas + "\n"
-            "- **Enlace obligatorio:** " + e["enlace"] + ".\n"
+            "- **Sin enlace:** el campo de enlace de ExamLab está apagado; todo va dentro del "
+            ".zip.\n"
             "- **Proyecto " + EQUIPO + "** (el número de integrantes lo indica el docente "
-            "cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. " + md(e.get("quien_sube", QUIEN_SUBE)) + "\n"
+            "cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. "
+            + md(_quien_sube("ExamLab")) + "\n"
             "- **Sustentación:** " + _linea_sustentacion(e) + "\n"
             "- **Qué muestran:** " + e["muestra"] + ".\n")
 
@@ -403,8 +406,9 @@ def _leeme_raiz(asignatura):
             "3. Pongan en cada carpeta lo que dice su «QUE VA AQUI», y al terminar borren esos "
             "archivos y este.\n"
             "4. Compriman la carpeta en un solo .zip (máximo 50 MB) con el nombre del equipo.\n"
-            "5. Cada integrante sube ese mismo .zip, con el enlace, en " + _plat() + " antes "
-            "de la fecha y la hora que publica el docente.\n")
+            "5. Uno de los integrantes sube el .zip en " + _plat() + " antes de la fecha y la "
+            "hora que publica el docente, y queda para todo el equipo. No se sube ningún "
+            "enlace aparte.\n")
 
 
 def _sql(n, titulo, cuerpo):
@@ -814,8 +818,8 @@ BD2_META = {
 #: Los hitos de la guia docente van por Clase del material, sin sesion ni fecha: el reparto en
 #: sesiones y las fechas cambian cada semestre y estan en `config/calendario/`.
 HITOS_TITULO = "Hitos docentes (por clase del material; las fechas están en el calendario del semestre)"
-HITO_PLAZO = ("Cierra la entrega en ExamLab, en la fecha y la hora que usted publique: cada "
-              "integrante sube el .zip + enlace del equipo")
+HITO_PLAZO = ("Cierra la entrega en ExamLab, en la fecha y la hora que usted publique: uno de "
+              "los integrantes sube el .zip y queda para todo el equipo")
 
 
 def guia_bd2(doc):
@@ -1235,7 +1239,8 @@ def guia_intro_ing(doc):
                "base o sin criterio de aceptación verificable."],
               ["Antes de la última clase",
                "Plazo único del informe y del prototipo en ExamLab, en la fecha y la hora que "
-               "usted publique. Cada integrante sube el .zip del equipo desde su cuenta."],
+               "usted publique. Uno de los integrantes sube el .zip y queda para todo el "
+               "equipo."],
               ["Clases 15 y 16 (cierre)",
                "Sustentaciones en turnos de 20 min por equipo (15 + 5; se corta a los 15) y "
                "cierre del proyecto. El informe ya está entregado."],

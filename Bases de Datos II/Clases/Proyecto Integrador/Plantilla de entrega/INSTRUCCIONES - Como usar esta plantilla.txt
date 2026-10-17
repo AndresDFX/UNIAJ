@@ -4,4 +4,4 @@ Plantilla de entrega del Proyecto Integrador · Bases de Datos II
 2. Llenen cada archivo: reemplacen el texto en gris y lo que está entre < >.
 3. Pongan en cada carpeta lo que dice su «QUE VA AQUI», y al terminar borren esos archivos y este.
 4. Compriman la carpeta en un solo .zip (máximo 50 MB) con el nombre del equipo.
-5. Cada integrante sube ese mismo .zip, con el enlace, en ExamLab antes de la fecha y la hora que publica el docente.
+5. Uno de los integrantes sube el .zip en ExamLab antes de la fecha y la hora que publica el docente, y queda para todo el equipo. No se sube ningún enlace aparte.

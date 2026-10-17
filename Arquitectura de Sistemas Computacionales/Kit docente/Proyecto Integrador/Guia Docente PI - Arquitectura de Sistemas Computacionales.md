@@ -45,8 +45,8 @@ Equipo <nombre>.zip
   - **app/** — El servicio mínimo que se contiene y que el workflow construye y prueba.
   - **contenedores/** — El Dockerfile (o el docker-compose.yml) y las capturas del lab (LabEx o Killercoda) donde se ve corriendo, con la fecha visible.
   - **.github/workflows/ci.yml** — Las etapas de construir y probar, que pasan; el despliegue puede ser simulado.
-- **Enlace obligatorio:** el repositorio de GitHub donde está el workflow, o la carpeta de Drive del equipo si el workflow se entrega solo como archivo.
-- **Proyecto en equipo** (el número de integrantes lo indica el docente cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
+- **Sin enlace:** el campo de enlace de ExamLab está apagado; todo va dentro del .zip.
+- **Proyecto en equipo** (el número de integrantes lo indica el docente cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. **Uno de los integrantes sube la entrega del equipo** en ExamLab y queda para todos.
 - **Sustentación:** en la última clase del curso, 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
 - **Qué muestran:** el diagrama de despliegue, el contenedor corriendo en el lab (o sus capturas, si la sesión del lab caducó) y el workflow con sus etapas.
 

@@ -58,8 +58,8 @@ Equipo <nombre>.zip
   - **diagramas/** — Casos de uso, clases y el dinámico, en PNG, con su archivo fuente.
   - **mockup/Mockup.pdf** — Las pantallas del flujo crítico (registrar, buscar y ver el historial), exportadas desde Figma, Penpot o Balsamiq.
   - **Plan de pruebas.docx** — Un caso de prueba por requisito crítico, trazado a su RF.
-- **Enlace obligatorio:** la carpeta de Drive del equipo o el repositorio, con los mismos archivos.
-- **Proyecto en equipo** (el número de integrantes lo indica el docente cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
+- **Sin enlace:** el campo de enlace de ExamLab está apagado; todo va dentro del .zip.
+- **Proyecto en equipo** (el número de integrantes lo indica el docente cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. **Uno de los integrantes sube la entrega del equipo** en ExamLab y queda para todos.
 - **Sustentación:** en la última clase del curso, 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
 - **Qué muestran:** el mockup navegable recorriendo el flujo crítico (registrar, buscar y ver el historial) y la trazabilidad de un requisito hasta su caso de uso y su caso de prueba.
 

@@ -53,8 +53,8 @@ Equipo <nombre>.zip
 - **Qué debe traer cada pieza:**
   - **Informe final.docx** — Las 12 secciones de la plantilla, en 9 a 11 páginas. Se puede entregar en .docx o exportado a .pdf.
   - **prototipo/** — La v1 y la v2, en PNG o PDF. El enlace al prototipo navegable va en la sección 7 del informe.
-- **Enlace obligatorio:** la carpeta de Drive del equipo —la de la bitácora—, compartida con permiso de lector.
-- **Proyecto en equipo** (el número de integrantes lo indica el docente cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
+- **Sin enlace:** el campo de enlace de ExamLab está apagado; todo va dentro del .zip.
+- **Proyecto en equipo** (el número de integrantes lo indica el docente cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. **Uno de los integrantes sube la entrega del equipo** en ExamLab y queda para todos.
 - **Sustentación:** en la última clase de su grupo, 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes. Se corta a los 15 minutos, sin excepción.
 - **Qué muestran:** el prototipo navegable, recorriendo en vivo una tarea de principio a fin, como si funcionara.
 

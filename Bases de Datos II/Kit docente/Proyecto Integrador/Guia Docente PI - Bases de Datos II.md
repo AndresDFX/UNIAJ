@@ -44,8 +44,8 @@ Equipo <nombre>.zip
   - **03_programables.sql** — Al menos 2 procedimientos, 1 función y 2 disparadores, cada uno con su caso de prueba.
   - **04_optimizacion.sql** — Al menos 2 consultas con su EXPLAIN antes y después, y el índice o la reescritura que las mejora.
   - **capturas/** — La salida de cada script y de cada caso de prueba.
-- **Enlace obligatorio:** el repositorio de GitHub o la carpeta de Drive del equipo, con los mismos archivos.
-- **Proyecto en equipo** (el número de integrantes lo indica el docente cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
+- **Sin enlace:** el campo de enlace de ExamLab está apagado; todo va dentro del .zip.
+- **Proyecto en equipo** (el número de integrantes lo indica el docente cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. **Uno de los integrantes sube la entrega del equipo** en ExamLab y queda para todos.
 - **Sustentación:** en la última clase del curso, 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
 - **Qué muestran:** ejecutar en vivo un procedimiento y un disparador con sus casos de prueba, y una consulta antes y después de optimizarla.
 
