@@ -1,7 +1,5 @@
 Plantilla de entrega del Proyecto Integrador · Introducción a la Ingeniería
 
-1. Descarguen esta carpeta completa (Drive la baja como .zip) y descomprímanla.
-2. Llenen cada archivo: reemplacen el texto en gris y lo que está entre < >.
-3. Pongan en cada carpeta lo que dice su «QUE VA AQUI», y al terminar borren esos archivos y este.
-4. Compriman la carpeta en un solo .zip (máximo 50 MB) con el nombre del equipo.
-5. Uno de los integrantes sube el .zip en ExamLab antes de la fecha y la hora que publica el docente, y queda para todo el equipo. No se sube ningún enlace aparte.
+1. Descarguen el archivo «Informe final.docx».
+2. Llenen cada sección: reemplacen el texto en gris por el del equipo.
+3. Uno de los integrantes lo sube en ExamLab, en .docx o .pdf (máximo 50 MB), antes de la fecha y la hora que publica el docente, y queda para todo el equipo. No se sube ningún enlace aparte.

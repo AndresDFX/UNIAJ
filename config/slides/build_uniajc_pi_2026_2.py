@@ -89,7 +89,10 @@ def _plat():
 #
 # SIN ENLACE (17/10/2026): el campo de enlace de la entrega en ExamLab esta apagado desde el
 # 13/10/2026, asi que no se pide repositorio ni carpeta de Drive aparte: todo va en el .zip.
-# Los enlaces que van DENTRO de un documento (al prototipo o al mockup navegable) se quedan.
+# Los enlaces que van DENTRO de un documento (al mockup navegable de Seminario) se quedan.
+#
+# EXCEPCION: Introduccion entrega SOLO el trabajo escrito (17/10/2026): un archivo, el informe
+# final, sin .zip y sin prototipo. Se marca con la clave «archivo» de su ENTREGA.
 # ---------------------------------------------------------------------------
 
 #: El PI es en equipo en los cinco cursos (decision docente, 13/10/2026): antes BD II y
@@ -136,6 +139,7 @@ def _plazo():
 #:   arbol  — lo que se ve al abrir el .zip: (ruta, nota); una ruta con «/» al final es carpeta.
 #:   zip    — lo que tiene que tener cada pieza: la tabla del enunciado y de la guia docente.
 #:   cuando, muestra (y opcional corte) — entrega y sustentacion. Sin enlace: ver arriba.
+#:   archivo (opcional) — el curso sube ese unico documento, no un .zip (Introduccion).
 #: Los textos van con tildes: Prog. II y Seminario se las quitan al imprimir.
 ENTREGA = {
     "bd2": {
@@ -244,21 +248,17 @@ ENTREGA = {
                    "caso de prueba",
     },
     "intro": {
-        "arbol": [
-            ("Informe final.docx", "las 12 secciones de la plantilla"),
-            ("prototipo/v1.png", "el prototipo de baja fidelidad"),
-            ("prototipo/v2.png", "el prototipo mejorado"),
-        ],
+        # Solo el trabajo escrito (pedido docente, 17/10/2026): se sube el informe y nada mas.
+        # El prototipo de las Clases 10 a 12 es actividad de esas clases, no del proyecto.
+        "archivo": "informe final",
+        "arbol": [("Informe final.docx", "las 11 secciones de la plantilla")],
         "zip": [
-            ("Informe final.docx", "Las 12 secciones de la plantilla, en 9 a 11 páginas. Se "
+            ("Informe final.docx", "Las 11 secciones de la plantilla, en 9 a 11 páginas. Se "
              "puede entregar en .docx o exportado a .pdf."),
-            ("prototipo/", "La v1 y la v2, en PNG o PDF. El enlace al prototipo navegable va en "
-             "la sección 7 del informe."),
         ],
         "cuando": "en la última clase de su grupo",
         "corte": "Se corta a los 15 minutos, sin excepción.",
-        "muestra": "el prototipo navegable, recorriendo en vivo una tarea de principio a fin, "
-                   "como si funcionara",
+        "muestra": "lo que dice el informe, en el orden de los cinco tramos de la exposición",
     },
 }
 
@@ -276,6 +276,14 @@ def _sin_tildes(texto):
 
 def _linea_sustentacion(e):
     return e["cuando"] + ", " + SUSTENTACION + "." + (" " + e["corte"] if e.get("corte") else "")
+
+
+def _que_se_sube(e):
+    """Lo que se sube: el .zip, o el unico documento si el curso entrega solo uno."""
+    if e.get("archivo"):
+        return ("solo el " + e["archivo"] + ", en .docx o .pdf, de máximo 50 MB. No se sube "
+                "ningún enlace aparte.")
+    return "solo el .zip, de máximo 50 MB. " + SIN_ENLACE
 
 
 def _arbol_lineas(arbol, raiz):
@@ -326,6 +334,12 @@ def seccion_entregable(doc, curso, titulo, *, sin_tildes=False):
     e = ENTREGA[curso]
     f = _sin_tildes if sin_tildes else str
     h2(doc, f(titulo))
+    if e.get("archivo"):
+        para(doc, f("Un solo archivo: el @@" + e["archivo"] + "@@, en .docx o .pdf. La "
+                    "plantilla está en la carpeta @@«" + CARPETA_PLANTILLA + "»@@, en esta "
+                    "misma carpeta: descárguenla y llénenla siguiendo sus INSTRUCCIONES."),
+             shade="E8F4FA")
+        return
     para(doc, f("Un solo archivo .zip con esta forma. La carpeta @@«" + CARPETA_PLANTILLA + "»@@, "
                 "en esta misma carpeta, ya la trae armada: descárguenla, llénenla siguiendo "
                 "sus INSTRUCCIONES y comprímanla."), shade="E8F4FA")
@@ -341,7 +355,7 @@ def seccion_entrega(doc, curso, titulo, *, sin_tildes=False):
     h2(doc, f(titulo))
     bullets(doc, [f(x) for x in [
         "@@Plazo único para todo el curso:@@ " + _plazo() + ".",
-        "@@Qué se sube:@@ solo el .zip, de máximo 50 MB. " + SIN_ENLACE,
+        "@@Qué se sube:@@ " + _que_se_sube(e),
         _quien_sube(),
         "@@Sustentación:@@ " + _linea_sustentacion(e),
         "@@Qué se muestra:@@ " + e["muestra"] + ".",
@@ -355,16 +369,19 @@ def entrega_docente(doc, curso, *, sin_tildes=False):
     h2(doc, f("Entrega y sustentación"))
     bullets(doc, [f(x) for x in [
         "Plazo único en ExamLab: el que usted publique allí, el mismo para todos los grupos. " +
-        ZIP[0].upper() + ZIP[1:] + ", sin enlace: el campo de enlace de ExamLab está apagado "
-        "y todo va dentro del .zip. Los estudiantes tienen la carpeta «" + CARPETA_PLANTILLA +
-        "» con la forma exacta del .zip.",
+        (("Un solo archivo: el " + e["archivo"] + " en .docx o .pdf (máximo 50 MB), sin "
+          "enlace: el campo de enlace de ExamLab está apagado. Los estudiantes tienen la "
+          "plantilla en la carpeta «" + CARPETA_PLANTILLA + "».") if e.get("archivo") else
+         (ZIP[0].upper() + ZIP[1:] + ", sin enlace: el campo de enlace de ExamLab está apagado "
+          "y todo va dentro del .zip. Los estudiantes tienen la carpeta «" + CARPETA_PLANTILLA +
+          "» con la forma exacta del .zip.")),
         "Proyecto " + EQUIPO + " (el número de integrantes lo indica usted cada semestre) "
         "—solo el proyecto: los demás entregables conservan su modalidad—. " +
         _quien_sube("ExamLab"),
         "Sustentación: " + _linea_sustentacion(e),
         "Lo que deben mostrar: " + e["muestra"] + ".",
     ]])
-    h3(doc, f("Qué revisar en el .zip"))
+    h3(doc, f("Qué revisar en la entrega" if e.get("archivo") else "Qué revisar en el .zip"))
     table(doc, [f("Pieza"), f("Qué debe traer")], [[f(a), f(b)] for a, b in e["zip"]],
           anchos=[1.9, 4.9])
 
@@ -373,17 +390,24 @@ def _md_entrega(curso):
     """La seccion de entrega de la guia en Markdown, desde la misma entrada del curso."""
     e = ENTREGA[curso]
     md = (lambda t: re.sub(r"@@(.*?)@@", r"**\1**", t))
-    arbol = "\n".join((t + "  ← " + n) if n else t
-                      for t, n in _arbol_lineas(e["arbol"], "Equipo <nombre>.zip"))
     filas = "\n".join("  - **%s** — %s" % (a, b) for a, b in e["zip"])
+    if e.get("archivo"):
+        forma = ("- **Un solo archivo:** el " + e["archivo"] + " en .docx o .pdf (máx. 50 MB) "
+                 "—los estudiantes tienen la plantilla en la carpeta «" + CARPETA_PLANTILLA +
+                 "»—.\n")
+        sin_enlace = "- **Sin enlace:** el campo de enlace de ExamLab está apagado.\n"
+    else:
+        arbol = "\n".join((t + "  ← " + n) if n else t
+                          for t, n in _arbol_lineas(e["arbol"], "Equipo <nombre>.zip"))
+        forma = ("- **Un solo .zip** (máx. 50 MB) con esta forma —los estudiantes tienen la "
+                 "carpeta «" + CARPETA_PLANTILLA + "» ya armada—:\n\n```\n" + arbol +
+                 "\n```\n\n")
+        sin_enlace = ("- **Sin enlace:** el campo de enlace de ExamLab está apagado; todo va "
+                      "dentro del .zip.\n")
     return ("## Entrega y sustentación\n\n"
             "- **Plazo único:** el que publique el docente en ExamLab, el mismo para todos "
-            "los grupos.\n"
-            "- **Un solo .zip** (máx. 50 MB) con esta forma —los estudiantes tienen la "
-            "carpeta «" + CARPETA_PLANTILLA + "» ya armada—:\n\n```\n" + arbol + "\n```\n\n"
-            "- **Qué debe traer cada pieza:**\n" + filas + "\n"
-            "- **Sin enlace:** el campo de enlace de ExamLab está apagado; todo va dentro del "
-            ".zip.\n"
+            "los grupos.\n" + forma +
+            "- **Qué debe traer cada pieza:**\n" + filas + "\n" + sin_enlace +
             "- **Proyecto " + EQUIPO + "** (el número de integrantes lo indica el docente "
             "cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. "
             + md(_quien_sube("ExamLab")) + "\n"
@@ -399,8 +423,16 @@ def _md_entrega(curso):
 # «QUE VA AQUI» en cada carpeta que dice que va ahi. Solo estructura: nada de la solucion.
 # ---------------------------------------------------------------------------
 
-def _leeme_raiz(asignatura):
-    return ("Plantilla de entrega del Proyecto Integrador · " + asignatura + "\n\n"
+def _leeme_raiz(asignatura, archivo=None):
+    cabeza = "Plantilla de entrega del Proyecto Integrador · " + asignatura + "\n\n"
+    if archivo:
+        return (cabeza +
+                "1. Descarguen el archivo «" + archivo + "».\n"
+                "2. Llenen cada sección: reemplacen el texto en gris por el del equipo.\n"
+                "3. Uno de los integrantes lo sube en " + _plat() + ", en .docx o .pdf (máximo "
+                "50 MB), antes de la fecha y la hora que publica el docente, y queda para todo el "
+                "equipo. No se sube ningún enlace aparte.\n")
+    return (cabeza +
             "1. Descarguen esta carpeta completa (Drive la baja como .zip) y descomprímanla.\n"
             "2. Llenen cada archivo: reemplacen el texto en gris y lo que está entre < >.\n"
             "3. Pongan en cada carpeta lo que dice su «QUE VA AQUI», y al terminar borren esos "
@@ -597,10 +629,8 @@ PLANTILLAS = {
              "criterio."),
             ("Alternativas y decisión", "Al menos dos alternativas, los criterios, la elegida y "
              "qué se sacrificó."),
-            ("La solución y el prototipo", "Descripción de la solución, capturas del prototipo v1 "
-             "y v2, el enlace al prototipo navegable y el recorrido principal paso a paso."),
-            ("Prueba y hallazgos", "Con quién se probó (solo el rol, no el nombre), qué tareas "
-             "intentó, qué falló y qué se arregló."),
+            ("La solución", "Qué se propone y cómo funciona, sin programar: el recorrido de "
+             "una persona que la usa, paso a paso, contado por escrito."),
             ("Impacto", "Positivos con indicador y negativos con su mitigación."),
             ("Limitaciones y siguiente paso", "Lo que se decidió no hacer, con el motivo, y por "
              "dónde seguiría."),
@@ -608,11 +638,10 @@ PLANTILLAS = {
              "mano y qué no se le entregó."),
             ("Referencias", "Lo que se citó, en el formato acordado. Nada que no se haya leído."),
         ])),
-        ("prototipo/QUE VA AQUI.txt", ("texto", "Aquí van v1.png (el prototipo de baja fidelidad) y "
-         "v2.png (el mejorado), o en PDF. El enlace al prototipo navegable va en la sección 7 "
-         "del informe. Borren este archivo al terminar.\n")),
     ],
 }
+# El enunciado, ENTREGA y la guia dicen «11 secciones»: si cambia el informe, cambian ellos.
+assert len(PLANTILLAS["intro"][0][1][2]) == 11, "el informe de Introduccion ya no tiene 11 secciones"
 
 
 def _plantilla_docx(ruta, titulo, meta, secciones, f):
@@ -642,7 +671,8 @@ def escribir_plantilla(est_dir: Path, curso: str, meta: dict, *, sin_tildes=Fals
     base.mkdir(parents=True, exist_ok=True)
     # Nombres de archivo solo ASCII: un .zip armado en Windows puede dañar la «ó» o la «ñ».
     (base / "INSTRUCCIONES - Como usar esta plantilla.txt").write_text(
-        f(_leeme_raiz(meta["asignatura"])), encoding="utf-8")
+        f(_leeme_raiz(meta["asignatura"], ENTREGA[curso]["arbol"][0][0]
+                      if ENTREGA[curso].get("archivo") else None)), encoding="utf-8")
     for ruta, (tipo, *datos) in PLANTILLAS[curso]:
         destino = base / f(ruta)
         destino.parent.mkdir(parents=True, exist_ok=True)
@@ -1188,9 +1218,9 @@ def anexo_caso_estudio(doc, meta: dict):
 # grupos comparten el mismo enunciado y la misma rubrica; solo cambian el dia
 # y las fechas, que estan en el calendario de cada grupo. Por eso nada aqui
 # lleva fecha ni codigo de grupo: las etapas se anclan a la Clase del material.
-# Lo leen estudiantes de PRIMER semestre: es corto, el informe final es su
-# punto clave y deja claro que en el curso no se programa (ver
-# enunciado_intro_ing).
+# Lo leen estudiantes de PRIMER semestre: es corto y el proyecto es SOLO el
+# trabajo escrito, el informe final (pedido docente, 17/10/2026). No hay
+# prototipo en el proyecto: el de las Clases 10 a 12 es actividad de clase.
 # ---------------------------------------------------------------------------
 
 INTRO_ING_META = {
@@ -1213,10 +1243,9 @@ def guia_intro_ing(doc):
          "calendario de cada grupo está en `config/calendario/` y el plazo de entrega lo "
          "publica usted en ExamLab.")
     para(doc,
-         "En este curso no se programa. El enunciado es corto a propósito y su punto clave "
-         "es el informe final; del prototipo dice lo justo (qué es, sus versiones y qué debe "
-         "tener). El ejemplo de la biblioteca y los tipos de hallazgo están en las Clases 10 a "
-         "12.", size=10)
+         "El proyecto es solo el trabajo escrito: el informe final, que se defiende en la "
+         "exposición. No se programa y no hay prototipo en el proyecto: el de las Clases 10 a "
+         "12 es actividad de esas clases y no se entrega ni se califica aquí.", size=10)
     h2(doc, "Hitos docentes (por clase del material — igual en todos los grupos)")
     table(doc,
           ["Clase(s)", "Rol docente"],
@@ -1225,22 +1254,18 @@ def guia_intro_ing(doc):
                "Cierra el Corte 1. Evaluación de corte en ExamLab (últimos 20 min) + "
                "revisar que el problema del entorno traiga cifra y a quién le pasa."],
               ["Clases 9 y 10",
-               "Prototipo v1: exigir textos reales, estado vacío y de error y un destino por "
-               "botón, y que se dibuje el alcance mínimo, no una idea nueva."],
+               "Antecedentes: tres soluciones que ya existen y por qué no sirven aquí "
+               "(sección 4 del informe)."],
               ["Clase 11",
                "Cierra el Corte 2. Evaluación de corte en ExamLab (últimos 20 min) + revisar "
-               "el registro de IA (prompt, tres variantes, correcciones y descartes) y pedir "
-               "la prueba con una persona ajena antes de la Clase 12."],
-              ["Clase 12",
-               "Sin prueba hecha no hay ficha de avance: los hallazgos se cuentan por lo que "
-               "la persona hizo, con su tipo."],
+               "el registro de IA (qué se pidió, qué se corrigió y qué se descartó): es la "
+               "base de la declaración del uso de IA del informe."],
               ["Clases 13 y 14",
                "Revisar impacto/mitigación y bloquear equipos que lleguen sin línea "
                "base o sin criterio de aceptación verificable."],
               ["Antes de la última clase",
-               "Plazo único del informe y del prototipo en ExamLab, en la fecha y la hora que "
-               "usted publique. Uno de los integrantes sube el .zip y queda para todo el "
-               "equipo."],
+               "Plazo único del informe en ExamLab, en la fecha y la hora que usted publique. "
+               "Uno de los integrantes lo sube (.docx o .pdf) y queda para todo el equipo."],
               ["Clases 15 y 16 (cierre)",
                "Sustentaciones en turnos de 20 min por equipo (15 + 5; se corta a los 15) y "
                "cierre del proyecto. El informe ya está entregado."],
@@ -1250,7 +1275,7 @@ def guia_intro_ing(doc):
     bullets(doc, [
         "Exposición final (100 pts; su peso, en el Acuerdo pedagógico): 5 tramos de "
         "20/20/25/20/15 — ver tabla completa en el enunciado del estudiante.",
-        "Informe final (100 pts; su peso, en el Acuerdo pedagógico): 30 pts las 12 secciones "
+        "Informe final (100 pts; su peso, en el Acuerdo pedagógico): 30 pts las 11 secciones "
         "completas · "
         "20 huecos resueltos y resumen · 15 declaración de uso de IA · 20 "
         "autoevaluación con evidencia · 15 coevaluación con observaciones.",
@@ -1264,10 +1289,8 @@ def guia_intro_ing(doc):
         "Alternativas descartadas que no tienen motivo atado al dominio del equipo.",
         "Consecuencias/impacto que solo listan lo positivo: exigir siempre lo negativo "
         "con su mitigación.",
-        "Equipos que dejan la prueba con persona ajena para el final: sin ella no hay "
-        "hallazgos que mostrar en la exposición.",
-        "Equipos que intentan programar el prototipo: el curso pide baja fidelidad navegable, "
-        "y aprender a programarlo se come el tiempo de diseñar y de probar.",
+        "Equipos que entregan un prototipo o una aplicación en vez del informe: el proyecto "
+        "es solo el trabajo escrito.",
     ])
     para(doc, "Enunciado del estudiante en `Clases/Proyecto Integrador/`, común a todos "
               "los grupos.", size=10)
@@ -1285,20 +1308,17 @@ todos los grupos del curso.
 **Proyecto en equipo**, el mismo todo el semestre; el número de integrantes lo indica el
 docente cada semestre. Es regla del proyecto, no de los talleres ni de las demás actividades.
 
-**En este curso no se programa.** El prototipo es de baja fidelidad y navegable, y se prueba
-con una persona ajena al equipo. El enunciado es corto y su punto clave es el informe final; el
-detalle del prototipo está en las Clases 10 a 12.
+**El proyecto es solo el trabajo escrito:** el informe final, que se defiende en la exposición.
+No se programa y no hay prototipo en el proyecto: el de las Clases 10 a 12 es actividad de clase.
 
 ## Hitos (por clase del material — igual en todos los grupos; las fechas, en el calendario de cada grupo)
 
 | Clase(s) | Qué cierra |
 |---|---|
 | Clase 6 | Corte 1: problema y propuesta inicial + evaluación de corte en ExamLab |
-| Clases 9 y 10 | Antecedentes + prototipo v1 de baja fidelidad y guion de prueba |
-| Clase 11 | Corte 2: prototipo v2 con IA y su registro + evaluación de corte en ExamLab |
-| antes de la Clase 12 | Prueba del prototipo v2 con una persona ajena al equipo |
-| Clase 12 | Ficha de avance con los hallazgos y plan de ajustes |
-| antes de la última clase | Informe final y prototipo en ExamLab, en la fecha y la hora que publique el docente |
+| Clases 9 y 10 | Antecedentes (sección 4 del informe) |
+| Clase 11 | Corte 2: evaluación de corte en ExamLab; el registro de IA es la base de la declaración del informe |
+| antes de la última clase | Informe final en ExamLab (.docx o .pdf), en la fecha y la hora que publique el docente |
 | Clases 15 y 16 (cierre) | Corte 3: exposición final (15 + 5 min por equipo; se corta a los 15) e informe final (ya entregado en ExamLab) |
 
 ## Rúbrica (el peso de cada parte, en el Acuerdo pedagógico del semestre)
@@ -1309,8 +1329,7 @@ detalle del prototipo está en las Clases 10 a 12.
 - Problema sin cifra ni "a quién le pasa" (el error dominante).
 - Alternativas descartadas sin motivo atado al dominio propio.
 - Consecuencias que solo listan lo positivo.
-- Prototipo sin probar con una persona ajena al equipo.
-- Equipos que intentan programar el prototipo: se come el tiempo de diseñar y de probar.
+- Equipos que entregan un prototipo o una aplicación en vez del informe: el proyecto es solo el trabajo escrito.
 
 {{entrega}}
 Enunciado del estudiante en `Clases/Proyecto Integrador/`, común a todos los grupos.
@@ -1458,9 +1477,9 @@ def enunciado_seminario(doc):
 
 
 def enunciado_intro_ing(doc):
-    """Introducción: lo mismo que los otros cuatro, con el informe final como punto clave
-    (pedido docente, 13/10/2026) y la exposición calificada por tramos. En este curso no se
-    programa: el prototipo se explica en dos frases y su detalle vive en las Clases 10 a 12."""
+    """Introducción: el proyecto es SOLO el trabajo escrito, el informe final, que se
+    defiende en una exposición calificada por tramos (pedido docente, 17/10/2026: «quita lo
+    del prototipo, déjalo más simple con solo el trabajo escrito»)."""
     portada_estudiante(doc, INTRO_ING_META)
     h2(doc, "1. Qué van a hacer")
     para(doc,
@@ -1469,15 +1488,14 @@ def enunciado_intro_ing(doc):
          "defiende en la última sesión. Este curso se aprueba con este proyecto, no con un "
          "examen final.")
     para(doc,
-         "@@En este curso no se programa.@@ La solución se diseña y se dibuja como "
-         "@@prototipo@@: un dibujo que otra persona puede recorrer como si funcionara (en papel, "
-         "Excalidraw, draw.io o Google Slides), que se prueba con una persona ajena al equipo. "
-         "No hace falta saber programar ni instalar nada.", shade="E8F4FA")
+         "@@El proyecto es un trabajo escrito:@@ el informe final. No se programa ni se "
+         "construye nada: se estudia el problema, se comparan alternativas y se propone una "
+         "solución, explicada por escrito.", shade="E8F4FA")
     para(doc, "Se califican el informe final y la exposición final. Cuánto vale cada uno en la "
               "nota está en el Acuerdo pedagógico del curso.")
 
     seccion_entregable(doc, "intro", "2. Qué se entrega")
-    h3(doc, "El informe final: el punto clave")
+    h3(doc, "Las 11 secciones del informe")
     table(doc, ["#", "Sección", "Tiene que contener"],
           [[str(i), t, g] for i, (t, g) in enumerate(
               [(s[0], s[1]) for s in PLANTILLAS["intro"][0][1][2]], 1)],
@@ -1485,7 +1503,7 @@ def enunciado_intro_ing(doc):
 
     h2(doc, "3. Cómo se califica")
     bullets(doc, [
-        "@@Informe final:@@ las 12 secciones completas y coherentes entre sí.",
+        "@@Informe final:@@ las 11 secciones completas y coherentes entre sí.",
         "@@Exposición final (100 puntos):@@ por tramos, así:",
     ])
     table(doc, ["Tramo", "Qué se busca", "Pts"], [
@@ -1493,10 +1511,9 @@ def enunciado_intro_ing(doc):
          "salió.", "20"],
         ["2 · Los afectados y la decisión", "Un afectado que no es usuario y qué se "
          "sacrificó.", "20"],
-        ["3 · La solución y el prototipo en vivo", "Recorren el prototipo navegable cumpliendo "
-         "una tarea de principio a fin.", "25"],
-        ["4 · Lo que falló y lo que aprendimos", "Qué falló en la prueba, qué se arregló y qué "
-         "no.", "20"],
+        ["3 · La solución propuesta", "Qué se propone y cómo la usaría una persona, paso a "
+         "paso.", "25"],
+        ["4 · Lo que no resuelve", "Las limitaciones: qué se decidió no hacer y por qué.", "20"],
         ["5 · Impacto y siguiente paso", "Impacto positivo con número y el negativo con su "
          "mitigación.", "15"],
     ], anchos=[2.1, 4.1, 0.6])
@@ -1505,9 +1522,9 @@ def enunciado_intro_ing(doc):
     h2(doc, "5. Reglas")
     bullets(doc, REGLAS_EQUIPO + [
         "Hablan todos los integrantes, y cada uno responde sobre su propio tramo.",
-        "Herramientas gratuitas y en el navegador: Google Drive, Excalidraw, draw.io y Google "
-        "Slides. IA solo en las Clases 3 y 11, declarando qué se pidió y qué se corrigió; "
-        "nunca con datos personales.",
+        "Herramientas gratuitas: Google Docs (en Google Drive) o Word para el informe. IA solo "
+        "en las Clases 3 y 11, declarando qué se pidió y qué se corrigió; nunca con datos "
+        "personales.",
     ])
 
 
