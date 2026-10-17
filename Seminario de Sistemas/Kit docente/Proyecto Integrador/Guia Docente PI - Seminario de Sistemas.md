@@ -1,4 +1,4 @@
-# Guía docente — Proyecto Integrador · Seminario de Sistemas · 2026-2
+# Guía docente — Proyecto Integrador · Seminario de Sistemas
 
 **Privado docente** · No compartir en `Clases/`.
 
@@ -19,18 +19,18 @@ PI **compartido con Programación II**: mismo producto, distinto entregable
 3. Diseño de interfaz (wireframes + mockup navegable)
 4. Arquitectura de datos (diccionario de datos)
 
-## Hitos
-Semestre acortado a **13 sesiones**; las carpetas de material siguen numeradas 1–15.
-Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 p. m.**
+## Hitos (por clase del material)
+Sin sesiones ni fechas: cambian cada semestre y están en el calendario (`config/calendario/`).
 
-| Sesión | Fecha | Material | Entrega | Cierre |
-|---|---|---|---|---|
-| S10 (doble) | 29/10 | Clases 11 + 12 | Requisitos + casos de uso y UML avanzado | dom 01/11/2026, 11:59 p. m. |
-| S11 | 05/11 | Clase 13 | Wireframes y mockup | dom 08/11/2026, 11:59 p. m. |
-| S12 | 12/11 | Clase 14 | Documento consolidado + ensayo | **paquete final:** dom 15/11/2026, 11:59 p. m. |
-| S13 | 19/11 | Clase 15 | Sustentación 15 + 5 min (mismo día del Parcial 3) | — |
+| Material | Foco |
+|---|---|
+| Clases 11 + 12 | Requisitos + casos de uso y UML avanzado |
+| Clase 13 | Wireframes y mockup |
+| Clase 14 | Documento consolidado + ensayo |
+| Antes de la última clase | **Paquete final** en ExamLab, en la fecha y la hora que publique el docente |
+| Clase 15 (la última) | Sustentación 15 + 5 min |
 
-## Rúbrica (100 pts → 20% del Corte 3)
+## Rúbrica (100 pts)
 Requisitos 20 · UML 25 · Interfaz 20 · Arquitectura de datos 15 · Plan de pruebas 10 · Sustentación 10
 
 ## Errores frecuentes
@@ -41,7 +41,7 @@ Requisitos 20 · UML 25 · Interfaz 20 · Arquitectura de datos 15 · Plan de pr
 
 ## Entrega y sustentación
 
-- **Plazo único:** domingo 15 de noviembre de 2026, 11:59 p. m., en ExamLab.
+- **Plazo único:** el que publique el docente en ExamLab, el mismo para todos los grupos.
 - **Un solo .zip** (máx. 50 MB) con esta forma —los estudiantes tienen la carpeta «Plantilla de entrega» ya armada—:
 
 ```
@@ -59,8 +59,8 @@ Equipo <nombre>.zip
   - **mockup/Mockup.pdf** — Las pantallas del flujo crítico (registrar, buscar y ver el historial), exportadas desde Figma, Penpot o Balsamiq.
   - **Plan de pruebas.docx** — Un caso de prueba por requisito crítico, trazado a su RF.
 - **Enlace obligatorio:** la carpeta de Drive del equipo o el repositorio, con los mismos archivos.
-- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
-- **Sustentación:** jueves 19/11/2026, en la última clase (mismo día del Parcial 3), por Meet: 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
+- **Proyecto en equipo** (el número de integrantes lo indica el docente cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
+- **Sustentación:** en la última clase del curso, 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
 - **Qué muestran:** el mockup navegable recorriendo el flujo crítico (registrar, buscar y ver el historial) y la trazabilidad de un requisito hasta su caso de uso y su caso de prueba.
 
 Enunciado del estudiante en `Clases/Proyecto Integrador/`.

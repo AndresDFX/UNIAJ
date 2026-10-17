@@ -1,17 +1,26 @@
 # -*- coding: utf-8 -*-
-"""Genera el Proyecto Integrador 2026-2 de los cinco cursos.
+"""Genera el Proyecto Integrador de los cinco cursos, para cualquier semestre.
 
 BD II, Arquitectura, Programacion II, Seminario e Introduccion a la Ingenieria. La entrega
 y la sustentacion son comunes a los cinco; lo que entrega cada uno esta en `ENTREGA` y su
 carpeta «Plantilla de entrega» en `PLANTILLAS`. El enunciado es corto: que se hace, que se
 entrega, como se califica y como se entrega.
 
+SIN DATOS DE UN SEMESTRE (pedido docente, 16/10/2026: «que funcionen los proyectos para
+cualquier semestre»). Nada de fechas, periodo, grupos, horario, modalidad (Meet o Teams),
+festivos, parciales, tamano del equipo ni pesos en la nota: cambian cada semestre y el
+docente los da por otro medio. El plazo se publica en ExamLab, el peso esta en el Acuerdo
+pedagogico y las fechas de cada clase en el calendario del semestre (`config/calendario/`).
+Los hitos de la guia docente se anclan a la Clase N del material, que no cambia. El nombre
+de este archivo (2026_2) es historico: no hay que copiarlo para el semestre siguiente.
+
 Estudiante (compartible):
-  <Curso>/Clases/Proyecto Integrador/Enunciado Proyecto Integrador - <Curso> - 2026-2.docx
+  <Curso>/Clases/Proyecto Integrador/Enunciado Proyecto Integrador - <Curso>.docx
+  <Curso>/Clases/Proyecto Integrador/Plantilla de entrega/
 
 Docente (privado):
-  <Curso>/Kit docente/Proyecto Integrador/Guia Docente PI - <Curso> - 2026-2.docx
-  <Curso>/Kit docente/Proyecto Integrador/Guia Docente PI - <Curso> - 2026-2.md
+  <Curso>/Kit docente/Proyecto Integrador/Guia Docente PI - <Curso>.docx
+  <Curso>/Kit docente/Proyecto Integrador/Guia Docente PI - <Curso>.md
 """
 from __future__ import annotations
 
@@ -73,24 +82,27 @@ def _plat():
 # ---------------------------------------------------------------------------
 # Entrega y sustentacion: lo COMUN a los cinco cursos (decision docente, 13/10/2026)
 #
-# Comun es solo esto: un plazo para los siete grupos, un .zip de hasta 50 MB con un enlace
-# obligatorio, cada integrante sube la entrega de su equipo y la sustentacion dura 15 + 5
-# minutos. Repetidas en cada curso, estas reglas divergieron (cuatro cursos decian 5-8 min de
-# sustentacion e Introduccion 9 + 3); por eso viven aqui, una vez.
+# Comun es solo esto: un plazo unico para todos los grupos, un .zip de hasta 50 MB con un
+# enlace obligatorio, cada integrante sube la entrega de su equipo y la sustentacion dura
+# 15 + 5 minutos. Repetidas en cada curso, estas reglas divergieron (cuatro cursos decian 5-8
+# min de sustentacion e Introduccion 9 + 3); por eso viven aqui, una vez.
 # ---------------------------------------------------------------------------
 
-#: Modalidad del PI en los cinco cursos este semestre (decision docente, 13/10/2026): antes
-#: BD II y Arquitectura eran individuales con equipos de 2-3 «si el docente autoriza», Prog. II
-#: y Seminario no lo decian, e Introduccion era de equipo sin tamano.
-EQUIPO = "en equipo de 4 a 5 integrantes (máximo 5)"
-
-PLAZO = "domingo 15 de noviembre de 2026, 11:59 p. m."
-PLAZO_CORTO = "dom 15/11/2026, 11:59 p. m."
+#: El PI es en equipo en los cinco cursos (decision docente, 13/10/2026): antes BD II y
+#: Arquitectura eran individuales, y Prog. II y Seminario no lo decian. El TAMANO del equipo
+#: no va en el material (16/10/2026): cambia por semestre y lo indica el docente.
+EQUIPO = "en equipo"
 SUSTENTACION = ("15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 "
                 "minutos); hablan todos los integrantes")
 ZIP = "un solo archivo .zip —dentro puede ir cualquier tipo de archivo; máximo 50 MB—"
 QUIEN_SUBE = ("@@Cada integrante sube la entrega del equipo@@ desde su propia cuenta: el mismo "
               ".zip y el mismo enlace; una sola entrega por estudiante.")
+
+
+def _plazo():
+    """El plazo sin fecha: uno solo para todo el curso, el que el docente publica en la
+    plataforma. Fechado, el enunciado quedaba viejo al semestre siguiente."""
+    return "la fecha y la hora que el docente publica en " + _plat()
 
 
 # ---------------------------------------------------------------------------
@@ -144,8 +156,7 @@ ENTREGA = {
         ],
         "enlace": "el repositorio de GitHub o la carpeta de Drive del equipo, con los mismos "
                   "archivos",
-        "cuando": "lunes 16/11/2026, en la última clase (es festivo, pero sí hay clase), por "
-                  "Meet",
+        "cuando": "en la última clase del curso",
         "muestra": "ejecutar en vivo un procedimiento y un disparador con sus casos de prueba, "
                    "y una consulta antes y después de optimizarla",
     },
@@ -176,8 +187,7 @@ ENTREGA = {
         ],
         "enlace": "el repositorio de GitHub donde está el workflow, o la carpeta de Drive del "
                   "equipo si el workflow se entrega solo como archivo",
-        "cuando": "lunes 16/11/2026, en la última clase (es festivo, pero sí hay clase), por "
-                  "Meet",
+        "cuando": "en la última clase del curso",
         "muestra": "el diagrama de despliegue, el contenedor corriendo en el lab (o sus "
                    "capturas, si la sesión del lab caducó) y el workflow con sus etapas",
     },
@@ -202,8 +212,7 @@ ENTREGA = {
         ],
         "enlace": "el repositorio de GitHub con el mismo código, o la carpeta de Drive del "
                   "equipo",
-        "cuando": "miércoles 18/11/2026, en la última clase (mismo día del Parcial 3), por "
-                  "Meet",
+        "cuando": "en la última clase del curso",
         "muestra": "la aplicación corriendo en vivo: registrar una mascota, buscarla por su ID, "
                    "escribir un dato inválido sin que se cierre, y cerrar y volver a abrir para "
                    "mostrar que los datos siguen ahí",
@@ -226,7 +235,7 @@ ENTREGA = {
             ("Plan de pruebas.docx", "Un caso de prueba por requisito crítico, trazado a su RF."),
         ],
         "enlace": "la carpeta de Drive del equipo o el repositorio, con los mismos archivos",
-        "cuando": "jueves 19/11/2026, en la última clase (mismo día del Parcial 3), por Meet",
+        "cuando": "en la última clase del curso",
         "muestra": "el mockup navegable recorriendo el flujo crítico (registrar, buscar y ver "
                    "el historial) y la trazabilidad de un requisito hasta su caso de uso y su "
                    "caso de prueba",
@@ -245,13 +254,7 @@ ENTREGA = {
         ],
         "enlace": "la carpeta de Drive del equipo —la de la bitácora—, compartida con permiso "
                   "de lector",
-        # ExamLab no tiene los equipos de Introduccion cargados: mientras eso no cambie, la
-        # entrega (que es del equipo) la sube cada integrante desde su propia cuenta.
-        "quien_sube": "@@Cada integrante sube la entrega del equipo desde su propia cuenta@@ "
-                      "(ExamLab todavía no tiene los equipos cargados): el mismo .zip y el "
-                      "mismo enlace, una sola entrega por estudiante.",
-        "cuando": "en la última clase de su grupo (SB141C y LB141F martes 17/11; SB141B "
-                  "jueves 19/11), por Microsoft Teams",
+        "cuando": "en la última clase de su grupo",
         "corte": "Se corta a los 15 minutos, sin excepción.",
         "muestra": "el prototipo navegable, recorriendo en vivo una tarea de principio a fin, "
                    "como si funcionara",
@@ -271,7 +274,7 @@ def _sin_tildes(texto):
 
 
 def _linea_sustentacion(e):
-    return e["cuando"] + ": " + SUSTENTACION + "." + (" " + e["corte"] if e.get("corte") else "")
+    return e["cuando"] + ", " + SUSTENTACION + "." + (" " + e["corte"] if e.get("corte") else "")
 
 
 def _arbol_lineas(arbol, raiz):
@@ -336,7 +339,7 @@ def seccion_entrega(doc, curso, titulo, *, sin_tildes=False):
     f = _sin_tildes if sin_tildes else str
     h2(doc, f(titulo))
     bullets(doc, [f(x) for x in [
-        "@@Plazo único:@@ " + PLAZO + ", en " + _plat() + ".",
+        "@@Plazo único para todo el curso:@@ " + _plazo() + ".",
         "@@Qué se sube:@@ el .zip (máximo 50 MB) y, junto a él, " + e["enlace"] + ".",
         e.get("quien_sube", QUIEN_SUBE),
         "@@Sustentación:@@ " + _linea_sustentacion(e),
@@ -350,11 +353,13 @@ def entrega_docente(doc, curso, *, sin_tildes=False):
     f = _sin_tildes if sin_tildes else str
     h2(doc, f("Entrega y sustentación"))
     bullets(doc, [f(x) for x in [
-        "Plazo único en ExamLab: " + PLAZO + ". " + ZIP[0].upper() + ZIP[1:] + ", y " +
+        "Plazo único en ExamLab: el que usted publique allí, el mismo para todos los grupos. " +
+        ZIP[0].upper() + ZIP[1:] + ", y " +
         e["enlace"] + " (obligatorio). Los estudiantes tienen la carpeta «" + CARPETA_PLANTILLA +
         "» con la forma exacta del .zip.",
-        "Proyecto " + EQUIPO + " —solo el proyecto: los demás entregables conservan su "
-        "modalidad—. " + e.get("quien_sube", QUIEN_SUBE),
+        "Proyecto " + EQUIPO + " (el número de integrantes lo indica usted cada semestre) "
+        "—solo el proyecto: los demás entregables conservan su modalidad—. " +
+        e.get("quien_sube", QUIEN_SUBE),
         "Sustentación: " + _linea_sustentacion(e),
         "Lo que deben mostrar: " + e["muestra"] + ".",
     ]])
@@ -371,13 +376,14 @@ def _md_entrega(curso):
                       for t, n in _arbol_lineas(e["arbol"], "Equipo <nombre>.zip"))
     filas = "\n".join("  - **%s** — %s" % (a, b) for a, b in e["zip"])
     return ("## Entrega y sustentación\n\n"
-            "- **Plazo único:** " + PLAZO + ", en ExamLab.\n"
+            "- **Plazo único:** el que publique el docente en ExamLab, el mismo para todos "
+            "los grupos.\n"
             "- **Un solo .zip** (máx. 50 MB) con esta forma —los estudiantes tienen la "
             "carpeta «" + CARPETA_PLANTILLA + "» ya armada—:\n\n```\n" + arbol + "\n```\n\n"
             "- **Qué debe traer cada pieza:**\n" + filas + "\n"
             "- **Enlace obligatorio:** " + e["enlace"] + ".\n"
-            "- **Proyecto " + EQUIPO + "** — solo el proyecto: los demás entregables "
-            "conservan su modalidad. " + md(e.get("quien_sube", QUIEN_SUBE)) + "\n"
+            "- **Proyecto " + EQUIPO + "** (el número de integrantes lo indica el docente "
+            "cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. " + md(e.get("quien_sube", QUIEN_SUBE)) + "\n"
             "- **Sustentación:** " + _linea_sustentacion(e) + "\n"
             "- **Qué muestran:** " + e["muestra"] + ".\n")
 
@@ -391,14 +397,14 @@ def _md_entrega(curso):
 # ---------------------------------------------------------------------------
 
 def _leeme_raiz(asignatura):
-    return ("Plantilla de entrega del Proyecto Integrador · " + asignatura + " · 2026-2\n\n"
+    return ("Plantilla de entrega del Proyecto Integrador · " + asignatura + "\n\n"
             "1. Descarguen esta carpeta completa (Drive la baja como .zip) y descomprímanla.\n"
             "2. Llenen cada archivo: reemplacen el texto en gris y lo que está entre < >.\n"
             "3. Pongan en cada carpeta lo que dice su «QUE VA AQUI», y al terminar borren esos "
             "archivos y este.\n"
             "4. Compriman la carpeta en un solo .zip (máximo 50 MB) con el nombre del equipo.\n"
             "5. Cada integrante sube ese mismo .zip, con el enlace, en " + _plat() + " antes "
-            "del " + PLAZO + "\n")
+            "de la fecha y la hora que publica el docente.\n")
 
 
 def _sql(n, titulo, cuerpo):
@@ -609,7 +615,7 @@ def _plantilla_docx(ruta, titulo, meta, secciones, f):
     d = Document()
     margins(d)
     banda(d, f(titulo))
-    para(d, f(meta["asignatura"] + " · Grupo " + meta["grupo"] + " · Periodo " + meta["periodo"]),
+    para(d, f("Proyecto Integrador · " + meta["asignatura"]),
          size=10, color=CIAN)
     para(d, f("Plantilla: reemplacen cada texto en gris por el del equipo y borren esta línea."),
          size=10, bold=True, color=AZUL, shade="E8F4FA")
@@ -764,14 +770,13 @@ def portada_estudiante(doc, meta):
     banda(doc, meta["titulo"])
     para(doc, meta["asignatura"], size=14, bold=True, color=AZUL,
          align=WD_ALIGN_PARAGRAPH.CENTER, space_before=8)
-    para(doc, f"Código {meta['codigo']}  ·  Grupo {meta['grupo']}  ·  Periodo {meta['periodo']}",
+    # Sin grupo, periodo, horario ni modalidad: cambian cada semestre (16/10/2026).
+    para(doc, f"Código {meta['codigo']}",
          size=11, bold=True, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER)
-    para(doc, f"Horario: {meta['horario']}  ·  Modalidad: "
-              f"{meta.get('modalidad_texto', 'Virtual (sesiones por Meet)')}",
-         size=11, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER)
     para(doc, f"Docente: {DOCENTE}  ·  {CORREO}",
          size=10, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
-    para(doc, "Versión estudiante — Entrega final en %s: %s" % (_plat(), PLAZO_CORTO),
+    para(doc, "Versión estudiante — Entrega final en %s, en la fecha que publica el docente"
+         % _plat(),
          size=10, bold=True, color=AZUL, align=WD_ALIGN_PARAGRAPH.CENTER,
          shade="E8F4FA", space_after=4)
     para(doc, "Proyecto " + EQUIPO + " — no es individual",
@@ -785,7 +790,7 @@ def portada_docente(doc, meta):
     banda(doc, meta["titulo_docente"])
     para(doc, meta["asignatura"], size=13, bold=True, color=AZUL,
          align=WD_ALIGN_PARAGRAPH.CENTER, space_before=8)
-    para(doc, f"{meta['codigo']} · Grupo {meta['grupo']} · {meta['periodo']}",
+    para(doc, f"Código {meta['codigo']}",
          size=11, bold=True, color=GRIS, align=WD_ALIGN_PARAGRAPH.CENTER)
     para(doc, "DOCUMENTO DOCENTE — No distribuir a estudiantes. Incluye rúbrica e hitos.",
          size=10, bold=True, color=ROJO, align=WD_ALIGN_PARAGRAPH.CENTER,
@@ -797,23 +802,28 @@ def portada_docente(doc, meta):
 # ---------------------------------------------------------------------------
 
 BD2_META = {
-    "titulo": "Proyecto Integrador 2026-2 — VetCare DB",
+    "titulo": "Proyecto Integrador — VetCare DB",
     "titulo_docente": "Guía docente · Proyecto Integrador — Bases de Datos II",
     "asignatura": "Bases de Datos II",
     "codigo": "FI303215",
-    "grupo": "641A-2",
-    "periodo": "2026-2",
-    "horario": "Lunes 18:00–20:00 (120 min)",
     "dominio": "VetCare DB",
     "caso_huellitas": True,
 }
+
+
+#: Los hitos de la guia docente van por Clase del material, sin sesion ni fecha: el reparto en
+#: sesiones y las fechas cambian cada semestre y estan en `config/calendario/`.
+HITOS_TITULO = "Hitos docentes (por clase del material; las fechas están en el calendario del semestre)"
+HITO_PLAZO = ("Cierra la entrega en ExamLab, en la fecha y la hora que usted publique: cada "
+              "integrante sube el .zip + enlace del equipo")
 
 
 def guia_bd2(doc):
     portada_docente(doc, BD2_META)
     h2(doc, "Contexto")
     para(doc,
-         "Patrón heredado de Prog. II / Seminario: PI continuo ABPr, 20% Corte 3. "
+         "Patrón heredado de Prog. II / Seminario: PI continuo ABPr; su peso en la nota lo "
+         "fija el Acuerdo pedagógico de cada semestre. "
          "Enunciados viejos viven como .gdoc en Clase 1; aquí se materializa en "
          "Clases/Proyecto Integrador/ (estudiante) + Kit docente/Proyecto Integrador/.")
     h2(doc, "Alineación RAA")
@@ -822,25 +832,20 @@ def guia_bd2(doc):
         "RAA2 Procedimientos y disparadores → procs, funciones, triggers con pruebas.",
         "RAA3 Optimización → índices, reescritura, evidencia antes/después.",
     ])
-    h2(doc, "Hitos docentes (sesiones del calendario · 13 sesiones)")
+    h2(doc, HITOS_TITULO)
     table(doc,
-          ["Sesión", "Fecha", "Material", "Rol docente"],
+          ["Clase(s)", "Rol docente"],
           [
-              ["10 (doble)", "26/10", "Clases 11+12",
+              ["Clases 11 y 12",
                "Revisión de avance con checklist viva + empujar integración app↔BD "
-               "y casos de prueba en el mismo bloque"],
-              ["11 (autónoma)", "02/11", "Clase 13",
-               "Publicar el caso real y revisar la entrega asíncrona (dom 08/11)"],
-              ["12", "09/11", "Clase 14",
-               "Parcial 3 (virtual síncrona · solo evaluación: el ensayo fue en la sesión 10)"],
-              ["—", "15/11", "—",
-               "Cierra la entrega en ExamLab (domingo, 11:59 p. m.): cada integrante sube el "
-               ".zip + enlace del equipo"],
-              ["13", "16/11", "Clase 15",
-               "Sesión síncrona de sustentaciones: turnos de 20 min (15 + 5), preguntas y cierre"],
-          ])
+               "y casos de prueba"],
+              ["Clase 13", "Publicar el caso real y revisar la entrega"],
+              ["Antes de la última clase", HITO_PLAZO],
+              ["Clase 15 (la última)",
+               "Sustentaciones en turnos de 20 min (15 + 5), preguntas y cierre"],
+          ], anchos=[1.6, 5.2])
     entrega_docente(doc, "bd2")
-    h2(doc, "Rúbrica detallada (calificar sobre 100 → escala a 20% del corte)")
+    h2(doc, "Rúbrica detallada (sobre 100; se lleva al peso que fija el Acuerdo pedagógico)")
     bullets(doc, [
         "Modelo/DDL (20): normalización razonable, FK, constraints, nombres claros.",
         "Seguridad/respaldo (15): al menos 2 roles con privilegios distintos; RPO/RTO "
@@ -865,13 +870,10 @@ def guia_bd2(doc):
 # ---------------------------------------------------------------------------
 
 ARQ_META = {
-    "titulo": "Proyecto Integrador 2026-2 — CloudLite App",
+    "titulo": "Proyecto Integrador — CloudLite App",
     "titulo_docente": "Guía docente · Proyecto Integrador — Arquitectura de Sistemas",
     "asignatura": "Arquitectura de Sistemas Computacionales",
     "codigo": "FI303380",
-    "grupo": "6303C",
-    "periodo": "2026-2",
-    "horario": "Lunes 10:00–12:00 (120 min)",
     "dominio": "CloudLite App",
     # La parte practica de Arquitectura no nombra la plataforma: el estudiante ya sabe cual
     # es y como entrar —eso va en el correo de bienvenida—. Los demas cursos si la nombran.
@@ -883,7 +885,8 @@ def guia_arq(doc):
     portada_docente(doc, ARQ_META)
     h2(doc, "Contexto")
     para(doc,
-         "Mismo patrón de peso (20% Corte 3) que Prog. II / Seminario. Enfoque microcurrículo: "
+         "Mismo patrón que Prog. II / Seminario; el peso lo fija el Acuerdo pedagógico de cada "
+         "semestre. Enfoque microcurrículo: "
          "arquitecturas cloud, virtualización/contenedores, seguridad, rendimiento y sostenibilidad.")
     h2(doc, "Alineación RAA")
     bullets(doc, [
@@ -891,23 +894,18 @@ def guia_arq(doc):
         "RAA2 Virtualización y distribuidos → contenedores + diagrama de despliegue.",
         "RAA3 Seguridad, rendimiento y sostenibilidad → secciones explícitas + escenario de escala.",
     ])
-    h2(doc, "Hitos docentes (sesiones del calendario · 13 sesiones)")
+    h2(doc, HITOS_TITULO)
     table(doc,
-          ["Sesión", "Fecha", "Material", "Rol docente"],
+          ["Clase(s)", "Rol docente"],
           [
-              ["10 (doble)", "26/10", "Clases 11+12",
+              ["Clases 11 y 12",
                "Revisar diagramas v1 y bloquear dominios demasiado amplios + "
-               "métricas/pruebas de rendimiento en el mismo bloque"],
-              ["11 (autónoma)", "02/11", "Clase 13",
-               "Publicar el ejercicio de autoescalado y revisar la entrega (dom 08/11)"],
-              ["12", "09/11", "Clase 14",
-               "Parcial 3 (solo evaluación: el ensayo de la sustentación fue en la sesión 10)"],
-              ["—", "15/11", "—",
-               "Cierra la entrega en ExamLab (domingo, 11:59 p. m.): cada integrante sube el "
-               ".zip + enlace del equipo"],
-              ["13", "16/11", "Clase 15",
-               "Sesión síncrona de sustentaciones: turnos de 20 min (15 + 5), preguntas y cierre"],
-          ])
+               "métricas/pruebas de rendimiento"],
+              ["Clase 13", "Publicar el ejercicio de autoescalado y revisar la entrega"],
+              ["Antes de la última clase", HITO_PLAZO],
+              ["Clase 15 (la última)",
+               "Sustentaciones en turnos de 20 min (15 + 5), preguntas y cierre"],
+          ], anchos=[1.6, 5.2])
     entrega_docente(doc, "arq")
     h2(doc, "Rúbrica detallada")
     bullets(doc, [
@@ -935,24 +933,18 @@ def guia_arq(doc):
 # ---------------------------------------------------------------------------
 
 PROG2_META = {
-    "titulo": "Proyecto Integrador 2026-2 — VetCare (aplicacion Java)",
+    "titulo": "Proyecto Integrador — VetCare (aplicacion Java)",
     "titulo_docente": "Guia docente · Proyecto Integrador — Programacion II",
     "asignatura": "Programacion II",
     "codigo": "FI303204",
-    "grupo": "341C",
-    "periodo": "2026-2",
-    "horario": "Miercoles 18:00–20:00 (120 min)",
     "dominio": "VetCare",
 }
 
 SEMIN_META = {
-    "titulo": "Proyecto Integrador 2026-2 — VetCare (arquitectura y diseno)",
+    "titulo": "Proyecto Integrador — VetCare (arquitectura y diseno)",
     "titulo_docente": "Guia docente · Proyecto Integrador — Seminario de Sistemas",
     "asignatura": "Seminario de Sistemas",
     "codigo": "FI303301",
-    "grupo": "341C",
-    "periodo": "2026-2",
-    "horario": "Jueves 18:00–20:00 (120 min)",
     "dominio": "VetCare",
 }
 
@@ -979,21 +971,18 @@ def guia_prog2(doc):
         "Caso C (solo Seminario): no aparece en este curso, pero si un estudiante pregunta, "
         "sepa que alla entrega mockup/prototipo, no codigo con interfaz.",
     ])
-    h2(doc, "Hitos docentes")
+    h2(doc, _sin_tildes(HITOS_TITULO))
     table(doc,
-          ["Sesion (material)", "Fecha", "Rol docente"],
+          ["Clase(s)", "Rol docente"],
           [
-              ["S10 (doble · Clases 11+12)", "28/10",
+              ["Clases 11 y 12",
                "Revision cruzada (cada estudiante lee el codigo de otro) y empujar la "
                "integracion; detectar trabajos con modulos sueltos"],
-              ["S11 (Clase 13)", "04/11", "Verificar que las validaciones existan de verdad, no en el papel"],
-              ["S12 (Clase 14)", "11/11", "Ensayo cronometrado de la sustentacion (15 + 5 min)"],
-              ["Plazo", "dom 15/11",
-               "Cierra la entrega en ExamLab (11:59 p. m.): cada integrante sube el .zip + "
-               "enlace del equipo"],
-              ["S13 (Clase 15)", "18/11",
-               "Parcial 3 + sustentacion final en turnos de 20 min (15 + 5)"],
-          ])
+              ["Clase 13", "Verificar que las validaciones existan de verdad, no en el papel"],
+              ["Clase 14", "Ensayo cronometrado de la sustentacion (15 + 5 min)"],
+              ["Antes de la ultima clase", _sin_tildes(HITO_PLAZO)],
+              ["Clase 15 (la ultima)", "Sustentacion final en turnos de 20 min (15 + 5)"],
+          ], anchos=[1.6, 5.2])
     h2(doc, "Errores frecuentes a vigilar")
     bullets(doc, [
         "Herencia forzada solo para «cumplir el requisito» (una clase Animal que nadie usa).",
@@ -1028,22 +1017,18 @@ def guia_seminario(doc):
         "Caso B (solo Prog II): no aparece aca; sus diagramas base los provee el docente en el "
         "otro curso. Mantener un juego de diagramas VetCare listo para repartir alla.",
     ])
-    h2(doc, "Hitos docentes")
+    h2(doc, _sin_tildes(HITOS_TITULO))
     table(doc,
-          ["Sesion (material)", "Fecha", "Rol docente"],
+          ["Clase(s)", "Rol docente"],
           [
-              ["S10 (doble · Clases 11+12)", "29/10",
+              ["Clases 11 y 12",
                "Revisar que los RF sean verificables (no deseos vagos) y la coherencia "
                "entre casos de uso y diagrama de clases"],
-              ["S11 (Clase 13)", "05/11", "Wireframes: exigir flujo completo de una tarea real"],
-              ["S12 (Clase 14)", "12/11",
-               "Consolidacion del documento + ensayo cronometrado (15 + 5 min)"],
-              ["Plazo", "dom 15/11",
-               "Cierra la entrega en ExamLab (11:59 p. m.): cada integrante sube el .zip + "
-               "enlace del equipo"],
-              ["S13 (Clase 15)", "19/11",
-               "Parcial 3 + sustentacion final en turnos de 20 min (15 + 5)"],
-          ])
+              ["Clase 13", "Wireframes: exigir flujo completo de una tarea real"],
+              ["Clase 14", "Consolidacion del documento + ensayo cronometrado (15 + 5 min)"],
+              ["Antes de la ultima clase", _sin_tildes(HITO_PLAZO)],
+              ["Clase 15 (la ultima)", "Sustentacion final en turnos de 20 min (15 + 5)"],
+          ], anchos=[1.6, 5.2])
     h2(doc, "Errores frecuentes a vigilar")
     bullets(doc, [
         "Requisitos no verificables («el sistema debe ser rapido») sin criterio medible.",
@@ -1058,30 +1043,25 @@ def guia_seminario(doc):
 # Markdown kits (fuente editable docente)
 # ---------------------------------------------------------------------------
 
-MD_BD2 = """# Guía docente — Proyecto Integrador · Bases de Datos II · 2026-2
+MD_BD2 = """# Guía docente — Proyecto Integrador · Bases de Datos II
 
 **Privado docente** · No compartir en `Clases/`.
 
-- **Curso:** Bases de Datos II (FI303215 · 641A-2)
-- **Peso:** 20% Corte 3 (Acuerdo)
+- **Curso:** Bases de Datos II (FI303215)
+- **Peso:** el que fije el Acuerdo pedagógico del semestre
 - **Dominio estudiante:** VetCare DB
-- **Enunciado:** `Clases/Proyecto Integrador/Enunciado Proyecto Integrador - Bases de Datos II - 2026-2.docx`
+- **Enunciado:** `Clases/Proyecto Integrador/Enunciado Proyecto Integrador - Bases de Datos II.docx`
 
-## Hitos (Plan 2026-2 · semestre acortado a 13 sesiones)
+## Hitos (por clase del material)
 
-Las carpetas de material siguen numeradas 1–15; lo que cambia es en qué sesión se dicta cada una.
-Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 p. m.**
+Sin sesiones ni fechas: cambian cada semestre y están en el calendario (`config/calendario/`).
 
-| Sesión | Fecha | Material | Foco | Cierre de entrega |
-|---|---|---|---|---|
-| S10 (doble) | 26/10/2026 | Clases 11 + 12 | Avance PI — checklist · Integración app ↔ BD · **preparación de la sustentación** | dom 01/11/2026, 11:59 p. m. |
-| S11 (autónoma) | 02/11/2026 | Clase 13 | Análisis de casos reales aplicado al PI | dom 08/11/2026, 11:59 p. m. |
-| S12 | 09/11/2026 | Clase 14 | **Parcial 3** (virtual síncrono por Meet · solo evaluación) | **paquete final:** dom 15/11/2026, 11:59 p. m. |
-| S13 | 16/11/2026 | Clase 15 | **Sustentación en vivo del PI** (15 min + 5 de preguntas, turno de 20) + cierre (sesión síncrona) | — (el paquete ya está entregado) |
-
-> S13 cae en festivo (Independencia de Cartagena), pero por decisión docente es sesión de
-> sustentaciones: no es autónoma y no es parcial. El paquete final se sube a ExamLab a más
-> tardar el **domingo 15/11/2026, 11:59 p. m.**; el 16/11 solo se defiende.
+| Material | Foco |
+|---|---|
+| Clases 11 + 12 | Avance PI — checklist · Integración app ↔ BD · **preparación de la sustentación** |
+| Clase 13 | Análisis de casos reales aplicado al PI |
+| Antes de la última clase | **Paquete final** en ExamLab, en la fecha y la hora que publique el docente |
+| Clase 15 (la última) | **Sustentación en vivo del PI** (15 min + 5 de preguntas, turno de 20) + cierre |
 
 {{entrega}}
 ## Rúbrica (100 pts)
@@ -1089,30 +1069,25 @@ Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 
 Modelo/DDL 20 · Seguridad/respaldo 15 · Programables 25 · Optimización 15 · Integración 10 · Informe+sustentación 15.
 """
 
-MD_ARQ = """# Guía docente — Proyecto Integrador · Arquitectura · 2026-2
+MD_ARQ = """# Guía docente — Proyecto Integrador · Arquitectura
 
 **Privado docente** · No compartir en `Clases/`.
 
-- **Curso:** Arquitectura de Sistemas Computacionales (FI303380 · 6303C)
-- **Peso:** 20% Corte 3 (Acuerdo)
+- **Curso:** Arquitectura de Sistemas Computacionales (FI303380)
+- **Peso:** el que fije el Acuerdo pedagógico del semestre
 - **Dominio estudiante:** CloudLite App
-- **Enunciado:** `Clases/Proyecto Integrador/Enunciado Proyecto Integrador - Arquitectura de Sistemas Computacionales - 2026-2.docx`
+- **Enunciado:** `Clases/Proyecto Integrador/Enunciado Proyecto Integrador - Arquitectura de Sistemas Computacionales.docx`
 
-## Hitos (Plan 2026-2 · semestre acortado a 13 sesiones)
+## Hitos (por clase del material)
 
-Las carpetas de material siguen numeradas 1–15; lo que cambia es en qué sesión se dicta cada una.
-Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 p. m.**
+Sin sesiones ni fechas: cambian cada semestre y están en el calendario (`config/calendario/`).
 
-| Sesión | Fecha | Material | Foco | Cierre de entrega |
-|---|---|---|---|---|
-| S10 (doble) | 26/10/2026 | Clases 11 + 12 | Avance PI — diagramas v1 · Pruebas de rendimiento · **preparación de la sustentación** | dom 01/11/2026, 11:59 p. m. |
-| S11 (autónoma) | 02/11/2026 | Clase 13 | Escalabilidad automática aplicada al PI | dom 08/11/2026, 11:59 p. m. |
-| S12 | 09/11/2026 | Clase 14 | **Parcial 3** (virtual síncrono por Meet · solo evaluación) | **paquete final:** dom 15/11/2026, 11:59 p. m. |
-| S13 | 16/11/2026 | Clase 15 | **Sustentación en vivo del PI** (15 min + 5 de preguntas, turno de 20) + cierre (sesión síncrona) | — (el paquete ya está entregado) |
-
-> S13 cae en festivo (Independencia de Cartagena), pero por decisión docente es sesión de
-> sustentaciones: no es autónoma y no es parcial. El paquete final se sube a ExamLab a más
-> tardar el **domingo 15/11/2026, 11:59 p. m.**; el 16/11 solo se defiende.
+| Material | Foco |
+|---|---|
+| Clases 11 + 12 | Avance PI — diagramas v1 · Pruebas de rendimiento · **preparación de la sustentación** |
+| Clase 13 | Escalabilidad automática aplicada al PI |
+| Antes de la última clase | **Paquete final** en ExamLab, en la fecha y la hora que publique el docente |
+| Clase 15 (la última) | **Sustentación en vivo del PI** (15 min + 5 de preguntas, turno de 20) + cierre |
 
 {{entrega}}
 ## Rúbrica (100 pts)
@@ -1135,7 +1110,7 @@ def anexo_caso_estudio(doc, meta: dict):
     Clases 6 y 7— no estaban escritos en ninguna parte que el estudiante lea.
     """
     banda(doc, "Anexo · Caso de estudio — " + CLIENTE)
-    para(doc, meta["asignatura"] + " · " + meta["codigo"] + " · Periodo " + meta["periodo"],
+    para(doc, meta["asignatura"] + " · " + meta["codigo"],
          size=10, color=CIAN)
     para(doc, "Documento de consulta para todo el semestre. Los talleres, los quices y el "
               "Proyecto Integrador se refieren a esta clínica y a estos datos.", size=10)
@@ -1205,26 +1180,20 @@ def anexo_caso_estudio(doc, meta: dict):
 #
 # Este curso NO tiene un producto ficticio compartido (no hay VetCare ni
 # CloudLite): cada EQUIPO elige su propio problema real del entorno (barrio,
-# universidad, trabajo, casa) desde la ficha semilla de la Clase 1. Los tres
-# grupos (SB141B, SB141C, LB141F) comparten el mismo enunciado, la misma
-# rubrica y el mismo calendario POR SESION -- solo cambian el dia y las
-# fechas de cada grupo, que ya estan en su propio CALENDARIO_2026-2. Por eso
-# este documento ancla las etapas a la sesion y remite al calendario del grupo.
-# Solo fecha dos cosas: el plazo unico de entrega (comun a los cinco cursos) y
-# el dia de la exposicion final de cada grupo. Lo leen estudiantes de PRIMER
-# semestre: es corto, el informe final es su punto clave y deja claro que en el
-# curso no se programa (ver enunciado_intro_ing).
+# universidad, trabajo, casa) desde la ficha semilla de la Clase 1. Todos los
+# grupos comparten el mismo enunciado y la misma rubrica; solo cambian el dia
+# y las fechas, que estan en el calendario de cada grupo. Por eso nada aqui
+# lleva fecha ni codigo de grupo: las etapas se anclan a la Clase del material.
+# Lo leen estudiantes de PRIMER semestre: es corto, el informe final es su
+# punto clave y deja claro que en el curso no se programa (ver
+# enunciado_intro_ing).
 # ---------------------------------------------------------------------------
 
 INTRO_ING_META = {
-    "titulo": "Proyecto Integrador 2026-2 — Proyecto de equipo",
+    "titulo": "Proyecto Integrador — Proyecto de equipo",
     "titulo_docente": "Guía docente · Proyecto de equipo — Introducción a la Ingeniería",
     "asignatura": "Introducción a la Ingeniería",
     "codigo": "FI300101",
-    "grupo": "SB141B · SB141C · LB141F",
-    "periodo": "2026-2",
-    "horario": "Cada grupo tiene su propio día y horario (ver su CALENDARIO_2026-2)",
-    "modalidad_texto": "Virtual (sesiones por Microsoft Teams)",
     "dominio": "Un problema real del entorno, elegido por cada equipo",
 }
 
@@ -1233,52 +1202,51 @@ def guia_intro_ing(doc):
     portada_docente(doc, INTRO_ING_META)
     h2(doc, "Contexto")
     para(doc,
-         "Tres grupos (SB141B, SB141C, LB141F), 11 sesiones cada uno, 16 Clases de "
-         "microcurrículo (5 sesiones dobles). El proyecto es de EQUIPO (4 a 5 integrantes, "
-         "máximo 5), sin dominio fijo: "
-         "cada equipo elige su problema real desde la ficha semilla de la Clase 1. Ver "
-         "`config/calendario/introduccion_ingenieria_2026_2.json` para el calendario real "
-         "de cada grupo — este documento ancla todo a la sesión, salvo el plazo único de "
-         "entrega (dom 15/11) y el día de la exposición de cada grupo.")
+         "16 Clases de microcurrículo; todos los grupos comparten el enunciado y la rúbrica. "
+         "El proyecto es de EQUIPO —el número de integrantes lo indica usted cada semestre—, "
+         "sin dominio fijo: cada equipo elige su problema real desde la ficha semilla de la "
+         "Clase 1. Este documento no lleva fechas: ancla todo a la Clase del material. El "
+         "calendario de cada grupo está en `config/calendario/` y el plazo de entrega lo "
+         "publica usted en ExamLab.")
     para(doc,
          "En este curso no se programa. El enunciado es corto a propósito y su punto clave "
          "es el informe final; del prototipo dice lo justo (qué es, sus versiones y qué debe "
          "tener). El ejemplo de la biblioteca y los tipos de hallazgo están en las Clases 10 a "
          "12.", size=10)
-    h2(doc, "Hitos docentes (por sesión — igual en los 3 grupos)")
+    h2(doc, "Hitos docentes (por clase del material — igual en todos los grupos)")
     table(doc,
-          ["Sesión", "Clase(s)", "Rol docente"],
+          ["Clase(s)", "Rol docente"],
           [
-              ["4", "Clase 6",
+              ["Clase 6",
                "Cierra el Corte 1. Evaluación de corte en ExamLab (últimos 20 min) + "
                "revisar que el problema del entorno traiga cifra y a quién le pasa."],
-              ["6", "Clases 9 y 10",
+              ["Clases 9 y 10",
                "Prototipo v1: exigir textos reales, estado vacío y de error y un destino por "
                "botón, y que se dibuje el alcance mínimo, no una idea nueva."],
-              ["7", "Clase 11",
+              ["Clase 11",
                "Cierra el Corte 2. Evaluación de corte en ExamLab (últimos 20 min) + revisar "
                "el registro de IA (prompt, tres variantes, correcciones y descartes) y pedir "
-               "la prueba con una persona ajena antes de la sesión 8."],
-              ["8", "Clase 12",
+               "la prueba con una persona ajena antes de la Clase 12."],
+              ["Clase 12",
                "Sin prueba hecha no hay ficha de avance: los hallazgos se cuentan por lo que "
                "la persona hizo, con su tipo."],
-              ["9 y 10", "Clases 13 y 14",
+              ["Clases 13 y 14",
                "Revisar impacto/mitigación y bloquear equipos que lleguen sin línea "
                "base o sin criterio de aceptación verificable."],
-              ["—", "—",
-               "Plazo único del informe y del prototipo en ExamLab: domingo 15/11/2026, "
-               "11:59 p. m. Cada integrante sube el .zip del equipo desde su cuenta."],
-              ["11 (doble)", "Clases 15+16",
+              ["Antes de la última clase",
+               "Plazo único del informe y del prototipo en ExamLab, en la fecha y la hora que "
+               "usted publique. Cada integrante sube el .zip del equipo desde su cuenta."],
+              ["Clases 15 y 16 (cierre)",
                "Sustentaciones en turnos de 20 min por equipo (15 + 5; se corta a los 15) y "
-               "cierre del proyecto. SB141C y LB141F mar 17/11 · SB141B jue 19/11. El "
-               "informe ya está entregado."],
-          ])
+               "cierre del proyecto. El informe ya está entregado."],
+          ], anchos=[1.6, 5.2])
     entrega_docente(doc, "intro")
     h2(doc, "Rúbrica detallada")
     bullets(doc, [
-        "Exposición final (100 pts → 15% del curso): 5 tramos de 20/20/25/20/15 — ver "
-        "tabla completa en el enunciado del estudiante.",
-        "Informe final (100 pts → 20% del curso): 30 pts las 12 secciones completas · "
+        "Exposición final (100 pts; su peso, en el Acuerdo pedagógico): 5 tramos de "
+        "20/20/25/20/15 — ver tabla completa en el enunciado del estudiante.",
+        "Informe final (100 pts; su peso, en el Acuerdo pedagógico): 30 pts las 12 secciones "
+        "completas · "
         "20 huecos resueltos y resumen · 15 declaración de uso de IA · 20 "
         "autoevaluación con evidencia · 15 coevaluación con observaciones.",
         "Penalice con -10 pts de exposición si no hablan todos los integrantes, y otros "
@@ -1296,42 +1264,41 @@ def guia_intro_ing(doc):
         "Equipos que intentan programar el prototipo: el curso pide baja fidelidad navegable, "
         "y aprender a programarlo se come el tiempo de diseñar y de probar.",
     ])
-    para(doc, "Enunciado del estudiante en `Clases/Proyecto Integrador/`, común a los "
-              "tres grupos.", size=10)
+    para(doc, "Enunciado del estudiante en `Clases/Proyecto Integrador/`, común a todos "
+              "los grupos.", size=10)
 
 
-MD_INTRO_ING = """# Guía docente — Proyecto de equipo · Introducción a la Ingeniería · 2026-2
+MD_INTRO_ING = """# Guía docente — Proyecto de equipo · Introducción a la Ingeniería
 
 **Privado docente** · No compartir en `Clases/`.
 
 ## Producto
 No hay dominio fijo: cada EQUIPO elige su propio problema real del entorno desde la
 ficha semilla de la Clase 1 (cinco campos de acción, retomada en la Clase 6). Común a
-los tres grupos SB141B, SB141C, LB141F.
+todos los grupos del curso.
 
-**Equipo del proyecto: 4 a 5 integrantes (máximo 5)**, el mismo todo el semestre. Es regla
-del proyecto, no de los talleres ni de las demás actividades.
+**Proyecto en equipo**, el mismo todo el semestre; el número de integrantes lo indica el
+docente cada semestre. Es regla del proyecto, no de los talleres ni de las demás actividades.
 
 **En este curso no se programa.** El prototipo es de baja fidelidad y navegable, y se prueba
 con una persona ajena al equipo. El enunciado es corto y su punto clave es el informe final; el
 detalle del prototipo está en las Clases 10 a 12.
 
-## Hitos (por sesión — igual en los 3 grupos; fecha real en el CALENDARIO de cada grupo)
+## Hitos (por clase del material — igual en todos los grupos; las fechas, en el calendario de cada grupo)
 
-| Sesión | Clase(s) | Qué cierra |
-|---|---|---|
-| 4 | Clase 6 | Corte 1: problema y propuesta inicial + evaluación de corte en ExamLab |
-| 6 | Clases 9 y 10 | Antecedentes + prototipo v1 de baja fidelidad y guion de prueba |
-| 7 | Clase 11 | Corte 2: prototipo v2 con IA y su registro + evaluación de corte en ExamLab |
-| antes de la 8 | — | Prueba del prototipo v2 con una persona ajena al equipo |
-| 8 | Clase 12 | Ficha de avance con los hallazgos y plan de ajustes |
-| 11 (doble) | Clases 15+16 | Corte 3: exposición final (15%, 15 + 5 min por equipo; se corta a los 15) e informe final (20%, ya entregado en ExamLab) |
+| Clase(s) | Qué cierra |
+|---|---|
+| Clase 6 | Corte 1: problema y propuesta inicial + evaluación de corte en ExamLab |
+| Clases 9 y 10 | Antecedentes + prototipo v1 de baja fidelidad y guion de prueba |
+| Clase 11 | Corte 2: prototipo v2 con IA y su registro + evaluación de corte en ExamLab |
+| antes de la Clase 12 | Prueba del prototipo v2 con una persona ajena al equipo |
+| Clase 12 | Ficha de avance con los hallazgos y plan de ajustes |
+| antes de la última clase | Informe final y prototipo en ExamLab, en la fecha y la hora que publique el docente |
+| Clases 15 y 16 (cierre) | Corte 3: exposición final (15 + 5 min por equipo; se corta a los 15) e informe final (ya entregado en ExamLab) |
 
-Exposición: SB141C y LB141F martes 17/11/2026 · SB141B jueves 19/11/2026.
-
-## Rúbrica
-- Exposición final: 100 pts → 15% (tramos 20/20/25/20/15).
-- Informe final: 100 pts → 20% (30/20/15/20/15).
+## Rúbrica (el peso de cada parte, en el Acuerdo pedagógico del semestre)
+- Exposición final: 100 pts (tramos 20/20/25/20/15).
+- Informe final: 100 pts (30/20/15/20/15).
 
 ## Errores frecuentes
 - Problema sin cifra ni "a quién le pasa" (el error dominante).
@@ -1341,13 +1308,14 @@ Exposición: SB141C y LB141F martes 17/11/2026 · SB141B jueves 19/11/2026.
 - Equipos que intentan programar el prototipo: se come el tiempo de diseñar y de probar.
 
 {{entrega}}
-Enunciado del estudiante en `Clases/Proyecto Integrador/`, común a los tres grupos.
+Enunciado del estudiante en `Clases/Proyecto Integrador/`, común a todos los grupos.
 """
 
 #: Primeras reglas de todos los enunciados: el equipo y quién responde en la sustentación.
 REGLAS_EQUIPO = [
-    "@@Equipo de 4 a 5 integrantes (máximo 5)@@, el mismo hasta el final. Es regla solo del "
-    "proyecto: talleres, quices y parciales tienen su propia modalidad.",
+    "@@En equipo, no individual.@@ El número de integrantes lo indica el docente; el equipo "
+    "es el mismo hasta el final. Es regla solo del proyecto: talleres, quices y parciales "
+    "tienen su propia modalidad.",
     "Todos los integrantes deben poder explicar cualquier parte: en la sustentación las "
     "preguntas van al azar a cualquiera.",
 ]
@@ -1389,7 +1357,7 @@ def enunciado_bd2(doc):
         "la usaría. Todo en PostgreSQL. No se pide la aplicación: solo la base de datos.",
         ("caja", "El caso completo —las 8 entidades, las 3 reglas del negocio y los datos— está "
                  "en el @@Anexo - Caso de estudio Clínica Huellitas@@, en esta misma carpeta."),
-        "Vale el 20% del Corte 3.",
+        "Cuánto vale en la nota está en el Acuerdo pedagógico del curso.",
     ], [
         ("Modelo y DDL", "20", "El ER y el DDL coinciden; llaves y restricciones de las reglas "
          "del negocio."),
@@ -1413,7 +1381,7 @@ def enunciado_arq(doc):
         "servicio en contenedor y un flujo de CI/CD.",
         ("caja", "Sin nube de pago ni tarjeta: todo se hace en laboratorios gratuitos del "
                  "navegador."),
-        "Vale el 20% del Corte 3.",
+        "Cuánto vale en la nota está en el Acuerdo pedagógico del curso.",
     ], [
         ("Dominio y modelo de servicio", "15", "Un problema concreto y la decisión IaaS, PaaS o "
          "SaaS justificada."),
@@ -1440,7 +1408,7 @@ def enunciado_prog2(doc):
          "Conservar los datos al cerrar y volver a abrir."],
         ("caja", "Si cursa también Seminario (@@caso A@@), es el mismo VetCare. Si solo cursa "
                  "Programación II (@@caso B@@), el docente le entrega los diagramas UML."),
-        "Vale el 20% del Corte 3.",
+        "Cuánto vale en la nota está en el Acuerdo pedagógico del curso.",
     ], [
         ("POO", "20", "Clases del dominio con encapsulamiento, y herencia con propósito."),
         ("Estructuras de datos", "15", "La colección adecuada para cada caso."),
@@ -1469,7 +1437,7 @@ def enunciado_seminario(doc):
         ("caja", "Si cursa también Programación II (@@caso A@@), es el mismo VetCare. Si solo "
                  "cursa Seminario (@@caso C@@), el proyecto termina en el diseño y el mockup: "
                  "no hay que escribir código."),
-        "Vale el 20% del Corte 3.",
+        "Cuánto vale en la nota está en el Acuerdo pedagógico del curso.",
     ], [
         ("Requisitos", "20", "RF y RNF verificables y trazables al pedido del cliente."),
         ("Modelado UML", "25", "Diagramas coherentes entre sí y con los requisitos."),
@@ -1500,7 +1468,8 @@ def enunciado_intro_ing(doc):
          "@@prototipo@@: un dibujo que otra persona puede recorrer como si funcionara (en papel, "
          "Excalidraw, draw.io o Google Slides), que se prueba con una persona ajena al equipo. "
          "No hace falta saber programar ni instalar nada.", shade="E8F4FA")
-    para(doc, "Vale el 40% del Corte 3: informe final 20%, exposición final 15% y asistencia 5%.")
+    para(doc, "Se califican el informe final y la exposición final. Cuánto vale cada uno en la "
+              "nota está en el Acuerdo pedagógico del curso.")
 
     seccion_entregable(doc, "intro", "2. Qué se entrega")
     h3(doc, "El informe final: el punto clave")
@@ -1511,8 +1480,8 @@ def enunciado_intro_ing(doc):
 
     h2(doc, "3. Cómo se califica")
     bullets(doc, [
-        "@@Informe final (20%):@@ las 12 secciones completas y coherentes entre sí.",
-        "@@Exposición final (15%):@@ por tramos, así:",
+        "@@Informe final:@@ las 12 secciones completas y coherentes entre sí.",
+        "@@Exposición final (100 puntos):@@ por tramos, así:",
     ])
     table(doc, ["Tramo", "Qué se busca", "Pts"], [
         ["1 · El problema con su cifra", "Arranca por el problema, con un número y de dónde "
@@ -1553,9 +1522,10 @@ def build_one(curso_dir: Path, meta: dict, build_est, build_doc, md_text: str, s
     est_dir.mkdir(parents=True, exist_ok=True)
     kit_dir.mkdir(parents=True, exist_ok=True)
 
-    est_path = est_dir / f"Enunciado Proyecto Integrador - {slug} - 2026-2.docx"
-    doc_path = kit_dir / f"Guia Docente PI - {slug} - 2026-2.docx"
-    md_path = kit_dir / f"Guia Docente PI - {slug} - 2026-2.md"
+    # Sin el periodo en el nombre: el mismo archivo sirve cualquier semestre (16/10/2026).
+    est_path = est_dir / f"Enunciado Proyecto Integrador - {slug}.docx"
+    doc_path = kit_dir / f"Guia Docente PI - {slug}.docx"
+    md_path = kit_dir / f"Guia Docente PI - {slug}.md"
 
     global NOMBRE_PLATAFORMA
     NOMBRE_PLATAFORMA = meta.get("plataforma", "ExamLab")
@@ -1588,7 +1558,7 @@ def build_one(curso_dir: Path, meta: dict, build_est, build_doc, md_text: str, s
     print("OK ->", doc_path)
     print("OK ->", md_path)
 
-MD_PROG2 = """# Guía docente — Proyecto Integrador · Programación II · 2026-2
+MD_PROG2 = """# Guía docente — Proyecto Integrador · Programación II
 
 **Privado docente** · No compartir en `Clases/`.
 
@@ -1602,18 +1572,18 @@ PI **compartido con Seminario de Sistemas**: mismo producto, distinto entregable
 - **B** (solo Prog II): el docente entrega los diagramas UML ya hechos; el estudiante programa.
 - **C** (solo Seminario): no aplica en este curso.
 
-## Hitos
-Semestre acortado a **13 sesiones**; las carpetas de material siguen numeradas 1–15.
-Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 p. m.**
+## Hitos (por clase del material)
+Sin sesiones ni fechas: cambian cada semestre y están en el calendario (`config/calendario/`).
 
-| Sesión | Fecha | Material | Entrega | Cierre |
-|---|---|---|---|---|
-| S10 (doble) | 28/10 | Clases 11 + 12 | Avance de código + revisión cruzada e integración de módulos | dom 01/11/2026, 11:59 p. m. |
-| S11 | 04/11 | Clase 13 | Excepciones y validaciones | dom 08/11/2026, 11:59 p. m. |
-| S12 | 11/11 | Clase 14 | Versión final + ensayo | **paquete final:** dom 15/11/2026, 11:59 p. m. |
-| S13 | 18/11 | Clase 15 | Sustentación 15 + 5 min (mismo día del Parcial 3) | — |
+| Material | Foco |
+|---|---|
+| Clases 11 + 12 | Avance de código + revisión cruzada e integración de módulos |
+| Clase 13 | Excepciones y validaciones |
+| Clase 14 | Versión final + ensayo |
+| Antes de la última clase | **Paquete final** en ExamLab, en la fecha y la hora que publique el docente |
+| Clase 15 (la última) | Sustentación 15 + 5 min |
 
-## Rúbrica (100 pts → 20% del Corte 3)
+## Rúbrica (100 pts)
 POO 20 · Estructuras de datos 15 · GUI 20 · Manejo de errores 15 · Persistencia 15 · Sustentación 15
 
 ## Errores frecuentes
@@ -1626,7 +1596,7 @@ POO 20 · Estructuras de datos 15 · GUI 20 · Manejo de errores 15 · Persisten
 Enunciado del estudiante en `Clases/Proyecto Integrador/`.
 """
 
-MD_SEMIN = """# Guía docente — Proyecto Integrador · Seminario de Sistemas · 2026-2
+MD_SEMIN = """# Guía docente — Proyecto Integrador · Seminario de Sistemas
 
 **Privado docente** · No compartir en `Clases/`.
 
@@ -1647,18 +1617,18 @@ PI **compartido con Programación II**: mismo producto, distinto entregable
 3. Diseño de interfaz (wireframes + mockup navegable)
 4. Arquitectura de datos (diccionario de datos)
 
-## Hitos
-Semestre acortado a **13 sesiones**; las carpetas de material siguen numeradas 1–15.
-Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 p. m.**
+## Hitos (por clase del material)
+Sin sesiones ni fechas: cambian cada semestre y están en el calendario (`config/calendario/`).
 
-| Sesión | Fecha | Material | Entrega | Cierre |
-|---|---|---|---|---|
-| S10 (doble) | 29/10 | Clases 11 + 12 | Requisitos + casos de uso y UML avanzado | dom 01/11/2026, 11:59 p. m. |
-| S11 | 05/11 | Clase 13 | Wireframes y mockup | dom 08/11/2026, 11:59 p. m. |
-| S12 | 12/11 | Clase 14 | Documento consolidado + ensayo | **paquete final:** dom 15/11/2026, 11:59 p. m. |
-| S13 | 19/11 | Clase 15 | Sustentación 15 + 5 min (mismo día del Parcial 3) | — |
+| Material | Foco |
+|---|---|
+| Clases 11 + 12 | Requisitos + casos de uso y UML avanzado |
+| Clase 13 | Wireframes y mockup |
+| Clase 14 | Documento consolidado + ensayo |
+| Antes de la última clase | **Paquete final** en ExamLab, en la fecha y la hora que publique el docente |
+| Clase 15 (la última) | Sustentación 15 + 5 min |
 
-## Rúbrica (100 pts → 20% del Corte 3)
+## Rúbrica (100 pts)
 Requisitos 20 · UML 25 · Interfaz 20 · Arquitectura de datos 15 · Plan de pruebas 10 · Sustentación 10
 
 ## Errores frecuentes

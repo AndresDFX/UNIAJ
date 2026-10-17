@@ -1,31 +1,26 @@
-# Guía docente — Proyecto Integrador · Bases de Datos II · 2026-2
+# Guía docente — Proyecto Integrador · Bases de Datos II
 
 **Privado docente** · No compartir en `Clases/`.
 
-- **Curso:** Bases de Datos II (FI303215 · 641A-2)
-- **Peso:** 20% Corte 3 (Acuerdo)
+- **Curso:** Bases de Datos II (FI303215)
+- **Peso:** el que fije el Acuerdo pedagógico del semestre
 - **Dominio estudiante:** VetCare DB
-- **Enunciado:** `Clases/Proyecto Integrador/Enunciado Proyecto Integrador - Bases de Datos II - 2026-2.docx`
+- **Enunciado:** `Clases/Proyecto Integrador/Enunciado Proyecto Integrador - Bases de Datos II.docx`
 
-## Hitos (Plan 2026-2 · semestre acortado a 13 sesiones)
+## Hitos (por clase del material)
 
-Las carpetas de material siguen numeradas 1–15; lo que cambia es en qué sesión se dicta cada una.
-Toda entrega intermedia cierra el **domingo siguiente a la sesión, a las 11:59 p. m.**
+Sin sesiones ni fechas: cambian cada semestre y están en el calendario (`config/calendario/`).
 
-| Sesión | Fecha | Material | Foco | Cierre de entrega |
-|---|---|---|---|---|
-| S10 (doble) | 26/10/2026 | Clases 11 + 12 | Avance PI — checklist · Integración app ↔ BD · **preparación de la sustentación** | dom 01/11/2026, 11:59 p. m. |
-| S11 (autónoma) | 02/11/2026 | Clase 13 | Análisis de casos reales aplicado al PI | dom 08/11/2026, 11:59 p. m. |
-| S12 | 09/11/2026 | Clase 14 | **Parcial 3** (virtual síncrono por Meet · solo evaluación) | **paquete final:** dom 15/11/2026, 11:59 p. m. |
-| S13 | 16/11/2026 | Clase 15 | **Sustentación en vivo del PI** (15 min + 5 de preguntas, turno de 20) + cierre (sesión síncrona) | — (el paquete ya está entregado) |
-
-> S13 cae en festivo (Independencia de Cartagena), pero por decisión docente es sesión de
-> sustentaciones: no es autónoma y no es parcial. El paquete final se sube a ExamLab a más
-> tardar el **domingo 15/11/2026, 11:59 p. m.**; el 16/11 solo se defiende.
+| Material | Foco |
+|---|---|
+| Clases 11 + 12 | Avance PI — checklist · Integración app ↔ BD · **preparación de la sustentación** |
+| Clase 13 | Análisis de casos reales aplicado al PI |
+| Antes de la última clase | **Paquete final** en ExamLab, en la fecha y la hora que publique el docente |
+| Clase 15 (la última) | **Sustentación en vivo del PI** (15 min + 5 de preguntas, turno de 20) + cierre |
 
 ## Entrega y sustentación
 
-- **Plazo único:** domingo 15 de noviembre de 2026, 11:59 p. m., en ExamLab.
+- **Plazo único:** el que publique el docente en ExamLab, el mismo para todos los grupos.
 - **Un solo .zip** (máx. 50 MB) con esta forma —los estudiantes tienen la carpeta «Plantilla de entrega» ya armada—:
 
 ```
@@ -50,8 +45,8 @@ Equipo <nombre>.zip
   - **04_optimizacion.sql** — Al menos 2 consultas con su EXPLAIN antes y después, y el índice o la reescritura que las mejora.
   - **capturas/** — La salida de cada script y de cada caso de prueba.
 - **Enlace obligatorio:** el repositorio de GitHub o la carpeta de Drive del equipo, con los mismos archivos.
-- **Proyecto en equipo de 4 a 5 integrantes (máximo 5)** — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
-- **Sustentación:** lunes 16/11/2026, en la última clase (es festivo, pero sí hay clase), por Meet: 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
+- **Proyecto en equipo** (el número de integrantes lo indica el docente cada semestre) — solo el proyecto: los demás entregables conservan su modalidad. **Cada integrante sube la entrega del equipo** desde su propia cuenta: el mismo .zip y el mismo enlace; una sola entrega por estudiante.
+- **Sustentación:** en la última clase del curso, 15 minutos de exposición + 5 minutos de preguntas por equipo (turno de 20 minutos); hablan todos los integrantes.
 - **Qué muestran:** ejecutar en vivo un procedimiento y un disparador con sus casos de prueba, y una consulta antes y después de optimizarla.
 
 ## Rúbrica (100 pts)

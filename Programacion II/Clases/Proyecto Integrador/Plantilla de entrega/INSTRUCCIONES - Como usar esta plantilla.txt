@@ -1,7 +1,7 @@
-Plantilla de entrega del Proyecto Integrador · Programacion II · 2026-2
+Plantilla de entrega del Proyecto Integrador · Programacion II
 
 1. Descarguen esta carpeta completa (Drive la baja como .zip) y descomprimanla.
 2. Llenen cada archivo: reemplacen el texto en gris y lo que esta entre < >.
 3. Pongan en cada carpeta lo que dice su «QUE VA AQUI», y al terminar borren esos archivos y este.
 4. Compriman la carpeta en un solo .zip (maximo 50 MB) con el nombre del equipo.
-5. Cada integrante sube ese mismo .zip, con el enlace, en ExamLab antes del domingo 15 de noviembre de 2026, 11:59 p. m.
+5. Cada integrante sube ese mismo .zip, con el enlace, en ExamLab antes de la fecha y la hora que publica el docente.
